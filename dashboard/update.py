@@ -1,0 +1,391 @@
+#!/usr/bin/env python3
+"""Regenerate index.html from data.json, with live PR status from GitHub (gh).
+
+  python3 ~/localhost-index/update.py
+
+Run every 15 minutes by cron (crontab -l), followed by log_notes.py, which
+commits the page to ~/hazel-work-notes and pushes it; the last run's output is
+in update.log.
+
+data.json holds what only we know: which ports serve what, which PRs are
+against the performance tracking issue, and the open next steps. Titles,
+state, CI, review and mergeability come from GitHub each run."""
+import html, json, os, re, subprocess, sys
+from datetime import datetime
+
+# The dashboard's version: what each version adds is in VERSIONS.md, next to this file's folder.
+VERSION = "0.0.1"
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+data = json.load(open(os.path.join(HERE, "data.json")))
+REPO = "hazelgrove/hazel"
+
+def gh_pr(n):
+    fields = "number,title,url,state,isDraft,baseRefName,headRefName,statusCheckRollup,reviewDecision,mergeable,updatedAt"
+    r = subprocess.run(["gh", "pr", "view", str(n), "--repo", REPO, "--json", fields],
+                       capture_output=True, text=True, timeout=60)
+    if r.returncode != 0:
+        # no page rather than a page of unknowns: the last good one stays
+        sys.exit(f"gh could not read #{n}: {r.stderr.strip()[:200]}")
+    return json.loads(r.stdout)
+
+prs = {}
+def pr(n):
+    if n not in prs:
+        prs[n] = gh_pr(n)
+    return prs[n]
+
+e = html.escape
+
+# Links made the same way everywhere on the page: an issue of the
+# performance-analysis series, a hazelgrove/hazel issue or PR (#NNNN), and a
+# commit (10 hex digits). Text already inside a link is left alone.
+SERIES_PUBLIC = "http://matthewhammer.org/hazel/performance-analysis/"
+SERIES_LOCAL = "http://localhost:8131/series/"
+PUBLISHED = os.path.expanduser("~/matthewhammer.github.io/hazel/performance-analysis")
+
+def series_url(n):
+    nnn = f"{int(n):03d}"
+    if os.path.isdir(os.path.join(PUBLISHED, nnn)):
+        return SERIES_PUBLIC + nnn + "/"
+    return SERIES_LOCAL + nnn + "/"
+
+LINKABLE = re.compile(
+    r"(?P<series>\b[Ii]ssues? (?P<n>00\d)\b)"
+    r"|(?P<gh>(?<![\w/#&])#(?P<num>\d{4})\b)"
+    r"|(?P<sha>\b(?=[0-9a-f]*\d)(?=[0-9a-f]*[a-f])[0-9a-f]{10}\b)"
+    r"|(?P<step>(?<![\w/#&])#(?P<sid>\d{1,3})\b)")
+
+# our own next steps, by number: "#10" links to its row while it is listed
+STEP_IDS = {s["id"] for s in data["next_steps"]}
+
+def linkify(text):
+    out, pos, depth = [], 0, 0
+    # walk tags; only text outside <a>...</a> and outside tags gets links
+    for m in re.finditer(r"<[^>]+>", text):
+        out.append(link_text(text[pos:m.start()]) if depth == 0 else text[pos:m.start()])
+        tag = m.group(0)
+        if re.match(r"<a[\s>]", tag):
+            depth += 1
+        elif tag.startswith("</a"):
+            depth = max(0, depth - 1)
+        out.append(tag)
+        pos = m.end()
+    out.append(link_text(text[pos:]) if depth == 0 else text[pos:])
+    return "".join(out)
+
+def link_text(t):
+    def sub(m):
+        if m.group("series"):
+            return f'<a href="{series_url(m.group("n"))}">{m.group("series")}</a>'
+        if m.group("gh"):
+            return f'<a href="https://github.com/{REPO}/issues/{m.group("num")}">{m.group("gh")}</a>'
+        if m.group("sha"):
+            return f'<a href="https://github.com/{REPO}/commit/{m.group("sha")}"><code>{m.group("sha")}</code></a>'
+        if int(m.group("sid")) in STEP_IDS:
+            return f'<a href="#next-{m.group("sid")}">{m.group("step")}</a>'
+        return m.group("step")
+    return LINKABLE.sub(sub, t)
+
+def pr_cell(p):
+    return f'<a href="{e(p["url"])}">#{p["number"]}</a> {e(p.get("title", ""))}'
+
+def state(p):
+    s = (p.get("state") or "").lower()
+    if s == "open" and p.get("isDraft"):
+        return "draft"
+    return s or "?"
+
+def ci(p):
+    checks = p.get("statusCheckRollup") or []
+    if not checks:
+        return "no checks"
+    ok, bad, wait, skip = [], [], [], []
+    for c in checks:
+        name = c.get("name") or c.get("context") or "?"
+        concl = (c.get("conclusion") or c.get("state") or "").upper()
+        status = (c.get("status") or "").upper()
+        if status and status != "COMPLETED":
+            wait.append(name)
+        elif concl in ("SUCCESS", "NEUTRAL"):
+            ok.append(name)
+        elif concl == "SKIPPED":
+            skip.append(name)
+        elif concl in ("PENDING", "EXPECTED", "QUEUED", ""):
+            wait.append(name)
+        else:
+            bad.append(f"{name} ({concl.lower()})")
+    out = []
+    if bad:
+        out.append(f'<span class="bad">✗ {len(bad)} failing</span>: ' + e(", ".join(bad)))
+    if wait:
+        out.append(f'<span class="wait">… {len(wait)} pending</span>')
+    if ok:
+        out.append(f'<span class="good">✓ {len(ok)} passed</span>')
+    return "; ".join(out) or e(f"{len(skip)} skipped")
+
+def review(p):
+    r = p.get("reviewDecision") or ""
+    return {"APPROVED": "approved", "CHANGES_REQUESTED": "changes requested",
+            "REVIEW_REQUIRED": "review required"}.get(r, "no review yet")
+
+def merge(p):
+    m = p.get("mergeable") or ""
+    return {"MERGEABLE": "mergeable", "CONFLICTING": '<span class="bad">conflicts</span>'}.get(m, e(m.lower() or "?"))
+
+def date(p):
+    d = p.get("updatedAt") or ""
+    return d[:10]
+
+rows = []
+for r in data["ports"]:
+    if "pr" in r:
+        p = pr(r["pr"])
+        first = pr_cell(p)
+        repo = e(r["repo"])
+        branch = f'<code>{e(r["branch"])}</code>' + (f' (into <code>{e(r["base"])}</code>)' if r.get("base") else "")
+    else:
+        first = "— " + e(r["name"])
+        repo = r["repo_html"]
+        branch = f'<code>{e(r["branch"])}</code>' + (f' {e(r["branch_note"])}' if r.get("branch_note") else "")
+    links = "<br>".join(f'<a href="{e(u)}">{e(t)}</a>' for t, u in r["links"]) or "not served"
+    rows.append(f"<tr><td>{first}</td><td>{repo}<br>{branch}</td><td>{links}</td></tr>")
+
+def status_rows(ns, notes=None):
+    out = []
+    for n in ns:
+        p = pr(n)
+        note = f"<td>{linkify(e(notes.get(n, '')))}</td>" if notes is not None else ""
+        out.append(
+            f"<tr><td>{pr_cell(p)}</td><td><code>{e(p.get('headRefName', ''))}</code> → <code>{e(p.get('baseRefName', ''))}</code></td>"
+            f"<td>{e(state(p))}</td><td>{ci(p)}</td><td>{e(review(p))}</td><td>{merge(p)}</td><td>{date(p)}</td>{note}</tr>")
+    return "\n".join(out)
+
+other = [o["pr"] for o in data.get("other_prs", [])]
+other_notes = {o["pr"]: o.get("note", "") for o in data.get("other_prs", [])}
+
+# A link into the local report sources becomes the public page once that
+# issue is published (issue 001 is the sources' root), so a step's From and
+# its text point at the same place.
+def series_link(url):
+    m = re.match(r"http://localhost:8131/(?:series/)?(?:(00\d)/)?(.*)$", url)
+    if not m:
+        return url
+    return series_url(m.group(1) or "001") + m.group(2)
+
+def from_cell(s):
+    text = e(s["source"])
+    return f'<a href="{e(series_link(s["url"]))}">{text}</a>' if s.get("url") else linkify(text)
+
+# Our own issue numbers: data.json's next_id is never reused, so a number
+# names one step for good, even after the step is done or dropped.
+steps = "\n".join(
+    f'<tr id="next-{s["id"]}"><td class="num"><a class="anchor" href="#next-{s["id"]}">#{s["id"]}</a>'
+    f'<button class="copy" type="button" data-anchor="next-{s["id"]}" title="Copy a link to #{s["id"]}">copy link</button></td>'
+    f'<td>{e(s.get("area", ""))}</td><td>{linkify(s["step"])}</td>'
+    f'<td>{from_cell(s)}</td></tr>'
+    for s in sorted(data["next_steps"], key=lambda s: s["id"]))
+
+# The side outline (as on fumola.org): the sections, and under Next steps
+# every step by its number, so a step is one click away.
+def short(html_text, n=46):
+    t = re.sub(r"<[^>]+>", "", html_text)
+    t = html.unescape(t)
+    return t if len(t) <= n else t[:n].rsplit(" ", 1)[0] + "…"
+
+def entry(href, text, sub=False):
+    return f'<li{" class=\"sub\"" if sub else ""}><a href="{href}">{e(text)}</a></li>'
+
+outline = "\n".join([
+    entry("#ports", "Localhost ports"),
+    entry("#other", "Other PRs we are tracking"),
+    entry("#perf", "Performance Analysis and Improvement"),
+    entry("#perf-prs", "Performance PRs", sub=True),
+    entry("#integration", "Integration branches", sub=True),
+    entry("#next", "Next steps"),
+] + [entry(f'#next-{s["id"]}', f'#{s["id"]} {short(s["step"])}', sub=True)
+     for s in sorted(data["next_steps"], key=lambda s: s["id"])])
+
+issue = data["tracking_issue"]
+now = datetime.now().astimezone().strftime("%Y-%m-%d %H:%M %Z")
+page = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hazel Work Dashboard</title>
+<style>
+  :root {{ color-scheme: light dark; --line: #d0d0d0; --muted: #666; --good: #1a7f37; --bad: #cf222e; --wait: #9a6700; }}
+  @media (prefers-color-scheme: dark) {{ :root {{ --line: #444; --muted: #aaa; --good: #3fb950; --bad: #f85149; --wait: #d29922; }} }}
+  body {{ font: 15px/1.45 system-ui, sans-serif; margin: 0; background: Canvas; color: CanvasText; }}
+  main {{ padding: 24px 16px 60px; }}
+  h2, h3, tr[id] {{ scroll-margin-top: 12px; }}
+  /* The outline, as on fumola.org: beside the page when there is room
+     (48rem and up), and behind a button at the top left when there is not. */
+  .outline {{ display: none; position: fixed; top: 0; left: 0; width: 15rem; height: 100vh; box-sizing: border-box;
+    padding: 1.5rem 0.75rem 3rem 1rem; overflow-y: auto; overscroll-behavior: contain; background: Canvas;
+    border-right: 1px solid var(--line); font-size: 0.82rem; line-height: 1.4; z-index: 15; scrollbar-width: thin; }}
+  .outline.is-open {{ display: block; width: auto; right: 0; padding: 4rem 1.25rem 3rem; font-size: 0.95rem; }}
+  body.outline-open {{ overflow: hidden; }}
+  .outline-label {{ font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.5rem; }}
+  .outline ul {{ list-style: none; margin: 0 0 1.4rem; padding: 0; border-left: 1px solid var(--line); }}
+  .outline a {{ display: block; padding: 0.18rem 0.6rem; margin-left: -1px; border-left: 2px solid transparent;
+    color: var(--muted); text-decoration: none; }}
+  .outline a:hover {{ color: CanvasText; }}
+  .outline li.sub a {{ padding-left: 1.4rem; font-size: 0.95em; }}
+  .outline a[aria-current="true"] {{ color: CanvasText; border-left-color: var(--good); }}
+  .outline-toggle {{ display: flex; position: fixed; top: 0.6rem; left: 0.6rem; z-index: 20; width: 2.4rem; height: 2.4rem;
+    align-items: center; justify-content: center; padding: 0; background: Canvas; color: CanvasText;
+    border: 1px solid var(--line); border-radius: 5px; cursor: pointer; }}
+  .outline-toggle svg {{ width: 1.1rem; height: 1.1rem; }}
+  .outline-toggle .ex {{ display: none; }}
+  .outline-toggle[aria-expanded="true"] .bars {{ display: none; }}
+  .outline-toggle[aria-expanded="true"] .ex {{ display: block; }}
+  @media (max-width: 47.99rem) {{ main {{ padding-top: 3.6rem; }} }}
+  @media (min-width: 48rem) {{
+    .outline {{ display: block; }}
+    .outline-toggle {{ display: none; }}
+    main {{ margin-left: 15rem; padding: 24px 24px 60px; }}
+  }}
+  table {{ border-collapse: collapse; width: 100%; max-width: 1200px; margin-bottom: 8px; }}
+  /* words wrap whole; only long code names (branches) may break anywhere,
+     or a column can shrink to one character and break every word */
+  td {{ overflow-wrap: break-word; }}
+  th, td {{ text-align: left; vertical-align: top; padding: 6px 10px; border: 1px solid var(--line); }}
+  th {{ font-weight: 600; }}
+  h2 {{ margin-top: 36px; }}
+  code {{ overflow-wrap: anywhere; }}
+  .note {{ color: var(--muted); font-size: 0.9em; }}
+  .scroll {{ overflow-x: auto; max-width: 1200px; margin-bottom: 8px; }}
+  .scroll > table {{ margin-bottom: 0; }}
+  th.num, td.num {{ white-space: nowrap; width: 3em; }}
+  th.area {{ width: 8.5em; }}
+  td.num a.anchor {{ color: inherit; text-decoration: none; font-weight: 600; }}
+  td.num a.anchor:hover {{ text-decoration: underline; }}
+  button.copy {{ display: block; margin-top: 6px; font: inherit; font-size: 0.75em; padding: 1px 6px; cursor: pointer;
+    border: 1px solid var(--line); border-radius: 4px; background: transparent; color: var(--muted); }}
+  button.copy:hover {{ color: inherit; }}
+  button.copy.done {{ color: var(--good); border-color: var(--good); }}
+  tr:target td {{ background: color-mix(in srgb, var(--good) 14%, transparent); }}
+  th.from {{ width: 11em; }}
+  .good {{ color: var(--good); }} .bad {{ color: var(--bad); }} .wait {{ color: var(--wait); }}
+</style>
+</head>
+<body>
+<button class="outline-toggle" id="outline-toggle" type="button" aria-controls="outline" aria-expanded="false" aria-label="Open the outline">
+  <svg class="bars" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"/></svg>
+  <svg class="ex" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg>
+</button>
+<nav class="outline" id="outline" aria-label="Outline">
+<p class="outline-label">Hazel Work Dashboard</p>
+<ul id="outline-list">
+{outline}
+</ul>
+</nav>
+<main>
+<h1>Hazel Work Dashboard</h1>
+<p class="note">Updated {e(now)}, by <code>~/localhost-index/update.py</code> (PR titles and status from GitHub).</p>
+<p class="note">History: <a href="http://localhost:8000/notes/">every change to this page</a>, one folder per day, also pushed to <a href="https://github.com/matthewhammer/hazel-work-notes">matthewhammer/hazel-work-notes</a> (private). How we work with this page: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/agent-instructions.md">agent-instructions.md</a> (<a href="http://localhost:8000/notes/agent-instructions.md">local</a>). This is version {VERSION}: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/VERSIONS.md">VERSIONS.md</a> lists what each version has.</p>
+
+<h2 id="ports">Localhost ports</h2>
+<table>
+<tr><th>PR # and title</th><th>Repo and branch</th><th>Localhost</th></tr>
+{chr(10).join(rows)}
+</table>
+
+<h2 id="other">Other PRs we are tracking</h2>
+<p class="note">Not about performance: features, fixes, docs, CI.</p>
+<table>
+<tr><th>PR # and title</th><th>Branch → base</th><th>State</th><th>CI</th><th>Review</th><th>Merge</th><th>Updated</th><th>Note</th></tr>
+{status_rows(other, other_notes)}
+</table>
+
+<h2 id="perf">Performance Analysis and Improvement</h2>
+<p>Tracked in <a href="https://github.com/{REPO}/issues/{issue}">hazelgrove/hazel#{issue}</a> (performance challenges). Write-ups: <a href="http://localhost:8131/series/">the performance analysis series</a> (local sources).</p>
+
+<h3 id="perf-prs">Performance PRs</h3>
+<p class="note">Against #{issue}; the last three (#2606, #2603, #2490) are from before it.</p>
+<table>
+<tr><th>PR # and title</th><th>Branch → base</th><th>State</th><th>CI</th><th>Review</th><th>Merge</th><th>Updated</th></tr>
+{status_rows(data["perf_prs"])}
+</table>
+<p class="note" id="integration">The integration branches also carry these fixes:</p>
+<table>
+<tr><th>PR # and title</th><th>Branch → base</th><th>State</th><th>CI</th><th>Review</th><th>Merge</th><th>Updated</th></tr>
+{status_rows(data["integration_prs"])}
+</table>
+
+<h2 id="next">Next steps</h2>
+<p class="note">Important, and not started or without a PR yet. Numbered in our own sequence from #1; a number is never reused.</p>
+<table>
+<tr><th class="num">#</th><th class="area">Area</th><th>Next step</th><th class="from">From</th></tr>
+{steps}
+</table>
+<script>
+/* Each next step's "copy link" puts its full URL, with its anchor, on the
+   clipboard: a way to name a step exactly when talking about it. */
+for (const b of document.querySelectorAll("button.copy")) {{
+  b.addEventListener("click", async () => {{
+    const url = location.origin + location.pathname + "#" + b.dataset.anchor;
+    try {{ await navigator.clipboard.writeText(url); }}
+    catch (_) {{
+      const t = document.createElement("textarea"); t.value = url; document.body.append(t);
+      t.select(); document.execCommand("copy"); t.remove();
+    }}
+    b.textContent = "copied"; b.classList.add("done");
+    setTimeout(() => {{ b.textContent = "copy link"; b.classList.remove("done"); }}, 1500);
+  }});
+}}
+
+/* The outline: the entry for where the reader is (the last target above a
+   line a third of the way down), and opening it on a narrow screen. */
+(() => {{
+  const nav = document.getElementById("outline");
+  const links = [...nav.querySelectorAll("a")].map(a => ({{ a, el: document.getElementById(a.getAttribute("href").slice(1)) }})).filter(l => l.el);
+  let current = null;
+  const mark = () => {{
+    const line = window.innerHeight * 0.33;
+    let found = links[0];
+    for (const l of links) {{ if (l.el.getBoundingClientRect().top <= line) found = l; }}
+    if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 4) {{
+      found = links.reduce((best, l) => l.el.getBoundingClientRect().top <= window.innerHeight ? l : best, found);
+    }}
+    if (found === current) return;
+    if (current) current.a.removeAttribute("aria-current");
+    if (found) found.a.setAttribute("aria-current", "true");
+    current = found;
+    if (found && nav.scrollHeight > nav.clientHeight) {{
+      const r = found.a.getBoundingClientRect(), n = nav.getBoundingClientRect();
+      if (r.top < n.top + 8 || r.bottom > n.bottom - 8) found.a.scrollIntoView({{ block: "nearest" }});
+    }}
+  }};
+  let ticking = false;
+  const onScroll = () => {{ if (ticking) return; ticking = true; requestAnimationFrame(() => {{ ticking = false; mark(); }}); }};
+  window.addEventListener("scroll", onScroll, {{ passive: true }});
+  window.addEventListener("resize", onScroll, {{ passive: true }});
+  mark();
+  const toggle = document.getElementById("outline-toggle");
+  const setOpen = open => {{
+    nav.classList.toggle("is-open", open);
+    document.body.classList.toggle("outline-open", open);
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle.setAttribute("aria-label", open ? "Close the outline" : "Open the outline");
+  }};
+  toggle.addEventListener("click", () => setOpen(!nav.classList.contains("is-open")));
+  nav.addEventListener("click", ev => {{ if (ev.target.closest("a") && nav.classList.contains("is-open")) setOpen(false); }});
+  document.addEventListener("keydown", ev => {{ if (ev.key === "Escape" && nav.classList.contains("is-open")) {{ setOpen(false); toggle.focus(); }} }});
+  const wide = window.matchMedia("(min-width: 48rem)");
+  wide.addEventListener("change", () => {{ if (wide.matches) setOpen(false); }});
+}})();
+</script>
+</main>
+</body>
+</html>
+"""
+# A table wider than the window scrolls by itself; the page never does.
+page = page.replace("<table>", '<div class="scroll"><table>').replace("</table>", "</table></div>")
+# written whole, then renamed into place: a reader never sees half a page
+tmp = os.path.join(HERE, ".index.html.tmp")
+open(tmp, "w").write(page)
+os.replace(tmp, os.path.join(HERE, "index.html"))
+print(f"wrote index.html: {len(rows)} ports, {len(other)} other + {len(data['perf_prs'])} perf + {len(data['integration_prs'])} integration PRs, {len(data['next_steps'])} next steps")

@@ -10,7 +10,8 @@ Read this before working with Matthew on Hazel. Keep the dashboard current as yo
 |---|---|
 | The page | `~/localhost-index/index.html`, served at http://localhost:8000/ by the launch entry `localhost-index` in `~/hazel/.claude/launch.json` (`python3 -m http.server 8000`). If 8000 is taken, use 8080. The old `#2492 hazel-dev` entry also names 8000: never run both. |
 | What only we know | `~/localhost-index/data.json`: the ports, which PRs are tracked, and the next steps. **Edit this, never `index.html`.** |
-| The generator | `~/localhost-index/update.py`: reads `data.json`, asks GitHub (`gh`) for each PR's title, state, CI, review and mergeability, and writes the page atomically. If `gh` fails, it writes nothing, and the last good page stays. |
+| The generator | `update.py`: reads `data.json`, asks GitHub (`gh`) for each PR's title, state, CI, review and mergeability, and writes the page atomically. If `gh` fails, it writes nothing, and the last good page stays. |
+| The code | `update.py` and `log_notes.py` live in this repository's `dashboard/` folder. `~/localhost-index/update.py` and `~/localhost-index/log_notes.py` are symlinks to them, so the scripts still read and write `~/localhost-index`. |
 | The history | This repository: `~/hazel-work-notes`, pushed to `matthewhammer/hazel-work-notes` (private). `~/localhost-index/log_notes.py` copies the page here verbatim. Browse it at http://localhost:8000/notes/, or clone it. GitHub shows HTML as source. |
 | The schedule | `crontab -l`: every 15 minutes, `update.py`, then `log_notes.py`. The last run's output is in `~/localhost-index/update.log`. |
 
@@ -48,6 +49,13 @@ Text already inside a link is left alone. Give a step a `url` only when it has a
 - At the start of a session, run `update.py` once, and make sure the `localhost-index` server is up.
 - **Launch entries are named with their PR,** such as `#2635 hazel-livelits-modular` or `fumola#129 fumola-pages-wt`. Rename an entry when its worktree's branch, and so its PR, changes. The app runs at most 5 preview servers per worktree, so stopping one may be needed to start another.
 - **Always tell Matthew the port, and what build it serves,** in chat. Never put local ports in a PR description: there, say "in the browser".
+
+## Versions
+
+The dashboard's code has a version number, `VERSION` in `dashboard/update.py`, which the page shows in its History line. [`VERSIONS.md`](VERSIONS.md) lists the features of each version, newest first. It started at 0.0.1 on 2026-10-12.
+
+- **When a change to the code adds or changes a feature,** bump `VERSION`, add the new version to `VERSIONS.md` with its date and what it changed, and commit the code with it. `log_notes.py` commits only snapshots, so the code is committed by hand.
+- A change to `data.json` alone (a port, a PR, a step) is content, not a new version.
 
 ## The history
 

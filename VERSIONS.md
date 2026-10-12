@@ -1,0 +1,49 @@
+# Hazel Work Dashboard: versions
+
+Each version lists the dashboard's features as of that version. The newest version is first. The version number is `VERSION` in [`dashboard/update.py`](dashboard/update.py), and the page shows it in its History line.
+
+## 0.0.1 (2026-10-12)
+
+The dashboard as it was when it got its first version number, built from 2026-09-28 to 2026-10-12.
+
+### The page
+
+- One page, at http://localhost:8000/, titled **Hazel Work Dashboard**.
+- An outline at the side lists the sections and every next step by its number, and marks where you are as you scroll. On a wide window it stays fixed at the left. On a narrow one it sits at the top, behind a button.
+- Four sections, in order:
+  1. **Localhost ports:** what is served where. One row per PR or project: the repository, the branch (and the branch it merges into), and localhost links, with deep links such as `?slide=...`. A row with nothing served says "not served".
+  2. **Other PRs we are tracking:** the PRs that are not about performance, with a note on each.
+  3. **Performance Analysis and Improvement:** the PRs against hazelgrove/hazel#2609, and the integration PRs (#2635, #2597) that carry their fixes.
+  4. **Next steps:** our own numbered issues.
+- Each PR row gives its status from GitHub: title, state, CI, review, whether it merges cleanly, and the date of its last update.
+- Tables keep their column widths, wrap long text and code, and scroll sideways on their own on a narrow screen, never the whole page.
+
+### Next steps
+
+- Each step has a number, `#N`, which is never reused. A done step leaves the list, and its number is retired. A parked step stays, marked PARKED.
+- Each step has its area, the date it was added, the step, and where it came from.
+- Each step's row has an anchor, `#next-N`, and a **copy link** button that copies the page's address with that anchor. The step a link points to is highlighted.
+
+### Links
+
+References are written plainly in `data.json`, and the page links them the same way everywhere:
+
+- "issue 00N" links to that issue of the performance analysis series: the public page once it is published, the local draft until then. Links to a local draft switch to the public page when it is published.
+- `#NNNN` (four digits) links to that hazelgrove/hazel issue or PR.
+- `#N` (one to three digits) links to that next step while it is listed.
+- A 10-character commit id links to that commit.
+- Text already inside a link is left alone.
+
+### How it is made
+
+- `data.json` (in `~/localhost-index`) holds what only we know: the ports, the PRs we track, the notes and the next steps. `update.py` reads it, asks GitHub (`gh`) about each PR, and writes the page.
+- The page is written whole or not at all: if GitHub can't be reached, the last good page stays.
+- Cron runs `update.py` every 15 minutes.
+
+### History
+
+- `log_notes.py` runs after each update and saves the page, exactly as served, to this repository: `<YYYY-MM-DD>/<YYYY-MM-DD>T<HHMM><+-hhmm>.html`, one folder per day, each name carrying its full date and time zone.
+- A page that changed only in its "Updated" line is not saved.
+- Each snapshot is committed and pushed to `matthewhammer/hazel-work-notes` (private). A push that fails is retried on the next run.
+- The page links its history, browsable at http://localhost:8000/notes/, and this repository.
+- [`agent-instructions.md`](agent-instructions.md) describes how we work with the dashboard.
