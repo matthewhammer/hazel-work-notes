@@ -21,8 +21,9 @@ The title is **Hazel Work Dashboard**. An outline on the side lists the sections
 
 1. **Localhost ports.** One row per thing served or worked on: the PR number and title, linked; the repo and branch; and the localhost link, with deep links where they help, such as `?slide=...`. A row without a PR gets a dash and a short name.
 2. **Other PRs we are tracking.** The PRs that are not about performance (features, fixes, docs, CI), with live status and a note.
-3. **Performance Analysis and Improvement.** The PRs against hazelgrove/hazel#2609 (performance challenges), with live status, and the integration PRs (#2635, #2597) that carry their fixes.
-4. **Next steps.** Our own numbered issues (below).
+3. **Repositories we deploy.** Repositories that deploy on a push to a branch, without PRs, such as matthewhammer/kids-choice-games: the latest commit, each project's version from its `VERSIONS.md`, whether Pages has deployed that commit, and open PRs.
+4. **Performance Analysis and Improvement.** The PRs against hazelgrove/hazel#2609 (performance challenges), with live status, and the integration PRs (#2635, #2597) that carry their fixes.
+5. **Next steps.** Our own numbered issues (below).
 
 ## Next steps: our own issue numbers
 
@@ -79,5 +80,6 @@ The dashboard's code has a version number, `VERSION` in `dashboard/update.py`, w
 - `tracking_issue`: 2609.
 - `perf_prs`, `integration_prs`: PR numbers.
 - `other_prs`: `{pr, note}`.
+- `repos`: `{repo, branch, versions, live, note}`. `versions` is `[label, path of a VERSIONS.md]` pairs; `live` is `[text, url]` pairs; `note` may hold HTML. A project's version heading must read `## X.Y.Z (YYYY-MM-DD)`.
 - `next_steps`: `{id, area, added, step, source, url}`. `step` may hold HTML.
 - `next_id`: the next number to give. Never reuse one.

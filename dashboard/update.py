@@ -14,7 +14,7 @@ import html, json, os, re, subprocess, sys
 from datetime import datetime
 
 # The dashboard's version: what each version adds is in VERSIONS.md, next to this file's folder.
-VERSION = "0.0.1"
+VERSION = "0.0.2"
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 data = json.load(open(os.path.join(HERE, "data.json")))
@@ -161,6 +161,59 @@ def status_rows(ns, notes=None):
             f"<td>{e(state(p))}</td><td>{ci(p)}</td><td>{e(review(p))}</td><td>{merge(p)}</td><td>{date(p)}</td>{note}</tr>")
     return "\n".join(out)
 
+def gh_json(args, what, missing_ok=False):
+    r = subprocess.run(["gh", *args], capture_output=True, text=True, timeout=60)
+    if r.returncode != 0:
+        if missing_ok and "HTTP 404" in r.stderr:
+            return None
+        # as for a PR: no page rather than a page of unknowns
+        sys.exit(f"gh could not read {what}: {r.stderr.strip()[:200]}")
+    return r.stdout
+
+# Repositories we deploy by pushing to a branch, not through PRs: the
+# branch's latest commit, each project's version (the newest "## X.Y.Z
+# (date)" heading of its VERSIONS.md), and whether GitHub Pages has
+# deployed that very commit yet.
+VERSION_HEAD = re.compile(r"^## (\S+) \((\d{4}-\d{2}-\d{2})\)", re.M)
+
+def repo_row(r):
+    name, branch = r["repo"], r["branch"]
+    url = f"https://github.com/{name}"
+    head = json.loads(gh_json(["api", f"repos/{name}/commits/{branch}"], f"{name}@{branch}"))
+    sha, c = head["sha"], head["commit"]
+    latest = (f'<a href="{url}/commit/{sha}"><code>{sha[:7]}</code></a> {e(c["message"].splitlines()[0])} '
+              f'<span class="note">({c["committer"]["date"][:10]})</span>')
+    versions = []
+    for label, path in r.get("versions", []):
+        text = gh_json(["api", "-H", "Accept: application/vnd.github.raw", f"repos/{name}/contents/{path}?ref={branch}"],
+                       f"{name}/{path}")
+        m = VERSION_HEAD.search(text)
+        versions.append(f'{e(label)} <a href="{url}/blob/{branch}/{path}">{e(m.group(1) if m else "?")}</a>'
+                        + (f' <span class="note">({m.group(2)})</span>' if m else ""))
+    out = gh_json(["api", f"repos/{name}/pages/builds/latest"], f"{name}'s Pages", missing_ok=True)
+    if out is None:
+        deployed = "no Pages site"
+    else:
+        b = json.loads(out)
+        status, at = b.get("status") or "?", (b.get("commit") or "")[:7]
+        if status == "built" and b.get("commit") == sha:
+            deployed = f'<span class="good">✓ deployed</span> <code>{at}</code>'
+        elif status == "errored":
+            deployed = f'<span class="bad">✗ build failed</span> <code>{at}</code>'
+        elif status == "built":
+            deployed = f'<span class="wait">… not yet</span>: live is <code>{at}</code>'
+        else:
+            deployed = f'<span class="wait">… {e(status)}</span> <code>{at}</code>'
+    live = "".join(f'<br><a href="{e(u)}">{e(t)}</a>' for t, u in r.get("live", []))
+    prs_open = json.loads(gh_json(["pr", "list", "--repo", name, "--state", "open", "--json", "number,title,url"],
+                                  f"{name}'s PRs"))
+    prs_cell = "<br>".join(f'<a href="{e(p["url"])}">#{p["number"]}</a> {e(p["title"])}' for p in prs_open) or "none"
+    return (f'<tr><td><a href="{url}">{e(name)}</a><br><code>{e(branch)}</code></td><td>{latest}</td>'
+            f'<td>{"<br>".join(versions) or "—"}</td><td>{deployed}{live}</td><td>{prs_cell}</td>'
+            f'<td>{linkify(r.get("note", ""))}</td></tr>')
+
+repo_rows = "\n".join(repo_row(r) for r in data.get("repos", []))
+
 other = [o["pr"] for o in data.get("other_prs", [])]
 other_notes = {o["pr"]: o.get("note", "") for o in data.get("other_prs", [])}
 
@@ -199,6 +252,7 @@ def entry(href, text, sub=False):
 outline = "\n".join([
     entry("#ports", "Localhost ports"),
     entry("#other", "Other PRs we are tracking"),
+    entry("#repos", "Repositories we deploy"),
     entry("#perf", "Performance Analysis and Improvement"),
     entry("#perf-prs", "Performance PRs", sub=True),
     entry("#integration", "Integration branches", sub=True),
@@ -268,6 +322,8 @@ page = f"""<!doctype html>
   button.copy.done {{ color: var(--good); border-color: var(--good); }}
   tr:target td {{ background: color-mix(in srgb, var(--good) 14%, transparent); }}
   th.from {{ width: 11em; }}
+  /* six columns of sentences: scroll sideways before they squeeze to a word a line */
+  table.repos {{ min-width: 56rem; }}
   .good {{ color: var(--good); }} .bad {{ color: var(--bad); }} .wait {{ color: var(--wait); }}
 </style>
 </head>
@@ -299,6 +355,13 @@ page = f"""<!doctype html>
 <tr><th>PR # and title</th><th>Branch → base</th><th>State</th><th>CI</th><th>Review</th><th>Merge</th><th>Updated</th><th>Note</th></tr>
 {status_rows(other, other_notes)}
 </table>
+
+<h2 id="repos">Repositories we deploy</h2>
+<p class="note">A push to the branch deploys: no PRs. The version is the newest in each project's VERSIONS.md; deployed means Pages has built the branch's latest commit.</p>
+<div class="scroll"><table class="repos">
+<tr><th>Repository and branch</th><th>Latest commit</th><th>Version</th><th>Deployed</th><th>Open PRs</th><th>Note</th></tr>
+{repo_rows}
+</table></div>
 
 <h2 id="perf">Performance Analysis and Improvement</h2>
 <p>Tracked in <a href="https://github.com/{REPO}/issues/{issue}">hazelgrove/hazel#{issue}</a> (performance challenges). Write-ups: <a href="http://localhost:8131/series/">the performance analysis series</a> (local sources).</p>
@@ -388,4 +451,4 @@ page = page.replace("<table>", '<div class="scroll"><table>').replace("</table>"
 tmp = os.path.join(HERE, ".index.html.tmp")
 open(tmp, "w").write(page)
 os.replace(tmp, os.path.join(HERE, "index.html"))
-print(f"wrote index.html: {len(rows)} ports, {len(other)} other + {len(data['perf_prs'])} perf + {len(data['integration_prs'])} integration PRs, {len(data['next_steps'])} next steps")
+print(f"wrote index.html: {len(rows)} ports, {len(other)} other + {len(data['perf_prs'])} perf + {len(data['integration_prs'])} integration PRs, {len(data.get('repos', []))} repos, {len(data['next_steps'])} next steps")

@@ -2,6 +2,18 @@
 
 Each version lists the dashboard's features as of that version. The newest version is first. The version number is `VERSION` in [`dashboard/update.py`](dashboard/update.py), and the page shows it in its History line.
 
+## 0.0.2 (2026-10-12)
+
+Everything in 0.0.1, plus:
+
+- **Repositories we deploy:** a new section after "Other PRs we are tracking", for the repositories that deploy on a push to a branch, with no PRs. The first is matthewhammer/kids-choice-games. Each row gives:
+  - the repository and branch;
+  - the branch's latest commit, with its message and date;
+  - each project's version, the newest `## X.Y.Z (date)` heading of its `VERSIONS.md`, linked to that file;
+  - whether GitHub Pages has deployed that very commit ("✓ deployed", "… not yet" with the commit that is live, "… building", or "✗ build failed"), with links to where it is live and served locally;
+  - the repository's open PRs, if any, and a note.
+- The table keeps a readable width and scrolls sideways on a narrow screen.
+
 ## 0.0.1 (2026-10-12)
 
 The dashboard as it was when it got its first version number, built from 2026-09-28 to 2026-10-12.
