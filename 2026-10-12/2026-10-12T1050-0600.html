@@ -17,6 +17,8 @@
   h2 { margin-top: 36px; }
   code { overflow-wrap: anywhere; }
   .note { color: var(--muted); font-size: 0.9em; }
+  .scroll { overflow-x: auto; max-width: 1200px; margin-bottom: 8px; }
+  .scroll > table { margin-bottom: 0; }
   th.num, td.num { white-space: nowrap; width: 3em; }
   th.area { width: 8.5em; }
   th.from { width: 11em; }
@@ -25,10 +27,10 @@
 </head>
 <body>
 <h1>Localhost ports</h1>
-<p class="note">Updated 2026-10-12 10:49 MDT, by <code>~/localhost-index/update.py</code> (PR titles and status from GitHub).</p>
+<p class="note">Updated 2026-10-12 10:50 MDT, by <code>~/localhost-index/update.py</code> (PR titles and status from GitHub).</p>
 <p class="note">History: <a href="http://localhost:8000/notes/">every change to this page</a>, one folder per day, also pushed to <a href="https://github.com/matthewhammer/hazel-work-notes">matthewhammer/hazel-work-notes</a> (private).</p>
 
-<table>
+<div class="scroll"><table>
 <tr><th>PR # and title</th><th>Repo and branch</th><th>Localhost</th></tr>
 <tr><td><a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a> Livelits × modular editors: merge #2469 into the livelits branch</td><td>hazelgrove/hazel<br><code>integration/livelits-modular-editors</code></td><td><a href="http://localhost:8341/">localhost:8341</a><br><a href="http://localhost:8341/?slide=livelit-playground-scenes">Scenes slide</a></td></tr>
 <tr><td><a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a> User-Defined Livelits, as in PLDI &#x27;21, and beyond.</td><td>hazelgrove/hazel<br><code>integration/livelits-splicerefs-full</code></td><td><a href="http://localhost:8311/">localhost:8311</a></td></tr>
@@ -36,11 +38,11 @@
 <tr><td><a href="https://github.com/hazelgrove/hazel/pull/2676">#2676</a> The cursor inspector can show a long type whole, on several lines</td><td>hazelgrove/hazel<br><code>cursor-inspector-full-types</code> (into <code>dev</code>)</td><td><a href="http://localhost:8361/">localhost:8361</a></td></tr>
 <tr><td>— Hazel performance analysis (the report&#x27;s sources)</td><td>local repo <code>~/hazel-perf-report</code><br><code>main</code> (no remote)</td><td><a href="http://localhost:8131/series/">localhost:8131/series/</a></td></tr>
 <tr><td>— Messed Up Dress Up (the game)</td><td>untracked in <code>~/hazel/experiments/polygons-plain</code><br>published from matthewhammer/matthewhammer.github.io<br><code>master</code></td><td>not served</td></tr>
-</table>
+</table></div>
 
 <h2>Other PRs we are tracking</h2>
 <p class="note">Not about performance: features, fixes, docs, CI.</p>
-<table>
+<div class="scroll"><table>
 <tr><th>PR # and title</th><th>Branch → base</th><th>State</th><th>CI</th><th>Review</th><th>Merge</th><th>Updated</th><th>Note</th></tr>
 <tr><td><a href="https://github.com/hazelgrove/hazel/pull/2676">#2676</a> The cursor inspector can show a long type whole, on several lines</td><td><code>cursor-inspector-full-types</code> → <code>dev</code></td><td>open</td><td><span class="wait">… 1 pending</span>; <span class="good">✓ 2 passed</span></td><td>no review yet</td><td>mergeable</td><td>2026-10-12</td><td>The type-expansion panel (issue #2674). Its fix for module signatures&#x27; parentheses is only on #2635: dev prints a signature as a labeled tuple.</td></tr>
 <tr><td><a href="https://github.com/hazelgrove/hazel/pull/2583">#2583</a> Deep links: the URL can say which slide, which panel, and where the cursor is</td><td><code>deep-links</code> → <code>dev</code></td><td>open</td><td><span class="good">✓ 5 passed</span></td><td>changes requested</td><td><span class="bad">conflicts</span></td><td>2026-09-23</td><td></td></tr>
@@ -53,14 +55,14 @@
 <tr><td><a href="https://github.com/hazelgrove/hazel/pull/2616">#2616</a> non-`dev` (`integration/livelits-splicerefs-full`): Remote refs: splices a Fumola instance reads and writes</td><td><code>remote-splices</code> → <code>integration/livelits-splicerefs-full</code></td><td>open</td><td><span class="bad">✗ 2 failing</span>: checks / Fast checks (failure), checks / Full tests (failure); <span class="good">✓ 1 passed</span></td><td>no review yet</td><td><span class="bad">conflicts</span></td><td>2026-10-04</td><td>Remote splices, the base of #2650. On the back burner since 2026-10-05.</td></tr>
 <tr><td><a href="https://github.com/hazelgrove/hazel/pull/2650">#2650</a> non-`dev` (`remote-splices`): Hazel&#x27;s state and Fumola instances on an Internet Computer canister</td><td><code>ic-canister-fumola</code> → <code>remote-splices</code></td><td>open</td><td><span class="bad">✗ 2 failing</span>: checks / Fast checks (failure), checks / Full tests (failure); <span class="good">✓ 1 passed</span></td><td>no review yet</td><td>mergeable</td><td>2026-10-05</td><td>The IC canister demo. On the back burner since 2026-10-05.</td></tr>
 <tr><td><a href="https://github.com/hazelgrove/hazel/pull/2536">#2536</a> non-`dev` (`integration/modules-livelits`): experimental language integrations</td><td><code>experimental-lang-integration</code> → <code>integration/modules-livelits</code></td><td>draft</td><td><span class="good">✓ 5 passed</span></td><td>no review yet</td><td>mergeable</td><td>2026-09-22</td><td>Fumola-in-Hazel, shelved since 2026-09-16 (its issues go to Adapton/fumola).</td></tr>
-</table>
+</table></div>
 
 <h2>Performance Analysis and Improvement</h2>
 <p>Tracked in <a href="https://github.com/hazelgrove/hazel/issues/2609">hazelgrove/hazel#2609</a> (performance challenges). Write-ups: <a href="http://localhost:8131/series/">the performance analysis series</a> (local sources).</p>
 
 <h3>Performance PRs</h3>
 <p class="note">Against #2609; the last three (#2606, #2603, #2490) are from before it.</p>
-<table>
+<div class="scroll"><table>
 <tr><th>PR # and title</th><th>Branch → base</th><th>State</th><th>CI</th><th>Review</th><th>Merge</th><th>Updated</th></tr>
 <tr><td><a href="https://github.com/hazelgrove/hazel/pull/2675">#2675</a> Incremental evaluation reuses expressions around a recursive let</td><td><code>recursive-let-reuse</code> → <code>dev</code></td><td>open</td><td><span class="good">✓ 5 passed</span></td><td>no review yet</td><td>mergeable</td><td>2026-10-12</td></tr>
 <tr><td><a href="https://github.com/hazelgrove/hazel/pull/2673">#2673</a> Incremental evaluation recognizes an unchanged expression by its Merkle hash</td><td><code>reuse-check-merkle-hash</code> → <code>dev</code></td><td>open</td><td><span class="good">✓ 5 passed</span></td><td>no review yet</td><td>mergeable</td><td>2026-10-10</td></tr>
@@ -74,17 +76,17 @@
 <tr><td><a href="https://github.com/hazelgrove/hazel/pull/2606">#2606</a> Keep the incremental cache in the eval worker</td><td><code>eval-worker-held-cache</code> → <code>dev</code></td><td>open</td><td><span class="good">✓ 5 passed</span></td><td>no review yet</td><td>mergeable</td><td>2026-09-30</td></tr>
 <tr><td><a href="https://github.com/hazelgrove/hazel/pull/2603">#2603</a> Statics: a let is analyzed once unless it refers to itself, plus three smaller speedups</td><td><code>dev-statics-perf</code> → <code>dev</code></td><td>open</td><td><span class="good">✓ 5 passed</span></td><td>no review yet</td><td>mergeable</td><td>2026-09-26</td></tr>
 <tr><td><a href="https://github.com/hazelgrove/hazel/pull/2490">#2490</a> SPIKE: compile the Hazel evaluator with wasm_of_ocaml and benchmark it</td><td><code>wasm-eval-bench-spike</code> → <code>dev</code></td><td>draft</td><td><span class="good">✓ 7 passed</span></td><td>no review yet</td><td><span class="bad">conflicts</span></td><td>2026-09-22</td></tr>
-</table>
+</table></div>
 <p class="note">The integration branches also carry these fixes:</p>
-<table>
+<div class="scroll"><table>
 <tr><th>PR # and title</th><th>Branch → base</th><th>State</th><th>CI</th><th>Review</th><th>Merge</th><th>Updated</th></tr>
 <tr><td><a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a> Livelits × modular editors: merge #2469 into the livelits branch</td><td><code>integration/livelits-modular-editors</code> → <code>integration/livelits-splicerefs-full</code></td><td>draft</td><td><span class="wait">… 2 pending</span>; <span class="good">✓ 1 passed</span></td><td>no review yet</td><td><span class="bad">conflicts</span></td><td>2026-10-12</td></tr>
 <tr><td><a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a> User-Defined Livelits, as in PLDI &#x27;21, and beyond.</td><td><code>integration/livelits-splicerefs-full</code> → <code>integration/livelits-splicerefs</code></td><td>open</td><td><span class="wait">… 2 pending</span>; <span class="good">✓ 1 passed</span></td><td>no review yet</td><td>mergeable</td><td>2026-10-12</td></tr>
-</table>
+</table></div>
 
 <h2>Next steps</h2>
 <p class="note">Important, and not started or without a PR yet. Numbered in our own sequence from #1; a number is never reused.</p>
-<table>
+<div class="scroll"><table>
 <tr><th class="num">#</th><th class="area">Area</th><th>Next step</th><th class="from">From</th></tr>
 <tr><td class="num">#1</td><td>performance</td><td>The <code>^picture</code> view builds an Html node for every shape on every change: about 1.4 s in the woods for a figure move. Count evaluation steps by kind during one view, to find the per-shape cost (casts pushed through each Html node?).</td><td><a href="https://github.com/hazelgrove/hazel/issues/2609#issuecomment-6126573621">#2609 findings 27–28</a></td></tr>
 <tr><td class="num">#2</td><td>performance</td><td>Generic evaluator overhead in views: pattern matching (<code>match_pattern</code> under <code>let_unbox</code>, 17%), minting fresh ids (10%), GC (15%).</td><td><a href="https://github.com/hazelgrove/hazel/issues/2609#issuecomment-6126573621">#2609 finding 28</a></td></tr>
@@ -98,6 +100,6 @@
 <tr><td class="num">#10</td><td>performance</td><td>Option C from issue 005: remember <code>HazelDOM</code>'s virtual DOM per Html subterm, by identity, so an unchanged part of a view is not converted again and virtual_dom's diff skips it (<code>a === b</code>). Handlers must not close over the model. Measure a woods change and a Kids' Choice release.</td><td><a href="http://localhost:8131/005/#where">issue 005</a></td></tr>
 <tr><td class="num">#11</td><td>performance</td><td>Split the woods' redraw of a new picture into evaluating the view, Html to virtual DOM, diff and patch, and the browser's layout, for one figure move.</td><td><a href="http://localhost:8131/005/#next">issue 005</a></td></tr>
 <tr><td class="num">#12</td><td>performance</td><td>Measure the size of view samples on the wire (not trimmed as the result is) and the memory of the shared-value tables and per-object hashes.</td><td><a href="http://localhost:8131/005/#copies">issue 005</a></td></tr>
-</table>
+</table></div>
 </body>
 </html>
