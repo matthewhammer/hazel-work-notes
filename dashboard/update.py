@@ -357,7 +357,7 @@ page = f"""<!doctype html>
 </table>
 
 <h2 id="repos">Repositories we deploy</h2>
-<p class="note">A push to the branch deploys: no PRs. The version is the newest in each project's VERSIONS.md; deployed means Pages has built the branch's latest commit.</p>
+<p class="note">Pushed to directly, without PRs. The version is the newest in each project's VERSIONS.md. Deployed means Pages has built the branch's latest commit; a repository without a Pages site runs where its links point.</p>
 <div class="scroll"><table class="repos">
 <tr><th>Repository and branch</th><th>Latest commit</th><th>Version</th><th>Deployed</th><th>Open PRs</th><th>Note</th></tr>
 {repo_rows}
