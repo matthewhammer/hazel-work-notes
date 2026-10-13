@@ -27,6 +27,23 @@
    ]
   },
   {
+   "pr": 2635,
+   "repo": "hazelgrove/hazel",
+   "branch": "perf/2635-per-step",
+   "base": "integration/livelits-modular-editors",
+   "branch_note": "(local, not pushed: d0c56fb090 + c4e64060f1, ticket #2's per-step tuning; worktree <code>~/hazel-2635-diag</code>. #2597's copy: perf/2597-per-step in <code>~/hazel-2597-stream</code>, no server)",
+   "links": [
+    [
+     "localhost:8342",
+     "http://localhost:8342/"
+    ],
+    [
+     "Scenes slide",
+     "http://localhost:8342/?slide=livelit-playground-scenes"
+    ]
+   ]
+  },
+  {
    "pr": 2675,
    "repo": "hazelgrove/hazel",
    "branch": "recursive-let-reuse",
@@ -195,7 +212,7 @@
   {
    "id": 2,
    "area": "performance",
-   "text": "Generic evaluator overhead in views: the woods' picture view, ~500 ms per figure move after #1. DONE 2026-10-13: <b>a value known to have a type is not walked again for it</b> (#2635 237e5aae74, #2597 e6d1cc500f, comment a8fe28953d / 30f6835b49; dev #2681): Firefox view 563.5 -> 497.5 ms. PROFILED AGAIN 2026-10-13 (node, through <code>evaluate_open</code> as the app runs it; harness ~/.cache/hazel-diag/Test_PicView.timing.re): the view allocates ~1,064 MiB per run, and GC is about as large as its own work. What's left is spread over the evaluator's machinery: the trampoline (Bind/Next nodes, continuations; ~240 MiB), <code>EvaluatorState.update</code> copying the state record every step (~66 MiB), <code>Transition.transition</code> (~129 MiB), string building that is the view's own work (<code>coords</code>, ~76 MiB), fresh ids. Ascription pushing fell 143 -> 61 ms. TRIED, not kept yet: <code>bind(Done(x), f) = f(x)</code>: view 407 -> 375 ms in node, ranges overlapping; a stack-depth risk to check (patch ~/.cache/hazel-diag/trampoline_fast_bind.patch). FOUND, load-time only: the first <code>consistent_by_hash</code> miss on the Html types costs tens of ms (memoized for the session after). NEXT is a design question: fewer allocations per step (a mutable step counter, fewer trampoline bounces, ids minted lazily), not a tweak.",
+   "text": "Generic evaluator overhead in views: the woods' picture view, ~500 ms per figure move after #1. DONE 2026-10-13: <b>a value known to have a type is not walked again for it</b> (#2635 237e5aae74, #2597 e6d1cc500f, comment a8fe28953d / 30f6835b49; dev #2681): Firefox view 563.5 -> 497.5 ms. PROFILED AGAIN 2026-10-13 (node, through <code>evaluate_open</code> as the app runs it; harness ~/.cache/hazel-diag/Test_PicView.timing.re): the view allocates ~1,064 MiB per run, and GC is about as large as its own work. What's left is spread over the evaluator's machinery: the trampoline (Bind/Next nodes, continuations; ~240 MiB), <code>EvaluatorState.update</code> copying the state record every step (~66 MiB), <code>Transition.transition</code> (~129 MiB), string building that is the view's own work (<code>coords</code>, ~76 MiB), fresh ids. Ascription pushing fell 143 -> 61 ms. TRIED, not kept yet: <code>bind(Done(x), f) = f(x)</code>: view 407 -> 375 ms in node, ranges overlapping; a stack-depth risk to check (patch ~/.cache/hazel-diag/trampoline_fast_bind.patch). FOUND, load-time only: the first <code>consistent_by_hash</code> miss on the Html types costs tens of ms (memoized for the session after). PER-STEP TUNING 2026-10-13 (his option 1), LOCAL, not pushed: <code>bind(Done(x), f) = f(x)</code> (d0c56fb090, with 2 deep-recursion tests) and a step with no effects only counts (c4e64060f1, <code>EvaluatorState.tick</code>), on perf/2635-per-step (8342); #2597 copies a4b856c543 + 684a75cb2f on perf/2597-per-step. Woods allocation -8% (program 4,334 -> 3,980 MiB, view 1,064 -> 980); Firefox view eval 579 -> 558 ms (-3.6%, 20 moves per build, overlapping). Tests 987 on #2635, 974 on #2597. What is left per step is structural (trampoline nodes, continuations, fresh ids): a design question.",
    "source": "#2609 findings 28, 29",
    "url": "https://github.com/hazelgrove/hazel/issues/2609#issuecomment-6134012577"
   },
@@ -335,7 +352,7 @@
  ],
  "next_ticket": 28,
  "current_ticket": 2,
- "current_note": "Decide with Matthew: keep tuning the evaluator per step (fast bind, state copies) or take the per-step allocation (~1 GB per woods view) as a design question.",
+ "current_note": "Ask Matthew: push the two per-step commits to #2635 and #2597? Then a design note on per-step allocation, or close #2 with what is left as a new ticket.",
  "closed_tickets": [
   {
    "id": 1,
