@@ -373,17 +373,9 @@
    "id": 32,
    "area": "series",
    "added": "2026-10-13",
-   "text": "Thumbnails with transparent backgrounds, readable in dark and light themes (Matthew uses a dark, high-contrast theme, where the white blocks look out of place): for every issue's card on the series index. Likely SVG thumbnails with their own prefers-color-scheme colours, or PNGs with transparency and colours that hold on both. Also: revise issue 009's thumbnail once its results are final (#31).",
+   "text": "Thumbnails with transparent backgrounds, readable in dark and light themes (Matthew uses a dark, high-contrast theme, where the white blocks look out of place): for every issue's card on the series index. Likely SVG thumbnails with their own prefers-color-scheme colours, or PNGs with transparency and colours that hold on both. Also: revise issue 009's thumbnail once its results are final (#31). Matthew, 2026-10-13: 008, 007, 006, 005 and 001 need it (white blocks in dark mode); 002, 003 and 004 keep their light backgrounds, since they show how the app looks.",
    "source": "Matthew, 2026-10-13, in chat",
    "url": "http://matthewhammer.org/hazel/performance-analysis/"
-  },
-  {
-   "id": 34,
-   "area": "dashboard",
-   "added": "2026-10-13",
-   "text": "<b>The dashboard refreshes itself,</b> locally and published: today nothing reloads (the one timer only updates the current ticket's elapsed time). Every minute or two, fetch the page in the background and reload only if it changed (compare its body without the Updated line), keeping the scroll position and any #ticket-N.",
-   "source": "Matthew, 2026-10-13, in chat",
-   "url": ""
   },
   {
    "id": 35,
@@ -395,8 +387,8 @@
   }
  ],
  "next_ticket": 36,
- "current_ticket": null,
- "current_note": "",
+ "current_ticket": 35,
+ "current_note": "An Auto / Light / Dark switch on every page (dashboard, series, homepage), remembered per site; then #32 (thumbnails for 001, 005-008), then #30.",
  "closed_tickets": [
   {
    "id": 1,
@@ -525,7 +517,18 @@
    "status": "done",
    "outcome": "Matthew's hunch was right: the hashing was linear, but the side table it was kept in (ValueHash's WeakMap) made each evaluation slower than the last (2.3, 5.5, 6.3 s for the same work). Merkle names kept on the values (a hidden property, computed as a value is built) hold still (2.2, 2.5, 2.2 s) and cost 12 to 28% over fresh ids, not 23 times. Issue 009 updated: a section on it, two corrections, a theme-aware thumbnail. Experiment local: ~/.cache/hazel-diag/merkle_on_object.patch.",
    "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/009/#merkle"
+  },
+  {
+   "id": 34,
+   "area": "dashboard",
+   "text": "<b>The dashboard refreshes itself,</b> locally and published: today nothing reloads (the one timer only updates the current ticket's elapsed time). Every minute or two, fetch the page in the background and reload only if it changed (compare its body without the Updated line), keeping the scroll position and any #ticket-N.",
+   "source": "Matthew, 2026-10-13, in chat",
+   "listed": "2026-10-13",
+   "closed": "2026-10-13",
+   "status": "done",
+   "outcome": "Each page carries a version tag (a hash without the Updated line); every 90 s in view, and on coming back to the tab, it fetches itself and reloads on a change, keeping scroll and #ticket-N. Tested: a real change reloaded at the same scroll. The elapsed time is now browser-only, so the page no longer changes every 15 minutes while a ticket is current.",
+   "outcome_url": ""
   }
  ],
- "current_since": "2026-10-13T10:29:57-06:00"
+ "current_since": "2026-10-13T11:14:39-06:00"
 }
