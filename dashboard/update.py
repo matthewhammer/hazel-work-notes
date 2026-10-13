@@ -14,6 +14,10 @@ closed.html. Titles, state, CI, review and mergeability come from GitHub each
 run."""
 import html, json, os, re, subprocess, sys
 from datetime import datetime
+from zoneinfo import ZoneInfo
+
+# Times on the page are Matthew's local time: Mountain Time, Colorado.
+LOCAL = ZoneInfo("America/Denver")
 
 # The dashboard's version: what each version adds is in VERSIONS.md, next to this file's folder.
 VERSION = "0.0.2"
@@ -256,14 +260,27 @@ ticket_rows = "\n".join(
     f'<td>{linkify(t["text"])}</td><td>{from_cell(t)}</td></tr>'
     for t in TICKETS)
 
-# The current ticket: the one we are working on, first on the page.
+def elapsed(minutes):
+    d, h, m = minutes // 1440, minutes % 1440 // 60, minutes % 60
+    return (f"{d} d " if d else "") + (f"{h} h " if d or h else "") + f"{m} min"
+
+# The current ticket: the one we are working on, first on the page, with when
+# we started it (current_since) and how long ago that was, kept up to date in
+# the browser between regenerations.
 current_section = ""
 if CURRENT:
     t = CURRENT
     note = data.get("current_note", "")
+    since_line = ""
+    if data.get("current_since"):
+        since = datetime.fromisoformat(data["current_since"])
+        mins = max(0, int((datetime.now(LOCAL) - since).total_seconds() // 60))
+        since_line = (f'<p class="since">Started <b>{e(since.astimezone(LOCAL).strftime("%a %b %-d, %-I:%M %p %Z"))}</b>'
+                      f' · elapsed <b data-since="{e(since.isoformat())}">{elapsed(mins)}</b></p>')
     current_section = f"""<h2 id="current">Current ticket: <a href="#ticket-{t["id"]}">#{t["id"]}</a></h2>
 <div class="current-box">
 <p class="note">{e(t.get("area", ""))} · from {from_cell(t)}</p>
+{since_line}
 <p>{linkify(t["text"])}</p>
 {f'<p><b>Now:</b> {linkify(note)}</p>' if note else ""}
 </div>
@@ -292,7 +309,7 @@ outline = "\n".join(
   + [entry("closed.html", f"Closed tickets ({len(CLOSED)})")])
 
 issue = data["tracking_issue"]
-now = datetime.now().astimezone().strftime("%Y-%m-%d %H:%M %Z")
+now = datetime.now(LOCAL).strftime("%Y-%m-%d %H:%M %Z")
 page = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -360,6 +377,7 @@ page = f"""<!doctype html>
   .badge {{ display: inline-block; margin-top: 4px; padding: 0 6px; font-size: 0.8em; border-radius: 4px; color: var(--good); border: 1px solid var(--good); }}
   tr.current td {{ background: color-mix(in srgb, var(--good) 7%, transparent); }}
   td.status {{ white-space: nowrap; }}
+  .since {{ margin: 6px 0; }}
 </style>
 </head>
 <body>
@@ -436,6 +454,16 @@ page = f"""<!doctype html>
   find();
   window.addEventListener("hashchange", find);
 }})();
+/* The current ticket's elapsed time, kept up to date between regenerations. */
+for (const el of document.querySelectorAll("[data-since]")) {{
+  const t0 = Date.parse(el.dataset.since);
+  const tick = () => {{
+    const m = Math.max(0, Math.floor((Date.now() - t0) / 60000));
+    const d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60);
+    el.textContent = (d ? d + " d " : "") + (d || h ? h + " h " : "") + (m % 60) + " min";
+  }};
+  tick(); setInterval(tick, 30000);
+}}
 /* Each ticket's "copy link" puts its full URL, with its anchor, on the
    clipboard: a way to name a step exactly when talking about it. */
 for (const b of document.querySelectorAll("button.copy")) {{

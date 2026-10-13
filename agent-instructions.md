@@ -23,7 +23,7 @@ Read this before working with Matthew on Hazel. Keep the dashboard current as yo
 
 The title is **Hazel Work Dashboard**. An outline on the side lists the sections, every open ticket by its number, and the closed tickets' page. The sections, in order:
 
-0. **Current ticket,** when there is one: the ticket we are working on now, in full, with a line on what is next on it (`current_note`).
+0. **Current ticket,** when there is one: the ticket we are working on now, in full, when we started it and how long ago (kept up to date in the browser), and a line on what is next on it (`current_note`). Times on the page are Mountain Time.
 
 1. **Localhost ports.** One row per thing served or worked on: the PR number and title, linked; the repo and branch; and the localhost link, with deep links where they help, such as `?slide=...`. A row without a PR gets a dash and a short name.
 2. **Other PRs we are tracking.** The PRs that are not about performance (features, fixes, docs, CI), with live status and a note.
@@ -39,7 +39,7 @@ We call them **tickets**, not issues: an issue is a GitHub issue (or an issue of
 
 - Each ticket has a number, `#N`, from `data.json`'s `next_ticket`. **A number is never reused.** Take `next_ticket` for a new ticket, then increment it.
 - **When Matthew calls something important and it is not started, open a ticket right away,** in `tickets`, with an area, its text, where it came from (`source`, and a `url` when there is a real one) and the date (`added`).
-- **The current ticket** is the one we are working on now: `current_ticket` is its number, and `current_note` says in a line what is next on it. The page shows it first. Set it when Matthew starts one ("let's do #N", or a pasted ticket link); keep the note up to date as the work moves; set it to `null` when no ticket is in hand. Only an open ticket can be current.
+- **The current ticket** is the one we are working on now: `current_ticket` is its number, `current_since` when we started it, and `current_note` says in a line what is next on it. The page shows it first, with the start time and the time elapsed since, in Matthew's local time (Mountain Time, Colorado). Set it when Matthew starts one ("let's do #N", or a pasted ticket link), with `current_since` the time of his message; keep the note up to date as the work moves; set it to `null` when no ticket is in hand. Only an open ticket can be current.
 - **Closing a ticket moves it** from `tickets` to `closed_tickets`, never deletes it. Keep its `text` as it last read, and add:
   - `closed`: the date;
   - `status`: **done**; **not needed** (its premise turned out wrong, or there was nothing to do); **dropped** (we decided not to, and why); or **superseded** (another ticket took it over: name it);
@@ -97,7 +97,7 @@ The dashboard's code has a version number, `VERSION` in `dashboard/update.py`, w
 - `other_prs`: `{pr, note}`.
 - `repos`: `{repo, branch, versions, live, note}`. `versions` is `[label, path of a VERSIONS.md]` pairs; `live` is `[text, url]` pairs; `note` may hold HTML. A project's version heading must read `## X.Y.Z (YYYY-MM-DD)`.
 - `tickets`: the open tickets, `{id, area, added, text, source, url}`. `text` may hold HTML.
-- `current_ticket`: the number of the ticket we are working on, or `null`; `current_note`: a line on what is next on it, may hold HTML.
+- `current_ticket`: the number of the ticket we are working on, or `null`; `current_since`: when we started it, ISO 8601 with its offset (`2026-10-13T05:37:37-06:00`); `current_note`: a line on what is next on it, may hold HTML.
 - `closed_tickets`: `{id, area, text, source, listed, closed, status, outcome, outcome_url}`. `status` is `done`, `not needed`, `dropped` or `superseded`; `outcome` may hold HTML; `listed` is the date it was first seen on the page, where `added` was not recorded.
 - `next_ticket`: the next number to give. Never reuse one.
 
