@@ -364,11 +364,19 @@
    "text": "Issue 010: <b>names inside evaluation, for the reuse that would pay</b> (issue 009, What next, step 3). Apply Incremental Computation with Names further to Hazel: a demanded computation graph at the right granularity (units below the top level: calls and right-hand sides, named from the call site, the enclosing unit and the argument's name), the reads each unit makes recorded with what it saw, an early cutoff where a result keeps its name, and inputs (a slider's literal) as named references. An experiment on a local branch, then issue 010 with its preliminary results. Groundwork in issue 009: #2 per-step costs, the derived-names experiment (content names cost 23x; names from a parent's name are the paper's way).",
    "source": "Matthew, 2026-10-13: issue 009, What next, step 3",
    "url": "http://matthewhammer.org/hazel/performance-analysis/009/#step-3"
+  },
+  {
+   "id": 31,
+   "area": "performance, research",
+   "added": "2026-10-13",
+   "text": "<b>Merkle names at construction, then remeasure issue 009's derived-names experiment.</b> 009: content-derived names took the woods' evaluation from 1.9 s to 44.2 s. Today <code>Util.ValueHash</code> is a LAZY Merkle hash: a walk on first use, remembered per object in a WeakMap; <code>TypHash</code> (#2661) remembers types' hashes per object; nothing is hashed as it is built, and environments and closures only as generic values. Fix: compute each node's content name when it is built, from its children's names (already known), an environment frame's from its parent's and its binding, a closure's from its environment and body: a few operations per allocation, never a walk (the paper's constant cost). A content name is separate from the provenance id a step's result keeps for probes, or two values from one piece of syntax would share a name. Steps: (1) profile the derived mode first, to find where the 23x goes (walks, the WeakMap and GC, fallbacks); (2) the construction-time names; (3) remeasure gensyms, names kept and time; (4) then finish issue 009's edits, including a CORRECTION: its claim that a hash that gives up is not remembered is wrong (ValueHash marks it unhashable, and a too-deep walk leaves objects marked busy for good).",
+   "source": "Matthew, 2026-10-13, reading issue 009 (#derived)",
+   "url": "http://matthewhammer.org/hazel/performance-analysis/009/#derived"
   }
  ],
- "next_ticket": 31,
- "current_ticket": 30,
- "current_note": "Design the experiment: which units to name and cache (calls? let right-hand sides?), how to name them, what to record, and a measurement for the slider edits issue 009 used.",
+ "next_ticket": 32,
+ "current_ticket": 31,
+ "current_note": "Step 1: profile the derived-names mode on the woods, to see where the 23x goes. Then #30 (issue 010) waits for this.",
  "closed_tickets": [
   {
    "id": 1,
@@ -477,5 +485,5 @@
    "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/009/"
   }
  ],
- "current_since": "2026-10-13T10:25:23-06:00"
+ "current_since": "2026-10-13T10:29:57-06:00"
 }
