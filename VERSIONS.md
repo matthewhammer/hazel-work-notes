@@ -2,9 +2,9 @@
 
 Each version lists the dashboard's features as of that version. The newest version is first. The version number is `VERSION` in [`dashboard/update.py`](dashboard/update.py), and the page shows it in its History line.
 
-## Unreleased
+## 0.0.3 (2026-10-13)
 
-Changes since 0.0.2, for the next version, which waits for Matthew's go-ahead.
+Everything in 0.0.2, plus:
 
 - **The history is organized by date:** the snapshots now live in `dashboard-snapshots/<YYYY>/<MM>/<DD>/`, a folder for each year, month and day, instead of one folder per day at the top of the repository. Their names are unchanged, and `git mv` kept their history. The page's History line links there.
 - **The agent instructions say what this repository is for:** our working record, for the two of us. The performance analysis series is separate, written for outside readers, in its own repository.
