@@ -370,25 +370,33 @@
    "url": "http://matthewhammer.org/hazel/performance-analysis/009/#step-3"
   },
   {
-   "id": 31,
-   "area": "performance, research",
-   "added": "2026-10-13",
-   "text": "<b>Merkle names at construction, then remeasure issue 009's derived-names experiment.</b> 009: content-derived names took the woods' evaluation from 1.9 s to 44.2 s. Today <code>Util.ValueHash</code> is a LAZY Merkle hash: a walk on first use, remembered per object in a WeakMap; <code>TypHash</code> (#2661) remembers types' hashes per object; nothing is hashed as it is built, and environments and closures only as generic values. Fix: compute each node's content name when it is built, from its children's names (already known), an environment frame's from its parent's and its binding, a closure's from its environment and body: a few operations per allocation, never a walk (the paper's constant cost). A content name is separate from the provenance id a step's result keeps for probes, or two values from one piece of syntax would share a name. Steps: (1) profile the derived mode first, to find where the 23x goes (walks, the WeakMap and GC, fallbacks); (2) the construction-time names; (3) remeasure gensyms, names kept and time; (4) then finish issue 009's edits, including a CORRECTION: its claim that a hash that gives up is not remembered is wrong (ValueHash marks it unhashable, and a too-deep walk leaves objects marked busy for good). FOUND 2026-10-13: (a) the hashing is linear within an evaluation (each object walked once: 1,033,746 walked, 932,980 reused, the same every run); (b) but time per evaluation grew across a session (2.3 -> 5.5 -> 6.3 s; 44.2 s after a long run) with the same work and a growing heap: the side table (ValueHash's WeakMap). (c) Names kept ON each value (a hidden property, ~/.cache/hazel-diag/merkle_on_object.patch): flat, 2.2 / 2.5 / 2.2 s, about 1.4x fresh ids (1.6 s), names still kept (33,846 of 33,847). Full remeasure running.",
-   "source": "Matthew, 2026-10-13, reading issue 009 (#derived)",
-   "url": "http://matthewhammer.org/hazel/performance-analysis/009/#derived"
-  },
-  {
    "id": 32,
    "area": "series",
    "added": "2026-10-13",
    "text": "Thumbnails with transparent backgrounds, readable in dark and light themes (Matthew uses a dark, high-contrast theme, where the white blocks look out of place): for every issue's card on the series index. Likely SVG thumbnails with their own prefers-color-scheme colours, or PNGs with transparency and colours that hold on both. Also: revise issue 009's thumbnail once its results are final (#31).",
    "source": "Matthew, 2026-10-13, in chat",
    "url": "http://matthewhammer.org/hazel/performance-analysis/"
+  },
+  {
+   "id": 34,
+   "area": "dashboard",
+   "added": "2026-10-13",
+   "text": "<b>The dashboard refreshes itself,</b> locally and published: today nothing reloads (the one timer only updates the current ticket's elapsed time). Every minute or two, fetch the page in the background and reload only if it changed (compare its body without the Updated line), keeping the scroll position and any #ticket-N.",
+   "source": "Matthew, 2026-10-13, in chat",
+   "url": ""
+  },
+  {
+   "id": 35,
+   "area": "dashboard, series, homepage",
+   "added": "2026-10-13",
+   "text": "<b>A theme toggle on every page</b> (Auto / Light / Dark): pages follow the system's prefers-color-scheme, dark on Matthew's work laptop (Ubuntu, dark high contrast), light on his personal one. The choice kept in localStorage per origin (one for all of matthewhammer.org: homepage, /hazel, the series, the published dashboard; localhost:8000 its own), Auto by default. The series and /hazel already have data-theme hooks in their CSS; the dashboard needs them.",
+   "source": "Matthew, 2026-10-13, in chat",
+   "url": ""
   }
  ],
- "next_ticket": 34,
- "current_ticket": 31,
- "current_note": "Remeasuring 009's derived-names experiment with names kept on the values; then 009's dated update (two corrections, new numbers) and its thumbnail, transparent.",
+ "next_ticket": 36,
+ "current_ticket": null,
+ "current_note": "",
  "closed_tickets": [
   {
    "id": 1,
@@ -506,6 +514,17 @@
    "status": "done",
    "outcome": "hazel-work-notes is public; its Pages site serves a copy of the page and the closed tickets (noindex, a note, history links on GitHub), written by log_notes.py on each change. matthewhammer.org/hazel/work-dashboard/ redirects there, and the Hazel menu has a work-dashboard chip.",
    "outcome_url": "http://matthewhammer.org/hazel/work-dashboard/"
+  },
+  {
+   "id": 31,
+   "area": "performance, research",
+   "text": "<b>Merkle names at construction, then remeasure issue 009's derived-names experiment.</b> 009: content-derived names took the woods' evaluation from 1.9 s to 44.2 s. Today <code>Util.ValueHash</code> is a LAZY Merkle hash: a walk on first use, remembered per object in a WeakMap; <code>TypHash</code> (#2661) remembers types' hashes per object; nothing is hashed as it is built, and environments and closures only as generic values. Fix: compute each node's content name when it is built, from its children's names (already known), an environment frame's from its parent's and its binding, a closure's from its environment and body: a few operations per allocation, never a walk (the paper's constant cost). A content name is separate from the provenance id a step's result keeps for probes, or two values from one piece of syntax would share a name. Steps: (1) profile the derived mode first, to find where the 23x goes (walks, the WeakMap and GC, fallbacks); (2) the construction-time names; (3) remeasure gensyms, names kept and time; (4) then finish issue 009's edits, including a CORRECTION: its claim that a hash that gives up is not remembered is wrong (ValueHash marks it unhashable, and a too-deep walk leaves objects marked busy for good). FOUND 2026-10-13: (a) the hashing is linear within an evaluation (each object walked once: 1,033,746 walked, 932,980 reused, the same every run); (b) but time per evaluation grew across a session (2.3 -> 5.5 -> 6.3 s; 44.2 s after a long run) with the same work and a growing heap: the side table (ValueHash's WeakMap). (c) Names kept ON each value (a hidden property, ~/.cache/hazel-diag/merkle_on_object.patch): flat, 2.2 / 2.5 / 2.2 s, about 1.4x fresh ids (1.6 s), names still kept (33,846 of 33,847). Full remeasure running.",
+   "source": "Matthew, 2026-10-13, reading issue 009 (#derived)",
+   "listed": "2026-10-13",
+   "closed": "2026-10-13",
+   "status": "done",
+   "outcome": "Matthew's hunch was right: the hashing was linear, but the side table it was kept in (ValueHash's WeakMap) made each evaluation slower than the last (2.3, 5.5, 6.3 s for the same work). Merkle names kept on the values (a hidden property, computed as a value is built) hold still (2.2, 2.5, 2.2 s) and cost 12 to 28% over fresh ids, not 23 times. Issue 009 updated: a section on it, two corrections, a theme-aware thumbnail. Experiment local: ~/.cache/hazel-diag/merkle_on_object.patch.",
+   "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/009/#merkle"
   }
  ],
  "current_since": "2026-10-13T10:29:57-06:00"
