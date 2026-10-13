@@ -339,9 +339,17 @@
    "text": "Issue 009 of the series: <b>fresh ids and lack of reuse</b>. Hazel mints ids two ways: <code>Id.mk</code>, a gensym (counter + random bytes), and names derived from a parent (<code>Id.derive</code>, <code>Id.next</code>, <code>IdTagged.fresh_deterministic</code>, v5 UUIDs), the distinction of Incremental Computation with Names (Hammer et al., OOPSLA 2015). Measure what Hazel can tell us today: (1) elaboration: analyzing the same program twice, which nodes come back renamed, and how many enclosing parts then fail the reuse check's hash (issue 008's 122); (2) experiment: name those nodes deterministically, and what reuse it recovers; (3) evaluation: ids minted per evaluation, and whether re-evaluated values ever share ids (why the call memo erases them).",
    "source": "Matthew, 2026-10-13, in chat",
    "url": ""
+  },
+  {
+   "id": 29,
+   "area": "series",
+   "added": "2026-10-13",
+   "text": "Revise issue 008 to answer plainly: <b>are conditions C (#2635, whole program) and B (UX mode, only the GUI) similar once the same fixes are applied to each?</b> As written it confuses: the GUI-only view gives no responsiveness benefit, but with the fixes it is no loss either; say so up front. Re-measure B and C on #2635's current head (the reuse check's fix, the stream index, the has-type memo, the per-step changes all in), and add graphs in the issue itself, not just the thumbnail, taking issue 001's pictures as the model, especially in the short answers. 008 is published, so per the series' rules: a dated update box under the short answers, notes after superseded claims, and an Update section with the figures.",
+   "source": "Matthew, 2026-10-13, in chat",
+   "url": "http://localhost:8131/series/008/"
   }
  ],
- "next_ticket": 29,
+ "next_ticket": 30,
  "current_ticket": 28,
  "current_note": "Measuring (1): the same program elaborated twice: renamed nodes by kind, and the enclosing parts whose hash they break.",
  "closed_tickets": [
