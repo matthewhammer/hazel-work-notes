@@ -362,17 +362,17 @@
       "url": "http://localhost:8131/series/008/"
     },
     {
-      "id": 30,
+      "id": 37,
       "area": "performance, research",
       "added": "2026-10-13",
-      "text": "Issue 010: <b>names inside evaluation, for the reuse that would pay</b> (issue 009, What next, step 3). Apply Incremental Computation with Names further to Hazel: a demanded computation graph at the right granularity (units below the top level: calls and right-hand sides, named from the call site, the enclosing unit and the argument's name), the reads each unit makes recorded with what it saw, an early cutoff where a result keeps its name, and inputs (a slider's literal) as named references. An experiment on a local branch, then issue 010 with its preliminary results. Groundwork in issue 009: #2 per-step costs, the derived-names experiment (content names cost 23x; names from a parent's name are the paper's way).",
-      "source": "Matthew, 2026-10-13: issue 009, What next, step 3",
-      "url": "http://matthewhammer.org/hazel/performance-analysis/009/#step-3"
+      "text": "Issue 011: <b>the reuse ladder</b>, how close Hazel could get to the ideal. Extend issue 010's oracle: (1) <b>sweep</b> every slider on the Full Body, Witch and Scenes slides, and a few on other Playground slides, and show the spread of shapes changed and work left; (2) <b>list-cell names</b>: name a call from its argument's name, not its position, so a walk over a list does not run its spine again; (3) <b>reads instead of mentions</b>: record the variables a call actually reads, not every one its body mentions. The ladder: today's run, a memo by position, a memo with names and reads, and the floor, the changed shapes' own work. Then stage 2, timing a memo, on the best design.",
+      "source": "Matthew, 2026-10-13, in chat: publish 010, then the sweep and the depth work, as issue 011",
+      "url": "http://matthewhammer.org/hazel/performance-analysis/010/#next"
     }
   ],
-  "next_ticket": 37,
-  "current_ticket": 30,
-  "current_note": "<b>Waiting on Matthew:</b> issue 010's draft, \"What a slider change touches\", at http://localhost:8131/series/010/ (series repo commit 6908757, not pushed), with two dated notes in 009 pointing to it. Stage 1 is done: a slider edit changes 5 to 16% of a picture's shapes, and 75 to 84% of the steps evaluated today are in calls whose inputs did not change (steps, with checks free). He decides: publish, revise, or go on to stage 2 (time a memo by name) first.",
+  "next_ticket": 38,
+  "current_ticket": 37,
+  "current_note": "First the sweep: find every slider on the three slides, run issue 010's oracle and picture comparison on each edit, one node process at a time.",
   "closed_tickets": [
     {
       "id": 1,
@@ -544,8 +544,18 @@
       "closed": "2026-10-13",
       "status": "done",
       "outcome": "current_waiting in data.json (true, or a line saying what for, shown as the badge's tooltip): ✋❔ in a pill with a 3px CanvasText border, next to the current ticket's heading, on its row in the Tickets table and in the outline; and at the front of the page's title, so a browser tab shows it unopened. Dashboard 'Unreleased'."
+    },
+    {
+      "id": 30,
+      "area": "performance, research",
+      "text": "Issue 010: <b>names inside evaluation, for the reuse that would pay</b> (issue 009, What next, step 3). Apply Incremental Computation with Names further to Hazel: a demanded computation graph at the right granularity (units below the top level: calls and right-hand sides, named from the call site, the enclosing unit and the argument's name), the reads each unit makes recorded with what it saw, an early cutoff where a result keeps its name, and inputs (a slider's literal) as named references. An experiment on a local branch, then issue 010 with its preliminary results. Groundwork in issue 009: #2 per-step costs, the derived-names experiment (content names cost 23x; names from a parent's name are the paper's way).",
+      "source": "Matthew, 2026-10-13: issue 009, What next, step 3",
+      "url": "http://matthewhammer.org/hazel/performance-analysis/009/#step-3",
+      "listed": "2026-10-13",
+      "closed": "2026-10-13",
+      "status": "done",
+      "outcome": "Issue 010, \"What a slider change touches\", published 2026-10-13 on Matthew's go-ahead: stage 1, an oracle naming calls by position. A slider edit changes 5-16% of a picture's shapes; 75-84% of the steps Hazel evaluates after it are in calls whose inputs did not change (steps, checks free). The rest of the ladder (sweep, list-cell names, reads) is #37; timing a memo (stage 2) after that."
     }
   ],
-  "current_since": "2026-10-13T11:26:23-06:00",
-  "current_waiting": "issue 010's draft: publish, revise, or go on to stage 2 first"
+  "current_since": "2026-10-13T12:33:39-06:00"
 }
