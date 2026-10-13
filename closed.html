@@ -3,12 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<meta name="dashboard-version" content="cf906da0a5bf">
+<meta name="dashboard-version" content="92640ed885a3">
+<!-- theme: head begin -->
+<script>try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}</script>
+<!-- theme: head end -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Closed Tickets</title>
 <style>
   :root { color-scheme: light dark; --line: #d0d0d0; --muted: #666; --good: #1a7f37; --bad: #cf222e; --wait: #9a6700; }
-  @media (prefers-color-scheme: dark) { :root { --line: #444; --muted: #aaa; --good: #3fb950; --bad: #f85149; --wait: #d29922; } }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --line: #444; --muted: #aaa; --good: #3fb950; --bad: #f85149; --wait: #d29922; } }
+  :root[data-theme="light"] { color-scheme: light; }
+  :root[data-theme="dark"] { color-scheme: dark; --line: #444; --muted: #aaa; --good: #3fb950; --bad: #f85149; --wait: #d29922; }
   body { font: 15px/1.45 system-ui, sans-serif; margin: 0; background: Canvas; color: CanvasText; }
   main { padding: 24px 16px 60px; }
   h2, h3, tr[id] { scroll-margin-top: 12px; }
@@ -75,7 +80,7 @@
 <main>
 <h1>Closed tickets</h1>
 <p class="note">A copy of the Hazel Work Dashboard that Matthew runs on his laptop, published within about 15 minutes of each change. Its <code>localhost</code> links work only there.</p>
-<p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated 2026-10-13 11:15 MDT. Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are <a href="./#tickets">on the dashboard</a>.</p>
+<p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated 2026-10-13 11:16 MDT. Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are <a href="./#tickets">on the dashboard</a>.</p>
 <div class="scroll"><table>
 <tr><th class="num">#</th><th class="area">Area</th><th>Status, closed</th><th>Outcome</th><th>The ticket, as it last read</th></tr>
 <tr id="ticket-34"><td class="num"><a class="anchor" href="#ticket-34">#34</a><button class="copy" type="button" data-anchor="ticket-34" title="Copy a link to #34">copy link</button></td><td>dashboard</td><td class="status"><span class="good">done</span><br><span class="note">2026-10-13</span></td><td>Each page carries a version tag (a hash without the Updated line); every 90 s in view, and on coming back to the tab, it fetches itself and reloads on a change, keeping scroll and #ticket-N. Tested: a real change reloaded at the same scroll. The elapsed time is now browser-only, so the page no longer changes every 15 minutes while a ticket is current.</td><td><b>The dashboard refreshes itself,</b> locally and published: today nothing reloads (the one timer only updates the current ticket's elapsed time). Every minute or two, fetch the page in the background and reload only if it changed (compare its body without the Updated line), keeping the scroll position and any #ticket-N.<br><span class="note">from Matthew, 2026-10-13, in chat</span></td></tr>
@@ -150,5 +155,34 @@ for (const b of document.querySelectorAll("button.copy")) {
 
 </script>
 </main>
+<!-- theme: begin -->
+<style>
+  .theme-toggle { position: fixed; top: 10px; right: 10px; z-index: 30; font: 13px system-ui, sans-serif; padding: 3px 10px;
+    border-radius: 999px; border: 1px solid var(--line, #ccc); background: var(--paper, Canvas); color: var(--muted, GrayText);
+    cursor: pointer; opacity: 0.85; }
+  .theme-toggle:hover { opacity: 1; color: var(--ink, CanvasText); }
+  @media print { .theme-toggle { display: none; } }
+</style>
+<script>
+/* The theme switch: Auto (the system's choice), Light, Dark; remembered for this site. */
+(() => {
+  const order = ["auto", "light", "dark"], label = { auto: "◐ auto", light: "☀ light", dark: "☾ dark" };
+  const get = () => { try { return localStorage.getItem("theme") || "auto"; } catch (_) { return "auto"; } };
+  const apply = m => m === "auto" ? document.documentElement.removeAttribute("data-theme")
+                                  : document.documentElement.setAttribute("data-theme", m);
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "theme-toggle";
+  const show = () => { const m = get(); b.textContent = label[m] || label.auto;
+    b.title = "Theme: " + m + ". Click for " + order[(order.indexOf(m) + 1) % 3] + "; remembered on this site."; };
+  b.addEventListener("click", () => {
+    const m = order[(order.indexOf(get()) + 1) % 3];
+    try { m === "auto" ? localStorage.removeItem("theme") : localStorage.setItem("theme", m); } catch (_) {}
+    apply(m); show();
+  });
+  window.addEventListener("storage", e => { if (e.key === "theme") { apply(get()); show(); } });
+  show(); document.body.append(b);
+})();
+</script>
+<!-- theme: end -->
 </body>
 </html>
