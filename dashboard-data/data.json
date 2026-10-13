@@ -181,6 +181,10 @@
    ],
    "live": [
     [
+     "the dashboard, published",
+     "http://matthewhammer.org/hazel/work-dashboard/"
+    ],
+    [
      "the dashboard, localhost:8000",
      "http://localhost:8000/"
     ],
@@ -189,7 +193,7 @@
      "http://localhost:8000/notes/"
     ]
    ],
-   "note": "This page's code (<code>dashboard/</code>, run in place: <code>~/localhost-index</code> links to it), its history and <a href=\"https://github.com/matthewhammer/hazel-work-notes/blob/main/agent-instructions.md\">agent-instructions.md</a>. Private. Cron commits and pushes a snapshot when the page changes, so the latest commit is usually one; the code is committed by hand, with a new version."
+   "note": "This page's code (<code>dashboard/</code>, run in place: <code>~/localhost-index</code> links to it), its history and <a href=\"https://github.com/matthewhammer/hazel-work-notes/blob/main/agent-instructions.md\">agent-instructions.md</a>. PUBLIC since 2026-10-13: its Pages site serves a copy of this page (noindex), redirected to from matthewhammer.org/hazel/work-dashboard/. Cron commits and pushes a snapshot, data.json and the public copy when the page changes; the code is committed by hand."
   },
   {
    "repo": "matthewhammer/hazel-performance-analysis",
@@ -380,14 +384,6 @@
    "text": "Thumbnails with transparent backgrounds, readable in dark and light themes (Matthew uses a dark, high-contrast theme, where the white blocks look out of place): for every issue's card on the series index. Likely SVG thumbnails with their own prefers-color-scheme colours, or PNGs with transparency and colours that hold on both. Also: revise issue 009's thumbnail once its results are final (#31).",
    "source": "Matthew, 2026-10-13, in chat",
    "url": "http://matthewhammer.org/hazel/performance-analysis/"
-  },
-  {
-   "id": 33,
-   "area": "dashboard",
-   "added": "2026-10-13",
-   "text": "<b>Publish the dashboard publicly, on every change,</b> so Matthew can see where things stand when AFK and off the local network (for him, perhaps Cyrus; not secret, just too detailed for most; no reason to hide it, none to point people at it). A \"work-dashboard\" chip in the matthewhammer.org/hazel menu, and a similar URL (matthewhammer.org/hazel/work-dashboard/) that goes there; it shows what localhost:8000 shows, at all times. Proposal: make hazel-work-notes public and serve it with its own Pages (log_notes.py also writes the live page and closed.html to the repo root on each change; cron pushes every 15 minutes); a redirect page and the chip in the homepage repo; on the public copy, a line saying the localhost links work only on Matthew's machine, and a noindex meta. Audit 2026-10-13: no tokens, keys or email in its 172 commits; kids only as M and N. Making it public needs Matthew's go-ahead (it publishes the whole history).",
-   "source": "Matthew, 2026-10-13, in chat",
-   "url": ""
   }
  ],
  "next_ticket": 34,
@@ -499,6 +495,17 @@
    "status": "done",
    "outcome": "Issue 009 published, then updated the same day with the paper's main ideas, Hazel's caching in its terms, the derived-names experiment and what following the paper would take. Its step 3 became #30 (issue 010).",
    "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/009/"
+  },
+  {
+   "id": 33,
+   "area": "dashboard",
+   "text": "<b>Publish the dashboard publicly, on every change,</b> so Matthew can see where things stand when AFK and off the local network (for him, perhaps Cyrus; not secret, just too detailed for most; no reason to hide it, none to point people at it). A \"work-dashboard\" chip in the matthewhammer.org/hazel menu, and a similar URL (matthewhammer.org/hazel/work-dashboard/) that goes there; it shows what localhost:8000 shows, at all times. Proposal: make hazel-work-notes public and serve it with its own Pages (log_notes.py also writes the live page and closed.html to the repo root on each change; cron pushes every 15 minutes); a redirect page and the chip in the homepage repo; on the public copy, a line saying the localhost links work only on Matthew's machine, and a noindex meta. Audit 2026-10-13: no tokens, keys or email in its 172 commits; kids only as M and N. Making it public needs Matthew's go-ahead (it publishes the whole history).",
+   "source": "Matthew, 2026-10-13, in chat",
+   "listed": "2026-10-13",
+   "closed": "2026-10-13",
+   "status": "done",
+   "outcome": "hazel-work-notes is public; its Pages site serves a copy of the page and the closed tickets (noindex, a note, history links on GitHub), written by log_notes.py on each change. matthewhammer.org/hazel/work-dashboard/ redirects there, and the Hazel menu has a work-dashboard chip.",
+   "outcome_url": "http://matthewhammer.org/hazel/work-dashboard/"
   }
  ],
  "current_since": "2026-10-13T10:29:57-06:00"
