@@ -350,25 +350,25 @@
    "added": "2026-10-12"
   },
   {
-   "id": 28,
-   "area": "performance, research",
-   "added": "2026-10-13",
-   "text": "Issue 009 of the series: <b>fresh ids and lack of reuse</b>. Hazel mints ids two ways: <code>Id.mk</code>, a gensym (counter + random bytes), and names derived from a parent (<code>Id.derive</code>, <code>Id.next</code>, <code>IdTagged.fresh_deterministic</code>, v5 UUIDs), the distinction of Incremental Computation with Names (Hammer et al., OOPSLA 2015). Measure what Hazel can tell us today: (1) elaboration: analyzing the same program twice, which nodes come back renamed, and how many enclosing parts then fail the reuse check's hash (issue 008's 122); (2) experiment: name those nodes deterministically, and what reuse it recovers; (3) evaluation: ids minted per evaluation, and whether re-evaluated values ever share ids (why the call memo erases them). MEASURED 2026-10-13 (node, #2635 c4e64060f1; harness ~/.cache/hazel-diag/Test_Names.re, experiments issue009_experiments.patch, uncommitted): (1) the same term analyzed twice (Statics.mk_unmemoized; the memoized mk returns the same object): Full Body 667 of 111,462 nodes renamed, all minted by statics, 692 expressions then differ by hash; Witch 798/844, Scenes 210/237, Polygons 14/23. Sources: <code>UserLivelit.mk_expand_dot_def</code> (each use's dispatch on <code>def.expand</code>, FreshGrammar), <code>StaticsBase.fresh_ascription</code>, and 85 nodes from the Drawing library. (2) naming the first two by their use / what they ascribe (Id.derive by path): 667 -> 85 renamed, 692 -> 247 hash-differing. After a slider edit, incremental reuse: names held 943 -> 1,002, renamed 105 -> 46, reused 336 either way (the structural fallback recovers it): names change the check's cost, not what is reused. (3) evaluation mints 461,422 ids for the woods picture (33,847 nodes); evaluated twice, equal in structure, not by hash; the only shared ids are the program's own. (4) THE WORKER'S RESPONSE DIFF (ShareCodec, keyed by ValueHash with ids; instrumented build on 8342, ~/.cache/hazel-diag/sharecodec_stats.patch + share_moves.py): 8 woods figure moves, slots sent vs if structure-equal parts were references: worker->page 387,625 vs 347,920 (1.11x), page->worker 43,248 vs 21,728 (1.99x, small: ~5,400 a move vs 749,480 at load). The diff works because incremental reuse returns the same objects (~2,900 refs a move): identity survives through reuse, not names. (5) TIMED, 5 runs: after a slider edit, incremental vs scratch (node, medians): Full Body 502 vs 451 ms, Witch 857 vs 791, Scenes 1,547 vs 1,571; named about the same. DRAFT issue 009 written 2026-10-13 (local commit in ~/hazel-perf-report, not pushed; generator ~/.cache/hazel-diag/gen009.py + body009.html). OPEN: identity memos with no structural fallback; Polygons' 13 hash-differing with nothing renamed.",
-   "source": "Matthew, 2026-10-13, in chat",
-   "url": "http://localhost:8131/series/009/"
-  },
-  {
    "id": 29,
    "area": "series",
    "added": "2026-10-13",
    "text": "Revise issue 008 to answer plainly: <b>are conditions C (#2635, whole program) and B (UX mode, only the GUI) similar once the same fixes are applied to each?</b> As written it confuses: the GUI-only view gives no responsiveness benefit, but with the fixes it is no loss either; say so up front. Re-measure B and C on #2635's current head (the reuse check's fix, the stream index, the has-type memo, the per-step changes all in), and add graphs in the issue itself, not just the thumbnail, taking issue 001's pictures as the model, especially in the short answers. 008 is published, so per the series' rules: a dated update box under the short answers, notes after superseded claims, and an Update section with the figures.",
    "source": "Matthew, 2026-10-13, in chat",
    "url": "http://localhost:8131/series/008/"
+  },
+  {
+   "id": 30,
+   "area": "performance, research",
+   "added": "2026-10-13",
+   "text": "Issue 010: <b>names inside evaluation, for the reuse that would pay</b> (issue 009, What next, step 3). Apply Incremental Computation with Names further to Hazel: a demanded computation graph at the right granularity (units below the top level: calls and right-hand sides, named from the call site, the enclosing unit and the argument's name), the reads each unit makes recorded with what it saw, an early cutoff where a result keeps its name, and inputs (a slider's literal) as named references. An experiment on a local branch, then issue 010 with its preliminary results. Groundwork in issue 009: #2 per-step costs, the derived-names experiment (content names cost 23x; names from a parent's name are the paper's way).",
+   "source": "Matthew, 2026-10-13: issue 009, What next, step 3",
+   "url": "http://matthewhammer.org/hazel/performance-analysis/009/#step-3"
   }
  ],
- "next_ticket": 30,
- "current_ticket": 28,
- "current_note": "Matthew reviews the issue 009 draft (localhost:8131/series/009/). Then publish, or revise.",
+ "next_ticket": 31,
+ "current_ticket": 30,
+ "current_note": "Design the experiment: which units to name and cache (calls? let right-hand sides?), how to name them, what to record, and a measurement for the slider edits issue 009 used.",
  "closed_tickets": [
   {
    "id": 1,
@@ -464,7 +464,18 @@
    "outcome": "Its premise was wrong: #2597 has no lexemes (it lacks 500c466b44) and makes an unknown operator a hole of its operands, so <code>@@</code> and <code>@@@</code> give the same term. Issue 008 got dated corrections.",
    "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/008/#fix",
    "listed": "2026-10-12"
+  },
+  {
+   "id": 28,
+   "area": "performance, research",
+   "text": "Issue 009 of the series: <b>fresh ids and lack of reuse</b>. Hazel mints ids two ways: <code>Id.mk</code>, a gensym (counter + random bytes), and names derived from a parent (<code>Id.derive</code>, <code>Id.next</code>, <code>IdTagged.fresh_deterministic</code>, v5 UUIDs), the distinction of Incremental Computation with Names (Hammer et al., OOPSLA 2015). Measure what Hazel can tell us today: (1) elaboration: analyzing the same program twice, which nodes come back renamed, and how many enclosing parts then fail the reuse check's hash (issue 008's 122); (2) experiment: name those nodes deterministically, and what reuse it recovers; (3) evaluation: ids minted per evaluation, and whether re-evaluated values ever share ids (why the call memo erases them). MEASURED 2026-10-13 (node, #2635 c4e64060f1; harness ~/.cache/hazel-diag/Test_Names.re, experiments issue009_experiments.patch, uncommitted): (1) the same term analyzed twice (Statics.mk_unmemoized; the memoized mk returns the same object): Full Body 667 of 111,462 nodes renamed, all minted by statics, 692 expressions then differ by hash; Witch 798/844, Scenes 210/237, Polygons 14/23. Sources: <code>UserLivelit.mk_expand_dot_def</code> (each use's dispatch on <code>def.expand</code>, FreshGrammar), <code>StaticsBase.fresh_ascription</code>, and 85 nodes from the Drawing library. (2) naming the first two by their use / what they ascribe (Id.derive by path): 667 -> 85 renamed, 692 -> 247 hash-differing. After a slider edit, incremental reuse: names held 943 -> 1,002, renamed 105 -> 46, reused 336 either way (the structural fallback recovers it): names change the check's cost, not what is reused. (3) evaluation mints 461,422 ids for the woods picture (33,847 nodes); evaluated twice, equal in structure, not by hash; the only shared ids are the program's own. (4) THE WORKER'S RESPONSE DIFF (ShareCodec, keyed by ValueHash with ids; instrumented build on 8342, ~/.cache/hazel-diag/sharecodec_stats.patch + share_moves.py): 8 woods figure moves, slots sent vs if structure-equal parts were references: worker->page 387,625 vs 347,920 (1.11x), page->worker 43,248 vs 21,728 (1.99x, small: ~5,400 a move vs 749,480 at load). The diff works because incremental reuse returns the same objects (~2,900 refs a move): identity survives through reuse, not names. (5) TIMED, 5 runs: after a slider edit, incremental vs scratch (node, medians): Full Body 502 vs 451 ms, Witch 857 vs 791, Scenes 1,547 vs 1,571; named about the same. DRAFT issue 009 written 2026-10-13 (local commit in ~/hazel-perf-report, not pushed; generator ~/.cache/hazel-diag/gen009.py + body009.html). OPEN: identity memos with no structural fallback; Polygons' 13 hash-differing with nothing renamed.",
+   "source": "Matthew, 2026-10-13, in chat",
+   "listed": "2026-10-13",
+   "closed": "2026-10-13",
+   "status": "done",
+   "outcome": "Issue 009 published, then updated the same day with the paper's main ideas, Hazel's caching in its terms, the derived-names experiment and what following the paper would take. Its step 3 became #30 (issue 010).",
+   "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/009/"
   }
  ],
- "current_since": "2026-10-13T08:40:26-06:00"
+ "current_since": "2026-10-13T10:25:23-06:00"
 }
