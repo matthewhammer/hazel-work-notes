@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<meta name="dashboard-version" content="067a8e59bd46">
+<meta name="dashboard-version" content="cf906da0a5bf">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Closed Tickets</title>
 <style>
@@ -75,7 +75,7 @@
 <main>
 <h1>Closed tickets</h1>
 <p class="note">A copy of the Hazel Work Dashboard that Matthew runs on his laptop, published within about 15 minutes of each change. Its <code>localhost</code> links work only there.</p>
-<p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated 2026-10-13 11:14 MDT. Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are <a href="./#tickets">on the dashboard</a>.</p>
+<p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated 2026-10-13 11:15 MDT. Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are <a href="./#tickets">on the dashboard</a>.</p>
 <div class="scroll"><table>
 <tr><th class="num">#</th><th class="area">Area</th><th>Status, closed</th><th>Outcome</th><th>The ticket, as it last read</th></tr>
 <tr id="ticket-34"><td class="num"><a class="anchor" href="#ticket-34">#34</a><button class="copy" type="button" data-anchor="ticket-34" title="Copy a link to #34">copy link</button></td><td>dashboard</td><td class="status"><span class="good">done</span><br><span class="note">2026-10-13</span></td><td>Each page carries a version tag (a hash without the Updated line); every 90 s in view, and on coming back to the tab, it fetches itself and reloads on a change, keeping scroll and #ticket-N. Tested: a real change reloaded at the same scroll. The elapsed time is now browser-only, so the page no longer changes every 15 minutes while a ticket is current.</td><td><b>The dashboard refreshes itself,</b> locally and published: today nothing reloads (the one timer only updates the current ticket's elapsed time). Every minute or two, fetch the page in the background and reload only if it changed (compare its body without the Updated line), keeping the scroll position and any #ticket-N.<br><span class="note">from Matthew, 2026-10-13, in chat</span></td></tr>
