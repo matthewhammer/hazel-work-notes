@@ -26,7 +26,7 @@ Read this before working with Matthew on Hazel. Keep the dashboard current as yo
 
 The title is **Hazel Work Dashboard**. An outline on the side lists the sections, every open ticket by its number, and the closed tickets' page. The sections, in order:
 
-The page reloads itself when it changes (a version tag, checked every 90 s while it is in view), so an open tab, local or published, stays current.
+The page reloads itself when it changes (a version tag, checked every 90 s while it is in view), so an open tab, local or published, stays current. A button, top right, switches its theme (Auto / Light / Dark, remembered per site); keep any new colours in the CSS variables, with dark values under both the `prefers-color-scheme` query and `:root[data-theme="dark"]`.
 
 0. **Current ticket,** when there is one: the ticket we are working on now, in full, when we started it and how long ago (kept up to date in the browser), and a line on what is next on it (`current_note`). Times on the page are Mountain Time.
 

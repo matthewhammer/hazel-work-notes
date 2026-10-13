@@ -318,7 +318,9 @@ page = f"""<!doctype html>
 <title>Hazel Work Dashboard</title>
 <style>
   :root {{ color-scheme: light dark; --line: #d0d0d0; --muted: #666; --good: #1a7f37; --bad: #cf222e; --wait: #9a6700; }}
-  @media (prefers-color-scheme: dark) {{ :root {{ --line: #444; --muted: #aaa; --good: #3fb950; --bad: #f85149; --wait: #d29922; }} }}
+  @media (prefers-color-scheme: dark) {{ :root:not([data-theme="light"]) {{ --line: #444; --muted: #aaa; --good: #3fb950; --bad: #f85149; --wait: #d29922; }} }}
+  :root[data-theme="light"] {{ color-scheme: light; }}
+  :root[data-theme="dark"] {{ color-scheme: dark; --line: #444; --muted: #aaa; --good: #3fb950; --bad: #f85149; --wait: #d29922; }}
   body {{ font: 15px/1.45 system-ui, sans-serif; margin: 0; background: Canvas; color: CanvasText; }}
   main {{ padding: 24px 16px 60px; }}
   h2, h3, tr[id] {{ scroll-margin-top: 12px; }}
@@ -553,6 +555,13 @@ for (const b of document.querySelectorAll("button.copy")) {{
 </body>
 </html>
 """
+THEME_HEAD = '<!-- theme: head begin -->\n<script>try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}</script>\n<!-- theme: head end -->'
+THEME_BODY = '<!-- theme: begin -->\n<style>\n  .theme-toggle { position: fixed; top: 10px; right: 10px; z-index: 30; font: 13px system-ui, sans-serif; padding: 3px 10px;\n    border-radius: 999px; border: 1px solid var(--line, #ccc); background: var(--paper, Canvas); color: var(--muted, GrayText);\n    cursor: pointer; opacity: 0.85; }\n  .theme-toggle:hover { opacity: 1; color: var(--ink, CanvasText); }\n  @media print { .theme-toggle { display: none; } }\n</style>\n<script>\n/* The theme switch: Auto (the system\'s choice), Light, Dark; remembered for this site. */\n(() => {\n  const order = ["auto", "light", "dark"], label = { auto: "◐ auto", light: "☀ light", dark: "☾ dark" };\n  const get = () => { try { return localStorage.getItem("theme") || "auto"; } catch (_) { return "auto"; } };\n  const apply = m => m === "auto" ? document.documentElement.removeAttribute("data-theme")\n                                  : document.documentElement.setAttribute("data-theme", m);\n  const b = document.createElement("button");\n  b.type = "button"; b.className = "theme-toggle";\n  const show = () => { const m = get(); b.textContent = label[m] || label.auto;\n    b.title = "Theme: " + m + ". Click for " + order[(order.indexOf(m) + 1) % 3] + "; remembered on this site."; };\n  b.addEventListener("click", () => {\n    const m = order[(order.indexOf(get()) + 1) % 3];\n    try { m === "auto" ? localStorage.removeItem("theme") : localStorage.setItem("theme", m); } catch (_) {}\n    apply(m); show();\n  });\n  window.addEventListener("storage", e => { if (e.key === "theme") { apply(get()); show(); } });\n  show(); document.body.append(b);\n})();\n</script>\n<!-- theme: end -->'
+def themed(text):
+    """The theme switch (Auto / Light / Dark, remembered per site), as on the series' pages."""
+    text = text.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n' + THEME_HEAD, 1)
+    return text.replace("</body>", THEME_BODY + "\n</body>", 1)
+
 import hashlib
 UPDATED_LINE = re.compile(r'<p class="note">Updated [^<]*<code>[^<]*</code>[^<]*</p>')
 def versioned(text):
@@ -563,7 +572,7 @@ def versioned(text):
 page = page.replace("<table>", '<div class="scroll"><table>').replace("</table>", "</table></div>")
 # written whole, then renamed into place: a reader never sees half a page
 tmp = os.path.join(HERE, ".index.html.tmp")
-open(tmp, "w").write(versioned(page))
+open(tmp, "w").write(versioned(themed(page)))
 os.replace(tmp, os.path.join(HERE, "index.html"))
 
 # The closed tickets, on a page of their own: how each ended (done, or closed
@@ -650,7 +659,7 @@ closed_page = f"""<!doctype html>
 </html>
 """
 tmp = os.path.join(HERE, ".closed.html.tmp")
-open(tmp, "w").write(versioned(closed_page))
+open(tmp, "w").write(versioned(themed(closed_page)))
 os.replace(tmp, os.path.join(HERE, "closed.html"))
 print(f"wrote index.html: {len(rows)} ports, {len(other)} other + {len(data['perf_prs'])} perf + {len(data['integration_prs'])} integration PRs, {len(data.get('repos', []))} repos, {len(TICKETS)} tickets"
       + (f" (current #{CURRENT['id']})" if CURRENT else "") + f"; closed.html: {len(CLOSED)} closed tickets")

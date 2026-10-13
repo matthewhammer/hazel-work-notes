@@ -8,6 +8,7 @@ Changes since 0.0.3, for the next version, which waits for Matthew's go-ahead.
 
 - **The page keeps itself current:** every 90 seconds while it is open and in view, and as soon as its tab comes back into view, the page fetches itself and reloads if it changed, keeping its scroll position and any `#ticket-N`. Each page carries a version (`<meta name="dashboard-version">`, a hash of the page without its Updated line). The current ticket's elapsed time is now filled in only by the browser, so the page does not change, and is not snapshotted or republished, just because time passed.
 - **Published, publicly:** the repository is public, and `log_notes.py` writes a copy of the page and of the closed tickets to its root whenever either changes, which its Pages site serves at http://matthewhammer.org/hazel-work-notes/ (http://matthewhammer.org/hazel/work-dashboard/ redirects there, and the homepage's Hazel menu has a "work-dashboard" chip). The copy says what it is, links the history on GitHub instead of on localhost, and is marked noindex: findable by its link, not by search. The History line says so.
+- **A theme switch:** a button, top right, on the page and on the closed tickets, cycles Auto / Light / Dark. Auto follows the system; a choice is remembered by the browser for the site (localStorage `theme`), so the published copy and http://localhost:8000/ each keep their own. It is the same switch as on the performance analysis series and matthewhammer.org/hazel/.
 
 ## 0.0.3 (2026-10-13)
 
