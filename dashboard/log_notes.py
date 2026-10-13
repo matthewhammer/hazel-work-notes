@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Save index.html into ~/hazel-work-notes, commit it, and push to GitHub.
+"""Save index.html, and data.json, into ~/hazel-work-notes, commit them, and push to GitHub.
 
   python3 ~/localhost-index/log_notes.py
 
@@ -9,7 +9,9 @@ exactly as served on http://localhost:8000/, at
   dashboard-snapshots/<YYYY>/<MM>/<DD>/<YYYY-MM-DD>T<HHMM><+-hhmm>.html
 
 a folder for each year, month and day, and a file name that says when it was
-taken even outside its folder.
+taken even outside its folder. data.json is kept at dashboard-data/data.json,
+committed whenever it changes: the tickets, closed ones included, live only
+there.
 
 A snapshot is written only when the page differs from the last one in more than
 its "Updated" line; a quiet run writes nothing. Pushing is tried on every run,
@@ -51,6 +53,18 @@ else:
     git("add", os.path.relpath(path, NOTES))
     git("commit", "-q", "-m", f"Snapshot {now.strftime('%Y-%m-%d %H:%M %Z')}")
     print(f"wrote dashboard-snapshots/{day}/{name}")
+
+# data.json too: the tickets, closed ones included, are only there, so it gets
+# a history of its own, committed whenever it changes.
+DATA = os.path.join(HERE, "data.json")
+KEPT = os.path.join(NOTES, "dashboard-data", "data.json")
+data = open(DATA).read()
+if not os.path.exists(KEPT) or open(KEPT).read() != data:
+    os.makedirs(os.path.dirname(KEPT), exist_ok=True)
+    open(KEPT, "w").write(data)
+    git("add", os.path.relpath(KEPT, NOTES))
+    git("commit", "-q", "-m", f"Data {datetime.now().astimezone().strftime('%Y-%m-%d %H:%M %Z')}")
+    print("wrote dashboard-data/data.json")
 
 upstream = subprocess.run(["git", "-C", NOTES, "rev-parse", "-q", "--verify", "@{u}"], capture_output=True).returncode == 0
 if not upstream:

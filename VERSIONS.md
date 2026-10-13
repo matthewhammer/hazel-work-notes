@@ -8,6 +8,10 @@ Changes since 0.0.2, for the next version, which waits for Matthew's go-ahead.
 
 - **The history is organized by date:** the snapshots now live in `dashboard-snapshots/<YYYY>/<MM>/<DD>/`, a folder for each year, month and day, instead of one folder per day at the top of the repository. Their names are unchanged, and `git mv` kept their history. The page's History line links there.
 - **The agent instructions say what this repository is for:** our working record, for the two of us. The performance analysis series is separate, written for outside readers, in its own repository.
+- **Tickets, not next steps:** our own numbered items are now called tickets, so they are not confused with GitHub issues. The section is "Tickets", each row's anchor is `#ticket-N` (with a "copy link" button), and old `#next-N` links still find their ticket. In `data.json`: `tickets` and `next_ticket`, in place of `next_steps` and `next_id`.
+- **The current ticket, first on the page:** when there is one (`current_ticket`), a first section shows it in full, with a line on what is next on it (`current_note`). Its row in the Tickets table is marked "current", and the outline lists it first.
+- **Closed tickets have a page:** http://localhost:8000/closed.html, newest first. Each row gives the status (done, not needed, dropped or superseded), the date it closed, what came of it (with a link to where), and its text as it last read. Closing a ticket moves it to `closed_tickets` in `data.json`; nothing is deleted. A `#N` reference links to a ticket wherever it is, and a link to a closed ticket's old anchor lands on its row there. The nine tickets closed before this (#1, #3, #6, #8, #9, #11, #20, #21, #26) were reconstructed from the snapshots.
+- **`data.json` has a history:** `log_notes.py` also copies it to `dashboard-data/data.json` and commits it whenever it changes, since the closed tickets live only there.
 
 ## 0.0.2 (2026-10-12)
 

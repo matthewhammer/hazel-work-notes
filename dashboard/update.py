@@ -8,8 +8,10 @@ commits the page to ~/hazel-work-notes and pushes it; the last run's output is
 in update.log.
 
 data.json holds what only we know: which ports serve what, which PRs are
-against the performance tracking issue, and the open next steps. Titles,
-state, CI, review and mergeability come from GitHub each run."""
+against the performance tracking issue, and our tickets: the open ones, the
+current one, and the closed ones, which go on a page of their own,
+closed.html. Titles, state, CI, review and mergeability come from GitHub each
+run."""
 import html, json, os, re, subprocess, sys
 from datetime import datetime
 
@@ -56,14 +58,27 @@ LINKABLE = re.compile(
     r"|(?P<sha>\b(?=[0-9a-f]*\d)(?=[0-9a-f]*[a-f])[0-9a-f]{10}\b)"
     r"|(?P<step>(?<![\w/#&])#(?P<sid>\d{1,3})\b)")
 
-# our own next steps, by number: "#10" links to its row while it is listed
-STEP_IDS = {s["id"] for s in data["next_steps"]}
+# Our tickets, by number: "#10" links to its row, on this page while it is
+# open and on closed.html once it is closed. Numbers are never reused.
+TICKETS = sorted(data["tickets"], key=lambda t: t["id"])
+CLOSED = sorted(data.get("closed_tickets", []), key=lambda t: t["id"])
+OPEN_IDS = {t["id"] for t in TICKETS}
+CLOSED_IDS = {t["id"] for t in CLOSED}
+CURRENT = next((t for t in TICKETS if t["id"] == data.get("current_ticket")), None)
 
-def linkify(text):
+def ticket_href(n, on):
+    """The link to ticket n from the page `on` ("index" or "closed")."""
+    if n in OPEN_IDS:
+        return f"#ticket-{n}" if on == "index" else f"./#ticket-{n}"
+    if n in CLOSED_IDS:
+        return f"closed.html#ticket-{n}" if on == "index" else f"#ticket-{n}"
+    return None
+
+def linkify(text, on="index"):
     out, pos, depth = [], 0, 0
     # walk tags; only text outside <a>...</a> and outside tags gets links
     for m in re.finditer(r"<[^>]+>", text):
-        out.append(link_text(text[pos:m.start()]) if depth == 0 else text[pos:m.start()])
+        out.append(link_text(text[pos:m.start()], on) if depth == 0 else text[pos:m.start()])
         tag = m.group(0)
         if re.match(r"<a[\s>]", tag):
             depth += 1
@@ -71,10 +86,10 @@ def linkify(text):
             depth = max(0, depth - 1)
         out.append(tag)
         pos = m.end()
-    out.append(link_text(text[pos:]) if depth == 0 else text[pos:])
+    out.append(link_text(text[pos:], on) if depth == 0 else text[pos:])
     return "".join(out)
 
-def link_text(t):
+def link_text(t, on="index"):
     def sub(m):
         if m.group("series"):
             return f'<a href="{series_url(m.group("n"))}">{m.group("series")}</a>'
@@ -82,9 +97,8 @@ def link_text(t):
             return f'<a href="https://github.com/{REPO}/issues/{m.group("num")}">{m.group("gh")}</a>'
         if m.group("sha"):
             return f'<a href="https://github.com/{REPO}/commit/{m.group("sha")}"><code>{m.group("sha")}</code></a>'
-        if int(m.group("sid")) in STEP_IDS:
-            return f'<a href="#next-{m.group("sid")}">{m.group("step")}</a>'
-        return m.group("step")
+        href = ticket_href(int(m.group("sid")), on)
+        return f'<a href="{href}">{m.group("step")}</a>' if href else m.group("step")
     return LINKABLE.sub(sub, t)
 
 def pr_cell(p):
@@ -226,18 +240,34 @@ def series_link(url):
         return url
     return series_url(m.group(1) or "001") + m.group(2)
 
-def from_cell(s):
+def from_cell(s, on="index"):
     text = e(s["source"])
-    return f'<a href="{e(series_link(s["url"]))}">{text}</a>' if s.get("url") else linkify(text)
+    return f'<a href="{e(series_link(s["url"]))}">{text}</a>' if s.get("url") else linkify(text, on)
 
-# Our own issue numbers: data.json's next_id is never reused, so a number
-# names one step for good, even after the step is done or dropped.
-steps = "\n".join(
-    f'<tr id="next-{s["id"]}"><td class="num"><a class="anchor" href="#next-{s["id"]}">#{s["id"]}</a>'
-    f'<button class="copy" type="button" data-anchor="next-{s["id"]}" title="Copy a link to #{s["id"]}">copy link</button></td>'
-    f'<td>{e(s.get("area", ""))}</td><td>{linkify(s["step"])}</td>'
-    f'<td>{from_cell(s)}</td></tr>'
-    for s in sorted(data["next_steps"], key=lambda s: s["id"]))
+def num_cell(t):
+    return (f'<td class="num"><a class="anchor" href="#ticket-{t["id"]}">#{t["id"]}</a>'
+            f'<button class="copy" type="button" data-anchor="ticket-{t["id"]}" title="Copy a link to #{t["id"]}">copy link</button></td>')
+
+# Our tickets: data.json's next_ticket is never reused, so a number names one
+# ticket for good, open or closed.
+ticket_rows = "\n".join(
+    f'<tr id="ticket-{t["id"]}"{" class=\"current\"" if t is CURRENT else ""}>{num_cell(t)}'
+    f'<td>{e(t.get("area", ""))}{"<br><span class=\"badge\">current</span>" if t is CURRENT else ""}</td>'
+    f'<td>{linkify(t["text"])}</td><td>{from_cell(t)}</td></tr>'
+    for t in TICKETS)
+
+# The current ticket: the one we are working on, first on the page.
+current_section = ""
+if CURRENT:
+    t = CURRENT
+    note = data.get("current_note", "")
+    current_section = f"""<h2 id="current">Current ticket: <a href="#ticket-{t["id"]}">#{t["id"]}</a></h2>
+<div class="current-box">
+<p class="note">{e(t.get("area", ""))} · from {from_cell(t)}</p>
+<p>{linkify(t["text"])}</p>
+{f'<p><b>Now:</b> {linkify(note)}</p>' if note else ""}
+</div>
+"""
 
 # The side outline (as on fumola.org): the sections, and under Next steps
 # every step by its number, so a step is one click away.
@@ -249,16 +279,17 @@ def short(html_text, n=46):
 def entry(href, text, sub=False):
     return f'<li{" class=\"sub\"" if sub else ""}><a href="{href}">{e(text)}</a></li>'
 
-outline = "\n".join([
+outline = "\n".join(
+    ([entry("#current", f'Current ticket: #{CURRENT["id"]}')] if CURRENT else []) + [
     entry("#ports", "Localhost ports"),
     entry("#other", "Other PRs we are tracking"),
     entry("#repos", "Repositories we deploy"),
     entry("#perf", "Performance Analysis and Improvement"),
     entry("#perf-prs", "Performance PRs", sub=True),
     entry("#integration", "Integration branches", sub=True),
-    entry("#next", "Next steps"),
-] + [entry(f'#next-{s["id"]}', f'#{s["id"]} {short(s["step"])}', sub=True)
-     for s in sorted(data["next_steps"], key=lambda s: s["id"])])
+    entry("#tickets", "Tickets"),
+] + [entry(f'#ticket-{t["id"]}', f'#{t["id"]} {short(t["text"])}', sub=True) for t in TICKETS]
+  + [entry("closed.html", f"Closed tickets ({len(CLOSED)})")])
 
 issue = data["tracking_issue"]
 now = datetime.now().astimezone().strftime("%Y-%m-%d %H:%M %Z")
@@ -325,6 +356,10 @@ page = f"""<!doctype html>
   /* six columns of sentences: scroll sideways before they squeeze to a word a line */
   table.repos {{ min-width: 56rem; }}
   .good {{ color: var(--good); }} .bad {{ color: var(--bad); }} .wait {{ color: var(--wait); }}
+  .current-box {{ max-width: 1200px; box-sizing: border-box; padding: 4px 16px; border: 1px solid var(--good); border-left-width: 4px; border-radius: 4px; }}
+  .badge {{ display: inline-block; margin-top: 4px; padding: 0 6px; font-size: 0.8em; border-radius: 4px; color: var(--good); border: 1px solid var(--good); }}
+  tr.current td {{ background: color-mix(in srgb, var(--good) 7%, transparent); }}
+  td.status {{ white-space: nowrap; }}
 </style>
 </head>
 <body>
@@ -341,8 +376,9 @@ page = f"""<!doctype html>
 <main>
 <h1>Hazel Work Dashboard</h1>
 <p class="note">Updated {e(now)}, by <code>~/localhost-index/update.py</code> (PR titles and status from GitHub).</p>
-<p class="note">History: <a href="http://localhost:8000/notes/dashboard-snapshots/">every change to this page</a>, a folder for each year, month and day, also pushed to <a href="https://github.com/matthewhammer/hazel-work-notes">matthewhammer/hazel-work-notes</a> (private). How we work with this page: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/agent-instructions.md">agent-instructions.md</a> (<a href="http://localhost:8000/notes/agent-instructions.md">local</a>). This is version {VERSION}: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/VERSIONS.md">VERSIONS.md</a> lists what each version has.</p>
+<p class="note">History: <a href="http://localhost:8000/notes/dashboard-snapshots/">every change to this page</a>, a folder for each year, month and day, also pushed to <a href="https://github.com/matthewhammer/hazel-work-notes">matthewhammer/hazel-work-notes</a> (private). How we work with this page: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/agent-instructions.md">agent-instructions.md</a> (<a href="http://localhost:8000/notes/agent-instructions.md">local</a>). This is version {VERSION}: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/VERSIONS.md">VERSIONS.md</a> lists what each version has. Closed tickets: <a href="closed.html">their own page</a>.</p>
 
+{current_section}
 <h2 id="ports">Localhost ports</h2>
 <table>
 <tr><th>PR # and title</th><th>Repo and branch</th><th>Localhost</th></tr>
@@ -378,14 +414,29 @@ page = f"""<!doctype html>
 {status_rows(data["integration_prs"])}
 </table>
 
-<h2 id="next">Next steps</h2>
-<p class="note">Important, and not started or without a PR yet. Numbered in our own sequence from #1; a number is never reused.</p>
+<h2 id="tickets">Tickets</h2>
+<p class="note">Our own tickets: what to do next, important and not done. Numbered in our own sequence from #1; a number is never reused. A closed ticket moves to <a href="closed.html">the closed tickets</a>, with how it ended.</p>
 <table>
-<tr><th class="num">#</th><th class="area">Area</th><th>Next step</th><th class="from">From</th></tr>
-{steps}
+<tr><th class="num">#</th><th class="area">Area</th><th>Ticket</th><th class="from">From</th></tr>
+{ticket_rows}
 </table>
 <script>
-/* Each next step's "copy link" puts its full URL, with its anchor, on the
+/* Old links (#next-N, from before tickets had the name) and links to a
+   ticket that has closed since: find the ticket where it is now. */
+(() => {{
+  const find = () => {{
+    const m = location.hash.match(/^#(?:next|ticket)-(\\d+)$/);
+    if (!m) return;
+    if (document.getElementById("ticket-" + m[1])) {{
+      if (location.hash !== "#ticket-" + m[1]) location.replace("#ticket-" + m[1]);
+    }} else {{
+      location.replace("closed.html#ticket-" + m[1]);
+    }}
+  }};
+  find();
+  window.addEventListener("hashchange", find);
+}})();
+/* Each ticket's "copy link" puts its full URL, with its anchor, on the
    clipboard: a way to name a step exactly when talking about it. */
 for (const b of document.querySelectorAll("button.copy")) {{
   b.addEventListener("click", async () => {{
@@ -451,4 +502,63 @@ page = page.replace("<table>", '<div class="scroll"><table>').replace("</table>"
 tmp = os.path.join(HERE, ".index.html.tmp")
 open(tmp, "w").write(page)
 os.replace(tmp, os.path.join(HERE, "index.html"))
-print(f"wrote index.html: {len(rows)} ports, {len(other)} other + {len(data['perf_prs'])} perf + {len(data['integration_prs'])} integration PRs, {len(data.get('repos', []))} repos, {len(data['next_steps'])} next steps")
+
+# The closed tickets, on a page of their own: how each ended (done, or closed
+# for another reason, such as not needed or dropped), when, and where the
+# outcome is.
+STATUS_CLASS = {"done": "good", "not needed": "wait", "dropped": "bad", "superseded": "wait"}
+def outcome_cell(t):
+    out = linkify(t.get("outcome", ""), on="closed")
+    if t.get("outcome_url"):
+        out += f' <a href="{e(series_link(t["outcome_url"]))}">(where)</a>'
+    return out
+closed_rows = "\n".join(
+    f'<tr id="ticket-{t["id"]}">{num_cell(t)}<td>{e(t.get("area", ""))}</td>'
+    f'<td class="status"><span class="{STATUS_CLASS.get(t["status"], "")}">{e(t["status"])}</span><br>'
+    f'<span class="note">{e(t["closed"])}</span></td>'
+    f'<td>{outcome_cell(t)}</td>'
+    f'<td>{linkify(t["text"], on="closed")}'
+    f'{"<br><span class=" + chr(34) + "note" + chr(34) + ">from " + from_cell(t, on="closed") + "</span>" if t.get("source") else ""}</td></tr>'
+    for t in sorted(CLOSED, key=lambda t: (t["closed"], t["id"]), reverse=True))
+style = page.split("<style>", 1)[1].split("</style>", 1)[0]
+# the copy-link buttons' code only (the index's own redirects stay there)
+script = "/* Each ticket" + page.split("/* Each ticket", 1)[1].split("/* The outline:", 1)[0]
+closed_page = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Closed Tickets</title>
+<style>{style}  main {{ margin-left: 0 !important; padding-top: 24px !important; }}
+</style>
+</head>
+<body>
+<main>
+<h1>Closed tickets</h1>
+<p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated {e(now)}. Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are <a href="./#tickets">on the dashboard</a>.</p>
+<div class="scroll"><table>
+<tr><th class="num">#</th><th class="area">Area</th><th>Status, closed</th><th>Outcome</th><th>The ticket, as it last read</th></tr>
+{closed_rows}
+</table></div>
+<script>
+/* A link to a ticket that is open again, or never closed: the dashboard. */
+(() => {{
+  const find = () => {{
+    const m = location.hash.match(/^#(?:next|ticket)-(\\d+)$/);
+    if (!m) return;
+    if (!document.getElementById("ticket-" + m[1])) location.replace("./#ticket-" + m[1]);
+    else if (location.hash !== "#ticket-" + m[1]) location.replace("#ticket-" + m[1]);
+  }};
+  find();
+  window.addEventListener("hashchange", find);
+}})();
+{script}</script>
+</main>
+</body>
+</html>
+"""
+tmp = os.path.join(HERE, ".closed.html.tmp")
+open(tmp, "w").write(closed_page)
+os.replace(tmp, os.path.join(HERE, "closed.html"))
+print(f"wrote index.html: {len(rows)} ports, {len(other)} other + {len(data['perf_prs'])} perf + {len(data['integration_prs'])} integration PRs, {len(data.get('repos', []))} repos, {len(TICKETS)} tickets"
+      + (f" (current #{CURRENT['id']})" if CURRENT else "") + f"; closed.html: {len(CLOSED)} closed tickets")
