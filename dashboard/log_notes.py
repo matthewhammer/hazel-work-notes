@@ -79,6 +79,7 @@ NOTE = ('<p class="note">A copy of the Hazel Work Dashboard that Matthew runs on
 def public(text):
     text = text.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n<meta name="robots" content="noindex">', 1)
     text = text.replace("http://localhost:8000/notes/dashboard-snapshots/", REPO + "/tree/main/dashboard-snapshots")
+    text = text.replace(' (<a href="http://localhost:8000/notes/agent-instructions.md">local</a>)', "")
     text = text.replace("http://localhost:8000/notes/agent-instructions.md", REPO + "/blob/main/agent-instructions.md")
     for h1 in ("<h1>Hazel Work Dashboard</h1>", "<h1>Closed tickets</h1>"):
         text = text.replace(h1, h1 + "\n" + NOTE, 1)
