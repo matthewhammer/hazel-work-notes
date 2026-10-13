@@ -69,6 +69,15 @@ CLOSED = sorted(data.get("closed_tickets", []), key=lambda t: t["id"])
 OPEN_IDS = {t["id"] for t in TICKETS}
 CLOSED_IDS = {t["id"] for t in CLOSED}
 CURRENT = next((t for t in TICKETS if t["id"] == data.get("current_ticket")), None)
+# The current ticket waits on Matthew (current_waiting: true, or a line saying
+# what for): a raised hand and a question mark, boxed, wherever it is named,
+# and in the page's title, so a tab shows it unopened.
+WAITING = bool(CURRENT and data.get("current_waiting"))
+WAITING_FOR = data.get("current_waiting") if isinstance(data.get("current_waiting"), str) else ""
+HAND = "\u270b\u2754"
+def hand():
+    tip = "Waiting on Matthew" + (": " + WAITING_FOR if WAITING_FOR else "")
+    return f'<span class="waiting" title="{e(tip)}" aria-label="{e(tip)}">{HAND}</span>' if WAITING else ""
 
 def ticket_href(n, on):
     """The link to ticket n from the page `on` ("index" or "closed")."""
@@ -256,7 +265,7 @@ def num_cell(t):
 # ticket for good, open or closed.
 ticket_rows = "\n".join(
     f'<tr id="ticket-{t["id"]}"{" class=\"current\"" if t is CURRENT else ""}>{num_cell(t)}'
-    f'<td>{e(t.get("area", ""))}{"<br><span class=\"badge\">current</span>" if t is CURRENT else ""}</td>'
+    f'<td>{e(t.get("area", ""))}{"<br><span class=\"badge\">current</span>" + (" " + hand() if WAITING else "") if t is CURRENT else ""}</td>'
     f'<td>{linkify(t["text"])}</td><td>{from_cell(t)}</td></tr>'
     for t in TICKETS)
 
@@ -277,7 +286,7 @@ if CURRENT:
         mins = max(0, int((datetime.now(LOCAL) - since).total_seconds() // 60))
         since_line = (f'<p class="since">Started <b>{e(since.astimezone(LOCAL).strftime("%a %b %-d, %-I:%M %p %Z"))}</b>'
                       f' · elapsed <b data-since="{e(since.isoformat())}"></b></p>')
-    current_section = f"""<h2 id="current">Current ticket: <a href="#ticket-{t["id"]}">#{t["id"]}</a></h2>
+    current_section = f"""<h2 id="current">Current ticket: <a href="#ticket-{t["id"]}">#{t["id"]}</a> {hand()}</h2>
 <div class="current-box">
 <p class="note">{e(t.get("area", ""))} · from {from_cell(t)}</p>
 {since_line}
@@ -297,7 +306,7 @@ def entry(href, text, sub=False):
     return f'<li{" class=\"sub\"" if sub else ""}><a href="{href}">{e(text)}</a></li>'
 
 outline = "\n".join(
-    ([entry("#current", f'Current ticket: #{CURRENT["id"]}')] if CURRENT else []) + [
+    ([entry("#current", f'Current ticket: #{CURRENT["id"]}' + (f" {HAND}" if WAITING else ""))] if CURRENT else []) + [
     entry("#ports", "Localhost ports"),
     entry("#other", "Other PRs we are tracking"),
     entry("#repos", "Repositories we deploy"),
@@ -315,7 +324,7 @@ page = f"""<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hazel Work Dashboard</title>
+<title>{HAND + ' ' if WAITING else ''}Hazel Work Dashboard</title>
 <style>
   :root {{ color-scheme: light dark; --line: #d0d0d0; --muted: #666; --good: #1a7f37; --bad: #cf222e; --wait: #9a6700; }}
   @media (prefers-color-scheme: dark) {{ :root:not([data-theme="light"]) {{ --line: #444; --muted: #aaa; --good: #3fb950; --bad: #f85149; --wait: #d29922; }} }}
@@ -376,6 +385,8 @@ page = f"""<!doctype html>
   table.repos {{ min-width: 56rem; }}
   .good {{ color: var(--good); }} .bad {{ color: var(--bad); }} .wait {{ color: var(--wait); }}
   .current-box {{ max-width: 1200px; box-sizing: border-box; padding: 4px 16px; border: 1px solid var(--good); border-left-width: 4px; border-radius: 4px; }}
+  .waiting {{ display: inline-block; margin-left: 0.3em; padding: 0.05em 0.4em; border: 3px solid CanvasText; border-radius: 999px; background: Canvas; color: CanvasText; font-weight: 800; line-height: 1.25; vertical-align: 0.05em; white-space: nowrap; }}
+  h2 .waiting {{ font-size: 0.85em; }}
   .badge {{ display: inline-block; margin-top: 4px; padding: 0 6px; font-size: 0.8em; border-radius: 4px; color: var(--good); border: 1px solid var(--good); }}
   tr.current td {{ background: color-mix(in srgb, var(--good) 7%, transparent); }}
   td.status {{ white-space: nowrap; }}
