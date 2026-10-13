@@ -331,11 +331,19 @@
    "source": "issue 008",
    "url": "http://matthewhammer.org/hazel/performance-analysis/008/#index",
    "added": "2026-10-12"
+  },
+  {
+   "id": 28,
+   "area": "performance, research",
+   "added": "2026-10-13",
+   "text": "Issue 009 of the series: <b>fresh ids and lack of reuse</b>. Hazel mints ids two ways: <code>Id.mk</code>, a gensym (counter + random bytes), and names derived from a parent (<code>Id.derive</code>, <code>Id.next</code>, <code>IdTagged.fresh_deterministic</code>, v5 UUIDs), the distinction of Incremental Computation with Names (Hammer et al., OOPSLA 2015). Measure what Hazel can tell us today: (1) elaboration: analyzing the same program twice, which nodes come back renamed, and how many enclosing parts then fail the reuse check's hash (issue 008's 122); (2) experiment: name those nodes deterministically, and what reuse it recovers; (3) evaluation: ids minted per evaluation, and whether re-evaluated values ever share ids (why the call memo erases them).",
+   "source": "Matthew, 2026-10-13, in chat",
+   "url": ""
   }
  ],
- "next_ticket": 28,
- "current_ticket": 2,
- "current_note": "Next: a short design note on per-step allocation (trampoline nodes, continuations, fresh ids), or close #2 and open a ticket for that structural part. Matthew's call.",
+ "next_ticket": 29,
+ "current_ticket": 28,
+ "current_note": "Measuring (1): the same program elaborated twice: renamed nodes by kind, and the enclosing parts whose hash they break.",
  "closed_tickets": [
   {
    "id": 1,
@@ -433,5 +441,5 @@
    "listed": "2026-10-12"
   }
  ],
- "current_since": "2026-10-13T05:37:37-06:00"
+ "current_since": "2026-10-13T08:40:26-06:00"
 }
