@@ -370,7 +370,7 @@
       "url": "http://matthewhammer.org/hazel/performance-analysis/009/#step-3"
     }
   ],
-  "next_ticket": 36,
+  "next_ticket": 37,
   "current_ticket": 30,
   "current_note": "<b>Waiting on Matthew:</b> issue 010's draft, \"What a slider change touches\", at http://localhost:8131/series/010/ (series repo commit 6908757, not pushed), with two dated notes in 009 pointing to it. Stage 1 is done: a slider edit changes 5 to 16% of a picture's shapes, and 75 to 84% of the steps evaluated today are in calls whose inputs did not change (steps, with checks free). He decides: publish, revise, or go on to stage 2 (time a memo by name) first.",
   "closed_tickets": [
@@ -534,7 +534,18 @@
       "closed": "2026-10-13",
       "status": "done",
       "outcome": "An Auto / Light / Dark button, top right, on every page: the dashboard (both pages, local and published), /hazel/, and the performance analysis series (index, 001-009), remembered per site in localStorage. Pages that already had data-theme hooks got the button (tools/add_theme.py in the series repo); the dashboard got the hooks too (dashboard 'Unreleased'). Checked: each mode, persistence across reloads and pages, live over HTTP. The homepage's root page has no dark mode, so it has no switch."
+    },
+    {
+      "id": 36,
+      "area": "dashboard",
+      "text": "<b>Show when the current ticket waits on Matthew:</b> a raised hand and a question mark, ✋❔, next to the current ticket's heading, in a bold, high-contrast rounded box.",
+      "source": "Matthew, 2026-10-13, in chat",
+      "listed": "2026-10-13",
+      "closed": "2026-10-13",
+      "status": "done",
+      "outcome": "current_waiting in data.json (true, or a line saying what for, shown as the badge's tooltip): ✋❔ in a pill with a 3px CanvasText border, next to the current ticket's heading, on its row in the Tickets table and in the outline; and at the front of the page's title, so a browser tab shows it unopened. Dashboard 'Unreleased'."
     }
   ],
-  "current_since": "2026-10-13T11:26:23-06:00"
+  "current_since": "2026-10-13T11:26:23-06:00",
+  "current_waiting": "issue 010's draft: publish, revise, or go on to stage 2 first"
 }
