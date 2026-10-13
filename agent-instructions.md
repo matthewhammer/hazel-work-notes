@@ -45,6 +45,7 @@ We call them **tickets**, not issues: an issue is a GitHub issue (or an issue of
   - `status`: **done**; **not needed** (its premise turned out wrong, or there was nothing to do); **dropped** (we decided not to, and why); or **superseded** (another ticket took it over: name it);
   - `outcome`: what came of it, with its commits, PRs, issues of the series or other tickets; and `outcome_url` when one page holds it.
   If it was the current ticket, choose the next current one, or `null`.
+- **A pasted ticket request mints a ticket.** Each "What next" step in the performance analysis series has a "copy for a ticket" button; it copies `Mint a ticket for this step: Hazel performance analysis, issue NNN, What next, step N: "<title>". <URL>`. When Matthew pastes that, open a ticket for exactly that step: its text from the step, `source` "issue NNN, What next, step N", `url` the step's URL. Ask whether it becomes the current ticket, unless he says so.
 - **A parked ticket stays open,** with "PARKED", the date, and the measurement that parked it.
 - Each ticket's row has the anchor `#ticket-N`, and a "copy link" button that copies http://localhost:8000/#ticket-N. Old links, `#next-N`, still work, and a link to a closed ticket takes the reader to its row on the closed page. **When Matthew pastes such a link, he means exactly that ticket:** read the ticket with that number in `data.json`, in `tickets` or `closed_tickets`. Never guess from the wording.
 
