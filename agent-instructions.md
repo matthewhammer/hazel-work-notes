@@ -4,6 +4,10 @@ The Hazel Work Dashboard is how Matthew and his agent keep track of Hazel work, 
 
 Read this before working with Matthew on Hazel. Keep the dashboard current as you go: it is the shared memory between sessions.
 
+**This repository is our working record, for the two of us:** what is served where, how the PRs stand, what to do next, and the dashboard's history. It is written in shorthand, for people who were there.
+
+**The Hazel performance analysis series is separate,** in its own repository, [`hazel-performance-analysis`](https://github.com/matthewhammer/hazel-performance-analysis), with its own agent instructions. It is written for readers outside the loop: Cyrus, the Hazel team and others. The dashboard links to the series ("issue 007"), but working notes never go into an issue. When work here answers a question worth sharing, that answer becomes an issue there.
+
 ## Where things are
 
 | What | Where |
@@ -60,7 +64,7 @@ The dashboard's code has a version number, `VERSION` in `dashboard/update.py`, w
 
 ## The history
 
-`log_notes.py` writes the page to `<YYYY-MM-DD>/<YYYY-MM-DD>T<HHMM><+-hhmm>.html`. That is one folder per day, with a file name that carries the whole date and time zone, so a file still says when it was taken if the folders are ever reorganized. It writes nothing when the page changed only in its "Updated" line, then commits and pushes, retrying the push on every run. The files are exactly the page as served, in HTML.
+`log_notes.py` writes the page to `dashboard-snapshots/<YYYY>/<MM>/<DD>/<YYYY-MM-DD>T<HHMM><+-hhmm>.html`: a folder for each year, month and day, and a file name that carries the whole date and time zone, so a file still says when it was taken if the folders are ever reorganized (as they were on 2026-10-12, from one folder per day at the top). It writes nothing when the page changed only in its "Updated" line, then commits and pushes, retrying the push on every run. The files are exactly the page as served, in HTML.
 
 ## Related practice
 

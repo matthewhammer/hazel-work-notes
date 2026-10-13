@@ -6,9 +6,10 @@
 Run by cron right after update.py, every 15 minutes. Each snapshot is the page
 exactly as served on http://localhost:8000/, at
 
-  <YYYY-MM-DD>/<YYYY-MM-DD>T<HHMM><+-hhmm>.html
+  dashboard-snapshots/<YYYY>/<MM>/<DD>/<YYYY-MM-DD>T<HHMM><+-hhmm>.html
 
-so a file's name says when it was taken even outside its day's folder.
+a folder for each year, month and day, and a file name that says when it was
+taken even outside its folder.
 
 A snapshot is written only when the page differs from the last one in more than
 its "Updated" line; a quiet run writes nothing. Pushing is tried on every run,
@@ -18,6 +19,7 @@ from datetime import datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 NOTES = os.path.expanduser("~/hazel-work-notes")
+SNAPS = os.path.join(NOTES, "dashboard-snapshots")
 PAGE = os.path.join(HERE, "index.html")
 UPDATED = re.compile(r'<p class="note">Updated [^<]*<code>')
 
@@ -31,12 +33,9 @@ def body(text):
     return UPDATED.sub("", text)
 
 def last_snapshot():
-    days = sorted(d for d in os.listdir(NOTES) if re.fullmatch(r"\d{4}-\d{2}-\d{2}", d))
-    for d in reversed(days):
-        files = sorted(f for f in os.listdir(os.path.join(NOTES, d)) if f.endswith(".html"))
-        if files:
-            return os.path.join(NOTES, d, files[-1])
-    return None
+    # the newest by name: names begin with the date and time
+    snaps = [os.path.join(root, f) for root, _, files in os.walk(SNAPS) for f in files if f.endswith(".html")]
+    return max(snaps, key=os.path.basename) if snaps else None
 
 page = open(PAGE).read()
 last = last_snapshot()
@@ -44,14 +43,14 @@ if last and body(open(last).read()) == body(page):
     print(f"unchanged since {os.path.relpath(last, NOTES)}")
 else:
     now = datetime.now().astimezone()
-    day = now.strftime("%Y-%m-%d")
+    day = now.strftime("%Y/%m/%d")
     name = now.strftime("%Y-%m-%dT%H%M%z") + ".html"
-    os.makedirs(os.path.join(NOTES, day), exist_ok=True)
-    path = os.path.join(NOTES, day, name)
+    os.makedirs(os.path.join(SNAPS, day), exist_ok=True)
+    path = os.path.join(SNAPS, day, name)
     open(path, "w").write(page)
     git("add", os.path.relpath(path, NOTES))
     git("commit", "-q", "-m", f"Snapshot {now.strftime('%Y-%m-%d %H:%M %Z')}")
-    print(f"wrote {day}/{name}")
+    print(f"wrote dashboard-snapshots/{day}/{name}")
 
 upstream = subprocess.run(["git", "-C", NOTES, "rev-parse", "-q", "--verify", "@{u}"], capture_output=True).returncode == 0
 if not upstream:

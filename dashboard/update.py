@@ -341,7 +341,7 @@ page = f"""<!doctype html>
 <main>
 <h1>Hazel Work Dashboard</h1>
 <p class="note">Updated {e(now)}, by <code>~/localhost-index/update.py</code> (PR titles and status from GitHub).</p>
-<p class="note">History: <a href="http://localhost:8000/notes/">every change to this page</a>, one folder per day, also pushed to <a href="https://github.com/matthewhammer/hazel-work-notes">matthewhammer/hazel-work-notes</a> (private). How we work with this page: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/agent-instructions.md">agent-instructions.md</a> (<a href="http://localhost:8000/notes/agent-instructions.md">local</a>). This is version {VERSION}: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/VERSIONS.md">VERSIONS.md</a> lists what each version has.</p>
+<p class="note">History: <a href="http://localhost:8000/notes/dashboard-snapshots/">every change to this page</a>, a folder for each year, month and day, also pushed to <a href="https://github.com/matthewhammer/hazel-work-notes">matthewhammer/hazel-work-notes</a> (private). How we work with this page: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/agent-instructions.md">agent-instructions.md</a> (<a href="http://localhost:8000/notes/agent-instructions.md">local</a>). This is version {VERSION}: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/VERSIONS.md">VERSIONS.md</a> lists what each version has.</p>
 
 <h2 id="ports">Localhost ports</h2>
 <table>
