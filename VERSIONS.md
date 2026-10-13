@@ -2,6 +2,12 @@
 
 Each version lists the dashboard's features as of that version. The newest version is first. The version number is `VERSION` in [`dashboard/update.py`](dashboard/update.py), and the page shows it in its History line.
 
+## Unreleased
+
+Changes since 0.0.3, for the next version, which waits for Matthew's go-ahead.
+
+- **Published, publicly:** the repository is public, and `log_notes.py` writes a copy of the page and of the closed tickets to its root whenever either changes, which its Pages site serves at http://matthewhammer.org/hazel-work-notes/ (http://matthewhammer.org/hazel/work-dashboard/ redirects there, and the homepage's Hazel menu has a "work-dashboard" chip). The copy says what it is, links the history on GitHub instead of on localhost, and is marked noindex: findable by its link, not by search. The History line says so.
+
 ## 0.0.3 (2026-10-13)
 
 Everything in 0.0.2, plus:

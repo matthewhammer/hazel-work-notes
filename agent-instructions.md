@@ -4,6 +4,8 @@ The Hazel Work Dashboard is how Matthew and his agent keep track of Hazel work, 
 
 Read this before working with Matthew on Hazel. Keep the dashboard current as you go: it is the shared memory between sessions.
 
+**This repository is public, and so is the dashboard** (since 2026-10-13, Matthew's call): its Pages site serves a copy of the page at http://matthewhammer.org/hazel-work-notes/, and http://matthewhammer.org/hazel/work-dashboard/ redirects there, so Matthew can see where things stand away from the laptop. Nothing in it is secret, but nothing secret may go into it either: no tokens, keys or passwords, and Matthew's kids only as M and N.
+
 **This repository is our working record, for the two of us:** what is served where, how the PRs stand, what to do next, and the dashboard's history. It is written in shorthand, for people who were there.
 
 **The Hazel performance analysis series is separate,** in its own repository, [`hazel-performance-analysis`](https://github.com/matthewhammer/hazel-performance-analysis), with its own agent instructions. It is written for readers outside the loop: Cyrus, the Hazel team and others. The dashboard links to the series ("issue 007"), but working notes never go into an issue. When work here answers a question worth sharing, that answer becomes an issue there.
@@ -16,7 +18,8 @@ Read this before working with Matthew on Hazel. Keep the dashboard current as yo
 | What only we know | `~/localhost-index/data.json`: the ports, which PRs are tracked, and our tickets (open, current and closed). **Edit this, never `index.html` or `closed.html`.** |
 | The generator | `update.py`: reads `data.json`, asks GitHub (`gh`) for each PR's title, state, CI, review and mergeability, and writes the page, and the closed tickets' page `closed.html`, atomically. If `gh` fails, it writes nothing, and the last good pages stay. |
 | The code | `update.py` and `log_notes.py` live in this repository's `dashboard/` folder. `~/localhost-index/update.py` and `~/localhost-index/log_notes.py` are symlinks to them, so the scripts still read and write `~/localhost-index`. |
-| The history | This repository: `~/hazel-work-notes`, pushed to `matthewhammer/hazel-work-notes` (private). `~/localhost-index/log_notes.py` copies the page here verbatim, and `data.json` to `dashboard-data/data.json`, so the tickets, closed ones included, have a history too. Browse it at http://localhost:8000/notes/, or clone it. GitHub shows HTML as source. |
+| The history | This repository: `~/hazel-work-notes`, pushed to `matthewhammer/hazel-work-notes` (public). `~/localhost-index/log_notes.py` copies the page here verbatim, and `data.json` to `dashboard-data/data.json`, so the tickets, closed ones included, have a history too. Browse it at http://localhost:8000/notes/, or clone it. GitHub shows HTML as source. |
+| The public copy | `index.html` and `closed.html` at this repository's root, written by `log_notes.py` when a page changes (with a note, GitHub links for the history, and noindex), served by Pages at http://matthewhammer.org/hazel-work-notes/. `.nojekyll` keeps Pages from processing anything. |
 | The schedule | `crontab -l`: every 15 minutes, `update.py`, then `log_notes.py`. The last run's output is in `~/localhost-index/update.log`. |
 
 ## The page
