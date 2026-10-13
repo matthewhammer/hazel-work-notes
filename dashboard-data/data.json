@@ -195,7 +195,7 @@
   {
    "id": 2,
    "area": "performance",
-   "text": "Generic evaluator overhead in views (the woods' picture view, ~500 ms after #1): pattern matching (<code>match_pattern</code> under <code>let_unbox</code>), minting fresh ids, GC. DONE 2026-10-13, <b>a value known to have a type is not walked again for it</b> (Ascriptions <code>has_type</code>, by identity; lists by their cells so every tail counts; values with parts only): PUSHED #2635 237e5aae74, #2597 e6d1cc500f; dev PR #2681 (on top of #2661 + #2679, whose Ascriptions conflict a032bd5c6a resolves; review its last commit). Firefox, the woods view's own eval per figure move (20 per build, A/B/A/B): 563.5 -> 497.5 ms (-12%). Node: view 638 -> 369 ms; woods program 1,677 -> 1,469 ms. Release-to-redraw within noise. PRECISION (dev bench): only a function with an ANNOTATED PARAMETER (<code>fun x : T -></code>) is pushed through per call: recursive over n pairs 61 -> 14 ms (n 200), 205 -> 33 ms (n 400), quadratic without the memo; <code>let f : A -> B = fun x -></code> is not, and the memo neither helps nor costs there. The woods gain is values crossing several annotated-parameter functions. Comment corrected on both (#2635 a8fe28953d, #2597 30f6835b49), as #2681 words it. LEFT: <code>let_unbox</code>/<code>match_pattern</code> (~125 ms of the view in node), fresh ids, GC (~as much again as the view's own time). Harnesses: ~/.cache/hazel-diag/Test_PicView.timing.re, ~/.cache/hazel-diag/Test_HasTypeBench.re.",
+   "text": "Generic evaluator overhead in views: the woods' picture view, ~500 ms per figure move after #1. DONE 2026-10-13: <b>a value known to have a type is not walked again for it</b> (#2635 237e5aae74, #2597 e6d1cc500f, comment a8fe28953d / 30f6835b49; dev #2681): Firefox view 563.5 -> 497.5 ms. PROFILED AGAIN 2026-10-13 (node, through <code>evaluate_open</code> as the app runs it; harness ~/.cache/hazel-diag/Test_PicView.timing.re): the view allocates ~1,064 MiB per run, and GC is about as large as its own work. What's left is spread over the evaluator's machinery: the trampoline (Bind/Next nodes, continuations; ~240 MiB), <code>EvaluatorState.update</code> copying the state record every step (~66 MiB), <code>Transition.transition</code> (~129 MiB), string building that is the view's own work (<code>coords</code>, ~76 MiB), fresh ids. Ascription pushing fell 143 -> 61 ms. TRIED, not kept yet: <code>bind(Done(x), f) = f(x)</code>: view 407 -> 375 ms in node, ranges overlapping; a stack-depth risk to check (patch ~/.cache/hazel-diag/trampoline_fast_bind.patch). FOUND, load-time only: the first <code>consistent_by_hash</code> miss on the Html types costs tens of ms (memoized for the session after). NEXT is a design question: fewer allocations per step (a mutable step counter, fewer trampoline bounces, ids minted lazily), not a tweak.",
    "source": "#2609 findings 28, 29",
    "url": "https://github.com/hazelgrove/hazel/issues/2609#issuecomment-6134012577"
   },
@@ -335,7 +335,7 @@
  ],
  "next_ticket": 28,
  "current_ticket": 2,
- "current_note": "Next: the evaluator's own overhead in the woods' view: <code>let_unbox</code> / <code>match_pattern</code> (~125 ms of the view in node), minting fresh ids, and GC.",
+ "current_note": "Decide with Matthew: keep tuning the evaluator per step (fast bind, state copies) or take the per-step allocation (~1 GB per woods view) as a design question.",
  "closed_tickets": [
   {
    "id": 1,
