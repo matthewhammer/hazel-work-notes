@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="dashboard-version" content="79a6e63e425e">
+<meta name="dashboard-version" content="34759a22db92">
 <!-- theme: head begin -->
 <script>try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}</script>
 <!-- theme: head end -->
@@ -125,7 +125,7 @@
 <p class="note">performance, research · from <a href="http://matthewhammer.org/hazel/performance-analysis/010/#next">Matthew, 2026-10-13, in chat: publish 010, then the sweep and the depth work, as issue 011</a></p>
 <p class="since">Started <b>Tue Oct 13, 12:33 PM MDT</b> · elapsed <b data-since="2026-10-13T12:33:39-06:00"></b></p>
 <p>Issue 011: <b>the reuse ladder</b>, how close Hazel could get to the ideal. Extend issue 010's oracle: (1) <b>sweep</b> every slider on the Full Body, Witch and Scenes slides, and a few on other Playground slides, and show the spread of shapes changed and work left; (2) <b>list-cell names</b>: name a call from its argument's name, not its position, so a walk over a list does not run its spine again; (3) <b>reads instead of mentions</b>: record the variables a call actually reads, not every one its body mentions. The ladder: today's run, a memo by position, a memo with names and reads, and the floor, the changed shapes' own work. Then stage 2, timing a memo, on the best design.</p>
-<p><b>Now:</b> Re-running the ladder, restarted 14:43 MDT: one process per slide (Scenes, Full Body, Witch), then the eye sliders' diagnosis alone; about 90 minutes. The first restart was slowed by recording every call's variables in every run; that now runs only for the four eye edits. Issue 011 should be ready to read around 16:45 MDT; the raised hand will show when it is. Drafted meanwhile: 011's text and figures, and dated notes in 001, 005 and 009.</p>
+<p><b>Now:</b> Ladder: Scenes and Full Body done, Witch running (about 15:40 MDT), then the eye sliders' diagnosis (about 15:55). Terms settled with Matthew: <b>trace distance</b> (fewest steps any update could evaluate again) and <b>update cost</b> (what an actual update evaluates again), both as a share of a run from scratch; applied to 011's draft and to the dated notes for 001, 005, 009 and 010. A rough draft of 011 is at http://localhost:8131/series/011/ (local only). Ready to read about 16:15 MDT; the raised hand will show.</p>
 </div>
 
 <h2 id="ports">Localhost ports</h2>
