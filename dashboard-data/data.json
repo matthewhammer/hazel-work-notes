@@ -1,534 +1,540 @@
 {
- "ports": [
-  {
-   "pr": 2635,
-   "repo": "hazelgrove/hazel",
-   "branch": "integration/livelits-modular-editors",
-   "links": [
-    [
-     "localhost:8341",
-     "http://localhost:8341/"
-    ],
-    [
-     "Scenes slide",
-     "http://localhost:8341/?slide=livelit-playground-scenes"
-    ]
-   ]
-  },
-  {
-   "pr": 2597,
-   "repo": "hazelgrove/hazel",
-   "branch": "integration/livelits-splicerefs-full",
-   "links": [
-    [
-     "localhost:8311",
-     "http://localhost:8311/"
-    ]
-   ]
-  },
-  {
-   "pr": 2635,
-   "repo": "hazelgrove/hazel",
-   "branch": "perf/2635-names",
-   "base": "integration/livelits-modular-editors",
-   "branch_note": "(local, measurement build for issue 009 / ticket #28: ShareCodec stats in the console, reuse counters, naming experiment OFF; worktree <code>~/hazel-2635-diag</code>; never push)",
-   "links": [
-    [
-     "localhost:8342",
-     "http://localhost:8342/"
-    ],
-    [
-     "Scenes slide",
-     "http://localhost:8342/?slide=livelit-playground-scenes"
-    ]
-   ]
-  },
-  {
-   "pr": 2675,
-   "repo": "hazelgrove/hazel",
-   "branch": "recursive-let-reuse",
-   "base": "dev",
-   "links": []
-  },
-  {
-   "pr": 2676,
-   "repo": "hazelgrove/hazel",
-   "branch": "cursor-inspector-full-types",
-   "base": "dev",
-   "links": []
-  },
-  {
-   "name": "Hazel performance analysis (the report's sources)",
-   "repo_html": "<a href=\"https://github.com/matthewhammer/hazel-performance-analysis\">matthewhammer/hazel-performance-analysis</a>, checked out at <code>~/hazel-perf-report</code>",
-   "branch": "main",
-   "branch_note": "(public: a push publishes, so drafts wait)",
-   "links": [
-    [
-     "localhost:8131/series/",
-     "http://localhost:8131/series/"
-    ]
-   ]
-  },
-  {
-   "name": "Messed Up Dress Up (the game)",
-   "repo_html": "<a href=\"https://github.com/matthewhammer/kids-choice-games\">matthewhammer/kids-choice-games</a>, folder <code>dress-up/</code>, public with its history from 2026-10-09<br>Its own Pages site deploys every push to <code>main</code>. Edit <code>~/kids-choice-games</code>: <code>~/hazel/experiments/polygons-plain/dress-up.html</code> is a symlink to it.",
-   "branch": "main",
-   "links": []
-  }
- ],
- "tracking_issue": 2609,
- "perf_prs": [
-  2681,
-  2679,
-  2678,
-  2675,
-  2673,
-  2661,
-  2651,
-  2652,
-  2614,
-  2610,
-  2671,
-  2672,
-  2606,
-  2603,
-  2490
- ],
- "integration_prs": [
-  2635,
-  2597
- ],
- "other_prs": [
-  {
-   "pr": 2676,
-   "note": "The type-expansion panel (issue #2674). Its fix for module signatures' parentheses is only on #2635: dev prints a signature as a labeled tuple."
-  },
-  {
-   "pr": 2583,
-   "note": ""
-  },
-  {
-   "pr": 2613,
-   "note": ""
-  },
-  {
-   "pr": 2605,
-   "note": ""
-  },
-  {
-   "pr": 2608,
-   "note": ""
-  },
-  {
-   "pr": 2592,
-   "note": ""
-  },
-  {
-   "pr": 2491,
-   "note": "Docs."
-  },
-  {
-   "pr": 2577,
-   "note": ""
-  },
-  {
-   "pr": 2616,
-   "note": "Remote splices, the base of #2650. On the back burner since 2026-10-05."
-  },
-  {
-   "pr": 2650,
-   "note": "The IC canister demo. On the back burner since 2026-10-05."
-  },
-  {
-   "pr": 2536,
-   "note": "Fumola-in-Hazel, shelved since 2026-09-16 (its issues go to Adapton/fumola)."
-  }
- ],
- "repos": [
-  {
-   "repo": "matthewhammer/kids-choice-games",
-   "branch": "main",
-   "versions": [
-    [
-     "Messed Up Dress Up",
-     "dress-up/VERSIONS.md"
-    ]
-   ],
-   "live": [
-    [
-     "the game, live",
-     "http://matthewhammer.org/kids-choice-games/dress-up/"
-    ],
-    [
-     "localhost:8133/dress-up.html",
-     "http://localhost:8133/dress-up.html"
-    ],
-    [
-     "🎵 the tunes (MP3s)",
-     "http://localhost:8133/tunes/"
-    ]
-   ],
-   "note": "The kids' toys, prototyped in plain JS with real players before the Hazel slides formulate them as user-defined livelits (#2635, #2597; issue 001 on). Each version is tagged <code>dress-up-X.Y.Z</code>."
-  },
-  {
-   "repo": "matthewhammer/hazel-work-notes",
-   "branch": "main",
-   "versions": [
-    [
-     "Hazel Work Dashboard",
-     "VERSIONS.md"
-    ]
-   ],
-   "live": [
-    [
-     "the dashboard, published",
-     "http://matthewhammer.org/hazel/work-dashboard/"
-    ],
-    [
-     "the dashboard, localhost:8000",
-     "http://localhost:8000/"
-    ],
-    [
-     "its history, localhost:8000/notes/",
-     "http://localhost:8000/notes/"
-    ]
-   ],
-   "note": "This page's code (<code>dashboard/</code>, run in place: <code>~/localhost-index</code> links to it), its history and <a href=\"https://github.com/matthewhammer/hazel-work-notes/blob/main/agent-instructions.md\">agent-instructions.md</a>. PUBLIC since 2026-10-13: its Pages site serves a copy of this page (noindex), redirected to from matthewhammer.org/hazel/work-dashboard/. Cron commits and pushes a snapshot, data.json and the public copy when the page changes; the code is committed by hand."
-  },
-  {
-   "repo": "matthewhammer/hazel-performance-analysis",
-   "branch": "main",
-   "versions": [],
-   "live": [
-    [
-     "the series, published",
-     "http://matthewhammer.org/hazel/performance-analysis/"
-    ],
-    [
-     "drafts, localhost:8131/series/",
-     "http://localhost:8131/series/"
-    ]
-   ],
-   "note": "The performance analysis series, for outside readers (issue 001 on), with its history since 2026-10-09 and its own agent-instructions.md. Public since 2026-10-12. Published by copying an issue to the homepage repo; a push here is public too, so drafts wait for review."
-  }
- ],
- "tickets": [
-  {
-   "id": 2,
-   "area": "performance",
-   "text": "Generic evaluator overhead in views: the woods' picture view, ~500 ms per figure move after #1. DONE 2026-10-13: <b>a value known to have a type is not walked again for it</b> (#2635 237e5aae74, #2597 e6d1cc500f, comment a8fe28953d / 30f6835b49; dev #2681): Firefox view 563.5 -> 497.5 ms. PROFILED AGAIN 2026-10-13 (node, through <code>evaluate_open</code> as the app runs it; harness ~/.cache/hazel-diag/Test_PicView.timing.re): the view allocates ~1,064 MiB per run, and GC is about as large as its own work. What's left is spread over the evaluator's machinery: the trampoline (Bind/Next nodes, continuations; ~240 MiB), <code>EvaluatorState.update</code> copying the state record every step (~66 MiB), <code>Transition.transition</code> (~129 MiB), string building that is the view's own work (<code>coords</code>, ~76 MiB), fresh ids. Ascription pushing fell 143 -> 61 ms. TRIED, not kept yet: <code>bind(Done(x), f) = f(x)</code>: view 407 -> 375 ms in node, ranges overlapping; a stack-depth risk to check (patch ~/.cache/hazel-diag/trampoline_fast_bind.patch). FOUND, load-time only: the first <code>consistent_by_hash</code> miss on the Html types costs tens of ms (memoized for the session after). PER-STEP TUNING 2026-10-13 (his option 1), PUSHED: <code>bind(Done(x), f) = f(x)</code> (d0c56fb090, with 2 deep-recursion tests) and a step with no effects only counts (c4e64060f1, <code>EvaluatorState.tick</code>), on #2635; #2597 a4b856c543 + 684a75cb2f. Woods allocation -8% (program 4,334 -> 3,980 MiB, view 1,064 -> 980); Firefox view eval 579 -> 558 ms (-3.6%, 20 moves per build, overlapping). Tests 987 on #2635, 974 on #2597. What is left per step is structural (trampoline nodes, continuations, fresh ids): a design question.",
-   "source": "#2609 findings 28, 29",
-   "url": "https://github.com/hazelgrove/hazel/issues/2609#issuecomment-6134012577"
-  },
-  {
-   "id": 4,
-   "area": "performance",
-   "text": "#2597 CI red since 2026-10-11 afternoon: full tests time out at 100 min, quick tests run out of heap. Locally, the whole suite in one process runs out of memory after about 96 min.",
-   "source": "CI runs on #2597",
-   "url": "https://github.com/hazelgrove/hazel/pull/2597"
-  },
-  {
-   "id": 5,
-   "area": "performance",
-   "text": "The Witch slide's extra 2–3 s over Full Body for the same change: not profiled yet.",
-   "source": "issue 004",
-   "url": "http://localhost:8131/004/#cost"
-  },
-  {
-   "id": 7,
-   "area": "performance",
-   "text": "The commit path: find which of the request's values are new (about 15 ms of hashing, profiled), and make the commit's redraw cheaper.",
-   "source": "issue 001",
-   "url": "http://localhost:8131/#now"
-  },
-  {
-   "id": 10,
-   "area": "performance",
-   "text": "Option C from issue 005: remember <code>HazelDOM</code>'s virtual DOM per Html subterm, so an unchanged part of a view is not converted again and virtual_dom's diff skips it. PARKED 2026-10-12: measured, it would save at most about 2% of the main thread in the woods. A profiled figure move (2 runs, 4.4 and 4.1 s): Html to virtual DOM 1.1%, diff and patch 0.9%, browser layout and paint 1.4%, GC 21%, evaluating the view about 50% (about 69% with its GC), the app's own update machinery about 25%. On Kids' Choice it was 8 of 104 ms (issue 001). It would also need a content hash as its key, since the woods' shapes are fresh objects each time, and handlers that find the current state at event time. The lever is evaluating the view: #1, #2, #18.",
-   "source": "issue 005",
-   "url": "http://localhost:8131/005/#where",
-   "added": "2026-10-12"
-  },
-  {
-   "id": 12,
-   "area": "performance",
-   "text": "Measure the size of view samples on the wire (not trimmed as the result is) and the memory of the shared-value tables and per-object hashes.",
-   "source": "issue 005",
-   "url": "http://localhost:8131/005/#copies",
-   "added": "2026-10-12"
-  },
-  {
-   "id": 13,
-   "area": "performance, CI",
-   "text": "Statics counts on <code>dev</code>: the analyses-per-expression counter and <code>Test_StaticsPasses</code> from #2635 (bd90642654, da3251d3e5), with a small corpus subset in the quick suite.",
-   "source": "issue 006",
-   "url": "http://localhost:8131/series/006/#next",
-   "added": "2026-10-12"
-  },
-  {
-   "id": 14,
-   "area": "performance, CI",
-   "text": "A budget on a slide: the evaluator's work after a figure move in the woods, where reuse failed before #2675.",
-   "source": "issue 006",
-   "url": "http://localhost:8131/series/006/#next",
-   "added": "2026-10-12"
-  },
-  {
-   "id": 15,
-   "area": "performance, CI",
-   "text": "Byte budgets: elaboration sizes on <code>dev</code>, and the worker's message sizes for a fixed interaction.",
-   "source": "issue 006",
-   "url": "http://localhost:8131/series/006/#next",
-   "added": "2026-10-12"
-  },
-  {
-   "id": 16,
-   "area": "CI",
-   "text": "Ask the maintainers to require the test jobs for merging into <code>dev</code>: today no check is required, so a red budget is a signal, not a gate.",
-   "source": "issue 006",
-   "url": "http://localhost:8131/series/006/#today",
-   "added": "2026-10-12"
-  },
-  {
-   "id": 17,
-   "area": "performance, CI",
-   "text": "A timing report that informs and doesn't fail: base and head on one runner, repeated, phase by phase, perhaps from #2161's harness (David's call).",
-   "source": "issue 006",
-   "url": "http://localhost:8131/series/006/#pr2161",
-   "added": "2026-10-12"
-  },
-  {
-   "id": 18,
-   "area": "performance",
-   "text": "Option B from issue 005: evaluate each livelit's view in the worker, keep the last Html sent per livelit, and post patches to it, so view evaluation leaves the main thread. Needs the view runner (ViewCmdRunner) in the worker, a patch format, an element on the page that owns each livelit's DOM and applies patches, and handlers dispatched by id. Keep the page's own path for an interaction's immediate redraw, or every drag waits a round trip. Its condition is now met (2026-10-12, see #10): evaluating the view is about 69% of the main thread in a woods figure move, and C would save about 2%. Weigh it against making the view itself cheaper first (#1, #2).",
-   "source": "issue 005",
-   "url": "http://localhost:8131/series/005/#where",
-   "added": "2026-10-12"
-  },
-  {
-   "id": 19,
-   "area": "performance, CI",
-   "text": "Budgets harder to fool (issue 006's update, a count is not a time): count the call memo's own work (the nodes its keys put in form) and, if js_of_ocaml can report it, memory allocated, beside the evaluator's steps.",
-   "source": "issue 006",
-   "url": "http://localhost:8131/series/006/#update",
-   "added": "2026-10-12"
-  },
-  {
-   "id": 22,
-   "area": "performance",
-   "text": "UX mode re-elaborates an open cell's item with fresh ids on every change (the drawn cell in issue 008's B), so its parts never match by hash and fall to the reuse check's slow path. Keep the ids stable when a cell is analyzed again.",
-   "source": "issue 008",
-   "url": "http://matthewhammer.org/hazel/performance-analysis/008/#fix",
-   "added": "2026-10-12"
-  },
-  {
-   "id": 23,
-   "area": "performance",
-   "text": "The autosave in UX mode (<code>save_current</code> / <code>persist_divided</code>: the divided program printed to text and stored, 0.55 s profiled) landed inside a slider change in issue 008's B. With #6's fix the change ends first, so it no longer does, but it is still 0.55 s on the main thread about a second after every edit, where the next drag can meet it. Save when idle, or save only the changed cell.",
-   "source": "issue 008",
-   "url": "http://matthewhammer.org/hazel/performance-analysis/008/#where",
-   "added": "2026-10-12"
-  },
-  {
-   "id": 24,
-   "area": "performance",
-   "text": "Open cells draw their livelit views without the view memo (<code>live_html</code>, 449 ms per change profiled in issue 008's B with #6's fix), where the whole-program editor uses <code>memo_view</code> (163 ms in C). Give cells the memo. (Corrected 2026-10-12: B's 0.48 s of <code>of_segment</code> was the autosave printing text, not the cells' code views.)",
-   "source": "issue 008",
-   "url": "http://matthewhammer.org/hazel/performance-analysis/008/#where",
-   "added": "2026-10-12"
-  },
-  {
-   "id": 25,
-   "area": "testing, UX",
-   "text": "Code-driven tests of the outline modes: a URL parameter (or test hook) that opens a slide in UX mode with chosen GUI rows, so a script reaches issue 008's B without clicking through the outline. Matthew: \"let's consider that too with our UX feature\".",
-   "source": "issue 008",
-   "url": "http://matthewhammer.org/hazel/performance-analysis/008/#method",
-   "added": "2026-10-12"
-  },
-  {
-   "id": 27,
-   "area": "performance",
-   "text": "The page's incremental stream collector (<code>StreamCollector.Inc.fresh</code>) indexes the whole elaboration again for every new evaluation, once per slider change: 204 ms profiled per change in C (Full Body, dev mode). DONE ON #2635 2026-10-13: 8717564a5f stops the walk at patterns and types: 115 ms profiled, clock not detectable (issue 008). REMAINING: <code>map_term</code> still rebuilds every expression node, plus <code>Id.Map</code> inserts. Further: a hashtable, or the worker tags each entry with its enclosing entry so the page needs no index.",
-   "source": "issue 008",
-   "url": "http://matthewhammer.org/hazel/performance-analysis/008/#index",
-   "added": "2026-10-12"
-  },
-  {
-   "id": 29,
-   "area": "series",
-   "added": "2026-10-13",
-   "text": "Revise issue 008 to answer plainly: <b>are conditions C (#2635, whole program) and B (UX mode, only the GUI) similar once the same fixes are applied to each?</b> As written it confuses: the GUI-only view gives no responsiveness benefit, but with the fixes it is no loss either; say so up front. Re-measure B and C on #2635's current head (the reuse check's fix, the stream index, the has-type memo, the per-step changes all in), and add graphs in the issue itself, not just the thumbnail, taking issue 001's pictures as the model, especially in the short answers. 008 is published, so per the series' rules: a dated update box under the short answers, notes after superseded claims, and an Update section with the figures.",
-   "source": "Matthew, 2026-10-13, in chat",
-   "url": "http://localhost:8131/series/008/"
-  },
-  {
-   "id": 30,
-   "area": "performance, research",
-   "added": "2026-10-13",
-   "text": "Issue 010: <b>names inside evaluation, for the reuse that would pay</b> (issue 009, What next, step 3). Apply Incremental Computation with Names further to Hazel: a demanded computation graph at the right granularity (units below the top level: calls and right-hand sides, named from the call site, the enclosing unit and the argument's name), the reads each unit makes recorded with what it saw, an early cutoff where a result keeps its name, and inputs (a slider's literal) as named references. An experiment on a local branch, then issue 010 with its preliminary results. Groundwork in issue 009: #2 per-step costs, the derived-names experiment (content names cost 23x; names from a parent's name are the paper's way).",
-   "source": "Matthew, 2026-10-13: issue 009, What next, step 3",
-   "url": "http://matthewhammer.org/hazel/performance-analysis/009/#step-3"
-  },
-  {
-   "id": 32,
-   "area": "series",
-   "added": "2026-10-13",
-   "text": "Thumbnails with transparent backgrounds, readable in dark and light themes (Matthew uses a dark, high-contrast theme, where the white blocks look out of place): for every issue's card on the series index. Likely SVG thumbnails with their own prefers-color-scheme colours, or PNGs with transparency and colours that hold on both. Also: revise issue 009's thumbnail once its results are final (#31). Matthew, 2026-10-13: 008, 007, 006, 005 and 001 need it (white blocks in dark mode); 002, 003 and 004 keep their light backgrounds, since they show how the app looks.",
-   "source": "Matthew, 2026-10-13, in chat",
-   "url": "http://matthewhammer.org/hazel/performance-analysis/"
-  },
-  {
-   "id": 35,
-   "area": "dashboard, series, homepage",
-   "added": "2026-10-13",
-   "text": "<b>A theme toggle on every page</b> (Auto / Light / Dark): pages follow the system's prefers-color-scheme, dark on Matthew's work laptop (Ubuntu, dark high contrast), light on his personal one. The choice kept in localStorage per origin (one for all of matthewhammer.org: homepage, /hazel, the series, the published dashboard; localhost:8000 its own), Auto by default. The series and /hazel already have data-theme hooks in their CSS; the dashboard needs them.",
-   "source": "Matthew, 2026-10-13, in chat",
-   "url": ""
-  }
- ],
- "next_ticket": 36,
- "current_ticket": 35,
- "current_note": "An Auto / Light / Dark switch on every page (dashboard, series, homepage), remembered per site; then #32 (thumbnails for 001, 005-008), then #30.",
- "closed_tickets": [
-  {
-   "id": 1,
-   "area": "performance",
-   "text": "The <code>^picture</code> view in the woods: parts 1–3 DONE 2026-10-12, a woods figure move's redraw from a median of 2.20 s to 1.41 s. Part 1: a <code>Drawing.frame</code> sets the view box (#2597 86e3ea9a9f, b5edde9da3; #2635 6f1d7fdc5e, 44d8ab2225). Part 2: a cheaper <code>coords</code> (#2597 44928f5fdd; #2635 ba72773d46), view steps −26% but time −6%. Part 3: an ascription pushed through a value gives the value back when it already has the type, instead of copying it (#2597 1fa1384445; #2635 57c928cef4). The picture's view on a move to a new size went from about 725–830 ms to 520–650; revisits stay about 210 ms; Kids' Choice is unchanged. That gave the memo cheap keys and kept its hits. Measured and not kept: a key budget (it lost the revisits) and a cache of pushes (nothing over copy-on-change). What is left of the view is the evaluator's own work, about 500 ms: see #2. Close #1?",
-   "source": "#2609 findings 27–28",
-   "closed": "2026-10-12",
-   "status": "done",
-   "outcome": "Three fixes, on #2597 and #2635: a <code>Drawing.frame</code> sets the view box, a cheaper <code>coords</code>, and an ascription pushed through a value gives the value back when it already has the type. A woods figure move's redraw went from a median of 2.20 s to 1.41 s. Written up in #2609 finding 29 and issue 004's update. What was left of the view became #2.",
-   "listed": "2026-10-12"
-  },
-  {
-   "id": 3,
-   "area": "performance",
-   "text": "#2597: the Scenes slide takes about 5 minutes to its first picture (287.5 s cold on 2026-10-12), the Witch slide 173.1 s; #2635 about 12 s. WHY (issue 007, published): the page redraws the whole code view and redoes statics for each of 2,520 worker stream messages; the worker idles. <code>c07bdacead</code> from #2469 (stream posts every 100 ms, lazy info-map projection) on a local copy of #2597 (<code>~/hazel-2597-stream</code>, served on 8312): Scenes 16.6–17.6 s, Witch 18.6–19.4 s, 86 messages. Next: bring it to #2597 itself (his call), then the adaptive cadence from <code>a05f8e5791</code>.",
-   "source": "issue 007; #2609 findings 25, 28",
-   "closed": "2026-10-12",
-   "status": "done",
-   "outcome": "Issue 007 answered why: the page redrew the whole code view and redid statics for each of 2,520 worker messages. c07bdacead (from #2469) went to #2597 as a15c6f0b65: Scenes 287.5 s to about 16.5 s to its first picture.",
-   "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/007/",
-   "listed": "2026-10-12"
-  },
-  {
-   "id": 6,
-   "area": "performance",
-   "text": "<code>IncrEval.reuse_check</code> compared lexemes by trace, quadratic when elaboration ids churn. DONE ON #2635 2026-10-13: cbdab791f5 (one memoized, hash-shortcut walk for structure and lexemes), issue 008: UX-mode slider 3.5 s -> 1.26 s. NOT NEEDED ON #2597 (checked 2026-10-13, retired #26): it has no lexemes (lacks 500c466b44), an unknown operator is a hole of its operands, and its check is already hash + memoized structure. REMAINING: <code>dev</code>, together with the hash shortcut (dev uses full <code>fast_equal</code> plus two traces): a dev PR, with Matthew's OK.",
-   "source": "#2609 finding 24, issue 008",
-   "closed": "2026-10-13",
-   "status": "done",
-   "outcome": "cbdab791f5 on #2635: the reuse check compares lexemes in the same memoized walk as structure (issue 008: the UX-mode slider 3.5 s to 1.26 s). On <code>dev</code> as cea8f0a98f, a second commit on #2673. Nothing to port to #2597 (#26).",
-   "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/008/#fix",
-   "listed": "2026-10-12"
-  },
-  {
-   "id": 8,
-   "area": "series",
-   "text": "Issue 005 of the series: the worker versus the main thread, and diffing the view (Html to virtual DOM, on which thread). Drafted, then published 2026-10-12.",
-   "source": "Matthew, 2026-10-12",
-   "closed": "2026-10-12",
-   "status": "done",
-   "outcome": "Issue 005 published: the worker, the page, and diffing the view.",
-   "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/005/"
-  },
-  {
-   "id": 9,
-   "area": "performance, CI",
-   "text": "Issue 006 of the series, before Wednesday (from the meeting with Cyrus): performance-regression testing in CI, with #2161 weighed against starting fresh in a table. The PR is open: #2678. DRAFT written 2026-10-12: Matthew to review, then publish to the series.",
-   "source": "Matthew, 2026-10-12",
-   "closed": "2026-10-12",
-   "status": "done",
-   "outcome": "Issue 006 published, with its PR, #2678 (evaluator-step budgets in CI).",
-   "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/006/",
-   "listed": "2026-10-12"
-  },
-  {
-   "id": 11,
-   "area": "performance",
-   "text": "Split the woods' redraw of a new picture into evaluating the view, Html to virtual DOM, diff and patch, and the browser's layout, for one figure move.",
-   "source": "issue 005",
-   "closed": "2026-10-12",
-   "status": "done",
-   "outcome": "Measured in issue 005's update: in a woods figure move, evaluating the view is about 50% of the main thread (about 69% with its GC); Html to virtual DOM 1.1%, diff and patch 0.9%, layout and paint 1.4%. That parked #10.",
-   "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/005/#update",
-   "listed": "2026-10-12"
-  },
-  {
-   "id": 20,
-   "area": "performance",
-   "text": "A <code>dev</code> PR for copy-on-change ascriptions (#2597 1fa1384445): on <code>dev</code>, pushing an ascription through a list or tuple rebuilds it whatever happens inside, the same as before the fix. It is general: any typed boundary a big value crosses.",
-   "source": "#1, part 3",
-   "closed": "2026-10-12",
-   "status": "done",
-   "outcome": "Opened as #2679 (copy-on-change ascriptions, against <code>dev</code>).",
-   "listed": "2026-10-12"
-  },
-  {
-   "id": 21,
-   "area": "series",
-   "text": "After issue 007: make a new PUBLIC repo, <code>hazel-performance-analysis</code>, for the series, with its git history (<code>~/hazel-perf-report</code>) and its agent instructions (audience: outside readers; the work notes are our working record). <code>hazel-work-notes</code> stays as it is. Also: snapshots in <code>dashboard-snapshots/YYYY/MM/DD/</code>.",
-   "source": "Matthew, 2026-10-12, in chat",
-   "closed": "2026-10-12",
-   "status": "done",
-   "outcome": "github.com/matthewhammer/hazel-performance-analysis, public, with the series' history and its own agent-instructions.md. Snapshots moved to <code>dashboard-snapshots/YYYY/MM/DD/</code>.",
-   "listed": "2026-10-12"
-  },
-  {
-   "id": 26,
-   "area": "correctness",
-   "text": "#2597's <code>IncrEval.reuse_check</code> never compares lexemes: it lacks 7de3875cd8 (\"Invalidate incremental-eval reuse on lexeme-only edits\", in <code>dev</code> and #2635), so editing <code>@@</code> to <code>@@@</code> in place can show the stale operator's result. Port it in the one-walk form from perf/2635-reuse-one-walk (#6), so #2597 doesn't pick up the quadratic cost with it.",
-   "source": "issue 008",
-   "closed": "2026-10-13",
-   "status": "not needed",
-   "outcome": "Its premise was wrong: #2597 has no lexemes (it lacks 500c466b44) and makes an unknown operator a hole of its operands, so <code>@@</code> and <code>@@@</code> give the same term. Issue 008 got dated corrections.",
-   "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/008/#fix",
-   "listed": "2026-10-12"
-  },
-  {
-   "id": 28,
-   "area": "performance, research",
-   "text": "Issue 009 of the series: <b>fresh ids and lack of reuse</b>. Hazel mints ids two ways: <code>Id.mk</code>, a gensym (counter + random bytes), and names derived from a parent (<code>Id.derive</code>, <code>Id.next</code>, <code>IdTagged.fresh_deterministic</code>, v5 UUIDs), the distinction of Incremental Computation with Names (Hammer et al., OOPSLA 2015). Measure what Hazel can tell us today: (1) elaboration: analyzing the same program twice, which nodes come back renamed, and how many enclosing parts then fail the reuse check's hash (issue 008's 122); (2) experiment: name those nodes deterministically, and what reuse it recovers; (3) evaluation: ids minted per evaluation, and whether re-evaluated values ever share ids (why the call memo erases them). MEASURED 2026-10-13 (node, #2635 c4e64060f1; harness ~/.cache/hazel-diag/Test_Names.re, experiments issue009_experiments.patch, uncommitted): (1) the same term analyzed twice (Statics.mk_unmemoized; the memoized mk returns the same object): Full Body 667 of 111,462 nodes renamed, all minted by statics, 692 expressions then differ by hash; Witch 798/844, Scenes 210/237, Polygons 14/23. Sources: <code>UserLivelit.mk_expand_dot_def</code> (each use's dispatch on <code>def.expand</code>, FreshGrammar), <code>StaticsBase.fresh_ascription</code>, and 85 nodes from the Drawing library. (2) naming the first two by their use / what they ascribe (Id.derive by path): 667 -> 85 renamed, 692 -> 247 hash-differing. After a slider edit, incremental reuse: names held 943 -> 1,002, renamed 105 -> 46, reused 336 either way (the structural fallback recovers it): names change the check's cost, not what is reused. (3) evaluation mints 461,422 ids for the woods picture (33,847 nodes); evaluated twice, equal in structure, not by hash; the only shared ids are the program's own. (4) THE WORKER'S RESPONSE DIFF (ShareCodec, keyed by ValueHash with ids; instrumented build on 8342, ~/.cache/hazel-diag/sharecodec_stats.patch + share_moves.py): 8 woods figure moves, slots sent vs if structure-equal parts were references: worker->page 387,625 vs 347,920 (1.11x), page->worker 43,248 vs 21,728 (1.99x, small: ~5,400 a move vs 749,480 at load). The diff works because incremental reuse returns the same objects (~2,900 refs a move): identity survives through reuse, not names. (5) TIMED, 5 runs: after a slider edit, incremental vs scratch (node, medians): Full Body 502 vs 451 ms, Witch 857 vs 791, Scenes 1,547 vs 1,571; named about the same. DRAFT issue 009 written 2026-10-13 (local commit in ~/hazel-perf-report, not pushed; generator ~/.cache/hazel-diag/gen009.py + body009.html). OPEN: identity memos with no structural fallback; Polygons' 13 hash-differing with nothing renamed.",
-   "source": "Matthew, 2026-10-13, in chat",
-   "listed": "2026-10-13",
-   "closed": "2026-10-13",
-   "status": "done",
-   "outcome": "Issue 009 published, then updated the same day with the paper's main ideas, Hazel's caching in its terms, the derived-names experiment and what following the paper would take. Its step 3 became #30 (issue 010).",
-   "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/009/"
-  },
-  {
-   "id": 33,
-   "area": "dashboard",
-   "text": "<b>Publish the dashboard publicly, on every change,</b> so Matthew can see where things stand when AFK and off the local network (for him, perhaps Cyrus; not secret, just too detailed for most; no reason to hide it, none to point people at it). A \"work-dashboard\" chip in the matthewhammer.org/hazel menu, and a similar URL (matthewhammer.org/hazel/work-dashboard/) that goes there; it shows what localhost:8000 shows, at all times. Proposal: make hazel-work-notes public and serve it with its own Pages (log_notes.py also writes the live page and closed.html to the repo root on each change; cron pushes every 15 minutes); a redirect page and the chip in the homepage repo; on the public copy, a line saying the localhost links work only on Matthew's machine, and a noindex meta. Audit 2026-10-13: no tokens, keys or email in its 172 commits; kids only as M and N. Making it public needs Matthew's go-ahead (it publishes the whole history).",
-   "source": "Matthew, 2026-10-13, in chat",
-   "listed": "2026-10-13",
-   "closed": "2026-10-13",
-   "status": "done",
-   "outcome": "hazel-work-notes is public; its Pages site serves a copy of the page and the closed tickets (noindex, a note, history links on GitHub), written by log_notes.py on each change. matthewhammer.org/hazel/work-dashboard/ redirects there, and the Hazel menu has a work-dashboard chip.",
-   "outcome_url": "http://matthewhammer.org/hazel/work-dashboard/"
-  },
-  {
-   "id": 31,
-   "area": "performance, research",
-   "text": "<b>Merkle names at construction, then remeasure issue 009's derived-names experiment.</b> 009: content-derived names took the woods' evaluation from 1.9 s to 44.2 s. Today <code>Util.ValueHash</code> is a LAZY Merkle hash: a walk on first use, remembered per object in a WeakMap; <code>TypHash</code> (#2661) remembers types' hashes per object; nothing is hashed as it is built, and environments and closures only as generic values. Fix: compute each node's content name when it is built, from its children's names (already known), an environment frame's from its parent's and its binding, a closure's from its environment and body: a few operations per allocation, never a walk (the paper's constant cost). A content name is separate from the provenance id a step's result keeps for probes, or two values from one piece of syntax would share a name. Steps: (1) profile the derived mode first, to find where the 23x goes (walks, the WeakMap and GC, fallbacks); (2) the construction-time names; (3) remeasure gensyms, names kept and time; (4) then finish issue 009's edits, including a CORRECTION: its claim that a hash that gives up is not remembered is wrong (ValueHash marks it unhashable, and a too-deep walk leaves objects marked busy for good). FOUND 2026-10-13: (a) the hashing is linear within an evaluation (each object walked once: 1,033,746 walked, 932,980 reused, the same every run); (b) but time per evaluation grew across a session (2.3 -> 5.5 -> 6.3 s; 44.2 s after a long run) with the same work and a growing heap: the side table (ValueHash's WeakMap). (c) Names kept ON each value (a hidden property, ~/.cache/hazel-diag/merkle_on_object.patch): flat, 2.2 / 2.5 / 2.2 s, about 1.4x fresh ids (1.6 s), names still kept (33,846 of 33,847). Full remeasure running.",
-   "source": "Matthew, 2026-10-13, reading issue 009 (#derived)",
-   "listed": "2026-10-13",
-   "closed": "2026-10-13",
-   "status": "done",
-   "outcome": "Matthew's hunch was right: the hashing was linear, but the side table it was kept in (ValueHash's WeakMap) made each evaluation slower than the last (2.3, 5.5, 6.3 s for the same work). Merkle names kept on the values (a hidden property, computed as a value is built) hold still (2.2, 2.5, 2.2 s) and cost 12 to 28% over fresh ids, not 23 times. Issue 009 updated: a section on it, two corrections, a theme-aware thumbnail. Experiment local: ~/.cache/hazel-diag/merkle_on_object.patch.",
-   "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/009/#merkle"
-  },
-  {
-   "id": 34,
-   "area": "dashboard",
-   "text": "<b>The dashboard refreshes itself,</b> locally and published: today nothing reloads (the one timer only updates the current ticket's elapsed time). Every minute or two, fetch the page in the background and reload only if it changed (compare its body without the Updated line), keeping the scroll position and any #ticket-N.",
-   "source": "Matthew, 2026-10-13, in chat",
-   "listed": "2026-10-13",
-   "closed": "2026-10-13",
-   "status": "done",
-   "outcome": "Each page carries a version tag (a hash without the Updated line); every 90 s in view, and on coming back to the tab, it fetches itself and reloads on a change, keeping scroll and #ticket-N. Tested: a real change reloaded at the same scroll. The elapsed time is now browser-only, so the page no longer changes every 15 minutes while a ticket is current.",
-   "outcome_url": ""
-  }
- ],
- "current_since": "2026-10-13T11:14:39-06:00"
+  "ports": [
+    {
+      "pr": 2635,
+      "repo": "hazelgrove/hazel",
+      "branch": "integration/livelits-modular-editors",
+      "links": [
+        [
+          "localhost:8341",
+          "http://localhost:8341/"
+        ],
+        [
+          "Scenes slide",
+          "http://localhost:8341/?slide=livelit-playground-scenes"
+        ]
+      ]
+    },
+    {
+      "pr": 2597,
+      "repo": "hazelgrove/hazel",
+      "branch": "integration/livelits-splicerefs-full",
+      "links": [
+        [
+          "localhost:8311",
+          "http://localhost:8311/"
+        ]
+      ]
+    },
+    {
+      "pr": 2635,
+      "repo": "hazelgrove/hazel",
+      "branch": "perf/2635-names",
+      "base": "integration/livelits-modular-editors",
+      "branch_note": "(local, measurement build for issue 009 / ticket #28: ShareCodec stats in the console, reuse counters, naming experiment OFF; worktree <code>~/hazel-2635-diag</code>; never push)",
+      "links": [
+        [
+          "localhost:8342",
+          "http://localhost:8342/"
+        ],
+        [
+          "Scenes slide",
+          "http://localhost:8342/?slide=livelit-playground-scenes"
+        ]
+      ]
+    },
+    {
+      "pr": 2675,
+      "repo": "hazelgrove/hazel",
+      "branch": "recursive-let-reuse",
+      "base": "dev",
+      "links": []
+    },
+    {
+      "pr": 2676,
+      "repo": "hazelgrove/hazel",
+      "branch": "cursor-inspector-full-types",
+      "base": "dev",
+      "links": []
+    },
+    {
+      "name": "Hazel performance analysis (the report's sources)",
+      "repo_html": "<a href=\"https://github.com/matthewhammer/hazel-performance-analysis\">matthewhammer/hazel-performance-analysis</a>, checked out at <code>~/hazel-perf-report</code>",
+      "branch": "main",
+      "branch_note": "(public: a push publishes, so drafts wait)",
+      "links": [
+        [
+          "localhost:8131/series/",
+          "http://localhost:8131/series/"
+        ]
+      ]
+    },
+    {
+      "name": "Messed Up Dress Up (the game)",
+      "repo_html": "<a href=\"https://github.com/matthewhammer/kids-choice-games\">matthewhammer/kids-choice-games</a>, folder <code>dress-up/</code>, public with its history from 2026-10-09<br>Its own Pages site deploys every push to <code>main</code>. Edit <code>~/kids-choice-games</code>: <code>~/hazel/experiments/polygons-plain/dress-up.html</code> is a symlink to it.",
+      "branch": "main",
+      "links": []
+    }
+  ],
+  "tracking_issue": 2609,
+  "perf_prs": [
+    2681,
+    2679,
+    2678,
+    2675,
+    2673,
+    2661,
+    2651,
+    2652,
+    2614,
+    2610,
+    2671,
+    2672,
+    2606,
+    2603,
+    2490
+  ],
+  "integration_prs": [
+    2635,
+    2597
+  ],
+  "other_prs": [
+    {
+      "pr": 2676,
+      "note": "The type-expansion panel (issue #2674). Its fix for module signatures' parentheses is only on #2635: dev prints a signature as a labeled tuple."
+    },
+    {
+      "pr": 2583,
+      "note": ""
+    },
+    {
+      "pr": 2613,
+      "note": ""
+    },
+    {
+      "pr": 2605,
+      "note": ""
+    },
+    {
+      "pr": 2608,
+      "note": ""
+    },
+    {
+      "pr": 2592,
+      "note": ""
+    },
+    {
+      "pr": 2491,
+      "note": "Docs."
+    },
+    {
+      "pr": 2577,
+      "note": ""
+    },
+    {
+      "pr": 2616,
+      "note": "Remote splices, the base of #2650. On the back burner since 2026-10-05."
+    },
+    {
+      "pr": 2650,
+      "note": "The IC canister demo. On the back burner since 2026-10-05."
+    },
+    {
+      "pr": 2536,
+      "note": "Fumola-in-Hazel, shelved since 2026-09-16 (its issues go to Adapton/fumola)."
+    }
+  ],
+  "repos": [
+    {
+      "repo": "matthewhammer/kids-choice-games",
+      "branch": "main",
+      "versions": [
+        [
+          "Messed Up Dress Up",
+          "dress-up/VERSIONS.md"
+        ]
+      ],
+      "live": [
+        [
+          "the game, live",
+          "http://matthewhammer.org/kids-choice-games/dress-up/"
+        ],
+        [
+          "localhost:8133/dress-up.html",
+          "http://localhost:8133/dress-up.html"
+        ],
+        [
+          "🎵 the tunes (MP3s)",
+          "http://localhost:8133/tunes/"
+        ]
+      ],
+      "note": "The kids' toys, prototyped in plain JS with real players before the Hazel slides formulate them as user-defined livelits (#2635, #2597; issue 001 on). Each version is tagged <code>dress-up-X.Y.Z</code>."
+    },
+    {
+      "repo": "matthewhammer/hazel-work-notes",
+      "branch": "main",
+      "versions": [
+        [
+          "Hazel Work Dashboard",
+          "VERSIONS.md"
+        ]
+      ],
+      "live": [
+        [
+          "the dashboard, published",
+          "http://matthewhammer.org/hazel/work-dashboard/"
+        ],
+        [
+          "the dashboard, localhost:8000",
+          "http://localhost:8000/"
+        ],
+        [
+          "its history, localhost:8000/notes/",
+          "http://localhost:8000/notes/"
+        ]
+      ],
+      "note": "This page's code (<code>dashboard/</code>, run in place: <code>~/localhost-index</code> links to it), its history and <a href=\"https://github.com/matthewhammer/hazel-work-notes/blob/main/agent-instructions.md\">agent-instructions.md</a>. PUBLIC since 2026-10-13: its Pages site serves a copy of this page (noindex), redirected to from matthewhammer.org/hazel/work-dashboard/. Cron commits and pushes a snapshot, data.json and the public copy when the page changes; the code is committed by hand."
+    },
+    {
+      "repo": "matthewhammer/hazel-performance-analysis",
+      "branch": "main",
+      "versions": [],
+      "live": [
+        [
+          "the series, published",
+          "http://matthewhammer.org/hazel/performance-analysis/"
+        ],
+        [
+          "drafts, localhost:8131/series/",
+          "http://localhost:8131/series/"
+        ]
+      ],
+      "note": "The performance analysis series, for outside readers (issue 001 on), with its history since 2026-10-09 and its own agent-instructions.md. Public since 2026-10-12. Published by copying an issue to the homepage repo; a push here is public too, so drafts wait for review."
+    }
+  ],
+  "tickets": [
+    {
+      "id": 2,
+      "area": "performance",
+      "text": "Generic evaluator overhead in views: the woods' picture view, ~500 ms per figure move after #1. DONE 2026-10-13: <b>a value known to have a type is not walked again for it</b> (#2635 237e5aae74, #2597 e6d1cc500f, comment a8fe28953d / 30f6835b49; dev #2681): Firefox view 563.5 -> 497.5 ms. PROFILED AGAIN 2026-10-13 (node, through <code>evaluate_open</code> as the app runs it; harness ~/.cache/hazel-diag/Test_PicView.timing.re): the view allocates ~1,064 MiB per run, and GC is about as large as its own work. What's left is spread over the evaluator's machinery: the trampoline (Bind/Next nodes, continuations; ~240 MiB), <code>EvaluatorState.update</code> copying the state record every step (~66 MiB), <code>Transition.transition</code> (~129 MiB), string building that is the view's own work (<code>coords</code>, ~76 MiB), fresh ids. Ascription pushing fell 143 -> 61 ms. TRIED, not kept yet: <code>bind(Done(x), f) = f(x)</code>: view 407 -> 375 ms in node, ranges overlapping; a stack-depth risk to check (patch ~/.cache/hazel-diag/trampoline_fast_bind.patch). FOUND, load-time only: the first <code>consistent_by_hash</code> miss on the Html types costs tens of ms (memoized for the session after). PER-STEP TUNING 2026-10-13 (his option 1), PUSHED: <code>bind(Done(x), f) = f(x)</code> (d0c56fb090, with 2 deep-recursion tests) and a step with no effects only counts (c4e64060f1, <code>EvaluatorState.tick</code>), on #2635; #2597 a4b856c543 + 684a75cb2f. Woods allocation -8% (program 4,334 -> 3,980 MiB, view 1,064 -> 980); Firefox view eval 579 -> 558 ms (-3.6%, 20 moves per build, overlapping). Tests 987 on #2635, 974 on #2597. What is left per step is structural (trampoline nodes, continuations, fresh ids): a design question.",
+      "source": "#2609 findings 28, 29",
+      "url": "https://github.com/hazelgrove/hazel/issues/2609#issuecomment-6134012577"
+    },
+    {
+      "id": 4,
+      "area": "performance",
+      "text": "#2597 CI red since 2026-10-11 afternoon: full tests time out at 100 min, quick tests run out of heap. Locally, the whole suite in one process runs out of memory after about 96 min.",
+      "source": "CI runs on #2597",
+      "url": "https://github.com/hazelgrove/hazel/pull/2597"
+    },
+    {
+      "id": 5,
+      "area": "performance",
+      "text": "The Witch slide's extra 2–3 s over Full Body for the same change: not profiled yet.",
+      "source": "issue 004",
+      "url": "http://localhost:8131/004/#cost"
+    },
+    {
+      "id": 7,
+      "area": "performance",
+      "text": "The commit path: find which of the request's values are new (about 15 ms of hashing, profiled), and make the commit's redraw cheaper.",
+      "source": "issue 001",
+      "url": "http://localhost:8131/#now"
+    },
+    {
+      "id": 10,
+      "area": "performance",
+      "text": "Option C from issue 005: remember <code>HazelDOM</code>'s virtual DOM per Html subterm, so an unchanged part of a view is not converted again and virtual_dom's diff skips it. PARKED 2026-10-12: measured, it would save at most about 2% of the main thread in the woods. A profiled figure move (2 runs, 4.4 and 4.1 s): Html to virtual DOM 1.1%, diff and patch 0.9%, browser layout and paint 1.4%, GC 21%, evaluating the view about 50% (about 69% with its GC), the app's own update machinery about 25%. On Kids' Choice it was 8 of 104 ms (issue 001). It would also need a content hash as its key, since the woods' shapes are fresh objects each time, and handlers that find the current state at event time. The lever is evaluating the view: #1, #2, #18.",
+      "source": "issue 005",
+      "url": "http://localhost:8131/005/#where",
+      "added": "2026-10-12"
+    },
+    {
+      "id": 12,
+      "area": "performance",
+      "text": "Measure the size of view samples on the wire (not trimmed as the result is) and the memory of the shared-value tables and per-object hashes.",
+      "source": "issue 005",
+      "url": "http://localhost:8131/005/#copies",
+      "added": "2026-10-12"
+    },
+    {
+      "id": 13,
+      "area": "performance, CI",
+      "text": "Statics counts on <code>dev</code>: the analyses-per-expression counter and <code>Test_StaticsPasses</code> from #2635 (bd90642654, da3251d3e5), with a small corpus subset in the quick suite.",
+      "source": "issue 006",
+      "url": "http://localhost:8131/series/006/#next",
+      "added": "2026-10-12"
+    },
+    {
+      "id": 14,
+      "area": "performance, CI",
+      "text": "A budget on a slide: the evaluator's work after a figure move in the woods, where reuse failed before #2675.",
+      "source": "issue 006",
+      "url": "http://localhost:8131/series/006/#next",
+      "added": "2026-10-12"
+    },
+    {
+      "id": 15,
+      "area": "performance, CI",
+      "text": "Byte budgets: elaboration sizes on <code>dev</code>, and the worker's message sizes for a fixed interaction.",
+      "source": "issue 006",
+      "url": "http://localhost:8131/series/006/#next",
+      "added": "2026-10-12"
+    },
+    {
+      "id": 16,
+      "area": "CI",
+      "text": "Ask the maintainers to require the test jobs for merging into <code>dev</code>: today no check is required, so a red budget is a signal, not a gate.",
+      "source": "issue 006",
+      "url": "http://localhost:8131/series/006/#today",
+      "added": "2026-10-12"
+    },
+    {
+      "id": 17,
+      "area": "performance, CI",
+      "text": "A timing report that informs and doesn't fail: base and head on one runner, repeated, phase by phase, perhaps from #2161's harness (David's call).",
+      "source": "issue 006",
+      "url": "http://localhost:8131/series/006/#pr2161",
+      "added": "2026-10-12"
+    },
+    {
+      "id": 18,
+      "area": "performance",
+      "text": "Option B from issue 005: evaluate each livelit's view in the worker, keep the last Html sent per livelit, and post patches to it, so view evaluation leaves the main thread. Needs the view runner (ViewCmdRunner) in the worker, a patch format, an element on the page that owns each livelit's DOM and applies patches, and handlers dispatched by id. Keep the page's own path for an interaction's immediate redraw, or every drag waits a round trip. Its condition is now met (2026-10-12, see #10): evaluating the view is about 69% of the main thread in a woods figure move, and C would save about 2%. Weigh it against making the view itself cheaper first (#1, #2).",
+      "source": "issue 005",
+      "url": "http://localhost:8131/series/005/#where",
+      "added": "2026-10-12"
+    },
+    {
+      "id": 19,
+      "area": "performance, CI",
+      "text": "Budgets harder to fool (issue 006's update, a count is not a time): count the call memo's own work (the nodes its keys put in form) and, if js_of_ocaml can report it, memory allocated, beside the evaluator's steps.",
+      "source": "issue 006",
+      "url": "http://localhost:8131/series/006/#update",
+      "added": "2026-10-12"
+    },
+    {
+      "id": 22,
+      "area": "performance",
+      "text": "UX mode re-elaborates an open cell's item with fresh ids on every change (the drawn cell in issue 008's B), so its parts never match by hash and fall to the reuse check's slow path. Keep the ids stable when a cell is analyzed again.",
+      "source": "issue 008",
+      "url": "http://matthewhammer.org/hazel/performance-analysis/008/#fix",
+      "added": "2026-10-12"
+    },
+    {
+      "id": 23,
+      "area": "performance",
+      "text": "The autosave in UX mode (<code>save_current</code> / <code>persist_divided</code>: the divided program printed to text and stored, 0.55 s profiled) landed inside a slider change in issue 008's B. With #6's fix the change ends first, so it no longer does, but it is still 0.55 s on the main thread about a second after every edit, where the next drag can meet it. Save when idle, or save only the changed cell.",
+      "source": "issue 008",
+      "url": "http://matthewhammer.org/hazel/performance-analysis/008/#where",
+      "added": "2026-10-12"
+    },
+    {
+      "id": 24,
+      "area": "performance",
+      "text": "Open cells draw their livelit views without the view memo (<code>live_html</code>, 449 ms per change profiled in issue 008's B with #6's fix), where the whole-program editor uses <code>memo_view</code> (163 ms in C). Give cells the memo. (Corrected 2026-10-12: B's 0.48 s of <code>of_segment</code> was the autosave printing text, not the cells' code views.)",
+      "source": "issue 008",
+      "url": "http://matthewhammer.org/hazel/performance-analysis/008/#where",
+      "added": "2026-10-12"
+    },
+    {
+      "id": 25,
+      "area": "testing, UX",
+      "text": "Code-driven tests of the outline modes: a URL parameter (or test hook) that opens a slide in UX mode with chosen GUI rows, so a script reaches issue 008's B without clicking through the outline. Matthew: \"let's consider that too with our UX feature\".",
+      "source": "issue 008",
+      "url": "http://matthewhammer.org/hazel/performance-analysis/008/#method",
+      "added": "2026-10-12"
+    },
+    {
+      "id": 27,
+      "area": "performance",
+      "text": "The page's incremental stream collector (<code>StreamCollector.Inc.fresh</code>) indexes the whole elaboration again for every new evaluation, once per slider change: 204 ms profiled per change in C (Full Body, dev mode). DONE ON #2635 2026-10-13: 8717564a5f stops the walk at patterns and types: 115 ms profiled, clock not detectable (issue 008). REMAINING: <code>map_term</code> still rebuilds every expression node, plus <code>Id.Map</code> inserts. Further: a hashtable, or the worker tags each entry with its enclosing entry so the page needs no index.",
+      "source": "issue 008",
+      "url": "http://matthewhammer.org/hazel/performance-analysis/008/#index",
+      "added": "2026-10-12"
+    },
+    {
+      "id": 29,
+      "area": "series",
+      "added": "2026-10-13",
+      "text": "Revise issue 008 to answer plainly: <b>are conditions C (#2635, whole program) and B (UX mode, only the GUI) similar once the same fixes are applied to each?</b> As written it confuses: the GUI-only view gives no responsiveness benefit, but with the fixes it is no loss either; say so up front. Re-measure B and C on #2635's current head (the reuse check's fix, the stream index, the has-type memo, the per-step changes all in), and add graphs in the issue itself, not just the thumbnail, taking issue 001's pictures as the model, especially in the short answers. 008 is published, so per the series' rules: a dated update box under the short answers, notes after superseded claims, and an Update section with the figures.",
+      "source": "Matthew, 2026-10-13, in chat",
+      "url": "http://localhost:8131/series/008/"
+    },
+    {
+      "id": 30,
+      "area": "performance, research",
+      "added": "2026-10-13",
+      "text": "Issue 010: <b>names inside evaluation, for the reuse that would pay</b> (issue 009, What next, step 3). Apply Incremental Computation with Names further to Hazel: a demanded computation graph at the right granularity (units below the top level: calls and right-hand sides, named from the call site, the enclosing unit and the argument's name), the reads each unit makes recorded with what it saw, an early cutoff where a result keeps its name, and inputs (a slider's literal) as named references. An experiment on a local branch, then issue 010 with its preliminary results. Groundwork in issue 009: #2 per-step costs, the derived-names experiment (content names cost 23x; names from a parent's name are the paper's way).",
+      "source": "Matthew, 2026-10-13: issue 009, What next, step 3",
+      "url": "http://matthewhammer.org/hazel/performance-analysis/009/#step-3"
+    }
+  ],
+  "next_ticket": 36,
+  "current_ticket": 30,
+  "current_note": "Stage 1, measuring the potential: an oracle names each call by position (its parent call's name, its call site, and its count there), records each call's inputs and result by id-free hash, and compares a slider edit's evaluation with the one before (Full Body, Scenes, Witch): calls reusable by name, the steps they cover, early cutoffs, names that shift, and reuse by content for comparison. Then stage 2, a prototype memo by name.",
+  "closed_tickets": [
+    {
+      "id": 1,
+      "area": "performance",
+      "text": "The <code>^picture</code> view in the woods: parts 1–3 DONE 2026-10-12, a woods figure move's redraw from a median of 2.20 s to 1.41 s. Part 1: a <code>Drawing.frame</code> sets the view box (#2597 86e3ea9a9f, b5edde9da3; #2635 6f1d7fdc5e, 44d8ab2225). Part 2: a cheaper <code>coords</code> (#2597 44928f5fdd; #2635 ba72773d46), view steps −26% but time −6%. Part 3: an ascription pushed through a value gives the value back when it already has the type, instead of copying it (#2597 1fa1384445; #2635 57c928cef4). The picture's view on a move to a new size went from about 725–830 ms to 520–650; revisits stay about 210 ms; Kids' Choice is unchanged. That gave the memo cheap keys and kept its hits. Measured and not kept: a key budget (it lost the revisits) and a cache of pushes (nothing over copy-on-change). What is left of the view is the evaluator's own work, about 500 ms: see #2. Close #1?",
+      "source": "#2609 findings 27–28",
+      "closed": "2026-10-12",
+      "status": "done",
+      "outcome": "Three fixes, on #2597 and #2635: a <code>Drawing.frame</code> sets the view box, a cheaper <code>coords</code>, and an ascription pushed through a value gives the value back when it already has the type. A woods figure move's redraw went from a median of 2.20 s to 1.41 s. Written up in #2609 finding 29 and issue 004's update. What was left of the view became #2.",
+      "listed": "2026-10-12"
+    },
+    {
+      "id": 3,
+      "area": "performance",
+      "text": "#2597: the Scenes slide takes about 5 minutes to its first picture (287.5 s cold on 2026-10-12), the Witch slide 173.1 s; #2635 about 12 s. WHY (issue 007, published): the page redraws the whole code view and redoes statics for each of 2,520 worker stream messages; the worker idles. <code>c07bdacead</code> from #2469 (stream posts every 100 ms, lazy info-map projection) on a local copy of #2597 (<code>~/hazel-2597-stream</code>, served on 8312): Scenes 16.6–17.6 s, Witch 18.6–19.4 s, 86 messages. Next: bring it to #2597 itself (his call), then the adaptive cadence from <code>a05f8e5791</code>.",
+      "source": "issue 007; #2609 findings 25, 28",
+      "closed": "2026-10-12",
+      "status": "done",
+      "outcome": "Issue 007 answered why: the page redrew the whole code view and redid statics for each of 2,520 worker messages. c07bdacead (from #2469) went to #2597 as a15c6f0b65: Scenes 287.5 s to about 16.5 s to its first picture.",
+      "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/007/",
+      "listed": "2026-10-12"
+    },
+    {
+      "id": 6,
+      "area": "performance",
+      "text": "<code>IncrEval.reuse_check</code> compared lexemes by trace, quadratic when elaboration ids churn. DONE ON #2635 2026-10-13: cbdab791f5 (one memoized, hash-shortcut walk for structure and lexemes), issue 008: UX-mode slider 3.5 s -> 1.26 s. NOT NEEDED ON #2597 (checked 2026-10-13, retired #26): it has no lexemes (lacks 500c466b44), an unknown operator is a hole of its operands, and its check is already hash + memoized structure. REMAINING: <code>dev</code>, together with the hash shortcut (dev uses full <code>fast_equal</code> plus two traces): a dev PR, with Matthew's OK.",
+      "source": "#2609 finding 24, issue 008",
+      "closed": "2026-10-13",
+      "status": "done",
+      "outcome": "cbdab791f5 on #2635: the reuse check compares lexemes in the same memoized walk as structure (issue 008: the UX-mode slider 3.5 s to 1.26 s). On <code>dev</code> as cea8f0a98f, a second commit on #2673. Nothing to port to #2597 (#26).",
+      "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/008/#fix",
+      "listed": "2026-10-12"
+    },
+    {
+      "id": 8,
+      "area": "series",
+      "text": "Issue 005 of the series: the worker versus the main thread, and diffing the view (Html to virtual DOM, on which thread). Drafted, then published 2026-10-12.",
+      "source": "Matthew, 2026-10-12",
+      "closed": "2026-10-12",
+      "status": "done",
+      "outcome": "Issue 005 published: the worker, the page, and diffing the view.",
+      "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/005/"
+    },
+    {
+      "id": 9,
+      "area": "performance, CI",
+      "text": "Issue 006 of the series, before Wednesday (from the meeting with Cyrus): performance-regression testing in CI, with #2161 weighed against starting fresh in a table. The PR is open: #2678. DRAFT written 2026-10-12: Matthew to review, then publish to the series.",
+      "source": "Matthew, 2026-10-12",
+      "closed": "2026-10-12",
+      "status": "done",
+      "outcome": "Issue 006 published, with its PR, #2678 (evaluator-step budgets in CI).",
+      "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/006/",
+      "listed": "2026-10-12"
+    },
+    {
+      "id": 11,
+      "area": "performance",
+      "text": "Split the woods' redraw of a new picture into evaluating the view, Html to virtual DOM, diff and patch, and the browser's layout, for one figure move.",
+      "source": "issue 005",
+      "closed": "2026-10-12",
+      "status": "done",
+      "outcome": "Measured in issue 005's update: in a woods figure move, evaluating the view is about 50% of the main thread (about 69% with its GC); Html to virtual DOM 1.1%, diff and patch 0.9%, layout and paint 1.4%. That parked #10.",
+      "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/005/#update",
+      "listed": "2026-10-12"
+    },
+    {
+      "id": 20,
+      "area": "performance",
+      "text": "A <code>dev</code> PR for copy-on-change ascriptions (#2597 1fa1384445): on <code>dev</code>, pushing an ascription through a list or tuple rebuilds it whatever happens inside, the same as before the fix. It is general: any typed boundary a big value crosses.",
+      "source": "#1, part 3",
+      "closed": "2026-10-12",
+      "status": "done",
+      "outcome": "Opened as #2679 (copy-on-change ascriptions, against <code>dev</code>).",
+      "listed": "2026-10-12"
+    },
+    {
+      "id": 21,
+      "area": "series",
+      "text": "After issue 007: make a new PUBLIC repo, <code>hazel-performance-analysis</code>, for the series, with its git history (<code>~/hazel-perf-report</code>) and its agent instructions (audience: outside readers; the work notes are our working record). <code>hazel-work-notes</code> stays as it is. Also: snapshots in <code>dashboard-snapshots/YYYY/MM/DD/</code>.",
+      "source": "Matthew, 2026-10-12, in chat",
+      "closed": "2026-10-12",
+      "status": "done",
+      "outcome": "github.com/matthewhammer/hazel-performance-analysis, public, with the series' history and its own agent-instructions.md. Snapshots moved to <code>dashboard-snapshots/YYYY/MM/DD/</code>.",
+      "listed": "2026-10-12"
+    },
+    {
+      "id": 26,
+      "area": "correctness",
+      "text": "#2597's <code>IncrEval.reuse_check</code> never compares lexemes: it lacks 7de3875cd8 (\"Invalidate incremental-eval reuse on lexeme-only edits\", in <code>dev</code> and #2635), so editing <code>@@</code> to <code>@@@</code> in place can show the stale operator's result. Port it in the one-walk form from perf/2635-reuse-one-walk (#6), so #2597 doesn't pick up the quadratic cost with it.",
+      "source": "issue 008",
+      "closed": "2026-10-13",
+      "status": "not needed",
+      "outcome": "Its premise was wrong: #2597 has no lexemes (it lacks 500c466b44) and makes an unknown operator a hole of its operands, so <code>@@</code> and <code>@@@</code> give the same term. Issue 008 got dated corrections.",
+      "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/008/#fix",
+      "listed": "2026-10-12"
+    },
+    {
+      "id": 28,
+      "area": "performance, research",
+      "text": "Issue 009 of the series: <b>fresh ids and lack of reuse</b>. Hazel mints ids two ways: <code>Id.mk</code>, a gensym (counter + random bytes), and names derived from a parent (<code>Id.derive</code>, <code>Id.next</code>, <code>IdTagged.fresh_deterministic</code>, v5 UUIDs), the distinction of Incremental Computation with Names (Hammer et al., OOPSLA 2015). Measure what Hazel can tell us today: (1) elaboration: analyzing the same program twice, which nodes come back renamed, and how many enclosing parts then fail the reuse check's hash (issue 008's 122); (2) experiment: name those nodes deterministically, and what reuse it recovers; (3) evaluation: ids minted per evaluation, and whether re-evaluated values ever share ids (why the call memo erases them). MEASURED 2026-10-13 (node, #2635 c4e64060f1; harness ~/.cache/hazel-diag/Test_Names.re, experiments issue009_experiments.patch, uncommitted): (1) the same term analyzed twice (Statics.mk_unmemoized; the memoized mk returns the same object): Full Body 667 of 111,462 nodes renamed, all minted by statics, 692 expressions then differ by hash; Witch 798/844, Scenes 210/237, Polygons 14/23. Sources: <code>UserLivelit.mk_expand_dot_def</code> (each use's dispatch on <code>def.expand</code>, FreshGrammar), <code>StaticsBase.fresh_ascription</code>, and 85 nodes from the Drawing library. (2) naming the first two by their use / what they ascribe (Id.derive by path): 667 -> 85 renamed, 692 -> 247 hash-differing. After a slider edit, incremental reuse: names held 943 -> 1,002, renamed 105 -> 46, reused 336 either way (the structural fallback recovers it): names change the check's cost, not what is reused. (3) evaluation mints 461,422 ids for the woods picture (33,847 nodes); evaluated twice, equal in structure, not by hash; the only shared ids are the program's own. (4) THE WORKER'S RESPONSE DIFF (ShareCodec, keyed by ValueHash with ids; instrumented build on 8342, ~/.cache/hazel-diag/sharecodec_stats.patch + share_moves.py): 8 woods figure moves, slots sent vs if structure-equal parts were references: worker->page 387,625 vs 347,920 (1.11x), page->worker 43,248 vs 21,728 (1.99x, small: ~5,400 a move vs 749,480 at load). The diff works because incremental reuse returns the same objects (~2,900 refs a move): identity survives through reuse, not names. (5) TIMED, 5 runs: after a slider edit, incremental vs scratch (node, medians): Full Body 502 vs 451 ms, Witch 857 vs 791, Scenes 1,547 vs 1,571; named about the same. DRAFT issue 009 written 2026-10-13 (local commit in ~/hazel-perf-report, not pushed; generator ~/.cache/hazel-diag/gen009.py + body009.html). OPEN: identity memos with no structural fallback; Polygons' 13 hash-differing with nothing renamed.",
+      "source": "Matthew, 2026-10-13, in chat",
+      "listed": "2026-10-13",
+      "closed": "2026-10-13",
+      "status": "done",
+      "outcome": "Issue 009 published, then updated the same day with the paper's main ideas, Hazel's caching in its terms, the derived-names experiment and what following the paper would take. Its step 3 became #30 (issue 010).",
+      "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/009/"
+    },
+    {
+      "id": 33,
+      "area": "dashboard",
+      "text": "<b>Publish the dashboard publicly, on every change,</b> so Matthew can see where things stand when AFK and off the local network (for him, perhaps Cyrus; not secret, just too detailed for most; no reason to hide it, none to point people at it). A \"work-dashboard\" chip in the matthewhammer.org/hazel menu, and a similar URL (matthewhammer.org/hazel/work-dashboard/) that goes there; it shows what localhost:8000 shows, at all times. Proposal: make hazel-work-notes public and serve it with its own Pages (log_notes.py also writes the live page and closed.html to the repo root on each change; cron pushes every 15 minutes); a redirect page and the chip in the homepage repo; on the public copy, a line saying the localhost links work only on Matthew's machine, and a noindex meta. Audit 2026-10-13: no tokens, keys or email in its 172 commits; kids only as M and N. Making it public needs Matthew's go-ahead (it publishes the whole history).",
+      "source": "Matthew, 2026-10-13, in chat",
+      "listed": "2026-10-13",
+      "closed": "2026-10-13",
+      "status": "done",
+      "outcome": "hazel-work-notes is public; its Pages site serves a copy of the page and the closed tickets (noindex, a note, history links on GitHub), written by log_notes.py on each change. matthewhammer.org/hazel/work-dashboard/ redirects there, and the Hazel menu has a work-dashboard chip.",
+      "outcome_url": "http://matthewhammer.org/hazel/work-dashboard/"
+    },
+    {
+      "id": 31,
+      "area": "performance, research",
+      "text": "<b>Merkle names at construction, then remeasure issue 009's derived-names experiment.</b> 009: content-derived names took the woods' evaluation from 1.9 s to 44.2 s. Today <code>Util.ValueHash</code> is a LAZY Merkle hash: a walk on first use, remembered per object in a WeakMap; <code>TypHash</code> (#2661) remembers types' hashes per object; nothing is hashed as it is built, and environments and closures only as generic values. Fix: compute each node's content name when it is built, from its children's names (already known), an environment frame's from its parent's and its binding, a closure's from its environment and body: a few operations per allocation, never a walk (the paper's constant cost). A content name is separate from the provenance id a step's result keeps for probes, or two values from one piece of syntax would share a name. Steps: (1) profile the derived mode first, to find where the 23x goes (walks, the WeakMap and GC, fallbacks); (2) the construction-time names; (3) remeasure gensyms, names kept and time; (4) then finish issue 009's edits, including a CORRECTION: its claim that a hash that gives up is not remembered is wrong (ValueHash marks it unhashable, and a too-deep walk leaves objects marked busy for good). FOUND 2026-10-13: (a) the hashing is linear within an evaluation (each object walked once: 1,033,746 walked, 932,980 reused, the same every run); (b) but time per evaluation grew across a session (2.3 -> 5.5 -> 6.3 s; 44.2 s after a long run) with the same work and a growing heap: the side table (ValueHash's WeakMap). (c) Names kept ON each value (a hidden property, ~/.cache/hazel-diag/merkle_on_object.patch): flat, 2.2 / 2.5 / 2.2 s, about 1.4x fresh ids (1.6 s), names still kept (33,846 of 33,847). Full remeasure running.",
+      "source": "Matthew, 2026-10-13, reading issue 009 (#derived)",
+      "listed": "2026-10-13",
+      "closed": "2026-10-13",
+      "status": "done",
+      "outcome": "Matthew's hunch was right: the hashing was linear, but the side table it was kept in (ValueHash's WeakMap) made each evaluation slower than the last (2.3, 5.5, 6.3 s for the same work). Merkle names kept on the values (a hidden property, computed as a value is built) hold still (2.2, 2.5, 2.2 s) and cost 12 to 28% over fresh ids, not 23 times. Issue 009 updated: a section on it, two corrections, a theme-aware thumbnail. Experiment local: ~/.cache/hazel-diag/merkle_on_object.patch.",
+      "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/009/#merkle"
+    },
+    {
+      "id": 34,
+      "area": "dashboard",
+      "text": "<b>The dashboard refreshes itself,</b> locally and published: today nothing reloads (the one timer only updates the current ticket's elapsed time). Every minute or two, fetch the page in the background and reload only if it changed (compare its body without the Updated line), keeping the scroll position and any #ticket-N.",
+      "source": "Matthew, 2026-10-13, in chat",
+      "listed": "2026-10-13",
+      "closed": "2026-10-13",
+      "status": "done",
+      "outcome": "Each page carries a version tag (a hash without the Updated line); every 90 s in view, and on coming back to the tab, it fetches itself and reloads on a change, keeping scroll and #ticket-N. Tested: a real change reloaded at the same scroll. The elapsed time is now browser-only, so the page no longer changes every 15 minutes while a ticket is current.",
+      "outcome_url": ""
+    },
+    {
+      "id": 32,
+      "area": "series",
+      "text": "Thumbnails with transparent backgrounds, readable in dark and light themes (Matthew uses a dark, high-contrast theme, where the white blocks look out of place): for every issue's card on the series index. Likely SVG thumbnails with their own prefers-color-scheme colours, or PNGs with transparency and colours that hold on both. Also: revise issue 009's thumbnail once its results are final (#31). Matthew, 2026-10-13: 008, 007, 006, 005 and 001 need it (white blocks in dark mode); 002, 003 and 004 keep their light backgrounds, since they show how the app looks.",
+      "source": "Matthew, 2026-10-13, in chat",
+      "url": "http://matthewhammer.org/hazel/performance-analysis/",
+      "listed": "2026-10-13",
+      "closed": "2026-10-13",
+      "status": "done",
+      "outcome": "Thumbnails for 001 and 005-008 are now transparent SVGs with a light and a dark palette, split by tools/theme_variants.py into -light and -dark copies that the index shows by the page's theme (so the switch decides, not only the system); 009's too. 002-004 stay PNGs on a light ground, pictures of the app. The series' publishing steps say how a thumbnail is made. Live over HTTP."
+    },
+    {
+      "id": 35,
+      "area": "dashboard, series, homepage",
+      "text": "<b>A theme toggle on every page</b> (Auto / Light / Dark): pages follow the system's prefers-color-scheme, dark on Matthew's work laptop (Ubuntu, dark high contrast), light on his personal one. The choice kept in localStorage per origin (one for all of matthewhammer.org: homepage, /hazel, the series, the published dashboard; localhost:8000 its own), Auto by default. The series and /hazel already have data-theme hooks in their CSS; the dashboard needs them.",
+      "source": "Matthew, 2026-10-13, in chat",
+      "url": "",
+      "listed": "2026-10-13",
+      "closed": "2026-10-13",
+      "status": "done",
+      "outcome": "An Auto / Light / Dark button, top right, on every page: the dashboard (both pages, local and published), /hazel/, and the performance analysis series (index, 001-009), remembered per site in localStorage. Pages that already had data-theme hooks got the button (tools/add_theme.py in the series repo); the dashboard got the hooks too (dashboard 'Unreleased'). Checked: each mode, persistence across reloads and pages, live over HTTP. The homepage's root page has no dark mode, so it has no switch."
+    }
+  ],
+  "current_since": "2026-10-13T11:26:23-06:00"
 }
