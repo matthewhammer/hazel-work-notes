@@ -360,9 +360,17 @@
       "text": "Revise issue 008 to answer plainly: <b>are conditions C (#2635, whole program) and B (UX mode, only the GUI) similar once the same fixes are applied to each?</b> As written it confuses: the GUI-only view gives no responsiveness benefit, but with the fixes it is no loss either; say so up front. Re-measure B and C on #2635's current head (the reuse check's fix, the stream index, the has-type memo, the per-step changes all in), and add graphs in the issue itself, not just the thumbnail, taking issue 001's pictures as the model, especially in the short answers. 008 is published, so per the series' rules: a dated update box under the short answers, notes after superseded claims, and an Update section with the figures.",
       "source": "Matthew, 2026-10-13, in chat",
       "url": "http://localhost:8131/series/008/"
+    },
+    {
+      "id": 38,
+      "area": "performance, research",
+      "added": "2026-10-13",
+      "text": "<b>A picture of groups with transforms</b> in the Drawing library, and shared symbols for repeated shapes (issue 011, What next, step 1). Today a picture is a flat list of polygons in absolute coordinates, and the library places a part by moving every one of its points, so a slider that moves a part changes every shape in it (up to 113 shapes for one edit). Issue 011 estimated, at best, at most 14 changed nodes per slider edit with groups and transforms, and one for the red eyes with a shared symbol. Then measure the picture diff, the trace distance and the update cost on the same 63 slider edits.",
+      "source": "Matthew, 2026-10-13: issue 011, What next, step 1",
+      "url": "http://matthewhammer.org/hazel/performance-analysis/011/#step-1"
     }
   ],
-  "next_ticket": 38,
+  "next_ticket": 39,
   "current_ticket": null,
   "current_note": "",
   "closed_tickets": [
