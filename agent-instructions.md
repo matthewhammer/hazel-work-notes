@@ -26,6 +26,8 @@ Read this before working with Matthew on Hazel. Keep the dashboard current as yo
 
 The title is **Hazel Work Dashboard**. An outline on the side lists the sections, every open ticket by its number, and the closed tickets' page. The sections, in order:
 
+The page reloads itself when it changes (a version tag, checked every 90 s while it is in view), so an open tab, local or published, stays current.
+
 0. **Current ticket,** when there is one: the ticket we are working on now, in full, when we started it and how long ago (kept up to date in the browser), and a line on what is next on it (`current_note`). Times on the page are Mountain Time.
 
 1. **Localhost ports.** One row per thing served or worked on: the PR number and title, linked; the repo and branch; and the localhost link, with deep links where they help, such as `?slide=...`. A row without a PR gets a dash and a short name.

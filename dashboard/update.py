@@ -276,7 +276,7 @@ if CURRENT:
         since = datetime.fromisoformat(data["current_since"])
         mins = max(0, int((datetime.now(LOCAL) - since).total_seconds() // 60))
         since_line = (f'<p class="since">Started <b>{e(since.astimezone(LOCAL).strftime("%a %b %-d, %-I:%M %p %Z"))}</b>'
-                      f' · elapsed <b data-since="{e(since.isoformat())}">{elapsed(mins)}</b></p>')
+                      f' · elapsed <b data-since="{e(since.isoformat())}"></b></p>')
     current_section = f"""<h2 id="current">Current ticket: <a href="#ticket-{t["id"]}">#{t["id"]}</a></h2>
 <div class="current-box">
 <p class="note">{e(t.get("area", ""))} · from {from_cell(t)}</p>
@@ -394,7 +394,7 @@ page = f"""<!doctype html>
 <main>
 <h1>Hazel Work Dashboard</h1>
 <p class="note">Updated {e(now)}, by <code>~/localhost-index/update.py</code> (PR titles and status from GitHub).</p>
-<p class="note">History: <a href="http://localhost:8000/notes/dashboard-snapshots/">every change to this page</a>, a folder for each year, month and day, also pushed to <a href="https://github.com/matthewhammer/hazel-work-notes">matthewhammer/hazel-work-notes</a> (public). Published, within about 15 minutes of each change: <a href="http://matthewhammer.org/hazel/work-dashboard/">matthewhammer.org/hazel/work-dashboard/</a>. How we work with this page: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/agent-instructions.md">agent-instructions.md</a> (<a href="http://localhost:8000/notes/agent-instructions.md">local</a>). This is version {VERSION}: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/VERSIONS.md">VERSIONS.md</a> lists what each version has. Closed tickets: <a href="closed.html">their own page</a>.</p>
+<p class="note">History: <a href="http://localhost:8000/notes/dashboard-snapshots/">every change to this page</a>, a folder for each year, month and day, also pushed to <a href="https://github.com/matthewhammer/hazel-work-notes">matthewhammer/hazel-work-notes</a> (public). Published, within about 15 minutes of each change: <a href="http://matthewhammer.org/hazel/work-dashboard/">matthewhammer.org/hazel/work-dashboard/</a>. How we work with this page: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/agent-instructions.md">agent-instructions.md</a> (<a href="http://localhost:8000/notes/agent-instructions.md">local</a>). This is version {VERSION}: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/VERSIONS.md">VERSIONS.md</a> lists what each version has. Closed tickets: <a href="closed.html">their own page</a>. This page reloads itself when it changes (checked every 90 s while it is open).</p>
 
 {current_section}
 <h2 id="ports">Localhost ports</h2>
@@ -453,6 +453,35 @@ page = f"""<!doctype html>
   }};
   find();
   window.addEventListener("hashchange", find);
+}})();
+/* #34: stay current. Every 90 s while the page is in view, and on coming
+   back to it, fetch this page and reload if its version changed (a hash of
+   the page without its Updated line), keeping the scroll position. */
+(() => {{
+  const mine = document.querySelector('meta[name="dashboard-version"]');
+  if (!mine) return;
+  try {{
+    const y = sessionStorage.getItem("dashboard-scroll");
+    if (y !== null) {{ sessionStorage.removeItem("dashboard-scroll"); if (!location.hash) window.scrollTo(0, Number(y)); }}
+  }} catch (_) {{}}
+  let busy = false;
+  const check = async () => {{
+    if (busy || document.visibilityState !== "visible") return;
+    busy = true;
+    try {{
+      const r = await fetch(location.pathname + "?v=" + Date.now(), {{ cache: "no-store" }});
+      if (r.ok) {{
+        const m = (await r.text()).match(/<meta name="dashboard-version" content="([^"]+)"/);
+        if (m && m[1] !== mine.content) {{
+          try {{ sessionStorage.setItem("dashboard-scroll", String(window.scrollY)); }} catch (_) {{}}
+          location.reload();
+        }}
+      }}
+    }} catch (_) {{}}
+    busy = false;
+  }};
+  setInterval(check, 90000);
+  document.addEventListener("visibilitychange", () => {{ if (document.visibilityState === "visible") check(); }});
 }})();
 /* The current ticket's elapsed time, kept up to date between regenerations. */
 for (const el of document.querySelectorAll("[data-since]")) {{
@@ -524,11 +553,17 @@ for (const b of document.querySelectorAll("button.copy")) {{
 </body>
 </html>
 """
+import hashlib
+UPDATED_LINE = re.compile(r'<p class="note">Updated [^<]*<code>[^<]*</code>[^<]*</p>')
+def versioned(text):
+    token = hashlib.sha1(UPDATED_LINE.sub("", text).encode()).hexdigest()[:12]
+    return text.replace('<meta charset="utf-8">', f'<meta charset="utf-8">\n<meta name="dashboard-version" content="{token}">', 1)
+
 # A table wider than the window scrolls by itself; the page never does.
 page = page.replace("<table>", '<div class="scroll"><table>').replace("</table>", "</table></div>")
 # written whole, then renamed into place: a reader never sees half a page
 tmp = os.path.join(HERE, ".index.html.tmp")
-open(tmp, "w").write(page)
+open(tmp, "w").write(versioned(page))
 os.replace(tmp, os.path.join(HERE, "index.html"))
 
 # The closed tickets, on a page of their own: how each ended (done, or closed
@@ -580,13 +615,42 @@ closed_page = f"""<!doctype html>
   find();
   window.addEventListener("hashchange", find);
 }})();
+/* #34: stay current. Every 90 s while the page is in view, and on coming
+   back to it, fetch this page and reload if its version changed (a hash of
+   the page without its Updated line), keeping the scroll position. */
+(() => {{
+  const mine = document.querySelector('meta[name="dashboard-version"]');
+  if (!mine) return;
+  try {{
+    const y = sessionStorage.getItem("dashboard-scroll");
+    if (y !== null) {{ sessionStorage.removeItem("dashboard-scroll"); if (!location.hash) window.scrollTo(0, Number(y)); }}
+  }} catch (_) {{}}
+  let busy = false;
+  const check = async () => {{
+    if (busy || document.visibilityState !== "visible") return;
+    busy = true;
+    try {{
+      const r = await fetch(location.pathname + "?v=" + Date.now(), {{ cache: "no-store" }});
+      if (r.ok) {{
+        const m = (await r.text()).match(/<meta name="dashboard-version" content="([^"]+)"/);
+        if (m && m[1] !== mine.content) {{
+          try {{ sessionStorage.setItem("dashboard-scroll", String(window.scrollY)); }} catch (_) {{}}
+          location.reload();
+        }}
+      }}
+    }} catch (_) {{}}
+    busy = false;
+  }};
+  setInterval(check, 90000);
+  document.addEventListener("visibilitychange", () => {{ if (document.visibilityState === "visible") check(); }});
+}})();
 {script}</script>
 </main>
 </body>
 </html>
 """
 tmp = os.path.join(HERE, ".closed.html.tmp")
-open(tmp, "w").write(closed_page)
+open(tmp, "w").write(versioned(closed_page))
 os.replace(tmp, os.path.join(HERE, "closed.html"))
 print(f"wrote index.html: {len(rows)} ports, {len(other)} other + {len(data['perf_prs'])} perf + {len(data['integration_prs'])} integration PRs, {len(data.get('repos', []))} repos, {len(TICKETS)} tickets"
       + (f" (current #{CURRENT['id']})" if CURRENT else "") + f"; closed.html: {len(CLOSED)} closed tickets")
