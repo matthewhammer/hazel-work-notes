@@ -404,14 +404,6 @@
    "url": ""
   },
   {
-   "id": 59,
-   "area": "dashboard, series, Dress Up",
-   "added": "2026-10-14",
-   "text": "<b>Each repo's README links its public page, and each app links its repo.</b> For the Hazel Work Dashboard (matthewhammer/hazel-work-notes), the performance analysis series (matthewhammer/hazel-performance-analysis) and Messed Up Dress Up (matthewhammer/kids-choice-games): (1) the GitHub README links the public URL on matthewhammer.org, prominently, at the top; (2) the app itself links its GitHub repository: the dashboard, the series index, and Dress Up, where it can be discreet: a last chip after the final top-level menu panel chip. Dress Up's change waits for Matthew's go-ahead to deploy, like any other (no version bump or push until he says).",
-   "source": "Matthew, 2026-10-14",
-   "url": ""
-  },
-  {
    "id": 60,
    "area": "homepage, publishing",
    "added": "2026-10-14",
@@ -421,8 +413,8 @@
   }
  ],
  "next_ticket": 61,
- "current_ticket": 59,
- "current_note": "Live: the dashboard's README (new) links http://matthewhammer.org/hazel/work-dashboard/ first, and the outline links the repository (\"On GitHub\") and the series (\"Performance reports\"); the series' README links http://matthewhammer.org/hazel/performance-analysis/ first, with no localhost recipe, and the series index links the dashboard and the repository. /hazel/work-dashboard/closed.html now redirects too. Committed in kids-choice-games, not pushed (a push deploys the game): the README's play link at the top, no localhost recipe, and the quiet \"GitHub ↗\" chip after 🎵 Music (under Unreleased in VERSIONS.md). Next after this: ^ticket(53), ^report(14).",
+ "current_ticket": 53,
+ "current_note": "Writing ^report(14), \"what the page keeps from one edit to the next\", from ^ticket(45)'s findings. Numbers gathered: the live heap per edit (+92 MB per edit, 15 edits, #2597 at c4e411f9c2), the experiments' growth (memos at one entry 73, undo at 2 92, both 71, view cache off 83 MB per edit), every id-keyed table flat over 8 edits, and the 390 MB still live after four edits by source file (types and statics 119, ValueHash 98, terms 64, the worker's replies 46, layout 41). Next: the page and its figures, drafted locally for Matthew's review. ^ticket(59) is done: READMEs and repo links, Dress Up 0.0.23 live.",
  "closed_tickets": [
   {
    "id": 10,
@@ -800,10 +792,21 @@
    "status": "done",
    "outcome": "Published in ^report(12), in place, as if it had been there from the start (no dated update). Figure 1, under the opening: the body drawn from its tree, each part outlined in its branch's colour (body, arms, head, hands) and labelled with what places and shapes it; it is also the report's new thumbnail on the series index. Figure 3: the whole tree in four subtrees (body, arms, head, hands), each node with its transform and the sliders that change it. The figures are numbered 1 to 6 in reading order. Matthew reviewed it (\"looks good\") and said publish. Commits: hazel-performance-analysis f807c3c, matthewhammer.github.io edf105c.",
    "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/012/"
+  },
+  {
+   "id": 59,
+   "area": "dashboard, series, Dress Up",
+   "added": "2026-10-14",
+   "text": "<b>Each repo's README links its public page, and each app links its repo.</b> For the Hazel Work Dashboard (matthewhammer/hazel-work-notes), the performance analysis series (matthewhammer/hazel-performance-analysis) and Messed Up Dress Up (matthewhammer/kids-choice-games): (1) the GitHub README links the public URL on matthewhammer.org, prominently, at the top; (2) the app itself links its GitHub repository: the dashboard, the series index, and Dress Up, where it can be discreet: a last chip after the final top-level menu panel chip. Dress Up's change waits for Matthew's go-ahead to deploy, like any other (no version bump or push until he says).",
+   "source": "Matthew, 2026-10-14",
+   "url": "",
+   "closed": "2026-10-14",
+   "status": "done",
+   "outcome": "All three repos' READMEs link their public pages first, with no localhost recipe: the dashboard at http://matthewhammer.org/hazel/work-dashboard/ (new README; the address redirects to the repo's own site, keeping #ticket-N, and closed.html now redirects too), the series at http://matthewhammer.org/hazel/performance-analysis/, and Messed Up Dress Up at http://matthewhammer.org/kids-choice-games/dress-up/. Each app links its repository: the dashboard's outline (\"On GitHub\", beside \"Performance reports\"), the series index (beside its link back to the dashboard), and Dress Up's quiet \"GitHub ↗\" chip after 🎵 Music, released as 0.0.23 (tag dress-up-0.0.23) on Matthew's go-ahead and checked live.",
+   "outcome_url": "https://github.com/matthewhammer/kids-choice-games"
   }
  ],
  "queue": [
-  59,
   53,
   55,
   60,
@@ -811,6 +814,5 @@
   46,
   50
  ],
- "current_since": "2026-10-14T14:08:41-06:00",
- "current_waiting": "Matthew's go-ahead to push kids-choice-games (deploys Dress Up's GitHub chip with its README)"
+ "current_since": "2026-10-14T14:24:26-06:00"
 }
