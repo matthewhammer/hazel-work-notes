@@ -361,9 +361,33 @@
    "text": "<b>Messed Up Dress Up: postcards.</b> Save the friend and their scene as one picture, with a caption to write on it, ready to send.",
    "source": "Matthew, 2026-10-13, in chat (ideas from #40's doorways)",
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+  },
+  {
+   "id": 49,
+   "area": "dress up",
+   "added": "2026-10-14",
+   "text": "<b>Messed Up Dress Up: new places behind the camp, the falls and the clearing, and landing on the ground.</b> A side quest from N. (1) <b>Inside the tents:</b> at the camp site, every tent (up to the tents slider's most) gets an inside of its own, a background of its own, and a way to go in and out both ways by a new <b>spinning</b> teleport (today's doorways zoom, <code>flyInto</code>). (2) <b>The cave behind the waterfall:</b> not shown from outside; a background for it, and doorways both ways. (3) <b>The clearing's front path:</b> a path toward the front of the forest clearing (the bottom of the picture) leading to the trail system (the mountain trail, whose signpost reaches the falls and the camp), and a way back from the trail. Matthew's correction asked for <i>a background for it, and portals back and forth</i>: read here as a scene of its own for the path (clearing to path to trail, both ways); if a direct doorway was meant, drop the middle scene. (4) <b>Land on the ground:</b> arriving at the camp site, never in the fire; at the waterfall, never in the water. Pick ground spots per place for now; the general version (a shape per background for where feet cannot stand) is #50.",
+   "source": "N (via Matthew), 2026-10-14",
+   "url": ""
+  },
+  {
+   "id": 50,
+   "area": "dress up",
+   "added": "2026-10-14",
+   "text": "<b>Messed Up Dress Up: where feet can stand, per background (later, not now).</b> Split from #49. Each background gets a collision shape for the places it makes no sense to stand: rivers, the pool under the falls, the campfire, and the like. Arrivals (and later moves and drags) use it to keep a person's feet on the ground. #49 hand-picks ground spots for the camp and the falls in the meantime.",
+   "source": "N (via Matthew), 2026-10-14",
+   "url": ""
+  },
+  {
+   "id": 51,
+   "area": "dress up",
+   "added": "2026-10-14",
+   "text": "<b>Messed Up Dress Up: a visibility panel for each person.</b> A new control panel per person, <b>visibility</b>: a slider for each separately controlled body part, as a group, for how see-through it is: head, eyes, hair, shirt, pants, feet, hands. Above the sliders, three chips that set every part at once: <b>invisible</b> (all parts gone), <b>visible</b> (all parts shown), <b>ghost</b> (every part half visible). Making the shirt invisible makes the <b>torso</b> invisible: this turns body parts ghostly or invisible, it never takes clothes off to show a body underneath. The same holds for pants and the legs, feet and shoes, hands and gloves.",
+   "source": "N (via Matthew), 2026-10-14",
+   "url": ""
   }
  ],
- "next_ticket": 49,
+ "next_ticket": 52,
  "current_ticket": 45,
  "current_note": "Measured in headless Chromium (precise memory, forced GC), Full Body, the shirt-width slider set 15 times: on #2597's build (8311, c4e411f9c2, memos bounded 16/8) the live heap grows about 85-95 MB per edit (+1,388 MB after 15); with every whole-program memo held to ONE entry (local branch memo1-test, served on 8318) it still grows about 70 MB per edit (+1,101 MB), and each redraw takes 18-31 s instead of 2-7 s. So in the browser the memos are not what keeps each edit alive, and smaller bounds are no fix. Now: finding what does (the undo history is the first suspect).",
  "closed_tickets": [
