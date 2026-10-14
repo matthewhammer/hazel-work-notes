@@ -475,6 +475,7 @@ page = f"""<!doctype html>
 <p class="outline-label">Hazel Work Dashboard</p>
 <ul class="outline-out">
 <li><a href="{SERIES_LOCAL}">Performance reports&nbsp;<span aria-hidden="true">↗</span></a></li>
+<li><a href="https://github.com/matthewhammer/hazel-work-notes">On GitHub&nbsp;<span aria-hidden="true">↗</span></a></li>
 </ul>
 <ul id="outline-list">
 {outline}
