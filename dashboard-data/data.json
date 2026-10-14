@@ -428,10 +428,21 @@
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
- "next_ticket": 77,
+ "next_ticket": 78,
  "current_ticket": 57,
- "current_note": "✋❔ Waiting on Matthew to publish Dress Up 0.0.30 (cut and tagged locally: twinkling stars of many shapes at the camp site ^ticket(75), fairy wings flapping through a drag ^ticket(76)). My push is refused as a production deploy; to publish run: git -C ~/kids-choice-games push origin HEAD dress-up-0.0.30. Meanwhile: the fairy forest (^ticket(57)).",
+ "current_note": "Dress Up 0.0.30 is LIVE (twinkling stars, a fairy who flies). Since then, under Unreleased: the fairy's wings can flap with LFO A, B or C (^ticket(77)). Now: the fairy forest (^ticket(57)).",
  "closed_tickets": [
+  {
+   "id": 77,
+   "area": "Dress Up",
+   "added": "2026-10-14",
+   "closed": "2026-10-14",
+   "status": "done",
+   "text": "<b>Dress Up: an LFO chip for the fairy's wings</b> (no LFO, A, B or C).",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
+   "outcome": "DONE 2026-10-14 (local commit in kids-choice-games, under Unreleased; ships on Matthew's go-ahead). With an LFO the wings flap once per LFO cycle in its wave's shape, in time with the music (lfoNow, shared with the visibility LFOs), swinging 8 to 36 degrees with depth (15 at the usual depth); mixer changes reach the wings at once (checked: LFO B to 4 beats, saw, full depth turned a 1.43 s sine flap into a 2.86 s saw); still flapping through a drag, at no measurable cost."
+  },
   {
    "id": 75,
    "area": "Dress Up",
@@ -441,7 +452,7 @@
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
    "status": "done",
    "closed": "2026-10-14",
-   "outcome": "DONE 2026-10-14, in Dress Up 0.0.30 (commit 3729675; version 2df87d4, tag dress-up-0.0.30; waiting for Matthew to push). Was: 70 white dots, a quarter blinking. Now one helper (starsSvg) for the camp site's sky and the night through the tent's door: shape chips (dots, four, five, six, eight points, or a mix, the default), average size 25-2000%, average brightness (the brightest glow), twinkle 0-100 (the big bright ones turn, scale and glimmer; small ones blink). The moon covers the stars behind it. Measured: idle 60 fps with twinkle 100 or 0; a drag's frames and redraws the same either way."
+   "outcome": "DONE 2026-10-14, in Dress Up 0.0.30 (commit 3729675; version 2df87d4, tag dress-up-0.0.30; LIVE: Matthew pushed it, Pages deployed, checked on the live site in a fresh browser profile). Was: 70 white dots, a quarter blinking. Now one helper (starsSvg) for the camp site's sky and the night through the tent's door: shape chips (dots, four, five, six, eight points, or a mix, the default), average size 25-2000%, average brightness (the brightest glow), twinkle 0-100 (the big bright ones turn, scale and glimmer; small ones blink). The moon covers the stars behind it. Measured: idle 60 fps with twinkle 100 or 0; a drag's frames and redraws the same either way."
   },
   {
    "id": 76,
@@ -452,7 +463,7 @@
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
    "status": "done",
    "closed": "2026-10-14",
-   "outcome": "DONE 2026-10-14 (in Dress Up 0.0.30, commit ba3f668; waiting for Matthew to push). The wings' flap and the sparkle wings' twinkle are CSS animations now, which the drag's pause of SVG animations leaves running, started in step with the clock at each redraw. Measured (headless Chrome, 60-move drags, on/off alternating): the wing angle sweeps 0-9 degrees while the SVG animations are paused; frames 16.7 ms median either way; redraw medians overlap (2.2-2.8 ms with, 2.1-2.6 without, four runs each in the witch's woods): no measurable cost."
+   "outcome": "DONE 2026-10-14 (in Dress Up 0.0.30, commit ba3f668; LIVE: Matthew pushed it, Pages deployed, checked on the live site in a fresh browser profile). The wings' flap and the sparkle wings' twinkle are CSS animations now, which the drag's pause of SVG animations leaves running, started in step with the clock at each redraw. Measured (headless Chrome, 60-move drags, on/off alternating): the wing angle sweeps 0-9 degrees while the SVG animations are paused; frames 16.7 ms median either way; redraw medians overlap (2.2-2.8 ms with, 2.1-2.6 without, four runs each in the witch's woods): no measurable cost."
   },
   {
    "id": 74,
@@ -993,5 +1004,5 @@
   46,
   50
  ],
- "current_since": "2026-10-14T17:31-06:00"
+ "current_since": "2026-10-14T17:44-06:00"
 }
