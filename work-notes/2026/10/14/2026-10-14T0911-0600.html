@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Work notes, 2026-10-13 evening to 2026-10-14 morning</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; }
+  }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; }
+  h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; }
+  code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.92em; }
+  a { color: var(--accent); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.93em; }
+  th, td { border-bottom: 1px solid var(--line); padding: 5px 6px; text-align: left; vertical-align: top; }
+  li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Work notes, 2026-10-13 evening to 2026-10-14 morning</h1>
+<p class="sub">Matthew and Claude, written at 2026-10-14 09:11 MDT before Matthew shut the laptop down to move it. What was done, where things are, and what is next. The tickets are on the dashboard (<code>#N</code>); "issue NNN" is the <a href="http://matthewhammer.org/hazel/performance-analysis/">performance analysis series</a>.</p>
+
+<h2 id="state">Where things stand at shutdown</h2>
+<ul>
+<li>No current ticket; nothing running; every repository committed and pushed (kids-choice-games, hazel-performance-analysis, matthewhammer.github.io, hazel-work-notes, and the #2597 and #2635 worktrees).</li>
+<li>Local servers stop with the shutdown; restart them when wanted: 8000 (this dashboard), 8131 (the series preview), 8133 (Messed Up Dress Up's local copy), 8311 (#2597, rebuilt at <code>c4e411f9c2</code>), 8341 (#2635; its bundle predates <code>9fb2bdf067</code>, which changes the app: rebuild before trying it).</li>
+<li>The dashboard's publishing cron resumes on boot (below).</li>
+</ul>
+
+<h2 id="dashboard">The dashboard publishes within a minute of a change</h2>
+<p>Matthew found the public copy stale (I had closed tickets without the by-hand publish the protocol asked for). Now cron runs <code>dashboard/publish.py</code> every minute: it publishes when <code>data.json</code> changed since the last publish, and on the quarter hour for what comes from GitHub; a lock keeps runs from overlapping (<code>afe0286</code>, <code>ded5555</code>; in VERSIONS.md under Unreleased).</p>
+
+<h2 id="t4">#4: #2597's CI, red since 2026-10-11; green again</h2>
+<ul>
+<li><b>Quick job, out of node's 4 GB heap:</b> <code>Statics.mk</code> and MakeTerm's three memos kept the last 1000 programs each, so the test process kept every test's programs; the Dress Up slides made each one big. Proof: IncrSlides alone, live heap after full GCs 456/811/1279/1647 MB as it was, flat near 450–590 with the memos bounded.</li>
+<li><b>Full job, out of time:</b> the recovering parser on the big slides in the corpus tests (MenhirCorpus etc.): 452 s for <code>full-body.hz</code> alone on the laptop.</li>
+<li><b>Pushed to #2597</b> (<code>684a75cb2f..c4e411f9c2</code>): <code>5d576cc479</code> Statics.mk keeps 16 programs and MakeTerm's memos 8, as #2469 does; <code>8798d64213</code> programs over 25 KB get the recovering-parser checks only in the weekly Extended run (as #2469 already does for "Mega" slides); <code>c4e411f9c2</code> the big slides' Unproject cases in the full tests only. CI: quick 8.5 min, full 53 min, green.</li>
+<li><b>Pushed to #2635</b> (<code>..41897ec3a5</code>): the last two only (#2469 had already bounded its memos). Its jobs now finish, red only for its 8 known failures (DefStaticsParity, Editing.TableDecorations, LabelBench, ModRoot ×4, TypeDeps).</li>
+<li>Calibration for estimating CI from the laptop: quick about 1.25×, full about 1.9× (the green commit's suite, timed on both).</li>
+<li>A correction made on the way: I first posted "full 36 min with the fix alone"; that run had a 30 KB gate. Without the gate the full suite runs past 90 min.</li>
+</ul>
+
+<h2 id="t7">#7 and issue 013: the release's request</h2>
+<ul>
+<li>Measured in node: a release's request cost most in building <code>EvalInfo</code>'s projection (it walked both statics maps, 13–14 ms per release on Full Body), not in hashing (1–4 ms).</li>
+<li><b>Pushed to #2635</b> (<code>..9fb2bdf067</code>): <code>043508921b</code> DefStatics records the keys it touched and <code>EvalInfo</code> updates at those keys; <code>9fb2bdf067</code> DefStatics keeps an item's patched spine root when nothing it is made from changed. CI: the same 8 known failures.</li>
+<li><b>Issue 013, "Telling the Request What Changed", published</b> (<a href="http://matthewhammer.org/hazel/performance-analysis/013/">link</a>), with a dated note in issue 001. Key finding: the projection now takes under 1 ms on every slide; what is left grows with how far down the program the slider sits (every item above the edit has a spine root carrying the whole program below it). Linked from #2609 (finding 30), #2635, #2597 and #2469 (a progress note, no @-mention, offering the ports).</li>
+<li>Tried and dropped: keeping <code>EvalInfo</code> entries equal by content (fewer entries re-added, but the request got slower).</li>
+<li>Still open in #7: the commit's redraw.</li>
+</ul>
+
+<h2 id="branches">Local-only branches (committed, not pushed)</h2>
+<table>
+<tr><th>Where</th><th>Branch</th><th>What</th></tr>
+<tr><td><code>~/hazel-port-2469</code></td><td><code>port-2469-t7</code></td><td>The three steps carried to #2469's head <code>c1e4aeee4a</code>: <code>128f3f303d</code>, <code>cdb799a376</code>, <code>474b1e050e</code>. Its quick tests pass whole. Offered on #2469; push only if wanted.</td></tr>
+<tr><td><code>~/hazel-ci-heap</code></td><td><code>ci-heap-4</code>, <code>ci-heap-4-gate</code>, <code>ci-heap-4-gate-slow</code>, <code>ci-heap-4-bounds</code>, <code>ci-heap-4-pick</code></td><td>#4's experiments; <code>ci-heap-4-pick</code> is what was pushed to #2597.</td></tr>
+<tr><td><code>~/hazel-ci-heap</code></td><td><code>memo-growth-experiment</code> (<code>62aaaa28e4</code>)</td><td>#45's node experiment: about 82 MB kept per edit of Full Body with 1000-entry memos.</td></tr>
+<tr><td><code>~/hazel-ci-heap</code></td><td><code>parser-get-base-memo</code> (<code>0825830190</code>)</td><td>#46's try: <code>Form.Molds.get_base</code> remembered, about 15% faster recovering parse.</td></tr>
+<tr><td><code>~/hazel-ci-heap-2635</code></td><td><code>request-hash-probe</code> (<code>4f0e261652</code>), <code>data-2635-*</code></td><td>#7's and issue 013's probes.</td></tr>
+<tr><td><code>~/hazel-ci-green</code></td><td>detached at <code>5286ba3b10</code></td><td>The last green #2597, for calibration; can be removed.</td></tr>
+</table>
+
+<h2 id="tickets">Tickets</h2>
+<ul>
+<li>Closed: #4 (done), #5 (superseded, revised first), #47 (issue 013 published), #48 (Messed Up Dress Up 0.0.20).</li>
+<li>Opened: #45 (the editor's statics memo kept about 82 MB per edit on #2597, in node; #2469's bounds, now pushed to #2597, should fix it; the browser check is still open), #46 (the recovering parser on the playground slides), #47, #48.</li>
+</ul>
+
+<h2 id="dressup">Messed Up Dress Up 0.0.20 (side quest, ended)</h2>
+<p>Live at <a href="http://matthewhammer.org/kids-choice-games/dress-up/">matthewhammer.org/kids-choice-games/dress-up</a> (<code>9cfa091</code>, tag <code>dress-up-0.0.20</code>): music by kind (eight kinds, a row of kinds then its tunes); three classic beats of our own, about three minutes each, every player in front in turn; ➖ | 🎵 interval | ➕ under the transpose slider and on each pitched channel of the mixing board. Tested at volume 0 only: the mix and the feel are for Matthew's ears.</p>
+
+<h2 id="next">Next</h2>
+<ul>
+<li>The critical path: user-defined livelits (#2597, #2635), per Cyrus.</li>
+<li>Performance: #45 (confirm in the browser on #2635 too), #46, #7's redraw half; issue 013's What next (a spine root need not carry the whole program for the request).</li>
+<li>After the move: restart the local servers wanted; rebuild 8341's bundle.</li>
+</ul>
+</main>
+</body>
+</html>
