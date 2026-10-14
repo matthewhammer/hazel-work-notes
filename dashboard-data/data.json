@@ -235,14 +235,6 @@
    "url": "http://localhost:8131/#now"
   },
   {
-   "id": 10,
-   "area": "performance",
-   "text": "Option C from issue 005: remember <code>HazelDOM</code>'s virtual DOM per Html subterm, so an unchanged part of a view is not converted again and virtual_dom's diff skips it. PARKED 2026-10-12: measured, it would save at most about 2% of the main thread in the woods. A profiled figure move (2 runs, 4.4 and 4.1 s): Html to virtual DOM 1.1%, diff and patch 0.9%, browser layout and paint 1.4%, GC 21%, evaluating the view about 50% (about 69% with its GC), the app's own update machinery about 25%. On Kids' Choice it was 8 of 104 ms (issue 001). It would also need a content hash as its key, since the woods' shapes are fresh objects each time, and handlers that find the current state at event time. The lever is evaluating the view: #1, #2, #18.",
-   "source": "issue 005",
-   "url": "http://localhost:8131/005/#where",
-   "added": "2026-10-12"
-  },
-  {
    "id": 12,
    "area": "performance",
    "text": "Measure the size of view samples on the wire (not trimmed as the result is) and the memory of the shared-value tables and per-object hashes.",
@@ -375,6 +367,17 @@
  "current_ticket": null,
  "current_note": "",
  "closed_tickets": [
+  {
+   "id": 10,
+   "area": "performance",
+   "text": "Option C from issue 005: remember <code>HazelDOM</code>'s virtual DOM per Html subterm, so an unchanged part of a view is not converted again and virtual_dom's diff skips it. PARKED 2026-10-12: measured, it would save at most about 2% of the main thread in the woods. A profiled figure move (2 runs, 4.4 and 4.1 s): Html to virtual DOM 1.1%, diff and patch 0.9%, browser layout and paint 1.4%, GC 21%, evaluating the view about 50% (about 69% with its GC), the app's own update machinery about 25%. On Kids' Choice it was 8 of 104 ms (issue 001). It would also need a content hash as its key, since the woods' shapes are fresh objects each time, and handlers that find the current state at event time. The lever is evaluating the view: #1, #2, #18.",
+   "source": "issue 005",
+   "url": "http://localhost:8131/005/#where",
+   "added": "2026-10-12",
+   "closed": "2026-10-14",
+   "status": "superseded",
+   "outcome": "Superseded by #18. Measured 2026-10-12, remembering the virtual DOM per Html subterm would save at most about 2% of the main thread on a woods figure move; evaluating the view is about 69%, which #18 (evaluating each livelit's view in the worker) goes after. Closed on Matthew's word, 2026-10-14."
+  },
   {
    "id": 48,
    "area": "dress up",
@@ -684,8 +687,8 @@
   }
  ],
  "queue": [
-  18,
   45,
+  18,
   46
  ]
 }
