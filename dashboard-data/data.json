@@ -373,7 +373,7 @@
  ],
  "next_ticket": 53,
  "current_ticket": 45,
- "current_note": "Side quest ended: Messed Up Dress Up 0.0.21 and 0.0.22 deployed (#49, #51, #52). Back to #45, first in the queue: what keeps 70-95 MB per edit of Full Body in a #2597 tab (neither the memos nor the undo history; findings in the ticket). Next: two heap snapshots a few edits apart and the retainers of what grew.",
+ "current_note": "Measuring in headless Chromium over the DevTools protocol (node, no chromedriver). V8's sampling heap profiler over 4 edits of Full Body on #2597 (8311): +345 MB, and what stays was allocated by ValueHash's hash memo (100 MB, a symptom: a WeakMap keeps a hash only while its object lives), the worker's replies unmarshaled (41 MB), Measured's shards (14 MB), statics and types: whole versions of the editor's state, not one cache. A census of the tab's Maps rules out ShareCodec's tables (bounded at 200k entries, reset mid-run while the heap kept growing). Now: two heap snapshots a few edits apart, streamed into typed arrays, and the old objects that hold the new memory.",
  "closed_tickets": [
   {
    "id": 10,
