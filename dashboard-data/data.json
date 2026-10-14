@@ -418,9 +418,17 @@
    "text": "<b>Dress Up: a \"full body\" master slider in the 👻 Visibility tab</b> (a follow-up to ^ticket(51), the invisible main character). One more slider, \"full body\", above the seven parts' sliders (head, eyes, hair, shirt, pants, feet, hands) and below the \"every part at once\" chips (invisible, visible, ghost): moving it moves the others with it, globally. Open choice, for Matthew: whether every part follows by the same amount, keeping their differences (clamped at 0 and 100), or is set to the master's value, as the chips do. If ^ticket(57) lands first, the master could take one of the three shared LFOs, as each part will. Changes go under Unreleased; no version bump or push until Matthew says.",
    "source": "Matthew, 2026-10-14 (with a screenshot of the Visibility tab, 0.0.23)",
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+  },
+  {
+   "id": 62,
+   "area": "Dress Up (performance)",
+   "added": "2026-10-14",
+   "text": "<b>Dress Up performance fix: dragging the friend where the cauldron's fumes turn</b> (outside the witch's hut and inside it). The double-helix fumes make a drag slow enough to be a real UX problem. <b>Likely why</b> (from the code, not yet measured): every pointermove calls <code>changed()</code>, whose <code>draw()</code> replaces the whole picture (<code>pic.innerHTML = svg</code>); <code>helixSvg</code> draws each strand as short segments, about a hundred in all, each with four SMIL <code>&lt;animate&gt;</code>s on x1, x2, stroke-width and stroke-opacity, so every move re-parses them and restarts every animation, and the geometry they animate is repainted each frame. <b>Matthew's idea:</b> pause animations while dragging (<code>pic.pauseAnimations()</code> on pointerdown, <code>unpauseAnimations()</code> on letting go). <b>Other ideas:</b> draw at most once per animation frame however many pointermoves arrive; on a figure drag, move only the friend (its group's transform) and leave the scene's DOM alone, so the fumes neither restart nor re-parse; keep the scene in a group of its own that is replaced only when its settings change; make the fumes cheaper (fewer segments, or turn a group with a transform the compositor can animate). <b>Measure first</b> (performance before features): a drag's frame times in both scenes, before and after, against a scene without fumes. Changes go under Unreleased; no version bump or push until Matthew says.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
- "next_ticket": 62,
+ "next_ticket": 63,
  "current_ticket": 53,
  "current_note": "Writing ^report(14), \"what the page keeps from one edit to the next\", from ^ticket(45)'s findings. Numbers gathered: the live heap per edit (+92 MB per edit, 15 edits, #2597 at c4e411f9c2), the experiments' growth (memos at one entry 73, undo at 2 92, both 71, view cache off 83 MB per edit), every id-keyed table flat over 8 edits, and the 390 MB still live after four edits by source file (types and statics 119, ValueHash 98, terms 64, the worker's replies 46, layout 41). Next: the page and its figures, drafted locally for Matthew's review. ^ticket(59) is done: READMEs and repo links, Dress Up 0.0.23 live.",
  "closed_tickets": [
@@ -816,6 +824,8 @@
  ],
  "queue": [
   53,
+  61,
+  62,
   55,
   60,
   18,
