@@ -410,11 +410,19 @@
    "text": "<b>Each repo's README links its public page, and each app links its repo.</b> For the Hazel Work Dashboard (matthewhammer/hazel-work-notes), the performance analysis series (matthewhammer/hazel-performance-analysis) and Messed Up Dress Up (matthewhammer/kids-choice-games): (1) the GitHub README links the public URL on matthewhammer.org, prominently, at the top; (2) the app itself links its GitHub repository: the dashboard, the series index, and Dress Up, where it can be discreet: a last chip after the final top-level menu panel chip. Dress Up's change waits for Matthew's go-ahead to deploy, like any other (no version bump or push until he says).",
    "source": "Matthew, 2026-10-14",
    "url": ""
+  },
+  {
+   "id": 60,
+   "area": "homepage, publishing",
+   "added": "2026-10-14",
+   "text": "<b>Serve matthewhammer.org over HTTPS.</b> Today https://matthewhammer.org/ fails: it presents GitHub's own certificate (<code>*.github.com</code>, Sectigo), not one for matthewhammer.org, so browsers warn and agents' fetches fail; everything is linked as HTTP. <b>The blocker, checked 2026-10-14:</b> the apex A record still points at <code>192.30.252.153</code>, GitHub Pages' address from before 2018. GitHub serves the site there over HTTP but will not issue a certificate for a domain pointed at it; the Pages settings have no certificate and <code>https_enforced: false</code>. <code>www</code> is fine: a CNAME to matthewhammer.github.io, on the current addresses. The domain's nameservers are <code>ns-cloud-c1..c4.googledomains.com</code> (Google Domains, now Squarespace Domains), so the DNS change is Matthew's, in his registrar's account. <b>Steps:</b> (1) Matthew replaces the apex A record with GitHub Pages' four, <code>185.199.108.153</code>, <code>185.199.109.153</code>, <code>185.199.110.153</code>, <code>185.199.111.153</code> (and may add the four AAAA, <code>2606:50c0:8000::153</code> to <code>8003::153</code>); (2) once that resolves, GitHub provisions a certificate for the custom domain, which can take up to a day (re-saving the custom domain in the homepage repo's Pages settings restarts it if it stalls); (3) turn on Enforce HTTPS for the homepage and the project sites under it (hazel-work-notes, kids-choice-games); (4) check every page for mixed content: anything a page loads by an absolute <code>http://matthewhammer.org/</code> URL (the series' live hover cards read report pages; the dashboard's cards too) is blocked from an HTTPS page, so make those relative or HTTPS; (5) switch the links we publish to HTTPS: READMEs, the series' agent instructions (\"HTTP only\"), the dashboard, the reports, #2609's ^report links; old HTTP links keep working, since GitHub redirects them once HTTPS is enforced.",
+   "source": "Matthew, 2026-10-14",
+   "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages"
   }
  ],
- "next_ticket": 60,
+ "next_ticket": 61,
  "current_ticket": 59,
- "current_note": "READMEs and repo links for the dashboard, the series and Dress Up. ^ticket(53) (^report(14)) is paused right behind it: its numbers are gathered (heap per edit, the experiments, the table counts, the live heap by source file) and the page is next.",
+ "current_note": "Live: the dashboard's README (new) links http://matthewhammer.org/hazel/work-dashboard/ first, and the outline links the repository (\"On GitHub\") and the series (\"Performance reports\"); the series' README links http://matthewhammer.org/hazel/performance-analysis/ first, with no localhost recipe, and the series index links the dashboard and the repository. /hazel/work-dashboard/closed.html now redirects too. Committed in kids-choice-games, not pushed (a push deploys the game): the README's play link at the top, no localhost recipe, and the quiet \"GitHub ↗\" chip after 🎵 Music (under Unreleased in VERSIONS.md). Next after this: ^ticket(53), ^report(14).",
  "closed_tickets": [
   {
    "id": 10,
@@ -798,9 +806,11 @@
   59,
   53,
   55,
+  60,
   18,
   46,
   50
  ],
- "current_since": "2026-10-14T14:08:41-06:00"
+ "current_since": "2026-10-14T14:08:41-06:00",
+ "current_waiting": "Matthew's go-ahead to push kids-choice-games (deploys Dress Up's GitHub chip with its README)"
 }
