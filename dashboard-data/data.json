@@ -214,10 +214,18 @@
  ],
  "tickets": [
   {
-   "id": 73,
+   "id": 76,
    "area": "Dress Up",
    "added": "2026-10-14",
-   "text": "<b>Dress Up: no skeletons unless asked for.</b> The dungeon rooms are too scary for M. By default no skulls or skeletons anywhere in the castles; each room has its own slider to add them, from 0 up to as many as that room's drawing has (the dungeon 2, the deep dungeon 4). Changes go under Unreleased; no version bump or push until Matthew says.",
+   "text": "<b>Dress Up: a fairy's wings keep flapping during a drag</b>, so a player can pretend to fly. A special exception to pausing the picture's animations while dragging (^ticket(62)), if it costs no noticeable performance. Changes go under Unreleased; no version bump or push until Matthew says.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+  },
+  {
+   "id": 75,
+   "area": "Dress Up",
+   "added": "2026-10-14",
+   "text": "<b>Dress Up: the camp site's stars at night.</b> New controls: (1) <b>the stars' average size</b>, up to huge, and their <b>shape</b>: today they are plain white dots (70 circles, 0.8 to 2.2 units across, a quarter of them fading in and out); make them many-pointed stars from a palette of nice-looking shapes; (2) <b>their average brightness</b>; (3) <b>twinkling:</b> some of the large, bright stars spin slightly and vary their size and brightness, with a slider for how much they twinkle. (The tent's door shows 14 more dots of night sky; they should match.) Changes go under Unreleased; no version bump or push until Matthew says.",
    "source": "Matthew, 2026-10-14",
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   },
@@ -434,6 +442,22 @@
    "text": "<b>Dress Up: a ghost costume</b> that looks like the 👻 emoji but full sized: the friend under a rounded sheet with a wavy hem. One costume, with a few controls (Matthew, 2026-10-14): <b>how ragged</b> its hem and edges are; <b>how many eyes</b>: none, one, two or three (the third in the middle of the forehead, like the three-eyed smiley face on the poster for the movie <i>Evolution</i>); <b>the sheet's color</b>, off-white by default; and <b>the eyes drawn in the friend's own eye style</b> (the face tab's eyes, as the person has them). <b>A \"hide eyes\" toggle</b> (Matthew, 2026-10-14), off by default: when on, the ghost's eyes are plain black circles, the emoji's eye holes, instead of the friend's own eyes. <b>Its see-through-ness</b> (Matthew, 2026-10-14): the ghost's controls include the visibility panel's all-at-once controls (the every-part chips and the full-body slider), the same settings, so the whole ghost can be made see-through from its own panel, with an LFO option too (the full-body slider's LFO chip: every part follows one LFO). Changes go under Unreleased; no version bump or push until Matthew says.",
    "source": "Matthew, 2026-10-14",
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+  }
+ ],
+ "next_ticket": 77,
+ "current_ticket": 76,
+ "current_note": "Dress Up 0.0.29 is LIVE. Now: fairy wings flapping during a drag (^ticket(76)): moved from SVG to CSS animation, so the drag's pause does not stop them; timing drags next. Then the camp site's stars (^ticket(75)).",
+ "closed_tickets": [
+  {
+   "id": 74,
+   "area": "Dress Up",
+   "added": "2026-10-14",
+   "text": "<b>Dress Up: the bangs in front.</b> A bug since the first version: the whole hairdo is drawn before the head, so its front (the fringe over the forehead) is hidden behind the face (seen with the head made see-through). The order, back to front, should be: the back of the hair, the face, the eyes, then the front of the hair. Changes go under Unreleased; no version bump or push until Matthew says.",
+   "source": "Matthew, 2026-10-14 (two screenshots: the parting's outline seen through a see-through head)",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
+   "status": "done",
+   "closed": "2026-10-14",
+   "outcome": "DONE 2026-10-14, LIVE in Dress Up 0.0.29 (commit 57d965e; version b065648, tag dress-up-0.0.29; Matthew pushed it, Pages deployed, checked on the live site). The front of the hair is drawn again after the face, eyes and brows: the hairdo clipped to the head and a fringe line, locks of its kind (pointed, round, zigzag), outlined only over hair (not across a long hairdo's parting), split along the crack when the head explodes. A bangs slider (0 = none, the old look; 100 = to the brows; up to 300). Cost: about 0.4 ms more per redraw on a woods drag (2.3 to 2.7 ms median, two alternating runs each), still 60 fps with no dropped frames."
   },
   {
    "id": 72,
@@ -441,13 +465,22 @@
    "added": "2026-10-14",
    "text": "<b>Dress Up: castle colors.</b> (1) <b>Banners and flags in two colors</b>, chosen for each castle by its owner, used together in one of three ways, picked by chips: alternating (each banner and flag solid, the two colors in turn), stripes, or checkers. (2) <b>The owner's letter always readable:</b> its color chosen for contrast with the banner's (today M's gold letter on a gold banner does not show). (3) <b>A roof color</b> control for each castle. Changes go under Unreleased; no version bump or push until Matthew says.",
    "source": "Matthew, 2026-10-14 (with a screenshot of M's castle up close)",
-   "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
-  }
- ],
- "next_ticket": 74,
- "current_ticket": 73,
- "current_note": "Dungeons drawn without skeletons by default; a 0-to-max slider per room. Checking the drawings now, then back to ^ticket(72) (castle colors, half done).",
- "closed_tickets": [
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
+   "status": "done",
+   "closed": "2026-10-14",
+   "outcome": "DONE 2026-10-14 (LIVE in Dress Up 0.0.29, commit ca17c47, deployed 2026-10-14): two flag colors per castle with three chips (in turn, stripes, checkers), used by the keep and tower flags, wall banners, road pennants, the clearing's far view and the king's room (banners and shields); the letter inked for contrast with an outline, on a badge on patterned banners, so M's letter shows on gold; a roof color per castle."
+  },
+  {
+   "id": 73,
+   "area": "Dress Up",
+   "added": "2026-10-14",
+   "text": "<b>Dress Up: no skeletons unless asked for.</b> The dungeon rooms are too scary for M. By default no skulls or skeletons anywhere in the castles; each room has its own slider to add them, from 0 up to as many as that room's drawing has (the dungeon 2, the deep dungeon 4). Changes go under Unreleased; no version bump or push until Matthew says.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
+   "status": "done",
+   "closed": "2026-10-14",
+   "outcome": "DONE 2026-10-14 (LIVE in Dress Up 0.0.29, commit ca17c47, deployed 2026-10-14): no skeletons or skulls by default; each dungeon room has its own slider, 0 to its drawing's most (2 in the dungeon, 4 in the deep dungeon), least scary first; never rolled by Surprise me. With none, chains hang empty and the candle stands on a stone; the dungeon's sign is a key, not a skull; the trap room's bone became a dropped sword. Checked in a muted headless Chrome: each count drawn, sliders only for dungeon rooms (none in M's castle)."
+  },
   {
    "id": 10,
    "area": "performance",
@@ -947,7 +980,7 @@
   }
  ],
  "queue": [
-  72,
+  75,
   57,
   71,
   55,
@@ -956,5 +989,5 @@
   46,
   50
  ],
- "current_since": "2026-10-14T16:26:58-06:00"
+ "current_since": "2026-10-14T17:21-06:00"
 }
