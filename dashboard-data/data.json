@@ -373,7 +373,7 @@
  ],
  "next_ticket": 45,
  "current_ticket": 4,
- "current_note": "#4 (his go, 2026-10-13 evening): #2597's CI, red since 2026-10-11. Both jobs of the last run (684a75cb2f) TIME OUT with no failing test: quick at 20 min, full at 100 min. Locally the quick suite runs out of heap (4 GB) at 521 s. Found: the heap kept from test to test. Run alone, IncrSlides' live heap after each full GC goes 456, 811, 1279, 1647 MB: each slide test keeps 120-200 MB. Suspect: Statics.mk and MakeTerm's memos keep the last 1000 programs each (Core.Memo, cache_size_bound=1000, as on dev since 2025), and the Dress Up slides made each program big. Now: an experiment worktree (~/hazel-ci-heap, local branch ci-heap-4, not pushed) with those bounds at 8, building. Matthew is away from 21:00 MDT; nothing goes to #2597 without him (✋❔ when I need him).",
+ "current_note": "#4 (his go, 2026-10-13 evening): #2597's CI, red since 2026-10-11. Both jobs of the last run (684a75cb2f) TIME OUT with no failing test: quick at 20 min, full at 100 min. Locally the quick suite runs out of heap (4 GB) at 521 s. CAUSE, measured: the whole-program memos (Statics.mk, MakeTerm's three; Core.Memo, last 1000 programs each, as on dev since 2025) keep every test's programs alive, and the Dress Up slides made each program big. IncrSlides alone, live heap after each full GC: 456, 811, 1279, 1647 MB as is; 445, 527, 542, 593 MB with the memos holding 1. Fix being tried (local branch ci-heap-4 in ~/hazel-ci-heap, not pushed): Util.ResettableMemo, which the test runner empties before each test; the editor's memos are unchanged. Running the whole quick suite on it now. Matthew is away from 21:00 MDT; nothing goes to #2597 without him (✋❔ when I need him).",
  "closed_tickets": [
   {
    "id": 1,
