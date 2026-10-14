@@ -8,7 +8,7 @@ Read this before working with Matthew on Hazel. Keep the dashboard current as yo
 
 **This repository is our working record, for the two of us:** what is served where, how the PRs stand, what to do next, and the dashboard's history. It is written in shorthand, for people who were there.
 
-**The Hazel performance analysis series is separate,** in its own repository, [`hazel-performance-analysis`](https://github.com/matthewhammer/hazel-performance-analysis), with its own agent instructions. It is written for readers outside the loop: Cyrus, the Hazel team and others. The dashboard links to the series ("issue 007"), but working notes never go into an issue. When work here answers a question worth sharing, that answer becomes an issue there.
+**The Hazel performance analysis series is separate,** in its own repository, [`hazel-performance-analysis`](https://github.com/matthewhammer/hazel-performance-analysis), with its own agent instructions. It is written for readers outside the loop: Cyrus, the Hazel team and others. The dashboard links to the series (`^report(7)`), but working notes never go into a report. When work here answers a question worth sharing, that answer becomes a report there.
 
 ## Where things are
 
@@ -20,7 +20,7 @@ Read this before working with Matthew on Hazel. Keep the dashboard current as yo
 | The code | `publish.py`, `update.py` and `log_notes.py` live in this repository's `dashboard/` folder. `~/localhost-index/publish.py`, `~/localhost-index/update.py` and `~/localhost-index/log_notes.py` are symlinks to them, so the scripts still read and write `~/localhost-index`. |
 | The history | This repository: `~/hazel-work-notes`, pushed to `matthewhammer/hazel-work-notes` (public). `~/localhost-index/log_notes.py` copies the page here verbatim, and `data.json` to `dashboard-data/data.json`, so the tickets, closed ones included, have a history too. Browse it at http://localhost:8000/notes/, or clone it. GitHub shows HTML as source. |
 | The public copy | `index.html` and `closed.html` at this repository's root, written by `log_notes.py` when a page changes (with a note, GitHub links for the history, and noindex), served by Pages at http://matthewhammer.org/hazel-work-notes/. `.nojekyll` keeps Pages from processing anything. |
-| The working notes | `work-notes/<YYYY>/<MM>/<DD>/<YYYY-MM-DD>T<HHMM><+-hhmm>.html`, dated like the snapshots: notes written when a session pauses (a shutdown, a move, the end of a long stretch): what was done, where things are (local-only branches, servers), and what is next. HTML, theme-aware, noindex; public like the rest of this repository, so no secrets, and Matthew's kids are M and N. Committed by hand, holding cron's lock. |
+| The working notes | `work-notes/<YYYY>/<MM>/<DD>/<YYYY-MM-DD>T<HHMM><+-hhmm>.html`, dated like the snapshots: notes written when a session pauses (a shutdown, a move, the end of a long stretch): what was done, where things are (local-only branches, servers), and what is next. HTML, theme-aware, noindex; public like the rest of this repository, so no secrets, and Matthew's kids are M and N. Run `python3 dashboard/notes_page.py <page>` on each new or changed page (idempotent): its Next steps get a link and "copy link" / "copy for a ticket" chips, tickets and reports become `^ticket(N)` / `^report(N)` chips with hover cards, and GitHub numbers become links with live cards. Committed by hand, holding cron's lock. |
 | The schedule | `crontab -l`: `publish.py` every minute. It runs `update.py`, then `log_notes.py`, when `data.json` has changed since the last publish, and on the quarter hour for what comes from GitHub; otherwise it does nothing. A lock keeps two runs from overlapping. The last run's output, with why it ran, is in `~/localhost-index/update.log`. |
 
 ## The page
@@ -41,18 +41,18 @@ The **closed tickets** have a page of their own, http://localhost:8000/closed.ht
 
 ## Tickets: our own numbers
 
-We call them **tickets**, not issues: an issue is a GitHub issue (or an issue of the performance analysis series).
+We call them **tickets**, not issues: an issue is a GitHub issue, and the performance analysis series is made of **reports**. **Write a ticket as `^ticket(N)` and a report as `^report(N)`** (Matthew's syntax, 2026-10-14): in `data.json`, on the page and in chat; no leading zeros, so numbers can grow into the thousands without passing for a PR. The page shows both in monospace, with `^ticket(` / `^report(` and `)` in bold, each a link.
 
-- Each ticket has a number, `#N`, from `data.json`'s `next_ticket`. **A number is never reused.** Take `next_ticket` for a new ticket, then increment it.
+- Each ticket has a number, `^ticket(N)`, from `data.json`'s `next_ticket`. **A number is never reused.** Take `next_ticket` for a new ticket, then increment it.
 - **When Matthew calls something important and it is not started, open a ticket right away,** in `tickets`, with an area, its text, where it came from (`source`, and a `url` when there is a real one) and the date (`added`).
 - **The current ticket** is the one we are working on now: `current_ticket` is its number, `current_since` when we started it, and `current_note` says in a line what is next on it. The page shows it first, with the start time and the time elapsed since, in Matthew's local time (Mountain Time, Colorado). Set it when Matthew starts one ("let's do #N", or a pasted ticket link), with `current_since` the time of his message; keep the note up to date as the work moves; set it to `null` when no ticket is in hand. Only an open ticket can be current. **When the work waits on Matthew** (a draft to look at, a publish or a push to approve), say so in the note at once, with where it is (a commit, a local URL) and what he needs to decide; the edit to `data.json` is published within a minute. He reads the published copy from other computers to know when he is the one holding things up, and comes back to the session to answer. Reword it once he has. Set `current_waiting` too, to `true` or a short line saying what he needs to decide: the page then shows ✋❔ in a bold box next to the current ticket's heading, on its row and in the outline, and at the front of the page's title, so a browser tab shows it unopened. Remove it (or set it to `false`) as soon as he answers.
 - **The work queue** (`queue`, ticket numbers, front first) is the short list of what we mean to do next, in order: a few tickets, not the backlog. The page shows it right after the current ticket, as **Work Queue (Active Tickets)**, each ticket a line linking to its row; every open ticket is in **Full Backlog (All Tickets)** below, a queued one with a "queued" chip, the status beside "current" (one ticket at a time is current; the others in the queue are queued). Matthew pushes a ticket onto the front or the back ("push #N to the front", "put #N after #M", "move #N up"), or reorders it; edit `queue` in the same turn. When a ticket in the queue closes, take it out of the queue in the same edit. When the queue's front ticket is started, it becomes the current ticket and stays at the front until it closes. A number in `queue` that is not an open ticket is left out of the page, and update.py says so.
 - **Closing a ticket moves it** from `tickets` to `closed_tickets`, never deletes it. Keep its `text` as it last read, and add:
   - `closed`: the date;
   - `status`: **done**; **not needed** (its premise turned out wrong, or there was nothing to do); **dropped** (we decided not to, and why); or **superseded** (another ticket took it over: name it);
-  - `outcome`: what came of it, with its commits, PRs, issues of the series or other tickets; and `outcome_url` when one page holds it.
+  - `outcome`: what came of it, with its commits, PRs, reports of the series or other tickets; and `outcome_url` when one page holds it.
   If it was the current ticket, choose the next current one, or `null`.
-- **A pasted ticket request mints a ticket.** Each "What next" step in the performance analysis series has a "copy for a ticket" button; it copies `Mint a ticket for this step: Hazel performance analysis, issue NNN, What next, step N: "<title>". <URL>`. When Matthew pastes that, open a ticket for exactly that step: its text from the step, `source` "issue NNN, What next, step N", `url` the step's URL. Ask whether it becomes the current ticket, unless he says so.
+- **A pasted ticket request mints a ticket.** Each "What next" step in the performance analysis series has a "copy for a ticket" button; it copies `Mint a ticket for this step: Hazel performance analysis, ^report(N), What next, step N: "<title>". <URL>` (before 2026-10-14, "issue NNN"). When Matthew pastes that, open a ticket for exactly that step: its text from the step, `source` "issue NNN, What next, step N", `url` the step's URL. Ask whether it becomes the current ticket, unless he says so.
 - **A parked ticket stays open,** with "PARKED", the date, and the measurement that parked it.
 - Each ticket's row has the anchor `#ticket-N`, and a "copy link" button that copies http://localhost:8000/#ticket-N. Old links, `#next-N`, still work, and a link to a closed ticket takes the reader to its row on the closed page. **When Matthew pastes such a link, he means exactly that ticket:** read the ticket with that number in `data.json`, in `tickets` or `closed_tickets`. Never guess from the wording.
 
@@ -60,9 +60,9 @@ We call them **tickets**, not issues: an issue is a GitHub issue (or an issue of
 
 Write references plainly in `data.json`, and `update.py` links them the same way everywhere:
 
-- "issue 006" links to that issue of the performance analysis series. That is the public page once it is published (`~/matthewhammer.github.io/hazel/performance-analysis/006/` exists), and the local draft at http://localhost:8131/series/006/ until then.
-- `#2161`, any four digits, links to hazelgrove/hazel on GitHub.
-- `#10`, one to three digits, links to that ticket: its row on the dashboard while it is open, and on the closed page once it is closed.
+- `^report(6)` links to that report of the performance analysis series (an older "issue 006" in a text still does). That is the public page once it is published (`~/matthewhammer.github.io/hazel/performance-analysis/006/` exists), and the local draft at http://localhost:8131/series/006/ until then.
+- `#2161`, four digits or more, links to hazelgrove/hazel on GitHub, and `owner/repo#N` to that repository; every such link gets a card on hover or focus (title, state, author, dates, comments), asked of GitHub live, with what GitHub said at the last publish as the fallback (`dashboard/prlinks.py`, `pr_cards.html`; Matthew's rule, 2026-10-14).
+- `^ticket(10)` links to that ticket (an older `#10`, one to three digits, still does): its row on the dashboard while it is open, and on the closed page once it is closed.
 - A 10-character commit id, such as `bd90642654`, links to the commit.
 
 Text already inside a link is left alone. Give a ticket a `url` only when it has a real source; otherwise leave `url` empty, and its "From" is plain text.
@@ -87,9 +87,9 @@ The dashboard's code has a version number, `VERSION` in `dashboard/update.py`, w
 
 ## Related practice
 
-- **The performance analysis series:** http://matthewhammer.org/hazel/performance-analysis/, issues 001–006. The sources are in `~/hazel-perf-report`, served at http://localhost:8131/series/.
-  - Write an issue as a draft. Matthew reviews it, then publish: copy it to `~/matthewhammer.github.io/hazel/performance-analysis/`, push, wait for the Pages run, and check the live page.
-  - A correction to a published issue is a dated update box under the short answers, a note after each claim it supersedes, and an "Update" section. The original text stays as written.
+- **The performance analysis series:** http://matthewhammer.org/hazel/performance-analysis/, its reports, `^report(1)` onward. The sources are in `~/hazel-perf-report`, served at http://localhost:8131/series/.
+  - Write a report as a draft. Matthew reviews it, then publish: copy it to `~/matthewhammer.github.io/hazel/performance-analysis/`, push, wait for the Pages run, and check the live page.
+  - A correction to a published report is a dated update box under the short answers, a note after each claim it supersedes, and an "Update" section. The original text stays as written.
 - **Performance is the highest priority.** Profile, and measure before and after. One heavy job at a time: the laptop crashes under load.
 - **PRs:**
   - Ask before merging; a PR to `dev` also needs an approving review.

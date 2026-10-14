@@ -44,8 +44,8 @@ def pr(n):
 
 e = html.escape
 
-# Links made the same way everywhere on the page: an issue of the
-# performance-analysis series, a hazelgrove/hazel issue or PR (#NNNN), and a
+# Links made the same way everywhere on the page: a report of the
+# performance-analysis series (^report(N)), a hazelgrove/hazel issue or PR (#NNNN), and a
 # commit (10 hex digits). Text already inside a link is left alone.
 SERIES_PUBLIC = "http://matthewhammer.org/hazel/performance-analysis/"
 SERIES_LOCAL = "http://localhost:8131/series/"
@@ -58,13 +58,26 @@ def series_url(n):
     return SERIES_LOCAL + nnn + "/"
 
 LINKABLE = re.compile(
-    r"(?P<series>\b[Ii]ssues? (?P<n>00\d)\b)"
+    r"(?P<tk>\^ticket\((?P<tid>\d+)\))"
+    r"|(?P<rep>\^(?:report|issue)\((?P<rn>\d+)\))"
+    r"|(?P<series>\b(?:[Ii]ssues?|[Rr]eports?) (?P<n>0\d\d)\b)"
     r"|(?P<gh>(?<![\w/#&])#(?P<num>\d{4})\b)"
     r"|(?P<sha>\b(?=[0-9a-f]*\d)(?=[0-9a-f]*[a-f])[0-9a-f]{10}\b)"
     r"|(?P<step>(?<![\w/#&])#(?P<sid>\d{1,3})\b)")
 
-# Our tickets, by number: "#10" links to its row, on this page while it is
-# open and on closed.html once it is closed. Numbers are never reused.
+# Our tickets, by number: "^ticket(10)" links to its row, on this page while
+# it is open and on closed.html once it is closed. Numbers are never reused.
+# (Matthew's syntax since 2026-10-14, as our numbers will reach the
+# thousands, past where "#1000" could pass for a PR; an old "#10" in a text
+# reads as ^ticket(10) too.) Shown in monospace, "^ticket(" and ")" bold.
+# The same for the reports of the performance-analysis series: ^report(13)
+# links to its page (a report is never "issue 013" now: "issue" is GitHub's).
+def chip(kind, n):
+    return f'<code class="ref"><b>^{kind}(</b>{int(n)}<b>)</b></code>'
+def tk(n):
+    return chip("ticket", n)
+def tk_plain(n):
+    return f"^ticket({n})"
 TICKETS = sorted(data["tickets"], key=lambda t: t["id"])
 CLOSED = sorted(data.get("closed_tickets", []), key=lambda t: t["id"])
 OPEN_IDS = {t["id"] for t in TICKETS}
@@ -77,7 +90,7 @@ BY_ID = {t["id"]: t for t in TICKETS}
 QUEUE = [BY_ID[n] for n in data.get("queue", []) if n in BY_ID]
 for n in data.get("queue", []):
     if n not in BY_ID:
-        print(f"queue: #{n} is not an open ticket; left out", file=sys.stderr)
+        print(f"queue: ^ticket({n}) is not an open ticket; left out", file=sys.stderr)
 QPOS = {t["id"]: i + 1 for i, t in enumerate(QUEUE)}
 # The current ticket waits on Matthew (current_waiting: true, or a line saying
 # what for): a raised hand and a question mark, boxed, wherever it is named,
@@ -114,14 +127,16 @@ def linkify(text, on="index"):
 
 def link_text(t, on="index"):
     def sub(m):
-        if m.group("series"):
-            return f'<a href="{series_url(m.group("n"))}">{m.group("series")}</a>'
+        if m.group("rep") or m.group("series"):
+            n = int(m.group("rn") or m.group("n"))
+            return f'<a href="{series_url(n)}">{chip("report", n)}</a>'
         if m.group("gh"):
             return f'<a href="https://github.com/{REPO}/issues/{m.group("num")}">{m.group("gh")}</a>'
         if m.group("sha"):
             return f'<a href="https://github.com/{REPO}/commit/{m.group("sha")}"><code>{m.group("sha")}</code></a>'
-        href = ticket_href(int(m.group("sid")), on)
-        return f'<a href="{href}">{m.group("step")}</a>' if href else m.group("step")
+        n = int(m.group("tid") or m.group("sid"))
+        href = ticket_href(n, on)
+        return f'<a href="{href}">{tk(n)}</a>' if href else tk(n)
     return LINKABLE.sub(sub, t)
 
 def pr_cell(p):
@@ -255,10 +270,10 @@ other = [o["pr"] for o in data.get("other_prs", [])]
 other_notes = {o["pr"]: o.get("note", "") for o in data.get("other_prs", [])}
 
 # A link into the local report sources becomes the public page once that
-# issue is published (issue 001 is the sources' root), so a step's From and
+# report is published (^report(1) is the sources' root), so a step's From and
 # its text point at the same place.
 def series_link(url):
-    m = re.match(r"http://localhost:8131/(?:series/)?(?:(00\d)/)?(.*)$", url)
+    m = re.match(r"http://localhost:8131/(?:series/)?(?:(\d{3})/)?(.*)$", url)
     if not m:
         return url
     return series_url(m.group(1) or "001") + m.group(2)
@@ -268,8 +283,8 @@ def from_cell(s, on="index"):
     return f'<a href="{e(series_link(s["url"]))}">{text}</a>' if s.get("url") else linkify(text, on)
 
 def num_cell(t):
-    return (f'<td class="num"><a class="anchor" href="#ticket-{t["id"]}">#{t["id"]}</a>'
-            f'<button class="copy" type="button" data-anchor="ticket-{t["id"]}" title="Copy a link to #{t["id"]}">copy link</button></td>')
+    return (f'<td class="num"><a class="anchor" href="#ticket-{t["id"]}">{tk(t["id"])}</a>'
+            f'<button class="copy" type="button" data-anchor="ticket-{t["id"]}" title="Copy a link to {tk_plain(t["id"])}">copy link</button></td>')
 
 # a ticket's status chip beside "current": "queued", for a ticket in the work
 # queue that is not the current one (its place in line is its tooltip)
@@ -304,7 +319,7 @@ if CURRENT:
         mins = max(0, int((datetime.now(LOCAL) - since).total_seconds() // 60))
         since_line = (f'<p class="since">Started <b>{e(since.astimezone(LOCAL).strftime("%a %b %-d, %-I:%M %p %Z"))}</b>'
                       f' · elapsed <b data-since="{e(since.isoformat())}"></b></p>')
-    current_section = f"""<h2 id="current">Current ticket: <a href="#ticket-{t["id"]}">#{t["id"]}</a> {hand()}</h2>
+    current_section = f"""<h2 id="current">Current ticket: <a href="#ticket-{t["id"]}">{tk(t["id"])}</a> {hand()}</h2>
 <div class="current-box">
 <p class="note">{e(t.get("area", ""))} · from {from_cell(t)}</p>
 {since_line}
@@ -325,24 +340,26 @@ def short(html_text, n=46):
 # reorder it, as we go.
 def queue_row(i, t):
     tag = ' <span class="badge">current</span>' + (" " + hand() if WAITING else "") if t is CURRENT else ""
-    return (f'<tr><td class="num">{i}</td><td class="num"><a href="#ticket-{t["id"]}">#{t["id"]}</a>{tag}</td>'
+    return (f'<tr><td class="num">{i}</td><td class="num"><a href="#ticket-{t["id"]}">{tk(t["id"])}</a>{tag}</td>'
             f'<td>{e(t.get("area", ""))}</td><td>{e(short(t["text"], 140))}</td></tr>')
 
 queue_section = f"""<h2 id="queue">Work Queue (Active Tickets)</h2>
 <p class="note">What we mean to do next, in order: a few tickets, not the backlog. We push a ticket onto the front or the back, and reorder as we go; a ticket leaves the queue when it closes. Each links to its full row in <a href="#backlog">the backlog</a>.</p>
 """ + (f"""<table class="queue">
-<tr><th class="num">Next</th><th class="num">#</th><th class="area">Area</th><th>Ticket</th></tr>
+<tr><th class="num">Next</th><th class="num">Ticket</th><th class="area">Area</th><th>Ticket</th></tr>
 {chr(10).join(queue_row(i + 1, t) for i, t in enumerate(QUEUE))}
 </table>
 """ if QUEUE else '<p><i>Empty: push a ticket onto it.</i></p>\n')
 
-def entry(href, text, sub=False):
-    return f'<li{" class=\"sub\"" if sub else ""}><a href="{href}">{e(text)}</a></li>'
+def entry(href, text, sub=False, n=None):
+    # (n: a ticket, shown as its chip before the text)
+    label = (tk(n) + " " if n is not None else "") + e(text)
+    return f'<li{" class=\"sub\"" if sub else ""}><a href="{href}">{label}</a></li>'
 
 outline = "\n".join(
-    ([entry("#current", f'Current ticket: #{CURRENT["id"]}' + (f" {HAND}" if WAITING else ""))] if CURRENT else []) + [
+    ([f'<li><a href="#current">Current ticket: {tk(CURRENT["id"])}' + (f" {HAND}" if WAITING else "") + '</a></li>'] if CURRENT else []) + [
     entry("#queue", f"Work Queue ({len(QUEUE)})"),
-] + [entry(f'#ticket-{t["id"]}', f'{i + 1}. #{t["id"]} {short(t["text"])}', sub=True) for i, t in enumerate(QUEUE)] + [
+] + [f'<li class="sub"><a href="#ticket-{t["id"]}">{i + 1}. {tk(t["id"])} {e(short(t["text"]))}</a></li>' for i, t in enumerate(QUEUE)] + [
     entry("#ports", "Localhost ports"),
     entry("#other", "Other PRs we are tracking"),
     entry("#repos", "Repositories we deploy"),
@@ -350,7 +367,7 @@ outline = "\n".join(
     entry("#perf-prs", "Performance PRs", sub=True),
     entry("#integration", "Integration branches", sub=True),
     entry("#backlog", f"Full Backlog ({len(TICKETS)})"),
-] + [entry(f'#ticket-{t["id"]}', f'#{t["id"]} {short(t["text"])}', sub=True) for t in TICKETS]
+] + [entry(f'#ticket-{t["id"]}', short(t["text"]), sub=True, n=t["id"]) for t in TICKETS]
   + [entry("closed.html", f"Closed tickets ({len(CLOSED)})")])
 
 issue = data["tracking_issue"]
@@ -367,6 +384,8 @@ page = f"""<!doctype html>
   :root[data-theme="light"] {{ color-scheme: light; }}
   :root[data-theme="dark"] {{ color-scheme: dark; --line: #444; --muted: #aaa; --good: #3fb950; --bad: #f85149; --wait: #d29922; }}
   body {{ font: 15px/1.45 system-ui, sans-serif; margin: 0; background: Canvas; color: CanvasText; }}
+  code.ref {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; white-space: nowrap; }}
+  code.ref b {{ font-weight: 800; }}
   main {{ padding: 24px 16px 60px; }}
   h2, h3, tr[id] {{ scroll-margin-top: 12px; }}
   /* The outline, as on fumola.org: beside the page when there is room
@@ -487,7 +506,7 @@ page = f"""<!doctype html>
 <h2 id="backlog"><span id="tickets"></span>Full Backlog (All Tickets)</h2>
 <p class="note">All our open tickets: important and not done; the few we mean to do next are in <a href="#queue">the work queue</a>. Numbered in our own sequence from #1; a number is never reused. A closed ticket moves to <a href="closed.html">the closed tickets</a>, with how it ended.</p>
 <table>
-<tr><th class="num">#</th><th class="area">Area</th><th>Ticket</th><th class="from">From</th></tr>
+<tr><th class="num">Ticket</th><th class="area">Area</th><th>Text</th><th class="from">From</th></tr>
 {ticket_rows}
 </table>
 <script>
@@ -613,6 +632,10 @@ def themed(text):
     return text.replace("</body>", THEME_BODY + "\n</body>", 1)
 
 import hashlib
+# every PR or issue number a link, with a card on hover (prlinks.py)
+sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
+import prlinks, refcards
+PRLINKS_CACHE = os.path.join(HERE, ".prlinks-cache.json")
 UPDATED_LINE = re.compile(r'<p class="note">Updated [^<]*<code>[^<]*</code>[^<]*</p>')
 def versioned(text):
     token = hashlib.sha1(UPDATED_LINE.sub("", text).encode()).hexdigest()[:12]
@@ -622,7 +645,7 @@ def versioned(text):
 page = page.replace("<table>", '<div class="scroll"><table>').replace("</table>", "</table></div>")
 # written whole, then renamed into place: a reader never sees half a page
 tmp = os.path.join(HERE, ".index.html.tmp")
-open(tmp, "w").write(versioned(themed(page)))
+open(tmp, "w").write(versioned(themed(refcards.process(prlinks.process(page, PRLINKS_CACHE), data))))
 os.replace(tmp, os.path.join(HERE, "index.html"))
 
 # The closed tickets, on a page of their own: how each ended (done, or closed
@@ -659,7 +682,7 @@ closed_page = f"""<!doctype html>
 <h1>Closed tickets</h1>
 <p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated {e(now)}. Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are on the dashboard: <a href="./#queue">the work queue</a> and <a href="./#backlog">the full backlog</a>.</p>
 <div class="scroll"><table>
-<tr><th class="num">#</th><th class="area">Area</th><th>Status, closed</th><th>Outcome</th><th>The ticket, as it last read</th></tr>
+<tr><th class="num">Ticket</th><th class="area">Area</th><th>Status, closed</th><th>Outcome</th><th>The ticket, as it last read</th></tr>
 {closed_rows}
 </table></div>
 <script>
@@ -709,7 +732,7 @@ closed_page = f"""<!doctype html>
 </html>
 """
 tmp = os.path.join(HERE, ".closed.html.tmp")
-open(tmp, "w").write(versioned(themed(closed_page)))
+open(tmp, "w").write(versioned(themed(refcards.process(prlinks.process(closed_page, PRLINKS_CACHE), data))))
 os.replace(tmp, os.path.join(HERE, "closed.html"))
 print(f"wrote index.html: {len(rows)} ports, {len(other)} other + {len(data['perf_prs'])} perf + {len(data['integration_prs'])} integration PRs, {len(data.get('repos', []))} repos, {len(TICKETS)} tickets"
-      + (f" (current #{CURRENT['id']})" if CURRENT else "") + f"; closed.html: {len(CLOSED)} closed tickets")
+      + (f" (current ^ticket({CURRENT['id']}))" if CURRENT else "") + f"; closed.html: {len(CLOSED)} closed tickets")

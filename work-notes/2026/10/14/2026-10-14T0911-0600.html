@@ -29,48 +29,48 @@
 
 <h2 id="state">Where things stand at shutdown</h2>
 <ul>
-<li>No current ticket; nothing running; every repository committed and pushed (kids-choice-games, hazel-performance-analysis, matthewhammer.github.io, hazel-work-notes, and the #2597 and #2635 worktrees).</li>
-<li>Local servers stop with the shutdown; restart them when wanted: 8000 (this dashboard), 8131 (the series preview), 8133 (Messed Up Dress Up's local copy), 8311 (#2597, rebuilt at <code>c4e411f9c2</code>), 8341 (#2635; its bundle predates <code>9fb2bdf067</code>, which changes the app: rebuild before trying it).</li>
+<li>No current ticket; nothing running; every repository committed and pushed (kids-choice-games, hazel-performance-analysis, matthewhammer.github.io, hazel-work-notes, and the <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a> and <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a> worktrees).</li>
+<li>Local servers stop with the shutdown; restart them when wanted: 8000 (this dashboard), 8131 (the series preview), 8133 (Messed Up Dress Up's local copy), 8311 (<a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>, rebuilt at <code>c4e411f9c2</code>), 8341 (<a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a>; its bundle predates <code>9fb2bdf067</code>, which changes the app: rebuild before trying it).</li>
 <li>The dashboard's publishing cron resumes on boot (below).</li>
 </ul>
 
 <h2 id="dashboard">The dashboard publishes within a minute of a change</h2>
 <p>Matthew found the public copy stale (I had closed tickets without the by-hand publish the protocol asked for). Now cron runs <code>dashboard/publish.py</code> every minute: it publishes when <code>data.json</code> changed since the last publish, and on the quarter hour for what comes from GitHub; a lock keeps runs from overlapping (<code>afe0286</code>, <code>ded5555</code>; in VERSIONS.md under Unreleased).</p>
 
-<h2 id="t4">#4: #2597's CI, red since 2026-10-11; green again</h2>
+<h2 id="t4"><a href="http://matthewhammer.org/hazel-work-notes/closed.html#ticket-4"><code class="ref"><b>^ticket(</b>4<b>)</b></code></a>: <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>'s CI, red since 2026-10-11; green again</h2>
 <ul>
 <li><b>Quick job, out of node's 4 GB heap:</b> <code>Statics.mk</code> and MakeTerm's three memos kept the last 1000 programs each, so the test process kept every test's programs; the Dress Up slides made each one big. Proof: IncrSlides alone, live heap after full GCs 456/811/1279/1647 MB as it was, flat near 450–590 with the memos bounded.</li>
 <li><b>Full job, out of time:</b> the recovering parser on the big slides in the corpus tests (MenhirCorpus etc.): 452 s for <code>full-body.hz</code> alone on the laptop.</li>
-<li><b>Pushed to #2597</b> (<code>684a75cb2f..c4e411f9c2</code>): <code>5d576cc479</code> Statics.mk keeps 16 programs and MakeTerm's memos 8, as #2469 does; <code>8798d64213</code> programs over 25 KB get the recovering-parser checks only in the weekly Extended run (as #2469 already does for "Mega" slides); <code>c4e411f9c2</code> the big slides' Unproject cases in the full tests only. CI: quick 8.5 min, full 53 min, green.</li>
-<li><b>Pushed to #2635</b> (<code>..41897ec3a5</code>): the last two only (#2469 had already bounded its memos). Its jobs now finish, red only for its 8 known failures (DefStaticsParity, Editing.TableDecorations, LabelBench, ModRoot ×4, TypeDeps).</li>
+<li><b>Pushed to <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a></b> (<code>684a75cb2f..c4e411f9c2</code>): <code>5d576cc479</code> Statics.mk keeps 16 programs and MakeTerm's memos 8, as <a href="https://github.com/hazelgrove/hazel/pull/2469">#2469</a> does; <code>8798d64213</code> programs over 25 KB get the recovering-parser checks only in the weekly Extended run (as <a href="https://github.com/hazelgrove/hazel/pull/2469">#2469</a> already does for "Mega" slides); <code>c4e411f9c2</code> the big slides' Unproject cases in the full tests only. CI: quick 8.5 min, full 53 min, green.</li>
+<li><b>Pushed to <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a></b> (<code>..41897ec3a5</code>): the last two only (<a href="https://github.com/hazelgrove/hazel/pull/2469">#2469</a> had already bounded its memos). Its jobs now finish, red only for its 8 known failures (DefStaticsParity, Editing.TableDecorations, LabelBench, ModRoot ×4, TypeDeps).</li>
 <li>Calibration for estimating CI from the laptop: quick about 1.25×, full about 1.9× (the green commit's suite, timed on both).</li>
 <li>A correction made on the way: I first posted "full 36 min with the fix alone"; that run had a 30 KB gate. Without the gate the full suite runs past 90 min.</li>
 </ul>
 
-<h2 id="t7">#7 and issue 013: the release's request</h2>
+<h2 id="t7"><a href="http://matthewhammer.org/hazel-work-notes/#ticket-7"><code class="ref"><b>^ticket(</b>7<b>)</b></code></a> and <a href="http://matthewhammer.org/hazel/performance-analysis/013/"><code class="ref"><b>^report(</b>13<b>)</b></code></a>: the release's request</h2>
 <ul>
 <li>Measured in node: a release's request cost most in building <code>EvalInfo</code>'s projection (it walked both statics maps, 13–14 ms per release on Full Body), not in hashing (1–4 ms).</li>
-<li><b>Pushed to #2635</b> (<code>..9fb2bdf067</code>): <code>043508921b</code> DefStatics records the keys it touched and <code>EvalInfo</code> updates at those keys; <code>9fb2bdf067</code> DefStatics keeps an item's patched spine root when nothing it is made from changed. CI: the same 8 known failures.</li>
-<li><b>Issue 013, "Telling the Request What Changed", published</b> (<a href="http://matthewhammer.org/hazel/performance-analysis/013/">link</a>), with a dated note in issue 001. Key finding: the projection now takes under 1 ms on every slide; what is left grows with how far down the program the slider sits (every item above the edit has a spine root carrying the whole program below it). Linked from #2609 (finding 30), #2635, #2597 and #2469 (a progress note, no @-mention, offering the ports).</li>
+<li><b>Pushed to <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a></b> (<code>..9fb2bdf067</code>): <code>043508921b</code> DefStatics records the keys it touched and <code>EvalInfo</code> updates at those keys; <code>9fb2bdf067</code> DefStatics keeps an item's patched spine root when nothing it is made from changed. CI: the same 8 known failures.</li>
+<li><b><a href="http://matthewhammer.org/hazel/performance-analysis/013/"><code class="ref"><b>^report(</b>13<b>)</b></code></a>, "Telling the Request What Changed", published</b> (<a href="http://matthewhammer.org/hazel/performance-analysis/013/">link</a>), with a dated note in <a href="http://matthewhammer.org/hazel/performance-analysis/001/"><code class="ref"><b>^report(</b>1<b>)</b></code></a>. Key finding: the projection now takes under 1 ms on every slide; what is left grows with how far down the program the slider sits (every item above the edit has a spine root carrying the whole program below it). Linked from <a href="https://github.com/hazelgrove/hazel/issues/2609">#2609</a> (finding 30), <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a>, <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a> and <a href="https://github.com/hazelgrove/hazel/pull/2469">#2469</a> (a progress note, no @-mention, offering the ports).</li>
 <li>Tried and dropped: keeping <code>EvalInfo</code> entries equal by content (fewer entries re-added, but the request got slower).</li>
-<li>Still open in #7: the commit's redraw.</li>
+<li>Still open in <a href="http://matthewhammer.org/hazel-work-notes/#ticket-7"><code class="ref"><b>^ticket(</b>7<b>)</b></code></a>: the commit's redraw.</li>
 </ul>
 
 <h2 id="branches">Local-only branches (committed, not pushed)</h2>
 <table>
 <tr><th>Where</th><th>Branch</th><th>What</th></tr>
-<tr><td><code>~/hazel-port-2469</code></td><td><code>port-2469-t7</code></td><td>The three steps carried to #2469's head <code>c1e4aeee4a</code>: <code>128f3f303d</code>, <code>cdb799a376</code>, <code>474b1e050e</code>. Its quick tests pass whole. Offered on #2469; push only if wanted.</td></tr>
-<tr><td><code>~/hazel-ci-heap</code></td><td><code>ci-heap-4</code>, <code>ci-heap-4-gate</code>, <code>ci-heap-4-gate-slow</code>, <code>ci-heap-4-bounds</code>, <code>ci-heap-4-pick</code></td><td>#4's experiments; <code>ci-heap-4-pick</code> is what was pushed to #2597.</td></tr>
-<tr><td><code>~/hazel-ci-heap</code></td><td><code>memo-growth-experiment</code> (<code>62aaaa28e4</code>)</td><td>#45's node experiment: about 82 MB kept per edit of Full Body with 1000-entry memos.</td></tr>
-<tr><td><code>~/hazel-ci-heap</code></td><td><code>parser-get-base-memo</code> (<code>0825830190</code>)</td><td>#46's try: <code>Form.Molds.get_base</code> remembered, about 15% faster recovering parse.</td></tr>
-<tr><td><code>~/hazel-ci-heap-2635</code></td><td><code>request-hash-probe</code> (<code>4f0e261652</code>), <code>data-2635-*</code></td><td>#7's and issue 013's probes.</td></tr>
-<tr><td><code>~/hazel-ci-green</code></td><td>detached at <code>5286ba3b10</code></td><td>The last green #2597, for calibration; can be removed.</td></tr>
+<tr><td><code>~/hazel-port-2469</code></td><td><code>port-2469-t7</code></td><td>The three steps carried to <a href="https://github.com/hazelgrove/hazel/pull/2469">#2469</a>'s head <code>c1e4aeee4a</code>: <code>128f3f303d</code>, <code>cdb799a376</code>, <code>474b1e050e</code>. Its quick tests pass whole. Offered on <a href="https://github.com/hazelgrove/hazel/pull/2469">#2469</a>; push only if wanted.</td></tr>
+<tr><td><code>~/hazel-ci-heap</code></td><td><code>ci-heap-4</code>, <code>ci-heap-4-gate</code>, <code>ci-heap-4-gate-slow</code>, <code>ci-heap-4-bounds</code>, <code>ci-heap-4-pick</code></td><td><a href="http://matthewhammer.org/hazel-work-notes/closed.html#ticket-4"><code class="ref"><b>^ticket(</b>4<b>)</b></code></a>'s experiments; <code>ci-heap-4-pick</code> is what was pushed to <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>.</td></tr>
+<tr><td><code>~/hazel-ci-heap</code></td><td><code>memo-growth-experiment</code> (<code>62aaaa28e4</code>)</td><td><a href="http://matthewhammer.org/hazel-work-notes/#ticket-45"><code class="ref"><b>^ticket(</b>45<b>)</b></code></a>'s node experiment: about 82 MB kept per edit of Full Body with 1000-entry memos.</td></tr>
+<tr><td><code>~/hazel-ci-heap</code></td><td><code>parser-get-base-memo</code> (<code>0825830190</code>)</td><td><a href="http://matthewhammer.org/hazel-work-notes/#ticket-46"><code class="ref"><b>^ticket(</b>46<b>)</b></code></a>'s try: <code>Form.Molds.get_base</code> remembered, about 15% faster recovering parse.</td></tr>
+<tr><td><code>~/hazel-ci-heap-2635</code></td><td><code>request-hash-probe</code> (<code>4f0e261652</code>), <code>data-2635-*</code></td><td><a href="http://matthewhammer.org/hazel-work-notes/#ticket-7"><code class="ref"><b>^ticket(</b>7<b>)</b></code></a>'s and <a href="http://matthewhammer.org/hazel/performance-analysis/013/"><code class="ref"><b>^report(</b>13<b>)</b></code></a>'s probes.</td></tr>
+<tr><td><code>~/hazel-ci-green</code></td><td>detached at <code>5286ba3b10</code></td><td>The last green <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>, for calibration; can be removed.</td></tr>
 </table>
 
 <h2 id="tickets">Tickets</h2>
 <ul>
-<li>Closed: #4 (done), #5 (superseded, revised first), #47 (issue 013 published), #48 (Messed Up Dress Up 0.0.20).</li>
-<li>Opened: #45 (the editor's statics memo kept about 82 MB per edit on #2597, in node; #2469's bounds, now pushed to #2597, should fix it; the browser check is still open), #46 (the recovering parser on the playground slides), #47, #48.</li>
+<li>Closed: <a href="http://matthewhammer.org/hazel-work-notes/closed.html#ticket-4"><code class="ref"><b>^ticket(</b>4<b>)</b></code></a> (done), <a href="http://matthewhammer.org/hazel-work-notes/closed.html#ticket-5"><code class="ref"><b>^ticket(</b>5<b>)</b></code></a> (superseded, revised first), <a href="http://matthewhammer.org/hazel-work-notes/closed.html#ticket-47"><code class="ref"><b>^ticket(</b>47<b>)</b></code></a> (<a href="http://matthewhammer.org/hazel/performance-analysis/013/"><code class="ref"><b>^report(</b>13<b>)</b></code></a> published), <a href="http://matthewhammer.org/hazel-work-notes/closed.html#ticket-48"><code class="ref"><b>^ticket(</b>48<b>)</b></code></a> (Messed Up Dress Up 0.0.20).</li>
+<li>Opened: <a href="http://matthewhammer.org/hazel-work-notes/#ticket-45"><code class="ref"><b>^ticket(</b>45<b>)</b></code></a> (the editor's statics memo kept about 82 MB per edit on <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>, in node; <a href="https://github.com/hazelgrove/hazel/pull/2469">#2469</a>'s bounds, now pushed to <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>, should fix it; the browser check is still open), <a href="http://matthewhammer.org/hazel-work-notes/#ticket-46"><code class="ref"><b>^ticket(</b>46<b>)</b></code></a> (the recovering parser on the playground slides), <a href="http://matthewhammer.org/hazel-work-notes/closed.html#ticket-47"><code class="ref"><b>^ticket(</b>47<b>)</b></code></a>, <a href="http://matthewhammer.org/hazel-work-notes/closed.html#ticket-48"><code class="ref"><b>^ticket(</b>48<b>)</b></code></a>.</li>
 </ul>
 
 <h2 id="dressup">Messed Up Dress Up 0.0.20 (side quest, ended)</h2>
@@ -78,10 +78,238 @@
 
 <h2 id="next">Next</h2>
 <ul>
-<li>The critical path: user-defined livelits (#2597, #2635), per Cyrus.</li>
-<li>Performance: #45 (confirm in the browser on #2635 too), #46, #7's redraw half; issue 013's What next (a spine root need not carry the whole program for the request).</li>
+<li>The critical path: user-defined livelits (<a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>, <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a>), per Cyrus.</li>
+<li>Performance: <a href="http://matthewhammer.org/hazel-work-notes/#ticket-45"><code class="ref"><b>^ticket(</b>45<b>)</b></code></a> (confirm in the browser on <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a> too), <a href="http://matthewhammer.org/hazel-work-notes/#ticket-46"><code class="ref"><b>^ticket(</b>46<b>)</b></code></a>, <a href="http://matthewhammer.org/hazel-work-notes/#ticket-7"><code class="ref"><b>^ticket(</b>7<b>)</b></code></a>'s redraw half; <a href="http://matthewhammer.org/hazel/performance-analysis/013/"><code class="ref"><b>^report(</b>13<b>)</b></code></a>'s What next (a spine root need not carry the whole program for the request).</li>
 <li>After the move: restart the local servers wanted; rebuild 8341's bundle.</li>
 </ul>
 </main>
+<!-- pr-cards: begin -->
+<style>
+  .pr-card { position: absolute; z-index: 40; width: max-content; max-width: min(380px, calc(100vw - 32px)); box-sizing: border-box;
+    padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line, #d0d7de); background: var(--paper, var(--bg, Canvas));
+    color: var(--ink, CanvasText); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18); font: 13px/1.45 system-ui, sans-serif; pointer-events: none; }
+  .pr-card .pr-head { color: var(--muted, GrayText); font-size: 12px; }
+  .pr-card .pr-title { font-weight: 600; margin: 3px 0 4px; }
+  .pr-card .pr-meta { color: var(--muted, GrayText); font-size: 12px; }
+  .pr-card .pr-note { color: var(--muted, GrayText); font-size: 11px; margin-top: 5px; font-style: italic; }
+  .pr-state { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; margin-left: 6px; vertical-align: 1px; }
+  .pr-state.open { background: #1f883d; } .pr-state.merged { background: #8250df; } .pr-state.closed { background: #cf222e; } .pr-state.draft { background: #6e7781; }
+</style>
+<script>
+/* A card for each link to a GitHub PR or issue, on hover or focus: its
+   title, state, author, dates and comments, asked of GitHub live, once per
+   number per page load; if GitHub does not answer, what it said when the
+   page was built (tools/link_prs.py writes this block). */
+(() => {
+  const CACHED = {"hazelgrove/hazel#2469": {"author": "disconcision", "comments": 15, "created": "2026-08-27T04:14:59Z", "kind": "pull", "state": "open", "title": "Modular editors", "updated": "2026-10-14T14:42:25Z"}, "hazelgrove/hazel#2597": {"author": "matthewhammer", "comments": 3, "created": "2026-09-23T15:18:28Z", "kind": "pull", "state": "open", "title": "User-Defined Livelits, as in PLDI '21, and beyond.", "updated": "2026-10-14T14:42:33Z"}, "hazelgrove/hazel#2609": {"author": "matthewhammer", "comments": 24, "created": "2026-09-28T13:34:18Z", "kind": "issues", "state": "open", "title": "Performance Challenges (Fall 2026)", "updated": "2026-10-14T14:42:09Z"}, "hazelgrove/hazel#2635": {"author": "matthewhammer", "comments": 2, "created": "2026-10-01T22:50:14Z", "kind": "pull", "state": "draft", "title": "Livelits × modular editors: merge #2469 into the livelits branch", "updated": "2026-10-14T14:42:21Z"}}, BUILT = "2026-10-14";
+  const RX = /^https:\/\/github\.com\/([^/]+\/[^/]+)\/(?:pull|issues)\/(\d+)$/;
+  const asked = new Map();
+  const ask = key => {
+    if (!asked.has(key)) {
+      const [repo, n] = key.split("#");
+      asked.set(key, fetch(`https://api.github.com/repos/${repo}/issues/${n}`)
+        .then(r => r.ok ? r.json() : Promise.reject(r.status))
+        .then(j => ({ title: j.title, author: j.user && j.user.login, created: j.created_at, updated: j.updated_at,
+                      comments: j.comments, kind: j.pull_request ? "pull" : "issues",
+                      state: j.pull_request && j.pull_request.merged_at ? "merged" : j.draft ? "draft" : j.state }))
+        .catch(() => null));
+    }
+    return asked.get(key);
+  };
+  const day = iso => new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+  const ago = iso => {
+    const s = (Date.now() - new Date(iso)) / 1000;
+    for (const [u, k] of [["year", 31536000], ["month", 2592000], ["day", 86400], ["hour", 3600], ["minute", 60]])
+      if (s >= k) { const v = Math.floor(s / k); return `${v} ${u}${v === 1 ? "" : "s"} ago`; }
+    return "just now";
+  };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const fill = (key, d, note) => {
+    const [repo, n] = key.split("#"), what = d.kind === "pull" ? "Pull request" : "Issue";
+    return `<div class="pr-head">${esc(repo)} #${n} · ${what}<span class="pr-state ${esc(d.state)}">${esc(d.state)}</span></div>` +
+      `<div class="pr-title">${esc(d.title)}</div>` +
+      `<div class="pr-meta">by ${esc(d.author)} · opened ${day(d.created)} · updated ${ago(d.updated)} · ${d.comments} comment${d.comments === 1 ? "" : "s"}</div>` +
+      (note ? `<div class="pr-note">${note}</div>` : "");
+  };
+  let card = null, over = null, timer = null;
+  const place = a => {
+    const r = a.getBoundingClientRect(), w = card.offsetWidth, h = card.offsetHeight;
+    const left = Math.max(16, Math.min(r.left, document.documentElement.clientWidth - w - 16));
+    const below = r.bottom + 6 + h < innerHeight;
+    card.style.left = (left + scrollX) + "px";
+    card.style.top = ((below ? r.bottom + 6 : r.top - 6 - h) + scrollY) + "px";
+  };
+  const hide = () => { clearTimeout(timer); over = null; if (card) card.hidden = true; };
+  const show = a => {
+    const m = RX.exec(a.href);
+    if (!m) return;
+    const key = m[1] + "#" + m[2];
+    over = a; clearTimeout(timer);
+    timer = setTimeout(async () => {
+      if (!card) { card = document.createElement("div"); card.className = "pr-card"; card.setAttribute("role", "tooltip"); document.body.append(card); }
+      const cached = CACHED[key];
+      card.innerHTML = cached ? fill(key, cached, "asking GitHub…") : `<div class="pr-head">${esc(key)}</div><div class="pr-note">asking GitHub…</div>`;
+      card.hidden = false; place(a);
+      const d = await ask(key);
+      if (over !== a) return;
+      card.innerHTML = d ? fill(key, d, "")
+        : cached ? fill(key, cached, `GitHub didn't answer just now (its limit is 60 lookups an hour per network): as of ${BUILT}`)
+        : `<div class="pr-head">${esc(key)}</div><div class="pr-note">GitHub didn't answer just now.</div>`;
+      place(a);
+    }, 250);
+  };
+  const linkOf = t => t && t.closest && t.closest("a[href]");
+  document.addEventListener("mouseover", e => { const a = linkOf(e.target); if (a && a !== over && RX.test(a.href)) show(a); });
+  document.addEventListener("mouseout", e => { const a = linkOf(e.target); if (a && a === over && !a.contains(e.relatedTarget)) hide(); });
+  document.addEventListener("focusin", e => { const a = linkOf(e.target); if (a && RX.test(a.href)) show(a); });
+  document.addEventListener("focusout", hide);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") hide(); });
+  addEventListener("scroll", () => { if (over && card && !card.hidden) place(over); }, { passive: true });
+})();
+</script>
+<!-- pr-cards: end -->
+<!-- ref-cards: begin -->
+<style>
+  .ref-card { position: absolute; z-index: 40; width: max-content; max-width: min(400px, calc(100vw - 32px)); box-sizing: border-box;
+    padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line, #d0d7de); background: var(--paper, var(--bg, Canvas));
+    color: var(--ink, CanvasText); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18); font: 13px/1.45 system-ui, sans-serif; pointer-events: none; }
+  .ref-card .rc-head { color: var(--muted, GrayText); font-size: 12px; }
+  .ref-card .rc-title { font-weight: 600; margin: 3px 0 4px; }
+  .ref-card .rc-meta { color: var(--muted, GrayText); font-size: 12px; }
+  .ref-card .rc-note { color: var(--muted, GrayText); font-size: 11px; margin-top: 5px; font-style: italic; }
+  .rc-state { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; margin-left: 6px;
+    vertical-align: 1px; background: #6e7781; }
+  .rc-state.current { background: #1f883d; } .rc-state.queued { background: #9a6700; } .rc-state.open { background: #0969da; }
+  .rc-state.done { background: #8250df; }
+</style>
+<script>
+/* A card for each ^ticket(N) and ^report(N) link, on hover or focus: a
+   ticket from the work dashboard's data (its area, its status, its first
+   line), carried by the dashboard's own pages and read live from the
+   published data anywhere else; a report from its own page, live (its
+   title, date and opening). Once per page load each. */
+(() => {
+  const PUBLIC = "http://matthewhammer.org/hazel-work-notes/dashboard-data/data.json";
+  const DATA = location.port === "8000" && /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? "/data.json" : PUBLIC;
+  /* the dashboard itself carries its tickets (made with the page, changed
+     with it); any other page asks the published data */
+  const EMBED = null;
+  let data = EMBED ? Promise.resolve(EMBED) : null;
+  const loadData = () => data || (data = fetch(DATA, { cache: "no-store" }).then(r => r.ok ? r.json() : Promise.reject(r.status)).catch(() => null));
+  const pages = new Map();
+  const loadReport = url => {
+    if (!pages.has(url)) pages.set(url, fetch(url).then(r => r.ok ? r.text() : Promise.reject(r.status)).then(t => {
+      const doc = new DOMParser().parseFromString(t, "text/html"), h1 = doc.querySelector("h1");
+      let p = h1 && h1.nextElementSibling;
+      while (p && p.tagName !== "P") p = p.nextElementSibling;
+      const label = (doc.querySelector(".series") || {}).textContent || "";
+      return { title: h1 ? h1.textContent.trim() : doc.title, date: (label.match(/\d{4}-\d{2}-\d{2}/) || [""])[0],
+               lead: p ? p.textContent.replace(/\s+/g, " ").trim() : "" };
+    }).catch(() => null));
+    return pages.get(url);
+  };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const cut = (t, n) => t.length <= n ? t : t.slice(0, n).replace(/\s+\S*$/, "") + "…";
+  const plain = h => new DOMParser().parseFromString("<div>" + (h || "") + "</div>", "text/html").body.textContent.replace(/\s+/g, " ").trim();
+  const lead = h => { const m = /^\s*<b>([\s\S]*?)<\/b>/.exec(h || ""); return m ? plain(m[1]) : cut(plain(h), 200); };
+  const ticketCard = (n, d) => {
+    const open = (d.tickets || []).find(t => t.id === n), closed = (d.closed_tickets || []).find(t => t.id === n), t = open || closed;
+    if (!t) return `<div class="rc-head">^ticket(${n})</div><div class="rc-note">Not on the dashboard.</div>`;
+    const q = (d.queue || []).indexOf(n);
+    const [cls, state] = closed ? ["done", `${t.status || "closed"}, ${t.closed || ""}`]
+      : d.current_ticket === n ? ["current", "current" + (d.current_waiting ? " · ✋❔ waiting on Matthew" : "")]
+      : q >= 0 ? ["queued", `queued, ${q + 1} in line`] : ["open", "open"];
+    return `<div class="rc-head">^ticket(${n}) · ${esc(t.area || "")}<span class="rc-state ${cls}">${esc(state)}</span></div>` +
+      `<div class="rc-title">${esc(lead(t.text))}</div>` +
+      `<div class="rc-meta">${t.added ? "added " + esc(t.added) + " · " : ""}from ${esc(plain(t.source || "") || "?")}</div>` +
+      (closed && t.outcome ? `<div class="rc-meta">${esc(cut(plain(t.outcome), 180))}</div>` : "");
+  };
+  const reportCard = (n, r) => r
+    ? `<div class="rc-head">^report(${n}) · Hazel performance analysis${r.date ? " · " + esc(r.date) : ""}</div>` +
+      `<div class="rc-title">${esc(r.title)}</div>` + (r.lead ? `<div class="rc-meta">${esc(cut(r.lead, 240))}</div>` : "")
+    : `<div class="rc-head">^report(${n})</div><div class="rc-note">The report's page didn't load just now.</div>`;
+  let card = null, over = null, timer = null;
+  const place = a => {
+    const r = a.getBoundingClientRect(), w = card.offsetWidth, h = card.offsetHeight;
+    card.style.left = (Math.max(16, Math.min(r.left, document.documentElement.clientWidth - w - 16)) + scrollX) + "px";
+    card.style.top = ((r.bottom + 6 + h < innerHeight ? r.bottom + 6 : r.top - 6 - h) + scrollY) + "px";
+  };
+  const refOf = a => { const c = a.querySelector("code.ref"); const m = c && /^\^(ticket|report)\((\d+)\)$/.exec(c.textContent.trim()); return m && { kind: m[1], n: Number(m[2]) }; };
+  const hide = () => { clearTimeout(timer); over = null; if (card) card.hidden = true; };
+  const show = (a, ref) => {
+    over = a; clearTimeout(timer);
+    timer = setTimeout(async () => {
+      if (!card) { card = document.createElement("div"); card.className = "ref-card"; card.setAttribute("role", "tooltip"); document.body.append(card); }
+      card.innerHTML = `<div class="rc-head">^${ref.kind}(${ref.n})</div><div class="rc-note">loading…</div>`;
+      card.hidden = false; place(a);
+      let html;
+      if (ref.kind === "ticket") { const d = await loadData(); html = d ? ticketCard(ref.n, d) : `<div class="rc-head">^ticket(${ref.n})</div><div class="rc-note">The dashboard's data didn't load just now.</div>`; }
+      else html = reportCard(ref.n, await loadReport(a.href));
+      if (over !== a) return;
+      card.innerHTML = html; place(a);
+    }, 250);
+  };
+  const linkOf = t => t && t.closest && t.closest("a[href]");
+  document.addEventListener("mouseover", e => { const a = linkOf(e.target), r = a && refOf(a); if (r && a !== over) show(a, r); });
+  document.addEventListener("mouseout", e => { const a = linkOf(e.target); if (a && a === over && !a.contains(e.relatedTarget)) hide(); });
+  document.addEventListener("focusin", e => { const a = linkOf(e.target), r = a && refOf(a); if (r) show(a, r); });
+  document.addEventListener("focusout", hide);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") hide(); });
+  addEventListener("scroll", () => { if (over && card && !card.hidden) place(over); }, { passive: true });
+})();
+</script>
+<!-- ref-cards: end -->
+<!-- notes: begin -->
+<style>
+  code.ref { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; white-space: nowrap; }
+  code.ref b { font-weight: 800; }
+  button.mint { margin-left: 4px; font: inherit; font-size: 0.75em; padding: 0 6px; border: 1px solid var(--line, #ccc);
+    border-radius: 4px; background: transparent; color: var(--muted, #666); cursor: pointer; vertical-align: 1px; }
+  button.mint:hover { color: inherit; }
+  button.mint.done { color: var(--good, #15803d); border-color: var(--good, #15803d); }
+  a.step-link { color: var(--muted, #666); text-decoration: none; font-size: 0.85em; margin-left: 4px; }
+  a.step-link:hover { text-decoration: underline; }
+  li:target { background: color-mix(in srgb, var(--good, #15803d) 12%, transparent); border-radius: 6px; }
+</style>
+<script>
+/* Each step under "Next": a link to it, a chip copying that link, and a
+   chip copying a request to mint a ticket for it (to paste to Claude). */
+(() => {
+  const h = document.getElementById("next");
+  if (!h) return;
+  let list = h.nextElementSibling;
+  while (list && !/^(OL|UL)$/.test(list.tagName)) {
+    if (list.tagName === "H2") return;
+    list = list.nextElementSibling;
+  }
+  if (!list) return;
+  const page = location.origin + location.pathname, name = document.title;
+  const copy = async (b, text) => {
+    try { await navigator.clipboard.writeText(text); }
+    catch (_) { const t = document.createElement("textarea"); t.value = text; document.body.append(t); t.select(); document.execCommand("copy"); t.remove(); }
+    const was = b.textContent; b.textContent = "copied"; b.classList.add("done");
+    setTimeout(() => { b.textContent = was; b.classList.remove("done"); }, 1500);
+  };
+  [...list.children].filter(li => li.tagName === "LI").forEach((li, i) => {
+    const n = i + 1;
+    if (!li.id) li.id = "step-" + n;
+    const url = page + "#" + li.id;
+    const b = li.querySelector("b, strong");
+    const title = (b ? b.textContent : li.textContent).replace(/\s+/g, " ").trim().replace(/[:.,;]$/, "").slice(0, 160);
+    const a = document.createElement("a");
+    a.href = "#" + li.id; a.className = "step-link"; a.textContent = "#" + n; a.title = "A link to this step";
+    const link = document.createElement("button");
+    link.type = "button"; link.className = "mint"; link.textContent = "copy link"; link.title = "Copies a link to this step";
+    link.addEventListener("click", () => copy(link, url));
+    const mint = document.createElement("button");
+    mint.type = "button"; mint.className = "mint"; mint.textContent = "copy for a ticket";
+    mint.title = "Copies a request to mint a ticket for this step, to paste to Claude";
+    mint.addEventListener("click", () => copy(mint, "Mint a ticket for this step: " + name + ", Next, step " + n + ': "' + title + '". ' + url));
+    li.append(" ", a, " ", link, " ", mint);
+  });
+  if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
+})();
+</script>
+<!-- notes: end -->
 </body>
 </html>
