@@ -271,9 +271,12 @@ def num_cell(t):
     return (f'<td class="num"><a class="anchor" href="#ticket-{t["id"]}">#{t["id"]}</a>'
             f'<button class="copy" type="button" data-anchor="ticket-{t["id"]}" title="Copy a link to #{t["id"]}">copy link</button></td>')
 
-# a queued ticket's place in the work queue, as a badge on its backlog row
+# a ticket's status chip beside "current": "queued", for a ticket in the work
+# queue that is not the current one (its place in line is its tooltip)
 def queue_badge(t):
-    return f'<br><a class="badge queued" href="#queue">queue {QPOS[t["id"]]}</a>' if t["id"] in QPOS else ""
+    if t["id"] not in QPOS or t is CURRENT:
+        return ""
+    return f'<br><a class="badge queued" href="#queue" title="number {QPOS[t["id"]]} in the work queue">queued</a>'
 
 # Our tickets: data.json's next_ticket is never reused, so a number names one
 # ticket for good, open or closed.
