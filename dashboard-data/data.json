@@ -393,9 +393,17 @@
    "text": "<b>Respond to the change requests on #2583</b> (\"Deep links: the URL can say which slide, which panel, and where the cursor is\", Matthew's PR, branch <code>deep-links</code>). Review by 7h3kk1d, 2026-09-23, changes requested: \"Feature works. Most feedback here is surface level but I think it deserves a once over before I approve.\" <b>The conceptual point:</b> two separate URL encodings now, the scratch pad's and the documentation slides' by name, and neither works in the tutorial or other modes; tests would be nice. <b>The 13 inline comments:</b> in <code>DeepLink.re</code>, a type for the whole deep-link request, with parsing the query separated from applying it to the settings and the editor, so that parsing, the editor actions and making the URL can each be tested without a browser (pass the query param in; the <code>PanelRequest</code> type is the pattern to follow); what <code>key</code> is for; <code>List.find_index</code> (OCaml 5.1); the panel's enumerate/show mapping in one place, or in <code>Sidebar.re</code>; a comment that reads like \"a poem or ancient translation\"; in <code>Page.re</code>, whether tutorials should be shareable; in <code>Globals.re</code>, handling it as an action in <code>Main.re</code> like the others, and <code>slide_name</code> not belonging on <code>Globals</code> (non-blocking); in <code>CodeEditable.re</code>, why the enclosing term is selected rather than the caret's position shared.",
    "source": "Matthew, 2026-10-14",
    "url": "https://github.com/hazelgrove/hazel/pull/2583"
+  },
+  {
+   "id": 56,
+   "area": "performance, series",
+   "added": "2026-10-14",
+   "text": "<b>Pictures of the body as a symbolic tree of transforms and parts, in ^report(12)</b> (\"Moving a Group, Not Its Points\": Full Body rebuilt as a picture of groups, each with a transform). Draw the figure's tree: each group a node labelled with its transform (a translate, a rotation about a joint, a scale), and the parts (the shapes) at its leaves, as the slide builds them; best beside the drawn figure, so a reader sees which node makes which part, and, for a slider edit, which nodes it changes (the picture diff the report measures). The pictures illustrate what ^report(12) already says, without changing its story, so they go into the report in place, where it describes the tree, not as a dated update (Matthew, 2026-10-14); he reviews before they are published.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/hazel/performance-analysis/012/"
   }
  ],
- "next_ticket": 56,
+ "next_ticket": 57,
  "current_ticket": 45,
  "current_note": "The audit is written (<a href=\"http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T1209-0600.html\">work notes</a>): nothing adds a version per edit by construction, so the holder is one of the tables keyed by changing ids (Statics.module_livelits, LivelitProj's per-id tables, AppStore). Next: a build that counts them after every edit. Meanwhile, at Matthew's word: every PR number in the series becomes a link, with a live hover card.",
  "closed_tickets": [
@@ -756,6 +764,7 @@
  ],
  "queue": [
   45,
+  56,
   53,
   18,
   46,
