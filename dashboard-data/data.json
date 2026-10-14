@@ -364,14 +364,6 @@
    "url": ""
   },
   {
-   "id": 53,
-   "area": "performance, series",
-   "added": "2026-10-14",
-   "text": "<b>Series ^report(14): what the page keeps from one edit to the next.</b> From ^ticket(45). ^report(5) listed what the page keeps of a view (the view memo's Html, the worker's and the page's tables of shared values, the last virtual DOM tree, the DOM) and said \"what memory these take has not been measured\". ^ticket(45) measures it: on #2597, a tab keeps about 85 MB per edit of Full Body (+1.4 GB over 15 edits), and none of those representations is the holder. The report: the measurement (live heap after forced GCs, per edit, in headless Chromium driven over the DevTools protocol); the method where heap snapshots crash the tab (V8's sampling heap profiler: what stays alive, by the code that allocated it; a census of the tab's Maps and Sets); what was ruled out and how (the whole-program memos, the undo history, the projector view cache, ShareCodec's tables, each by an experiment); the audit of every cache and weak table (^ticket(45)'s audit); and the holder and its fix, once found. Matthew, 2026-10-14: plan on writing it unless there's a surprise reason not to. Drafts wait for his review before publishing.",
-   "source": "Matthew, 2026-10-14 (from ^ticket(45))",
-   "url": ""
-  },
-  {
    "id": 54,
    "area": "performance, #2469",
    "added": "2026-10-14",
@@ -434,11 +426,27 @@
    "text": "<b>Give ^report(1) to ^report(13) their data, as ^report(14) has it.</b> Matthew's rule (2026-10-14, now in the series' agent-instructions.md): every report carries every number behind its figures and tables twice, (1) embedded in the page as JSON (<code>&lt;script type=\"application/json\" id=\"report-data\"&gt;</code>), described well enough to read without the prose (build and commit, browser, each measure and its unit, raw readings, the patch or driver), and (2) as files in <code>NNN/data/</code>, linked from the method section (folders on GitHub). For the earlier reports, gather each one's numbers from its tables, figures and whatever raw files survive (the work notes, the scratch drivers' outputs), say where a number exists only as printed, and add a line to each method section. These are additions, not changes to the story, so they need no dated update; they wait for Matthew's review before publishing.",
    "source": "Matthew, 2026-10-14",
    "url": "http://matthewhammer.org/hazel/performance-analysis/"
+  },
+  {
+   "id": 65,
+   "area": "performance",
+   "added": "2026-10-14",
+   "text": "<b>Measure the same on #2635</b> (Hazel performance analysis, ^report(14), What next, step 4: \"Measure the same on #2635 (livelits with modular editors) and on dev, to see whether the growth is #2597's own.\"). Run ^report(14)'s measurement (014/drivers/heap_per_edit.py: Full Body, the shirt-width slider set 15 times, the page's live heap after two forced collections) on #2635's head and on dev, where the slide exists, and compare with #2597's 92 MB per edit. If a branch does not grow, the difference between it and #2597 points at the holder (^ticket(58)).",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/hazel/performance-analysis/014/#step-4"
+  },
+  {
+   "id": 66,
+   "area": "performance",
+   "added": "2026-10-14",
+   "text": "<b>Find a smaller slide that grows the same way</b> (Hazel performance analysis, ^report(14), What next, step 2: \"Find a smaller slide that grows the same way, so that a snapshot fits even with the memo: one whose slider edits a livelit's model, measured as here.\"). On #2597, run ^report(14)'s measurement (014/drivers/heap_per_edit.py, the live heap after two forced collections, per slider edit) on the Livelit Playground's smaller slides, picking a slider that edits a livelit's model (Shirt and Pants' width sliders are not the shirt's own, so that earlier try applied no edit; check that each edit changes the picture). A slide that keeps a version per edit at a fraction of Full Body's size may let a heap snapshot finish, and its retainer paths would name the holder (^ticket(58)).",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/hazel/performance-analysis/014/#step-2"
   }
  ],
- "next_ticket": 65,
- "current_ticket": 53,
- "current_note": "^report(14) is drafted and committed locally (hazel-performance-analysis, not pushed): \"What the page keeps from one edit to the next\". Six short answers with four figures (the heap per edit; growth by build; the tables flat while the heap grows; what stays, by the code that made it), then the measurement, the caches, the tables, what stays, why heap snapshots fail, the weak tables, side findings, What next (5 steps) and the method. The numbers ride along as JSON in the page (script#report-data) and as files in 014/data/; the experiments' patches are in patches/, the drivers in 014/drivers/. ^report(5) gets a dated note. Preview: http://localhost:8131/014/ and the series index http://localhost:8131/series/.",
+ "next_ticket": 67,
+ "current_ticket": 61,
+ "current_note": "Starting the \"full body\" master slider in Dress Up's 👻 Visibility tab: above the parts' sliders, below the \"every part at once\" chips. ^ticket(53) is done: ^report(14) is live.",
  "closed_tickets": [
   {
    "id": 10,
@@ -840,10 +848,21 @@
    "status": "done",
    "outcome": "Published on Matthew's say-so and checked live: http://matthewhammer.org/hazel/ is now \"Matthew Hammer and Hazel\", in the homepage's style (its outline and Pages menu, with light and dark themes), with text in his voice: Hazel and his part in it, what he works on now, the performance reports (all 13 listed, newest first), games with M and N, how he works (with Claude and the dashboard), and Fumola in Hazel. \"The issues\" is gone. The list is kept by hazel-performance-analysis's tools/hazel_page.py, now a step in publishing a report (agent-instructions.md). Commits: matthewhammer.github.io aa536a4, hazel-performance-analysis dd977a1.",
    "outcome_url": "http://matthewhammer.org/hazel/"
+  },
+  {
+   "id": 53,
+   "area": "performance, series",
+   "added": "2026-10-14",
+   "text": "<b>Series ^report(14): what the page keeps from one edit to the next.</b> From ^ticket(45). ^report(5) listed what the page keeps of a view (the view memo's Html, the worker's and the page's tables of shared values, the last virtual DOM tree, the DOM) and said \"what memory these take has not been measured\". ^ticket(45) measures it: on #2597, a tab keeps about 85 MB per edit of Full Body (+1.4 GB over 15 edits), and none of those representations is the holder. The report: the measurement (live heap after forced GCs, per edit, in headless Chromium driven over the DevTools protocol); the method where heap snapshots crash the tab (V8's sampling heap profiler: what stays alive, by the code that allocated it; a census of the tab's Maps and Sets); what was ruled out and how (the whole-program memos, the undo history, the projector view cache, ShareCodec's tables, each by an experiment); the audit of every cache and weak table (^ticket(45)'s audit); and the holder and its fix, once found. Matthew, 2026-10-14: plan on writing it unless there's a surprise reason not to. Drafts wait for his review before publishing.",
+   "source": "Matthew, 2026-10-14 (from ^ticket(45))",
+   "url": "",
+   "closed": "2026-10-14",
+   "status": "done",
+   "outcome": "Published on Matthew's say-so and checked live: ^report(14), \"What the page keeps from one edit to the next\". A #2597 tab keeps about 92 MB more after every slider edit on Full Body; not the caches (each tried in its own build), not any long-lived table (each counted after every edit); what stays is whole versions of the editor's state; the holder is open (^ticket(58)), since heap snapshots kill the tab. Four figures, the data as JSON in the page and as files in 014/data/ (the model for Matthew's new rule, and ^ticket(64) for the earlier reports), the experiments' patches in patches/, the drivers in 014/drivers/, a dated note in ^report(5), the card on the series index and the line on the /hazel/ page. Commits: hazel-performance-analysis 9c548bd, 35a5e53, 8be276a; matthewhammer.github.io be12468.",
+   "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/014/"
   }
  ],
  "queue": [
-  53,
   61,
   62,
   64,
@@ -853,6 +872,5 @@
   46,
   50
  ],
- "current_since": "2026-10-14T14:47:11-06:00",
- "current_waiting": "Matthew's review of ^report(14) (http://localhost:8131/014/): publish?"
+ "current_since": "2026-10-14T14:58:50-06:00"
 }
