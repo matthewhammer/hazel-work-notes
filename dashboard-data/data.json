@@ -214,13 +214,6 @@
  ],
  "tickets": [
   {
-   "id": 4,
-   "area": "performance",
-   "text": "#2597 CI red since 2026-10-11 afternoon: full tests time out at 100 min, quick tests run out of heap. Locally, the whole suite in one process runs out of memory after about 96 min.",
-   "source": "CI runs on #2597",
-   "url": "https://github.com/hazelgrove/hazel/pull/2597"
-  },
-  {
    "id": 45,
    "area": "performance",
    "text": "<b>The editor's whole-program memos keep about 82 MB per edit of a big slide, or more.</b> Found under #4. The code path: every edit that refreshes statics (<code>CodeWithStatics</code>, <code>do_init</code>) calls <code>CachedStatics.init</code>, which asks <code>MakeTerm.from_zip_for_sem</code> (keyed by the zipper) and then <code>Statics.mk</code> (keyed by the term), both <code>Core.Memo</code>s keeping the last 1000 keys, so each version of the program is kept until 1000 newer ones push it out. Measured in node, local experiment commit 62aaaa28e4 (branch memo-growth-experiment in ~/hazel-ci-heap, not pushed): 12 edits of one Full Body slider literal, statics each time, live heap after a forced GC: +83, +165, ... +987 MB as the editor has the memos; flat at 490 MB emptied after each edit. That is Statics.mk's share alone; MakeTerm's memos add the zipper and terms. Statics took 2.7 to 3.2 s per edit, slower as the heap grew. Not checked in the browser (a tab could grow by gigabytes on this laptop): to do together. <b>Already fixed in #2469, so in #2635:</b> Andrew's b0fa4d7d6a (2026-08-25, \"physical-identity mk memo\") makes Statics.mk a 16-entry LRU keyed by the term's identity (its comment: a large structural memo \"would retain whole programs and their info maps\"), and MakeTerm's memos keep 8. dev and #2597 still keep 1000. So for #2597: port those bounds (another way #2597 lacks #2469's perf).",
@@ -379,9 +372,20 @@
   }
  ],
  "next_ticket": 47,
- "current_ticket": 4,
- "current_note": "#4 (his go, 2026-10-13 evening): #2597's CI, red since 2026-10-11 (6de0b53326). FIXED AND PUSHED 2026-10-14 on Matthew's go; CI running on both. #2597 (684a75cb2f..c4e411f9c2): 5d576cc479 Statics.mk keeps 16 programs and MakeTerm's memos 8, as in #2469 (the quick job ran out of heap: the memos kept every test's programs); 8798d64213 programs over 25 KB get the recovering-parser checks in the weekly run only (the full job ran out of time, #46); c4e411f9c2 the big slides' Unproject cases in the full tests only. Here: quick 309 s, full 26 min, @check and @fmt clean; about 9 and 51 min on CI by the green commit's ratio. #2635 (c4e64060f1..41897ec3a5): the last two only, as #2469 already bounds its memos: quick 468 s here (was 740), with its 8 known failures unchanged, so its CI stays red on those. 8311 rebuilt (06:14, c4e411f9c2); 8341 needed none (its commits touch only test/). Both CI runs started 06:12 MDT. <b>#2597's quick tests are GREEN</b>: 8.5 min (limit 20; red since 10-11). #2635's quick tests now finish (585 s, was timing out at 20 min), red only for its 8 known failures (DefStaticsParity, Editing.TableDecorations, LabelBench, ModRoot x4, TypeDeps). Both full jobs still running; reading them when they finish.",
+ "current_ticket": 7,
+ "current_note": "#7, started 2026-10-14 while #4's CI ran (\"in part\"). Measured in node on #2635: on a release, building the worker request costs most in the EvalInfo projection (13–14 ms on Full Body), which walks both whole statics maps every commit, not in hashing (1–4 ms). Next, to talk over with Matthew (Andrew's code): DefStatics hands EvalInfo the items it re-analyzed, so the projection touches only those. The redraw half is not started. Details on the ticket.",
  "closed_tickets": [
+  {
+   "id": 4,
+   "area": "performance",
+   "text": "#2597 CI red since 2026-10-11 afternoon: full tests time out at 100 min, quick tests run out of heap. Locally, the whole suite in one process runs out of memory after about 96 min.",
+   "source": "CI runs on #2597",
+   "url": "https://github.com/hazelgrove/hazel/pull/2597",
+   "closed": "2026-10-14",
+   "status": "done",
+   "outcome": "#2597's CI is green again (red since 2026-10-11): quick tests 8.5 min, full tests 53 min (limits 20 and 100). Two causes, both from the Dress Up slides: the whole-program memos kept every test's programs (out of heap), and the recovering parser on the big slides (out of time, #46). Pushed 2026-10-14: #2597 5d576cc479 (Statics.mk keeps 16 programs, MakeTerm's memos 8, as in #2469), 8798d64213 (programs over 25 KB get the recovering-parser checks in the weekly run only), c4e411f9c2 (the big slides' Unproject cases in the full tests only); #2635 the last two (its memos were already bounded): its quick tests 585 s and full 41 min, no longer timing out, red only for its 8 known failures. Found on the way: #45 (the editor's memos keep about 82 MB per edit on #2597, fixed there by the same bounds) and #46 (the parser).",
+   "outcome_url": "https://github.com/hazelgrove/hazel/actions/runs/38562043545"
+  },
   {
    "id": 5,
    "area": "performance",
@@ -657,5 +661,6 @@
    "outcome": "Done (2026-10-13): issue 012 published on Matthew's go-ahead at matthewhammer.org/hazel/performance-analysis/012/ (homepage 076ec93, series cfdb7c6), checked live over HTTP, with dated notes in issue 011 (its What next, step 1, and its representation section)."
   }
  ],
- "current_since": "2026-10-13T20:37:17-06:00"
+ "current_since": "2026-10-14T06:35:00-06:00",
+ "current_waiting": "#7: take the EvalInfo projection idea further (DefStatics is Andrew's code), or stop here?"
 }
