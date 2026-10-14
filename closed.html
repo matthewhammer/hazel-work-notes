@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<meta name="dashboard-version" content="c3d2cb41d480">
+<meta name="dashboard-version" content="7b8f184564d3">
 <!-- theme: head begin -->
 <script>try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}</script>
 <!-- theme: head end -->
@@ -82,7 +82,7 @@
 <main>
 <h1>Closed tickets</h1>
 <p class="note">A copy of the Hazel Work Dashboard that Matthew runs on his laptop, published within a minute or two of each change to its notes, and every 15 minutes for the status from GitHub. Its <code>localhost</code> links work only there.</p>
-<p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated 2026-10-14 08:15 MDT. Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are <a href="./#tickets">on the dashboard</a>.</p>
+<p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated 2026-10-14 08:27 MDT. Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are <a href="./#tickets">on the dashboard</a>.</p>
 <div class="scroll"><table>
 <tr><th class="num">#</th><th class="area">Area</th><th>Status, closed</th><th>Outcome</th><th>The ticket, as it last read</th></tr>
 <tr id="ticket-5"><td class="num"><a class="anchor" href="#ticket-5">#5</a><button class="copy" type="button" data-anchor="ticket-5" title="Copy a link to #5">copy link</button></td><td>performance</td><td class="status"><span class="wait">superseded</span><br><span class="note">2026-10-14</span></td><td>Explained in part, by the evaluator. On both slides the figure is one binding that depends on every slider, so every change evaluates 85–95% of the picture again (issue 011); and the witch's picture is bigger: 133 shapes against 49, 205,665 evaluation steps from scratch against 128,393 (issue 010). In node that is 754 ms against 499 ms per edit (<a href="http://matthewhammer.org/hazel/performance-analysis/009/">issue 009</a>): about a quarter of a second, not the seconds seen in the browser. The rest of the browser's gap (statics, the views, drawing 133 shapes) was never profiled on this slide; <a href="http://matthewhammer.org/hazel/performance-analysis/008/">issue 008</a> profiled one change phase by phase, on another slide. What shrinks it on every slide is reuse below a binding, by names and groups (issues 011 and 012), and the per-change costs in <a href="./#ticket-23">#23</a>, <a href="./#ticket-24">#24</a> and <a href="./#ticket-45">#45</a>. Closed on Matthew's suggestion. <a href="http://matthewhammer.org/hazel/performance-analysis/010/">(where)</a></td><td>The Witch slide's extra cost over Full Body for the same change, from <a href="http://matthewhammer.org/hazel/performance-analysis/004/">issue 004</a> (2026-10-12): a skin press took 6.5 s against 4.1 s before that issue's three fixes, and 2.2–4.5 s against 1.5–1.8 s after them, one run each. Written before <a href="http://matthewhammer.org/hazel/performance-analysis/009/">issues 009</a>–012 measured what a small change costs; revised 2026-10-14.<br><span class="note">from <a href="http://matthewhammer.org/hazel/performance-analysis/004/#cost">issue 004</a></span></td></tr>
