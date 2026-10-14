@@ -373,7 +373,7 @@
  ],
  "next_ticket": 47,
  "current_ticket": 7,
- "current_note": "#7, started 2026-10-14 while #4's CI ran. Matthew's go (2026-10-14): continue with the next step ourselves, and offer the results, not waiting on Andrew. Measured in node on #2635: building the worker request costs most in the EvalInfo projection (13–14 ms per release on Full Body), which walks both whole statics maps every commit; hashing is 1–4 ms. NOW: DefStatics hands EvalInfo what it re-analyzed, so the projection updates only those entries. On #2635 only (DefStatics is #2469's; #2597 has none).",
+ "current_note": "#7: the next step is DONE locally, ready to offer; WAITING ON MATTHEW. Two commits on #2635's head 41897ec3a5, branch t7-offer in ~/hazel-ci-heap-2635 (not pushed): 043508921b DefStatics tells EvalInfo the keys it touched, and the projection updates only those (Full Body, per release: projection 13–14 ms → 0.7–0.8; whole request 15.5–18.8 → 3.0–3.5 ms); 9fb2bdf067 DefStatics keeps an item's patched spine root when nothing it is made from changed (statics after the edit 25–31 → 16–20 ms; new EvalInfo nodes 13,100 → 1,500). Tested: Test_EvalInfoProjection (the note is used, equals a rebuild; 82 reused roots each equal to a recomputed one); quick suite, same 8 known failures; @check, @fmt clean. #2469 differs too much to take them as they are (its EvalInfo lacks the keyed projection, 8fbc86c644, which is ours on #2635), so the offer is: push to #2635, and a progress note on #2469, no @-mention (draft: ~/hazel/experiments/2469-note-ticket7.md).",
  "closed_tickets": [
   {
    "id": 4,
@@ -661,5 +661,6 @@
    "outcome": "Done (2026-10-13): issue 012 published on Matthew's go-ahead at matthewhammer.org/hazel/performance-analysis/012/ (homepage 076ec93, series cfdb7c6), checked live over HTTP, with dated notes in issue 011 (its What next, step 1, and its representation section)."
   }
  ],
- "current_since": "2026-10-14T06:35:00-06:00"
+ "current_since": "2026-10-14T06:35:00-06:00",
+ "current_waiting": "#7: push t7-offer's two commits to #2635, and post the drafted progress note on #2469?"
 }
