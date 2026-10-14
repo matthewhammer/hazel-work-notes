@@ -214,13 +214,6 @@
  ],
  "tickets": [
   {
-   "id": 47,
-   "area": "performance, series",
-   "text": "<b>Issue 013: carrying #7's improvement to branches diverged from ours.</b> #2635 9fb2bdf067 and 043508921b (DefStatics tells EvalInfo the keys it touched; unchanged spine roots kept) cut a release's worker request on Full Body from 15.5–18.8 ms to 2.5–3.0 ms. Write how to apply that to a branch that has diverged (#2469's modular-editors, dev, #2597): what it depends on, what to port first, how to check it, with plots of the data. A draft for Matthew to review before it is published.",
-   "source": "Matthew, 2026-10-14",
-   "url": ""
-  },
-  {
    "id": 48,
    "area": "dress up",
    "text": "<b>Messed Up Dress Up: music by category, and transposing by interval.</b> (1) <b>Categories:</b> a small number, about 8: reggae, house, groove, waltz, calypso, <b>classic beats</b>, and a few more of our choosing. Every category gets at least one song, a new one where none fits yet. The 17 tunes today could seed most of them: reggae (sunny reggae, bubble reggae, turtle steppers dub), calypso (beach calypso, beach soca jump-up, steel-pan lullaby), waltz (spooky waltz), and chases (tree-house, duck-pond, round-the-house); the rest to sort. The music picker becomes two chips: song category, then track. <b>Classic beats</b> gets three new funk / hip-hop instrumentals in the spirit of \"Apache\" (Incredible Bongo Band), about 3 minutes each, with sections that feature, in turn: bass guitar, bongo drums, drum kit (funk playing), organ, and rhythm and lead guitars, so each part can be heard on its own (and on the mixing board). Our own tunes in that style (breakbeat kit, bongos, organ, twangy guitar), not Apache's melody or its break. (2) <b>Transpose by interval:</b> next to the transpose slider (today ±24 half steps), three chips: minus | interval | plus. The interval chip cycles through every interval up to the octave: half step, whole step, minor 3rd, major 3rd, 4th, tritone, 5th, minor 6th, major 6th, minor 7th, major 7th, octave; the octave is the default. Minus and plus move the slider by exactly that interval. (3) <b>The same per channel</b> (each part on the mixing board): the three chips only, and in place of a slider an indicator of the channel's setting, none or −/+ X × the interval, where X counts the presses of minus or plus, up to 3. To settle while building: what the indicator shows if the interval chip changes between presses.",
@@ -387,8 +380,19 @@
  ],
  "next_ticket": 49,
  "current_ticket": 48,
- "current_note": "#48, Messed Up Dress Up music (Matthew's go, 2026-10-14: build it, bump the version and deploy when happy; he reviews after). Plan: about 8 categories with a category chip and a track chip; three Apache-style funk instrumentals for \"classic beats\" (about 3 min each, sections featuring bass, bongos, kit, organ, guitars); transpose chips (− | interval | +) on the main slider and per channel. Meanwhile #47's issue 013 draft is with Matthew for review (http://localhost:8131/series/013/).",
+ "current_note": "#48, Messed Up Dress Up music (Matthew's go, 2026-10-14: build it, bump the version, deploy when happy; he reviews after). Plan: 8 categories (classic beats, reggae, calypso, house, groove, waltz, chase, storybook) as a category chip row and a track chip row; three Apache-style funk instrumentals for classic beats (about 3 min each, sections featuring bass, bongos, kit, organ, guitars); transpose chips (− | interval | +) on the main slider and per channel. In progress.",
  "closed_tickets": [
+  {
+   "id": 47,
+   "area": "performance, series",
+   "text": "<b>Issue 013: carrying #7's improvement to branches diverged from ours.</b> #2635 9fb2bdf067 and 043508921b (DefStatics tells EvalInfo the keys it touched; unchanged spine roots kept) cut a release's worker request on Full Body from 15.5–18.8 ms to 2.5–3.0 ms. Write how to apply that to a branch that has diverged (#2469's modular-editors, dev, #2597): what it depends on, what to port first, how to check it, with plots of the data. A draft for Matthew to review before it is published.",
+   "source": "Matthew, 2026-10-14",
+   "url": "",
+   "closed": "2026-10-14",
+   "status": "done",
+   "outcome": "Issue 013, \"Telling the Request What Changed\", published (homepage a5c37be, series d6efedb), with a dated note in issue 001. Building a release's request projection now takes under 1 ms on every Playground slide (from 1.9–11.9 ms); what is left grows with how far down the program the slider sits. Ported to #2469's head locally (branch port-2469-t7 in ~/hazel-port-2469, not pushed): one change per step, quick suite passes whole. dev and #2597 need per-item statics first.",
+   "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/013/"
+  },
   {
    "id": 4,
    "area": "performance",
