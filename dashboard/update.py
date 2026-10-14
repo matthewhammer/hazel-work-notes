@@ -70,6 +70,15 @@ CLOSED = sorted(data.get("closed_tickets", []), key=lambda t: t["id"])
 OPEN_IDS = {t["id"] for t in TICKETS}
 CLOSED_IDS = {t["id"] for t in CLOSED}
 CURRENT = next((t for t in TICKETS if t["id"] == data.get("current_ticket")), None)
+# The work queue: a few open tickets, in the order we mean to take them
+# (data.json's "queue", ticket numbers, front first). Short on purpose: the
+# whole backlog is below it. A closed or unknown number is left out, and said.
+BY_ID = {t["id"]: t for t in TICKETS}
+QUEUE = [BY_ID[n] for n in data.get("queue", []) if n in BY_ID]
+for n in data.get("queue", []):
+    if n not in BY_ID:
+        print(f"queue: #{n} is not an open ticket; left out", file=sys.stderr)
+QPOS = {t["id"]: i + 1 for i, t in enumerate(QUEUE)}
 # The current ticket waits on Matthew (current_waiting: true, or a line saying
 # what for): a raised hand and a question mark, boxed, wherever it is named,
 # and in the page's title, so a tab shows it unopened.
@@ -262,11 +271,16 @@ def num_cell(t):
     return (f'<td class="num"><a class="anchor" href="#ticket-{t["id"]}">#{t["id"]}</a>'
             f'<button class="copy" type="button" data-anchor="ticket-{t["id"]}" title="Copy a link to #{t["id"]}">copy link</button></td>')
 
+# a queued ticket's place in the work queue, as a badge on its backlog row
+def queue_badge(t):
+    return f'<br><a class="badge queued" href="#queue">queue {QPOS[t["id"]]}</a>' if t["id"] in QPOS else ""
+
 # Our tickets: data.json's next_ticket is never reused, so a number names one
 # ticket for good, open or closed.
 ticket_rows = "\n".join(
     f'<tr id="ticket-{t["id"]}"{" class=\"current\"" if t is CURRENT else ""}>{num_cell(t)}'
-    f'<td>{e(t.get("area", ""))}{"<br><span class=\"badge\">current</span>" + (" " + hand() if WAITING else "") if t is CURRENT else ""}</td>'
+    f'<td>{e(t.get("area", ""))}{"<br><span class=\"badge\">current</span>" + (" " + hand() if WAITING else "") if t is CURRENT else ""}'
+    f'{queue_badge(t)}</td>'
     f'<td>{linkify(t["text"])}</td><td>{from_cell(t)}</td></tr>'
     for t in TICKETS)
 
@@ -303,18 +317,36 @@ def short(html_text, n=46):
     t = html.unescape(t)
     return t if len(t) <= n else t[:n].rsplit(" ", 1)[0] + "…"
 
+# The work queue: its tickets in order, each a line, linking to its full row
+# in the backlog. Short on purpose; we push to its front or its back, and
+# reorder it, as we go.
+def queue_row(i, t):
+    tag = ' <span class="badge">current</span>' + (" " + hand() if WAITING else "") if t is CURRENT else ""
+    return (f'<tr><td class="num">{i}</td><td class="num"><a href="#ticket-{t["id"]}">#{t["id"]}</a>{tag}</td>'
+            f'<td>{e(t.get("area", ""))}</td><td>{e(short(t["text"], 140))}</td></tr>')
+
+queue_section = f"""<h2 id="queue">Work Queue (Active Tickets)</h2>
+<p class="note">What we mean to do next, in order: a few tickets, not the backlog. We push a ticket onto the front or the back, and reorder as we go; a ticket leaves the queue when it closes. Each links to its full row in <a href="#backlog">the backlog</a>.</p>
+""" + (f"""<table class="queue">
+<tr><th class="num">Next</th><th class="num">#</th><th class="area">Area</th><th>Ticket</th></tr>
+{chr(10).join(queue_row(i + 1, t) for i, t in enumerate(QUEUE))}
+</table>
+""" if QUEUE else '<p><i>Empty: push a ticket onto it.</i></p>\n')
+
 def entry(href, text, sub=False):
     return f'<li{" class=\"sub\"" if sub else ""}><a href="{href}">{e(text)}</a></li>'
 
 outline = "\n".join(
     ([entry("#current", f'Current ticket: #{CURRENT["id"]}' + (f" {HAND}" if WAITING else ""))] if CURRENT else []) + [
+    entry("#queue", f"Work Queue ({len(QUEUE)})"),
+] + [entry(f'#ticket-{t["id"]}', f'{i + 1}. #{t["id"]} {short(t["text"])}', sub=True) for i, t in enumerate(QUEUE)] + [
     entry("#ports", "Localhost ports"),
     entry("#other", "Other PRs we are tracking"),
     entry("#repos", "Repositories we deploy"),
     entry("#perf", "Performance Analysis and Improvement"),
     entry("#perf-prs", "Performance PRs", sub=True),
     entry("#integration", "Integration branches", sub=True),
-    entry("#tickets", "Tickets"),
+    entry("#backlog", f"Full Backlog ({len(TICKETS)})"),
 ] + [entry(f'#ticket-{t["id"]}', f'#{t["id"]} {short(t["text"])}', sub=True) for t in TICKETS]
   + [entry("closed.html", f"Closed tickets ({len(CLOSED)})")])
 
@@ -389,6 +421,8 @@ page = f"""<!doctype html>
   .waiting {{ display: inline-block; margin-left: 0.3em; padding: 0.05em 0.4em; border: 3px solid CanvasText; border-radius: 999px; background: Canvas; color: CanvasText; font-weight: 800; line-height: 1.25; vertical-align: 0.05em; white-space: nowrap; }}
   h2 .waiting {{ font-size: 0.85em; }}
   .badge {{ display: inline-block; margin-top: 4px; padding: 0 6px; font-size: 0.8em; border-radius: 4px; color: var(--good); border: 1px solid var(--good); }}
+  .badge.queued {{ color: var(--wait); border-color: var(--wait); text-decoration: none; }}
+  table.queue td:first-child {{ font-weight: 700; }}
   tr.current td {{ background: color-mix(in srgb, var(--good) 7%, transparent); }}
   td.status {{ white-space: nowrap; }}
   .since {{ margin: 6px 0; }}
@@ -411,6 +445,7 @@ page = f"""<!doctype html>
 <p class="note">History: <a href="http://localhost:8000/notes/dashboard-snapshots/">every change to this page</a>, a folder for each year, month and day, also pushed to <a href="https://github.com/matthewhammer/hazel-work-notes">matthewhammer/hazel-work-notes</a> (public). Published within a minute or two of each change to our notes, and every 15 minutes for the status from GitHub: <a href="http://matthewhammer.org/hazel/work-dashboard/">matthewhammer.org/hazel/work-dashboard/</a>. How we work with this page: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/agent-instructions.md">agent-instructions.md</a> (<a href="http://localhost:8000/notes/agent-instructions.md">local</a>). This is version {VERSION}: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/VERSIONS.md">VERSIONS.md</a> lists what each version has. Closed tickets: <a href="closed.html">their own page</a>. This page reloads itself when it changes (checked every 90 s while it is open).</p>
 
 {current_section}
+{queue_section}
 <h2 id="ports">Localhost ports</h2>
 <table>
 <tr><th>PR # and title</th><th>Repo and branch</th><th>Localhost</th></tr>
@@ -446,8 +481,8 @@ page = f"""<!doctype html>
 {status_rows(data["integration_prs"])}
 </table>
 
-<h2 id="tickets">Tickets</h2>
-<p class="note">Our own tickets: what to do next, important and not done. Numbered in our own sequence from #1; a number is never reused. A closed ticket moves to <a href="closed.html">the closed tickets</a>, with how it ended.</p>
+<h2 id="backlog"><span id="tickets"></span>Full Backlog (All Tickets)</h2>
+<p class="note">All our open tickets: important and not done; the few we mean to do next are in <a href="#queue">the work queue</a>. Numbered in our own sequence from #1; a number is never reused. A closed ticket moves to <a href="closed.html">the closed tickets</a>, with how it ended.</p>
 <table>
 <tr><th class="num">#</th><th class="area">Area</th><th>Ticket</th><th class="from">From</th></tr>
 {ticket_rows}
@@ -619,7 +654,7 @@ closed_page = f"""<!doctype html>
 <body>
 <main>
 <h1>Closed tickets</h1>
-<p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated {e(now)}. Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are <a href="./#tickets">on the dashboard</a>.</p>
+<p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated {e(now)}. Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are on the dashboard: <a href="./#queue">the work queue</a> and <a href="./#backlog">the full backlog</a>.</p>
 <div class="scroll"><table>
 <tr><th class="num">#</th><th class="area">Area</th><th>Status, closed</th><th>Outcome</th><th>The ticket, as it last read</th></tr>
 {closed_rows}
