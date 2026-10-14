@@ -377,9 +377,17 @@
    "text": "<b>Series issue 014: what the page keeps from one edit to the next.</b> From #45. Issue 005 listed what the page keeps of a view (the view memo's Html, the worker's and the page's tables of shared values, the last virtual DOM tree, the DOM) and said \"what memory these take has not been measured\". #45 measures it: on #2597, a tab keeps about 85 MB per edit of Full Body (+1.4 GB over 15 edits), and none of those representations is the holder. The issue: the measurement (live heap after forced GCs, per edit, in headless Chromium driven over the DevTools protocol); the method where heap snapshots crash the tab (V8's sampling heap profiler: what stays alive, by the code that allocated it; a census of the tab's Maps and Sets); what was ruled out and how (the whole-program memos, the undo history, the projector view cache, ShareCodec's tables, each by an experiment); the audit of every cache and weak table (#45's audit); and the holder and its fix, once found. Matthew, 2026-10-14: plan on writing it unless there's a surprise reason not to. Drafts wait for his review before publishing.",
    "source": "Matthew, 2026-10-14 (from #45)",
    "url": ""
+  },
+  {
+   "id": 54,
+   "area": "performance, #2469",
+   "added": "2026-10-14",
+   "text": "<b>Offer #7's three ports to #2469, from the local branch, with issue 013's numbers.</b> Issue 013's What next, step 1: \"Offer the three ports to #2469, from the local branch, with this issue's numbers.\" The branch: <code>port-2469-t7</code> in ~/hazel-port-2469, three commits on #2469's head <code>c1e4aeee4a</code>, which is still its head (2026-10-14), so they apply as they are: <code>128f3f303d</code> (the worker's statics projection updated, not rebuilt), <code>cdb799a376</code> (EvalInfo updated at the keys DefStatics changed), <code>474b1e050e</code> (DefStatics keeps an item's patched root when nothing it is made from changed). Its quick tests passed whole. To do: push the branch under a name of Matthew's, and post on #2469 the branch, the three commits and issue 013's numbers for them; #2469 is Andrew's PR, so a progress note, no @-mention, no action asked; Matthew approves the post before it goes.",
+   "source": "Matthew, 2026-10-14 (issue 013, What next, step 1)",
+   "url": "http://matthewhammer.org/hazel/performance-analysis/013/#step-1"
   }
  ],
- "next_ticket": 54,
+ "next_ticket": 55,
  "current_ticket": 45,
  "current_note": "Measuring in headless Chromium over the DevTools protocol (node, no chromedriver). V8's sampling heap profiler over 4 edits of Full Body on #2597 (8311): +345 MB, and what stays was allocated by ValueHash's hash memo (100 MB, a symptom: a WeakMap keeps a hash only while its object lives), the worker's replies unmarshaled (41 MB), Measured's shards (14 MB), statics and types: whole versions of the editor's state, not one cache. A census of the tab's Maps rules out ShareCodec's tables (bounded at 200k entries, reset mid-run while the heap kept growing). Now: two heap snapshots a few edits apart, streamed into typed arrays, and the old objects that hold the new memory.",
  "closed_tickets": [
