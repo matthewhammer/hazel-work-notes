@@ -3,7 +3,7 @@
 
   python3 ~/localhost-index/log_notes.py
 
-Run by cron right after update.py, every 15 minutes. Each snapshot is the page
+Run by publish.py right after update.py. Each snapshot is the page
 exactly as served on http://localhost:8000/, at
 
   dashboard-snapshots/<YYYY>/<MM>/<DD>/<YYYY-MM-DD>T<HHMM><+-hhmm>.html
@@ -73,8 +73,8 @@ if not os.path.exists(KEPT) or open(KEPT).read() != data:
 # localhost, and noindex (findable by its link, not by search). Written when
 # a page changed in more than its "Updated" line.
 REPO = "https://github.com/matthewhammer/hazel-work-notes"
-NOTE = ('<p class="note">A copy of the Hazel Work Dashboard that Matthew runs on his laptop, published within about '
-        '15 minutes of each change. Its <code>localhost</code> links work only there.</p>')
+NOTE = ('<p class="note">A copy of the Hazel Work Dashboard that Matthew runs on his laptop, published within a minute or '
+        'two of each change to its notes, and every 15 minutes for the status from GitHub. Its <code>localhost</code> links work only there.</p>')
 
 def public(text):
     text = text.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n<meta name="robots" content="noindex">', 1)

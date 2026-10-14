@@ -3,9 +3,10 @@
 
   python3 ~/localhost-index/update.py
 
-Run every 15 minutes by cron (crontab -l), followed by log_notes.py, which
-commits the page to ~/hazel-work-notes and pushes it; the last run's output is
-in update.log.
+Run by publish.py (cron, every minute: within a minute of any change to
+data.json, and on the quarter hour), followed by log_notes.py, which commits
+the page to ~/hazel-work-notes and pushes it; the last run's output is in
+update.log.
 
 data.json holds what only we know: which ports serve what, which PRs are
 against the performance tracking issue, and our tickets: the open ones, the
@@ -407,7 +408,7 @@ page = f"""<!doctype html>
 <main>
 <h1>Hazel Work Dashboard</h1>
 <p class="note">Updated {e(now)}, by <code>~/localhost-index/update.py</code> (PR titles and status from GitHub).</p>
-<p class="note">History: <a href="http://localhost:8000/notes/dashboard-snapshots/">every change to this page</a>, a folder for each year, month and day, also pushed to <a href="https://github.com/matthewhammer/hazel-work-notes">matthewhammer/hazel-work-notes</a> (public). Published, within about 15 minutes of each change: <a href="http://matthewhammer.org/hazel/work-dashboard/">matthewhammer.org/hazel/work-dashboard/</a>. How we work with this page: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/agent-instructions.md">agent-instructions.md</a> (<a href="http://localhost:8000/notes/agent-instructions.md">local</a>). This is version {VERSION}: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/VERSIONS.md">VERSIONS.md</a> lists what each version has. Closed tickets: <a href="closed.html">their own page</a>. This page reloads itself when it changes (checked every 90 s while it is open).</p>
+<p class="note">History: <a href="http://localhost:8000/notes/dashboard-snapshots/">every change to this page</a>, a folder for each year, month and day, also pushed to <a href="https://github.com/matthewhammer/hazel-work-notes">matthewhammer/hazel-work-notes</a> (public). Published within a minute or two of each change to our notes, and every 15 minutes for the status from GitHub: <a href="http://matthewhammer.org/hazel/work-dashboard/">matthewhammer.org/hazel/work-dashboard/</a>. How we work with this page: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/agent-instructions.md">agent-instructions.md</a> (<a href="http://localhost:8000/notes/agent-instructions.md">local</a>). This is version {VERSION}: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/VERSIONS.md">VERSIONS.md</a> lists what each version has. Closed tickets: <a href="closed.html">their own page</a>. This page reloads itself when it changes (checked every 90 s while it is open).</p>
 
 {current_section}
 <h2 id="ports">Localhost ports</h2>

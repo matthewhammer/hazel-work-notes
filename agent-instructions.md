@@ -17,10 +17,10 @@ Read this before working with Matthew on Hazel. Keep the dashboard current as yo
 | The page | `~/localhost-index/index.html`, served at http://localhost:8000/ by the launch entry `localhost-index` in `~/hazel/.claude/launch.json` (`python3 -m http.server 8000`). If 8000 is taken, use 8080. The old `#2492 hazel-dev` entry also names 8000: never run both. |
 | What only we know | `~/localhost-index/data.json`: the ports, which PRs are tracked, and our tickets (open, current and closed). **Edit this, never `index.html` or `closed.html`.** |
 | The generator | `update.py`: reads `data.json`, asks GitHub (`gh`) for each PR's title, state, CI, review and mergeability, and writes the page, and the closed tickets' page `closed.html`, atomically. If `gh` fails, it writes nothing, and the last good pages stay. |
-| The code | `update.py` and `log_notes.py` live in this repository's `dashboard/` folder. `~/localhost-index/update.py` and `~/localhost-index/log_notes.py` are symlinks to them, so the scripts still read and write `~/localhost-index`. |
+| The code | `publish.py`, `update.py` and `log_notes.py` live in this repository's `dashboard/` folder. `~/localhost-index/publish.py`, `~/localhost-index/update.py` and `~/localhost-index/log_notes.py` are symlinks to them, so the scripts still read and write `~/localhost-index`. |
 | The history | This repository: `~/hazel-work-notes`, pushed to `matthewhammer/hazel-work-notes` (public). `~/localhost-index/log_notes.py` copies the page here verbatim, and `data.json` to `dashboard-data/data.json`, so the tickets, closed ones included, have a history too. Browse it at http://localhost:8000/notes/, or clone it. GitHub shows HTML as source. |
 | The public copy | `index.html` and `closed.html` at this repository's root, written by `log_notes.py` when a page changes (with a note, GitHub links for the history, and noindex), served by Pages at http://matthewhammer.org/hazel-work-notes/. `.nojekyll` keeps Pages from processing anything. |
-| The schedule | `crontab -l`: every 15 minutes, `update.py`, then `log_notes.py`. The last run's output is in `~/localhost-index/update.log`. |
+| The schedule | `crontab -l`: `publish.py` every minute. It runs `update.py`, then `log_notes.py`, when `data.json` has changed since the last publish, and on the quarter hour for what comes from GitHub; otherwise it does nothing. A lock keeps two runs from overlapping. The last run's output, with why it ran, is in `~/localhost-index/update.log`. |
 
 ## The page
 
@@ -67,7 +67,7 @@ Text already inside a link is left alone. Give a ticket a `url` only when it has
 
 ## Keeping it current
 
-- **Update in the same turn as the change:** a server started, stopped or moved to another port; a PR opened, retitled, merged or closed; a worktree switched to another branch; a ticket opened, made current, closed or parked. Then run `python3 ~/localhost-index/update.py && python3 ~/localhost-index/log_notes.py` by hand. Don't wait for cron.
+- **Update in the same turn as the change:** a server started, stopped or moved to another port; a PR opened, retitled, merged or closed; a worktree switched to another branch; a ticket opened, made current, closed or parked. Within a minute, cron sees that `data.json` changed and publishes it, so an edit to `data.json` is all it takes; to publish at once, or after a change that is not in `data.json`, run `python3 ~/localhost-index/publish.py --now`.
 - At the start of a session, run `update.py` once, and make sure the `localhost-index` server is up.
 - **Launch entries are named with their PR,** such as `#2635 hazel-livelits-modular` or `fumola#129 fumola-pages-wt`. Rename an entry when its worktree's branch, and so its PR, changes. The app runs at most 5 preview servers per worktree, so stopping one may be needed to start another.
 - **Always tell Matthew the port, and what build it serves,** in chat. Never put local ports in a PR description: there, say "in the browser".
