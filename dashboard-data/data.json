@@ -387,7 +387,7 @@
  ],
  "next_ticket": 47,
  "current_ticket": 4,
- "current_note": "#4 (his go, 2026-10-13 evening): #2597's CI, red since 2026-10-11 (6de0b53326). Two causes, both from the Dress Up slides. (1) QUICK job runs out of node's 4 GB heap: the whole-program memos (Statics.mk, MakeTerm's three; last 1000 programs each, as on dev) keep every test's programs alive. FIX, local commit db3be45898 (branch ci-heap-4 in ~/hazel-ci-heap, not pushed): Util.ResettableMemo, emptied by the test runner before each test; the editor is unchanged. Quick suite then passes here in 571 s, heap 430-640 MB; about 14.5 min on CI by the green commit's ratio (limit 20). (2) FULL job: also the recovering parser on the big slides (#46): 2096 s in MenhirCorpus alone here. With the fix, the full suite passes here in 36 min. A CHOICE for Matthew: local commit f953119482 (branch ci-heap-4-gate) parses programs over 25 KB with it only in the weekly Extended run; timing the full suite with it now, then the green commit's full suite, to estimate CI. Side find, #45: the editor's statics memo keeps about 82 MB per edit of Full Body (node; browser check next). Matthew is away from 21:00 MDT; nothing goes to #2597 without him (✋❔ when I need him).",
+ "current_note": "#4 (his go, 2026-10-13 evening): #2597's CI, red since 2026-10-11 (6de0b53326). DIAGNOSED, with a fix ready to push; WAITING ON MATTHEW. <b>Cause 1, the quick job (out of heap):</b> the whole-program memos (Statics.mk, MakeTerm's three; last 1000 programs each, as on dev) keep every test's programs alive, and the Dress Up slides made each big. <b>Fix</b>, local commit db3be45898 on branch ci-heap-4 (~/hazel-ci-heap), on #2597's head 684a75cb2f, which is unchanged: Util.ResettableMemo, emptied by the test runner before each test; the editor is unchanged. @check (release) and @fmt clean. Locally: quick passes in 571 s (heap 430-640 MB, was 4 GB and out); full passes in 36 min (was over 40, capped). <b>Cause 2, the full job (time):</b> the recovering parser on the big slides (#46). Estimates for CI, from the green commit run here (quick 286 s vs 8.1 min on CI; full 31 min vs 60): with the fix alone, quick about 14.5 min (limit 20), full about 70 min (limit 100; passing runs have varied 48-75 min on the same code). <b>Options for margin</b>: (a) local commit f953119482 (branch ci-heap-4-gate): the recovering-parser corpus checks skip programs over 25 KB except in the weekly Extended run: full 26.4 min here, about 51 on CI. (b) not built yet: the 10 big slides' Unproject cases Slow, so quick drops 229 s, to about 9 min on CI. #2635 is red the same way; the fix would cherry-pick there next. Side find, #45: the editor's statics memo keeps about 82 MB per edit of Full Body (node). While waiting: #45's browser check, on #2597's build.",
  "closed_tickets": [
   {
    "id": 1,
@@ -654,5 +654,5 @@
   }
  ],
  "current_since": "2026-10-13T20:37:17-06:00",
- "current_waiting": null
+ "current_waiting": "Push the memo fix (db3be45898) to #2597, then #2635? And take option (a), (b), both, or neither?"
 }
