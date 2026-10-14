@@ -447,14 +447,14 @@
    "id": 69,
    "area": "Dress Up",
    "added": "2026-10-14",
-   "text": "<b>Dress Up: a favicon, the tree house with cats.</b> The game has none (its console shows the browser's favicon.ico request failing). Draw the tree house, with cats on it, simple enough to read at 16 and 32 pixels in a browser tab, on light and dark tab bars; embed it in the page as an SVG data URI, so the game stays a single HTML file. Changes go under Unreleased; no version bump or push until Matthew says.",
+   "text": "<b>Dress Up: a favicon, the tree house with cats.</b> The game has none (its console shows the browser's favicon.ico request failing). Draw the tree house, with cats on it, simple enough to read at 16 and 32 pixels in a browser tab, on light and dark tab bars; embed it in the page as an SVG data URI, so the game stays a single HTML file. Changes go under Unreleased; no version bump or push until Matthew says. <b>Reopened, 2026-10-14:</b> the first version (committed as a4e2384) crops each cat house on its own and puts the two side by side. Matthew likes that, but would rather get the same effect without cropping: add a control that grows the tree house's houses independently of the tree, then render the icon again as one crop of the scene.",
    "source": "Matthew, 2026-10-14",
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
  "next_ticket": 70,
- "current_ticket": 64,
- "current_note": "Giving ^report(1) to ^report(13) their data, as JSON in each page and as files, as ^report(14) has it. Dress Up has two changes committed and waiting to ship together: ^ticket(61)'s full-body slider and ^ticket(62)'s smooth drag past the fumes.",
+ "current_ticket": 69,
+ "current_note": "Adding a \"tree house size\" control to the tree house scene (its houses grow independently of the tree), then rendering the icon again as one crop. Dress Up has three changes committed and waiting to ship: ^ticket(61), ^ticket(62) and this icon.",
  "closed_tickets": [
   {
    "id": 10,
@@ -895,6 +895,7 @@
   }
  ],
  "queue": [
+  69,
   64,
   55,
   60,
@@ -902,5 +903,5 @@
   46,
   50
  ],
- "current_since": "2026-10-14T15:06:51-06:00"
+ "current_since": "2026-10-14T15:13:23-06:00"
 }
