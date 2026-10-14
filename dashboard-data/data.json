@@ -369,19 +369,11 @@
    "text": "<b>Messed Up Dress Up: where feet can stand, per background (later, not now).</b> Split from #49. Each background gets a collision shape for the places it makes no sense to stand: rivers, the pool under the falls, the campfire, and the like. Arrivals (and later moves and drags) use it to keep a person's feet on the ground. #49 hand-picks ground spots for the camp and the falls in the meantime.",
    "source": "N (via Matthew), 2026-10-14",
    "url": ""
-  },
-  {
-   "id": 52,
-   "area": "dress up",
-   "added": "2026-10-14",
-   "text": "<b>Messed Up Dress Up: beat-based LFOs for the drums' pitch.</b> A side quest, after #49. (1) <b>Four LFOs</b>, A, B, C and D, set by knobs in a row on the mixing board before the parts' own strips: each LFO has a speed, from one beat (the shortest) to 8 bars (the longest), counted in the tune's beats so it stays in time with it, and a shape: triangle, saw or sine. (2) <b>On each drum part with a pitch</b> (today the bongos' and congas' 🎵 pitch knob): a chip next to the pitch that cycles none, LFO A, B, C, D; the chosen LFO moves that drum's pitch up and down as the tune plays. (3) <b>Then revise the tracks once more, in all</b>, for the new setting: some would gain from pitch moving, the bongos most (Matthew, 2026-10-14). To settle while building: how far an LFO moves the pitch (its depth: one more knob, or a fixed amount), and whether the setting is the friend's (saved with it) or the device's.",
-   "source": "Matthew, 2026-10-14",
-   "url": ""
   }
  ],
  "next_ticket": 53,
- "current_ticket": 52,
- "current_note": "Built and committed locally (kids-choice-games 880182b, not pushed, under Unreleased): four LFOs A to D on the mixing board (round in 1 beat to 8 bars, triangle / saw / sine, a depth in half steps), a chip on every bongo and conga for none or A to D, each hit taking the wave at its step; the classic beats' bongos and beach calypso's second conga set their own. Checked at volume 0: canyon cruise's low bongo walks its triangle 2.5 half steps a hit. 0.0.21 was pushed first (deploying). Waiting on Matthew's review of the LFOs.",
+ "current_ticket": 45,
+ "current_note": "Side quest ended: Messed Up Dress Up 0.0.21 and 0.0.22 deployed (#49, #51, #52). Back to #45, first in the queue: what keeps 70-95 MB per edit of Full Body in a #2597 tab (neither the memos nor the undo history; findings in the ticket). Next: two heap snapshots a few edits apart and the retainers of what grew.",
  "closed_tickets": [
   {
    "id": 10,
@@ -724,15 +716,25 @@
    "status": "done",
    "outcome": "Messed Up Dress Up 0.0.21, live (kids-choice-games 342fd65, tag dress-up-0.0.21): inside every tent (its own things, its door onto the camp at the camp's time and fire), the cave behind the falls (the falls seen from behind, by their own sliders), the path through the woods (clearing to trail and back, a third arrow on the trail's sign), landing on the ground everywhere (by the fire, on the pool's bank, beside far doorways). With it, at Matthew's word: a usual figure size per place (100 on the slider is the place's own). The collision shapes stay #50.",
    "outcome_url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+  },
+  {
+   "id": 52,
+   "area": "dress up",
+   "added": "2026-10-14",
+   "text": "<b>Messed Up Dress Up: beat-based LFOs for the drums' pitch.</b> A side quest, after #49. (1) <b>Four LFOs</b>, A, B, C and D, set by knobs in a row on the mixing board before the parts' own strips: each LFO has a speed, from one beat (the shortest) to 8 bars (the longest), counted in the tune's beats so it stays in time with it, and a shape: triangle, saw or sine. (2) <b>On each drum part with a pitch</b> (today the bongos' and congas' 🎵 pitch knob): a chip next to the pitch that cycles none, LFO A, B, C, D; the chosen LFO moves that drum's pitch up and down as the tune plays. (3) <b>Then revise the tracks once more, in all</b>, for the new setting: some would gain from pitch moving, the bongos most (Matthew, 2026-10-14). To settle while building: how far an LFO moves the pitch (its depth: one more knob, or a fixed amount), and whether the setting is the friend's (saved with it) or the device's.",
+   "source": "Matthew, 2026-10-14",
+   "url": "",
+   "closed": "2026-10-14",
+   "status": "done",
+   "outcome": "Messed Up Dress Up 0.0.22, live (kids-choice-games f87eb70, tag dress-up-0.0.22): four LFOs A to D on the mixing board (once round in 1 beat to 8 bars, triangle / saw / sine, a depth up to an octave), a chip on every bongo and conga for none or A to D, each hit taking the wave at its step; the classic beats' bongos and beach calypso's second conga set their own (the tracks revised once more, as asked).",
+   "outcome_url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
  "queue": [
-  52,
   45,
   18,
   46,
   50
  ],
- "current_since": "2026-10-14T10:40:42-06:00",
- "current_waiting": "Matthew's review of the LFOs"
+ "current_since": "2026-10-14T10:55:24-06:00"
 }
