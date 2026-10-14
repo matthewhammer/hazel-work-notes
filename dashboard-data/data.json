@@ -404,14 +404,6 @@
    "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages"
   },
   {
-   "id": 64,
-   "area": "performance, series",
-   "added": "2026-10-14",
-   "text": "<b>Give ^report(1) to ^report(13) their data, as ^report(14) has it.</b> Matthew's rule (2026-10-14, now in the series' agent-instructions.md): every report carries every number behind its figures and tables twice, (1) embedded in the page as JSON (<code>&lt;script type=\"application/json\" id=\"report-data\"&gt;</code>), described well enough to read without the prose (build and commit, browser, each measure and its unit, raw readings, the patch or driver), and (2) as files in <code>NNN/data/</code>, linked from the method section (folders on GitHub). For the earlier reports, gather each one's numbers from its tables, figures and whatever raw files survive (the work notes, the scratch drivers' outputs), say where a number exists only as printed, and add a line to each method section. These are additions, not changes to the story, so they need no dated update; they wait for Matthew's review before publishing.",
-   "source": "Matthew, 2026-10-14",
-   "url": "http://matthewhammer.org/hazel/performance-analysis/"
-  },
-  {
    "id": 65,
    "area": "performance",
    "added": "2026-10-14",
@@ -445,8 +437,8 @@
   }
  ],
  "next_ticket": 70,
- "current_ticket": 64,
- "current_note": "All thirteen earlier reports now carry their data, committed locally (hazel-performance-analysis b3ce476, not pushed): each page embeds its tables and a description (builds, runtime, runs, measures and units, provenance) as JSON, with the same in NNN/data/, and a line in its method or measurement section. ^report(9) to ^report(13) have their raw probe and oracle outputs copied in (about 690 KB, spot-checked against the printed numbers); for ^report(1) to ^report(8) every number exists only as printed, and each description says so. Not kept: Gecko profiles of 50 to 110 MB in ~/ffprof (could be summarized); per-run driver outputs might be recoverable from session transcripts. Preview: http://localhost:8131/series/ (any report). Publishing republishes all thirteen pages.",
+ "current_ticket": 68,
+ "current_note": "Dress Up's Background tab by category, as the Music tab is: first the kind of place, then its places. Before the castles (^ticket(67)), which will add to them. Dress Up 0.0.25 is live (the full-body slider fixed); ^ticket(64) is done: every report carries its data.",
  "closed_tickets": [
   {
    "id": 10,
@@ -896,10 +888,21 @@
    "status": "done",
    "outcome": "Committed in kids-choice-games (a4e2384, then 1b71ad1), not deployed: it ships with the next Dress Up version, on Matthew's go-ahead. The icon is the game's own drawing: the tree house with two cat houses (a black cat, #1f1f22, and an amber one, #e8862a), rendered in headless Chrome, rasterized at 512 px and halved down to 16, 32 and 48 px, the small ones lightly sharpened, embedded as PNG data URIs (about 14 KB). First it was two crops side by side (Matthew liked it); on his idea, a new control, \"🏡 tree house size\" (50 to 250), now grows the tree house's houses apart from the tree, with the bridges and ladders keeping to their platforms, and at 250 one crop of the scene reads as well. The game's favicon request no longer 404s.",
    "outcome_url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+  },
+  {
+   "id": 64,
+   "area": "performance, series",
+   "added": "2026-10-14",
+   "text": "<b>Give ^report(1) to ^report(13) their data, as ^report(14) has it.</b> Matthew's rule (2026-10-14, now in the series' agent-instructions.md): every report carries every number behind its figures and tables twice, (1) embedded in the page as JSON (<code>&lt;script type=\"application/json\" id=\"report-data\"&gt;</code>), described well enough to read without the prose (build and commit, browser, each measure and its unit, raw readings, the patch or driver), and (2) as files in <code>NNN/data/</code>, linked from the method section (folders on GitHub). For the earlier reports, gather each one's numbers from its tables, figures and whatever raw files survive (the work notes, the scratch drivers' outputs), say where a number exists only as printed, and add a line to each method section. These are additions, not changes to the story, so they need no dated update; they wait for Matthew's review before publishing.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/hazel/performance-analysis/",
+   "closed": "2026-10-14",
+   "status": "done",
+   "outcome": "Published on Matthew's say-so and checked live: ^report(1) to ^report(13) carry their data, as ^report(14) does. tools/report_data.py embeds each report's tables (cell by cell, merged cells repeated) and a hand-written description (builds and commits, runtime, runs, measures and units, provenance) as script#report-data, writes the same to NNN/data/ (^report(1)'s to data/, published as 001/data/), and adds a line to the method or measurement section. ^report(9) to ^report(13) have their raw probe and oracle outputs (about 690 KB, spot-checked against the printed numbers; ^report(9)'s were rescued from a build folder a clean would wipe); for ^report(1) to ^report(8) every number exists only as printed, and each description says so. Three agents wrote the descriptions for ^report(1) to ^report(12), checked against the reports. Not kept: Gecko profiles of 50 to 110 MB in ~/ffprof. Commits: hazel-performance-analysis b3ce476; matthewhammer.github.io ec20a64.",
+   "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/"
   }
  ],
  "queue": [
-  64,
   68,
   67,
   57,
@@ -909,6 +912,5 @@
   46,
   50
  ],
- "current_since": "2026-10-14T15:15:26-06:00",
- "current_waiting": "Matthew's OK to publish the data for ^report(1) to ^report(13) (all thirteen pages republished)"
+ "current_since": "2026-10-14T15:43:01-06:00"
 }
