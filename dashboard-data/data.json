@@ -365,7 +365,7 @@
  ],
  "next_ticket": 49,
  "current_ticket": 45,
- "current_note": "Checking in the browser, on #2597's build (8311, c4e411f9c2, which has the 16/8 memo bounds), that a tab's memory stays flat across repeated edits of Full Body; the node experiment found about 82 MB kept per edit with the old 1000-entry memos.",
+ "current_note": "Measured in headless Chromium (precise memory, forced GC), Full Body, the shirt-width slider set 15 times: on #2597's build (8311, c4e411f9c2, memos bounded 16/8) the live heap grows about 85-95 MB per edit (+1,388 MB after 15); with every whole-program memo held to ONE entry (local branch memo1-test, served on 8318) it still grows about 70 MB per edit (+1,101 MB), and each redraw takes 18-31 s instead of 2-7 s. So in the browser the memos are not what keeps each edit alive, and smaller bounds are no fix. Now: finding what does (the undo history is the first suspect).",
  "closed_tickets": [
   {
    "id": 10,
