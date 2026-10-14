@@ -426,19 +426,11 @@
    "text": "<b>Dress Up performance fix: dragging the friend where the cauldron's fumes turn</b> (outside the witch's hut and inside it). The double-helix fumes make a drag slow enough to be a real UX problem. <b>Likely why</b> (from the code, not yet measured): every pointermove calls <code>changed()</code>, whose <code>draw()</code> replaces the whole picture (<code>pic.innerHTML = svg</code>); <code>helixSvg</code> draws each strand as short segments, about a hundred in all, each with four SMIL <code>&lt;animate&gt;</code>s on x1, x2, stroke-width and stroke-opacity, so every move re-parses them and restarts every animation, and the geometry they animate is repainted each frame. <b>Matthew's idea:</b> pause animations while dragging (<code>pic.pauseAnimations()</code> on pointerdown, <code>unpauseAnimations()</code> on letting go). <b>Other ideas:</b> draw at most once per animation frame however many pointermoves arrive; on a figure drag, move only the friend (its group's transform) and leave the scene's DOM alone, so the fumes neither restart nor re-parse; keep the scene in a group of its own that is replaced only when its settings change; make the fumes cheaper (fewer segments, or turn a group with a transform the compositor can animate). <b>Measure first</b> (performance before features): a drag's frame times in both scenes, before and after, against a scene without fumes. Changes go under Unreleased; no version bump or push until Matthew says.",
    "source": "Matthew, 2026-10-14",
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
-  },
-  {
-   "id": 63,
-   "area": "homepage",
-   "added": "2026-10-14",
-   "text": "<b>A new matthewhammer.org/hazel/ page: \"Matthew Hammer and Hazel\".</b> The page was a link tree, and still called the series \"the issues\". The new design: in the homepage's own style (its stylesheet and outline, with the Pages menu and an outline of the page), some text in Matthew's voice, and the reports as its focus for outsiders. It says what Hazel is and Matthew's part in it, what he works on now (livelits, and making them fast), lists every report of the performance analysis series (kept up to date from the series index by a tool, run when a report is published), the games with M and N as the test bed, how he works (the Hazel Work Dashboard, with Claude), and Fumola in Hazel. A draft, previewed locally; it waits for Matthew's review before publishing.",
-   "source": "Matthew, 2026-10-14",
-   "url": "http://matthewhammer.org/hazel/"
   }
  ],
  "next_ticket": 64,
- "current_ticket": 63,
- "current_note": "The new /hazel/ page is drafted, not published: \"Matthew Hammer and Hazel\", in the homepage's style (its outline and Pages menu, with this page's light/dark switch). Sections: Hazel and Matthew's part in it; what he works on now (user-defined livelits, and making them fast, on #2635 and #2597); the performance reports, all 13 listed, newest first (filled from the series index by tools/hazel_page.py, now a publishing step); games with M and N; how he works (with Claude, and the Hazel Work Dashboard); Fumola in Hazel. Preview: http://localhost:8136/hazel/. Then back to ^ticket(53), ^report(14).",
+ "current_ticket": 53,
+ "current_note": "Writing ^report(14), \"what the page keeps from one edit to the next\", from ^ticket(45)'s findings. Its data, the experiments' patches (in patches/) and the drivers are in place, and the page's generator is written; next, the page's text and figures, drafted locally for Matthew's review. ^ticket(63) is done: the new /hazel/ page is live.",
  "closed_tickets": [
   {
    "id": 10,
@@ -828,10 +820,21 @@
    "status": "done",
    "outcome": "All three repos' READMEs link their public pages first, with no localhost recipe: the dashboard at http://matthewhammer.org/hazel/work-dashboard/ (new README; the address redirects to the repo's own site, keeping #ticket-N, and closed.html now redirects too), the series at http://matthewhammer.org/hazel/performance-analysis/, and Messed Up Dress Up at http://matthewhammer.org/kids-choice-games/dress-up/. Each app links its repository: the dashboard's outline (\"On GitHub\", beside \"Performance reports\"), the series index (beside its link back to the dashboard), and Dress Up's quiet \"GitHub ↗\" chip after 🎵 Music, released as 0.0.23 (tag dress-up-0.0.23) on Matthew's go-ahead and checked live.",
    "outcome_url": "https://github.com/matthewhammer/kids-choice-games"
+  },
+  {
+   "id": 63,
+   "area": "homepage",
+   "added": "2026-10-14",
+   "text": "<b>A new matthewhammer.org/hazel/ page: \"Matthew Hammer and Hazel\".</b> The page was a link tree, and still called the series \"the issues\". The new design: in the homepage's own style (its stylesheet and outline, with the Pages menu and an outline of the page), some text in Matthew's voice, and the reports as its focus for outsiders. It says what Hazel is and Matthew's part in it, what he works on now (livelits, and making them fast), lists every report of the performance analysis series (kept up to date from the series index by a tool, run when a report is published), the games with M and N as the test bed, how he works (the Hazel Work Dashboard, with Claude), and Fumola in Hazel. A draft, previewed locally; it waits for Matthew's review before publishing.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/hazel/",
+   "closed": "2026-10-14",
+   "status": "done",
+   "outcome": "Published on Matthew's say-so and checked live: http://matthewhammer.org/hazel/ is now \"Matthew Hammer and Hazel\", in the homepage's style (its outline and Pages menu, with light and dark themes), with text in his voice: Hazel and his part in it, what he works on now, the performance reports (all 13 listed, newest first), games with M and N, how he works (with Claude and the dashboard), and Fumola in Hazel. \"The issues\" is gone. The list is kept by hazel-performance-analysis's tools/hazel_page.py, now a step in publishing a report (agent-instructions.md). Commits: matthewhammer.github.io aa536a4, hazel-performance-analysis dd977a1.",
+   "outcome_url": "http://matthewhammer.org/hazel/"
   }
  ],
  "queue": [
-  63,
   53,
   61,
   62,
@@ -841,6 +844,5 @@
   46,
   50
  ],
- "current_since": "2026-10-14T14:39:05-06:00",
- "current_waiting": "Matthew's review of the new /hazel/ page (http://localhost:8136/hazel/): publish?"
+ "current_since": "2026-10-14T14:47:11-06:00"
 }
