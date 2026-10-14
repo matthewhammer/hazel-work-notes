@@ -418,11 +418,19 @@
    "text": "<b>Find a smaller slide that grows the same way</b> (Hazel performance analysis, ^report(14), What next, step 2: \"Find a smaller slide that grows the same way, so that a snapshot fits even with the memo: one whose slider edits a livelit's model, measured as here.\"). On #2597, run ^report(14)'s measurement (014/drivers/heap_per_edit.py, the live heap after two forced collections, per slider edit) on the Livelit Playground's smaller slides, picking a slider that edits a livelit's model (Shirt and Pants' width sliders are not the shirt's own, so that earlier try applied no edit; check that each edit changes the picture). A slide that keeps a version per edit at a fraction of Full Body's size may let a heap snapshot finish, and its retainer paths would name the holder (^ticket(58)).",
    "source": "Matthew, 2026-10-14",
    "url": "http://matthewhammer.org/hazel/performance-analysis/014/#step-2"
+  },
+  {
+   "id": 70,
+   "area": "Dress Up",
+   "added": "2026-10-14",
+   "text": "<b>Dress Up: fixes and life for all backgrounds.</b> (1) Snowy mountain tops: aligned with the rock of the mountains they cap, not cartoony and misaligned. (2) No bushes in the river near the tree house. (3) Castle banners: they dip into the moat on a one-level castle; shorter for shorter castles, longer for bigger ones. (4) Animate the ducks on the lake. (5) Animate the clouds in every scene. (6) Animate the sun's rays at the lake. (7) The woods' shafts of light: they dim and brighten, appearing and disappearing as clouds move past a sun that stays put (so they mostly keep their shapes); more variety among them, and one common origin, at infinity, so they run parallel, as real sunbeams do. (8) Every tree in the tree house's \"pads and branches\" style, not lollipops or ice-cream-scoop leaf bundles: a more organic style for all trees, bushes and grasses, and organic rocks where they appear, from common helpers, for consistency. Changes go under Unreleased; no version bump or push until Matthew says.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
- "next_ticket": 70,
- "current_ticket": 57,
- "current_note": "Next: the fairy costume (wings and tunic, five styles each), a fairy forest with a ring of mushrooms and a fairy house in a tree, and three LFOs shared by the music mixer, the visibility panel and the fairy house. Dress Up 0.0.26 (the castles) is live.",
+ "next_ticket": 71,
+ "current_ticket": 70,
+ "current_note": "Starting with the quick fixes (mountain snow, the tree house's river, castle banners) and the animations (clouds everywhere, ducks, the lake's sun, the woods' sunbeams), then the organic trees, bushes, grass and rocks from common helpers across every scene. ^ticket(57), the fairy costume, is next after this.",
  "closed_tickets": [
   {
    "id": 10,
@@ -911,6 +919,7 @@
   }
  ],
  "queue": [
+  70,
   57,
   55,
   60,
@@ -918,5 +927,5 @@
   46,
   50
  ],
- "current_since": "2026-10-14T16:07:30-06:00"
+ "current_since": "2026-10-14T16:11:33-06:00"
 }
