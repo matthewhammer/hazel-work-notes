@@ -377,19 +377,11 @@
    "text": "<b>Messed Up Dress Up: where feet can stand, per background (later, not now).</b> Split from #49. Each background gets a collision shape for the places it makes no sense to stand: rivers, the pool under the falls, the campfire, and the like. Arrivals (and later moves and drags) use it to keep a person's feet on the ground. #49 hand-picks ground spots for the camp and the falls in the meantime.",
    "source": "N (via Matthew), 2026-10-14",
    "url": ""
-  },
-  {
-   "id": 51,
-   "area": "dress up",
-   "added": "2026-10-14",
-   "text": "<b>Messed Up Dress Up: a visibility panel for each person.</b> A new control panel per person, <b>visibility</b>: a slider for each separately controlled body part, as a group, for how see-through it is: head, eyes, hair, shirt, pants, feet, hands. Above the sliders, three chips that set every part at once: <b>invisible</b> (all parts gone), <b>visible</b> (all parts shown), <b>ghost</b> (every part half visible). Making the shirt invisible makes the <b>torso</b> invisible: this turns body parts ghostly or invisible, it never takes clothes off to show a body underneath. The same holds for pants and the legs, feet and shoes, hands and gloves.",
-   "source": "N (via Matthew), 2026-10-14",
-   "url": ""
   }
  ],
  "next_ticket": 52,
- "current_ticket": 51,
- "current_note": "Built and committed locally (kids-choice-games 77da1c0, not pushed, under Unreleased): the 👻 Visibility tab, a slider per part and the invisible / visible / ghost chips; an invisible shirt is an invisible body, invisible pants invisible legs; the eyes float on their own. Checked in the browser: ghost is evenly see-through (pixel-checked on the arms and sleeves), no errors across the costumes and in a scene, and a fully visible figure draws as before. Waiting on Matthew's review; then #49.",
+ "current_ticket": 49,
+ "current_note": "Side quest, second of two (#51 closed, Matthew's \"looks perfect\"). Now: reading how Messed Up Dress Up's camp site, waterfall, clearing and doorways are drawn, to add the tent insides, the cave behind the falls, the clearing's front path, and landing on the ground.",
  "closed_tickets": [
   {
    "id": 10,
@@ -708,16 +700,26 @@
    "closed": "2026-10-13",
    "status": "done",
    "outcome": "Done (2026-10-13): issue 012 published on Matthew's go-ahead at matthewhammer.org/hazel/performance-analysis/012/ (homepage 076ec93, series cfdb7c6), checked live over HTTP, with dated notes in issue 011 (its What next, step 1, and its representation section)."
+  },
+  {
+   "id": 51,
+   "area": "dress up",
+   "added": "2026-10-14",
+   "text": "<b>Messed Up Dress Up: a visibility panel for each person.</b> A new control panel per person, <b>visibility</b>: a slider for each separately controlled body part, as a group, for how see-through it is: head, eyes, hair, shirt, pants, feet, hands. Above the sliders, three chips that set every part at once: <b>invisible</b> (all parts gone), <b>visible</b> (all parts shown), <b>ghost</b> (every part half visible). Making the shirt invisible makes the <b>torso</b> invisible: this turns body parts ghostly or invisible, it never takes clothes off to show a body underneath. The same holds for pants and the legs, feet and shoes, hands and gloves.",
+   "source": "N (via Matthew), 2026-10-14",
+   "url": "",
+   "closed": "2026-10-14",
+   "status": "done",
+   "outcome": "Built (kids-choice-games 77da1c0, under Unreleased, not pushed): the 👻 Visibility tab, a slider per part (head, eyes, hair, shirt, pants, feet, hands) and 🫥 invisible / 🙂 visible / 👻 ghost chips. An invisible shirt is an invisible body (neck and arms too), invisible pants are invisible hips and legs; the eyes go on their own; a ghost is evenly see-through where a part is drawn in two layers (masked). Matthew: \"looks perfect\". With it, his tweak to the music menu (4660a5b): kinds and tunes each in a named dashed box.",
+   "outcome_url": ""
   }
  ],
  "queue": [
-  51,
   49,
   45,
   18,
   46,
   50
  ],
- "current_since": "2026-10-14T10:09:21-06:00",
- "current_waiting": "Matthew's review of the visibility panel"
+ "current_since": "2026-10-14T10:19:05-06:00"
 }
