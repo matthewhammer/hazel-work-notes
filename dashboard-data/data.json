@@ -214,6 +214,13 @@
  ],
  "tickets": [
   {
+   "id": 47,
+   "area": "performance, series",
+   "text": "<b>Issue 013: carrying #7's improvement to branches diverged from ours.</b> #2635 9fb2bdf067 and 043508921b (DefStatics tells EvalInfo the keys it touched; unchanged spine roots kept) cut a release's worker request on Full Body from 15.5–18.8 ms to 2.5–3.0 ms. Write how to apply that to a branch that has diverged (#2469's modular-editors, dev, #2597): what it depends on, what to port first, how to check it, with plots of the data. A draft for Matthew to review before it is published.",
+   "source": "Matthew, 2026-10-14",
+   "url": ""
+  },
+  {
    "id": 45,
    "area": "performance",
    "text": "<b>The editor's whole-program memos keep about 82 MB per edit of a big slide, or more.</b> Found under #4. The code path: every edit that refreshes statics (<code>CodeWithStatics</code>, <code>do_init</code>) calls <code>CachedStatics.init</code>, which asks <code>MakeTerm.from_zip_for_sem</code> (keyed by the zipper) and then <code>Statics.mk</code> (keyed by the term), both <code>Core.Memo</code>s keeping the last 1000 keys, so each version of the program is kept until 1000 newer ones push it out. Measured in node, local experiment commit 62aaaa28e4 (branch memo-growth-experiment in ~/hazel-ci-heap, not pushed): 12 edits of one Full Body slider literal, statics each time, live heap after a forced GC: +83, +165, ... +987 MB as the editor has the memos; flat at 490 MB emptied after each edit. That is Statics.mk's share alone; MakeTerm's memos add the zipper and terms. Statics took 2.7 to 3.2 s per edit, slower as the heap grew. Not checked in the browser (a tab could grow by gigabytes on this laptop): to do together. <b>Already fixed in #2469, so in #2635:</b> Andrew's b0fa4d7d6a (2026-08-25, \"physical-identity mk memo\") makes Statics.mk a 16-entry LRU keyed by the term's identity (its comment: a large structural memo \"would retain whole programs and their info maps\"), and MakeTerm's memos keep 8. dev and #2597 still keep 1000. So for #2597: port those bounds (another way #2597 lacks #2469's perf).",
@@ -230,7 +237,7 @@
   {
    "id": 7,
    "area": "performance",
-   "text": "The commit path: find which of the request's values are new (about 15 ms of hashing, profiled), and make the commit's redraw cheaper. <b>Part done, 2026-10-14</b>, in node on #2635 at 41897ec3a5 (probe 4f0e261652, branch request-hash-probe in ~/hazel-ci-heap-2635, local only): a release-like edit (one literal, ids kept) through the app's own path, six edits each, steady state. Statics after the edit (DefStatics, per item): 25–37 ms. Only about 5% of the request is new objects: Kids' Choice 2,039 of 40k program nodes and about 4,600 of 87k EvalInfo nodes; Full Body 396 of 196k and about 13,100 of 326k. Building the request: <b>the EvalInfo projection is the largest part</b>, 13–14 ms on Full Body and 2.5–9 ms on Kids' Choice, because <code>project_from</code> walks both whole statics maps in key order on every commit, though about 180 entries change; then hashing the new values about 1–4 ms, and encoding 1.5–5 ms. So the hashing is not the cost. Tried and dropped: keeping an entry that is equal by content (ValueHash) as well as by identity: Full Body's re-added entries 179 to 30 and its EvalInfo new nodes 13,100 to 2,200, but the whole request got slower (median about 20 ms against 17), since comparing by content hashes as much as it saves. Next: have DefStatics hand EvalInfo the items it re-analyzed, so the projection updates their entries instead of walking both maps (Andrew's code: to talk over). The commit's redraw, the ticket's second half, is not started.",
+   "text": "The commit path: find which of the request's values are new (about 15 ms of hashing, profiled), and make the commit's redraw cheaper. <b>Part done, 2026-10-14</b>, in node on #2635 at 41897ec3a5 (probe 4f0e261652, branch request-hash-probe in ~/hazel-ci-heap-2635, local only): a release-like edit (one literal, ids kept) through the app's own path, six edits each, steady state. Statics after the edit (DefStatics, per item): 25–37 ms. Only about 5% of the request is new objects: Kids' Choice 2,039 of 40k program nodes and about 4,600 of 87k EvalInfo nodes; Full Body 396 of 196k and about 13,100 of 326k. Building the request: <b>the EvalInfo projection is the largest part</b>, 13–14 ms on Full Body and 2.5–9 ms on Kids' Choice, because <code>project_from</code> walks both whole statics maps in key order on every commit, though about 180 entries change; then hashing the new values about 1–4 ms, and encoding 1.5–5 ms. So the hashing is not the cost. Tried and dropped: keeping an entry that is equal by content (ValueHash) as well as by identity: Full Body's re-added entries 179 to 30 and its EvalInfo new nodes 13,100 to 2,200, but the whole request got slower (median about 20 ms against 17), since comparing by content hashes as much as it saves. <b>Done and pushed to #2635, 2026-10-14:</b> 043508921b (DefStatics hands EvalInfo the keys it touched; the projection updates only those) and 9fb2bdf067 (unchanged spine roots kept): on Full Body the request 15.5–18.8 → 2.5–3.0 ms, statics after the edit 25–31 → 16–20 ms. Carrying it to diverged branches is #47 (issue 013). The commit's redraw, the ticket's second half, is not started.",
    "source": "issue 001",
    "url": "http://localhost:8131/#now"
   },
@@ -371,9 +378,9 @@
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
- "next_ticket": 47,
- "current_ticket": 7,
- "current_note": "#7: the next step is DONE locally, ready to offer; WAITING ON MATTHEW. Two commits on #2635's head 41897ec3a5, branch t7-offer in ~/hazel-ci-heap-2635 (not pushed): 043508921b DefStatics tells EvalInfo the keys it touched, and the projection updates only those (Full Body, per release: projection 13–14 ms → 0.7–0.8; whole request 15.5–18.8 → 3.0–3.5 ms); 9fb2bdf067 DefStatics keeps an item's patched spine root when nothing it is made from changed (statics after the edit 25–31 → 16–20 ms; new EvalInfo nodes 13,100 → 1,500). Tested: Test_EvalInfoProjection (the note is used, equals a rebuild; 82 reused roots each equal to a recomputed one); quick suite, same 8 known failures; @check, @fmt clean. #2469 differs too much to take them as they are (its EvalInfo lacks the keyed projection, 8fbc86c644, which is ours on #2635), so the offer is: push to #2635, and a progress note on #2469, no @-mention (draft: ~/hazel/experiments/2469-note-ticket7.md).",
+ "next_ticket": 48,
+ "current_ticket": 47,
+ "current_note": "#47, issue 013: how to carry #7's improvement (pushed to #2635: 043508921b, 9fb2bdf067) to diverged branches, with plots. Plan: (1) more data, the same probe before and after on every playground slide and several sliders each (where the slider sits matters for the spine reuse); (2) try the port on #2469's modular-editors head locally, to write from what it actually takes; (3) draft 013 with figures, at http://localhost:8131/series/013/, for Matthew's review.",
  "closed_tickets": [
   {
    "id": 4,
@@ -661,6 +668,5 @@
    "outcome": "Done (2026-10-13): issue 012 published on Matthew's go-ahead at matthewhammer.org/hazel/performance-analysis/012/ (homepage 076ec93, series cfdb7c6), checked live over HTTP, with dated notes in issue 011 (its What next, step 1, and its representation section)."
   }
  ],
- "current_since": "2026-10-14T06:35:00-06:00",
- "current_waiting": "#7: push t7-offer's two commits to #2635, and post the drafted progress note on #2469?"
+ "current_since": "2026-10-14T07:38:00-06:00"
 }
