@@ -426,9 +426,17 @@
    "text": "<b>Dress Up performance fix: dragging the friend where the cauldron's fumes turn</b> (outside the witch's hut and inside it). The double-helix fumes make a drag slow enough to be a real UX problem. <b>Likely why</b> (from the code, not yet measured): every pointermove calls <code>changed()</code>, whose <code>draw()</code> replaces the whole picture (<code>pic.innerHTML = svg</code>); <code>helixSvg</code> draws each strand as short segments, about a hundred in all, each with four SMIL <code>&lt;animate&gt;</code>s on x1, x2, stroke-width and stroke-opacity, so every move re-parses them and restarts every animation, and the geometry they animate is repainted each frame. <b>Matthew's idea:</b> pause animations while dragging (<code>pic.pauseAnimations()</code> on pointerdown, <code>unpauseAnimations()</code> on letting go). <b>Other ideas:</b> draw at most once per animation frame however many pointermoves arrive; on a figure drag, move only the friend (its group's transform) and leave the scene's DOM alone, so the fumes neither restart nor re-parse; keep the scene in a group of its own that is replaced only when its settings change; make the fumes cheaper (fewer segments, or turn a group with a transform the compositor can animate). <b>Measure first</b> (performance before features): a drag's frame times in both scenes, before and after, against a scene without fumes. Changes go under Unreleased; no version bump or push until Matthew says.",
    "source": "Matthew, 2026-10-14",
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+  },
+  {
+   "id": 64,
+   "area": "performance, series",
+   "added": "2026-10-14",
+   "text": "<b>Give ^report(1) to ^report(13) their data, as ^report(14) has it.</b> Matthew's rule (2026-10-14, now in the series' agent-instructions.md): every report carries every number behind its figures and tables twice, (1) embedded in the page as JSON (<code>&lt;script type=\"application/json\" id=\"report-data\"&gt;</code>), described well enough to read without the prose (build and commit, browser, each measure and its unit, raw readings, the patch or driver), and (2) as files in <code>NNN/data/</code>, linked from the method section (folders on GitHub). For the earlier reports, gather each one's numbers from its tables, figures and whatever raw files survive (the work notes, the scratch drivers' outputs), say where a number exists only as printed, and add a line to each method section. These are additions, not changes to the story, so they need no dated update; they wait for Matthew's review before publishing.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/hazel/performance-analysis/"
   }
  ],
- "next_ticket": 64,
+ "next_ticket": 65,
  "current_ticket": 53,
  "current_note": "^report(14) is drafted and committed locally (hazel-performance-analysis, not pushed): \"What the page keeps from one edit to the next\". Six short answers with four figures (the heap per edit; growth by build; the tables flat while the heap grows; what stays, by the code that made it), then the measurement, the caches, the tables, what stays, why heap snapshots fail, the weak tables, side findings, What next (5 steps) and the method. The numbers ride along as JSON in the page (script#report-data) and as files in 014/data/; the experiments' patches are in patches/, the drivers in 014/drivers/. ^report(5) gets a dated note. Preview: http://localhost:8131/014/ and the series index http://localhost:8131/series/.",
  "closed_tickets": [
@@ -838,6 +846,7 @@
   53,
   61,
   62,
+  64,
   55,
   60,
   18,
