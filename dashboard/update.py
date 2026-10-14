@@ -181,6 +181,15 @@ def review(p):
     return {"APPROVED": "approved", "CHANGES_REQUESTED": "changes requested",
             "REVIEW_REQUIRED": "review required"}.get(r, "no review yet")
 
+# Changes requested is the one review state that waits on Matthew: a bright
+# chip, hard to miss (his ask, 2026-10-14), linking to the PR's reviews.
+def review_cell(p):
+    if (p.get("reviewDecision") or "") == "CHANGES_REQUESTED":
+        url = p.get("url", "") + "/files"
+        return (f'<a class="changes-chip" href="{e(url)}" title="A reviewer asked for changes: they wait on Matthew">'
+                f'⚠️ changes requested</a>')
+    return e(review(p))
+
 def merge(p):
     m = p.get("mergeable") or ""
     return {"MERGEABLE": "mergeable", "CONFLICTING": '<span class="bad">conflicts</span>'}.get(m, e(m.lower() or "?"))
@@ -210,7 +219,7 @@ def status_rows(ns, notes=None):
         note = f"<td>{linkify(e(notes.get(n, '')))}</td>" if notes is not None else ""
         out.append(
             f"<tr><td>{pr_cell(p)}</td><td><code>{e(p.get('headRefName', ''))}</code> → <code>{e(p.get('baseRefName', ''))}</code></td>"
-            f"<td>{e(state(p))}</td><td>{ci(p)}</td><td>{e(review(p))}</td><td>{merge(p)}</td><td>{date(p)}</td>{note}</tr>")
+            f"<td>{e(state(p))}</td><td>{ci(p)}</td><td>{review_cell(p)}</td><td>{merge(p)}</td><td>{date(p)}</td>{note}</tr>")
     return "\n".join(out)
 
 def gh_json(args, what, missing_ok=False):
@@ -400,6 +409,7 @@ page = f"""<!doctype html>
   .outline a {{ display: block; padding: 0.18rem 0.6rem; margin-left: -1px; border-left: 2px solid transparent;
     color: var(--muted); text-decoration: none; }}
   .outline a:hover {{ color: CanvasText; }}
+  .outline ul.outline-out {{ margin-bottom: 0.9rem; }}
   .outline li.sub a {{ padding-left: 1.4rem; font-size: 0.95em; }}
   .outline a[aria-current="true"] {{ color: CanvasText; border-left-color: var(--good); }}
   .outline-toggle {{ display: flex; position: fixed; top: 0.6rem; left: 0.6rem; z-index: 20; width: 2.4rem; height: 2.4rem;
@@ -442,6 +452,12 @@ page = f"""<!doctype html>
   .current-box {{ max-width: 1200px; box-sizing: border-box; padding: 4px 16px; border: 1px solid var(--good); border-left-width: 4px; border-radius: 4px; }}
   .waiting {{ display: inline-block; margin-left: 0.3em; padding: 0.05em 0.4em; border: 3px solid CanvasText; border-radius: 999px; background: Canvas; color: CanvasText; font-weight: 800; line-height: 1.25; vertical-align: 0.05em; white-space: nowrap; }}
   h2 .waiting {{ font-size: 0.85em; }}
+  .changes-chip {{ display: inline-block; padding: 0.15em 0.6em; border-radius: 999px; font-weight: 800; white-space: nowrap;
+    background: #ff3b30; color: #fff; text-decoration: none; box-shadow: 0 0 0 3px color-mix(in srgb, #ff3b30 35%, transparent);
+    animation: changes-pulse 1.6s ease-in-out infinite; }}
+  .changes-chip:hover {{ background: #d70015; color: #fff; }}
+  @keyframes changes-pulse {{ 50% {{ box-shadow: 0 0 0 7px color-mix(in srgb, #ff3b30 10%, transparent); }} }}
+  @media (prefers-reduced-motion: reduce) {{ .changes-chip {{ animation: none; }} }}
   .badge {{ display: inline-block; margin-top: 4px; padding: 0 6px; font-size: 0.8em; border-radius: 4px; color: var(--good); border: 1px solid var(--good); }}
   .badge.queued {{ color: var(--wait); border-color: var(--wait); text-decoration: none; }}
   table.queue td:first-child {{ font-weight: 700; }}
@@ -457,6 +473,9 @@ page = f"""<!doctype html>
 </button>
 <nav class="outline" id="outline" aria-label="Outline">
 <p class="outline-label">Hazel Work Dashboard</p>
+<ul class="outline-out">
+<li><a href="{SERIES_LOCAL}">Performance reports&nbsp;<span aria-hidden="true">↗</span></a></li>
+</ul>
 <ul id="outline-list">
 {outline}
 </ul>
