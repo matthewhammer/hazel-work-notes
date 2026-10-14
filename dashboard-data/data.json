@@ -221,6 +221,20 @@
    "url": "https://github.com/hazelgrove/hazel/pull/2597"
   },
   {
+   "id": 45,
+   "area": "performance",
+   "text": "<b>The editor's statics memo may keep about 82 MB per edit of a big slide.</b> Found under #4: <code>Statics.mk</code> (and MakeTerm's three memos) keep the last 1000 programs they were asked about, and the editor asks with each new version (<code>CachedStatics.init_from_term</code>). Measured in node, local experiment commit 62aaaa28e4 (branch memo-growth-experiment in ~/hazel-ci-heap, not pushed): 12 edits of one slider literal of Full Body, statics each time, live heap after a forced GC: +83, +165, ... +987 MB with the memos as the editor has them; flat at 490 MB with them emptied after each edit. Statics took 2.7 to 3.2 s per edit, slower as the heap grew. Not yet checked in the browser: first, drag a Full Body slider 20 times on #2597 and read the tab's heap. If it holds, keep one entry per editor (or a few) instead of 1000. To talk over with Matthew.",
+   "source": "#4, 2026-10-13 night",
+   "url": ""
+  },
+  {
+   "id": 46,
+   "area": "performance, CI",
+   "text": "<b>The recovering parser on a Livelit Playground slide: 452 s for full-body.hz.</b> Found under #4: the editor's recovering parser (<code>Parser.to_segment</code>, segmented, but a slide is one long <code>let ... in</code> chain) is near-quadratic there. MenhirCorpus per file on a laptop: full-body 452 s, shoes 386, scenes 210, emotion-kids 178, witch 169; 2096 s for the playground, about 5 min of it when CI was green. ReparseDocSlides and TextRoundtrip.DocSlides parse the same slides again. If Matthew takes the gate (#4, local commit f953119482: over 25 KB, only in the weekly run), this is what brings them back per PR. Known leads from the 2026-09-28 profile: <code>Insert.go</code> per character re-molds the whole sibling run; <code>Form.try_get</code> is 12% (a cheap memo); GC 41%.",
+   "source": "#4, 2026-10-13 night",
+   "url": ""
+  },
+  {
    "id": 5,
    "area": "performance",
    "text": "The Witch slide's extra 2–3 s over Full Body for the same change: not profiled yet.",
@@ -371,9 +385,9 @@
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
- "next_ticket": 45,
+ "next_ticket": 47,
  "current_ticket": 4,
- "current_note": "#4 (his go, 2026-10-13 evening): #2597's CI, red since 2026-10-11 (6de0b53326). Two causes, both from the Dress Up slides. (1) QUICK job (20 min limit; 8 min when green) runs out of node's 4 GB heap: the whole-program memos (Statics.mk, MakeTerm's three; last 1000 programs each, as on dev) keep every test's programs alive. FIX, local commit db3be45898 on branch ci-heap-4 (~/hazel-ci-heap, not pushed): Util.ResettableMemo, emptied by the test runner before each test; the editor is unchanged. Quick suite then passes locally in 571 s (heap 430-640 MB); with CI at 1.25x this laptop (from the green commit, 286 s here vs 8.1 min there), about 14.5 min on CI. (2) FULL job (100 min; 60 when green): even without the leak, the Slow corpus tests parse every .hz with the editor's recovering parser, near-quadratic on one long let-chain: MenhirCorpus alone takes 452 s on full-body.hz here, about 33 min for the playground slides against about 5 min when green. Per file here: full-body 452 s, shoes 386, scenes 210, emotion-kids 178, witch 169; 2096 s for the playground. A CHOICE for Matthew, being measured now (local experiment commit 4adc22df2c on branch ci-heap-4-gate): MenhirCorpus, ReparseDocSlides and TextRoundtrip.DocSlides skip a program over 30 KB unless QCHECK_LONG is set, as in the weekly Extended run (350 min). Timing the whole full suite with it. Matthew is away from 21:00 MDT; nothing goes to #2597 without him (✋❔ when I need him).",
+ "current_note": "#4 (his go, 2026-10-13 evening): #2597's CI, red since 2026-10-11 (6de0b53326). Two causes, both from the Dress Up slides. (1) QUICK job runs out of node's 4 GB heap: the whole-program memos (Statics.mk, MakeTerm's three; last 1000 programs each, as on dev) keep every test's programs alive. FIX, local commit db3be45898 (branch ci-heap-4 in ~/hazel-ci-heap, not pushed): Util.ResettableMemo, emptied by the test runner before each test; the editor is unchanged. Quick suite then passes here in 571 s, heap 430-640 MB; about 14.5 min on CI by the green commit's ratio (limit 20). (2) FULL job: also the recovering parser on the big slides (#46): 2096 s in MenhirCorpus alone here. With the fix, the full suite passes here in 36 min. A CHOICE for Matthew: local commit f953119482 (branch ci-heap-4-gate) parses programs over 25 KB with it only in the weekly Extended run; timing the full suite with it now, then the green commit's full suite, to estimate CI. Side find, #45: the editor's statics memo keeps about 82 MB per edit of Full Body (node; browser check next). Matthew is away from 21:00 MDT; nothing goes to #2597 without him (✋❔ when I need him).",
  "closed_tickets": [
   {
    "id": 1,
