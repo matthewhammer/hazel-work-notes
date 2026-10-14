@@ -404,14 +404,6 @@
    "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages"
   },
   {
-   "id": 62,
-   "area": "Dress Up (performance)",
-   "added": "2026-10-14",
-   "text": "<b>Dress Up performance fix: dragging the friend where the cauldron's fumes turn</b> (outside the witch's hut and inside it). The double-helix fumes make a drag slow enough to be a real UX problem. <b>Likely why</b> (from the code, not yet measured): every pointermove calls <code>changed()</code>, whose <code>draw()</code> replaces the whole picture (<code>pic.innerHTML = svg</code>); <code>helixSvg</code> draws each strand as short segments, about a hundred in all, each with four SMIL <code>&lt;animate&gt;</code>s on x1, x2, stroke-width and stroke-opacity, so every move re-parses them and restarts every animation, and the geometry they animate is repainted each frame. <b>Matthew's idea:</b> pause animations while dragging (<code>pic.pauseAnimations()</code> on pointerdown, <code>unpauseAnimations()</code> on letting go). <b>Other ideas:</b> draw at most once per animation frame however many pointermoves arrive; on a figure drag, move only the friend (its group's transform) and leave the scene's DOM alone, so the fumes neither restart nor re-parse; keep the scene in a group of its own that is replaced only when its settings change; make the fumes cheaper (fewer segments, or turn a group with a transform the compositor can animate). <b>Measure first</b> (performance before features): a drag's frame times in both scenes, before and after, against a scene without fumes. Changes go under Unreleased; no version bump or push until Matthew says.",
-   "source": "Matthew, 2026-10-14",
-   "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
-  },
-  {
    "id": 64,
    "area": "performance, series",
    "added": "2026-10-14",
@@ -434,11 +426,27 @@
    "text": "<b>Find a smaller slide that grows the same way</b> (Hazel performance analysis, ^report(14), What next, step 2: \"Find a smaller slide that grows the same way, so that a snapshot fits even with the memo: one whose slider edits a livelit's model, measured as here.\"). On #2597, run ^report(14)'s measurement (014/drivers/heap_per_edit.py, the live heap after two forced collections, per slider edit) on the Livelit Playground's smaller slides, picking a slider that edits a livelit's model (Shirt and Pants' width sliders are not the shirt's own, so that earlier try applied no edit; check that each edit changes the picture). A slide that keeps a version per edit at a fraction of Full Body's size may let a heap snapshot finish, and its retainer paths would name the holder (^ticket(58)).",
    "source": "Matthew, 2026-10-14",
    "url": "http://matthewhammer.org/hazel/performance-analysis/014/#step-2"
+  },
+  {
+   "id": 67,
+   "area": "Dress Up (side quest)",
+   "added": "2026-10-14",
+   "text": "<b>Dress Up: three castles, N's, M's and D's, with rooms.</b> <b>The castles:</b> each castle has its own settings: how many levels of castle (1 to 5), the stone's colour, how many trees nearby, and the moat and drawbridge's size (none to very wide). The forest clearing has one place for a castle, so for now a chip menu chooses which of the three stands there. <b>The rooms:</b> each castle has a set of rooms, and each room is one of several styles. The styles are organized by their creator (N, M and D, the castle owners), but any castle can use any style. <b>N's rooms</b> (so far): (1) a <b>trap room</b>: two floor traps someone could fall into (pits with spikes inside) and one doorway; (2) a <b>king's room</b>, where we can see the hallway outside, and a door leading into the room; (3) a <b>greenhouse room</b>: vines and climbing plants on all the walls, windows, glass parrots flying near the vines by the ceiling, bushes and other tropical plants everywhere, with lots of detail, even more than the waterfall, and an animated fountain in the middle; (4) <b>two dungeon rooms</b>, each different, with skeletons hanging on the walls: the rooms the traps lead to. M's and D's room styles are still to come. <b>Mind ^ticket(62)'s lesson:</b> many SMIL animations (the fountain, the parrots) cost frames even at rest, so keep animations few, and check a drag in each room. Changes go under Unreleased; no version bump or push until Matthew says.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+  },
+  {
+   "id": 68,
+   "area": "Dress Up",
+   "added": "2026-10-14",
+   "text": "<b>Dress Up: backgrounds by category, as the music is.</b> The Background tab's one long row of places (17 or more, and castles to come in ^ticket(67)) becomes two rows, as the Music tab's kinds and tunes do (TUNE_GROUPS): first the kind of place (for example outdoors, indoors, water, the witch's, castles), each kind's chips in a dashed box with its name, then that kind's places. Picking a kind shows its places, and keeps the current place if it belongs to that kind. Changes go under Unreleased; no version bump or push until Matthew says.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
- "next_ticket": 67,
- "current_ticket": 62,
- "current_note": "Measuring first: frame times while dragging the friend in the scenes with the cauldron's fumes (outside the witch's hut and inside), against a scene without them, then the fix. ^ticket(61)'s full-body slider is done and committed, waiting to ship with the next Dress Up version.",
+ "next_ticket": 69,
+ "current_ticket": 64,
+ "current_note": "Giving ^report(1) to ^report(13) their data, as JSON in each page and as files, as ^report(14) has it. Dress Up has two changes committed and waiting to ship together: ^ticket(61)'s full-body slider and ^ticket(62)'s smooth drag past the fumes.",
  "closed_tickets": [
   {
    "id": 10,
@@ -864,10 +872,21 @@
    "status": "done",
    "outcome": "Built and tested, committed in kids-choice-games (dd86f24), not deployed: it goes out with the next Dress Up version, on Matthew's go-ahead. \"🧍 full body: moves every part\" sits under the \"every part at once\" chips and above the seven parts. Matthew chose \"same amount\": every part moves by the master's change, keeping their differences, each stopping at 0 and 100; the master shows the most visible part. A drag starts from where the parts were, so dragging back restores them (checked: head 54, rest 100; master to 40 gives head 0, rest 40; back to 100 gives head 54 again). Listed under Unreleased in VERSIONS.md.",
    "outcome_url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+  },
+  {
+   "id": 62,
+   "area": "Dress Up (performance)",
+   "added": "2026-10-14",
+   "text": "<b>Dress Up performance fix: dragging the friend where the cauldron's fumes turn</b> (outside the witch's hut and inside it). The double-helix fumes make a drag slow enough to be a real UX problem. <b>Likely why</b> (from the code, not yet measured): every pointermove calls <code>changed()</code>, whose <code>draw()</code> replaces the whole picture (<code>pic.innerHTML = svg</code>); <code>helixSvg</code> draws each strand as short segments, about a hundred in all, each with four SMIL <code>&lt;animate&gt;</code>s on x1, x2, stroke-width and stroke-opacity, so every move re-parses them and restarts every animation, and the geometry they animate is repainted each frame. <b>Matthew's idea:</b> pause animations while dragging (<code>pic.pauseAnimations()</code> on pointerdown, <code>unpauseAnimations()</code> on letting go). <b>Other ideas:</b> draw at most once per animation frame however many pointermoves arrive; on a figure drag, move only the friend (its group's transform) and leave the scene's DOM alone, so the fumes neither restart nor re-parse; keep the scene in a group of its own that is replaced only when its settings change; make the fumes cheaper (fewer segments, or turn a group with a transform the compositor can animate). <b>Measure first</b> (performance before features): a drag's frame times in both scenes, before and after, against a scene without fumes. Changes go under Unreleased; no version bump or push until Matthew says.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
+   "closed": "2026-10-14",
+   "status": "done",
+   "outcome": "Measured, fixed, committed in kids-choice-games (3a27f9f), not deployed: it ships with the next Dress Up version, on Matthew's go-ahead. Measured in headless Chrome over the DevTools protocol (real mouse events, a 60-move drag of the friend, frames timed in the page). Before: the witch's woods took 8.1 s for the drag, frame gaps median 67 ms and p95 250 ms; inside the hut 4.2 s, p95 183 ms; the forest and the house took 2.0 s at 60 fps. The JavaScript was cheap everywhere (changed() about 2 ms); the cost was rendering. (1) draw() wiped the whole picture with innerHTML and put the cached scenery back, so the scene's 459 SMIL animations were torn out and re-registered on every move; now the scenery stays in place and the rest is replaced around it (woods 8.1 to 3.9 s). (2) The fumes cost even at rest, about 15 fps in the woods with no input; Matthew's idea, pausing the picture's animations while a drag is held, finishes it: both scenes now take 2.0 s at a steady 60 fps, like a scene without fumes. Scene switches and the no-background picture checked.",
+   "outcome_url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
  "queue": [
-  62,
   64,
   55,
   60,
@@ -875,5 +894,5 @@
   46,
   50
  ],
- "current_since": "2026-10-14T15:01:33-06:00"
+ "current_since": "2026-10-14T15:06:51-06:00"
 }
