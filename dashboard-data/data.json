@@ -214,13 +214,6 @@
  ],
  "tickets": [
   {
-   "id": 45,
-   "area": "performance",
-   "text": "<b>A tab's memory grows about 85 MB with each edit of a big slide, on #2597; the holder is not yet found.</b> Full Body, the shirt-width slider: the live heap after forced GCs goes 399, 482, 562, 656, 749, 830, 907 MB over six edits (+1.4 GB after 15). <b>Ruled out by experiment:</b> the whole-program memos (held to one entry), the undo history (capped at 2), both together, the projector view cache (its store off), and ShareCodec's tables (bounded: reset at 200,000 entries while the heap kept growing). <b>What stays</b> (V8's sampling heap profiler; heap snapshots crash this tab): whole versions of the editor's state, statics, terms, layout, the worker's replies, and ValueHash's hashes of them. <b>The audit</b> (<a href=\"http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T1209-0600.html\">work notes, 2026-10-14</a>): every weak table is a JS WeakMap and none is the cause; no store on the ordinary path adds a version per edit by construction, so the holder is a table keyed by ids that change between edits: <code>Statics.module_livelits</code>, LivelitProj's <code>last_good_view</code> / <code>view_memo</code> / <code>computed_shapes</code>, or <code>AppStore</code> (its <code>gc</code> never called). <b>Next:</b> a build that reports each of those tables' sizes after every edit; clear the one that grows, measure; then its fix (an owner and a lifetime, not a weaker reference), the same on #2635, and the series report (^ticket(53)).",
-   "source": "^ticket(4), 2026-10-13 night",
-   "url": ""
-  },
-  {
    "id": 46,
    "area": "performance, CI",
    "text": "<b>The recovering parser on a Livelit Playground slide: 452 s for full-body.hz.</b> Found under ^ticket(4): the editor's recovering parser (<code>Parser.to_segment</code>, segmented, but a slide is one long <code>let ... in</code> chain) is near-quadratic there. MenhirCorpus per file on a laptop: full-body 452 s, shoes 386, scenes 210, emotion-kids 178, witch 169; 2096 s for the playground, about 5 min of it when CI was green. ReparseDocSlides and TextRoundtrip.DocSlides parse the same slides again. If Matthew takes the gate (^ticket(4), local commit f953119482: over 25 KB, only in the weekly run), this is what brings them back per PR. Known leads from the 2026-09-28 profile: <code>Insert.go</code> per character re-molds the whole sibling run; <code>Form.try_get</code> is 12% (a cheap memo); GC 41%. <b>Tried 2026-10-14 night:</b> local commit 0825830190 (branch parser-get-base-memo in ~/hazel-ci-heap, on ci-heap-4-pick, not pushed) keeps each label's molds in Form.Molds.get_base and runs the atomic regexes once instead of up to three times. MenhirCorpus on eyes.hz, alternating runs: 90.1 and 84.6 s before, 75.4 and 72.5 s after, about 15% faster; the parse still matches Menhir and the quick suite passes. Not enough to drop the 25 KB gate (it would take the playground's 2096 s to about 1800); the per-character re-mold of the whole sibling run is the real cost.",
@@ -406,14 +399,22 @@
    "id": 57,
    "area": "dress up",
    "added": "2026-10-14",
-   "text": "<b>Messed Up Dress Up: a fairy costume, a fairy forest, and LFOs for what shows.</b> (1) <b>A fairy costume:</b> wings in 5 styles and a fairy tunic in 5 styles, each style with its own default colours and colour choices. Hair, face and hands look the same as without it; the feet take styles that come from the costume. (2) <b>A fairy forest background:</b> a special forest area with a ring of mushrooms; time-of-day chips (day, night, sunrise, sunset); a fairy house in a tree, which appears with a transparency control and an LFO that can be turned on (it fades in and out with the music's beat, as the drums' pitch LFOs do). (3) <b>LFOs for visibility:</b> on the 👻 Visibility panel (^ticket(51)), each body part's transparency can follow an LFO, optionally, like the music's: a chip per part for none or an LFO, the LFOs with a speed in beats and a shape, as on the mixing board (^ticket(52)).",
+   "text": "<b>Messed Up Dress Up: a fairy costume, a fairy forest, and LFOs for what shows.</b> (1) <b>A fairy costume:</b> wings in 5 styles and a fairy tunic in 5 styles, each style with its own default colours and colour choices. Hair, face and hands look the same as without it; the feet take styles that come from the costume. (2) <b>A fairy forest background:</b> a special forest area with a ring of mushrooms; time-of-day chips (day, night, sunrise, sunset); a fairy house in a tree, which appears with a transparency control and can follow one of the three LFOs (fading in and out with the music's beat). (3) <b>LFOs for visibility, the mixer's own:</b> each body part's transparency on the 👻 Visibility panel (^ticket(51)) can follow an LFO, optionally: a chip per part for none or an LFO. <b>The same LFOs as the mixing board's (^ticket(52)), and only three: A, B, C</b> (Matthew, 2026-10-14), set from either place: one set of three, used by the drums' pitch, the parts' transparency and the fairy house's. Three, not today's four, so the music panel lays out as a quad: the main mix controls and the three LFOs. (Today's tunes use A to C only; D goes.)",
    "source": "Matthew, 2026-10-14",
+   "url": ""
+  },
+  {
+   "id": 58,
+   "area": "performance",
+   "added": "2026-10-14",
+   "text": "<b>PARKED 2026-10-14: find what holds about 85 MB per edit of Full Body in a #2597 tab.</b> From ^ticket(45), which measured it and ruled out every cache and table (its outcome, and the work notes of 2026-10-14). The holder is not a table: it keeps whole versions of the editor's state. A heap snapshot would name it, but snapshots kill this page's renderer (snap Chromium and Chrome for Testing 155 alike, with the hang monitor off; a trivial page and a million-deep chain of arrays are fine). <b>Lead:</b> a page with a WeakMap of 2 million live entries did not finish its snapshot in 400 s, and ValueHash's memo is a WeakMap of about that size: try a probe build with ValueHash's memo off (or bounded), and take the snapshots then. Other ways in: a smaller slide that leaks (Shirt and Pants' sliders are not the shirt's width; find one that edits a livelit model), or closures held by the browser (listeners, timers, observers) on a render path.",
+   "source": "^ticket(45), 2026-10-14",
    "url": ""
   }
  ],
- "next_ticket": 58,
- "current_ticket": 45,
- "current_note": "The audit is written (<a href=\"http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T1209-0600.html\">work notes</a>): nothing adds a version per edit by construction, so the holder is one of the tables keyed by changing ids (Statics.module_livelits, LivelitProj's per-id tables, AppStore). Next: a build that counts them after every edit. Meanwhile, at Matthew's word: every PR number in the series becomes a link, with a live hover card.",
+ "next_ticket": 59,
+ "current_ticket": 56,
+ "current_note": "^report(12)'s two pictures are drafted and committed locally (hazel-performance-analysis f807c3c, not pushed): Figure 1, the body drawn from its tree, each part outlined in its branch's colour with what places and shapes it (the new thumbnail); Figure 3, the whole tree in four subtrees, each node with the sliders that change it. Preview: http://localhost:8131/012/ and the series index. ^ticket(45) closed (findings in its outcome), its holder hunt parked as ^ticket(58). Next: ^ticket(53), the report.",
  "closed_tickets": [
   {
    "id": 10,
@@ -768,15 +769,26 @@
    "status": "done",
    "outcome": "Messed Up Dress Up 0.0.22, live (kids-choice-games f87eb70, tag dress-up-0.0.22): four LFOs A to D on the mixing board (once round in 1 beat to 8 bars, triangle / saw / sine, a depth up to an octave), a chip on every bongo and conga for none or A to D, each hit taking the wave at its step; the classic beats' bongos and beach calypso's second conga set their own (the tracks revised once more, as asked).",
    "outcome_url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+  },
+  {
+   "id": 45,
+   "area": "performance",
+   "text": "<b>A tab's memory grows about 85 MB with each edit of a big slide, on #2597; the holder is not yet found.</b> Full Body, the shirt-width slider: the live heap after forced GCs goes 399, 482, 562, 656, 749, 830, 907 MB over six edits (+1.4 GB after 15). <b>Ruled out by experiment:</b> the whole-program memos (held to one entry), the undo history (capped at 2), both together, the projector view cache (its store off), and ShareCodec's tables (bounded: reset at 200,000 entries while the heap kept growing). <b>What stays</b> (V8's sampling heap profiler; heap snapshots crash this tab): whole versions of the editor's state, statics, terms, layout, the worker's replies, and ValueHash's hashes of them. <b>The audit</b> (<a href=\"http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T1209-0600.html\">work notes, 2026-10-14</a>): every weak table is a JS WeakMap and none is the cause; no store on the ordinary path adds a version per edit by construction, so the holder is a table keyed by ids that change between edits: <code>Statics.module_livelits</code>, LivelitProj's <code>last_good_view</code> / <code>view_memo</code> / <code>computed_shapes</code>, or <code>AppStore</code> (its <code>gc</code> never called). <b>Next:</b> a build that reports each of those tables' sizes after every edit; clear the one that grows, measure; then its fix (an owner and a lifetime, not a weaker reference), the same on #2635, and the series report (^ticket(53)).",
+   "source": "^ticket(4), 2026-10-13 night",
+   "url": "",
+   "closed": "2026-10-14",
+   "status": "superseded",
+   "outcome": "Measured and narrowed, not fixed; the holder hunt is parked as ^ticket(58). On #2597, Full Body, a tab keeps about 85 MB per slider edit, steadily (397 to 1,105 MB over 8 edits). Ruled out by experiment: the whole-program memos, the undo history, both together, the projector view cache, ShareCodec's tables (bounded, reset at 200,000). Ruled out by counting every table keyed by ids after each edit (a probe build, local branch count-45 in ~/hazel-ci-heap): Statics.module_livelits, LivelitProj's seven tables, MakeTerm's maps, HazelDB, AppStore all flat. What stays (V8's sampling heap profiler): whole versions of the editor's state, statics, terms, layout, the worker's replies, and ValueHash's hashes of them. The audit of every cache and weak table, and the method: work notes 2026-10-14 (12:09). Heap snapshots, which would name the holder, kill this page's renderer in the snap Chromium and in Chrome for Testing alike.",
+   "outcome_url": "http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T1209-0600.html"
   }
  ],
  "queue": [
-  45,
   56,
   53,
   18,
   46,
   50
  ],
- "current_since": "2026-10-14T10:55:24-06:00"
+ "current_since": "2026-10-14T13:49:15-06:00",
+ "current_waiting": "Matthew's review of ^report(12)'s pictures (publish?)"
 }
