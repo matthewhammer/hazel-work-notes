@@ -380,7 +380,7 @@
  ],
  "next_ticket": 48,
  "current_ticket": 47,
- "current_note": "#47, issue 013: how to carry #7's improvement to diverged branches, with plots. Pushed to #2635 first (Matthew's go): 043508921b, 9fb2bdf067 (CI running). PORTED to #2469's modular-editors head locally (branch port-2469-t7 in ~/hazel-port-2469, not pushed): 128f3f303d the keyed projection (needed a change: #2469's projection also reads full-capture probes, so the kept projection is keyed by that set too; a test fails without it), cdb799a376 the delta (from the walk's own changes list), 474b1e050e the spine reuse (no IdentityTable or ValueHash there: kept by item id). #2469's quick suite passes whole (4722 tests). Now: measuring the same edits on #2635 before/after and #2469 before/after (two interleaved runs each); then drafting 013 with figures. ✋❔ when the draft is ready to read.",
+ "current_note": "#47, issue 013 \"Telling the Request What Changed\": DRAFT READY TO READ at http://localhost:8131/series/013/ (series repo commit b55a9ba, local, not pushed: a push publishes). What it found: building the request's projection now takes under 1 ms on every slide (0.19–0.92, from 1.9–11.9 ms); what is left grows with how far down the program the slider sits (Full Body 17.5 → 3.6 ms at item 26 of 167, 27.5 → 20.8 at item 134), because each item above the edit has a spine root carrying the whole program below it; Witch's statics 42 → 23 ms. Ported to #2469's head locally (branch port-2469-t7 in ~/hazel-port-2469, not pushed): one change per step, quick suite passes whole (4,722 tests), mega-4k projection 8.9 → 0.33 ms. dev and #2597 need per-item statics first. Also pushed to #2635 earlier: 043508921b, 9fb2bdf067.",
  "closed_tickets": [
   {
    "id": 4,
@@ -668,5 +668,6 @@
    "outcome": "Done (2026-10-13): issue 012 published on Matthew's go-ahead at matthewhammer.org/hazel/performance-analysis/012/ (homepage 076ec93, series cfdb7c6), checked live over HTTP, with dated notes in issue 011 (its What next, step 1, and its representation section)."
   }
  ],
- "current_since": "2026-10-14T07:38:00-06:00"
+ "current_since": "2026-10-14T07:38:00-06:00",
+ "current_waiting": "Read the issue 013 draft (http://localhost:8131/series/013/): publish it, or what to change?"
 }
