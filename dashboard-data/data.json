@@ -402,11 +402,19 @@
    "text": "<b>PARKED 2026-10-14: find what holds about 85 MB per edit of Full Body in a #2597 tab.</b> From ^ticket(45), which measured it and ruled out every cache and table (its outcome, and the work notes of 2026-10-14). The holder is not a table: it keeps whole versions of the editor's state. A heap snapshot would name it, but snapshots kill this page's renderer (snap Chromium and Chrome for Testing 155 alike, with the hang monitor off; a trivial page and a million-deep chain of arrays are fine). <b>Lead:</b> a page with a WeakMap of 2 million live entries did not finish its snapshot in 400 s, and ValueHash's memo is a WeakMap of about that size: try a probe build with ValueHash's memo off (or bounded), and take the snapshots then. Other ways in: a smaller slide that leaks (Shirt and Pants' sliders are not the shirt's width; find one that edits a livelit model), or closures held by the browser (listeners, timers, observers) on a render path.",
    "source": "^ticket(45), 2026-10-14",
    "url": ""
+  },
+  {
+   "id": 59,
+   "area": "dashboard, series, Dress Up",
+   "added": "2026-10-14",
+   "text": "<b>Each repo's README links its public page, and each app links its repo.</b> For the Hazel Work Dashboard (matthewhammer/hazel-work-notes), the performance analysis series (matthewhammer/hazel-performance-analysis) and Messed Up Dress Up (matthewhammer/kids-choice-games): (1) the GitHub README links the public URL on matthewhammer.org, prominently, at the top; (2) the app itself links its GitHub repository: the dashboard, the series index, and Dress Up, where it can be discreet: a last chip after the final top-level menu panel chip. Dress Up's change waits for Matthew's go-ahead to deploy, like any other (no version bump or push until he says).",
+   "source": "Matthew, 2026-10-14",
+   "url": ""
   }
  ],
- "next_ticket": 59,
- "current_ticket": 53,
- "current_note": "Writing ^report(14), \"what the page keeps from one edit to the next\", from ^ticket(45)'s findings: the measurement (about 85 MB kept per edit of Full Body on #2597), the method that works where heap snapshots crash the tab, what was ruled out and how, the audit of every cache and weak table, and the holder as its open question (^ticket(58)). Drafted locally first; it waits for Matthew's review before publishing. ^ticket(56) is done: ^report(12)'s pictures are live.",
+ "next_ticket": 60,
+ "current_ticket": 59,
+ "current_note": "READMEs and repo links for the dashboard, the series and Dress Up. ^ticket(53) (^report(14)) is paused right behind it: its numbers are gathered (heap per edit, the experiments, the table counts, the live heap by source file) and the page is next.",
  "closed_tickets": [
   {
    "id": 10,
@@ -787,11 +795,12 @@
   }
  ],
  "queue": [
+  59,
   53,
   55,
   18,
   46,
   50
  ],
- "current_since": "2026-10-14T13:57:52-06:00"
+ "current_since": "2026-10-14T14:08:41-06:00"
 }
