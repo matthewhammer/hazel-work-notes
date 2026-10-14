@@ -404,14 +404,6 @@
    "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages"
   },
   {
-   "id": 61,
-   "area": "Dress Up (side quest)",
-   "added": "2026-10-14",
-   "text": "<b>Dress Up: a \"full body\" master slider in the 👻 Visibility tab</b> (a follow-up to ^ticket(51), the invisible main character). One more slider, \"full body\", above the seven parts' sliders (head, eyes, hair, shirt, pants, feet, hands) and below the \"every part at once\" chips (invisible, visible, ghost): moving it moves the others with it, globally. Open choice, for Matthew: whether every part follows by the same amount, keeping their differences (clamped at 0 and 100), or is set to the master's value, as the chips do. If ^ticket(57) lands first, the master could take one of the three shared LFOs, as each part will. Changes go under Unreleased; no version bump or push until Matthew says.",
-   "source": "Matthew, 2026-10-14 (with a screenshot of the Visibility tab, 0.0.23)",
-   "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
-  },
-  {
    "id": 62,
    "area": "Dress Up (performance)",
    "added": "2026-10-14",
@@ -445,8 +437,8 @@
   }
  ],
  "next_ticket": 67,
- "current_ticket": 61,
- "current_note": "Starting the \"full body\" master slider in Dress Up's 👻 Visibility tab: above the parts' sliders, below the \"every part at once\" chips. ^ticket(53) is done: ^report(14) is live.",
+ "current_ticket": 62,
+ "current_note": "Measuring first: frame times while dragging the friend in the scenes with the cauldron's fumes (outside the witch's hut and inside), against a scene without them, then the fix. ^ticket(61)'s full-body slider is done and committed, waiting to ship with the next Dress Up version.",
  "closed_tickets": [
   {
    "id": 10,
@@ -860,10 +852,21 @@
    "status": "done",
    "outcome": "Published on Matthew's say-so and checked live: ^report(14), \"What the page keeps from one edit to the next\". A #2597 tab keeps about 92 MB more after every slider edit on Full Body; not the caches (each tried in its own build), not any long-lived table (each counted after every edit); what stays is whole versions of the editor's state; the holder is open (^ticket(58)), since heap snapshots kill the tab. Four figures, the data as JSON in the page and as files in 014/data/ (the model for Matthew's new rule, and ^ticket(64) for the earlier reports), the experiments' patches in patches/, the drivers in 014/drivers/, a dated note in ^report(5), the card on the series index and the line on the /hazel/ page. Commits: hazel-performance-analysis 9c548bd, 35a5e53, 8be276a; matthewhammer.github.io be12468.",
    "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/014/"
+  },
+  {
+   "id": 61,
+   "area": "Dress Up (side quest)",
+   "added": "2026-10-14",
+   "text": "<b>Dress Up: a \"full body\" master slider in the 👻 Visibility tab</b> (a follow-up to ^ticket(51), the invisible main character). One more slider, \"full body\", above the seven parts' sliders (head, eyes, hair, shirt, pants, feet, hands) and below the \"every part at once\" chips (invisible, visible, ghost): moving it moves the others with it, globally. Open choice, for Matthew: whether every part follows by the same amount, keeping their differences (clamped at 0 and 100), or is set to the master's value, as the chips do. If ^ticket(57) lands first, the master could take one of the three shared LFOs, as each part will. Changes go under Unreleased; no version bump or push until Matthew says.",
+   "source": "Matthew, 2026-10-14 (with a screenshot of the Visibility tab, 0.0.23)",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
+   "closed": "2026-10-14",
+   "status": "done",
+   "outcome": "Built and tested, committed in kids-choice-games (dd86f24), not deployed: it goes out with the next Dress Up version, on Matthew's go-ahead. \"🧍 full body: moves every part\" sits under the \"every part at once\" chips and above the seven parts. Matthew chose \"same amount\": every part moves by the master's change, keeping their differences, each stopping at 0 and 100; the master shows the most visible part. A drag starts from where the parts were, so dragging back restores them (checked: head 54, rest 100; master to 40 gives head 0, rest 40; back to 100 gives head 54 again). Listed under Unreleased in VERSIONS.md.",
+   "outcome_url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
  "queue": [
-  61,
   62,
   64,
   55,
@@ -872,5 +875,5 @@
   46,
   50
  ],
- "current_since": "2026-10-14T14:58:50-06:00"
+ "current_since": "2026-10-14T15:01:33-06:00"
 }
