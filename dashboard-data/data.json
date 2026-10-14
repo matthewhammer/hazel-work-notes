@@ -373,7 +373,7 @@
  ],
  "next_ticket": 45,
  "current_ticket": 4,
- "current_note": "#4 (his go, 2026-10-13 evening): #2597's CI, red since 2026-10-11: the full tests time out at 100 minutes and the quick tests run out of heap. #2597 is the full livelits branch, the critical path. Starting: read the failing runs' logs.",
+ "current_note": "#4 (his go, 2026-10-13 evening): #2597's CI, red since 2026-10-11: the full tests time out at 100 minutes and the quick tests run out of heap. #2597 is the full livelits branch, the critical path. Reproduced locally on 684a75cb2f: the quick suite runs out of heap (4 GB) at 521 s, in IncrSlides' second test. The heap climbs from 1 GB to 4.3 GB through Unproject (144 s to 494 s, about 350 s for its 47 tests), so something is kept from test to test. Next: find what Unproject keeps alive, then see whether IncrSlides alone fits.",
  "closed_tickets": [
   {
    "id": 1,
