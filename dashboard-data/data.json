@@ -442,19 +442,11 @@
    "text": "<b>Dress Up: backgrounds by category, as the music is.</b> The Background tab's one long row of places (17 or more, and castles to come in ^ticket(67)) becomes two rows, as the Music tab's kinds and tunes do (TUNE_GROUPS): first the kind of place (for example outdoors, indoors, water, the witch's, castles), each kind's chips in a dashed box with its name, then that kind's places. Picking a kind shows its places, and keeps the current place if it belongs to that kind. Changes go under Unreleased; no version bump or push until Matthew says.",
    "source": "Matthew, 2026-10-14",
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
-  },
-  {
-   "id": 69,
-   "area": "Dress Up",
-   "added": "2026-10-14",
-   "text": "<b>Dress Up: a favicon, the tree house with cats.</b> The game has none (its console shows the browser's favicon.ico request failing). Draw the tree house, with cats on it, simple enough to read at 16 and 32 pixels in a browser tab, on light and dark tab bars; embed it in the page as an SVG data URI, so the game stays a single HTML file. Changes go under Unreleased; no version bump or push until Matthew says. <b>Reopened, 2026-10-14:</b> the first version (committed as a4e2384) crops each cat house on its own and puts the two side by side. Matthew likes that, but would rather get the same effect without cropping: add a control that grows the tree house's houses independently of the tree, then render the icon again as one crop of the scene.",
-   "source": "Matthew, 2026-10-14",
-   "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
  "next_ticket": 70,
- "current_ticket": 69,
- "current_note": "Adding a \"tree house size\" control to the tree house scene (its houses grow independently of the tree), then rendering the icon again as one crop. Dress Up has three changes committed and waiting to ship: ^ticket(61), ^ticket(62) and this icon.",
+ "current_ticket": 64,
+ "current_note": "Giving ^report(1) to ^report(13) their data, as JSON in each page and as files, as ^report(14) has it. Dress Up has four changes committed, ready to ship as one version on Matthew's go-ahead: the full-body slider (^ticket(61)), the smooth drag past the fumes (^ticket(62)), tree house size, and the tab icon (^ticket(69)).",
  "closed_tickets": [
   {
    "id": 10,
@@ -892,10 +884,21 @@
    "status": "done",
    "outcome": "Measured, fixed, committed in kids-choice-games (3a27f9f), not deployed: it ships with the next Dress Up version, on Matthew's go-ahead. Measured in headless Chrome over the DevTools protocol (real mouse events, a 60-move drag of the friend, frames timed in the page). Before: the witch's woods took 8.1 s for the drag, frame gaps median 67 ms and p95 250 ms; inside the hut 4.2 s, p95 183 ms; the forest and the house took 2.0 s at 60 fps. The JavaScript was cheap everywhere (changed() about 2 ms); the cost was rendering. (1) draw() wiped the whole picture with innerHTML and put the cached scenery back, so the scene's 459 SMIL animations were torn out and re-registered on every move; now the scenery stays in place and the rest is replaced around it (woods 8.1 to 3.9 s). (2) The fumes cost even at rest, about 15 fps in the woods with no input; Matthew's idea, pausing the picture's animations while a drag is held, finishes it: both scenes now take 2.0 s at a steady 60 fps, like a scene without fumes. Scene switches and the no-background picture checked.",
    "outcome_url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+  },
+  {
+   "id": 69,
+   "area": "Dress Up",
+   "added": "2026-10-14",
+   "text": "<b>Dress Up: a favicon, the tree house with cats.</b> The game has none (its console shows the browser's favicon.ico request failing). Draw the tree house, with cats on it, simple enough to read at 16 and 32 pixels in a browser tab, on light and dark tab bars; embed it in the page as an SVG data URI, so the game stays a single HTML file. Changes go under Unreleased; no version bump or push until Matthew says. <b>Reopened, 2026-10-14:</b> the first version (committed as a4e2384) crops each cat house on its own and puts the two side by side. Matthew likes that, but would rather get the same effect without cropping: add a control that grows the tree house's houses independently of the tree, then render the icon again as one crop of the scene.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
+   "closed": "2026-10-14",
+   "status": "done",
+   "outcome": "Committed in kids-choice-games (a4e2384, then 1b71ad1), not deployed: it ships with the next Dress Up version, on Matthew's go-ahead. The icon is the game's own drawing: the tree house with two cat houses (a black cat, #1f1f22, and an amber one, #e8862a), rendered in headless Chrome, rasterized at 512 px and halved down to 16, 32 and 48 px, the small ones lightly sharpened, embedded as PNG data URIs (about 14 KB). First it was two crops side by side (Matthew liked it); on his idea, a new control, \"🏡 tree house size\" (50 to 250), now grows the tree house's houses apart from the tree, with the bridges and ladders keeping to their platforms, and at 250 one crop of the scene reads as well. The game's favicon request no longer 404s.",
+   "outcome_url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
  "queue": [
-  69,
   64,
   55,
   60,
@@ -903,5 +906,5 @@
   46,
   50
  ],
- "current_since": "2026-10-14T15:13:23-06:00"
+ "current_since": "2026-10-14T15:15:26-06:00"
 }
