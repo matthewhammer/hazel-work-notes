@@ -373,7 +373,7 @@
  ],
  "next_ticket": 47,
  "current_ticket": 7,
- "current_note": "#7, started 2026-10-14 while #4's CI ran (\"in part\"). Measured in node on #2635: on a release, building the worker request costs most in the EvalInfo projection (13–14 ms on Full Body), which walks both whole statics maps every commit, not in hashing (1–4 ms). Next, to talk over with Matthew (Andrew's code): DefStatics hands EvalInfo the items it re-analyzed, so the projection touches only those. The redraw half is not started. Details on the ticket.",
+ "current_note": "#7, started 2026-10-14 while #4's CI ran. Matthew's go (2026-10-14): continue with the next step ourselves, and offer the results, not waiting on Andrew. Measured in node on #2635: building the worker request costs most in the EvalInfo projection (13–14 ms per release on Full Body), which walks both whole statics maps every commit; hashing is 1–4 ms. NOW: DefStatics hands EvalInfo what it re-analyzed, so the projection updates only those entries. On #2635 only (DefStatics is #2469's; #2597 has none).",
  "closed_tickets": [
   {
    "id": 4,
@@ -661,6 +661,5 @@
    "outcome": "Done (2026-10-13): issue 012 published on Matthew's go-ahead at matthewhammer.org/hazel/performance-analysis/012/ (homepage 076ec93, series cfdb7c6), checked live over HTTP, with dated notes in issue 011 (its What next, step 1, and its representation section)."
   }
  ],
- "current_since": "2026-10-14T06:35:00-06:00",
- "current_waiting": "#7: take the EvalInfo projection idea further (DefStatics is Andrew's code), or stop here?"
+ "current_since": "2026-10-14T06:35:00-06:00"
 }
