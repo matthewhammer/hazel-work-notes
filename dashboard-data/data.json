@@ -214,6 +214,14 @@
  ],
  "tickets": [
   {
+   "id": 73,
+   "area": "Dress Up",
+   "added": "2026-10-14",
+   "text": "<b>Dress Up: no skeletons unless asked for.</b> The dungeon rooms are too scary for M. By default no skulls or skeletons anywhere in the castles; each room has its own slider to add them, from 0 up to as many as that room's drawing has (the dungeon 2, the deep dungeon 4). Changes go under Unreleased; no version bump or push until Matthew says.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+  },
+  {
    "id": 46,
    "area": "performance, CI",
    "text": "<b>The recovering parser on a Livelit Playground slide: 452 s for full-body.hz.</b> Found under ^ticket(4): the editor's recovering parser (<code>Parser.to_segment</code>, segmented, but a slide is one long <code>let ... in</code> chain) is near-quadratic there. MenhirCorpus per file on a laptop: full-body 452 s, shoes 386, scenes 210, emotion-kids 178, witch 169; 2096 s for the playground, about 5 min of it when CI was green. ReparseDocSlides and TextRoundtrip.DocSlides parse the same slides again. If Matthew takes the gate (^ticket(4), local commit f953119482: over 25 KB, only in the weekly run), this is what brings them back per PR. Known leads from the 2026-09-28 profile: <code>Insert.go</code> per character re-molds the whole sibling run; <code>Form.try_get</code> is 12% (a cheap memo); GC 41%. <b>Tried 2026-10-14 night:</b> local commit 0825830190 (branch parser-get-base-memo in ~/hazel-ci-heap, on ci-heap-4-pick, not pushed) keeps each label's molds in Form.Molds.get_base and runs the atomic regexes once instead of up to three times. MenhirCorpus on eyes.hz, alternating runs: 90.1 and 84.6 s before, 75.4 and 72.5 s after, about 15% faster; the parse still matches Menhir and the quick suite passes. Not enough to drop the 25 KB gate (it would take the playground's 2096 s to about 1800); the per-character re-mold of the whole sibling run is the real cost.",
@@ -436,9 +444,9 @@
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
- "next_ticket": 73,
- "current_ticket": 72,
- "current_note": "Castle colors: two colors for banners and flags (alternating, stripes or checkers), a letter that always shows, and a roof color, for each castle. Then back to ^ticket(57): its LFOs, the fairy costume and the full-body pin are committed; the fairy forest is next.",
+ "next_ticket": 74,
+ "current_ticket": 73,
+ "current_note": "Dungeons drawn without skeletons by default; a 0-to-max slider per room. Checking the drawings now, then back to ^ticket(72) (castle colors, half done).",
  "closed_tickets": [
   {
    "id": 10,
