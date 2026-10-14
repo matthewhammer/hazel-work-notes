@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>#45: what the page keeps, an audit</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --hi: #fef3c7; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --hi: #3a3218; }
+  }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; }
+  h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; }
+  code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); }
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9em; }
+  th, td { border-bottom: 1px solid var(--line); padding: 5px 6px; text-align: left; vertical-align: top; }
+  tr.hi td { background: var(--hi); }
+  li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>#45: what the page keeps, an audit</h1>
+<p class="sub">2026-10-14, Matthew and Claude. Ticket #45 on the dashboard; the series issue it feeds is #53. Branch measured: <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a> at <code>c4e411f9c2</code>. The question issue 005 left open ("what memory these take has not been measured") is answered here in part.</p>
+
+<h2 id="leak">The leak</h2>
+<p>A tab on <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>, the Full Body slide, the shirt-width slider set again and again: the live heap after two forced GCs grows about 85 MB per edit, steadily, with no plateau: 399, 482, 562, 656, 749, 830, 907 MB over six edits; +1,388 MB after 15. Measured in headless Chromium with precise memory info, first through chromedriver, then over the DevTools protocol directly (node's WebSocket).</p>
+
+<h2 id="ruled-out">Ruled out, each by an experiment</h2>
+<div class="scroll"><table>
+<tr><th>Suspect</th><th>Experiment</th><th>Growth per edit</th></tr>
+<tr><td>The whole-program memos (<code>Statics.mk</code>, MakeTerm's three)</td><td>every one held to a single entry</td><td>about 70 MB (and redraws 18 to 31 s)</td></tr>
+<tr><td>The undo history</td><td>capped at 2 states</td><td>about 92 MB</td></tr>
+<tr><td>Both together</td><td>memos at 1, undo at 2</td><td>about 73 MB</td></tr>
+<tr><td>The projector view cache (<code>ProjectorView.ViewCache</code>, never pruned)</td><td>its <code>store</code> turned off</td><td>about 83 MB (399, 643, 896 MB over six edits)</td></tr>
+<tr><td>ShareCodec's tables (the page's table of values the worker sent; its set of hashes it sent)</td><td>a census of the tab's <code>Map</code>s and <code>Set</code>s (<code>Runtime.queryObjects</code>) after 0, 2 and 5 edits</td><td>bounded: the page's table went 121,723, 164,424, then reset at its 200,000 cap and refilled to 119,228, while the heap kept growing</td></tr>
+</table></div>
+
+<h2 id="method">How, where heap snapshots fail</h2>
+<ul>
+<li><b>Heap snapshots crash the tab.</b> <code>HeapProfiler.takeHeapSnapshot</code> kills this page's renderer at once, at 560 MB and at 400 MB alike (snap Chromium; the crash handler's ptrace errors in its log at that second). So no retainer paths.</li>
+<li><b>V8's sampling heap profiler instead:</b> started after two warm-up edits, stopped after four more, keeping only what is still alive: 390 MB sampled. It says who <i>allocated</i> what stays, not who holds it. The development bundle names its functions and carries <code>/*&lt;&lt;src/...&gt;&gt;*/</code> comments, so each frame maps to a Reason source line.</li>
+<li><b>What stays, by who made it:</b> ValueHash's hash memo (98 MB: a WeakMap entry lives exactly as long as its object, so this is a symptom of the objects living); the worker's replies, unmarshaled (46 MB); the program's types and statics (<code>ConstructorMap</code>, <code>Typ</code>, <code>Statics.add</code>, about 50 MB); the layout made through the livelit projector (<code>Measured</code>, via <code>LivelitProj</code>, 16 MB); terms (<code>MakeTerm</code>, <code>Skel</code>). Whole versions of the editor's state, not one cache's entries.</li>
+</ul>
+
+<h2 id="weak">The weak tables</h2>
+<p>Every weak structure in <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a> is a JavaScript <code>WeakMap</code>: no OCaml <code>Weak</code> or <code>Ephemeron</code> anywhere, so js_of_ocaml's handling of those does not come into it. A WeakMap's entry lives as long as its key, which is the trouble with them: what they keep depends on what keeps their keys, and that is written nowhere.</p>
+<div class="scroll"><table>
+<tr><th>Where</th><th>Key, value</th><th>Verdict</th></tr>
+<tr><td><code>ValueHash</code> memo (util/ValueHash.re:24)</td><td>any block, its hash <code>[h0, h1, size]</code></td><td>small values; the 98 MB above is a symptom</td></tr>
+<tr><td><code>ValueHash.Pairs</code> (Equality.re:152)</td><td>a term, <code>[the other term, the answer]</code>: holds the other term strongly</td><td>made fresh for each <code>equality</code> call, so it goes with the call</td></tr>
+<tr><td><code>TypHash</code> (term/TypHash.re:43)</td><td>a type, its hash</td><td>small</td></tr>
+<tr><td><code>IdentityTable</code>: CallMemo's <code>forms</code>, <code>entries</code>, <code>costly</code>, <code>tries</code> (dynamics/CallMemo.re:68, 140-154)</td><td>a function body, its id-free form or its remembered calls (8 per body)</td><td>bounded per body; an entry's inputs could reach an environment</td></tr>
+<tr><td><code>IdentityTable</code>: Ascriptions' <code>unroll_memo</code>, <code>has_type</code> (Ascriptions.re:79, 107)</td><td>a type, its unrolling; a value, a short list (and <code>has_type</code> is reset)</td><td>small</td></tr>
+<tr><td><code>IdentityMemo</code> (util/IdentityMemo.re:13)</td><td>an object, <code>[f(x)]</code></td><td>fine for a pure <code>f</code>; non-objects not kept</td></tr>
+</table></div>
+
+<h2 id="strong">The strong tables (every module-level store on the main thread)</h2>
+<p>Inventoried by a read-only pass over src/web, src/haz3lcore, src/language and src/util. Its headline: <b>nothing on the ordinary editing path adds a program version per edit by its construction.</b> Every store sized like a program holds one version and is replaced by the next. So what grows must be a table keyed by ids that change from edit to edit; the highlighted rows are those.</p>
+<div class="scroll"><table>
+<tr><th>Where</th><th>Key, value</th><th>Bound</th><th>Risk</th></tr>
+<tr class="hi"><td><code>Statics.module_livelits</code> (statics/Statics.re:37)</td><td>a module expression's id, the livelits it binds (each with its elaborated definition)</td><td>replaced or removed only when that module is analysed again; ids that disappear stay</td><td>high if a slide's modules get fresh ids each edit</td></tr>
+<tr class="hi"><td>LivelitProj's <code>last_good_view</code> (LivelitProj.re:1167)</td><td>a livelit's id, its last good virtual DOM, whose handlers close over the statics and the whole dynamics map</td><td>replaced per id, never removed</td><td>medium: one render per id ever seen</td></tr>
+<tr class="hi"><td>LivelitProj's <code>view_memo</code>, <code>computed_shapes</code> (1178, 628)</td><td>a livelit's id, its definition's elaboration and view or shape</td><td>replaced per id; removed only on an error</td><td>medium</td></tr>
+<tr class="hi"><td><code>AppStore</code> (globals/Globals.re:96, AppStore.re:41)</td><td>a projector's id, an app's model, update and view closures and their environment, its subscriptions</td><td><code>AppStore.gc</code> is never called (a TODO at Page.re:452 says so)</td><td>medium-high where MVU apps are used and ids change</td></tr>
+<tr><td><code>stitch_term</code> (derivation/DerivationExercise.re:486)</td><td>derivation editors, a stitched term: whole <code>Editor.t</code>s</td><td><code>Core.Memo.general</code> with no bound</td><td>high, but in derivation mode only</td></tr>
+<tr><td>ScratchMode's <code>last_saved_agent</code> (ScratchMode.re:244)</td><td>a slide's key, its agent chat</td><td>replaced per slide</td><td>low-medium</td></tr>
+<tr><td><code>StructureShareSexp</code>'s two maps (util/StructureShareSexp.re:7-8)</td><td>ids, sexps or objects</td><td>reset after each root, but not if a converter raises: then they grow for good</td><td>low-medium (an exception path)</td></tr>
+<tr><td>One version each: MakeTerm's refs (MakeTerm.re:177-247), <code>ProbeTargets</code>' expansion (ProbeTargets.re:123, 126), <code>ProbeFocus.cia_key</code>, <code>AutoProbePerform</code>'s root segment</td><td>the last parse's maps; one full version of terms, layout and statics</td><td>replaced when their inputs change</td><td>low: one stale version each</td></tr>
+<tr><td>Bounded caches: <code>Typ</code>'s signature cache (16), <code>TyDiCtx.fields_cache</code> (16), <code>ExplainThis</code> (1000), <code>Code</code>'s three (10,000 tokens), <code>consistent_memo</code> (4096), <code>ProbeUtil</code> (32)</td><td>small keys; some values reach older modules' types</td><td>bounded</td><td>low</td></tr>
+</table></div>
+<p><b>Chains of versions, checked and not found.</b> No model keeps the version before it: <code>CachedSyntax</code> keeps the inputs it was last made from, but never an earlier <code>CachedSyntax</code>; <code>Editor</code>'s <code>old_statics</code> are arguments, never stored; <code>EvalResult</code>'s streaming fields are cleared when the result lands; the evaluator's state and its incremental cache refer to each other, but <code>replay_state</code> unties the knot, so caches do not chain.</p>
+<p><b>Side findings, worth tickets of their own:</b> the derivation-mode memo with no bound; <code>AppStore.gc</code> never called; <code>StructureShareSexp</code> without a <code>try</code>/<code>finally</code>; HazelDB opening an IndexedDB connection for every save and never closing it; an agent's tool results keeping two whole-program segments per edit in its chat.</p>
+
+<h2 id="next">Next</h2>
+<ol>
+<li><b>Count, don't guess:</b> a build of <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a> that reports, after every edit, the size of each highlighted table (and the ruled-out ones, for comparison). The one that grows with every edit is the holder; then clear it in an experiment and measure.</li>
+<li>Its fix: an owner and a lifetime for that table (entries for the ids of the program shown now, dropped when the program moves on), not a weaker reference.</li>
+<li>The same check on <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a>.</li>
+<li>Then the series issue (#53).</li>
+</ol>
+</main>
+</body>
+</html>
