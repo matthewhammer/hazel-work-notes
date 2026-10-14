@@ -426,19 +426,11 @@
    "text": "<b>Dress Up: three castles, N's, M's and D's, with rooms.</b> <b>The castles:</b> each castle has its own settings: how many levels of castle (1 to 5), the stone's colour, how many trees nearby, and the moat and drawbridge's size (none to very wide). The forest clearing has one place for a castle, so for now a chip menu chooses which of the three stands there. <b>The rooms:</b> each castle has a set of rooms, and each room is one of several styles. The styles are organized by their creator (N, M and D, the castle owners), but any castle can use any style. <b>N's rooms</b> (so far): (1) a <b>trap room</b>: two floor traps someone could fall into (pits with spikes inside) and one doorway; (2) a <b>king's room</b>, where we can see the hallway outside, and a door leading into the room; (3) a <b>greenhouse room</b>: vines and climbing plants on all the walls, windows, glass parrots flying near the vines by the ceiling, bushes and other tropical plants everywhere, with lots of detail, even more than the waterfall, and an animated fountain in the middle; (4) <b>two dungeon rooms</b>, each different, with skeletons hanging on the walls: the rooms the traps lead to. M's and D's room styles are still to come. <b>Mind ^ticket(62)'s lesson:</b> many SMIL animations (the fountain, the parrots) cost frames even at rest, so keep animations few, and check a drag in each room. Changes go under Unreleased; no version bump or push until Matthew says.",
    "source": "Matthew, 2026-10-14",
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
-  },
-  {
-   "id": 68,
-   "area": "Dress Up",
-   "added": "2026-10-14",
-   "text": "<b>Dress Up: backgrounds by category, as the music is.</b> The Background tab's one long row of places (17 or more, and castles to come in ^ticket(67)) becomes two rows, as the Music tab's kinds and tunes do (TUNE_GROUPS): first the kind of place (for example outdoors, indoors, water, the witch's, castles), each kind's chips in a dashed box with its name, then that kind's places. Picking a kind shows its places, and keeps the current place if it belongs to that kind. Changes go under Unreleased; no version bump or push until Matthew says.",
-   "source": "Matthew, 2026-10-14",
-   "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
  "next_ticket": 70,
- "current_ticket": 68,
- "current_note": "Dress Up's Background tab by category, as the Music tab is: first the kind of place, then its places. Before the castles (^ticket(67)), which will add to them. Dress Up 0.0.25 is live (the full-body slider fixed); ^ticket(64) is done: every report carries its data.",
+ "current_ticket": 67,
+ "current_note": "Starting the three castles (N's, M's and D's) in the forest clearing, with their settings and N's rooms; they get a kind of place of their own, 🏰 castles, in the new Background picker (^ticket(68), committed).",
  "closed_tickets": [
   {
    "id": 10,
@@ -900,10 +892,21 @@
    "status": "done",
    "outcome": "Published on Matthew's say-so and checked live: ^report(1) to ^report(13) carry their data, as ^report(14) does. tools/report_data.py embeds each report's tables (cell by cell, merged cells repeated) and a hand-written description (builds and commits, runtime, runs, measures and units, provenance) as script#report-data, writes the same to NNN/data/ (^report(1)'s to data/, published as 001/data/), and adds a line to the method or measurement section. ^report(9) to ^report(13) have their raw probe and oracle outputs (about 690 KB, spot-checked against the printed numbers; ^report(9)'s were rescued from a build folder a clean would wipe); for ^report(1) to ^report(8) every number exists only as printed, and each description says so. Three agents wrote the descriptions for ^report(1) to ^report(12), checked against the reports. Not kept: Gecko profiles of 50 to 110 MB in ~/ffprof. Commits: hazel-performance-analysis b3ce476; matthewhammer.github.io ec20a64.",
    "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/"
+  },
+  {
+   "id": 68,
+   "area": "Dress Up",
+   "added": "2026-10-14",
+   "text": "<b>Dress Up: backgrounds by category, as the music is.</b> The Background tab's one long row of places (17 or more, and castles to come in ^ticket(67)) becomes two rows, as the Music tab's kinds and tunes do (TUNE_GROUPS): first the kind of place (for example outdoors, indoors, water, the witch's, castles), each kind's chips in a dashed box with its name, then that kind's places. Picking a kind shows its places, and keeps the current place if it belongs to that kind. Changes go under Unreleased; no version bump or push until Matthew says.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
+   "closed": "2026-10-14",
+   "status": "done",
+   "outcome": "Committed in kids-choice-games (not deployed; it ships with the next Dress Up version, on Matthew's go-ahead). The Background tab picks a place in two rows, as the Music tab does: the kind of place (⬜ no background, 🌲 woods, 💧 water, 🏕️ camping, 🏠 home, 🧙 the witch's), then that kind's places, each row in a dashed box. PLACES (the flat list, which Surprise me! and sceneName still read) and PLACE_GROUPS (each place in exactly one kind, checked at load). Picking a kind goes to its first place unless the place is already of that kind; a doorway's new place shows its kind. Checked in the browser, and Surprise me! still picks valid places.",
+   "outcome_url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
  "queue": [
-  68,
   67,
   57,
   55,
@@ -912,5 +915,5 @@
   46,
   50
  ],
- "current_since": "2026-10-14T15:43:01-06:00"
+ "current_since": "2026-10-14T15:44:55-06:00"
 }
