@@ -418,19 +418,11 @@
    "text": "<b>Find a smaller slide that grows the same way</b> (Hazel performance analysis, ^report(14), What next, step 2: \"Find a smaller slide that grows the same way, so that a snapshot fits even with the memo: one whose slider edits a livelit's model, measured as here.\"). On #2597, run ^report(14)'s measurement (014/drivers/heap_per_edit.py, the live heap after two forced collections, per slider edit) on the Livelit Playground's smaller slides, picking a slider that edits a livelit's model (Shirt and Pants' width sliders are not the shirt's own, so that earlier try applied no edit; check that each edit changes the picture). A slide that keeps a version per edit at a fraction of Full Body's size may let a heap snapshot finish, and its retainer paths would name the holder (^ticket(58)).",
    "source": "Matthew, 2026-10-14",
    "url": "http://matthewhammer.org/hazel/performance-analysis/014/#step-2"
-  },
-  {
-   "id": 67,
-   "area": "Dress Up (side quest)",
-   "added": "2026-10-14",
-   "text": "<b>Dress Up: three castles, N's, M's and D's, with rooms.</b> <b>The castles:</b> each castle has its own settings: how many levels of castle (1 to 5), the stone's colour, how many trees nearby, and the moat and drawbridge's size (none to very wide). The forest clearing has one place for a castle, so for now a chip menu chooses which of the three stands there. <b>The rooms:</b> each castle has a set of rooms, and each room is one of several styles. The styles are organized by their creator (N, M and D, the castle owners), but any castle can use any style. <b>N's rooms</b> (so far): (1) a <b>trap room</b>: two floor traps someone could fall into (pits with spikes inside) and one doorway; (2) a <b>king's room</b>, where we can see the hallway outside, and a door leading into the room; (3) a <b>greenhouse room</b>: vines and climbing plants on all the walls, windows, glass parrots flying near the vines by the ceiling, bushes and other tropical plants everywhere, with lots of detail, even more than the waterfall, and an animated fountain in the middle; (4) <b>two dungeon rooms</b>, each different, with skeletons hanging on the walls: the rooms the traps lead to. M's and D's room styles are still to come. <b>Mind ^ticket(62)'s lesson:</b> many SMIL animations (the fountain, the parrots) cost frames even at rest, so keep animations few, and check a drag in each room. Changes go under Unreleased; no version bump or push until Matthew says.",
-   "source": "Matthew, 2026-10-14",
-   "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
  "next_ticket": 70,
- "current_ticket": 67,
- "current_note": "The castles are built and committed locally in kids-choice-games (6580732, cf6cf19), not deployed. N's, M's and D's castles, each with levels, stone, trees nearby and moat and drawbridge; the clearing shows the one picked, a doorway to a new 🏰 castle scene up close (mountains, forest, stonework, banners, moat life, a road, a hay cart, a well, barrels, flowers). Up to six rooms per castle, each in a style; N's styles: 👑 king's room (with the hallway outside through its open door), 🌿 greenhouse (glass, vines, glass parrots, tropical plants, a running fountain), 🕳️ trap room (one doorway, two spiked pits that drop into the dungeons), 💀 dungeon and ⛓️ deep dungeon (skeletons on the walls, ladders back up to the trap room). Every doorway checked. M's and D's room styles are to come, when they make them up. Local: http://localhost:8133/dress-up.html",
+ "current_ticket": 57,
+ "current_note": "Next: the fairy costume (wings and tunic, five styles each), a fairy forest with a ring of mushrooms and a fairy house in a tree, and three LFOs shared by the music mixer, the visibility panel and the fairy house. Dress Up 0.0.26 (the castles) is live.",
  "closed_tickets": [
   {
    "id": 10,
@@ -904,10 +896,21 @@
    "status": "done",
    "outcome": "Committed in kids-choice-games (not deployed; it ships with the next Dress Up version, on Matthew's go-ahead). The Background tab picks a place in two rows, as the Music tab does: the kind of place (⬜ no background, 🌲 woods, 💧 water, 🏕️ camping, 🏠 home, 🧙 the witch's), then that kind's places, each row in a dashed box. PLACES (the flat list, which Surprise me! and sceneName still read) and PLACE_GROUPS (each place in exactly one kind, checked at load). Picking a kind goes to its first place unless the place is already of that kind; a doorway's new place shows its kind. Checked in the browser, and Surprise me! still picks valid places.",
    "outcome_url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+  },
+  {
+   "id": 67,
+   "area": "Dress Up (side quest)",
+   "added": "2026-10-14",
+   "text": "<b>Dress Up: three castles, N's, M's and D's, with rooms.</b> <b>The castles:</b> each castle has its own settings: how many levels of castle (1 to 5), the stone's colour, how many trees nearby, and the moat and drawbridge's size (none to very wide). The forest clearing has one place for a castle, so for now a chip menu chooses which of the three stands there. <b>The rooms:</b> each castle has a set of rooms, and each room is one of several styles. The styles are organized by their creator (N, M and D, the castle owners), but any castle can use any style. <b>N's rooms</b> (so far): (1) a <b>trap room</b>: two floor traps someone could fall into (pits with spikes inside) and one doorway; (2) a <b>king's room</b>, where we can see the hallway outside, and a door leading into the room; (3) a <b>greenhouse room</b>: vines and climbing plants on all the walls, windows, glass parrots flying near the vines by the ceiling, bushes and other tropical plants everywhere, with lots of detail, even more than the waterfall, and an animated fountain in the middle; (4) <b>two dungeon rooms</b>, each different, with skeletons hanging on the walls: the rooms the traps lead to. M's and D's room styles are still to come. <b>Mind ^ticket(62)'s lesson:</b> many SMIL animations (the fountain, the parrots) cost frames even at rest, so keep animations few, and check a drag in each room. Changes go under Unreleased; no version bump or push until Matthew says.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
+   "closed": "2026-10-14",
+   "status": "done",
+   "outcome": "Shipped as Dress Up 0.0.26 on Matthew's go-ahead, live and checked (b019aed, tag dress-up-0.0.26), with ^ticket(68)'s backgrounds by kind. N's, M's and D's castles, each with levels (1-5), stone, trees nearby, moat and drawbridge (none to very wide), flags and banners in the owner's color and letter; the clearing shows the one picked as a doorway; a 🏰 castle scene up close, drawn at the tree house's and the witch's woods' level of detail (on Matthew's ask): mountains, forest, sun and birds, stonework, tiled roofs, ivy, lit windows, gate torches, reeds and lily pads, a road with pennants, a hay cart, a well, barrels, flowers, framing oaks. Up to six rooms per castle, each in a style chosen in the Background tab; N's styles: 👑 king's room (throne, carpet, banners, stained glass, chandelier, armor, gold, and the hallway through its open door), 🌿 greenhouse (glass, vines, glass parrots, tropical plants, a running fountain), 🕳️ trap room (one doorway, two spiked pits dropping into the dungeons), 💀 dungeon and ⛓️ deep dungeon (skeletons, chains, cage, cell, mushrooms, dripping water, ladders back up). Every doorway tested. M's and D's room styles are still to come, when they make them up.",
+   "outcome_url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
  "queue": [
-  67,
   57,
   55,
   60,
@@ -915,6 +918,5 @@
   46,
   50
  ],
- "current_since": "2026-10-14T15:44:55-06:00",
- "current_waiting": "Matthew's look at the castles (local, http://localhost:8133/dress-up.html) and his go-ahead to ship 0.0.26"
+ "current_since": "2026-10-14T16:07:30-06:00"
 }
