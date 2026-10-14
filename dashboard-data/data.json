@@ -380,7 +380,7 @@
  ],
  "next_ticket": 48,
  "current_ticket": 47,
- "current_note": "#47, issue 013: how to carry #7's improvement (pushed to #2635: 043508921b, 9fb2bdf067) to diverged branches, with plots. Plan: (1) more data, the same probe before and after on every playground slide and several sliders each (where the slider sits matters for the spine reuse); (2) try the port on #2469's modular-editors head locally, to write from what it actually takes; (3) draft 013 with figures, at http://localhost:8131/series/013/, for Matthew's review.",
+ "current_note": "#47, issue 013: how to carry #7's improvement to diverged branches, with plots. Pushed to #2635 first (Matthew's go): 043508921b, 9fb2bdf067 (CI running). PORTED to #2469's modular-editors head locally (branch port-2469-t7 in ~/hazel-port-2469, not pushed): 128f3f303d the keyed projection (needed a change: #2469's projection also reads full-capture probes, so the kept projection is keyed by that set too; a test fails without it), cdb799a376 the delta (from the walk's own changes list), 474b1e050e the spine reuse (no IdentityTable or ValueHash there: kept by item id). #2469's quick suite passes whole (4722 tests). Now: measuring the same edits on #2635 before/after and #2469 before/after (two interleaved runs each); then drafting 013 with figures. ✋❔ when the draft is ready to read.",
  "closed_tickets": [
   {
    "id": 4,
