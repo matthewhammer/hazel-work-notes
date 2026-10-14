@@ -418,19 +418,11 @@
    "text": "<b>Find a smaller slide that grows the same way</b> (Hazel performance analysis, ^report(14), What next, step 2: \"Find a smaller slide that grows the same way, so that a snapshot fits even with the memo: one whose slider edits a livelit's model, measured as here.\"). On #2597, run ^report(14)'s measurement (014/drivers/heap_per_edit.py, the live heap after two forced collections, per slider edit) on the Livelit Playground's smaller slides, picking a slider that edits a livelit's model (Shirt and Pants' width sliders are not the shirt's own, so that earlier try applied no edit; check that each edit changes the picture). A slide that keeps a version per edit at a fraction of Full Body's size may let a heap snapshot finish, and its retainer paths would name the holder (^ticket(58)).",
    "source": "Matthew, 2026-10-14",
    "url": "http://matthewhammer.org/hazel/performance-analysis/014/#step-2"
-  },
-  {
-   "id": 70,
-   "area": "Dress Up",
-   "added": "2026-10-14",
-   "text": "<b>Dress Up: fixes and life for all backgrounds.</b> (1) Snowy mountain tops: aligned with the rock of the mountains they cap, not cartoony and misaligned. (2) No bushes in the river near the tree house. (3) Castle banners: they dip into the moat on a one-level castle; shorter for shorter castles, longer for bigger ones. (4) Animate the ducks on the lake. (5) Animate the clouds in every scene. (6) Animate the sun's rays at the lake. (7) The woods' shafts of light: they dim and brighten, appearing and disappearing as clouds move past a sun that stays put (so they mostly keep their shapes); more variety among them, and one common origin, at infinity, so they run parallel, as real sunbeams do. (8) Every tree in the tree house's \"pads and branches\" style, not lollipops or ice-cream-scoop leaf bundles: a more organic style for all trees, bushes and grasses, and organic rocks where they appear, from common helpers, for consistency. Changes go under Unreleased; no version bump or push until Matthew says.",
-   "source": "Matthew, 2026-10-14",
-   "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
  "next_ticket": 71,
- "current_ticket": 70,
- "current_note": "All eight items are done and committed locally in kids-choice-games (b08e090), not deployed: snow caps cut from their peaks' slopes (mountain trail, castle); no bushes in the tree house's stream; castle banners sized to the wall; drifting clouds in every scene; paddling ducks; the sun's rays turning at the lake and the castle; parallel sunbeams in the woods (and on the path through them) that dim and brighten; and organic trees, pines, bushes, grass and rocks in every scene from shared helpers (leafyTree, pineTree, bushSvg, grassTuft, rockSvg) built on the tree house's leaf pads. Measured: every scene still drags and idles at 60 fps. Local: http://localhost:8133/dress-up.html",
+ "current_ticket": 57,
+ "current_note": "Starting the fairy costume: wings and a tunic, five styles each; a fairy forest with a ring of mushrooms, day/night/sunrise/sunset chips, and a fairy house in a tree with a see-through control; and three LFOs, shared by the music mixer (cut from four), the visibility panel and the fairy house. Dress Up 0.0.27 is live.",
  "closed_tickets": [
   {
    "id": 10,
@@ -916,10 +908,21 @@
    "status": "done",
    "outcome": "Shipped as Dress Up 0.0.26 on Matthew's go-ahead, live and checked (b019aed, tag dress-up-0.0.26), with ^ticket(68)'s backgrounds by kind. N's, M's and D's castles, each with levels (1-5), stone, trees nearby, moat and drawbridge (none to very wide), flags and banners in the owner's color and letter; the clearing shows the one picked as a doorway; a 🏰 castle scene up close, drawn at the tree house's and the witch's woods' level of detail (on Matthew's ask): mountains, forest, sun and birds, stonework, tiled roofs, ivy, lit windows, gate torches, reeds and lily pads, a road with pennants, a hay cart, a well, barrels, flowers, framing oaks. Up to six rooms per castle, each in a style chosen in the Background tab; N's styles: 👑 king's room (throne, carpet, banners, stained glass, chandelier, armor, gold, and the hallway through its open door), 🌿 greenhouse (glass, vines, glass parrots, tropical plants, a running fountain), 🕳️ trap room (one doorway, two spiked pits dropping into the dungeons), 💀 dungeon and ⛓️ deep dungeon (skeletons, chains, cage, cell, mushrooms, dripping water, ladders back up). Every doorway tested. M's and D's room styles are still to come, when they make them up.",
    "outcome_url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+  },
+  {
+   "id": 70,
+   "area": "Dress Up",
+   "added": "2026-10-14",
+   "text": "<b>Dress Up: fixes and life for all backgrounds.</b> (1) Snowy mountain tops: aligned with the rock of the mountains they cap, not cartoony and misaligned. (2) No bushes in the river near the tree house. (3) Castle banners: they dip into the moat on a one-level castle; shorter for shorter castles, longer for bigger ones. (4) Animate the ducks on the lake. (5) Animate the clouds in every scene. (6) Animate the sun's rays at the lake. (7) The woods' shafts of light: they dim and brighten, appearing and disappearing as clouds move past a sun that stays put (so they mostly keep their shapes); more variety among them, and one common origin, at infinity, so they run parallel, as real sunbeams do. (8) Every tree in the tree house's \"pads and branches\" style, not lollipops or ice-cream-scoop leaf bundles: a more organic style for all trees, bushes and grasses, and organic rocks where they appear, from common helpers, for consistency. Changes go under Unreleased; no version bump or push until Matthew says.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
+   "closed": "2026-10-14",
+   "status": "done",
+   "outcome": "Shipped as Dress Up 0.0.27 on Matthew's go-ahead, live and checked (0c8c3fe, tag dress-up-0.0.27). All eight: snow caps cut from their peaks' slopes (snowCap; the castle's mountains a proper range); no bushes in the tree house's stream; castle banners from the battlements, sized to the wall; every cloud drifting (cloudsSvg, drifting); the lake's ducks paddling, bobbing and rocking; the sun's rays turning and breathing (lake, castle); parallel sunbeams that dim and brighten as clouds pass (sunbeamsSvg: the woods and the path through them); and organic trees, pines, bushes, grass and rocks in every scene from shared helpers built on the tree house's leaf pads (leafyTree, pineTree, bushSvg, grassTuft, rockSvg; oakDef and the pine defs now draw from them). Measured: every scene drags and idles at 60 fps.",
+   "outcome_url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
  "queue": [
-  70,
   57,
   55,
   60,
@@ -927,6 +930,5 @@
   46,
   50
  ],
- "current_since": "2026-10-14T16:11:33-06:00",
- "current_waiting": "Matthew's look at the new backgrounds (local, http://localhost:8133/dress-up.html) and his go-ahead to ship 0.0.27"
+ "current_since": "2026-10-14T16:26:58-06:00"
 }
