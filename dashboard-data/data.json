@@ -388,14 +388,6 @@
    "url": "https://github.com/hazelgrove/hazel/pull/2583"
   },
   {
-   "id": 56,
-   "area": "performance, series",
-   "added": "2026-10-14",
-   "text": "<b>Pictures of the body as a symbolic tree of transforms and parts, in ^report(12)</b> (\"Moving a Group, Not Its Points\": Full Body rebuilt as a picture of groups, each with a transform). Draw the figure's tree: each group a node labelled with its transform (a translate, a rotation about a joint, a scale), and the parts (the shapes) at its leaves, as the slide builds them; best beside the drawn figure, so a reader sees which node makes which part, and, for a slider edit, which nodes it changes (the picture diff the report measures). The pictures illustrate what ^report(12) already says, without changing its story, so they go into the report in place, where it describes the tree, not as a dated update (Matthew, 2026-10-14); he reviews before they are published.",
-   "source": "Matthew, 2026-10-14",
-   "url": "http://matthewhammer.org/hazel/performance-analysis/012/"
-  },
-  {
    "id": 57,
    "area": "dress up",
    "added": "2026-10-14",
@@ -413,8 +405,8 @@
   }
  ],
  "next_ticket": 59,
- "current_ticket": 56,
- "current_note": "^report(12)'s two pictures are drafted and committed locally (hazel-performance-analysis f807c3c, not pushed): Figure 1, the body drawn from its tree, each part outlined in its branch's colour with what places and shapes it (the new thumbnail); Figure 3, the whole tree in four subtrees, each node with the sliders that change it. Preview: http://localhost:8131/012/ and the series index. ^ticket(45) closed (findings in its outcome), its holder hunt parked as ^ticket(58). Next: ^ticket(53), the report.",
+ "current_ticket": 53,
+ "current_note": "Writing ^report(14), \"what the page keeps from one edit to the next\", from ^ticket(45)'s findings: the measurement (about 85 MB kept per edit of Full Body on #2597), the method that works where heap snapshots crash the tab, what was ruled out and how, the audit of every cache and weak table, and the holder as its open question (^ticket(58)). Drafted locally first; it waits for Matthew's review before publishing. ^ticket(56) is done: ^report(12)'s pictures are live.",
  "closed_tickets": [
   {
    "id": 10,
@@ -780,15 +772,25 @@
    "status": "superseded",
    "outcome": "Measured and narrowed, not fixed; the holder hunt is parked as ^ticket(58). On #2597, Full Body, a tab keeps about 85 MB per slider edit, steadily (397 to 1,105 MB over 8 edits). Ruled out by experiment: the whole-program memos, the undo history, both together, the projector view cache, ShareCodec's tables (bounded, reset at 200,000). Ruled out by counting every table keyed by ids after each edit (a probe build, local branch count-45 in ~/hazel-ci-heap): Statics.module_livelits, LivelitProj's seven tables, MakeTerm's maps, HazelDB, AppStore all flat. What stays (V8's sampling heap profiler): whole versions of the editor's state, statics, terms, layout, the worker's replies, and ValueHash's hashes of them. The audit of every cache and weak table, and the method: work notes 2026-10-14 (12:09). Heap snapshots, which would name the holder, kill this page's renderer in the snap Chromium and in Chrome for Testing alike.",
    "outcome_url": "http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T1209-0600.html"
+  },
+  {
+   "id": 56,
+   "area": "performance, series",
+   "added": "2026-10-14",
+   "text": "<b>Pictures of the body as a symbolic tree of transforms and parts, in ^report(12)</b> (\"Moving a Group, Not Its Points\": Full Body rebuilt as a picture of groups, each with a transform). Draw the figure's tree: each group a node labelled with its transform (a translate, a rotation about a joint, a scale), and the parts (the shapes) at its leaves, as the slide builds them; best beside the drawn figure, so a reader sees which node makes which part, and, for a slider edit, which nodes it changes (the picture diff the report measures). The pictures illustrate what ^report(12) already says, without changing its story, so they go into the report in place, where it describes the tree, not as a dated update (Matthew, 2026-10-14); he reviews before they are published.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/hazel/performance-analysis/012/",
+   "closed": "2026-10-14",
+   "status": "done",
+   "outcome": "Published in ^report(12), in place, as if it had been there from the start (no dated update). Figure 1, under the opening: the body drawn from its tree, each part outlined in its branch's colour (body, arms, head, hands) and labelled with what places and shapes it; it is also the report's new thumbnail on the series index. Figure 3: the whole tree in four subtrees (body, arms, head, hands), each node with its transform and the sliders that change it. The figures are numbered 1 to 6 in reading order. Matthew reviewed it (\"looks good\") and said publish. Commits: hazel-performance-analysis f807c3c, matthewhammer.github.io edf105c.",
+   "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/012/"
   }
  ],
  "queue": [
-  56,
   53,
   18,
   46,
   50
  ],
- "current_since": "2026-10-14T13:49:15-06:00",
- "current_waiting": "Matthew's review of ^report(12)'s pictures (publish?)"
+ "current_since": "2026-10-14T13:57:52-06:00"
 }
