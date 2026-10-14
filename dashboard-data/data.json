@@ -214,14 +214,6 @@
  ],
  "tickets": [
   {
-   "id": 76,
-   "area": "Dress Up",
-   "added": "2026-10-14",
-   "text": "<b>Dress Up: a fairy's wings keep flapping during a drag</b>, so a player can pretend to fly. A special exception to pausing the picture's animations while dragging (^ticket(62)), if it costs no noticeable performance. Changes go under Unreleased; no version bump or push until Matthew says.",
-   "source": "Matthew, 2026-10-14",
-   "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
-  },
-  {
    "id": 75,
    "area": "Dress Up",
    "added": "2026-10-14",
@@ -445,9 +437,20 @@
   }
  ],
  "next_ticket": 77,
- "current_ticket": 76,
- "current_note": "Dress Up 0.0.29 is LIVE. Now: fairy wings flapping during a drag (^ticket(76)): moved from SVG to CSS animation, so the drag's pause does not stop them; timing drags next. Then the camp site's stars (^ticket(75)).",
+ "current_ticket": 75,
+ "current_note": "Dress Up 0.0.29 is LIVE. Fairy wings now flap through a drag (^ticket(76), done, under Unreleased for 0.0.30, waiting for Matthew's go-ahead). Now: the camp site's stars (^ticket(75)).",
  "closed_tickets": [
+  {
+   "id": 76,
+   "area": "Dress Up",
+   "added": "2026-10-14",
+   "text": "<b>Dress Up: a fairy's wings keep flapping during a drag</b>, so a player can pretend to fly. A special exception to pausing the picture's animations while dragging (^ticket(62)), if it costs no noticeable performance. Changes go under Unreleased; no version bump or push until Matthew says.",
+   "source": "Matthew, 2026-10-14",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
+   "status": "done",
+   "closed": "2026-10-14",
+   "outcome": "DONE 2026-10-14 (local commit in kids-choice-games, under Unreleased; ships in 0.0.30 on Matthew's go-ahead). The wings' flap and the sparkle wings' twinkle are CSS animations now, which the drag's pause of SVG animations leaves running, started in step with the clock at each redraw. Measured (headless Chrome, 60-move drags, on/off alternating): the wing angle sweeps 0-9 degrees while the SVG animations are paused; frames 16.7 ms median either way; redraw medians overlap (2.2-2.8 ms with, 2.1-2.6 without, four runs each in the witch's woods): no measurable cost."
+  },
   {
    "id": 74,
    "area": "Dress Up",
@@ -980,7 +983,6 @@
   }
  ],
  "queue": [
-  75,
   57,
   71,
   55,
@@ -989,5 +991,5 @@
   46,
   50
  ],
- "current_since": "2026-10-14T17:21-06:00"
+ "current_since": "2026-10-14T17:25-06:00"
 }
