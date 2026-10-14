@@ -369,9 +369,17 @@
    "text": "<b>Messed Up Dress Up: where feet can stand, per background (later, not now).</b> Split from #49. Each background gets a collision shape for the places it makes no sense to stand: rivers, the pool under the falls, the campfire, and the like. Arrivals (and later moves and drags) use it to keep a person's feet on the ground. #49 hand-picks ground spots for the camp and the falls in the meantime.",
    "source": "N (via Matthew), 2026-10-14",
    "url": ""
+  },
+  {
+   "id": 53,
+   "area": "performance, series",
+   "added": "2026-10-14",
+   "text": "<b>Series issue 014: what the page keeps from one edit to the next.</b> From #45. Issue 005 listed what the page keeps of a view (the view memo's Html, the worker's and the page's tables of shared values, the last virtual DOM tree, the DOM) and said \"what memory these take has not been measured\". #45 measures it: on #2597, a tab keeps about 85 MB per edit of Full Body (+1.4 GB over 15 edits), and none of those representations is the holder. The issue: the measurement (live heap after forced GCs, per edit, in headless Chromium driven over the DevTools protocol); the method where heap snapshots crash the tab (V8's sampling heap profiler: what stays alive, by the code that allocated it; a census of the tab's Maps and Sets); what was ruled out and how (the whole-program memos, the undo history, the projector view cache, ShareCodec's tables, each by an experiment); the audit of every cache and weak table (#45's audit); and the holder and its fix, once found. Matthew, 2026-10-14: plan on writing it unless there's a surprise reason not to. Drafts wait for his review before publishing.",
+   "source": "Matthew, 2026-10-14 (from #45)",
+   "url": ""
   }
  ],
- "next_ticket": 53,
+ "next_ticket": 54,
  "current_ticket": 45,
  "current_note": "Measuring in headless Chromium over the DevTools protocol (node, no chromedriver). V8's sampling heap profiler over 4 edits of Full Body on #2597 (8311): +345 MB, and what stays was allocated by ValueHash's hash memo (100 MB, a symptom: a WeakMap keeps a hash only while its object lives), the worker's replies unmarshaled (41 MB), Measured's shards (14 MB), statics and types: whole versions of the editor's state, not one cache. A census of the tab's Maps rules out ShareCodec's tables (bounded at 200k entries, reset mid-run while the heap kept growing). Now: two heap snapshots a few edits apart, streamed into typed arrays, and the old objects that hold the new memory.",
  "closed_tickets": [
@@ -732,6 +740,7 @@
  ],
  "queue": [
   45,
+  53,
   18,
   46,
   50
