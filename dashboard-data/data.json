@@ -235,13 +235,6 @@
    "url": ""
   },
   {
-   "id": 5,
-   "area": "performance",
-   "text": "The Witch slide's extra 2–3 s over Full Body for the same change: not profiled yet.",
-   "source": "issue 004",
-   "url": "http://localhost:8131/004/#cost"
-  },
-  {
    "id": 7,
    "area": "performance",
    "text": "The commit path: find which of the request's values are new (about 15 ms of hashing, profiled), and make the commit's redraw cheaper.",
@@ -387,8 +380,19 @@
  ],
  "next_ticket": 47,
  "current_ticket": 4,
- "current_note": "#4 (his go, 2026-10-13 evening): #2597's CI, red since 2026-10-11 (6de0b53326). FIXED AND PUSHED 2026-10-14 on Matthew's go; CI running on both. #2597 (684a75cb2f..c4e411f9c2): 5d576cc479 Statics.mk keeps 16 programs and MakeTerm's memos 8, as in #2469 (the quick job ran out of heap: the memos kept every test's programs); 8798d64213 programs over 25 KB get the recovering-parser checks in the weekly run only (the full job ran out of time, #46); c4e411f9c2 the big slides' Unproject cases in the full tests only. Here: quick 309 s, full 26 min, @check and @fmt clean; about 9 and 51 min on CI by the green commit's ratio. #2635 (c4e64060f1..41897ec3a5): the last two only, as #2469 already bounds its memos: quick 468 s here (was 740), with its 8 known failures unchanged, so its CI stays red on those. 8311 rebuilt (06:14, c4e411f9c2); 8341 needed none (its commits touch only test/). Both CI runs started 06:12 MDT; reading them when they finish (quick about 10 min, full about an hour).",
+ "current_note": "#4 (his go, 2026-10-13 evening): #2597's CI, red since 2026-10-11 (6de0b53326). FIXED AND PUSHED 2026-10-14 on Matthew's go; CI running on both. #2597 (684a75cb2f..c4e411f9c2): 5d576cc479 Statics.mk keeps 16 programs and MakeTerm's memos 8, as in #2469 (the quick job ran out of heap: the memos kept every test's programs); 8798d64213 programs over 25 KB get the recovering-parser checks in the weekly run only (the full job ran out of time, #46); c4e411f9c2 the big slides' Unproject cases in the full tests only. Here: quick 309 s, full 26 min, @check and @fmt clean; about 9 and 51 min on CI by the green commit's ratio. #2635 (c4e64060f1..41897ec3a5): the last two only, as #2469 already bounds its memos: quick 468 s here (was 740), with its 8 known failures unchanged, so its CI stays red on those. 8311 rebuilt (06:14, c4e411f9c2); 8341 needed none (its commits touch only test/). Both CI runs started 06:12 MDT. <b>#2597's quick tests are GREEN</b>: 8.5 min (limit 20; red since 10-11). Its full tests and #2635's run are still going; reading them when they finish.",
  "closed_tickets": [
+  {
+   "id": 5,
+   "area": "performance",
+   "text": "The Witch slide's extra cost over Full Body for the same change, from issue 004 (2026-10-12): a skin press took 6.5 s against 4.1 s before that issue's three fixes, and 2.2–4.5 s against 1.5–1.8 s after them, one run each. Written before issues 009–012 measured what a small change costs; revised 2026-10-14.",
+   "source": "issue 004",
+   "url": "http://localhost:8131/004/#cost",
+   "closed": "2026-10-14",
+   "status": "superseded",
+   "outcome": "Explained in part, by the evaluator. On both slides the figure is one binding that depends on every slider, so every change evaluates 85–95% of the picture again (issue 011); and the witch's picture is bigger: 133 shapes against 49, 205,665 evaluation steps from scratch against 128,393 (issue 010). In node that is 754 ms against 499 ms per edit (issue 009): about a quarter of a second, not the seconds seen in the browser. The rest of the browser's gap (statics, the views, drawing 133 shapes) was never profiled on this slide; issue 008 profiled one change phase by phase, on another slide. What shrinks it on every slide is reuse below a binding, by names and groups (issues 011 and 012), and the per-change costs in #23, #24 and #45. Closed on Matthew's suggestion.",
+   "outcome_url": "http://matthewhammer.org/hazel/performance-analysis/010/"
+  },
   {
    "id": 1,
    "area": "performance",
