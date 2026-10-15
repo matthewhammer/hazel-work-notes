@@ -217,7 +217,7 @@
    "id": 84,
    "area": "performance",
    "added": "2026-10-14",
-   "text": "<b>The autosave prints the whole program in quadratic time when it has probes: about 0.6–1 s of the main thread per change.</b> Found under ^ticket(29), profiling the Full Body arm-length slider on #2635's head (9fb2bdf067): the save alarm (about 1 s after a change) prints the program to text (<code>PersistentZipper.to_string</code> / <code>persist_divided</code> → <code>MarkerParse.to_text</code> → <code>Segment.to_string</code> with the zipper's manual refractors), and <code>Triggers.refractor_seg_to_seg_with</code> walks the long top-level <code>let</code> chain slicing with <code>ListUtil.sublist</code> from the list's head and recomputing <code>Skel.range</code> down the <code>Pre</code> chain at every node: O(n²) in the top-level items. Profiled: <code>save_current</code> about 600 ms per change in C (just after the redraw, so it delays the next interaction) and about 1 s in B (UX mode, inside the change: most of why B is 0.6–0.7 s slower than C today). Fix: slice an array, and take a skeleton's first or last index without computing both ends recursively; measure before and after; on #2635 (and #2597) once Matthew says.",
+   "text": "<b>The autosave prints the whole program in quadratic time when it has probes: about 0.6–1 s of the main thread per change.</b> Found under ^ticket(29), profiling the Full Body arm-length slider on #2635's head (9fb2bdf067): the save alarm (about 1 s after a change) prints the program to text (<code>PersistentZipper.to_string</code> / <code>persist_divided</code> → <code>MarkerParse.to_text</code> → <code>Segment.to_string</code> with the zipper's manual refractors), and <code>Triggers.refractor_seg_to_seg_with</code> walks the long top-level <code>let</code> chain slicing with <code>ListUtil.sublist</code> from the list's head and recomputing <code>Skel.range</code> down the <code>Pre</code> chain at every node: O(n²) in the top-level items. Profiled: <code>save_current</code> about 600 ms per change in C (just after the redraw, so it delays the next interaction) and about 1 s in B (UX mode, inside the change: most of why B is 0.6–0.7 s slower than C today). Fix: slice an array, and take a skeleton's first or last index without computing both ends recursively; measure before and after; on #2635 (and #2597) once Matthew says. <b>Fixed locally, 2026-10-14</b> (not pushed; waits for Matthew): branch <code>perf/2635-autosave-print</code>, commit <code>cbc585933b</code> on #2635's head <code>9fb2bdf067</code>, in <code>~/hazel-livelits-modular</code> (served on 8341 meanwhile). save_current per change, profiled: about 600 → 80 ms; UX-mode release to redraw 2.05/2.04 s → 1.26–1.56 s; the whole program 1.23–1.76 s, unchanged within noise. Tests DocSlides.ReparseBackuptext (120), DividedLaws, Parser.Segmented, FastParse pass. To do with Matthew's word: push to #2635, cherry-pick to #2597 (and a dev PR if the code is there).",
    "source": "^ticket(29) (profiles 2026-10-14)",
    "url": ""
   },
@@ -413,8 +413,8 @@
   }
  ],
  "next_ticket": 85,
- "current_ticket": 84,
- "current_note": "Matthew is away. ^ticket(29) re-measured: on #2635's head B (UX mode) is 2.05/2.04 s and C 1.33/1.44 s per arm-length change (two sessions of 12 each): B is slower again, and the cause is the autosave printing the program in quadratic time with probes (^ticket(84), now): fixing it on a LOCAL branch off #2635, nothing pushed. Then ^ticket(18) (views in the worker; the code map is done).",
+ "current_ticket": 18,
+ "current_note": "Matthew is away. Done locally (nothing pushed): ^ticket(84), the autosave's quadratic print, fixed on branch perf/2635-autosave-print (cbc585933b): ~600 → 80 ms per change; UX mode release 2.05 → ~1.4 s. ^ticket(29)'s numbers are in hand (B and C similar once that fix is in; B's remaining ~0.1–0.2 s is livelit views run on the main thread). Now ^ticket(18): views in the worker, prototyping on a local branch.",
  "closed_tickets": [
   {
    "id": 55,
@@ -1081,12 +1081,12 @@
   }
  ],
  "queue": [
+  18,
   84,
   60,
-  18,
   46,
   50,
   29
  ],
- "current_since": "2026-10-14T20:08-06:00"
+ "current_since": "2026-10-14T20:46-06:00"
 }
