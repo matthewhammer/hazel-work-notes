@@ -645,70 +645,83 @@
    "id": 106,
    "area": "dress up",
    "added": "2026-10-15",
-   "opened": "2026-10-15T14:20-06:00",
+   "opened": "2026-10-15T14:12-06:00",
    "text": "<b>Archive repos for Dress Up's pictures and music.</b> Two new repos just for the archives, apart from the game's: one for the dated screenshot archive (every background, with and without the friend, and every chip menu, as PNG + SVG + settings JSON), one for the dated music archive (every tune, one loop at defaults, as MP3). They will hit storage limits before anything else does, and can move to other storage later. Move the existing data in (2026/10/15), make each browsable, and point the tools at them. Matthew: a way to look back at all prior versions, in pictures and sound, is very important to him.",
    "source": "Matthew, 2026-10-15",
    "url": "",
    "log": [
     {
-     "at": "2026-10-15T14:20-06:00",
+     "at": "2026-10-15T14:12-06:00",
      "from": "matthew",
      "chars": 420,
-     "asks": false
-    }
-   ]
-  },
-  {
-   "id": 108,
-   "area": "dress up",
-   "added": "2026-10-15",
-   "opened": "2026-10-15T14:31-06:00",
-   "text": "<b>A hallway whose stairs lead nowhere ends in a wall.</b> Matthew: when \"🌀 the stairs at its end lead to\" is \"🧱 nowhere\", remove the stairs and put an actual wall there. Released at once, for M.",
-   "source": "Matthew, 2026-10-15",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-15T14:31-06:00",
-     "from": "matthew",
-     "chars": 150,
-     "asks": true
-    },
-    {
-     "at": "2026-10-15T14:32-06:00",
-     "from": "matthew",
-     "chars": 20,
      "asks": false
     }
    ]
   }
  ],
  "next_ticket": 109,
- "current_ticket": 108,
- "current_note": "108: the hallway's \"🧱 nowhere\" stairs become a real wall, released at once for M. Then back to 106 (archive repos).",
+ "current_ticket": 106,
+ "current_note": "0.0.36 is LIVE: a hallway whose stairs lead nowhere ends in a wall. Back to 106: two public archive repos, dress-up-pictures and dress-up-music, with Pages.",
  "closed_tickets": [
+  {
+   "id": 108,
+   "area": "dress up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T14:27-06:00",
+   "text": "<b>A hallway whose stairs lead nowhere ends in a wall.</b> Matthew: when \"🌀 the stairs at its end lead to\" is \"🧱 nowhere\", remove the stairs and put an actual wall there. Released at once, for M.",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T14:27-06:00",
+     "from": "matthew",
+     "chars": 150,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T14:28-06:00",
+     "from": "matthew",
+     "chars": 20,
+     "asks": false
+    }
+   ],
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T14:31-06:00",
+   "outcome": "Released 0.0.36 (0b0948e, tag dress-up-0.0.36). With the stairs set to '🧱 nowhere', the hallway ends in a torchlit stone wall whose courses meet the side walls' at the corners, with no arch or stairs. The sweep matches 0.0.35 exactly (74 pictures, since the default still leads to the stairs). The live page checked cache-free: wall present, 0 errors. (Times are rebuilt from the screenshot's file time and the commit time: I had guessed them at first.)",
+   "metrics": {
+    "open_minutes": 4,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 170,
+    "tokens_est": 42,
+    "sync_minutes_est": 0.0,
+    "work_minutes": 4.0
+   }
+  },
   {
    "id": 107,
    "area": "dress up",
    "added": "2026-10-15",
-   "opened": "2026-10-15T14:20-06:00",
+   "opened": "2026-10-15T14:12-06:00",
    "text": "<b>Release Dress Up 0.0.35, now.</b> Matthew: every new Dress Up feature gets pushed and made public with a version bump, as soon as possible, ahead of the archive work. M is home and wants to see today's progress.",
    "source": "Matthew, 2026-10-15",
    "url": "",
    "log": [
     {
-     "at": "2026-10-15T14:20-06:00",
+     "at": "2026-10-15T14:12-06:00",
      "from": "matthew",
      "chars": 200,
      "asks": false
     },
     {
-     "at": "2026-10-15T14:19-06:00",
+     "at": "2026-10-15T14:18-06:00",
      "from": "claude",
      "chars": 330,
      "asks": true
     },
     {
-     "at": "2026-10-15T14:20-06:00",
+     "at": "2026-10-15T14:18-06:00",
      "from": "matthew",
      "chars": 30,
      "asks": false
@@ -716,15 +729,15 @@
    ],
    "status": "done",
    "closed": "2026-10-15",
-   "closed_at": "2026-10-15T14:20-06:00",
+   "closed_at": "2026-10-15T14:21-06:00",
    "outcome": "Released 0.0.35 (23e994a, tag dress-up-0.0.35). The Pages run succeeded, and the live page (http) loads cache-free with 7 LFOs, the moving tree-house windows, the five funked waltzes and 0 page errors. The agent instructions went public with it, on Matthew's OK.",
    "metrics": {
-    "open_minutes": 1,
+    "open_minutes": 9,
     "matthew_messages": 2,
     "questions_to_matthew": 1,
     "chars_exchanged": 560,
     "tokens_est": 140,
-    "sync_minutes_est": 1.0,
+    "sync_minutes_est": 2.0,
     "work_minutes": 8.0
    }
   },
@@ -2090,7 +2103,6 @@
   }
  ],
  "queue": [
-  108,
   106,
   104,
   102,
