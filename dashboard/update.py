@@ -296,12 +296,19 @@ def num_cell(t):
             f'<button class="copy" type="button" data-anchor="ticket-{t["id"]}" title="Copy a link to {tk_plain(t["id"])}">copy link</button></td>')
 
 # a ticket's tags (data.json: a ticket's "tags"), each a chip: "long run", a
-# ticket to do while Matthew is away (^ticket(114)); any other tag as itself
-TAG_CHIPS = {"long run": ("longrun", "🌙 long run", "A long run: to do while Matthew is away from the keyboard")}
+# ticket to do while Matthew is away (^ticket(114)); "blocked on Matthew", one
+# that waits for his response (^ticket(115)); any other tag as itself
+TAG_CHIPS = {"long run": ("longrun", "🌙 long run", "A long run: to do while Matthew is away from the keyboard"),
+             "blocked on Matthew": ("blocked", "🪷 blocked on Matthew", "Blocked on Matthew's response: nothing to do until he answers")}
+# the queue's own categories, at its end, in this order: each tag's tickets under a line of their own
+QUEUE_GROUPS = [("long run", "🌙 <b>Long runs</b>: for when Matthew is away from the keyboard"),
+                ("blocked on Matthew", "🪷 <b>Blocked on Matthew</b>: waiting for his response")]
+def group_of(t):
+    return next((g for g, _ in QUEUE_GROUPS if g in t.get("tags", [])), None)
+TAG_ICON = lambda t: "".join(TAG_CHIPS[g][1].split(" ")[0] + " " for g in t.get("tags", []) if g in TAG_CHIPS)
 def tag_chips(t, sep="<br>"):
     return "".join(f'{sep}<span class="badge {TAG_CHIPS.get(g, ("tag",))[0]}" title="{e(TAG_CHIPS.get(g, (0, 0, g))[2])}">'
                    f'{e(TAG_CHIPS.get(g, (0, g))[1])}</span>' for g in t.get("tags", []))
-LONG = lambda t: "long run" in t.get("tags", [])
 
 # a ticket's status chip beside "current": "queued", for a ticket in the work
 # queue that is not the current one (its place in line is its tooltip)
@@ -359,12 +366,16 @@ def queue_row(i, t):
     tag = ' <span class="badge">current</span>' + (" " + hand() if WAITING else "") if t is CURRENT else ""
     return (f'<tr><td class="num">{i}</td><td class="num"><a href="#ticket-{t["id"]}">{tk(t["id"])}</a>{tag}{tag_chips(t, " ")}</td>'
             f'<td>{e(t.get("area", ""))}</td><td>{e(short(t["text"], 140))}</td></tr>')
-# (the long runs, together at the queue's end, under a line of their own: the work for when Matthew is away)
+# (the queue's categories, at its end, each under a line of its own: the long runs, the work for when
+# Matthew is away; then the tickets blocked on his response. Shown in data.json's order: a line goes
+# above a category's first ticket)
 def queue_rows():
-    rows, said = [], False
+    rows, last = [], None
     for i, t in enumerate(QUEUE):
-        if LONG(t) and not said and all(LONG(u) for u in QUEUE[i:]):
-            rows.append('<tr class="longrun-head"><td colspan="4">🌙 <b>Long runs</b>: for when Matthew is away from the keyboard</td></tr>'); said = True
+        g = group_of(t)
+        if g and g != last:
+            rows.append(f'<tr class="group-head {TAG_CHIPS[g][0]}-head"><td colspan="4">{dict(QUEUE_GROUPS)[g]}</td></tr>')
+        last = g
         rows.append(queue_row(i + 1, t))
     return "\n".join(rows)
 
@@ -384,7 +395,7 @@ def entry(href, text, sub=False, n=None):
 outline = "\n".join(
     ([f'<li><a href="#current">Current ticket: {tk(CURRENT["id"])}' + (f" {HAND}" if WAITING else "") + '</a></li>'] if CURRENT else []) + [
     entry("#queue", f"Work Queue ({len(QUEUE)})"),
-] + [f'<li class="sub"><a href="#ticket-{t["id"]}">{i + 1}. {tk(t["id"])} {"🌙 " if LONG(t) else ""}{e(short(t["text"]))}</a></li>' for i, t in enumerate(QUEUE)] + [
+] + [f'<li class="sub"><a href="#ticket-{t["id"]}">{i + 1}. {tk(t["id"])} {TAG_ICON(t)}{e(short(t["text"]))}</a></li>' for i, t in enumerate(QUEUE)] + [
     entry("#ports", "Localhost ports"),
     entry("#other", "Other PRs we are tracking"),
     entry("#repos", "Repositories we deploy"),
@@ -477,7 +488,9 @@ page = f"""<!doctype html>
   .badge {{ display: inline-block; margin-top: 4px; padding: 0 6px; font-size: 0.8em; border-radius: 4px; color: var(--good); border: 1px solid var(--good); }}
   .badge.queued {{ color: var(--wait); border-color: var(--wait); text-decoration: none; }}
   .badge.longrun, .badge.tag {{ color: #8b5cf6; border-color: #8b5cf6; }}
+  .badge.blocked {{ color: #0f9f8f; border-color: #0f9f8f; }}
   tr.longrun-head td {{ background: color-mix(in srgb, #8b5cf6 9%, transparent); }}
+  tr.blocked-head td {{ background: color-mix(in srgb, #0f9f8f 9%, transparent); }}
   table.queue td:first-child {{ font-weight: 700; }}
   tr.current td {{ background: color-mix(in srgb, var(--good) 7%, transparent); }}
   td.status {{ white-space: nowrap; }}
