@@ -674,7 +674,12 @@
      "asks": true
     }
    ]
-  },
+  }
+ ],
+ "next_ticket": 104,
+ "current_ticket": 99,
+ "current_note": "^ticket(103) is done: today's screenshot archive (306 drawings as png+svg+json, local, localhost:8133/screenshots/2026/10/15/). Now ^ticket(99), the refactor ('recovery'): its safety net is built (sweep.mjs hashes 69 pictures; two runs agree), next comes the shared room space. For Matthew when he's ready: ^ticket(102) (his reply to Alexander) and ^ticket(101) (which funked waltz). Nothing pushed.",
+ "closed_tickets": [
   {
    "id": 103,
    "area": "dress up",
@@ -689,14 +694,52 @@
      "from": "matthew",
      "chars": 560,
      "asks": false
+    },
+    {
+     "at": "2026-10-15T12:21-06:00",
+     "from": "matthew",
+     "chars": 40,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T12:22-06:00",
+     "from": "claude",
+     "chars": 1300,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T12:26-06:00",
+     "from": "matthew",
+     "chars": 90,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T12:26-06:00",
+     "from": "matthew",
+     "chars": 30,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T12:27-06:00",
+     "from": "matthew",
+     "chars": 50,
+     "asks": true
     }
-   ]
-  }
- ],
- "next_ticket": 104,
- "current_ticket": 103,
- "current_note": "Now ^ticket(103), at the top on Matthew's word: a dated archive of Dress Up screenshots (every background with and without the friend, every costume, every chip menu's options at defaults). ^ticket(99)'s safety net is built (69 pictures hashed, stable). Waiting on Matthew: ^ticket(102) (his reply to Alexander), ^ticket(101) (which funked waltz). Nothing pushed.",
- "closed_tickets": [
+   ],
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T12:30-06:00",
+   "outcome": "Today's archive is at ~/dress-up-screenshots/2026/10/15/ (local, 321 MB), browsable at localhost:8133/screenshots/2026/10/15/index.html. It holds 306 distinct drawings, each a .png (1920 wide), an .svg (animations and all) and a .json (its settings, in the game's save format: Load opens it). They are named <folder>/<setting key>--<value>, the same every day: every background with the friend hidden and with the default friend, then every costume and every chip menu's options against the defaults (colors and sliders left alone; a menu repeated per castle, room, cat or horse taken once). A repeated drawing points at its first, and 92 options that draw nothing different under the defaults are noted. A manifest.json and an index.html come with it. The tool is ~/du-shots/tools/archive.mjs, plus sweep.mjs, ^ticket(99)'s safety net; both are local, pending the question of a tools/ folder in the repo.",
+   "metrics": {
+    "open_minutes": 14,
+    "matthew_messages": 5,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 2070,
+    "tokens_est": 517,
+    "sync_minutes_est": 11.0,
+    "work_minutes": 10.0
+   }
+  },
   {
    "id": 100,
    "area": "dress up",
@@ -1856,7 +1899,6 @@
   }
  ],
  "queue": [
-  103,
   102,
   101,
   93,
@@ -1869,6 +1911,6 @@
   50,
   29
  ],
- "current_since": "2026-10-15T12:16-06:00",
+ "current_since": "2026-10-15T12:30-06:00",
  "current_waiting": ""
 }
