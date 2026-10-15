@@ -171,6 +171,38 @@
    "note": "The kids' toys, prototyped in plain JS with real players before the Hazel slides formulate them as user-defined livelits (#2635, #2597; ^report(1) on). Each version is tagged <code>dress-up-X.Y.Z</code>."
   },
   {
+   "repo": "matthewhammer/dress-up-pictures",
+   "branch": "main",
+   "versions": [],
+   "live": [
+    [
+     "every picture, by day",
+     "http://matthewhammer.org/dress-up-pictures/"
+    ],
+    [
+     "localhost:8133/screenshots/",
+     "http://localhost:8133/screenshots/"
+    ]
+   ],
+   "note": "The Dress Up picture archive, apart from the game (^ticket(106)): each day, every background and chip menu at its defaults, as PNG + SVG + settings. Unchanged files are symlinks to the day they last changed. <code>~/du-shots/tools/archive-today.sh</code> makes a day."
+  },
+  {
+   "repo": "matthewhammer/dress-up-music",
+   "branch": "main",
+   "versions": [],
+   "live": [
+    [
+     "every tune, by day",
+     "http://matthewhammer.org/dress-up-music/"
+    ],
+    [
+     "localhost:8133/music/",
+     "http://localhost:8133/music/"
+    ]
+   ],
+   "note": "The Dress Up music archive, apart from the game (^ticket(106)): each day, every tune at its defaults, one loop each, as MP3. Unchanged tunes (by fingerprint) are symlinks to the day they last changed."
+  },
+  {
    "repo": "matthewhammer/hazel-work-notes",
    "branch": "main",
    "versions": [
@@ -218,7 +250,7 @@
    "area": "dress up",
    "added": "2026-10-15",
    "opened": "2026-10-15T10:15-06:00",
-   "text": "<b>More castle rooms: a kitchen, a blacksmith's, a stable, a cat room.</b> Each with lots of detail (Matthew's bar: the tree house's and the witch's woods'). (1) <b>A kitchen</b> with two workers, a man and a woman, who look like castle helpers by default but can be set up like any friend. (2) <b>A blacksmith's</b>: a smith at a hearth, dark and very rustic. (3) <b>A stable</b> with horses, their heads animated somehow. (4) <b>A cat room</b>: a big, cozy wooden room with a fireplace, cat trees, and shelves and walkways joining all over the walls, with up to 8 cats, each with its own settings. The kitchen's workers and the smith are more of the cast in ^ticket(92) (figureSvg and a settings set per character), so they come after it, or start as their own drawings and move over. The cat room's cats can share the healer's cat's drawing. Each room is a castleRoomN choice, like ^ticket(92)'s hallway. Under Unreleased; no bump or push until Matthew says. ESTIMATE 2026-10-15, from ^ticket(92)'s timed hallway (11.5 min): each room ~15-25 min, the cat room's 8 cats' settings ~20-30 min more; ~1.5-2 h in all. Its kitchen workers and smith want ^ticket(92)'s cast first; the stable and the cat room do not.",
+   "text": "<b>More castle rooms: a kitchen, a blacksmith's, a stable, a cat room.</b> Each with lots of detail (Matthew's bar: the tree house's and the witch's woods'). (1) <b>A kitchen</b> with two workers, a man and a woman, who look like castle helpers by default but can be set up like any friend. (2) <b>A blacksmith's</b>: a smith at a hearth, dark and very rustic. (3) <b>A stable</b> with horses, their heads animated somehow. (4) <b>A cat room</b>: a big, cozy wooden room with a fireplace, cat trees, and shelves and walkways joining all over the walls, with up to 8 cats, each with its own settings. The kitchen's workers and the smith are more of the cast in ^ticket(92) (figureSvg and a settings set per character), so they come after it, or start as their own drawings and move over. The cat room's cats can share the healer's cat's drawing. Each room is a castleRoomN choice, like ^ticket(92)'s hallway. Under Unreleased; no bump or push until Matthew says. ESTIMATE 2026-10-15, from ^ticket(92)'s timed hallway (11.5 min): each room ~15-25 min, the cat room's 8 cats' settings ~20-30 min more; ~1.5-2 h in all. Its kitchen workers and smith want ^ticket(92)'s cast first; the stable and the cat room do not. <b>2026-10-15T14:42:</b> Matthew: once the castle designer MVP (109) is settled, expand the room types (this ticket) next.",
    "source": "Matthew, 2026-10-15",
    "url": "",
    "log": [
@@ -251,6 +283,12 @@
      "from": "matthew",
      "chars": 95,
      "asks": false
+    },
+    {
+     "at": "2026-10-15T14:42-06:00",
+     "from": "matthew",
+     "chars": 90,
+     "asks": false
     }
    ],
    "work": {
@@ -268,7 +306,7 @@
    "id": 92,
    "area": "dress up",
    "added": "2026-10-15",
-   "text": "<b>New castle rooms, and a cast of friends.</b> Three castle room options (for castleRoomN, beside the ones the rooms have now): (1) <b>a long hallway</b>, dark and atmospheric (the fairy forest's night as the model), lit by glowing torches; no fireflies inside the castle (only outside); a carpet down the hall with a color setting; banners on the walls in the castle's banner colors (^ticket(72)'s flag colors and pattern). (2) <b>a spiral staircase</b>, with doors coming out at different levels. (3) <b>the entrance hall</b>, the first room: styled and decorated like the hallway, but square, with two large winding staircases facing the visitor and doors everywhere, and a statue of the king in the middle, between the stairs. The statue is <b>another friend</b>, with its own settings. Matthew's question: how hard is a set of friends instead of one main character (the king, the healer, the witch, more later), their geometry from one common set of routines and parameters, with a top-level chip to choose which character the tabs edit, each starting from its own defaults? Found 2026-10-15: draw() builds the friend straight from state (state.face, body, shirt, pants, hair, shoes, hands, undies, costume) mixed with the scene's composition; the controls read and write state[part][key] (38 places, one set()); the healer in her hut is drawn by her own separate code, not the friend's. Plan, in steps that each ship on their own: (a) figureSvg(person): the friend's drawing as a function of one settings object, draw() calling it with state, checked by drawing many presets before and after and comparing the markup, identical; (b) a cast: state.people with the king, the healer and the witch as overrides of the friend's defaults, and a top-level chip choosing whose settings the tabs edit (the background, music and other tabs stay shared); (c) using them: the king's statue (his figure in stone), the healer and the witch drawn by figureSvg (changes how they look now: Matthew to check); (d) the three rooms; the hallway and the staircase need nothing from (a)-(c). Under Unreleased; no bump or push until he says. Started 2026-10-15 10:05:01, timed: the hallway first (Matthew: \"if you can do it in under an hour\"; the whole ticket is about a day). Log times before 10:05 reconstructed from when the dashboard first published the ticket. HALLWAY DONE 2026-10-15, timed: 10:05:01-10:18:03 less a 1.5 min pause = 11.5 min of work, through three rounds of Matthew's notes (doors in the side walls in perspective; a fixed spiral-stairs archway at the far end; a setting for where it leads). Local commit e097fd5 in ~/kids-choice-games, under Unreleased (also fixes torch flames drifting off their torches). REMAINING, re-estimated from that (the hour per room was ~5x high): the spiral staircase room ~15 min; figureSvg(person), the refactor checked by identical markup, ~30-45 min; the cast and its chip ~20-30 min; the statue, healer and witch drawn by figureSvg ~20-30 min; the entrance hall ~15-20 min: ~1.5-2.5 h in all, before review rounds. Fixed after review: the far end set to lead to the hallway itself was not a doorway; now it is (a click flies the friend up the stairs and back), local commit after e097fd5.",
+   "text": "<b>New castle rooms, and a cast of friends.</b> Three castle room options (for castleRoomN, beside the ones the rooms have now): (1) <b>a long hallway</b>, dark and atmospheric (the fairy forest's night as the model), lit by glowing torches; no fireflies inside the castle (only outside); a carpet down the hall with a color setting; banners on the walls in the castle's banner colors (^ticket(72)'s flag colors and pattern). (2) <b>a spiral staircase</b>, with doors coming out at different levels. (3) <b>the entrance hall</b>, the first room: styled and decorated like the hallway, but square, with two large winding staircases facing the visitor and doors everywhere, and a statue of the king in the middle, between the stairs. The statue is <b>another friend</b>, with its own settings. Matthew's question: how hard is a set of friends instead of one main character (the king, the healer, the witch, more later), their geometry from one common set of routines and parameters, with a top-level chip to choose which character the tabs edit, each starting from its own defaults? Found 2026-10-15: draw() builds the friend straight from state (state.face, body, shirt, pants, hair, shoes, hands, undies, costume) mixed with the scene's composition; the controls read and write state[part][key] (38 places, one set()); the healer in her hut is drawn by her own separate code, not the friend's. Plan, in steps that each ship on their own: (a) figureSvg(person): the friend's drawing as a function of one settings object, draw() calling it with state, checked by drawing many presets before and after and comparing the markup, identical; (b) a cast: state.people with the king, the healer and the witch as overrides of the friend's defaults, and a top-level chip choosing whose settings the tabs edit (the background, music and other tabs stay shared); (c) using them: the king's statue (his figure in stone), the healer and the witch drawn by figureSvg (changes how they look now: Matthew to check); (d) the three rooms; the hallway and the staircase need nothing from (a)-(c). Under Unreleased; no bump or push until he says. Started 2026-10-15 10:05:01, timed: the hallway first (Matthew: \"if you can do it in under an hour\"; the whole ticket is about a day). Log times before 10:05 reconstructed from when the dashboard first published the ticket. HALLWAY DONE 2026-10-15, timed: 10:05:01-10:18:03 less a 1.5 min pause = 11.5 min of work, through three rounds of Matthew's notes (doors in the side walls in perspective; a fixed spiral-stairs archway at the far end; a setting for where it leads). Local commit e097fd5 in ~/kids-choice-games, under Unreleased (also fixes torch flames drifting off their torches). REMAINING, re-estimated from that (the hour per room was ~5x high): the spiral staircase room ~15 min; figureSvg(person), the refactor checked by identical markup, ~30-45 min; the cast and its chip ~20-30 min; the statue, healer and witch drawn by figureSvg ~20-30 min; the entrance hall ~15-20 min: ~1.5-2.5 h in all, before review rounds. Fixed after review: the far end set to lead to the hallway itself was not a doorway; now it is (a click flies the friend up the stairs and back), local commit after e097fd5. <b>2026-10-15T14:42:</b> Matthew: this one too, after the castle designer MVP (109), alongside 93.",
    "source": "Matthew, 2026-10-15",
    "url": "",
    "opened": "2026-10-15T10:04-06:00",
@@ -361,6 +399,12 @@
      "at": "2026-10-15T10:22-06:00",
      "from": "claude",
      "chars": 600,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T14:42-06:00",
+     "from": "matthew",
+     "chars": 40,
      "asks": false
     }
    ],
@@ -543,7 +587,7 @@
    "id": 60,
    "area": "homepage, publishing",
    "added": "2026-10-14",
-   "text": "<b>Serve matthewhammer.org over HTTPS.</b> Today https://matthewhammer.org/ fails: it presents GitHub's own certificate (<code>*.github.com</code>, Sectigo), not one for matthewhammer.org, so browsers warn and agents' fetches fail; everything is linked as HTTP. <b>The blocker, checked 2026-10-14:</b> the apex A record still points at <code>192.30.252.153</code>, GitHub Pages' address from before 2018. GitHub serves the site there over HTTP but will not issue a certificate for a domain pointed at it; the Pages settings have no certificate and <code>https_enforced: false</code>. <code>www</code> is fine: a CNAME to matthewhammer.github.io, on the current addresses. The domain's nameservers are <code>ns-cloud-c1..c4.googledomains.com</code> (Google Domains, now Squarespace Domains), so the DNS change is Matthew's, in his registrar's account. <b>Steps:</b> (1) Matthew replaces the apex A record with GitHub Pages' four, <code>185.199.108.153</code>, <code>185.199.109.153</code>, <code>185.199.110.153</code>, <code>185.199.111.153</code> (and may add the four AAAA, <code>2606:50c0:8000::153</code> to <code>8003::153</code>); (2) once that resolves, GitHub provisions a certificate for the custom domain, which can take up to a day (re-saving the custom domain in the homepage repo's Pages settings restarts it if it stalls); (3) turn on Enforce HTTPS for the homepage and the project sites under it (hazel-work-notes, kids-choice-games); (4) check every page for mixed content: anything a page loads by an absolute <code>http://matthewhammer.org/</code> URL (the series' live hover cards read report pages; the dashboard's cards too) is blocked from an HTTPS page, so make those relative or HTTPS; (5) switch the links we publish to HTTPS: READMEs, the series' agent instructions (\"HTTP only\"), the dashboard, the reports, #2609's ^report links; old HTTP links keep working, since GitHub redirects them once HTTPS is enforced. <b>Progress, 2026-10-14 afternoon:</b> Matthew changed the apex A record in Squarespace to <code>185.199.108.153</code>; the authoritative nameservers and public resolvers (8.8.8.8, 1.1.1.1) answer it, while this laptop's resolver still had the old address cached (TTL 1 hour). GitHub has not issued a certificate yet (<code>https_certificate: null</code>). Still to do: the other three A records (<code>.109</code>, <code>.110</code>, <code>.111</code>) for redundancy, and re-saving the custom domain in the homepage repo's Pages settings so GitHub checks DNS again and issues the certificate. <b>Later that afternoon:</b> the new address had reached Google's, Cloudflare's and Quad9's resolvers, so DNS was no longer the wait. On Matthew's OK, Claude re-saved the custom domain through the API (204). GitHub's domain health check then said: pointed at a current Pages address, not the old one; eligible for HTTPS; no CAA problem; www fine. It was waiting only for GitHub to issue the certificate. <b>Watching</b> (Matthew's ask, 2026-10-14): a watcher in Claude's session checks every 5 minutes, for up to 24 hours, whether matthewhammer.org serves a valid certificate. When it does, Claude turns on Enforce HTTPS and finishes the ticket's remaining steps, then closes it.",
+   "text": "<b>Serve matthewhammer.org over HTTPS.</b> Today https://matthewhammer.org/ fails: it presents GitHub's own certificate (<code>*.github.com</code>, Sectigo), not one for matthewhammer.org, so browsers warn and agents' fetches fail; everything is linked as HTTP. <b>The blocker, checked 2026-10-14:</b> the apex A record still points at <code>192.30.252.153</code>, GitHub Pages' address from before 2018. GitHub serves the site there over HTTP but will not issue a certificate for a domain pointed at it; the Pages settings have no certificate and <code>https_enforced: false</code>. <code>www</code> is fine: a CNAME to matthewhammer.github.io, on the current addresses. The domain's nameservers are <code>ns-cloud-c1..c4.googledomains.com</code> (Google Domains, now Squarespace Domains), so the DNS change is Matthew's, in his registrar's account. <b>Steps:</b> (1) Matthew replaces the apex A record with GitHub Pages' four, <code>185.199.108.153</code>, <code>185.199.109.153</code>, <code>185.199.110.153</code>, <code>185.199.111.153</code> (and may add the four AAAA, <code>2606:50c0:8000::153</code> to <code>8003::153</code>); (2) once that resolves, GitHub provisions a certificate for the custom domain, which can take up to a day (re-saving the custom domain in the homepage repo's Pages settings restarts it if it stalls); (3) turn on Enforce HTTPS for the homepage and the project sites under it (hazel-work-notes, kids-choice-games); (4) check every page for mixed content: anything a page loads by an absolute <code>http://matthewhammer.org/</code> URL (the series' live hover cards read report pages; the dashboard's cards too) is blocked from an HTTPS page, so make those relative or HTTPS; (5) switch the links we publish to HTTPS: READMEs, the series' agent instructions (\"HTTP only\"), the dashboard, the reports, #2609's ^report links; old HTTP links keep working, since GitHub redirects them once HTTPS is enforced. <b>Progress, 2026-10-14 afternoon:</b> Matthew changed the apex A record in Squarespace to <code>185.199.108.153</code>; the authoritative nameservers and public resolvers (8.8.8.8, 1.1.1.1) answer it, while this laptop's resolver still had the old address cached (TTL 1 hour). GitHub has not issued a certificate yet (<code>https_certificate: null</code>). Still to do: the other three A records (<code>.109</code>, <code>.110</code>, <code>.111</code>) for redundancy, and re-saving the custom domain in the homepage repo's Pages settings so GitHub checks DNS again and issues the certificate. <b>Later that afternoon:</b> the new address had reached Google's, Cloudflare's and Quad9's resolvers, so DNS was no longer the wait. On Matthew's OK, Claude re-saved the custom domain through the API (204). GitHub's domain health check then said: pointed at a current Pages address, not the old one; eligible for HTTPS; no CAA problem; www fine. It was waiting only for GitHub to issue the certificate. <b>Watching</b> (Matthew's ask, 2026-10-14): a watcher in Claude's session checks every 5 minutes, for up to 24 hours, whether matthewhammer.org serves a valid certificate. When it does, Claude turns on Enforce HTTPS and finishes the ticket's remaining steps, then closes it. <b>2026-10-15 14:36:</b> the 24-hour watch ended with no certificate (GitHub's Pages API: https_certificate null). DNS is right: the apex A record and www both point at GitHub Pages IPs. Usual fix: remove and re-add the custom domain in matthewhammer.github.io's Pages settings, which re-triggers provisioning. That takes matthewhammer.org offline for a few minutes, so it waits for Matthew's OK, and not while M is playing.",
    "source": "Matthew, 2026-10-14",
    "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages"
   },
@@ -655,14 +699,73 @@
      "from": "matthew",
      "chars": 420,
      "asks": false
+    },
+    {
+     "at": "2026-10-15T14:53-06:00",
+     "from": "claude",
+     "chars": 0,
+     "asks": false
+    }
+   ]
+  },
+  {
+   "id": 110,
+   "area": "dress up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T14:43-06:00",
+   "text": "<b>🍽️ A dining room, a new castle room (M's idea).</b> A long table down the length of the room, drawn in perspective like the hallway, with \"places at table\" as a setting: 4 to 18 (up to 8 down each side, and one at each end). Detailed: torches on the walls, candles on the table, and candelabras (chandeliers of candles) hanging down over it.",
+   "source": "M, through Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T14:43-06:00",
+     "from": "matthew",
+     "chars": 170,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T14:44-06:00",
+     "from": "matthew",
+     "chars": 110,
+     "asks": false
     }
    ]
   }
  ],
- "next_ticket": 109,
- "current_ticket": 106,
- "current_note": "0.0.36 is LIVE: a hallway whose stairs lead nowhere ends in a wall. Back to 106: two public archive repos, dress-up-pictures and dress-up-music, with Pages.",
+ "next_ticket": 111,
+ "current_ticket": 110,
+ "current_note": "Released today, all live: 0.0.35 (funked waltzes, 7 LFOs, cat room, stable, hallway, fixes), 0.0.36 (a hallway whose stairs lead nowhere ends in a wall), 0.0.37 (🗺️ castle designer, each room's own way out, up to 13 rooms). Now 110: M's 🍽️ dining room (a long table down the room, 4 to 18 places, torches, candles, hanging candelabras), released as soon as it's done; then 93 and 92 (more room types). Archives (106): dress-up-pictures is live with today's pictures; dress-up-music has its README, and its music waits for a render (about 45 min, one heavy job).",
  "closed_tickets": [
+  {
+   "id": 109,
+   "area": "dress up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T14:37-06:00",
+   "text": "<b>Castle designer, per-room ways out, 13 rooms.</b> Matthew: (1) every castle room with a way \"out\" (the king's room's sign at the bottom, the dungeons' stairs, and so on) gets a per-room setting for where it leads; by default only room 1 leads outside. (2) An MVP \"castle designer\" panel that shows how the rooms connect, as nodes and edges, with a stable, simple JS graph package (I chose Cytoscape.js). (3) The designer offers to correct topological anomalies, and doors are two-way (symmetrical) by default. (4) Up to 13 castle rooms. Complete ASAP and release.",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T14:37-06:00",
+     "from": "matthew",
+     "chars": 640,
+     "asks": false
+    }
+   ],
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T14:50-06:00",
+   "outcome": "Released 0.0.37 (9e51b1c, tag dress-up-0.0.37). Every non-hallway room has its own way out ('↩️ its way out leads to', default 'the usual way': out only from room 1). Castles go up to 13 rooms. The 🗺️ castle designer uses Cytoscape.js 3.30.4 (cdnjs, SRI, loaded on first open): a map of rooms and ways, tap to change where a way leads, two-way doors by default, problems listed with fixes that say what they do, and 🔧 fix everything (17 → 1 on a 13-room castle; what remains is the greenhouse's fixed arch into the trap room). Live check: designer loads, 0 errors.",
+   "metrics": {
+    "open_minutes": 13,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 640,
+    "tokens_est": 160,
+    "sync_minutes_est": 0,
+    "work_minutes": 13.0
+   }
+  },
   {
    "id": 108,
    "area": "dress up",
@@ -2103,12 +2206,13 @@
   }
  ],
  "queue": [
+  110,
+  93,
+  92,
   106,
   104,
   102,
-  93,
   99,
-  92,
   91,
   90,
   18,
@@ -2116,6 +2220,6 @@
   50,
   29
  ],
- "current_since": "2026-10-15T14:31-06:00",
+ "current_since": "2026-10-15T14:50-06:00",
  "current_waiting": ""
 }
