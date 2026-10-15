@@ -295,6 +295,14 @@ def num_cell(t):
     return (f'<td class="num"><a class="anchor" href="#ticket-{t["id"]}">{tk(t["id"])}</a>'
             f'<button class="copy" type="button" data-anchor="ticket-{t["id"]}" title="Copy a link to {tk_plain(t["id"])}">copy link</button></td>')
 
+# a ticket's tags (data.json: a ticket's "tags"), each a chip: "long run", a
+# ticket to do while Matthew is away (^ticket(114)); any other tag as itself
+TAG_CHIPS = {"long run": ("longrun", "🌙 long run", "A long run: to do while Matthew is away from the keyboard")}
+def tag_chips(t, sep="<br>"):
+    return "".join(f'{sep}<span class="badge {TAG_CHIPS.get(g, ("tag",))[0]}" title="{e(TAG_CHIPS.get(g, (0, 0, g))[2])}">'
+                   f'{e(TAG_CHIPS.get(g, (0, g))[1])}</span>' for g in t.get("tags", []))
+LONG = lambda t: "long run" in t.get("tags", [])
+
 # a ticket's status chip beside "current": "queued", for a ticket in the work
 # queue that is not the current one (its place in line is its tooltip)
 def queue_badge(t):
@@ -307,7 +315,7 @@ def queue_badge(t):
 ticket_rows = "\n".join(
     f'<tr id="ticket-{t["id"]}"{" class=\"current\"" if t is CURRENT else ""}>{num_cell(t)}'
     f'<td>{e(t.get("area", ""))}{"<br><span class=\"badge\">current</span>" + (" " + hand() if WAITING else "") if t is CURRENT else ""}'
-    f'{queue_badge(t)}</td>'
+    f'{queue_badge(t)}{tag_chips(t)}</td>'
     f'<td>{linkify(t["text"])}</td><td>{from_cell(t)}</td></tr>'
     for t in TICKETS)
 
@@ -330,7 +338,7 @@ if CURRENT:
                       f' · elapsed <b data-since="{e(since.isoformat())}"></b></p>')
     current_section = f"""<h2 id="current">Current ticket: <a href="#ticket-{t["id"]}">{tk(t["id"])}</a> {hand()}</h2>
 <div class="current-box">
-<p class="note">{e(t.get("area", ""))} · from {from_cell(t)}</p>
+<p class="note">{e(t.get("area", ""))} · from {from_cell(t)}{tag_chips(t, " ")}</p>
 {since_line}
 <p>{linkify(t["text"])}</p>
 {f'<p><b>Now:</b> {linkify(note)}</p>' if note else ""}
@@ -349,14 +357,22 @@ def short(html_text, n=46):
 # reorder it, as we go.
 def queue_row(i, t):
     tag = ' <span class="badge">current</span>' + (" " + hand() if WAITING else "") if t is CURRENT else ""
-    return (f'<tr><td class="num">{i}</td><td class="num"><a href="#ticket-{t["id"]}">{tk(t["id"])}</a>{tag}</td>'
+    return (f'<tr><td class="num">{i}</td><td class="num"><a href="#ticket-{t["id"]}">{tk(t["id"])}</a>{tag}{tag_chips(t, " ")}</td>'
             f'<td>{e(t.get("area", ""))}</td><td>{e(short(t["text"], 140))}</td></tr>')
+# (the long runs, together at the queue's end, under a line of their own: the work for when Matthew is away)
+def queue_rows():
+    rows, said = [], False
+    for i, t in enumerate(QUEUE):
+        if LONG(t) and not said and all(LONG(u) for u in QUEUE[i:]):
+            rows.append('<tr class="longrun-head"><td colspan="4">🌙 <b>Long runs</b>: for when Matthew is away from the keyboard</td></tr>'); said = True
+        rows.append(queue_row(i + 1, t))
+    return "\n".join(rows)
 
 queue_section = f"""<h2 id="queue">Work Queue (Active Tickets)</h2>
 <p class="note">What we mean to do next, in order: a few tickets, not the backlog. We push a ticket onto the front or the back, and reorder as we go; a ticket leaves the queue when it closes. Each links to its full row in <a href="#backlog">the backlog</a>.</p>
 """ + (f"""<table class="queue">
 <tr><th class="num">Next</th><th class="num">Ticket</th><th class="area">Area</th><th>Ticket</th></tr>
-{chr(10).join(queue_row(i + 1, t) for i, t in enumerate(QUEUE))}
+{queue_rows()}
 </table>
 """ if QUEUE else '<p><i>Empty: push a ticket onto it.</i></p>\n')
 
@@ -368,7 +384,7 @@ def entry(href, text, sub=False, n=None):
 outline = "\n".join(
     ([f'<li><a href="#current">Current ticket: {tk(CURRENT["id"])}' + (f" {HAND}" if WAITING else "") + '</a></li>'] if CURRENT else []) + [
     entry("#queue", f"Work Queue ({len(QUEUE)})"),
-] + [f'<li class="sub"><a href="#ticket-{t["id"]}">{i + 1}. {tk(t["id"])} {e(short(t["text"]))}</a></li>' for i, t in enumerate(QUEUE)] + [
+] + [f'<li class="sub"><a href="#ticket-{t["id"]}">{i + 1}. {tk(t["id"])} {"🌙 " if LONG(t) else ""}{e(short(t["text"]))}</a></li>' for i, t in enumerate(QUEUE)] + [
     entry("#ports", "Localhost ports"),
     entry("#other", "Other PRs we are tracking"),
     entry("#repos", "Repositories we deploy"),
@@ -460,6 +476,8 @@ page = f"""<!doctype html>
   @media (prefers-reduced-motion: reduce) {{ .changes-chip {{ animation: none; }} }}
   .badge {{ display: inline-block; margin-top: 4px; padding: 0 6px; font-size: 0.8em; border-radius: 4px; color: var(--good); border: 1px solid var(--good); }}
   .badge.queued {{ color: var(--wait); border-color: var(--wait); text-decoration: none; }}
+  .badge.longrun, .badge.tag {{ color: #8b5cf6; border-color: #8b5cf6; }}
+  tr.longrun-head td {{ background: color-mix(in srgb, #8b5cf6 9%, transparent); }}
   table.queue td:first-child {{ font-weight: 700; }}
   tr.current td {{ background: color-mix(in srgb, var(--good) 7%, transparent); }}
   td.status {{ white-space: nowrap; }}
@@ -672,11 +690,31 @@ os.replace(tmp, os.path.join(HERE, "index.html"))
 # for another reason, such as not needed or dropped), when, and where the
 # outcome is.
 STATUS_CLASS = {"done": "good", "not needed": "wait", "dropped": "bad", "superseded": "wait"}
+# (from 2026-10-15: a ticket's metrics, kept as agent-instructions.md says,
+# shown in a line under its outcome)
+def metrics_line(t):
+    m = t.get("metrics")
+    if not m:
+        return ""
+    hm = lambda iso: iso[11:16] if iso and len(iso) >= 16 else "?"
+    bits = []
+    if t.get("opened") and t.get("closed_at"):
+        bits.append(f'opened {e(t["opened"][:10])} {hm(t["opened"])}, closed {hm(t["closed_at"])}'
+                    + (f' ({m["open_minutes"]:,} min)' if m.get("open_minutes") is not None else ""))
+    if m.get("work_minutes") is not None:
+        bits.append(f'{m["work_minutes"]} min of work, timed')
+    if m.get("matthew_messages") is not None:
+        bits.append(f'{m["matthew_messages"]} messages from Matthew, {m.get("questions_to_matthew", 0)} questions to him')
+    if m.get("chars_exchanged") is not None:
+        bits.append(f'~{m["chars_exchanged"]:,} chars (~{m.get("tokens_est", m["chars_exchanged"] // 4):,} tokens)')
+    if m.get("sync_minutes_est") is not None:
+        bits.append(f'~{m["sync_minutes_est"]} min together')
+    return '<br><span class="note">\u23f1 ' + " \u00b7 ".join(bits) + "</span>"
 def outcome_cell(t):
     out = linkify(t.get("outcome", ""), on="closed")
     if t.get("outcome_url"):
         out += f' <a href="{e(series_link(t["outcome_url"]))}">(where)</a>'
-    return out
+    return out + metrics_line(t)
 closed_rows = "\n".join(
     f'<tr id="ticket-{t["id"]}">{num_cell(t)}<td>{e(t.get("area", ""))}</td>'
     f'<td class="status"><span class="{STATUS_CLASS.get(t["status"], "")}">{e(t["status"])}</span><br>'
