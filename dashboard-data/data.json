@@ -546,11 +546,40 @@
    "text": "<b>Serve matthewhammer.org over HTTPS.</b> Today https://matthewhammer.org/ fails: it presents GitHub's own certificate (<code>*.github.com</code>, Sectigo), not one for matthewhammer.org, so browsers warn and agents' fetches fail; everything is linked as HTTP. <b>The blocker, checked 2026-10-14:</b> the apex A record still points at <code>192.30.252.153</code>, GitHub Pages' address from before 2018. GitHub serves the site there over HTTP but will not issue a certificate for a domain pointed at it; the Pages settings have no certificate and <code>https_enforced: false</code>. <code>www</code> is fine: a CNAME to matthewhammer.github.io, on the current addresses. The domain's nameservers are <code>ns-cloud-c1..c4.googledomains.com</code> (Google Domains, now Squarespace Domains), so the DNS change is Matthew's, in his registrar's account. <b>Steps:</b> (1) Matthew replaces the apex A record with GitHub Pages' four, <code>185.199.108.153</code>, <code>185.199.109.153</code>, <code>185.199.110.153</code>, <code>185.199.111.153</code> (and may add the four AAAA, <code>2606:50c0:8000::153</code> to <code>8003::153</code>); (2) once that resolves, GitHub provisions a certificate for the custom domain, which can take up to a day (re-saving the custom domain in the homepage repo's Pages settings restarts it if it stalls); (3) turn on Enforce HTTPS for the homepage and the project sites under it (hazel-work-notes, kids-choice-games); (4) check every page for mixed content: anything a page loads by an absolute <code>http://matthewhammer.org/</code> URL (the series' live hover cards read report pages; the dashboard's cards too) is blocked from an HTTPS page, so make those relative or HTTPS; (5) switch the links we publish to HTTPS: READMEs, the series' agent instructions (\"HTTP only\"), the dashboard, the reports, #2609's ^report links; old HTTP links keep working, since GitHub redirects them once HTTPS is enforced. <b>Progress, 2026-10-14 afternoon:</b> Matthew changed the apex A record in Squarespace to <code>185.199.108.153</code>; the authoritative nameservers and public resolvers (8.8.8.8, 1.1.1.1) answer it, while this laptop's resolver still had the old address cached (TTL 1 hour). GitHub has not issued a certificate yet (<code>https_certificate: null</code>). Still to do: the other three A records (<code>.109</code>, <code>.110</code>, <code>.111</code>) for redundancy, and re-saving the custom domain in the homepage repo's Pages settings so GitHub checks DNS again and issues the certificate. <b>Later that afternoon:</b> the new address had reached Google's, Cloudflare's and Quad9's resolvers, so DNS was no longer the wait. On Matthew's OK, Claude re-saved the custom domain through the API (204). GitHub's domain health check then said: pointed at a current Pages address, not the old one; eligible for HTTPS; no CAA problem; www fine. It was waiting only for GitHub to issue the certificate. <b>Watching</b> (Matthew's ask, 2026-10-14): a watcher in Claude's session checks every 5 minutes, for up to 24 hours, whether matthewhammer.org serves a valid certificate. When it does, Claude turns on Enforce HTTPS and finishes the ticket's remaining steps, then closes it.",
    "source": "Matthew, 2026-10-14",
    "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages"
+  },
+  {
+   "id": 99,
+   "area": "dress up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T11:33-06:00",
+   "text": "<b>Recovery: make Dress Up's routines modular and composable, then write down the recipes.</b> Matthew offered this on 2026-10-15: a ticket, and a chance within it, to refactor, and some space to recover after the creative run. It is self-directed. My plan, in order: (1) <b>A safety net first.</b> Extend the byte-identical check, which hashes scene markup in the committed copy and the working copy, to sweep every place, every castle room style, every costume and the imagination map, under fixed settings. Also time drags in three heavy scenes before starting. No step lands unless the sweep comes out identical. (2) <b>Room space.</b> One shared helper (at(X, Y, z), heights on the wall, shelves on the back and side walls, things on the floor, side doors) used by the hallway, the king's room, the cat room and the stable, in place of their copies. (3) <b>Residents.</b> One declaration per kind: the cat room's cats, the stable's horses, and next the kitchen's workers and the smith. From it come the settings keys, the defaults, the castleOf entry, the controls group, the show-when rules and the LFO listing. This is where ^ticket(92)'s cast meets it. (4) <b>LFO followers.</b> One registry of what follows which LFO and where it shows, driving mixChanged, the mixer's 'what follows it' list, and the scenes' LFO reads (sceneOpts). A new follower then cannot miss one of them, which is how the fairy house's bug happened. (5) <b>Room styles.</b> One entry per style: its label, drawing, exits, tone, theme and own settings. (6) <b>The recipes, in agent-instructions.md:</b> how to add a place, a castle room, a resident and an LFO follower, each naming its registry. Notes on single functions stay in the code. <b>Out of scope:</b> changing anything a player sees; renaming settings keys (saved friends must still load); the music engine. Each step is its own local commit, noted under Unreleased as a refactor rather than a feature, and timed. Nothing is pushed. ESTIMATE 45-90 min: refactoring with verification runs slower than drawing. It starts after ^ticket(93)'s stable; ^ticket(93)'s kitchen and smithy then build on step (3). Matthew will read it afterwards.",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T11:31-06:00",
+     "from": "matthew",
+     "chars": 420,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T11:33-06:00",
+     "from": "claude",
+     "chars": 2300,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T11:33-06:00",
+     "from": "matthew",
+     "chars": 95,
+     "asks": false
+    }
+   ]
   }
  ],
- "next_ticket": 99,
+ "next_ticket": 100,
  "current_ticket": 93,
- "current_note": "^ticket(93), the four castle rooms: the 🐈 cat room is DONE and committed locally (91042e2, 25 min): up to 8 cats per castle, each wagging in its own time, on an LFO or its own pace (Matthew's two asks at 11:09 and 11:13). On the way I found and fixed a released bug: the fairy house ignored mixer changes to its LFO. Now the 🐴 stable (horses with animated heads), then the kitchen and the smithy. Not pushed: a release waits for Matthew's word.",
+ "current_note": "^ticket(93), the four castle rooms: the 🐈 cat room is done and committed locally (91042e2). Now the 🐴 stable. Then ^ticket(99), just minted on Matthew's word: a self-directed refactor ('recovery') of Dress Up's routines into shared room space, residents, LFO followers and room styles, then recipes in the agent instructions. After that, ^ticket(93)'s kitchen and smithy, built on it. Nothing pushed.",
  "closed_tickets": [
   {
    "id": 95,
@@ -1646,6 +1675,7 @@
  ],
  "queue": [
   93,
+  99,
   92,
   91,
   90,
