@@ -214,14 +214,6 @@
  ],
  "tickets": [
   {
-   "id": 88,
-   "area": "dress up",
-   "added": "2026-10-15",
-   "text": "<b>LFOs faster than a beat: down to 1/64 of a beat.</b> Today an LFO's shortest full cycle (the \"⏱️ round in\" knob, LFO_BEATS = 1, 2, 3, 4, 6, 8, 12, 16, 24, 32 beats) is one beat. Add positions below 1 beat, labelled as fractions: 1/2, 1/3, 1/4, 1/5, and so on up to 1/64. Notes for the work: (1) the bend is sampled once per note, at its step (steps are sixteenths, 4 to a beat), so an LFO of a step or less aliases to nothing (1/4 beat lands every note on the same phase); fast LFOs need continuous modulation in Web Audio (an oscillator into the voice's detune or gain), not a per-note sample. (2) At the fast end it is audio rate: at 116 bpm, 1/64 beat is about 8 ms, about 124 Hz, so it becomes FM or tremolo more than wobble: worth hearing before settling the range. (3) What else follows an LFO (the fairy wings' flap, the fades through lfoNow) runs at the screen's frame rate: above about 1/8 beat it would strobe or alias, so the visuals may need a cap. (4) \"And so on\" read as every denominator from 2 to 64 is 63 more knob positions; check with Matthew whether he wants all of them or a set (1/2, 1/3, 1/4, 1/6, 1/8, 1/12, 1/16, 1/24, 1/32, 1/48, 1/64). Goes under Unreleased in VERSIONS.md; no bump or push until he says. BUILT 2026-10-15, local commit c1ed1bf in ~/kids-choice-games (not pushed, no bump; under Unreleased): the knob has 73 positions (1/64 ... 1/2 beat, then 1 beat ... 8 bars); a bongo or conga on an LFO faster than a beat gets a pitch curve through each hit (checked offline: a 1/16-beat sine at depth 3 swings a 220 Hz hit 187-260 Hz; slower LFOs unchanged, still sampled per hit); wings on an LFO with a cycle under 1/15 s draw as a blur of 8 see-through copies a side across the sweep (Matthew preferred this to letting the screen alias them); a fade that fast holds at its average. Waits for Matthew to try and listen: http://localhost:8133/dress-up.html REVISED 2026-10-15 (Matthew: down to 1/32 to match 8 bars, with 1 beat the middle): the knob mirrors itself, 1/32, 1/24, 1/16, 1/12, 1/8, 1/6, 1/4, 1/3, 1/2 beat | 1 beat | 2, 3, 4, 6, 8, 12, 16, 24, 32 beats (19 positions, 1 beat the 10th). Saved lengths it no longer has show at the nearest by ratio. Local commit 2 on top of c1ed1bf, not pushed. REVISED AGAIN 2026-10-15: on Matthew's yes, every whole number on both sides (1/32, 1/31 ... 1/2 beat | 1 beat | 2, 3, 4, 5 ... 32 beats; 63 positions, 1 beat the 32nd), local 6d49838. And, his idea, the blur keeps moving: its 8 copies each flap at the LFO's own speed, an eighth of a cycle apart, so every frame catches the full sweep in a new place (checked: frames 40 ms apart differ), local commit after 6d49838. Not pushed.",
-   "source": "Matthew, 2026-10-15",
-   "url": ""
-  },
-  {
    "id": 87,
    "area": "performance",
    "added": "2026-10-14",
@@ -390,9 +382,20 @@
   }
  ],
  "next_ticket": 89,
- "current_ticket": 88,
- "current_note": "✋❔ Waiting on Matthew: try ^ticket(88)'s fast LFOs at http://localhost:8133/dress-up.html (mixer: ⏱️ round in, 1/32 beat to 8 bars, every whole number and every 1/n, 1 beat in the middle; a fairy's wings on that LFO blur, moving, below about 1/8 beat; bongo and conga warble, then buzz). Local commit c1ed1bf, not pushed. Also waiting: review ^ticket(87) (^report(14)'s update) and ^ticket(29) (^report(8)'s), both local in ~/hazel-perf-report (b569651); the A records for ^ticket(60); park ^ticket(18)? Pushed this morning: #2635 to 653ebc4adf, #2597 to f8ae6f2b9c.",
+ "current_ticket": 87,
+ "current_note": "✋❔ Waiting on Matthew: review ^ticket(87) (^report(14)'s update: http://localhost:8131/series/014/#update-box) and ^ticket(29) (^report(8)'s: http://localhost:8131/series/008/#update-box), both local in ~/hazel-perf-report (b569651); the A records for ^ticket(60); park ^ticket(18)? Done today: #2635 to 653ebc4adf and #2597 to f8ae6f2b9c pushed; Dress Up 0.0.34 live (^ticket(88), fast LFOs and blurring wings).",
  "closed_tickets": [
+  {
+   "id": 88,
+   "area": "dress up",
+   "added": "2026-10-15",
+   "text": "<b>LFOs faster than a beat: down to 1/64 of a beat.</b> Today an LFO's shortest full cycle (the \"⏱️ round in\" knob, LFO_BEATS = 1, 2, 3, 4, 6, 8, 12, 16, 24, 32 beats) is one beat. Add positions below 1 beat, labelled as fractions: 1/2, 1/3, 1/4, 1/5, and so on up to 1/64. Notes for the work: (1) the bend is sampled once per note, at its step (steps are sixteenths, 4 to a beat), so an LFO of a step or less aliases to nothing (1/4 beat lands every note on the same phase); fast LFOs need continuous modulation in Web Audio (an oscillator into the voice's detune or gain), not a per-note sample. (2) At the fast end it is audio rate: at 116 bpm, 1/64 beat is about 8 ms, about 124 Hz, so it becomes FM or tremolo more than wobble: worth hearing before settling the range. (3) What else follows an LFO (the fairy wings' flap, the fades through lfoNow) runs at the screen's frame rate: above about 1/8 beat it would strobe or alias, so the visuals may need a cap. (4) \"And so on\" read as every denominator from 2 to 64 is 63 more knob positions; check with Matthew whether he wants all of them or a set (1/2, 1/3, 1/4, 1/6, 1/8, 1/12, 1/16, 1/24, 1/32, 1/48, 1/64). Goes under Unreleased in VERSIONS.md; no bump or push until he says. BUILT 2026-10-15, local commit c1ed1bf in ~/kids-choice-games (not pushed, no bump; under Unreleased): the knob has 73 positions (1/64 ... 1/2 beat, then 1 beat ... 8 bars); a bongo or conga on an LFO faster than a beat gets a pitch curve through each hit (checked offline: a 1/16-beat sine at depth 3 swings a 220 Hz hit 187-260 Hz; slower LFOs unchanged, still sampled per hit); wings on an LFO with a cycle under 1/15 s draw as a blur of 8 see-through copies a side across the sweep (Matthew preferred this to letting the screen alias them); a fade that fast holds at its average. Waits for Matthew to try and listen: http://localhost:8133/dress-up.html REVISED 2026-10-15 (Matthew: down to 1/32 to match 8 bars, with 1 beat the middle): the knob mirrors itself, 1/32, 1/24, 1/16, 1/12, 1/8, 1/6, 1/4, 1/3, 1/2 beat | 1 beat | 2, 3, 4, 6, 8, 12, 16, 24, 32 beats (19 positions, 1 beat the 10th). Saved lengths it no longer has show at the nearest by ratio. Local commit 2 on top of c1ed1bf, not pushed. REVISED AGAIN 2026-10-15: on Matthew's yes, every whole number on both sides (1/32, 1/31 ... 1/2 beat | 1 beat | 2, 3, 4, 5 ... 32 beats; 63 positions, 1 beat the 32nd), local 6d49838. And, his idea, the blur keeps moving: its 8 copies each flap at the LFO's own speed, an eighth of a cycle apart, so every frame catches the full sweep in a new place (checked: frames 40 ms apart differ), local commit after 6d49838. Not pushed.",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "status": "done",
+   "closed": "2026-10-15",
+   "outcome": "DONE 2026-10-15: released as Messed Up Dress Up 0.0.34 (tag dress-up-0.0.34, 47872b6), live at http://matthewhammer.org/kids-choice-games/dress-up/ (checked in a cold profile). LFOs from 1/32 beat to 8 bars, every whole number and every 1/n, 1 beat the knob's middle (63 positions); bongo and conga bend through each hit when the LFO is faster than a beat; wings faster than about four frames a cycle blur, the blur's 8 copies flapping at the LFO's own speed so it keeps moving; fades that fast hold at their average."
+  },
   {
    "id": 46,
    "area": "performance, CI",
@@ -1135,13 +1138,12 @@
   }
  ],
  "queue": [
-  88,
   87,
   18,
   60,
   50,
   29
  ],
- "current_since": "2026-10-15T07:50-06:00",
- "current_waiting": "Try ^ticket(88) on 8133; review ^ticket(87) and ^ticket(29); A records for ^ticket(60); park ^ticket(18)?"
+ "current_since": "2026-10-15T07:58-06:00",
+ "current_waiting": "Review ^ticket(87) and ^ticket(29); A records for ^ticket(60); park ^ticket(18)?"
 }
