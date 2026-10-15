@@ -222,6 +222,14 @@
    "url": "http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T2120-0600.html#holder"
   },
   {
+   "id": 87,
+   "area": "performance",
+   "added": "2026-10-14",
+   "text": "<b>Review ^report(14)'s draft update, then publish.</b> The answer to its open question: the undo history keeps the versions (^ticket(58)). A dated update box under the short answers, a dated note after each claim it supersedes (the \"undo capped at 2\" build, the open holder, the snapshot lead, What next), and an Update section: a figure and table of four builds over 12 edits, how the holder was found, Andrew's fix (6010128b7d, d93e482166) and its port, the undo checks and the likely cost; data in 014/data/update-2026-10-14/ and in the page's JSON. Local commit 0ddcef7 in ~/hazel-perf-report (beside ^report(8)'s draft f7828a6), not pushed. Preview: http://localhost:8131/series/014/#update-box. It calls the port \"a local commit\": if bc66ae5616 lands on #2597 first, link it.",
+   "source": "^ticket(58), 2026-10-14",
+   "url": "http://localhost:8131/series/014/#update-box"
+  },
+  {
    "id": 84,
    "area": "performance",
    "added": "2026-10-14",
@@ -396,9 +404,9 @@
    "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages"
   }
  ],
- "next_ticket": 87,
+ "next_ticket": 88,
  "current_ticket": 86,
- "current_note": "✋❔ Waiting on Matthew. Found tonight: #2597 grew ~87 MB per edit because its undo stack keeps whole page models and its cap is off by default (^ticket(58), closed). The fix, ported from Andrew's 6010128b7d, is local on perf/2597-compact-undo (bc66ae5616): 159 MB after 12 edits instead of 1,048, undo checked. Push on your word (^ticket(86)); dev has the same bug. Also waiting from earlier: ^ticket(29)'s draft (http://localhost:8131/series/008/#update-box), pushes for ^ticket(84), ^ticket(85), ^ticket(46); ^ticket(18)'s design calls. Work notes: http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T2120-0600.html#holder",
+ "current_note": "✋❔ Waiting on Matthew. Found tonight: #2597 grew ~87 MB per edit because its undo stack keeps whole page models and its cap is off by default (^ticket(58), closed). The fix, ported from Andrew's 6010128b7d, is local on perf/2597-compact-undo (bc66ae5616): 159 MB after 12 edits instead of 1,048, undo checked. Push on your word (^ticket(86)); dev has the same bug. ^report(14)'s draft update with the answer: http://localhost:8131/series/014/#update-box (^ticket(87), local commit 0ddcef7). Also waiting from earlier: ^ticket(29)'s draft (http://localhost:8131/series/008/#update-box), pushes for ^ticket(84), ^ticket(85), ^ticket(46); ^ticket(18)'s design calls. Work notes: http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T2120-0600.html#holder",
  "closed_tickets": [
   {
    "id": 66,
@@ -1110,6 +1118,7 @@
  ],
  "queue": [
   86,
+  87,
   18,
   84,
   60,
@@ -1117,6 +1126,6 @@
   50,
   29
  ],
- "current_since": "2026-10-14T23:20-06:00",
- "current_waiting": "Push ^ticket(86) (#2597's undo compaction) and ^ticket(84)'s fix? Review ^ticket(29)'s draft. Bring Andrew's undo fix to dev?"
+ "current_since": "2026-10-14T23:26-06:00",
+ "current_waiting": "Push ^ticket(86) (#2597's undo compaction) and ^ticket(84)'s fix? Review ^ticket(87) (^report(14)'s update) and ^ticket(29) (^report(8)'s). Bring Andrew's undo fix to dev?"
 }
