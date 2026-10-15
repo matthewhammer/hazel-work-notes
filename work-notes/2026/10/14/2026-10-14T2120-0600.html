@@ -6,9 +6,9 @@
 <meta name="robots" content="noindex">
 <title>Evening notes, 10-14</title>
 <style>
-  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --hi: #fef3c7; --warn: #b45309; }
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --hi: #fef3c7; --warn: #b45309; --ok: #15803d; }
   @media (prefers-color-scheme: dark) {
-    :root { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --hi: #3a3218; --warn: #fbbf24; }
+    :root { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --hi: #3a3218; --warn: #fbbf24; --ok: #4ade80; }
   }
   body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
   main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
@@ -152,10 +152,97 @@
 <li>The data: <code>014/data/followup-2026-10-14/heap_2635_30.json</code> (and the 15-edit run beside it), in the series' working copy, not yet pushed.</li>
 </ul>
 
+<h2 id="holder">Update, near midnight: what <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a> keeps per edit is its undo stack (^ticket(58))</h2>
+<p><b>The answer.</b> <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>'s page-level undo stack (<code>History.Model.undo_stack</code> in <code>src/web/app/History.re</code>) keeps a whole page model for every edit, with that version's syntax, statics and layout. Its cap only applies when the setting <code>cap_undo_stack</code> is on, and that setting is off by default (<code>Settings.re</code>: <code>cap_undo_stack: false</code>). So <a href="http://matthewhammer.org/hazel/performance-analysis/014/"><code class="ref"><b>^report(</b>14<b>)</b></code></a>'s undo test, which lowered the cap from 250 to 2, changed nothing: the cap never ran. dev has the same code. <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a> does not, because Andrew fixed it on the modular editors in <code>6010128b7d</code> (2026-08-26, "memory: kill the exponential co_ctx leak + compact undo snapshots"): each snapshot drops its derived caches, they are rebuilt on undo, and the cap always applies.</p>
+<figure style="margin: 1em 0">
+<svg viewBox="0 0 640 320" width="100%" role="img" aria-label="Live heap kept after each of 12 edits: #2597 as built climbs to 1,048 MB; capped at 2, it levels at about 280; with the compaction port, about 160; #2635 stays near 50 to 100.">
+<line x1="56" x2="624" y1="280.0" y2="280.0" stroke="var(--line)"/><text x="50" y="284.0" text-anchor="end" font-size="11" fill="var(--muted)">0</text>
+<line x1="56" x2="624" y1="232.0" y2="232.0" stroke="var(--line)"/><text x="50" y="236.0" text-anchor="end" font-size="11" fill="var(--muted)">200</text>
+<line x1="56" x2="624" y1="184.0" y2="184.0" stroke="var(--line)"/><text x="50" y="188.0" text-anchor="end" font-size="11" fill="var(--muted)">400</text>
+<line x1="56" x2="624" y1="136.0" y2="136.0" stroke="var(--line)"/><text x="50" y="140.0" text-anchor="end" font-size="11" fill="var(--muted)">600</text>
+<line x1="56" x2="624" y1="88.0" y2="88.0" stroke="var(--line)"/><text x="50" y="92.0" text-anchor="end" font-size="11" fill="var(--muted)">800</text>
+<line x1="56" x2="624" y1="40.0" y2="40.0" stroke="var(--line)"/><text x="50" y="44.0" text-anchor="end" font-size="11" fill="var(--muted)">1000</text>
+<text x="56.0" y="296" text-anchor="middle" font-size="11" fill="var(--muted)">0</text>
+<text x="150.7" y="296" text-anchor="middle" font-size="11" fill="var(--muted)">2</text>
+<text x="245.3" y="296" text-anchor="middle" font-size="11" fill="var(--muted)">4</text>
+<text x="340.0" y="296" text-anchor="middle" font-size="11" fill="var(--muted)">6</text>
+<text x="434.7" y="296" text-anchor="middle" font-size="11" fill="var(--muted)">8</text>
+<text x="529.3" y="296" text-anchor="middle" font-size="11" fill="var(--muted)">10</text>
+<text x="624.0" y="296" text-anchor="middle" font-size="11" fill="var(--muted)">12</text>
+<text x="340.0" y="314" text-anchor="middle" font-size="12" fill="var(--muted)">edits of the shirt-width slider (Full Body)</text>
+<text x="14" y="148.0" text-anchor="middle" font-size="12" fill="var(--muted)" transform="rotate(-90 14 148.0)">MB kept since loading</text>
+<polyline points="56.0,280.0 103.3,259.8 150.7,238.8 198.0,216.2 245.3,197.0 292.7,177.1 340.0,158.0 387.3,133.7 434.7,114.3 482.0,95.4 529.3,67.2 576.7,48.0 624.0,28.5" fill="none" stroke="var(--warn)" stroke-width="1.8" stroke-dasharray="5 3"/>
+<circle cx="103.3" cy="259.8" r="2.6" fill="var(--warn)"><title>#2597 as built, edit 1: +84.0 MB</title></circle>
+<circle cx="150.7" cy="238.8" r="2.6" fill="var(--warn)"><title>#2597 as built, edit 2: +171.9 MB</title></circle>
+<circle cx="198.0" cy="216.2" r="2.6" fill="var(--warn)"><title>#2597 as built, edit 3: +265.9 MB</title></circle>
+<circle cx="245.3" cy="197.0" r="2.6" fill="var(--warn)"><title>#2597 as built, edit 4: +345.7 MB</title></circle>
+<circle cx="292.7" cy="177.1" r="2.6" fill="var(--warn)"><title>#2597 as built, edit 5: +428.6 MB</title></circle>
+<circle cx="340.0" cy="158.0" r="2.6" fill="var(--warn)"><title>#2597 as built, edit 6: +508.3 MB</title></circle>
+<circle cx="387.3" cy="133.7" r="2.6" fill="var(--warn)"><title>#2597 as built, edit 7: +609.6 MB</title></circle>
+<circle cx="434.7" cy="114.3" r="2.6" fill="var(--warn)"><title>#2597 as built, edit 8: +690.3 MB</title></circle>
+<circle cx="482.0" cy="95.4" r="2.6" fill="var(--warn)"><title>#2597 as built, edit 9: +769.3 MB</title></circle>
+<circle cx="529.3" cy="67.2" r="2.6" fill="var(--warn)"><title>#2597 as built, edit 10: +886.5 MB</title></circle>
+<circle cx="576.7" cy="48.0" r="2.6" fill="var(--warn)"><title>#2597 as built, edit 11: +966.8 MB</title></circle>
+<circle cx="624.0" cy="28.5" r="2.6" fill="var(--warn)"><title>#2597 as built, edit 12: +1048.1 MB</title></circle>
+<text x="620.0" y="20.5" text-anchor="end" font-size="12" fill="var(--warn)">#2597 as built: +1048 MB</text>
+<polyline points="56.0,280.0 103.3,259.9 150.7,240.7 198.0,220.1 245.3,217.8 292.7,217.8 340.0,216.6 387.3,223.8 434.7,221.4 482.0,219.3 529.3,211.0 576.7,209.8 624.0,211.8" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-dasharray="2 3"/>
+<circle cx="103.3" cy="259.9" r="2.6" fill="var(--muted)"><title>#2597, undo stack capped at 2, edit 1: +83.8 MB</title></circle>
+<circle cx="150.7" cy="240.7" r="2.6" fill="var(--muted)"><title>#2597, undo stack capped at 2, edit 2: +163.9 MB</title></circle>
+<circle cx="198.0" cy="220.1" r="2.6" fill="var(--muted)"><title>#2597, undo stack capped at 2, edit 3: +249.7 MB</title></circle>
+<circle cx="245.3" cy="217.8" r="2.6" fill="var(--muted)"><title>#2597, undo stack capped at 2, edit 4: +259.2 MB</title></circle>
+<circle cx="292.7" cy="217.8" r="2.6" fill="var(--muted)"><title>#2597, undo stack capped at 2, edit 5: +259.0 MB</title></circle>
+<circle cx="340.0" cy="216.6" r="2.6" fill="var(--muted)"><title>#2597, undo stack capped at 2, edit 6: +264.1 MB</title></circle>
+<circle cx="387.3" cy="223.8" r="2.6" fill="var(--muted)"><title>#2597, undo stack capped at 2, edit 7: +234.3 MB</title></circle>
+<circle cx="434.7" cy="221.4" r="2.6" fill="var(--muted)"><title>#2597, undo stack capped at 2, edit 8: +244.3 MB</title></circle>
+<circle cx="482.0" cy="219.3" r="2.6" fill="var(--muted)"><title>#2597, undo stack capped at 2, edit 9: +253.1 MB</title></circle>
+<circle cx="529.3" cy="211.0" r="2.6" fill="var(--muted)"><title>#2597, undo stack capped at 2, edit 10: +287.4 MB</title></circle>
+<circle cx="576.7" cy="209.8" r="2.6" fill="var(--muted)"><title>#2597, undo stack capped at 2, edit 11: +292.5 MB</title></circle>
+<circle cx="624.0" cy="211.8" r="2.6" fill="var(--muted)"><title>#2597, undo stack capped at 2, edit 12: +284.1 MB</title></circle>
+<text x="620.0" y="203.8" text-anchor="end" font-size="12" fill="var(--muted)">#2597, undo stack capped at 2: +284 MB</text>
+<polyline points="56.0,280.0 103.3,261.7 150.7,245.9 198.0,240.2 245.3,242.4 292.7,243.8 340.0,241.0 387.3,239.9 434.7,237.3 482.0,234.9 529.3,246.2 576.7,244.6 624.0,241.9" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+<circle cx="103.3" cy="261.7" r="2.6" fill="var(--accent)"><title>#2597 with the compaction port, edit 1: +76.2 MB</title></circle>
+<circle cx="150.7" cy="245.9" r="2.6" fill="var(--accent)"><title>#2597 with the compaction port, edit 2: +142.0 MB</title></circle>
+<circle cx="198.0" cy="240.2" r="2.6" fill="var(--accent)"><title>#2597 with the compaction port, edit 3: +165.9 MB</title></circle>
+<circle cx="245.3" cy="242.4" r="2.6" fill="var(--accent)"><title>#2597 with the compaction port, edit 4: +156.7 MB</title></circle>
+<circle cx="292.7" cy="243.8" r="2.6" fill="var(--accent)"><title>#2597 with the compaction port, edit 5: +150.8 MB</title></circle>
+<circle cx="340.0" cy="241.0" r="2.6" fill="var(--accent)"><title>#2597 with the compaction port, edit 6: +162.5 MB</title></circle>
+<circle cx="387.3" cy="239.9" r="2.6" fill="var(--accent)"><title>#2597 with the compaction port, edit 7: +167.2 MB</title></circle>
+<circle cx="434.7" cy="237.3" r="2.6" fill="var(--accent)"><title>#2597 with the compaction port, edit 8: +178.1 MB</title></circle>
+<circle cx="482.0" cy="234.9" r="2.6" fill="var(--accent)"><title>#2597 with the compaction port, edit 9: +187.7 MB</title></circle>
+<circle cx="529.3" cy="246.2" r="2.6" fill="var(--accent)"><title>#2597 with the compaction port, edit 10: +140.7 MB</title></circle>
+<circle cx="576.7" cy="244.6" r="2.6" fill="var(--accent)"><title>#2597 with the compaction port, edit 11: +147.5 MB</title></circle>
+<circle cx="624.0" cy="241.9" r="2.6" fill="var(--accent)"><title>#2597 with the compaction port, edit 12: +158.6 MB</title></circle>
+<text x="620.0" y="231.9" text-anchor="end" font-size="12" fill="var(--accent)">#2597 with the compaction port: +159 MB</text>
+<polyline points="56.0,280.0 103.3,277.8 150.7,275.8 198.0,273.8 245.3,271.9 292.7,269.6 340.0,267.7 387.3,265.8 434.7,263.8 482.0,261.9 529.3,257.5 576.7,269.0 624.0,267.5" fill="none" stroke="var(--ok)" stroke-width="1.8"/>
+<circle cx="103.3" cy="277.8" r="2.6" fill="var(--ok)"><title>#2635 (has Andrew's fix), edit 1: +9.2 MB</title></circle>
+<circle cx="150.7" cy="275.8" r="2.6" fill="var(--ok)"><title>#2635 (has Andrew's fix), edit 2: +17.5 MB</title></circle>
+<circle cx="198.0" cy="273.8" r="2.6" fill="var(--ok)"><title>#2635 (has Andrew's fix), edit 3: +25.7 MB</title></circle>
+<circle cx="245.3" cy="271.9" r="2.6" fill="var(--ok)"><title>#2635 (has Andrew's fix), edit 4: +33.7 MB</title></circle>
+<circle cx="292.7" cy="269.6" r="2.6" fill="var(--ok)"><title>#2635 (has Andrew's fix), edit 5: +43.5 MB</title></circle>
+<circle cx="340.0" cy="267.7" r="2.6" fill="var(--ok)"><title>#2635 (has Andrew's fix), edit 6: +51.4 MB</title></circle>
+<circle cx="387.3" cy="265.8" r="2.6" fill="var(--ok)"><title>#2635 (has Andrew's fix), edit 7: +59.3 MB</title></circle>
+<circle cx="434.7" cy="263.8" r="2.6" fill="var(--ok)"><title>#2635 (has Andrew's fix), edit 8: +67.5 MB</title></circle>
+<circle cx="482.0" cy="261.9" r="2.6" fill="var(--ok)"><title>#2635 (has Andrew's fix), edit 9: +75.4 MB</title></circle>
+<circle cx="529.3" cy="257.5" r="2.6" fill="var(--ok)"><title>#2635 (has Andrew's fix), edit 10: +93.6 MB</title></circle>
+<circle cx="576.7" cy="269.0" r="2.6" fill="var(--ok)"><title>#2635 (has Andrew's fix), edit 11: +46.0 MB</title></circle>
+<circle cx="624.0" cy="267.5" r="2.6" fill="var(--ok)"><title>#2635 (has Andrew's fix), edit 12: +51.9 MB</title></circle>
+<text x="212.2" y="265.1" text-anchor="start" font-size="12" fill="var(--ok)">#2635 (has Andrew's fix): +52 MB</text>
+</svg>
+<figcaption style="color: var(--muted); font-size: 0.9em">The live heap after each of 12 edits, less the heap after loading, in headless Chromium (<a href="http://matthewhammer.org/hazel/performance-analysis/014/"><code class="ref"><b>^report(</b>14<b>)</b></code></a>'s driver). <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a> as built, and two local builds of it: the undo stack always capped at 2, and Andrew's compaction ported. <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a>'s first 12 edits (above) for reference.</figcaption>
+</figure>
+<ul>
+<li><b>How it was found.</b> First, what the browser itself holds does not grow: over six edits <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>'s heap grew by 500 MB while its listeners (609), DOM nodes, detached ones included (47,923), observers and timers stayed the same. Next, <a href="http://matthewhammer.org/hazel/performance-analysis/014/"><code class="ref"><b>^report(</b>14<b>)</b></code></a>'s sampled live heap, by source file, on <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a>: of 37.5 MB kept over four edits, almost all is the worker codec, ShareCodec and ValueHash, against <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>'s 390 MB of types, statics, layout and terms. A probe build of <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a> with ValueHash's memo living only within one synchronous run still grew 68 MB per edit, and made heap snapshots possible (2.3 GB of JSON, 75 s). Two snapshots in one session, after edits 3 and 6, give the objects allocated in between; a dominator tree of the second (29 million nodes, 4.6 s in C) shows three copies of one 35 MB structure, the Full Body editor's derived data. Two are the heads of <code>undo_stack</code>'s first two entries (<code>Logged.Model.current</code> → <code>undo_stack</code> → each entry's page model → the slide list → Full Body). The third is under <code>ProjectorView</code>'s view cache, which holds one.</li>
+<li><b>Confirmed.</b> With the cap always on at 2, <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a> stops growing after the third edit: 284 MB kept after 12 edits, in two runs that agree within 10 MB, against 1,048 MB as built.</li>
+<li><b>The fix, ported.</b> Local branch <code>perf/2597-compact-undo</code>, <code>bc66ae5616</code>, on <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>'s head <code>c4e411f9c2</code>: Andrew's compaction (adapted to <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>'s flat scratchpad list; the result kept through persist and unpersist, as <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a> now does), the cap of 250 always on, and the Undo tests checking the text, as on <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a>. Full Body keeps 159 MB after 12 edits, level from the third edit. The six Undo tests pass. In headless Chromium, three runs of edit, undo, redo, a second edit and undo: every step restores the same picture and slider value as as-built <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a> does.</li>
+<li><b>Its likely cost.</b> An undo now rebuilds what the snapshot dropped. On the port, 4 of 6 undo and redo steps took 6 to 8 s, about an edit's time; as built, 3 of 3 took about 2.5 s (one run). Edits themselves swing between 2 and 7 s here, so this needs more runs before it is a number. The console's "HazelDOM: unrecognized attribute: Disabled" also appears in as-built <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a> (387 times in a run), and about twice as often on the port (855 and 882), which fits more re-rendering.</li>
+<li>The data and tools: <code>014/data/followup-2026-10-14/</code> (<code>heap_asbuilt_8311</code>, <code>heap_undo2_always</code>, <code>heap_undo2_again</code>, <code>heap_compact</code>, the undo checks, and <code>holder/</code> with the dominator reports and the scripts), in the series' working copy, not yet pushed. The snapshots themselves (4 GB) are on this laptop only.</li>
+</ul>
+
 <h2 id="where">Where things are</h2>
 <ul>
 <li><code>~/hazel-livelits-modular</code> is back on the PR branch, <code>integration/livelits-modular-editors</code> at <code>9fb2bdf067</code>, rebuilt, and port 8341 serves it. The local branches: <code>perf/2635-autosave-print</code> (^ticket(84)'s fix), <code>perf/2635-views-in-worker</code> (plus the module move), <code>experiment/2635-views-in-worker-all</code> (plus experiments 1–3), <code>test/2635-unproject-startup</code> (^ticket(85)), <code>perf/2635-parser-count</code> (the parser's count), each on <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a>'s head.</li>
-<li>Nothing is pushed: not ^ticket(84)'s fix, the module move or the experiment.</li>
+<li><code>~/hazel-2597-probe</code>, a worktree of <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>: <code>perf/2597-compact-undo</code> (<code>bc66ae5616</code>, the undo compaction) and <code>probe/2597-undo-cap-2</code> (the confirmation probe, not for pushing).</li>
+<li>Nothing is pushed: not ^ticket(84)'s fix, the module move, the experiment, or the undo compaction.</li>
 </ul>
 
 <h2 id="next">Next steps</h2>
@@ -164,7 +251,9 @@
 <li id="next-2">Revise ^report(8) with these numbers and graphs (^ticket(29)); the draft waits for review, and its answer depends on ^ticket(84)'s fix landing.</li>
 <li id="next-25">Push ^ticket(85)'s test fix and the parser's count fix to <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a> (and <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>), on Matthew's word.</li>
 <li id="next-3">^ticket(18): decide the protocol (the ids of the livelits on screen in the request, a content-keyed cache) before more code.</li>
-<li id="next-65">^ticket(58): look for <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>'s holder among what <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a> no longer keeps (memory, <a href="#memory">above</a>), then take <a href="http://matthewhammer.org/hazel/performance-analysis/014/"><code class="ref"><b>^report(</b>14<b>)</b></code></a>'s snapshot on the smaller of the two diffs; and run <a href="http://matthewhammer.org/hazel/performance-analysis/014/"><code class="ref"><b>^report(</b>14<b>)</b></code></a>'s table-count build on <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a> to name what falls back there.</li>
+<li id="next-65"><b>Done</b> (<a href="#holder">above</a>): ^ticket(58)'s holder is <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>'s undo stack.</li>
+<li id="next-58">Push <code>bc66ae5616</code> (the undo compaction) to <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>, on Matthew's word; and decide whether dev should get Andrew's fix before <a href="https://github.com/hazelgrove/hazel/pull/2469">#2469</a> merges, since dev keeps whole page models per edit too.</li>
+<li id="next-58b">Bring <a href="http://matthewhammer.org/hazel/performance-analysis/014/"><code class="ref"><b>^report(</b>14<b>)</b></code></a> up to date with the answer: a dated update and its data, as a draft for review.</li>
 </ol>
 </main>
 <!-- pr-cards: begin -->
