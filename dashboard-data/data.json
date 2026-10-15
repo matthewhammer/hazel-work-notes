@@ -214,104 +214,6 @@
  ],
  "tickets": [
   {
-   "id": 98,
-   "area": "dress up",
-   "added": "2026-10-15",
-   "opened": "2026-10-15T10:48-06:00",
-   "text": "<b>D's castle's defaults, as D chose them</b> (Matthew's screenshots, 2026-10-15): stone #7c8b6f, 16 trees, moat 72, flags #6a2c91 and #22c55e in stripes, roofs purple #7c3aed (his correction). Roofs and the flags' style were one default for every castle; now each castle has its own. Levels 5 (his answer, 2026-10-15). Done, local commit with ^ticket(97).",
-   "source": "Matthew, 2026-10-15",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-15T10:48-06:00",
-     "from": "matthew",
-     "chars": 90,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:48-06:00",
-     "from": "matthew",
-     "chars": 25,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:49-06:00",
-     "from": "claude",
-     "chars": 400,
-     "asks": true
-    },
-    {
-     "at": "2026-10-15T10:50-06:00",
-     "from": "matthew",
-     "chars": 30,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:50-06:00",
-     "from": "claude",
-     "chars": 150,
-     "asks": false
-    }
-   ]
-  },
-  {
-   "id": 97,
-   "area": "dress up",
-   "added": "2026-10-15",
-   "opened": "2026-10-15T10:46-06:00",
-   "text": "<b>The cave behind the falls: gem sparkles; the waterfall's width, speed and time of day.</b> Matthew, 2026-10-15. BUILT, timed 10:46:45-10:49 (with ^ticket(98) inside it): gems over the cave's walls (0-40) each with a sparkle drawn by starsSvg, and sparkles on the crystals, with their own shape, size, brightness and twinkle; the waterfall's speed (fallRate) and time of day (fallTime: day, sunset, night), its own settings, so the jungle waterfall (a tint, the moon at night) and the cave's view out (its light by the time, the moon behind the water) agree; its width shown in the cave too. Local commit in ~/kids-choice-games, under Unreleased. Waits for Matthew to try.",
-   "source": "Matthew, 2026-10-15",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-15T10:46-06:00",
-     "from": "matthew",
-     "chars": 230,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:49-06:00",
-     "from": "claude",
-     "chars": 1000,
-     "asks": false
-    }
-   ]
-  },
-  {
-   "id": 96,
-   "area": "dress up",
-   "added": "2026-10-15",
-   "opened": "2026-10-15T10:39-06:00",
-   "text": "<b>💭 Our imagination: a room with a map of every place.</b> Matthew, 2026-10-15: a background like a big 2D map on the back wall, each place a picture frame on it, in a very simple room (the blank white of the Matrix's construct); go there, and choose any other place with the game's own controls. First after \"no background\", named \"our imagination\". BUILT, timed 10:39:24-10:41:37 (2.2 min): a white room, its far wall a map, a column to each kind of place (PLACE_GROUPS) with its name, its places down it as framed pictures (framedSvg, detail 45) joined by a dotted path; a picture of the room holds only frames. First draw 254-278 ms, again 5-6 ms. Fixed on the way: a picture's own signposts and doors were live, so a click on the camp site's picture went to the mountain trail; now a picture's inner doorways are paint (the living room's pictures too). Local commit in ~/kids-choice-games, under Unreleased. Waits for Matthew to try it.",
-   "source": "Matthew, 2026-10-15",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-15T10:39-06:00",
-     "from": "matthew",
-     "chars": 300,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:40-06:00",
-     "from": "matthew",
-     "chars": 140,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:41-06:00",
-     "from": "claude",
-     "chars": 1200,
-     "asks": false
-    }
-   ],
-   "work": {
-    "started": "2026-10-15T10:39:24-06:00",
-    "ended": "2026-10-15T10:41:37-06:00",
-    "work_minutes": 2.2
-   }
-  },
-  {
    "id": 95,
    "area": "dress up",
    "added": "2026-10-15",
@@ -331,110 +233,14 @@
      "from": "matthew",
      "chars": 90,
      "asks": false
+    },
+    {
+     "at": "2026-10-15T10:55-06:00",
+     "from": "matthew",
+     "chars": 700,
+     "asks": false
     }
    ]
-  },
-  {
-   "id": 94,
-   "area": "dress up",
-   "added": "2026-10-15",
-   "opened": "2026-10-15T10:27-06:00",
-   "text": "<b>Castle rooms by number, each with its own exits.</b> Matthew, 2026-10-15: a castle is numbered rooms; each room has a type and its own exits, each to a specific room by number (so two hallways can connect yet have distinct doors to distinct rooms), the outside, or nowhere. For a hallway: its number of doors (0-4) and each one's destination, and where its stairs lead. Chips to go straight into each room by number (for testing a castle), and dotted boxes round the groups of controls. Defaults reproduce today's links; other room types keep linking to every room for now; doors are one-way (the back chip always returns). Timed from 10:26:44. BUILT 2026-10-15, timed 10:26:44-10:29:54 (3.2 min; estimated 45-60): local commit 31896c0 in ~/kids-choice-games, under Unreleased. Checked in a muted headless browser: two hallways joined by their stairs, each with its own doors (room 1: out, 2, 3, stairs to 2; room 2: 4, 5, stairs to 1); the king's room still links to all; the dashed groups show only what applies; the go-to chips jump straight in. Known rough edge: a door's choices list rooms 1-6 even when the castle has fewer (a door to a missing room is not drawn). Open until Matthew is happy with the castle designer; then ^ticket(95). REVISED 2026-10-15, timed 10:32:19-10:36: door choices follow the room count; the king's room has its own doors (0-4, set like a hallway's) in its side walls in perspective, two to a side, the nearer door's sign above the farther's, clear of the throne, the banners and the suits of armor (moved against the back wall); its way out a sign at the bottom, as the clearing's path. Default doors 3 (out, and the next two rooms). Local commit after 31896c0. ALSO 2026-10-15, timed 10:36:46-10:38: inside a castle room only its settings group shows, marked (at the castle, all); the caption says where the friend is, in each place's own word (in, at, on, near, outside of; a castle room by name and number). Local commit after c3020a5. Matthew 2026-10-15: \"the new castle editing UX is better\". Then, timed 10:51:44-10:52: each room choice shows its room's own emoji, following its type (choices whose text follows the settings).",
-   "source": "Matthew, 2026-10-15",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-15T10:27-06:00",
-     "from": "matthew",
-     "chars": 720,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:27-06:00",
-     "from": "claude",
-     "chars": 1500,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:30-06:00",
-     "from": "claude",
-     "chars": 1400,
-     "asks": true
-    },
-    {
-     "at": "2026-10-15T10:32-06:00",
-     "from": "matthew",
-     "chars": 240,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:33-06:00",
-     "from": "matthew",
-     "chars": 60,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:33-06:00",
-     "from": "matthew",
-     "chars": 95,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:34-06:00",
-     "from": "matthew",
-     "chars": 50,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:36-06:00",
-     "from": "claude",
-     "chars": 1300,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:36-06:00",
-     "from": "matthew",
-     "chars": 300,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:37-06:00",
-     "from": "matthew",
-     "chars": 85,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:38-06:00",
-     "from": "claude",
-     "chars": 1100,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:51-06:00",
-     "from": "matthew",
-     "chars": 190,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:52-06:00",
-     "from": "claude",
-     "chars": 600,
-     "asks": false
-    }
-   ],
-   "work": {
-    "started": "2026-10-15T10:26:44-06:00",
-    "ended": "2026-10-15T10:29:54-06:00",
-    "work_minutes": 3.2,
-    "estimate_minutes": [
-     45,
-     60
-    ],
-    "revision": {
-     "started": "2026-10-15T10:32:19-06:00",
-     "ended": "2026-10-15T10:36-06:00"
-    }
-   }
   },
   {
    "id": 93,
@@ -455,6 +261,12 @@
      "at": "2026-10-15T10:17-06:00",
      "from": "matthew",
      "chars": 110,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:55-06:00",
+     "from": "matthew",
+     "chars": 700,
      "asks": false
     }
    ]
@@ -744,9 +556,273 @@
   }
  ],
  "next_ticket": 99,
- "current_ticket": 97,
- "current_note": "^ticket(97) (the cave's gems, the waterfall's speed and time) and ^ticket(98) (D's castle) built: Matthew to try on 8133, with ^ticket(96) and ^ticket(94). Then ^ticket(95), ^ticket(93).",
+ "current_ticket": 95,
+ "current_note": "Clearing the queue in the next two hours (Matthew, 10:55): ^ticket(94), ^ticket(96), ^ticket(97), ^ticket(98) closed; now ^ticket(95) (the Dress Up agent-instructions draft), then ^ticket(93) (the four rooms).",
  "closed_tickets": [
+  {
+   "id": 96,
+   "area": "dress up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T10:39-06:00",
+   "text": "<b>💭 Our imagination: a room with a map of every place.</b> Matthew, 2026-10-15: a background like a big 2D map on the back wall, each place a picture frame on it, in a very simple room (the blank white of the Matrix's construct); go there, and choose any other place with the game's own controls. First after \"no background\", named \"our imagination\". BUILT, timed 10:39:24-10:41:37 (2.2 min): a white room, its far wall a map, a column to each kind of place (PLACE_GROUPS) with its name, its places down it as framed pictures (framedSvg, detail 45) joined by a dotted path; a picture of the room holds only frames. First draw 254-278 ms, again 5-6 ms. Fixed on the way: a picture's own signposts and doors were live, so a click on the camp site's picture went to the mountain trail; now a picture's inner doorways are paint (the living room's pictures too). Local commit in ~/kids-choice-games, under Unreleased. Waits for Matthew to try it.",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T10:39-06:00",
+     "from": "matthew",
+     "chars": 300,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:40-06:00",
+     "from": "matthew",
+     "chars": 140,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:41-06:00",
+     "from": "claude",
+     "chars": 1200,
+     "asks": false
+    }
+   ],
+   "work": {
+    "started": "2026-10-15T10:39:24-06:00",
+    "ended": "2026-10-15T10:41:37-06:00",
+    "work_minutes": 2.2
+   },
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T10:57-06:00",
+   "outcome": "DONE 2026-10-15: 💭 our imagination, first after none: a white room, its far wall a map of every place (a column to each kind, the places as framed pictures joined by a dotted path), each picture a way there. Fixed with it: a picture's own signposts and doors were live (the camp site's picture went to the trail); now the whole picture is the way in, the living room's too. First draw ~270 ms, again ~5 ms. Local commit d3e753b, not pushed.",
+   "metrics": {
+    "open_minutes": 18,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1640,
+    "tokens_est": 410,
+    "sync_minutes_est": 2.0,
+    "work_minutes": 2.2
+   }
+  },
+  {
+   "id": 98,
+   "area": "dress up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T10:48-06:00",
+   "text": "<b>D's castle's defaults, as D chose them</b> (Matthew's screenshots, 2026-10-15): stone #7c8b6f, 16 trees, moat 72, flags #6a2c91 and #22c55e in stripes, roofs purple #7c3aed (his correction). Roofs and the flags' style were one default for every castle; now each castle has its own. Levels 5 (his answer, 2026-10-15). Done, local commit with ^ticket(97).",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T10:48-06:00",
+     "from": "matthew",
+     "chars": 90,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:48-06:00",
+     "from": "matthew",
+     "chars": 25,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:49-06:00",
+     "from": "claude",
+     "chars": 400,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T10:50-06:00",
+     "from": "matthew",
+     "chars": 30,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:50-06:00",
+     "from": "claude",
+     "chars": 150,
+     "asks": false
+    }
+   ],
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T10:57-06:00",
+   "outcome": "DONE 2026-10-15: D's castle starts as D chose it: 5 levels, stone #7c8b6f, 16 trees, moat 72, flags #6a2c91 and #22c55e in stripes, purple roofs #7c3aed; each castle now has its own default roof and flag style. Local commits 66be20b, a9f497c, not pushed.",
+   "metrics": {
+    "open_minutes": 9,
+    "matthew_messages": 3,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 695,
+    "tokens_est": 173,
+    "sync_minutes_est": 2.0,
+    "work_minutes": 1.0
+   }
+  },
+  {
+   "id": 97,
+   "area": "dress up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T10:46-06:00",
+   "text": "<b>The cave behind the falls: gem sparkles; the waterfall's width, speed and time of day.</b> Matthew, 2026-10-15. BUILT, timed 10:46:45-10:49 (with ^ticket(98) inside it): gems over the cave's walls (0-40) each with a sparkle drawn by starsSvg, and sparkles on the crystals, with their own shape, size, brightness and twinkle; the waterfall's speed (fallRate) and time of day (fallTime: day, sunset, night), its own settings, so the jungle waterfall (a tint, the moon at night) and the cave's view out (its light by the time, the moon behind the water) agree; its width shown in the cave too. Local commit in ~/kids-choice-games, under Unreleased. Waits for Matthew to try.",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T10:46-06:00",
+     "from": "matthew",
+     "chars": 230,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:49-06:00",
+     "from": "claude",
+     "chars": 1000,
+     "asks": false
+    }
+   ],
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T10:57-06:00",
+   "outcome": "DONE 2026-10-15: gems sparkling over the cave's walls (0-40) and on its crystals, with their own star settings; the waterfall's speed and time of day (day, sunset, night), its own, so the jungle waterfall and the cave's view out agree; its width shown in the cave. Checked in a muted headless browser (the cave and the falls at night). Local commit 66be20b, under Unreleased, not pushed.",
+   "metrics": {
+    "open_minutes": 11,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1230,
+    "tokens_est": 307,
+    "sync_minutes_est": 3.0,
+    "work_minutes": 2.0
+   }
+  },
+  {
+   "id": 94,
+   "area": "dress up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T10:27-06:00",
+   "text": "<b>Castle rooms by number, each with its own exits.</b> Matthew, 2026-10-15: a castle is numbered rooms; each room has a type and its own exits, each to a specific room by number (so two hallways can connect yet have distinct doors to distinct rooms), the outside, or nowhere. For a hallway: its number of doors (0-4) and each one's destination, and where its stairs lead. Chips to go straight into each room by number (for testing a castle), and dotted boxes round the groups of controls. Defaults reproduce today's links; other room types keep linking to every room for now; doors are one-way (the back chip always returns). Timed from 10:26:44. BUILT 2026-10-15, timed 10:26:44-10:29:54 (3.2 min; estimated 45-60): local commit 31896c0 in ~/kids-choice-games, under Unreleased. Checked in a muted headless browser: two hallways joined by their stairs, each with its own doors (room 1: out, 2, 3, stairs to 2; room 2: 4, 5, stairs to 1); the king's room still links to all; the dashed groups show only what applies; the go-to chips jump straight in. Known rough edge: a door's choices list rooms 1-6 even when the castle has fewer (a door to a missing room is not drawn). Open until Matthew is happy with the castle designer; then ^ticket(95). REVISED 2026-10-15, timed 10:32:19-10:36: door choices follow the room count; the king's room has its own doors (0-4, set like a hallway's) in its side walls in perspective, two to a side, the nearer door's sign above the farther's, clear of the throne, the banners and the suits of armor (moved against the back wall); its way out a sign at the bottom, as the clearing's path. Default doors 3 (out, and the next two rooms). Local commit after 31896c0. ALSO 2026-10-15, timed 10:36:46-10:38: inside a castle room only its settings group shows, marked (at the castle, all); the caption says where the friend is, in each place's own word (in, at, on, near, outside of; a castle room by name and number). Local commit after c3020a5. Matthew 2026-10-15: \"the new castle editing UX is better\". Then, timed 10:51:44-10:52: each room choice shows its room's own emoji, following its type (choices whose text follows the settings).",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T10:27-06:00",
+     "from": "matthew",
+     "chars": 720,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:27-06:00",
+     "from": "claude",
+     "chars": 1500,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:30-06:00",
+     "from": "claude",
+     "chars": 1400,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T10:32-06:00",
+     "from": "matthew",
+     "chars": 240,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:33-06:00",
+     "from": "matthew",
+     "chars": 60,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:33-06:00",
+     "from": "matthew",
+     "chars": 95,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:34-06:00",
+     "from": "matthew",
+     "chars": 50,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:36-06:00",
+     "from": "claude",
+     "chars": 1300,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:36-06:00",
+     "from": "matthew",
+     "chars": 300,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:37-06:00",
+     "from": "matthew",
+     "chars": 85,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:38-06:00",
+     "from": "claude",
+     "chars": 1100,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:51-06:00",
+     "from": "matthew",
+     "chars": 190,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:52-06:00",
+     "from": "claude",
+     "chars": 600,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:54-06:00",
+     "from": "matthew",
+     "chars": 640,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:57-06:00",
+     "from": "claude",
+     "chars": 900,
+     "asks": false
+    }
+   ],
+   "work": {
+    "started": "2026-10-15T10:26:44-06:00",
+    "ended": "2026-10-15T10:29:54-06:00",
+    "work_minutes": 3.2,
+    "estimate_minutes": [
+     45,
+     60
+    ],
+    "revision": {
+     "started": "2026-10-15T10:32:19-06:00",
+     "ended": "2026-10-15T10:36-06:00"
+    }
+   },
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T10:57-06:00",
+   "outcome": "DONE 2026-10-15 (Matthew: \"the new castle editing UX is better\"): a castle is rooms by number, each hallway and king's room with its own exits (0-4 doors, each to the outside or a room by number, its own too; a hallway's stairs); the king's room's doors in its side walls, its way out a sign at the bottom; go-to chips; the castle's settings in dashed groups, only the current room's inside it, marked; room choices only for rooms the castle has, each with its room's emoji; two color themes per castle (A, and B a swapped copy), each room in its own. Local commits 31896c0..9146c61 in ~/kids-choice-games, under Unreleased, not pushed.",
+   "metrics": {
+    "open_minutes": 30,
+    "matthew_messages": 9,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 9180,
+    "tokens_est": 2295,
+    "sync_minutes_est": 17.0,
+    "work_minutes": 11.6
+   }
+  },
   {
    "id": 87,
    "area": "performance",
@@ -1522,10 +1598,6 @@
   }
  ],
  "queue": [
-  97,
-  98,
-  96,
-  94,
   95,
   93,
   92,
@@ -1536,6 +1608,6 @@
   50,
   29
  ],
- "current_since": "2026-10-15T10:49-06:00",
- "current_waiting": "Try ^ticket(97), ^ticket(98), ^ticket(96), ^ticket(94) on 8133."
+ "current_since": "2026-10-15T10:57-06:00",
+ "current_waiting": ""
 }
