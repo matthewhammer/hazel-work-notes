@@ -380,14 +380,6 @@
    "url": "https://github.com/hazelgrove/hazel/pull/2583"
   },
   {
-   "id": 57,
-   "area": "dress up",
-   "added": "2026-10-14",
-   "text": "<b>Messed Up Dress Up: a fairy costume, a fairy forest, and LFOs for what shows.</b> (1) <b>A fairy costume:</b> wings in 5 styles and a fairy tunic in 5 styles, each style with its own default colours and colour choices. Hair, face and hands look the same as without it; the feet take styles that come from the costume. (2) <b>A fairy forest background:</b> a special forest area with a ring of mushrooms; time-of-day chips (day, night, sunrise, sunset); a fairy house in a tree, which appears with a transparency control and can follow one of the three LFOs (fading in and out with the music's beat). (3) <b>LFOs for visibility, the mixer's own:</b> each body part's transparency on the 👻 Visibility panel (^ticket(51)) can follow an LFO, optionally: a chip per part for none or an LFO. <b>The same LFOs as the mixing board's (^ticket(52)), and only three: A, B, C</b> (Matthew, 2026-10-14), set from either place: one set of three, used by the drums' pitch, the parts' transparency and the fairy house's. Three, not today's four, so the music panel lays out as a quad: the main mix controls and the three LFOs. (Today's tunes use A to C only; D goes.)",
-   "source": "Matthew, 2026-10-14",
-   "url": ""
-  },
-  {
    "id": 58,
    "area": "performance",
    "added": "2026-10-14",
@@ -429,9 +421,20 @@
   }
  ],
  "next_ticket": 84,
- "current_ticket": 57,
- "current_note": "Dress Up 0.0.32 is LIVE. Under Unreleased: the fairy in shirt + pants (^ticket(83)). Now: the fairy forest (^ticket(57)): a mushroom ring, day/night/sunrise/sunset chips, a fairy house in a tree with see-through and LFO controls.",
+ "current_ticket": 71,
+ "current_note": "Dress Up 0.0.32 is LIVE. Under Unreleased: the fairy forest (^ticket(57)), the fairy in shirt + pants (^ticket(83)). Now: the ghost costume (^ticket(71)). HTTPS (^ticket(60)): still no certificate from GitHub; the watcher keeps checking.",
  "closed_tickets": [
+  {
+   "id": 57,
+   "area": "dress up",
+   "added": "2026-10-14",
+   "text": "<b>Messed Up Dress Up: a fairy costume, a fairy forest, and LFOs for what shows.</b> (1) <b>A fairy costume:</b> wings in 5 styles and a fairy tunic in 5 styles, each style with its own default colours and colour choices. Hair, face and hands look the same as without it; the feet take styles that come from the costume. (2) <b>A fairy forest background:</b> a special forest area with a ring of mushrooms; time-of-day chips (day, night, sunrise, sunset); a fairy house in a tree, which appears with a transparency control and can follow one of the three LFOs (fading in and out with the music's beat). (3) <b>LFOs for visibility, the mixer's own:</b> each body part's transparency on the 👻 Visibility panel (^ticket(51)) can follow an LFO, optionally: a chip per part for none or an LFO. <b>The same LFOs as the mixing board's (^ticket(52)), and only three: A, B, C</b> (Matthew, 2026-10-14), set from either place: one set of three, used by the drums' pitch, the parts' transparency and the fairy house's. Three, not today's four, so the music panel lays out as a quad: the main mix controls and the three LFOs. (Today's tunes use A to C only; D goes.)",
+   "source": "Matthew, 2026-10-14",
+   "url": "",
+   "status": "done",
+   "closed": "2026-10-14",
+   "outcome": "DONE 2026-10-14. (1) The fairy costume and (3) the three shared LFOs shipped in 0.0.29; (2) the fairy forest is a local commit 1627f0d under Unreleased (ships on Matthew's go-ahead): a glade reached by a sign in the clearing, time-of-day chips (day, sunrise, sunset, night), a ring of toadstools (count slider, glowing at night), a great tree with a fairy house (door, lit windows, fungus steps, balcony, lanterns, chimney) whose see-through slider and LFO chip (A/B/C, in time with the music, listed on the mixing board) work; fireflies at dusk, sparkles by day, the camp site's star settings at night. Measured drags: redraws like the woods'; 0-5 single 33 ms frames per 2 s drag (noisy, no one part in A/B)."
+  },
   {
    "id": 83,
    "area": "Dress Up",
@@ -1063,12 +1066,11 @@
   }
  ],
  "queue": [
-  71,
   55,
   60,
   18,
   46,
   50
  ],
- "current_since": "2026-10-14T18:50-06:00"
+ "current_since": "2026-10-14T18:57-06:00"
 }
