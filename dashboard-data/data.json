@@ -286,7 +286,7 @@
   {
    "id": 18,
    "area": "performance",
-   "text": "Option B from ^report(5): evaluate each livelit's view in the worker, keep the last Html sent per livelit, and post patches to it, so view evaluation leaves the main thread. Needs the view runner (ViewCmdRunner) in the worker, a patch format, an element on the page that owns each livelit's DOM and applies patches, and handlers dispatched by id. Keep the page's own path for an interaction's immediate redraw, or every drag waits a round trip. Its condition is now met (2026-10-12, see ^ticket(10)): evaluating the view is about 69% of the main thread in a woods figure move, and C would save about 2%. Weigh it against making the view itself cheaper first (^ticket(1), ^ticket(2)).",
+   "text": "Option B from ^report(5): evaluate each livelit's view in the worker, keep the last Html sent per livelit, and post patches to it, so view evaluation leaves the main thread. Needs the view runner (ViewCmdRunner) in the worker, a patch format, an element on the page that owns each livelit's DOM and applies patches, and handlers dispatched by id. Keep the page's own path for an interaction's immediate redraw, or every drag waits a round trip. Its condition is now met (2026-10-12, see ^ticket(10)): evaluating the view is about 69% of the main thread in a woods figure move, and C would save about 2%. Weigh it against making the view itself cheaper first (^ticket(1), ^ticket(2)). <b>PROTOTYPED 2026-10-14</b> (local branches, nothing pushed; work notes http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T2120-0600.html): MvuShape and ViewCmdRunner moved to the language library (61d031fd93, no change in behavior); the worker runs view commands to Html, reusing an unchanged view per projector (fast_equal), and whole programs fold their views in too (experiments on experiment/2635-views-in-worker-all, ede920b07e). Full Body: the main thread about 540 ms (UX mode) / 220 ms (whole program) less per change, the redraw no later; Kids' Choice: release about 45 ms later (144 → 187–196 ms). Waits for Matthew's design calls: which livelits' views move (all, or the costly ones), and the on-screen ids in the request.",
    "source": "^report(5)",
    "url": "http://localhost:8131/series/005/#where",
    "added": "2026-10-12"
@@ -414,7 +414,7 @@
  ],
  "next_ticket": 85,
  "current_ticket": 18,
- "current_note": "Matthew is away. Done locally (nothing pushed): ^ticket(84), the autosave's quadratic print, fixed on branch perf/2635-autosave-print (cbc585933b): ~600 → 80 ms per change; UX mode release 2.05 → ~1.4 s. ^ticket(29)'s numbers are in hand (B and C similar once that fix is in; B's remaining ~0.1–0.2 s is livelit views run on the main thread). Now ^ticket(18): views in the worker, prototyping on a local branch.",
+ "current_note": "Matthew is away. Done locally, nothing pushed, all in the work notes (http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T2120-0600.html): ^ticket(84) fixed (the autosave's quadratic print, ~600 → 80 ms per change); ^ticket(29)'s numbers in hand; ^ticket(18) prototyped (main thread −540/−220 ms per change on Full Body, but +45 ms on Kids' Choice: design calls are Matthew's). Port 8341 serves #2635's PR head again. Next: ^ticket(46) (the recovering parser, 452 s on full-body.hz).",
  "closed_tickets": [
   {
    "id": 55,
