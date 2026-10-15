@@ -214,10 +214,18 @@
  ],
  "tickets": [
   {
+   "id": 89,
+   "area": "performance",
+   "added": "2026-10-15",
+   "text": "<b>Undo on #2635: is it slow, and does keeping the newest entry whole fix it?</b> From ^ticket(86) and ^report(14)'s update (\"What next, now\"). #2635 has Andrew's undo compaction (6010128b7d, d93e482166) but not #2597's f8ae6f2b9c, which keeps the newest undo and redo entries whole. On #2597, compacting every entry made a redo, and half the undos, cost about an edit (~6 s on Full Body, against 2.6 s), and keeping the newest whole brought them back (median 2.6 s, 5 runs). Steps: (1) the same undo check (undo_check.mjs: edit, undo, redo, a second edit, undo; 5 runs) on #2635's head 653ebc4adf, port 8341: running 2026-10-15; (2) if undo or redo take about an edit's time, port f8ae6f2b9c to #2635's History.re (the same three places: edit, undo, redo; #2635 also realizes and carries views on undo), check the Undo tests and the 5 runs again, and push on Matthew's word; (3) write the result into ^report(14)'s update before it is published (^ticket(87)). dev: left to #2469's merge (Matthew, 2026-10-15).",
+   "source": "Matthew, 2026-10-15",
+   "url": "http://localhost:8131/series/014/#update"
+  },
+  {
    "id": 87,
    "area": "performance",
    "added": "2026-10-14",
-   "text": "<b>Review ^report(14)'s draft update, then publish.</b> The answer to its open question: the undo history keeps the versions (^ticket(58)). A dated update box under the short answers, a dated note after each claim it supersedes (the \"undo capped at 2\" build, the open holder, the snapshot lead, What next), and an Update section: a figure and table of four builds over 12 edits, how the holder was found, Andrew's fix (6010128b7d, d93e482166) and its port, the undo checks and the likely cost; data in 014/data/update-2026-10-14/ and in the page's JSON. Local commits 0ddcef7, 6aabc40, 8ba0119 (undo timed over 5 runs per build; the keep-newest experiment) in ~/hazel-perf-report (beside ^report(8)'s draft f7828a6), not pushed. Preview: http://localhost:8131/series/014/#update-box. It calls the port \"a local commit\": if bc66ae5616 lands on #2597 first, link it. UPDATED 2026-10-15: both undo commits are on #2597 (d41c7a0298, f8ae6f2b9c) and the draft cites them (local commit b569651, not pushed); the keep-newest change is no longer called an experiment. Waits only for Matthew's review.",
+   "text": "<b>Review ^report(14)'s draft update, then publish.</b> The answer to its open question: the undo history keeps the versions (^ticket(58)). A dated update box under the short answers, a dated note after each claim it supersedes (the \"undo capped at 2\" build, the open holder, the snapshot lead, What next), and an Update section: a figure and table of four builds over 12 edits, how the holder was found, Andrew's fix (6010128b7d, d93e482166) and its port, the undo checks and the likely cost; data in 014/data/update-2026-10-14/ and in the page's JSON. Local commits 0ddcef7, 6aabc40, 8ba0119 (undo timed over 5 runs per build; the keep-newest experiment) in ~/hazel-perf-report (beside ^report(8)'s draft f7828a6), not pushed. Preview: http://localhost:8131/series/014/#update-box. It calls the port \"a local commit\": if bc66ae5616 lands on #2597 first, link it. UPDATED 2026-10-15: both undo commits are on #2597 (d41c7a0298, f8ae6f2b9c) and the draft cites them (local commit b569651, not pushed); the keep-newest change is no longer called an experiment. Waits only for Matthew's review. 2026-10-15: Matthew reviewed it (\"looks good\"); Figure 4's title now gives its unit (MB); dev is left to #2469 (his call, written in); waiting on ^ticket(89)'s #2635 undo result before publishing.",
    "source": "^ticket(58), 2026-10-14",
    "url": "http://localhost:8131/series/014/#update-box"
   },
@@ -381,9 +389,9 @@
    "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages"
   }
  ],
- "next_ticket": 89,
- "current_ticket": 87,
- "current_note": "✋❔ Waiting on Matthew: review ^ticket(87) (^report(14)'s update: http://localhost:8131/series/014/#update-box) and ^ticket(29) (^report(8)'s: http://localhost:8131/series/008/#update-box), both local in ~/hazel-perf-report (b569651); the A records for ^ticket(60); park ^ticket(18)? Done today: #2635 to 653ebc4adf and #2597 to f8ae6f2b9c pushed; Dress Up 0.0.34 live (^ticket(88), fast LFOs and blurring wings).",
+ "next_ticket": 90,
+ "current_ticket": 89,
+ "current_note": "Running ^ticket(89): the undo check on #2635 (5 runs, port 8341), for ^report(14)'s update (^ticket(87)), which Matthew has reviewed; dev is left to #2469. Still waiting on Matthew: ^ticket(29) (^report(8)'s draft), the A records for ^ticket(60), park ^ticket(18)?",
  "closed_tickets": [
   {
    "id": 88,
@@ -1138,12 +1146,13 @@
   }
  ],
  "queue": [
+  89,
   87,
   18,
   60,
   50,
   29
  ],
- "current_since": "2026-10-15T07:58-06:00",
- "current_waiting": "Review ^ticket(87) and ^ticket(29); A records for ^ticket(60); park ^ticket(18)?"
+ "current_since": "2026-10-15T08:08-06:00",
+ "current_waiting": ""
 }
