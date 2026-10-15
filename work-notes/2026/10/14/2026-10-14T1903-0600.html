@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Deep links: review answers</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --hi: #fef3c7; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --hi: #3a3218; }
+  }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; }
+  h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; }
+  .who { border-left: 4px solid var(--accent); background: var(--code); padding: 8px 12px; border-radius: 4px; }
+  code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  pre { background: var(--code); padding: 10px 12px; border-radius: 6px; overflow-x: auto; font-size: 0.85em; line-height: 1.45; }
+  pre code { background: none; padding: 0; }
+  a { color: var(--accent); }
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9em; }
+  th, td { border-bottom: 1px solid var(--line); padding: 6px 6px; text-align: left; vertical-align: top; }
+  td:first-child { white-space: nowrap; }
+  li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Deep links (<a href="https://github.com/hazelgrove/hazel/pull/2583">#2583</a>): answers to the review</h1>
+<p class="sub">2026-10-14. <a href="http://matthewhammer.org/hazel-work-notes/#ticket-55"><code class="ref"><b>^ticket(</b>55<b>)</b></code></a> on the dashboard. In reply to the review of <a href="https://github.com/hazelgrove/hazel/pull/2583">#2583</a> by @7h3kk1d, 2026-09-23 (changes requested).</p>
+<p class="who"><b>Who wrote this:</b> Matthew asked for this page; Claude (an AI model, in Claude Code) generated it, from the review and the branch's code at <code>867da4fe8d</code>. Nothing on the branch has changed yet: these are answers and a plan, for Matthew to accept, change or drop.</p>
+
+<h2 id="short">In short</h2>
+<ul>
+<li>The review's main point holds: two separate URL encodings (the scratchpad's <code>?name=&amp;share=</code> and this PR's <code>?slide=</code>), parsing tangled with applying, and nothing testable without a browser.</li>
+<li>The plan: one type for a whole deep-link request, parsed from the query (passed in) apart from applying it, so parsing, the editor actions and making the URL can each be tested; applied as an action from <code>Main.re</code>; <code>slide_name</code> off <code>Globals</code>; the panel names in one switch in <code>Sidebar.re</code>; and the small fixes below.</li>
+<li>Open questions for Matthew: whether the scratchpad's share encoding moves into the same type in this PR or a follow-up; the copied span (selection or caret, instead of the enclosing term); tutorials (not in this PR).</li>
+</ul>
+
+<h2 id="request">One request type, parsing apart from applying</h2>
+<p>Following the existing <code>panel_request</code> pattern, as the review suggests. A sketch, not settled code:</p>
+<pre><code>type target =
+  | Slide(string)                   /* ?slide=   a documentation slide, by name: a pointer */
+  | Share(string, string);          /* ?name=&amp;share=   a scratchpad's contents: a snapshot */
+
+type position =
+  | Caret(Point.t)                  /* ?caret=  */
+  | Select(Point.t, Point.t);       /* ?select= */
+
+type request = {
+  target: option(target),
+  panel: option(panel_request),     /* ?panel=  */
+  position: option(position),
+};
+
+let parse: (string =&gt; option(string)) =&gt; request;      /* the query lookup passed in */
+let to_params: request =&gt; list((string, string));      /* parse(lookup(to_params(r))) == r */
+let settings: (request, Settings.Model.t) =&gt; Settings.Model.t;
+let action: request =&gt; option(Action.t);</code></pre>
+<p>Tests, without a browser: parsing each parameter and its edge cases (empty values, a column past the line's end, a range of whole lines, junk); the round trip from a request to a URL and back; the loose matching of a slide name against a list of names; and the action a request makes.</p>
+
+<h2 id="comments">The comments, one by one</h2>
+<div class="scroll"><table>
+<tr><th>Where</th><th>The comment</th><th>The answer</th></tr>
+<tr><td><a href="https://github.com/hazelgrove/hazel/pull/2583#discussion_r4083312295">DeepLink.re</a></td><td>A type for the whole request; separate parsing from applying; ideally subsume the scratchpad encoding.</td><td>Yes: the type above. Subsuming <code>?name=&amp;share=</code> fits it as a <code>Share</code> target; whether in this PR or a follow-up is Matthew's call.</td></tr>
+<tr><td><a href="https://github.com/hazelgrove/hazel/pull/2583#discussion_r4083329442">DeepLink.re</a></td><td>Then parsing, the editor actions and the URL can be tested separately.</td><td>Yes: <code>parse</code>, <code>action</code> and <code>to_params</code>, each with tests.</td></tr>
+<tr><td><a href="https://github.com/hazelgrove/hazel/pull/2583#discussion_r4083240836">DeepLink.re:91</a></td><td>Nothing here is testable; pass the query param in.</td><td>Yes: <code>parse</code> takes the lookup, <code>string =&gt; option(string)</code>.</td></tr>
+<tr><td><a href="https://github.com/hazelgrove/hazel/pull/2583#discussion_r4083262011">DeepLink.re:133</a></td><td>The panel request should be passed into <code>settings</code>.</td><td>Yes: <code>settings(request, stored)</code>.</td></tr>
+<tr><td><a href="https://github.com/hazelgrove/hazel/pull/2583#discussion_r4083123698">DeepLink.re:14</a></td><td>The header comment reads "like a poem or ancient translation".</td><td>Fair. Rewrite it short and plain: one line per parameter, with an example.</td></tr>
+<tr><td><a href="https://github.com/hazelgrove/hazel/pull/2583#discussion_r4083172714">DeepLink.re:44</a></td><td>Not clear what <code>key</code> is for.</td><td>It normalizes a name for loose matching (letters and digits, lowercased), for slide and panel names only. Rename it (say <code>loose_name</code>), with a one-line comment.</td></tr>
+<tr><td><a href="https://github.com/hazelgrove/hazel/pull/2583#discussion_r4083226658">DeepLink.re:97</a></td><td><code>List.find_index</code> exists as of OCaml 5.1.</td><td>Yes: the repository requires OCaml 5.2 (<code>hazel.opam</code>), and <code>CodeEditable.re</code> already uses it. Switch.</td></tr>
+<tr><td><a href="https://github.com/hazelgrove/hazel/pull/2583#discussion_r4083254422">DeepLink.re:126</a></td><td>Simpler to put the enumerate/show mapping here than aliases and a default show inside <code>variant</code>.</td><td>Yes, with the next row: one switch from panel to URL name, and its inverse; the generic <code>variant</code> and the alias list go.</td></tr>
+<tr><td><a href="https://github.com/hazelgrove/hazel/pull/2583#discussion_r4083358551">DeepLink.re:230</a></td><td>Define <code>panel_key</code> in <code>Sidebar.re</code> as a switch overriding the default show.</td><td>Yes: the switch lives in <code>Sidebar.re</code>, beside the panels it names.</td></tr>
+<tr><td><a href="https://github.com/hazelgrove/hazel/pull/2583#discussion_r4083407180">Globals.re:141</a></td><td>Handle it as an action in <code>Main.re</code>, like the other actions.</td><td>Yes: at startup <code>Main.re</code> parses the request and schedules it as an action (it already schedules the caret move that way); the settings change goes through the update too, instead of <code>Globals.load</code>.</td></tr>
+<tr><td><a href="https://github.com/hazelgrove/hazel/pull/2583#discussion_r4083426061">Globals.re:89</a></td><td><code>slide_name</code> does not belong on <code>Globals</code>; raise <code>CopyDeepLink(span)</code> and let the Page-level update build the URL (non-blocking).</td><td>Agreed: do it in this PR. <code>CodeEditable</code> raises <code>CopyDeepLink(span)</code>; the Page update, which knows the mode, the slide and the sidebar, builds the URL and writes it to the clipboard. <code>slide_name</code> leaves <code>Globals</code>, and so does the <code>~linkable</code> bool threaded through the context menu.</td></tr>
+<tr><td><a href="https://github.com/hazelgrove/hazel/pull/2583#discussion_r4083497211">CodeEditable.re:687</a></td><td>Why select the enclosing term rather than share the caret?</td><td>The idea was that the link should show what was pointed at, as "Select term" would. But it adds a step nobody asked for. Simpler: share exactly what is there, the selection if any, else the caret. Matthew's call.</td></tr>
+<tr><td><a href="https://github.com/hazelgrove/hazel/pull/2583#discussion_r4083370132">Page.re:851</a></td><td>Do we want to support tutorial sharing?</td><td>Not in this PR. If it is wanted later, the request type can grow a target for it.</td></tr>
+</table></div>
+
+<h2 id="order">The order of the work</h2>
+<ol>
+<li>The request type, <code>parse</code>, <code>to_params</code>, <code>settings</code> and <code>action</code>, with tests.</li>
+<li>Startup as an action in <code>Main.re</code>; <code>CopyDeepLink(span)</code> handled at the Page level; <code>slide_name</code> and <code>~linkable</code> gone.</li>
+<li>The panel names in one switch in <code>Sidebar.re</code>.</li>
+<li>The small ones: <code>List.find_index</code>, the rename of <code>key</code>, the header comment.</li>
+<li>The copied span: selection or caret (if Matthew agrees).</li>
+<li>The <code>Share</code> target: here or a follow-up.</li>
+</ol>
+</main>
+<!-- pr-cards: begin -->
+<style>
+  .pr-card { position: absolute; z-index: 40; width: max-content; max-width: min(380px, calc(100vw - 32px)); box-sizing: border-box;
+    padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line, #d0d7de); background: var(--paper, var(--bg, Canvas));
+    color: var(--ink, CanvasText); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18); font: 13px/1.45 system-ui, sans-serif; pointer-events: none; }
+  .pr-card .pr-head { color: var(--muted, GrayText); font-size: 12px; }
+  .pr-card .pr-title { font-weight: 600; margin: 3px 0 4px; }
+  .pr-card .pr-meta { color: var(--muted, GrayText); font-size: 12px; }
+  .pr-card .pr-note { color: var(--muted, GrayText); font-size: 11px; margin-top: 5px; font-style: italic; }
+  .pr-state { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; margin-left: 6px; vertical-align: 1px; }
+  .pr-state.open { background: #1f883d; } .pr-state.merged { background: #8250df; } .pr-state.closed { background: #cf222e; } .pr-state.draft { background: #6e7781; }
+</style>
+<script>
+/* A card for each link to a GitHub PR or issue, on hover or focus: its
+   title, state, author, dates and comments, asked of GitHub live, once per
+   number per page load; if GitHub does not answer, what it said when the
+   page was built (tools/link_prs.py writes this block). */
+(() => {
+  const CACHED = {"hazelgrove/hazel#2583": {"author": "matthewhammer", "comments": 7, "created": "2026-09-17T18:58:02Z", "kind": "pull", "state": "open", "title": "Deep links: the URL can say which slide, which panel, and where the cursor is", "updated": "2026-09-23T14:24:23Z"}}, BUILT = "2026-10-14";
+  const RX = /^https:\/\/github\.com\/([^/]+\/[^/]+)\/(?:pull|issues)\/(\d+)$/;
+  const asked = new Map();
+  const ask = key => {
+    if (!asked.has(key)) {
+      const [repo, n] = key.split("#");
+      asked.set(key, fetch(`https://api.github.com/repos/${repo}/issues/${n}`)
+        .then(r => r.ok ? r.json() : Promise.reject(r.status))
+        .then(j => ({ title: j.title, author: j.user && j.user.login, created: j.created_at, updated: j.updated_at,
+                      comments: j.comments, kind: j.pull_request ? "pull" : "issues",
+                      state: j.pull_request && j.pull_request.merged_at ? "merged" : j.draft ? "draft" : j.state }))
+        .catch(() => null));
+    }
+    return asked.get(key);
+  };
+  const day = iso => new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+  const ago = iso => {
+    const s = (Date.now() - new Date(iso)) / 1000;
+    for (const [u, k] of [["year", 31536000], ["month", 2592000], ["day", 86400], ["hour", 3600], ["minute", 60]])
+      if (s >= k) { const v = Math.floor(s / k); return `${v} ${u}${v === 1 ? "" : "s"} ago`; }
+    return "just now";
+  };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const fill = (key, d, note) => {
+    const [repo, n] = key.split("#"), what = d.kind === "pull" ? "Pull request" : "Issue";
+    return `<div class="pr-head">${esc(repo)} #${n} · ${what}<span class="pr-state ${esc(d.state)}">${esc(d.state)}</span></div>` +
+      `<div class="pr-title">${esc(d.title)}</div>` +
+      `<div class="pr-meta">by ${esc(d.author)} · opened ${day(d.created)} · updated ${ago(d.updated)} · ${d.comments} comment${d.comments === 1 ? "" : "s"}</div>` +
+      (note ? `<div class="pr-note">${note}</div>` : "");
+  };
+  let card = null, over = null, timer = null;
+  const place = a => {
+    const r = a.getBoundingClientRect(), w = card.offsetWidth, h = card.offsetHeight;
+    const left = Math.max(16, Math.min(r.left, document.documentElement.clientWidth - w - 16));
+    const below = r.bottom + 6 + h < innerHeight;
+    card.style.left = (left + scrollX) + "px";
+    card.style.top = ((below ? r.bottom + 6 : r.top - 6 - h) + scrollY) + "px";
+  };
+  const hide = () => { clearTimeout(timer); over = null; if (card) card.hidden = true; };
+  const show = a => {
+    const m = RX.exec(a.href);
+    if (!m) return;
+    const key = m[1] + "#" + m[2];
+    over = a; clearTimeout(timer);
+    timer = setTimeout(async () => {
+      if (!card) { card = document.createElement("div"); card.className = "pr-card"; card.setAttribute("role", "tooltip"); document.body.append(card); }
+      const cached = CACHED[key];
+      card.innerHTML = cached ? fill(key, cached, "asking GitHub…") : `<div class="pr-head">${esc(key)}</div><div class="pr-note">asking GitHub…</div>`;
+      card.hidden = false; place(a);
+      const d = await ask(key);
+      if (over !== a) return;
+      card.innerHTML = d ? fill(key, d, "")
+        : cached ? fill(key, cached, `GitHub didn't answer just now (its limit is 60 lookups an hour per network): as of ${BUILT}`)
+        : `<div class="pr-head">${esc(key)}</div><div class="pr-note">GitHub didn't answer just now.</div>`;
+      place(a);
+    }, 250);
+  };
+  const linkOf = t => t && t.closest && t.closest("a[href]");
+  document.addEventListener("mouseover", e => { const a = linkOf(e.target); if (a && a !== over && RX.test(a.href)) show(a); });
+  document.addEventListener("mouseout", e => { const a = linkOf(e.target); if (a && a === over && !a.contains(e.relatedTarget)) hide(); });
+  document.addEventListener("focusin", e => { const a = linkOf(e.target); if (a && RX.test(a.href)) show(a); });
+  document.addEventListener("focusout", hide);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") hide(); });
+  addEventListener("scroll", () => { if (over && card && !card.hidden) place(over); }, { passive: true });
+})();
+</script>
+<!-- pr-cards: end -->
+<!-- ref-cards: begin -->
+<style>
+  .ref-card { position: absolute; z-index: 40; width: max-content; max-width: min(400px, calc(100vw - 32px)); box-sizing: border-box;
+    padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line, #d0d7de); background: var(--paper, var(--bg, Canvas));
+    color: var(--ink, CanvasText); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18); font: 13px/1.45 system-ui, sans-serif; pointer-events: none; }
+  .ref-card .rc-head { color: var(--muted, GrayText); font-size: 12px; }
+  .ref-card .rc-title { font-weight: 600; margin: 3px 0 4px; }
+  .ref-card .rc-meta { color: var(--muted, GrayText); font-size: 12px; }
+  .ref-card .rc-note { color: var(--muted, GrayText); font-size: 11px; margin-top: 5px; font-style: italic; }
+  .rc-state { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; margin-left: 6px;
+    vertical-align: 1px; background: #6e7781; }
+  .rc-state.current { background: #1f883d; } .rc-state.queued { background: #9a6700; } .rc-state.open { background: #0969da; }
+  .rc-state.done { background: #8250df; }
+</style>
+<script>
+/* A card for each ^ticket(N) and ^report(N) link, on hover or focus: a
+   ticket from the work dashboard's data (its area, its status, its first
+   line), carried by the dashboard's own pages and read live from the
+   published data anywhere else; a report from its own page, live (its
+   title, date and opening). Once per page load each. */
+(() => {
+  const PUBLIC = "http://matthewhammer.org/hazel-work-notes/dashboard-data/data.json";
+  const DATA = location.port === "8000" && /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? "/data.json" : PUBLIC;
+  /* the dashboard itself carries its tickets (made with the page, changed
+     with it); any other page asks the published data */
+  const EMBED = null;
+  let data = EMBED ? Promise.resolve(EMBED) : null;
+  const loadData = () => data || (data = fetch(DATA, { cache: "no-store" }).then(r => r.ok ? r.json() : Promise.reject(r.status)).catch(() => null));
+  const pages = new Map();
+  const loadReport = url => {
+    if (!pages.has(url)) pages.set(url, fetch(url).then(r => r.ok ? r.text() : Promise.reject(r.status)).then(t => {
+      const doc = new DOMParser().parseFromString(t, "text/html"), h1 = doc.querySelector("h1");
+      let p = h1 && h1.nextElementSibling;
+      while (p && p.tagName !== "P") p = p.nextElementSibling;
+      const label = (doc.querySelector(".series") || {}).textContent || "";
+      return { title: h1 ? h1.textContent.trim() : doc.title, date: (label.match(/\d{4}-\d{2}-\d{2}/) || [""])[0],
+               lead: p ? p.textContent.replace(/\s+/g, " ").trim() : "" };
+    }).catch(() => null));
+    return pages.get(url);
+  };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const cut = (t, n) => t.length <= n ? t : t.slice(0, n).replace(/\s+\S*$/, "") + "…";
+  const plain = h => new DOMParser().parseFromString("<div>" + (h || "") + "</div>", "text/html").body.textContent.replace(/\s+/g, " ").trim();
+  const lead = h => { const m = /^\s*<b>([\s\S]*?)<\/b>/.exec(h || ""); return m ? plain(m[1]) : cut(plain(h), 200); };
+  const ticketCard = (n, d) => {
+    const open = (d.tickets || []).find(t => t.id === n), closed = (d.closed_tickets || []).find(t => t.id === n), t = open || closed;
+    if (!t) return `<div class="rc-head">^ticket(${n})</div><div class="rc-note">Not on the dashboard.</div>`;
+    const q = (d.queue || []).indexOf(n);
+    const [cls, state] = closed ? ["done", `${t.status || "closed"}, ${t.closed || ""}`]
+      : d.current_ticket === n ? ["current", "current" + (d.current_waiting ? " · ✋❔ waiting on Matthew" : "")]
+      : q >= 0 ? ["queued", `queued, ${q + 1} in line`] : ["open", "open"];
+    return `<div class="rc-head">^ticket(${n}) · ${esc(t.area || "")}<span class="rc-state ${cls}">${esc(state)}</span></div>` +
+      `<div class="rc-title">${esc(lead(t.text))}</div>` +
+      `<div class="rc-meta">${t.added ? "added " + esc(t.added) + " · " : ""}from ${esc(plain(t.source || "") || "?")}</div>` +
+      (closed && t.outcome ? `<div class="rc-meta">${esc(cut(plain(t.outcome), 180))}</div>` : "");
+  };
+  const reportCard = (n, r) => r
+    ? `<div class="rc-head">^report(${n}) · Hazel performance analysis${r.date ? " · " + esc(r.date) : ""}</div>` +
+      `<div class="rc-title">${esc(r.title)}</div>` + (r.lead ? `<div class="rc-meta">${esc(cut(r.lead, 240))}</div>` : "")
+    : `<div class="rc-head">^report(${n})</div><div class="rc-note">The report's page didn't load just now.</div>`;
+  let card = null, over = null, timer = null;
+  const place = a => {
+    const r = a.getBoundingClientRect(), w = card.offsetWidth, h = card.offsetHeight;
+    card.style.left = (Math.max(16, Math.min(r.left, document.documentElement.clientWidth - w - 16)) + scrollX) + "px";
+    card.style.top = ((r.bottom + 6 + h < innerHeight ? r.bottom + 6 : r.top - 6 - h) + scrollY) + "px";
+  };
+  const refOf = a => { const c = a.querySelector("code.ref"); const m = c && /^\^(ticket|report)\((\d+)\)$/.exec(c.textContent.trim()); return m && { kind: m[1], n: Number(m[2]) }; };
+  const hide = () => { clearTimeout(timer); over = null; if (card) card.hidden = true; };
+  const show = (a, ref) => {
+    over = a; clearTimeout(timer);
+    timer = setTimeout(async () => {
+      if (!card) { card = document.createElement("div"); card.className = "ref-card"; card.setAttribute("role", "tooltip"); document.body.append(card); }
+      card.innerHTML = `<div class="rc-head">^${ref.kind}(${ref.n})</div><div class="rc-note">loading…</div>`;
+      card.hidden = false; place(a);
+      let html;
+      if (ref.kind === "ticket") { const d = await loadData(); html = d ? ticketCard(ref.n, d) : `<div class="rc-head">^ticket(${ref.n})</div><div class="rc-note">The dashboard's data didn't load just now.</div>`; }
+      else html = reportCard(ref.n, await loadReport(a.href));
+      if (over !== a) return;
+      card.innerHTML = html; place(a);
+    }, 250);
+  };
+  const linkOf = t => t && t.closest && t.closest("a[href]");
+  document.addEventListener("mouseover", e => { const a = linkOf(e.target), r = a && refOf(a); if (r && a !== over) show(a, r); });
+  document.addEventListener("mouseout", e => { const a = linkOf(e.target); if (a && a === over && !a.contains(e.relatedTarget)) hide(); });
+  document.addEventListener("focusin", e => { const a = linkOf(e.target), r = a && refOf(a); if (r) show(a, r); });
+  document.addEventListener("focusout", hide);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") hide(); });
+  addEventListener("scroll", () => { if (over && card && !card.hidden) place(over); }, { passive: true });
+})();
+</script>
+<!-- ref-cards: end -->
+<!-- notes: begin -->
+<style>
+  code.ref { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; white-space: nowrap; }
+  code.ref b { font-weight: 800; }
+  button.mint { margin-left: 4px; font: inherit; font-size: 0.75em; padding: 0 6px; border: 1px solid var(--line, #ccc);
+    border-radius: 4px; background: transparent; color: var(--muted, #666); cursor: pointer; vertical-align: 1px; }
+  button.mint:hover { color: inherit; }
+  button.mint.done { color: var(--good, #15803d); border-color: var(--good, #15803d); }
+  a.step-link { color: var(--muted, #666); text-decoration: none; font-size: 0.85em; margin-left: 4px; }
+  a.step-link:hover { text-decoration: underline; }
+  li:target { background: color-mix(in srgb, var(--good, #15803d) 12%, transparent); border-radius: 6px; }
+</style>
+<script>
+/* Each step under "Next": a link to it, a chip copying that link, and a
+   chip copying a request to mint a ticket for it (to paste to Claude). */
+(() => {
+  const h = document.getElementById("next");
+  if (!h) return;
+  let list = h.nextElementSibling;
+  while (list && !/^(OL|UL)$/.test(list.tagName)) {
+    if (list.tagName === "H2") return;
+    list = list.nextElementSibling;
+  }
+  if (!list) return;
+  const page = location.origin + location.pathname, name = document.title;
+  const copy = async (b, text) => {
+    try { await navigator.clipboard.writeText(text); }
+    catch (_) { const t = document.createElement("textarea"); t.value = text; document.body.append(t); t.select(); document.execCommand("copy"); t.remove(); }
+    const was = b.textContent; b.textContent = "copied"; b.classList.add("done");
+    setTimeout(() => { b.textContent = was; b.classList.remove("done"); }, 1500);
+  };
+  [...list.children].filter(li => li.tagName === "LI").forEach((li, i) => {
+    const n = i + 1;
+    if (!li.id) li.id = "step-" + n;
+    const url = page + "#" + li.id;
+    const b = li.querySelector("b, strong");
+    const title = (b ? b.textContent : li.textContent).replace(/\s+/g, " ").trim().replace(/[:.,;]$/, "").slice(0, 160);
+    const a = document.createElement("a");
+    a.href = "#" + li.id; a.className = "step-link"; a.textContent = "#" + n; a.title = "A link to this step";
+    const link = document.createElement("button");
+    link.type = "button"; link.className = "mint"; link.textContent = "copy link"; link.title = "Copies a link to this step";
+    link.addEventListener("click", () => copy(link, url));
+    const mint = document.createElement("button");
+    mint.type = "button"; mint.className = "mint"; mint.textContent = "copy for a ticket";
+    mint.title = "Copies a request to mint a ticket for this step, to paste to Claude";
+    mint.addEventListener("click", () => copy(mint, "Mint a ticket for this step: " + name + ", Next, step " + n + ': "' + title + '". ' + url));
+    li.append(" ", a, " ", link, " ", mint);
+  });
+  if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
+})();
+</script>
+<!-- notes: end -->
+</body>
+</html>
