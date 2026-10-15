@@ -214,18 +214,10 @@
  ],
  "tickets": [
   {
-   "id": 89,
-   "area": "performance",
-   "added": "2026-10-15",
-   "text": "<b>Undo on #2635: is it slow, and does keeping the newest entry whole fix it?</b> From ^ticket(86) and ^report(14)'s update (\"What next, now\"). #2635 has Andrew's undo compaction (6010128b7d, d93e482166) but not #2597's f8ae6f2b9c, which keeps the newest undo and redo entries whole. On #2597, compacting every entry made a redo, and half the undos, cost about an edit (~6 s on Full Body, against 2.6 s), and keeping the newest whole brought them back (median 2.6 s, 5 runs). Steps: (1) the same undo check (undo_check.mjs: edit, undo, redo, a second edit, undo; 5 runs) on #2635's head 653ebc4adf, port 8341: running 2026-10-15; (2) if undo or redo take about an edit's time, port f8ae6f2b9c to #2635's History.re (the same three places: edit, undo, redo; #2635 also realizes and carries views on undo), check the Undo tests and the 5 runs again, and push on Matthew's word; (3) write the result into ^report(14)'s update before it is published (^ticket(87)). dev: left to #2469's merge (Matthew, 2026-10-15). RESULT 2026-10-15, #2635 at 653ebc4adf, 5 runs: edits median 1.2 s (1.05-1.44); every redo 3.6-4.2 s, about three edits; undos 3.5-5.1 s but for three at 1.1-1.5 s. Slow, so (Matthew's call) the port: local branch perf/2635-undo-keep-newest, Undo tests pass; measuring its 5 runs and its memory, then push.",
-   "source": "Matthew, 2026-10-15",
-   "url": "http://localhost:8131/series/014/#update"
-  },
-  {
    "id": 87,
    "area": "performance",
    "added": "2026-10-14",
-   "text": "<b>Review ^report(14)'s draft update, then publish.</b> The answer to its open question: the undo history keeps the versions (^ticket(58)). A dated update box under the short answers, a dated note after each claim it supersedes (the \"undo capped at 2\" build, the open holder, the snapshot lead, What next), and an Update section: a figure and table of four builds over 12 edits, how the holder was found, Andrew's fix (6010128b7d, d93e482166) and its port, the undo checks and the likely cost; data in 014/data/update-2026-10-14/ and in the page's JSON. Local commits 0ddcef7, 6aabc40, 8ba0119 (undo timed over 5 runs per build; the keep-newest experiment) in ~/hazel-perf-report (beside ^report(8)'s draft f7828a6), not pushed. Preview: http://localhost:8131/series/014/#update-box. It calls the port \"a local commit\": if bc66ae5616 lands on #2597 first, link it. UPDATED 2026-10-15: both undo commits are on #2597 (d41c7a0298, f8ae6f2b9c) and the draft cites them (local commit b569651, not pushed); the keep-newest change is no longer called an experiment. Waits only for Matthew's review. 2026-10-15: Matthew reviewed it (\"looks good\"); Figure 4's title now gives its unit (MB); dev is left to #2469 (his call, written in); waiting on ^ticket(89)'s #2635 undo result before publishing.",
+   "text": "<b>Review ^report(14)'s draft update, then publish.</b> The answer to its open question: the undo history keeps the versions (^ticket(58)). A dated update box under the short answers, a dated note after each claim it supersedes (the \"undo capped at 2\" build, the open holder, the snapshot lead, What next), and an Update section: a figure and table of four builds over 12 edits, how the holder was found, Andrew's fix (6010128b7d, d93e482166) and its port, the undo checks and the likely cost; data in 014/data/update-2026-10-14/ and in the page's JSON. Local commits 0ddcef7, 6aabc40, 8ba0119 (undo timed over 5 runs per build; the keep-newest experiment) in ~/hazel-perf-report (beside ^report(8)'s draft f7828a6), not pushed. Preview: http://localhost:8131/series/014/#update-box. It calls the port \"a local commit\": if bc66ae5616 lands on #2597 first, link it. UPDATED 2026-10-15: both undo commits are on #2597 (d41c7a0298, f8ae6f2b9c) and the draft cites them (local commit b569651, not pushed); the keep-newest change is no longer called an experiment. Waits only for Matthew's review. 2026-10-15: Matthew reviewed it (\"looks good\"); Figure 4's title now gives its unit (MB); dev is left to #2469 (his call, written in); waiting on ^ticket(89)'s #2635 undo result before publishing. READY 2026-10-15: #2635's undo result written in (032fe3aca6); local commits up to 9e4d3ca in ~/hazel-perf-report. Waits for Matthew's word to publish (series repo push + homepage copy).",
    "source": "^ticket(58), 2026-10-14",
    "url": "http://localhost:8131/series/014/#update-box"
   },
@@ -390,9 +382,20 @@
   }
  ],
  "next_ticket": 90,
- "current_ticket": 89,
- "current_note": "Working ^ticket(89): #2635's redo is slow (3.6-4.2 s against 1.2 s an edit, 5 runs). Built the newest-entry-whole port (Undo tests pass), measuring its undo and memory on 8341, then pushing on Matthew's earlier word. Then ^report(14)'s update gets the result (^ticket(87)). Still waiting on Matthew: ^ticket(29) (^report(8)'s draft), the A records for ^ticket(60), park ^ticket(18)?",
+ "current_ticket": 87,
+ "current_note": "✋❔ Waiting on Matthew: say publish for ^ticket(87), ^report(14)'s update, now complete (http://localhost:8131/series/014/#update-box): the undo history found and fixed on #2597, and on #2635 undo back to within 0.3 s (032fe3aca6, pushed). Also his: ^ticket(29) (^report(8)'s draft), the A records for ^ticket(60), park ^ticket(18)? Pushed today: #2635 to 032fe3aca6, #2597 to f8ae6f2b9c; Dress Up 0.0.34 live.",
  "closed_tickets": [
+  {
+   "id": 89,
+   "area": "performance",
+   "added": "2026-10-15",
+   "text": "<b>Undo on #2635: is it slow, and does keeping the newest entry whole fix it?</b> From ^ticket(86) and ^report(14)'s update (\"What next, now\"). #2635 has Andrew's undo compaction (6010128b7d, d93e482166) but not #2597's f8ae6f2b9c, which keeps the newest undo and redo entries whole. On #2597, compacting every entry made a redo, and half the undos, cost about an edit (~6 s on Full Body, against 2.6 s), and keeping the newest whole brought them back (median 2.6 s, 5 runs). Steps: (1) the same undo check (undo_check.mjs: edit, undo, redo, a second edit, undo; 5 runs) on #2635's head 653ebc4adf, port 8341: running 2026-10-15; (2) if undo or redo take about an edit's time, port f8ae6f2b9c to #2635's History.re (the same three places: edit, undo, redo; #2635 also realizes and carries views on undo), check the Undo tests and the 5 runs again, and push on Matthew's word; (3) write the result into ^report(14)'s update before it is published (^ticket(87)). dev: left to #2469's merge (Matthew, 2026-10-15). RESULT 2026-10-15, #2635 at 653ebc4adf, 5 runs: edits median 1.2 s (1.05-1.44); every redo 3.6-4.2 s, about three edits; undos 3.5-5.1 s but for three at 1.1-1.5 s. Slow, so (Matthew's call) the port: local branch perf/2635-undo-keep-newest, Undo tests pass; measuring its 5 runs and its memory, then push.",
+   "source": "Matthew, 2026-10-15",
+   "url": "http://localhost:8131/series/014/#update",
+   "status": "done",
+   "closed": "2026-10-15",
+   "outcome": "DONE 2026-10-15: #2635 had Andrew's compaction alone; 5 runs at 653ebc4adf: edits 1.2 s, every redo 3.6-4.2 s, most undos 3.5-5.1 s. Ported the newest-entry-whole change (as f8ae6f2b9c on #2597) and PUSHED it on Matthew's word: #2635 at 032fe3aca6. 5 runs: every undo and redo within 0.3 s (the check's poll), edits 1.1 s, every step restores; memory over 12 edits the same within about 1 MB. Undo tests pass. Written into ^report(14)'s update (^ticket(87))."
+  },
   {
    "id": 88,
    "area": "dress up",
@@ -1146,13 +1149,12 @@
   }
  ],
  "queue": [
-  89,
   87,
   18,
   60,
   50,
   29
  ],
- "current_since": "2026-10-15T08:08-06:00",
- "current_waiting": ""
+ "current_since": "2026-10-15T08:20-06:00",
+ "current_waiting": "Publish ^ticket(87)? Review ^ticket(29); A records for ^ticket(60); park ^ticket(18)?"
 }
