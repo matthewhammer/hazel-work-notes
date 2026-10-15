@@ -217,7 +217,7 @@
    "id": 91,
    "area": "performance",
    "added": "2026-10-15",
-   "text": "<b>Drag stalls: how many changes does a drag process, and does coalescing slider input help?</b> From ^ticket(90): on #2635's head a 1.5 s drag of Full Body's arm length stalls the page about 4 s (whole program), and each processed change costs about 0.9 s of main thread, so the stall is mostly how many changes a drag triggers. Steps: (1) count, per drag: the slider's input events, the eval requests the page posts to the worker and the replies, and the heavy frames (gaps over 50 ms); (2) find where a slider's input becomes an edit, and whether changes already coalesce (the newest value only) while one is in flight; (3) if not, try coalescing on a local branch: while a change is in flight, keep only the newest value and process it when the change lands; (4) measure with drag_stall.py (C and B), release to redraw, and Kids' Choice, against the head; (5) then decide ^ticket(18) with both in hand. Local only until Matthew says.",
+   "text": "<b>Drag stalls: how many changes does a drag process, and does coalescing slider input help?</b> From ^ticket(90): on #2635's head a 1.5 s drag of Full Body's arm length stalls the page about 4 s (whole program), and each processed change costs about 0.9 s of main thread, so the stall is mostly how many changes a drag triggers. Steps: (1) count, per drag: the slider's input events, the eval requests the page posts to the worker and the replies, and the heavy frames (gaps over 50 ms); (2) find where a slider's input becomes an edit, and whether changes already coalesce (the newest value only) while one is in flight; (3) if not, try coalescing on a local branch: while a change is in flight, keep only the newest value and process it when the change lands; (4) measure with drag_stall.py (C and B), release to redraw, and Kids' Choice, against the head; (5) then decide ^ticket(18) with both in hand. Local only until Matthew says. FINDINGS 2026-10-15: a transient input (a drag's preview) sends a quiet repaint action, and the page recalculates for each one, walking the whole program in EvalResult.calculate's reuse check (Calc.set -> fast_equal_with_lexemes, ~40% of a drag's main thread, profiled). Coalescing built (local perf/2635-coalesce-drag-repaint, 3eb4489124; counters in a MEASURE commit): only 1.5-3 of a drag's ~13 inputs coalesce. Measured in alternating sessions, whole program, drag stall: head 4.1 s, prototype (^ticket(90)) 2.6, coalescing 2.8, head 3.2, coalescing 4.2: the drift between sessions is larger than any build's effect, so neither fix is shown. Next (Matthew to say): an interleaved A/B, both builds served at once, alternating drag by drag, 10+ each; and try skipping the whole-program walk for a preview. Report: a new ^report(15) on drags, once the A/B is in.",
    "source": "Matthew, 2026-10-15",
    "url": ""
   },
@@ -391,7 +391,7 @@
  ],
  "next_ticket": 92,
  "current_ticket": 91,
- "current_note": "Working ^ticket(91): counting the changes a Full Body drag processes, then trying to coalesce slider input, against ^ticket(90)'s drag stalls (4.1 s whole program on #2635's head). Also waiting on Matthew: ^ticket(18)'s decision (after this), ^ticket(29) (^report(8)'s draft), the A records for ^ticket(60).",
+ "current_note": "✋❔ Waiting on Matthew: ^ticket(91)'s numbers are inconclusive (drift between sessions beats both fixes); proposed: an interleaved A/B (both builds at once), and skipping the whole-program walk on previews; a new ^report(15) on drags after. The robust finding: a 1.5 s drag on Full Body stalls the page 2.3-5.9 s, half of it a whole-program reuse check per preview. Also his: ^ticket(29), the A records for ^ticket(60), ^ticket(18) (still undecided).",
  "closed_tickets": [
   {
    "id": 87,
@@ -1176,5 +1176,5 @@
   29
  ],
  "current_since": "2026-10-15T09:45-06:00",
- "current_waiting": ""
+ "current_waiting": "Interleaved A/B for ^ticket(91), and a new ^report(15)? ^ticket(29); ^ticket(60)."
 }
