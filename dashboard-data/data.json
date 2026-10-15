@@ -604,18 +604,13 @@
      "asks": false
     }
    ]
-  }
- ],
- "next_ticket": 102,
- "current_ticket": 100,
- "current_note": "Back on ^ticket(100): LFOs D (quick) and E (slow) are in, the cat room and the stable move with them, and an inventory of every scene's animations is in hand. Now giving each scene a quick thing and a slow thing. ^ticket(101), the funked spooky waltz, is done (d593d3b; preview MP3 at localhost:8133/tunes/witchfunk.mp3). Nothing pushed.",
- "closed_tickets": [
+  },
   {
    "id": 101,
    "area": "dress up",
    "added": "2026-10-15",
    "opened": "2026-10-15T11:47-06:00",
-   "text": "<b>A new tune: the spooky waltz, funked.</b> Based on the spooky waltz at 205 beats a minute, moved down 4 half steps, keeping all its elements: the theremin melody, the vamping and the rest. To it, add drums like the bongo breakdown's, and a 4/4 funk beat with more percussion under the waltz's melody and vamping. Open question for Matthew: does the waltz stay in 3 against the funk's 4 (four waltz bars to three funk bars, meeting every 12 beats), or is the melody re-set in 4/4 over the beat? It goes under Unreleased with its own entry, its levels checked by an offline render at 22 kHz or more, and an MP3 preview. Nothing pushed. Also (Matthew, a minute later): a very wah-wah, buzzy, plucky bassline pair. Plan, unless Matthew says otherwise: the waltz stays in 3 over the funk's 4. Four waltz bars take as long as three funk bars, so each 8-bar section of the waltz holds exactly 6 funk bars and they line up again at every section. The funk plays half-time at 205, the snare once a bar and the hats on eighths.",
+   "text": "<b>A new tune: the spooky waltz, funked.</b> Based on the spooky waltz at 205 beats a minute, moved down 4 half steps, keeping all its elements: the theremin melody, the vamping and the rest. To it, add drums like the bongo breakdown's, and a 4/4 funk beat with more percussion under the waltz's melody and vamping. Open question for Matthew: does the waltz stay in 3 against the funk's 4 (four waltz bars to three funk bars, meeting every 12 beats), or is the melody re-set in 4/4 over the beat? It goes under Unreleased with its own entry, its levels checked by an offline render at 22 kHz or more, and an MP3 preview. Nothing pushed. Also (Matthew, a minute later): a very wah-wah, buzzy, plucky bassline pair. Plan, unless Matthew says otherwise: the waltz stays in 3 over the funk's 4. Four waltz bars take as long as three funk bars, so each 8-bar section of the waltz holds exactly 6 funk bars and they line up again at every section. The funk plays half-time at 205, the snare once a bar and the hats on eighths. REOPENED 12:00: Matthew finds the 4/4 groove does not line up with the waltz: the big beats should land together. He asks for up to five variations, A to E, to try.",
    "source": "Matthew, 2026-10-15",
    "url": "",
    "log": [
@@ -648,13 +643,17 @@
      "from": "claude",
      "chars": 700,
      "asks": true
+    },
+    {
+     "at": "2026-10-15T11:56-06:00",
+     "from": "matthew",
+     "chars": 240,
+     "asks": true
     }
    ],
-   "status": "done",
-   "closed": "2026-10-15",
-   "closed_at": "2026-10-15T11:53-06:00",
-   "outcome": "Committed locally as d593d3b, not pushed: '🧙 spooky waltz, funked', listed with the waltzes. It has every part of the spooky waltz at 205 bpm, each section down 4 half steps, over a half-time funk beat in 4 against the waltz's 3 (they meet again every 8 bars). The beat has kick, snare, hats, a shaker, a cowbell, congas, the bongo breakdown's bongos with their solo, and a new wahbass instrument (buzzy, plucky, the wah sweeping on each note) as a low/high pair that follows the waltz's chords (crossOf). Bass lines louder, at Matthew's word. Levels checked offline: peaks under -0.7 dB, about as loud as the waltz. Preview MP3 at localhost:8133/tunes/witchfunk.mp3.",
-   "metrics": {
+   "status": "open",
+   "first_outcome": "Committed locally as d593d3b, not pushed: '🧙 spooky waltz, funked', listed with the waltzes. It has every part of the spooky waltz at 205 bpm, each section down 4 half steps, over a half-time funk beat in 4 against the waltz's 3 (they meet again every 8 bars). The beat has kick, snare, hats, a shaker, a cowbell, congas, the bongo breakdown's bongos with their solo, and a new wahbass instrument (buzzy, plucky, the wah sweeping on each note) as a low/high pair that follows the waltz's chords (crossOf). Bass lines louder, at Matthew's word. Levels checked offline: peaks under -0.7 dB, about as loud as the waltz. Preview MP3 at localhost:8133/tunes/witchfunk.mp3.",
+   "first_metrics": {
     "open_minutes": 6,
     "matthew_messages": 4,
     "questions_to_matthew": 1,
@@ -663,7 +662,12 @@
     "sync_minutes_est": 11.0,
     "work_minutes": 6
    }
-  },
+  }
+ ],
+ "next_ticket": 102,
+ "current_ticket": 101,
+ "current_note": "^ticket(101) reopened: five ways (A-E) of fitting the funk in 4 to the waltz in 3 so that their big beats land together, for Matthew to try. ^ticket(100) is paused, mid-way. Nothing pushed.",
+ "closed_tickets": [
   {
    "id": 95,
    "area": "dress up",
@@ -1757,6 +1761,7 @@
   }
  ],
  "queue": [
+  101,
   100,
   93,
   99,
@@ -1768,6 +1773,6 @@
   50,
   29
  ],
- "current_since": "2026-10-15T11:53-06:00",
+ "current_since": "2026-10-15T11:56-06:00",
  "current_waiting": ""
 }
