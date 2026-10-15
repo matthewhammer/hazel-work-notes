@@ -593,8 +593,59 @@
      "asks": false
     }
    ],
-   "progress": "12:37 — the refactor is done: steps 1 to 6, each committed locally and checked identical by the safety net (69 swept pictures, plus defaults, controls, show-when rules and castleOf):<ol><li>The safety net: sweep.mjs and structure.mjs.</li><li>roomSpace, one room space for perspective (8cd8444).</li><li>RESIDENTS: the cats and horses from one table, a new kind one entry (4ce43d8).</li><li>LFO_FOLLOWERS: one list feeds the mixing board's names and the redraw (319fd6f).</li><li>ROOM_KINDS: one entry per castle room style (b9b014d).</li><li>Recipes in the agent instructions: how to add a place, a room style, a resident or an LFO follower, plus the safety net (953ab60).</li></ol>About 25 minutes of work, inside the 45–90 estimated. Next: the drawing-fault fixes, which change pictures on purpose and are checked on screen. 12:46 — drawing-fault fixes, each committed locally with its own VERSIONS line, and the sweep showing only the intended pictures changed:<ul><li>the castle rooms' floors stay on the floor (Matthew's catch);</li><li>the tent's mesh window is in perspective (Matthew's 'vent');</li><li>the cat room window's leads stay in its arch;</li><li>the tree room's lantern hangs from the roof;</li><li>the fairy wings' veins end at their edges;</li><li>the cobwebs hang together;</li><li>the healer's hut roof meets its thatch.</li></ul>About 20 lower-visibility ones remain in ~/du-shots/drawing-faults-2026-10-15.md. 12:50 — five more fixed, each committed with its own VERSIONS line:<ul><li>the house's driveway joints;</li><li>the castle's stonework, now behind its gate and banners;</li><li>the castle road's edge stones;</li><li>the healer's chimney, stone up to the mantel;</li><li>the cat room window seat's panels.</li></ul>That makes 12 fixed; about 15 low-visibility ones remain on the list."
+   "progress": "12:37 — the refactor is done: steps 1 to 6, each committed locally and checked identical by the safety net (69 swept pictures, plus defaults, controls, show-when rules and castleOf):<ol><li>The safety net: sweep.mjs and structure.mjs.</li><li>roomSpace, one room space for perspective (8cd8444).</li><li>RESIDENTS: the cats and horses from one table, a new kind one entry (4ce43d8).</li><li>LFO_FOLLOWERS: one list feeds the mixing board's names and the redraw (319fd6f).</li><li>ROOM_KINDS: one entry per castle room style (b9b014d).</li><li>Recipes in the agent instructions: how to add a place, a room style, a resident or an LFO follower, plus the safety net (953ab60).</li></ol>About 25 minutes of work, inside the 45–90 estimated. Next: the drawing-fault fixes, which change pictures on purpose and are checked on screen. 12:46 — drawing-fault fixes, each committed locally with its own VERSIONS line, and the sweep showing only the intended pictures changed:<ul><li>the castle rooms' floors stay on the floor (Matthew's catch);</li><li>the tent's mesh window is in perspective (Matthew's 'vent');</li><li>the cat room window's leads stay in its arch;</li><li>the tree room's lantern hangs from the roof;</li><li>the fairy wings' veins end at their edges;</li><li>the cobwebs hang together;</li><li>the healer's hut roof meets its thatch.</li></ul>About 20 lower-visibility ones remain in ~/du-shots/drawing-faults-2026-10-15.md. 12:50 — five more fixed, each committed with its own VERSIONS line:<ul><li>the house's driveway joints;</li><li>the castle's stonework, now behind its gate and banners;</li><li>the castle road's edge stones;</li><li>the healer's chimney, stone up to the mantel;</li><li>the cat room window seat's panels.</li></ul>That makes 12 fixed; about 15 low-visibility ones remain on the list. 14:00 — six more fixed:<ul><li>the dungeon cage's bars;</li><li>the monstera's slits;</li><li>the portcullis (now with cross bars), the well's stones and the hay's straws;</li><li>the stable's tack, laid flat on its walls by a new roomSpace.onWall;</li><li>the hallway's banners, which hang from poles out of the walls and so keep their look (laid flat, they shrank to slivers).</li></ul>That makes 18 fixed in all."
   },
+  {
+   "id": 102,
+   "area": "hazel",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T12:07-06:00",
+   "text": "<b>Reply to Alexander on the deep links PR</b> (#2583; Matthew writes the reply by hand). Alexander (7h3kk1d) replied today at 11:00 to our comment of 10-14 linking the plan page; he couldn't comment on that page, so he left his notes on the PR. His two points on the plan's sketch: (1) name `target`'s constructors `Documentation` and `Scratchpad`, not `Slide` and `Share`, and use records instead of tuples where there are several fields (`Scratchpad({name, share})`); (2) the `request` record allows a `position` without a `target`: he'd like a type that rules it out. Fact for the reply: on the branch as pushed (09-22), `?caret=` without `?slide=` puts the caret in whatever opens (the reader's last slide or scratchpad), so such a link depends on the reader's saved state. That supports nesting the position inside the place, e.g. `{place: option({target, position: option(position)}), panel: option(panel_request)}`. A panel-only link stays meaningful. Then revise the plan, and later the branch, to match whatever is agreed. He liked the rest. Also worth an answer: where he should comment on plans next time (the PR itself, or the PR description).",
+   "source": "Matthew, 2026-10-15",
+   "url": "https://github.com/hazelgrove/hazel/pull/2583#issuecomment-6197659505",
+   "log": [
+    {
+     "at": "2026-10-15T12:13-06:00",
+     "from": "matthew",
+     "chars": 150,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T12:07-06:00",
+     "from": "matthew",
+     "chars": 45,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T12:07-06:00",
+     "from": "claude",
+     "chars": 1400,
+     "asks": true
+    }
+   ]
+  },
+  {
+   "id": 104,
+   "area": "dress up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T13:51-06:00",
+   "text": "<b>Every tune as an MP3, in the repo.</b> Every Dress Up tune, the five funked waltzes included, rendered at its default settings for one loop each, as MP3s in dress-up/music/ with a page that lists them by their in-game names. Matthew: 'Let's release them as MP3s somewhere, perhaps in the repo. Let's do the same for the other tracks, at default settings --- one loop length each.' Size is checked before committing (a public repo; a push deploys). Nothing is pushed until Matthew says.",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T13:51-06:00",
+     "from": "matthew",
+     "chars": 230,
+     "asks": false
+    }
+   ]
+  }
+ ],
+ "next_ticket": 105,
+ "current_ticket": 104,
+ "current_note": "Now ^ticket(104), on Matthew's word: every tune as an MP3 (one loop at default settings) in dress-up/music/. ^ticket(101) is closed: keep all five funked waltzes. ^ticket(99)'s drawing faults are paused at the greenhouse's glass frame. Nothing pushed.",
+ "closed_tickets": [
   {
    "id": 101,
    "area": "dress up",
@@ -651,9 +702,15 @@
      "from": "matthew",
      "chars": 35,
      "asks": false
+    },
+    {
+     "at": "2026-10-15T13:51-06:00",
+     "from": "matthew",
+     "chars": 110,
+     "asks": false
     }
    ],
-   "status": "open",
+   "status": "done",
    "first_outcome": "Committed locally as d593d3b, not pushed: '🧙 spooky waltz, funked', listed with the waltzes. It has every part of the spooky waltz at 205 bpm, each section down 4 half steps, over a half-time funk beat in 4 against the waltz's 3 (they meet again every 8 bars). The beat has kick, snare, hats, a shaker, a cowbell, congas, the bongo breakdown's bongos with their solo, and a new wahbass instrument (buzzy, plucky, the wah sweeping on each note) as a low/high pair that follows the waltz's chords (crossOf). Bass lines louder, at Matthew's word. Levels checked offline: peaks under -0.7 dB, about as loud as the waltz. Preview MP3 at localhost:8133/tunes/witchfunk.mp3.",
    "first_metrics": {
     "open_minutes": 6,
@@ -664,42 +721,20 @@
     "sync_minutes_est": 11.0,
     "work_minutes": 6
    },
-   "waiting_until": "2026-10-16T13:30-06:00"
+   "waiting_until": "2026-10-16T13:30-06:00",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T13:51-06:00",
+   "outcome": "Keep all five funked waltzes (Matthew, 14:00: 'all of these variations of the funked waltz are each good. Let's keep them all.'). B was 'pur-fect' and C 'really really' liked. They stay in the game as A-E (83019d0); the MP3s of every tune are ^ticket(104).",
+   "metrics": {
+    "open_minutes": 125,
+    "matthew_messages": 8,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 1715,
+    "tokens_est": 428,
+    "sync_minutes_est": 16.0,
+    "work_minutes": 15.0
+   }
   },
-  {
-   "id": 102,
-   "area": "hazel",
-   "added": "2026-10-15",
-   "opened": "2026-10-15T12:07-06:00",
-   "text": "<b>Reply to Alexander on the deep links PR</b> (#2583; Matthew writes the reply by hand). Alexander (7h3kk1d) replied today at 11:00 to our comment of 10-14 linking the plan page; he couldn't comment on that page, so he left his notes on the PR. His two points on the plan's sketch: (1) name `target`'s constructors `Documentation` and `Scratchpad`, not `Slide` and `Share`, and use records instead of tuples where there are several fields (`Scratchpad({name, share})`); (2) the `request` record allows a `position` without a `target`: he'd like a type that rules it out. Fact for the reply: on the branch as pushed (09-22), `?caret=` without `?slide=` puts the caret in whatever opens (the reader's last slide or scratchpad), so such a link depends on the reader's saved state. That supports nesting the position inside the place, e.g. `{place: option({target, position: option(position)}), panel: option(panel_request)}`. A panel-only link stays meaningful. Then revise the plan, and later the branch, to match whatever is agreed. He liked the rest. Also worth an answer: where he should comment on plans next time (the PR itself, or the PR description).",
-   "source": "Matthew, 2026-10-15",
-   "url": "https://github.com/hazelgrove/hazel/pull/2583#issuecomment-6197659505",
-   "log": [
-    {
-     "at": "2026-10-15T12:13-06:00",
-     "from": "matthew",
-     "chars": 150,
-     "asks": true
-    },
-    {
-     "at": "2026-10-15T12:07-06:00",
-     "from": "matthew",
-     "chars": 45,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T12:07-06:00",
-     "from": "claude",
-     "chars": 1400,
-     "asks": true
-    }
-   ]
-  }
- ],
- "next_ticket": 104,
- "current_ticket": 99,
- "current_note": "^ticket(99): the refactor is done, and 12 drawing faults are fixed, each with its own commit and VERSIONS line, the sweep confirming only the intended pictures changed. About 15 low-visibility ones remain. For Matthew when ready: ^ticket(102) (his reply to Alexander), ^ticket(101) (which funked waltz). Nothing pushed.",
- "closed_tickets": [
   {
    "id": 103,
    "area": "dress up",
@@ -1943,6 +1978,7 @@
   }
  ],
  "queue": [
+  104,
   102,
   93,
   99,
@@ -1952,9 +1988,8 @@
   18,
   60,
   50,
-  29,
-  101
+  29
  ],
- "current_since": "2026-10-15T12:30-06:00",
+ "current_since": "2026-10-15T13:51-06:00",
  "current_waiting": ""
 }
