@@ -214,11 +214,11 @@
  ],
  "tickets": [
   {
-   "id": 78,
+   "id": 79,
    "area": "Dress Up",
    "added": "2026-10-14",
-   "text": "<b>Dress Up bug: bangs and eye size interfere.</b> Seen live in 0.0.31 (screenshot: the witch, long hair at length 237, bangs at 164, big blue eyes): the forehead shows no fringe, and dark wedges of hair cut into the top outer corner of each eye. Find why the bangs (^ticket(74)) and big eyes clash, and fix it. Changes go under Unreleased; no version bump until Matthew says.",
-   "source": "Matthew, 2026-10-14 (screenshot)",
+   "text": "<b>Dress Up: a wreath of flowers for the fairy</b>, worn on the crown of her head, above the eyebrows. Changes go under Unreleased; no version bump until Matthew says.",
+   "source": "Matthew, 2026-10-14",
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   },
   {
@@ -436,10 +436,21 @@
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
- "next_ticket": 79,
- "current_ticket": 78,
- "current_note": "Dress Up 0.0.31 is LIVE. Now: a bug Matthew found, bangs and big eyes clash (^ticket(78)). Then the fairy forest (^ticket(57)).",
+ "next_ticket": 80,
+ "current_ticket": 79,
+ "current_note": "Fixed the bangs under the witch's hat (^ticket(78)). Now: a wreath of flowers for the fairy (^ticket(79)). Then the fairy forest (^ticket(57)).",
  "closed_tickets": [
+  {
+   "id": 78,
+   "area": "Dress Up",
+   "added": "2026-10-14",
+   "text": "<b>Dress Up bug: bangs and eye size interfere.</b> Seen live in 0.0.31 (screenshot: the witch, long hair at length 237, bangs at 164, big blue eyes): the forehead shows no fringe, and dark wedges of hair cut into the top outer corner of each eye. Find why the bangs (^ticket(74)) and big eyes clash, and fix it. Changes go under Unreleased; no version bump until Matthew says.",
+   "source": "Matthew, 2026-10-14 (screenshot)",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
+   "status": "done",
+   "closed": "2026-10-14",
+   "outcome": "DONE 2026-10-14 (local commit, under Unreleased; ships on Matthew's go-ahead). Cause, as Matthew guessed, the witch's hat, together with eye size: under the hat hair is tucked below the brim's line, y = 40 in the hair's own units, which the head's stretch moves; the bangs (drawn in the face's units) were tucked at an unstretched 40, so big eyes (a taller head, the hat lifted with it) left bare forehead between the brim and the bangs, and only the sweeps over the eyes showed. Now the bangs' tuck line is the brim's, stretched with the head. Checked: witch with eyes 200 and 50, bangs 100 and 164, long, short and curly hair."
+  },
   {
    "id": 77,
    "area": "Dress Up",
@@ -1013,5 +1024,5 @@
   46,
   50
  ],
- "current_since": "2026-10-14T17:58-06:00"
+ "current_since": "2026-10-14T18:00-06:00"
 }
