@@ -589,35 +589,6 @@
    ]
   },
   {
-   "id": 100,
-   "area": "dress up",
-   "added": "2026-10-15",
-   "opened": "2026-10-15T11:42-06:00",
-   "text": "<b>Five LFOs, and every scene moving with two of them.</b> Add LFOs D (a faster one, 1 beat to start with) and E (a slower one, 4 bars), reserved for scene animations only as defaults: anyone can set them to anything, and anything can follow any LFO. The cat room's tails default to D and the stable's nods to E, each animal still with its own offset. Then go through the scenes and give each at least two things to move with them: something fast on D (flapping, pecking, flickering, wagging) and something slow on E (swaying, breathing, drifting, glowing). Things side by side get their own offsets, never in lockstep. One list says what in each scene follows which LFO. It drives the mixing board's 'what follows it' and the redraw when an LFO changes; this is the first piece of ^ticket(99)'s LFO-followers registry. Under Unreleased; nothing pushed.",
-   "source": "Matthew, 2026-10-15",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-15T11:42-06:00",
-     "from": "matthew",
-     "chars": 260,
-     "asks": true
-    },
-    {
-     "at": "2026-10-15T11:42-06:00",
-     "from": "matthew",
-     "chars": 110,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T11:42-06:00",
-     "from": "matthew",
-     "chars": 230,
-     "asks": false
-    }
-   ]
-  },
-  {
    "id": 101,
    "area": "dress up",
    "added": "2026-10-15",
@@ -706,9 +677,75 @@
   }
  ],
  "next_ticket": 103,
- "current_ticket": 100,
- "current_note": "Waiting on Matthew for ^ticket(101): five funked waltzes, A to E (83019d0), to pick one. Meanwhile, back on ^ticket(100): giving every scene a quick thing (LFO D) and a slow thing (LFO E), starting with the shared drawings (clouds, the sun's rays, stars, torches, sunbeams). Nothing pushed.",
+ "current_ticket": 102,
+ "current_note": "^ticket(100) is done (57f0b9a): seven LFOs, and every scene's quick, slow and winged things move with them. Waiting on Matthew: ^ticket(102) (his reply to Alexander on #2583, which he writes by hand; notes in the ticket) and ^ticket(101) (which funked waltz, A to E). Next for me: ^ticket(93)'s kitchen and smithy, after ^ticket(99)'s refactor and drawing-fault pass. Nothing pushed.",
  "closed_tickets": [
+  {
+   "id": 100,
+   "area": "dress up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T11:42-06:00",
+   "text": "<b>Five LFOs, and every scene moving with two of them.</b> Add LFOs D (a faster one, 1 beat to start with) and E (a slower one, 4 bars), reserved for scene animations only as defaults: anyone can set them to anything, and anything can follow any LFO. The cat room's tails default to D and the stable's nods to E, each animal still with its own offset. Then go through the scenes and give each at least two things to move with them: something fast on D (flapping, pecking, flickering, wagging) and something slow on E (swaying, breathing, drifting, glowing). Things side by side get their own offsets, never in lockstep. One list says what in each scene follows which LFO. It drives the mixing board's 'what follows it' and the redraw when an LFO changes; this is the first piece of ^ticket(99)'s LFO-followers registry. Under Unreleased; nothing pushed. ADDED (Matthew, 12:10): LFOs F and G, under a beat, for wings: F a normal-looking wingbeat, G a faster one; an odd number of LFOs keeps the mixing board balanced, with the main strip first.",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T11:42-06:00",
+     "from": "matthew",
+     "chars": 260,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T11:42-06:00",
+     "from": "matthew",
+     "chars": 110,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T11:42-06:00",
+     "from": "matthew",
+     "chars": 230,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T12:10-06:00",
+     "from": "matthew",
+     "chars": 170,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T12:10-06:00",
+     "from": "matthew",
+     "chars": 15,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T12:12-06:00",
+     "from": "matthew",
+     "chars": 120,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T12:15-06:00",
+     "from": "claude",
+     "chars": 900,
+     "asks": false
+    }
+   ],
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T12:15-06:00",
+   "outcome": "Committed locally as 57f0b9a (with d593d3b's share), not pushed. There are now seven LFOs, A to G. D (quick, 1 beat) and E (slow, 4 bars) are the scenes' own; F (1/4 beat) and G (1/16 beat, a blur) are for wings. Three scene choices pick which LFO quick things, slow things and wings follow, or their own pace. Every scene and castle room has at least one quick and one slow thing, each its own way into the wave, all 33 variants checked by count. Mostly via shared drawings: clouds, the sun's rays, stars, torches, sunbeams. Plus sceneLfo, lfoTimed, swaying, and butterflies (six places, wings on F, bobbing on D). New: the living room's wall clock. Each part's key carries its LFO, so a change on the mixer redraws only its scene. SCENE_LFO_THINGS names them on the mixing board. Also fixed a released bug: the fairy house ignored its LFO's changes.",
+   "metrics": {
+    "open_minutes": 33,
+    "matthew_messages": 6,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1805,
+    "tokens_est": 451,
+    "sync_minutes_est": 5.0,
+    "work_minutes": 20.0
+   }
+  },
   {
    "id": 95,
    "area": "dress up",
@@ -1804,7 +1841,6 @@
  "queue": [
   102,
   101,
-  100,
   93,
   99,
   92,
@@ -1815,6 +1851,6 @@
   50,
   29
  ],
- "current_since": "2026-10-15T12:01-06:00",
+ "current_since": "2026-10-15T12:15-06:00",
  "current_waiting": "✋❔ ^ticket(101): which funked waltz, A to E? (in the game: 🎵 Music → 💃 waltz; MP3s at localhost:8133/tunes/witchfunkA.mp3 … E.mp3)"
 }
