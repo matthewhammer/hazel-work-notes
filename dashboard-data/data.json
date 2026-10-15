@@ -214,35 +214,6 @@
  ],
  "tickets": [
   {
-   "id": 95,
-   "area": "dress up",
-   "added": "2026-10-15",
-   "opened": "2026-10-15T10:29-06:00",
-   "text": "<b>An agent-instructions.md for the Dress Up repo</b> (matthewhammer/kids-choice-games), drafted once Matthew is happy with the castle designer (^ticket(94)), for him to read before it is pushed: the repo is public. To gather what lives now only in the work notes, our conversations and code comments: his rules (connected views draw from the place's own settings; his bar for a scene's detail, the tree house's and the witch's woods'; shared organic helpers, never lollipops; the kids only as M and N), the release cadence (changes under Unreleased in VERSIONS.md, no bump or push until he says, tags dress-up-&lt;version&gt;, node --check before a push, checking the live page cold after), testing (headless Chrome with --mute-audio, contact sheets, never leaving browsers running), the castle's design (rooms by number, each with its own exits), the LFO rules (fast ones blur), timing work and keeping ticket metrics, and how the code is organized (SCENES, SCENE_FIG, PLACES, TABS, SHOWN_WHEN, DEFAULTS, parts and their keys).",
-   "source": "Matthew, 2026-10-15",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-15T10:29-06:00",
-     "from": "matthew",
-     "chars": 260,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:29-06:00",
-     "from": "matthew",
-     "chars": 90,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T10:55-06:00",
-     "from": "matthew",
-     "chars": 700,
-     "asks": false
-    }
-   ]
-  },
-  {
    "id": 93,
    "area": "dress up",
    "added": "2026-10-15",
@@ -556,9 +527,63 @@
   }
  ],
  "next_ticket": 99,
- "current_ticket": 95,
- "current_note": "Clearing the queue in the next two hours (Matthew, 10:55): ^ticket(94), ^ticket(96), ^ticket(97), ^ticket(98) closed; now ^ticket(95) (the Dress Up agent-instructions draft), then ^ticket(93) (the four rooms).",
+ "current_ticket": 93,
+ "current_note": "Clearing the queue (Matthew, 10:55): ^ticket(94), ^ticket(96), ^ticket(97), ^ticket(98) and ^ticket(95) closed (the agent-instructions draft is committed locally, for Matthew to read before any push). Now ^ticket(93), the four castle rooms, the cat room first, each committed locally under Unreleased.",
  "closed_tickets": [
+  {
+   "id": 95,
+   "area": "dress up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T10:29-06:00",
+   "text": "<b>An agent-instructions.md for the Dress Up repo</b> (matthewhammer/kids-choice-games), drafted once Matthew is happy with the castle designer (^ticket(94)), for him to read before it is pushed: the repo is public. To gather what lives now only in the work notes, our conversations and code comments: his rules (connected views draw from the place's own settings; his bar for a scene's detail, the tree house's and the witch's woods'; shared organic helpers, never lollipops; the kids only as M and N), the release cadence (changes under Unreleased in VERSIONS.md, no bump or push until he says, tags dress-up-&lt;version&gt;, node --check before a push, checking the live page cold after), testing (headless Chrome with --mute-audio, contact sheets, never leaving browsers running), the castle's design (rooms by number, each with its own exits), the LFO rules (fast ones blur), timing work and keeping ticket metrics, and how the code is organized (SCENES, SCENE_FIG, PLACES, TABS, SHOWN_WHEN, DEFAULTS, parts and their keys).",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T10:29-06:00",
+     "from": "matthew",
+     "chars": 260,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:29-06:00",
+     "from": "matthew",
+     "chars": 90,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:55-06:00",
+     "from": "matthew",
+     "chars": 700,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T11:02-06:00",
+     "from": "claude",
+     "chars": 900,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T11:03-06:00",
+     "from": "matthew",
+     "chars": 330,
+     "asks": false
+    }
+   ],
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T11:02-06:00",
+   "outcome": "Drafted as kids-choice-games/agent-instructions.md, committed locally (c80f9c3), NOT pushed: the repo is public, so it waits for Matthew's read. It covers who decides (M and N through Matthew), push = deploy and the release steps, his design calls, a map of the one-file game (TABS control kinds, the scene registries, part() caching, the castle model, music), testing without sound or load, and working with him. It ends with three open questions for him: public or not, a tools/ folder for the test drivers, and a README link. At 11:03 Matthew added that keeping the file in sync with the code and the design process is part of it: now its opening rule (2d827b1).",
+   "metrics": {
+    "open_minutes": 34,
+    "matthew_messages": 3,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 1950,
+    "tokens_est": 487,
+    "sync_minutes_est": 7.0,
+    "work_minutes": 4.3
+   }
+  },
   {
    "id": 96,
    "area": "dress up",
@@ -1598,7 +1623,6 @@
   }
  ],
  "queue": [
-  95,
   93,
   92,
   91,
@@ -1608,6 +1632,6 @@
   50,
   29
  ],
- "current_since": "2026-10-15T10:57-06:00",
+ "current_since": "2026-10-15T11:02-06:00",
  "current_waiting": ""
 }
