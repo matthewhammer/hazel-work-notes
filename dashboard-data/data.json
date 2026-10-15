@@ -214,6 +214,14 @@
  ],
  "tickets": [
   {
+   "id": 86,
+   "area": "performance",
+   "added": "2026-10-14",
+   "text": "<b>Push #2597's undo compaction (bc66ae5616), on Matthew's word.</b> From ^ticket(58): #2597 kept a whole page model per edit in its uncapped undo stack (about 87 MB per edit of Full Body). Local branch perf/2597-compact-undo in ~/hazel-2597-probe, one commit on #2597's head c4e411f9c2: Andrew's compaction from 6010128b7d (on #2469/#2635), adapted to #2597's scratchpad list, and the cap of 250 always on. 159 MB after 12 edits instead of 1,048; undo, redo and undo after a second edit restore the same picture; the 6 Undo tests pass. Likely cost: undo now rebuilds what was dropped (6-8 s on Full Body in 4 of 6 steps, against ~2.5 s as built, one run; needs more runs). Questions for Matthew: push it to #2597? And dev has the same uncapped stack: bring Andrew's fix to dev ahead of #2469, or leave it to #2469?",
+   "source": "^ticket(58), 2026-10-14",
+   "url": "http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T2120-0600.html#holder"
+  },
+  {
    "id": 84,
    "area": "performance",
    "added": "2026-10-14",
@@ -380,34 +388,40 @@
    "url": "http://matthewhammer.org/hazel/performance-analysis/013/#step-1"
   },
   {
-   "id": 58,
-   "area": "performance",
-   "added": "2026-10-14",
-   "text": "<b>FOUND 2026-10-14 night (was parked): what holds about 85 MB per edit of Full Body in a #2597 tab.</b> From ^ticket(45), which measured it and ruled out every cache and table (its outcome, and the work notes of 2026-10-14). The holder is not a table: it keeps whole versions of the editor's state. A heap snapshot would name it, but snapshots kill this page's renderer (snap Chromium and Chrome for Testing 155 alike, with the hang monitor off; a trivial page and a million-deep chain of arrays are fine). <b>Lead:</b> a page with a WeakMap of 2 million live entries did not finish its snapshot in 400 s, and ValueHash's memo is a WeakMap of about that size: try a probe build with ValueHash's memo off (or bounded), and take the snapshots then. Other ways in: a smaller slide that leaks (Shirt and Pants' sliders are not the shirt's width; find one that edits a livelit model), or closures held by the browser (listeners, timers, observers) on a render path. <b>Lead, 2026-10-14 night (^ticket(65)):</b> #2635's head grows only about 8 MB per edit and falls back by about 50 MB at edits 11 and 22 (a sawtooth over 30 edits, likely ShareCodec's tables starting over), where #2597 keeps about 92 MB per edit and never falls back: the holder is something #2597 keeps that #2635 does not. Look at what #2635 changed or dropped (dev and #2469 merged in) before trying the snapshot again; work notes: http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T2120-0600.html#memory <b>FOUND, 2026-10-14 night:</b> the page-level undo stack. #2597's <code>History.Model.undo_stack</code> keeps a whole <code>Page.Model.t</code> per edit, with that version's syntax, statics and layout, and its cap only applies when the setting <code>cap_undo_stack</code> is on, which it is not by default (Settings.re: <code>cap_undo_stack: false</code>). So ^report(14)'s undo test (the size 250 → 2) changed nothing: the cap never ran. How it was found: a probe build with ValueHash's memo off made heap snapshots possible (2.3 GB, 75 s); two snapshots in one session (after edits 3 and 6), a dominator tree (29M nodes), and the copies of the editor's derived data sit at <code>Logged.current.undo_stack[0]</code> and <code>[1]</code>. Confirmed: with the cap always on (at 2), #2597 stops growing after edit 3 (284 MB after 12 edits, two runs, against 1,048 MB as built). #2635 has the fix already: Andrew's 6010128b7d (2026-08-26, on #2469) compacts each undo snapshot (drops syntax, statics, eval state; rebuilt on restore) and always caps. Next: port that compaction to #2597 (its ScratchMode differs), check undo in the browser, measure; local only, push on Matthew's word.",
-   "source": "^ticket(45), 2026-10-14",
-   "url": ""
-  },
-  {
    "id": 60,
    "area": "homepage, publishing",
    "added": "2026-10-14",
    "text": "<b>Serve matthewhammer.org over HTTPS.</b> Today https://matthewhammer.org/ fails: it presents GitHub's own certificate (<code>*.github.com</code>, Sectigo), not one for matthewhammer.org, so browsers warn and agents' fetches fail; everything is linked as HTTP. <b>The blocker, checked 2026-10-14:</b> the apex A record still points at <code>192.30.252.153</code>, GitHub Pages' address from before 2018. GitHub serves the site there over HTTP but will not issue a certificate for a domain pointed at it; the Pages settings have no certificate and <code>https_enforced: false</code>. <code>www</code> is fine: a CNAME to matthewhammer.github.io, on the current addresses. The domain's nameservers are <code>ns-cloud-c1..c4.googledomains.com</code> (Google Domains, now Squarespace Domains), so the DNS change is Matthew's, in his registrar's account. <b>Steps:</b> (1) Matthew replaces the apex A record with GitHub Pages' four, <code>185.199.108.153</code>, <code>185.199.109.153</code>, <code>185.199.110.153</code>, <code>185.199.111.153</code> (and may add the four AAAA, <code>2606:50c0:8000::153</code> to <code>8003::153</code>); (2) once that resolves, GitHub provisions a certificate for the custom domain, which can take up to a day (re-saving the custom domain in the homepage repo's Pages settings restarts it if it stalls); (3) turn on Enforce HTTPS for the homepage and the project sites under it (hazel-work-notes, kids-choice-games); (4) check every page for mixed content: anything a page loads by an absolute <code>http://matthewhammer.org/</code> URL (the series' live hover cards read report pages; the dashboard's cards too) is blocked from an HTTPS page, so make those relative or HTTPS; (5) switch the links we publish to HTTPS: READMEs, the series' agent instructions (\"HTTP only\"), the dashboard, the reports, #2609's ^report links; old HTTP links keep working, since GitHub redirects them once HTTPS is enforced. <b>Progress, 2026-10-14 afternoon:</b> Matthew changed the apex A record in Squarespace to <code>185.199.108.153</code>; the authoritative nameservers and public resolvers (8.8.8.8, 1.1.1.1) answer it, while this laptop's resolver still had the old address cached (TTL 1 hour). GitHub has not issued a certificate yet (<code>https_certificate: null</code>). Still to do: the other three A records (<code>.109</code>, <code>.110</code>, <code>.111</code>) for redundancy, and re-saving the custom domain in the homepage repo's Pages settings so GitHub checks DNS again and issues the certificate. <b>Later that afternoon:</b> the new address had reached Google's, Cloudflare's and Quad9's resolvers, so DNS was no longer the wait. On Matthew's OK, Claude re-saved the custom domain through the API (204). GitHub's domain health check then said: pointed at a current Pages address, not the old one; eligible for HTTPS; no CAA problem; www fine. It was waiting only for GitHub to issue the certificate. <b>Watching</b> (Matthew's ask, 2026-10-14): a watcher in Claude's session checks every 5 minutes, for up to 24 hours, whether matthewhammer.org serves a valid certificate. When it does, Claude turns on Enforce HTTPS and finishes the ticket's remaining steps, then closes it.",
    "source": "Matthew, 2026-10-14",
    "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages"
-  },
+  }
+ ],
+ "next_ticket": 87,
+ "current_ticket": 86,
+ "current_note": "✋❔ Waiting on Matthew. Found tonight: #2597 grew ~87 MB per edit because its undo stack keeps whole page models and its cap is off by default (^ticket(58), closed). The fix, ported from Andrew's 6010128b7d, is local on perf/2597-compact-undo (bc66ae5616): 159 MB after 12 edits instead of 1,048, undo checked. Push on your word (^ticket(86)); dev has the same bug. Also waiting from earlier: ^ticket(29)'s draft (http://localhost:8131/series/008/#update-box), pushes for ^ticket(84), ^ticket(85), ^ticket(46); ^ticket(18)'s design calls. Work notes: http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T2120-0600.html#holder",
+ "closed_tickets": [
   {
    "id": 66,
    "area": "performance",
    "added": "2026-10-14",
    "text": "<b>Find a smaller slide that grows the same way</b> (Hazel performance analysis, ^report(14), What next, step 2: \"Find a smaller slide that grows the same way, so that a snapshot fits even with the memo: one whose slider edits a livelit's model, measured as here.\"). On #2597, run ^report(14)'s measurement (014/drivers/heap_per_edit.py, the live heap after two forced collections, per slider edit) on the Livelit Playground's smaller slides, picking a slider that edits a livelit's model (Shirt and Pants' width sliders are not the shirt's own, so that earlier try applied no edit; check that each edit changes the picture). A slide that keeps a version per edit at a fraction of Full Body's size may let a heap snapshot finish, and its retainer paths would name the holder (^ticket(58)).",
    "source": "Matthew, 2026-10-14",
-   "url": "http://matthewhammer.org/hazel/performance-analysis/014/#step-2"
-  }
- ],
- "next_ticket": 86,
- "current_ticket": 58,
- "current_note": "Found ^ticket(58)'s holder: #2597's page-level undo stack keeps a whole page model per edit (its cap is off by default), so Full Body grows ~87 MB per edit; with the cap always on, it stops after 3 edits. #2635 already has Andrew's fix (6010128b7d: compacted, always-capped undo snapshots). Now: porting that compaction to #2597 on a local branch, checking undo in the browser, measuring. Nothing pushed. Still waiting on Matthew, from earlier tonight: ^ticket(29)'s draft (http://localhost:8131/series/008/#update-box), and pushes for ^ticket(84), ^ticket(85), ^ticket(46); ^ticket(18)'s design calls. Work notes: http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T2120-0600.html",
- "closed_tickets": [
+   "url": "http://matthewhammer.org/hazel/performance-analysis/014/#step-2",
+   "status": "not needed",
+   "closed": "2026-10-14",
+   "outcome": "NOT NEEDED 2026-10-14 night: a smaller leaking slide was a way to fit a heap snapshot; a probe build with ValueHash's memo per synchronous run made Full Body's snapshot fit (2.3 GB, 75 s), and it named the holder (^ticket(58))."
+  },
+  {
+   "id": 58,
+   "area": "performance",
+   "added": "2026-10-14",
+   "text": "<b>FOUND 2026-10-14 night (was parked): what holds about 85 MB per edit of Full Body in a #2597 tab.</b> From ^ticket(45), which measured it and ruled out every cache and table (its outcome, and the work notes of 2026-10-14). The holder is not a table: it keeps whole versions of the editor's state. A heap snapshot would name it, but snapshots kill this page's renderer (snap Chromium and Chrome for Testing 155 alike, with the hang monitor off; a trivial page and a million-deep chain of arrays are fine). <b>Lead:</b> a page with a WeakMap of 2 million live entries did not finish its snapshot in 400 s, and ValueHash's memo is a WeakMap of about that size: try a probe build with ValueHash's memo off (or bounded), and take the snapshots then. Other ways in: a smaller slide that leaks (Shirt and Pants' sliders are not the shirt's width; find one that edits a livelit model), or closures held by the browser (listeners, timers, observers) on a render path. <b>Lead, 2026-10-14 night (^ticket(65)):</b> #2635's head grows only about 8 MB per edit and falls back by about 50 MB at edits 11 and 22 (a sawtooth over 30 edits, likely ShareCodec's tables starting over), where #2597 keeps about 92 MB per edit and never falls back: the holder is something #2597 keeps that #2635 does not. Look at what #2635 changed or dropped (dev and #2469 merged in) before trying the snapshot again; work notes: http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T2120-0600.html#memory <b>FOUND, 2026-10-14 night:</b> the page-level undo stack. #2597's <code>History.Model.undo_stack</code> keeps a whole <code>Page.Model.t</code> per edit, with that version's syntax, statics and layout, and its cap only applies when the setting <code>cap_undo_stack</code> is on, which it is not by default (Settings.re: <code>cap_undo_stack: false</code>). So ^report(14)'s undo test (the size 250 → 2) changed nothing: the cap never ran. How it was found: a probe build with ValueHash's memo off made heap snapshots possible (2.3 GB, 75 s); two snapshots in one session (after edits 3 and 6), a dominator tree (29M nodes), and the copies of the editor's derived data sit at <code>Logged.current.undo_stack[0]</code> and <code>[1]</code>. Confirmed: with the cap always on (at 2), #2597 stops growing after edit 3 (284 MB after 12 edits, two runs, against 1,048 MB as built). #2635 has the fix already: Andrew's 6010128b7d (2026-08-26, on #2469) compacts each undo snapshot (drops syntax, statics, eval state; rebuilt on restore) and always caps. Next: port that compaction to #2597 (its ScratchMode differs), check undo in the browser, measure; local only, push on Matthew's word.",
+   "source": "^ticket(45), 2026-10-14",
+   "url": "",
+   "status": "done",
+   "closed": "2026-10-14",
+   "outcome": "DONE 2026-10-14 night: the holder is #2597's page-level undo stack. History.Model.undo_stack keeps a whole page model per edit (syntax, statics, layout of that version); its cap applies only when cap_undo_stack is on, and it is off by default, so ^report(14)'s undo test (250 → 2) never ran. Found with a probe build (ValueHash's memo per synchronous run, so snapshots work), two snapshots in one session and a dominator tree: copies of Full Body's derived data at undo_stack[0] and [1]. Confirmed: the cap always on at 2 stops the growth after 3 edits (284 MB after 12, against 1,048 as built). Fix ported from Andrew's 6010128b7d (on #2469/#2635): local branch perf/2597-compact-undo bc66ae5616 in ~/hazel-2597-probe, 159 MB after 12 edits, undo and redo checked in the browser, Undo tests pass. dev has the same uncapped stack. Pushing is ^ticket(86). Work notes: http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T2120-0600.html#holder"
+  },
   {
    "id": 65,
    "area": "performance",
@@ -1095,7 +1109,7 @@
   }
  ],
  "queue": [
-  58,
+  86,
   18,
   84,
   60,
@@ -1103,6 +1117,6 @@
   50,
   29
  ],
- "current_since": "2026-10-14T23:07-06:00",
- "current_waiting": "Review the draft of ^report(8)'s update, and push ^ticket(84)'s fix first (the page links cbc585933b)"
+ "current_since": "2026-10-14T23:20-06:00",
+ "current_waiting": "Push ^ticket(86) (#2597's undo compaction) and ^ticket(84)'s fix? Review ^ticket(29)'s draft. Bring Andrew's undo fix to dev?"
 }
