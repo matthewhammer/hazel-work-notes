@@ -674,9 +674,38 @@
     "sync_minutes_est": 11.0,
     "work_minutes": 6
    }
+  },
+  {
+   "id": 102,
+   "area": "hazel",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T12:07-06:00",
+   "text": "<b>Reply to Alexander on the deep links PR</b> (#2583; Matthew writes the reply by hand). Alexander (7h3kk1d) replied today at 11:00 to our comment of 10-14 linking the plan page; he couldn't comment on that page, so he left his notes on the PR. His two points on the plan's sketch: (1) name `target`'s constructors `Documentation` and `Scratchpad`, not `Slide` and `Share`, and use records instead of tuples where there are several fields (`Scratchpad({name, share})`); (2) the `request` record allows a `position` without a `target`: he'd like a type that rules it out. Fact for the reply: on the branch as pushed (09-22), `?caret=` without `?slide=` puts the caret in whatever opens (the reader's last slide or scratchpad), so such a link depends on the reader's saved state. That supports nesting the position inside the place, e.g. `{place: option({target, position: option(position)}), panel: option(panel_request)}`. A panel-only link stays meaningful. Then revise the plan, and later the branch, to match whatever is agreed. He liked the rest. Also worth an answer: where he should comment on plans next time (the PR itself, or the PR description).",
+   "source": "Matthew, 2026-10-15",
+   "url": "https://github.com/hazelgrove/hazel/pull/2583#issuecomment-6197659505",
+   "log": [
+    {
+     "at": "2026-10-15T12:13-06:00",
+     "from": "matthew",
+     "chars": 150,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T12:07-06:00",
+     "from": "matthew",
+     "chars": 45,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T12:07-06:00",
+     "from": "claude",
+     "chars": 1400,
+     "asks": true
+    }
+   ]
   }
  ],
- "next_ticket": 102,
+ "next_ticket": 103,
  "current_ticket": 100,
  "current_note": "Waiting on Matthew for ^ticket(101): five funked waltzes, A to E (83019d0), to pick one. Meanwhile, back on ^ticket(100): giving every scene a quick thing (LFO D) and a slow thing (LFO E), starting with the shared drawings (clouds, the sun's rays, stars, torches, sunbeams). Nothing pushed.",
  "closed_tickets": [
@@ -1773,6 +1802,7 @@
   }
  ],
  "queue": [
+  102,
   101,
   100,
   93,
