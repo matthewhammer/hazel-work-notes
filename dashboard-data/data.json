@@ -482,7 +482,7 @@
    "area": "hazel",
    "added": "2026-10-15",
    "opened": "2026-10-15T12:07-06:00",
-   "text": "<b>Reply to Alexander on the deep links PR</b> (#2583; Matthew writes the reply by hand). Alexander (7h3kk1d) replied today at 11:00 to our comment of 10-14 linking the plan page; he couldn't comment on that page, so he left his notes on the PR. His two points on the plan's sketch: (1) name `target`'s constructors `Documentation` and `Scratchpad`, not `Slide` and `Share`, and use records instead of tuples where there are several fields (`Scratchpad({name, share})`); (2) the `request` record allows a `position` without a `target`: he'd like a type that rules it out. Fact for the reply: on the branch as pushed (09-22), `?caret=` without `?slide=` puts the caret in whatever opens (the reader's last slide or scratchpad), so such a link depends on the reader's saved state. That supports nesting the position inside the place, e.g. `{place: option({target, position: option(position)}), panel: option(panel_request)}`. A panel-only link stays meaningful. Then revise the plan, and later the branch, to match whatever is agreed. He liked the rest. Also worth an answer: where he should comment on plans next time (the PR itself, or the PR description).",
+   "text": "<b>Reply to Alexander on the deep links PR</b> (#2583; Matthew writes the reply by hand). Alexander (7h3kk1d) replied today at 11:00 to our comment of 10-14 linking the plan page; he couldn't comment on that page, so he left his notes on the PR. His two points on the plan's sketch: (1) name `target`'s constructors `Documentation` and `Scratchpad`, not `Slide` and `Share`, and use records instead of tuples where there are several fields (`Scratchpad({name, share})`); (2) the `request` record allows a `position` without a `target`: he'd like a type that rules it out. Fact for the reply: on the branch as pushed (09-22), `?caret=` without `?slide=` puts the caret in whatever opens (the reader's last slide or scratchpad), so such a link depends on the reader's saved state. That supports nesting the position inside the place, e.g. `{place: option({target, position: option(position)}), panel: option(panel_request)}`. A panel-only link stays meaningful. Then revise the plan, and later the branch, to match whatever is agreed. He liked the rest. Also worth an answer: where he should comment on plans next time (the PR itself, or the PR description). <b>2026-10-15T15:59:</b> tagged 🪷 blocked on Matthew (his reply, written by hand), at the end of the queue.",
    "source": "Matthew, 2026-10-15",
    "url": "https://github.com/hazelgrove/hazel/pull/2583#issuecomment-6197659505",
    "log": [
@@ -503,7 +503,16 @@
      "from": "claude",
      "chars": 1400,
      "asks": true
+    },
+    {
+     "at": "2026-10-15T15:59-06:00",
+     "from": "matthew",
+     "chars": 60,
+     "asks": false
     }
+   ],
+   "tags": [
+    "blocked on Matthew"
    ]
   },
   {
@@ -563,11 +572,34 @@
    "tags": [
     "long run"
    ]
+  },
+  {
+   "id": 115,
+   "area": "dashboard",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T15:58-06:00",
+   "text": "<b>A 🪷 blocked on Matthew tag, apart from 🌙 long run.</b> Matthew: another tag, \"blocked on Matthew's response\", with a peaceful emoji (🪷 a lotus; 🕊️ or 🍃 the alternatives offered). Tagged tickets get a 🪷 chip, and sit in a category of their own at the very end of the queue, after the long runs. First tagged: ^ticket(102). Under VERSIONS.md Unreleased. Matthew on 🪷: \"Pur-fect.\"",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T15:58-06:00",
+     "from": "matthew",
+     "chars": 190,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T15:59-06:00",
+     "from": "matthew",
+     "chars": 9,
+     "asks": false
+    }
+   ]
   }
  ],
- "next_ticket": 115,
- "current_ticket": null,
- "current_note": "Nothing in hand: 113 (more doors, 0.0.43) and 114 (the 🌙 long run tag) are done. Waiting for N's and M's next ideas; the long runs (99, 106, 104) are for tonight. The 10-15 music archive is finishing its re-render after the crash, then pushes.",
+ "next_ticket": 116,
+ "current_ticket": 115,
+ "current_note": "115: the 🪷 blocked-on-Matthew tag; ^ticket(102) under it, at the end of the queue.",
  "closed_tickets": [
   {
    "id": 113,
@@ -2415,7 +2447,6 @@
   }
  ],
  "queue": [
-  102,
   91,
   90,
   18,
@@ -2424,8 +2455,9 @@
   29,
   99,
   106,
-  104
+  104,
+  102
  ],
- "current_since": null,
- "current_waiting": "your next pick (or N's ideas)"
+ "current_since": "2026-10-15T15:58-06:00",
+ "current_waiting": ""
 }
