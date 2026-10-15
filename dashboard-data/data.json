@@ -339,7 +339,7 @@
    "area": "dress up",
    "added": "2026-10-15",
    "opened": "2026-10-15T10:27-06:00",
-   "text": "<b>Castle rooms by number, each with its own exits.</b> Matthew, 2026-10-15: a castle is numbered rooms; each room has a type and its own exits, each to a specific room by number (so two hallways can connect yet have distinct doors to distinct rooms), the outside, or nowhere. For a hallway: its number of doors (0-4) and each one's destination, and where its stairs lead. Chips to go straight into each room by number (for testing a castle), and dotted boxes round the groups of controls. Defaults reproduce today's links; other room types keep linking to every room for now; doors are one-way (the back chip always returns). Timed from 10:26:44. BUILT 2026-10-15, timed 10:26:44-10:29:54 (3.2 min; estimated 45-60): local commit 31896c0 in ~/kids-choice-games, under Unreleased. Checked in a muted headless browser: two hallways joined by their stairs, each with its own doors (room 1: out, 2, 3, stairs to 2; room 2: 4, 5, stairs to 1); the king's room still links to all; the dashed groups show only what applies; the go-to chips jump straight in. Known rough edge: a door's choices list rooms 1-6 even when the castle has fewer (a door to a missing room is not drawn). Open until Matthew is happy with the castle designer; then ^ticket(95). REVISED 2026-10-15, timed 10:32:19-10:36: door choices follow the room count; the king's room has its own doors (0-4, set like a hallway's) in its side walls in perspective, two to a side, the nearer door's sign above the farther's, clear of the throne, the banners and the suits of armor (moved against the back wall); its way out a sign at the bottom, as the clearing's path. Default doors 3 (out, and the next two rooms). Local commit after 31896c0. ALSO 2026-10-15, timed 10:36:46-10:38: inside a castle room only its settings group shows, marked (at the castle, all); the caption says where the friend is, in each place's own word (in, at, on, near, outside of; a castle room by name and number). Local commit after c3020a5.",
+   "text": "<b>Castle rooms by number, each with its own exits.</b> Matthew, 2026-10-15: a castle is numbered rooms; each room has a type and its own exits, each to a specific room by number (so two hallways can connect yet have distinct doors to distinct rooms), the outside, or nowhere. For a hallway: its number of doors (0-4) and each one's destination, and where its stairs lead. Chips to go straight into each room by number (for testing a castle), and dotted boxes round the groups of controls. Defaults reproduce today's links; other room types keep linking to every room for now; doors are one-way (the back chip always returns). Timed from 10:26:44. BUILT 2026-10-15, timed 10:26:44-10:29:54 (3.2 min; estimated 45-60): local commit 31896c0 in ~/kids-choice-games, under Unreleased. Checked in a muted headless browser: two hallways joined by their stairs, each with its own doors (room 1: out, 2, 3, stairs to 2; room 2: 4, 5, stairs to 1); the king's room still links to all; the dashed groups show only what applies; the go-to chips jump straight in. Known rough edge: a door's choices list rooms 1-6 even when the castle has fewer (a door to a missing room is not drawn). Open until Matthew is happy with the castle designer; then ^ticket(95). REVISED 2026-10-15, timed 10:32:19-10:36: door choices follow the room count; the king's room has its own doors (0-4, set like a hallway's) in its side walls in perspective, two to a side, the nearer door's sign above the farther's, clear of the throne, the banners and the suits of armor (moved against the back wall); its way out a sign at the bottom, as the clearing's path. Default doors 3 (out, and the next two rooms). Local commit after 31896c0. ALSO 2026-10-15, timed 10:36:46-10:38: inside a castle room only its settings group shows, marked (at the castle, all); the caption says where the friend is, in each place's own word (in, at, on, near, outside of; a castle room by name and number). Local commit after c3020a5. Matthew 2026-10-15: \"the new castle editing UX is better\". Then, timed 10:51:44-10:52: each room choice shows its room's own emoji, following its type (choices whose text follows the settings).",
    "source": "Matthew, 2026-10-15",
    "url": "",
    "log": [
@@ -407,6 +407,18 @@
      "at": "2026-10-15T10:38-06:00",
      "from": "claude",
      "chars": 1100,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:51-06:00",
+     "from": "matthew",
+     "chars": 190,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:52-06:00",
+     "from": "claude",
+     "chars": 600,
      "asks": false
     }
    ],
