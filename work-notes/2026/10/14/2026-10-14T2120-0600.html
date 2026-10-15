@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Evening notes, 10-14</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --hi: #fef3c7; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --hi: #3a3218; }
+  }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; }
+  h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; }
+  code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); }
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9em; }
+  th, td { border-bottom: 1px solid var(--line); padding: 5px 6px; text-align: left; vertical-align: top; }
+  li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Evening of 10-14: the autosave's print, B against C again, views in the worker</h1>
+<p class="sub">2026-10-14, Claude, while Matthew was away (nothing pushed). <a href="http://matthewhammer.org/hazel-work-notes/#ticket-84"><code class="ref"><b>^ticket(</b>84<b>)</b></code></a>, <a href="http://matthewhammer.org/hazel-work-notes/#ticket-29"><code class="ref"><b>^ticket(</b>29<b>)</b></code></a>, <a href="http://matthewhammer.org/hazel-work-notes/#ticket-18"><code class="ref"><b>^ticket(</b>18<b>)</b></code></a>.</p>
+
+<h2 id="setup">How it was measured</h2>
+<ul>
+<li><a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a>'s head <code>9fb2bdf067</code>, dev build, in <code>~/hazel-livelits-modular</code>, served on 8341. Headless Firefox over WebDriver, a fresh profile per session.</li>
+<li>^report(8)'s set-ups, again: the Full Body slide, the "arm length" slider, two warm-up changes and then twelve, each a real pointer drag to a length not drawn before. Release to redraw is from the pointerup to the first 200 ms poll at which the largest picture's markup differs. <b>C</b>: the whole program on screen. <b>B</b>: UX mode, every GUI row's chip off but <code>arm_length</code>'s and the picture's (its row reads <code>probe(drawn)</code> while shown, <code>drawn</code> while hidden).</li>
+<li>^report(8)'s harness did not survive, so it is rebuilt from the report's recorded method: <code>fullbody_release.py</code>, and <code>profile18.py</code> (a copy of <code>scripts/profile_interaction.py</code> with this interaction and UX mode added). Both are in <code>~/.cache/hazel-diag/</code> (with <code>callers.py</code> and <code>callees.py</code>, which read a profile's stacks around one function), and each session's runs in <code>~/.cache/hazel-diag/r29/</code>. The numbers below are each session's median of twelve.</li>
+</ul>
+
+<h2 id="b-vs-c">B against C, today (^ticket(29))</h2>
+<div class="scroll"><table>
+<tr><th>Build</th><th>C, whole program</th><th>B, UX mode</th></tr>
+<tr><td><a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a> head</td><td>1.33, 1.44 s</td><td>2.05, 2.04 s</td></tr>
+<tr><td>with ^ticket(84)'s first change (linear slicing)</td><td>1.76, 1.30, 1.23 s</td><td>1.26, 1.43, 1.51 s</td></tr>
+<tr><td>with both changes</td><td>1.41, 1.30 s</td><td>1.54, 1.56 s</td></tr>
+<tr><td>with both, and the view runner moved to <code>language</code></td><td>1.34 s</td><td>1.40 s</td></tr>
+</table></div>
+<p>So on today's head B is slower than C again, by 0.6–0.7 s; ^report(8)'s fixed B (1.26 against 1.23 s) no longer holds. With ^ticket(84)'s fix the two are within run-to-run spread, B perhaps 0.1–0.2 s slower: livelit views run on the main thread in UX mode (<code>live_html</code>, about 380 ms of samples per change, profiled).</p>
+
+<h2 id="autosave">The autosave's print (^ticket(84))</h2>
+<ul>
+<li><b>What:</b> about a second after a change, the save alarm prints the program to text (<code>PersistentZipper.to_string</code> for a whole program, <code>persist_divided</code> for a divided one), through <code>MarkerParse.to_text</code> and <code>Segment.to_string</code>, with the zipper's manual refractors (the probes). <code>Triggers.refractor_seg_to_seg_with</code> was quadratic on the top-level <code>let</code> chain: <code>ListUtil.sublist</code> from the list's head at every node, and <code>Skel.range</code> down the <code>Pre</code> chain for every child. And <code>Segment.to_string</code> calls it again on every nested segment while any refractor is unplaced, building each segment's skeleton.</li>
+<li><b>Where it showed:</b> in C the save lands just after the redraw (about 600 ms, delaying the next interaction); in B it lands inside the change (about 1 s), which was most of B's extra time.</li>
+<li><b>Fix:</b> slices of an array, a skeleton's first or last index taken alone, and a segment with no refractor pieces at its own level returned at once (a term is wrapped only when its root piece, at that level, is a refractor's, so the output is the same). <code>save_current</code> per change, profiled: about 600 → 300 → 80 ms (the walk under it 1,594 → 710 → 38 samples over three changes).</li>
+<li><b>Tests:</b> DocSlides.ReparseBackuptext (120, the slides printed with their probes and parsed back), DividedLaws (17), Parser.Segmented (6), FastParse (33) pass.</li>
+<li><b>Where:</b> local branch <code>perf/2635-autosave-print</code>, commit <code>cbc585933b</code>. Not pushed: to <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a> on Matthew's word, then cherry-pick to <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>.</li>
+</ul>
+
+<h2 id="views">Views in the worker (^ticket(18))</h2>
+<ul>
+<li><b>Today:</b> half of each view already runs in the worker. For a divided program (UX mode), statics fold <code>def.view(model)</code> into the program for every livelit projector (<code>UserLivelit.instrument_view</code>, the projector ids unioned in at <code>Workspace.re:591</code>). The worker evaluates it to a ViewCmd and sends it back as the projector's sample. The page then runs that command to Html (<code>ViewCmdRunner.run</code>, in <code>LivelitProj.live_html</code>) on every redraw that misses its view cache, and livelits with splices are never cached. For a whole program, the projectors are not given to statics (<code>CachedStatics.init_compositional</code> takes <code>probe_ids_of_zipper(z)</code> without them), so there is no fold-in, and every view is evaluated on the page from its definition (<code>memo_view</code>).</li>
+<li><b>Done:</b> <code>MvuShape</code> and <code>ViewCmdRunner</code> moved to the <code>language</code> library, so the worker, which links only <code>language</code>, can run views. haz3lcore keeps both names (<code>include</code>). MVU (69), UserLivelits (70), OpenValues, ResultView and IdentityMemo pass, and the timings are unchanged (B 1.40 s, C 1.34 s). Local branch <code>perf/2635-views-in-worker</code>, commit <code>61d031fd93</code>, on top of ^ticket(84)'s fix.</li>
+<li><b>Tried, and much slower:</b> the worker ran every view sample to Html before posting, as <code>Pure(html)</code>, which the page's runner answers at once. B went from 1.40 to 14.2 s per change, and with whole programs given the projectors too, C went from 1.34 to 13.7 s. Profiled, 65–83% of the worker was that pass, for two reasons. A divided program targets every livelit projector, about forty here, where the page draws only the two on screen. And the cache, keyed on the command's identity, missed from post to post. Kept for reference on <code>experiment/2635-views-in-worker-all</code> (<code>a7fbe23788</code>, labelled slow, not for use).</li>
+<li><b>What it would need:</b> the page sending the ids of the livelits it draws with each request, and the worker running only those; a cache keyed by the command's content (<code>ValueHash</code>), so that an unchanged view is never run again; and for whole programs, folding views in only for the livelits on screen. These are protocol and design calls for Matthew before going further.</li>
+</ul>
+
+<h2 id="where">Where things are</h2>
+<ul>
+<li><code>~/hazel-livelits-modular</code> is on the local branch <code>perf/2635-views-in-worker</code> (the PR head plus the two commits above), not on the PR branch. Port 8341 serves that build until it is switched back.</li>
+<li>Nothing is pushed: not ^ticket(84)'s fix, the module move or the experiment.</li>
+</ul>
+
+<h2 id="next">Next steps</h2>
+<ol>
+<li id="next-1">Push ^ticket(84)'s fix to <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a> and cherry-pick it to <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>, on Matthew's word.</li>
+<li id="next-2">Revise ^report(8) with these numbers and graphs (^ticket(29)); the draft waits for review, and its answer depends on ^ticket(84)'s fix landing.</li>
+<li id="next-3">^ticket(18): decide the protocol (the ids of the livelits on screen in the request, a content-keyed cache) before more code.</li>
+</ol>
+</main>
+<!-- pr-cards: begin -->
+<style>
+  .pr-card { position: absolute; z-index: 40; width: max-content; max-width: min(380px, calc(100vw - 32px)); box-sizing: border-box;
+    padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line, #d0d7de); background: var(--paper, var(--bg, Canvas));
+    color: var(--ink, CanvasText); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18); font: 13px/1.45 system-ui, sans-serif; pointer-events: none; }
+  .pr-card .pr-head { color: var(--muted, GrayText); font-size: 12px; }
+  .pr-card .pr-title { font-weight: 600; margin: 3px 0 4px; }
+  .pr-card .pr-meta { color: var(--muted, GrayText); font-size: 12px; }
+  .pr-card .pr-note { color: var(--muted, GrayText); font-size: 11px; margin-top: 5px; font-style: italic; }
+  .pr-state { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; margin-left: 6px; vertical-align: 1px; }
+  .pr-state.open { background: #1f883d; } .pr-state.merged { background: #8250df; } .pr-state.closed { background: #cf222e; } .pr-state.draft { background: #6e7781; }
+</style>
+<script>
+/* A card for each link to a GitHub PR or issue, on hover or focus: its
+   title, state, author, dates and comments, asked of GitHub live, once per
+   number per page load; if GitHub does not answer, what it said when the
+   page was built (tools/link_prs.py writes this block). */
+(() => {
+  const CACHED = {"hazelgrove/hazel#2597": {"author": "matthewhammer", "comments": 3, "created": "2026-09-23T15:18:28Z", "kind": "pull", "state": "open", "title": "User-Defined Livelits, as in PLDI '21, and beyond.", "updated": "2026-10-14T14:42:33Z"}, "hazelgrove/hazel#2635": {"author": "matthewhammer", "comments": 2, "created": "2026-10-01T22:50:14Z", "kind": "pull", "state": "draft", "title": "Livelits × modular editors: merge #2469 into the livelits branch", "updated": "2026-10-14T14:42:21Z"}}, BUILT = "2026-10-14";
+  const RX = /^https:\/\/github\.com\/([^/]+\/[^/]+)\/(?:pull|issues)\/(\d+)$/;
+  const asked = new Map();
+  const ask = key => {
+    if (!asked.has(key)) {
+      const [repo, n] = key.split("#");
+      asked.set(key, fetch(`https://api.github.com/repos/${repo}/issues/${n}`)
+        .then(r => r.ok ? r.json() : Promise.reject(r.status))
+        .then(j => ({ title: j.title, author: j.user && j.user.login, created: j.created_at, updated: j.updated_at,
+                      comments: j.comments, kind: j.pull_request ? "pull" : "issues",
+                      state: j.pull_request && j.pull_request.merged_at ? "merged" : j.draft ? "draft" : j.state }))
+        .catch(() => null));
+    }
+    return asked.get(key);
+  };
+  const day = iso => new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+  const ago = iso => {
+    const s = (Date.now() - new Date(iso)) / 1000;
+    for (const [u, k] of [["year", 31536000], ["month", 2592000], ["day", 86400], ["hour", 3600], ["minute", 60]])
+      if (s >= k) { const v = Math.floor(s / k); return `${v} ${u}${v === 1 ? "" : "s"} ago`; }
+    return "just now";
+  };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const fill = (key, d, note) => {
+    const [repo, n] = key.split("#"), what = d.kind === "pull" ? "Pull request" : "Issue";
+    return `<div class="pr-head">${esc(repo)} #${n} · ${what}<span class="pr-state ${esc(d.state)}">${esc(d.state)}</span></div>` +
+      `<div class="pr-title">${esc(d.title)}</div>` +
+      `<div class="pr-meta">by ${esc(d.author)} · opened ${day(d.created)} · updated ${ago(d.updated)} · ${d.comments} comment${d.comments === 1 ? "" : "s"}</div>` +
+      (note ? `<div class="pr-note">${note}</div>` : "");
+  };
+  let card = null, over = null, timer = null;
+  const place = a => {
+    const r = a.getBoundingClientRect(), w = card.offsetWidth, h = card.offsetHeight;
+    const left = Math.max(16, Math.min(r.left, document.documentElement.clientWidth - w - 16));
+    const below = r.bottom + 6 + h < innerHeight;
+    card.style.left = (left + scrollX) + "px";
+    card.style.top = ((below ? r.bottom + 6 : r.top - 6 - h) + scrollY) + "px";
+  };
+  const hide = () => { clearTimeout(timer); over = null; if (card) card.hidden = true; };
+  const show = a => {
+    const m = RX.exec(a.href);
+    if (!m) return;
+    const key = m[1] + "#" + m[2];
+    over = a; clearTimeout(timer);
+    timer = setTimeout(async () => {
+      if (!card) { card = document.createElement("div"); card.className = "pr-card"; card.setAttribute("role", "tooltip"); document.body.append(card); }
+      const cached = CACHED[key];
+      card.innerHTML = cached ? fill(key, cached, "asking GitHub…") : `<div class="pr-head">${esc(key)}</div><div class="pr-note">asking GitHub…</div>`;
+      card.hidden = false; place(a);
+      const d = await ask(key);
+      if (over !== a) return;
+      card.innerHTML = d ? fill(key, d, "")
+        : cached ? fill(key, cached, `GitHub didn't answer just now (its limit is 60 lookups an hour per network): as of ${BUILT}`)
+        : `<div class="pr-head">${esc(key)}</div><div class="pr-note">GitHub didn't answer just now.</div>`;
+      place(a);
+    }, 250);
+  };
+  const linkOf = t => t && t.closest && t.closest("a[href]");
+  document.addEventListener("mouseover", e => { const a = linkOf(e.target); if (a && a !== over && RX.test(a.href)) show(a); });
+  document.addEventListener("mouseout", e => { const a = linkOf(e.target); if (a && a === over && !a.contains(e.relatedTarget)) hide(); });
+  document.addEventListener("focusin", e => { const a = linkOf(e.target); if (a && RX.test(a.href)) show(a); });
+  document.addEventListener("focusout", hide);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") hide(); });
+  addEventListener("scroll", () => { if (over && card && !card.hidden) place(over); }, { passive: true });
+})();
+</script>
+<!-- pr-cards: end -->
+<!-- ref-cards: begin -->
+<style>
+  .ref-card { position: absolute; z-index: 40; width: max-content; max-width: min(400px, calc(100vw - 32px)); box-sizing: border-box;
+    padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line, #d0d7de); background: var(--paper, var(--bg, Canvas));
+    color: var(--ink, CanvasText); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18); font: 13px/1.45 system-ui, sans-serif; pointer-events: none; }
+  .ref-card .rc-head { color: var(--muted, GrayText); font-size: 12px; }
+  .ref-card .rc-title { font-weight: 600; margin: 3px 0 4px; }
+  .ref-card .rc-meta { color: var(--muted, GrayText); font-size: 12px; }
+  .ref-card .rc-note { color: var(--muted, GrayText); font-size: 11px; margin-top: 5px; font-style: italic; }
+  .rc-state { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; margin-left: 6px;
+    vertical-align: 1px; background: #6e7781; }
+  .rc-state.current { background: #1f883d; } .rc-state.queued { background: #9a6700; } .rc-state.open { background: #0969da; }
+  .rc-state.done { background: #8250df; }
+</style>
+<script>
+/* A card for each ^ticket(N) and ^report(N) link, on hover or focus: a
+   ticket from the work dashboard's data (its area, its status, its first
+   line), carried by the dashboard's own pages and read live from the
+   published data anywhere else; a report from its own page, live (its
+   title, date and opening). Once per page load each. */
+(() => {
+  const PUBLIC = "http://matthewhammer.org/hazel-work-notes/dashboard-data/data.json";
+  const DATA = location.port === "8000" && /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? "/data.json" : PUBLIC;
+  /* the dashboard itself carries its tickets (made with the page, changed
+     with it); any other page asks the published data */
+  const EMBED = null;
+  let data = EMBED ? Promise.resolve(EMBED) : null;
+  const loadData = () => data || (data = fetch(DATA, { cache: "no-store" }).then(r => r.ok ? r.json() : Promise.reject(r.status)).catch(() => null));
+  const pages = new Map();
+  const loadReport = url => {
+    if (!pages.has(url)) pages.set(url, fetch(url).then(r => r.ok ? r.text() : Promise.reject(r.status)).then(t => {
+      const doc = new DOMParser().parseFromString(t, "text/html"), h1 = doc.querySelector("h1");
+      let p = h1 && h1.nextElementSibling;
+      while (p && p.tagName !== "P") p = p.nextElementSibling;
+      const label = (doc.querySelector(".series") || {}).textContent || "";
+      return { title: h1 ? h1.textContent.trim() : doc.title, date: (label.match(/\d{4}-\d{2}-\d{2}/) || [""])[0],
+               lead: p ? p.textContent.replace(/\s+/g, " ").trim() : "" };
+    }).catch(() => null));
+    return pages.get(url);
+  };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const cut = (t, n) => t.length <= n ? t : t.slice(0, n).replace(/\s+\S*$/, "") + "…";
+  const plain = h => new DOMParser().parseFromString("<div>" + (h || "") + "</div>", "text/html").body.textContent.replace(/\s+/g, " ").trim();
+  const lead = h => { const m = /^\s*<b>([\s\S]*?)<\/b>/.exec(h || ""); return m ? plain(m[1]) : cut(plain(h), 200); };
+  const ticketCard = (n, d) => {
+    const open = (d.tickets || []).find(t => t.id === n), closed = (d.closed_tickets || []).find(t => t.id === n), t = open || closed;
+    if (!t) return `<div class="rc-head">^ticket(${n})</div><div class="rc-note">Not on the dashboard.</div>`;
+    const q = (d.queue || []).indexOf(n);
+    const [cls, state] = closed ? ["done", `${t.status || "closed"}, ${t.closed || ""}`]
+      : d.current_ticket === n ? ["current", "current" + (d.current_waiting ? " · ✋❔ waiting on Matthew" : "")]
+      : q >= 0 ? ["queued", `queued, ${q + 1} in line`] : ["open", "open"];
+    return `<div class="rc-head">^ticket(${n}) · ${esc(t.area || "")}<span class="rc-state ${cls}">${esc(state)}</span></div>` +
+      `<div class="rc-title">${esc(lead(t.text))}</div>` +
+      `<div class="rc-meta">${t.added ? "added " + esc(t.added) + " · " : ""}from ${esc(plain(t.source || "") || "?")}</div>` +
+      (closed && t.outcome ? `<div class="rc-meta">${esc(cut(plain(t.outcome), 180))}</div>` : "");
+  };
+  const reportCard = (n, r) => r
+    ? `<div class="rc-head">^report(${n}) · Hazel performance analysis${r.date ? " · " + esc(r.date) : ""}</div>` +
+      `<div class="rc-title">${esc(r.title)}</div>` + (r.lead ? `<div class="rc-meta">${esc(cut(r.lead, 240))}</div>` : "")
+    : `<div class="rc-head">^report(${n})</div><div class="rc-note">The report's page didn't load just now.</div>`;
+  let card = null, over = null, timer = null;
+  const place = a => {
+    const r = a.getBoundingClientRect(), w = card.offsetWidth, h = card.offsetHeight;
+    card.style.left = (Math.max(16, Math.min(r.left, document.documentElement.clientWidth - w - 16)) + scrollX) + "px";
+    card.style.top = ((r.bottom + 6 + h < innerHeight ? r.bottom + 6 : r.top - 6 - h) + scrollY) + "px";
+  };
+  const refOf = a => { const c = a.querySelector("code.ref"); const m = c && /^\^(ticket|report)\((\d+)\)$/.exec(c.textContent.trim()); return m && { kind: m[1], n: Number(m[2]) }; };
+  const hide = () => { clearTimeout(timer); over = null; if (card) card.hidden = true; };
+  const show = (a, ref) => {
+    over = a; clearTimeout(timer);
+    timer = setTimeout(async () => {
+      if (!card) { card = document.createElement("div"); card.className = "ref-card"; card.setAttribute("role", "tooltip"); document.body.append(card); }
+      card.innerHTML = `<div class="rc-head">^${ref.kind}(${ref.n})</div><div class="rc-note">loading…</div>`;
+      card.hidden = false; place(a);
+      let html;
+      if (ref.kind === "ticket") { const d = await loadData(); html = d ? ticketCard(ref.n, d) : `<div class="rc-head">^ticket(${ref.n})</div><div class="rc-note">The dashboard's data didn't load just now.</div>`; }
+      else html = reportCard(ref.n, await loadReport(a.href));
+      if (over !== a) return;
+      card.innerHTML = html; place(a);
+    }, 250);
+  };
+  const linkOf = t => t && t.closest && t.closest("a[href]");
+  document.addEventListener("mouseover", e => { const a = linkOf(e.target), r = a && refOf(a); if (r && a !== over) show(a, r); });
+  document.addEventListener("mouseout", e => { const a = linkOf(e.target); if (a && a === over && !a.contains(e.relatedTarget)) hide(); });
+  document.addEventListener("focusin", e => { const a = linkOf(e.target), r = a && refOf(a); if (r) show(a, r); });
+  document.addEventListener("focusout", hide);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") hide(); });
+  addEventListener("scroll", () => { if (over && card && !card.hidden) place(over); }, { passive: true });
+})();
+</script>
+<!-- ref-cards: end -->
+<!-- notes: begin -->
+<style>
+  code.ref { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; white-space: nowrap; }
+  code.ref b { font-weight: 800; }
+  button.mint { margin-left: 4px; font: inherit; font-size: 0.75em; padding: 0 6px; border: 1px solid var(--line, #ccc);
+    border-radius: 4px; background: transparent; color: var(--muted, #666); cursor: pointer; vertical-align: 1px; }
+  button.mint:hover { color: inherit; }
+  button.mint.done { color: var(--good, #15803d); border-color: var(--good, #15803d); }
+  a.step-link { color: var(--muted, #666); text-decoration: none; font-size: 0.85em; margin-left: 4px; }
+  a.step-link:hover { text-decoration: underline; }
+  li:target { background: color-mix(in srgb, var(--good, #15803d) 12%, transparent); border-radius: 6px; }
+</style>
+<script>
+/* Each step under "Next": a link to it, a chip copying that link, and a
+   chip copying a request to mint a ticket for it (to paste to Claude). */
+(() => {
+  const h = document.getElementById("next");
+  if (!h) return;
+  let list = h.nextElementSibling;
+  while (list && !/^(OL|UL)$/.test(list.tagName)) {
+    if (list.tagName === "H2") return;
+    list = list.nextElementSibling;
+  }
+  if (!list) return;
+  const page = location.origin + location.pathname, name = document.title;
+  const copy = async (b, text) => {
+    try { await navigator.clipboard.writeText(text); }
+    catch (_) { const t = document.createElement("textarea"); t.value = text; document.body.append(t); t.select(); document.execCommand("copy"); t.remove(); }
+    const was = b.textContent; b.textContent = "copied"; b.classList.add("done");
+    setTimeout(() => { b.textContent = was; b.classList.remove("done"); }, 1500);
+  };
+  [...list.children].filter(li => li.tagName === "LI").forEach((li, i) => {
+    const n = i + 1;
+    if (!li.id) li.id = "step-" + n;
+    const url = page + "#" + li.id;
+    const b = li.querySelector("b, strong");
+    const title = (b ? b.textContent : li.textContent).replace(/\s+/g, " ").trim().replace(/[:.,;]$/, "").slice(0, 160);
+    const a = document.createElement("a");
+    a.href = "#" + li.id; a.className = "step-link"; a.textContent = "#" + n; a.title = "A link to this step";
+    const link = document.createElement("button");
+    link.type = "button"; link.className = "mint"; link.textContent = "copy link"; link.title = "Copies a link to this step";
+    link.addEventListener("click", () => copy(link, url));
+    const mint = document.createElement("button");
+    mint.type = "button"; mint.className = "mint"; mint.textContent = "copy for a ticket";
+    mint.title = "Copies a request to mint a ticket for this step, to paste to Claude";
+    mint.addEventListener("click", () => copy(mint, "Mint a ticket for this step: " + name + ", Next, step " + n + ': "' + title + '". ' + url));
+    li.append(" ", a, " ", link, " ", mint);
+  });
+  if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
+})();
+</script>
+<!-- notes: end -->
+</body>
+</html>
