@@ -214,6 +214,14 @@
  ],
  "tickets": [
   {
+   "id": 90,
+   "area": "performance",
+   "added": "2026-10-15",
+   "text": "<b>Before parking ^ticket(18): re-measure views in the worker on #2635's head (032fe3aca6).</b> Matthew's middle option, 2026-10-15. The prototype's numbers (main thread 540 ms less per change in UX mode, 220 ms with the whole program; the redraw no sooner; Kids' Choice +45 ms) were taken on 9fb2bdf067, before the autosave fix (^ticket(84)). Steps: (1) rebase the prototype (61d031fd93, a7fbe23788, 9c7808c51e, ede920b07e) onto 032fe3aca6; (2) A/B on Full Body, UX mode (B) and the whole program (C): release to redraw, main-thread work per change; (3) NEW: how long the page stalls during a real drag (frames, in the page, from the pointer going down to the redraw), the cost the release-to-redraw number cannot see; (4) Kids' Choice release, the small-livelit cost; (5) a recommendation: park ^ticket(18) or not. Local only; nothing pushed.",
+   "source": "Matthew, 2026-10-15",
+   "url": ""
+  },
+  {
    "id": 7,
    "area": "performance",
    "text": "The commit path: find which of the request's values are new (about 15 ms of hashing, profiled), and make the commit's redraw cheaper. <b>Part done, 2026-10-14</b>, in node on #2635 at 41897ec3a5 (probe 4f0e261652, branch request-hash-probe in ~/hazel-ci-heap-2635, local only): a release-like edit (one literal, ids kept) through the app's own path, six edits each, steady state. Statics after the edit (DefStatics, per item): 25–37 ms. Only about 5% of the request is new objects: Kids' Choice 2,039 of 40k program nodes and about 4,600 of 87k EvalInfo nodes; Full Body 396 of 196k and about 13,100 of 326k. Building the request: <b>the EvalInfo projection is the largest part</b>, 13–14 ms on Full Body and 2.5–9 ms on Kids' Choice, because <code>project_from</code> walks both whole statics maps in key order on every commit, though about 180 entries change; then hashing the new values about 1–4 ms, and encoding 1.5–5 ms. So the hashing is not the cost. Tried and dropped: keeping an entry that is equal by content (ValueHash) as well as by identity: Full Body's re-added entries 179 to 30 and its EvalInfo new nodes 13,100 to 2,200, but the whole request got slower (median about 20 ms against 17), since comparing by content hashes as much as it saves. <b>Done and pushed to #2635, 2026-10-14:</b> 043508921b (DefStatics hands EvalInfo the keys it touched; the projection updates only those) and 9fb2bdf067 (unchanged spine roots kept): on Full Body the request 15.5–18.8 → 2.5–3.0 ms, statics after the edit 25–31 → 16–20 ms. Carrying it to diverged branches is ^ticket(47) (^report(13)). The commit's redraw, the ticket's second half, is not started.",
@@ -373,9 +381,9 @@
    "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages"
   }
  ],
- "next_ticket": 90,
- "current_ticket": 29,
- "current_note": "✋❔ Waiting on Matthew: review ^ticket(29), ^report(8)'s draft update (B and C with the same fixes): http://localhost:8131/series/008/#update-box, local fb8aa41 in ~/hazel-perf-report. Also his: the A records for ^ticket(60); park ^ticket(18)? Done today: ^report(14)'s update published; #2635 to 032fe3aca6 and #2597 to f8ae6f2b9c pushed; Dress Up 0.0.34 live.",
+ "next_ticket": 91,
+ "current_ticket": 90,
+ "current_note": "Working ^ticket(90) while Matthew is away (about an hour): views in the worker re-measured on #2635's head, release to redraw, main-thread work and drag stalls, to decide whether to park ^ticket(18). Port 8341 may serve the prototype build for a while. Also waiting on him: ^ticket(29) (^report(8)'s draft), the A records for ^ticket(60).",
  "closed_tickets": [
   {
    "id": 87,
@@ -1152,11 +1160,12 @@
   }
  ],
  "queue": [
+  90,
   18,
   60,
   50,
   29
  ],
- "current_since": "2026-10-15T08:39-06:00",
- "current_waiting": "Review ^ticket(29)'s draft; A records for ^ticket(60); park ^ticket(18)?"
+ "current_since": "2026-10-15T08:45-06:00",
+ "current_waiting": ""
 }
