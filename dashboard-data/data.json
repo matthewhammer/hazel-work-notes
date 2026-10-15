@@ -731,12 +731,36 @@
      "from": "matthew",
      "chars": 50,
      "asks": true
+    },
+    {
+     "at": "2026-10-15T13:00-06:00",
+     "from": "matthew",
+     "chars": 40,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T13:03-06:00",
+     "from": "matthew",
+     "chars": 40,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T13:06-06:00",
+     "from": "matthew",
+     "chars": 40,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T13:10-06:00",
+     "from": "matthew",
+     "chars": 30,
+     "asks": true
     }
    ],
    "status": "done",
    "closed": "2026-10-15",
    "closed_at": "2026-10-15T12:30-06:00",
-   "outcome": "Today's archive is at ~/dress-up-screenshots/2026/10/15/ (local, 321 MB), browsable at localhost:8133/screenshots/2026/10/15/index.html. It holds 306 distinct drawings, each a .png (1920 wide), an .svg (animations and all) and a .json (its settings, in the game's save format: Load opens it). They are named <folder>/<setting key>--<value>, the same every day: every background with the friend hidden and with the default friend, then every costume and every chip menu's options against the defaults (colors and sliders left alone; a menu repeated per castle, room, cat or horse taken once). A repeated drawing points at its first, and 92 options that draw nothing different under the defaults are noted. A manifest.json and an index.html come with it. The tool is ~/du-shots/tools/archive.mjs, plus sweep.mjs, ^ticket(99)'s safety net; both are local, pending the question of a tools/ folder in the repo.",
+   "outcome": "Today's archive is at ~/dress-up-screenshots/2026/10/15/ (local, 321 MB), browsable at localhost:8133/screenshots/2026/10/15/index.html. It holds 306 distinct drawings, each a .png (1920 wide), an .svg (animations and all) and a .json (its settings, in the game's save format: Load opens it). They are named <folder>/<setting key>--<value>, the same every day: every background with the friend hidden and with the default friend, then every costume and every chip menu's options against the defaults (colors and sliders left alone; a menu repeated per castle, room, cat or horse taken once). A repeated drawing points at its first, and 92 options that draw nothing different under the defaults are noted. A manifest.json and an index.html come with it. The tool is ~/du-shots/tools/archive.mjs, plus sweep.mjs, ^ticket(99)'s safety net; both are local, pending the question of a tools/ folder in the repo. REVISED after Matthew's review (13:00–13:15), still at the same address:<ul><li>The filter for repeated menus works (a \\d had lost its backslash in the injected script).</li><li>Each section opens with its default picture, and every 'same as' links the picture it equals.</li><li>A menu hidden at the defaults is captured with the one setting that brings it out, named in its label (e.g. '(with 👃 nose: side, L →)', '(with 🌗 time of day: 🌙 night)').</li><li>An option that draws nothing different at the defaults gets one more try, such as spiky teeth '(with mouth open)'.</li><li>Stills are compared without their animations, so LFO choices no longer make look-alike pictures.</li><li>Each run builds in a folder of its own and swaps it in at the end, so an open page never shows broken images.</li></ul>Now 266 distinct drawings, 124 options that draw nothing different, 38 menus that need more than one setting, 220 MB.",
    "metrics": {
     "open_minutes": 14,
     "matthew_messages": 5,
