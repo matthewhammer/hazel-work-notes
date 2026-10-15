@@ -383,7 +383,7 @@
    "id": 58,
    "area": "performance",
    "added": "2026-10-14",
-   "text": "<b>PARKED 2026-10-14: find what holds about 85 MB per edit of Full Body in a #2597 tab.</b> From ^ticket(45), which measured it and ruled out every cache and table (its outcome, and the work notes of 2026-10-14). The holder is not a table: it keeps whole versions of the editor's state. A heap snapshot would name it, but snapshots kill this page's renderer (snap Chromium and Chrome for Testing 155 alike, with the hang monitor off; a trivial page and a million-deep chain of arrays are fine). <b>Lead:</b> a page with a WeakMap of 2 million live entries did not finish its snapshot in 400 s, and ValueHash's memo is a WeakMap of about that size: try a probe build with ValueHash's memo off (or bounded), and take the snapshots then. Other ways in: a smaller slide that leaks (Shirt and Pants' sliders are not the shirt's width; find one that edits a livelit model), or closures held by the browser (listeners, timers, observers) on a render path. <b>Lead, 2026-10-14 night (^ticket(65)):</b> #2635's head grows only about 8 MB per edit and falls back by about 50 MB at edits 11 and 22 (a sawtooth over 30 edits, likely ShareCodec's tables starting over), where #2597 keeps about 92 MB per edit and never falls back: the holder is something #2597 keeps that #2635 does not. Look at what #2635 changed or dropped (dev and #2469 merged in) before trying the snapshot again; work notes: http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T2120-0600.html#memory",
+   "text": "<b>FOUND 2026-10-14 night (was parked): what holds about 85 MB per edit of Full Body in a #2597 tab.</b> From ^ticket(45), which measured it and ruled out every cache and table (its outcome, and the work notes of 2026-10-14). The holder is not a table: it keeps whole versions of the editor's state. A heap snapshot would name it, but snapshots kill this page's renderer (snap Chromium and Chrome for Testing 155 alike, with the hang monitor off; a trivial page and a million-deep chain of arrays are fine). <b>Lead:</b> a page with a WeakMap of 2 million live entries did not finish its snapshot in 400 s, and ValueHash's memo is a WeakMap of about that size: try a probe build with ValueHash's memo off (or bounded), and take the snapshots then. Other ways in: a smaller slide that leaks (Shirt and Pants' sliders are not the shirt's width; find one that edits a livelit model), or closures held by the browser (listeners, timers, observers) on a render path. <b>Lead, 2026-10-14 night (^ticket(65)):</b> #2635's head grows only about 8 MB per edit and falls back by about 50 MB at edits 11 and 22 (a sawtooth over 30 edits, likely ShareCodec's tables starting over), where #2597 keeps about 92 MB per edit and never falls back: the holder is something #2597 keeps that #2635 does not. Look at what #2635 changed or dropped (dev and #2469 merged in) before trying the snapshot again; work notes: http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T2120-0600.html#memory <b>FOUND, 2026-10-14 night:</b> the page-level undo stack. #2597's <code>History.Model.undo_stack</code> keeps a whole <code>Page.Model.t</code> per edit, with that version's syntax, statics and layout, and its cap only applies when the setting <code>cap_undo_stack</code> is on, which it is not by default (Settings.re: <code>cap_undo_stack: false</code>). So ^report(14)'s undo test (the size 250 → 2) changed nothing: the cap never ran. How it was found: a probe build with ValueHash's memo off made heap snapshots possible (2.3 GB, 75 s); two snapshots in one session (after edits 3 and 6), a dominator tree (29M nodes), and the copies of the editor's derived data sit at <code>Logged.current.undo_stack[0]</code> and <code>[1]</code>. Confirmed: with the cap always on (at 2), #2597 stops growing after edit 3 (284 MB after 12 edits, two runs, against 1,048 MB as built). #2635 has the fix already: Andrew's 6010128b7d (2026-08-26, on #2469) compacts each undo snapshot (drops syntax, statics, eval state; rebuilt on restore) and always caps. Next: port that compaction to #2597 (its ScratchMode differs), check undo in the browser, measure; local only, push on Matthew's word.",
    "source": "^ticket(45), 2026-10-14",
    "url": ""
   },
@@ -405,8 +405,8 @@
   }
  ],
  "next_ticket": 86,
- "current_ticket": 29,
- "current_note": "✋❔ Waiting on Matthew. ^ticket(29): a draft of ^report(8)'s dated update (B and C with the same fixes: level again once the autosave's print is fixed; a figure of every session) at http://localhost:8131/series/008/#update-box, local commit in ~/hazel-perf-report, not pushed. It links ^ticket(84)'s fix (cbc585933b), so that should be on #2635 before it is published. Also local, waiting for his word: ^ticket(84) (autosave print), ^ticket(85) (test runs 28 → 6 s), ^ticket(46) (parser 76 → 54 s on full-body.hz), ^ticket(18) (prototype, design calls). All in the work notes: http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T2120-0600.html",
+ "current_ticket": 58,
+ "current_note": "Found ^ticket(58)'s holder: #2597's page-level undo stack keeps a whole page model per edit (its cap is off by default), so Full Body grows ~87 MB per edit; with the cap always on, it stops after 3 edits. #2635 already has Andrew's fix (6010128b7d: compacted, always-capped undo snapshots). Now: porting that compaction to #2597 on a local branch, checking undo in the browser, measuring. Nothing pushed. Still waiting on Matthew, from earlier tonight: ^ticket(29)'s draft (http://localhost:8131/series/008/#update-box), and pushes for ^ticket(84), ^ticket(85), ^ticket(46); ^ticket(18)'s design calls. Work notes: http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T2120-0600.html",
  "closed_tickets": [
   {
    "id": 65,
@@ -1095,6 +1095,7 @@
   }
  ],
  "queue": [
+  58,
   18,
   84,
   60,
@@ -1102,6 +1103,6 @@
   50,
   29
  ],
- "current_since": "2026-10-14T22:01-06:00",
+ "current_since": "2026-10-14T23:07-06:00",
  "current_waiting": "Review the draft of ^report(8)'s update, and push ^ticket(84)'s fix first (the page links cbc585933b)"
 }
