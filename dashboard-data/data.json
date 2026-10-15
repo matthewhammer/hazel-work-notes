@@ -214,11 +214,34 @@
  ],
  "tickets": [
   {
+   "id": 95,
+   "area": "dress up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T10:29-06:00",
+   "text": "<b>An agent-instructions.md for the Dress Up repo</b> (matthewhammer/kids-choice-games), drafted once Matthew is happy with the castle designer (^ticket(94)), for him to read before it is pushed: the repo is public. To gather what lives now only in the work notes, our conversations and code comments: his rules (connected views draw from the place's own settings; his bar for a scene's detail, the tree house's and the witch's woods'; shared organic helpers, never lollipops; the kids only as M and N), the release cadence (changes under Unreleased in VERSIONS.md, no bump or push until he says, tags dress-up-&lt;version&gt;, node --check before a push, checking the live page cold after), testing (headless Chrome with --mute-audio, contact sheets, never leaving browsers running), the castle's design (rooms by number, each with its own exits), the LFO rules (fast ones blur), timing work and keeping ticket metrics, and how the code is organized (SCENES, SCENE_FIG, PLACES, TABS, SHOWN_WHEN, DEFAULTS, parts and their keys).",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T10:29-06:00",
+     "from": "matthew",
+     "chars": 260,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T10:29-06:00",
+     "from": "matthew",
+     "chars": 90,
+     "asks": false
+    }
+   ]
+  },
+  {
    "id": 94,
    "area": "dress up",
    "added": "2026-10-15",
    "opened": "2026-10-15T10:27-06:00",
-   "text": "<b>Castle rooms by number, each with its own exits.</b> Matthew, 2026-10-15: a castle is numbered rooms; each room has a type and its own exits, each to a specific room by number (so two hallways can connect yet have distinct doors to distinct rooms), the outside, or nowhere. For a hallway: its number of doors (0-4) and each one's destination, and where its stairs lead. Chips to go straight into each room by number (for testing a castle), and dotted boxes round the groups of controls. Defaults reproduce today's links; other room types keep linking to every room for now; doors are one-way (the back chip always returns). Timed from 10:26:44.",
+   "text": "<b>Castle rooms by number, each with its own exits.</b> Matthew, 2026-10-15: a castle is numbered rooms; each room has a type and its own exits, each to a specific room by number (so two hallways can connect yet have distinct doors to distinct rooms), the outside, or nowhere. For a hallway: its number of doors (0-4) and each one's destination, and where its stairs lead. Chips to go straight into each room by number (for testing a castle), and dotted boxes round the groups of controls. Defaults reproduce today's links; other room types keep linking to every room for now; doors are one-way (the back chip always returns). Timed from 10:26:44. BUILT 2026-10-15, timed 10:26:44-10:29:54 (3.2 min; estimated 45-60): local commit 31896c0 in ~/kids-choice-games, under Unreleased. Checked in a muted headless browser: two hallways joined by their stairs, each with its own doors (room 1: out, 2, 3, stairs to 2; room 2: 4, 5, stairs to 1); the king's room still links to all; the dashed groups show only what applies; the go-to chips jump straight in. Known rough edge: a door's choices list rooms 1-6 even when the castle has fewer (a door to a missing room is not drawn). Open until Matthew is happy with the castle designer; then ^ticket(95).",
    "source": "Matthew, 2026-10-15",
    "url": "",
    "log": [
@@ -226,15 +249,30 @@
      "at": "2026-10-15T10:27-06:00",
      "from": "matthew",
      "chars": 720,
-     "asks": true
+     "asks": false
     },
     {
      "at": "2026-10-15T10:27-06:00",
      "from": "claude",
      "chars": 1500,
      "asks": false
+    },
+    {
+     "at": "2026-10-15T10:30-06:00",
+     "from": "claude",
+     "chars": 1400,
+     "asks": true
     }
-   ]
+   ],
+   "work": {
+    "started": "2026-10-15T10:26:44-06:00",
+    "ended": "2026-10-15T10:29:54-06:00",
+    "work_minutes": 3.2,
+    "estimate_minutes": [
+     45,
+     60
+    ]
+   }
   },
   {
    "id": 93,
@@ -543,9 +581,9 @@
    "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages"
   }
  ],
- "next_ticket": 95,
+ "next_ticket": 96,
  "current_ticket": 94,
- "current_note": "Working ^ticket(94) (timed from 10:26:44): castle rooms by number, per-hallway doors and stairs, room chips, dotted boxes. Then ^ticket(93).",
+ "current_note": "^ticket(94) built (3.2 min, timed; local 31896c0): Matthew to try the castle designer on 8133. When he is happy: ^ticket(95) (the Dress Up agent-instructions draft), then ^ticket(93).",
  "closed_tickets": [
   {
    "id": 87,
@@ -1323,6 +1361,7 @@
  ],
  "queue": [
   94,
+  95,
   93,
   92,
   91,
@@ -1333,5 +1372,5 @@
   29
  ],
  "current_since": "2026-10-15T10:27-06:00",
- "current_waiting": ""
+ "current_waiting": "Try the castle designer (^ticket(94)) at http://localhost:8133/dress-up.html"
 }
