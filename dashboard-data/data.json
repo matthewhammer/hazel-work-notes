@@ -214,6 +214,14 @@
  ],
  "tickets": [
   {
+   "id": 91,
+   "area": "performance",
+   "added": "2026-10-15",
+   "text": "<b>Drag stalls: how many changes does a drag process, and does coalescing slider input help?</b> From ^ticket(90): on #2635's head a 1.5 s drag of Full Body's arm length stalls the page about 4 s (whole program), and each processed change costs about 0.9 s of main thread, so the stall is mostly how many changes a drag triggers. Steps: (1) count, per drag: the slider's input events, the eval requests the page posts to the worker and the replies, and the heavy frames (gaps over 50 ms); (2) find where a slider's input becomes an edit, and whether changes already coalesce (the newest value only) while one is in flight; (3) if not, try coalescing on a local branch: while a change is in flight, keep only the newest value and process it when the change lands; (4) measure with drag_stall.py (C and B), release to redraw, and Kids' Choice, against the head; (5) then decide ^ticket(18) with both in hand. Local only until Matthew says.",
+   "source": "Matthew, 2026-10-15",
+   "url": ""
+  },
+  {
    "id": 90,
    "area": "performance",
    "added": "2026-10-15",
@@ -381,9 +389,9 @@
    "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages"
   }
  ],
- "next_ticket": 91,
- "current_ticket": 90,
- "current_note": "✋❔ Waiting on Matthew: ^ticket(90)'s numbers are in, decide ^ticket(18). With the whole program on screen the views-in-worker prototype cuts a drag's stall 4.1 -> 2.6 s and release 1.39 -> 1.11 s; in UX mode no clear change; Kids' Choice 28% slower. Also his: ^ticket(29) (^report(8)'s draft), the A records for ^ticket(60). 8341 serves #2635's head again.",
+ "next_ticket": 92,
+ "current_ticket": 91,
+ "current_note": "Working ^ticket(91): counting the changes a Full Body drag processes, then trying to coalesce slider input, against ^ticket(90)'s drag stalls (4.1 s whole program on #2635's head). Also waiting on Matthew: ^ticket(18)'s decision (after this), ^ticket(29) (^report(8)'s draft), the A records for ^ticket(60).",
  "closed_tickets": [
   {
    "id": 87,
@@ -1160,12 +1168,13 @@
   }
  ],
  "queue": [
+  91,
   90,
   18,
   60,
   50,
   29
  ],
- "current_since": "2026-10-15T08:45-06:00",
- "current_waiting": "Decide ^ticket(18) from ^ticket(90)'s numbers; review ^ticket(29); A records for ^ticket(60)."
+ "current_since": "2026-10-15T09:45-06:00",
+ "current_waiting": ""
 }
