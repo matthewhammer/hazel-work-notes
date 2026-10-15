@@ -416,7 +416,7 @@
    "area": "dress up",
    "added": "2026-10-15",
    "opened": "2026-10-15T11:33-06:00",
-   "text": "<b>Recovery: make Dress Up's routines modular and composable, then write down the recipes.</b> Matthew offered this on 2026-10-15: a ticket, and a chance within it, to refactor, and some space to recover after the creative run. It is self-directed. My plan, in order: (1) <b>A safety net first.</b> Extend the byte-identical check, which hashes scene markup in the committed copy and the working copy, to sweep every place, every castle room style, every costume and the imagination map, under fixed settings. Also time drags in three heavy scenes before starting. No step lands unless the sweep comes out identical. (2) <b>Room space.</b> One shared helper (at(X, Y, z), heights on the wall, shelves on the back and side walls, things on the floor, side doors) used by the hallway, the king's room, the cat room and the stable, in place of their copies. (3) <b>Residents.</b> One declaration per kind: the cat room's cats, the stable's horses, and next the kitchen's workers and the smith. From it come the settings keys, the defaults, the castleOf entry, the controls group, the show-when rules and the LFO listing. This is where ^ticket(92)'s cast meets it. (4) <b>LFO followers.</b> One registry of what follows which LFO and where it shows, driving mixChanged, the mixer's 'what follows it' list, and the scenes' LFO reads (sceneOpts). A new follower then cannot miss one of them, which is how the fairy house's bug happened. (5) <b>Room styles.</b> One entry per style: its label, drawing, exits, tone, theme and own settings. (6) <b>The recipes, in agent-instructions.md:</b> how to add a place, a castle room, a resident and an LFO follower, each naming its registry. Notes on single functions stay in the code. <b>Out of scope:</b> changing anything a player sees; renaming settings keys (saved friends must still load); the music engine. Each step is its own local commit, noted under Unreleased as a refactor rather than a feature, and timed. Nothing is pushed. ESTIMATE 45-90 min: refactoring with verification runs slower than drawing. It starts after ^ticket(93)'s stable; ^ticket(93)'s kitchen and smithy then build on step (3). Matthew will read it afterwards. ADDED 2026-10-15 (Matthew and M): a pass over drawing faults: lines past their shapes, lines ignoring the perspective, things hanging from nothing. A code scan found about 30, listed in ~/du-shots/drawing-faults-2026-10-15.md (local). The top ones: the castle rooms' and greenhouse's floor lines run up the walls; the tent's mesh window (Matthew's 'vent') ignores the perspective; the cat room's window leads cross its arch; the fairy wings' veins leave the wings; the tree room's lantern hangs from nothing. Check each on screen, using the routine now in the Dress Up agent instructions, and fix them; M's lantern catch is fixed already (3616b95). <b>2026-10-15T15:52:</b> Matthew: another one for tonight (bottom of the queue).",
+   "text": "<b>Recovery: make Dress Up's routines modular and composable, then write down the recipes.</b> Matthew offered this on 2026-10-15: a ticket, and a chance within it, to refactor, and some space to recover after the creative run. It is self-directed. My plan, in order: (1) <b>A safety net first.</b> Extend the byte-identical check, which hashes scene markup in the committed copy and the working copy, to sweep every place, every castle room style, every costume and the imagination map, under fixed settings. Also time drags in three heavy scenes before starting. No step lands unless the sweep comes out identical. (2) <b>Room space.</b> One shared helper (at(X, Y, z), heights on the wall, shelves on the back and side walls, things on the floor, side doors) used by the hallway, the king's room, the cat room and the stable, in place of their copies. (3) <b>Residents.</b> One declaration per kind: the cat room's cats, the stable's horses, and next the kitchen's workers and the smith. From it come the settings keys, the defaults, the castleOf entry, the controls group, the show-when rules and the LFO listing. This is where ^ticket(92)'s cast meets it. (4) <b>LFO followers.</b> One registry of what follows which LFO and where it shows, driving mixChanged, the mixer's 'what follows it' list, and the scenes' LFO reads (sceneOpts). A new follower then cannot miss one of them, which is how the fairy house's bug happened. (5) <b>Room styles.</b> One entry per style: its label, drawing, exits, tone, theme and own settings. (6) <b>The recipes, in agent-instructions.md:</b> how to add a place, a castle room, a resident and an LFO follower, each naming its registry. Notes on single functions stay in the code. <b>Out of scope:</b> changing anything a player sees; renaming settings keys (saved friends must still load); the music engine. Each step is its own local commit, noted under Unreleased as a refactor rather than a feature, and timed. Nothing is pushed. ESTIMATE 45-90 min: refactoring with verification runs slower than drawing. It starts after ^ticket(93)'s stable; ^ticket(93)'s kitchen and smithy then build on step (3). Matthew will read it afterwards. ADDED 2026-10-15 (Matthew and M): a pass over drawing faults: lines past their shapes, lines ignoring the perspective, things hanging from nothing. A code scan found about 30, listed in ~/du-shots/drawing-faults-2026-10-15.md (local). The top ones: the castle rooms' and greenhouse's floor lines run up the walls; the tent's mesh window (Matthew's 'vent') ignores the perspective; the cat room's window leads cross its arch; the fairy wings' veins leave the wings; the tree room's lantern hangs from nothing. Check each on screen, using the routine now in the Dress Up agent instructions, and fix them; M's lantern catch is fixed already (3616b95). <b>2026-10-15T15:52:</b> Matthew: another one for tonight (bottom of the queue). <b>2026-10-15T17:09:</b> Matthew: new priority, now (not tonight). And at the same time: (a) during a drag, respect the scene's depth order: the layer order that stands for depth into the pseudo-3D scene, so the friend (or any NPC) dragged behind a thing is drawn behind it; (b) a formal list of every scene object that should be drawn on top of the main character, or any other NPC, when they are placed at a given position on the standable area.",
    "source": "Matthew, 2026-10-15",
    "url": "",
    "log": [
@@ -461,12 +461,16 @@
      "from": "matthew",
      "chars": 40,
      "asks": false
+    },
+    {
+     "at": "2026-10-15T17:09-06:00",
+     "from": "matthew",
+     "chars": 420,
+     "asks": false
     }
    ],
    "progress": "12:37 — the refactor is done: steps 1 to 6, each committed locally and checked identical by the safety net (69 swept pictures, plus defaults, controls, show-when rules and castleOf):<ol><li>The safety net: sweep.mjs and structure.mjs.</li><li>roomSpace, one room space for perspective (8cd8444).</li><li>RESIDENTS: the cats and horses from one table, a new kind one entry (4ce43d8).</li><li>LFO_FOLLOWERS: one list feeds the mixing board's names and the redraw (319fd6f).</li><li>ROOM_KINDS: one entry per castle room style (b9b014d).</li><li>Recipes in the agent instructions: how to add a place, a room style, a resident or an LFO follower, plus the safety net (953ab60).</li></ol>About 25 minutes of work, inside the 45–90 estimated. Next: the drawing-fault fixes, which change pictures on purpose and are checked on screen. 12:46 — drawing-fault fixes, each committed locally with its own VERSIONS line, and the sweep showing only the intended pictures changed:<ul><li>the castle rooms' floors stay on the floor (Matthew's catch);</li><li>the tent's mesh window is in perspective (Matthew's 'vent');</li><li>the cat room window's leads stay in its arch;</li><li>the tree room's lantern hangs from the roof;</li><li>the fairy wings' veins end at their edges;</li><li>the cobwebs hang together;</li><li>the healer's hut roof meets its thatch.</li></ul>About 20 lower-visibility ones remain in ~/du-shots/drawing-faults-2026-10-15.md. 12:50 — five more fixed, each committed with its own VERSIONS line:<ul><li>the house's driveway joints;</li><li>the castle's stonework, now behind its gate and banners;</li><li>the castle road's edge stones;</li><li>the healer's chimney, stone up to the mantel;</li><li>the cat room window seat's panels.</li></ul>That makes 12 fixed; about 15 low-visibility ones remain on the list. 14:00 — six more fixed:<ul><li>the dungeon cage's bars;</li><li>the monstera's slits;</li><li>the portcullis (now with cross bars), the well's stones and the hay's straws;</li><li>the stable's tack, laid flat on its walls by a new roomSpace.onWall;</li><li>the hallway's banners, which hang from poles out of the walls and so keep their look (laid flat, they shrank to slivers).</li></ul>That makes 18 fixed in all.",
-   "tags": [
-    "long run"
-   ]
+   "tags": []
   },
   {
    "id": 102,
@@ -569,7 +573,7 @@
    "area": "dress up",
    "added": "2026-10-15",
    "opened": "2026-10-15T17:03-06:00",
-   "text": "<b>The witch's woods and the witch's hut are heavy even when idle.</b> Found while fixing ^ticket(117): with nothing being dragged, the witch's woods run about 460 SMIL animations and the witch's hut about 330 (the next heaviest place has 145). In the software-only test browser they draw at 10-15 frames a second idle (every other place but our imagination holds 60), with long tasks most of the time: 1.8 s of every 2 s in the woods. This was already so in 0.0.32 (10 fps), so it is not a regression. Most of the main thread goes to restyling the animated elements each frame (a trace showed ~200 style recalcs a frame). It may stall the music in those two places even without a drag. To do: measure on Matthew's laptop's real browser too, find which drawings carry the animations (the cauldrons' double-helix fumes and bubbles are the likely bulk), and draw the same look with far fewer animated elements (e.g. one animation moving a group instead of one per particle), keeping every picture the same at rest. Tools: ~/du-shots/tools/idle.mjs and drag.mjs.",
+   "text": "<b>The witch's woods and the witch's hut are heavy even when idle.</b> Found while fixing ^ticket(117): with nothing being dragged, the witch's woods run about 460 SMIL animations and the witch's hut about 330 (the next heaviest place has 145). In the software-only test browser they draw at 10-15 frames a second idle (every other place but our imagination holds 60), with long tasks most of the time: 1.8 s of every 2 s in the woods. This was already so in 0.0.32 (10 fps), so it is not a regression. Most of the main thread goes to restyling the animated elements each frame (a trace showed ~200 style recalcs a frame). It may stall the music in those two places even without a drag. To do: measure on Matthew's laptop's real browser too, find which drawings carry the animations (the cauldrons' double-helix fumes and bubbles are the likely bulk), and draw the same look with far fewer animated elements (e.g. one animation moving a group instead of one per particle), keeping every picture the same at rest. Tools: ~/du-shots/tools/idle.mjs and drag.mjs. <b>2026-10-15T17:10:</b> Matthew: come back to it tonight, after hours (a 🌙 long run).",
    "source": "Matthew, 2026-10-15 (from 117)",
    "url": "",
    "log": [
@@ -584,14 +588,24 @@
      "from": "matthew",
      "chars": 40,
      "asks": false
+    },
+    {
+     "at": "2026-10-15T17:10-06:00",
+     "from": "matthew",
+     "chars": 45,
+     "asks": false
     }
    ],
-   "status": "open"
+   "status": "open",
+   "progress": "17:09 — paused for ^ticket(99), Matthew's new priority; the cause is found and a fix is proven, not yet built in. 416 of the witch's woods' 463 animations (312 of the hut's 326) are the fumes' double helix: each segment is a line with four SMIL animations (x1, x2, stroke-width, stroke-opacity). Measured idle, 2 s, by stripping each kind: x1/x2 alone cost nothing (60 fps); stroke-width and stroke-opacity, CSS properties, are the whole cost (alone: 7 fps), since Chrome forces a style recalculation for each SMIL animation of a CSS property every frame. Prototype: x1/x2 stay SMIL, width and opacity become Web Animations started at the picture clock's time: idle 7 fps -> mostly 60 (p50 17 ms; long tasks 2.0 s -> 0.13 s per 2 s). To do: build that into helixSvg (start each from pic.getCurrentTime() after a mount; pause with the drag and resync on letting go), check frames match the SMIL version, release.",
+   "tags": [
+    "long run"
+   ]
   }
  ],
  "next_ticket": 119,
- "current_ticket": 118,
- "current_note": "On 118: the witch's woods and hut are heavy even idle (about 460 and 330 animations). Finding which drawings carry them, then drawing the same look with fewer.",
+ "current_ticket": 99,
+ "current_note": "On 99 (your new priority): depth order for the friend and NPCs in every scene, during a drag too, and the formal list of what stands in front of them. 118 is a 🌙 long run for tonight, its fix proven (idle 7 fps -> 60 in the witch's woods), not yet built in.",
  "closed_tickets": [
   {
    "id": 117,
@@ -2542,11 +2556,10 @@
   50,
   29,
   118,
-  99,
   106,
   104,
   102
  ],
- "current_since": "2026-10-15T17:04:00-06:00",
+ "current_since": "2026-10-15T17:09:00-06:00",
  "current_waiting": null
 }
