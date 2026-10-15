@@ -214,6 +214,14 @@
  ],
  "tickets": [
   {
+   "id": 92,
+   "area": "dress up",
+   "added": "2026-10-15",
+   "text": "<b>New castle rooms, and a cast of friends.</b> Three castle room options (for castleRoomN, beside the ones the rooms have now): (1) <b>a long hallway</b>, dark and atmospheric (the fairy forest's night as the model), lit by glowing torches; no fireflies inside the castle (only outside); a carpet down the hall with a color setting; banners on the walls in the castle's banner colors (^ticket(72)'s flag colors and pattern). (2) <b>a spiral staircase</b>, with doors coming out at different levels. (3) <b>the entrance hall</b>, the first room: styled and decorated like the hallway, but square, with two large winding staircases facing the visitor and doors everywhere, and a statue of the king in the middle, between the stairs. The statue is <b>another friend</b>, with its own settings. Matthew's question: how hard is a set of friends instead of one main character (the king, the healer, the witch, more later), their geometry from one common set of routines and parameters, with a top-level chip to choose which character the tabs edit, each starting from its own defaults? Found 2026-10-15: draw() builds the friend straight from state (state.face, body, shirt, pants, hair, shoes, hands, undies, costume) mixed with the scene's composition; the controls read and write state[part][key] (38 places, one set()); the healer in her hut is drawn by her own separate code, not the friend's. Plan, in steps that each ship on their own: (a) figureSvg(person): the friend's drawing as a function of one settings object, draw() calling it with state, checked by drawing many presets before and after and comparing the markup, identical; (b) a cast: state.people with the king, the healer and the witch as overrides of the friend's defaults, and a top-level chip choosing whose settings the tabs edit (the background, music and other tabs stay shared); (c) using them: the king's statue (his figure in stone), the healer and the witch drawn by figureSvg (changes how they look now: Matthew to check); (d) the three rooms; the hallway and the staircase need nothing from (a)-(c). Under Unreleased; no bump or push until he says.",
+   "source": "Matthew, 2026-10-15",
+   "url": ""
+  },
+  {
    "id": 91,
    "area": "performance",
    "added": "2026-10-15",
@@ -389,7 +397,7 @@
    "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages"
   }
  ],
- "next_ticket": 92,
+ "next_ticket": 93,
  "current_ticket": 91,
  "current_note": "✋❔ Waiting on Matthew: ^ticket(91)'s numbers are inconclusive (drift between sessions beats both fixes); proposed: an interleaved A/B (both builds at once), and skipping the whole-program walk on previews; a new ^report(15) on drags after. The robust finding: a 1.5 s drag on Full Body stalls the page 2.3-5.9 s, half of it a whole-program reuse check per preview. Also his: ^ticket(29), the A records for ^ticket(60), ^ticket(18) (still undecided).",
  "closed_tickets": [
