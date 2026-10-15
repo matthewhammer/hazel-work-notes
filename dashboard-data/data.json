@@ -563,9 +563,27 @@
    "tags": [
     "long run"
    ]
+  },
+  {
+   "id": 118,
+   "area": "dress up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T17:03-06:00",
+   "text": "<b>The witch's woods and the witch's hut are heavy even when idle.</b> Found while fixing ^ticket(117): with nothing being dragged, the witch's woods run about 460 SMIL animations and the witch's hut about 330 (the next heaviest place has 145). In the software-only test browser they draw at 10-15 frames a second idle (every other place but our imagination holds 60), with long tasks most of the time: 1.8 s of every 2 s in the woods. This was already so in 0.0.32 (10 fps), so it is not a regression. Most of the main thread goes to restyling the animated elements each frame (a trace showed ~200 style recalcs a frame). It may stall the music in those two places even without a drag. To do: measure on Matthew's laptop's real browser too, find which drawings carry the animations (the cauldrons' double-helix fumes and bubbles are the likely bulk), and draw the same look with far fewer animated elements (e.g. one animation moving a group instead of one per particle), keeping every picture the same at rest. Tools: ~/du-shots/tools/idle.mjs and drag.mjs.",
+   "source": "Matthew, 2026-10-15 (from 117)",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T17:03-06:00",
+     "from": "matthew",
+     "chars": 95,
+     "asks": false
+    }
+   ],
+   "status": "open"
   }
  ],
- "next_ticket": 118,
+ "next_ticket": 119,
  "current_ticket": null,
  "current_note": "Nothing in hand: 117 (dragging the friend smooth again, the music keeps playing, 0.0.45) is done. Waiting for your next pick, or N's ideas; the 🌙 long runs (99, 106, 104) are for tonight.",
  "closed_tickets": [
@@ -2517,6 +2535,7 @@
   60,
   50,
   29,
+  118,
   99,
   106,
   104,
