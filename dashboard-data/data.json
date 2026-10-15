@@ -563,7 +563,12 @@
    "tags": [
     "long run"
    ]
-  },
+  }
+ ],
+ "next_ticket": 118,
+ "current_ticket": null,
+ "current_note": "Nothing in hand: 117 (dragging the friend smooth again, the music keeps playing, 0.0.45) is done. Waiting for your next pick, or N's ideas; the 🌙 long runs (99, 106, 104) are for tonight.",
+ "closed_tickets": [
   {
    "id": 117,
    "area": "dress up",
@@ -580,13 +585,20 @@
      "asks": false
     }
    ],
-   "status": "open"
-  }
- ],
- "next_ticket": 118,
- "current_ticket": 117,
- "current_note": "On 117: dragging the friend while the picture animates grinds and freezes the music. Finding the cause in 0.0.44 first.",
- "closed_tickets": [
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T16:58-06:00",
+   "outcome": "Released 0.0.45 (295f402). Cause: since 0.0.35's LFOs, lfoBegin timed each scene animation from the picture's SMIL clock minus the music's phase, read afresh at every draw; the picture's clock moves once a frame and the music's continuously, so the begins wobbled past their rounding, the scene's text changed on every draw, and the whole scene was rebuilt on every move of a drag (each slow frame widening the wobble; 0.0.24's drag pause froze the picture's clock outright). Fix: picGapNow() keeps the gap between the two clocks (re-measured only when it moves by more than 0.25 s: music starting, stopping, seeking; never while paused), and letting go of a drag moves the picture's clock on by the time held. Measured with real 60-move drags in every place, music playing: 0 rebuilds (0.0.44: one per move); imagination 20.6 -> 3.4 s, witch's woods 5.0 -> 2.3, living room 6.7 -> 1.6, witch's hut 7.8 -> 1.8, tree house room 3.8 -> 1.1, every other place at 60 fps; live game checked; sweep: all 82 pictures identical. Not changed: the witch's woods and hut are heavy even idle (460 and 330 SMIL animations; 10-15 fps in the software-only test browser since at least 0.0.32).",
+   "metrics": {
+    "open_minutes": 29,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 190,
+    "tokens_est": 47,
+    "sync_minutes_est": 0,
+    "work_minutes": 26.0
+   }
+  },
   {
    "id": 116,
    "area": "dress up",
@@ -2511,5 +2523,5 @@
   102
  ],
  "current_since": "2026-10-15T16:29:00-06:00",
- "current_waiting": null
+ "current_waiting": "your next pick (or N's ideas)"
 }
