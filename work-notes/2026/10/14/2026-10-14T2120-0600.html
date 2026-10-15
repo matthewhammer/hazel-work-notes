@@ -62,9 +62,26 @@
 <li><b>What it would need:</b> the page sending the ids of the livelits it draws with each request, and the worker running only those; a cache keyed by the command's content (<code>ValueHash</code>), so that an unchanged view is never run again; and for whole programs, folding views in only for the livelits on screen. These are protocol and design calls for Matthew before going further.</li>
 </ul>
 
+<h2 id="update">Update, later the same evening: views in the worker, with reuse</h2>
+<p>Two more experiments on <code>experiment/2635-views-in-worker-all</code>, after the slow one above. All are measured against the same build with views on the page (<code>perf/2635-views-in-worker</code>: the autosave fix and the module move).</p>
+<ul>
+<li><b>Experiment 2</b> (<code>9c7808c51e</code>): per projector, the worker keeps its last command and Html, and reuses the Html when the new command is the same object or syntactically equal (<code>Exp.fast_equal</code>, which ignores ids, so a fresh run's rebuilt command still matches). Only views whose command changed are run.</li>
+<li><b>Experiment 3</b> (<code>ede920b07e</code>): whole programs fold their livelits' views into the worker's run too (<code>CachedStatics.init_compositional</code> given the projectors), so the page no longer evaluates views from their definitions (<code>memo_view</code>).</li>
+</ul>
+<div class="scroll"><table>
+<tr><th>Measure</th><th>Views on the page</th><th>Views in the worker (2 and 3)</th></tr>
+<tr><td>Full Body, B (UX mode), release to redraw</td><td>1.40 s</td><td>1.52 s</td></tr>
+<tr><td>Full Body, B, the page's update (profiled, four changes)</td><td>2,989 samples (<code>live_html</code> 1,345, <code>mk_view</code> 1,376)</td><td>831 (<code>live_html</code> none, <code>mk_view</code> 24)</td></tr>
+<tr><td>Full Body, B, the worker (four changes)</td><td>2,038</td><td>5,070 (the view runs about 280 ms a change; hashing and marshaling the bigger Html about as much)</td></tr>
+<tr><td>Full Body, C (whole program), release to redraw</td><td>1.30–1.41 s</td><td>1.46 s</td></tr>
+<tr><td>Full Body, C, the page's view work (three changes, 2.5 s tail)</td><td><code>memo_view</code> 664, <code>user_view</code> 728, <code>mk_view</code> 999</td><td><code>memo_view</code> none, <code>user_view</code> 68, <code>mk_view</code> 323</td></tr>
+<tr><td>Kids' Choice, eye size, release to redraw (<code>scripts/release_timing.py</code>, medians of 12)</td><td>144 ms (125–158)</td><td>187 and 195.5 ms (164–253)</td></tr>
+</table></div>
+<p><b>So:</b> on a big picture, the main thread does about 540 ms (B) or 220 ms (C) less per change, and the redraw arrives no later. On a small slide, the redraw comes about 45 ms later, since the worker's run and the Html's trip to the page cost more than the page's own view did. Not checked: whether the page's optimistic entries still converge with the worker's Html (<code>LivelitProj.user_view</code> compares them with <code>fast_equal</code>); ordinary probes whose values happen to be view commands are converted too; the per-projector cache is never cleared. Questions for Matthew: run views in the worker for every livelit, or only for those whose view is costly (measured per view)? And the ids of the livelits on screen in the request, so the worker runs only those?</p>
+
 <h2 id="where">Where things are</h2>
 <ul>
-<li><code>~/hazel-livelits-modular</code> is on the local branch <code>perf/2635-views-in-worker</code> (the PR head plus the two commits above), not on the PR branch. Port 8341 serves that build until it is switched back.</li>
+<li><code>~/hazel-livelits-modular</code> is back on the PR branch, <code>integration/livelits-modular-editors</code> at <code>9fb2bdf067</code>, rebuilt, and port 8341 serves it. The local branches: <code>perf/2635-autosave-print</code> (^ticket(84)'s fix), <code>perf/2635-views-in-worker</code> (plus the module move), <code>experiment/2635-views-in-worker-all</code> (plus experiments 1–3).</li>
 <li>Nothing is pushed: not ^ticket(84)'s fix, the module move or the experiment.</li>
 </ul>
 
