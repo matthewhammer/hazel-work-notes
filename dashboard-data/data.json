@@ -425,9 +425,36 @@
     }
    ],
    "status": "open"
+  },
+  {
+   "id": 127,
+   "area": "performance",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T21:37-06:00",
+   "text": "<b>A report on the performance PRs to dev: an executive summary and a merge plan.</b> Matthew, 2026-10-15 21:37: a report about the dashboard's set of performance PRs (https://matthewhammer.org/hazel-work-notes/#perf-prs: #2681, #2679, #2678, #2675, #2673, #2661, #2651, #2652, #2614, #2610, #2671, #2672, #2606, #2603, and the #2490 spike), giving an executive summary for Cyrus, or Alexander, or Andrew, or Matt K: for each PR, (1) why it is important (the savings in responsiveness, or memory, etc., with the measured numbers and where they come from), and (2) reasons not to merge it to dev ASAP, hopefully not too many, but honest and open, doing the work for them (conflicts with dev's head, tests and CI state, risks, what a reviewer should look at, what overlaps #2469). And a <b>merge plan</b> (Matthew, 21:38): an order, which can go together, what depends on what, and what each needs first. A draft in the performance series for his review; nothing posted to GitHub or published until he says. Tonight, after hours (🌙). <b>21:38, Matthew:</b> include a dependency graph of the PRs as a picture (which PR builds on, or conflicts with, which), and repeat the relevant plots from earlier reports where they show a PR's savings (with their sources).",
+   "source": "Matthew, 2026-10-15",
+   "url": "https://matthewhammer.org/hazel-work-notes/#perf-prs",
+   "tags": [
+    "long run"
+   ],
+   "log": [
+    {
+     "at": "2026-10-15T21:37-06:00",
+     "from": "matthew",
+     "chars": 520,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T21:38-06:00",
+     "from": "matthew",
+     "chars": 120,
+     "asks": true
+    }
+   ],
+   "status": "open"
   }
  ],
- "next_ticket": 127,
+ "next_ticket": 128,
  "current_ticket": 91,
  "current_note": "Matthew is AFK until about 06:30 (said 21:33). Tonight: (1) ^report(15) revision with shape counts (scene complexity: Dress Up draws far more than Hazel's pictures, so not like for like), drafted locally as a dated update for his review in the morning, not published; (2) the after-hours queue in his order: 91 (interleaved A/B of the drag fixes vs the head, with an A/A control for the noise floor), 25, 24, 42 (stream, brook, swing), then the CI budgets. Local only for Hazel; Dress Up releases go live as usual.",
  "closed_tickets": [
@@ -3029,6 +3056,7 @@
   25,
   24,
   42,
+  127,
   13,
   14,
   15,
