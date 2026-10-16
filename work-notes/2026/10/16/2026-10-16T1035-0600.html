@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Late morning notes, 10-16</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --hi: #fef3c7; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --hi: #3a3218; --warn: #fbbf24; --ok: #4ade80; }
+  }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; }
+  h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; }
+  code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); }
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9em; }
+  th, td { border-bottom: 1px solid var(--line); padding: 5px 6px; text-align: left; vertical-align: top; }
+  li { margin: 0.3em 0; }
+</style>
+<body>
+<main>
+<h1>Late morning of 10-16: Dress Up 0.0.68 to 0.0.73, with Matthew and his controller</h1>
+<p class="sub">2026-10-16, 09:30 to 10:35 MDT, Claude, with Matthew. Written as he moves the laptop (a shutdown).</p>
+<h2 id="releases">Releases (each pushed, Pages green, live page and version.json checked)</h2>
+<div class="scroll"><table>
+<tr><th>Version</th><th>Commit</th><th>Ticket</th><th>What</th></tr>
+<tr><td>0.0.68</td><td><code>47cd32e</code></td><td>142</td><td>Two jumps (short and fast, high and slow), each with height and speed sliders.</td></tr>
+<tr><td>0.0.69</td><td><code>9f09acc</code></td><td>141</td><td>The controller as a video game's actions: arrows walk (diagonals too), held run, held crouch or crawl, two jump buttons; swimming in water; 🎯 set learns a button. Crouch and jumps grounded.</td></tr>
+<tr><td>0.0.70</td><td><code>74e6103</code></td><td>143</td><td>Jumping in deep water: a pop to the waist, a dolphin's dive in profile, splashes.</td></tr>
+<tr><td>0.0.71</td><td><code>716ebee</code></td><td>140</td><td>Walking toward us and away: legs foreshortened in turn, sneakers and bare feet front on or from behind, soles showing as they lift.</td></tr>
+<tr><td>0.0.72</td><td><code>2626035</code></td><td>148</td><td>The witch's places at 60 fps: the fumes' width steps (24 a loop), their fade is opacity. Chrome hut 22.7 to 59.8 fps, woods 13 to 56-59.5; Firefox 53 to 60.</td></tr>
+<tr><td>0.0.73</td><td><code>5a7ed95</code></td><td>146</td><td>🎓 teach me your controller (B, A, X, Y, L, R, select, start), a SNES layout, R a crawl toggle, each pad's layout kept by its id. Matthew taught his.</td></tr>
+</table></div>
+<h2 id="next">In hand and next</h2>
+<ul>
+<li><a href="http://matthewhammer.org/hazel-work-notes/#ticket-145">Ticket 145</a> (the imagination's floating ladders, climbing them by hand, the nearest picture glowing, X to go in, its back wall solid): designed, not written; the plan is in the ticket's progress.</li>
+<li>Minted: <a href="http://matthewhammer.org/hazel-work-notes/#ticket-147">147</a> (doors that open with X, walked through; the spin only for pictures and windows), <a href="http://matthewhammer.org/hazel-work-notes/#ticket-149">149</a> (collisions: walls, things one can't walk through, jumping over small ones; builds on closed 50, whose collision shape was never built).</li>
+<li>Matthew's pasted controller lines never reached the chat: the reply button drops what is typed after its own text. His layout is kept in his browser anyway.</li>
+<li>New tools in <code>~/du-shots/tools/</code>: <code>perf148.mjs</code> (a fake-pad walk in a place: fps, draws, changed()'s parts, a CPU profile; IDLE, TWEAK), <code>padcheck2.py</code>, <code>padcheck3.py</code> (a non-standard pad), <code>scenesheet.py</code> (moments in a place, cropped to the friend; uses the screen matrices, as getCTM includes the picture's scaling in Firefox).</li>
+<li>Servers: 8000, 8131, 8133, 8311, 8341 (restart them after the move; probe each).</li>
+</ul>
+</main>
+</body>
+</html>
