@@ -412,7 +412,8 @@
     }
    ],
    "status": "open",
-   "tags": []
+   "tags": [],
+   "progress": "17:45: FIRST STEP BUILT (0.0.89, gate running): castle rooms' back and side walls from roomFrame (castleWalls; SCENE_BACK.castleroom; not the spiral stair's room, whose doors are up the stairs); the place's seats solid (solidsHere from SEATS: x0..x1, from z back by half their height); solidMove for the controller's step and a drag (slide along; inside one already, let out); jumping clears a solid under half legReach (short) or under legReach (high); landing inside, solidUnstick. Checked pinned (~/du-shots/tools/collide149.mjs): walls in king/hallway/kitchen, a dining chair and a campsite log stopped and jumped, the couch stopped and too wide to jump; every door of all 12 castle room styles still reachable (door147.mjs passes). NOT YET: tables, beds, trees, rocks (standing objects have a depth, no footprint), the flat rooms' walls."
   },
   {
    "id": 160,
@@ -672,7 +673,7 @@
  ],
  "next_ticket": 172,
  "current_ticket": 149,
- "current_note": "17:39: not waiting on Matthew (AFK). ^ticket(147) is live in Dress Up 0.0.88 (doors). Now ^ticket(149): castle rooms' walls and the things one sits on solid, low ones jumped; patched locally, testing.",
+ "current_note": "17:45: not waiting on Matthew (AFK). ^ticket(149) first step built (walls in castle rooms, seats solid, jumps clear low ones); gate running before 0.0.89. Next: ^ticket(162), N's castle pits.",
  "closed_tickets": [
   {
    "id": 170,
