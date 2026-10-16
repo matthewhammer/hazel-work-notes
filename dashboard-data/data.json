@@ -461,7 +461,7 @@
    ],
    "status": "open",
    "tags": [],
-   "progress": "16:08: Dress Up 0.0.84 LIVE (151085a): still places where moves come out choppy (late frames while moving, over 10%); 🧪 measures the pond moving / still / with music. 15:51: At the measured black-laptop factor (2x CPU): the pond walks 51.7-53.4, drags 51-54.9 (just under 55); its still-scenery switch (0.0.83) does not trigger there, as the black laptop draws in 1.0 ms (the switch is at 6). Next: switch on dropped frames, not drawing time, if Matthew finds the pond choppy on the black laptop. 15:44: SHIPPED part in Dress Up 0.0.83 (858f369): on a slow computer (slowFlag: drawing over 6 ms on average) the places hold still (scene animations taken out, CSS animations stopped, no fumes), the wake rings are still and the faint copy under the water is left out; ⚙️ Advanced '🌀 moving scenery and water on a slow computer' overrides. At 6x: the pond 17 -> 37 walking, 52 dragging (gate needs 55). Not solved: moving over a busy place (dry and frozen at 6x: 40.6; the friend in an overlay svg 47.1). What more it needs waits on the black laptop's factor (^ticket(163))."
+   "progress": "16:08: Dress Up 0.0.84 LIVE (151085a): still places where moves come out choppy (late frames while moving, over 10%); 🧪 measures the pond moving / still / with music. 15:51: At the measured black-laptop factor (2x CPU): the pond walks 51.7-53.4, drags 51-54.9 (just under 55); its still-scenery switch (0.0.83) does not trigger there, as the black laptop draws in 1.0 ms (the switch is at 6). Next: switch on dropped frames, not drawing time, if Matthew finds the pond choppy on the black laptop. 15:44: SHIPPED part in Dress Up 0.0.83 (858f369): on a slow computer (slowFlag: drawing over 6 ms on average) the places hold still (scene animations taken out, CSS animations stopped, no fumes), the wake rings are still and the faint copy under the water is left out; ⚙️ Advanced '🌀 moving scenery and water on a slow computer' overrides. At 6x: the pond 17 -> 37 walking, 52 dragging (gate needs 55). Not solved: moving over a busy place (dry and frozen at 6x: 40.6; the friend in an overlay svg 47.1). What more it needs waits on the black laptop's factor (^ticket(163)). | 16:26: black laptop 0.0.84 (pad): room walk 57 fps; pond swim 36, held still 33, with music 26 (3 ms a drawing). Still scenery does not help: the pond's cost there is Firefox painting, not JS or animations; throttled Chrome does not reproduce it (55.7). Next: headless Firefox at 1440x810@2x as a proxy (tools/speedff.py), then the scenery as a still image behind the friend."
   },
   {
    "id": 165,
@@ -654,7 +654,8 @@
     }
    ],
    "status": "open",
-   "tags": []
+   "tags": [],
+   "progress": "16:26: built and tested (musicfs170.mjs): 🎚️ beside the mute in the game's full screen, ✕ back to it with the HUD; LFOs one board column wide; 4 colour groups light + dark. Gate running, then 0.0.85."
   },
   {
    "id": 171,
@@ -677,8 +678,8 @@
   }
  ],
  "next_ticket": 172,
- "current_ticket": 167,
- "current_note": "16:40: 168 (Dress Up reports page) and 169 (full-width galleries) DONE, live. 170 (music full screen from the HUD, coloured mixer) and 171 (today's pictures) minted. 🪷 BLOCKED ON MATTHEW for 167/164: tap 🔇 in the duck pond on the black laptop (does it stay choppy?), and paste its 🧪 0.0.84 speed line into the pad.",
+ "current_ticket": 170,
+ "current_note": "16:26: ^ticket(170) (music full screen from the HUD, coloured mixer) built; the fps gate is running, then Dress Up 0.0.85. Black laptop 0.0.84 numbers read from the pad: pond 36 fps, 26 with music; next ^ticket(164) in headless Firefox.",
  "closed_tickets": [
   {
    "id": 169,
@@ -4411,6 +4412,6 @@
   15,
   19
  ],
- "current_since": "2026-10-16T16:16:10-06:00",
- "current_waiting": true
+ "current_since": "2026-10-16T16:26:01-06:00",
+ "current_waiting": false
 }
