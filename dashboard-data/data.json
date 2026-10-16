@@ -240,17 +240,23 @@
    "id": 91,
    "area": "performance",
    "added": "2026-10-15",
-   "text": "<b>Drag stalls: how many changes does a drag process, and does coalescing slider input help?</b> From ^ticket(90): on #2635's head a 1.5 s drag of Full Body's arm length stalls the page about 4 s (whole program), and each processed change costs about 0.9 s of main thread, so the stall is mostly how many changes a drag triggers. Steps: (1) count, per drag: the slider's input events, the eval requests the page posts to the worker and the replies, and the heavy frames (gaps over 50 ms); (2) find where a slider's input becomes an edit, and whether changes already coalesce (the newest value only) while one is in flight; (3) if not, try coalescing on a local branch: while a change is in flight, keep only the newest value and process it when the change lands; (4) measure with drag_stall.py (C and B), release to redraw, and Kids' Choice, against the head; (5) then decide ^ticket(18) with both in hand. Local only until Matthew says. FINDINGS 2026-10-15: a transient input (a drag's preview) sends a quiet repaint action, and the page recalculates for each one, walking the whole program in EvalResult.calculate's reuse check (Calc.set -> fast_equal_with_lexemes, ~40% of a drag's main thread, profiled). Coalescing built (local perf/2635-coalesce-drag-repaint, 3eb4489124; counters in a MEASURE commit): only 1.5-3 of a drag's ~13 inputs coalesce. Measured in alternating sessions, whole program, drag stall: head 4.1 s, prototype (^ticket(90)) 2.6, coalescing 2.8, head 3.2, coalescing 4.2: the drift between sessions is larger than any build's effect, so neither fix is shown. Next (Matthew to say): an interleaved A/B, both builds served at once, alternating drag by drag, 10+ each; and try skipping the whole-program walk for a preview. Report: a new ^report(15) on drags, once the A/B is in.",
+   "text": "<b>Drag stalls: how many changes does a drag process, and does coalescing slider input help?</b> From ^ticket(90): on #2635's head a 1.5 s drag of Full Body's arm length stalls the page about 4 s (whole program), and each processed change costs about 0.9 s of main thread, so the stall is mostly how many changes a drag triggers. Steps: (1) count, per drag: the slider's input events, the eval requests the page posts to the worker and the replies, and the heavy frames (gaps over 50 ms); (2) find where a slider's input becomes an edit, and whether changes already coalesce (the newest value only) while one is in flight; (3) if not, try coalescing on a local branch: while a change is in flight, keep only the newest value and process it when the change lands; (4) measure with drag_stall.py (C and B), release to redraw, and Kids' Choice, against the head; (5) then decide ^ticket(18) with both in hand. Local only until Matthew says. FINDINGS 2026-10-15: a transient input (a drag's preview) sends a quiet repaint action, and the page recalculates for each one, walking the whole program in EvalResult.calculate's reuse check (Calc.set -> fast_equal_with_lexemes, ~40% of a drag's main thread, profiled). Coalescing built (local perf/2635-coalesce-drag-repaint, 3eb4489124; counters in a MEASURE commit): only 1.5-3 of a drag's ~13 inputs coalesce. Measured in alternating sessions, whole program, drag stall: head 4.1 s, prototype (^ticket(90)) 2.6, coalescing 2.8, head 3.2, coalescing 4.2: the drift between sessions is larger than any build's effect, so neither fix is shown. Next (Matthew to say): an interleaved A/B, both builds served at once, alternating drag by drag, 10+ each; and try skipping the whole-program walk for a preview. Report: a new ^report(15) on drags, once the A/B is in. <b>2026-10-15T18:52:</b> tagged 🪷 blocked on Matthew: its next step is his call (see above).",
    "source": "Matthew, 2026-10-15",
-   "url": ""
+   "url": "",
+   "tags": [
+    "blocked on Matthew"
+   ]
   },
   {
    "id": 90,
    "area": "performance",
    "added": "2026-10-15",
-   "text": "<b>Before parking ^ticket(18): re-measure views in the worker on #2635's head (032fe3aca6).</b> Matthew's middle option, 2026-10-15. The prototype's numbers (main thread 540 ms less per change in UX mode, 220 ms with the whole program; the redraw no sooner; Kids' Choice +45 ms) were taken on 9fb2bdf067, before the autosave fix (^ticket(84)). Steps: (1) rebase the prototype (61d031fd93, a7fbe23788, 9c7808c51e, ede920b07e) onto 032fe3aca6; (2) A/B on Full Body, UX mode (B) and the whole program (C): release to redraw, main-thread work per change; (3) NEW: how long the page stalls during a real drag (frames, in the page, from the pointer going down to the redraw), the cost the release-to-redraw number cannot see; (4) Kids' Choice release, the small-livelit cost; (5) a recommendation: park ^ticket(18) or not. Local only; nothing pushed. First finding, 2026-10-15: on #2635's head, whole program (C), a real 1.5 s drag of Full Body's arm length takes 5.8-7.0 s from the pointer going down to the redraw, the page stalled (frame gaps over 50 ms) for 4.1-5.1 s of it, its longest single stall 0.8-1.1 s; release to redraw 1.3 s. The prototype is rebased onto 032fe3aca6 (local exp/2635-views-in-worker-032fe), measured next. Head measured (032fe3aca6, headless Firefox): C release 1.39 s, a 1.5 s drag stalls 4.1 s (longest 0.9 s); B release 1.0 s, drag stalls 2.6 s (longest 0.8 s); profiled main-thread JS per change C 1.0 s, B 1.25 s; Kids' Choice release 0.21 s. Prototype built on it (4c9331d13c), being measured. MEASURED 2026-10-15 (headless Firefox, one session per build, head then prototype, not alternated; data in ~/.cache/hazel-diag/r90): WHOLE PROGRAM (C): a 1.5 s drag stalls the page 4.1 s (3.7-5.9) on the head, 2.6 s (2.1-3.2) with the prototype, the ranges apart; longest single stall 0.91 -> 0.61 s; release to redraw 1.39 -> 1.11 s (apart). Profiled main-thread JS per change 1,010 -> 914 ms: the editor's update (perform_update) 860 -> 570 ms and the view functions in it 450 -> 240 ms, but ~190 ms of that saving reappears outside the update (probably the worker's larger replies; not traced). UX MODE (B): drag stall 2.6 -> 2.45 s (ranges overlap: no clear change); release 1.00 -> 1.15 s; main-thread JS 1,251 -> 925 ms. KIDS' CHOICE release 212 -> 271 ms (+28%, as last night). Reading: the prototype is a real, visible win with the whole program on screen, none in UX mode, a loss on small livelits; and even with it a 1.5 s drag stalls 2-3 s, so most of the stall is elsewhere (each processed change still costs ~0.9 s of main thread). Decision is Matthew's.",
+   "text": "<b>Before parking ^ticket(18): re-measure views in the worker on #2635's head (032fe3aca6).</b> Matthew's middle option, 2026-10-15. The prototype's numbers (main thread 540 ms less per change in UX mode, 220 ms with the whole program; the redraw no sooner; Kids' Choice +45 ms) were taken on 9fb2bdf067, before the autosave fix (^ticket(84)). Steps: (1) rebase the prototype (61d031fd93, a7fbe23788, 9c7808c51e, ede920b07e) onto 032fe3aca6; (2) A/B on Full Body, UX mode (B) and the whole program (C): release to redraw, main-thread work per change; (3) NEW: how long the page stalls during a real drag (frames, in the page, from the pointer going down to the redraw), the cost the release-to-redraw number cannot see; (4) Kids' Choice release, the small-livelit cost; (5) a recommendation: park ^ticket(18) or not. Local only; nothing pushed. First finding, 2026-10-15: on #2635's head, whole program (C), a real 1.5 s drag of Full Body's arm length takes 5.8-7.0 s from the pointer going down to the redraw, the page stalled (frame gaps over 50 ms) for 4.1-5.1 s of it, its longest single stall 0.8-1.1 s; release to redraw 1.3 s. The prototype is rebased onto 032fe3aca6 (local exp/2635-views-in-worker-032fe), measured next. Head measured (032fe3aca6, headless Firefox): C release 1.39 s, a 1.5 s drag stalls 4.1 s (longest 0.9 s); B release 1.0 s, drag stalls 2.6 s (longest 0.8 s); profiled main-thread JS per change C 1.0 s, B 1.25 s; Kids' Choice release 0.21 s. Prototype built on it (4c9331d13c), being measured. MEASURED 2026-10-15 (headless Firefox, one session per build, head then prototype, not alternated; data in ~/.cache/hazel-diag/r90): WHOLE PROGRAM (C): a 1.5 s drag stalls the page 4.1 s (3.7-5.9) on the head, 2.6 s (2.1-3.2) with the prototype, the ranges apart; longest single stall 0.91 -> 0.61 s; release to redraw 1.39 -> 1.11 s (apart). Profiled main-thread JS per change 1,010 -> 914 ms: the editor's update (perform_update) 860 -> 570 ms and the view functions in it 450 -> 240 ms, but ~190 ms of that saving reappears outside the update (probably the worker's larger replies; not traced). UX MODE (B): drag stall 2.6 -> 2.45 s (ranges overlap: no clear change); release 1.00 -> 1.15 s; main-thread JS 1,251 -> 925 ms. KIDS' CHOICE release 212 -> 271 ms (+28%, as last night). Reading: the prototype is a real, visible win with the whole program on screen, none in UX mode, a loss on small livelits; and even with it a 1.5 s drag stalls 2-3 s, so most of the stall is elsewhere (each processed change still costs ~0.9 s of main thread). Decision is Matthew's. <b>2026-10-15T18:52:</b> tagged 🪷 blocked on Matthew: its next step is his call (see above).",
    "source": "Matthew, 2026-10-15",
-   "url": ""
+   "url": "",
+   "tags": [
+    "blocked on Matthew"
+   ]
   },
   {
    "id": 7,
@@ -310,10 +316,13 @@
   {
    "id": 18,
    "area": "performance",
-   "text": "Option B from ^report(5): evaluate each livelit's view in the worker, keep the last Html sent per livelit, and post patches to it, so view evaluation leaves the main thread. Needs the view runner (ViewCmdRunner) in the worker, a patch format, an element on the page that owns each livelit's DOM and applies patches, and handlers dispatched by id. Keep the page's own path for an interaction's immediate redraw, or every drag waits a round trip. Its condition is now met (2026-10-12, see ^ticket(10)): evaluating the view is about 69% of the main thread in a woods figure move, and C would save about 2%. Weigh it against making the view itself cheaper first (^ticket(1), ^ticket(2)). <b>PROTOTYPED 2026-10-14</b> (local branches, nothing pushed; work notes http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T2120-0600.html): MvuShape and ViewCmdRunner moved to the language library (61d031fd93, no change in behavior); the worker runs view commands to Html, reusing an unchanged view per projector (fast_equal), and whole programs fold their views in too (experiments on experiment/2635-views-in-worker-all, ede920b07e). Full Body: the main thread about 540 ms (UX mode) / 220 ms (whole program) less per change, the redraw no later; Kids' Choice: release about 45 ms later (144 → 187–196 ms). Waits for Matthew's design calls: which livelits' views move (all, or the costly ones), and the on-screen ids in the request.",
+   "text": "Option B from ^report(5): evaluate each livelit's view in the worker, keep the last Html sent per livelit, and post patches to it, so view evaluation leaves the main thread. Needs the view runner (ViewCmdRunner) in the worker, a patch format, an element on the page that owns each livelit's DOM and applies patches, and handlers dispatched by id. Keep the page's own path for an interaction's immediate redraw, or every drag waits a round trip. Its condition is now met (2026-10-12, see ^ticket(10)): evaluating the view is about 69% of the main thread in a woods figure move, and C would save about 2%. Weigh it against making the view itself cheaper first (^ticket(1), ^ticket(2)). <b>PROTOTYPED 2026-10-14</b> (local branches, nothing pushed; work notes http://matthewhammer.org/hazel-work-notes/work-notes/2026/10/14/2026-10-14T2120-0600.html): MvuShape and ViewCmdRunner moved to the language library (61d031fd93, no change in behavior); the worker runs view commands to Html, reusing an unchanged view per projector (fast_equal), and whole programs fold their views in too (experiments on experiment/2635-views-in-worker-all, ede920b07e). Full Body: the main thread about 540 ms (UX mode) / 220 ms (whole program) less per change, the redraw no later; Kids' Choice: release about 45 ms later (144 → 187–196 ms). Waits for Matthew's design calls: which livelits' views move (all, or the costly ones), and the on-screen ids in the request. <b>2026-10-15T18:52:</b> tagged 🪷 blocked on Matthew: its next step is his call (see above).",
    "source": "^report(5)",
    "url": "http://localhost:8131/series/005/#where",
-   "added": "2026-10-12"
+   "added": "2026-10-12",
+   "tags": [
+    "blocked on Matthew"
+   ]
   },
   {
    "id": 19,
@@ -359,9 +368,12 @@
    "id": 29,
    "area": "series",
    "added": "2026-10-13",
-   "text": "Revise ^report(8) to answer plainly: <b>are conditions C (#2635, whole program) and B (UX mode, only the GUI) similar once the same fixes are applied to each?</b> As written it confuses: the GUI-only view gives no responsiveness benefit, but with the fixes it is no loss either; say so up front. Re-measure B and C on #2635's current head (the reuse check's fix, the stream index, the has-type memo, the per-step changes all in), and add graphs in the report itself, not just the thumbnail, taking ^report(1)'s pictures as the model, especially in the short answers. 008 is published, so per the series' rules: a dated update box under the short answers, notes after superseded claims, and an Update section with the figures. UNBLOCKED 2026-10-15: ^ticket(84)'s fix is on #2635 (ec9f125acd, the same tree as the measured cbc585933b), and the draft now links it (local commit b569651 in ~/hazel-perf-report, not pushed). Waits only for Matthew's review: http://localhost:8131/series/008/#update-box",
+   "text": "Revise ^report(8) to answer plainly: <b>are conditions C (#2635, whole program) and B (UX mode, only the GUI) similar once the same fixes are applied to each?</b> As written it confuses: the GUI-only view gives no responsiveness benefit, but with the fixes it is no loss either; say so up front. Re-measure B and C on #2635's current head (the reuse check's fix, the stream index, the has-type memo, the per-step changes all in), and add graphs in the report itself, not just the thumbnail, taking ^report(1)'s pictures as the model, especially in the short answers. 008 is published, so per the series' rules: a dated update box under the short answers, notes after superseded claims, and an Update section with the figures. UNBLOCKED 2026-10-15: ^ticket(84)'s fix is on #2635 (ec9f125acd, the same tree as the measured cbc585933b), and the draft now links it (local commit b569651 in ~/hazel-perf-report, not pushed). Waits only for Matthew's review: http://localhost:8131/series/008/#update-box <b>2026-10-15T18:52:</b> tagged 🪷 blocked on Matthew: its next step is his call (see above).",
    "source": "Matthew, 2026-10-13, in chat",
-   "url": "http://localhost:8131/series/008/"
+   "url": "http://localhost:8131/series/008/",
+   "tags": [
+    "blocked on Matthew"
+   ]
   },
   {
    "id": 41,
@@ -391,7 +403,7 @@
    "id": 50,
    "area": "dress up",
    "added": "2026-10-14",
-   "text": "<b>Messed Up Dress Up: where feet can stand, per background (later, not now).</b> Split from ^ticket(49). Each background gets a collision shape for the places it makes no sense to stand: rivers, the pool under the falls, the campfire, and the like. Arrivals (and later moves and drags) use it to keep a person's feet on the ground. ^ticket(49) hand-picks ground spots for the camp and the falls in the meantime.",
+   "text": "<b>Messed Up Dress Up: where feet can stand, per background (later, not now).</b> Split from ^ticket(49). Each background gets a collision shape for the places it makes no sense to stand: rivers, the pool under the falls, the campfire, and the like. Arrivals (and later moves and drags) use it to keep a person's feet on the ground. ^ticket(49) hand-picks ground spots for the camp and the falls in the meantime. <b>2026-10-15T18:52:</b> note: since 0.0.48 (^ticket(122)) the friend can stand in water (the lake, the sea, the falls' pool, the moat, the stream, the brook), so water is no longer a place where standing makes no sense; WATER in the game holds each place's water shape, which a collision shape could build on.",
    "source": "N (via Matthew), 2026-10-14",
    "url": ""
   },
@@ -407,9 +419,12 @@
    "id": 60,
    "area": "homepage, publishing",
    "added": "2026-10-14",
-   "text": "<b>Serve matthewhammer.org over HTTPS.</b> Today https://matthewhammer.org/ fails: it presents GitHub's own certificate (<code>*.github.com</code>, Sectigo), not one for matthewhammer.org, so browsers warn and agents' fetches fail; everything is linked as HTTP. <b>The blocker, checked 2026-10-14:</b> the apex A record still points at <code>192.30.252.153</code>, GitHub Pages' address from before 2018. GitHub serves the site there over HTTP but will not issue a certificate for a domain pointed at it; the Pages settings have no certificate and <code>https_enforced: false</code>. <code>www</code> is fine: a CNAME to matthewhammer.github.io, on the current addresses. The domain's nameservers are <code>ns-cloud-c1..c4.googledomains.com</code> (Google Domains, now Squarespace Domains), so the DNS change is Matthew's, in his registrar's account. <b>Steps:</b> (1) Matthew replaces the apex A record with GitHub Pages' four, <code>185.199.108.153</code>, <code>185.199.109.153</code>, <code>185.199.110.153</code>, <code>185.199.111.153</code> (and may add the four AAAA, <code>2606:50c0:8000::153</code> to <code>8003::153</code>); (2) once that resolves, GitHub provisions a certificate for the custom domain, which can take up to a day (re-saving the custom domain in the homepage repo's Pages settings restarts it if it stalls); (3) turn on Enforce HTTPS for the homepage and the project sites under it (hazel-work-notes, kids-choice-games); (4) check every page for mixed content: anything a page loads by an absolute <code>http://matthewhammer.org/</code> URL (the series' live hover cards read report pages; the dashboard's cards too) is blocked from an HTTPS page, so make those relative or HTTPS; (5) switch the links we publish to HTTPS: READMEs, the series' agent instructions (\"HTTP only\"), the dashboard, the reports, #2609's ^report links; old HTTP links keep working, since GitHub redirects them once HTTPS is enforced. <b>Progress, 2026-10-14 afternoon:</b> Matthew changed the apex A record in Squarespace to <code>185.199.108.153</code>; the authoritative nameservers and public resolvers (8.8.8.8, 1.1.1.1) answer it, while this laptop's resolver still had the old address cached (TTL 1 hour). GitHub has not issued a certificate yet (<code>https_certificate: null</code>). Still to do: the other three A records (<code>.109</code>, <code>.110</code>, <code>.111</code>) for redundancy, and re-saving the custom domain in the homepage repo's Pages settings so GitHub checks DNS again and issues the certificate. <b>Later that afternoon:</b> the new address had reached Google's, Cloudflare's and Quad9's resolvers, so DNS was no longer the wait. On Matthew's OK, Claude re-saved the custom domain through the API (204). GitHub's domain health check then said: pointed at a current Pages address, not the old one; eligible for HTTPS; no CAA problem; www fine. It was waiting only for GitHub to issue the certificate. <b>Watching</b> (Matthew's ask, 2026-10-14): a watcher in Claude's session checks every 5 minutes, for up to 24 hours, whether matthewhammer.org serves a valid certificate. When it does, Claude turns on Enforce HTTPS and finishes the ticket's remaining steps, then closes it. <b>2026-10-15 14:36:</b> the 24-hour watch ended with no certificate (GitHub's Pages API: https_certificate null). DNS is right: the apex A record and www both point at GitHub Pages IPs. Usual fix: remove and re-add the custom domain in matthewhammer.github.io's Pages settings, which re-triggers provisioning. That takes matthewhammer.org offline for a few minutes, so it waits for Matthew's OK, and not while M is playing.",
+   "text": "<b>Serve matthewhammer.org over HTTPS.</b> Today https://matthewhammer.org/ fails: it presents GitHub's own certificate (<code>*.github.com</code>, Sectigo), not one for matthewhammer.org, so browsers warn and agents' fetches fail; everything is linked as HTTP. <b>The blocker, checked 2026-10-14:</b> the apex A record still points at <code>192.30.252.153</code>, GitHub Pages' address from before 2018. GitHub serves the site there over HTTP but will not issue a certificate for a domain pointed at it; the Pages settings have no certificate and <code>https_enforced: false</code>. <code>www</code> is fine: a CNAME to matthewhammer.github.io, on the current addresses. The domain's nameservers are <code>ns-cloud-c1..c4.googledomains.com</code> (Google Domains, now Squarespace Domains), so the DNS change is Matthew's, in his registrar's account. <b>Steps:</b> (1) Matthew replaces the apex A record with GitHub Pages' four, <code>185.199.108.153</code>, <code>185.199.109.153</code>, <code>185.199.110.153</code>, <code>185.199.111.153</code> (and may add the four AAAA, <code>2606:50c0:8000::153</code> to <code>8003::153</code>); (2) once that resolves, GitHub provisions a certificate for the custom domain, which can take up to a day (re-saving the custom domain in the homepage repo's Pages settings restarts it if it stalls); (3) turn on Enforce HTTPS for the homepage and the project sites under it (hazel-work-notes, kids-choice-games); (4) check every page for mixed content: anything a page loads by an absolute <code>http://matthewhammer.org/</code> URL (the series' live hover cards read report pages; the dashboard's cards too) is blocked from an HTTPS page, so make those relative or HTTPS; (5) switch the links we publish to HTTPS: READMEs, the series' agent instructions (\"HTTP only\"), the dashboard, the reports, #2609's ^report links; old HTTP links keep working, since GitHub redirects them once HTTPS is enforced. <b>Progress, 2026-10-14 afternoon:</b> Matthew changed the apex A record in Squarespace to <code>185.199.108.153</code>; the authoritative nameservers and public resolvers (8.8.8.8, 1.1.1.1) answer it, while this laptop's resolver still had the old address cached (TTL 1 hour). GitHub has not issued a certificate yet (<code>https_certificate: null</code>). Still to do: the other three A records (<code>.109</code>, <code>.110</code>, <code>.111</code>) for redundancy, and re-saving the custom domain in the homepage repo's Pages settings so GitHub checks DNS again and issues the certificate. <b>Later that afternoon:</b> the new address had reached Google's, Cloudflare's and Quad9's resolvers, so DNS was no longer the wait. On Matthew's OK, Claude re-saved the custom domain through the API (204). GitHub's domain health check then said: pointed at a current Pages address, not the old one; eligible for HTTPS; no CAA problem; www fine. It was waiting only for GitHub to issue the certificate. <b>Watching</b> (Matthew's ask, 2026-10-14): a watcher in Claude's session checks every 5 minutes, for up to 24 hours, whether matthewhammer.org serves a valid certificate. When it does, Claude turns on Enforce HTTPS and finishes the ticket's remaining steps, then closes it. <b>2026-10-15 14:36:</b> the 24-hour watch ended with no certificate (GitHub's Pages API: https_certificate null). DNS is right: the apex A record and www both point at GitHub Pages IPs. Usual fix: remove and re-add the custom domain in matthewhammer.github.io's Pages settings, which re-triggers provisioning. That takes matthewhammer.org offline for a few minutes, so it waits for Matthew's OK, and not while M is playing. <b>2026-10-15T18:52:</b> tagged 🪷 blocked on Matthew: its next step is his call (see above).",
    "source": "Matthew, 2026-10-14",
-   "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages"
+   "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages",
+   "tags": [
+    "blocked on Matthew"
+   ]
   },
   {
    "id": 102,
@@ -560,24 +575,6 @@
    "status": "open"
   },
   {
-   "id": 122,
-   "area": "dress-up",
-   "added": "2026-10-15",
-   "opened": "2026-10-15T17:37-06:00",
-   "text": "<b>Dress Up: the friend knows water.</b> Matthew: \"let's have a special knowledge of water. In water, by default, let's make the bottom half transparent, and add a 'wake' effect (water moving, like near the base of the waterfall now)\". Plan: builds on 99's depth model. Each place says where its water is on the ground (the lake, the sea at the beach, the waterfall's pool, the tree house's stream, and others); when the friend's feet are in it, their lower half below the water line shows through (clipped copy at low opacity, not a mask, for drag speed), and ripples spread from them like the waterfall's base. A setting to turn it off (\"by default\"). Under the sea the friend is all underwater, so no water line there.",
-   "source": "Matthew, 2026-10-15",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-15T17:37-06:00",
-     "from": "matthew",
-     "chars": 200,
-     "asks": false
-    }
-   ],
-   "status": "open"
-  },
-  {
    "id": 123,
    "area": "dress-up",
    "added": "2026-10-15",
@@ -624,9 +621,39 @@
   }
  ],
  "next_ticket": 125,
- "current_ticket": 122,
- "current_note": "Matthew is at dinner. 121 is live (0.0.47: drag a hand, foot, elbow or knee to pose). 122 (water: lower half see-through + a wake) is being built by a helper in a worktree; next I merge it, check it in every watery place, and release it.",
+ "current_ticket": 120,
+ "current_note": "121 and 122 are live (Dress Up 0.0.47 posing by touch, 0.0.48 the friend in water), released by 18:49. 91, 90, 18, 60 and 29 each wait on Matthew's decision or review, so they are now tagged 🪷 at the queue's end. Now on 120: a report draft comparing Dress Up's speed with the same features as livelits in Hazel.",
  "closed_tickets": [
+  {
+   "id": 122,
+   "area": "dress-up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T17:37-06:00",
+   "text": "<b>Dress Up: the friend knows water.</b> Matthew: \"let's have a special knowledge of water. In water, by default, let's make the bottom half transparent, and add a 'wake' effect (water moving, like near the base of the waterfall now)\". Plan: builds on 99's depth model. Each place says where its water is on the ground (the lake, the sea at the beach, the waterfall's pool, the tree house's stream, and others); when the friend's feet are in it, their lower half below the water line shows through (clipped copy at low opacity, not a mask, for drag speed), and ripples spread from them like the waterfall's base. A setting to turn it off (\"by default\"). Under the sea the friend is all underwater, so no water line there.",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T17:37-06:00",
+     "from": "matthew",
+     "chars": 200,
+     "asks": false
+    }
+   ],
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T18:49-06:00",
+   "outcome": "Released as Dress Up 0.0.48 at 18:48 (08abedf, tag dress-up-0.0.48; Pages green, live check 18:49). In water the friend is see-through below the waterline (mask; '🌊 see-through under the water', default 70) with a wake: three spreading rings + dashed foam, far half behind and near half in front ('💧 a wake round the friend in the water', default 100). Water per place from the scenes' own shared helpers (WATER): lake, sea, waterfall pool, castle moat (near half, not the bridge), tree house stream, cemetery brook. Waist-deep, knee-deep in the stream and brook; rings no wider than the water (waterAcross). Built by a helper in a worktree (14 min, node-verified: 124 scenes byte-identical, dry friend identical at 1,904 spots); merged, tuned and checked in the pane by me. Redraw in water 1.2-1.4 ms vs 0.9 dry.",
+   "metrics": {
+    "open_minutes": 73,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 200,
+    "tokens_est": 50,
+    "sync_minutes_est": 0,
+    "work_minutes": 21.0
+   }
+  },
   {
    "id": 121,
    "area": "dress-up",
@@ -2728,21 +2755,20 @@
   }
  ],
  "queue": [
-  122,
-  91,
-  90,
-  18,
-  60,
-  50,
-  29,
   120,
+  50,
   123,
   118,
   106,
   104,
   124,
+  91,
+  90,
+  18,
+  60,
+  29,
   102
  ],
- "current_since": "2026-10-15T18:41:56-06:00",
+ "current_since": "2026-10-15T18:50:40-06:00",
  "current_waiting": null
 }
