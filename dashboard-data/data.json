@@ -400,22 +400,6 @@
    "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
   },
   {
-   "id": 50,
-   "area": "dress up",
-   "added": "2026-10-14",
-   "text": "<b>Messed Up Dress Up: where feet can stand, per background (later, not now).</b> Split from ^ticket(49). Each background gets a collision shape for the places it makes no sense to stand: rivers, the pool under the falls, the campfire, and the like. Arrivals (and later moves and drags) use it to keep a person's feet on the ground. ^ticket(49) hand-picks ground spots for the camp and the falls in the meantime. <b>2026-10-15T18:52:</b> note: since 0.0.48 (^ticket(122)) the friend can stand in water (the lake, the sea, the falls' pool, the moat, the stream, the brook), so water is no longer a place where standing makes no sense; WATER in the game holds each place's water shape, which a collision shape could build on. <b>2026-10-15T19:28, Matthew:</b> add to 50 where people can sit: \"we want to offer that pose in those places.\" So each place also marks its seats (the living room's couch, the dining room's chairs, the logs by the camp fire, benches, a swing, steps, a bed's edge, and the like), and a person put or dragged onto one sits, in the sitting pose from ^ticket(124), at the seat's depth (99's model). Builds on 124's sitting drawing; 122's WATER is the model for a place's shapes.",
-   "source": "N (via Matthew), 2026-10-14",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-15T19:28-06:00",
-     "from": "matthew",
-     "chars": 95,
-     "asks": true
-    }
-   ]
-  },
-  {
    "id": 54,
    "area": "performance, #2469",
    "added": "2026-10-14",
@@ -576,9 +560,38 @@
   }
  ],
  "next_ticket": 126,
- "current_ticket": 50,
- "current_note": "Live tonight: Dress Up 0.0.47 posing, 0.0.48-0.0.51 water, 0.0.52 facing + sitting, 0.0.53 ears + wings in perspective. Now on 50 (seats): the mechanism works locally (drag the friend onto a seat to sit, off to stand; 🪑 chips in the background tab; the living room's couch first). Two helpers are adding the other places' seats in worktrees (indoors: castle rooms, healer's hut, tree house; outdoors: camp logs, beach chairs, toadstools, rocks...); then I check every seat on a sheet and release.",
+ "current_ticket": 118,
+ "current_note": "Live tonight: Dress Up 0.0.47 to 0.0.54 (posing, water, treading, facing + sitting, ears, wings, seats). Now on 118 (🌙): the witch's places draw at about 7 fps idle; their fumes' width and opacity animations become Web Animations timed to the picture's clock, as the prototype did (7 to ~60 fps).",
  "closed_tickets": [
+  {
+   "id": 50,
+   "area": "dress up",
+   "added": "2026-10-14",
+   "text": "<b>Messed Up Dress Up: where feet can stand, per background (later, not now).</b> Split from ^ticket(49). Each background gets a collision shape for the places it makes no sense to stand: rivers, the pool under the falls, the campfire, and the like. Arrivals (and later moves and drags) use it to keep a person's feet on the ground. ^ticket(49) hand-picks ground spots for the camp and the falls in the meantime. <b>2026-10-15T18:52:</b> note: since 0.0.48 (^ticket(122)) the friend can stand in water (the lake, the sea, the falls' pool, the moat, the stream, the brook), so water is no longer a place where standing makes no sense; WATER in the game holds each place's water shape, which a collision shape could build on. <b>2026-10-15T19:28, Matthew:</b> add to 50 where people can sit: \"we want to offer that pose in those places.\" So each place also marks its seats (the living room's couch, the dining room's chairs, the logs by the camp fire, benches, a swing, steps, a bed's edge, and the like), and a person put or dragged onto one sits, in the sitting pose from ^ticket(124), at the seat's depth (99's model). Builds on 124's sitting drawing; 122's WATER is the model for a place's shapes.",
+   "source": "N (via Matthew), 2026-10-14",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T19:28-06:00",
+     "from": "matthew",
+     "chars": 95,
+     "asks": true
+    }
+   ],
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T20:28-06:00",
+   "outcome": "Released as Dress Up 0.0.54 at 20:27 (d9a7877, tag dress-up-0.0.54; Pages green, live check 20:28). Seats (Matthew: 'where people can sit -- we want to offer that pose in those places'): SEATS[kind](c, B) per place from the scenes' own expressions; drop the friend with feet between a seat's top and the floor in front to sit (dropOnSeat), drag off to stand; 🪑 chips + 🧍 stand up in the background tab; seated, sorted and sized at the seat's depth. Seats: couch; healer's chairs; castle dining chairs, throne, cat-room window seat, spiral steps, stable hay; tree house beanbag; camp logs (facing the fire), beach chairs, underwater picnic bench, toadstools, path mushrooms, mountain rocks, castle crate + barrels, house step + wagon, tree house swing, witch's root. Built with two helpers in worktrees (indoor 13 min, outdoor 16 min, node-verified; dining layout refactor byte-identical); every seat checked on contact sheets. Dropped: bottom bunk (head through the top bunk). The original 'where feet can stand' half of 50 is moot for water since 0.0.48 (standing in water is allowed now).",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 95,
+    "tokens_est": 23,
+    "sync_minutes_est": 0,
+    "work_minutes": 22.0
+   }
+  },
   {
    "id": 125,
    "area": "dress-up",
@@ -2829,7 +2842,6 @@
   }
  ],
  "queue": [
-  50,
   118,
   106,
   104,
@@ -2840,6 +2852,6 @@
   120,
   102
  ],
- "current_since": "2026-10-15T20:05:58-06:00",
+ "current_since": "2026-10-15T20:29:09-06:00",
  "current_waiting": null
 }
