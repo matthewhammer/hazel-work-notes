@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<meta name="dashboard-version" content="b1a3cc2cc822">
+<meta name="dashboard-version" content="0b55177572e1">
 <!-- theme: head begin -->
 <script>try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}</script>
 <!-- theme: head end -->
@@ -87,6 +87,8 @@
   tr.longrun-head td { background: color-mix(in srgb, #8b5cf6 9%, transparent); }
   tr.blocked-head td { background: color-mix(in srgb, #0f9f8f 9%, transparent); }
   table.queue td:first-child { font-weight: 700; }
+  /* (Matthew, 2026-10-16: the ticket column was too wide; its chips wrap, one to a line, under the ticket, and the description gets the room) */
+  table.queue th.tkcell, table.queue td.tkcell { white-space: normal; width: 9.5em; }
   tr.current td { background: color-mix(in srgb, var(--good) 7%, transparent); }
   td.status { white-space: nowrap; }
   .since { margin: 6px 0; }
@@ -97,7 +99,7 @@
 <main>
 <h1>Closed tickets</h1>
 <p class="note">A copy of the Hazel Work Dashboard that Matthew runs on his laptop, published within a minute or two of each change to its notes, and every 15 minutes for the status from GitHub. Its <code>localhost</code> links work only there.</p>
-<p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated 2026-10-16 15:12 MDT. Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are on the dashboard: <a href="./#queue">the work queue</a> and <a href="./#backlog">the full backlog</a>.</p>
+<p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated 2026-10-16 15:13 MDT. Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are on the dashboard: <a href="./#queue">the work queue</a> and <a href="./#backlog">the full backlog</a>.</p>
 <div class="scroll"><table>
 <tr><th class="num">Ticket</th><th class="area">Area</th><th>Status, closed</th><th>Outcome</th><th>The ticket, as it last read</th></tr>
 <tr id="ticket-161"><td class="num"><a class="anchor" href="#ticket-161"><code class="ref"><b>^ticket(</b>161<b>)</b></code></a><button class="copy" type="button" data-anchor="ticket-161" title="Copy a link to ^ticket(161)">copy link</button></td><td>dress up, performance</td><td class="status"><span class="good">done</span><br><span class="note">2026-10-16T14:51-06:00</span></td><td>Dress Up 0.0.80 (dd7f54f): 👻 exact see-through off by default (no masks on the friend): a half see-through friend walks the empty room and the beach at 60 (36.5 and 34.3 before). The gate's slow set gained the beach and a see-through friend. <a href="https://github.com/matthewhammer/kids-choice-games/commit/dd7f54f">(where)</a></td><td><b>Dress Up: the 🏖️ beach is really slow.</b> Matthew, 2026-10-16, testing 0.0.78/0.0.79.<br><span class="note">from <a href="https://matthewhammer.org/kids-choice-games/dress-up/">Matthew, 2026-10-16, in chat</a></span></td></tr>
