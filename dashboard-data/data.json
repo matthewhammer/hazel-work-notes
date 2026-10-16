@@ -426,8 +426,10 @@
     }
    ],
    "status": "open",
-   "tags": [],
-   "progress": "17:02: the audit's first full run (42 cases x 3, headless Chromium, begun 16:47:00) crashed the laptop at once (journal ends 16:47:01; the <a href=\"http://matthewhammer.org/hazel-work-notes/crash-log.html\">crash log</a> has it). Tool: ~/du-shots/tools/audit160.mjs (its 2-place trial ran fine). Not rerun: a 15-20 min headless-Chrome run is the kind of job both of today's afternoon crashes came during. Next: Matthew's call whether, and how small (1 run a case, or a few places at a time)."
+   "tags": [
+    "long run"
+   ],
+   "progress": "17:02: the audit's first full run (42 cases x 3, headless Chromium, begun 16:47:00) crashed the laptop at once (journal ends 16:47:01; the <a href=\"http://matthewhammer.org/hazel-work-notes/crash-log.html\">crash log</a> has it). Tool: ~/du-shots/tools/audit160.mjs (its 2-place trial ran fine). Not rerun: a 15-20 min headless-Chrome run is the kind of job both of today's afternoon crashes came during. Next: Matthew's call whether, and how small (1 run a case, or a few places at a time). | 17:27: Matthew: \"audit tonight, last in long run queue\". Plan (his OK to pinned Chrome, 17:05): headless Chromium under taskset -c 0-3 nice -n 10, node under taskset -c 0-3, RUNS=1, batches of 6 cases with 20 s between (only=...): the 24 places; castleroom:king..cats; treeroom:1-6; then check the batches' case counts add up to the page's 42. OUT=~/du-shots/audit160/0.0.87-bN.json."
   },
   {
    "id": 162,
@@ -670,8 +672,8 @@
   }
  ],
  "next_ticket": 172,
- "current_ticket": 164,
- "current_note": "17:21: WAITING ON MATTHEW. Dress Up 0.0.87 is live: the places as still pictures while the friend moves, on a slow computer (^ticket(164)). Next is his 🧪 line from the black laptop and from the iPad, pasted into the pad: pass 9 is the new pictures, pass 10 the bitmap version for Safari. Headless Chrome pinned to 4 threads all evening: gate, 🧪 and three checks, no crash.",
+ "current_ticket": 147,
+ "current_note": "17:27: not waiting on Matthew (AFK about an hour). Starting ^ticket(147), doors that open and walking through them; ^ticket(160)'s audit moved to tonight, last of the long runs.",
  "closed_tickets": [
   {
    "id": 170,
@@ -4415,7 +4417,6 @@
   }
  ],
  "queue": [
-  160,
   165,
   166,
   171,
@@ -4433,8 +4434,8 @@
   13,
   14,
   15,
-  19
+  19,
+  160
  ],
- "current_since": "2026-10-16T17:05-06:00",
- "current_waiting": "his 🧪 0.0.87 lines from the black laptop and the iPad"
+ "current_since": "2026-10-16T17:27-06:00"
 }
