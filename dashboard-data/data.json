@@ -440,31 +440,6 @@
    }
   },
   {
-   "id": 137,
-   "area": "dress up",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T08:18-06:00",
-   "text": "<b>Dress Up: climbing in profile, and climbing a place's own ladder.</b> Matthew, 2026-10-16 08:18: (1) facing left or right, 'climbing a ladder' (^ticket(132)) still draws its ladder face on, as when facing us; in profile it should be seen side-on, 'perhaps not even showing the rungs, or they are very \"perspectived.\"' (2) rename today's to 'climbing (with ladder)', and add 'climbing' without a ladder of its own, 'so as to use a ladder from the scene, and actually climb it (tree house, or dungeon).' Where: <code>ANIMS</code> and the climb's moves in index.html, the ladder drawn behind the friend (<code>move.ladder</code>), and choosing it turning the friend to face us; the places' ladders: the tree house's (<code>LADDER_TO</code>, <code>ladderUp</code>), the dungeons' ladder up to the trap room, the hay loft's. To work out for (2): how the friend gets onto a place's ladder (dragged onto it, or to the nearest one), and what the top does (stop there, or go through to the room above, as its doorway does).",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "log": [
-    {
-     "at": "2026-10-16T08:18-06:00",
-     "from": "matthew",
-     "chars": 403,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T08:22-06:00",
-     "from": "matthew",
-     "chars": 180,
-     "asks": true
-    }
-   ],
-   "status": "open",
-   "tags": []
-  },
-  {
    "id": 138,
    "area": "dress up",
    "added": "2026-10-16",
@@ -491,9 +466,46 @@
   }
  ],
  "next_ticket": 139,
- "current_ticket": 137,
- "current_note": "08:34: on ^ticket(137) (Matthew AFK, working through 137 then 138, a release per ticket-sized piece). 08:33: ^ticket(136) done as Dress Up 0.0.62 (legs that hug, and jumping up into a hug). ^ticket(133) still waits for Matthew to try the drag fix.",
+ "current_ticket": 138,
+ "current_note": "08:51: on ^ticket(138) (Matthew AFK): first the back view (facing away, for moving up into the place), then the jump, then the controller and its Controls tab, a release each. Live today since he left: 0.0.62 (^ticket(136), legs that hug, jumping up into a hug), 0.0.63 and 0.0.64 (^ticket(137), the ladder from the side; climbing a place's own ladders). ^ticket(133) still waits for Matthew to try the drag fix.",
  "closed_tickets": [
+  {
+   "id": 137,
+   "area": "dress up",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T08:18-06:00",
+   "text": "<b>Dress Up: climbing in profile, and climbing a place's own ladder.</b> Matthew, 2026-10-16 08:18: (1) facing left or right, 'climbing a ladder' (^ticket(132)) still draws its ladder face on, as when facing us; in profile it should be seen side-on, 'perhaps not even showing the rungs, or they are very \"perspectived.\"' (2) rename today's to 'climbing (with ladder)', and add 'climbing' without a ladder of its own, 'so as to use a ladder from the scene, and actually climb it (tree house, or dungeon).' Where: <code>ANIMS</code> and the climb's moves in index.html, the ladder drawn behind the friend (<code>move.ladder</code>), and choosing it turning the friend to face us; the places' ladders: the tree house's (<code>LADDER_TO</code>, <code>ladderUp</code>), the dungeons' ladder up to the trap room, the hay loft's. To work out for (2): how the friend gets onto a place's ladder (dragged onto it, or to the nearest one), and what the top does (stop there, or go through to the room above, as its doorway does).",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T08:18-06:00",
+     "from": "matthew",
+     "chars": 403,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T08:22-06:00",
+     "from": "matthew",
+     "chars": 180,
+     "asks": true
+    }
+   ],
+   "status": "done",
+   "tags": [],
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T08:51-06:00",
+   "outcome": "Dress Up 0.0.63 (e679450) + 0.0.64 (130cbf0) LIVE. 0.0.63: climbing turned to the side draws the ladder in front of them, side on (two rails nearly one behind the other, rungs as end-on stubs), with a stroke reaching forward and up (r137/climb-side2.png). 0.0.64: '🪜 climbing (with ladder)' renamed, and '🧗 climbing' (climbup) climbs the nearest ladder in the place: [data-ladder] in a dungeon's ladder up (to the trap room), a tree house room's ladder up (to the room above), the tree's ground ladders (into the house), the stable's loft ladder (holds on at the top); measured after a drawing through the screen matrices; doorway taken at the top; a drag puts them on a ladder within reach; no ladder: the caption says so. Pictures and far views carry no marks. Checked by ~/du-shots/tools/climbcheck.py (all 8 cases), r137/up-three.png; sweep: only ladder places differ.",
+   "metrics": {
+    "open_minutes": 33,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 583,
+    "tokens_est": 145,
+    "sync_minutes_est": 4.0,
+    "work_minutes": 16.0
+   }
+  },
   {
    "id": 136,
    "area": "dress up",
@@ -3489,7 +3501,6 @@
   }
  ],
  "queue": [
-  137,
   138,
   133,
   18,
@@ -3501,6 +3512,6 @@
   15,
   19
  ],
- "current_since": "2026-10-16T08:34-06:00",
+ "current_since": "2026-10-16T08:51-06:00",
  "current_waiting": null
 }
