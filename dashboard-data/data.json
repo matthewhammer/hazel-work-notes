@@ -464,8 +464,11 @@
     }
    ],
    "status": "open",
-   "tags": [],
-   "progress": "16:08: Dress Up 0.0.84 LIVE (151085a): still places where moves come out choppy (late frames while moving, over 10%); 🧪 measures the pond moving / still / with music. 15:51: At the measured black-laptop factor (2x CPU): the pond walks 51.7-53.4, drags 51-54.9 (just under 55); its still-scenery switch (0.0.83) does not trigger there, as the black laptop draws in 1.0 ms (the switch is at 6). Next: switch on dropped frames, not drawing time, if Matthew finds the pond choppy on the black laptop. 15:44: SHIPPED part in Dress Up 0.0.83 (858f369): on a slow computer (slowFlag: drawing over 6 ms on average) the places hold still (scene animations taken out, CSS animations stopped, no fumes), the wake rings are still and the faint copy under the water is left out; ⚙️ Advanced '🌀 moving scenery and water on a slow computer' overrides. At 6x: the pond 17 -> 37 walking, 52 dragging (gate needs 55). Not solved: moving over a busy place (dry and frozen at 6x: 40.6; the friend in an overlay svg 47.1). What more it needs waits on the black laptop's factor (^ticket(163)). | 16:26: black laptop 0.0.84 (pad): room walk 57 fps; pond swim 36, held still 33, with music 26 (3 ms a drawing). Still scenery does not help: the pond's cost there is Firefox painting, not JS or animations; throttled Chrome does not reproduce it (55.7). Next: headless Firefox at 1440x810@2x as a proxy (tools/speedff.py), then the scenery as a still image behind the friend. | 16:29: headless Firefox 157 at 1440x810@2x: 60 fps in every pass, so it is no proxy either (it does not paint like a window). Proposed: A/B passes inside 🧪 for one more run on the black laptop (scenery hidden, the friend's underwater copy off, the water's rings off, the scenery as a still image), plus a room-after-the-pond pass for ^ticket(167). | 16:37: crash at 16:33 during the 0.0.86 test run; the A/B passes edit is intact in ~/kids-choice-games (uncommitted). Next: test, then release 0.0.86."
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "progress": "16:08: Dress Up 0.0.84 LIVE (151085a): still places where moves come out choppy (late frames while moving, over 10%); 🧪 measures the pond moving / still / with music. 15:51: At the measured black-laptop factor (2x CPU): the pond walks 51.7-53.4, drags 51-54.9 (just under 55); its still-scenery switch (0.0.83) does not trigger there, as the black laptop draws in 1.0 ms (the switch is at 6). Next: switch on dropped frames, not drawing time, if Matthew finds the pond choppy on the black laptop. 15:44: SHIPPED part in Dress Up 0.0.83 (858f369): on a slow computer (slowFlag: drawing over 6 ms on average) the places hold still (scene animations taken out, CSS animations stopped, no fumes), the wake rings are still and the faint copy under the water is left out; ⚙️ Advanced '🌀 moving scenery and water on a slow computer' overrides. At 6x: the pond 17 -> 37 walking, 52 dragging (gate needs 55). Not solved: moving over a busy place (dry and frozen at 6x: 40.6; the friend in an overlay svg 47.1). What more it needs waits on the black laptop's factor (^ticket(163)). | 16:26: black laptop 0.0.84 (pad): room walk 57 fps; pond swim 36, held still 33, with music 26 (3 ms a drawing). Still scenery does not help: the pond's cost there is Firefox painting, not JS or animations; throttled Chrome does not reproduce it (55.7). Next: headless Firefox at 1440x810@2x as a proxy (tools/speedff.py), then the scenery as a still image behind the friend. | 16:29: headless Firefox 157 at 1440x810@2x: 60 fps in every pass, so it is no proxy either (it does not paint like a window). Proposed: A/B passes inside 🧪 for one more run on the black laptop (scenery hidden, the friend's underwater copy off, the water's rings off, the scenery as a still image), plus a room-after-the-pond pass for ^ticket(167). | 16:37: crash at 16:33 during the 0.0.86 test run; the A/B passes edit is intact in ~/kids-choice-games (uncommitted). Next: test, then release 0.0.86. | 16:43: Dress Up 0.0.86 LIVE (c49d6f2, tag dress-up-0.0.86): 🧪 has 12 passes; the pond without its scenery / without the part under the water / without the rings / as a still picture. Tested in headless Chrome at 1440x810@2x (every pass draws right, ~60 fps here as before, so only the black laptop can tell); gate 10/10. NEXT: read Matthew's black-laptop line: whichever pass gets its frames back names the cost; build that fix.",
+   "waiting": "Waiting on Matthew's 🧪 run on the black laptop (no hurry): Dress Up 0.0.86 is live; ⚙️ Advanced → 🧪 this computer's speed (about 40 s), then paste the line in the pad."
   },
   {
    "id": 165,
@@ -522,7 +525,11 @@
     }
    ],
    "status": "open",
-   "tags": []
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "progress": "16:43: 0.0.86's 🧪 ends with the empty room after the pond (passes 11, 12): headless Chrome stays at 60 fps there, so the leak, if it is one, is Firefox's. NEXT: his black-laptop line; if roomAfter is slow, count live SMIL animations / document.getAnimations() after the pond in Firefox.",
+   "waiting": "Waiting on Matthew's 🧪 run on the black laptop (no hurry): Dress Up 0.0.86 is live; ⚙️ Advanced → 🧪 this computer's speed (about 40 s), then paste the line in the pad."
   },
   {
    "id": 13,
@@ -662,8 +669,8 @@
   }
  ],
  "next_ticket": 172,
- "current_ticket": 164,
- "current_note": "16:40: not waiting on Matthew. 0.0.86's 🧪 (12 passes: the pond without its scenery, without the part under the water, without the rings, as a still picture; the empty room after the pond, for ^ticket(167)) tested in headless Chrome: every pass draws what it should, no errors, everything put back. Now: the 60 fps gate, then release 0.0.86 for Matthew to run on the black laptop.",
+ "current_ticket": 160,
+ "current_note": "16:43: not waiting on Matthew. Dress Up 0.0.86 is LIVE (^ticket(164) and ^ticket(167) now wait in 🪷 for his 🧪 line from the black laptop, no hurry). Now ^ticket(160): walking every place with the on-screen controller, frames a second for each, in headless Chrome, one place at a time.",
  "closed_tickets": [
   {
    "id": 170,
@@ -4407,8 +4414,6 @@
   }
  ],
  "queue": [
-  167,
-  164,
   160,
   165,
   166,
@@ -4417,6 +4422,8 @@
   149,
   162,
   145,
+  167,
+  164,
   18,
   102,
   156,
@@ -4427,5 +4434,5 @@
   15,
   19
  ],
- "current_since": "2026-10-16T16:29:59-06:00"
+ "current_since": "2026-10-16T16:43-06:00"
 }
