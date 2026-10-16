@@ -567,7 +567,7 @@
    ],
    "status": "open",
    "tags": [],
-   "progress": "12:02: MEASURED (headless Chrome 155, controller walk right 2 s then left 2 s, 3 rounds alternating): 0.0.74 53.2-53.8 fps, 0.0.75 50.5-51.4 fps; draw() 2.0-2.3 ms in both, no scene rebuilds, marks never re-measured. So the castle drops frames already in 0.0.74 (the browser's own time, not the game's), and 0.0.75 costs ~2.5 fps more. Next: freeze each animated thing in turn."
+   "progress": "12:24: FOUND (with ^ticket(152)'s gate, 1920x1080, headless Chrome): the friend in WATER is drawn through an SVG mask (wading's water-line) on every frame; castle walk (the moat) 48.7 fps, pond swim 51.7/54.7. Without the mask: castle walk 59, pond 60/59.3. Pausing every SMIL animation does nothing (45-47), the wake rings little. Not 0.0.75's doing: 0.0.74 the same. Second, smaller cost: dragging in the castle, ~50 fps even without the mask (suspect hit testing of its 1,250 shapes per mouse move). Next: replace the mask by two clipped copies (full above the waterline, faint below it within the water), check the pictures match, then the castle drag."
   },
   {
    "id": 152,
@@ -592,12 +592,13 @@
     }
    ],
    "status": "open",
-   "tags": []
+   "tags": [],
+   "progress": "12:24: BUILT ~/du-shots/tools/fpsgate.mjs: his five scenes (castle, witch's woods, witch's hut, healer's hut, swimming in the duck pond), each a controller walk and a real-mouse drag, 3 runs, median >= 55 fps, exit 1 on any failure; W/H/DPR, TWEAK, OUT. At 1280x800 all pass (castle 56-58); at 1920x1080 4 of 10 fail (castle walk 48.7, drag 45.8; pond 51.7, 54.7; witch drag 55.6), which matches what Matthew sees: the gate runs at 1920x1080. Results in ~/du-shots/fps/. Next: into the release steps (agent-instructions.md) once 151 passes it."
   }
  ],
  "next_ticket": 153,
  "current_ticket": 151,
- "current_note": "12:01: Matthew AFK ~45 min (back ~12:20). ^ticket(151) (castle walk) being measured, 0.0.74 vs 0.0.75; then ^ticket(152), an fps gate (55) before each release, from his ask.",
+ "current_note": "12:24: ^ticket(151) cause found (the water mask, every frame); fixing it now, then the castle drag; nothing released until ^ticket(152)'s gate (55 fps, 1920x1080) passes.",
  "closed_tickets": [
   {
    "id": 146,
