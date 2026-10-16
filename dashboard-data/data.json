@@ -333,7 +333,7 @@
    ],
    "progress": "2026-10-15 23:12: BUILT AND MEASURED, local only. Branch perf/2635-cells-live-memo in ~/hazel-ab-views (on 25's link commit): a31cdca4b9 keeps, per livelit use, what each sample ran to, by the sample object, so a redraw without a new run does not run its samples again (one entry per use, the table emptied past 256); 8bcd92dcc2 is a MEASURE commit on top. Interleaved A/B in UX mode (^report(8)'s B, reached by 25's link; one Firefox, base twice as an A/A, 10 rounds each): live_html's page time per change 195 -> 65 ms (median -132 ms, lower in 10 of 10; A/A +14 ms). It is called 17 times per change, 2 samples each. But nothing a person sees moved: release to redraw 0.0 s (5/5; A/A +0.02 s), and a 1.5 s drag's freeze +10 ms (5/5; A/A +34 ms); the longest gap 242 -> 200 ms (A/A 292). So the saved ~130 ms is not on the visible path (the drag's freeze is the page's recalculation, the release waits for the worker). Data: ~/.cache/hazel-diag/r24/{ab,drag_B}.json (cells_live.py, ab_drag.py --link). Recommendation: do not push as a performance fix; it could go in as tidying if wanted. Matthew's call.",
    "work": {
-    "work_minutes": 24
+    "work_minutes": 20
    }
   },
   {
@@ -351,17 +351,6 @@
    "work": {
     "work_minutes": 23
    }
-  },
-  {
-   "id": 42,
-   "area": "dress up",
-   "added": "2026-10-13",
-   "text": "<b>Messed Up Dress Up: scenes that move.</b> Ducks paddling on the lake, the tree house's stream flowing, the living room's lamp switching on and off; small animations kept to their own parts, so a scene's sliders still build only what they change. <b>2026-10-15T21:29, narrowed (Matthew):</b> most of this is done (the ducks paddle since 0.0.28, the lamp glows with the slow LFO since 0.0.35, every scene moves with the music); what is left: the tree house's stream and the cemetery's brook flowing, and the swing swinging a friend who sits on it (from ^ticket(41)). Tonight, after hours (🌙).",
-   "source": "Matthew, 2026-10-13, in chat (ideas from ^ticket(40)'s doorways)",
-   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
-   "tags": [
-    "long run"
-   ]
   },
   {
    "id": 43,
@@ -443,13 +432,18 @@
     }
    ],
    "status": "open"
-  },
+  }
+ ],
+ "next_ticket": 132,
+ "current_ticket": 127,
+ "current_note": "Matthew is AFK until about 06:30. Done tonight: Dress Up 0.0.57 LIVE (42 flowing water and the swing, 128 shorts and swimsuits on posed legs, 129 the Pose tab with meditation and dances, closed eyes, turning feet, 130 the hug, 131 the profile puddle). Waiting on his word (🪷, queue's end): 91's ^report(16) draft (http://localhost:8131/series/016/), 25's outline deep link (local 438812718b), 24's cell memo (page time -2/3, nothing visible moved). Now 127: ^report(17), the performance PRs' executive summary and merge plan, drafted at http://localhost:8131/series/017/; checking it, then the CI budgets (13, 14, 15, 19). Local only; nothing posted to GitHub.",
+ "closed_tickets": [
   {
-   "id": 128,
+   "id": 131,
    "area": "dress-up",
    "added": "2026-10-15",
-   "opened": "2026-10-15T21:59-06:00",
-   "text": "<b>Dress Up: shorts and swim trunks fit posed legs.</b> Matthew, 2026-10-15 21:58, with a screenshot (the friend in swim trunks, knees out and feet in, posed by dragging): 'the pants do not change shape to fit the legs when they are shorts.' The underwear or swimsuit bottom (undiesBottom) and shorts keep their standing shape while the thighs turn out, so the legs come out of the wrong places. Make shorts, swim trunks, briefs, bikini bottoms and the one-piece follow each thigh as posed (as long pants already do since 0.0.47), and check this pose for all costumes (a contact sheet: every costume and outfit in this crouch). Tonight (🌙).",
+   "opened": "2026-10-15T22:13-06:00",
+   "text": "<b>Dress Up, in profile: the sick puddle symmetrical, and narrower.</b> Matthew, 22:11, with a screenshot (~/du-shots/profile-sickness-2026-10-15.webp: the friend facing right in the witch's hut, sickness 300): 'Full sickness (puddle on floor) should be 1/3 or 1/2 width, but symmetrical, not like this.' The cause: the puddle (sickPile) is drawn inside the mouth's group, and in profile the mouth is its far half carried to the front (0.0.52), so the puddle was cut in half and moved too. Fix: in profile draw the puddle on its own, centred under the friend and a third to a half as wide as facing us, and keep the stream from the mouth whole. Check every face option that lives in the mouth's group in profile (tongue out, teeth, candy, the explode lid) on a contact sheet. Tonight (🌙).",
    "source": "Matthew, 2026-10-15",
    "url": "",
    "tags": [
@@ -457,34 +451,26 @@
    ],
    "log": [
     {
-     "at": "2026-10-15T21:59-06:00",
+     "at": "2026-10-15T22:13-06:00",
      "from": "matthew",
-     "chars": 140,
+     "chars": 120,
      "asks": true
     }
    ],
-   "status": "open"
-  },
-  {
-   "id": 129,
-   "area": "dress-up",
-   "added": "2026-10-15",
-   "opened": "2026-10-15T21:59-06:00",
-   "text": "<b>Dress Up: feet that turn, eyes that close, and a menu of poses.</b> Matthew, 2026-10-15 21:59, with a reference picture of feet in a lotus position (~/du-shots/lotus-feet-reference-2026-10-15.webp): 'Feet in a lotus position (legs crossed) do not look like this -- we need to rotate, or possibly redraw them: let's permit feet to rotate, like hands, and have a menu of poses for the main char: standing facing camera (default); cross legged, with hands on lap [he wrote 'lamp' and corrected it: lap], in meditation (eyes closed? we need that too); random dance pose -- be creative.' So: (1) each foot turns, as hands do (a turn per foot, and the pose's foot angle), so crossed legs show the soles and toes as in the picture; (2) eyes that can close (for meditating, and for blinking or sleeping later); (3) a pose menu: standing (the default), cross-legged meditation (legs crossed in a lotus, hands resting in the lap, eyes closed), and a dance pose (a new one each time it is chosen, or a few to pick from), built on 121's pose offsets so dragging still works from there. Tonight (🌙). <b>22:11, Matthew:</b> 'The pose chip menu should be top level, before face': the pose chips in a row of their own at the top of the controls, before the 😀 Face tab (with facing and sitting there too, where they fit).",
-   "source": "Matthew, 2026-10-15",
-   "url": "",
-   "tags": [
-    "long run"
-   ],
-   "log": [
-    {
-     "at": "2026-10-15T21:59-06:00",
-     "from": "matthew",
-     "chars": 420,
-     "asks": true
-    }
-   ],
-   "status": "open"
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T23:18-06:00",
+   "outcome": "Dress Up 0.0.57: in profile the sick puddle is drawn on its own (faceSvg's sick), the stream from where the lips meet the face's front edge, the pile whole under it at 0.4 width (between Matthew's third and half), symmetric. Facing us unchanged.",
+   "metrics": {
+    "open_minutes": 66,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 120,
+    "tokens_est": 30,
+    "sync_minutes_est": 0,
+    "work_minutes": 4,
+    "work_note": "the five Dress Up tickets were written and tested together, 22:58-23:18, between the Hazel A/B runs"
+   }
   },
   {
    "id": 130,
@@ -505,14 +491,27 @@
      "asks": true
     }
    ],
-   "status": "open"
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T23:18-06:00",
+   "outcome": "Dress Up 0.0.57: in profile in a place (not in water), the far arm, sleeve and hand are drawn apart (#figure-far) a body's depth (26 units) behind the feet among the place's things: hugging the witch, the near arm is in front of her and the far one behind (checked: layer order far, witch, friend; ~/du-shots/r42/hug_crop.png).",
+   "metrics": {
+    "open_minutes": 68,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 160,
+    "tokens_est": 40,
+    "sync_minutes_est": 0,
+    "work_minutes": 4,
+    "work_note": "the five Dress Up tickets were written and tested together, 22:58-23:18, between the Hazel A/B runs"
+   }
   },
   {
-   "id": 131,
+   "id": 129,
    "area": "dress-up",
    "added": "2026-10-15",
-   "opened": "2026-10-15T22:13-06:00",
-   "text": "<b>Dress Up, in profile: the sick puddle symmetrical, and narrower.</b> Matthew, 22:11, with a screenshot (~/du-shots/profile-sickness-2026-10-15.webp: the friend facing right in the witch's hut, sickness 300): 'Full sickness (puddle on floor) should be 1/3 or 1/2 width, but symmetrical, not like this.' The cause: the puddle (sickPile) is drawn inside the mouth's group, and in profile the mouth is its far half carried to the front (0.0.52), so the puddle was cut in half and moved too. Fix: in profile draw the puddle on its own, centred under the friend and a third to a half as wide as facing us, and keep the stream from the mouth whole. Check every face option that lives in the mouth's group in profile (tongue out, teeth, candy, the explode lid) on a contact sheet. Tonight (🌙).",
+   "opened": "2026-10-15T21:59-06:00",
+   "text": "<b>Dress Up: feet that turn, eyes that close, and a menu of poses.</b> Matthew, 2026-10-15 21:59, with a reference picture of feet in a lotus position (~/du-shots/lotus-feet-reference-2026-10-15.webp): 'Feet in a lotus position (legs crossed) do not look like this -- we need to rotate, or possibly redraw them: let's permit feet to rotate, like hands, and have a menu of poses for the main char: standing facing camera (default); cross legged, with hands on lap [he wrote 'lamp' and corrected it: lap], in meditation (eyes closed? we need that too); random dance pose -- be creative.' So: (1) each foot turns, as hands do (a turn per foot, and the pose's foot angle), so crossed legs show the soles and toes as in the picture; (2) eyes that can close (for meditating, and for blinking or sleeping later); (3) a pose menu: standing (the default), cross-legged meditation (legs crossed in a lotus, hands resting in the lap, eyes closed), and a dance pose (a new one each time it is chosen, or a few to pick from), built on 121's pose offsets so dragging still works from there. Tonight (🌙). <b>22:11, Matthew:</b> 'The pose chip menu should be top level, before face': the pose chips in a row of their own at the top of the controls, before the 😀 Face tab (with facing and sitting there too, where they fit).",
    "source": "Matthew, 2026-10-15",
    "url": "",
    "tags": [
@@ -520,19 +519,86 @@
    ],
    "log": [
     {
-     "at": "2026-10-15T22:13-06:00",
+     "at": "2026-10-15T21:59-06:00",
      "from": "matthew",
-     "chars": 120,
+     "chars": 420,
      "asks": true
     }
    ],
-   "status": "open"
-  }
- ],
- "next_ticket": 132,
- "current_ticket": 42,
- "current_note": "Matthew is AFK until about 06:30. Done tonight, waiting on his word (🪷, at the queue's end): 91's ^report(16) draft (http://localhost:8131/series/016/), 25's outline deep link (local commit 438812718b), 24's cell memo (measured: page time -2/3, nothing visible moved). Now Dress Up: 42 (the stream and brook flow, the swing swings its sitter), with 128 (shorts and trunks on posed legs), 129 (pose menu, closed eyes, turning feet), 130 (far arm behind, for a hug) and 131 (the profile puddle) written alongside, testing them together; then 127's ^report(17) draft (written, http://localhost:8131/series/017/), then the CI budgets. Local only for Hazel; nothing posted to GitHub.",
- "closed_tickets": [
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T23:18-06:00",
+   "outcome": "Dress Up 0.0.57: a Pose tab first (standing; cross-legged meditating with hands in the lap, eyes closed, feet up over the pants; dance, a different one of five each time), face.closed (calm lids), feet that turn (feetTurn and poseFootL/R). Sheets: ~/du-shots/r42/poses2.png. Not done: turning a foot by touch.",
+   "metrics": {
+    "open_minutes": 80,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 420,
+    "tokens_est": 105,
+    "sync_minutes_est": 0,
+    "work_minutes": 9,
+    "work_note": "the five Dress Up tickets were written and tested together, 22:58-23:18, between the Hazel A/B runs"
+   }
+  },
+  {
+   "id": 128,
+   "area": "dress-up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T21:59-06:00",
+   "text": "<b>Dress Up: shorts and swim trunks fit posed legs.</b> Matthew, 2026-10-15 21:58, with a screenshot (the friend in swim trunks, knees out and feet in, posed by dragging): 'the pants do not change shape to fit the legs when they are shorts.' The underwear or swimsuit bottom (undiesBottom) and shorts keep their standing shape while the thighs turn out, so the legs come out of the wrong places. Make shorts, swim trunks, briefs, bikini bottoms and the one-piece follow each thigh as posed (as long pants already do since 0.0.47), and check this pose for all costumes (a contact sheet: every costume and outfit in this crouch). Tonight (🌙).",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "tags": [
+    "long run"
+   ],
+   "log": [
+    {
+     "at": "2026-10-15T21:59-06:00",
+     "from": "matthew",
+     "chars": 140,
+     "asks": true
+    }
+   ],
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T23:18-06:00",
+   "outcome": "Dress Up 0.0.57: swim trunks, briefs and the skin under any swimsuit follow each thigh on posed or bent legs, facing us (shortLegs) and in profile (hip block and thigh bands); straight legs unchanged. Crouch contact sheet of every outfit and costume: ~/du-shots/r42/crouch.png.",
+   "metrics": {
+    "open_minutes": 80,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 140,
+    "tokens_est": 35,
+    "sync_minutes_est": 0,
+    "work_minutes": 6,
+    "work_note": "the five Dress Up tickets were written and tested together, 22:58-23:18, between the Hazel A/B runs"
+   }
+  },
+  {
+   "id": 42,
+   "area": "dress up",
+   "added": "2026-10-13",
+   "text": "<b>Messed Up Dress Up: scenes that move.</b> Ducks paddling on the lake, the tree house's stream flowing, the living room's lamp switching on and off; small animations kept to their own parts, so a scene's sliders still build only what they change. <b>2026-10-15T21:29, narrowed (Matthew):</b> most of this is done (the ducks paddle since 0.0.28, the lamp glows with the slow LFO since 0.0.35, every scene moves with the music); what is left: the tree house's stream and the cemetery's brook flowing, and the swing swinging a friend who sits on it (from ^ticket(41)). Tonight, after hours (🌙).",
+   "source": "Matthew, 2026-10-13, in chat (ideas from ^ticket(40)'s doorways)",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
+   "tags": [
+    "long run"
+   ],
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T23:18-06:00",
+   "outcome": "Dress Up 0.0.57 (c058d1d, live): the tree house's stream and the cemetery's brook flow (flowRipples: each ripple moves to where the next starts, growing with the water, so the loop is seamless), and a friend on the swing swings with its seat (the same rotation and LFO timing, added to the friend's group). Checked in headless Firefox (ripples move downstream; the sitter's box moves with the seat) and by the sweep against 0.0.56: only the places showing the stream or brook differ.",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 8,
+    "work_note": "the five Dress Up tickets were written and tested together, 22:58-23:18, between the Hazel A/B runs"
+   }
+  },
   {
    "id": 126,
    "area": "performance",
@@ -3160,12 +3226,7 @@
   }
  ],
  "queue": [
-  42,
   127,
-  128,
-  129,
-  130,
-  131,
   13,
   14,
   15,
@@ -3176,6 +3237,6 @@
   25,
   24
  ],
- "current_since": "2026-10-15T23:12:00-06:00",
+ "current_since": "2026-10-15T23:19:00-06:00",
  "current_waiting": null
 }
