@@ -505,6 +505,52 @@
      "from": "matthew",
      "chars": 560,
      "asks": true
+    },
+    {
+     "at": "2026-10-16T15:11-06:00",
+     "from": "matthew",
+     "chars": 160,
+     "asks": true,
+     "note": "add the 6x slower version to our CI tests"
+    }
+   ],
+   "status": "open",
+   "tags": [],
+   "progress": "15:11: FOUND AND FIXED (0.0.81, gate running): at 6x CPU throttling, a controller walk in a place ran the full changed() every frame (every control's refresh 0.5 ms, the save 1.8 ms, the draw 5.9) and drew 60 times a second; an animation with no background draws 30 times a second (treadTick) and does neither. moved()/settle(): a step draws and feeds the music, the rest 4 times a second; on a slow computer (draws over 6 ms) the friend is drawn at most every 30 ms while moving. showObjects writes only changes. The empty room at x6: 58-60 fps, the friend drawn 32/s. The pond at x6 still ~12 fps: the browser's own work over its 1,000 shapes, ^ticket(164). The gate's BLACK=1 tier (x6, MINDRAWS 28): required: the empty room; the pond known-failing. Real CI: ^ticket(165)."
+  },
+  {
+   "id": 164,
+   "area": "dress up, performance, black laptop",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T15:11-06:00",
+   "text": "<b>Dress Up: every place as cheap as no background on the black laptop: the scenery in its own layer.</b> From ^ticket(163): on a computer 6 times slower (Chrome's CPU throttling), a swim in the 🦆 duck pond runs about 12 frames a second; the game's JavaScript is a fifth of it, the browser's own work outside it 78%: whenever anything in the picture changes (the friend moving, a duck), the browser goes over the whole picture again, about 1,000 shapes there (743 the pond's, 299 a swimming friend's); with no background, only the friend's. The fix: draw the scenery in a layer of its own (an svg behind, the friend in one above, what stands nearer than the friend in a third, re-split when they cross an object's depth), so a moving friend leaves the scenery untouched; and/or the static parts of a place baked into an image. The gate's black-laptop tier (BLACK=1) has the pond as a known failure (run by name, black-lake): it becomes required when this lands. Matthew asked: \"Is there any way to make a scene like none that's just as responsive for animations?\"",
+   "source": "from ^ticket(163), Matthew, 2026-10-16",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T15:11-06:00",
+     "from": "claude",
+     "chars": 0,
+     "asks": false
+    }
+   ],
+   "status": "open",
+   "tags": []
+  },
+  {
+   "id": 165,
+   "area": "dress up, CI, testing",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T15:11-06:00",
+   "text": "<b>Dress Up: real CI, a GitHub workflow.</b> Matthew asked for the 6x-slower tests \"in our CI tests\" (2026-10-16); there is no CI yet (^du_report(1), What runs in CI: the repo has no workflows; the gate runs by hand on Matthew's laptop before each release). Build it: (1) the test tools into the repository (agent-instructions.md, open question 1); (2) a workflow on push: counted cost budgets per place at its defaults (masks on the friend, blurs, SMIL of CSS properties, shapes drawn live, a place's element count), failing the build; the drawings' checks (the sweep, the structure dump), failing; the frame-rate gate's tiers (normal, slow set, black laptop at 6x), recorded but not failing (a shared runner's frame rate is not the laptop's). (3) ^du_report(1)'s CI section updated, or a new report.",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/001/#ci",
+   "log": [
+    {
+     "at": "2026-10-16T15:11-06:00",
+     "from": "matthew",
+     "chars": 180,
+     "asks": true
     }
    ],
    "status": "open",
@@ -628,7 +674,7 @@
    ]
   }
  ],
- "next_ticket": 164,
+ "next_ticket": 166,
  "current_ticket": 163,
  "current_note": "15:01: ^ticket(163) in hand: what a place adds to every frame over none, on a slowed CPU (the black laptop's stand-in).",
  "closed_tickets": [
