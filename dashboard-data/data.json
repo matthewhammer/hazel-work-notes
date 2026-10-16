@@ -575,24 +575,6 @@
    ]
   },
   {
-   "id": 123,
-   "area": "dress-up",
-   "added": "2026-10-15",
-   "opened": "2026-10-15T17:37-06:00",
-   "text": "<b>Dress Up: a treading-water animation.</b> Matthew: \"Eventually, we'd want a 'treading water' animation for that -- it's fine to leave that detail to another ticket, later.\" After 122 (the friend knows water) and 121 (each limb posed on its own): in water the friend treads, arms sweeping and legs kicking under the surface, timed to the music clock like the other motions (walking, running, climbing, crawling, swimming, dancing from 99).",
-   "source": "Matthew, 2026-10-15",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-15T17:37-06:00",
-     "from": "matthew",
-     "chars": 130,
-     "asks": false
-    }
-   ],
-   "status": "open"
-  },
-  {
    "id": 124,
    "area": "dress-up",
    "added": "2026-10-15",
@@ -619,9 +601,39 @@
   }
  ],
  "next_ticket": 125,
- "current_ticket": 123,
- "current_note": "Done since 19:15: ^report(15) published (https://matthewhammer.org/hazel/performance-analysis/015/); ticket 60 closed, matthewhammer.org now HTTPS with a valid certificate and enforced; 124 queued next, 50 gained seats. Now on 123: the friend treads water in deep water, in time with the music.",
+ "current_ticket": 124,
+ "current_note": "Live tonight: Dress Up 0.0.47 (posing by touch), 0.0.48 (in the water), 0.0.49 (treading water); ^report(15) published; matthewhammer.org on HTTPS. Now on 124: the friend drawn sideways (in profile, facing left or right) and sitting (facing us, left and right), the sitting pose for the other characters too.",
  "closed_tickets": [
+  {
+   "id": 123,
+   "area": "dress-up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T17:37-06:00",
+   "text": "<b>Dress Up: a treading-water animation.</b> Matthew: \"Eventually, we'd want a 'treading water' animation for that -- it's fine to leave that detail to another ticket, later.\" After 122 (the friend knows water) and 121 (each limb posed on its own): in water the friend treads, arms sweeping and legs kicking under the surface, timed to the music clock like the other motions (walking, running, climbing, crawling, swimming, dancing from 99).",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T17:37-06:00",
+     "from": "matthew",
+     "chars": 130,
+     "asks": false
+    }
+   ],
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T19:35-06:00",
+   "outcome": "Released as Dress Up 0.0.49 at 19:34 (414bbfd, tag dress-up-0.0.49; Pages green, live check 19:35). In deep water (WATER places but the shallow stream and brook) treadNow() gives the stroke: arms scull out and in together, legs kick in turn, a bob twice a stroke, one stroke per LFO B wave (2 beats), added to the pose (poseT); the friend floats at the ground of their legs as posed (no jolt); the bob moves the friend inside the water mask. While treading, a rAF loop redraws the friend ~30/s (not during drags or hidden), ~2.5 ms a redraw; headless Firefox kept ~54 fps. '🏊 treading water where it's deep' slider (default 100). Dry/shallow figures byte-identical to 0.0.48 on 134 random friends.",
+   "metrics": {
+    "open_minutes": 119,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 130,
+    "tokens_est": 32,
+    "sync_minutes_est": 0,
+    "work_minutes": 9.0
+   }
+  },
   {
    "id": 60,
    "area": "homepage, publishing",
@@ -2775,7 +2787,6 @@
   }
  ],
  "queue": [
-  123,
   124,
   50,
   118,
@@ -2788,6 +2799,6 @@
   120,
   102
  ],
- "current_since": "2026-10-15T19:31:16-06:00",
+ "current_since": "2026-10-15T19:35:50-06:00",
  "current_waiting": null
 }
