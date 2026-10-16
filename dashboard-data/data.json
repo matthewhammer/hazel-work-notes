@@ -461,7 +461,7 @@
    ],
    "status": "open",
    "tags": [],
-   "progress": "15:51: At the measured black-laptop factor (2x CPU): the pond walks 51.7-53.4, drags 51-54.9 (just under 55); its still-scenery switch (0.0.83) does not trigger there, as the black laptop draws in 1.0 ms (the switch is at 6). Next: switch on dropped frames, not drawing time, if Matthew finds the pond choppy on the black laptop. 15:44: SHIPPED part in Dress Up 0.0.83 (858f369): on a slow computer (slowFlag: drawing over 6 ms on average) the places hold still (scene animations taken out, CSS animations stopped, no fumes), the wake rings are still and the faint copy under the water is left out; ⚙️ Advanced '🌀 moving scenery and water on a slow computer' overrides. At 6x: the pond 17 -> 37 walking, 52 dragging (gate needs 55). Not solved: moving over a busy place (dry and frozen at 6x: 40.6; the friend in an overlay svg 47.1). What more it needs waits on the black laptop's factor (^ticket(163))."
+   "progress": "16:08: Dress Up 0.0.84 LIVE (151085a): still places where moves come out choppy (late frames while moving, over 10%); 🧪 measures the pond moving / still / with music. 15:51: At the measured black-laptop factor (2x CPU): the pond walks 51.7-53.4, drags 51-54.9 (just under 55); its still-scenery switch (0.0.83) does not trigger there, as the black laptop draws in 1.0 ms (the switch is at 6). Next: switch on dropped frames, not drawing time, if Matthew finds the pond choppy on the black laptop. 15:44: SHIPPED part in Dress Up 0.0.83 (858f369): on a slow computer (slowFlag: drawing over 6 ms on average) the places hold still (scene animations taken out, CSS animations stopped, no fumes), the wake rings are still and the faint copy under the water is left out; ⚙️ Advanced '🌀 moving scenery and water on a slow computer' overrides. At 6x: the pond 17 -> 37 walking, 52 dragging (gate needs 55). Not solved: moving over a busy place (dry and frozen at 6x: 40.6; the friend in an overlay svg 47.1). What more it needs waits on the black laptop's factor (^ticket(163))."
   },
   {
    "id": 165,
@@ -495,6 +495,63 @@
      "at": "2026-10-16T15:40-06:00",
      "from": "matthew",
      "chars": 520,
+     "asks": true
+    }
+   ],
+   "status": "open",
+   "tags": []
+  },
+  {
+   "id": 167,
+   "area": "dress up, performance, black laptop",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T16:08-06:00",
+   "text": "<b>Dress Up: a leak? After the duck pond, the empty room is as slow as the pond, until the page is reloaded.</b> Matthew, 2026-10-16, on the black laptop (Firefox 136, 0.0.83): after going to the duck pond, back in the empty room it is just as slow; reload, the empty room is fast again; back to the pond, immediately slow, with long pauses. Suspect: a swimming friend's wake rings carry about 22 SMIL animations, made anew at every drawing (60 a second); if Firefox's SVG animation clock keeps them, every frame after grows slower, anywhere, until a reload.",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T16:08-06:00",
+     "from": "matthew",
+     "chars": 300,
+     "asks": true
+    }
+   ],
+   "status": "open",
+   "tags": []
+  },
+  {
+   "id": 168,
+   "area": "dress up, reports, homepage",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T16:08-06:00",
+   "text": "<b>A Dress Up reports page within https://matthewhammer.org/hazel/dress-up/</b>: the ^du_report(N) series, with thumbnails, formatted as the Hazel performance analysis series; linked from the Dress Up page (and https://matthewhammer.org/hazel/#games).",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/hazel/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T16:08-06:00",
+     "from": "matthew",
+     "chars": 300,
+     "asks": true
+    }
+   ],
+   "status": "open",
+   "tags": []
+  },
+  {
+   "id": 169,
+   "area": "dress up, homepage, UX",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T16:08-06:00",
+   "text": "<b>The Dress Up galleries use the whole screen:</b> https://matthewhammer.org/hazel/dress-up/pictures.html and https://matthewhammer.org/hazel/dress-up/music.html (and any other page that acts as a gallery) consume the full screen, without the unused left margin.",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/hazel/dress-up/pictures.html",
+   "log": [
+    {
+     "at": "2026-10-16T16:08-06:00",
+     "from": "matthew",
+     "chars": 300,
      "asks": true
     }
    ],
@@ -619,9 +676,9 @@
    ]
   }
  ],
- "next_ticket": 167,
- "current_ticket": 164,
- "current_note": "15:51: ^ticket(163) DONE (Matthew: the empty room on the black laptop 'works really nice now', 0.0.83). The gate's black-laptop tier now 2x (measured). 🪷 asked Matthew how the pond and the busier places feel on the black laptop; ^ticket(164) next depends on it.",
+ "next_ticket": 170,
+ "current_ticket": 167,
+ "current_note": "16:08: Dress Up 0.0.84 LIVE. ^ticket(167) in hand: the leak after the duck pond (Firefox, black laptop). Then ^ticket(168) the Dress Up reports page and ^ticket(169) full-width galleries.",
  "closed_tickets": [
   {
    "id": 146,
@@ -4271,10 +4328,13 @@
   }
  ],
  "queue": [
+  167,
   164,
   160,
   165,
   166,
+  168,
+  169,
   147,
   149,
   162,
@@ -4289,6 +4349,6 @@
   15,
   19
  ],
- "current_since": "2026-10-16T15:51-06:00",
+ "current_since": "2026-10-16T16:08-06:00",
  "current_waiting": null
 }
