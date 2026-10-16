@@ -482,7 +482,7 @@
    ],
    "status": "open",
    "tags": [],
-   "progress": "10:31: DESIGNED, nothing written (game clean at 0.0.73, 5a7ed95). Plan: (1) a ladder per column of the imagination's map, at the column's right, floating (a slow SMIL translate, a few units), an object at the wall's foot (z = g - 60k), marked data-ladder; (2) the controller climbs a ladder by hand: at its foot, up mounts it (anim climbup, climb.manual, climb.got moved by up and down at CLIMB_SPEED; down at 0 steps off; the stroke's phase from got; held while still); (3) the imagination's back wall solid: the pad and drags keep the feet at or in front of the wall's foot; (4) pictures and windows (portals with a nested svg) measured after a scene mounts, in stage units; the nearest one within reach of the friend's torso (and feet not far in front of its bottom edge) gets a glow drawn over it after each drawing (no filter: a stroked rounded rect, like hoverGlow), and a new action 'enter' (X; padTaught sets it to X, DEFAULTS to L=4 for standard pads) goes into it with the spin. Matthew's saved layout has no 'enter': he sets it with 🎯 or re-teaches."
+   "progress": "11:02: PARKED for ^ticket(150) (deadline 14:00). Read and designed in code terms, nothing written: ladders as obj('ladder N', wall foot g-60k) per column at its right, data-ladder, a slow SMIL float; marks = ladders + pictures (.portal with :scope > svg) measured after a mount (setTimeout, keyed by bgShown.text); climb.manual with climb.got moved by up/down in padPoll, mountLadder at a foot (reset padMoving!), stepOff at 0; moveNow's stroke from got; SCENE_BACK.imagination = ground - 60k clamps figY (pad and drag); glow appended inside the portal, kept while the target holds; 'enter' action (X), DEFAULTS 4 with a duplicate guard. Earlier: 10:31: DESIGNED, nothing written (game clean at 0.0.73, 5a7ed95). Plan: (1) a ladder per column of the imagination's map, at the column's right, floating (a slow SMIL translate, a few units), an object at the wall's foot (z = g - 60k), marked data-ladder; (2) the controller climbs a ladder by hand: at its foot, up mounts it (anim climbup, climb.manual, climb.got moved by up and down at CLIMB_SPEED; down at 0 steps off; the stroke's phase from got; held while still); (3) the imagination's back wall solid: the pad and drags keep the feet at or in front of the wall's foot; (4) pictures and windows (portals with a nested svg) measured after a scene mounts, in stage units; the nearest one within reach of the friend's torso (and feet not far in front of its bottom edge) gets a glow drawn over it after each drawing (no filter: a stroked rounded rect, like hoverGlow), and a new action 'enter' (X; padTaught sets it to X, DEFAULTS to L=4 for standard pads) goes into it with the spin. Matthew's saved layout has no 'enter': he sets it with 🎯 or re-teaches."
   },
   {
    "id": 147,
@@ -521,11 +521,37 @@
    ],
    "status": "open",
    "tags": []
+  },
+  {
+   "id": 150,
+   "area": "dress up, game controller, touch",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T11:01-06:00",
+   "text": "<b>Dress Up: an on-screen controller, for touch or click, when no game controller is plugged in.</b> Matthew, 2026-10-16: the iPad has no USB port for our controller (a Bluetooth one may come; and one day, traveling, we may not have it). Offer mobile, iPad and desktop players without a game controller buttons along the bottom of the screen, like a HUD but for controls: the directions on the left, the actions on the right, in the SNES controller's layout. Anyone can turn it on; when no game controller is connected, on any device, the game offers it. Plan: a virtual pad feeding the same actions as the real one (ticket 141's padPoll, as the tests' fake pad does), so walking, run, crouch and crawl, both jumps, back, the doorway and ^ticket(145)'s ✨ go-in all work with no second copy of the logic; multi-touch (hold an arrow and run together), a d-pad that slides between directions for the diagonals, touch-action none so a press never scrolls or zooms, and placed so the picture stays as large as it can (ticket 116). <b>Deadline (his): ready for him to test by 14:00 today, released for M at 15:00.</b>",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T11:01-06:00",
+     "from": "matthew",
+     "chars": 560,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T11:02-06:00",
+     "from": "matthew",
+     "chars": 110,
+     "asks": true,
+     "note": "ready by 14:00 for him to test, 15:00 released for M"
+    }
+   ],
+   "status": "open",
+   "tags": []
   }
  ],
- "next_ticket": 150,
- "current_ticket": 145,
- "current_note": "10:55: back from the move; servers up for the Cyrus meeting (#2597 on 8311, #2635 on 8341; Dress Up servers left off, his call). Cyrus is late, so resuming ^ticket(145) in code: ladders first, per its plan.",
+ "next_ticket": 151,
+ "current_ticket": 150,
+ "current_note": "11:02: ^ticket(150) in hand (due 14:00 for Matthew, 15:00 for M). ^ticket(145) parked, its code plan in its progress.",
  "closed_tickets": [
   {
    "id": 146,
@@ -3833,6 +3859,6 @@
   15,
   19
  ],
- "current_since": "2026-10-16T10:28-06:00",
+ "current_since": "2026-10-16T11:02-06:00",
  "current_waiting": null
 }
