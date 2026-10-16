@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Morning notes, 10-16</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --hi: #fef3c7; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --hi: #3a3218; --warn: #fbbf24; --ok: #4ade80; }
+  }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; }
+  h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; }
+  code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); }
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9em; }
+  th, td { border-bottom: 1px solid var(--line); padding: 5px 6px; text-align: left; vertical-align: top; }
+  li { margin: 0.3em 0; }
+</style>
+<body>
+<main>
+<h1>Morning of 10-16: after the 08:01 crash, Dress Up 0.0.62 to 0.0.67 while Matthew was away</h1>
+<p class="sub">2026-10-16, 08:05 to 09:05 MDT, Claude. Matthew minted three tickets with me, then went AFK at 08:22 asking me to work through them, bumping the version and publishing after each ticket-sized piece.</p>
+
+<h2 id="crash">The 08:01 crash, recovered</h2>
+<ul>
+<li>The laptop went down at 08:01, five minutes after the last session released Dress Up 0.0.61 and went idle (load about 2 on 20 CPUs; the journal just stops, mid-cron). Nothing was lost: both repositories were clean and pushed, and no file written around the crash was empty.</li>
+<li>The five servers the dashboard links are back, one at a time: 8000 (this dashboard), 8131 (the perf series), 8133 (the game), 8311 (#2597, <code>integration/livelits-splicerefs-full</code>) and 8341 (#2635, <code>integration/livelits-modular-editors</code>); both Hazel servers' <code>/status.json</code> name the right worktree and branch, with no stale sources.</li>
+<li><code>dashboard/close_ticket.py</code> had closed tickets since 10-15 but was never committed; it is now (<code>f407c40</code>, on Matthew's go-ahead), noted in VERSIONS.md under Unreleased.</li>
+</ul>
+
+<h2 id="releases">Dress Up releases (each pushed, Pages run green, live page and version.json checked)</h2>
+<div class="scroll"><table>
+<tr><th>Version</th><th>Commit</th><th>Ticket</th><th>What a player sees</th></tr>
+<tr><td>0.0.62</td><td><code>0557089</code></td><td>136</td><td>Legs that hug: in profile in a place the far leg goes behind the one hugged, the near leg in front. A new pose, "🤗 jumping up into a hug", with "🦘 held up".</td></tr>
+<tr><td>0.0.63</td><td><code>e679450</code></td><td>137</td><td>"🪜 climbing a ladder" turned to the side: the ladder in front of them, side on.</td></tr>
+<tr><td>0.0.64</td><td><code>130cbf0</code></td><td>137</td><td>"🧗 climbing": up the nearest ladder in the place (a dungeon's, a tree house room's, the tree's from the ground, the stable's loft), through its doorway at the top. The old one is "🪜 climbing (with ladder)".</td></tr>
+<tr><td>0.0.65</td><td><code>a682de2</code></td><td>138</td><td>"⬆️ away from us": the friend from behind (hair over the back of the head, closed hoods, wings and tails in front). Climbing a place's ladder faces it.</td></tr>
+<tr><td>0.0.66</td><td><code>75861be</code></td><td>138</td><td>"🐸 jumping (once)": crouch, up, land, then back to what they were doing.</td></tr>
+<tr><td>0.0.67</td><td><code>195efe0</code></td><td>138</td><td>A game controller, and the "🎮 Controls" tab: arrows move and turn the friend, the other buttons start animations; a usual layout with every animation, plus back and the nearest doorway.</td></tr>
+</table></div>
+
+<h2 id="checks">How each was checked</h2>
+<ul>
+<li>The safety net sweep (82 pictures) after each drawing change: 0.0.62 and 0.0.65 unchanged from the version before; 0.0.64 changed only the places with marked ladders (and the clearing and imagination by an empty wrapper group, checked with <code>markupdiff.mjs</code>). The waterfall's three pictures differ between two runs of the same copy, so they are noise.</li>
+<li>Contact sheets and crops in <code>~/du-shots/r136/</code>, <code>r137/</code>, <code>r138/</code> (on the laptop only).</li>
+<li>New test tools in <code>~/du-shots/tools/</code>: <code>climbcheck.py</code> (every place with a ladder: where the friend goes, what happens at the top), <code>padcheck.py</code> (a fake standard gamepad: moving, each button, a jump, a climb, the nearest doorway, Surprise), <code>release_check.py</code> (waits for the Pages run, then checks the live page and version.json). <code>pageshot.py</code> takes <code>PAGE=/other.html</code> now.</li>
+</ul>
+
+<h2 id="open">Not verified, and loose ends</h2>
+<ul>
+<li><b>The controller has only met a fake one.</b> Trying it with the real USB controller is <a href="http://matthewhammer.org/hazel-work-notes/#ticket-139">ticket 139</a> (waiting on Matthew), with what to tune after: the speeds, the stick's dead middle, the default layout, controllers that number buttons differently.</li>
+<li><a href="http://matthewhammer.org/hazel-work-notes/#ticket-133">Ticket 133</a> (the drag speed fix, 0.0.58) still waits for Matthew to try it on his device.</li>
+<li>From behind, shoes still look as they do from the front, and a suit's stripes on the hood's back are plain fur.</li>
+<li>In the stable, the friend climbing to the loft is partly behind the arched door by the left wall: the scene's own depth puts the door nearer than the ladder.</li>
+<li>"🪜 climbing (with ladder)" still faces us, as ticket 132 had it; it can be turned away with the facing chips.</li>
+</ul>
+
+<h2 id="next">Next</h2>
+<p>Every ticket in the queue now waits on Matthew (🪷): 133, 139, 18, 102, and the long runs 25, 24, 13, 14, 15, 19. The dashboard's current ticket is 133 with ✋❔ raised.</p>
+</main>
+</body>
+</html>
