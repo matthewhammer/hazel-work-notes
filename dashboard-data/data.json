@@ -424,15 +424,6 @@
    "url": "http://matthewhammer.org/hazel/performance-analysis/013/#step-1"
   },
   {
-   "id": 60,
-   "area": "homepage, publishing",
-   "added": "2026-10-14",
-   "text": "<b>Serve matthewhammer.org over HTTPS.</b> Today https://matthewhammer.org/ fails: it presents GitHub's own certificate (<code>*.github.com</code>, Sectigo), not one for matthewhammer.org, so browsers warn and agents' fetches fail; everything is linked as HTTP. <b>The blocker, checked 2026-10-14:</b> the apex A record still points at <code>192.30.252.153</code>, GitHub Pages' address from before 2018. GitHub serves the site there over HTTP but will not issue a certificate for a domain pointed at it; the Pages settings have no certificate and <code>https_enforced: false</code>. <code>www</code> is fine: a CNAME to matthewhammer.github.io, on the current addresses. The domain's nameservers are <code>ns-cloud-c1..c4.googledomains.com</code> (Google Domains, now Squarespace Domains), so the DNS change is Matthew's, in his registrar's account. <b>Steps:</b> (1) Matthew replaces the apex A record with GitHub Pages' four, <code>185.199.108.153</code>, <code>185.199.109.153</code>, <code>185.199.110.153</code>, <code>185.199.111.153</code> (and may add the four AAAA, <code>2606:50c0:8000::153</code> to <code>8003::153</code>); (2) once that resolves, GitHub provisions a certificate for the custom domain, which can take up to a day (re-saving the custom domain in the homepage repo's Pages settings restarts it if it stalls); (3) turn on Enforce HTTPS for the homepage and the project sites under it (hazel-work-notes, kids-choice-games); (4) check every page for mixed content: anything a page loads by an absolute <code>http://matthewhammer.org/</code> URL (the series' live hover cards read report pages; the dashboard's cards too) is blocked from an HTTPS page, so make those relative or HTTPS; (5) switch the links we publish to HTTPS: READMEs, the series' agent instructions (\"HTTP only\"), the dashboard, the reports, #2609's ^report links; old HTTP links keep working, since GitHub redirects them once HTTPS is enforced. <b>Progress, 2026-10-14 afternoon:</b> Matthew changed the apex A record in Squarespace to <code>185.199.108.153</code>; the authoritative nameservers and public resolvers (8.8.8.8, 1.1.1.1) answer it, while this laptop's resolver still had the old address cached (TTL 1 hour). GitHub has not issued a certificate yet (<code>https_certificate: null</code>). Still to do: the other three A records (<code>.109</code>, <code>.110</code>, <code>.111</code>) for redundancy, and re-saving the custom domain in the homepage repo's Pages settings so GitHub checks DNS again and issues the certificate. <b>Later that afternoon:</b> the new address had reached Google's, Cloudflare's and Quad9's resolvers, so DNS was no longer the wait. On Matthew's OK, Claude re-saved the custom domain through the API (204). GitHub's domain health check then said: pointed at a current Pages address, not the old one; eligible for HTTPS; no CAA problem; www fine. It was waiting only for GitHub to issue the certificate. <b>Watching</b> (Matthew's ask, 2026-10-14): a watcher in Claude's session checks every 5 minutes, for up to 24 hours, whether matthewhammer.org serves a valid certificate. When it does, Claude turns on Enforce HTTPS and finishes the ticket's remaining steps, then closes it. <b>2026-10-15 14:36:</b> the 24-hour watch ended with no certificate (GitHub's Pages API: https_certificate null). DNS is right: the apex A record and www both point at GitHub Pages IPs. Usual fix: remove and re-add the custom domain in matthewhammer.github.io's Pages settings, which re-triggers provisioning. That takes matthewhammer.org offline for a few minutes, so it waits for Matthew's OK, and not while M is playing. <b>2026-10-15T18:52:</b> tagged 🪷 blocked on Matthew: its next step is his call (see above). <b>2026-10-15T19:17 (Matthew's OK):</b> removed and re-added the custom domain through the API (GitHub's commits 3f662f98f7 'Delete CNAME', d3c19d168a 'Create CNAME'); the site was offline about two minutes (19:17:37 to 19:19:40). Found on the way: the old CNAME file (from 2016) held two lines, matthewhammer.org and www.matthewhammer.org; GitHub expects one, and the re-add wrote one. <b>19:22: certificate approved</b> for matthewhammer.org and www (expires 2027-01-13); https://matthewhammer.org/ serves 200 with a valid certificate, www redirects to the apex. Left: (3) Enforce HTTPS, after (4) checking pages for absolute http:// fetches that HTTPS would block; (5) switch published links to HTTPS.",
-   "source": "Matthew, 2026-10-14",
-   "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages",
-   "tags": []
-  },
-  {
    "id": 102,
    "area": "hazel",
    "added": "2026-10-15",
@@ -629,8 +620,30 @@
  ],
  "next_ticket": 125,
  "current_ticket": 123,
- "current_note": "Matthew is away. Done this evening: 121 and 122 live (Dress Up 0.0.47 posing by touch, 0.0.48 the friend in water). 120's report draft is ready for his review: http://localhost:8131/series/015/ (^report(15), local commit 54c2f21, not pushed), so it is 🪷 with 91, 90, 18, 60 and 29. Skipped 50 (marked 'later, not now'). Now on 123: a treading-water animation for the friend in deep water.",
+ "current_note": "Done since 19:15: ^report(15) published (https://matthewhammer.org/hazel/performance-analysis/015/); ticket 60 closed, matthewhammer.org now HTTPS with a valid certificate and enforced; 124 queued next, 50 gained seats. Now on 123: the friend treads water in deep water, in time with the music.",
  "closed_tickets": [
+  {
+   "id": 60,
+   "area": "homepage, publishing",
+   "added": "2026-10-14",
+   "text": "<b>Serve matthewhammer.org over HTTPS.</b> Today https://matthewhammer.org/ fails: it presents GitHub's own certificate (<code>*.github.com</code>, Sectigo), not one for matthewhammer.org, so browsers warn and agents' fetches fail; everything is linked as HTTP. <b>The blocker, checked 2026-10-14:</b> the apex A record still points at <code>192.30.252.153</code>, GitHub Pages' address from before 2018. GitHub serves the site there over HTTP but will not issue a certificate for a domain pointed at it; the Pages settings have no certificate and <code>https_enforced: false</code>. <code>www</code> is fine: a CNAME to matthewhammer.github.io, on the current addresses. The domain's nameservers are <code>ns-cloud-c1..c4.googledomains.com</code> (Google Domains, now Squarespace Domains), so the DNS change is Matthew's, in his registrar's account. <b>Steps:</b> (1) Matthew replaces the apex A record with GitHub Pages' four, <code>185.199.108.153</code>, <code>185.199.109.153</code>, <code>185.199.110.153</code>, <code>185.199.111.153</code> (and may add the four AAAA, <code>2606:50c0:8000::153</code> to <code>8003::153</code>); (2) once that resolves, GitHub provisions a certificate for the custom domain, which can take up to a day (re-saving the custom domain in the homepage repo's Pages settings restarts it if it stalls); (3) turn on Enforce HTTPS for the homepage and the project sites under it (hazel-work-notes, kids-choice-games); (4) check every page for mixed content: anything a page loads by an absolute <code>http://matthewhammer.org/</code> URL (the series' live hover cards read report pages; the dashboard's cards too) is blocked from an HTTPS page, so make those relative or HTTPS; (5) switch the links we publish to HTTPS: READMEs, the series' agent instructions (\"HTTP only\"), the dashboard, the reports, #2609's ^report links; old HTTP links keep working, since GitHub redirects them once HTTPS is enforced. <b>Progress, 2026-10-14 afternoon:</b> Matthew changed the apex A record in Squarespace to <code>185.199.108.153</code>; the authoritative nameservers and public resolvers (8.8.8.8, 1.1.1.1) answer it, while this laptop's resolver still had the old address cached (TTL 1 hour). GitHub has not issued a certificate yet (<code>https_certificate: null</code>). Still to do: the other three A records (<code>.109</code>, <code>.110</code>, <code>.111</code>) for redundancy, and re-saving the custom domain in the homepage repo's Pages settings so GitHub checks DNS again and issues the certificate. <b>Later that afternoon:</b> the new address had reached Google's, Cloudflare's and Quad9's resolvers, so DNS was no longer the wait. On Matthew's OK, Claude re-saved the custom domain through the API (204). GitHub's domain health check then said: pointed at a current Pages address, not the old one; eligible for HTTPS; no CAA problem; www fine. It was waiting only for GitHub to issue the certificate. <b>Watching</b> (Matthew's ask, 2026-10-14): a watcher in Claude's session checks every 5 minutes, for up to 24 hours, whether matthewhammer.org serves a valid certificate. When it does, Claude turns on Enforce HTTPS and finishes the ticket's remaining steps, then closes it. <b>2026-10-15 14:36:</b> the 24-hour watch ended with no certificate (GitHub's Pages API: https_certificate null). DNS is right: the apex A record and www both point at GitHub Pages IPs. Usual fix: remove and re-add the custom domain in matthewhammer.github.io's Pages settings, which re-triggers provisioning. That takes matthewhammer.org offline for a few minutes, so it waits for Matthew's OK, and not while M is playing. <b>2026-10-15T18:52:</b> tagged 🪷 blocked on Matthew: its next step is his call (see above). <b>2026-10-15T19:17 (Matthew's OK):</b> removed and re-added the custom domain through the API (GitHub's commits 3f662f98f7 'Delete CNAME', d3c19d168a 'Create CNAME'); the site was offline about two minutes (19:17:37 to 19:19:40). Found on the way: the old CNAME file (from 2016) held two lines, matthewhammer.org and www.matthewhammer.org; GitHub expects one, and the re-add wrote one. <b>19:22: certificate approved</b> for matthewhammer.org and www (expires 2027-01-13); https://matthewhammer.org/ serves 200 with a valid certificate, www redirects to the apex. Left: (3) Enforce HTTPS, after (4) checking pages for absolute http:// fetches that HTTPS would block; (5) switch published links to HTTPS.",
+   "source": "Matthew, 2026-10-14",
+   "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages",
+   "tags": [],
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T19:31-06:00",
+   "outcome": "HTTPS live and enforced, 2026-10-15 19:30. On Matthew's OK, removed and re-added the custom domain via the API (19:17-19:19, ~2 min offline); the 2016 CNAME file had two lines (matthewhammer.org + www), GitHub's re-add wrote one. Certificate approved 19:22 (matthewhammer.org + www, expires 2027-01-13). Mixed content: the only absolute http:// load was the hover cards' data.json, switched to https in the dashboard's ref_cards.html, the 15 published reports + series index, and the series repo (ACAO * so the cross-origin fetch works). Enforce HTTPS on matthewhammer.github.io, hazel-work-notes, kids-choice-games, dress-up-pictures, dress-up-music: every http:// URL now 301s to https. READMEs and the series' instructions no longer say 'HTTP only'. Not done, not needed: rewriting every old http:// link (they redirect); older Pages repos (fumola-lang, Motoko projects, MirrorGarden, ic-mini-terminal) left as they were.",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 17.0
+   }
+  },
   {
    "id": 122,
    "area": "dress-up",
@@ -2771,11 +2784,10 @@
   91,
   90,
   18,
-  60,
   29,
   120,
   102
  ],
- "current_since": "2026-10-15T19:14:57-06:00",
+ "current_since": "2026-10-15T19:31:16-06:00",
  "current_waiting": null
 }
