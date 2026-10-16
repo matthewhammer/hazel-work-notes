@@ -412,8 +412,10 @@
     }
    ],
    "status": "open",
-   "tags": [],
-   "progress": "17:45: FIRST STEP BUILT (0.0.89, gate running): castle rooms' back and side walls from roomFrame (castleWalls; SCENE_BACK.castleroom; not the spiral stair's room, whose doors are up the stairs); the place's seats solid (solidsHere from SEATS: x0..x1, from z back by half their height); solidMove for the controller's step and a drag (slide along; inside one already, let out); jumping clears a solid under half legReach (short) or under legReach (high); landing inside, solidUnstick. Checked pinned (~/du-shots/tools/collide149.mjs): walls in king/hallway/kitchen, a dining chair and a campsite log stopped and jumped, the couch stopped and too wide to jump; every door of all 12 castle room styles still reachable (door147.mjs passes). NOT YET: tables, beds, trees, rocks (standing objects have a depth, no footprint), the flat rooms' walls."
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "progress": "17:45: FIRST STEP BUILT (0.0.89, gate running): castle rooms' back and side walls from roomFrame (castleWalls; SCENE_BACK.castleroom; not the spiral stair's room, whose doors are up the stairs); the place's seats solid (solidsHere from SEATS: x0..x1, from z back by half their height); solidMove for the controller's step and a drag (slide along; inside one already, let out); jumping clears a solid under half legReach (short) or under legReach (high); landing inside, solidUnstick. Checked pinned (~/du-shots/tools/collide149.mjs): walls in king/hallway/kitchen, a dining chair and a campsite log stopped and jumped, the couch stopped and too wide to jump; every door of all 12 castle room styles still reachable (door147.mjs passes). NOT YET: tables, beds, trees, rocks (standing objects have a depth, no footprint), the flat rooms' walls. | 17:52: Dress Up 0.0.89 LIVE (091f113, tag dress-up-0.0.89): gate 12/12, every gate walk and drag ending where it began. Waiting on Matthew to try it; the rest (tables, beds, trees, rocks; the flat rooms' walls) is the next step when he says."
   },
   {
    "id": 160,
@@ -454,7 +456,8 @@
     }
    ],
    "status": "open",
-   "tags": []
+   "tags": [],
+   "progress": "17:52: BUILT (0.0.90, gate running): pits carry data-pit (hole); walking onto one (not jumping) or landing a jump on one falls in (pitAt in padPoll and endJump); X/click/🚪 walk to its middle first. fallDown: anim 'fall' (arms flung up, held), a 250 ms teeter, then the figure sinks 600 ms ease-in clipped above the near rim; arriving, fallLand drops them in from above (input held), then the high jump's landing. Checked pinned (~/du-shots/tools/pit162.mjs): both pits -> rooms 4 and 5, landing seen, standing after, climbed back out to the trap room by the ladder; shots of the drop (1350-1800 ms) show the sink; no page errors. First try's drop never showed: the waving arms' own frames redrew the figure and threw the wrapper away; the pose is held now."
   },
   {
    "id": 164,
@@ -496,7 +499,10 @@
     }
    ],
    "status": "open",
-   "tags": []
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "progress": "17:52: WAITING ON MATTHEW before building: its step (1) is agent-instructions.md's open question 1, still open: may the test drivers (sweep.mjs, structure.mjs, fpsgate.mjs, the contact sheets, and today's door147/collide149/pit162/stillpic checks) move into the public repo as tools/? And: a workflow on push runs on GitHub's runners for every release (push = deploy here): OK to add .github/workflows to kids-choice-games?"
   },
   {
    "id": 166,
@@ -515,7 +521,10 @@
     }
    ],
    "status": "open",
-   "tags": []
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "progress": "17:52: WAITING ON MATTHEW before building: where the canister runs (the IC mainnet costs cycles, paid from his identity; a local replica would not reach the black laptop), and who may write to it (anyone with the page, as the pad now, or a key the game holds)?"
   },
   {
    "id": 167,
@@ -672,8 +681,8 @@
   }
  ],
  "next_ticket": 172,
- "current_ticket": 149,
- "current_note": "17:45: not waiting on Matthew (AFK). ^ticket(149) first step built (walls in castle rooms, seats solid, jumps clear low ones); gate running before 0.0.89. Next: ^ticket(162), N's castle pits.",
+ "current_ticket": 162,
+ "current_note": "17:52: not waiting on Matthew (AFK). 0.0.89 (walls, solid seats, ^ticket(149)) is live. ^ticket(162), N's pits, built and tested; gate running before 0.0.90. Next in the queue: ^ticket(165), CI.",
  "closed_tickets": [
   {
    "id": 170,
@@ -4417,13 +4426,13 @@
   }
  ],
  "queue": [
-  149,
   162,
-  165,
-  166,
   171,
   156,
   160,
+  165,
+  166,
+  149,
   147,
   145,
   167,
@@ -4437,5 +4446,5 @@
   15,
   19
  ],
- "current_since": "2026-10-16T17:39-06:00"
+ "current_since": "2026-10-16T17:52-06:00"
 }
