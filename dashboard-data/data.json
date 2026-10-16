@@ -240,62 +240,45 @@
    "id": 91,
    "area": "performance",
    "added": "2026-10-15",
-   "text": "<b>Drag stalls: how many changes does a drag process, and does coalescing slider input help?</b> From ^ticket(90): on #2635's head a 1.5 s drag of Full Body's arm length stalls the page about 4 s (whole program), and each processed change costs about 0.9 s of main thread, so the stall is mostly how many changes a drag triggers. Steps: (1) count, per drag: the slider's input events, the eval requests the page posts to the worker and the replies, and the heavy frames (gaps over 50 ms); (2) find where a slider's input becomes an edit, and whether changes already coalesce (the newest value only) while one is in flight; (3) if not, try coalescing on a local branch: while a change is in flight, keep only the newest value and process it when the change lands; (4) measure with drag_stall.py (C and B), release to redraw, and Kids' Choice, against the head; (5) then decide ^ticket(18) with both in hand. Local only until Matthew says. FINDINGS 2026-10-15: a transient input (a drag's preview) sends a quiet repaint action, and the page recalculates for each one, walking the whole program in EvalResult.calculate's reuse check (Calc.set -> fast_equal_with_lexemes, ~40% of a drag's main thread, profiled). Coalescing built (local perf/2635-coalesce-drag-repaint, 3eb4489124; counters in a MEASURE commit): only 1.5-3 of a drag's ~13 inputs coalesce. Measured in alternating sessions, whole program, drag stall: head 4.1 s, prototype (^ticket(90)) 2.6, coalescing 2.8, head 3.2, coalescing 4.2: the drift between sessions is larger than any build's effect, so neither fix is shown. Next (Matthew to say): an interleaved A/B, both builds served at once, alternating drag by drag, 10+ each; and try skipping the whole-program walk for a preview. Report: a new report on drags, once the A/B is in (the next free number: ^report(15) is now ^ticket(120)'s draft). <b>2026-10-15T18:52:</b> tagged 🪷 blocked on Matthew: its next step is his call (see above).",
+   "text": "<b>Drag stalls: how many changes does a drag process, and does coalescing slider input help?</b> From ^ticket(90): on #2635's head a 1.5 s drag of Full Body's arm length stalls the page about 4 s (whole program), and each processed change costs about 0.9 s of main thread, so the stall is mostly how many changes a drag triggers. Steps: (1) count, per drag: the slider's input events, the eval requests the page posts to the worker and the replies, and the heavy frames (gaps over 50 ms); (2) find where a slider's input becomes an edit, and whether changes already coalesce (the newest value only) while one is in flight; (3) if not, try coalescing on a local branch: while a change is in flight, keep only the newest value and process it when the change lands; (4) measure with drag_stall.py (C and B), release to redraw, and Kids' Choice, against the head; (5) then decide ^ticket(18) with both in hand. Local only until Matthew says. FINDINGS 2026-10-15: a transient input (a drag's preview) sends a quiet repaint action, and the page recalculates for each one, walking the whole program in EvalResult.calculate's reuse check (Calc.set -> fast_equal_with_lexemes, ~40% of a drag's main thread, profiled). Coalescing built (local perf/2635-coalesce-drag-repaint, 3eb4489124; counters in a MEASURE commit): only 1.5-3 of a drag's ~13 inputs coalesce. Measured in alternating sessions, whole program, drag stall: head 4.1 s, prototype (^ticket(90)) 2.6, coalescing 2.8, head 3.2, coalescing 4.2: the drift between sessions is larger than any build's effect, so neither fix is shown. Next (Matthew to say): an interleaved A/B, both builds served at once, alternating drag by drag, 10+ each; and try skipping the whole-program walk for a preview. Report: a new report on drags, once the A/B is in (the next free number: ^report(15) is now ^ticket(120)'s draft). <b>2026-10-15T18:52:</b> tagged 🪷 blocked on Matthew: its next step is his call (see above). <b>2026-10-15T21:29:</b> Matthew: yes, the interleaved A/B, tonight after hours (🌙): head against each prototype (coalescing, views in the worker), both served at once, alternating drag by drag, 10+ each.",
    "source": "Matthew, 2026-10-15",
    "url": "",
    "tags": [
-    "blocked on Matthew"
+    "long run"
    ]
-  },
-  {
-   "id": 90,
-   "area": "performance",
-   "added": "2026-10-15",
-   "text": "<b>Before parking ^ticket(18): re-measure views in the worker on #2635's head (032fe3aca6).</b> Matthew's middle option, 2026-10-15. The prototype's numbers (main thread 540 ms less per change in UX mode, 220 ms with the whole program; the redraw no sooner; Kids' Choice +45 ms) were taken on 9fb2bdf067, before the autosave fix (^ticket(84)). Steps: (1) rebase the prototype (61d031fd93, a7fbe23788, 9c7808c51e, ede920b07e) onto 032fe3aca6; (2) A/B on Full Body, UX mode (B) and the whole program (C): release to redraw, main-thread work per change; (3) NEW: how long the page stalls during a real drag (frames, in the page, from the pointer going down to the redraw), the cost the release-to-redraw number cannot see; (4) Kids' Choice release, the small-livelit cost; (5) a recommendation: park ^ticket(18) or not. Local only; nothing pushed. First finding, 2026-10-15: on #2635's head, whole program (C), a real 1.5 s drag of Full Body's arm length takes 5.8-7.0 s from the pointer going down to the redraw, the page stalled (frame gaps over 50 ms) for 4.1-5.1 s of it, its longest single stall 0.8-1.1 s; release to redraw 1.3 s. The prototype is rebased onto 032fe3aca6 (local exp/2635-views-in-worker-032fe), measured next. Head measured (032fe3aca6, headless Firefox): C release 1.39 s, a 1.5 s drag stalls 4.1 s (longest 0.9 s); B release 1.0 s, drag stalls 2.6 s (longest 0.8 s); profiled main-thread JS per change C 1.0 s, B 1.25 s; Kids' Choice release 0.21 s. Prototype built on it (4c9331d13c), being measured. MEASURED 2026-10-15 (headless Firefox, one session per build, head then prototype, not alternated; data in ~/.cache/hazel-diag/r90): WHOLE PROGRAM (C): a 1.5 s drag stalls the page 4.1 s (3.7-5.9) on the head, 2.6 s (2.1-3.2) with the prototype, the ranges apart; longest single stall 0.91 -> 0.61 s; release to redraw 1.39 -> 1.11 s (apart). Profiled main-thread JS per change 1,010 -> 914 ms: the editor's update (perform_update) 860 -> 570 ms and the view functions in it 450 -> 240 ms, but ~190 ms of that saving reappears outside the update (probably the worker's larger replies; not traced). UX MODE (B): drag stall 2.6 -> 2.45 s (ranges overlap: no clear change); release 1.00 -> 1.15 s; main-thread JS 1,251 -> 925 ms. KIDS' CHOICE release 212 -> 271 ms (+28%, as last night). Reading: the prototype is a real, visible win with the whole program on screen, none in UX mode, a loss on small livelits; and even with it a 1.5 s drag stalls 2-3 s, so most of the stall is elsewhere (each processed change still costs ~0.9 s of main thread). Decision is Matthew's. <b>2026-10-15T18:52:</b> tagged 🪷 blocked on Matthew: its next step is his call (see above).",
-   "source": "Matthew, 2026-10-15",
-   "url": "",
-   "tags": [
-    "blocked on Matthew"
-   ]
-  },
-  {
-   "id": 7,
-   "area": "performance",
-   "text": "The commit path: find which of the request's values are new (about 15 ms of hashing, profiled), and make the commit's redraw cheaper. <b>Part done, 2026-10-14</b>, in node on #2635 at 41897ec3a5 (probe 4f0e261652, branch request-hash-probe in ~/hazel-ci-heap-2635, local only): a release-like edit (one literal, ids kept) through the app's own path, six edits each, steady state. Statics after the edit (DefStatics, per item): 25–37 ms. Only about 5% of the request is new objects: Kids' Choice 2,039 of 40k program nodes and about 4,600 of 87k EvalInfo nodes; Full Body 396 of 196k and about 13,100 of 326k. Building the request: <b>the EvalInfo projection is the largest part</b>, 13–14 ms on Full Body and 2.5–9 ms on Kids' Choice, because <code>project_from</code> walks both whole statics maps in key order on every commit, though about 180 entries change; then hashing the new values about 1–4 ms, and encoding 1.5–5 ms. So the hashing is not the cost. Tried and dropped: keeping an entry that is equal by content (ValueHash) as well as by identity: Full Body's re-added entries 179 to 30 and its EvalInfo new nodes 13,100 to 2,200, but the whole request got slower (median about 20 ms against 17), since comparing by content hashes as much as it saves. <b>Done and pushed to #2635, 2026-10-14:</b> 043508921b (DefStatics hands EvalInfo the keys it touched; the projection updates only those) and 9fb2bdf067 (unchanged spine roots kept): on Full Body the request 15.5–18.8 → 2.5–3.0 ms, statics after the edit 25–31 → 16–20 ms. Carrying it to diverged branches is ^ticket(47) (^report(13)). The commit's redraw, the ticket's second half, is not started.",
-   "source": "^report(1)",
-   "url": "http://localhost:8131/#now"
-  },
-  {
-   "id": 12,
-   "area": "performance",
-   "text": "Measure the size of view samples on the wire (not trimmed as the result is) and the memory of the shared-value tables and per-object hashes.",
-   "source": "^report(5)",
-   "url": "http://localhost:8131/005/#copies",
-   "added": "2026-10-12"
   },
   {
    "id": 13,
    "area": "performance, CI",
-   "text": "Statics counts on <code>dev</code>: the analyses-per-expression counter and <code>Test_StaticsPasses</code> from #2635 (bd90642654, da3251d3e5), with a small corpus subset in the quick suite.",
+   "text": "Statics counts on <code>dev</code>: the analyses-per-expression counter and <code>Test_StaticsPasses</code> from #2635 (bd90642654, da3251d3e5), with a small corpus subset in the quick suite. <b>2026-10-15T21:29:</b> Matthew: after hours tonight if time is left (🌙), as local branches against dev for his review.",
    "source": "^report(6)",
    "url": "http://localhost:8131/series/006/#next",
-   "added": "2026-10-12"
+   "added": "2026-10-12",
+   "tags": [
+    "long run"
+   ]
   },
   {
    "id": 14,
    "area": "performance, CI",
-   "text": "A budget on a slide: the evaluator's work after a figure move in the woods, where reuse failed before #2675.",
+   "text": "A budget on a slide: the evaluator's work after a figure move in the woods, where reuse failed before #2675. <b>2026-10-15T21:29:</b> Matthew: after hours tonight if time is left (🌙), as local branches against dev for his review.",
    "source": "^report(6)",
    "url": "http://localhost:8131/series/006/#next",
-   "added": "2026-10-12"
+   "added": "2026-10-12",
+   "tags": [
+    "long run"
+   ]
   },
   {
    "id": 15,
    "area": "performance, CI",
-   "text": "Byte budgets: elaboration sizes on <code>dev</code>, and the worker's message sizes for a fixed interaction.",
+   "text": "Byte budgets: elaboration sizes on <code>dev</code>, and the worker's message sizes for a fixed interaction. <b>2026-10-15T21:29:</b> Matthew: after hours tonight if time is left (🌙), as local branches against dev for his review.",
    "source": "^report(6)",
    "url": "http://localhost:8131/series/006/#next",
-   "added": "2026-10-12"
+   "added": "2026-10-12",
+   "tags": [
+    "long run"
+   ]
   },
   {
    "id": 16,
@@ -327,58 +310,46 @@
   {
    "id": 19,
    "area": "performance, CI",
-   "text": "Budgets harder to fool (^report(6)'s update, a count is not a time): count the call memo's own work (the nodes its keys put in form) and, if js_of_ocaml can report it, memory allocated, beside the evaluator's steps.",
+   "text": "Budgets harder to fool (^report(6)'s update, a count is not a time): count the call memo's own work (the nodes its keys put in form) and, if js_of_ocaml can report it, memory allocated, beside the evaluator's steps. <b>2026-10-15T21:29:</b> Matthew: after hours tonight if time is left (🌙), as local branches against dev for his review.",
    "source": "^report(6)",
    "url": "http://localhost:8131/series/006/#update",
-   "added": "2026-10-12"
-  },
-  {
-   "id": 22,
-   "area": "performance",
-   "text": "UX mode re-elaborates an open cell's item with fresh ids on every change (the drawn cell in ^report(8)'s B), so its parts never match by hash and fall to the reuse check's slow path. Keep the ids stable when a cell is analyzed again.",
-   "source": "^report(8)",
-   "url": "http://matthewhammer.org/hazel/performance-analysis/008/#fix",
-   "added": "2026-10-12"
-  },
-  {
-   "id": 23,
-   "area": "performance",
-   "text": "The autosave in UX mode (<code>save_current</code> / <code>persist_divided</code>: the divided program printed to text and stored, 0.55 s profiled) landed inside a slider change in ^report(8)'s B. With ^ticket(6)'s fix the change ends first, so it no longer does, but it is still 0.55 s on the main thread about a second after every edit, where the next drag can meet it. Save when idle, or save only the changed cell.",
-   "source": "^report(8)",
-   "url": "http://matthewhammer.org/hazel/performance-analysis/008/#where",
-   "added": "2026-10-12"
+   "added": "2026-10-12",
+   "tags": [
+    "long run"
+   ]
   },
   {
    "id": 24,
    "area": "performance",
-   "text": "Open cells draw their livelit views without the view memo (<code>live_html</code>, 449 ms per change profiled in ^report(8)'s B with ^ticket(6)'s fix), where the whole-program editor uses <code>memo_view</code> (163 ms in C). Give cells the memo. (Corrected 2026-10-12: B's 0.48 s of <code>of_segment</code> was the autosave printing text, not the cells' code views.)",
+   "text": "Open cells draw their livelit views without the view memo (<code>live_html</code>, 449 ms per change profiled in ^report(8)'s B with ^ticket(6)'s fix), where the whole-program editor uses <code>memo_view</code> (163 ms in C). Give cells the memo. (Corrected 2026-10-12: B's 0.48 s of <code>of_segment</code> was the autosave printing text, not the cells' code views.) <b>2026-10-15T21:29:</b> Matthew: tonight after hours (🌙), local only.",
    "source": "^report(8)",
    "url": "http://matthewhammer.org/hazel/performance-analysis/008/#where",
-   "added": "2026-10-12"
+   "added": "2026-10-12",
+   "tags": [
+    "long run"
+   ]
   },
   {
    "id": 25,
    "area": "testing, UX",
-   "text": "Code-driven tests of the outline modes: a URL parameter (or test hook) that opens a slide in UX mode with chosen GUI rows, so a script reaches ^report(8)'s B without clicking through the outline. Matthew: \"let's consider that too with our UX feature\".",
+   "text": "Code-driven tests of the outline modes: a URL parameter (or test hook) that opens a slide in UX mode with chosen GUI rows, so a script reaches ^report(8)'s B without clicking through the outline. Matthew: \"let's consider that too with our UX feature\". <b>2026-10-15T21:29:</b> Matthew: tonight after hours (🌙), local only.",
    "source": "^report(8)",
    "url": "http://matthewhammer.org/hazel/performance-analysis/008/#method",
-   "added": "2026-10-12"
-  },
-  {
-   "id": 41,
-   "area": "dress up",
-   "added": "2026-10-13",
-   "text": "<b>Messed Up Dress Up: places to sit.</b> Drop the friend on the living room's couch or the tree house's swing, and they sit on it (or swing on it); drag them off to stand again.",
-   "source": "Matthew, 2026-10-13, in chat (ideas from ^ticket(40)'s doorways)",
-   "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+   "added": "2026-10-12",
+   "tags": [
+    "long run"
+   ]
   },
   {
    "id": 42,
    "area": "dress up",
    "added": "2026-10-13",
-   "text": "<b>Messed Up Dress Up: scenes that move.</b> Ducks paddling on the lake, the tree house's stream flowing, the living room's lamp switching on and off; small animations kept to their own parts, so a scene's sliders still build only what they change.",
+   "text": "<b>Messed Up Dress Up: scenes that move.</b> Ducks paddling on the lake, the tree house's stream flowing, the living room's lamp switching on and off; small animations kept to their own parts, so a scene's sliders still build only what they change. <b>2026-10-15T21:29, narrowed (Matthew):</b> most of this is done (the ducks paddle since 0.0.28, the lamp glows with the slow LFO since 0.0.35, every scene moves with the music); what is left: the tree house's stream and the cemetery's brook flowing, and the swing swinging a friend who sits on it (from ^ticket(41)). Tonight, after hours (🌙).",
    "source": "Matthew, 2026-10-13, in chat (ideas from ^ticket(40)'s doorways)",
-   "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
+   "tags": [
+    "long run"
+   ]
   },
   {
    "id": 43,
@@ -437,8 +408,136 @@
  ],
  "next_ticket": 126,
  "current_ticket": 91,
- "current_note": "WAITING ON MATTHEW. Done tonight: Dress Up 0.0.47 to 0.0.55 (posing, water + treading + the shore, facing + sitting, ears, wings, seats, smooth witch's places), ^report(15) published, HTTPS on, today's pictures day on 0.0.55, 104 closed as covered by the music archive. Left, each his call: 91 (next step for the drag fixes: an interleaved A/B?), 90 and 18 (whether to keep views in the worker, and which), 29 (review ^report(8)'s draft update, http://localhost:8131/series/008/#update-box, local commit 800c64d), 102 (his hand-written reply to Alexander on #2583). Or new tickets.",
+ "current_note": "After hours tonight, Matthew's order: 91 (interleaved A/B of the drag fixes against the head, drag by drag), 25 (UX-mode URL parameter), 24 (cells' view memo), 42 (stream, brook and swing move), then the CI budgets (13, 14, 15, 19) if time is left. Local only, nothing pushed to Hazel; one heavy job at a time. Now: 91, setting up the builds.",
  "closed_tickets": [
+  {
+   "id": 90,
+   "area": "performance",
+   "added": "2026-10-15",
+   "text": "<b>Before parking ^ticket(18): re-measure views in the worker on #2635's head (032fe3aca6).</b> Matthew's middle option, 2026-10-15. The prototype's numbers (main thread 540 ms less per change in UX mode, 220 ms with the whole program; the redraw no sooner; Kids' Choice +45 ms) were taken on 9fb2bdf067, before the autosave fix (^ticket(84)). Steps: (1) rebase the prototype (61d031fd93, a7fbe23788, 9c7808c51e, ede920b07e) onto 032fe3aca6; (2) A/B on Full Body, UX mode (B) and the whole program (C): release to redraw, main-thread work per change; (3) NEW: how long the page stalls during a real drag (frames, in the page, from the pointer going down to the redraw), the cost the release-to-redraw number cannot see; (4) Kids' Choice release, the small-livelit cost; (5) a recommendation: park ^ticket(18) or not. Local only; nothing pushed. First finding, 2026-10-15: on #2635's head, whole program (C), a real 1.5 s drag of Full Body's arm length takes 5.8-7.0 s from the pointer going down to the redraw, the page stalled (frame gaps over 50 ms) for 4.1-5.1 s of it, its longest single stall 0.8-1.1 s; release to redraw 1.3 s. The prototype is rebased onto 032fe3aca6 (local exp/2635-views-in-worker-032fe), measured next. Head measured (032fe3aca6, headless Firefox): C release 1.39 s, a 1.5 s drag stalls 4.1 s (longest 0.9 s); B release 1.0 s, drag stalls 2.6 s (longest 0.8 s); profiled main-thread JS per change C 1.0 s, B 1.25 s; Kids' Choice release 0.21 s. Prototype built on it (4c9331d13c), being measured. MEASURED 2026-10-15 (headless Firefox, one session per build, head then prototype, not alternated; data in ~/.cache/hazel-diag/r90): WHOLE PROGRAM (C): a 1.5 s drag stalls the page 4.1 s (3.7-5.9) on the head, 2.6 s (2.1-3.2) with the prototype, the ranges apart; longest single stall 0.91 -> 0.61 s; release to redraw 1.39 -> 1.11 s (apart). Profiled main-thread JS per change 1,010 -> 914 ms: the editor's update (perform_update) 860 -> 570 ms and the view functions in it 450 -> 240 ms, but ~190 ms of that saving reappears outside the update (probably the worker's larger replies; not traced). UX MODE (B): drag stall 2.6 -> 2.45 s (ranges overlap: no clear change); release 1.00 -> 1.15 s; main-thread JS 1,251 -> 925 ms. KIDS' CHOICE release 212 -> 271 ms (+28%, as last night). Reading: the prototype is a real, visible win with the whole program on screen, none in UX mode, a loss on small livelits; and even with it a 1.5 s drag stalls 2-3 s, so most of the stall is elsewhere (each processed change still costs ~0.9 s of main thread). Decision is Matthew's. <b>2026-10-15T18:52:</b> tagged 🪷 blocked on Matthew: its next step is his call (see above).",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "status": "answered",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T21:29-06:00",
+   "outcome": "Answered: views in the worker re-measured on #2635's head 032fe3aca6 (main thread about 540 ms less per change in UX mode and 220 ms with the whole program; the redraw no sooner; Kids' Choice about 45 ms later; a 1.5 s drag still stalls 2-3 s). Its numbers feed ^ticket(18)'s decision, and ^ticket(91)'s interleaved A/B tonight measures it again, drag by drag.",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 0.0
+   }
+  },
+  {
+   "id": 23,
+   "area": "performance",
+   "text": "The autosave in UX mode (<code>save_current</code> / <code>persist_divided</code>: the divided program printed to text and stored, 0.55 s profiled) landed inside a slider change in ^report(8)'s B. With ^ticket(6)'s fix the change ends first, so it no longer does, but it is still 0.55 s on the main thread about a second after every edit, where the next drag can meet it. Save when idle, or save only the changed cell.",
+   "source": "^report(8)",
+   "url": "http://matthewhammer.org/hazel/performance-analysis/008/#where",
+   "added": "2026-10-12",
+   "status": "answered",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T21:29-06:00",
+   "outcome": "Answered by ec9f125acd (on #2635 and #2597): the autosave's print of a slide with probes was quadratic in its top-level items; fixed, it takes about 80 ms, from about 1 s (^report(8)'s update). Saving only the changed cell, or when idle, is no longer needed for responsiveness.",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 0.0
+   }
+  },
+  {
+   "id": 22,
+   "area": "performance",
+   "text": "UX mode re-elaborates an open cell's item with fresh ids on every change (the drawn cell in ^report(8)'s B), so its parts never match by hash and fall to the reuse check's slow path. Keep the ids stable when a cell is analyzed again.",
+   "source": "^report(8)",
+   "url": "http://matthewhammer.org/hazel/performance-analysis/008/#fix",
+   "added": "2026-10-12",
+   "status": "answered",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T21:29-06:00",
+   "outcome": "Answered by ^report(8)'s update (published 2026-10-15): with the reuse check's lexemes compared in the same memoized walk, the fresh ids of a re-analyzed cell no longer cost measurable time; UX mode (B) takes the same time as the whole program (C) once the autosave print is fixed.",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 0.0
+   }
+  },
+  {
+   "id": 12,
+   "area": "performance",
+   "text": "Measure the size of view samples on the wire (not trimmed as the result is) and the memory of the shared-value tables and per-object hashes.",
+   "source": "^report(5)",
+   "url": "http://localhost:8131/005/#copies",
+   "added": "2026-10-12",
+   "status": "answered",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T21:29-06:00",
+   "outcome": "Answered: ^report(14) measured the shared-value tables (ShareCodec's two, reset at their 200,000 cap) and the per-object hashes (ValueHash's WeakMap, about 98 MB alive after four edits, as a measure of old state kept); the 10-09 interaction profile measured the worker's messages at 300-480 KB, under 5% of the time.",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 0.0
+   }
+  },
+  {
+   "id": 7,
+   "area": "performance",
+   "text": "The commit path: find which of the request's values are new (about 15 ms of hashing, profiled), and make the commit's redraw cheaper. <b>Part done, 2026-10-14</b>, in node on #2635 at 41897ec3a5 (probe 4f0e261652, branch request-hash-probe in ~/hazel-ci-heap-2635, local only): a release-like edit (one literal, ids kept) through the app's own path, six edits each, steady state. Statics after the edit (DefStatics, per item): 25–37 ms. Only about 5% of the request is new objects: Kids' Choice 2,039 of 40k program nodes and about 4,600 of 87k EvalInfo nodes; Full Body 396 of 196k and about 13,100 of 326k. Building the request: <b>the EvalInfo projection is the largest part</b>, 13–14 ms on Full Body and 2.5–9 ms on Kids' Choice, because <code>project_from</code> walks both whole statics maps in key order on every commit, though about 180 entries change; then hashing the new values about 1–4 ms, and encoding 1.5–5 ms. So the hashing is not the cost. Tried and dropped: keeping an entry that is equal by content (ValueHash) as well as by identity: Full Body's re-added entries 179 to 30 and its EvalInfo new nodes 13,100 to 2,200, but the whole request got slower (median about 20 ms against 17), since comparing by content hashes as much as it saves. <b>Done and pushed to #2635, 2026-10-14:</b> 043508921b (DefStatics hands EvalInfo the keys it touched; the projection updates only those) and 9fb2bdf067 (unchanged spine roots kept): on Full Body the request 15.5–18.8 → 2.5–3.0 ms, statics after the edit 25–31 → 16–20 ms. Carrying it to diverged branches is ^ticket(47) (^report(13)). The commit's redraw, the ticket's second half, is not started.",
+   "source": "^report(1)",
+   "url": "http://localhost:8131/#now",
+   "status": "answered",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T21:29-06:00",
+   "outcome": "Answered by ^report(13) (published 2026-10-14) and the commits on #2635 (043508921b, 9fb2bdf067): the request's projection now takes under 1 ms, from 1.9-11.9 ms. The one step left, offering the three ports to #2469, is ^ticket(54).",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 0.0
+   }
+  },
+  {
+   "id": 41,
+   "area": "dress up",
+   "added": "2026-10-13",
+   "text": "<b>Messed Up Dress Up: places to sit.</b> Drop the friend on the living room's couch or the tree house's swing, and they sit on it (or swing on it); drag them off to stand again.",
+   "source": "Matthew, 2026-10-13, in chat (ideas from ^ticket(40)'s doorways)",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
+   "status": "subsumed",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T21:29-06:00",
+   "outcome": "Done by ^ticket(50) (Dress Up 0.0.54): drop the friend on the living room's couch or the tree house's swing (and 15 other places' seats) and they sit; drag them off to stand. Left: the swing doesn't swing a sitter, moved to ^ticket(42).",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 0.0
+   }
+  },
   {
    "id": 29,
    "area": "series",
@@ -2906,10 +3005,16 @@
  ],
  "queue": [
   91,
-  90,
+  25,
+  24,
+  42,
+  13,
+  14,
+  15,
+  19,
   18,
   102
  ],
- "current_since": "2026-10-15T20:50:35-06:00",
- "current_waiting": "the queue is empty of work I can do: every ticket left needs Matthew's call"
+ "current_since": "2026-10-15T21:29:12-06:00",
+ "current_waiting": null
 }
