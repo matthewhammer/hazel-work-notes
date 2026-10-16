@@ -481,26 +481,6 @@
    "progress": "14:30: MEASURED the on-screen ◀▶ held with the mouse (and a fake pad), 0.0.78: Chrome 1920x1080 living room 50.8, empty room 60, pond 60; headless Firefox 1600x1100 living room 44.6 / 42 (pad), empty room 60, pond 59. So the living room is slow in the scene itself, in both browsers; the empty room and imagination do NOT reproduce (asked Matthew for the ⚙️ Advanced meter's numbers: his friend, screen or music may differ). Living room: 2,917 elements, 2,777 in 4 pictures, 73 animations (49 of a CSS property); framed pictures frozen 58/60, window frozen alone no help. FIX (uncommitted, 0.0.79): 🎞️ moving pictures covers every framed picture (off: still). Living room gate 60/60; on-screen ◀▶ 60 in the living room, imagination and empty room. Also fixed: Start over/Load gave the on-screen controller the standard pad's layout (padFor). The living room joined the gate's SLOW set."
   },
   {
-   "id": 159,
-   "area": "dress up, music, UX",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T14:23-06:00",
-   "text": "<b>Dress Up: a full-screen button in the 🎵 Music tab</b>, so the tune's information (what is playing, where it is) and the mixing board's controls take the whole screen. Matthew, 2026-10-16.",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "log": [
-    {
-     "at": "2026-10-16T14:23-06:00",
-     "from": "matthew",
-     "chars": 150,
-     "asks": true
-    }
-   ],
-   "status": "open",
-   "tags": [],
-   "progress": "14:36: RELEASED in Dress Up 0.0.79 (7b30d3c), live checked."
-  },
-  {
    "id": 160,
    "area": "dress up, performance, touch, testing",
    "added": "2026-10-16",
@@ -536,7 +516,8 @@
     }
    ],
    "status": "open",
-   "tags": []
+   "tags": [],
+   "progress": "14:43: NOT reproduced at defaults (headless Chrome 1920x1080: beach 60/60, also at DPR 2, also with music). REPRODUCED with a see-through friend (👻 Visibility, every part at 50): empty room walk 36.5, beach 34.3; the see-through layers' masks (unveil, with the veil-ink filter) stripped: 60/60. FIX (uncommitted): 👻 exact see-through, a PERF_FEATURES setting off by default (each layer see-through on its own; a part's layers show through each other). Before/after picture sent; 🪷 asked Matthew whether his friend is see-through, and whether the look is OK."
   },
   {
    "id": 162,
@@ -677,7 +658,7 @@
  ],
  "next_ticket": 163,
  "current_ticket": 161,
- "current_note": "14:36: Dress Up 0.0.79 LIVE (living room 60, ⛶ music full screen). Now ^ticket(161), the beach.",
+ "current_note": "14:43: 🪷 waiting on Matthew: is his friend see-through (👻 Visibility)? A see-through friend reproduces his frozen beach and empty room (36 fps; 60 without its masks). The fix (👻 exact see-through off by default) is built, not released; picture sent. ^ticket(161).",
  "closed_tickets": [
   {
    "id": 146,
@@ -4127,6 +4108,29 @@
    "closed": "2026-10-16T14:21-06:00",
    "outcome": "Published on Matthew's word (3a03d0b): https://matthewhammer.org/kids-choice-games/dress-up/reports/001/ , the series index at .../dress-up/reports/ ; live pages and a data file checked over HTTPS.",
    "outcome_url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/001/"
+  },
+  {
+   "id": 159,
+   "area": "dress up, music, UX",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T14:23-06:00",
+   "text": "<b>Dress Up: a full-screen button in the 🎵 Music tab</b>, so the tune's information (what is playing, where it is) and the mixing board's controls take the whole screen. Matthew, 2026-10-16.",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T14:23-06:00",
+     "from": "matthew",
+     "chars": 150,
+     "asks": true
+    }
+   ],
+   "status": "done",
+   "tags": [],
+   "progress": "14:36: RELEASED in Dress Up 0.0.79 (7b30d3c), live checked.",
+   "closed": "2026-10-16T14:43-06:00",
+   "outcome": "Dress Up 0.0.79 (7b30d3c): ⛶ the music, full screen, first in the Music tab.",
+   "outcome_url": "https://github.com/matthewhammer/kids-choice-games/commit/7b30d3c"
   }
  ],
  "queue": [
