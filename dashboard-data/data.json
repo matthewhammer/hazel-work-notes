@@ -81,6 +81,7 @@
   2610,
   2671,
   2672,
+  2608,
   2606,
   2603,
   2490
@@ -433,7 +434,7 @@
     }
    ],
    "status": "open",
-   "progress": "2026-10-15 23:22: ^report(17) DRAFTED for Matthew's review: \"Fourteen performance PRs to dev, and a plan to merge them\", http://localhost:8131/series/017/ (local, uncommitted in ~/hazel-perf-report: 017/ with data, the generator, a thumbnail, and a card on the local series index). Short answers, then Figure 1 (each PR's own measurement as times faster, log scale; dev green, livelits purple), Figure 2 (the dependency graph: merge waves, builds-on arrows 2661/2679 -> 2681, the three textual conflicts 2610x2614 MarkerParse.re, 2661x2679 Ascriptions.re, 2673x2681 Util.re, and the three conflicts with #2469: 2603 Builtins.re, 2606 the worker request/answer files, 2614 Segment/Zipper), a table per PR (what and why, reasons to wait, what to review), Figure 3 repeated from ^report(5) (where each PR acts), and the merge plan in four waves, checked by merging all fourteen into dev e12145c69b in order with git merge-tree (no checkout, no build): 9 clean, 5 need a hand resolution (2 only the test list). Not done (said in the report): building and testing the fourteen merged together. Nothing posted to GitHub. Waiting on Matthew: publish?",
+   "progress": "2026-10-15 23:22: ^report(17) DRAFTED for Matthew's review: \"Fourteen performance PRs to dev, and a plan to merge them\", http://localhost:8131/series/017/ (local, uncommitted in ~/hazel-perf-report: 017/ with data, the generator, a thumbnail, and a card on the local series index). Short answers, then Figure 1 (each PR's own measurement as times faster, log scale; dev green, livelits purple), Figure 2 (the dependency graph: merge waves, builds-on arrows 2661/2679 -> 2681, the three textual conflicts 2610x2614 MarkerParse.re, 2661x2679 Ascriptions.re, 2673x2681 Util.re, and the three conflicts with #2469: 2603 Builtins.re, 2606 the worker request/answer files, 2614 Segment/Zipper), a table per PR (what and why, reasons to wait, what to review), Figure 3 repeated from ^report(5) (where each PR acts), and the merge plan in four waves, checked by merging all fourteen into dev e12145c69b in order with git merge-tree (no checkout, no build): 9 clean, 5 need a hand resolution (2 only the test list). Not done (said in the report): building and testing the fourteen merged together. Nothing posted to GitHub. Waiting on Matthew: publish? || 23:30: #2608 (elaborations without whitespace and comments; requests 12-49% smaller) is also an open performance PR to dev and was missing from the dashboard's list: added to perf_prs, and to ^report(17) as 'a fifteenth' (wave 1; conflicts only with #2610 in the test list).",
    "work": {
     "work_minutes": 40
    }
