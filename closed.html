@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<meta name="dashboard-version" content="9db2acd19bf4">
+<meta name="dashboard-version" content="04092523df21">
 <!-- theme: head begin -->
 <script>try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}</script>
 <!-- theme: head end -->
@@ -97,7 +97,7 @@
 <main>
 <h1>Closed tickets</h1>
 <p class="note">A copy of the Hazel Work Dashboard that Matthew runs on his laptop, published within a minute or two of each change to its notes, and every 15 minutes for the status from GitHub. Its <code>localhost</code> links work only there.</p>
-<p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated 2026-10-15 19:27 MDT. Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are on the dashboard: <a href="./#queue">the work queue</a> and <a href="./#backlog">the full backlog</a>.</p>
+<p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated 2026-10-15 19:28 MDT. Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are on the dashboard: <a href="./#queue">the work queue</a> and <a href="./#backlog">the full backlog</a>.</p>
 <div class="scroll"><table>
 <tr><th class="num">Ticket</th><th class="area">Area</th><th>Status, closed</th><th>Outcome</th><th>The ticket, as it last read</th></tr>
 <tr id="ticket-122"><td class="num"><a class="anchor" href="#ticket-122"><code class="ref"><b>^ticket(</b>122<b>)</b></code></a><button class="copy" type="button" data-anchor="ticket-122" title="Copy a link to ^ticket(122)">copy link</button></td><td>dress-up</td><td class="status"><span class="good">done</span><br><span class="note">2026-10-15</span></td><td>Released as Dress Up 0.0.48 at 18:48 (08abedf, tag dress-up-0.0.48; Pages green, live check 18:49). In water the friend is see-through below the waterline (mask; '🌊 see-through under the water', default 70) with a wake: three spreading rings + dashed foam, far half behind and near half in front ('💧 a wake round the friend in the water', default 100). Water per place from the scenes' own shared helpers (WATER): lake, sea, waterfall pool, castle moat (near half, not the bridge), tree house stream, cemetery brook. Waist-deep, knee-deep in the stream and brook; rings no wider than the water (waterAcross). Built by a helper in a worktree (14 min, node-verified: 124 scenes byte-identical, dry friend identical at 1,904 spots); merged, tuned and checked in the pane by me. Redraw in water 1.2-1.4 ms vs 0.9 dry.<br><span class="note">⏱ opened 2026-10-15 17:37, closed 18:49 (73 min) · 21.0 min of work, timed · 1 messages from Matthew, 0 questions to him · ~200 chars (~50 tokens) · ~0 min together</span></td><td><b>Dress Up: the friend knows water.</b> Matthew: "let's have a special knowledge of water. In water, by default, let's make the bottom half transparent, and add a 'wake' effect (water moving, like near the base of the waterfall now)". Plan: builds on 99's depth model. Each place says where its water is on the ground (the lake, the sea at the beach, the waterfall's pool, the tree house's stream, and others); when the friend's feet are in it, their lower half below the water line shows through (clipped copy at low opacity, not a mask, for drag speed), and ripples spread from them like the waterfall's base. A setting to turn it off ("by default"). Under the sea the friend is all underwater, so no water line there.<br><span class="note">from Matthew, 2026-10-15</span></td></tr>
@@ -360,7 +360,7 @@ for (const b of document.querySelectorAll("button.copy")) {
    published data anywhere else; a report from its own page, live (its
    title, date and opening). Once per page load each. */
 (() => {
-  const PUBLIC = "http://matthewhammer.org/hazel-work-notes/dashboard-data/data.json";
+  const PUBLIC = "https://matthewhammer.org/hazel-work-notes/dashboard-data/data.json";
   const DATA = location.port === "8000" && /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? "/data.json" : PUBLIC;
   /* the dashboard itself carries its tickets (made with the page, changed
      with it); any other page asks the published data */
