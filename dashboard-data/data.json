@@ -440,31 +440,6 @@
    }
   },
   {
-   "id": 136,
-   "area": "dress up",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T08:18-06:00",
-   "text": "<b>Dress Up: the legs in a hug, the near leg in front of the one hugged and the far leg behind (and a jump-up hug, legs round them).</b> Matthew, 2026-10-16 08:18, with a screenshot of the friend in profile hugging the witch in the witch's hut, after ^ticket(130): 'arms look great!', but 'we also need to have the legs layered on top (front leg) and below (back leg) of the witch, to make the hug look real'; and 'imagine a small kid jumping to get hugged by an adult, and their legs wrap around the adults' torso.' Today (0.0.61) only the far arm, its sleeve and hand go apart (<code>#figure-far</code>, a body's depth behind the feet); both legs stay with the body, in front of the witch. So: (1) in profile in a place, the far leg (pant leg, sock and shoe) goes apart with the far arm, behind the one hugged, and the near leg stays in front; (2) a jump-up hug: the friend lifted to the other's chest, knees bent forward, the near leg wrapped across the front of their torso and the far one behind it (perhaps a pose in the Body tab). Where: ticket 130's far-arm split in the friend's drawing (<code>farDeep</code> in index.html) and its depth among the place's things.",
-   "source": "Matthew, 2026-10-16, in chat (with a screenshot)",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "log": [
-    {
-     "at": "2026-10-16T08:18-06:00",
-     "from": "matthew",
-     "chars": 304,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T08:22-06:00",
-     "from": "matthew",
-     "chars": 180,
-     "asks": true
-    }
-   ],
-   "status": "open",
-   "tags": []
-  },
-  {
    "id": 137,
    "area": "dress up",
    "added": "2026-10-16",
@@ -516,9 +491,46 @@
   }
  ],
  "next_ticket": 139,
- "current_ticket": 136,
- "current_note": "08:22: Matthew is AFK and asked me to work through ^ticket(136), ^ticket(137) and ^ticket(138), bumping the version and publishing Dress Up after each ticket-sized piece. Order: 136 (the far leg behind the one hugged, then the jump-up hug), 137 (the ladder side-on in profile and the rename, then climbing a place's own ladder), 138 (the back view, the jump, then the controller with its Controls tab). ^ticket(133) (the drag speed fix, 0.0.58) still waits for Matthew to try it on his device. || 08:07: the laptop crashed at 08:01, at idle; nothing was lost.",
+ "current_ticket": 137,
+ "current_note": "08:34: on ^ticket(137) (Matthew AFK, working through 137 then 138, a release per ticket-sized piece). 08:33: ^ticket(136) done as Dress Up 0.0.62 (legs that hug, and jumping up into a hug). ^ticket(133) still waits for Matthew to try the drag fix.",
  "closed_tickets": [
+  {
+   "id": 136,
+   "area": "dress up",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T08:18-06:00",
+   "text": "<b>Dress Up: the legs in a hug, the near leg in front of the one hugged and the far leg behind (and a jump-up hug, legs round them).</b> Matthew, 2026-10-16 08:18, with a screenshot of the friend in profile hugging the witch in the witch's hut, after ^ticket(130): 'arms look great!', but 'we also need to have the legs layered on top (front leg) and below (back leg) of the witch, to make the hug look real'; and 'imagine a small kid jumping to get hugged by an adult, and their legs wrap around the adults' torso.' Today (0.0.61) only the far arm, its sleeve and hand go apart (<code>#figure-far</code>, a body's depth behind the feet); both legs stay with the body, in front of the witch. So: (1) in profile in a place, the far leg (pant leg, sock and shoe) goes apart with the far arm, behind the one hugged, and the near leg stays in front; (2) a jump-up hug: the friend lifted to the other's chest, knees bent forward, the near leg wrapped across the front of their torso and the far one behind it (perhaps a pose in the Body tab). Where: ticket 130's far-arm split in the friend's drawing (<code>farDeep</code> in index.html) and its depth among the place's things.",
+   "source": "Matthew, 2026-10-16, in chat (with a screenshot)",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T08:18-06:00",
+     "from": "matthew",
+     "chars": 304,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T08:22-06:00",
+     "from": "matthew",
+     "chars": 180,
+     "asks": true
+    }
+   ],
+   "status": "done",
+   "tags": [],
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T08:34-06:00",
+   "outcome": "Dress Up 0.0.62 LIVE (0557089, tag dress-up-0.0.62): in a place, in profile, the far leg (skin, stocking, shoe, pants leg) is drawn apart with the far arm in #figure-far, a body's depth behind the feet, so it goes behind the one hugged and the near leg stays in front (checked in the witch's hut: ~/du-shots/r136/hug-legs2-crop.png; old vs new identical when nobody is near, r136/side-old-new.png; sweep unchanged but the waterfall's run-to-run noise). New pose '🤗 jumping up into a hug': a sitter's legs wrapped round the one hugged, arms round the neck, held up by '🦘 held up' (body.hugLift, default 50 = half a leg), shadow on the floor; turns a friend facing us to the right; Surprise me never picks it (0 in 200). r136/jumphug-ab.png.",
+   "metrics": {
+    "open_minutes": 16,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 484,
+    "tokens_est": 121,
+    "sync_minutes_est": 4.0,
+    "work_minutes": 10.0
+   }
+  },
   {
    "id": 132,
    "area": "dress up",
@@ -3477,7 +3489,6 @@
   }
  ],
  "queue": [
-  136,
   137,
   138,
   133,
@@ -3490,6 +3501,6 @@
   15,
   19
  ],
- "current_since": "2026-10-16T08:22-06:00",
+ "current_since": "2026-10-16T08:34-06:00",
  "current_waiting": null
 }
