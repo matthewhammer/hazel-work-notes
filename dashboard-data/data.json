@@ -238,19 +238,6 @@
  ],
  "tickets": [
   {
-   "id": 91,
-   "area": "performance",
-   "added": "2026-10-15",
-   "text": "<b>Drag stalls: how many changes does a drag process, and does coalescing slider input help?</b> From ^ticket(90): on #2635's head a 1.5 s drag of Full Body's arm length stalls the page about 4 s (whole program), and each processed change costs about 0.9 s of main thread, so the stall is mostly how many changes a drag triggers. Steps: (1) count, per drag: the slider's input events, the eval requests the page posts to the worker and the replies, and the heavy frames (gaps over 50 ms); (2) find where a slider's input becomes an edit, and whether changes already coalesce (the newest value only) while one is in flight; (3) if not, try coalescing on a local branch: while a change is in flight, keep only the newest value and process it when the change lands; (4) measure with drag_stall.py (C and B), release to redraw, and Kids' Choice, against the head; (5) then decide ^ticket(18) with both in hand. Local only until Matthew says. FINDINGS 2026-10-15: a transient input (a drag's preview) sends a quiet repaint action, and the page recalculates for each one, walking the whole program in EvalResult.calculate's reuse check (Calc.set -> fast_equal_with_lexemes, ~40% of a drag's main thread, profiled). Coalescing built (local perf/2635-coalesce-drag-repaint, 3eb4489124; counters in a MEASURE commit): only 1.5-3 of a drag's ~13 inputs coalesce. Measured in alternating sessions, whole program, drag stall: head 4.1 s, prototype (^ticket(90)) 2.6, coalescing 2.8, head 3.2, coalescing 4.2: the drift between sessions is larger than any build's effect, so neither fix is shown. Next (Matthew to say): an interleaved A/B, both builds served at once, alternating drag by drag, 10+ each; and try skipping the whole-program walk for a preview. Report: a new report on drags, once the A/B is in (the next free number: ^report(15) is now ^ticket(120)'s draft). <b>2026-10-15T18:52:</b> tagged 🪷 blocked on Matthew: its next step is his call (see above). <b>2026-10-15T21:29:</b> Matthew: yes, the interleaved A/B, tonight after hours (🌙): head against each prototype (coalescing, views in the worker), both served at once, alternating drag by drag, 10+ each.",
-   "source": "Matthew, 2026-10-15",
-   "url": "",
-   "tags": [
-    "long run",
-    "blocked on Matthew"
-   ],
-   "progress": "2026-10-15 21:46, interleaved A/B (ab_drag.py; one headless Firefox, a tab per build, order turned each round; head twice as localhost/127.0.0.1 for an A/A noise floor), Full Body arm length, whole program (C), 10 rounds: frozen per 1.5 s drag: head 4.02 s (3.37-5.00), head again 4.17 s, coalescing 2.19 s (1.90-2.75); paired coalescing - head: -1.72 s median, lower in 10 of 10 rounds (-1.20 to -3.02 s); A/A: +0.12 s median, 5 lower / 5 higher (-0.48 to +0.69 s). Release to redraw: no change (coalescing - head -29 ms median, 6/4; A/A +77 ms). So coalescing is a real, large win on the stall, invisible in the earlier session-by-session runs. Data: ~/.cache/hazel-diag/r91ab/coal_C.json. Next: UX mode (B), then views in the worker, C and B. || ALL FOUR A/Bs DONE (22:13). Coalescing, UX mode (B): within noise (frozen -0.39 s median, 7/3; A/A -0.25 s, 7/3; ranges up to 2 s). Views in the worker, whole program (C): no change (frozen -26 ms, 5/5; release +74 ms, 4/6; A/A +259 ms, 3/7); shorter worst gaps (284 vs 434 ms) but no less frozen. Views in the worker, UX mode (B): frozen no change (+135 ms, 4/6; A/A +123 ms, 3/7); release SLOWER, +277 ms median, higher in 8 of 10 rounds (A/A +49 ms). Reading: coalescing is the drag fix worth taking (a clear, large cut of the whole program's stall, nothing worse elsewhere); views in the worker does not help a drag and slows UX mode's release, so ^ticket(18) looks like park, Matthew's call. Data: ~/.cache/hazel-diag/r91ab/{coal_C,coal_B,views_C,views_B}.json; driver ab_drag.py. || 2026-10-15 22:23: ^report(16) DRAFTED for Matthew's review: \"Two fixes for a drag, measured side by side\", http://localhost:8131/series/016/ (local, uncommitted in ~/hazel-perf-report: 016/ with data, drivers and a thumbnail, a card on the local series index, and dated notes in ^report(15) where 016 answers or corrects it: its What next step 1, its 'only 1.5 to 3 of 13 fold' claim, and its 'freezes shrink' claim for views in the worker; gen015.py carries the notes too). New in the draft: the A/B drags are longer than 015's (190-250 slider units, ~44 inputs, against 20-50 units and 6-15 inputs), which is why coalescing folds 17 of 41 here; each repaint still costs ~90 ms of freeze. Nothing published or pushed. Waiting on Matthew: publish 016 (and the 015 notes)? and his call on ^ticket(18) (views in the worker: the A/B says park it for drags)."
-  },
-  {
    "id": 13,
    "area": "performance, CI",
    "text": "Statics counts on <code>dev</code>: the analyses-per-expression counter and <code>Test_StaticsPasses</code> from #2635 (bd90642654, da3251d3e5), with a small corpus subset in the quick suite. <b>2026-10-15T21:29:</b> Matthew: after hours tonight if time is left (🌙), as local branches against dev for his review.",
@@ -428,6 +415,30 @@
    ]
   },
   {
+   "id": 132,
+   "area": "dress up",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T07:15-06:00",
+   "text": "<b>Dress Up: a Body tab, with poses and animations.</b> Matthew, 2026-10-16 07:15: rename the \"🤸 Pose\" tab (0.0.57, ^ticket(129)) to \"Body\", with two sub-menus of chips: (1) <b>poses</b>, what we have today (standing, cross-legged meditating, dancing), plus ordinary sitting, which 'seems missing now', and facing each side; (2) <b>animations</b>, within that pose (an animation may break the pose a bit to animate): walking, running, swimming (treading water for now, which 'also seems lost ATM'), crawling on the ground, and climbing up a ladder. First check the two possible regressions in 0.0.57 (sitting, treading water).",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T07:15-06:00",
+     "from": "matthew",
+     "chars": 380,
+     "asks": true
+    }
+   ],
+   "status": "open",
+   "tags": []
+  }
+ ],
+ "next_ticket": 133,
+ "current_ticket": 132,
+ "current_note": "07:16: Matthew is back. Now ^ticket(132): Dress Up's Body tab (poses + animations), first checking whether 0.0.57 lost sitting or treading water. Published this morning: ^report(16) and ^report(17). Still waiting on Matthew (🪷): 25, 24, 13, 14, 15, 19, 18, 102.",
+ "closed_tickets": [
+  {
    "id": 127,
    "area": "performance",
    "added": "2026-10-15",
@@ -453,17 +464,50 @@
      "asks": true
     }
    ],
-   "status": "open",
+   "status": "done",
    "progress": "2026-10-15 23:22: ^report(17) DRAFTED for Matthew's review: \"Fourteen performance PRs to dev, and a plan to merge them\", http://localhost:8131/series/017/ (local, uncommitted in ~/hazel-perf-report: 017/ with data, the generator, a thumbnail, and a card on the local series index). Short answers, then Figure 1 (each PR's own measurement as times faster, log scale; dev green, livelits purple), Figure 2 (the dependency graph: merge waves, builds-on arrows 2661/2679 -> 2681, the three textual conflicts 2610x2614 MarkerParse.re, 2661x2679 Ascriptions.re, 2673x2681 Util.re, and the three conflicts with #2469: 2603 Builtins.re, 2606 the worker request/answer files, 2614 Segment/Zipper), a table per PR (what and why, reasons to wait, what to review), Figure 3 repeated from ^report(5) (where each PR acts), and the merge plan in four waves, checked by merging all fourteen into dev e12145c69b in order with git merge-tree (no checkout, no build): 9 clean, 5 need a hand resolution (2 only the test list). Not done (said in the report): building and testing the fourteen merged together. Nothing posted to GitHub. Waiting on Matthew: publish? || 23:30: #2608 (elaborations without whitespace and comments; requests 12-49% smaller) is also an open performance PR to dev and was missing from the dashboard's list: added to perf_prs, and to ^report(17) as 'a fifteenth' (wave 1; conflicts only with #2610 in the test list). || 2026-10-15 23:44: ^report(17)'s first next step DONE: all fifteen (with #2608) merged into dev e12145c69b in the plan's order on local branch tmp/all-perf-prs in ~/hazel-ab-coal (8cf2562d47; resolutions: #2610's MarkerParse call, #2681 in place of #2661 and #2679, both sides of Util.re and the test list) build with no errors and no formatting changes, and pass the FULL suite: 4,756 tests, 411 s. The report and its series card now say so; nothing pushed.",
    "work": {
     "work_minutes": 40
+   },
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T07:14-06:00",
+   "outcome": "Published as ^report(17), 2026-10-16 (https://matthewhammer.org/hazel/performance-analysis/017/): the fifteen performance PRs to dev (with #2608), each with what it buys, reasons to wait and what to review; a dependency graph; repeated ^report(5) figure; a merge plan in four waves, checked by merging in order (9 clean, 5 hand resolutions) and by building all fifteen merged: full suite 4,756 tests pass (local tmp/all-perf-prs). Nothing posted to GitHub's PRs.",
+   "metrics": {
+    "open_minutes": 577,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 640,
+    "tokens_est": 160,
+    "sync_minutes_est": 1.0,
+    "work_minutes": 55.0
    }
-  }
- ],
- "next_ticket": 132,
- "current_ticket": 127,
- "current_note": "Overnight summary (Matthew back about 06:30). LIVE: Dress Up 0.0.57 (42 flowing stream and brook, the swing swings its sitter; 128 shorts and swimsuits on posed legs; 129 the Pose tab first: standing, cross-legged meditating with closed eyes and hands in the lap, five dances; turning feet; 130 the hug: far arm behind; 131 the profile puddle). WAITING ON YOU (🪷, all local, nothing posted): ^report(16) draft, two drag fixes side by side (http://localhost:8131/series/016/; coalescing cuts a long drag's freeze 4.0 -> 2.2 s, 10 of 10 rounds; views in the worker do not help) [91]; ^report(17) draft, the performance PRs' executive summary and merge plan, fifteen with #2608, and all fifteen merged pass the full suite, 4,756 tests (http://localhost:8131/series/017/) [127]; the outline deep link ?outline=ux&ux=... (local 438812718b) [25]; the cell memo (page time -2/3, nothing visible moved: recommend not pushing) [24]; CI budgets as local branches off dev in ~/hazel-ab-coal: statics passes [13], a recursive-library step budget [14], byte budgets [15], and 19's finding (no call memo on dev; jsoo GC counters are zeros) [19]. Nothing is running now. Servers: 8000 dashboard, 8131 series, 8133 Dress Up, 8353 the outline link + cell memo build (#2635-based); 8311 #2597 (hazel-splicerefs-full) restarted at 23:45.",
- "closed_tickets": [
+  },
+  {
+   "id": 91,
+   "area": "performance",
+   "added": "2026-10-15",
+   "text": "<b>Drag stalls: how many changes does a drag process, and does coalescing slider input help?</b> From ^ticket(90): on #2635's head a 1.5 s drag of Full Body's arm length stalls the page about 4 s (whole program), and each processed change costs about 0.9 s of main thread, so the stall is mostly how many changes a drag triggers. Steps: (1) count, per drag: the slider's input events, the eval requests the page posts to the worker and the replies, and the heavy frames (gaps over 50 ms); (2) find where a slider's input becomes an edit, and whether changes already coalesce (the newest value only) while one is in flight; (3) if not, try coalescing on a local branch: while a change is in flight, keep only the newest value and process it when the change lands; (4) measure with drag_stall.py (C and B), release to redraw, and Kids' Choice, against the head; (5) then decide ^ticket(18) with both in hand. Local only until Matthew says. FINDINGS 2026-10-15: a transient input (a drag's preview) sends a quiet repaint action, and the page recalculates for each one, walking the whole program in EvalResult.calculate's reuse check (Calc.set -> fast_equal_with_lexemes, ~40% of a drag's main thread, profiled). Coalescing built (local perf/2635-coalesce-drag-repaint, 3eb4489124; counters in a MEASURE commit): only 1.5-3 of a drag's ~13 inputs coalesce. Measured in alternating sessions, whole program, drag stall: head 4.1 s, prototype (^ticket(90)) 2.6, coalescing 2.8, head 3.2, coalescing 4.2: the drift between sessions is larger than any build's effect, so neither fix is shown. Next (Matthew to say): an interleaved A/B, both builds served at once, alternating drag by drag, 10+ each; and try skipping the whole-program walk for a preview. Report: a new report on drags, once the A/B is in (the next free number: ^report(15) is now ^ticket(120)'s draft). <b>2026-10-15T18:52:</b> tagged 🪷 blocked on Matthew: its next step is his call (see above). <b>2026-10-15T21:29:</b> Matthew: yes, the interleaved A/B, tonight after hours (🌙): head against each prototype (coalescing, views in the worker), both served at once, alternating drag by drag, 10+ each.",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "tags": [
+    "long run",
+    "blocked on Matthew"
+   ],
+   "progress": "2026-10-15 21:46, interleaved A/B (ab_drag.py; one headless Firefox, a tab per build, order turned each round; head twice as localhost/127.0.0.1 for an A/A noise floor), Full Body arm length, whole program (C), 10 rounds: frozen per 1.5 s drag: head 4.02 s (3.37-5.00), head again 4.17 s, coalescing 2.19 s (1.90-2.75); paired coalescing - head: -1.72 s median, lower in 10 of 10 rounds (-1.20 to -3.02 s); A/A: +0.12 s median, 5 lower / 5 higher (-0.48 to +0.69 s). Release to redraw: no change (coalescing - head -29 ms median, 6/4; A/A +77 ms). So coalescing is a real, large win on the stall, invisible in the earlier session-by-session runs. Data: ~/.cache/hazel-diag/r91ab/coal_C.json. Next: UX mode (B), then views in the worker, C and B. || ALL FOUR A/Bs DONE (22:13). Coalescing, UX mode (B): within noise (frozen -0.39 s median, 7/3; A/A -0.25 s, 7/3; ranges up to 2 s). Views in the worker, whole program (C): no change (frozen -26 ms, 5/5; release +74 ms, 4/6; A/A +259 ms, 3/7); shorter worst gaps (284 vs 434 ms) but no less frozen. Views in the worker, UX mode (B): frozen no change (+135 ms, 4/6; A/A +123 ms, 3/7); release SLOWER, +277 ms median, higher in 8 of 10 rounds (A/A +49 ms). Reading: coalescing is the drag fix worth taking (a clear, large cut of the whole program's stall, nothing worse elsewhere); views in the worker does not help a drag and slows UX mode's release, so ^ticket(18) looks like park, Matthew's call. Data: ~/.cache/hazel-diag/r91ab/{coal_C,coal_B,views_C,views_B}.json; driver ab_drag.py. || 2026-10-15 22:23: ^report(16) DRAFTED for Matthew's review: \"Two fixes for a drag, measured side by side\", http://localhost:8131/series/016/ (local, uncommitted in ~/hazel-perf-report: 016/ with data, drivers and a thumbnail, a card on the local series index, and dated notes in ^report(15) where 016 answers or corrects it: its What next step 1, its 'only 1.5 to 3 of 13 fold' claim, and its 'freezes shrink' claim for views in the worker; gen015.py carries the notes too). New in the draft: the A/B drags are longer than 015's (190-250 slider units, ~44 inputs, against 20-50 units and 6-15 inputs), which is why coalescing folds 17 of 41 here; each repaint still costs ~90 ms of freeze. Nothing published or pushed. Waiting on Matthew: publish 016 (and the 015 notes)? and his call on ^ticket(18) (views in the worker: the A/B says park it for drags).",
+   "status": "done",
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T07:14-06:00",
+   "outcome": "Interleaved A/B done and published as ^report(16), 2026-10-16 (https://matthewhammer.org/hazel/performance-analysis/016/): coalescing a drag's previews cuts a long Full Body drag's freeze 4.0 -> 2.2 s, lower in 10 of 10 rounds (A/A +0.12 s); in UX mode within noise; views in the worker do not shorten a drag and make UX mode's final picture ~0.28 s later. ^report(15) got dated notes. The decision on ^ticket(18) (park views in the worker for drags) is Matthew's.",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 60.0
+   }
+  },
   {
    "id": 131,
    "area": "dress-up",
@@ -3252,17 +3296,16 @@
   }
  ],
  "queue": [
+  132,
   18,
   102,
-  91,
   25,
   24,
-  127,
   13,
   14,
   15,
   19
  ],
- "current_since": "2026-10-15T23:44:05-06:00",
+ "current_since": "2026-10-16T07:15:06-06:00",
  "current_waiting": null
 }
