@@ -240,7 +240,7 @@
    "id": 91,
    "area": "performance",
    "added": "2026-10-15",
-   "text": "<b>Drag stalls: how many changes does a drag process, and does coalescing slider input help?</b> From ^ticket(90): on #2635's head a 1.5 s drag of Full Body's arm length stalls the page about 4 s (whole program), and each processed change costs about 0.9 s of main thread, so the stall is mostly how many changes a drag triggers. Steps: (1) count, per drag: the slider's input events, the eval requests the page posts to the worker and the replies, and the heavy frames (gaps over 50 ms); (2) find where a slider's input becomes an edit, and whether changes already coalesce (the newest value only) while one is in flight; (3) if not, try coalescing on a local branch: while a change is in flight, keep only the newest value and process it when the change lands; (4) measure with drag_stall.py (C and B), release to redraw, and Kids' Choice, against the head; (5) then decide ^ticket(18) with both in hand. Local only until Matthew says. FINDINGS 2026-10-15: a transient input (a drag's preview) sends a quiet repaint action, and the page recalculates for each one, walking the whole program in EvalResult.calculate's reuse check (Calc.set -> fast_equal_with_lexemes, ~40% of a drag's main thread, profiled). Coalescing built (local perf/2635-coalesce-drag-repaint, 3eb4489124; counters in a MEASURE commit): only 1.5-3 of a drag's ~13 inputs coalesce. Measured in alternating sessions, whole program, drag stall: head 4.1 s, prototype (^ticket(90)) 2.6, coalescing 2.8, head 3.2, coalescing 4.2: the drift between sessions is larger than any build's effect, so neither fix is shown. Next (Matthew to say): an interleaved A/B, both builds served at once, alternating drag by drag, 10+ each; and try skipping the whole-program walk for a preview. Report: a new ^report(15) on drags, once the A/B is in. <b>2026-10-15T18:52:</b> tagged 🪷 blocked on Matthew: its next step is his call (see above).",
+   "text": "<b>Drag stalls: how many changes does a drag process, and does coalescing slider input help?</b> From ^ticket(90): on #2635's head a 1.5 s drag of Full Body's arm length stalls the page about 4 s (whole program), and each processed change costs about 0.9 s of main thread, so the stall is mostly how many changes a drag triggers. Steps: (1) count, per drag: the slider's input events, the eval requests the page posts to the worker and the replies, and the heavy frames (gaps over 50 ms); (2) find where a slider's input becomes an edit, and whether changes already coalesce (the newest value only) while one is in flight; (3) if not, try coalescing on a local branch: while a change is in flight, keep only the newest value and process it when the change lands; (4) measure with drag_stall.py (C and B), release to redraw, and Kids' Choice, against the head; (5) then decide ^ticket(18) with both in hand. Local only until Matthew says. FINDINGS 2026-10-15: a transient input (a drag's preview) sends a quiet repaint action, and the page recalculates for each one, walking the whole program in EvalResult.calculate's reuse check (Calc.set -> fast_equal_with_lexemes, ~40% of a drag's main thread, profiled). Coalescing built (local perf/2635-coalesce-drag-repaint, 3eb4489124; counters in a MEASURE commit): only 1.5-3 of a drag's ~13 inputs coalesce. Measured in alternating sessions, whole program, drag stall: head 4.1 s, prototype (^ticket(90)) 2.6, coalescing 2.8, head 3.2, coalescing 4.2: the drift between sessions is larger than any build's effect, so neither fix is shown. Next (Matthew to say): an interleaved A/B, both builds served at once, alternating drag by drag, 10+ each; and try skipping the whole-program walk for a preview. Report: a new report on drags, once the A/B is in (the next free number: ^report(15) is now ^ticket(120)'s draft). <b>2026-10-15T18:52:</b> tagged 🪷 blocked on Matthew: its next step is his call (see above).",
    "source": "Matthew, 2026-10-15",
    "url": "",
    "tags": [
@@ -561,7 +561,7 @@
    "area": "perf",
    "added": "2026-10-15",
    "opened": "2026-10-15T17:28-06:00",
-   "text": "<b>A report draft: Dress Up's performance today against what Hazel can handle today.</b> Matthew: compare the two (the plain-JS game, the prototype, and the same features as livelits in Hazel), with speculation about what can bridge the gap over the next 11 months, the duration of Matthew's job with Hazel as far as he knows now. A draft (likely a ^report in the performance series, measured, with its data embedded; noise floor and baselines stated).",
+   "text": "<b>A report draft: Dress Up's performance today against what Hazel can handle today.</b> Matthew: compare the two (the plain-JS game, the prototype, and the same features as livelits in Hazel), with speculation about what can bridge the gap over the next 11 months, the duration of Matthew's job with Hazel as far as he knows now. A draft (likely a ^report in the performance series, measured, with its data embedded; noise floor and baselines stated). <b>2026-10-15T19:15: DRAFT ready for Matthew's review</b>: ^report(15) 'Dress Up and its livelits, side by side', http://localhost:8131/series/015/ (local commit 54c2f21 in ~/hazel-perf-report, not pushed). Measured this evening, headless Firefox 157, 8 drags of 1.5 s per set-up: Dress Up 0.0.48 never froze (longest gap 17 ms; 33 ms in the witch's woods), picture final at release; #2635 at 032fe3aca6: Kids' Choice froze 0.11 s, final 0.13 s after release; Full Body froze 2.9 s (whole program) / 3.2 s (UX), final 1.1 / 1.2 s after. Per change: Dress Up 1.4 ms, Kids' 225 ms, Full Body 1,010 ms (profiled). Then-and-now figure, and a labelled guess for Sept 2027 (Kids'-sized 30-60 ms, Full Body 100-300 ms) with the steps it rests on. Took about 23 min (18:52 to 19:15).",
    "source": "Matthew, 2026-10-15",
    "url": "",
    "log": [
@@ -572,7 +572,10 @@
      "asks": false
     }
    ],
-   "status": "open"
+   "status": "open",
+   "tags": [
+    "blocked on Matthew"
+   ]
   },
   {
    "id": 123,
@@ -621,8 +624,8 @@
   }
  ],
  "next_ticket": 125,
- "current_ticket": 120,
- "current_note": "121 and 122 are live (Dress Up 0.0.47 posing by touch, 0.0.48 the friend in water), released by 18:49. 91, 90, 18, 60 and 29 each wait on Matthew's decision or review, so they are now tagged 🪷 at the queue's end. Now on 120: a report draft comparing Dress Up's speed with the same features as livelits in Hazel.",
+ "current_ticket": 123,
+ "current_note": "Matthew is away. Done this evening: 121 and 122 live (Dress Up 0.0.47 posing by touch, 0.0.48 the friend in water). 120's report draft is ready for his review: http://localhost:8131/series/015/ (^report(15), local commit 54c2f21, not pushed), so it is 🪷 with 91, 90, 18, 60 and 29. Skipped 50 (marked 'later, not now'). Now on 123: a treading-water animation for the friend in deep water.",
  "closed_tickets": [
   {
    "id": 122,
@@ -2755,9 +2758,8 @@
   }
  ],
  "queue": [
-  120,
-  50,
   123,
+  50,
   118,
   106,
   104,
@@ -2767,8 +2769,9 @@
   18,
   60,
   29,
+  120,
   102
  ],
- "current_since": "2026-10-15T18:50:40-06:00",
+ "current_since": "2026-10-15T19:14:57-06:00",
  "current_waiting": null
 }
