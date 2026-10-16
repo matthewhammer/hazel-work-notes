@@ -4,7 +4,8 @@
    "pr": 2635,
    "repo": "hazelgrove/hazel",
    "branch": "integration/livelits-modular-editors",
-   "links": [
+   "links": [],
+   "links_paused": [
     [
      "localhost:8341",
      "http://localhost:8341/"
@@ -13,18 +14,21 @@
      "Scenes slide",
      "http://localhost:8341/?slide=livelit-playground-scenes"
     ]
-   ]
+   ],
+   "branch_note": "(<b>not served</b> since the 2026-10-16 16:33 crash: Matthew's call at 16:37, only the dashboard and Dress Up on local ports for now, no Hazel ports)"
   },
   {
    "pr": 2597,
    "repo": "hazelgrove/hazel",
    "branch": "integration/livelits-splicerefs-full",
-   "links": [
+   "links": [],
+   "links_paused": [
     [
      "localhost:8311",
      "http://localhost:8311/"
     ]
-   ]
+   ],
+   "branch_note": "(<b>not served</b> since the 2026-10-16 16:33 crash: Matthew's call at 16:37, only the dashboard and Dress Up on local ports for now, no Hazel ports)"
   },
   {
    "pr": 2635,
@@ -461,7 +465,7 @@
    ],
    "status": "open",
    "tags": [],
-   "progress": "16:08: Dress Up 0.0.84 LIVE (151085a): still places where moves come out choppy (late frames while moving, over 10%); 🧪 measures the pond moving / still / with music. 15:51: At the measured black-laptop factor (2x CPU): the pond walks 51.7-53.4, drags 51-54.9 (just under 55); its still-scenery switch (0.0.83) does not trigger there, as the black laptop draws in 1.0 ms (the switch is at 6). Next: switch on dropped frames, not drawing time, if Matthew finds the pond choppy on the black laptop. 15:44: SHIPPED part in Dress Up 0.0.83 (858f369): on a slow computer (slowFlag: drawing over 6 ms on average) the places hold still (scene animations taken out, CSS animations stopped, no fumes), the wake rings are still and the faint copy under the water is left out; ⚙️ Advanced '🌀 moving scenery and water on a slow computer' overrides. At 6x: the pond 17 -> 37 walking, 52 dragging (gate needs 55). Not solved: moving over a busy place (dry and frozen at 6x: 40.6; the friend in an overlay svg 47.1). What more it needs waits on the black laptop's factor (^ticket(163)). | 16:26: black laptop 0.0.84 (pad): room walk 57 fps; pond swim 36, held still 33, with music 26 (3 ms a drawing). Still scenery does not help: the pond's cost there is Firefox painting, not JS or animations; throttled Chrome does not reproduce it (55.7). Next: headless Firefox at 1440x810@2x as a proxy (tools/speedff.py), then the scenery as a still image behind the friend. | 16:29: headless Firefox 157 at 1440x810@2x: 60 fps in every pass, so it is no proxy either (it does not paint like a window). Proposed: A/B passes inside 🧪 for one more run on the black laptop (scenery hidden, the friend's underwater copy off, the water's rings off, the scenery as a still image), plus a room-after-the-pond pass for ^ticket(167)."
+   "progress": "16:08: Dress Up 0.0.84 LIVE (151085a): still places where moves come out choppy (late frames while moving, over 10%); 🧪 measures the pond moving / still / with music. 15:51: At the measured black-laptop factor (2x CPU): the pond walks 51.7-53.4, drags 51-54.9 (just under 55); its still-scenery switch (0.0.83) does not trigger there, as the black laptop draws in 1.0 ms (the switch is at 6). Next: switch on dropped frames, not drawing time, if Matthew finds the pond choppy on the black laptop. 15:44: SHIPPED part in Dress Up 0.0.83 (858f369): on a slow computer (slowFlag: drawing over 6 ms on average) the places hold still (scene animations taken out, CSS animations stopped, no fumes), the wake rings are still and the faint copy under the water is left out; ⚙️ Advanced '🌀 moving scenery and water on a slow computer' overrides. At 6x: the pond 17 -> 37 walking, 52 dragging (gate needs 55). Not solved: moving over a busy place (dry and frozen at 6x: 40.6; the friend in an overlay svg 47.1). What more it needs waits on the black laptop's factor (^ticket(163)). | 16:26: black laptop 0.0.84 (pad): room walk 57 fps; pond swim 36, held still 33, with music 26 (3 ms a drawing). Still scenery does not help: the pond's cost there is Firefox painting, not JS or animations; throttled Chrome does not reproduce it (55.7). Next: headless Firefox at 1440x810@2x as a proxy (tools/speedff.py), then the scenery as a still image behind the friend. | 16:29: headless Firefox 157 at 1440x810@2x: 60 fps in every pass, so it is no proxy either (it does not paint like a window). Proposed: A/B passes inside 🧪 for one more run on the black laptop (scenery hidden, the friend's underwater copy off, the water's rings off, the scenery as a still image), plus a room-after-the-pond pass for ^ticket(167). | 16:37: crash at 16:33 during the 0.0.86 test run; the A/B passes edit is intact in ~/kids-choice-games (uncommitted). Next: test, then release 0.0.86."
   },
   {
    "id": 165,
@@ -659,7 +663,7 @@
  ],
  "next_ticket": 172,
  "current_ticket": 164,
- "current_note": "16:29: Dress Up 0.0.85 LIVE (^ticket(170)). 🪷 BLOCKED ON MATTHEW for ^ticket(164): neither headless Chrome nor headless Firefox reproduces the black laptop's pond; may I add A/B passes to 🧪 for one more run there?",
+ "current_note": "16:37: the laptop crashed at 16:33 as the 0.0.86 test began. Matthew had said yes (16:31): add the A/B passes to 🧪 (scenery hidden, underwater copy off, rings off, scenery a still picture, the empty room after the pond) and release them. The game edit survived (uncommitted, NUL-free); the test script did not. Now: rewrite it, test in headless Chrome, release 0.0.86.",
  "closed_tickets": [
   {
    "id": 170,
@@ -4423,6 +4427,5 @@
   15,
   19
  ],
- "current_since": "2026-10-16T16:29:59-06:00",
- "current_waiting": true
+ "current_since": "2026-10-16T16:29:59-06:00"
 }
