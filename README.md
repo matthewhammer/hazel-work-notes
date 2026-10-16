@@ -1,6 +1,6 @@
 # Hazel work notes
 
-**▶ See the Hazel Work Dashboard at http://matthewhammer.org/hazel/work-dashboard/** (HTTP only, for now).
+**▶ See the Hazel Work Dashboard at https://matthewhammer.org/hazel/work-dashboard/**
 
 Matthew Hammer's working record for his [Hazel](https://hazel.org) work, kept with Claude. The dashboard shows the PRs we track, which branch is on which local port, our tickets, the work queue and the current ticket. Alongside it are its history and our dated work notes. The repository is public, but it is written for the two of us. The write-ups for other readers are the [Hazel performance analysis](http://matthewhammer.org/hazel/performance-analysis/) series.
 
