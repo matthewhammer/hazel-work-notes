@@ -560,24 +560,6 @@
    "status": "open"
   },
   {
-   "id": 121,
-   "area": "dress-up",
-   "added": "2026-10-15",
-   "opened": "2026-10-15T17:37-06:00",
-   "text": "<b>Dress Up: pose the friend by touch, dragging the hands, feet, elbows and knees.</b> Matthew: M plays on an iPad with touch; a game she already has lets you drag the joints, hands and feet to pose the character. Can we offer that? Plan: builds on 99's elbows and knees. Each arm and leg gets its own angle and bend (today both sides bend alike), and dragging a hand or foot solves the elbow or knee from where the finger is (two-bone inverse kinematics, law of cosines); dragging an elbow or knee turns the upper limb. Round, finger-sized handles (about 44 px) in a pose mode, so an ordinary drag still moves the whole friend; touch-action none on the handles; the drag pause from 117 kept. Check on a touch-emulated tablet viewport.",
-   "source": "Matthew, 2026-10-15",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-15T17:37-06:00",
-     "from": "matthew",
-     "chars": 240,
-     "asks": true
-    }
-   ],
-   "status": "open"
-  },
-  {
    "id": 122,
    "area": "dress-up",
    "added": "2026-10-15",
@@ -642,9 +624,39 @@
   }
  ],
  "next_ticket": 125,
- "current_ticket": 121,
- "current_note": "Matthew is at dinner. 121 (pose the friend by touch: drag hands, feet, elbows, knees) in progress here; 122 (water: lower half see-through + a wake) being built in parallel by a helper in a worktree, to be merged and checked here. Both to be released tonight.",
+ "current_ticket": 122,
+ "current_note": "Matthew is at dinner. 121 is live (0.0.47: drag a hand, foot, elbow or knee to pose). 122 (water: lower half see-through + a wake) is being built by a helper in a worktree; next I merge it, check it in every watery place, and release it.",
  "closed_tickets": [
+  {
+   "id": 121,
+   "area": "dress-up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T17:37-06:00",
+   "text": "<b>Dress Up: pose the friend by touch, dragging the hands, feet, elbows and knees.</b> Matthew: M plays on an iPad with touch; a game she already has lets you drag the joints, hands and feet to pose the character. Can we offer that? Plan: builds on 99's elbows and knees. Each arm and leg gets its own angle and bend (today both sides bend alike), and dragging a hand or foot solves the elbow or knee from where the finger is (two-bone inverse kinematics, law of cosines); dragging an elbow or knee turns the upper limb. Round, finger-sized handles (about 44 px) in a pose mode, so an ordinary drag still moves the whole friend; touch-action none on the handles; the drag pause from 117 kept. Check on a touch-emulated tablet viewport.",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T17:37-06:00",
+     "from": "matthew",
+     "chars": 240,
+     "asks": true
+    }
+   ],
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T18:41-06:00",
+   "outcome": "Released as Dress Up 0.0.47 at 18:40 (584833b, tag dress-up-0.0.47; Pages green, live check 18:41). Press a hand, foot, elbow or knee (nearest within 30 screen px) and drag: hands/feet reach by two-bone IK keeping the bend's side, elbows/knees swing the limb. Per-limb turn+bend stored as body.pose{Arm,Elbow,Leg,Knee}{L,R} on top of the sliders; zero pose draws byte-identical to 0.0.46 (200 random friends + witch/fairy/ghost). Posed legs stand on the lower foot or kneel; posed pants mitred at the knee; ground and (no-scene) frame held while a joint is held. Body tab: how-to note + '🧍 stand straight again'. Checked in the pane: forest and no-background drags, all 19 costumes x pants styles x undies posed without errors.",
+   "metrics": {
+    "open_minutes": 65,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 240,
+    "tokens_est": 60,
+    "sync_minutes_est": 0,
+    "work_minutes": 14.0
+   }
+  },
   {
    "id": 119,
    "area": "dress up",
@@ -2716,7 +2728,6 @@
   }
  ],
  "queue": [
-  121,
   122,
   91,
   90,
@@ -2732,6 +2743,6 @@
   124,
   102
  ],
- "current_since": "2026-10-15T18:27:43-06:00",
+ "current_since": "2026-10-15T18:41:56-06:00",
  "current_waiting": null
 }
