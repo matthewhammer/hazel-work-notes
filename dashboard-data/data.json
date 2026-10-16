@@ -365,17 +365,6 @@
    "added": "2026-10-12"
   },
   {
-   "id": 29,
-   "area": "series",
-   "added": "2026-10-13",
-   "text": "Revise ^report(8) to answer plainly: <b>are conditions C (#2635, whole program) and B (UX mode, only the GUI) similar once the same fixes are applied to each?</b> As written it confuses: the GUI-only view gives no responsiveness benefit, but with the fixes it is no loss either; say so up front. Re-measure B and C on #2635's current head (the reuse check's fix, the stream index, the has-type memo, the per-step changes all in), and add graphs in the report itself, not just the thumbnail, taking ^report(1)'s pictures as the model, especially in the short answers. 008 is published, so per the series' rules: a dated update box under the short answers, notes after superseded claims, and an Update section with the figures. UNBLOCKED 2026-10-15: ^ticket(84)'s fix is on #2635 (ec9f125acd, the same tree as the measured cbc585933b), and the draft now links it (local commit b569651 in ~/hazel-perf-report, not pushed). Waits only for Matthew's review: http://localhost:8131/series/008/#update-box <b>2026-10-15T18:52:</b> tagged 🪷 blocked on Matthew: its next step is his call (see above).",
-   "source": "Matthew, 2026-10-13, in chat",
-   "url": "http://localhost:8131/series/008/",
-   "tags": [
-    "blocked on Matthew"
-   ]
-  },
-  {
    "id": 41,
    "area": "dress up",
    "added": "2026-10-13",
@@ -450,6 +439,30 @@
  "current_ticket": 91,
  "current_note": "WAITING ON MATTHEW. Done tonight: Dress Up 0.0.47 to 0.0.55 (posing, water + treading + the shore, facing + sitting, ears, wings, seats, smooth witch's places), ^report(15) published, HTTPS on, today's pictures day on 0.0.55, 104 closed as covered by the music archive. Left, each his call: 91 (next step for the drag fixes: an interleaved A/B?), 90 and 18 (whether to keep views in the worker, and which), 29 (review ^report(8)'s draft update, http://localhost:8131/series/008/#update-box, local commit 800c64d), 102 (his hand-written reply to Alexander on #2583). Or new tickets.",
  "closed_tickets": [
+  {
+   "id": 29,
+   "area": "series",
+   "added": "2026-10-13",
+   "text": "Revise ^report(8) to answer plainly: <b>are conditions C (#2635, whole program) and B (UX mode, only the GUI) similar once the same fixes are applied to each?</b> As written it confuses: the GUI-only view gives no responsiveness benefit, but with the fixes it is no loss either; say so up front. Re-measure B and C on #2635's current head (the reuse check's fix, the stream index, the has-type memo, the per-step changes all in), and add graphs in the report itself, not just the thumbnail, taking ^report(1)'s pictures as the model, especially in the short answers. 008 is published, so per the series' rules: a dated update box under the short answers, notes after superseded claims, and an Update section with the figures. UNBLOCKED 2026-10-15: ^ticket(84)'s fix is on #2635 (ec9f125acd, the same tree as the measured cbc585933b), and the draft now links it (local commit b569651 in ~/hazel-perf-report, not pushed). Waits only for Matthew's review: http://localhost:8131/series/008/#update-box <b>2026-10-15T18:52:</b> tagged 🪷 blocked on Matthew: its next step is his call (see above).",
+   "source": "Matthew, 2026-10-13, in chat",
+   "url": "http://localhost:8131/series/008/",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T21:27-06:00",
+   "outcome": "PUBLISHED 2026-10-15 21:25 on Matthew's word, after a review together: ^report(8)'s dated update of 2026-10-14 (B and C with the same fixes: UX mode slower again by the autosave's quadratic print; with ec9f125acd, B 1.26-1.56 s vs C 1.23-1.76 s over five sessions each, the same), plus, at his OK, a cross-check from ^report(15) on 032fe3aca6 (C 1.09 s, B 1.20 s). https://matthewhammer.org/hazel/performance-analysis/008/#update-box; series card updated; homepage cfe6814, series repo f8e62fe (the draft squashed into one published commit). Data in 008/data/update-2026-10-14/ and the page's report-data.",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 10.0
+   }
+  },
   {
    "id": 104,
    "area": "dress up",
@@ -2895,7 +2908,6 @@
   91,
   90,
   18,
-  29,
   102
  ],
  "current_since": "2026-10-15T20:50:35-06:00",
