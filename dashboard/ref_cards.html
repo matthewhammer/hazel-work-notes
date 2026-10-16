@@ -19,7 +19,7 @@
    published data anywhere else; a report from its own page, live (its
    title, date and opening). Once per page load each. */
 (() => {
-  const PUBLIC = "http://matthewhammer.org/hazel-work-notes/dashboard-data/data.json";
+  const PUBLIC = "https://matthewhammer.org/hazel-work-notes/dashboard-data/data.json";
   const DATA = location.port === "8000" && /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? "/data.json" : PUBLIC;
   /* the dashboard itself carries its tickets (made with the page, changed
      with it); any other page asks the published data */
