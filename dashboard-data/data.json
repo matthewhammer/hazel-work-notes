@@ -245,7 +245,8 @@
    "url": "",
    "tags": [
     "long run"
-   ]
+   ],
+   "progress": "2026-10-15 21:46, interleaved A/B (ab_drag.py; one headless Firefox, a tab per build, order turned each round; head twice as localhost/127.0.0.1 for an A/A noise floor), Full Body arm length, whole program (C), 10 rounds: frozen per 1.5 s drag: head 4.02 s (3.37-5.00), head again 4.17 s, coalescing 2.19 s (1.90-2.75); paired coalescing - head: -1.72 s median, lower in 10 of 10 rounds (-1.20 to -3.02 s); A/A: +0.12 s median, 5 lower / 5 higher (-0.48 to +0.69 s). Release to redraw: no change (coalescing - head -29 ms median, 6/4; A/A +77 ms). So coalescing is a real, large win on the stall, invisible in the earlier session-by-session runs. Data: ~/.cache/hazel-diag/r91ab/coal_C.json. Next: UX mode (B), then views in the worker, C and B."
   },
   {
    "id": 13,
