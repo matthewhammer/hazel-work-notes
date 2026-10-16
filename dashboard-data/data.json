@@ -440,6 +440,25 @@
    }
   },
   {
+   "id": 139,
+   "area": "dress up",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T09:04-06:00",
+   "text": "<b>Dress Up: try the game controller (0.0.67) with a real one.</b> ^ticket(138)'s controller was checked only with a fake standard gamepad in headless Firefox. Plug in the USB controller, open the 🎮 Controls tab (it should name the controller and light each row while its button is held), then: the arrows and left stick move the friend and turn them (⬆️ away from us), Ⓧ walks, Ⓑ runs, Ⓐ jumps, Ⓨ climbs a place's ladder (a dungeon, a tree house room), start goes through the nearest doorway, select goes back. To tune after: the speeds (PAD_SPEED), the stick's dead middle (0.25), which button does what by default, and whether some controllers number their buttons differently (a non-standard mapping).",
+   "source": "Claude, 2026-10-16, closing ^ticket(138)",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [],
+   "status": "open",
+   "tags": [
+    "blocked on Matthew"
+   ]
+  }
+ ],
+ "next_ticket": 140,
+ "current_ticket": 133,
+ "current_note": "09:04: done while Matthew was AFK (08:22 to 09:04, a release per ticket-sized piece): 0.0.62 (^ticket(136): legs that hug, jumping up into a hug), 0.0.63 (the ladder from the side), 0.0.64 (^ticket(137): climbing a place's own ladders), 0.0.65 (the back view, ⬆️ away from us), 0.0.66 (🐸 jumping, once), 0.0.67 (^ticket(138): the game controller and its 🎮 Controls tab). Waiting on Matthew: try the drag fix (^ticket(133)) and the controller with a real one (^ticket(139)); every queued ticket now waits on him.",
+ "closed_tickets": [
+  {
    "id": 138,
    "area": "dress up",
    "added": "2026-10-16",
@@ -461,14 +480,21 @@
      "asks": true
     }
    ],
-   "status": "open",
-   "tags": []
-  }
- ],
- "next_ticket": 139,
- "current_ticket": 138,
- "current_note": "08:51: on ^ticket(138) (Matthew AFK): first the back view (facing away, for moving up into the place), then the jump, then the controller and its Controls tab, a release each. Live today since he left: 0.0.62 (^ticket(136), legs that hug, jumping up into a hug), 0.0.63 and 0.0.64 (^ticket(137), the ladder from the side; climbing a place's own ladders). ^ticket(133) still waits for Matthew to try the drag fix.",
- "closed_tickets": [
+   "status": "done",
+   "tags": [],
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T09:04-06:00",
+   "outcome": "Dress Up 0.0.65 (a682de2), 0.0.66 (75861be), 0.0.67 (195efe0) LIVE. 0.0.65: '⬆️ away from us', the back view (backHair over the head: cap, long hair, curls, afro; hoods closed with their ears/mane/antlers; no belly patch; ghost without a face; round neckline; wings and tail in front; r138/back.png, back2, back3); climbing a place's ladder now faces it. 0.0.66: '🐸 jumping (once)': crouch, flight (0.55 leg), landing, then back to what they were doing; shadow on the ground (rises 77 units, lands in 1.1 s). 0.0.67: the game controller (Gamepad API, polled only while one is connected) and a '🎮 Controls' tab: arrows/left stick move the friend as a drag does at the animation's pace and turn them (up = away), other buttons per state.controls (a menu each, lit while held, '↺ the usual buttons'); usual layout has every animation plus back and the nearest doorway (r138/controls-tab.png). Checked with a FAKE standard pad (~/du-shots/tools/padcheck.py), not a real one: that is ^ticket(139).",
+   "metrics": {
+    "open_minutes": 44,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1037,
+    "tokens_est": 259,
+    "sync_minutes_est": 1.0,
+    "work_minutes": 14.0
+   }
+  },
   {
    "id": 137,
    "area": "dress up",
@@ -3501,8 +3527,8 @@
   }
  ],
  "queue": [
-  138,
   133,
+  139,
   18,
   102,
   25,
@@ -3512,6 +3538,6 @@
   15,
   19
  ],
- "current_since": "2026-10-16T08:51-06:00",
- "current_waiting": null
+ "current_since": "2026-10-16T09:04-06:00",
+ "current_waiting": "try Dress Up 0.0.67 on your device: the drag speed (^ticket(133)), and with your USB controller, the 🎮 Controls (^ticket(139))"
 }
