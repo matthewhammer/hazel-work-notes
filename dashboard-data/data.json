@@ -566,14 +566,15 @@
     }
    ],
    "status": "open",
-   "tags": []
+   "tags": [],
+   "progress": "12:02: MEASURED (headless Chrome 155, controller walk right 2 s then left 2 s, 3 rounds alternating): 0.0.74 53.2-53.8 fps, 0.0.75 50.5-51.4 fps; draw() 2.0-2.3 ms in both, no scene rebuilds, marks never re-measured. So the castle drops frames already in 0.0.74 (the browser's own time, not the game's), and 0.0.75 costs ~2.5 fps more. Next: freeze each animated thing in turn."
   },
   {
    "id": 152,
    "area": "dress up, performance, testing",
    "added": "2026-10-16",
    "opened": "2026-10-16T12:01-06:00",
-   "text": "<b>Dress Up: a performance regression test, a gate before every release.</b> Matthew, 2026-10-16: drag the character in the scenes that have had issues in the past, and test fps; fail if it goes below a certain amount, like 55 fps, and fix it before we commit new versions.",
+   "text": "<b>Dress Up: a performance regression test, a gate before every release.</b> Matthew, 2026-10-16: drag the character in the scenes that have had issues in the past, and test fps; fail if it goes below a certain amount, like 55 fps, and fix it before we commit new versions. <b>Both kinds</b> (his follow-up): walking (the controller) in certain scenes, and dragging in certain scenes.",
    "source": "Matthew, 2026-10-16, in chat (going AFK ~45 min)",
    "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
    "log": [
@@ -581,6 +582,12 @@
      "at": "2026-10-16T12:01-06:00",
      "from": "matthew",
      "chars": 300,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T12:02-06:00",
+     "from": "matthew",
+     "chars": 90,
      "asks": true
     }
    ],
