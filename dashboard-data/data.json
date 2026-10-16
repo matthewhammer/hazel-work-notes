@@ -290,8 +290,13 @@
    "url": "http://localhost:8131/series/006/#next",
    "added": "2026-10-12",
    "tags": [
-    "long run"
-   ]
+    "long run",
+    "blocked on Matthew"
+   ],
+   "progress": "2026-10-15 23:34: BUILT, local only. Branch ci/byte-budgets in ~/hazel-ab-coal, off dev: merges of #2608 (elaborations without whitespace and comments) and #2606 (the cache stays in the worker), then 35edf2d1d8, Test_ByteBudgets: the bytes the page posts to the worker and gets back, through WorkerServer's own Marshal encoding, as ratchet budgets like PerfBudgets'. probes.hz: request 25,180 bytes (budget 27,700; about 48 KB before #2608), answer 3,617 (4,000); the B2T2 leftjoin program: 60,628 (66,700) and 21,258 (23,400). Requests vary by a few dozen bytes run to run (fresh ids); answers do not. 2 tests pass, twice. It uses #2606's request fields, so it lands after both. Nothing pushed. Waiting on Matthew.",
+   "work": {
+    "work_minutes": 10
+   }
   },
   {
    "id": 16,
@@ -328,8 +333,13 @@
    "url": "http://localhost:8131/series/006/#update",
    "added": "2026-10-12",
    "tags": [
-    "long run"
-   ]
+    "long run",
+    "blocked on Matthew"
+   ],
+   "progress": "2026-10-15 23:34: LOOKED INTO, nothing built. Neither half applies to dev as it stands: (1) the call memo is only on the livelits branches (CallMemo is not in dev's language library), so counting its keys' work belongs on #2635/#2597; (2) js_of_ocaml reports zero for every GC counter (its runtime's caml_gc_quick_stat, caml_gc_counters and caml_gc_minor_words return constant zeros), so memory allocated cannot be counted under it, and node's heap figures move with GC timing, which a budget cannot use. What would work: a deterministic count of the nodes the evaluator builds (the copies #2679 removed were one step each, invisible to steps), by counting constructions in the transition code; or, on #2635, the call memo's key normalization in nodes. Matthew's call which, if either.",
+   "work": {
+    "work_minutes": 4
+   }
   },
   {
    "id": 24,
@@ -451,7 +461,7 @@
   }
  ],
  "next_ticket": 132,
- "current_ticket": 15,
+ "current_ticket": 18,
  "current_note": "Matthew is AFK until about 06:30. Done tonight: Dress Up 0.0.57 LIVE (42, 128, 129, 130, 131). Waiting on his word (🪷, queue's end): ^report(16) draft (91), the outline deep link (25), the cell memo (24, measured: nothing visible moved), ^report(17) draft (127, now with #2608 too), the statics pass budgets on dev (13, local branch, tests pass). Now 14: a step budget for a re-run beside a library with a recursive member (on #2678 and #2675), then 15 (byte budgets), 19. Local only; nothing posted to GitHub.",
  "closed_tickets": [
   {
@@ -3242,8 +3252,6 @@
   }
  ],
  "queue": [
-  15,
-  19,
   18,
   102,
   91,
@@ -3251,8 +3259,10 @@
   24,
   127,
   13,
-  14
+  14,
+  15,
+  19
  ],
- "current_since": "2026-10-15T23:32:13-06:00",
+ "current_since": "2026-10-15T23:34:39-06:00",
  "current_waiting": null
 }
