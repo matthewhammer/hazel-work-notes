@@ -412,85 +412,6 @@
    "url": "https://github.com/matthewhammer/matthewhammer.github.io/settings/pages"
   },
   {
-   "id": 99,
-   "area": "dress up",
-   "added": "2026-10-15",
-   "opened": "2026-10-15T11:33-06:00",
-   "text": "<b>Recovery: make Dress Up's routines modular and composable, then write down the recipes.</b> Matthew offered this on 2026-10-15: a ticket, and a chance within it, to refactor, and some space to recover after the creative run. It is self-directed. My plan, in order: (1) <b>A safety net first.</b> Extend the byte-identical check, which hashes scene markup in the committed copy and the working copy, to sweep every place, every castle room style, every costume and the imagination map, under fixed settings. Also time drags in three heavy scenes before starting. No step lands unless the sweep comes out identical. (2) <b>Room space.</b> One shared helper (at(X, Y, z), heights on the wall, shelves on the back and side walls, things on the floor, side doors) used by the hallway, the king's room, the cat room and the stable, in place of their copies. (3) <b>Residents.</b> One declaration per kind: the cat room's cats, the stable's horses, and next the kitchen's workers and the smith. From it come the settings keys, the defaults, the castleOf entry, the controls group, the show-when rules and the LFO listing. This is where ^ticket(92)'s cast meets it. (4) <b>LFO followers.</b> One registry of what follows which LFO and where it shows, driving mixChanged, the mixer's 'what follows it' list, and the scenes' LFO reads (sceneOpts). A new follower then cannot miss one of them, which is how the fairy house's bug happened. (5) <b>Room styles.</b> One entry per style: its label, drawing, exits, tone, theme and own settings. (6) <b>The recipes, in agent-instructions.md:</b> how to add a place, a castle room, a resident and an LFO follower, each naming its registry. Notes on single functions stay in the code. <b>Out of scope:</b> changing anything a player sees; renaming settings keys (saved friends must still load); the music engine. Each step is its own local commit, noted under Unreleased as a refactor rather than a feature, and timed. Nothing is pushed. ESTIMATE 45-90 min: refactoring with verification runs slower than drawing. It starts after ^ticket(93)'s stable; ^ticket(93)'s kitchen and smithy then build on step (3). Matthew will read it afterwards. ADDED 2026-10-15 (Matthew and M): a pass over drawing faults: lines past their shapes, lines ignoring the perspective, things hanging from nothing. A code scan found about 30, listed in ~/du-shots/drawing-faults-2026-10-15.md (local). The top ones: the castle rooms' and greenhouse's floor lines run up the walls; the tent's mesh window (Matthew's 'vent') ignores the perspective; the cat room's window leads cross its arch; the fairy wings' veins leave the wings; the tree room's lantern hangs from nothing. Check each on screen, using the routine now in the Dress Up agent instructions, and fix them; M's lantern catch is fixed already (3616b95). <b>2026-10-15T15:52:</b> Matthew: another one for tonight (bottom of the queue). <b>2026-10-15T17:09:</b> Matthew: new priority, now (not tonight). And at the same time: (a) during a drag, respect the scene's depth order: the layer order that stands for depth into the pseudo-3D scene, so the friend (or any NPC) dragged behind a thing is drawn behind it; (b) a formal list of every scene object that should be drawn on top of the main character, or any other NPC, when they are placed at a given position on the standable area. <b>2026-10-15T17:12:</b> Matthew: one more constraint on this ticket: (c) elbows and knees for the main character, like the other (non-main) characters that have elbows. No knees anywhere yet; they are wanted for animating more human motions: walking, running, climbing, crawling, swimming, dancing. <b>2026-10-15T17:14:</b> Matthew: to make (b) reviewable, each background provides its list of objects in the game, each with a visible (👁️) toggle to turn it on and off; compact chips, since the lists could be long. <br><b>Added 17:59:</b> Matthew: \"let's add a depth constraint to the size as shown -- indep of the setting chosen by the user (as another factor on top).\" and \"each scene already should have a setting for the 'default main char size'\" (SCENE_FIG).",
-   "source": "Matthew, 2026-10-15",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-15T11:31-06:00",
-     "from": "matthew",
-     "chars": 420,
-     "asks": true
-    },
-    {
-     "at": "2026-10-15T11:33-06:00",
-     "from": "claude",
-     "chars": 2300,
-     "asks": true
-    },
-    {
-     "at": "2026-10-15T11:33-06:00",
-     "from": "matthew",
-     "chars": 95,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T11:36-06:00",
-     "from": "matthew",
-     "chars": 520,
-     "asks": true
-    },
-    {
-     "at": "2026-10-15T11:38-06:00",
-     "from": "matthew",
-     "chars": 120,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T12:37-06:00",
-     "from": "claude",
-     "chars": 900,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T15:52-06:00",
-     "from": "matthew",
-     "chars": 40,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T17:09-06:00",
-     "from": "matthew",
-     "chars": 420,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T17:12-06:00",
-     "from": "matthew",
-     "chars": 330,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T17:14-06:00",
-     "from": "matthew",
-     "chars": 210,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T17:59-06:00",
-     "from": "matthew",
-     "chars": 220,
-     "asks": false
-    }
-   ],
-   "progress": "17:59: all six helper branches merged into main (local, not pushed) and every place checked on depth sheets; the lights rule applied (dark, glows, signs are front objects); camp night is a pool of firelight; greenhouse fountain at its pedestal; pictures sort by depth; the friend sized by depth (depthSize: (feet - vanish)/(arrival - vanish), castle rooms from roomFrame's eye, flat rooms -60, else 60, clamped 0.3-1.5). Sweep: all 20 costumes identical to 0.0.45; scenes all differ (expected). Drags: 0 rebuilds in every place, all as fast or faster than 0.0.45. Agent instructions and VERSIONS 0.0.46 drafted. Next: full depthsheet run -> objects.json -> OBJECTS.md, then commit, push, tag, Pages, live check, close.",
-   "tags": []
-  },
-  {
    "id": 102,
    "area": "hazel",
    "added": "2026-10-15",
@@ -625,7 +546,7 @@
    "area": "dress up",
    "added": "2026-10-15",
    "opened": "2026-10-15T17:27-06:00",
-   "text": "<b>Pages for Dress Up under matthewhammer.org/hazel.</b> Matthew, for later tonight: (1) a page explaining Dress Up as a prototyping platform for livelits, and a creative place for playful experiences and feedback from real children: N and M, and maybe someday their friends and family (cousins, etc.); (2) the latest MP3 track list, with an in-browser player and a track selector; (3) a nice-looking way to view the pictures in the archive, with a link to the full, raw list Matthew has been reviewing. (The archives: the public dress-up-music and dress-up-pictures repos, by day, ^ticket(106).)",
+   "text": "<b>Pages for Dress Up under matthewhammer.org/hazel.</b> Matthew, for later tonight: (1) a page explaining Dress Up as a prototyping platform for livelits, and a creative place for playful experiences and feedback from real children: N and M, and maybe someday their friends and family (cousins, etc.); (2) the latest MP3 track list, with an in-browser player and a track selector; (3) a nice-looking way to view the pictures in the archive, with a link to the full, raw list Matthew has been reviewing. (The archives: the public dress-up-music and dress-up-pictures repos, by day, ^ticket(106).) <br><b>18:06:</b> Matthew pulled it in from tonight's long runs: \"let's pull in ... ticket-119 next.\"",
    "source": "Matthew, 2026-10-15",
    "url": "",
    "log": [
@@ -634,12 +555,15 @@
      "from": "matthew",
      "chars": 520,
      "asks": false
+    },
+    {
+     "at": "2026-10-15T18:06-06:00",
+     "from": "matthew",
+     "chars": 70,
+     "asks": false
     }
    ],
-   "status": "open",
-   "tags": [
-    "long run"
-   ]
+   "status": "open"
   },
   {
    "id": 120,
@@ -742,9 +666,101 @@
   }
  ],
  "next_ticket": 125,
- "current_ticket": 99,
- "current_note": "Ticket 99: all places converted and checked; the friend now shrinks with depth. Making the full object list, then releasing 0.0.46.",
+ "current_ticket": 119,
+ "current_note": "Ticket 119: Dress Up pages under matthewhammer.org/hazel (an explainer, the MP3 player, the picture viewer). Dress Up 0.0.46 is live; 121 (posing by touch) is next after this.",
  "closed_tickets": [
+  {
+   "id": 99,
+   "area": "dress up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T11:33-06:00",
+   "text": "<b>Recovery: make Dress Up's routines modular and composable, then write down the recipes.</b> Matthew offered this on 2026-10-15: a ticket, and a chance within it, to refactor, and some space to recover after the creative run. It is self-directed. My plan, in order: (1) <b>A safety net first.</b> Extend the byte-identical check, which hashes scene markup in the committed copy and the working copy, to sweep every place, every castle room style, every costume and the imagination map, under fixed settings. Also time drags in three heavy scenes before starting. No step lands unless the sweep comes out identical. (2) <b>Room space.</b> One shared helper (at(X, Y, z), heights on the wall, shelves on the back and side walls, things on the floor, side doors) used by the hallway, the king's room, the cat room and the stable, in place of their copies. (3) <b>Residents.</b> One declaration per kind: the cat room's cats, the stable's horses, and next the kitchen's workers and the smith. From it come the settings keys, the defaults, the castleOf entry, the controls group, the show-when rules and the LFO listing. This is where ^ticket(92)'s cast meets it. (4) <b>LFO followers.</b> One registry of what follows which LFO and where it shows, driving mixChanged, the mixer's 'what follows it' list, and the scenes' LFO reads (sceneOpts). A new follower then cannot miss one of them, which is how the fairy house's bug happened. (5) <b>Room styles.</b> One entry per style: its label, drawing, exits, tone, theme and own settings. (6) <b>The recipes, in agent-instructions.md:</b> how to add a place, a castle room, a resident and an LFO follower, each naming its registry. Notes on single functions stay in the code. <b>Out of scope:</b> changing anything a player sees; renaming settings keys (saved friends must still load); the music engine. Each step is its own local commit, noted under Unreleased as a refactor rather than a feature, and timed. Nothing is pushed. ESTIMATE 45-90 min: refactoring with verification runs slower than drawing. It starts after ^ticket(93)'s stable; ^ticket(93)'s kitchen and smithy then build on step (3). Matthew will read it afterwards. ADDED 2026-10-15 (Matthew and M): a pass over drawing faults: lines past their shapes, lines ignoring the perspective, things hanging from nothing. A code scan found about 30, listed in ~/du-shots/drawing-faults-2026-10-15.md (local). The top ones: the castle rooms' and greenhouse's floor lines run up the walls; the tent's mesh window (Matthew's 'vent') ignores the perspective; the cat room's window leads cross its arch; the fairy wings' veins leave the wings; the tree room's lantern hangs from nothing. Check each on screen, using the routine now in the Dress Up agent instructions, and fix them; M's lantern catch is fixed already (3616b95). <b>2026-10-15T15:52:</b> Matthew: another one for tonight (bottom of the queue). <b>2026-10-15T17:09:</b> Matthew: new priority, now (not tonight). And at the same time: (a) during a drag, respect the scene's depth order: the layer order that stands for depth into the pseudo-3D scene, so the friend (or any NPC) dragged behind a thing is drawn behind it; (b) a formal list of every scene object that should be drawn on top of the main character, or any other NPC, when they are placed at a given position on the standable area. <b>2026-10-15T17:12:</b> Matthew: one more constraint on this ticket: (c) elbows and knees for the main character, like the other (non-main) characters that have elbows. No knees anywhere yet; they are wanted for animating more human motions: walking, running, climbing, crawling, swimming, dancing. <b>2026-10-15T17:14:</b> Matthew: to make (b) reviewable, each background provides its list of objects in the game, each with a visible (👁️) toggle to turn it on and off; compact chips, since the lists could be long. <br><b>Added 17:59:</b> Matthew: \"let's add a depth constraint to the size as shown -- indep of the setting chosen by the user (as another factor on top).\" and \"each scene already should have a setting for the 'default main char size'\" (SCENE_FIG).",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T11:31-06:00",
+     "from": "matthew",
+     "chars": 420,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T11:33-06:00",
+     "from": "claude",
+     "chars": 2300,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T11:33-06:00",
+     "from": "matthew",
+     "chars": 95,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T11:36-06:00",
+     "from": "matthew",
+     "chars": 520,
+     "asks": true
+    },
+    {
+     "at": "2026-10-15T11:38-06:00",
+     "from": "matthew",
+     "chars": 120,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T12:37-06:00",
+     "from": "claude",
+     "chars": 900,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T15:52-06:00",
+     "from": "matthew",
+     "chars": 40,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T17:09-06:00",
+     "from": "matthew",
+     "chars": 420,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T17:12-06:00",
+     "from": "matthew",
+     "chars": 330,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T17:14-06:00",
+     "from": "matthew",
+     "chars": 210,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T17:59-06:00",
+     "from": "matthew",
+     "chars": 220,
+     "asks": false
+    }
+   ],
+   "progress": "17:59: all six helper branches merged into main (local, not pushed) and every place checked on depth sheets; the lights rule applied (dark, glows, signs are front objects); camp night is a pool of firelight; greenhouse fountain at its pedestal; pictures sort by depth; the friend sized by depth (depthSize: (feet - vanish)/(arrival - vanish), castle rooms from roomFrame's eye, flat rooms -60, else 60, clamped 0.3-1.5). Sweep: all 20 costumes identical to 0.0.45; scenes all differ (expected). Drags: 0 rebuilds in every place, all as fast or faster than 0.0.45. Agent instructions and VERSIONS 0.0.46 drafted. Next: full depthsheet run -> objects.json -> OBJECTS.md, then commit, push, tag, Pages, live check, close.",
+   "tags": [],
+   "status": "done",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T18:06-06:00",
+   "outcome": "Released as Dress Up 0.0.46 (18:03, live). (a) The friend is drawn by depth during and after a drag: every standing thing in every place is a depth object, sorted when shown, and the friend goes behind whatever stands nearer than their feet; pictures and window views paint in the same order. (b) The formal list: dress-up/OBJECTS.md, 39 places and 371 objects, made from the depth sheets; each place lists its objects in its background tab as compact 👁️/🙈 chips with 🧍 where the friend stands, saved per place. The light and dark of a place are front objects, so the friend is always under them (the camp at night is a pool of firelight). (c) Elbow and knee sliders; arms and legs drawn through their joints, sleeves, pants, stockings and skirts following; identical at 0 (costume sweep unchanged). Added on the way: the friend smaller farther back, a factor on top of the size slider and the place's own size. Drags: no scene rebuilt in any place, all as fast as 0.0.45 or faster. Done with six parallel helper agents (about 147 agent-minutes) plus 54 minutes of wall clock, 17:09 to 18:03; it was tagged as an overnight long run. Left for later: each limb posed on its own (121), NPCs sized by depth, tree house rooms' side doors still painted after the furniture.",
+   "metrics": {
+    "open_minutes": 393,
+    "matthew_messages": 9,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 5575,
+    "tokens_est": 1393,
+    "sync_minutes_est": 12.0,
+    "work_minutes": 54.0
+   }
+  },
   {
    "id": 117,
    "area": "dress up",
@@ -2687,6 +2703,7 @@
   }
  ],
  "queue": [
+  119,
   121,
   122,
   91,
@@ -2700,10 +2717,9 @@
   118,
   106,
   104,
-  119,
   124,
   102
  ],
- "current_since": "2026-10-15T17:09:00-06:00",
+ "current_since": "2026-10-15T18:06-06:00",
  "current_waiting": null
 }
