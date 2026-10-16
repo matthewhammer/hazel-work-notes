@@ -339,8 +339,13 @@
    "url": "http://matthewhammer.org/hazel/performance-analysis/008/#method",
    "added": "2026-10-12",
    "tags": [
-    "long run"
-   ]
+    "long run",
+    "blocked on Matthew"
+   ],
+   "progress": "2026-10-15 22:47: BUILT, local only. Branch feat/2635-deeplink-outline in ~/hazel-ab-views, one commit 438812718b on #2635's head 032fe3aca6: ?outline=ux (or dev) picks the linked slide's outline mode, ?ux=arm_length,drawn the rows UX mode shows, by label (loose, any depth; unknown labels dropped); applied once over the saved view, then ordinary state. So ^report(8)'s B is now /?slide=livelit-playground-full-body&panel=none&outline=ux&ux=arm_length,drawn: 1 slider, 1 picture, the same state the click-through reached. scripts/outline_link_check.py (in the commit) checks five cases in headless Firefox: all pass (served at http://localhost:8353). Design note: DeepLink sits below the slide views (Copy URL uses it), so it only parses; Workspace resolves at RestorePins, which now also runs for a linked slide with no saved view. Not done: Copy URL does not yet write outline/ux into the link it builds. Waiting on Matthew: push it to #2635 (and #2597)?",
+   "work": {
+    "work_minutes": 23
+   }
   },
   {
    "id": 42,
@@ -520,8 +525,8 @@
   }
  ],
  "next_ticket": 132,
- "current_ticket": 25,
- "current_note": "Matthew is AFK until about 06:30. Done tonight: 91's four interleaved A/Bs and ^report(16)'s draft (http://localhost:8131/series/016/, local, waiting on Matthew to publish; 91 moved to the queue's end, 🪷). Now 25: a URL parameter that opens a slide in UX mode with chosen GUI rows (local branch of #2635). Then 24, 42 (stream, brook, swing), 127 (PR report), 128, 129, 130, 131, then the CI budgets. Local only; nothing posted to GitHub.",
+ "current_ticket": 24,
+ "current_note": "Matthew is AFK until about 06:30. Done tonight, waiting on his word (🪷, at the queue's end): 91's ^report(16) draft (http://localhost:8131/series/016/) and 25's outline deep link (local commit 438812718b). Now 24: open cells get the view memo (memo_view instead of live_html), local branch of #2635, measured. Then 42 (stream, brook, swing), 127 (PR report), 128, 129, 130, 131, then the CI budgets. Local only; nothing posted to GitHub.",
  "closed_tickets": [
   {
    "id": 126,
@@ -3150,7 +3155,6 @@
   }
  ],
  "queue": [
-  25,
   24,
   42,
   127,
@@ -3164,8 +3168,9 @@
   19,
   18,
   102,
-  91
+  91,
+  25
  ],
- "current_since": "2026-10-15T22:24:00-06:00",
+ "current_since": "2026-10-15T22:48:00-06:00",
  "current_waiting": null
 }
