@@ -456,12 +456,37 @@
     }
    ],
    "status": "open",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "progress": "2026-10-16 07:36: Dress Up 0.0.58 LIVE (6089880). Found: (1) fitPic read layout after every drawing, a forced layout of the whole page per move (about half of draw time); (2) a drag drew once per pointer move; (3) the picture's animations paused during drags (the ducks froze; it no longer bought anything); (4) the music was sent only 0.2 s ahead from a 25 ms timer, which drags held back up to ~0.2 s, skipping notes; (5) a press that started the music rebuilt the whole scene mid-drag; (6) no pointercancel handler. Fixed all six, in shared code (every place). Duck pond, per drawing, Chrome at 1920x1080 2x: drag into water 3.6-3.9 -> 1.7-1.9 ms, posing 2.7-3.1 -> 1.6-1.7, treading 4.0 -> 2.2-2.4; Firefox 4.8 -> 2.4, 3.5 -> 2.0, 4.4 -> 2.1; music feed's worst gap 81-218 -> 23-29 ms. Sweep vs 0.0.57: identical but the waterfall's treading noise. Caveat: on this laptop's headless browsers 0.0.57 was already near 60 fps; Matthew's slowness may also come from his browser or device. Waiting on Matthew to try 0.0.58.",
+   "work": {
+    "work_minutes": 48
+   }
+  },
+  {
+   "id": 134,
+   "area": "dress up",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T07:37-06:00",
+   "text": "<b>Dress Up: the version in the title, and new versions offered as a chip.</b> Matthew, 2026-10-16 07:38 (to do after the drag fix is bumped and deployed): (1) the Messed Up Dress Up title carries the version number and the date it was released; (2) new versions are discovered automatically, by checking GitHub Pages every minute; (3) when there is one, a chip next to the current version names it, and clicking it changes to that version, keeping the scene and the other settings. No pop-up: the chip appears, and the player clicks it when ready.",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T07:37-06:00",
+     "from": "matthew",
+     "chars": 420,
+     "asks": true
+    }
+   ],
+   "status": "open",
    "tags": []
   }
  ],
- "next_ticket": 134,
- "current_ticket": 133,
- "current_note": "07:21: Now ^ticket(133), Dress Up's performance when dragging, posing and treading (Matthew: slow, the duck pond stops animating, the music glitches); measuring first. Next ^ticket(132), the Body tab (sitting and facing still work, in the arms & legs tab; the new Pose tab lacks them). Still waiting on Matthew (🪷): 25, 24, 13, 14, 15, 19, 18, 102.",
+ "next_ticket": 135,
+ "current_ticket": 134,
+ "current_note": "07:38: Now ^ticket(134): Dress Up's version and release date in the title, and new versions offered as a chip (checked each minute). 0.0.58 (^ticket(133), the drag fix) is live; waiting on Matthew to try it. Then ^ticket(132), the Body tab.",
  "closed_tickets": [
   {
    "id": 127,
@@ -3321,6 +3346,7 @@
   }
  ],
  "queue": [
+  134,
   133,
   132,
   18,
@@ -3332,6 +3358,6 @@
   15,
   19
  ],
- "current_since": "2026-10-16T07:17:10-06:00",
+ "current_since": "2026-10-16T07:37:35-06:00",
  "current_waiting": null
 }
