@@ -459,25 +459,6 @@
    "tags": []
   },
   {
-   "id": 141,
-   "area": "dress up, game controller",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T09:43-06:00",
-   "text": "<b>Dress Up: the game controller as a video game's actions, not a puppet's animations.</b> Matthew: 'we still have animations, not actions, as a video game player would recognize it ... a kind of complex control system for puppets, where some choices look strange.' Instead: an arrow alone walks that way (from standing or sitting); the diagonals (NE, NW, SE, SW) work too, facing the way chosen from what they last faced (no diagonal postures yet: ^ticket(144)); four buttons (A, B, X, Y on his SNES-style controller): a short jump, a high jump, running (nothing without an arrow), and crouching down, or crawling with an arrow. In water, walking is swimming, and running is swimming fast (^ticket(143)). For now the default friend only.",
-   "source": "Matthew, 2026-10-16, in chat, after trying 0.0.67 with his SNES-style controller",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "log": [
-    {
-     "at": "2026-10-16T09:43-06:00",
-     "from": "matthew",
-     "chars": 900,
-     "asks": true
-    }
-   ],
-   "status": "open",
-   "tags": []
-  },
-  {
    "id": 143,
    "area": "dress up, game controller",
    "added": "2026-10-16",
@@ -494,7 +475,8 @@
     }
    ],
    "status": "open",
-   "tags": []
+   "tags": [],
+   "progress": "09:51: half done in 0.0.69 (^ticket(141)): with the controller, walking in water is swimming, running is swimming fast. Left: the two jumps in water (a pop up out of the water and back in; a dolphin dive, arms out in front)."
   },
   {
    "id": 144,
@@ -517,9 +499,40 @@
   }
  ],
  "next_ticket": 145,
- "current_ticket": 141,
- "current_note": "09:47: on ^ticket(141), the controller as actions: arrows walk (diagonals too), held run and crouch/crawl, A short jump, B high jump, swimming in water; a '🎯 set' per action in the 🎮 Controls tab learns a button. 0.0.68 (^ticket(142), two jumps) is live.",
+ "current_ticket": 143,
+ "current_note": "09:52: on ^ticket(143), the two jumps in water. Live: 0.0.68 (^ticket(142), two jumps) and 0.0.69 (^ticket(141), the controller as actions: Matthew can try it now). Then ^ticket(140), the feet walking toward and away.",
  "closed_tickets": [
+  {
+   "id": 141,
+   "area": "dress up, game controller",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T09:43-06:00",
+   "text": "<b>Dress Up: the game controller as a video game's actions, not a puppet's animations.</b> Matthew: 'we still have animations, not actions, as a video game player would recognize it ... a kind of complex control system for puppets, where some choices look strange.' Instead: an arrow alone walks that way (from standing or sitting); the diagonals (NE, NW, SE, SW) work too, facing the way chosen from what they last faced (no diagonal postures yet: ^ticket(144)); four buttons (A, B, X, Y on his SNES-style controller): a short jump, a high jump, running (nothing without an arrow), and crouching down, or crawling with an arrow. In water, walking is swimming, and running is swimming fast (^ticket(143)). For now the default friend only.",
+   "source": "Matthew, 2026-10-16, in chat, after trying 0.0.67 with his SNES-style controller",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T09:43-06:00",
+     "from": "matthew",
+     "chars": 900,
+     "asks": true
+    }
+   ],
+   "status": "done",
+   "tags": [],
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T09:52-06:00",
+   "outcome": "Dress Up 0.0.69 LIVE (9f09acc): the controller as a video game's actions: arrows walk (diagonals too; from standing, sitting, a seat; facing kept on a diagonal when it is one of its two ways, else the side one), held run (X) runs with an arrow, held crouch (Y) crouches or crawls, A short jump, B high jump (on top of walking, landing still walking), select back, start nearest doorway; in water walking swims, running swims fast; '🎯 set' learns a button per action; the pad changes the animation only when its input changes, so chips stand. Fixed: a crouch and the jumps now stand on their bent legs (grounded). Checked with a fake SNES-style pad, ~/du-shots/tools/padcheck2.py; r141/crouch2.png.",
+   "metrics": {
+    "open_minutes": 9,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 900,
+    "tokens_est": 225,
+    "sync_minutes_est": 0,
+    "work_minutes": 5.0
+   }
+  },
   {
    "id": 142,
    "area": "dress up, game controller",
@@ -3650,7 +3663,6 @@
   }
  ],
  "queue": [
-  141,
   143,
   140,
   133,
@@ -3663,6 +3675,6 @@
   15,
   19
  ],
- "current_since": "2026-10-16T09:47-06:00",
+ "current_since": "2026-10-16T09:52-06:00",
  "current_waiting": null
 }
