@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<meta name="dashboard-version" content="0b55177572e1">
+<meta name="dashboard-version" content="1e90d4a30fb6">
 <!-- theme: head begin -->
 <script>try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}</script>
 <!-- theme: head end -->
@@ -21,7 +21,8 @@
   h2, h3, tr[id] { scroll-margin-top: 12px; }
   /* The outline, as on fumola.org: beside the page when there is room
      (48rem and up), and behind a button at the top left when there is not. */
-  .outline { display: none; position: fixed; top: 0; left: 0; width: 15rem; height: 100vh; box-sizing: border-box;
+  :root { --outline-w: 15rem; }
+  .outline { display: none; position: fixed; top: 0; left: 0; width: var(--outline-w); height: 100vh; box-sizing: border-box;
     padding: 1.5rem 0.75rem 3rem 1rem; overflow-y: auto; overscroll-behavior: contain; background: Canvas;
     border-right: 1px solid var(--line); font-size: 0.82rem; line-height: 1.4; z-index: 15; scrollbar-width: thin; }
   .outline.is-open { display: block; width: auto; right: 0; padding: 4rem 1.25rem 3rem; font-size: 0.95rem; }
@@ -42,10 +43,24 @@
   .outline-toggle[aria-expanded="true"] .bars { display: none; }
   .outline-toggle[aria-expanded="true"] .ex { display: block; }
   @media (max-width: 47.99rem) { main { padding-top: 3.6rem; } }
+  /* (Matthew, 2026-10-16) beside the page, the outline can be hidden (« at
+     its top right, » to bring it back) and made wider or narrower by
+     dragging its right edge (double-click: as it was); this browser keeps both */
+  .outline-grip, .outline-hide, .outline-show { display: none; }
+  .outline-hide, .outline-show { position: fixed; top: 0.6rem; z-index: 20; width: 2rem; height: 2rem; align-items: center; justify-content: center;
+    padding: 0; background: Canvas; color: var(--muted); border: 1px solid var(--line); border-radius: 5px; cursor: pointer; font: 1.05rem/1 system-ui, sans-serif; }
+  .outline-hide:hover, .outline-show:hover { color: CanvasText; }
   @media (min-width: 48rem) {
     .outline { display: block; }
     .outline-toggle { display: none; }
-    main { margin-left: 15rem; padding: 24px 24px 60px; }
+    main { margin-left: var(--outline-w); padding: 24px 24px 60px; }
+    .outline-grip { display: block; position: fixed; top: 0; left: calc(var(--outline-w) - 3px); width: 7px; height: 100vh; z-index: 16; cursor: col-resize; touch-action: none; }
+    .outline-grip:hover, .outline-grip.dragging { background: color-mix(in srgb, var(--line) 70%, transparent); }
+    .outline-hide { display: flex; left: calc(var(--outline-w) - 2.6rem); }
+    html.outline-collapsed .outline, html.outline-collapsed .outline-grip, html.outline-collapsed .outline-hide { display: none; }
+    html.outline-collapsed main { margin-left: 0; padding-left: 3.4rem; }
+    html.outline-collapsed .outline-show { display: flex; left: 0.6rem; }
+    body.dragging-outline { cursor: col-resize; user-select: none; }
   }
   table { border-collapse: collapse; width: 100%; max-width: 1200px; margin-bottom: 8px; }
   /* words wrap whole; only long code names (branches) may break anywhere,
