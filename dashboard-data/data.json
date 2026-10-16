@@ -567,7 +567,7 @@
    ],
    "status": "open",
    "tags": [],
-   "progress": "12:41: TWO FIXES, uncommitted in ~/kids-choice-games: (1) wading draws the friend as two clipped copies, not through the water-line mask; (2) draw() writes the picture's viewBox only when it changes (writing it, even unchanged, re-rastered the whole picture every drawing: castle walk raster 2.25 -> 0.4 s per thread). Gate at 1920x1080: 9 of 10 pass (castle walk 48.7 -> 59.7, pond walk 51.7 -> 60, pond drag 54.7 -> 59.7, witch drag 55.6 -> 56.3); FAILS: castle drag 48.9 (0.0.74: 45.8, so not new). Ruled out for the castle drag: animations (all paused 50.6), the sun, portal hover filter, hit testing, pointer capture, text selection, SVG text, scene rebuilds; walking with the mouse moving holds 59.7, a held press moving 1 px drops to 45. Pictures: moat and pond match 0.0.75 (a thin waterline seam only)."
+   "progress": "13:35: RELEASED Dress Up 0.0.76 (8d81a39, tag dress-up-0.0.76; Pages green, live checked) on Matthew's word with the castle drag still failing: the water mask replaced by two clipped copies, and #pic's viewBox written only when it changes. Gate on 0.0.76 at 1920x1080: castle walk 59.7, castle drag 47 (FAIL, 45.8 in 0.0.74), witch's woods walk 60 / drag 55, witch's hut 60/60, healer's 60/60, pond 60/59.3. Now: the castle drag (a held press moving 1 px: 45 fps; walking with the mouse moving: 59.7)."
   },
   {
    "id": 152,
@@ -593,12 +593,12 @@
    ],
    "status": "open",
    "tags": [],
-   "progress": "12:24: BUILT ~/du-shots/tools/fpsgate.mjs: his five scenes (castle, witch's woods, witch's hut, healer's hut, swimming in the duck pond), each a controller walk and a real-mouse drag, 3 runs, median >= 55 fps, exit 1 on any failure; W/H/DPR, TWEAK, OUT. At 1280x800 all pass (castle 56-58); at 1920x1080 4 of 10 fail (castle walk 48.7, drag 45.8; pond 51.7, 54.7; witch drag 55.6), which matches what Matthew sees: the gate runs at 1920x1080. Results in ~/du-shots/fps/. Next: into the release steps (agent-instructions.md) once 151 passes it."
+   "progress": "13:35: IN THE RELEASE STEPS (agent-instructions.md, 0.0.76): W=1920 H=1080 fpsgate.mjs before every release; results kept in ~/du-shots/fps/<version>.json; dragtrace.mjs for finding a cost. First used for 0.0.76 (9 of 10 pass; castle drag released on his word)."
   }
  ],
  "next_ticket": 153,
  "current_ticket": 151,
- "current_note": "12:41: 🪷 waiting on Matthew: release 0.0.76 with the walk fixes while the castle drag still fails the gate (49 fps, it was 46 before), or hold it until that is fixed too?",
+ "current_note": "13:35: Dress Up 0.0.76 LIVE (walks smooth in the moat and the pond). Servers: 8000 dashboard, 8133 Dress Up (0.0.76), 8311 #2597, 8341 #2635. Now on the castle drag (47 fps), ^ticket(151).",
  "closed_tickets": [
   {
    "id": 146,
