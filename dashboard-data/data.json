@@ -484,7 +484,7 @@
    "tags": [
     "blocked on Matthew"
    ],
-   "progress": "15:37: HALF IN: his laptop (Firefox 157, 1.875x screen) draws in 1.0 ms; headless Chrome on the same laptop 0.6 ms (4.2 at x6, 8.1 at x12). So the gate's factor = the black laptop's drawing time / 0.6. 🪷 Waiting on the black laptop's line. 15:34: 🪷 WAITING ON MATTHEW: run 🧪 this computer's speed (⚙️ Advanced, Dress Up 0.0.82, d7fae25) on his laptop and on the black laptop and paste both lines; the ratio of the drawing times is the slowdown, and it sets the gate's black-laptop tier (CPU=). Headless Chrome here: a drawing 0.6 ms at 1x, 4.2 at 6x, 8.1 at 12x. At 12x the empty room still walks at 52-58 fps headless, longest gap 83 ms: his second-long pauses are not reproduced, so the black laptop's trouble may not be its CPU alone (graphics, memory and garbage collection, its browser); the check's longest-pause numbers will say. Earlier (0.0.81): moved()/settle(), at most 30 drawings a second on a slow computer, showObjects writes only changes."
+   "progress": "15:44: 🪷 waiting on the black laptop's 🧪 line (Dress Up 0.0.83: measured with the default friend, music off; '📝 then paste it here' opens the pad, which Claude reads at /export/txt). His laptop: 1.0 ms (Firefox 157). The gate's factor = the black laptop's drawing / 0.6 (headless Chrome here)."
   },
   {
    "id": 164,
@@ -504,7 +504,7 @@
    ],
    "status": "open",
    "tags": [],
-   "progress": "15:34: MEASURED, nothing shipped (headless Chrome, CPU x6, 1920x1080). The pond with the friend standing still: scenery moving 39.7 fps, frozen 60 (the sun's 12 width-pulsing rays alone 53.6; the ducks' and reeds' 25 transforms alone 54.3). Walking on dry ground, scenery frozen: 40.6; the friend in an overlay svg (prototype ~/du-shots/proto164, its defs moved too): 47.1; separate compositing layers: no gain. Swimming, scenery frozen: 23; no wake rings 34; no faint underwater copy 29; neither 39. So the layering alone does not get the pond to 55: the scenery's animations, the friend's water effects (wake rings with animations made anew every drawing, two copies) and moving over a busy place all cost. Next, once ^ticket(163)'s factor is known: 🌀 moving scenery off on a slow computer (frozen scenery: no animation ticks), cheaper wake rings, then the overlay if it still counts."
+   "progress": "15:44: SHIPPED part in Dress Up 0.0.83 (858f369): on a slow computer (slowFlag: drawing over 6 ms on average) the places hold still (scene animations taken out, CSS animations stopped, no fumes), the wake rings are still and the faint copy under the water is left out; ⚙️ Advanced '🌀 moving scenery and water on a slow computer' overrides. At 6x: the pond 17 -> 37 walking, 52 dragging (gate needs 55). Not solved: moving over a busy place (dry and frozen at 6x: 40.6; the friend in an overlay svg 47.1). What more it needs waits on the black laptop's factor (^ticket(163))."
   },
   {
    "id": 165,
@@ -664,7 +664,7 @@
  ],
  "next_ticket": 167,
  "current_ticket": 163,
- "current_note": "15:34: 🪷 waiting on Matthew: run 🧪 this computer's speed (⚙️ Advanced, Dress Up 0.0.82) on his laptop and on the black laptop, and paste both lines (^ticket(163)). Meanwhile ^ticket(164) measured: the pond needs its scenery frozen on a slow computer and cheaper water, not only layers.",
+ "current_note": "15:44: Dress Up 0.0.83 LIVE (places held still on a slow computer; the speed check with the default friend, a pad to paste into). 🪷 waiting on Matthew: the black laptop's 🧪 line, pasted at the pad (^ticket(163)). Then ^ticket(164)'s next step is set by that factor.",
  "closed_tickets": [
   {
    "id": 146,
