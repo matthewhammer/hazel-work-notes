@@ -542,31 +542,6 @@
    ]
   },
   {
-   "id": 119,
-   "area": "dress up",
-   "added": "2026-10-15",
-   "opened": "2026-10-15T17:27-06:00",
-   "text": "<b>Pages for Dress Up under matthewhammer.org/hazel.</b> Matthew, for later tonight: (1) a page explaining Dress Up as a prototyping platform for livelits, and a creative place for playful experiences and feedback from real children: N and M, and maybe someday their friends and family (cousins, etc.); (2) the latest MP3 track list, with an in-browser player and a track selector; (3) a nice-looking way to view the pictures in the archive, with a link to the full, raw list Matthew has been reviewing. (The archives: the public dress-up-music and dress-up-pictures repos, by day, ^ticket(106).) <br><b>18:06:</b> Matthew pulled it in from tonight's long runs: \"let's pull in ... ticket-119 next.\"",
-   "source": "Matthew, 2026-10-15",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-15T17:27-06:00",
-     "from": "matthew",
-     "chars": 520,
-     "asks": false
-    },
-    {
-     "at": "2026-10-15T18:06-06:00",
-     "from": "matthew",
-     "chars": 70,
-     "asks": false
-    }
-   ],
-   "status": "open",
-   "progress": "18:17: built and checked locally (http://localhost:8133/site/hazel/dress-up/): hazel/dress-up/index.html (the explainer, in Matthew's voice), music.html (player: list, repeat, shuffle, day picker, lock-screen controls), pictures.html (group chips, thumbnails, full-size viewer with swipe and arrow keys, the raw list linked); the /hazel/ page links them. Archives: thumbs.mjs makes 480-wide WebP thumbnails (266, 4.2 MB, 42 s); days_index.mjs writes days.json; archive-today.sh runs both. Committed locally in matthewhammer.github.io (49114f8), dress-up-pictures (81c6e6c), dress-up-music (bce8822), kids-choice-games (0e5649a). Waiting on Matthew to read the explainer and say publish."
-  },
-  {
    "id": 120,
    "area": "perf",
    "added": "2026-10-15",
@@ -667,9 +642,46 @@
   }
  ],
  "next_ticket": 125,
- "current_ticket": 119,
- "current_note": "Waiting on Matthew: ticket 119's Dress Up pages are ready to publish (preview at localhost:8133/site/hazel/dress-up/); the explainer speaks in his voice, so he reads it first.",
+ "current_ticket": 121,
+ "current_note": "121 (pose the friend by touch) and 122 (water: bottom half see-through + a wake) are wanted this evening. Reading the friend's joint and drag code first.",
  "closed_tickets": [
+  {
+   "id": 119,
+   "area": "dress up",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T17:27-06:00",
+   "text": "<b>Pages for Dress Up under matthewhammer.org/hazel.</b> Matthew, for later tonight: (1) a page explaining Dress Up as a prototyping platform for livelits, and a creative place for playful experiences and feedback from real children: N and M, and maybe someday their friends and family (cousins, etc.); (2) the latest MP3 track list, with an in-browser player and a track selector; (3) a nice-looking way to view the pictures in the archive, with a link to the full, raw list Matthew has been reviewing. (The archives: the public dress-up-music and dress-up-pictures repos, by day, ^ticket(106).) <br><b>18:06:</b> Matthew pulled it in from tonight's long runs: \"let's pull in ... ticket-119 next.\"",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T17:27-06:00",
+     "from": "matthew",
+     "chars": 520,
+     "asks": false
+    },
+    {
+     "at": "2026-10-15T18:06-06:00",
+     "from": "matthew",
+     "chars": 70,
+     "asks": false
+    }
+   ],
+   "status": "done",
+   "progress": "18:17: built and checked locally (http://localhost:8133/site/hazel/dress-up/): hazel/dress-up/index.html (the explainer, in Matthew's voice), music.html (player: list, repeat, shuffle, day picker, lock-screen controls), pictures.html (group chips, thumbnails, full-size viewer with swipe and arrow keys, the raw list linked); the /hazel/ page links them. Archives: thumbs.mjs makes 480-wide WebP thumbnails (266, 4.2 MB, 42 s); days_index.mjs writes days.json; archive-today.sh runs both. Committed locally in matthewhammer.github.io (49114f8), dress-up-pictures (81c6e6c), dress-up-music (bce8822), kids-choice-games (0e5649a). Waiting on Matthew to read the explainer and say publish.",
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T18:27-06:00",
+   "outcome": "Published 18:22: matthewhammer.org/hazel/dress-up/ (explainer: livelit prototyping + a creative place with M and N), music.html (newest day's tunes, player with list/repeat/shuffle, Media Session, #tune links), pictures.html (day select, group chips, viewer with swipe/arrows, PNG/SVG/settings links, link to the full raw lists). Archives gained days.json and 480px WebP thumbs (thumbs.mjs, run by archive-today.sh). /hazel/ links all three. Pages runs green, live check 18:27.",
+   "metrics": {
+    "open_minutes": 61,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 590,
+    "tokens_est": 147,
+    "sync_minutes_est": 0,
+    "work_minutes": 21.0
+   }
+  },
   {
    "id": 99,
    "area": "dress up",
@@ -2704,7 +2716,6 @@
   }
  ],
  "queue": [
-  119,
   121,
   122,
   91,
@@ -2721,6 +2732,6 @@
   124,
   102
  ],
- "current_since": "2026-10-15T18:06-06:00",
+ "current_since": "2026-10-15T18:27:43-06:00",
  "current_waiting": null
 }
