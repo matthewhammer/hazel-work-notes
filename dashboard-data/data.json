@@ -415,31 +415,6 @@
    ]
   },
   {
-   "id": 132,
-   "area": "dress up",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T07:15-06:00",
-   "text": "<b>Dress Up: a Body tab, with poses and animations.</b> Matthew, 2026-10-16 07:15: rename the \"🤸 Pose\" tab (0.0.57, ^ticket(129)) to \"Body\", with two sub-menus of chips: (1) <b>poses</b>, what we have today (standing, cross-legged meditating, dancing), plus ordinary sitting, which 'seems missing now', and facing each side; (2) <b>animations</b>, within that pose (an animation may break the pose a bit to animate): walking, running, swimming (treading water for now, which 'also seems lost ATM'), crawling on the ground, and climbing up a ladder. First check the two possible regressions in 0.0.57 (sitting, treading water). <b>07:17, Matthew:</b> 'the latest pose menu has lost many poses we had last night (facing different directions, sitting ordinary, with legs down and eyes open, and swimming animated).' So the poses sub-menu must carry facing us, to the left and to the right, ordinary sitting (legs down, eyes open), and swimming animated must work from it.",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "log": [
-    {
-     "at": "2026-10-16T07:15-06:00",
-     "from": "matthew",
-     "chars": 380,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T07:16-06:00",
-     "from": "matthew",
-     "chars": 180,
-     "asks": true
-    }
-   ],
-   "status": "open",
-   "tags": []
-  },
-  {
    "id": 133,
    "area": "dress up, performance",
    "added": "2026-10-16",
@@ -466,9 +441,46 @@
   }
  ],
  "next_ticket": 136,
- "current_ticket": 132,
- "current_note": "07:44: Live today: Dress Up 0.0.58 (drag speed, ^ticket(133): waiting on Matthew to try it), 0.0.59 (the version chip, ^ticket(134)), 0.0.60 (drag by the body + hover glows, ^ticket(135)). Next: ^ticket(132), the Body tab (poses incl. sitting and facing each way; animations). Waiting on Matthew (🪷): 133, 18, 102, 25, 24, 13, 14, 15, 19.",
+ "current_ticket": 133,
+ "current_note": "07:57: Live today: Dress Up 0.0.58 (drag speed, ^ticket(133): waiting on Matthew to try it), 0.0.59 (version chip, ^ticket(134)), 0.0.60 (drag by the body + hover glows, ^ticket(135)), 0.0.61 (the Body tab with poses, facing and animations, ^ticket(132)). The queue now holds only tickets waiting on Matthew (🪷): 133, 18, 102, 25, 24, 13, 14, 15, 19.",
  "closed_tickets": [
+  {
+   "id": 132,
+   "area": "dress up",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T07:15-06:00",
+   "text": "<b>Dress Up: a Body tab, with poses and animations.</b> Matthew, 2026-10-16 07:15: rename the \"🤸 Pose\" tab (0.0.57, ^ticket(129)) to \"Body\", with two sub-menus of chips: (1) <b>poses</b>, what we have today (standing, cross-legged meditating, dancing), plus ordinary sitting, which 'seems missing now', and facing each side; (2) <b>animations</b>, within that pose (an animation may break the pose a bit to animate): walking, running, swimming (treading water for now, which 'also seems lost ATM'), crawling on the ground, and climbing up a ladder. First check the two possible regressions in 0.0.57 (sitting, treading water). <b>07:17, Matthew:</b> 'the latest pose menu has lost many poses we had last night (facing different directions, sitting ordinary, with legs down and eyes open, and swimming animated).' So the poses sub-menu must carry facing us, to the left and to the right, ordinary sitting (legs down, eyes open), and swimming animated must work from it.",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T07:15-06:00",
+     "from": "matthew",
+     "chars": 380,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T07:16-06:00",
+     "from": "matthew",
+     "chars": 180,
+     "asks": true
+    }
+   ],
+   "status": "done",
+   "tags": [],
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T07:56-06:00",
+   "outcome": "Dress Up 0.0.61 LIVE (37c6fa3): the Body tab, first: poses (standing, sitting with legs down and eyes open, cross-legged meditating, dancing), facing (toward us, left, right; moved here with sitting), animations (walking, running, swimming = treading anywhere, crawling, climbing a ladder), in time with the music via LFO B. moveNow generalizes treading (offsets on the pose, lift, a turn about the hips, a ladder); crawling's turn comes from the friend's own arm, thigh and body lengths so hands and knees land together. Checked: sheets in Firefox (r42/anims.png, crawl3.png), each animation 30 drawings/s at 1.3-1.9 ms in Chrome, sweep vs 0.0.60 identical but the waterfall noise.",
+   "metrics": {
+    "open_minutes": 42,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 560,
+    "tokens_est": 140,
+    "sync_minutes_est": 1.0,
+    "work_minutes": 30.0
+   }
+  },
   {
    "id": 135,
    "area": "dress up",
@@ -3390,7 +3402,6 @@
   }
  ],
  "queue": [
-  132,
   133,
   18,
   102,
@@ -3401,6 +3412,6 @@
   15,
   19
  ],
- "current_since": "2026-10-16T07:44:34-06:00",
+ "current_since": "2026-10-16T07:56:31-06:00",
  "current_waiting": null
 }
