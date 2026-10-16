@@ -504,6 +504,32 @@
    ]
   },
   {
+   "id": 120,
+   "area": "perf",
+   "added": "2026-10-15",
+   "opened": "2026-10-15T17:28-06:00",
+   "text": "<b>A report draft: Dress Up's performance today against what Hazel can handle today.</b> Matthew: compare the two (the plain-JS game, the prototype, and the same features as livelits in Hazel), with speculation about what can bridge the gap over the next 11 months, the duration of Matthew's job with Hazel as far as he knows now. A draft (likely a ^report in the performance series, measured, with its data embedded; noise floor and baselines stated). <b>2026-10-15T19:15: DRAFT ready for Matthew's review</b>: ^report(15) 'Dress Up and its livelits, side by side', http://localhost:8131/series/015/ (local commit 54c2f21 in ~/hazel-perf-report, not pushed). Measured this evening, headless Firefox 157, 8 drags of 1.5 s per set-up: Dress Up 0.0.48 never froze (longest gap 17 ms; 33 ms in the witch's woods), picture final at release; #2635 at 032fe3aca6: Kids' Choice froze 0.11 s, final 0.13 s after release; Full Body froze 2.9 s (whole program) / 3.2 s (UX), final 1.1 / 1.2 s after. Per change: Dress Up 1.4 ms, Kids' 225 ms, Full Body 1,010 ms (profiled). Then-and-now figure, and a labelled guess for Sept 2027 (Kids'-sized 30-60 ms, Full Body 100-300 ms) with the steps it rests on. Took about 23 min (18:52 to 19:15).",
+   "source": "Matthew, 2026-10-15",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-15T17:28-06:00",
+     "from": "matthew",
+     "chars": 330,
+     "asks": false
+    }
+   ],
+   "status": "open",
+   "tags": [
+    "blocked on Matthew"
+   ]
+  }
+ ],
+ "next_ticket": 126,
+ "current_ticket": 106,
+ "current_note": "Live tonight: Dress Up 0.0.47 to 0.0.55 (posing, water, treading, facing + sitting, ears, wings, seats, smooth witch's places). Now on 106 (🌙): re-making today's pictures day (2026/10/15) on 0.0.55, replacing 0.0.36's from 14:36; one headless browser, nothing else running.",
+ "closed_tickets": [
+  {
    "id": 118,
    "area": "dress up",
    "added": "2026-10-15",
@@ -531,38 +557,24 @@
      "asks": false
     }
    ],
-   "status": "open",
+   "status": "done",
    "progress": "17:09 — paused for ^ticket(99), Matthew's new priority; the cause is found and a fix is proven, not yet built in. 416 of the witch's woods' 463 animations (312 of the hut's 326) are the fumes' double helix: each segment is a line with four SMIL animations (x1, x2, stroke-width, stroke-opacity). Measured idle, 2 s, by stripping each kind: x1/x2 alone cost nothing (60 fps); stroke-width and stroke-opacity, CSS properties, are the whole cost (alone: 7 fps), since Chrome forces a style recalculation for each SMIL animation of a CSS property every frame. Prototype: x1/x2 stay SMIL, width and opacity become Web Animations started at the picture clock's time: idle 7 fps -> mostly 60 (p50 17 ms; long tasks 2.0 s -> 0.13 s per 2 s). To do: build that into helixSvg (start each from pic.getCurrentTime() after a mount; pause with the drag and resync on letting go), check frames match the SMIL version, release.",
    "tags": [
     "long run"
-   ]
-  },
-  {
-   "id": 120,
-   "area": "perf",
-   "added": "2026-10-15",
-   "opened": "2026-10-15T17:28-06:00",
-   "text": "<b>A report draft: Dress Up's performance today against what Hazel can handle today.</b> Matthew: compare the two (the plain-JS game, the prototype, and the same features as livelits in Hazel), with speculation about what can bridge the gap over the next 11 months, the duration of Matthew's job with Hazel as far as he knows now. A draft (likely a ^report in the performance series, measured, with its data embedded; noise floor and baselines stated). <b>2026-10-15T19:15: DRAFT ready for Matthew's review</b>: ^report(15) 'Dress Up and its livelits, side by side', http://localhost:8131/series/015/ (local commit 54c2f21 in ~/hazel-perf-report, not pushed). Measured this evening, headless Firefox 157, 8 drags of 1.5 s per set-up: Dress Up 0.0.48 never froze (longest gap 17 ms; 33 ms in the witch's woods), picture final at release; #2635 at 032fe3aca6: Kids' Choice froze 0.11 s, final 0.13 s after release; Full Body froze 2.9 s (whole program) / 3.2 s (UX), final 1.1 / 1.2 s after. Per change: Dress Up 1.4 ms, Kids' 225 ms, Full Body 1,010 ms (profiled). Then-and-now figure, and a labelled guess for Sept 2027 (Kids'-sized 30-60 ms, Full Body 100-300 ms) with the steps it rests on. Took about 23 min (18:52 to 19:15).",
-   "source": "Matthew, 2026-10-15",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-15T17:28-06:00",
-     "from": "matthew",
-     "chars": 330,
-     "asks": false
-    }
    ],
-   "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ]
-  }
- ],
- "next_ticket": 126,
- "current_ticket": 118,
- "current_note": "Live tonight: Dress Up 0.0.47 to 0.0.54 (posing, water, treading, facing + sitting, ears, wings, seats). Now on 118 (🌙): the witch's places draw at about 7 fps idle; their fumes' width and opacity animations become Web Animations timed to the picture's clock, as the prototype did (7 to ~60 fps).",
- "closed_tickets": [
+   "closed": "2026-10-15",
+   "closed_at": "2026-10-15T20:35-06:00",
+   "outcome": "Released as Dress Up 0.0.55 at 20:34 (b237b6d, tag dress-up-0.0.55; Pages green, live check 20:35). As the 17:09 prototype found: the fumes' stroke-width and stroke-opacity (CSS properties) leave SMIL for Web Animations started at the picture clock's phase (startHelix after a mount; helixSync pauses with a drag and resyncs on letting go); x1/x2 stay SMIL. Headless Chromium idle, 2 s: witch's hut 27 -> 119 frames (long tasks 2.0 s -> 0), woods 34 -> 86 (1.3 s -> 0); SMIL counts 326 -> 170, 463 -> 255. Drags (drag.mjs WARM AFTER): hut 1.73 -> 1.22 s, woods 2.60 -> 2.37 s, 0 rebuilds. Widths/opacities equal to the SMIL version within 5% at four clock times. Headless Firefox was 60 fps idle before and after. Not measured on the iPad (Safari).",
+   "metrics": {
+    "open_minutes": 213,
+    "matthew_messages": 3,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 180,
+    "tokens_est": 45,
+    "sync_minutes_est": 7.0,
+    "work_minutes": 7.0
+   }
+  },
   {
    "id": 50,
    "area": "dress up",
@@ -2842,7 +2854,6 @@
   }
  ],
  "queue": [
-  118,
   106,
   104,
   91,
@@ -2852,6 +2863,6 @@
   120,
   102
  ],
- "current_since": "2026-10-15T20:29:09-06:00",
+ "current_since": "2026-10-15T20:36:13-06:00",
  "current_waiting": null
 }
