@@ -459,29 +459,10 @@
    "tags": [
     "blocked on Matthew"
    ],
-   "progress": "2026-10-16 07:36: Dress Up 0.0.58 LIVE (6089880). Found: (1) fitPic read layout after every drawing, a forced layout of the whole page per move (about half of draw time); (2) a drag drew once per pointer move; (3) the picture's animations paused during drags (the ducks froze; it no longer bought anything); (4) the music was sent only 0.2 s ahead from a 25 ms timer, which drags held back up to ~0.2 s, skipping notes; (5) a press that started the music rebuilt the whole scene mid-drag; (6) no pointercancel handler. Fixed all six, in shared code (every place). Duck pond, per drawing, Chrome at 1920x1080 2x: drag into water 3.6-3.9 -> 1.7-1.9 ms, posing 2.7-3.1 -> 1.6-1.7, treading 4.0 -> 2.2-2.4; Firefox 4.8 -> 2.4, 3.5 -> 2.0, 4.4 -> 2.1; music feed's worst gap 81-218 -> 23-29 ms. Sweep vs 0.0.57: identical but the waterfall's treading noise. Caveat: on this laptop's headless browsers 0.0.57 was already near 60 fps; Matthew's slowness may also come from his browser or device. Waiting on Matthew to try 0.0.58.",
+   "progress": "2026-10-16 07:36: Dress Up 0.0.58 LIVE (6089880). Found: (1) fitPic read layout after every drawing, a forced layout of the whole page per move (about half of draw time); (2) a drag drew once per pointer move; (3) the picture's animations paused during drags (the ducks froze; it no longer bought anything); (4) the music was sent only 0.2 s ahead from a 25 ms timer, which drags held back up to ~0.2 s, skipping notes; (5) a press that started the music rebuilt the whole scene mid-drag; (6) no pointercancel handler. Fixed all six, in shared code (every place). Duck pond, per drawing, Chrome at 1920x1080 2x: drag into water 3.6-3.9 -> 1.7-1.9 ms, posing 2.7-3.1 -> 1.6-1.7, treading 4.0 -> 2.2-2.4; Firefox 4.8 -> 2.4, 3.5 -> 2.0, 4.4 -> 2.1; music feed's worst gap 81-218 -> 23-29 ms. Sweep vs 0.0.57: identical but the waterfall's treading noise. Caveat: on this laptop's headless browsers 0.0.57 was already near 60 fps; Matthew's slowness may also come from his browser or device. Waiting on Matthew to try 0.0.58. || 07:40: then 0.0.59 (^ticket(134), the version chip) went live on top of it; still waiting on Matthew to try the drag fix on his device.",
    "work": {
     "work_minutes": 48
    }
-  },
-  {
-   "id": 134,
-   "area": "dress up",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T07:37-06:00",
-   "text": "<b>Dress Up: the version in the title, and new versions offered as a chip.</b> Matthew, 2026-10-16 07:38 (to do after the drag fix is bumped and deployed): (1) the Messed Up Dress Up title carries the version number and the date it was released; (2) new versions are discovered automatically, by checking GitHub Pages every minute; (3) when there is one, a chip next to the current version names it, and clicking it changes to that version, keeping the scene and the other settings. No pop-up: the chip appears, and the player clicks it when ready.",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "log": [
-    {
-     "at": "2026-10-16T07:37-06:00",
-     "from": "matthew",
-     "chars": 420,
-     "asks": true
-    }
-   ],
-   "status": "open",
-   "tags": []
   },
   {
    "id": 135,
@@ -500,13 +481,45 @@
     }
    ],
    "status": "open",
-   "tags": []
+   "tags": [],
+   "progress": "2026-10-16 07:41: fix written, testing: a joint wins a press only within its own size (a hand or foot plus 8 px for a mouse or pen, 18 for a finger; an elbow or knee within its limb's width), so the torso gets the rest; under a mouse or pen, the orb a press would pose glows, or the body's outline when a press would move the friend."
   }
  ],
  "next_ticket": 136,
- "current_ticket": 134,
- "current_note": "07:38: Now ^ticket(134): Dress Up's version and release date in the title, and new versions offered as a chip (checked each minute). 0.0.58 (^ticket(133), the drag fix) is live; waiting on Matthew to try it. Then ^ticket(132), the Body tab.",
+ "current_ticket": 135,
+ "current_note": "07:42: Now ^ticket(135): pressing the torso grabbed an arm (joint hit circles of 30 px covered the torso in places); fix written, testing, with hover glows. Live today: Dress Up 0.0.58 (^ticket(133), drag speed: waiting on Matthew to try it) and 0.0.59 (^ticket(134), the version chip). Next: ^ticket(132), the Body tab. Waiting on Matthew (🪷): 133, 18, 102, 25, 24, 13, 14, 15, 19.",
  "closed_tickets": [
+  {
+   "id": 134,
+   "area": "dress up",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T07:37-06:00",
+   "text": "<b>Dress Up: the version in the title, and new versions offered as a chip.</b> Matthew, 2026-10-16 07:38 (to do after the drag fix is bumped and deployed): (1) the Messed Up Dress Up title carries the version number and the date it was released; (2) new versions are discovered automatically, by checking GitHub Pages every minute; (3) when there is one, a chip next to the current version names it, and clicking it changes to that version, keeping the scene and the other settings. No pop-up: the chip appears, and the player clicks it when ready.",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T07:37-06:00",
+     "from": "matthew",
+     "chars": 420,
+     "asks": true
+    }
+   ],
+   "status": "done",
+   "tags": [],
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T07:41-06:00",
+   "outcome": "Dress Up 0.0.59 LIVE (36f3259, 07:40): the title shows the version and release date; every minute the page asks for version.json past every cache and offers a newer number as a chip after its own; clicking it loads the new version at ?v=X.Y.Z, keeping the friend, the place and every setting. Tested locally with a fake newer version.json (chip shown, the switch kept the place, position, smile and costume). Releases now set VERSION in index.html and version.json together (agent-instructions).",
+   "metrics": {
+    "open_minutes": 5,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 420,
+    "tokens_est": 105,
+    "sync_minutes_est": 0,
+    "work_minutes": 12.0
+   }
+  },
   {
    "id": 127,
    "area": "performance",
@@ -3365,10 +3378,9 @@
   }
  ],
  "queue": [
-  134,
   135,
-  133,
   132,
+  133,
   18,
   102,
   25,
@@ -3378,6 +3390,6 @@
   15,
   19
  ],
- "current_since": "2026-10-16T07:37:35-06:00",
+ "current_since": "2026-10-16T07:41:46-06:00",
  "current_waiting": null
 }
