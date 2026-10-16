@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+"""Close a ticket the way agent-instructions.md says: move it from tickets to
+closed_tickets with its status and outcome, stamp closed_at, and compute its
+metrics from its log (and its timed work, when it has some).
+
+  python3 close_ticket.py <id> <status> <outcome> [--work-minutes M]"""
+import json, os, sys
+from datetime import datetime
+DATA = os.path.expanduser("~/localhost-index/data.json")
+tid, status, outcome = int(sys.argv[1]), sys.argv[2], sys.argv[3]
+work = float(sys.argv[sys.argv.index("--work-minutes") + 1]) if "--work-minutes" in sys.argv else None
+d = json.load(open(DATA))
+t = next(t for t in d["tickets"] if t["id"] == tid)
+now = datetime.now().astimezone()
+t.update(status=status, closed=now.date().isoformat(), closed_at=now.isoformat(timespec="minutes"), outcome=outcome)
+log = sorted(t.get("log", []), key=lambda e: e["at"])
+ts = [datetime.fromisoformat(e["at"]) for e in log]
+gaps = [(b - a).total_seconds() / 60 for a, b in zip(ts, ts[1:])]
+m = {"open_minutes": round((now - datetime.fromisoformat(t["opened"])).total_seconds() / 60) if t.get("opened") else None,
+     "matthew_messages": sum(e["from"] == "matthew" for e in log),
+     "questions_to_matthew": sum(e["from"] == "claude" and e.get("asks") for e in log),
+     "chars_exchanged": sum(e.get("chars", 0) for e in log)}
+m["tokens_est"] = m["chars_exchanged"] // 4
+m["sync_minutes_est"] = round(sum(g for g in gaps if g < 10), 1)
+if work is None and isinstance(t.get("work"), dict): work = t["work"].get("work_minutes")
+if work is not None: m["work_minutes"] = work
+t["metrics"] = m
+d["tickets"].remove(t); d["closed_tickets"].insert(0, t)
+d["queue"] = [q for q in d["queue"] if q != tid]
+if d.get("current_ticket") == tid: d["current_ticket"] = d["queue"][0] if d["queue"] else None
+json.dump(d, open(DATA, "w"), indent=1, ensure_ascii=False)
+print(tid, status, m)
