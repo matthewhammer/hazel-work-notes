@@ -550,71 +550,6 @@
    "progress": "11:21: LIVE in 0.0.74 (17f21e0) and 0.0.75 (its X is now ✨). Work 10:58-11:10. Waiting on Matthew's iPad test at 14:00; fixes from it go out by 15:00 for M."
   },
   {
-   "id": 151,
-   "area": "dress up, performance, game controller",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T12:01-06:00",
-   "text": "<b>Dress Up: an animation problem in the castle scene while walking around (0.0.75).</b> Matthew, 2026-10-16, testing 0.0.75: \"there's another animation issue on the castle scene when I walk around\".",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "log": [
-    {
-     "at": "2026-10-16T12:01-06:00",
-     "from": "matthew",
-     "chars": 95,
-     "asks": true
-    }
-   ],
-   "status": "open",
-   "tags": [],
-   "progress": "13:35: RELEASED Dress Up 0.0.76 (8d81a39, tag dress-up-0.0.76; Pages green, live checked) on Matthew's word with the castle drag still failing: the water mask replaced by two clipped copies, and #pic's viewBox written only when it changes. Gate on 0.0.76 at 1920x1080: castle walk 59.7, castle drag 47 (FAIL, 45.8 in 0.0.74), witch's woods walk 60 / drag 55, witch's hut 60/60, healer's 60/60, pond 60/59.3. Now: the castle drag (a held press moving 1 px: 45 fps; walking with the mouse moving: 59.7)."
-  },
-  {
-   "id": 152,
-   "area": "dress up, performance, testing",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T12:01-06:00",
-   "text": "<b>Dress Up: a performance regression test, a gate before every release.</b> Matthew, 2026-10-16: drag the character in the scenes that have had issues in the past, and test fps; fail if it goes below a certain amount, like 55 fps, and fix it before we commit new versions. <b>Both kinds</b> (his follow-up): walking (the controller) in certain scenes, and dragging in certain scenes.",
-   "source": "Matthew, 2026-10-16, in chat (going AFK ~45 min)",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "log": [
-    {
-     "at": "2026-10-16T12:01-06:00",
-     "from": "matthew",
-     "chars": 300,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T12:02-06:00",
-     "from": "matthew",
-     "chars": 90,
-     "asks": true
-    }
-   ],
-   "status": "open",
-   "tags": [],
-   "progress": "13:35: IN THE RELEASE STEPS (agent-instructions.md, 0.0.76): W=1920 H=1080 fpsgate.mjs before every release; results kept in ~/du-shots/fps/<version>.json; dragtrace.mjs for finding a cost. First used for 0.0.76 (9 of 10 pass; castle drag released on his word)."
-  },
-  {
-   "id": 153,
-   "area": "dress up, places, performance",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T13:43-06:00",
-   "text": "<b>Dress Up: an empty room, between none and 💭 our imagination.</b> Matthew, 2026-10-16: like the imagination, but totally empty of objects: just the back wall, shown as a horizontal line, as in the imagination. To test the actions and controls with no background animation, on a basic old device, like the old laptop N often uses (the black laptop).",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "log": [
-    {
-     "at": "2026-10-16T13:43-06:00",
-     "from": "matthew",
-     "chars": 560,
-     "asks": true
-    }
-   ],
-   "status": "open",
-   "tags": []
-  },
-  {
    "id": 154,
    "area": "dress up, performance",
    "added": "2026-10-16",
@@ -635,8 +570,8 @@
   }
  ],
  "next_ticket": 155,
- "current_ticket": 151,
- "current_note": "13:43: castle drag FIXED locally (the arms' off-body mask -> a clip: 47 -> 60 fps); adding ^ticket(153), the empty room; then the gate and Dress Up 0.0.77 with both. Minted ^ticket(154), the imagination too slow on the black laptop.",
+ "current_ticket": null,
+ "current_note": "13:49: 🪷 waiting on Matthew. Dress Up 0.0.77 LIVE: the 🔲 empty room (^ticket(153)) for the black laptop, and every gate case at 60 fps (^ticket(151), ^ticket(152) closed). Open: ^ticket(154) imagination slow on the black laptop; ^ticket(145)/^ticket(150) await his tests. Servers: 8000, 8133 (0.0.77), 8311, 8341.",
  "closed_tickets": [
   {
    "id": 146,
@@ -3928,6 +3863,80 @@
    "status": "done",
    "outcome": "Shipped as Dress Up 0.0.27 on Matthew's go-ahead, live and checked (0c8c3fe, tag dress-up-0.0.27). All eight: snow caps cut from their peaks' slopes (snowCap; the castle's mountains a proper range); no bushes in the tree house's stream; castle banners from the battlements, sized to the wall; every cloud drifting (cloudsSvg, drifting); the lake's ducks paddling, bobbing and rocking; the sun's rays turning and breathing (lake, castle); parallel sunbeams that dim and brighten as clouds pass (sunbeamsSvg: the woods and the path through them); and organic trees, pines, bushes, grass and rocks in every scene from shared helpers built on the tree house's leaf pads (leafyTree, pineTree, bushSvg, grassTuft, rockSvg; oakDef and the pine defs now draw from them). Measured: every scene drags and idles at 60 fps. <b>0.0.28</b> (f5e7d60, live): on Matthew's report that the ducks swam backwards, each now swims out, pauses to turn round and swims back facing its way (checked at every 4% of each duck's cycle).",
    "outcome_url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+  },
+  {
+   "id": 151,
+   "area": "dress up, performance, game controller",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T12:01-06:00",
+   "text": "<b>Dress Up: an animation problem in the castle scene while walking around (0.0.75).</b> Matthew, 2026-10-16, testing 0.0.75: \"there's another animation issue on the castle scene when I walk around\".",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T12:01-06:00",
+     "from": "matthew",
+     "chars": 95,
+     "asks": true
+    }
+   ],
+   "status": "done",
+   "tags": [],
+   "progress": "13:35: RELEASED Dress Up 0.0.76 (8d81a39, tag dress-up-0.0.76; Pages green, live checked) on Matthew's word with the castle drag still failing: the water mask replaced by two clipped copies, and #pic's viewBox written only when it changes. Gate on 0.0.76 at 1920x1080: castle walk 59.7, castle drag 47 (FAIL, 45.8 in 0.0.74), witch's woods walk 60 / drag 55, witch's hut 60/60, healer's 60/60, pond 60/59.3. Now: the castle drag (a held press moving 1 px: 45 fps; walking with the mouse moving: 59.7).",
+   "closed": "2026-10-16T13:49-06:00",
+   "outcome": "Fixed in Dress Up 0.0.76 (walks: the water mask -> two clipped copies; #pic's viewBox written only when it changes) and 0.0.77 (drags: the arms' off-body mask -> an even-odd clip; the hood's too). Gate at 1920x1080: castle walk 48.7 -> 60, castle drag 45.8 -> 60, pond 51.7/54.7 -> 60, witch's woods drag 55.6 -> 60.",
+   "outcome_url": "https://github.com/matthewhammer/kids-choice-games/commit/5c77b16"
+  },
+  {
+   "id": 152,
+   "area": "dress up, performance, testing",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T12:01-06:00",
+   "text": "<b>Dress Up: a performance regression test, a gate before every release.</b> Matthew, 2026-10-16: drag the character in the scenes that have had issues in the past, and test fps; fail if it goes below a certain amount, like 55 fps, and fix it before we commit new versions. <b>Both kinds</b> (his follow-up): walking (the controller) in certain scenes, and dragging in certain scenes.",
+   "source": "Matthew, 2026-10-16, in chat (going AFK ~45 min)",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T12:01-06:00",
+     "from": "matthew",
+     "chars": 300,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T12:02-06:00",
+     "from": "matthew",
+     "chars": 90,
+     "asks": true
+    }
+   ],
+   "status": "done",
+   "tags": [],
+   "progress": "13:35: IN THE RELEASE STEPS (agent-instructions.md, 0.0.76): W=1920 H=1080 fpsgate.mjs before every release; results kept in ~/du-shots/fps/<version>.json; dragtrace.mjs for finding a cost. First used for 0.0.76 (9 of 10 pass; castle drag released on his word).",
+   "closed": "2026-10-16T13:49-06:00",
+   "outcome": "~/du-shots/tools/fpsgate.mjs: his five scenes, walk + drag each, median of 3, fails under 55 fps; a release step in agent-instructions.md (W=1920 H=1080), results in ~/du-shots/fps/<version>.json; dragtrace.mjs for finding a cost. 0.0.77: all 10 at 59.7-60.",
+   "outcome_url": "https://github.com/matthewhammer/kids-choice-games/blob/main/agent-instructions.md"
+  },
+  {
+   "id": 153,
+   "area": "dress up, places, performance",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T13:43-06:00",
+   "text": "<b>Dress Up: an empty room, between none and 💭 our imagination.</b> Matthew, 2026-10-16: like the imagination, but totally empty of objects: just the back wall, shown as a horizontal line, as in the imagination. To test the actions and controls with no background animation, on a basic old device, like the old laptop N often uses (the black laptop).",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T13:43-06:00",
+     "from": "matthew",
+     "chars": 560,
+     "asks": true
+    }
+   ],
+   "status": "done",
+   "tags": [],
+   "closed": "2026-10-16T13:49-06:00",
+   "outcome": "Dress Up 0.0.77: the 🔲 empty room, in the imagination's group: a wall, a floor and the line between them, no objects, no animation, solid back wall.",
+   "outcome_url": "https://matthewhammer.org/kids-choice-games/dress-up/"
   }
  ],
  "queue": [
