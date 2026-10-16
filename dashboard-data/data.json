@@ -319,31 +319,6 @@
    ]
   },
   {
-   "id": 133,
-   "area": "dress up, performance",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T07:17-06:00",
-   "text": "<b>Dress Up: dragging and animating the friend is slow.</b> Matthew, 2026-10-16 07:20: 'posing the character seems very slow, especially dragging into water. The duck pond scene stops animating correctly, and the music glitches. Let's try to fix the performance problem for Messed Up Dress Up today, with respect to dragging the character, and animating them.' Measure first (frames during a drag, a pose drag, treading in the lake; where the time goes), fix the biggest costs, measure again; release.",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "log": [
-    {
-     "at": "2026-10-16T07:17-06:00",
-     "from": "matthew",
-     "chars": 260,
-     "asks": true
-    }
-   ],
-   "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "progress": "2026-10-16 07:36: Dress Up 0.0.58 LIVE (6089880). Found: (1) fitPic read layout after every drawing, a forced layout of the whole page per move (about half of draw time); (2) a drag drew once per pointer move; (3) the picture's animations paused during drags (the ducks froze; it no longer bought anything); (4) the music was sent only 0.2 s ahead from a 25 ms timer, which drags held back up to ~0.2 s, skipping notes; (5) a press that started the music rebuilt the whole scene mid-drag; (6) no pointercancel handler. Fixed all six, in shared code (every place). Duck pond, per drawing, Chrome at 1920x1080 2x: drag into water 3.6-3.9 -> 1.7-1.9 ms, posing 2.7-3.1 -> 1.6-1.7, treading 4.0 -> 2.2-2.4; Firefox 4.8 -> 2.4, 3.5 -> 2.0, 4.4 -> 2.1; music feed's worst gap 81-218 -> 23-29 ms. Sweep vs 0.0.57: identical but the waterfall's treading noise. Caveat: on this laptop's headless browsers 0.0.57 was already near 60 fps; Matthew's slowness may also come from his browser or device. Waiting on Matthew to try 0.0.58. || 07:40: then 0.0.59 (^ticket(134), the version chip) went live on top of it; still waiting on Matthew to try the drag fix on his device.",
-   "work": {
-    "work_minutes": 48
-   }
-  },
-  {
    "id": 144,
    "area": "dress up",
    "added": "2026-10-16",
@@ -4209,6 +4184,39 @@
    "closed": "2026-10-16T14:51-06:00",
    "outcome": "Dress Up 0.0.80 (dd7f54f): 👻 exact see-through off by default (no masks on the friend): a half see-through friend walks the empty room and the beach at 60 (36.5 and 34.3 before). The gate's slow set gained the beach and a see-through friend.",
    "outcome_url": "https://github.com/matthewhammer/kids-choice-games/commit/dd7f54f"
+  },
+  {
+   "id": 133,
+   "area": "dress up, performance",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T07:17-06:00",
+   "text": "<b>Dress Up: dragging and animating the friend is slow.</b> Matthew, 2026-10-16 07:20: 'posing the character seems very slow, especially dragging into water. The duck pond scene stops animating correctly, and the music glitches. Let's try to fix the performance problem for Messed Up Dress Up today, with respect to dragging the character, and animating them.' Measure first (frames during a drag, a pose drag, treading in the lake; where the time goes), fix the biggest costs, measure again; release.",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T07:17-06:00",
+     "from": "matthew",
+     "chars": 260,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T15:14-06:00",
+     "from": "matthew",
+     "chars": 40,
+     "asks": true,
+     "note": "\"Really still blocked on me?\" No: closed as superseded"
+    }
+   ],
+   "status": "superseded",
+   "tags": [],
+   "progress": "2026-10-16 07:36: Dress Up 0.0.58 LIVE (6089880). Found: (1) fitPic read layout after every drawing, a forced layout of the whole page per move (about half of draw time); (2) a drag drew once per pointer move; (3) the picture's animations paused during drags (the ducks froze; it no longer bought anything); (4) the music was sent only 0.2 s ahead from a 25 ms timer, which drags held back up to ~0.2 s, skipping notes; (5) a press that started the music rebuilt the whole scene mid-drag; (6) no pointercancel handler. Fixed all six, in shared code (every place). Duck pond, per drawing, Chrome at 1920x1080 2x: drag into water 3.6-3.9 -> 1.7-1.9 ms, posing 2.7-3.1 -> 1.6-1.7, treading 4.0 -> 2.2-2.4; Firefox 4.8 -> 2.4, 3.5 -> 2.0, 4.4 -> 2.1; music feed's worst gap 81-218 -> 23-29 ms. Sweep vs 0.0.57: identical but the waterfall's treading noise. Caveat: on this laptop's headless browsers 0.0.57 was already near 60 fps; Matthew's slowness may also come from his browser or device. Waiting on Matthew to try 0.0.58. || 07:40: then 0.0.59 (^ticket(134), the version chip) went live on top of it; still waiting on Matthew to try the drag fix on his device.",
+   "work": {
+    "work_minutes": 48
+   },
+   "closed": "2026-10-16T15:14-06:00",
+   "outcome": "Fixed in Dress Up 0.0.58 (6089880: fitPic's forced layout, a drawing per move, drags pausing the ducks, the music feed, a scene rebuilt mid-drag, pointercancel). It waited for Matthew to try 0.0.58; he tested 0.0.75-0.0.80 instead, and what he found became its own tickets: ^ticket(151) the castle (0.0.76-77), ^ticket(158) the living room (0.0.79), ^ticket(161) a see-through friend (0.0.80), ^ticket(163) the black laptop (0.0.81), and ^ticket(164) the duck pond on a slow computer, still open.",
+   "outcome_url": "https://github.com/matthewhammer/kids-choice-games/commit/6089880"
   }
  ],
  "queue": [
