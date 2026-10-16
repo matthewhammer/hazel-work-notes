@@ -501,9 +501,28 @@
    ],
    "status": "open",
    "tags": []
+  },
+  {
+   "id": 149,
+   "area": "dress up, places, game controller",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T10:30-06:00",
+   "text": "<b>Dress Up: collisions: walls and things the friend can't walk through, and jumping over the small ones.</b> Matthew, 2026-10-16: collision detection for the back and side walls; for the objects in a room that one can't reasonably walk through, like a barrel one sits on; and for 'small objects' (small next to their legs at the time) the friend can clear them with a jump, short or high, depending on the geometry. The imagination room's back wall in particular should be solid, the way up being its ladders (that wall comes with ^ticket(145)). Builds on closed ^ticket(50), whose 'collision shape for the places it makes no sense to stand' was never built (it shipped seats only, 0.0.54): each place's floor bounds and each standing object's footprint (99's objects have a depth; they need a width and a height), checked as the friend moves (the controller, a drag), and a jump's height against an object's.",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T10:30-06:00",
+     "from": "matthew",
+     "chars": 470,
+     "asks": true
+    }
+   ],
+   "status": "open",
+   "tags": []
   }
  ],
- "next_ticket": 149,
+ "next_ticket": 150,
  "current_ticket": 145,
  "current_note": "10:28: on ^ticket(145): the imagination's floating ladders, climbing them with the arrows, the nearest picture glowing, X to go in (in every place).",
  "closed_tickets": [
@@ -3802,6 +3821,7 @@
  "queue": [
   145,
   147,
+  149,
   133,
   18,
   102,
