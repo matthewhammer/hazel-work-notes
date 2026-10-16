@@ -454,50 +454,26 @@
    "progress": "11:21: LIVE in 0.0.74 (17f21e0) and 0.0.75 (its X is now ✨). Work 10:58-11:10. Waiting on Matthew's iPad test at 14:00; fixes from it go out by 15:00 for M."
   },
   {
-   "id": 154,
-   "area": "dress up, performance",
+   "id": 157,
+   "area": "dress up, reports",
    "added": "2026-10-16",
-   "opened": "2026-10-16T13:43-06:00",
-   "text": "<b>Dress Up: 💭 our imagination is too slow on the black laptop</b> (N's old laptop, 0.0.76) to walk or run, which play fine with no background. Matthew, 2026-10-16. Suspects: its 22 live pictures of whole places, the glow's opacity and the paths' dash offset animated by SMIL, and now the ladders. A sixth case for ^ticket(152)'s gate, perhaps on a slowed CPU.",
+   "opened": "2026-10-16T14:18-06:00",
+   "text": "<b>^du_report(1), \"60 frames a second, and what checks it\": the first Dress Up report, for Matthew to read before it is published.</b> His asks, 2026-10-16: a progress report on how our tests cover the 60 fps goal (it says plainly that none runs in CI, and what could), as a series like the Hazel one, in a subdirectory of the game's repo, ^du_report(N) the syntax. Draft (uncommitted): ~/kids-choice-games/dress-up/reports/ (001/index.html, its data and drivers, the series index), preview http://localhost:8133/du-reports/ ; publishing is a push of the game's repo.",
    "source": "Matthew, 2026-10-16, in chat",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "url": "http://localhost:8133/du-reports/001/",
    "log": [
     {
-     "at": "2026-10-16T13:43-06:00",
+     "at": "2026-10-16T14:18-06:00",
      "from": "matthew",
-     "chars": 160,
-     "asks": false
-    },
-    {
-     "at": "2026-10-16T13:53-06:00",
-     "from": "matthew",
-     "chars": 120,
-     "asks": true,
-     "note": "start it: the imagination smooth on the black laptop, and a slowed-CPU case in the gate"
-    }
-   ],
-   "status": "open",
-   "tags": [],
-   "progress": "14:01: MEASURED at 1920x1080 (Matthew's laptop, headless Chrome): the imagination walks at 18 fps, drags at 17.4 (the empty room 60/60). Its 22 map pictures hold 7,728 of its 8,080 shapes and 24 Gaussian blurs; hiding them gives 59. Freezing animations alone 18-23, no blurs 25, both 27. Drawn as still SVG images (animations taken out, uncommitted): 42/38. Next: with blurs off by default (^ticket(155)), and if still short, pictures baked to PNG."
-  },
-  {
-   "id": 155,
-   "area": "dress up, performance, UX",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T14:01-06:00",
-   "text": "<b>Dress Up: an ⚙️ advanced tab, in place of the GitHub chip.</b> Matthew, 2026-10-16: under it the GitHub link; the current version and its upgrade button when there is one (a phone shows neither today, the title being hidden); and settings off by default until we know how to make them perform well, starting with Gaussian blurs (off). Switched on, the panel says how many are in the current background and the performance difference, if it can be measured (frames a second, or the cost of drawing a frame, on average). His words: \"I want this toy to be fun for my kids before we have fancy things like gaussian blurs running fast. The priority is 60 FPS at all times, for all actions that a game controller does in the scene\"; grow the gate's coverage slowly, to prevent regressions as scenes grow.",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "log": [
-    {
-     "at": "2026-10-16T14:01-06:00",
-     "from": "matthew",
-     "chars": 900,
+     "chars": 400,
      "asks": true
     }
    ],
    "status": "open",
-   "tags": []
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "progress": "14:18: DRAFTED, waiting for Matthew's read: 001/index.html (short answers, KPIs, figure 1 before/after for 14 cases, results, how it got here, coverage matrix, CI, settings, the slow computer, 5 What next steps with ticket buttons, method; data embedded and in 001/data/; drivers make.py, fpsgate.mjs, dragtrace.mjs) and the series index. Light and dark checked."
   },
   {
    "id": 13,
@@ -617,9 +593,9 @@
    ]
   }
  ],
- "next_ticket": 157,
- "current_ticket": 155,
- "current_note": "14:01: ^ticket(155) (the advanced tab, blurs off by default) folded with ^ticket(154) (imagination at 60): building the tab now.",
+ "next_ticket": 158,
+ "current_ticket": null,
+ "current_note": "14:18: 🪷 waiting on Matthew: read ^du_report(1) at http://localhost:8133/du-reports/001/ and say when to publish (^ticket(157)). Dress Up 0.0.78 LIVE (Advanced tab, imagination at 60). Tonight's long run: ^ticket(156), #2635's CI against #2469.",
  "closed_tickets": [
   {
    "id": 146,
@@ -3985,6 +3961,58 @@
    "closed": "2026-10-16T13:49-06:00",
    "outcome": "Dress Up 0.0.77: the 🔲 empty room, in the imagination's group: a wall, a floor and the line between them, no objects, no animation, solid back wall.",
    "outcome_url": "https://matthewhammer.org/kids-choice-games/dress-up/"
+  },
+  {
+   "id": 154,
+   "area": "dress up, performance",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T13:43-06:00",
+   "text": "<b>Dress Up: 💭 our imagination is too slow on the black laptop</b> (N's old laptop, 0.0.76) to walk or run, which play fine with no background. Matthew, 2026-10-16. Suspects: its 22 live pictures of whole places, the glow's opacity and the paths' dash offset animated by SMIL, and now the ladders. A sixth case for ^ticket(152)'s gate, perhaps on a slowed CPU.",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T13:43-06:00",
+     "from": "matthew",
+     "chars": 160,
+     "asks": false
+    },
+    {
+     "at": "2026-10-16T13:53-06:00",
+     "from": "matthew",
+     "chars": 120,
+     "asks": true,
+     "note": "start it: the imagination smooth on the black laptop, and a slowed-CPU case in the gate"
+    }
+   ],
+   "status": "done",
+   "tags": [],
+   "progress": "14:01: MEASURED at 1920x1080 (Matthew's laptop, headless Chrome): the imagination walks at 18 fps, drags at 17.4 (the empty room 60/60). Its 22 map pictures hold 7,728 of its 8,080 shapes and 24 Gaussian blurs; hiding them gives 59. Freezing animations alone 18-23, no blurs 25, both 27. Drawn as still SVG images (animations taken out, uncommitted): 42/38. Next: with blurs off by default (^ticket(155)), and if still short, pictures baked to PNG.",
+   "closed": "2026-10-16T14:18-06:00",
+   "outcome": "Dress Up 0.0.78 (fce3163): the imagination's 22 map pictures drawn still, as images, and blurs off, both settings off by default (^ticket(155)); walking there 18 -> 59.7 fps, dragging 17.4 -> 59.7 at 1920x1080. The gate gained SLOW=1 (the empty room and the imagination) and CPU= throttling; the slow mode is not yet matched to the black laptop (^du_report(1), What next, step 2).",
+   "outcome_url": "https://github.com/matthewhammer/kids-choice-games/commit/fce3163"
+  },
+  {
+   "id": 155,
+   "area": "dress up, performance, UX",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T14:01-06:00",
+   "text": "<b>Dress Up: an ⚙️ advanced tab, in place of the GitHub chip.</b> Matthew, 2026-10-16: under it the GitHub link; the current version and its upgrade button when there is one (a phone shows neither today, the title being hidden); and settings off by default until we know how to make them perform well, starting with Gaussian blurs (off). Switched on, the panel says how many are in the current background and the performance difference, if it can be measured (frames a second, or the cost of drawing a frame, on average). His words: \"I want this toy to be fun for my kids before we have fancy things like gaussian blurs running fast. The priority is 60 FPS at all times, for all actions that a game controller does in the scene\"; grow the gate's coverage slowly, to prevent regressions as scenes grow.",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T14:01-06:00",
+     "from": "matthew",
+     "chars": 900,
+     "asks": true
+    }
+   ],
+   "status": "done",
+   "tags": [],
+   "closed": "2026-10-16T14:18-06:00",
+   "outcome": "Dress Up 0.0.78 (fce3163): the ⚙️ Advanced tab (GitHub, version + 🆕, a frames-a-second meter, PERF_FEATURES: 🌫️ soft blurs and 🎞️ moving pictures in the imagination's map, off by default, each with its count and 📏 measure here). The goal and the approach are in agent-instructions.md (The first rule: 60 frames a second); the coverage report became ^du_report(1), ^ticket(157).",
+   "outcome_url": "https://github.com/matthewhammer/kids-choice-games/commit/fce3163"
   }
  ],
  "queue": [
