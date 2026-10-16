@@ -258,8 +258,13 @@
    "url": "http://localhost:8131/series/006/#next",
    "added": "2026-10-12",
    "tags": [
-    "long run"
-   ]
+    "long run",
+    "blocked on Matthew"
+   ],
+   "progress": "2026-10-15 23:28: BUILT, local only. Branch ci/statics-passes-dev in ~/hazel-ab-coal, off dev e12145c69b: 4b84cc1f8f the --count-passes counter (from bd90642654, one conflict in Statics.re: dev lacks the livelit refs above it), merges of #2603 and #2651 (the test's budgets assume their fixes), and 0d5d015eff Test_StaticsPasses (from da3251d3e5; corpus check fitted to dev's 73 programs; NEW: four programs in the quick suite). On dev alone, the counter shows docs/reference/modules.hz with one expression analyzed 24x and polymorphism.hz at 2.65 analyses per expression, over the budgets (5x, 2.5): so the test must merge after #2603 and #2651. StaticsPasses: 9 tests pass, 2.9 s; the quick suite: 4335 tests pass, 109 s. Nothing pushed. Waiting on Matthew: open it as a PR stacked on #2603 and #2651, or fold it into one of them?",
+   "work": {
+    "work_minutes": 14
+   }
   },
   {
    "id": 14,
@@ -441,8 +446,8 @@
   }
  ],
  "next_ticket": 132,
- "current_ticket": 13,
- "current_note": "Matthew is AFK until about 06:30. Done tonight: Dress Up 0.0.57 LIVE (42, 128, 129, 130, 131). Waiting on his word (🪷, queue's end): 91's ^report(16) draft (http://localhost:8131/series/016/), 25's outline deep link (local 438812718b), 24's cell memo (page time -2/3, nothing visible moved), 127's ^report(17) draft (http://localhost:8131/series/017/). Now 13: the statics pass counter and its test, ported from #2635 to a local branch off dev (ci/statics-passes-dev in ~/hazel-ab-coal), with budgets measured on dev itself; then 14, 15, 19. Local only; nothing posted to GitHub.",
+ "current_ticket": 14,
+ "current_note": "Matthew is AFK until about 06:30. Done tonight: Dress Up 0.0.57 LIVE (42, 128, 129, 130, 131). Waiting on his word (🪷, queue's end): ^report(16) draft (91), the outline deep link (25), the cell memo (24, measured: nothing visible moved), ^report(17) draft (127, now with #2608 too), the statics pass budgets on dev (13, local branch, tests pass). Now 14: a step budget for a re-run beside a library with a recursive member (on #2678 and #2675), then 15 (byte budgets), 19. Local only; nothing posted to GitHub.",
  "closed_tickets": [
   {
    "id": 131,
@@ -3232,7 +3237,6 @@
   }
  ],
  "queue": [
-  13,
   14,
   15,
   19,
@@ -3241,8 +3245,9 @@
   91,
   25,
   24,
-  127
+  127,
+  13
  ],
- "current_since": "2026-10-15T23:25:00-06:00",
+ "current_since": "2026-10-15T23:29:00-06:00",
  "current_waiting": null
 }
