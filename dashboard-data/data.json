@@ -567,7 +567,7 @@
    ],
    "status": "open",
    "tags": [],
-   "progress": "12:24: FOUND (with ^ticket(152)'s gate, 1920x1080, headless Chrome): the friend in WATER is drawn through an SVG mask (wading's water-line) on every frame; castle walk (the moat) 48.7 fps, pond swim 51.7/54.7. Without the mask: castle walk 59, pond 60/59.3. Pausing every SMIL animation does nothing (45-47), the wake rings little. Not 0.0.75's doing: 0.0.74 the same. Second, smaller cost: dragging in the castle, ~50 fps even without the mask (suspect hit testing of its 1,250 shapes per mouse move). Next: replace the mask by two clipped copies (full above the waterline, faint below it within the water), check the pictures match, then the castle drag."
+   "progress": "12:41: TWO FIXES, uncommitted in ~/kids-choice-games: (1) wading draws the friend as two clipped copies, not through the water-line mask; (2) draw() writes the picture's viewBox only when it changes (writing it, even unchanged, re-rastered the whole picture every drawing: castle walk raster 2.25 -> 0.4 s per thread). Gate at 1920x1080: 9 of 10 pass (castle walk 48.7 -> 59.7, pond walk 51.7 -> 60, pond drag 54.7 -> 59.7, witch drag 55.6 -> 56.3); FAILS: castle drag 48.9 (0.0.74: 45.8, so not new). Ruled out for the castle drag: animations (all paused 50.6), the sun, portal hover filter, hit testing, pointer capture, text selection, SVG text, scene rebuilds; walking with the mouse moving holds 59.7, a held press moving 1 px drops to 45. Pictures: moat and pond match 0.0.75 (a thin waterline seam only)."
   },
   {
    "id": 152,
@@ -598,7 +598,7 @@
  ],
  "next_ticket": 153,
  "current_ticket": 151,
- "current_note": "12:24: ^ticket(151) cause found (the water mask, every frame); fixing it now, then the castle drag; nothing released until ^ticket(152)'s gate (55 fps, 1920x1080) passes.",
+ "current_note": "12:41: 🪷 waiting on Matthew: release 0.0.76 with the walk fixes while the castle drag still fails the gate (49 fps, it was 46 before), or hold it until that is fixed too?",
  "closed_tickets": [
   {
    "id": 146,
