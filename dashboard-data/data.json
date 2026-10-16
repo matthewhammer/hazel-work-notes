@@ -274,8 +274,13 @@
    "url": "http://localhost:8131/series/006/#next",
    "added": "2026-10-12",
    "tags": [
-    "long run"
-   ]
+    "long run",
+    "blocked on Matthew"
+   ],
+   "progress": "2026-10-15 23:32: BUILT, local only. Branch ci/recursive-let-budget in ~/hazel-ab-coal, off dev: merges of #2678 (the step budgets) and #2675 (reuse around a recursive let), then d706264f3f, a third PerfBudgets case: a library module with recursive members, a picture from it, and a knob; an edit to the knob re-runs in 132 steps (budget 145; a cold run is 127,394). Without #2675 (checked on #2678 alone) the same re-run takes 252 steps and fails: the module's binding is not reused, though its items still are. PerfBudgets: 3 tests pass. The woods slide itself is not on dev, so this is its shape in a small program. Nothing pushed. Waiting on Matthew: a PR stacked on #2678 and #2675, or fold into #2678?",
+   "work": {
+    "work_minutes": 10
+   }
   },
   {
    "id": 15,
@@ -446,7 +451,7 @@
   }
  ],
  "next_ticket": 132,
- "current_ticket": 14,
+ "current_ticket": 15,
  "current_note": "Matthew is AFK until about 06:30. Done tonight: Dress Up 0.0.57 LIVE (42, 128, 129, 130, 131). Waiting on his word (🪷, queue's end): ^report(16) draft (91), the outline deep link (25), the cell memo (24, measured: nothing visible moved), ^report(17) draft (127, now with #2608 too), the statics pass budgets on dev (13, local branch, tests pass). Now 14: a step budget for a re-run beside a library with a recursive member (on #2678 and #2675), then 15 (byte budgets), 19. Local only; nothing posted to GitHub.",
  "closed_tickets": [
   {
@@ -3237,7 +3242,6 @@
   }
  ],
  "queue": [
-  14,
   15,
   19,
   18,
@@ -3246,8 +3250,9 @@
   25,
   24,
   127,
-  13
+  13,
+  14
  ],
- "current_since": "2026-10-15T23:29:00-06:00",
+ "current_since": "2026-10-15T23:32:13-06:00",
  "current_waiting": null
 }
