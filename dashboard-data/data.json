@@ -552,7 +552,7 @@
     }
    ],
    "waiting": false,
-   "progress": "22:28: minted on Matthew's question; my answer: yes, after the open branches land. | 22:48: Matthew asked if it is blocked: yes; offered splitting now and redoing the 7 open branches on top. His call: WAIT for the branches (176, 177, 43, 144, 166, 167's bgtab-167, 179) to be reviewed and merged, then split. | 06:32: UNBLOCKED: every open branch it waited for is merged and released (0.0.95). Next: split dress-up/index.html into files, by section, with no change in behaviour (the checks and the speed run say so)."
+   "progress": "22:28: minted on Matthew's question; my answer: yes, after the open branches land. | 22:48: Matthew asked if it is blocked: yes; offered splitting now and redoing the 7 open branches on top. His call: WAIT for the branches (176, 177, 43, 144, 166, 167's bgtab-167, 179) to be reviewed and merged, then split. | 06:32: UNBLOCKED: every open branch it waited for is merged and released (0.0.95). Next: split dress-up/index.html into files, by section, with no change in behaviour (the checks and the speed run say so). | 06:42: STARTED, timeboxed to 45 minutes (Matthew), then a replan; ^ticket(185), the world designer, follows."
   },
   {
    "id": 184,
@@ -572,11 +572,30 @@
     }
    ],
    "progress": "06:28: minted; started. 0.0.95 went out deploy-first already (main 1599fd9, tag dress-up-0.0.95, live), its checks still running on the release branch. | 06:32: BUILT and released as 0.0.96 (main 11b26ba, tag dress-up-0.0.96, live): .github/workflows/dress-up-speed.yml on each release tag (checks, gate both tiers, audit, leak), tools/speed_record.py writes dress-up/speed.json on main, the game's markSpeed shows 🚧🐢 / 🚧 after its version (tools/checks/speedmark184.mjs checks it), and the release steps in agent-instructions.md say deploy first. Speed runs going: 0.0.96 (run 39032830033, from its tag) and 0.0.95 (39032851446, by hand). Left: see each record its result and speed.json go live."
+  },
+  {
+   "id": 185,
+   "area": "dress up, world designer",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T06:42-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "text": "<b>Dress Up: a world designer, an MVP: an overworld grid of places, connected by where they sit and how their doors line up.</b> Matthew, 2026-10-17: \"I'd like to have the code organized, and maybe even start showing some of the organization within parts of the game itself --- as we create new rooms, and want to populate them, having an organized library of objects for game rooms would be very useful. We've been laying the groundwork for an adventure game designer, beyond the castle -- where each room is more a blank slate, and the designer lays out rooms (or scenes/backgrounds outside etc) in a grid, and where they are connected not by the designer saying this door connects to that door explicitly, but by how the rooms are placed on the grid, and how each pair of doors aligns (or does not align) with its implied partner in the other (neighboring) scene (grid cell neighbor). If that grid cell is unpopulated, it's a level design error, like we had in the castle, but now based on a grid. Can we give this a go after the redesign? An MVP of a world design system that: permits a big over world grid, and a palette of backgrounds to place into it (drag and drop), and objects to place into each of those (another menu of things to drag and drop, once we zoom from the grid view into the one-background view, as we have today, but are still editing the background in the world designer.\" The MVP: (1) a big overworld grid, and a palette of backgrounds (places) to drag and drop into its cells; (2) zoom into one cell for the one-place view, as the game has today, still in the designer, with a second palette, an organized library of objects, to drag and drop into it; (3) no door is wired by hand: two neighbouring cells connect through the doors on their shared side, and a door with no populated neighbour, or one that does not line up with its partner, is a level design error, shown as such (the castle's kind, now on a grid). After ^ticket(178), the code split, whose files should give the object library its home.",
+   "tags": [],
+   "status": "open",
+   "log": [
+    {
+     "at": "2026-10-17T06:42-06:00",
+     "from": "matthew",
+     "chars": 1245,
+     "asks": true
+    }
+   ],
+   "progress": "06:42: minted; queued after ^ticket(178) (timeboxed to 45 minutes, then a replan)."
   }
  ],
- "next_ticket": 185,
- "current_ticket": 184,
- "current_note": "06:32: ^ticket(184): Dress Up 0.0.95 and 0.0.96 are live, deploy-first; the speed runs for both are going on GitHub (about 20 min each), and will record into dress-up/speed.json. ^ticket(178) is unblocked.",
+ "next_ticket": 186,
+ "current_ticket": 178,
+ "current_note": "06:42: ^ticket(178): splitting Dress Up's one page into files by section, timeboxed to 45 minutes, then a replan with Matthew; ^ticket(185), the world designer, next. ^ticket(184)'s first speed runs still going.",
  "closed_tickets": [
   {
    "id": 180,
@@ -5235,8 +5254,9 @@
   }
  ],
  "queue": [
-  184,
   178,
+  184,
+  185,
   160,
   18,
   102,
@@ -5246,5 +5266,5 @@
   167,
   177
  ],
- "current_since": "2026-10-17T06:28-06:00"
+ "current_since": "2026-10-17T06:42-06:00"
 }
