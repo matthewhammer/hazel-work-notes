@@ -631,9 +631,12 @@
    "source": "Found by ^ticket(217)'s check on GitHub (runs 39065772429 and 39066250387)",
    "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39065772429",
    "text": "<b>Dress Up: after Surprise me, a tap on a passage sometimes does nothing (suspected; random).</b> In one run, access217 pressed 🎲 Surprise me five times, then in the living room neither a walk to a passage nor a tap on a far picture started (the friend stayed where they were, nothing glowed through); the autosave carried that friend into the next check (nav199), whose living-room picture tap failed the same way. Run first, nav199 passes; in another run the same check's trip worked. So some outcome of Surprise me's dice (a pose, a seat, an animation such as 🧗 climbing with no ladder, or crouching) seems to leave a friend that walkInto/enterScene will not move. Not reproduced on purpose yet. To do: a check that presses Surprise me many times, each time tapping a far picture and a door, and records the friend's pose, animation and seat when a tap does nothing; then put right what it finds (Surprise me never leaves a friend that cannot go through a passage, or a tap stands them up first).",
-   "tags": [],
+   "tags": [
+    "long run"
+   ],
    "status": "open",
-   "log": []
+   "log": [],
+   "progress": "Matthew, 2026-10-17 ~16:35: \"do ticket 225 before performance, and label all performance and that one with 'long run' to make it clear we aren't doing them now\": first of tonight's 🌙 long runs. Found so far: its check (tools/checks/surprise225.mjs, LOCAL and untracked in ~/kids-choice-games; on branch checks-225b, bceb104) aimed each tap at the middle of the doorway's whole box, which for a picture includes its scene spilling past the frame, hidden: in run 39072074252 four of five dead taps had nothing under the point (off the page) and one hit the wall (a rect). Re-aimed at the box the game itself knows (marks' stage box, on screen, clipped to the picture, skipping the friend, the arrows and buttons). Diagnostic run 39075350602 (checks-225b) started 16:3x: read it; if no dead taps remain, the bug was the check's (commit the check, close); if some remain, their pose/anim/climb say which state blocks a tap (try 9 was 🧗 climbup with climb set). RESULT (run 39075350602): with the taps re-aimed, 12 of 12 picture taps after Surprise me started the trip, none dead: the dead taps were the check's. The door half found no door to tap (the living room's way out is a nav arrow since 0.0.162). Tonight: tap the S arrow there, and a room with real doors (the castle's king's room), with 🧗 climbup and the seats among Surprise me's outcomes; if all go, commit the check and close 225."
   },
   {
    "id": 232,
@@ -766,8 +769,8 @@
   }
  ],
  "next_ticket": 248,
- "current_ticket": 225,
- "current_note": "16:30: Matthew AFK (16:3x); working the queue in order, a release per ticket. On 225: its check aimed its taps at the doorway's whole box, which for a picture spills past the frame (taps fell off the page or on the wall): re-aimed at the box the game knows; diagnostic checks-225b running",
+ "current_ticket": 232,
+ "current_note": "16:32: Matthew AFK; 225 is now the first 🌙 long run (his call), parked with its state. On 232: 🔗 all passageways and placing/moving/resizing squares leave no way off the grid's edge",
  "closed_tickets": [
   {
    "id": 214,
@@ -7086,7 +7089,6 @@
   }
  ],
  "queue": [
-  225,
   232,
   235,
   237,
@@ -7100,6 +7102,7 @@
   245,
   246,
   247,
+  225,
   209,
   184,
   198,
@@ -7112,5 +7115,5 @@
   19,
   166
  ],
- "current_since": "2026-10-17T16:30-06:00"
+ "current_since": "2026-10-17T16:32-06:00"
 }
