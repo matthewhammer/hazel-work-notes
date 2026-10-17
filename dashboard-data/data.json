@@ -625,7 +625,7 @@
    "tags": [
     "long run"
    ],
-   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: compare #2635's and #2469's CI logs; merge #2469 into a trial branch and push it so GitHub's CI runs it; #2635 itself only after Matthew looks. 🌙 long run; no headless browser on the laptop. | 21:27: (1) NO: #2469's own CI is green (10-16 13:12, 0dd1ed735e) and #2635's red is the same 8 known failures as on 10-13. (2)+(3): #2469 has 253 commits (76 merges) not in #2635 since 10-01; merging gives 31 conflicted files (~5,800 lines; DefStatics 1,786). Trial merge in progress on trial/2635-up-to-date in ~/hazel-livelits-modular (#2635's own branch untouched): 17 of 31 resolved. | 21:34: all 31 conflicts resolved (uncommitted, trial/2635-up-to-date in ~/hazel-livelits-modular). (2) answered NO by the code: #2469's newest DefStatics extends its per-member module path on dev's module helpers (value_exports, the labeled-tuple lowering, now with stable ids); Modules II removed those, and #2635 keeps per-member analysis off (43089b065d), so the 8 failing tests (which exercise that path) stay red after a merge. The merge takes #2469's DefStatics + EvalInfo as ported tonight (^ticket(54)) with #2635's Modules II adaptation re-applied; the outline's UX mode folded into #2469's new side record (ScratchPersist) and props/handlers (OutlineSidebar). Type-checking now (pinned). | 21:40: the trial merge type-checks (src and tests) and dune fmt is clean; committed 8c968efcc4 and PUSHED as trial/2635-up-to-date (#2635's own branch untouched). GitHub's CI is running its full tests: expected red on the per-member module tests (ModRoot, TypeDeps, LabelBench, DefStaticsParity), and anything else red is news. Not run in a browser. | 22:50: the trial merge's CI (run 38999678106): full tests 21 failures of 6,094 (#2635 today: 8). Expected: DefStaticsParity 1,2,4,33,38-42 (the per-member module path, which #2469 moved into that group; off on Modules II) and Editing.TableDecorations 1 (known). NEW, from the merge: OutlineLevels 0-2, OutlinePaths 11-12, OutlineRename 12, OutlineText 25/35/40, Restructure 2, HeadlessRows 1 (#2469's new outline features; a TypeError reading .length). Next: run those groups locally on the trial branch and fix the outline part of the merge. | 23:09: two causes found and fixed in the trial (uncommitted yet, ~/hazel-livelits-modular): (1) Key.mk read the event target's tagName as a string; #2469's outline tests press keys with a target that has none (a JS TypeError reading .length): the tag is optional now, like the id. OutlineLevels, OutlinePaths, OutlineText, Restructure pass locally. (2) Renaming a module's type member missed `U.Meters` outside it: Modules II binds a module as a value only, not also a type variable, so the type path's base had no binding site; the rename now looks it up as a value. Rerunning OutlineRename and HeadlessRows' corpus case (11 broken rows) locally, pinned, one at a time."
+   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: compare #2635's and #2469's CI logs; merge #2469 into a trial branch and push it so GitHub's CI runs it; #2635 itself only after Matthew looks. 🌙 long run; no headless browser on the laptop. | 21:27: (1) NO: #2469's own CI is green (10-16 13:12, 0dd1ed735e) and #2635's red is the same 8 known failures as on 10-13. (2)+(3): #2469 has 253 commits (76 merges) not in #2635 since 10-01; merging gives 31 conflicted files (~5,800 lines; DefStatics 1,786). Trial merge in progress on trial/2635-up-to-date in ~/hazel-livelits-modular (#2635's own branch untouched): 17 of 31 resolved. | 21:34: all 31 conflicts resolved (uncommitted, trial/2635-up-to-date in ~/hazel-livelits-modular). (2) answered NO by the code: #2469's newest DefStatics extends its per-member module path on dev's module helpers (value_exports, the labeled-tuple lowering, now with stable ids); Modules II removed those, and #2635 keeps per-member analysis off (43089b065d), so the 8 failing tests (which exercise that path) stay red after a merge. The merge takes #2469's DefStatics + EvalInfo as ported tonight (^ticket(54)) with #2635's Modules II adaptation re-applied; the outline's UX mode folded into #2469's new side record (ScratchPersist) and props/handlers (OutlineSidebar). Type-checking now (pinned). | 21:40: the trial merge type-checks (src and tests) and dune fmt is clean; committed 8c968efcc4 and PUSHED as trial/2635-up-to-date (#2635's own branch untouched). GitHub's CI is running its full tests: expected red on the per-member module tests (ModRoot, TypeDeps, LabelBench, DefStaticsParity), and anything else red is news. Not run in a browser. | 22:50: the trial merge's CI (run 38999678106): full tests 21 failures of 6,094 (#2635 today: 8). Expected: DefStaticsParity 1,2,4,33,38-42 (the per-member module path, which #2469 moved into that group; off on Modules II) and Editing.TableDecorations 1 (known). NEW, from the merge: OutlineLevels 0-2, OutlinePaths 11-12, OutlineRename 12, OutlineText 25/35/40, Restructure 2, HeadlessRows 1 (#2469's new outline features; a TypeError reading .length). Next: run those groups locally on the trial branch and fix the outline part of the merge. | 23:09: two causes found and fixed in the trial (uncommitted yet, ~/hazel-livelits-modular): (1) Key.mk read the event target's tagName as a string; #2469's outline tests press keys with a target that has none (a JS TypeError reading .length): the tag is optional now, like the id. OutlineLevels, OutlinePaths, OutlineText, Restructure pass locally. (2) Renaming a module's type member missed `U.Meters` outside it: Modules II binds a module as a value only, not also a type variable, so the type path's base had no binding site; the rename now looks it up as a value. Rerunning OutlineRename and HeadlessRows' corpus case (11 broken rows) locally, pinned, one at a time. 23:47: the trial branch's 11 new failures fixed and pushed (trial/2635-up-to-date 9e7258b55b, CI running): Key.mk's tagName (optional now), OutlineRename's module path (context fallback for a Var base), and HeadlessRows' 11 broken rows: ScratchFocus counted only `test … end` in a run while the outline groups `hint … test … end` too (the mvu docs, 10 rows), and it ended an item at #2635's `do x <- e in` while the outline reads it as an expression (splice-row.hz's ⇒). Two shapes added to the test. Locally: the livelit and mvu docs, the shapes and OutlineRename pass. Next: read CI; the 10 expected failures (DefStaticsParity per-member, TableDecorations) stay."
   },
   {
    "id": 176,
@@ -760,28 +760,6 @@
    "waiting": "Matthew: look at OBJECTS.md on branch objects-180 (GitHub renders it), then merge."
   },
   {
-   "id": 181,
-   "area": "dashboard, publishing",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T22:43-06:00",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "https://matthewhammer.org/hazel/dashboard",
-   "text": "<b>The Hazel Work Dashboard moves to matthewhammer.org/hazel/dashboard, every link with it.</b> Matthew, 2026-10-16 night: \"change https://matthewhammer.org/hazel-work-notes/ to https://matthewhammer.org/hazel/dashboard And update all related links.\" Today publish.py (cron, every minute) copies the page from ~/localhost-index into the hazel-work-notes repository, published by its own Pages at /hazel-work-notes/. To do: publish the page and closed.html into matthewhammer.github.io at hazel/dashboard/ instead (the cron's target, lock and commit); every link to the old address updated: ticket links (#ticket-N) in the Hazel performance series and its index, the Dress Up reports, the dashboard's own pages and data.json, the agent instructions (hazel-work-notes, kids-choice-games, hazel-perf-report), work notes, the crash log's links, and the memory notes; the old address kept working (its index a redirect to the new one, ticket anchors carried over), as published reports link to it. Decide with Matthew: whether the crash log and work notes move too, or only the dashboard.",
-   "tags": [
-    "long run"
-   ],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-16T22:43-06:00",
-     "from": "matthew",
-     "chars": 132,
-     "asks": true
-    }
-   ],
-   "progress": "22:43: minted; queued. 23:29: DONE but for the live check of the redirects (Pages builds, and a 10-minute cache). The dashboard is published at https://matthewhammer.org/hazel/dashboard/ (+ closed.html), live since 23:28 (homepage 6e832b7): dashboard/site_publish.py (new; hazel-work-notes 401ebb9) commits the public copy into the homepage's repository by git's plumbing, never touching its checkout, at most every ten minutes (that site's Pages build takes ~2 min; GitHub allows ~10 an hour); a change inside the window waits and publish.py sends it when it ends. Redirects, #ticket-N kept: hazel-work-notes' root index.html and closed.html, and /hazel/work-dashboard/ (homepage 4f9437b). Links updated: the Hazel page, the Dress Up page and the series index (homepage 4f9437b; hazel-perf-report 25426e1), ^du_report(2) (kids-choice-games 78428f7; the 003 draft branch 7504c21, local), the work notes, crash log, notes_page.py, agent instructions, README, VERSIONS (401ebb9), data.json's repo row and two closed tickets' links, and memory. Left as they were: quoted words (this ticket's own text), the history in dashboard-snapshots, and what the crash log, work notes and dashboard-data are: they stay in hazel-work-notes (my default for the open question). One consequence: ~/matthewhammer.github.io is usually behind origin now, so pull before pushing there (in the series' instructions)."
-  },
-  {
    "id": 182,
    "area": "work notes, publishing",
    "added": "2026-10-16",
@@ -827,9 +805,43 @@
   }
  ],
  "next_ticket": 184,
- "current_ticket": 156,
- "current_note": "23:29: ^ticket(156): HeadlessRows on the trial merge: 11 rows broken, 10 of them the mvu docs' 'tests' row (opens as Headless \";\", body differs) and splice-row.hz's ⇒ (didn't open); finding why, then committing the Key.re and OutlineRename.re fixes. ^ticket(181) is done but for the live check of the redirects.",
+ "current_ticket": 183,
+ "current_note": "23:47: ^ticket(183): a new day of Dress Up pictures for early tomorrow: checking archive.mjs's list shows climbing (0.0.94), then rendering on GitHub's computers (no browser on the laptop tonight). ^ticket(156)'s fixes are pushed (trial/2635-up-to-date 9e7258b55b), CI running; ^ticket(181) closed.",
  "closed_tickets": [
+  {
+   "id": 181,
+   "area": "dashboard, publishing",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T22:43-06:00",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/hazel/dashboard",
+   "text": "<b>The Hazel Work Dashboard moves to matthewhammer.org/hazel/dashboard, every link with it.</b> Matthew, 2026-10-16 night: \"change https://matthewhammer.org/hazel-work-notes/ to https://matthewhammer.org/hazel/dashboard And update all related links.\" Today publish.py (cron, every minute) copies the page from ~/localhost-index into the hazel-work-notes repository, published by its own Pages at /hazel-work-notes/. To do: publish the page and closed.html into matthewhammer.github.io at hazel/dashboard/ instead (the cron's target, lock and commit); every link to the old address updated: ticket links (#ticket-N) in the Hazel performance series and its index, the Dress Up reports, the dashboard's own pages and data.json, the agent instructions (hazel-work-notes, kids-choice-games, hazel-perf-report), work notes, the crash log's links, and the memory notes; the old address kept working (its index a redirect to the new one, ticket anchors carried over), as published reports link to it. Decide with Matthew: whether the crash log and work notes move too, or only the dashboard.",
+   "tags": [
+    "long run"
+   ],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-16T22:43-06:00",
+     "from": "matthew",
+     "chars": 132,
+     "asks": true
+    }
+   ],
+   "progress": "22:43: minted; queued. 23:29: DONE but for the live check of the redirects (Pages builds, and a 10-minute cache). The dashboard is published at https://matthewhammer.org/hazel/dashboard/ (+ closed.html), live since 23:28 (homepage 6e832b7): dashboard/site_publish.py (new; hazel-work-notes 401ebb9) commits the public copy into the homepage's repository by git's plumbing, never touching its checkout, at most every ten minutes (that site's Pages build takes ~2 min; GitHub allows ~10 an hour); a change inside the window waits and publish.py sends it when it ends. Redirects, #ticket-N kept: hazel-work-notes' root index.html and closed.html, and /hazel/work-dashboard/ (homepage 4f9437b). Links updated: the Hazel page, the Dress Up page and the series index (homepage 4f9437b; hazel-perf-report 25426e1), ^du_report(2) (kids-choice-games 78428f7; the 003 draft branch 7504c21, local), the work notes, crash log, notes_page.py, agent instructions, README, VERSIONS (401ebb9), data.json's repo row and two closed tickets' links, and memory. Left as they were: quoted words (this ticket's own text), the history in dashboard-snapshots, and what the crash log, work notes and dashboard-data are: they stay in hazel-work-notes (my default for the open question). One consequence: ~/matthewhammer.github.io is usually behind origin now, so pull before pushing there (in the series' instructions).",
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T23:47-06:00",
+   "outcome": "The dashboard is published at https://matthewhammer.org/hazel/dashboard/ (and closed.html), in the homepage's repository, since 23:25 on 2026-10-16. dashboard/site_publish.py (new, hazel-work-notes 401ebb9) commits the public copy to the homepage's master by git's plumbing, never touching its checkout, at most once every ten minutes (that site's Pages build takes ~2 min; GitHub allows ~10 an hour): checked live, publishes at 23:25, 23:36 and 23:47. The old addresses redirect with their #ticket-N, checked live: hazel-work-notes' root and closed.html, and /hazel/work-dashboard/ (homepage 4f9437b). Links updated: the Hazel page, the Dress Up page, the series index (and its source, hazel-perf-report 25426e1), ^du_report(2) (kids-choice-games 78428f7; the 003 draft branch 7504c21, local), the work notes, crash log, notes_page.py, agent instructions, README and VERSIONS, data.json, memory. Stayed in hazel-work-notes (my default for the open question): the crash log, work notes, snapshots and dashboard-data/data.json, which the hover cards read. The homepage checkout is now usually behind origin: pull before pushing there (said in the series' instructions and the notes').",
+   "metrics": {
+    "open_minutes": 65,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 132,
+    "tokens_est": 33,
+    "sync_minutes_est": 0,
+    "work_minutes": 28.0
+   }
+  },
   {
    "id": 15,
    "area": "performance, CI",
@@ -5100,9 +5112,8 @@
   }
  ],
  "queue": [
-  156,
-  181,
   183,
+  156,
   182,
   160,
   18,
@@ -5120,5 +5131,5 @@
   177,
   180
  ],
- "current_since": "2026-10-16T23:29-06:00"
+ "current_since": "2026-10-16T23:47-06:00"
 }
