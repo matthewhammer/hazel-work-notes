@@ -661,11 +661,22 @@
    "tags": [
     "long run"
    ]
+  },
+  {
+   "id": 172,
+   "area": "dress up, performance",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T18:30-06:00",
+   "source": "Matthew, 2026-10-16, in chat, after trying 0.0.90 on his laptop",
+   "url": "",
+   "text": "Dress Up: pauses on trips, on Matthew's laptop. Matthew, 2026-10-16: 0.0.90 is slow on his laptop; time for more performance analysis, especially the castle door entrance (clicking a door and its animation) and going into a pit (by clicking and by walking into it, and falling): he gets pauses there.",
+   "tags": [],
+   "progress": "18:30: MEASURED here, no pauses: headless Chrome (trips_perf.mjs, CDP profile) and headless Firefox 157 (tripsff.py) at his laptop's size (1203x802@1.875), normal and as a choppy computer, all four trips (gate, hallway door, pit click, pit walk) run 59-60 fps; one 34-83 ms frame where the new place is built and first painted (the game's work there 13-16 ms). So his pauses are the browser's painting in a Firefox window. Built ⏱️ time the next trip (0.0.91, ⚙️ Advanced under 🧪) for him to run on his laptop: each long frame with its phase and the game's share. NEXT: his ⏱️ lines (a castle door, a pit by click, a pit by walking), from the pad."
   }
  ],
- "next_ticket": 172,
- "current_ticket": null,
- "current_note": "18:10: WAITING ON MATTHEW. Since 17:22 (AFK): Dress Up 0.0.87-0.0.90 live (still pictures, doors ^ticket(147), walls and seats ^ticket(149), N's pits ^ticket(162)); ^ticket(171) archived and closed. The rest of the queue waits on his calls or is tonight's long runs (156, then 160's audit last). Work notes in hazel-work-notes/work-notes/2026/10/16/.",
+ "next_ticket": 173,
+ "current_ticket": 172,
+ "current_note": "18:30: ^ticket(172): Matthew's pauses on trips (castle door, pits). No pauses here in headless Chrome or Firefox: his Firefox window's painting. 0.0.91 with ⏱️ time the next trip is in its gate; then he times the trips on his laptop and pastes the lines.",
  "closed_tickets": [
   {
    "id": 171,
@@ -4440,6 +4451,7 @@
   }
  ],
  "queue": [
+  172,
   156,
   160,
   165,
@@ -4459,6 +4471,5 @@
   15,
   19
  ],
- "current_since": "2026-10-16T17:57-06:00",
- "current_waiting": "his calls: try 147/149/162/145; 🧪 0.0.87 lines; questions on 165, 166, 167; was \"163 into 3rd\" 162?"
+ "current_since": "2026-10-16T18:30-06:00"
 }
