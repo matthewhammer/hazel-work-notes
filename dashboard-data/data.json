@@ -540,25 +540,6 @@
    "progress": "11:00: minted from ^du_report(3)'s step 3, on publishing it; queued."
   },
   {
-   "id": 199,
-   "area": "dress up, navigation",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T11:03-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "text": "<b>Dress Up: the pointer picks a passage: hovering over one (or its arrow) makes it the bright one, and a click walks or swims the friend to it and through; every ladder animates.</b> Matthew, 2026-10-17: \"when we hover over where a passage's arrow would appear, if we were near enough, let's use the pointer to offer that as an override --- if the player is nearest another passage, but: * the pointer is hovering nearly over or over a different passage way arrow, then * show that arrow as the brighter one, and when clicked, it's as if the person was near it and activated it --- but walk or swim to it. * also -- we should swim in water-based passage ways -- -use the current animation to determine the passage way one. * some ladders don't animate (ones going down trap doors in tree house), and some do (dungeon) --- let's make them all animate\"",
-   "tags": [],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T11:03-06:00",
-     "from": "matthew",
-     "chars": 650,
-     "asks": true
-    }
-   ],
-   "progress": "11:03: minted; queued after ^ticket(197) (in progress)."
-  },
-  {
    "id": 200,
    "area": "dress up, UX",
    "added": "2026-10-17",
@@ -598,9 +579,39 @@
   }
  ],
  "next_ticket": 187,
- "current_ticket": 199,
- "current_note": "11:10: The pointer picks a passage (hover = the bright one, click walks or swims there); every ladder animates.",
+ "current_ticket": 201,
+ "current_note": "11:30: Frame-rate guard as things are put in a place (N's 15 cauldrons stalled the Ubuntu laptop), and hints at the costliest things.",
  "closed_tickets": [
+  {
+   "id": 199,
+   "area": "dress up, navigation",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T11:03-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "text": "<b>Dress Up: the pointer picks a passage: hovering over one (or its arrow) makes it the bright one, and a click walks or swims the friend to it and through; every ladder animates.</b> Matthew, 2026-10-17: \"when we hover over where a passage's arrow would appear, if we were near enough, let's use the pointer to offer that as an override --- if the player is nearest another passage, but: * the pointer is hovering nearly over or over a different passage way arrow, then * show that arrow as the brighter one, and when clicked, it's as if the person was near it and activated it --- but walk or swim to it. * also -- we should swim in water-based passage ways -- -use the current animation to determine the passage way one. * some ladders don't animate (ones going down trap doors in tree house), and some do (dungeon) --- let's make them all animate\"",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T11:03-06:00",
+     "from": "matthew",
+     "chars": 650,
+     "asks": true
+    }
+   ],
+   "progress": "11:03: minted; queued after ^ticket(197) (in progress).",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T11:30-06:00",
+   "outcome": "Released in 0.0.126 (live), checked on GitHub first (runs 39053877283, 39053642381): the pointer over a passage, or near where a nav arrow would be, makes it the bright one (even when another is nearest); a click (or X, Enter) takes it, walking to it first (a far picture too); walks to passages swim in deep water; the tree house's trapdoors are ladders climbed down at ⬆'s pace, the friend cut off below the hole's edge. The friend and placed things keep the pointer for dragging.",
+   "metrics": {
+    "open_minutes": 28,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 650,
+    "tokens_est": 162,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 197,
    "area": "dress up, performance",
@@ -5745,7 +5756,6 @@
   }
  ],
  "queue": [
-  199,
   201,
   200,
   198,
