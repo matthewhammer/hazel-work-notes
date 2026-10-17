@@ -485,7 +485,9 @@
    "opened": "2026-10-17T06:28-06:00",
    "source": "Matthew, 2026-10-17, in chat",
    "text": "<b>Dress Up releases deploy first; speed is checked after, on every release, and a slow version is marked 🚧🐢.</b> Matthew, 2026-10-17: \"when N and M start asking for updates later today, I want to deploy publicly asap, so they can test, and support that creative loop -- separately, I want to keep checking performance in a systematic way, so they don't have to, and I don't have to, as we go.\" and, asked to switch releases to deploy first, speed tests after: \"yes.\" To do: (1) a workflow on each release tag (dress-up-X.Y.Z) runs the checks, the frame-rate gate (both tiers), the on-screen controller audit and the leak tests on GitHub's computers, and records the result per version in dress-up/speed.json on main; (2) the game reads speed.json with version.json and marks its own version 🚧🐢 slow (with what failed, and a link to the run) when its speed tests failed; (3) the release steps in agent-instructions.md: deploy first (the script check only), the speed tests after, a slow version fixed in the next one, never undone; and after each release, read its result and mint a ticket when it is slow. Replaces 10-16's rule \"we fix it before we commit new versions\" (Matthew's own change).",
-   "tags": [],
+   "tags": [
+    "long run"
+   ],
    "status": "open",
    "log": [
     {
@@ -510,7 +512,9 @@
    "opened": "2026-10-17T11:00-06:00",
    "source": "^du_report(3), step 3 (Matthew, 2026-10-17: mint its steps 2 and 3 as their own tickets)",
    "text": "<b>Dress Up: find the frames Firefox loses after a session of play.</b> From ^du_report(3) (https://matthewhammer.org/kids-choice-games/dress-up/reports/003/#step-3): on GitHub's Firefox 157, the duck pond at 58.5 fps fresh and 50.8 after two rounds of changes, against 60 for a control that only swam; not the caches, the music or listeners. Next: a fresh Firefox for each case (a reload there runs at 30), and each part of a round on its own: the places, the trips, the sliders, the tabs. On GitHub's runners only (no browser on Matthew's laptop).",
-   "tags": [],
+   "tags": [
+    "long run"
+   ],
    "status": "open",
    "log": [
     {
@@ -536,7 +540,9 @@
    "source": "0.0.130's speed run, read after release (^ticket(184): a slow result gets a ticket)",
    "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39056565230",
    "text": "<b>Dress Up 0.0.130: its own fumes check failed in the speed run, 15 cauldrons about 16% slower than 0.0.129.</b> fumes205 (from ^ticket(205)), 15 cauldrons with simple fumes taking turns, on GitHub's Chrome: 0.0.129's 58, 57.1, 48.2, 52.7 fps (median 54.9; 225 moving parts), 0.0.130's 52, 49.8, 42.8, 41.4 (median 46.3; 255 moving parts); its bar is 10% fewer at most. ^ticket(205)'s own same-runner A/B measured 7% fewer (42.5 to 39.4). One run of four samples each, on a shared runner, so the size is not settled. The frame-rate gate itself passed; speed.json marks 0.0.130 broken by the checks (this and the tree house layering check fixed under ^ticket(207)). Next: the same-runner A/B a few times over to see whether the drop is real; if it is, make the band cheaper (fewer moving parts) before more cauldron work.",
-   "tags": [],
+   "tags": [
+    "long run"
+   ],
    "status": "open",
    "log": [
     {
@@ -666,41 +672,11 @@
    "source": "0.0.131's speed run, read after release (^ticket(184): a slow result gets a ticket)",
    "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39061694679",
    "text": "<b>Dress Up 0.0.131 marked 🐢 slow: two of the frame-rate gate's slow-computer cases under 55.</b> 💭 our imagination, drag: 53.3 fps (runs 53.3, 52.7, 54.3; first try 54.3, 52.3, 52.7), and 🌲 forest: 52, where 0.0.130's run read 60 for both. 0.0.131 changed only how nav arrows shown together are kept apart (^ticket(208)), arithmetic that runs only in a world square with two or more arrows shown; the imagination is not a world square (worldWaysAt is empty there and worldWaysHud returns at once), so its drag cannot have changed. Likely the runner flicker ^ticket(184) describes (the imagination's slow drag at 52.6 and 54.7 earlier on 10-17 with no change to it). Next: the gate's slow cases for 0.0.131's tag and 0.0.130's on the same runner, one after the other, a few times; if they match, the mark is noise and ^ticket(184)'s proposal (compare against the previous release on the same runner, fail only beyond the noise) is the fix.",
-   "tags": [],
+   "tags": [
+    "long run"
+   ],
    "status": "open",
    "log": []
-  },
-  {
-   "id": 223,
-   "area": "dress up, depth, castle rooms, tree house",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T13:56-06:00",
-   "source": "Matthew, 2026-10-17, in chat, with a screenshot of a castle's throne room",
-   "url": "",
-   "text": "<b>Dress Up: audit the layering where the friend can stand behind part of a thing and stick out of it (castle side doors, tree house furniture), and keep the tree houses' doorways and ladders clear of furniture.</b> Matthew: \"a layering issue\", with a picture of a castle's throne room: the friend stands at the left wall, behind its arched side door (🌿 2), the door drawn over them while their head and arm stick out past its edge. \"audit this, along with furniture in tree house rooms for same issue (bunk bed, etc.) where we can get behind parts of it and also stick out a bit, and look unnatural.\" And: \"audit the tree houses when everything is maxed out (doorways, ladders) so that furnishings do not block those things. Many times they do now.\" To do: (1) every castle room's side doors (hallSideDoor; the walls' perspective, castleWalls) and every tree house room's furniture (the bunk bed and the rest): a thing either stands in front of the friend whole, or is a solid they cannot walk into (tickets 99, 149, 176), never half in front with the friend sticking out of it; (2) the tree houses with every setting at its most (houses, rooms, doorways, ladders): no furniture over a doorway, a ladder or a trapdoor, and each one's foot reachable; (3) a check on GitHub: the friend walked along each wall and around each piece, and the pictures at the settings' extremes.",
-   "tags": [],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T13:56-06:00",
-     "from": "matthew",
-     "chars": 17,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T13:56-06:00",
-     "from": "matthew",
-     "chars": 351,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T13:56-06:00",
-     "from": "matthew",
-     "chars": 73,
-     "asks": true
-    }
-   ],
-   "progress": "15:52, after the 15:42 crash: 0.0.158 and 0.0.159 are released and pushed (tag dress-up-0.0.159 is 309fa12); the crash lost none of the game. Their checks ran on GitHub, not on the laptop, and finished. <a href=\"https://github.com/matthewhammer/kids-choice-games/actions/runs/39071471772\">checks-158</a> and <a href=\"https://github.com/matthewhammer/kids-choice-games/actions/runs/39072022557\">checks-159</a> both fail the same two checks: walking right into the waterfall's signpost stops at x 237; and standing on the clearing's castle sign or the tree house doorway, X takes neither of them (so 0.0.159's fix for those has not made its check pass). checks-159 also fails the twice-size arrows: they overlap at 1600x1000 and 1180x820 (SW over W, N over E). <a href=\"https://github.com/matthewhammer/kids-choice-games/actions/runs/39072074252\">checks-225</a>: after Surprise me, a tap on the campsite picture did nothing (ticket 225). The <a href=\"https://github.com/matthewhammer/kids-choice-games/actions/runs/39072007678\">0.0.159 speed run</a> was still running. Next: put those failures right in 0.0.160, then close 223 and 214. Logs are in ~/du-shots/crash-2026-10-17/. Matthew, 2026-10-17 16:16, after 0.0.161: \"the new tree house interiors look good\" (0.0.158's square tree rooms); his one note, walks over the floor's trapdoors, is ^ticket(237)."
   },
   {
    "id": 225,
@@ -739,7 +715,10 @@
    "opened": "2026-10-17T16:14-06:00",
    "source": "Matthew, 2026-10-17, in chat",
    "url": "",
-   "text": "<b>Dress Up: every CI test runs with the ♿ accessibility features on.</b> Matthew: \"add to performance tests that we do in CI: Turn on the accessibility features during all tests, because: * we want them to always work. * the screenshots may be more informative.\" To do: in the CI runs (dress-up-tests.yml on branches, dress-up-speed.yml after a release: the checks, the pictures in shots.json, the frame-rate gate and its slow scenes, the audit, the leak tests), the page starts with every ♿ overlay on (state.access: 🧭 all arrows, 👣 planned path, the collision boxes, and the rest), one shared switch so each tool need not set it; the gate's numbers then include the overlays' cost, so compare its first run against the last one without them, and say so in speed.json or the run's summary; checks that count elements or read colours may need to know."
+   "text": "<b>Dress Up: every CI test runs with the ♿ accessibility features on.</b> Matthew: \"add to performance tests that we do in CI: Turn on the accessibility features during all tests, because: * we want them to always work. * the screenshots may be more informative.\" To do: in the CI runs (dress-up-tests.yml on branches, dress-up-speed.yml after a release: the checks, the pictures in shots.json, the frame-rate gate and its slow scenes, the audit, the leak tests), the page starts with every ♿ overlay on (state.access: 🧭 all arrows, 👣 planned path, the collision boxes, and the rest), one shared switch so each tool need not set it; the gate's numbers then include the overlays' cost, so compare its first run against the last one without them, and say so in speed.json or the run's summary; checks that count elements or read colours may need to know.",
+   "tags": [
+    "long run"
+   ]
   },
   {
    "id": 237,
@@ -758,12 +737,74 @@
    "source": "Matthew, 2026-10-17, in chat (\"another long-standing issue, still not resolved\")",
    "url": "",
    "text": "<b>Dress Up: going down a tree house room's trapdoor ladder, the friend is drawn in front of the ladder and the trapdoor's flap, and visibly goes down into the hole.</b> Matthew: \"another long-standing issue, still not resolved: there's a layering issue when we use the trap door ladders in the tree house: we get (the main char) gets drawn below the ladder, the trap door flap, and we don't visibly go into the hole in a way that I can check about clipping ATM.\" To do: on the way down (climbLadder through a tree room's trapdoor; ticket 199's climb down, cut off below its edge), the friend in front of the ladder and the flap, and sinking into the hole, cut off at the hole's edge where it can be seen; then going up. Pictures of each step of the climb for him to check the clipping. Next to ^ticket(237) (walks round the trapdoors)."
+  },
+  {
+   "id": 239,
+   "area": "dress up, tree house, walking, doors",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:18-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: a friend too tall for a tree house's small door crawls the last stretch through it.</b> Matthew: \"it makes sense that the doors of the tree house are smaller than ordinary doors -- Can we do a nice check to see if we are currently 'too tall' and if so, part of the path plan for going out is crawling at the end of the animation, near to the threshold of the door.\" To do: at a doorway, the friend's standing height where they reach it (their size, at that depth: figureT, depthSize) against the door's opening (its arch's top over the floor); taller, the walk's last stretch to the threshold (walkInto's path, planPath, ticket 215) is a crawl (the crawling animation) and they go through crawling; a door they fit through, walked as now. Every door that can be too small, the tree house's first; a check in tools/checks/ with pictures of the crawl."
+  },
+  {
+   "id": 240,
+   "area": "dress up, tree house, collisions, ♿",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:19-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: at the tree house, the swing's collision box swings with it, and so do the friend's while they swing.</b> Matthew: \"the swing's collision box does not swing at the tree house. our collision boxes don't swing either. I've noticed other animations do show the correct boxes (walking, climbing, running, etc)\". To do: the swing (a SMIL swinging part of the tree house's drawing) and the friend on it: their boxes (solidsHere, the ♿ 🧱 collision boxes overlay, the feet's and torso's boxes of ticket 214) follow the swing's angle as it moves, as the walk's and the climb's do; a check with pictures at the swing's two ends."
   }
  ],
- "next_ticket": 239,
- "current_ticket": null,
- "current_note": "16:17: 0.0.162 released (^ticket(233): old link signs gone, rooms' ways toward us are nav arrows). Minted at the end of the active queue: 236 (♿ on in every CI test), 237 (walks round tree house trapdoors), 238 (trapdoor ladder layering). Next in the queue: 223, then 214",
+ "next_ticket": 241,
+ "current_ticket": 214,
+ "current_note": "16:19: on the 0.0.159 run's two failures left: X not taking the clearing's far castle and tree house from their spots (passages187), and twice-size ♿ arrows overlapping (arrows208); reading the code",
  "closed_tickets": [
+  {
+   "id": 223,
+   "area": "dress up, depth, castle rooms, tree house",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T13:56-06:00",
+   "source": "Matthew, 2026-10-17, in chat, with a screenshot of a castle's throne room",
+   "url": "",
+   "text": "<b>Dress Up: audit the layering where the friend can stand behind part of a thing and stick out of it (castle side doors, tree house furniture), and keep the tree houses' doorways and ladders clear of furniture.</b> Matthew: \"a layering issue\", with a picture of a castle's throne room: the friend stands at the left wall, behind its arched side door (🌿 2), the door drawn over them while their head and arm stick out past its edge. \"audit this, along with furniture in tree house rooms for same issue (bunk bed, etc.) where we can get behind parts of it and also stick out a bit, and look unnatural.\" And: \"audit the tree houses when everything is maxed out (doorways, ladders) so that furnishings do not block those things. Many times they do now.\" To do: (1) every castle room's side doors (hallSideDoor; the walls' perspective, castleWalls) and every tree house room's furniture (the bunk bed and the rest): a thing either stands in front of the friend whole, or is a solid they cannot walk into (tickets 99, 149, 176), never half in front with the friend sticking out of it; (2) the tree houses with every setting at its most (houses, rooms, doorways, ladders): no furniture over a doorway, a ladder or a trapdoor, and each one's foot reachable; (3) a check on GitHub: the friend walked along each wall and around each piece, and the pictures at the settings' extremes.",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T13:56-06:00",
+     "from": "matthew",
+     "chars": 17,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:56-06:00",
+     "from": "matthew",
+     "chars": 351,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:56-06:00",
+     "from": "matthew",
+     "chars": 73,
+     "asks": true
+    }
+   ],
+   "progress": "15:52, after the 15:42 crash: 0.0.158 and 0.0.159 are released and pushed (tag dress-up-0.0.159 is 309fa12); the crash lost none of the game. Their checks ran on GitHub, not on the laptop, and finished. <a href=\"https://github.com/matthewhammer/kids-choice-games/actions/runs/39071471772\">checks-158</a> and <a href=\"https://github.com/matthewhammer/kids-choice-games/actions/runs/39072022557\">checks-159</a> both fail the same two checks: walking right into the waterfall's signpost stops at x 237; and standing on the clearing's castle sign or the tree house doorway, X takes neither of them (so 0.0.159's fix for those has not made its check pass). checks-159 also fails the twice-size arrows: they overlap at 1600x1000 and 1180x820 (SW over W, N over E). <a href=\"https://github.com/matthewhammer/kids-choice-games/actions/runs/39072074252\">checks-225</a>: after Surprise me, a tap on the campsite picture did nothing (ticket 225). The <a href=\"https://github.com/matthewhammer/kids-choice-games/actions/runs/39072007678\">0.0.159 speed run</a> was still running. Next: put those failures right in 0.0.160, then close 223 and 214. Logs are in ~/du-shots/crash-2026-10-17/. Matthew, 2026-10-17 16:16, after 0.0.161: \"the new tree house interiors look good\" (0.0.158's square tree rooms); his one note, walks over the floor's trapdoors, is ^ticket(237).",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T16:19-06:00",
+   "outcome": "Released across 0.0.157 (the castle's side doors drawn on their walls, behind anyone in the room) and 0.0.158 (the tree house rooms made square rooms, their bridge doors on the side walls, the furniture clear of doorways and ladders); its audit run (checks-223) passed. Matthew, 2026-10-17 16:16: \"the new tree house interiors look good\". Its follow-ups are their own tickets: walks round the trapdoors (^ticket(237)), the trapdoor ladder's layering (^ticket(238)), a tall friend crawling through a small door (^ticket(239)). The failures in the 0.0.158/0.0.159 runs it noted belong to ^ticket(214) (far passages, twice-size arrows); the waterfall signpost's went with the signposts in 0.0.162.",
+   "metrics": {
+    "open_minutes": 143,
+    "matthew_messages": 3,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 441,
+    "tokens_est": 110,
+    "sync_minutes_est": 0.0,
+    "work_minutes": 0.0
+   }
+  },
   {
    "id": 233,
    "area": "dress up, world designer, castle designer, signs",
@@ -6970,18 +7011,19 @@
   }
  ],
  "queue": [
-  223,
   214,
+  225,
+  232,
+  235,
+  237,
+  238,
+  239,
+  240,
   209,
   184,
   198,
   222,
-  225,
-  232,
-  235,
   236,
-  237,
-  238,
   160,
   18,
   102,
@@ -6989,5 +7031,5 @@
   19,
   166
  ],
- "current_since": "2026-10-17T16:08-06:00"
+ "current_since": "2026-10-17T16:18-06:00"
 }
