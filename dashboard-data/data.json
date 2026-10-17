@@ -700,7 +700,7 @@
      "asks": true
     }
    ],
-   "progress": "15:52, after the 15:42 crash: 0.0.158 and 0.0.159 are released and pushed (tag dress-up-0.0.159 is 309fa12); the crash lost none of the game. Their checks ran on GitHub, not on the laptop, and finished. <a href=\"https://github.com/matthewhammer/kids-choice-games/actions/runs/39071471772\">checks-158</a> and <a href=\"https://github.com/matthewhammer/kids-choice-games/actions/runs/39072022557\">checks-159</a> both fail the same two checks: walking right into the waterfall's signpost stops at x 237; and standing on the clearing's castle sign or the tree house doorway, X takes neither of them (so 0.0.159's fix for those has not made its check pass). checks-159 also fails the twice-size arrows: they overlap at 1600x1000 and 1180x820 (SW over W, N over E). <a href=\"https://github.com/matthewhammer/kids-choice-games/actions/runs/39072074252\">checks-225</a>: after Surprise me, a tap on the campsite picture did nothing (ticket 225). The <a href=\"https://github.com/matthewhammer/kids-choice-games/actions/runs/39072007678\">0.0.159 speed run</a> was still running. Next: put those failures right in 0.0.160, then close 223 and 214. Logs are in ~/du-shots/crash-2026-10-17/."
+   "progress": "15:52, after the 15:42 crash: 0.0.158 and 0.0.159 are released and pushed (tag dress-up-0.0.159 is 309fa12); the crash lost none of the game. Their checks ran on GitHub, not on the laptop, and finished. <a href=\"https://github.com/matthewhammer/kids-choice-games/actions/runs/39071471772\">checks-158</a> and <a href=\"https://github.com/matthewhammer/kids-choice-games/actions/runs/39072022557\">checks-159</a> both fail the same two checks: walking right into the waterfall's signpost stops at x 237; and standing on the clearing's castle sign or the tree house doorway, X takes neither of them (so 0.0.159's fix for those has not made its check pass). checks-159 also fails the twice-size arrows: they overlap at 1600x1000 and 1180x820 (SW over W, N over E). <a href=\"https://github.com/matthewhammer/kids-choice-games/actions/runs/39072074252\">checks-225</a>: after Surprise me, a tap on the campsite picture did nothing (ticket 225). The <a href=\"https://github.com/matthewhammer/kids-choice-games/actions/runs/39072007678\">0.0.159 speed run</a> was still running. Next: put those failures right in 0.0.160, then close 223 and 214. Logs are in ~/du-shots/crash-2026-10-17/. Matthew, 2026-10-17 16:16, after 0.0.161: \"the new tree house interiors look good\" (0.0.158's square tree rooms); his one note, walks over the floor's trapdoors, is ^ticket(237)."
   },
   {
    "id": 225,
@@ -724,16 +724,6 @@
    "text": "<b>Dress Up: 🔗 all passageways (and a place put on the grid) respect the grid's edge: no way out that leads off the map.</b> Matthew: \"I've noticed a consistent issue that 'all passageways' does not respect the edge of the grid\" \"and it introduces issues that can be avoided\". Found (not yet fixed): worldJoinAll (25-world.js) only ADDS ways between two placed neighbours and never takes one away; worldPut gives a dropped place its usual ways (worldUsualWays) wherever it lands, so the fairy forest at E6 kept its SW way off the bottom edge (D7), a warning that 🔗 left standing. worldMove and worldResize (− row/column) can strand ways off the edge the same way. To do: worldPut, worldMove and worldResize leave no way off the map (worldOffMap, ticket 189), and 🔗 all passageways also takes away any way off the edge (and says so in its note); a check in tools/checks/."
   },
   {
-   "id": 233,
-   "area": "dress up, world designer, castle designer, signs",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T16:04-06:00",
-   "source": "Matthew, 2026-10-17, in chat, after 0.0.160; \"mint a ticket and place as first priority\"",
-   "url": "",
-   "text": "<b>Dress Up: the old link signs go from every place; every way S out of a scene is a nav arrow; the castle designer chooses where each room's S way leads.</b> Matthew: \"now that we have the world designer at this level of features, and we have the 'sign with all directions' Let's go through each background and: remove all of the signs that we added initially just to link in the old, primitive way -- we've replaced that with the world designer UX now, and the UX it creates for the gameplay, with nav arrows, and always-correct signs that are optional. update the castle designer to: still use a free-form graph, not a grid. but in each place where we can walk S out of a room, we need a way to choose where that leads, or if it leads no where. when it leads somewhere, we use a nav arrow UX. when it leads no where, we show no nav arrow --- we are reusing the UX for nav arrows for all of the signs that mark a passageway S out of the scene\". Found so far: the old link signs (each a portal with a fixed data-to) are the clearing's 🥾 path ⬇️ (and its front path, to woodpath) and 🧚 fairies ↗️, the castle's 🌲 clearing, the fairy forest's 🌲 clearing ➡️; the S ways out of rooms are bottomSign (living room livingOut, tree rooms treeBackN, castle rooms' 'back' exits and their extra links) and the castle side/long/spiral rooms' way-out plank sign (out.label ⬇️).",
-   "progress": "Parked 2026-10-17 16:08 for ^ticket(234) (his ask: drop the deep sea's school of fish). Done, in local WIP commit on branch wip-233 of ~/kids-choice-games (not pushed, not released): castleOut may be 'none' (🧱 nowhere) in rooms whose way out is toward us (ROOM_S_OUT: side/long/spiral, wayOutDests(id, n)), elsewhere 'none' reads as the usual way; S exits named 'way toward us' (⬇️) in the designer and the rooms' choices; castleSouthWays(K, n) + insideWays(B) (25-world.js): living room livingOut, tree rooms treeBackN, castle rooms' S ways (and a greenhouse's arches past ten, SW/SE) drawn as nav arrows (invisible data-way portal with its own data-to, the HUD arrow; enterScene goes to data-to); bottomSign, behindSign, the side rooms' ⬇️ plank sign gone; old link signs gone: clearing 🥾 path ⬇️ (and the front path's portal) and 🧚 fairies ↗️, castle 🌲 clearing, fairy forest 🌲 clearing ➡️, and the fixed signposts of the mountain trail, jungle waterfall, camp site and path through the woods (signpost helper removed). Kept (doors, not world links): the castle gate's 🚪 inside, the huts' 🌲 out, room door labels, the clearing's far views as doorways. NEXT: update checks that used the old ones (southway.mjs, places114.mjs's woodpath sign click, passages187/passages.mjs, treehouse216, shots.json south-way-livingroom), write a check for the S nav arrows (castle rooms, living room, nowhere = no arrow), VERSIONS + agent-instructions, diagnostic branch on GitHub, release."
-  },
-  {
    "id": 235,
    "area": "dress up, deep sea, animation",
    "added": "2026-10-17",
@@ -750,12 +740,53 @@
    "source": "Matthew, 2026-10-17, in chat",
    "url": "",
    "text": "<b>Dress Up: every CI test runs with the ♿ accessibility features on.</b> Matthew: \"add to performance tests that we do in CI: Turn on the accessibility features during all tests, because: * we want them to always work. * the screenshots may be more informative.\" To do: in the CI runs (dress-up-tests.yml on branches, dress-up-speed.yml after a release: the checks, the pictures in shots.json, the frame-rate gate and its slow scenes, the audit, the leak tests), the page starts with every ♿ overlay on (state.access: 🧭 all arrows, 👣 planned path, the collision boxes, and the rest), one shared switch so each tool need not set it; the gate's numbers then include the overlays' cost, so compare its first run against the last one without them, and say so in speed.json or the run's summary; checks that count elements or read colours may need to know."
+  },
+  {
+   "id": 237,
+   "area": "dress up, tree house, collisions",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:16-06:00",
+   "source": "Matthew, 2026-10-17, in chat, after 0.0.161 (the square tree rooms of 0.0.158)",
+   "url": "",
+   "text": "<b>Dress Up: a walk in a tree house room goes round its trapdoors, never over them.</b> Matthew: \"collision detection should avoid walking over the trap doors in the floor of the tree houses. otherwise, the new tree house interiors look good\". To do: each tree room's trapdoors (the holes to the room below) count in the walk's planning as the trap room's pits do since 0.0.157 (planPath goes round them; ticket 214), while a walk to the trapdoor's own ladder, and climbing down it, still work; a check in tools/checks/."
+  },
+  {
+   "id": 238,
+   "area": "dress up, tree house, layering, ladders",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:16-06:00",
+   "source": "Matthew, 2026-10-17, in chat (\"another long-standing issue, still not resolved\")",
+   "url": "",
+   "text": "<b>Dress Up: going down a tree house room's trapdoor ladder, the friend is drawn in front of the ladder and the trapdoor's flap, and visibly goes down into the hole.</b> Matthew: \"another long-standing issue, still not resolved: there's a layering issue when we use the trap door ladders in the tree house: we get (the main char) gets drawn below the ladder, the trap door flap, and we don't visibly go into the hole in a way that I can check about clipping ATM.\" To do: on the way down (climbLadder through a tree room's trapdoor; ticket 199's climb down, cut off below its edge), the friend in front of the ladder and the flap, and sinking into the hole, cut off at the hole's edge where it can be seen; then going up. Pictures of each step of the climb for him to check the clipping. Next to ^ticket(237) (walks round the trapdoors)."
   }
  ],
- "next_ticket": 237,
- "current_ticket": 233,
- "current_note": "16:11: 0.0.162 committed locally (6f383a0, not pushed): old link signs gone, rooms' ways toward us are nav arrows and may lead nowhere; diagnostic run checks-233 on GitHub (southways233 + the 5 checks it touches + pictures), then the release",
+ "next_ticket": 239,
+ "current_ticket": null,
+ "current_note": "16:17: 0.0.162 released (^ticket(233): old link signs gone, rooms' ways toward us are nav arrows). Minted at the end of the active queue: 236 (♿ on in every CI test), 237 (walks round tree house trapdoors), 238 (trapdoor ladder layering). Next in the queue: 223, then 214",
  "closed_tickets": [
+  {
+   "id": 233,
+   "area": "dress up, world designer, castle designer, signs",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:04-06:00",
+   "source": "Matthew, 2026-10-17, in chat, after 0.0.160; \"mint a ticket and place as first priority\"",
+   "url": "",
+   "text": "<b>Dress Up: the old link signs go from every place; every way S out of a scene is a nav arrow; the castle designer chooses where each room's S way leads.</b> Matthew: \"now that we have the world designer at this level of features, and we have the 'sign with all directions' Let's go through each background and: remove all of the signs that we added initially just to link in the old, primitive way -- we've replaced that with the world designer UX now, and the UX it creates for the gameplay, with nav arrows, and always-correct signs that are optional. update the castle designer to: still use a free-form graph, not a grid. but in each place where we can walk S out of a room, we need a way to choose where that leads, or if it leads no where. when it leads somewhere, we use a nav arrow UX. when it leads no where, we show no nav arrow --- we are reusing the UX for nav arrows for all of the signs that mark a passageway S out of the scene\". Found so far: the old link signs (each a portal with a fixed data-to) are the clearing's 🥾 path ⬇️ (and its front path, to woodpath) and 🧚 fairies ↗️, the castle's 🌲 clearing, the fairy forest's 🌲 clearing ➡️; the S ways out of rooms are bottomSign (living room livingOut, tree rooms treeBackN, castle rooms' 'back' exits and their extra links) and the castle side/long/spiral rooms' way-out plank sign (out.label ⬇️).",
+   "progress": "Parked 2026-10-17 16:08 for ^ticket(234) (his ask: drop the deep sea's school of fish). Done, in local WIP commit on branch wip-233 of ~/kids-choice-games (not pushed, not released): castleOut may be 'none' (🧱 nowhere) in rooms whose way out is toward us (ROOM_S_OUT: side/long/spiral, wayOutDests(id, n)), elsewhere 'none' reads as the usual way; S exits named 'way toward us' (⬇️) in the designer and the rooms' choices; castleSouthWays(K, n) + insideWays(B) (25-world.js): living room livingOut, tree rooms treeBackN, castle rooms' S ways (and a greenhouse's arches past ten, SW/SE) drawn as nav arrows (invisible data-way portal with its own data-to, the HUD arrow; enterScene goes to data-to); bottomSign, behindSign, the side rooms' ⬇️ plank sign gone; old link signs gone: clearing 🥾 path ⬇️ (and the front path's portal) and 🧚 fairies ↗️, castle 🌲 clearing, fairy forest 🌲 clearing ➡️, and the fixed signposts of the mountain trail, jungle waterfall, camp site and path through the woods (signpost helper removed). Kept (doors, not world links): the castle gate's 🚪 inside, the huts' 🌲 out, room door labels, the clearing's far views as doorways. NEXT: update checks that used the old ones (southway.mjs, places114.mjs's woodpath sign click, passages187/passages.mjs, treehouse216, shots.json south-way-livingroom), write a check for the S nav arrows (castle rooms, living room, nowhere = no arrow), VERSIONS + agent-instructions, diagnostic branch on GitHub, release.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T16:17-06:00",
+   "outcome": "Released in 0.0.162 (3f59259, tag dress-up-0.0.162, live over HTTPS). Gone: the old link signs (clearing 🥾 path ⬇️ and its front path's doorway, 🧚 fairies ↗️; castle 🌲 clearing; fairy forest 🌲 clearing ➡️) and the fixed signposts of the mountain trail, jungle waterfall, camp site and path through the woods. Every way toward us out of a room is a nav arrow (insideWays + castleSouthWays, 25-world.js / 13-castle-rooms-and-map.js): the living room, the tree rooms, the castle rooms (a hallway's, the trap room's, the greenhouse's castleBack; the king's room's, dining room's and spiral stairs' way out); leading nowhere, nothing; walking off the bottom edge takes it. The castle designer: those rooms' way out may lead 🧱 nowhere (wayOutDests(id, n)); S exits named ⬇️ way toward us. Checks: southways233.mjs (new, 21/21 on GitHub run 39074019898; replaces southway.mjs), places114 and world185 all ok; nav199 retargeted (hovers the far view farthest from any arrow; fixed after that run, not rerun); passages187's castle/tree house far-view failure is the same as 0.0.159's (^ticket(223)/214's). Kept as doors: the castle gate's 🚪 inside, the huts' 🌲 out, room labels, the clearing's far views. OBJECTS.md not remade (stale since 0.0.94).",
+   "metrics": {
+    "open_minutes": 13,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 11.0
+   }
+  },
   {
    "id": 234,
    "area": "dress up, deep sea",
@@ -6939,7 +6970,6 @@
   }
  ],
  "queue": [
-  233,
   223,
   214,
   209,
@@ -6950,6 +6980,8 @@
   232,
   235,
   236,
+  237,
+  238,
   160,
   18,
   102,
