@@ -663,9 +663,28 @@
      "asks": true
     }
    ]
+  },
+  {
+   "id": 214,
+   "area": "dress up, places, world designer, walking",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T13:07-06:00",
+   "source": "Matthew, 2026-10-17, in chat (\"related, and maybe with the composibility rule and new open water refinements\")",
+   "url": "",
+   "text": "<b>Dress Up: audit every background so the horizon or back wall stops the friend, and walking N into it takes the N way where that makes sense.</b> Matthew: \"audit every background option and check that the horizon triggers some action, at least a collision. It's possible that on many scenes, that collision should also make the N nav arrow appear, and trigger it automatically.\" Check that one \"cannot 'walk up the back wall' or 'walk up the sky in the background'\", and \"where it makes sense, walking N triggers the nav N action\". Where it stands (read from the code, 2026-10-17): only the indoor rooms have a back the feet stop at (SCENE_BACK: the imagination, the empty room, the castle rooms but the spiral stair's, the living room, the tree house rooms, the witch's and healer's huts, the tent; tickets 145, 149, 176). Every outdoor place falls back to figYMin's frame limit, 60% of the way from the ground up to the picture's top, so the friend can walk well up into the sky. To do: for every place and its options (room styles, the castle's rooms, the tree house's, the open water's coming shore), a back limit at its horizon or wall foot as drawn (the controller, a drag and the place control all keeping to it), and where a square has a way N (and, perhaps, in a place whose far edge leads somewhere), reaching that limit shows the N arrow and takes it, as reaching a side does now. A check on GitHub walks N in each. Related: the composable layers and the no-promises rule of ^ticket(211) and ^ticket(212) (a backdrop layer knows where its horizon is).",
+   "tags": [],
+   "status": "open",
+   "log": [
+    {
+     "at": "2026-10-17T13:07-06:00",
+     "from": "matthew",
+     "chars": 504,
+     "asks": true
+    }
+   ]
   }
  ],
- "next_ticket": 214,
+ "next_ticket": 215,
  "current_ticket": 208,
  "current_note": "13:05: the stronger check sees his case (overlaps everywhere with the fix off), but the first fix left E over SE at 29 of 34 spots: it took each triangle as a plain 44px box. Fixed to its turned box plus its 5px bob (37fe23f on world-185); running on GitHub (checks-185, e48bd2a).",
  "closed_tickets": [
