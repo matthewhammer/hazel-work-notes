@@ -585,6 +585,30 @@
    "progress": "09:49: minted and queued, not started. Defaults keep today's feel (PAD_SPEED; instant start and stop); the gate's walk cases must stay at 60 fps."
   },
   {
+   "id": 193,
+   "area": "dress up, animation, regression",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T10:15-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "text": "<b>Dress Up: the spin into and out of a picture has regressed: no spin going in, and some limbs already in place, never spinning, coming out.</b> Matthew, 2026-10-17: \"there's been a number of regressions in the spinning into and out of scene (for pictures only now): * the animation does not play for spinning in --- the main char freezes in place, and we wait * then the person does spin into the new scene, but often some limbs are waiting in their final place already, and never spinning. Seems like something that got introduced and worse as we did animation work.\"",
+   "tags": [],
+   "status": "open",
+   "log": [
+    {
+     "at": "2026-10-17T10:15-06:00",
+     "from": "matthew",
+     "chars": 380,
+     "asks": true
+    }
+   ],
+   "progress": "10:15: minted; taken right after ^ticket(188) (a regression, ahead of ^ticket(186))."
+  }
+ ],
+ "next_ticket": 187,
+ "current_ticket": 188,
+ "current_note": "10:14: Sliders: top running speed, and how fast the friend speeds up and slows down (default: at once, as now).",
+ "closed_tickets": [
+  {
    "id": 192,
    "area": "dress up, tree house",
    "added": "2026-10-17",
@@ -592,7 +616,7 @@
    "source": "Matthew, 2026-10-17, in chat (a screenshot)",
    "text": "<b>Dress Up: in a tree house room, the side doorway is drawn over the friend standing in front of it.</b> Matthew, 2026-10-17, with a screenshot of tree house room 2 (the friend at the left wall's doorway to room 1, the doorway's frame and view over their body): \"the passageways in treehouse look and work well, but there's a minor depth/layering issue that's been there for a while\".",
    "tags": [],
-   "status": "open",
+   "status": "done",
    "log": [
     {
      "at": "2026-10-17T10:11-06:00",
@@ -601,13 +625,19 @@
      "asks": true
     }
    ],
-   "progress": "10:11: minted; taken next (Matthew: deploying as I go through the tickets)."
-  }
- ],
- "next_ticket": 187,
- "current_ticket": 192,
- "current_note": "10:11: Tree house room: the side doorway drawn over the friend in front of it (his screenshot). Finding the layering.",
- "closed_tickets": [
+   "progress": "10:11: minted; taken next (Matthew: deploying as I go through the tickets).",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T10:14-06:00",
+   "outcome": "Released in 0.0.120 (live), checked on GitHub first (run 39048358532): a tree house room's side doors were scenery drawn after the room's objects, so on top of the friend in front of them; now one object at the back wall's foot, as the hatch and ladder are. Safety net: tree house rooms 1-4 differ (their doors, as meant).",
+   "metrics": {
+    "open_minutes": 4,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 140,
+    "tokens_est": 35,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 190,
    "area": "dashboard",
@@ -5460,8 +5490,8 @@
   }
  ],
  "queue": [
-  192,
   188,
+  193,
   186,
   184,
   160,
