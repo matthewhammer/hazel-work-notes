@@ -629,56 +629,6 @@
    ]
   },
   {
-   "id": 215,
-   "area": "dress up, walking, passages",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T13:23-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "url": "",
-   "text": "<b>Dress Up: path planning to a passage, something very simple for now.</b> Matthew: \"when the player clicks a picture, or another passageway, we should plan a path for walking, swimming or climbing to it, and do it in a natural way, avoiding obstacles in the room, and walking (or swimming) around them.\" Now: walkInto (ticket 147) walks the friend straight to the passage's foot, at most 2.5 s, and solidMove (ticket 149) only slides them along what they meet. To do, simply: a path around the place's solids (seats, the things that can't be walked through, tickets 149 and 176) and walls (castleWalls, SCENE_BACK), e.g. a few waypoints round each obstacle's corners in floor units and the shortest way through them; walked, or swum in deep water (ticket 199's swim), then climbed where the passage is a ladder (climbLadder). A check on GitHub: a click on a passage behind a seat ends at its foot without the feet ever inside a solid.",
-   "tags": [],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T13:23-06:00",
-     "from": "matthew",
-     "chars": 737,
-     "asks": true
-    }
-   ]
-  },
-  {
-   "id": 216,
-   "area": "dress up, tree house, passages",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T13:23-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "url": "",
-   "text": "<b>Dress Up: the tree house's trap door goes down the right way, clipped like the pits, and the tree house gets doors that open like the castle's.</b> Matthew, on the tree house trap door's way down: \"we trigger going 'down' the ladder by pressing up, and animating an upward climb; that's backwards.\"; \"for that hole, we should clip the body like the pit room, which looks really good.\"; and \"let's show doors on the treehouse, we can reuse the castle doors (or re-style them), but they open like the castle doors when we trigger them as a passage way, and we walk through them, like the castle.\" To do: (1) the trap door taken with ⬇ (down), not ⬆, and the climb drawn going down (anim and climb direction, ticket 199's trapdoor ladder); (2) the friend clipped at the hole's near rim as they go down, as the trap room's pits do (fallDown's clip, ticket 162); (3) doors on the tree house's doorways: the castle's (hallSideDoor, a data-door with a data-leaf and its data-open shape) or restyled in wood, swinging open as the passage is taken, and walked through (walkInto, ticket 147).",
-   "tags": [],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T13:23-06:00",
-     "from": "matthew",
-     "chars": 737,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T13:46-06:00",
-     "from": "matthew",
-     "chars": 21,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T14:20-06:00",
-     "from": "matthew",
-     "chars": 62,
-     "asks": false
-    }
-   ]
-  },
-  {
    "id": 217,
    "area": "dress up, accessibility, passages",
    "added": "2026-10-17",
@@ -867,9 +817,81 @@
   }
  ],
  "next_ticket": 225,
- "current_ticket": 216,
- "current_note": "14:20: Matthew AFK again (14:20), watching the public site: each ticket released as its own version as its checks pass, in queue order. 216 full run going → 0.0.133; then 215 (passed) → 0.0.134; 217 being diagnosed (a living-room walk failed after its check ran); 218 passed, waits behind 217.",
+ "current_ticket": 217,
+ "current_note": "14:22: 216 → 0.0.133 and 215 → 0.0.134 released (Matthew: get them out, not delayed by checks; checks run after on each tag, read and fixed next). 217: a diagnosis run going (did its check's leftover autosave break a living-room walk, or its code?); then 0.0.135, 218 → 0.0.136.",
  "closed_tickets": [
+  {
+   "id": 215,
+   "area": "dress up, walking, passages",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T13:23-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: path planning to a passage, something very simple for now.</b> Matthew: \"when the player clicks a picture, or another passageway, we should plan a path for walking, swimming or climbing to it, and do it in a natural way, avoiding obstacles in the room, and walking (or swimming) around them.\" Now: walkInto (ticket 147) walks the friend straight to the passage's foot, at most 2.5 s, and solidMove (ticket 149) only slides them along what they meet. To do, simply: a path around the place's solids (seats, the things that can't be walked through, tickets 149 and 176) and walls (castleWalls, SCENE_BACK), e.g. a few waypoints round each obstacle's corners in floor units and the shortest way through them; walked, or swum in deep water (ticket 199's swim), then climbed where the passage is a ladder (climbLadder). A check on GitHub: a click on a passage behind a seat ends at its foot without the feet ever inside a solid.",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T13:23-06:00",
+     "from": "matthew",
+     "chars": 737,
+     "asks": true
+    }
+   ],
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T14:22-06:00",
+   "outcome": "Released in Dress Up 0.0.134 (main f11fd0b, tag dress-up-0.0.134; the work babbb3e, branch paths-215): planPath, straight when nothing stands in the way, else the shortest way round the corners of the solids in it (Dijkstra over the corners each sees; deeper 1/0.6 as far); walkInto walks it a point at a time, the whole length setting the pace. tools/checks/paths215.mjs (run 39065708347): in six places a walk to a passage behind a solid (the house's wagon, the witch's cauldron, the healer's soup pot, the fairy forest's toadstools, a tree house room, the living room) goes round, never inside a solid, and through; walked straight, the feet went through. walkPath kept for ^ticket(217)'s path shown.",
+   "metrics": {
+    "open_minutes": 59,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 737,
+    "tokens_est": 184,
+    "sync_minutes_est": 0
+   }
+  },
+  {
+   "id": 216,
+   "area": "dress up, tree house, passages",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T13:23-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: the tree house's trap door goes down the right way, clipped like the pits, and the tree house gets doors that open like the castle's.</b> Matthew, on the tree house trap door's way down: \"we trigger going 'down' the ladder by pressing up, and animating an upward climb; that's backwards.\"; \"for that hole, we should clip the body like the pit room, which looks really good.\"; and \"let's show doors on the treehouse, we can reuse the castle doors (or re-style them), but they open like the castle doors when we trigger them as a passage way, and we walk through them, like the castle.\" To do: (1) the trap door taken with ⬇ (down), not ⬆, and the climb drawn going down (anim and climb direction, ticket 199's trapdoor ladder); (2) the friend clipped at the hole's near rim as they go down, as the trap room's pits do (fallDown's clip, ticket 162); (3) doors on the tree house's doorways: the castle's (hallSideDoor, a data-door with a data-leaf and its data-open shape) or restyled in wood, swinging open as the passage is taken, and walked through (walkInto, ticket 147).",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T13:23-06:00",
+     "from": "matthew",
+     "chars": 737,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:46-06:00",
+     "from": "matthew",
+     "chars": 21,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T14:20-06:00",
+     "from": "matthew",
+     "chars": 62,
+     "asks": false
+    }
+   ],
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T14:22-06:00",
+   "outcome": "Released in Dress Up 0.0.133 (main cc0325f, tag dress-up-0.0.133, live; the work 0a7356a, branch treehouse-216): ⬇ at a tree house room's trapdoor climbs down it (climbLadder, as a tap or X: walkInto's climb down, cut off below the hatch's near edge as the pits cut them off); ⬆ mounts only ladders that go up (it used to climb the hatch ladder's top, unclipped). Each tree house room's side doorway to a rope bridge has a plank door (data-door, a data-leaf hinged on its outer side) that swings open as it is taken, the friend walking through, as the castle's. tools/checks/treehouse216.mjs passed all seven (run 39065446784), and caught a ⬇ that would have thrown (the ladder's door is a record, not an element) before release.",
+   "metrics": {
+    "open_minutes": 59,
+    "matthew_messages": 3,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 820,
+    "tokens_est": 205,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 210,
    "area": "dress up, world designer, UX",
@@ -6500,8 +6522,6 @@
   }
  ],
  "queue": [
-  216,
-  215,
   217,
   218,
   219,
