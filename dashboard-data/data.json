@@ -629,25 +629,6 @@
    ]
   },
   {
-   "id": 220,
-   "area": "dress up, places, bubbles",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T13:40-06:00",
-   "source": "Matthew, 2026-10-17, in chat (\"push to back\": the end of the active queue)",
-   "url": "",
-   "text": "<b>Dress Up: 🫧 bubble space, the empty room full of bubbles that bump, stick together, and pop on the friend.</b> Matthew: \"bubble space -- -like the empty background, except populated with bubbles that collide with each other, and stick, and collide with the player and pop. Controls for number of bubbles initially, their rate of movement (the ambient wind in the room, jostling them around gently or quickly), and up to three 'bubble themes' (A, B and C) with controls for their color, etc as explained already.\" To do: a place like the 🔲 empty room (^ticket(153)) with bubbles drifting in a gentle wind: they collide and stick in clumps, and pop when they touch the friend; settings for how many to begin with, the wind (gentle to quick), and three bubble themes, A, B and C, each the bubble concept's settings (colour, size, shine, sparkles; ^ticket(219)). At 60 frames a second: the collisions measured on GitHub's computers, with a cap on the count if needed.",
-   "tags": [],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T13:40-06:00",
-     "from": "matthew",
-     "chars": 1412,
-     "asks": true
-    }
-   ]
-  },
-  {
    "id": 221,
    "area": "dress up, controls, actions, bubbles",
    "added": "2026-10-17",
@@ -775,6 +756,41 @@
    "tags": [],
    "status": "open",
    "log": []
+  }
+ ],
+ "next_ticket": 228,
+ "current_ticket": 221,
+ "current_note": "14:42: 220 → 0.0.143 released; 227's fixes confirmed. 221, 🫧 blow bubbles: an action beside walking and passages, bubbles of up to three styles from the mouth or a hand, the player choosing which.",
+ "closed_tickets": [
+  {
+   "id": 220,
+   "area": "dress up, places, bubbles",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T13:40-06:00",
+   "source": "Matthew, 2026-10-17, in chat (\"push to back\": the end of the active queue)",
+   "url": "",
+   "text": "<b>Dress Up: 🫧 bubble space, the empty room full of bubbles that bump, stick together, and pop on the friend.</b> Matthew: \"bubble space -- -like the empty background, except populated with bubbles that collide with each other, and stick, and collide with the player and pop. Controls for number of bubbles initially, their rate of movement (the ambient wind in the room, jostling them around gently or quickly), and up to three 'bubble themes' (A, B and C) with controls for their color, etc as explained already.\" To do: a place like the 🔲 empty room (^ticket(153)) with bubbles drifting in a gentle wind: they collide and stick in clumps, and pop when they touch the friend; settings for how many to begin with, the wind (gentle to quick), and three bubble themes, A, B and C, each the bubble concept's settings (colour, size, shine, sparkles; ^ticket(219)). At 60 frames a second: the collisions measured on GitHub's computers, with a cap on the count if needed.",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T13:40-06:00",
+     "from": "matthew",
+     "chars": 1412,
+     "asks": true
+    }
+   ],
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T14:42-06:00",
+   "outcome": "Released in Dress Up 0.0.143 (main da34c62; the work on branch bubbles-220): 🫧 bubble space, a place off the grid in 💭 imagination: the empty room paler and #bubble-layer, bubbleTick (from bubbleRun in draw) moving each bubble each frame: drifting in the room's wind (bubbleWind, a slowly turning breeze and a jostle of its own), bouncing off the picture's edges, sticking where they touch (bonds, a spring each, clumps drifting as one), popping on the friend (the figure's box; back from an edge 1.4 s later). Settings in 🏞️ Background, only there: how many (5 to 80), the wind, themes A, B, C (bubbleSvg's colour, size, shine, sparkle and its colour; B and C when on). tools/checks/bubbles220.mjs runs on GitHub after release.",
+   "metrics": {
+    "open_minutes": 63,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1412,
+    "tokens_est": 353,
+    "sync_minutes_est": 0
+   }
   },
   {
    "id": 227,
@@ -785,7 +801,7 @@
    "url": "",
    "text": "<b>Dress Up ♿ bugs: arrows misplaced with the overlays shown, collision boxes vanishing, chips far too long.</b> Matthew: \"some bug with scaling the font or arrow size misplaces them in the scene\", \"on 0.0.137 -- bug report -- prioritize a fix please\", \"collision boxes should not disappear until we untoggle them\", \"These toggle chips' text is way, way too long. Just a few words please. Or just two words, or even one, if possible.\" Found: the overlays (the collision boxes, the planned path) were put in the arrows' own layer (#ways), whose children worldWaysHud takes as its arrows by index: the boxes, put first, shifted every arrow onto another's place; and each new square's arrows replaced the layer, boxes and all. No scene text carries a transform of its own, so the words' scaling moves nothing.",
    "tags": [],
-   "status": "open",
+   "status": "done",
    "log": [
     {
      "at": "2026-10-17T14:33-06:00",
@@ -811,13 +827,19 @@
      "chars": 44,
      "asks": true
     }
-   ]
-  }
- ],
- "next_ticket": 228,
- "current_ticket": 220,
- "current_note": "14:40: INCIDENT: 0.0.140 (the deep sea) stopped while loading (a const read before its line) for about 20 minutes; fixed in 0.0.141, and tools/check_load.mjs now runs the script in node before every release. 0.0.139 (♿ fixes) confirmed on GitHub; 0.0.142: crowded big arrows drop a far one's words. The deep sea's check + pictures running. Then 220, bubble space.",
- "closed_tickets": [
+   ],
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T14:42-06:00",
+   "outcome": "Released in Dress Up 0.0.139 (main ac9b82e) and 0.0.142 (9150fc7): the overlays (collision boxes, planned path) in a layer of their own (#access-layer), so the nav arrows stay where they were and the boxes stay shown square to square until turned off; each box drawn with its height (its front face as tall as the thing); the ♿ chips two words each, lit while on, the sliders' names short; and with every arrow shown, big, in a small picture, a far arrow with no room drops its words (.terse). Checked on GitHub (runs 39067223782, 39067667320): arrows stay put with the boxes shown, boxes stay shown in the next square, the path drawn and gone, the boxes one a solid and named; at twice the size, no overlap at 2400 wide, a few small ones left at 1600 and 1180 (eight big arrows in a small picture).",
+   "metrics": {
+    "open_minutes": 10,
+    "matthew_messages": 4,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 309,
+    "tokens_est": 77,
+    "sync_minutes_est": 0.0
+   }
+  },
   {
    "id": 219,
    "area": "dress up, places, world designer, objects, bubbles",
@@ -6664,8 +6686,6 @@
   }
  ],
  "queue": [
-  220,
-  227,
   221,
   223,
   209,
