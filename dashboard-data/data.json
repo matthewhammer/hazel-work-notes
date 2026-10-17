@@ -610,7 +610,7 @@
    "opened": "2026-10-17T13:07-06:00",
    "source": "Matthew, 2026-10-17, in chat (\"related, and maybe with the composibility rule and new open water refinements\")",
    "url": "",
-   "text": "<b>Dress Up: audit every background so the horizon or back wall stops the friend, and running into any edge (N, E, S, W or a diagonal) takes the passage that way.</b> Matthew: \"audit every background option and check that the horizon triggers some action, at least a collision. It's possible that on many scenes, that collision should also make the N nav arrow appear, and trigger it automatically.\" Check that one \"cannot 'walk up the back wall' or 'walk up the sky in the background'\", and \"where it makes sense, walking N triggers the nav N action\". Where it stands (read from the code, 2026-10-17): only the indoor rooms have a back the feet stop at (SCENE_BACK: the imagination, the empty room, the castle rooms but the spiral stair's, the living room, the tree house rooms, the witch's and healer's huts, the tent; tickets 145, 149, 176). Every outdoor place falls back to figYMin's frame limit, 60% of the way from the ground up to the picture's top, so the friend can walk well up into the sky. To do: for every place and its options (room styles, the castle's rooms, the tree house's, the open water's coming shore), a back limit at its horizon or wall foot as drawn (the controller, a drag and the place control all keeping to it), and where a square has a way N (and, perhaps, in a place whose far edge leads somewhere), reaching that limit shows the N arrow and takes it, as reaching a side does now. A check on GitHub walks N in each. The open water's own audit is part 4 of ^ticket(212). Related: the composable layers and the no-promises rule of ^ticket(212) (a backdrop layer knows where its horizon is). AMENDED (Matthew, 2026-10-17): \"all collision directions that correspond to: edge of the N 'back wall' (or horizon); E, S or W edges of the screen; Or their diagonals, to trigger the enter passage action\". So every edge counts, not only N: meeting the back wall or horizon (N), the picture's E, S or W edge, or a corner where two meet (NE, NW, SE, SW), takes the passage that way when there is one (the nav arrow's way, as enterScene does); the check walks into each of the eight in each place.",
+   "text": "<b>Dress Up: audit every background so the horizon or back wall stops the friend, and running into any edge (N, E, S, W or a diagonal) takes the passage that way.</b> Matthew: \"audit every background option and check that the horizon triggers some action, at least a collision. It's possible that on many scenes, that collision should also make the N nav arrow appear, and trigger it automatically.\" Check that one \"cannot 'walk up the back wall' or 'walk up the sky in the background'\", and \"where it makes sense, walking N triggers the nav N action\". Where it stands (read from the code, 2026-10-17): only the indoor rooms have a back the feet stop at (SCENE_BACK: the imagination, the empty room, the castle rooms but the spiral stair's, the living room, the tree house rooms, the witch's and healer's huts, the tent; tickets 145, 149, 176). Every outdoor place falls back to figYMin's frame limit, 60% of the way from the ground up to the picture's top, so the friend can walk well up into the sky. To do: for every place and its options (room styles, the castle's rooms, the tree house's, the open water's coming shore), a back limit at its horizon or wall foot as drawn (the controller, a drag and the place control all keeping to it), and where a square has a way N (and, perhaps, in a place whose far edge leads somewhere), reaching that limit shows the N arrow and takes it, as reaching a side does now. A check on GitHub walks N in each. The open water's own audit is part 4 of ^ticket(212). Related: the composable layers and the no-promises rule of ^ticket(212) (a backdrop layer knows where its horizon is). AMENDED (Matthew, 2026-10-17): \"all collision directions that correspond to: edge of the N 'back wall' (or horizon); E, S or W edges of the screen; Or their diagonals, to trigger the enter passage action\". So every edge counts, not only N: meeting the back wall or horizon (N), the picture's E, S or W edge, or a corner where two meet (NE, NW, SE, SW), takes the passage that way when there is one (the nav arrow's way, as enterScene does); the check walks into each of the eight in each place. Matthew, later, with a screenshot of the forest path, the collision boxes shown: \"let's audit each scene -- that blue dashed line, which I assume is a North boundary, seems off in this scene --- forest path -- -is it also wrong in other scenes?\" Yes: the dashed line is the back limit (figYMin), and every outdoor place still has the frame's stand-in (60% of the way from the ground up to the picture's top), in the forest path up among the tree trunks.",
    "tags": [],
    "status": "open",
    "log": [
@@ -624,6 +624,12 @@
      "at": "2026-10-17T13:45-06:00",
      "from": "matthew",
      "chars": 199,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T14:50-06:00",
+     "from": "matthew",
+     "chars": 162,
      "asks": true
     }
    ]
@@ -739,10 +745,58 @@
    "log": []
   }
  ],
- "next_ticket": 228,
- "current_ticket": 223,
- "current_note": "14:46: 221 → 0.0.144 released (bubble space's check passed: 60 fps, sticking, popping). 223: the layering audit: castle side doors and tree house furniture that the friend half-hides behind; tree houses at their most, furniture off the doorways and ladders.",
+ "next_ticket": 229,
+ "current_ticket": 214,
+ "current_note": "14:50: his ask (\"let's audit each scene\"): the back limit, the dashed line, in every place; outdoor places still have the frame's stand-in. First a picture of each place with the collision boxes on, then each its own limit at its horizon or wall foot, and the edges' passages (his amendment).",
  "closed_tickets": [
+  {
+   "id": 228,
+   "area": "dress up, accessibility, full screen",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T14:50-06:00",
+   "source": "Matthew, 2026-10-17, in chat: a bug report on 0.0.144 with screenshots (full screen, every arrow shown, the forest path with the collision boxes), and the ♿ tab's layout",
+   "url": "",
+   "text": "<b>Dress Up ♿: into full screen the overlays kept the smaller picture's places; the tab's toggles at the top, one colour each.</b> Matthew: \"into FS mode, need to reposition the accessibility help, not make it wrong, or make it disappear\", \"same bug\"; \"place all toggle chips at top, not just the first one\"; \"color options for the planned path, and collision boxes too -- defaults you have are good. No need for lists of color options --- just one picker per thing\". What the overlays are for: \"so I can explain to anyone that's new to video games how it works, and also explain issues that I see visually, without trying to explain how to recreate some behavior\".",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T14:50-06:00",
+     "from": "matthew",
+     "chars": 118,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T14:50-06:00",
+     "from": "matthew",
+     "chars": 8,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T14:50-06:00",
+     "from": "matthew",
+     "chars": 269,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T14:50-06:00",
+     "from": "matthew",
+     "chars": 203,
+     "asks": true
+    }
+   ],
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T14:50-06:00",
+   "outcome": "Released in Dress Up 0.0.145 (main 2c0ec54) and 0.0.146 (641e44e): the arrows, the collision boxes and the path placed again on every drawing and whenever the picture changes size (a ResizeObserver on it: into full screen they had kept the smaller picture's places); the ♿ toggles all at the top, one colour picker each for the far arrows, the planned path and the collision boxes (yellow and red to start). Its purpose written into agent-instructions.md. tools/checks/access217.mjs now walks the E arrow into full screen and back (run 39068222421).",
+   "metrics": {
+    "open_minutes": 1,
+    "matthew_messages": 4,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 598,
+    "tokens_est": 149,
+    "sync_minutes_est": 0.0
+   }
+  },
   {
    "id": 221,
    "area": "dress up, controls, actions, bubbles",
@@ -6697,6 +6751,7 @@
   }
  ],
  "queue": [
+  214,
   223,
   209,
   184,
@@ -6711,5 +6766,5 @@
   19,
   166
  ],
- "current_since": "2026-10-17T14:36-06:00"
+ "current_since": "2026-10-17T14:50-06:00"
 }
