@@ -671,12 +671,12 @@
    "url": "",
    "text": "Dress Up: pauses on trips, on Matthew's laptop. Matthew, 2026-10-16: 0.0.90 is slow on his laptop; time for more performance analysis, especially the castle door entrance (clicking a door and its animation) and going into a pit (by clicking and by walking into it, and falling): he gets pauses there.",
    "tags": [],
-   "progress": "18:30: MEASURED here, no pauses: headless Chrome (trips_perf.mjs, CDP profile) and headless Firefox 157 (tripsff.py) at his laptop's size (1203x802@1.875), normal and as a choppy computer, all four trips (gate, hallway door, pit click, pit walk) run 59-60 fps; one 34-83 ms frame where the new place is built and first painted (the game's work there 13-16 ms). So his pauses are the browser's painting in a Firefox window. Built ⏱️ time the next trip (0.0.91, ⚙️ Advanced under 🧪) for him to run on his laptop: each long frame with its phase and the game's share. NEXT: his ⏱️ lines (a castle door, a pit by click, a pit by walking), from the pad. | 18:34: Dress Up 0.0.91 LIVE (51f13e1, tag dress-up-0.0.91), gate 12/12. Waiting on Matthew's ⏱️ lines from his laptop: a castle door, a pit by click, a pit by walking (pad)."
+   "progress": "18:30: MEASURED here, no pauses: headless Chrome (trips_perf.mjs, CDP profile) and headless Firefox 157 (tripsff.py) at his laptop's size (1203x802@1.875), normal and as a choppy computer, all four trips (gate, hallway door, pit click, pit walk) run 59-60 fps; one 34-83 ms frame where the new place is built and first painted (the game's work there 13-16 ms). So his pauses are the browser's painting in a Firefox window. Built ⏱️ time the next trip (0.0.91, ⚙️ Advanced under 🧪) for him to run on his laptop: each long frame with its phase and the game's share. NEXT: his ⏱️ lines (a castle door, a pit by click, a pit by walking), from the pad. | 18:34: Dress Up 0.0.91 LIVE (51f13e1, tag dress-up-0.0.91), gate 12/12. Waiting on Matthew's ⏱️ lines from his laptop: a castle door, a pit by click, a pit by walking (pad). | 19:02: Matthew's 🧪 on 0.0.91, his laptop (Firefox 157, 1203x802@1.875, 20 cores): every pass 57-61 fps (pond 58, held still 60, still picture 61, bitmap 60, music 57) yet found CHOPPY: the mark kept in the browser since some bad moment held every place still on every visit, and made 0.0.87's still pictures build on every arrival. Headless Firefox as choppy, walking after arrival too: still smooth (one 49 ms frame), so whether that is his pause needs his ⏱️ lines. FIX (0.0.92, gate running): choppy measured afresh each visit (the key removed on load), marked only after 2 windows of 120 moving frames over 25% late, not during a trip. Tested (choppy172.mjs, frames made late by busy work, drawing fast): full speed never, 12 ms busy never, 30 ms busy marked after ~8 s; a stored mark cleared on load. NEXT: in ~20 min Matthew measures the kids' computers (black laptop, iPad): 🧪 and ⏱️ (a castle door, a pit clicked, a pit walked onto); and his laptop's ⏱️ lines."
   }
  ],
  "next_ticket": 173,
  "current_ticket": 172,
- "current_note": "18:34: WAITING ON MATTHEW. ^ticket(172): 0.0.91 is live with ⏱️ time the next trip (⚙️ Advanced, under 🧪): his three lines from his laptop (a castle door; a pit, clicked; a pit, walked onto), pasted into the pad.",
+ "current_note": "19:02: ^ticket(172): his laptop was marked choppy wrongly (🧪 57-61 fps everywhere); 0.0.92 measures it afresh each visit, gate running. In ~20 min Matthew measures the kids' computers (🧪 + ⏱️ trips).",
  "closed_tickets": [
   {
    "id": 171,
@@ -4471,6 +4471,5 @@
   15,
   19
  ],
- "current_since": "2026-10-16T18:30-06:00",
- "current_waiting": "his ⏱️ lines from his laptop (a castle door, a pit by click, a pit by walking)"
+ "current_since": "2026-10-16T18:30-06:00"
 }
