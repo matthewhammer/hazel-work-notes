@@ -292,33 +292,6 @@
    "waiting": true
   },
   {
-   "id": 43,
-   "area": "dress up",
-   "added": "2026-10-13",
-   "text": "<b>Messed Up Dress Up: postcards.</b> Save the friend and their scene as one picture, with a caption to write on it, ready to send.",
-   "source": "Matthew, 2026-10-13, in chat (ideas from ^ticket(40)'s doorways)",
-   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "log": [
-    {
-     "at": "2026-10-16T20:59-06:00",
-     "from": "claude",
-     "chars": 127,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T21:02-06:00",
-     "from": "matthew",
-     "chars": 94,
-     "asks": false
-    }
-   ],
-   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: code it on a branch tonight, no release (the gate needs a browser). 🌙 long run; no headless browser on the laptop. | 21:53: BUILT on branch postcards-43 (a9f3839, kids-choice-games; not released): in 💾 Save ▾, '💌 a postcard that says [the picture's own line]' and a button; postcardBlob draws the picture as Save's .png does, a cream border with a frame line, the words under it (shrunk, then two lines). Checked on GitHub's Chrome by tools/checks/postcard43.mjs; sample postcards in the run's shots. | 22:50: postcards-43 (a9f3839) GREEN (run 39000468804): postcard43 ok (1446 x 1256 with words, 1446 x 1096 without, two lines for a long one, the words start as the picture's line). Sample postcards in the run's shots (copied to ~/du-shots/ci/43/shots/): look right; GitHub's computer has no Comic Sans, so its sample falls back to a serif.",
-   "waiting": "Matthew: look at the sample postcards (~/du-shots/ci/43/shots/), then release."
-  },
-  {
    "id": 54,
    "area": "performance, #2469",
    "added": "2026-10-14",
@@ -385,41 +358,6 @@
    "waiting": true
   },
   {
-   "id": 144,
-   "area": "dress up",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T09:43-06:00",
-   "text": "<b>Dress Up: diagonal postures (NE, NW, SE, SW).</b> Matthew: the controller's diagonals face one of the four ways for now; draw the diagonal postures later, 'if we think it's not going to blow up the complexity of the code.' My read: a true three-quarter view is about the size of ^ticket(124)'s profile (every part: face, hair, hoods, arms, legs, pants), which would blow it up; a cheap one (the facing-us drawing turned partway: the body narrower, the face's features slid toward the way they face, the far arm and leg a little behind) is smaller and could come first. Minted, not started; default friend first.",
-   "source": "Matthew, 2026-10-16, in chat, after trying 0.0.67 with his SNES-style controller",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "log": [
-    {
-     "at": "2026-10-16T09:43-06:00",
-     "from": "matthew",
-     "chars": 300,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T20:59-06:00",
-     "from": "claude",
-     "chars": 184,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T21:02-06:00",
-     "from": "matthew",
-     "chars": 94,
-     "asks": false
-    }
-   ],
-   "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: the cheap diagonal postures first (the facing-us drawing turned partway), the default friend first; on a branch, no release. 🌙 long run; no headless browser on the laptop. | 21:56: BUILT on branch diagonals-144 (e8c5546; not released), the cheap three-quarter view (Matthew's default): body.turn set by the controller's diagonals toward us; the drawing facing us, the shirt 0.84 wide, the far arm wholly behind and the near one in front, the face's features slid 14 units. Diagonals away from us and straight sideways as before; legs, hair and costumes not turned yet. Checked on GitHub's Chrome by tools/checks/turn144.mjs; pictures turned / facing us / in profile in the run's shots. | 22:50: diagonals-144 (e8c5546) GREEN (run 39000704488): turn144 ok (diagonals toward us turn, everything else clears it; three different drawings). Pictures (~/du-shots/ci/144/shots/, compare.png side by side): turned right and left read as turned, subtly: the body narrower, the far sleeve behind, the face's features slid; legs not turned.",
-   "waiting": "Matthew: look at ~/du-shots/ci/144/shots/compare.png: subtle enough, or more turn?"
-  },
-  {
    "id": 160,
    "area": "dress up, performance, touch, testing",
    "added": "2026-10-16",
@@ -455,41 +393,6 @@
    "waiting": true
   },
   {
-   "id": 165,
-   "area": "dress up, CI, testing",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T15:11-06:00",
-   "text": "<b>Dress Up: real CI, a GitHub workflow.</b> Matthew asked for the 6x-slower tests \"in our CI tests\" (2026-10-16); there is no CI yet (^du_report(1), What runs in CI: the repo has no workflows; the gate runs by hand on Matthew's laptop before each release). Build it: (1) the test tools into the repository (agent-instructions.md, open question 1); (2) a workflow on push: counted cost budgets per place at its defaults (masks on the friend, blurs, SMIL of CSS properties, shapes drawn live, a place's element count), failing the build; the drawings' checks (the sweep, the structure dump), failing; the frame-rate gate's tiers (normal, slow set, black laptop at 6x), recorded but not failing (a shared runner's frame rate is not the laptop's). (3) ^du_report(1)'s CI section updated, or a new report.",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/001/#ci",
-   "log": [
-    {
-     "at": "2026-10-16T15:11-06:00",
-     "from": "matthew",
-     "chars": 180,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T20:59-06:00",
-     "from": "claude",
-     "chars": 245,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T21:02-06:00",
-     "from": "matthew",
-     "chars": 94,
-     "asks": false
-    }
-   ],
-   "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "progress": "17:52: WAITING ON MATTHEW before building: its step (1) is agent-instructions.md's open question 1, still open: may the test drivers (sweep.mjs, structure.mjs, fpsgate.mjs, the contact sheets, and today's door147/collide149/pit162/stillpic checks) move into the public repo as tools/? And: a workflow on push runs on GitHub's runners for every release (push = deploy here): OK to add .github/workflows to kids-choice-games? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: the test tools public, and a GitHub workflow, on a `ci` branch (not main, so nothing deploys); ^ticket(167)'s leak test and ^ticket(160)'s audit run on GitHub's runners, not the laptop. 🌙 long run; no headless browser on the laptop. | 21:09: BUILT on branch `ci` (73e6246, https://github.com/matthewhammer/kids-choice-games/tree/ci; main untouched, nothing deployed): tools/ (check_script, sweep + structure against main, shots.mjs + tools/shots.json, fpsgate, audit160, leak167 in Chrome, leakff in Firefox; README) and .github/workflows/dress-up-tests.yml, on every branch but main. agent-instructions.md says test browsers run there, not the laptop; open question 1 answered. First run 38997653701 in progress. | 23:15: BUILT and in use all night: every branch pushed runs the safety net, the gate, the audit, the leak tests and its own checks on GitHub (runs listed in ^du_report(3)). On the ci branch, not main: merging it is Matthew's call.",
-   "waiting": "Matthew: merge the ci branch (tools/, the workflow; the game itself unchanged) into main, so every branch made from main carries the checks."
-  },
-  {
    "id": 166,
    "area": "dress up, fumola, infrastructure",
    "added": "2026-10-16",
@@ -521,7 +424,7 @@
    "tags": [
     "blocked on Matthew"
    ],
-   "progress": "17:52: WAITING ON MATTHEW before building: where the canister runs (the IC mainnet costs cycles, paid from his identity; a local replica would not reach the black laptop), and who may write to it (anyone with the page, as the pad now, or a key the game holds)? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: write the canister tonight; deploy (his cycles) only on his word. 🌙 long run; no headless browser on the laptop. | 21:58: NO CANISTER CODE NEEDED: fumola_canister (Adapton/fumola ic-canister, ~/fumola-canister c80fcae) already keeps an append-only log per space, POST/GET /s/<space>/log, CORS * with OPTIONS. Game side BUILT on branch speedlog-166 (7d0a682; not released): 📮 'send it to Matthew' beside the 🧪 and ⏱️ lines posts {key: 'speed|trip <version> <when>', value: line} on a press; hidden while SPEED_LOG_DEPLOYED is null (the 📝 pad stays). tools/speedlog.py reads it back; checked against a stand-in server in CI. Waiting on Matthew: deploy the canister to mainnet (his cycles), then its log URL goes in SPEED_LOG_DEPLOYED. Open: anyone with the page can write (as the pad); no rate limit. | 22:50: speedlog-166 (7d0a682) GREEN (run 39000824663): speedlog166 ok against the stand-in server; no buttons without a log address.",
+   "progress": "17:52: WAITING ON MATTHEW before building: where the canister runs (the IC mainnet costs cycles, paid from his identity; a local replica would not reach the black laptop), and who may write to it (anyone with the page, as the pad now, or a key the game holds)? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: write the canister tonight; deploy (his cycles) only on his word. 🌙 long run; no headless browser on the laptop. | 21:58: NO CANISTER CODE NEEDED: fumola_canister (Adapton/fumola ic-canister, ~/fumola-canister c80fcae) already keeps an append-only log per space, POST/GET /s/<space>/log, CORS * with OPTIONS. Game side BUILT on branch speedlog-166 (7d0a682; not released): 📮 'send it to Matthew' beside the 🧪 and ⏱️ lines posts {key: 'speed|trip <version> <when>', value: line} on a press; hidden while SPEED_LOG_DEPLOYED is null (the 📝 pad stays). tools/speedlog.py reads it back; checked against a stand-in server in CI. Waiting on Matthew: deploy the canister to mainnet (his cycles), then its log URL goes in SPEED_LOG_DEPLOYED. Open: anyone with the page can write (as the pad); no rate limit. | 22:50: speedlog-166 (7d0a682) GREEN (run 39000824663): speedlog166 ok against the stand-in server; no buttons without a log address. | 06:32: the game side RELEASED in 0.0.95, its 📮 buttons hidden until SPEED_LOG_DEPLOYED is set. Left, waiting on Matthew: deploy the canister to mainnet.",
    "waiting": "Matthew: deploy fumola_canister to mainnet (his cycles); its /s/dress-up-speed/log URL then goes in SPEED_LOG_DEPLOYED."
   },
   {
@@ -562,7 +465,7 @@
    "tags": [
     "blocked on Matthew"
    ],
-   "progress": "16:43: 0.0.86's 🧪 ends with the empty room after the pond (passes 11, 12): headless Chrome stays at 60 fps there, so the leak, if it is one, is Firefox's. NEXT: his black-laptop line; if roomAfter is slow, count live SMIL animations / document.getAnimations() after the pond in Firefox. | 17:02: 0.0.86's passes 11-12 on both of Matthew's devices: the empty room after the pond runs 59 (black laptop, Firefox) and 60 (iPad, Safari), with music too. The slowdown did not come back by 🧪's route (it changes place in code, not through the menu or a doorway). Matthew's call: close as not reproduced, or try his route on the black laptop once more. | 19:29: both devices on 0.0.92: the empty room after the pond 57-59 (black laptop), 60 (iPad). Not reproduced; recommend closing, his call. | 20:45: measuring. Chrome (leak167.mjs, his friend through 📂 Load, fresh / after 2 rounds of changes: every place, a gate trip, a pit, a ladder, 60 slider changes, the tabs / after a reload): 60 fps throughout; nothing per frame grows (page elements, listeners, timers, Web Animations, SMIL); JS heap 6.5 -> 74 MB with the changes (PARTS memo, capped at 400 entries); one extra rAF loop: ⚙️ Advanced's meter, never stopped. Headless Firefox (leakff.py): 60 -> 58.8 -> 51.6 -> 43.1 fps over 3 rounds of changes, the drawing itself 1.2-1.7 ms; but right after a reload 24 (and a control run, only swimming, was noisy: the choppy mark and warm-up interfered). Now: changes vs only swimming, never held still, warm-up before each measure, CPU heat logged. | 20:52: the laptop froze at 20:47, about 90 s into that pinned Firefox run (crash log row added; the run's output was in /tmp and is gone). Resumed: one run, 2 rounds of changes, then without a reload the game's caches emptied, then the music paused, then a reload: whichever brings 60 fps back names the cause. Output synced to ~/du-shots/leak167/. | 20:58: the laptop froze AGAIN at 20:53, about 45 s into the same pinned Firefox run started again at 20:52 (crash log row 0c4b263, 35 crashes). Its disk log kept one line (63 °C, 59.7 fps). NO headless browser (Chromium or Firefox) on this laptop tonight, pinned or not: all four of the evening's freezes (16:33, 16:47, 20:47, 20:53) came during one. Browser measurement waits for daytime with Matthew there, or GitHub's runners (^ticket(165)). | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: read the code for what outlives the pond (no browser), and run the leak test on GitHub's runners (^ticket(165)). 🌙 long run; no headless browser on the laptop. | 21:06: the kids' devices on 0.0.94 (Matthew's 🧪): the empty room after the pond 60/60 fps on the iPad and 59/59 on the black laptop (with music after the /), so neither shows the room staying slow after the pond. The slowdown in this ticket's 0.0.94 report is on Matthew's own laptop's Firefox; the leak tests go on GitHub's runners (^ticket(165)). | 21:40: REPRODUCED on GitHub's Firefox 157 (^ticket(165)'s workflow, run 38998856647, default friend at the pond, 1203x802 at 1.875): fresh 59.8 fps; after one round of changes 51.1, after two 48.7 (10-15% late); the CONTROL (only swimming as long) stays 59.3-59.7. Emptying the game's caches without a reload: 48.0, still slow; music paused too: 48.9. Elements (940-960), SMIL (37) and animations (0) do not grow. So something the changes leave running costs every frame. (After a reload both runs read ~30 fps on a 33 ms cadence: a throttled headless window, discounted.) Next: Chrome's counts of timers, rAF callbacks per frame, listeners and audio nodes. | 21:48: Chrome 155 on GitHub (ci run 38998791340, default friend at the pond): fresh 60 fps; after changes 58.7 then 56.2 (7% late); after a reload 59.8. What grows (Chrome's counts): DOM nodes 9,670 -> 50,480 -> 141,904 while the page holds ~965 elements (detached trees kept alive); listeners 135 -> 122 -> 11,775; JS heap 9.7 -> 74 -> 141 MB; intervals 1 -> 2; requestAnimationFrame callbacks a frame 3 -> 5 (two loops left running); audio nodes made 97 a round. A reload resets all of it. Firefox's emptied caches did not bring the frames back, so the per-frame suspects are the two extra rAF loops and the extra interval, more than the memory. Next: a diagnostic naming each rAF callback, timer and listener that survives a round of changes. | 22:09: the DIAGNOSTIC (branch diag-167, Chrome on GitHub): at an idle pond the page asked for 120 animation frames in 2 s before any change (one loop at 60/s) and 480 after one round of changes, 480 after two: a round of changes leaves THREE extra requestAnimationFrame loops running every frame, and they do not multiply. Also one extra setInterval, and ~11,900 click/input listeners a round (on controls rebuilt, kept alive: Chrome's detached-node count). The loops are the per-frame cost (Firefox's caches-emptied run stayed slow). Which code starts them: the diagnostic's line attribution failed (it named its own wrapper); fixed, rerunning. | 22:29: FOUND. With the 🏞️ Background tab open the pond swims at 2.4 then 14.9 fps on GitHub's Chrome; with any of the other 15 tabs open, 60 (branch diag-167, tabs167). A CPU profile (bgprof167): each settle() with that tab open takes ~0.8 s, two thirds in the room choices' labels (line 468), each building the whole castle through castleOf, for every door and hall end of every castle. Hence 'slow until reload': places are chosen and set in the Background tab, which stays open; a reload opens 🧍 Body. FIX on branch bgtab-167 (ffa9c31; not released): roomStyleOf looks up the one room. Checks: tabs167 (every tab >= 50) and bgprof167, running on GitHub. Separately real: controls rebuilt on each tab switch keep their nodes and listeners (Chrome: 141,904 nodes, 11,775 listeners after two rounds) and a music loop runs while a tune plays: not the frame cost, worth a later ticket. | 22:37: after a FORCED garbage collection (leakgc167, run 39003132453): listeners stay 89-104 (the 11,775 before was uncollected garbage, not a leak); nodes 329 -> 24,442 -> 29,215 with documents 1 -> 29 -> 32 and the heap 2.8 -> 35 -> 45 MB: the cache of parsed pictures-in-pictures (SCENE_PARTS, at most 40 documents), bounded. Firefox's 58.5 -> 50.8 after a session is still unexplained (not caches, music or listeners): next, Firefox per tab and with music. | 22:44: Firefox 157 by tab (run 39003331635): the first page 60 (🧍 Body); every later page load in the same session reads ~30-32 on a 33 ms beat (a headless window throttled after a navigation, as after leakff's reloads): relative only, and on that footing 🏞️ Background 7.7 against ~31 for every other tab, and Body with a tune 36.7. The fix measured (bgtab-167 = ffa9c31, run 39002729428, Chrome): 🏞️ Background 59.3 fps (was 2.4 / 14.9), every tab >= 60 otherwise; a refresh with that tab open 25 ms (was ~790). Report: ^du_report(3), drafted locally. | 22:49: ^du_report(3) 'Slow until reloaded' DRAFTED (kids-choice-games branch report-003, 79e4dec, local, NOT pushed: a push publishes): the Background tab finding and fix, what a session keeps (a bounded cache, not a leak), Firefox's open question, moving pictures of the duck pond, forest and imagination (Matthew's new rule, also in the agent instructions), a dated note in ^du_report(2), and the series index card with the moving duck pond as its thumbnail. Waiting on Matthew: read it (8133 is not running; it can be read from the branch), then publish. | 23:07: bgtab-167's full run GREEN (run 39003081860): tabs167 every tab >= 50 (Background 59.8), the gate and the audit pass, the pond 60 throughout; the safety net's only differences are the waterfall's known noise.",
+   "progress": "16:43: 0.0.86's 🧪 ends with the empty room after the pond (passes 11, 12): headless Chrome stays at 60 fps there, so the leak, if it is one, is Firefox's. NEXT: his black-laptop line; if roomAfter is slow, count live SMIL animations / document.getAnimations() after the pond in Firefox. | 17:02: 0.0.86's passes 11-12 on both of Matthew's devices: the empty room after the pond runs 59 (black laptop, Firefox) and 60 (iPad, Safari), with music too. The slowdown did not come back by 🧪's route (it changes place in code, not through the menu or a doorway). Matthew's call: close as not reproduced, or try his route on the black laptop once more. | 19:29: both devices on 0.0.92: the empty room after the pond 57-59 (black laptop), 60 (iPad). Not reproduced; recommend closing, his call. | 20:45: measuring. Chrome (leak167.mjs, his friend through 📂 Load, fresh / after 2 rounds of changes: every place, a gate trip, a pit, a ladder, 60 slider changes, the tabs / after a reload): 60 fps throughout; nothing per frame grows (page elements, listeners, timers, Web Animations, SMIL); JS heap 6.5 -> 74 MB with the changes (PARTS memo, capped at 400 entries); one extra rAF loop: ⚙️ Advanced's meter, never stopped. Headless Firefox (leakff.py): 60 -> 58.8 -> 51.6 -> 43.1 fps over 3 rounds of changes, the drawing itself 1.2-1.7 ms; but right after a reload 24 (and a control run, only swimming, was noisy: the choppy mark and warm-up interfered). Now: changes vs only swimming, never held still, warm-up before each measure, CPU heat logged. | 20:52: the laptop froze at 20:47, about 90 s into that pinned Firefox run (crash log row added; the run's output was in /tmp and is gone). Resumed: one run, 2 rounds of changes, then without a reload the game's caches emptied, then the music paused, then a reload: whichever brings 60 fps back names the cause. Output synced to ~/du-shots/leak167/. | 20:58: the laptop froze AGAIN at 20:53, about 45 s into the same pinned Firefox run started again at 20:52 (crash log row 0c4b263, 35 crashes). Its disk log kept one line (63 °C, 59.7 fps). NO headless browser (Chromium or Firefox) on this laptop tonight, pinned or not: all four of the evening's freezes (16:33, 16:47, 20:47, 20:53) came during one. Browser measurement waits for daytime with Matthew there, or GitHub's runners (^ticket(165)). | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: read the code for what outlives the pond (no browser), and run the leak test on GitHub's runners (^ticket(165)). 🌙 long run; no headless browser on the laptop. | 21:06: the kids' devices on 0.0.94 (Matthew's 🧪): the empty room after the pond 60/60 fps on the iPad and 59/59 on the black laptop (with music after the /), so neither shows the room staying slow after the pond. The slowdown in this ticket's 0.0.94 report is on Matthew's own laptop's Firefox; the leak tests go on GitHub's runners (^ticket(165)). | 21:40: REPRODUCED on GitHub's Firefox 157 (^ticket(165)'s workflow, run 38998856647, default friend at the pond, 1203x802 at 1.875): fresh 59.8 fps; after one round of changes 51.1, after two 48.7 (10-15% late); the CONTROL (only swimming as long) stays 59.3-59.7. Emptying the game's caches without a reload: 48.0, still slow; music paused too: 48.9. Elements (940-960), SMIL (37) and animations (0) do not grow. So something the changes leave running costs every frame. (After a reload both runs read ~30 fps on a 33 ms cadence: a throttled headless window, discounted.) Next: Chrome's counts of timers, rAF callbacks per frame, listeners and audio nodes. | 21:48: Chrome 155 on GitHub (ci run 38998791340, default friend at the pond): fresh 60 fps; after changes 58.7 then 56.2 (7% late); after a reload 59.8. What grows (Chrome's counts): DOM nodes 9,670 -> 50,480 -> 141,904 while the page holds ~965 elements (detached trees kept alive); listeners 135 -> 122 -> 11,775; JS heap 9.7 -> 74 -> 141 MB; intervals 1 -> 2; requestAnimationFrame callbacks a frame 3 -> 5 (two loops left running); audio nodes made 97 a round. A reload resets all of it. Firefox's emptied caches did not bring the frames back, so the per-frame suspects are the two extra rAF loops and the extra interval, more than the memory. Next: a diagnostic naming each rAF callback, timer and listener that survives a round of changes. | 22:09: the DIAGNOSTIC (branch diag-167, Chrome on GitHub): at an idle pond the page asked for 120 animation frames in 2 s before any change (one loop at 60/s) and 480 after one round of changes, 480 after two: a round of changes leaves THREE extra requestAnimationFrame loops running every frame, and they do not multiply. Also one extra setInterval, and ~11,900 click/input listeners a round (on controls rebuilt, kept alive: Chrome's detached-node count). The loops are the per-frame cost (Firefox's caches-emptied run stayed slow). Which code starts them: the diagnostic's line attribution failed (it named its own wrapper); fixed, rerunning. | 22:29: FOUND. With the 🏞️ Background tab open the pond swims at 2.4 then 14.9 fps on GitHub's Chrome; with any of the other 15 tabs open, 60 (branch diag-167, tabs167). A CPU profile (bgprof167): each settle() with that tab open takes ~0.8 s, two thirds in the room choices' labels (line 468), each building the whole castle through castleOf, for every door and hall end of every castle. Hence 'slow until reload': places are chosen and set in the Background tab, which stays open; a reload opens 🧍 Body. FIX on branch bgtab-167 (ffa9c31; not released): roomStyleOf looks up the one room. Checks: tabs167 (every tab >= 50) and bgprof167, running on GitHub. Separately real: controls rebuilt on each tab switch keep their nodes and listeners (Chrome: 141,904 nodes, 11,775 listeners after two rounds) and a music loop runs while a tune plays: not the frame cost, worth a later ticket. | 22:37: after a FORCED garbage collection (leakgc167, run 39003132453): listeners stay 89-104 (the 11,775 before was uncollected garbage, not a leak); nodes 329 -> 24,442 -> 29,215 with documents 1 -> 29 -> 32 and the heap 2.8 -> 35 -> 45 MB: the cache of parsed pictures-in-pictures (SCENE_PARTS, at most 40 documents), bounded. Firefox's 58.5 -> 50.8 after a session is still unexplained (not caches, music or listeners): next, Firefox per tab and with music. | 22:44: Firefox 157 by tab (run 39003331635): the first page 60 (🧍 Body); every later page load in the same session reads ~30-32 on a 33 ms beat (a headless window throttled after a navigation, as after leakff's reloads): relative only, and on that footing 🏞️ Background 7.7 against ~31 for every other tab, and Body with a tune 36.7. The fix measured (bgtab-167 = ffa9c31, run 39002729428, Chrome): 🏞️ Background 59.3 fps (was 2.4 / 14.9), every tab >= 60 otherwise; a refresh with that tab open 25 ms (was ~790). Report: ^du_report(3), drafted locally. | 22:49: ^du_report(3) 'Slow until reloaded' DRAFTED (kids-choice-games branch report-003, 79e4dec, local, NOT pushed: a push publishes): the Background tab finding and fix, what a session keeps (a bounded cache, not a leak), Firefox's open question, moving pictures of the duck pond, forest and imagination (Matthew's new rule, also in the agent instructions), a dated note in ^du_report(2), and the series index card with the moving duck pond as its thumbnail. Waiting on Matthew: read it (8133 is not running; it can be read from the branch), then publish. | 23:07: bgtab-167's full run GREEN (run 39003081860): tabs167 every tab >= 50 (Background 59.8), the gate and the audit pass, the pond 60 throughout; the safety net's only differences are the waterfall's known noise. | 06:32: the Background tab fix RELEASED in 0.0.95 (live). Left, waiting on Matthew: read ^du_report(3) (branch report-003, not pushed) and say publish; Firefox's after-session drop is still open.",
    "waiting": "Matthew: read ^du_report(3) (branch report-003) and say publish; review bgtab-167 (the fix) for release."
   },
   {
@@ -596,6 +499,239 @@
    "waiting": "Matthew's word: open ci/node-budgets as a draft PR stacked on #2678 and #2679?"
   },
   {
+   "id": 177,
+   "area": "dress up, performance, bug",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T21:25-06:00",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "",
+   "text": "<b>Dress Up: white flashes (blank frames) while walking or dragging, on every background.</b> Matthew, 2026-10-16 evening: \"ever since the latest performance fixes (bitmap introduction?) — we notice white flashes (blank frames) during walking or other dragging animations on all backgrounds. Some bug it seems.\" Since about 0.0.93 (still pictures as bitmaps on a slow computer; choppy windows of 60 frames) or 0.0.94. Which computers and browsers: not said yet. Suspects, unverified: a frame between hiding the scene and the still parts' bitmaps being decoded (showStillPic: visibility hidden, then new &lt;image&gt;s from blob URLs), or the switch back after STILL_PIC_HOLD; and 0.0.93 turning the still pictures on for more computers (choppy windows of 60, not 120 frames). Plan (no browser on the laptop tonight): catch it on GitHub's runners (the ci branch, ^ticket(165)): every frame of a walk and a drag recorded (CDP screencast), the still pictures forced on and off, a frame counted blank when it is mostly the page's white; then find the swap that leaves it and fix it on a branch. A release waits for Matthew.",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "status": "open",
+   "log": [
+    {
+     "at": "2026-10-16T21:25-06:00",
+     "from": "matthew",
+     "chars": 225,
+     "asks": true
+    }
+   ],
+   "progress": "21:25: minted; queued tonight, right after ^ticket(176). | 21:35: read the code (no browser): while moving on a slow-marked computer, showStillPic hides the scene (visibility) and shows the parts' PNG bitmaps (stillPart, 0.0.93). A part is 'ready' on the <image>'s load event, which is not decode: a browser may paint the first frame of a newly shown screen-size PNG before decoding it, and with the scene hidden that frame is the page's white. Parts change as the friend passes an object's depth, so it can recur along a walk. Proposed: decode each picture before it counts as ready (decode(), or a decoded Image of the same URL kept alive), and decoding=\"sync\" on the <image>. To verify on GitHub's Chrome: a check that records a walk and a drag frame by frame (CDP screencast) with the still pictures forced on, counting frames mostly white, main against the branch. Unverified so far. | 21:42: branch flash-177 pushed (81e30ed, kids-choice-games; not released): a part is ready only once decoded (img.decode() where it exists, an Image of the same URL kept beside it, decoding=sync). Its check, tools/checks/flash177.mjs, runs on GitHub's Chrome: still pictures forced on (SPEED_TEST.still), walks and a drag in 5 places, every screencast frame scored for how much of the picture is the colour behind it, this branch against main. | 22:04: GitHub's headless Chrome draws NO blank frame on main either (flash177: 0 of ~1,700 frames, 5 places, walks and a drag, still pictures forced on; the colour behind the picture is the paper, #fffdf7). So the flash is another browser's (Firefox's or Safari's image decoding), not reproducible there. Added a browser-independent second defence (628b3a1): a picture shown for the first time keeps the scene visible under it until two frames on. Branch flash-177 (not released) has both. Waiting on Matthew: which computers and browsers flash, and a try of the branch (or a release) on them. | 22:50: flash-177 (628b3a1) GREEN (run 39001183343): both defences in; headless Chrome shows no blank frame on main either. | 06:32: both defences RELEASED in 0.0.95 (live). Waiting on Matthew: try 0.0.95 on the computers and browsers that flashed (which were they?), walking and dragging.",
+   "waiting": "Matthew: which computers/browsers show the flashes; then try branch flash-177 there (headless Chrome cannot show it)."
+  },
+  {
+   "id": 178,
+   "area": "dress up, code",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T22:28-06:00",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "",
+   "text": "<b>Dress Up: the code in files of its own, by section, to read and revise.</b> Matthew, 2026-10-16 night: \"should we mint and enqueue a task that refactors the Dress Up code into multiple modules/files/directories? Would it be easier to read and revise?\" Today dress-up/index.html is one page of about 15,200 lines, one inline script. Proposed, the cheapest safe split: the sections agent-instructions.md already lists (\"The code, by section\") become classic scripts in dress-up/js/, loaded in order with &lt;script src&gt;: classic scripts share one global scope, so nothing is renamed and no import/export is needed; the CSS to dress-up/style.css. Checked by the safety net (sweep: every picture's markup identical; structure identical), the gate and every branch check, on GitHub. Also to update: check_script.py (every script), the archive and test tools that copy or load the page as one file, the agent instructions, and the ?v= cache-busting (each file gets it). AFTER the open Dress Up branches land (collisions-176, flash-177, postcards-43, diagonals-144, speedlog-166, the ^ticket(167) fix): a split moves every line, so their patches would no longer apply.",
+   "tags": [],
+   "status": "open",
+   "log": [
+    {
+     "at": "2026-10-16T22:28-06:00",
+     "from": "matthew",
+     "chars": 146,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T22:48-06:00",
+     "from": "claude",
+     "chars": 420,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T22:48-06:00",
+     "from": "matthew",
+     "chars": 24,
+     "asks": false
+    }
+   ],
+   "waiting": false,
+   "progress": "22:28: minted on Matthew's question; my answer: yes, after the open branches land. | 22:48: Matthew asked if it is blocked: yes; offered splitting now and redoing the 7 open branches on top. His call: WAIT for the branches (176, 177, 43, 144, 166, 167's bgtab-167, 179) to be reviewed and merged, then split. | 06:32: UNBLOCKED: every open branch it waited for is merged and released (0.0.95). Next: split dress-up/index.html into files, by section, with no change in behaviour (the checks and the speed run say so)."
+  },
+  {
+   "id": 184,
+   "area": "dress up, releases, CI, performance",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T06:28-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "text": "<b>Dress Up releases deploy first; speed is checked after, on every release, and a slow version is marked 🚧🐢.</b> Matthew, 2026-10-17: \"when N and M start asking for updates later today, I want to deploy publicly asap, so they can test, and support that creative loop -- separately, I want to keep checking performance in a systematic way, so they don't have to, and I don't have to, as we go.\" and, asked to switch releases to deploy first, speed tests after: \"yes.\" To do: (1) a workflow on each release tag (dress-up-X.Y.Z) runs the checks, the frame-rate gate (both tiers), the on-screen controller audit and the leak tests on GitHub's computers, and records the result per version in dress-up/speed.json on main; (2) the game reads speed.json with version.json and marks its own version 🚧🐢 slow (with what failed, and a link to the run) when its speed tests failed; (3) the release steps in agent-instructions.md: deploy first (the script check only), the speed tests after, a slow version fixed in the next one, never undone; and after each release, read its result and mint a ticket when it is slow. Replaces 10-16's rule \"we fix it before we commit new versions\" (Matthew's own change).",
+   "tags": [],
+   "status": "open",
+   "log": [
+    {
+     "at": "2026-10-17T06:28-06:00",
+     "from": "matthew",
+     "chars": 257,
+     "asks": true
+    }
+   ],
+   "progress": "06:28: minted; started. 0.0.95 went out deploy-first already (main 1599fd9, tag dress-up-0.0.95, live), its checks still running on the release branch. | 06:32: BUILT and released as 0.0.96 (main 11b26ba, tag dress-up-0.0.96, live): .github/workflows/dress-up-speed.yml on each release tag (checks, gate both tiers, audit, leak), tools/speed_record.py writes dress-up/speed.json on main, the game's markSpeed shows 🚧🐢 / 🚧 after its version (tools/checks/speedmark184.mjs checks it), and the release steps in agent-instructions.md say deploy first. Speed runs going: 0.0.96 (run 39032830033, from its tag) and 0.0.95 (39032851446, by hand). Left: see each record its result and speed.json go live."
+  }
+ ],
+ "next_ticket": 185,
+ "current_ticket": 184,
+ "current_note": "06:32: ^ticket(184): Dress Up 0.0.95 and 0.0.96 are live, deploy-first; the speed runs for both are going on GitHub (about 20 min each), and will record into dress-up/speed.json. ^ticket(178) is unblocked.",
+ "closed_tickets": [
+  {
+   "id": 180,
+   "area": "dress up, docs",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T22:40-06:00",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://github.com/matthewhammer/kids-choice-games/blob/main/dress-up/OBJECTS.md",
+   "text": "<b>Dress Up: OBJECTS.md shows each object, a clipped screenshot beside its row.</b> Matthew, 2026-10-16 night: \"include clipped screen shots in this doc, going forward\". OBJECTS.md (ticket 99) lists what stands in each place by depth (588 lines, as of 0.0.46, made by depthsheet.mjs and objects_md.py). Going forward: each object's row gets a small picture clipped to that object's box in its place (the scene drawn at the defaults, the object's getBBox through the screen, a little margin), and the place a picture of its own; made in CI on GitHub's Chrome (no browser on the laptop), as PNGs in dress-up/objects/ (or WebP), and objects_md.py writes them into the table. Also brings the list up to date from 0.0.46.",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-16T22:40-06:00",
+     "from": "matthew",
+     "chars": 147,
+     "asks": true
+    }
+   ],
+   "progress": "22:40: minted; queued. | 23:17: DONE on branch objects-180 (217ef63, kids-choice-games; not on main): OBJECTS.md as of 0.0.94 (was 0.0.46), 40 places each with its picture, 377 objects with 376 clipped pictures (WebP, 2.4 MB in dress-up/objects/), notes kept; made on GitHub by tools/checks/objects180.mjs (every branch's run leaves fresh pictures), written by tools/objects_md.py; the agent instructions say how. Waiting on Matthew: merge the branch (a push to main deploys the game; only docs and pictures change).",
+   "waiting": "Matthew: look at OBJECTS.md on branch objects-180 (GitHub renders it), then merge.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T06:31-06:00",
+   "outcome": "Merged into main with 0.0.95 (docs only): OBJECTS.md as of 0.0.94, 40 places each with its picture and 377 objects with 376 clipped pictures; tools/checks/objects180.mjs makes fresh pictures in every branch's run, tools/objects_md.py writes the file.",
+   "metrics": {
+    "open_minutes": 472,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 147,
+    "tokens_est": 36,
+    "sync_minutes_est": 0
+   }
+  },
+  {
+   "id": 179,
+   "area": "dress up, ⚙️ advanced, testing",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T22:37-06:00",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "",
+   "text": "<b>Dress Up, ⚙️ Advanced: while 🧪 measures, its buttons rest and it says plainly to wait.</b> Matthew, 2026-10-16 night: \"the measurement feature: when measuring -- maybe disable the copy button, and the other related buttons. and give a stronger indication to 'wait and do nothing for 40 sec - time elapsed.'\" So: while 🧪 this computer's speed runs (about 40 s), 📋 copy, 📮 send, 📝 paste, 🧪 itself, ⏱️ and 📏 are disabled; a clear notice says to wait and touch nothing, with the time elapsed against about 40 s; all back when it ends.",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-16T22:37-06:00",
+     "from": "matthew",
+     "chars": 259,
+     "asks": true
+    }
+   ],
+   "progress": "22:37: minted; queued tonight. | 23:07: BUILT on branch measure-179 (65972c0; not released), GREEN on GitHub (run 39003411165): measure179 ok (the notice '⏳ Measuring this computer's speed: please wait, and touch nothing', 'N s so far, of about 40 s', a bar; 12 of 12 Advanced buttons disabled, 📋 copy among them; all back after 40 s; the line there). Picture mid-measure: ~/du-shots/ci/179/shots/measuring-notice.png (the notice sits over the top of the page, over the tabs, while it lasts).",
+   "waiting": "Matthew: look at ~/du-shots/ci/179/shots/measuring-notice.png, then release branch measure-179.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T06:31-06:00",
+   "outcome": "Released in Dress Up 0.0.95 (main 1599fd9, tag dress-up-0.0.95, 2026-10-17, checked live over HTTPS), one release of eight branches on Matthew's word: while 🧪 or 📏 measures, a notice says to wait and touch nothing, with the seconds and a bar, and Advanced's buttons rest. Its check, measure179, runs on every branch now.",
+   "metrics": {
+    "open_minutes": 475,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 259,
+    "tokens_est": 64,
+    "sync_minutes_est": 0
+   }
+  },
+  {
+   "id": 144,
+   "area": "dress up",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T09:43-06:00",
+   "text": "<b>Dress Up: diagonal postures (NE, NW, SE, SW).</b> Matthew: the controller's diagonals face one of the four ways for now; draw the diagonal postures later, 'if we think it's not going to blow up the complexity of the code.' My read: a true three-quarter view is about the size of ^ticket(124)'s profile (every part: face, hair, hoods, arms, legs, pants), which would blow it up; a cheap one (the facing-us drawing turned partway: the body narrower, the face's features slid toward the way they face, the far arm and leg a little behind) is smaller and could come first. Minted, not started; default friend first.",
+   "source": "Matthew, 2026-10-16, in chat, after trying 0.0.67 with his SNES-style controller",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T09:43-06:00",
+     "from": "matthew",
+     "chars": 300,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 184,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    }
+   ],
+   "status": "done",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: the cheap diagonal postures first (the facing-us drawing turned partway), the default friend first; on a branch, no release. 🌙 long run; no headless browser on the laptop. | 21:56: BUILT on branch diagonals-144 (e8c5546; not released), the cheap three-quarter view (Matthew's default): body.turn set by the controller's diagonals toward us; the drawing facing us, the shirt 0.84 wide, the far arm wholly behind and the near one in front, the face's features slid 14 units. Diagonals away from us and straight sideways as before; legs, hair and costumes not turned yet. Checked on GitHub's Chrome by tools/checks/turn144.mjs; pictures turned / facing us / in profile in the run's shots. | 22:50: diagonals-144 (e8c5546) GREEN (run 39000704488): turn144 ok (diagonals toward us turn, everything else clears it; three different drawings). Pictures (~/du-shots/ci/144/shots/, compare.png side by side): turned right and left read as turned, subtly: the body narrower, the far sleeve behind, the face's features slid; legs not turned.",
+   "waiting": "Matthew: look at ~/du-shots/ci/144/shots/compare.png: subtle enough, or more turn?",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T06:31-06:00",
+   "outcome": "Released in Dress Up 0.0.95 (main 1599fd9, tag dress-up-0.0.95, 2026-10-17, checked live over HTTPS), one release of eight branches on Matthew's word: walking toward us on a slant, the friend turned partway (body narrower, far arm behind, face that way); legs, hair and costumes not turned yet. Its check, turn144, runs on every branch now.",
+   "metrics": {
+    "open_minutes": 1249,
+    "matthew_messages": 2,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 578,
+    "tokens_est": 144,
+    "sync_minutes_est": 3.0
+   }
+  },
+  {
+   "id": 43,
+   "area": "dress up",
+   "added": "2026-10-13",
+   "text": "<b>Messed Up Dress Up: postcards.</b> Save the friend and their scene as one picture, with a caption to write on it, ready to send.",
+   "source": "Matthew, 2026-10-13, in chat (ideas from ^ticket(40)'s doorways)",
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "log": [
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 127,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    }
+   ],
+   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: code it on a branch tonight, no release (the gate needs a browser). 🌙 long run; no headless browser on the laptop. | 21:53: BUILT on branch postcards-43 (a9f3839, kids-choice-games; not released): in 💾 Save ▾, '💌 a postcard that says [the picture's own line]' and a button; postcardBlob draws the picture as Save's .png does, a cream border with a frame line, the words under it (shrunk, then two lines). Checked on GitHub's Chrome by tools/checks/postcard43.mjs; sample postcards in the run's shots. | 22:50: postcards-43 (a9f3839) GREEN (run 39000468804): postcard43 ok (1446 x 1256 with words, 1446 x 1096 without, two lines for a long one, the words start as the picture's line). Sample postcards in the run's shots (copied to ~/du-shots/ci/43/shots/): look right; GitHub's computer has no Comic Sans, so its sample falls back to a serif.",
+   "waiting": "Matthew: look at the sample postcards (~/du-shots/ci/43/shots/), then release.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T06:31-06:00",
+   "outcome": "Released in Dress Up 0.0.95 (main 1599fd9, tag dress-up-0.0.95, 2026-10-17, checked live over HTTPS), one release of eight branches on Matthew's word: postcards, 💾 Save ▾ → 💌, the picture in a cream border with its words under it. Its check, postcard43, runs on every branch now.",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 1,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 221,
+    "tokens_est": 55,
+    "sync_minutes_est": 3.0
+   }
+  },
+  {
    "id": 176,
    "area": "dress up, places, game controller",
    "added": "2026-10-16",
@@ -621,136 +757,66 @@
      "asks": false
     }
    ],
-   "waiting": "Matthew: review branch collisions-176 (pictures with the solids drawn: the run's chrome artifact), then release."
+   "waiting": "Matthew: review branch collisions-176 (pictures with the solids drawn: the run's chrome artifact), then release.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T06:31-06:00",
+   "outcome": "Released in Dress Up 0.0.95 (main 1599fd9, tag dress-up-0.0.95, 2026-10-17, checked live over HTTPS), one release of eight branches on Matthew's word: what stands in a place is solid (tables, beds, trees by their trunks; low ones jumped), and the flat rooms have back walls. Its check, collide176, runs on every branch now.",
+   "metrics": {
+    "open_minutes": 602,
+    "matthew_messages": 1,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 221,
+    "tokens_est": 55,
+    "sync_minutes_est": 3.0
+   }
   },
   {
-   "id": 177,
-   "area": "dress up, performance, bug",
+   "id": 165,
+   "area": "dress up, CI, testing",
    "added": "2026-10-16",
-   "opened": "2026-10-16T21:25-06:00",
+   "opened": "2026-10-16T15:11-06:00",
+   "text": "<b>Dress Up: real CI, a GitHub workflow.</b> Matthew asked for the 6x-slower tests \"in our CI tests\" (2026-10-16); there is no CI yet (^du_report(1), What runs in CI: the repo has no workflows; the gate runs by hand on Matthew's laptop before each release). Build it: (1) the test tools into the repository (agent-instructions.md, open question 1); (2) a workflow on push: counted cost budgets per place at its defaults (masks on the friend, blurs, SMIL of CSS properties, shapes drawn live, a place's element count), failing the build; the drawings' checks (the sweep, the structure dump), failing; the frame-rate gate's tiers (normal, slow set, black laptop at 6x), recorded but not failing (a shared runner's frame rate is not the laptop's). (3) ^du_report(1)'s CI section updated, or a new report.",
    "source": "Matthew, 2026-10-16, in chat",
-   "url": "",
-   "text": "<b>Dress Up: white flashes (blank frames) while walking or dragging, on every background.</b> Matthew, 2026-10-16 evening: \"ever since the latest performance fixes (bitmap introduction?) — we notice white flashes (blank frames) during walking or other dragging animations on all backgrounds. Some bug it seems.\" Since about 0.0.93 (still pictures as bitmaps on a slow computer; choppy windows of 60 frames) or 0.0.94. Which computers and browsers: not said yet. Suspects, unverified: a frame between hiding the scene and the still parts' bitmaps being decoded (showStillPic: visibility hidden, then new &lt;image&gt;s from blob URLs), or the switch back after STILL_PIC_HOLD; and 0.0.93 turning the still pictures on for more computers (choppy windows of 60, not 120 frames). Plan (no browser on the laptop tonight): catch it on GitHub's runners (the ci branch, ^ticket(165)): every frame of a walk and a drag recorded (CDP screencast), the still pictures forced on and off, a frame counted blank when it is mostly the page's white; then find the swap that leaves it and fix it on a branch. A release waits for Matthew.",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "status": "open",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/001/#ci",
    "log": [
     {
-     "at": "2026-10-16T21:25-06:00",
+     "at": "2026-10-16T15:11-06:00",
      "from": "matthew",
-     "chars": 225,
-     "asks": true
-    }
-   ],
-   "progress": "21:25: minted; queued tonight, right after ^ticket(176). | 21:35: read the code (no browser): while moving on a slow-marked computer, showStillPic hides the scene (visibility) and shows the parts' PNG bitmaps (stillPart, 0.0.93). A part is 'ready' on the <image>'s load event, which is not decode: a browser may paint the first frame of a newly shown screen-size PNG before decoding it, and with the scene hidden that frame is the page's white. Parts change as the friend passes an object's depth, so it can recur along a walk. Proposed: decode each picture before it counts as ready (decode(), or a decoded Image of the same URL kept alive), and decoding=\"sync\" on the <image>. To verify on GitHub's Chrome: a check that records a walk and a drag frame by frame (CDP screencast) with the still pictures forced on, counting frames mostly white, main against the branch. Unverified so far. | 21:42: branch flash-177 pushed (81e30ed, kids-choice-games; not released): a part is ready only once decoded (img.decode() where it exists, an Image of the same URL kept beside it, decoding=sync). Its check, tools/checks/flash177.mjs, runs on GitHub's Chrome: still pictures forced on (SPEED_TEST.still), walks and a drag in 5 places, every screencast frame scored for how much of the picture is the colour behind it, this branch against main. | 22:04: GitHub's headless Chrome draws NO blank frame on main either (flash177: 0 of ~1,700 frames, 5 places, walks and a drag, still pictures forced on; the colour behind the picture is the paper, #fffdf7). So the flash is another browser's (Firefox's or Safari's image decoding), not reproducible there. Added a browser-independent second defence (628b3a1): a picture shown for the first time keeps the scene visible under it until two frames on. Branch flash-177 (not released) has both. Waiting on Matthew: which computers and browsers flash, and a try of the branch (or a release) on them. | 22:50: flash-177 (628b3a1) GREEN (run 39001183343): both defences in; headless Chrome shows no blank frame on main either.",
-   "waiting": "Matthew: which computers/browsers show the flashes; then try branch flash-177 there (headless Chrome cannot show it)."
-  },
-  {
-   "id": 178,
-   "area": "dress up, code",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T22:28-06:00",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "",
-   "text": "<b>Dress Up: the code in files of its own, by section, to read and revise.</b> Matthew, 2026-10-16 night: \"should we mint and enqueue a task that refactors the Dress Up code into multiple modules/files/directories? Would it be easier to read and revise?\" Today dress-up/index.html is one page of about 15,200 lines, one inline script. Proposed, the cheapest safe split: the sections agent-instructions.md already lists (\"The code, by section\") become classic scripts in dress-up/js/, loaded in order with &lt;script src&gt;: classic scripts share one global scope, so nothing is renamed and no import/export is needed; the CSS to dress-up/style.css. Checked by the safety net (sweep: every picture's markup identical; structure identical), the gate and every branch check, on GitHub. Also to update: check_script.py (every script), the archive and test tools that copy or load the page as one file, the agent instructions, and the ?v= cache-busting (each file gets it). AFTER the open Dress Up branches land (collisions-176, flash-177, postcards-43, diagonals-144, speedlog-166, the ^ticket(167) fix): a split moves every line, so their patches would no longer apply.",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-16T22:28-06:00",
-     "from": "matthew",
-     "chars": 146,
+     "chars": 180,
      "asks": true
     },
     {
-     "at": "2026-10-16T22:48-06:00",
+     "at": "2026-10-16T20:59-06:00",
      "from": "claude",
-     "chars": 420,
+     "chars": 245,
      "asks": true
     },
     {
-     "at": "2026-10-16T22:48-06:00",
+     "at": "2026-10-16T21:02-06:00",
      "from": "matthew",
-     "chars": 24,
+     "chars": 94,
      "asks": false
     }
    ],
-   "waiting": "Matthew's review and merge of the 7 open Dress Up branches (his call, 2026-10-16 night: wait for them, then split).",
-   "progress": "22:28: minted on Matthew's question; my answer: yes, after the open branches land. | 22:48: Matthew asked if it is blocked: yes; offered splitting now and redoing the 7 open branches on top. His call: WAIT for the branches (176, 177, 43, 144, 166, 167's bgtab-167, 179) to be reviewed and merged, then split."
-  },
-  {
-   "id": 179,
-   "area": "dress up, ⚙️ advanced, testing",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T22:37-06:00",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "",
-   "text": "<b>Dress Up, ⚙️ Advanced: while 🧪 measures, its buttons rest and it says plainly to wait.</b> Matthew, 2026-10-16 night: \"the measurement feature: when measuring -- maybe disable the copy button, and the other related buttons. and give a stronger indication to 'wait and do nothing for 40 sec - time elapsed.'\" So: while 🧪 this computer's speed runs (about 40 s), 📋 copy, 📮 send, 📝 paste, 🧪 itself, ⏱️ and 📏 are disabled; a clear notice says to wait and touch nothing, with the time elapsed against about 40 s; all back when it ends.",
+   "status": "done",
    "tags": [
     "blocked on Matthew"
    ],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-16T22:37-06:00",
-     "from": "matthew",
-     "chars": 259,
-     "asks": true
-    }
-   ],
-   "progress": "22:37: minted; queued tonight. | 23:07: BUILT on branch measure-179 (65972c0; not released), GREEN on GitHub (run 39003411165): measure179 ok (the notice '⏳ Measuring this computer's speed: please wait, and touch nothing', 'N s so far, of about 40 s', a bar; 12 of 12 Advanced buttons disabled, 📋 copy among them; all back after 40 s; the line there). Picture mid-measure: ~/du-shots/ci/179/shots/measuring-notice.png (the notice sits over the top of the page, over the tabs, while it lasts).",
-   "waiting": "Matthew: look at ~/du-shots/ci/179/shots/measuring-notice.png, then release branch measure-179."
+   "progress": "17:52: WAITING ON MATTHEW before building: its step (1) is agent-instructions.md's open question 1, still open: may the test drivers (sweep.mjs, structure.mjs, fpsgate.mjs, the contact sheets, and today's door147/collide149/pit162/stillpic checks) move into the public repo as tools/? And: a workflow on push runs on GitHub's runners for every release (push = deploy here): OK to add .github/workflows to kids-choice-games? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: the test tools public, and a GitHub workflow, on a `ci` branch (not main, so nothing deploys); ^ticket(167)'s leak test and ^ticket(160)'s audit run on GitHub's runners, not the laptop. 🌙 long run; no headless browser on the laptop. | 21:09: BUILT on branch `ci` (73e6246, https://github.com/matthewhammer/kids-choice-games/tree/ci; main untouched, nothing deployed): tools/ (check_script, sweep + structure against main, shots.mjs + tools/shots.json, fpsgate, audit160, leak167 in Chrome, leakff in Firefox; README) and .github/workflows/dress-up-tests.yml, on every branch but main. agent-instructions.md says test browsers run there, not the laptop; open question 1 answered. First run 38997653701 in progress. | 23:15: BUILT and in use all night: every branch pushed runs the safety net, the gate, the audit, the leak tests and its own checks on GitHub (runs listed in ^du_report(3)). On the ci branch, not main: merging it is Matthew's call.",
+   "waiting": "Matthew: merge the ci branch (tools/, the workflow; the game itself unchanged) into main, so every branch made from main carries the checks.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T06:31-06:00",
+   "outcome": "The tests' workflow is on main (merged 4398909; the release steps in 5401d0a): every branch but main runs the safety net, its own checks, pictures, the gate, the audit and the leak tests on GitHub's computers. Since 0.0.96 (^ticket(184)) each release tag also runs the speed run after deploying, recorded in dress-up/speed.json.",
+   "metrics": {
+    "open_minutes": 921,
+    "matthew_messages": 2,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 519,
+    "tokens_est": 129,
+    "sync_minutes_est": 3.0
+   }
   },
-  {
-   "id": 180,
-   "area": "dress up, docs",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T22:40-06:00",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "https://github.com/matthewhammer/kids-choice-games/blob/main/dress-up/OBJECTS.md",
-   "text": "<b>Dress Up: OBJECTS.md shows each object, a clipped screenshot beside its row.</b> Matthew, 2026-10-16 night: \"include clipped screen shots in this doc, going forward\". OBJECTS.md (ticket 99) lists what stands in each place by depth (588 lines, as of 0.0.46, made by depthsheet.mjs and objects_md.py). Going forward: each object's row gets a small picture clipped to that object's box in its place (the scene drawn at the defaults, the object's getBBox through the screen, a little margin), and the place a picture of its own; made in CI on GitHub's Chrome (no browser on the laptop), as PNGs in dress-up/objects/ (or WebP), and objects_md.py writes them into the table. Also brings the list up to date from 0.0.46.",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-16T22:40-06:00",
-     "from": "matthew",
-     "chars": 147,
-     "asks": true
-    }
-   ],
-   "progress": "22:40: minted; queued. | 23:17: DONE on branch objects-180 (217ef63, kids-choice-games; not on main): OBJECTS.md as of 0.0.94 (was 0.0.46), 40 places each with its picture, 377 objects with 376 clipped pictures (WebP, 2.4 MB in dress-up/objects/), notes kept; made on GitHub by tools/checks/objects180.mjs (every branch's run leaves fresh pictures), written by tools/objects_md.py; the agent instructions say how. Waiting on Matthew: merge the branch (a push to main deploys the game; only docs and pictures change).",
-   "waiting": "Matthew: look at OBJECTS.md on branch objects-180 (GitHub renders it), then merge."
-  },
-  {
-   "id": 184,
-   "area": "dress up, releases, CI, performance",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T06:28-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "text": "<b>Dress Up releases deploy first; speed is checked after, on every release, and a slow version is marked 🚧🐢.</b> Matthew, 2026-10-17: \"when N and M start asking for updates later today, I want to deploy publicly asap, so they can test, and support that creative loop -- separately, I want to keep checking performance in a systematic way, so they don't have to, and I don't have to, as we go.\" and, asked to switch releases to deploy first, speed tests after: \"yes.\" To do: (1) a workflow on each release tag (dress-up-X.Y.Z) runs the checks, the frame-rate gate (both tiers), the on-screen controller audit and the leak tests on GitHub's computers, and records the result per version in dress-up/speed.json on main; (2) the game reads speed.json with version.json and marks its own version 🚧🐢 slow (with what failed, and a link to the run) when its speed tests failed; (3) the release steps in agent-instructions.md: deploy first (the script check only), the speed tests after, a slow version fixed in the next one, never undone; and after each release, read its result and mint a ticket when it is slow. Replaces 10-16's rule \"we fix it before we commit new versions\" (Matthew's own change).",
-   "tags": [],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T06:28-06:00",
-     "from": "matthew",
-     "chars": 257,
-     "asks": true
-    }
-   ],
-   "progress": "06:28: minted; started. 0.0.95 went out deploy-first already (main 1599fd9, tag dress-up-0.0.95, live), its checks still running on the release branch."
-  }
- ],
- "next_ticket": 185,
- "current_ticket": 184,
- "current_note": "06:28: ^ticket(184): Dress Up releases deploy first, speed checked after on every release tag, a slow version marked 🚧🐢. 0.0.95 is live (deploy-first by hand); building the after-deploy speed run.",
- "closed_tickets": [
   {
    "id": 156,
    "area": "hazel, #2635, CI",
@@ -5170,21 +5236,15 @@
  ],
  "queue": [
   184,
+  178,
   160,
   18,
   102,
   54,
   19,
   166,
-  178,
   167,
-  176,
-  43,
-  144,
-  179,
-  165,
-  177,
-  180
+  177
  ],
  "current_since": "2026-10-17T06:28-06:00"
 }
