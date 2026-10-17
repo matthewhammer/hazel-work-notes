@@ -269,8 +269,23 @@
    "url": "http://localhost:8131/series/005/#where",
    "added": "2026-10-12",
    "tags": [
-    "blocked on Matthew"
-   ]
+    "long run"
+   ],
+   "log": [
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 211,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    }
+   ],
+   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: move only the costly livelits' views to the worker, and send the on-screen ids in the request. Code tonight; measuring waits for a daytime browser run. 🌙 long run; no headless browser on the laptop."
   },
   {
    "id": 43,
@@ -278,7 +293,25 @@
    "added": "2026-10-13",
    "text": "<b>Messed Up Dress Up: postcards.</b> Save the friend and their scene as one picture, with a caption to write on it, ready to send.",
    "source": "Matthew, 2026-10-13, in chat (ideas from ^ticket(40)'s doorways)",
-   "url": "http://matthewhammer.org/kids-choice-games/dress-up/"
+   "url": "http://matthewhammer.org/kids-choice-games/dress-up/",
+   "tags": [
+    "long run"
+   ],
+   "log": [
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 127,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    }
+   ],
+   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: code it on a branch tonight, no release (the gate needs a browser). 🌙 long run; no headless browser on the laptop."
   },
   {
    "id": 54,
@@ -286,7 +319,25 @@
    "added": "2026-10-14",
    "text": "<b>Offer ^ticket(7)'s three ports to #2469, from the local branch, with ^report(13)'s numbers.</b> ^report(13)'s What next, step 1: \"Offer the three ports to #2469, from the local branch, with this report's numbers.\" The branch: <code>port-2469-t7</code> in ~/hazel-port-2469, three commits on #2469's head <code>c1e4aeee4a</code>, which is still its head (2026-10-14), so they apply as they are: <code>128f3f303d</code> (the worker's statics projection updated, not rebuilt), <code>cdb799a376</code> (EvalInfo updated at the keys DefStatics changed), <code>474b1e050e</code> (DefStatics keeps an item's patched root when nothing it is made from changed). Its quick tests passed whole. To do: push the branch under a name of Matthew's, and post on #2469 the branch, the three commits and ^report(13)'s numbers for them; #2469 is Andrew's PR, so a progress note, no @-mention, no action asked; Matthew approves the post before it goes.",
    "source": "Matthew, 2026-10-14 (^report(13), What next, step 1)",
-   "url": "http://matthewhammer.org/hazel/performance-analysis/013/#step-1"
+   "url": "http://matthewhammer.org/hazel/performance-analysis/013/#step-1",
+   "tags": [
+    "long run"
+   ],
+   "log": [
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 168,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    }
+   ],
+   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: push port-2469-t7 under his name; draft the post on #2469 for his approval in the morning (no post tonight). 🌙 long run; no headless browser on the laptop."
   },
   {
    "id": 102,
@@ -340,10 +391,25 @@
      "from": "matthew",
      "chars": 300,
      "asks": true
+    },
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 184,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
     }
    ],
    "status": "open",
-   "tags": []
+   "tags": [
+    "long run"
+   ],
+   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: the cheap diagonal postures first (the facing-us drawing turned partway), the default friend first; on a branch, no release. 🌙 long run; no headless browser on the laptop."
   },
   {
    "id": 160,
@@ -359,13 +425,26 @@
      "from": "matthew",
      "chars": 260,
      "asks": true
+    },
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 146,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
     }
    ],
    "status": "open",
    "tags": [
     "long run"
    ],
-   "progress": "17:02: the audit's first full run (42 cases x 3, headless Chromium, begun 16:47:00) crashed the laptop at once (journal ends 16:47:01; the <a href=\"http://matthewhammer.org/hazel-work-notes/crash-log.html\">crash log</a> has it). Tool: ~/du-shots/tools/audit160.mjs (its 2-place trial ran fine). Not rerun: a 15-20 min headless-Chrome run is the kind of job both of today's afternoon crashes came during. Next: Matthew's call whether, and how small (1 run a case, or a few places at a time). | 17:27: Matthew: \"audit tonight, last in long run queue\". Plan (his OK to pinned Chrome, 17:05): headless Chromium under taskset -c 0-3 nice -n 10, node under taskset -c 0-3, RUNS=1, batches of 6 cases with 20 s between (only=...): the 24 places; castleroom:king..cats; treeroom:1-6; then check the batches' case counts add up to the page's 42. OUT=~/du-shots/audit160/0.0.87-bN.json. | 20:58: NOT a long run on this laptop tonight. NO headless browser (Chromium or Firefox) on this laptop tonight, pinned or not: all four of the evening's freezes (16:33, 16:47, 20:47, 20:53) came during one. Its 42-case audit waits for daytime with Matthew there, or GitHub's runners (^ticket(165))."
+   "progress": "17:02: the audit's first full run (42 cases x 3, headless Chromium, begun 16:47:00) crashed the laptop at once (journal ends 16:47:01; the <a href=\"http://matthewhammer.org/hazel-work-notes/crash-log.html\">crash log</a> has it). Tool: ~/du-shots/tools/audit160.mjs (its 2-place trial ran fine). Not rerun: a 15-20 min headless-Chrome run is the kind of job both of today's afternoon crashes came during. Next: Matthew's call whether, and how small (1 run a case, or a few places at a time). | 17:27: Matthew: \"audit tonight, last in long run queue\". Plan (his OK to pinned Chrome, 17:05): headless Chromium under taskset -c 0-3 nice -n 10, node under taskset -c 0-3, RUNS=1, batches of 6 cases with 20 s between (only=...): the 24 places; castleroom:king..cats; treeroom:1-6; then check the batches' case counts add up to the page's 42. OUT=~/du-shots/audit160/0.0.87-bN.json. | 20:58: NOT a long run on this laptop tonight. NO headless browser (Chromium or Firefox) on this laptop tonight, pinned or not: all four of the evening's freezes (16:33, 16:47, 20:47, 20:53) came during one. Its 42-case audit waits for daytime with Matthew there, or GitHub's runners (^ticket(165)). | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: run the audit on GitHub's runners (^ticket(165)); frame rates there are relative only. 🌙 long run; no headless browser on the laptop.",
+   "waiting": ""
   },
   {
    "id": 164,
@@ -404,13 +483,25 @@
      "from": "matthew",
      "chars": 180,
      "asks": true
+    },
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 245,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
     }
    ],
    "status": "open",
    "tags": [
-    "blocked on Matthew"
+    "long run"
    ],
-   "progress": "17:52: WAITING ON MATTHEW before building: its step (1) is agent-instructions.md's open question 1, still open: may the test drivers (sweep.mjs, structure.mjs, fpsgate.mjs, the contact sheets, and today's door147/collide149/pit162/stillpic checks) move into the public repo as tools/? And: a workflow on push runs on GitHub's runners for every release (push = deploy here): OK to add .github/workflows to kids-choice-games?"
+   "progress": "17:52: WAITING ON MATTHEW before building: its step (1) is agent-instructions.md's open question 1, still open: may the test drivers (sweep.mjs, structure.mjs, fpsgate.mjs, the contact sheets, and today's door147/collide149/pit162/stillpic checks) move into the public repo as tools/? And: a workflow on push runs on GitHub's runners for every release (push = deploy here): OK to add .github/workflows to kids-choice-games? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: the test tools public, and a GitHub workflow, on a `ci` branch (not main, so nothing deploys); ^ticket(167)'s leak test and ^ticket(160)'s audit run on GitHub's runners, not the laptop. 🌙 long run; no headless browser on the laptop."
   },
   {
    "id": 166,
@@ -426,13 +517,25 @@
      "from": "matthew",
      "chars": 520,
      "asks": true
+    },
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 125,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
     }
    ],
    "status": "open",
    "tags": [
-    "blocked on Matthew"
+    "long run"
    ],
-   "progress": "17:52: WAITING ON MATTHEW before building: where the canister runs (the IC mainnet costs cycles, paid from his identity; a local replica would not reach the black laptop), and who may write to it (anyone with the page, as the pad now, or a key the game holds)?"
+   "progress": "17:52: WAITING ON MATTHEW before building: where the canister runs (the IC mainnet costs cycles, paid from his identity; a local replica would not reach the black laptop), and who may write to it (anyone with the page, as the pad now, or a key the game holds)? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: write the canister tonight; deploy (his cycles) only on his word. 🌙 long run; no headless browser on the laptop."
   },
   {
    "id": 167,
@@ -448,11 +551,25 @@
      "from": "matthew",
      "chars": 300,
      "asks": true
+    },
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 172,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
     }
    ],
    "status": "open",
-   "tags": [],
-   "progress": "16:43: 0.0.86's 🧪 ends with the empty room after the pond (passes 11, 12): headless Chrome stays at 60 fps there, so the leak, if it is one, is Firefox's. NEXT: his black-laptop line; if roomAfter is slow, count live SMIL animations / document.getAnimations() after the pond in Firefox. | 17:02: 0.0.86's passes 11-12 on both of Matthew's devices: the empty room after the pond runs 59 (black laptop, Firefox) and 60 (iPad, Safari), with music too. The slowdown did not come back by 🧪's route (it changes place in code, not through the menu or a doorway). Matthew's call: close as not reproduced, or try his route on the black laptop once more. | 19:29: both devices on 0.0.92: the empty room after the pond 57-59 (black laptop), 60 (iPad). Not reproduced; recommend closing, his call. | 20:45: measuring. Chrome (leak167.mjs, his friend through 📂 Load, fresh / after 2 rounds of changes: every place, a gate trip, a pit, a ladder, 60 slider changes, the tabs / after a reload): 60 fps throughout; nothing per frame grows (page elements, listeners, timers, Web Animations, SMIL); JS heap 6.5 -> 74 MB with the changes (PARTS memo, capped at 400 entries); one extra rAF loop: ⚙️ Advanced's meter, never stopped. Headless Firefox (leakff.py): 60 -> 58.8 -> 51.6 -> 43.1 fps over 3 rounds of changes, the drawing itself 1.2-1.7 ms; but right after a reload 24 (and a control run, only swimming, was noisy: the choppy mark and warm-up interfered). Now: changes vs only swimming, never held still, warm-up before each measure, CPU heat logged. | 20:52: the laptop froze at 20:47, about 90 s into that pinned Firefox run (crash log row added; the run's output was in /tmp and is gone). Resumed: one run, 2 rounds of changes, then without a reload the game's caches emptied, then the music paused, then a reload: whichever brings 60 fps back names the cause. Output synced to ~/du-shots/leak167/. | 20:58: the laptop froze AGAIN at 20:53, about 45 s into the same pinned Firefox run started again at 20:52 (crash log row 0c4b263, 35 crashes). Its disk log kept one line (63 °C, 59.7 fps). NO headless browser (Chromium or Firefox) on this laptop tonight, pinned or not: all four of the evening's freezes (16:33, 16:47, 20:47, 20:53) came during one. Browser measurement waits for daytime with Matthew there, or GitHub's runners (^ticket(165)).",
+   "tags": [
+    "long run"
+   ],
+   "progress": "16:43: 0.0.86's 🧪 ends with the empty room after the pond (passes 11, 12): headless Chrome stays at 60 fps there, so the leak, if it is one, is Firefox's. NEXT: his black-laptop line; if roomAfter is slow, count live SMIL animations / document.getAnimations() after the pond in Firefox. | 17:02: 0.0.86's passes 11-12 on both of Matthew's devices: the empty room after the pond runs 59 (black laptop, Firefox) and 60 (iPad, Safari), with music too. The slowdown did not come back by 🧪's route (it changes place in code, not through the menu or a doorway). Matthew's call: close as not reproduced, or try his route on the black laptop once more. | 19:29: both devices on 0.0.92: the empty room after the pond 57-59 (black laptop), 60 (iPad). Not reproduced; recommend closing, his call. | 20:45: measuring. Chrome (leak167.mjs, his friend through 📂 Load, fresh / after 2 rounds of changes: every place, a gate trip, a pit, a ladder, 60 slider changes, the tabs / after a reload): 60 fps throughout; nothing per frame grows (page elements, listeners, timers, Web Animations, SMIL); JS heap 6.5 -> 74 MB with the changes (PARTS memo, capped at 400 entries); one extra rAF loop: ⚙️ Advanced's meter, never stopped. Headless Firefox (leakff.py): 60 -> 58.8 -> 51.6 -> 43.1 fps over 3 rounds of changes, the drawing itself 1.2-1.7 ms; but right after a reload 24 (and a control run, only swimming, was noisy: the choppy mark and warm-up interfered). Now: changes vs only swimming, never held still, warm-up before each measure, CPU heat logged. | 20:52: the laptop froze at 20:47, about 90 s into that pinned Firefox run (crash log row added; the run's output was in /tmp and is gone). Resumed: one run, 2 rounds of changes, then without a reload the game's caches emptied, then the music paused, then a reload: whichever brings 60 fps back names the cause. Output synced to ~/du-shots/leak167/. | 20:58: the laptop froze AGAIN at 20:53, about 45 s into the same pinned Firefox run started again at 20:52 (crash log row 0c4b263, 35 crashes). Its disk log kept one line (63 °C, 59.7 fps). NO headless browser (Chromium or Firefox) on this laptop tonight, pinned or not: all four of the evening's freezes (16:33, 16:47, 20:47, 20:53) came during one. Browser measurement waits for daytime with Matthew there, or GitHub's runners (^ticket(165)). | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: read the code for what outlives the pond (no browser), and run the leak test on GitHub's runners (^ticket(165)). 🌙 long run; no headless browser on the laptop.",
    "waiting": "Waiting on Matthew's 🧪 run on the black laptop (no hurry): Dress Up 0.0.86 is live; ⚙️ Advanced → 🧪 this computer's speed (about 40 s), then paste the line in the pad."
   },
   {
@@ -463,12 +580,26 @@
    "url": "http://localhost:8131/series/006/#next",
    "added": "2026-10-12",
    "tags": [
-    "blocked on Matthew"
+    "long run"
    ],
-   "progress": "2026-10-15 23:28: BUILT, local only. Branch ci/statics-passes-dev in ~/hazel-ab-coal, off dev e12145c69b: 4b84cc1f8f the --count-passes counter (from bd90642654, one conflict in Statics.re: dev lacks the livelit refs above it), merges of #2603 and #2651 (the test's budgets assume their fixes), and 0d5d015eff Test_StaticsPasses (from da3251d3e5; corpus check fitted to dev's 73 programs; NEW: four programs in the quick suite). On dev alone, the counter shows docs/reference/modules.hz with one expression analyzed 24x and polymorphism.hz at 2.65 analyses per expression, over the budgets (5x, 2.5): so the test must merge after #2603 and #2651. StaticsPasses: 9 tests pass, 2.9 s; the quick suite: 4335 tests pass, 109 s. Nothing pushed. Waiting on Matthew: open it as a PR stacked on #2603 and #2651, or fold it into one of them?",
+   "progress": "2026-10-15 23:28: BUILT, local only. Branch ci/statics-passes-dev in ~/hazel-ab-coal, off dev e12145c69b: 4b84cc1f8f the --count-passes counter (from bd90642654, one conflict in Statics.re: dev lacks the livelit refs above it), merges of #2603 and #2651 (the test's budgets assume their fixes), and 0d5d015eff Test_StaticsPasses (from da3251d3e5; corpus check fitted to dev's 73 programs; NEW: four programs in the quick suite). On dev alone, the counter shows docs/reference/modules.hz with one expression analyzed 24x and polymorphism.hz at 2.65 analyses per expression, over the budgets (5x, 2.5): so the test must merge after #2603 and #2651. StaticsPasses: 9 tests pass, 2.9 s; the quick suite: 4335 tests pass, 109 s. Nothing pushed. Waiting on Matthew: open it as a PR stacked on #2603 and #2651, or fold it into one of them? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: a draft PR against dev saying it merges after #2603 and #2651. 🌙 long run; no headless browser on the laptop.",
    "work": {
     "work_minutes": 14
-   }
+   },
+   "log": [
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 122,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    }
+   ]
   },
   {
    "id": 14,
@@ -478,12 +609,26 @@
    "url": "http://localhost:8131/series/006/#next",
    "added": "2026-10-12",
    "tags": [
-    "blocked on Matthew"
+    "long run"
    ],
-   "progress": "2026-10-15 23:32: BUILT, local only. Branch ci/recursive-let-budget in ~/hazel-ab-coal, off dev: merges of #2678 (the step budgets) and #2675 (reuse around a recursive let), then d706264f3f, a third PerfBudgets case: a library module with recursive members, a picture from it, and a knob; an edit to the knob re-runs in 132 steps (budget 145; a cold run is 127,394). Without #2675 (checked on #2678 alone) the same re-run takes 252 steps and fails: the module's binding is not reused, though its items still are. PerfBudgets: 3 tests pass. The woods slide itself is not on dev, so this is its shape in a small program. Nothing pushed. Waiting on Matthew: a PR stacked on #2678 and #2675, or fold into #2678?",
+   "progress": "2026-10-15 23:32: BUILT, local only. Branch ci/recursive-let-budget in ~/hazel-ab-coal, off dev: merges of #2678 (the step budgets) and #2675 (reuse around a recursive let), then d706264f3f, a third PerfBudgets case: a library module with recursive members, a picture from it, and a knob; an edit to the knob re-runs in 132 steps (budget 145; a cold run is 127,394). Without #2675 (checked on #2678 alone) the same re-run takes 252 steps and fails: the module's binding is not reused, though its items still are. PerfBudgets: 3 tests pass. The woods slide itself is not on dev, so this is its shape in a small program. Nothing pushed. Waiting on Matthew: a PR stacked on #2678 and #2675, or fold into #2678? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: a draft PR against dev saying it merges after #2678 and #2675. 🌙 long run; no headless browser on the laptop.",
    "work": {
     "work_minutes": 10
-   }
+   },
+   "log": [
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 122,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    }
+   ]
   },
   {
    "id": 15,
@@ -493,12 +638,26 @@
    "url": "http://localhost:8131/series/006/#next",
    "added": "2026-10-12",
    "tags": [
-    "blocked on Matthew"
+    "long run"
    ],
-   "progress": "2026-10-15 23:34: BUILT, local only. Branch ci/byte-budgets in ~/hazel-ab-coal, off dev: merges of #2608 (elaborations without whitespace and comments) and #2606 (the cache stays in the worker), then 35edf2d1d8, Test_ByteBudgets: the bytes the page posts to the worker and gets back, through WorkerServer's own Marshal encoding, as ratchet budgets like PerfBudgets'. probes.hz: request 25,180 bytes (budget 27,700; about 48 KB before #2608), answer 3,617 (4,000); the B2T2 leftjoin program: 60,628 (66,700) and 21,258 (23,400). Requests vary by a few dozen bytes run to run (fresh ids); answers do not. 2 tests pass, twice. It uses #2606's request fields, so it lands after both. Nothing pushed. Waiting on Matthew.",
+   "progress": "2026-10-15 23:34: BUILT, local only. Branch ci/byte-budgets in ~/hazel-ab-coal, off dev: merges of #2608 (elaborations without whitespace and comments) and #2606 (the cache stays in the worker), then 35edf2d1d8, Test_ByteBudgets: the bytes the page posts to the worker and gets back, through WorkerServer's own Marshal encoding, as ratchet budgets like PerfBudgets'. probes.hz: request 25,180 bytes (budget 27,700; about 48 KB before #2608), answer 3,617 (4,000); the B2T2 leftjoin program: 60,628 (66,700) and 21,258 (23,400). Requests vary by a few dozen bytes run to run (fresh ids); answers do not. 2 tests pass, twice. It uses #2606's request fields, so it lands after both. Nothing pushed. Waiting on Matthew. | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: a draft PR against dev saying it merges after #2606 and #2608. 🌙 long run; no headless browser on the laptop.",
    "work": {
     "work_minutes": 10
-   }
+   },
+   "log": [
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 122,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    }
+   ]
   },
   {
    "id": 19,
@@ -508,27 +667,26 @@
    "url": "http://localhost:8131/series/006/#update",
    "added": "2026-10-12",
    "tags": [
-    "blocked on Matthew"
+    "long run"
    ],
-   "progress": "2026-10-15 23:34: LOOKED INTO, nothing built. Neither half applies to dev as it stands: (1) the call memo is only on the livelits branches (CallMemo is not in dev's language library), so counting its keys' work belongs on #2635/#2597; (2) js_of_ocaml reports zero for every GC counter (its runtime's caml_gc_quick_stat, caml_gc_counters and caml_gc_minor_words return constant zeros), so memory allocated cannot be counted under it, and node's heap figures move with GC timing, which a budget cannot use. What would work: a deterministic count of the nodes the evaluator builds (the copies #2679 removed were one step each, invisible to steps), by counting constructions in the transition code; or, on #2635, the call memo's key normalization in nodes. Matthew's call which, if either.",
+   "progress": "2026-10-15 23:34: LOOKED INTO, nothing built. Neither half applies to dev as it stands: (1) the call memo is only on the livelits branches (CallMemo is not in dev's language library), so counting its keys' work belongs on #2635/#2597; (2) js_of_ocaml reports zero for every GC counter (its runtime's caml_gc_quick_stat, caml_gc_counters and caml_gc_minor_words return constant zeros), so memory allocated cannot be counted under it, and node's heap figures move with GC timing, which a budget cannot use. What would work: a deterministic count of the nodes the evaluator builds (the copies #2679 removed were one step each, invisible to steps), by counting constructions in the transition code; or, on #2635, the call memo's key normalization in nodes. Matthew's call which, if either. | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: count the nodes the evaluator builds (deterministic), on dev, as a local branch for his review. 🌙 long run; no headless browser on the laptop.",
    "work": {
     "work_minutes": 4
-   }
-  },
-  {
-   "id": 24,
-   "area": "performance",
-   "text": "Open cells draw their livelit views without the view memo (<code>live_html</code>, 449 ms per change profiled in ^report(8)'s B with ^ticket(6)'s fix), where the whole-program editor uses <code>memo_view</code> (163 ms in C). Give cells the memo. (Corrected 2026-10-12: B's 0.48 s of <code>of_segment</code> was the autosave printing text, not the cells' code views.) <b>2026-10-15T21:29:</b> Matthew: tonight after hours (🌙), local only.",
-   "source": "^report(8)",
-   "url": "http://matthewhammer.org/hazel/performance-analysis/008/#where",
-   "added": "2026-10-12",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "progress": "2026-10-15 23:12: BUILT AND MEASURED, local only. Branch perf/2635-cells-live-memo in ~/hazel-ab-views (on 25's link commit): a31cdca4b9 keeps, per livelit use, what each sample ran to, by the sample object, so a redraw without a new run does not run its samples again (one entry per use, the table emptied past 256); 8bcd92dcc2 is a MEASURE commit on top. Interleaved A/B in UX mode (^report(8)'s B, reached by 25's link; one Firefox, base twice as an A/A, 10 rounds each): live_html's page time per change 195 -> 65 ms (median -132 ms, lower in 10 of 10; A/A +14 ms). It is called 17 times per change, 2 samples each. But nothing a person sees moved: release to redraw 0.0 s (5/5; A/A +0.02 s), and a 1.5 s drag's freeze +10 ms (5/5; A/A +34 ms); the longest gap 242 -> 200 ms (A/A 292). So the saved ~130 ms is not on the visible path (the drag's freeze is the page's recalculation, the release waits for the worker). Data: ~/.cache/hazel-diag/r24/{ab,drag_B}.json (cells_live.py, ab_drag.py --link). Recommendation: do not push as a performance fix; it could go in as tidying if wanted. Matthew's call.",
-   "work": {
-    "work_minutes": 20
-   }
+   },
+   "log": [
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 155,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    }
+   ]
   },
   {
    "id": 25,
@@ -538,12 +696,26 @@
    "url": "http://matthewhammer.org/hazel/performance-analysis/008/#method",
    "added": "2026-10-12",
    "tags": [
-    "blocked on Matthew"
+    "long run"
    ],
-   "progress": "2026-10-15 22:47: BUILT, local only. Branch feat/2635-deeplink-outline in ~/hazel-ab-views, one commit 438812718b on #2635's head 032fe3aca6: ?outline=ux (or dev) picks the linked slide's outline mode, ?ux=arm_length,drawn the rows UX mode shows, by label (loose, any depth; unknown labels dropped); applied once over the saved view, then ordinary state. So ^report(8)'s B is now /?slide=livelit-playground-full-body&panel=none&outline=ux&ux=arm_length,drawn: 1 slider, 1 picture, the same state the click-through reached. scripts/outline_link_check.py (in the commit) checks five cases in headless Firefox: all pass (served at http://localhost:8353). Design note: DeepLink sits below the slide views (Copy URL uses it), so it only parses; Workspace resolves at RestorePins, which now also runs for a linked slide with no saved view. Not done: Copy URL does not yet write outline/ux into the link it builds. Waiting on Matthew: push it to #2635 (and #2597)?",
+   "progress": "2026-10-15 22:47: BUILT, local only. Branch feat/2635-deeplink-outline in ~/hazel-ab-views, one commit 438812718b on #2635's head 032fe3aca6: ?outline=ux (or dev) picks the linked slide's outline mode, ?ux=arm_length,drawn the rows UX mode shows, by label (loose, any depth; unknown labels dropped); applied once over the saved view, then ordinary state. So ^report(8)'s B is now /?slide=livelit-playground-full-body&panel=none&outline=ux&ux=arm_length,drawn: 1 slider, 1 picture, the same state the click-through reached. scripts/outline_link_check.py (in the commit) checks five cases in headless Firefox: all pass (served at http://localhost:8353). Design note: DeepLink sits below the slide views (Copy URL uses it), so it only parses; Workspace resolves at RestorePins, which now also runs for a linked slide with no saved view. Not done: Copy URL does not yet write outline/ux into the link it builds. Waiting on Matthew: push it to #2635 (and #2597)? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: push the outline-mode test commit to #2597 and #2635 (each built first, one build at a time). 🌙 long run; no headless browser on the laptop.",
    "work": {
     "work_minutes": 23
-   }
+   },
+   "log": [
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 153,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    }
+   ]
   },
   {
    "id": 156,
@@ -559,12 +731,25 @@
      "from": "matthew",
      "chars": 700,
      "asks": true
+    },
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 203,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
     }
    ],
    "status": "open",
    "tags": [
     "long run"
-   ]
+   ],
+   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: compare #2635's and #2469's CI logs; merge #2469 into a trial branch and push it so GitHub's CI runs it; #2635 itself only after Matthew looks. 🌙 long run; no headless browser on the laptop."
   },
   {
    "id": 176,
@@ -573,15 +758,73 @@
    "opened": "2026-10-16T20:30-06:00",
    "source": "the rest of ^ticket(149) (Matthew, 2026-10-16), closed on its first step after he tried 0.0.94",
    "url": "",
-   "tags": [],
+   "tags": [
+    "long run"
+   ],
    "text": "Dress Up: the rest of the collisions. ^ticket(149)'s first step (0.0.89) made the castle rooms' walls and the things one sits on solid, with low ones jumped. Still to do, from Matthew's ask: the standing objects one can't reasonably walk through (tables, beds, trees, rocks, wells: they have a depth, not yet a footprint), small ones cleared by a jump, short or high, by the geometry; and the walls of the flat rooms (the tree house's rooms, the living room, the huts), which keep only to the picture's frame.",
-   "progress": "20:30: minted from 149's remainder. Builds on solidsHere/solidMove/castleWalls (0.0.89): a footprint per standing object (its width at its depth, from its drawing's box; groups like a row of trees need their own parts)."
+   "progress": "20:30: minted from 149's remainder. Builds on solidsHere/solidMove/castleWalls (0.0.89): a footprint per standing object (its width at its depth, from its drawing's box; groups like a row of trees need their own parts). | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: code it on a branch tonight, no release (the gate needs a browser). 🌙 long run; no headless browser on the laptop.",
+   "log": [
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 127,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    }
+   ]
   }
  ],
  "next_ticket": 177,
- "current_ticket": 167,
- "current_note": "20:58: WAITING ON MATTHEW, crash recovery done: the laptop froze twice (20:47, 20:53), both during a pinned headless-Firefox run for ^ticket(167); nothing lost, crash log updated, dashboard back on 8000. Tonight: no headless browsers on this laptop, one heavy job at a time, one session. Matthew's calls on the blocked tickets (in chat) decide which go to 🌙 long run.",
+ "current_ticket": 165,
+ "current_note": "21:02: Matthew's defaults taken for every blocked ticket; all of them are 🌙 long runs tonight, worked one at a time in one session, no headless browser on this laptop. Now: ^ticket(165), the Dress Up test tools and a GitHub workflow on a `ci` branch, so the browser work runs on GitHub's computers.",
  "closed_tickets": [
+  {
+   "id": 24,
+   "area": "performance",
+   "text": "Open cells draw their livelit views without the view memo (<code>live_html</code>, 449 ms per change profiled in ^report(8)'s B with ^ticket(6)'s fix), where the whole-program editor uses <code>memo_view</code> (163 ms in C). Give cells the memo. (Corrected 2026-10-12: B's 0.48 s of <code>of_segment</code> was the autosave printing text, not the cells' code views.) <b>2026-10-15T21:29:</b> Matthew: tonight after hours (🌙), local only.",
+   "source": "^report(8)",
+   "url": "http://matthewhammer.org/hazel/performance-analysis/008/#where",
+   "added": "2026-10-12",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "progress": "2026-10-15 23:12: BUILT AND MEASURED, local only. Branch perf/2635-cells-live-memo in ~/hazel-ab-views (on 25's link commit): a31cdca4b9 keeps, per livelit use, what each sample ran to, by the sample object, so a redraw without a new run does not run its samples again (one entry per use, the table emptied past 256); 8bcd92dcc2 is a MEASURE commit on top. Interleaved A/B in UX mode (^report(8)'s B, reached by 25's link; one Firefox, base twice as an A/A, 10 rounds each): live_html's page time per change 195 -> 65 ms (median -132 ms, lower in 10 of 10; A/A +14 ms). It is called 17 times per change, 2 samples each. But nothing a person sees moved: release to redraw 0.0 s (5/5; A/A +0.02 s), and a 1.5 s drag's freeze +10 ms (5/5; A/A +34 ms); the longest gap 242 -> 200 ms (A/A 292). So the saved ~130 ms is not on the visible path (the drag's freeze is the page's recalculation, the release waits for the worker). Data: ~/.cache/hazel-diag/r24/{ab,drag_B}.json (cells_live.py, ab_drag.py --link). Recommendation: do not push as a performance fix; it could go in as tidying if wanted. Matthew's call. | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: drop it: not on the visible path.",
+   "work": {
+    "work_minutes": 20
+   },
+   "log": [
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 93,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    }
+   ],
+   "status": "dropped",
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T21:02-06:00",
+   "outcome": "Dropped on Matthew's default (2026-10-16 21:00): the cells' view memo saves about 130 ms of main-thread work per change, but none of it is on the visible path (release to redraw +0.0 s, the drag's freeze +10 ms, A/A noise larger); not pushed. Local branch perf/2635-cells-live-memo (~/hazel-ab-views) and data in ~/.cache/hazel-diag/r24/ remain, if it is ever wanted as tidying.",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 1,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 187,
+    "tokens_est": 46,
+    "sync_minutes_est": 3.0,
+    "work_minutes": 20.0
+   }
+  },
   {
    "id": 149,
    "area": "dress up, places, game controller",
@@ -4596,21 +4839,23 @@
   }
  ],
  "queue": [
-  167,
-  176,
-  156,
-  160,
   165,
-  166,
-  164,
-  18,
-  102,
-  25,
-  24,
+  167,
+  160,
+  54,
+  156,
   13,
   14,
   15,
-  19
+  25,
+  176,
+  43,
+  144,
+  19,
+  18,
+  166,
+  164,
+  102
  ],
- "current_since": "2026-10-16T20:45-06:00"
+ "current_since": "2026-10-16T21:02-06:00"
 }
