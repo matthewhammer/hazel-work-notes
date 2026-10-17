@@ -254,7 +254,10 @@
    "text": "Ask the maintainers to require the test jobs for merging into <code>dev</code>: today no check is required, so a red budget is a signal, not a gate.",
    "source": "^report(6)",
    "url": "http://localhost:8131/series/006/#today",
-   "added": "2026-10-12"
+   "added": "2026-10-12",
+   "chips": [
+    "hazel"
+   ]
   },
   {
    "id": 17,
@@ -262,7 +265,10 @@
    "text": "A timing report that informs and doesn't fail: base and head on one runner, repeated, phase by phase, perhaps from #2161's harness (David's call).",
    "source": "^report(6)",
    "url": "http://localhost:8131/series/006/#pr2161",
-   "added": "2026-10-12"
+   "added": "2026-10-12",
+   "chips": [
+    "hazel"
+   ]
   },
   {
    "id": 18,
@@ -289,7 +295,10 @@
     }
    ],
    "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: move only the costly livelits' views to the worker, and send the on-screen ids in the request. Code tonight; measuring waits for a daytime browser run. 🌙 long run; no headless browser on the laptop. | 00:47: CODED, the defaults (hazelgrove/hazel branch perf/2635-views-in-worker-costly, ee885708ac, on #2635's head 438812718b with the 10-14 experiments rebased under it; pushed for CI, no PR): the page times each livelit view it runs (LivelitProj.live_html); a projector whose view took 8 ms or more is costly (new ViewRoute); a request names the costly ones whose element meets the window (Request.view_ids); the worker runs only those to Html, Pure(html), which the page answers at once and does not time, so a view keeps its cost while the worker runs it; every other view runs on the page as before. Tests: new ViewRoute group (2) and StreamInterests, WorkerServer, UserLivelits (70), UserLivelits.Members pass locally. NOT MEASURED: needs a browser (Full Body's main thread per change, and Kids' Choice's release, against #2635), so it waits on Matthew for a daytime run. Open: the cost table keeps every projector it has timed (small, but never pruned); 8 ms is a first guess.",
-   "waiting": true
+   "waiting": true,
+   "chips": [
+    "hazel"
+   ]
   },
   {
    "id": 54,
@@ -355,7 +364,10 @@
    "tags": [
     "blocked on Matthew"
    ],
-   "waiting": true
+   "waiting": true,
+   "chips": [
+    "hazel"
+   ]
   },
   {
    "id": 160,
@@ -502,7 +514,10 @@
      "asks": false
     }
    ],
-   "waiting": "Matthew's word: open ci/node-budgets as a draft PR stacked on #2678 and #2679?"
+   "waiting": "Matthew's word: open ci/node-budgets as a draft PR stacked on #2678 and #2679?",
+   "chips": [
+    "hazel"
+   ]
   },
   {
    "id": 177,
@@ -566,25 +581,6 @@
    "progress": "07:18: minted; queued, not started (Matthew: \"but not yet\")."
   },
   {
-   "id": 194,
-   "area": "dress up, UX",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T10:23-06:00",
-   "source": "M, through Matthew, 2026-10-17, in chat",
-   "text": "<b>Dress Up: a light / dark switch (auto, light, dark), maybe under ⚙️ Advanced.</b> Matthew, 2026-10-17: \"feat request from M -- a light/dark control button, maybe under advanced, for setting the theme between: auto/light/dark. please enqueue and do it.\"",
-   "tags": [],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T10:23-06:00",
-     "from": "matthew",
-     "chars": 150,
-     "asks": true
-    }
-   ],
-   "progress": "10:23: minted; taken now."
-  },
-  {
    "id": 195,
    "area": "dress up, world designer",
    "added": "2026-10-17",
@@ -605,9 +601,69 @@
   }
  ],
  "next_ticket": 187,
- "current_ticket": 194,
- "current_note": "10:23: M's theme switch: auto / light / dark, under ⚙️ Advanced.",
+ "current_ticket": 195,
+ "current_note": "10:27: M's all passageways button: written (the waterfall's north is the waterfall; natural ways per place); checking on GitHub.",
  "closed_tickets": [
+  {
+   "id": 196,
+   "area": "dashboard",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T10:26-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "text": "<b>Dashboard: tickets 16, 17, 18, 19 and 102 carry the hazel chip; the hazel and dress-up chips solid, bright, with black text.</b> Matthew, 2026-10-17: \"tickets 16, 17, 18, 19, 102, should each have the hazel chip, but don't. Please make the hazel and dress-up chips solid, bright colors with black text.\"",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T10:26-06:00",
+     "from": "matthew",
+     "chars": 170,
+     "asks": true
+    }
+   ],
+   "progress": "10:26: minted; doing it now (a follow-up to ^ticket(190)).",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T10:27-06:00",
+   "outcome": "Done (live on the local dashboard; the public copy within ten minutes): tickets 16, 17, 18, 19 and 102 carry the hazel chip (data.json chips, which now add to the area's; 102's area already said hazel, so it had it locally: the public copy was waiting its ten-minute turn); the hazel chip is solid yellow, dress-up solid pink, both black text.",
+   "metrics": {
+    "open_minutes": 1,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 170,
+    "tokens_est": 42,
+    "sync_minutes_est": 0
+   }
+  },
+  {
+   "id": 194,
+   "area": "dress up, UX",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T10:23-06:00",
+   "source": "M, through Matthew, 2026-10-17, in chat",
+   "text": "<b>Dress Up: a light / dark switch (auto, light, dark), maybe under ⚙️ Advanced.</b> Matthew, 2026-10-17: \"feat request from M -- a light/dark control button, maybe under advanced, for setting the theme between: auto/light/dark. please enqueue and do it.\"",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T10:23-06:00",
+     "from": "matthew",
+     "chars": 150,
+     "asks": true
+    }
+   ],
+   "progress": "10:23: minted; taken now.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T10:26-06:00",
+   "outcome": "Released in 0.0.122 (live), checked on GitHub first (run 39049217830): at the top of ⚙️ Advanced, light or dark: 🌗 auto (the system's), ☀️ light, 🌙 dark; kept by the browser, not in saves.",
+   "metrics": {
+    "open_minutes": 3,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 150,
+    "tokens_est": 37,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 193,
    "area": "dress up, animation, regression",
@@ -5550,7 +5606,6 @@
   }
  ],
  "queue": [
-  194,
   195,
   186,
   184,
