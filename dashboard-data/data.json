@@ -722,11 +722,20 @@
    "source": "Matthew, 2026-10-17, in chat, with a screenshot of the world designer's full screen (1 warning, E6 fairy forest red, 🔗 6 ways added)",
    "url": "",
    "text": "<b>Dress Up: 🔗 all passageways (and a place put on the grid) respect the grid's edge: no way out that leads off the map.</b> Matthew: \"I've noticed a consistent issue that 'all passageways' does not respect the edge of the grid\" \"and it introduces issues that can be avoided\". Found (not yet fixed): worldJoinAll (25-world.js) only ADDS ways between two placed neighbours and never takes one away; worldPut gives a dropped place its usual ways (worldUsualWays) wherever it lands, so the fairy forest at E6 kept its SW way off the bottom edge (D7), a warning that 🔗 left standing. worldMove and worldResize (− row/column) can strand ways off the edge the same way. To do: worldPut, worldMove and worldResize leave no way off the map (worldOffMap, ticket 189), and 🔗 all passageways also takes away any way off the edge (and says so in its note); a check in tools/checks/."
+  },
+  {
+   "id": 233,
+   "area": "dress up, world designer, castle designer, signs",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:04-06:00",
+   "source": "Matthew, 2026-10-17, in chat, after 0.0.160; \"mint a ticket and place as first priority\"",
+   "url": "",
+   "text": "<b>Dress Up: the old link signs go from every place; every way S out of a scene is a nav arrow; the castle designer chooses where each room's S way leads.</b> Matthew: \"now that we have the world designer at this level of features, and we have the 'sign with all directions' Let's go through each background and: remove all of the signs that we added initially just to link in the old, primitive way -- we've replaced that with the world designer UX now, and the UX it creates for the gameplay, with nav arrows, and always-correct signs that are optional. update the castle designer to: still use a free-form graph, not a grid. but in each place where we can walk S out of a room, we need a way to choose where that leads, or if it leads no where. when it leads somewhere, we use a nav arrow UX. when it leads no where, we show no nav arrow --- we are reusing the UX for nav arrows for all of the signs that mark a passageway S out of the scene\". Found so far: the old link signs (each a portal with a fixed data-to) are the clearing's 🥾 path ⬇️ (and its front path, to woodpath) and 🧚 fairies ↗️, the castle's 🌲 clearing, the fairy forest's 🌲 clearing ➡️; the S ways out of rooms are bottomSign (living room livingOut, tree rooms treeBackN, castle rooms' 'back' exits and their extra links) and the castle side/long/spiral rooms' way-out plank sign (out.label ⬇️)."
   }
  ],
- "next_ticket": 233,
- "current_ticket": null,
- "current_note": "16:02: 0.0.160 released (ticket 231, the world designer's in-game view); ticket 232 minted (🔗 all passageways and the grid's edge) at the end of the active queue; next in the queue: 223 (read checks-159's failures), 214",
+ "next_ticket": 234,
+ "current_ticket": 233,
+ "current_note": "16:04: minted first priority (his ask); inventorying each place's old link signs and the castle rooms' S ways (bottomSign, castleWays) before changing them",
  "closed_tickets": [
   {
    "id": 231,
@@ -6889,6 +6898,7 @@
   }
  ],
  "queue": [
+  233,
   223,
   214,
   209,
@@ -6904,5 +6914,5 @@
   19,
   166
  ],
- "current_since": "2026-10-17T15:49-06:00"
+ "current_since": "2026-10-17T16:04-06:00"
 }
