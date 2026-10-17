@@ -730,13 +730,45 @@
    "opened": "2026-10-17T16:04-06:00",
    "source": "Matthew, 2026-10-17, in chat, after 0.0.160; \"mint a ticket and place as first priority\"",
    "url": "",
-   "text": "<b>Dress Up: the old link signs go from every place; every way S out of a scene is a nav arrow; the castle designer chooses where each room's S way leads.</b> Matthew: \"now that we have the world designer at this level of features, and we have the 'sign with all directions' Let's go through each background and: remove all of the signs that we added initially just to link in the old, primitive way -- we've replaced that with the world designer UX now, and the UX it creates for the gameplay, with nav arrows, and always-correct signs that are optional. update the castle designer to: still use a free-form graph, not a grid. but in each place where we can walk S out of a room, we need a way to choose where that leads, or if it leads no where. when it leads somewhere, we use a nav arrow UX. when it leads no where, we show no nav arrow --- we are reusing the UX for nav arrows for all of the signs that mark a passageway S out of the scene\". Found so far: the old link signs (each a portal with a fixed data-to) are the clearing's 🥾 path ⬇️ (and its front path, to woodpath) and 🧚 fairies ↗️, the castle's 🌲 clearing, the fairy forest's 🌲 clearing ➡️; the S ways out of rooms are bottomSign (living room livingOut, tree rooms treeBackN, castle rooms' 'back' exits and their extra links) and the castle side/long/spiral rooms' way-out plank sign (out.label ⬇️)."
+   "text": "<b>Dress Up: the old link signs go from every place; every way S out of a scene is a nav arrow; the castle designer chooses where each room's S way leads.</b> Matthew: \"now that we have the world designer at this level of features, and we have the 'sign with all directions' Let's go through each background and: remove all of the signs that we added initially just to link in the old, primitive way -- we've replaced that with the world designer UX now, and the UX it creates for the gameplay, with nav arrows, and always-correct signs that are optional. update the castle designer to: still use a free-form graph, not a grid. but in each place where we can walk S out of a room, we need a way to choose where that leads, or if it leads no where. when it leads somewhere, we use a nav arrow UX. when it leads no where, we show no nav arrow --- we are reusing the UX for nav arrows for all of the signs that mark a passageway S out of the scene\". Found so far: the old link signs (each a portal with a fixed data-to) are the clearing's 🥾 path ⬇️ (and its front path, to woodpath) and 🧚 fairies ↗️, the castle's 🌲 clearing, the fairy forest's 🌲 clearing ➡️; the S ways out of rooms are bottomSign (living room livingOut, tree rooms treeBackN, castle rooms' 'back' exits and their extra links) and the castle side/long/spiral rooms' way-out plank sign (out.label ⬇️).",
+   "progress": "Parked 2026-10-17 16:08 for ^ticket(234) (his ask: drop the deep sea's school of fish). Done, in local WIP commit on branch wip-233 of ~/kids-choice-games (not pushed, not released): castleOut may be 'none' (🧱 nowhere) in rooms whose way out is toward us (ROOM_S_OUT: side/long/spiral, wayOutDests(id, n)), elsewhere 'none' reads as the usual way; S exits named 'way toward us' (⬇️) in the designer and the rooms' choices; castleSouthWays(K, n) + insideWays(B) (25-world.js): living room livingOut, tree rooms treeBackN, castle rooms' S ways (and a greenhouse's arches past ten, SW/SE) drawn as nav arrows (invisible data-way portal with its own data-to, the HUD arrow; enterScene goes to data-to); bottomSign, behindSign, the side rooms' ⬇️ plank sign gone; old link signs gone: clearing 🥾 path ⬇️ (and the front path's portal) and 🧚 fairies ↗️, castle 🌲 clearing, fairy forest 🌲 clearing ➡️, and the fixed signposts of the mountain trail, jungle waterfall, camp site and path through the woods (signpost helper removed). Kept (doors, not world links): the castle gate's 🚪 inside, the huts' 🌲 out, room door labels, the clearing's far views as doorways. NEXT: update checks that used the old ones (southway.mjs, places114.mjs's woodpath sign click, passages187/passages.mjs, treehouse216, shots.json south-way-livingroom), write a check for the S nav arrows (castle rooms, living room, nowhere = no arrow), VERSIONS + agent-instructions, diagnostic branch on GitHub, release."
+  },
+  {
+   "id": 235,
+   "area": "dress up, deep sea, animation",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:08-06:00",
+   "source": "Matthew, 2026-10-17, in chat (the other half of ^ticket(234))",
+   "url": "",
+   "text": "<b>Dress Up: a school of fish in the deep sea that is animated well, to bring the feature back.</b> Matthew: \"the animation for the school of fish in deep sea is really bad -- let's drop that feature of the background until we can animate a school of fish better.\" The dropped one: nine fish as ellipses, all sliding together round one 3.2 s loop of translations (no turning to face where they go, no fish of their own). Within 60 fps (the first rule)."
   }
  ],
- "next_ticket": 234,
+ "next_ticket": 236,
  "current_ticket": 233,
- "current_note": "16:04: minted first priority (his ask); inventorying each place's old link signs and the castle rooms' S ways (bottomSign, castleWays) before changing them",
+ "current_note": "16:09: back on it after 0.0.161: the signs and the rooms' S nav arrows are written (from local branch wip-233); now updating the checks that used the old ones, then a check of its own, a diagnostic run, and the release",
  "closed_tickets": [
+  {
+   "id": 234,
+   "area": "dress up, deep sea",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:08-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: the deep sea's school of fish is dropped from the background.</b> Matthew: \"the animation for the school of fish in deep sea is really bad -- let's drop that feature of the background until we can animate a school of fish better.\" To do: the school (nine fish sliding round one loop, 15-place-picker.js) taken out; deepsea219.mjs's checks of it with it; a release.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T16:09-06:00",
+   "outcome": "Released in 0.0.161 (ffc8c37, tag dress-up-0.0.161, live over HTTPS): the deep sea's school of fish (nine fish sliding round one loop) taken out of 15-place-picker.js; deepsea219.mjs expects it gone; VERSIONS + agent-instructions say so. Bringing back a school that swims well is ^ticket(235).",
+   "metrics": {
+    "open_minutes": 1,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 6.0
+   }
+  },
   {
    "id": 231,
    "area": "dress up, world designer, UX",
@@ -6907,6 +6939,7 @@
   222,
   225,
   232,
+  235,
   160,
   18,
   102,
@@ -6914,5 +6947,5 @@
   19,
   166
  ],
- "current_since": "2026-10-17T16:04-06:00"
+ "current_since": "2026-10-17T16:08-06:00"
 }
