@@ -482,9 +482,10 @@
    ],
    "status": "open",
    "tags": [
-    "long run"
+    "blocked on Matthew"
    ],
-   "progress": "17:52: WAITING ON MATTHEW before building: its step (1) is agent-instructions.md's open question 1, still open: may the test drivers (sweep.mjs, structure.mjs, fpsgate.mjs, the contact sheets, and today's door147/collide149/pit162/stillpic checks) move into the public repo as tools/? And: a workflow on push runs on GitHub's runners for every release (push = deploy here): OK to add .github/workflows to kids-choice-games? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: the test tools public, and a GitHub workflow, on a `ci` branch (not main, so nothing deploys); ^ticket(167)'s leak test and ^ticket(160)'s audit run on GitHub's runners, not the laptop. 🌙 long run; no headless browser on the laptop. | 21:09: BUILT on branch `ci` (73e6246, https://github.com/matthewhammer/kids-choice-games/tree/ci; main untouched, nothing deployed): tools/ (check_script, sweep + structure against main, shots.mjs + tools/shots.json, fpsgate, audit160, leak167 in Chrome, leakff in Firefox; README) and .github/workflows/dress-up-tests.yml, on every branch but main. agent-instructions.md says test browsers run there, not the laptop; open question 1 answered. First run 38997653701 in progress."
+   "progress": "17:52: WAITING ON MATTHEW before building: its step (1) is agent-instructions.md's open question 1, still open: may the test drivers (sweep.mjs, structure.mjs, fpsgate.mjs, the contact sheets, and today's door147/collide149/pit162/stillpic checks) move into the public repo as tools/? And: a workflow on push runs on GitHub's runners for every release (push = deploy here): OK to add .github/workflows to kids-choice-games? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: the test tools public, and a GitHub workflow, on a `ci` branch (not main, so nothing deploys); ^ticket(167)'s leak test and ^ticket(160)'s audit run on GitHub's runners, not the laptop. 🌙 long run; no headless browser on the laptop. | 21:09: BUILT on branch `ci` (73e6246, https://github.com/matthewhammer/kids-choice-games/tree/ci; main untouched, nothing deployed): tools/ (check_script, sweep + structure against main, shots.mjs + tools/shots.json, fpsgate, audit160, leak167 in Chrome, leakff in Firefox; README) and .github/workflows/dress-up-tests.yml, on every branch but main. agent-instructions.md says test browsers run there, not the laptop; open question 1 answered. First run 38997653701 in progress. | 23:15: BUILT and in use all night: every branch pushed runs the safety net, the gate, the audit, the leak tests and its own checks on GitHub (runs listed in ^du_report(3)). On the ci branch, not main: merging it is Matthew's call.",
+   "waiting": "Matthew: merge the ci branch (tools/, the workflow; the game itself unchanged) into main, so every branch made from main carries the checks."
   },
   {
    "id": 166,
@@ -663,7 +664,7 @@
    "url": "",
    "text": "<b>Dress Up: white flashes (blank frames) while walking or dragging, on every background.</b> Matthew, 2026-10-16 evening: \"ever since the latest performance fixes (bitmap introduction?) — we notice white flashes (blank frames) during walking or other dragging animations on all backgrounds. Some bug it seems.\" Since about 0.0.93 (still pictures as bitmaps on a slow computer; choppy windows of 60 frames) or 0.0.94. Which computers and browsers: not said yet. Suspects, unverified: a frame between hiding the scene and the still parts' bitmaps being decoded (showStillPic: visibility hidden, then new &lt;image&gt;s from blob URLs), or the switch back after STILL_PIC_HOLD; and 0.0.93 turning the still pictures on for more computers (choppy windows of 60, not 120 frames). Plan (no browser on the laptop tonight): catch it on GitHub's runners (the ci branch, ^ticket(165)): every frame of a walk and a drag recorded (CDP screencast), the still pictures forced on and off, a frame counted blank when it is mostly the page's white; then find the swap that leaves it and fix it on a branch. A release waits for Matthew.",
    "tags": [
-    "long run"
+    "blocked on Matthew"
    ],
    "status": "open",
    "log": [
@@ -803,8 +804,8 @@
   }
  ],
  "next_ticket": 183,
- "current_ticket": 167,
- "current_note": "22:49: 🌙 long runs, one at a time, no browser on this laptop. ^ticket(167) FOUND and fixed on a branch (the 🏞️ Background tab), ^du_report(3) drafted for Matthew. Minted tonight: ^ticket(177) flashes, ^ticket(178) code split (waits for the branches, his call), ^ticket(179) measuring notice (built), ^ticket(180) OBJECTS.md pictures, ^ticket(181) dashboard move, ^ticket(182) work-notes gallery.",
+ "current_ticket": 156,
+ "current_note": "23:15: the trial merge of #2469 into #2635: two merge faults found and fixed (Key.mk's target tag; the rename of a type in a module's path); the outline groups pass locally; HeadlessRows' corpus case running, then a push for GitHub's full tests. Next: ^ticket(180) (OBJECTS.md pictures, made), ^ticket(181) the dashboard's move.",
  "closed_tickets": [
   {
    "id": 15,
@@ -5076,13 +5077,11 @@
   }
  ],
  "queue": [
-  165,
+  156,
   180,
   181,
   182,
   160,
-  156,
-  177,
   18,
   102,
   54,
@@ -5093,7 +5092,9 @@
   176,
   43,
   144,
-  179
+  179,
+  165,
+  177
  ],
- "current_since": "2026-10-16T21:17-06:00"
+ "current_since": "2026-10-16T23:15-06:00"
 }
