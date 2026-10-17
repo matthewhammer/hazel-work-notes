@@ -337,7 +337,7 @@
      "asks": false
     }
    ],
-   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: push port-2469-t7 under his name; draft the post on #2469 for his approval in the morning (no post tonight). 🌙 long run; no headless browser on the laptop."
+   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: push port-2469-t7 under his name; draft the post on #2469 for his approval in the morning (no post tonight). 🌙 long run; no headless browser on the laptop. | 21:12: #2469 moved to 19fef7c9bb (52 commits since c1e4aeee4a); only test/haz3ltest.re overlaps the ports' files. The three ports replayed cleanly on it as port-2469-t7-on-19fef7c (b68bb584f2, 8f18165f37, 4e11145dda; dotted email), local in ~/hazel-port-2469. Quick suite + fmt building, pinned (taskset -c 0-3 nice -n 10, -j 4)."
   },
   {
    "id": 102,
@@ -565,7 +565,7 @@
    "tags": [
     "long run"
    ],
-   "progress": "2026-10-15 23:28: BUILT, local only. Branch ci/statics-passes-dev in ~/hazel-ab-coal, off dev e12145c69b: 4b84cc1f8f the --count-passes counter (from bd90642654, one conflict in Statics.re: dev lacks the livelit refs above it), merges of #2603 and #2651 (the test's budgets assume their fixes), and 0d5d015eff Test_StaticsPasses (from da3251d3e5; corpus check fitted to dev's 73 programs; NEW: four programs in the quick suite). On dev alone, the counter shows docs/reference/modules.hz with one expression analyzed 24x and polymorphism.hz at 2.65 analyses per expression, over the budgets (5x, 2.5): so the test must merge after #2603 and #2651. StaticsPasses: 9 tests pass, 2.9 s; the quick suite: 4335 tests pass, 109 s. Nothing pushed. Waiting on Matthew: open it as a PR stacked on #2603 and #2651, or fold it into one of them? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: a draft PR against dev saying it merges after #2603 and #2651. 🌙 long run; no headless browser on the laptop.",
+   "progress": "2026-10-15 23:28: BUILT, local only. Branch ci/statics-passes-dev in ~/hazel-ab-coal, off dev e12145c69b: 4b84cc1f8f the --count-passes counter (from bd90642654, one conflict in Statics.re: dev lacks the livelit refs above it), merges of #2603 and #2651 (the test's budgets assume their fixes), and 0d5d015eff Test_StaticsPasses (from da3251d3e5; corpus check fitted to dev's 73 programs; NEW: four programs in the quick suite). On dev alone, the counter shows docs/reference/modules.hz with one expression analyzed 24x and polymorphism.hz at 2.65 analyses per expression, over the budgets (5x, 2.5): so the test must merge after #2603 and #2651. StaticsPasses: 9 tests pass, 2.9 s; the quick suite: 4335 tests pass, 109 s. Nothing pushed. Waiting on Matthew: open it as a PR stacked on #2603 and #2651, or fold it into one of them? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: a draft PR against dev saying it merges after #2603 and #2651. 🌙 long run; no headless browser on the laptop. | 21:12: OPENED as draft PR #2689 against dev (Matthew's default), saying it merges after #2603 and #2651; the branch was already current with dev and both. Its CI runs the tests again on GitHub.",
    "work": {
     "work_minutes": 14
    },
@@ -594,7 +594,7 @@
    "tags": [
     "long run"
    ],
-   "progress": "2026-10-15 23:32: BUILT, local only. Branch ci/recursive-let-budget in ~/hazel-ab-coal, off dev: merges of #2678 (the step budgets) and #2675 (reuse around a recursive let), then d706264f3f, a third PerfBudgets case: a library module with recursive members, a picture from it, and a knob; an edit to the knob re-runs in 132 steps (budget 145; a cold run is 127,394). Without #2675 (checked on #2678 alone) the same re-run takes 252 steps and fails: the module's binding is not reused, though its items still are. PerfBudgets: 3 tests pass. The woods slide itself is not on dev, so this is its shape in a small program. Nothing pushed. Waiting on Matthew: a PR stacked on #2678 and #2675, or fold into #2678? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: a draft PR against dev saying it merges after #2678 and #2675. 🌙 long run; no headless browser on the laptop.",
+   "progress": "2026-10-15 23:32: BUILT, local only. Branch ci/recursive-let-budget in ~/hazel-ab-coal, off dev: merges of #2678 (the step budgets) and #2675 (reuse around a recursive let), then d706264f3f, a third PerfBudgets case: a library module with recursive members, a picture from it, and a knob; an edit to the knob re-runs in 132 steps (budget 145; a cold run is 127,394). Without #2675 (checked on #2678 alone) the same re-run takes 252 steps and fails: the module's binding is not reused, though its items still are. PerfBudgets: 3 tests pass. The woods slide itself is not on dev, so this is its shape in a small program. Nothing pushed. Waiting on Matthew: a PR stacked on #2678 and #2675, or fold into #2678? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: a draft PR against dev saying it merges after #2678 and #2675. 🌙 long run; no headless browser on the laptop. | 21:12: OPENED as draft PR #2690 against dev (Matthew's default), saying it merges after #2678 and #2675; the branch was already current with dev and both. Its CI runs the tests again on GitHub.",
    "work": {
     "work_minutes": 10
    },
@@ -623,7 +623,7 @@
    "tags": [
     "long run"
    ],
-   "progress": "2026-10-15 23:34: BUILT, local only. Branch ci/byte-budgets in ~/hazel-ab-coal, off dev: merges of #2608 (elaborations without whitespace and comments) and #2606 (the cache stays in the worker), then 35edf2d1d8, Test_ByteBudgets: the bytes the page posts to the worker and gets back, through WorkerServer's own Marshal encoding, as ratchet budgets like PerfBudgets'. probes.hz: request 25,180 bytes (budget 27,700; about 48 KB before #2608), answer 3,617 (4,000); the B2T2 leftjoin program: 60,628 (66,700) and 21,258 (23,400). Requests vary by a few dozen bytes run to run (fresh ids); answers do not. 2 tests pass, twice. It uses #2606's request fields, so it lands after both. Nothing pushed. Waiting on Matthew. | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: a draft PR against dev saying it merges after #2606 and #2608. 🌙 long run; no headless browser on the laptop.",
+   "progress": "2026-10-15 23:34: BUILT, local only. Branch ci/byte-budgets in ~/hazel-ab-coal, off dev: merges of #2608 (elaborations without whitespace and comments) and #2606 (the cache stays in the worker), then 35edf2d1d8, Test_ByteBudgets: the bytes the page posts to the worker and gets back, through WorkerServer's own Marshal encoding, as ratchet budgets like PerfBudgets'. probes.hz: request 25,180 bytes (budget 27,700; about 48 KB before #2608), answer 3,617 (4,000); the B2T2 leftjoin program: 60,628 (66,700) and 21,258 (23,400). Requests vary by a few dozen bytes run to run (fresh ids); answers do not. 2 tests pass, twice. It uses #2606's request fields, so it lands after both. Nothing pushed. Waiting on Matthew. | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: a draft PR against dev saying it merges after #2606 and #2608. 🌙 long run; no headless browser on the laptop. | 21:12: OPENED as draft PR #2691 against dev (Matthew's default), saying it merges after #2608 and #2606; the branch was already current with dev and both. Its CI runs the tests again on GitHub.",
    "work": {
     "work_minutes": 10
    },
@@ -661,35 +661,6 @@
      "at": "2026-10-16T20:59-06:00",
      "from": "claude",
      "chars": 155,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T21:02-06:00",
-     "from": "matthew",
-     "chars": 94,
-     "asks": false
-    }
-   ]
-  },
-  {
-   "id": 25,
-   "area": "testing, UX",
-   "text": "Code-driven tests of the outline modes: a URL parameter (or test hook) that opens a slide in UX mode with chosen GUI rows, so a script reaches ^report(8)'s B without clicking through the outline. Matthew: \"let's consider that too with our UX feature\". <b>2026-10-15T21:29:</b> Matthew: tonight after hours (🌙), local only.",
-   "source": "^report(8)",
-   "url": "http://matthewhammer.org/hazel/performance-analysis/008/#method",
-   "added": "2026-10-12",
-   "tags": [
-    "long run"
-   ],
-   "progress": "2026-10-15 22:47: BUILT, local only. Branch feat/2635-deeplink-outline in ~/hazel-ab-views, one commit 438812718b on #2635's head 032fe3aca6: ?outline=ux (or dev) picks the linked slide's outline mode, ?ux=arm_length,drawn the rows UX mode shows, by label (loose, any depth; unknown labels dropped); applied once over the saved view, then ordinary state. So ^report(8)'s B is now /?slide=livelit-playground-full-body&panel=none&outline=ux&ux=arm_length,drawn: 1 slider, 1 picture, the same state the click-through reached. scripts/outline_link_check.py (in the commit) checks five cases in headless Firefox: all pass (served at http://localhost:8353). Design note: DeepLink sits below the slide views (Copy URL uses it), so it only parses; Workspace resolves at RestorePins, which now also runs for a linked slide with no saved view. Not done: Copy URL does not yet write outline/ux into the link it builds. Waiting on Matthew: push it to #2635 (and #2597)? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: push the outline-mode test commit to #2597 and #2635 (each built first, one build at a time). 🌙 long run; no headless browser on the laptop.",
-   "work": {
-    "work_minutes": 23
-   },
-   "log": [
-    {
-     "at": "2026-10-16T20:59-06:00",
-     "from": "claude",
-     "chars": 153,
      "asks": true
     },
     {
@@ -766,6 +737,48 @@
  "current_ticket": 54,
  "current_note": "21:09: 🌙 long runs, one at a time, no browser on this laptop. ^ticket(165) built on the `ci` branch; its first GitHub run (the gate, the audit for ^ticket(160), the leak tests for ^ticket(167)) is going. Now: ^ticket(54), pushing the three ports' branch and drafting the #2469 post for Matthew's morning approval.",
  "closed_tickets": [
+  {
+   "id": 25,
+   "area": "testing, UX",
+   "text": "Code-driven tests of the outline modes: a URL parameter (or test hook) that opens a slide in UX mode with chosen GUI rows, so a script reaches ^report(8)'s B without clicking through the outline. Matthew: \"let's consider that too with our UX feature\". <b>2026-10-15T21:29:</b> Matthew: tonight after hours (🌙), local only.",
+   "source": "^report(8)",
+   "url": "http://matthewhammer.org/hazel/performance-analysis/008/#method",
+   "added": "2026-10-12",
+   "tags": [
+    "long run"
+   ],
+   "progress": "2026-10-15 22:47: BUILT, local only. Branch feat/2635-deeplink-outline in ~/hazel-ab-views, one commit 438812718b on #2635's head 032fe3aca6: ?outline=ux (or dev) picks the linked slide's outline mode, ?ux=arm_length,drawn the rows UX mode shows, by label (loose, any depth; unknown labels dropped); applied once over the saved view, then ordinary state. So ^report(8)'s B is now /?slide=livelit-playground-full-body&panel=none&outline=ux&ux=arm_length,drawn: 1 slider, 1 picture, the same state the click-through reached. scripts/outline_link_check.py (in the commit) checks five cases in headless Firefox: all pass (served at http://localhost:8353). Design note: DeepLink sits below the slide views (Copy URL uses it), so it only parses; Workspace resolves at RestorePins, which now also runs for a linked slide with no saved view. Not done: Copy URL does not yet write outline/ux into the link it builds. Waiting on Matthew: push it to #2635 (and #2597)? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: push the outline-mode test commit to #2597 and #2635 (each built first, one build at a time). 🌙 long run; no headless browser on the laptop.",
+   "work": {
+    "work_minutes": 23
+   },
+   "log": [
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 153,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    }
+   ],
+   "status": "done",
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T21:13-06:00",
+   "outcome": "Pushed to #2635 (438812718b, a fast-forward from 032fe3aca6, 2026-10-16 21:14, Matthew's default): ?outline=ux|dev picks a linked slide's outline mode and ?ux=<labels> the rows UX mode shows, so a script reaches ^report(8)'s B by URL; scripts/outline_link_check.py checks five cases (all passed 10-15). Not carried to #2597: it has no outline modes and no SlideView/Workspace (they come from #2469), so the commit does not apply there. Left: Copy URL does not yet write outline/ux into the link it builds.",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 1,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 247,
+    "tokens_est": 61,
+    "sync_minutes_est": 3.0,
+    "work_minutes": 23.0
+   }
+  },
   {
    "id": 164,
    "area": "dress up, performance, black laptop",
@@ -4876,7 +4889,6 @@
   13,
   14,
   15,
-  25,
   176,
   43,
   144,
