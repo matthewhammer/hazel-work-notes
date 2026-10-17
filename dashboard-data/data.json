@@ -704,7 +704,7 @@
    "tags": [
     "long run"
    ],
-   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: compare #2635's and #2469's CI logs; merge #2469 into a trial branch and push it so GitHub's CI runs it; #2635 itself only after Matthew looks. 🌙 long run; no headless browser on the laptop. | 21:27: (1) NO: #2469's own CI is green (10-16 13:12, 0dd1ed735e) and #2635's red is the same 8 known failures as on 10-13. (2)+(3): #2469 has 253 commits (76 merges) not in #2635 since 10-01; merging gives 31 conflicted files (~5,800 lines; DefStatics 1,786). Trial merge in progress on trial/2635-up-to-date in ~/hazel-livelits-modular (#2635's own branch untouched): 17 of 31 resolved."
+   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: compare #2635's and #2469's CI logs; merge #2469 into a trial branch and push it so GitHub's CI runs it; #2635 itself only after Matthew looks. 🌙 long run; no headless browser on the laptop. | 21:27: (1) NO: #2469's own CI is green (10-16 13:12, 0dd1ed735e) and #2635's red is the same 8 known failures as on 10-13. (2)+(3): #2469 has 253 commits (76 merges) not in #2635 since 10-01; merging gives 31 conflicted files (~5,800 lines; DefStatics 1,786). Trial merge in progress on trial/2635-up-to-date in ~/hazel-livelits-modular (#2635's own branch untouched): 17 of 31 resolved. | 21:34: all 31 conflicts resolved (uncommitted, trial/2635-up-to-date in ~/hazel-livelits-modular). (2) answered NO by the code: #2469's newest DefStatics extends its per-member module path on dev's module helpers (value_exports, the labeled-tuple lowering, now with stable ids); Modules II removed those, and #2635 keeps per-member analysis off (43089b065d), so the 8 failing tests (which exercise that path) stay red after a merge. The merge takes #2469's DefStatics + EvalInfo as ported tonight (^ticket(54)) with #2635's Modules II adaptation re-applied; the outline's UX mode folded into #2469's new side record (ScratchPersist) and props/handlers (OutlineSidebar). Type-checking now (pinned)."
   },
   {
    "id": 176,
@@ -757,8 +757,8 @@
   }
  ],
  "next_ticket": 178,
- "current_ticket": 176,
- "current_note": "21:17: 🌙 long runs, one at a time, no browser on this laptop. Done tonight: ^ticket(164) and ^ticket(25) closed; draft PRs #2689 #2690 #2691; ^ticket(54)'s branch pushed, its post drafted for the morning; ^ticket(165)'s CI branch running on GitHub. Now: ^ticket(176), the standing objects and the flat rooms' back walls, on branch collisions-176 (checked on GitHub's computers).",
+ "current_ticket": 156,
+ "current_note": "21:34: 🌙 long runs, one at a time, no browser on this laptop. Now: ^ticket(156)'s trial merge of #2469 into #2635, type-checking (pinned). Meanwhile on GitHub: ^ticket(176)'s collisions branch (second run), the ci branch's leak tests and audit, the draft PRs #2689-#2691, perf/2469-ports-what-changed.",
  "closed_tickets": [
   {
    "id": 25,
