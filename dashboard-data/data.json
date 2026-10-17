@@ -557,9 +557,21 @@
     }
    ],
    "progress": "12:39: minted; next. | 12:51: laptop powered off at 12:41 for a move (a clean poweroff, not a crash); servers 8000 + 8133 back. Fix a52aac0 (world-185, not pushed there; on checks-185 under the diagnostic 4f3ae25): an arrow on a side slides along its edge, away from the other. GitHub run 39059115047: with the fix, 0 of 64 spots overlap at all three sizes; but the control (the fix turned off) ALSO found 0, so tools/checks/arrows208.mjs does not see what Matthew saw yet. Next: make it find the witch's woods' SE corner (the arrows to C3 and to the beach) without the fix, then rerun."
+  },
+  {
+   "id": 209,
+   "area": "dress up, performance, releases",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T12:58-06:00",
+   "source": "0.0.130's speed run, read after release (^ticket(184): a slow result gets a ticket)",
+   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39056565230",
+   "text": "<b>Dress Up 0.0.130: its own fumes check failed in the speed run, 15 cauldrons about 16% slower than 0.0.129.</b> fumes205 (from ^ticket(205)), 15 cauldrons with simple fumes taking turns, on GitHub's Chrome: 0.0.129's 58, 57.1, 48.2, 52.7 fps (median 54.9; 225 moving parts), 0.0.130's 52, 49.8, 42.8, 41.4 (median 46.3; 255 moving parts); its bar is 10% fewer at most. ^ticket(205)'s own same-runner A/B measured 7% fewer (42.5 to 39.4). One run of four samples each, on a shared runner, so the size is not settled. The frame-rate gate itself passed; speed.json marks 0.0.130 broken by the checks (this and the tree house layering check fixed under ^ticket(207)). Next: the same-runner A/B a few times over to see whether the drop is real; if it is, make the band cheaper (fewer moving parts) before more cauldron work.",
+   "tags": [],
+   "status": "open",
+   "log": []
   }
  ],
- "next_ticket": 209,
+ "next_ticket": 210,
  "current_ticket": 208,
  "current_note": "12:57: the check could not see the bug (the first world has no square with E beside SE); rewritten to stand the friend in his witch's woods with ways E and SE, and in every place with every way open, full screen too (c29ac94 on world-185). Running on GitHub (checks-185, 77eb0dd): it must find overlaps with the fix off, none with it on.",
  "closed_tickets": [
@@ -5971,6 +5983,7 @@
  ],
  "queue": [
   208,
+  209,
   184,
   198,
   160,
