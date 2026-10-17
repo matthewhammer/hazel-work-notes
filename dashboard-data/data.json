@@ -651,16 +651,6 @@
    ]
   },
   {
-   "id": 242,
-   "area": "dress up, tree house, pictures, ladders",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T16:29-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "url": "",
-   "text": "<b>Dress Up: no picture on a tree house room's wall behind a ladder or other furniture.</b> Matthew: \"let's not place any pictures in the tree house behind any ladders, or other furniture. For ladders esp, we can easily click on the picture when we meant the ladder, or vice versa -- best just to separate them on the screen more.\" To do: each tree room's pictures placed only where nothing stands in front of them (its ladders and trapdoor ladders first, then the furniture), with room between a picture and a ladder on the screen so a tap means one or the other; a check that every room at every setting keeps them apart.",
-   "progress": "Parked 17:39 for ^ticket(254) (his interruption: dragging things stutters the music). Local commit 2f1dc33 on main of ~/kids-choice-games, NOT pushed: treeBusyMeasure measures each piece of the furniture, trunk, side doors, ladder up, hatch and window (diag-242: 71 boxes), placeTreePictures picks the nearest clear spot. BUG FOUND: the scene is cached by partByReads on the settings it reads (sceneOpts), so after the measure the redraw reuses the cached scene and the pictures are never drawn (slots stay null, 0 pictures in all rooms). FIX: let the scene read the measure through sceneOpts (a key such as 'tree:busy' returning treeBusy.key), so a new measure rebuilds it; then rerun pictures242 (checks-242b) and release 0.0.171."
-  },
-  {
    "id": 243,
    "area": "dress up, tree house, collisions",
    "added": "2026-10-17",
@@ -770,9 +760,32 @@
   }
  ],
  "next_ticket": 256,
- "current_ticket": 242,
- "current_note": "17:49: 254 done (0.0.171, the drag fix). Back on 242: the tree rooms' pictures, its fix known (the scene's cache must read the measure); the commit is on branch wip-242",
+ "current_ticket": 243,
+ "current_note": "17:52: AFK run: 242 done (0.0.172). On 243: the tree trunk's box in tree rooms (room 4's NE corner) too big: more segments",
  "closed_tickets": [
+  {
+   "id": 242,
+   "area": "dress up, tree house, pictures, ladders",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:29-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: no picture on a tree house room's wall behind a ladder or other furniture.</b> Matthew: \"let's not place any pictures in the tree house behind any ladders, or other furniture. For ladders esp, we can easily click on the picture when we meant the ladder, or vice versa -- best just to separate them on the screen more.\" To do: each tree room's pictures placed only where nothing stands in front of them (its ladders and trapdoor ladders first, then the furniture), with room between a picture and a ladder on the screen so a tap means one or the other; a check that every room at every setting keeps them apart.",
+   "progress": "Parked 17:39 for ^ticket(254) (his interruption: dragging things stutters the music). Local commit 2f1dc33 on main of ~/kids-choice-games, NOT pushed: treeBusyMeasure measures each piece of the furniture, trunk, side doors, ladder up, hatch and window (diag-242: 71 boxes), placeTreePictures picks the nearest clear spot. BUG FOUND: the scene is cached by partByReads on the settings it reads (sceneOpts), so after the measure the redraw reuses the cached scene and the pictures are never drawn (slots stay null, 0 pictures in all rooms). FIX: let the scene read the measure through sceneOpts (a key such as 'tree:busy' returning treeBusy.key), so a new measure rebuilds it; then rerun pictures242 (checks-242b) and release 0.0.171.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T17:52-06:00",
+   "outcome": "Released in 0.0.172 (live): a tree room's pictures hang only where nothing stands in front of them: treeBusyMeasure measures each piece of the furniture, trunk, side doors, ladder up, hatch and window frame once per room and settings; placeTreePictures moves each picture to the nearest clear place (14 apart, 44 from a ladder or hatch) or leaves it out; the scene reads the measure through sceneOpts (tree:busy), since the scene is cached on what it reads (the first try drew no pictures for that reason). pictures242.mjs all ok (run 39080476966): rooms 2-6 two pictures each, room 1 one (its second had no clear place); room 1's picture moved from behind the ladder to beside the top bunk.",
+   "metrics": {
+    "open_minutes": 83,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 40.0
+   }
+  },
   {
    "id": 254,
    "area": "dress up, performance, music, dragging",
@@ -7266,7 +7279,6 @@
   }
  ],
  "queue": [
-  242,
   243,
   252,
   244,
