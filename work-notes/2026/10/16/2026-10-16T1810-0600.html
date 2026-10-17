@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Evening notes, 10-16</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --hi: #fef3c7; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --hi: #3a3218; --warn: #fbbf24; --ok: #4ade80; }
+  }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; }
+  h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; }
+  code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); }
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9em; }
+  th, td { border-bottom: 1px solid var(--line); padding: 5px 6px; text-align: left; vertical-align: top; }
+  li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Evening of 10-16: two freezes, the crash log, Dress Up 0.0.87 to 0.0.90</h1>
+<p class="sub">2026-10-16, 16:52 to 18:10 MDT, Claude, with Matthew (AFK from 17:22 for an hour). Written as he comes back.</p>
+<h2 id="crashes">The freezes, and the crash log</h2>
+<ul>
+<li>The laptop froze at 16:33 and 16:47, both during headless-Chromium runs (the 12-pass 🧪 test; ticket 160's 42-case audit). <a href="http://matthewhammer.org/hazel-work-notes/crash-log.html">The crash log</a> (new, Matthew's ask) has every crash since 08-18: 33 of them.</li>
+<li>Found while making it: the kernel sees <b>no battery</b> (<code>Slot [BAT1] (battery absent)</code>) on every boot back to 08-18, and twice today the hardware clock read 2023-01-01 at boot. The kernel never panics on a hang, so a freeze and a power cut look alike in the logs; the page says what would tell them apart (Matthew's to set).</li>
+<li>Since 17:05 (Matthew's call), headless Chrome runs pinned to 4 of the 20 threads (<code>taskset -c 0-3 nice -n 10</code>); the gate reads the same pinned (0.0.86: 10 of 10 at 59.3 to 60 both ways). About an hour of pinned browser work since: five gates, 🧪, every check below and the 586-picture archive: no crash.</li>
+</ul>
+<h2 id="releases">Dress Up releases (each pushed, Pages green, the live page and version.json checked)</h2>
+<div class="scroll"><table>
+<tr><th>Version</th><th>Commit</th><th>Ticket</th><th>What</th></tr>
+<tr><td>0.0.87</td><td><code>431d897</code></td><td>164</td><td>On a slow computer, while the friend moves, each place is drawn as still pictures cut where the friend goes in its drawing order (the black laptop's 🧪 on 0.0.86: the pond 30 fps as it is, 59 as a still picture). 🧪 has 14 passes: 9 the pictures, 10 the pictures as bitmaps (for the iPad), 11 both water parts off. The gate gained 🦆 the pond, still pictures.</td></tr>
+<tr><td>0.0.88</td><td><code>4d71449</code></td><td>147</td><td>Doors that open: castle doors, archways, the gate and the house's door glow and X goes through; the friend walks up, a wooden door swings open, they step in and fade, and fade in beyond. The spin is for pictures and windows only.</td></tr>
+<tr><td>0.0.89</td><td><code>091f113</code></td><td>149</td><td>First step of collisions: castle rooms' back and side walls (not the spiral stair's), the things one sits on solid, low ones cleared by a jump (short: under half the legs; high: under the legs).</td></tr>
+<tr><td>0.0.90</td><td><code>9958ca2</code></td><td>162</td><td>N's pits: walking onto a trap room's pit falls in (arms up, a teeter, sinking below the rim), dropping into the dungeon its sign names and landing on bent knees; the ladder climbs back out.</td></tr>
+</table></div>
+<h2 id="archive">Today's pictures</h2>
+<ul>
+<li><a href="http://matthewhammer.org/hazel-work-notes/closed.html#ticket-171">Ticket 171</a> closed: <a href="http://matthewhammer.org/dress-up-pictures/2026/10/16/index.html">2026/10/16 in dress-up-pictures</a> (<code>13cf0a6</code>), from 0.0.90: 349 distinct pictures, 0 page errors; the Dress Up pictures page offers the day. Pictures only, no music, as asked.</li>
+</ul>
+<h2 id="waiting">Waiting on Matthew</h2>
+<ul>
+<li><b>Your 🧪 lines on 0.0.87</b> from the black laptop and the iPad (<a href="http://matthewhammer.org/hazel-work-notes/#ticket-164">164</a>): pass 9 is the shipped pictures (expect about 59 on the black laptop), pass 10 the bitmap version (the iPad's question).</li>
+<li><b>Try it</b>: <a href="http://matthewhammer.org/hazel-work-notes/#ticket-147">147</a> doors, <a href="http://matthewhammer.org/hazel-work-notes/#ticket-149">149</a> walls and seats, <a href="http://matthewhammer.org/hazel-work-notes/#ticket-162">162</a> the pits (with N), <a href="http://matthewhammer.org/hazel-work-notes/#ticket-145">145</a> the imagination's ladders.</li>
+<li><b>Questions</b>: <a href="http://matthewhammer.org/hazel-work-notes/#ticket-165">165</a> (may the test tools move into the public repo, and a workflow run on every push?), <a href="http://matthewhammer.org/hazel-work-notes/#ticket-166">166</a> (the canister on the IC mainnet, paid in cycles? who may write?), <a href="http://matthewhammer.org/hazel-work-notes/#ticket-167">167</a> (close as not reproduced?), and "ticket 163 into 3rd": 163 was closed, so 162 went third; was that the one?</li>
+</ul>
+<h2 id="next">Next</h2>
+<ul>
+<li>🌙 Tonight's long runs: <a href="http://matthewhammer.org/hazel-work-notes/#ticket-156">156</a> (#2635's CI), then <a href="http://matthewhammer.org/hazel-work-notes/#ticket-160">160</a>'s audit, last (pinned, batches of six cases, one run each).</li>
+<li>149's next step when you say: tables, beds, trees and rocks solid (objects have a depth, not yet a footprint), and the flat rooms' walls.</li>
+<li>New checks in <code>~/du-shots/tools/</code>: <code>stillpic164.mjs</code> + <code>stillpic_diff.py</code>, <code>stillpic_depth.mjs</code>, <code>stillpic_switch.mjs</code>, <code>door147.mjs</code>, <code>collide149.mjs</code>, <code>pit162.mjs</code>, <code>probe.mjs</code> (evaluate expressions in the page).</li>
+<li>Servers: 8000 (the dashboard) and 8133 (Dress Up), as Matthew asked after the crash; no Hazel ports.</li>
+</ul>
+
+</main>
+</body>
+</html>
