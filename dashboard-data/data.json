@@ -732,9 +732,31 @@
      "asks": false
     }
    ]
+  },
+  {
+   "id": 177,
+   "area": "dress up, performance, bug",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T21:25-06:00",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "",
+   "text": "<b>Dress Up: white flashes (blank frames) while walking or dragging, on every background.</b> Matthew, 2026-10-16 evening: \"ever since the latest performance fixes (bitmap introduction?) — we notice white flashes (blank frames) during walking or other dragging animations on all backgrounds. Some bug it seems.\" Since about 0.0.93 (still pictures as bitmaps on a slow computer; choppy windows of 60 frames) or 0.0.94. Which computers and browsers: not said yet. Suspects, unverified: a frame between hiding the scene and the still parts' bitmaps being decoded (showStillPic: visibility hidden, then new &lt;image&gt;s from blob URLs), or the switch back after STILL_PIC_HOLD; and 0.0.93 turning the still pictures on for more computers (choppy windows of 60, not 120 frames). Plan (no browser on the laptop tonight): catch it on GitHub's runners (the ci branch, ^ticket(165)): every frame of a walk and a drag recorded (CDP screencast), the still pictures forced on and off, a frame counted blank when it is mostly the page's white; then find the swap that leaves it and fix it on a branch. A release waits for Matthew.",
+   "tags": [
+    "long run"
+   ],
+   "status": "open",
+   "log": [
+    {
+     "at": "2026-10-16T21:25-06:00",
+     "from": "matthew",
+     "chars": 225,
+     "asks": true
+    }
+   ],
+   "progress": "21:25: minted; queued tonight, right after ^ticket(176)."
   }
  ],
- "next_ticket": 177,
+ "next_ticket": 178,
  "current_ticket": 176,
  "current_note": "21:17: 🌙 long runs, one at a time, no browser on this laptop. Done tonight: ^ticket(164) and ^ticket(25) closed; draft PRs #2689 #2690 #2691; ^ticket(54)'s branch pushed, its post drafted for the morning; ^ticket(165)'s CI branch running on GitHub. Now: ^ticket(176), the standing objects and the flat rooms' back walls, on branch collisions-176 (checked on GitHub's computers).",
  "closed_tickets": [
@@ -4890,6 +4912,7 @@
   14,
   15,
   176,
+  177,
   43,
   144,
   19,
