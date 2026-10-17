@@ -579,7 +579,12 @@
     }
    ],
    "progress": "07:18: minted; queued, not started (Matthew: \"but not yet\")."
-  },
+  }
+ ],
+ "next_ticket": 187,
+ "current_ticket": 186,
+ "current_note": "10:34: Open water: a new place, and a row of it along the world's top edge beyond the beach. Sizing it.",
+ "closed_tickets": [
   {
    "id": 195,
    "area": "dress up, world designer",
@@ -588,7 +593,7 @@
    "source": "M, through Matthew, 2026-10-17, in chat",
    "text": "<b>Dress Up: an \"all passageways\" button in World design: join every pair of neighbouring squares whose places both have a way that way.</b> Matthew, 2026-10-17, M's request: \"is it possible to have a 'all passageways' button that tries to: * place matching passage ways on all adjacent grid squares, but only if both sides the scene naturally have those passage ways there -- the 8-way trail system would expand to all 8, though, since it always acomodates all directions. * other scenes maybe naturally have a limitation where some passage directions are unavailable - the dungeon should maybe only permit a passage way if we can add arb doors, and similar for other rooms too. * the waterfall should interpret 'the waterfall' with the north passage way, for now -- having both and having them mean different things is too strange. So there's no grid-wise north in that scene, for instance.\"",
    "tags": [],
-   "status": "open",
+   "status": "done",
    "log": [
     {
      "at": "2026-10-17T10:23-06:00",
@@ -597,13 +602,19 @@
      "asks": true
     }
    ],
-   "progress": "10:23: minted; queued after ^ticket(194)."
-  }
- ],
- "next_ticket": 187,
- "current_ticket": 195,
- "current_note": "10:27: M's all passageways button: written (the waterfall's north is the waterfall; natural ways per place); checking on GitHub.",
- "closed_tickets": [
+   "progress": "10:23: minted; queued after ^ticket(194).",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T10:33-06:00",
+   "outcome": "Released in 0.0.123 (live), checked on GitHub first: 🔗 all passageways in World design joins neighbours whose places both have room that way (a crossing all eight; never the beach's sea, the castle's or house's back, the wood path's sides), both ways, saying how many; the waterfall's north is the waterfall, no grid way north there (an old one ignored, the toggle greyed); the first world's waterfall goes NE to the crossing at C4 (an untouched old first world is upgraded). Also fixed: 🌍 the first world again at a crossing gave the default crossing the friend's paths.",
+   "metrics": {
+    "open_minutes": 11,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 700,
+    "tokens_est": 175,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 196,
    "area": "dashboard",
@@ -5606,7 +5617,6 @@
   }
  ],
  "queue": [
-  195,
   186,
   184,
   160,
