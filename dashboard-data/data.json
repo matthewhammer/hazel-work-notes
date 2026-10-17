@@ -738,10 +738,19 @@
    "opened": "2026-10-17T17:00-06:00",
    "source": "Matthew, 2026-10-17, in chat, with a picture of the 🎵 Music full screen",
    "url": "",
-   "text": "<b>Dress Up: the 🎵 Music tab gets the full screen's cards in its normal view too; in full screen, \"where the tune is\" fills the rest of its row.</b> Matthew: \"let's use these UX improvements in the non-FS mode of Music panel. Also, in this FS mode, the song progress sub-panel (last sub-panel in first row, on right) -- can extend to fill the rest of the row -- that's the one thing that we do want to be longer, if possible. It doesn't need its own row, though.\" To do: (1) the Music tab, not full screen: its controls as the full screen's cards (squarish sub-panels side by side in a grid, the mixing board's parts each a card), in the side column's width; (2) full screen: the first row's last card, ⏯️ where the tune is (rewind, pause, tape stop, the bar/beat/section line, the slider, the sections), spanning to the row's end, wherever the row ends, without a row of its own."
+   "text": "<b>Dress Up: the 🎵 Music tab gets the full screen's cards in its normal view too; in full screen, \"where the tune is\" fills the rest of its row.</b> Matthew: \"let's use these UX improvements in the non-FS mode of Music panel. Also, in this FS mode, the song progress sub-panel (last sub-panel in first row, on right) -- can extend to fill the rest of the row -- that's the one thing that we do want to be longer, if possible. It doesn't need its own row, though.\" To do: (1) the Music tab, not full screen: its controls as the full screen's cards (squarish sub-panels side by side in a grid, the mixing board's parts each a card), in the side column's width; (2) full screen: the first row's last card, ⏯️ where the tune is (rewind, pause, tape stop, the bar/beat/section line, the slider, the sections), spanning to the row's end, wherever the row ends, without a row of its own. Matthew, 2026-10-17, with a later picture of the full screen: \"in this view (FS music), maybe stack the first two subpanels vertically -- they are each rather short, and then they take up a lot of horz space side by side.\" So (3): full screen, the first two cards (🔊 sound on: tap to mute, ▶ playing: ...) one over the other in one column, \"where the tune is\" beside them filling the rest of the row."
+  },
+  {
+   "id": 251,
+   "area": "dress up, ♿, walking",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T17:09-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: a ♿ toggle, walk where you click: a glowing circle on walkable ground under the pointer, and a click walks there.</b> Matthew: \"mint and enqueue --- accessibility toggle, and walk to click feature. When enabled, we show a glowing circle of some custom color over any area on the ground that's 'walkable' when the cursor is over it. When clicked, we plan a path to that point, and execute the path plan.\" To do: in ♿ Accessibility, a toggle (and its colour, as the other overlays have); while on, the pointer over the floor where the friend can stand (inside the place's floor and limits, not in a solid or a pit) shows a glowing circle there, in perspective; a click plans the path there (planPath, round what stands in the way) and walks it (walkInto's walk, or walkTo), the planned path shown when 👣 is on; a click on a passage, the friend or a thing keeps doing what it does now."
   }
  ],
- "next_ticket": 251,
+ "next_ticket": 252,
  "current_ticket": 241,
  "current_note": "17:04: 0.0.170 committed locally (9ba3cbe, not pushed): the tree house's trunk a solid, in bands, by its braid alone; diagnostic 39077550532, then the release",
  "closed_tickets": [
@@ -7204,6 +7213,7 @@
   248,
   249,
   250,
+  251,
   225,
   209,
   184,
