@@ -524,7 +524,7 @@
      "asks": true
     }
    ],
-   "progress": "21:25: minted; queued tonight, right after ^ticket(176). | 21:35: read the code (no browser): while moving on a slow-marked computer, showStillPic hides the scene (visibility) and shows the parts' PNG bitmaps (stillPart, 0.0.93). A part is 'ready' on the <image>'s load event, which is not decode: a browser may paint the first frame of a newly shown screen-size PNG before decoding it, and with the scene hidden that frame is the page's white. Parts change as the friend passes an object's depth, so it can recur along a walk. Proposed: decode each picture before it counts as ready (decode(), or a decoded Image of the same URL kept alive), and decoding=\"sync\" on the <image>. To verify on GitHub's Chrome: a check that records a walk and a drag frame by frame (CDP screencast) with the still pictures forced on, counting frames mostly white, main against the branch. Unverified so far. | 21:42: branch flash-177 pushed (81e30ed, kids-choice-games; not released): a part is ready only once decoded (img.decode() where it exists, an Image of the same URL kept beside it, decoding=sync). Its check, tools/checks/flash177.mjs, runs on GitHub's Chrome: still pictures forced on (SPEED_TEST.still), walks and a drag in 5 places, every screencast frame scored for how much of the picture is the colour behind it, this branch against main. | 22:04: GitHub's headless Chrome draws NO blank frame on main either (flash177: 0 of ~1,700 frames, 5 places, walks and a drag, still pictures forced on; the colour behind the picture is the paper, #fffdf7). So the flash is another browser's (Firefox's or Safari's image decoding), not reproducible there. Added a browser-independent second defence (628b3a1): a picture shown for the first time keeps the scene visible under it until two frames on. Branch flash-177 (not released) has both. Waiting on Matthew: which computers and browsers flash, and a try of the branch (or a release) on them. | 22:50: flash-177 (628b3a1) GREEN (run 39001183343): both defences in; headless Chrome shows no blank frame on main either. | 06:32: both defences RELEASED in 0.0.95 (live). Waiting on Matthew: try 0.0.95 on the computers and browsers that flashed (which were they?), walking and dragging.",
+   "progress": "21:25: minted; queued tonight, right after ^ticket(176). | 21:35: read the code (no browser): while moving on a slow-marked computer, showStillPic hides the scene (visibility) and shows the parts' PNG bitmaps (stillPart, 0.0.93). A part is 'ready' on the <image>'s load event, which is not decode: a browser may paint the first frame of a newly shown screen-size PNG before decoding it, and with the scene hidden that frame is the page's white. Parts change as the friend passes an object's depth, so it can recur along a walk. Proposed: decode each picture before it counts as ready (decode(), or a decoded Image of the same URL kept alive), and decoding=\"sync\" on the <image>. To verify on GitHub's Chrome: a check that records a walk and a drag frame by frame (CDP screencast) with the still pictures forced on, counting frames mostly white, main against the branch. Unverified so far. | 21:42: branch flash-177 pushed (81e30ed, kids-choice-games; not released): a part is ready only once decoded (img.decode() where it exists, an Image of the same URL kept beside it, decoding=sync). Its check, tools/checks/flash177.mjs, runs on GitHub's Chrome: still pictures forced on (SPEED_TEST.still), walks and a drag in 5 places, every screencast frame scored for how much of the picture is the colour behind it, this branch against main. | 22:04: GitHub's headless Chrome draws NO blank frame on main either (flash177: 0 of ~1,700 frames, 5 places, walks and a drag, still pictures forced on; the colour behind the picture is the paper, #fffdf7). So the flash is another browser's (Firefox's or Safari's image decoding), not reproducible there. Added a browser-independent second defence (628b3a1): a picture shown for the first time keeps the scene visible under it until two frames on. Branch flash-177 (not released) has both. Waiting on Matthew: which computers and browsers flash, and a try of the branch (or a release) on them. | 22:50: flash-177 (628b3a1) GREEN (run 39001183343): both defences in; headless Chrome shows no blank frame on main either. | 06:32: both defences RELEASED in 0.0.95 (live). Waiting on Matthew: try 0.0.95 on the computers and browsers that flashed (which were they?), walking and dragging. | 09:49: 0.0.116 RELEASED: the still pictures were never ready in Chrome since 0.0.95 (this ticket's flash fix waited for the <image>'s load, which Chrome never fires; stills164 found it on GitHub, run 39046117550). That wait is now at most 250 ms; the gate's still-pictures cases read 99-100% (were 0%). Still waiting on Matthew: try the devices that flashed.",
    "waiting": "Matthew: which computers/browsers show the flashes; then try branch flash-177 there (headless Chrome cannot show it)."
   },
   {
@@ -544,7 +544,7 @@
      "asks": true
     }
    ],
-   "progress": "06:28: minted; started. 0.0.95 went out deploy-first already (main 1599fd9, tag dress-up-0.0.95, live), its checks still running on the release branch. | 06:32: BUILT and released as 0.0.96 (main 11b26ba, tag dress-up-0.0.96, live): .github/workflows/dress-up-speed.yml on each release tag (checks, gate both tiers, audit, leak), tools/speed_record.py writes dress-up/speed.json on main, the game's markSpeed shows 🚧🐢 / 🚧 after its version (tools/checks/speedmark184.mjs checks it), and the release steps in agent-instructions.md say deploy first. Speed runs going: 0.0.96 (run 39032830033, from its tag) and 0.0.95 (39032851446, by hand). Left: see each record its result and speed.json go live."
+   "progress": "06:28: minted; started. 0.0.95 went out deploy-first already (main 1599fd9, tag dress-up-0.0.95, live), its checks still running on the release branch. | 06:32: BUILT and released as 0.0.96 (main 11b26ba, tag dress-up-0.0.96, live): .github/workflows/dress-up-speed.yml on each release tag (checks, gate both tiers, audit, leak), tools/speed_record.py writes dress-up/speed.json on main, the game's markSpeed shows 🚧🐢 / 🚧 after its version (tools/checks/speedmark184.mjs checks it), and the release steps in agent-instructions.md say deploy first. Speed runs going: 0.0.96 (run 39032830033, from its tag) and 0.0.95 (39032851446, by hand). Left: see each record its result and speed.json go live. | 09:49: Matthew: is GitHub's shared computer the cause? Read the runs: in 0.0.113 every case was at 60; the steady failure was the still pictures (fixed in 0.0.116, a real bug). The gate now retries a frame-rate-only failure once (RETRIES=1, bar still 55) and names why a case failed. The imagination's slow drag still flickers on GitHub (60 in 0.0.113; 52.6 then 54.7 today) with no change to it: proposal, not started: measure main on the same runner in the same job and fail only when the release is slower than main by more than the noise."
   },
   {
    "id": 185,
@@ -583,11 +583,49 @@
     }
    ],
    "progress": "07:18: minted; queued, not started (Matthew: \"but not yet\")."
+  },
+  {
+   "id": 187,
+   "area": "dress up, navigation",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T09:49-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "text": "<b>Dress Up: one way through every passage: doors, pictures, pits, ladders, signs and nav arrows alike, the nearest one highlighted.</b> Matthew, 2026-10-17: \"we need to refine the in-game navigation system, to fix some gaps in the experience, left over from the old system, where the pointer was required to activate pictures or certain passageways. let's audit every 'passage' (door, pit, arrow to neighbor grid square ('nav arrow' from now on), sign, etc.) -- and let's make them all work in a uniform way. No more pictures vs passages -- pictures are passages too. At most one is 'highlighted' as offering the 'go through nearest passage' action. The others that are also nearby can show up too, but dimmer. tree house doorways, and the trap door ladders, do not 'work' with our new in-game navigation system, yet. They need special attention during this audit.\" And: \"there's some ladders that I go up quickly by activating them as the passage, but in many cases, I need to press 'up' on the game controller to get a fast, pleasing animation speed. otherwise, the animation looks like slow motion --- not natural looking.\"",
+   "tags": [],
+   "status": "open",
+   "log": [
+    {
+     "at": "2026-10-17T09:49-06:00",
+     "from": "matthew",
+     "chars": 900,
+     "asks": true
+    }
+   ],
+   "progress": "09:49: minted and queued (Matthew: use the ticket system). AUDIT DONE on GitHub (tools/passages.mjs, run 39046499665, every place, the first world's squares through the world, tree rooms 1-6, every castle room style): 180 passages. pictures 39 (X 39, click 36, glow 39); nav arrows 40 (X 40, click 40 via the HUD); doorways with no data-door 29 (X only 2, click 18: 11 covered); signs 54 (X 22, click 33: 21 covered); ladders that are ways (tree houses, the dungeon's trapdoor) 7 (X 7 but click 2: 5 covered); ladders that are no way 7 (climb by ⬆ only); pits 2 (walked onto, by design); ▼ 1 ok; door 1. GAPS: the X/'go through' set leaves out unmarked doorways and most signs; a passage under the friend or another object can't be clicked; ladders through X climb at CLIMB_SPEED (slow motion, Matthew) where ⬆ climbs at the hand speed. PLAN: one registry of passages (every kind), each with a floor spot (where the feet go to use it), its action (walk through, fly into a picture, climb then through, drop into a pit, walk to the next square), nearness on the floor as the nav arrows' (wayNearness); the nearest highlighted and offered to X/Enter/a tap, others near shown dimmer; ladders' climb at ⬆'s pleasing speed."
+  },
+  {
+   "id": 188,
+   "area": "dress up, controls",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T09:49-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "text": "<b>Dress Up: sliders for the friend's top running speed, and for how fast they speed up and slow down.</b> Matthew, 2026-10-17: \"slider to control max running speed, and an acceleration/deceleration speed slider -- it seems like the current behavior, which can be the default, is immediate accel/deccel\"",
+   "tags": [],
+   "status": "open",
+   "log": [
+    {
+     "at": "2026-10-17T09:49-06:00",
+     "from": "matthew",
+     "chars": 170,
+     "asks": true
+    }
+   ],
+   "progress": "09:49: minted and queued, not started. Defaults keep today's feel (PAD_SPEED; instant start and stop); the gate's walk cases must stay at 60 fps."
   }
  ],
  "next_ticket": 187,
  "current_ticket": 185,
- "current_note": "08:56: 0.0.115 live: the sign with directions (0-8 boards) and square names. Variation sheet sent to Matthew.",
+ "current_note": "09:49: 0.0.116 live: still pictures work in Chrome again. Minted ^ticket(187) (one way through every passage; audit done) and ^ticket(188) (speed and acceleration sliders), queued next.",
  "closed_tickets": [
   {
    "id": 178,
@@ -5292,6 +5330,8 @@
  ],
  "queue": [
   185,
+  187,
+  188,
   186,
   184,
   160,
