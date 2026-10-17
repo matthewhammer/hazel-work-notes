@@ -726,11 +726,30 @@
    ],
    "progress": "22:40: minted; queued. | 23:17: DONE on branch objects-180 (217ef63, kids-choice-games; not on main): OBJECTS.md as of 0.0.94 (was 0.0.46), 40 places each with its picture, 377 objects with 376 clipped pictures (WebP, 2.4 MB in dress-up/objects/), notes kept; made on GitHub by tools/checks/objects180.mjs (every branch's run leaves fresh pictures), written by tools/objects_md.py; the agent instructions say how. Waiting on Matthew: merge the branch (a push to main deploys the game; only docs and pictures change).",
    "waiting": "Matthew: look at OBJECTS.md on branch objects-180 (GitHub renders it), then merge."
+  },
+  {
+   "id": 184,
+   "area": "dress up, releases, CI, performance",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T06:28-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "text": "<b>Dress Up releases deploy first; speed is checked after, on every release, and a slow version is marked 🚧🐢.</b> Matthew, 2026-10-17: \"when N and M start asking for updates later today, I want to deploy publicly asap, so they can test, and support that creative loop -- separately, I want to keep checking performance in a systematic way, so they don't have to, and I don't have to, as we go.\" and, asked to switch releases to deploy first, speed tests after: \"yes.\" To do: (1) a workflow on each release tag (dress-up-X.Y.Z) runs the checks, the frame-rate gate (both tiers), the on-screen controller audit and the leak tests on GitHub's computers, and records the result per version in dress-up/speed.json on main; (2) the game reads speed.json with version.json and marks its own version 🚧🐢 slow (with what failed, and a link to the run) when its speed tests failed; (3) the release steps in agent-instructions.md: deploy first (the script check only), the speed tests after, a slow version fixed in the next one, never undone; and after each release, read its result and mint a ticket when it is slow. Replaces 10-16's rule \"we fix it before we commit new versions\" (Matthew's own change).",
+   "tags": [],
+   "status": "open",
+   "log": [
+    {
+     "at": "2026-10-17T06:28-06:00",
+     "from": "matthew",
+     "chars": 257,
+     "asks": true
+    }
+   ],
+   "progress": "06:28: minted; started. 0.0.95 went out deploy-first already (main 1599fd9, tag dress-up-0.0.95, live), its checks still running on the release branch."
   }
  ],
- "next_ticket": 184,
- "current_ticket": null,
- "current_note": "06:21: Releasing Dress Up 0.0.95, all eight green branches in one (Matthew's call): release-0.0.95 is in the gate on GitHub (run 39032206599, about 22 min); then main, the tag dress-up-0.0.95, and a live check. ci (^ticket(165)) is merged into main already.",
+ "next_ticket": 185,
+ "current_ticket": 184,
+ "current_note": "06:28: ^ticket(184): Dress Up releases deploy first, speed checked after on every release tag, a slow version marked 🚧🐢. 0.0.95 is live (deploy-first by hand); building the after-deploy speed run.",
  "closed_tickets": [
   {
    "id": 156,
@@ -5150,6 +5169,7 @@
   }
  ],
  "queue": [
+  184,
   160,
   18,
   102,
@@ -5166,5 +5186,5 @@
   177,
   180
  ],
- "current_since": "2026-10-17T00:30-06:00"
+ "current_since": "2026-10-17T06:28-06:00"
 }
