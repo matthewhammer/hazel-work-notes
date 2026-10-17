@@ -564,9 +564,28 @@
     }
    ],
    "progress": "06:42: minted; queued after ^ticket(178) (timeboxed to 45 minutes, then a replan). | 07:00: Matthew: sharing a world could go through the Fumola canister (^ticket(166)), at first within the family; noted there. No change to this ticket's work. | 07:04: RELEASED in 0.0.98 (live): the 🛤️ forest crossing (8 paths, floor colour), its things (rock, bush, tree, pine; dragged; per thing: mirror, another shape, a rock's colour, a tree's height and leaves, a pine's tiers, a bush's flowers), the 🗺️ World design tab (coming soon), the ▼ way out toward us (castle rooms, living room, tree rooms), the save-and-load check in CI, and the world's first grid in DEFAULTS.world (not shown yet). Next: the grid shown in the World design tab with its mistakes (ways leading off the map, to an empty square, or to a place with no way back), the insides off the grid with ids; then dragging places onto it and zooming into a cell. | 07:06: v1 RELEASED as 0.0.99 (main 2e4ebd2, live): 🗺️ World design draws today's world on a 5 by 5 grid (17 places, ways out as marks on each square's edges, the friend's square ringed, the start 🏁), lists the mistakes (none in the first world) and the places off the grid with their ids (inside 1, 2...; elsewhere 1, 2); a tap goes to a square, and a forest crossing changed there stays in its square. 26-world.js holds the model (worldProblems, worldOffGrid, worldEnter, worldKeep). Checks on GitHub: world185.mjs and saveload.mjs (the branch's run, and 0.0.99's speed run, still going). Next, v2: drag places from a palette onto the grid (and off it), and zoom into a square to drag things into it; v3: walking out of a place through its ways into the square beside it. | 07:17: 0.0.100 to 0.0.102 RELEASED (live). 0.0.100: ways out in the picture (bobbing triangles, glow, X, click: walk into the square beside, enter from that side; back chip returns; a way to nowhere grey 🚧), things in every place (things, was crossThings; old saves upgrade), Background's place choice = its square. 0.0.101: two bugs the post-release checks found, fixed: the world part loaded after the start code, so 0.0.99/0.0.100's first picture threw (now 25-world.js before 26-drags-and-start.js); things edited in place drew nothing new (the scene cache compares by identity; things now drawn after it, each cached on its contents). 0.0.102, v2: places palette (drag onto squares, tap for the first empty one), squares dragged to move/swap or onto 🗑️, grid size up to 12x12, the friend's square (ways to toggle, 🏁 start here, its things), things dragged from the palette into the picture; pressDrag works with a finger as with a mouse. Checks: world185, world2-185 (real mouse drags), saveload, crossing185; their results come with 0.0.101's and 0.0.102's speed runs. Open question for Matthew: a 2-3 minute smoke test (the page loads and draws with no errors) before each deploy."
+  },
+  {
+   "id": 186,
+   "area": "dress up, world designer",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T07:18-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "text": "<b>Dress Up: open water, a new place, and a row of it along the world's top edge, beyond the beach.</b> Matthew, 2026-10-17: \"the beach should be on the top edge of the world (A1, B1, etc) --- because it shows a horizon with water for as far as we can see --- it doesn't make sense to have a land-based grid above it --- maybe open water, if we mint that new background. Let's mint and enqueue a ticket for giving the top edge of the world a row of open water grid cells, but not yet.\" The beach looks out on water to the horizon, so nothing but water belongs north of it. To do, later: an open-water place (water to the horizon all round, at the scene bar: waves moving, light on the water, a surprise or two), and the top row of the world's grid made of it, the beach's way north meeting it. Not started: queued after ^ticket(185).",
+   "tags": [],
+   "status": "open",
+   "log": [
+    {
+     "at": "2026-10-17T07:18-06:00",
+     "from": "matthew",
+     "chars": 358,
+     "asks": true
+    }
+   ],
+   "progress": "07:18: minted; queued, not started (Matthew: \"but not yet\")."
   }
  ],
- "next_ticket": 186,
+ "next_ticket": 187,
  "current_ticket": 185,
  "current_note": "07:17: ^ticket(185): world designer v2 is live as 0.0.102 (drag places onto the grid, squares to move or 🗑️, the friend's square, things dragged into the picture, ways out walkable in the picture). GitHub is checking 0.0.101 and 0.0.102.",
  "closed_tickets": [
@@ -5273,6 +5292,7 @@
  ],
  "queue": [
   185,
+  186,
   184,
   160,
   18,
