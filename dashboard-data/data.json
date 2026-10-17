@@ -540,23 +540,58 @@
    "progress": "11:00: minted from ^du_report(3)'s step 3, on publishing it; queued."
   },
   {
-   "id": 202,
+   "id": 205,
    "area": "dress up, performance",
    "added": "2026-10-17",
-   "opened": "2026-10-17T11:38-06:00",
+   "opened": "2026-10-17T11:50-06:00",
    "source": "Matthew, 2026-10-17, in chat",
-   "text": "<b>Dress Up: a cheaper cauldron: its two fume plumes each one curvy path of a few points, a fat stroke in each plume's colour; all cauldrons drawn so when there are several (or one, on a slow computer).</b> Matthew, 2026-10-17: \"let's have a simplified cauldron animation, with the same two fume plumes, but each drawn as a single path with a small number of points (and curves between?), with a fat stroke color per curvy line (a pair in total) to match the complex helix we see in the nice-est looking cauldron. maybe when there are 3 or more cauldrons (or 2 or more, or even a single one on slow machine), we switch all of them to the cheaper rendering, with this design I'm describing. If we have to introduce simpler versions of other objects, we can, based on this working for cauldrons as we test the idea later.\"",
+   "text": "<b>Dress Up: the simple cauldron fumes, closer to the fancy ones</b> (after ^ticket(202), ^ticket(204)). Matthew asked whether the simple fumes move like the fancy ones, \"even if simpler?\" They turn the same way (the same twist, speed and phase), but with 6 moments a turn instead of 12, and without the fancy fumes' depth cue: each piece swells and brightens as it comes round to the front, thins and fades at the back. Matthew: \"mint and enqueue a ticket for simple fumes closer to the fancy ones (12 moments, plus a few pieces that swell at the front), measured at 15 cauldrons on GitHub before release.\"",
    "tags": [],
    "status": "open",
    "log": [
     {
-     "at": "2026-10-17T11:38-06:00",
+     "at": "2026-10-17T11:50-06:00",
      "from": "matthew",
-     "chars": 560,
+     "chars": 190,
      "asks": true
     }
    ],
-   "progress": "11:38: minted; queued right after ^ticket(200) (in progress; performance first). From ^ticket(201)'s measure: a cauldron is about 240 moving parts, nearly all its fumes' spiral."
+   "progress": "11:50: minted; next."
+  }
+ ],
+ "next_ticket": 187,
+ "current_ticket": 205,
+ "current_note": "11:50: simple fumes closer to the fancy ones: 12 moments, a front that swells; measured at 15 cauldrons on GitHub first",
+ "closed_tickets": [
+  {
+   "id": 204,
+   "area": "dress up, performance, world designer",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T11:45-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "text": "<b>Dress Up: the world designer chooses each cauldron's fumes, fancy or simple</b> (after ^ticket(202)'s cheap fumes). Matthew, 2026-10-17: \"For cauldrons, let's permit the world designer to choose fancy or simple rendering style.\" Plan: a 💨 fumes choice in each cauldron's row: auto (the default, ^ticket(202)'s rule), ✨ fancy, simple.",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T11:45-06:00",
+     "from": "matthew",
+     "chars": 95,
+     "asks": true
+    }
+   ],
+   "progress": "11:46: built (💨 fumes auto / ✨ fancy / simple in each cauldron's row; fumesCheap); cauldron202 extended; on GitHub now.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T11:49-06:00",
+   "outcome": "Released in Dress Up 0.0.129: each cauldron's row has 💨 fumes auto / ✨ fancy / simple (fumesCheap); auto is 202's rule. cauldron202: fancy among three stays the spiral, simple alone is cheap, the row's buttons work.",
+   "metrics": {
+    "open_minutes": 4,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 95,
+    "tokens_est": 23,
+    "sync_minutes_est": 0
+   }
   },
   {
    "id": 203,
@@ -566,7 +601,7 @@
    "source": "Matthew, about N, 2026-10-17, in chat",
    "text": "<b>Dress Up: while any thing in a place has the red box, nothing more of any kind can be added there until it is resolved.</b> Matthew, 2026-10-17: \"The dotted red boxes indicating slowdown work well, but N just ignores them and keeps adding cauldrons until the system freezes again. So, new rule --- when any kind of object has a red box around it, no more objects of any kind can be added until the red box is resolved.\"",
    "tags": [],
-   "status": "open",
+   "status": "done",
    "log": [
     {
      "at": "2026-10-17T11:44-06:00",
@@ -575,32 +610,49 @@
      "asks": true
     }
    ],
-   "progress": "11:46: built (thingsLatch: every button greyed, add() refuses, open again only when measured smooth); things201 extended; on GitHub now. Released with ^ticket(202), ^ticket(204) as 0.0.129."
+   "progress": "11:46: built (thingsLatch: every button greyed, add() refuses, open again only when measured smooth); things201 extended; on GitHub now. Released with ^ticket(202), ^ticket(204) as 0.0.129.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T11:49-06:00",
+   "outcome": "Released in Dress Up 0.0.129: while any thing has the red frame, every kind's button is greyed and add() refuses (thingsLatch); it reopens when the place is emptied or a fresh measure after the last change is smooth. things201: a real tap on the potion button refused; down to 2, still shut till measured; then open.",
+   "metrics": {
+    "open_minutes": 5,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 300,
+    "tokens_est": 75,
+    "sync_minutes_est": 0
+   }
   },
   {
-   "id": 204,
-   "area": "dress up, performance, world designer",
+   "id": 202,
+   "area": "dress up, performance",
    "added": "2026-10-17",
-   "opened": "2026-10-17T11:45-06:00",
+   "opened": "2026-10-17T11:38-06:00",
    "source": "Matthew, 2026-10-17, in chat",
-   "text": "<b>Dress Up: the world designer chooses each cauldron's fumes, fancy or simple</b> (after ^ticket(202)'s cheap fumes). Matthew, 2026-10-17: \"For cauldrons, let's permit the world designer to choose fancy or simple rendering style.\" Plan: a 💨 fumes choice in each cauldron's row: auto (the default, ^ticket(202)'s rule), ✨ fancy, simple.",
+   "text": "<b>Dress Up: a cheaper cauldron: its two fume plumes each one curvy path of a few points, a fat stroke in each plume's colour; all cauldrons drawn so when there are several (or one, on a slow computer).</b> Matthew, 2026-10-17: \"let's have a simplified cauldron animation, with the same two fume plumes, but each drawn as a single path with a small number of points (and curves between?), with a fat stroke color per curvy line (a pair in total) to match the complex helix we see in the nice-est looking cauldron. maybe when there are 3 or more cauldrons (or 2 or more, or even a single one on slow machine), we switch all of them to the cheaper rendering, with this design I'm describing. If we have to introduce simpler versions of other objects, we can, based on this working for cauldrons as we test the idea later.\"",
    "tags": [],
-   "status": "open",
+   "status": "done",
    "log": [
     {
-     "at": "2026-10-17T11:45-06:00",
+     "at": "2026-10-17T11:38-06:00",
      "from": "matthew",
-     "chars": 95,
+     "chars": 560,
      "asks": true
     }
    ],
-   "progress": "11:46: built (💨 fumes auto / ✨ fancy / simple in each cauldron's row; fumesCheap); cauldron202 extended; on GitHub now."
-  }
- ],
- "next_ticket": 187,
- "current_ticket": 203,
- "current_note": "11:46: 203 + 204 built (no adding while a red frame shows; each cauldron's fumes auto/fancy/simple); checks on GitHub; then 0.0.129 with 202",
- "closed_tickets": [
+   "progress": "11:38: minted; queued right after ^ticket(200) (in progress; performance first). From ^ticket(201)'s measure: a cauldron is about 240 moving parts, nearly all its fumes' spiral.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T11:49-06:00",
+   "outcome": "Released in Dress Up 0.0.129: two or more cauldrons in a place, or one on a slow computer, draw cheap fumes (helixCheapSvg: one path per plume, ~15 moving parts vs ~240). GitHub's Chrome, 15 cauldrons: 13-14 fps before, 41-45 after. Checked by cauldron202 + things201.",
+   "metrics": {
+    "open_minutes": 11,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 560,
+    "tokens_est": 140,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 200,
    "area": "dress up, UX",
@@ -5835,9 +5887,8 @@
   }
  ],
  "queue": [
-  203,
-  204,
-  202,
+  205,
+  184,
   198,
   160,
   18,
@@ -5845,8 +5896,7 @@
   54,
   19,
   166,
-  177,
-  184
+  177
  ],
- "current_since": "2026-10-17T11:46-06:00"
+ "current_since": "2026-10-17T11:50-06:00"
 }
