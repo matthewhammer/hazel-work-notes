@@ -760,15 +760,6 @@
    "text": "<b>Dress Up: a room's side limits follow its floor in more than two segments, so every door can be reached (the spiral staircase's first).</b> Matthew: \"this was a good try, but the cut offs don't permit me to reach the doors! We may need more than 2 segments for those 'side' cut offs, in general WDYT?\" In his picture the spiral stairs' side limits (the orange dashed lines) are two straight segments from the floor's front corners up to a point by the column, so doors 3 (left, on a landing) and 4 (right) are outside where the friend can walk. Claude's answer: yes; each side's limit a polyline of several points that follows the room's real floor (out along a landing to a door, round the column, in at the wall), castleWalls' half(z) from that polyline; and a check that every door's spot in every room lies inside the walkable area and is reached by a planned walk."
   },
   {
-   "id": 254,
-   "area": "dress up, performance, music, dragging",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T17:39-06:00",
-   "source": "Matthew, 2026-10-17, in chat (interrupting)",
-   "url": "",
-   "text": "<b>Dress Up: dragging a placed thing stutters the music again.</b> Matthew: \"the dragging performance issue we had in prior days is re-surfacing, but now with placed objects in the scene designer. when we drag them, the music pauses and glitches\". To do: find what each move of a thing's drag costs (the whole changed(): saving, the world's keeping, every control's sync, the scene built again), make a drag move only as much as the friend's drag does (tickets 117, 133), saving and the rest once at its end; music unbroken while dragging, measured."
-  },
-  {
    "id": 255,
    "area": "dress up, world designer, UX",
    "added": "2026-10-17",
@@ -779,9 +770,31 @@
   }
  ],
  "next_ticket": 256,
- "current_ticket": 254,
- "current_note": "17:44: 0.0.171 committed locally (ce7fd15, not pushed): a dragged thing moves by a transform, the picture redrawn every 200 ms and on letting go (measured before: 10.7 ms a frame vs 2.1 for the friend); diagnostic 39080190103 then the release. 242 parked on branch wip-242 (its fix known)",
+ "current_ticket": 242,
+ "current_note": "17:49: 254 done (0.0.171, the drag fix). Back on 242: the tree rooms' pictures, its fix known (the scene's cache must read the measure); the commit is on branch wip-242",
  "closed_tickets": [
+  {
+   "id": 254,
+   "area": "dress up, performance, music, dragging",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T17:39-06:00",
+   "source": "Matthew, 2026-10-17, in chat (interrupting)",
+   "url": "",
+   "text": "<b>Dress Up: dragging a placed thing stutters the music again.</b> Matthew: \"the dragging performance issue we had in prior days is re-surfacing, but now with placed objects in the scene designer. when we drag them, the music pauses and glitches\". To do: find what each move of a thing's drag costs (the whole changed(): saving, the world's keeping, every control's sync, the scene built again), make a drag move only as much as the friend's drag does (tickets 117, 133), saving and the rest once at its end; music unbroken while dragging, measured.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T17:49-06:00",
+   "outcome": "Released in 0.0.171 (live): a placed thing's drag moves only its own drawing by a transform at each move (thingDragMove, scaled by depthSize), the picture drawn for real every THING_DRAG_DRAW 200 ms and on letting go. Measured on GitHub with his scene rebuilt (the forest, 15 rocks, steppers at 207%): 150 moves drew 22 times, 187 ms, against 145 times, 1557 ms before (the friend's drag 239 ms); no long tasks, the music feeder's longest gap 22 ms. dragthing254.mjs (new) all ok; library185's stale five-groups check (six since ticket 219) fixed with it.",
+   "metrics": {
+    "open_minutes": 10,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 35.0
+   }
+  },
   {
    "id": 241,
    "area": "dress up, tree house, collisions",
@@ -7253,7 +7266,6 @@
   }
  ],
  "queue": [
-  254,
   242,
   243,
   252,
