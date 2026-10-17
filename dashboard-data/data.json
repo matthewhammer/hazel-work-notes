@@ -77,6 +77,9 @@
  ],
  "tracking_issue": 2609,
  "perf_prs": [
+  2689,
+  2690,
+  2691,
   2681,
   2679,
   2678,
@@ -557,93 +560,6 @@
    "waiting": ""
   },
   {
-   "id": 13,
-   "area": "performance, CI",
-   "text": "Statics counts on <code>dev</code>: the analyses-per-expression counter and <code>Test_StaticsPasses</code> from #2635 (bd90642654, da3251d3e5), with a small corpus subset in the quick suite. <b>2026-10-15T21:29:</b> Matthew: after hours tonight if time is left (🌙), as local branches against dev for his review.",
-   "source": "^report(6)",
-   "url": "http://localhost:8131/series/006/#next",
-   "added": "2026-10-12",
-   "tags": [
-    "long run"
-   ],
-   "progress": "2026-10-15 23:28: BUILT, local only. Branch ci/statics-passes-dev in ~/hazel-ab-coal, off dev e12145c69b: 4b84cc1f8f the --count-passes counter (from bd90642654, one conflict in Statics.re: dev lacks the livelit refs above it), merges of #2603 and #2651 (the test's budgets assume their fixes), and 0d5d015eff Test_StaticsPasses (from da3251d3e5; corpus check fitted to dev's 73 programs; NEW: four programs in the quick suite). On dev alone, the counter shows docs/reference/modules.hz with one expression analyzed 24x and polymorphism.hz at 2.65 analyses per expression, over the budgets (5x, 2.5): so the test must merge after #2603 and #2651. StaticsPasses: 9 tests pass, 2.9 s; the quick suite: 4335 tests pass, 109 s. Nothing pushed. Waiting on Matthew: open it as a PR stacked on #2603 and #2651, or fold it into one of them? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: a draft PR against dev saying it merges after #2603 and #2651. 🌙 long run; no headless browser on the laptop. | 21:12: OPENED as draft PR #2689 against dev (Matthew's default), saying it merges after #2603 and #2651; the branch was already current with dev and both. Its CI runs the tests again on GitHub.",
-   "work": {
-    "work_minutes": 14
-   },
-   "log": [
-    {
-     "at": "2026-10-16T20:59-06:00",
-     "from": "claude",
-     "chars": 122,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T21:02-06:00",
-     "from": "matthew",
-     "chars": 94,
-     "asks": false
-    }
-   ]
-  },
-  {
-   "id": 14,
-   "area": "performance, CI",
-   "text": "A budget on a slide: the evaluator's work after a figure move in the woods, where reuse failed before #2675. <b>2026-10-15T21:29:</b> Matthew: after hours tonight if time is left (🌙), as local branches against dev for his review.",
-   "source": "^report(6)",
-   "url": "http://localhost:8131/series/006/#next",
-   "added": "2026-10-12",
-   "tags": [
-    "long run"
-   ],
-   "progress": "2026-10-15 23:32: BUILT, local only. Branch ci/recursive-let-budget in ~/hazel-ab-coal, off dev: merges of #2678 (the step budgets) and #2675 (reuse around a recursive let), then d706264f3f, a third PerfBudgets case: a library module with recursive members, a picture from it, and a knob; an edit to the knob re-runs in 132 steps (budget 145; a cold run is 127,394). Without #2675 (checked on #2678 alone) the same re-run takes 252 steps and fails: the module's binding is not reused, though its items still are. PerfBudgets: 3 tests pass. The woods slide itself is not on dev, so this is its shape in a small program. Nothing pushed. Waiting on Matthew: a PR stacked on #2678 and #2675, or fold into #2678? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: a draft PR against dev saying it merges after #2678 and #2675. 🌙 long run; no headless browser on the laptop. | 21:12: OPENED as draft PR #2690 against dev (Matthew's default), saying it merges after #2678 and #2675; the branch was already current with dev and both. Its CI runs the tests again on GitHub.",
-   "work": {
-    "work_minutes": 10
-   },
-   "log": [
-    {
-     "at": "2026-10-16T20:59-06:00",
-     "from": "claude",
-     "chars": 122,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T21:02-06:00",
-     "from": "matthew",
-     "chars": 94,
-     "asks": false
-    }
-   ]
-  },
-  {
-   "id": 15,
-   "area": "performance, CI",
-   "text": "Byte budgets: elaboration sizes on <code>dev</code>, and the worker's message sizes for a fixed interaction. <b>2026-10-15T21:29:</b> Matthew: after hours tonight if time is left (🌙), as local branches against dev for his review.",
-   "source": "^report(6)",
-   "url": "http://localhost:8131/series/006/#next",
-   "added": "2026-10-12",
-   "tags": [
-    "long run"
-   ],
-   "progress": "2026-10-15 23:34: BUILT, local only. Branch ci/byte-budgets in ~/hazel-ab-coal, off dev: merges of #2608 (elaborations without whitespace and comments) and #2606 (the cache stays in the worker), then 35edf2d1d8, Test_ByteBudgets: the bytes the page posts to the worker and gets back, through WorkerServer's own Marshal encoding, as ratchet budgets like PerfBudgets'. probes.hz: request 25,180 bytes (budget 27,700; about 48 KB before #2608), answer 3,617 (4,000); the B2T2 leftjoin program: 60,628 (66,700) and 21,258 (23,400). Requests vary by a few dozen bytes run to run (fresh ids); answers do not. 2 tests pass, twice. It uses #2606's request fields, so it lands after both. Nothing pushed. Waiting on Matthew. | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: a draft PR against dev saying it merges after #2606 and #2608. 🌙 long run; no headless browser on the laptop. | 21:12: OPENED as draft PR #2691 against dev (Matthew's default), saying it merges after #2608 and #2606; the branch was already current with dev and both. Its CI runs the tests again on GitHub.",
-   "work": {
-    "work_minutes": 10
-   },
-   "log": [
-    {
-     "at": "2026-10-16T20:59-06:00",
-     "from": "claude",
-     "chars": 122,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T21:02-06:00",
-     "from": "matthew",
-     "chars": 94,
-     "asks": false
-    }
-   ]
-  },
-  {
    "id": 19,
    "area": "performance, CI",
    "text": "Budgets harder to fool (^report(6)'s update, a count is not a time): count the call memo's own work (the nodes its keys put in form) and, if js_of_ocaml can report it, memory allocated, beside the evaluator's steps. <b>2026-10-15T21:29:</b> Matthew: after hours tonight if time is left (🌙), as local branches against dev for his review.",
@@ -761,6 +677,132 @@
  "current_ticket": 176,
  "current_note": "21:40: 🌙 long runs, one at a time, no browser on this laptop. ^ticket(156)'s trial merge is pushed; its CI runs on GitHub. Now: ^ticket(176)'s collisions branch (its second GitHub run) and ^ticket(177)'s white flashes (a fix and a frame-by-frame check, on a branch).",
  "closed_tickets": [
+  {
+   "id": 15,
+   "area": "performance, CI",
+   "text": "Byte budgets: elaboration sizes on <code>dev</code>, and the worker's message sizes for a fixed interaction. <b>2026-10-15T21:29:</b> Matthew: after hours tonight if time is left (🌙), as local branches against dev for his review.",
+   "source": "^report(6)",
+   "url": "http://localhost:8131/series/006/#next",
+   "added": "2026-10-12",
+   "tags": [
+    "long run"
+   ],
+   "progress": "2026-10-15 23:34: BUILT, local only. Branch ci/byte-budgets in ~/hazel-ab-coal, off dev: merges of #2608 (elaborations without whitespace and comments) and #2606 (the cache stays in the worker), then 35edf2d1d8, Test_ByteBudgets: the bytes the page posts to the worker and gets back, through WorkerServer's own Marshal encoding, as ratchet budgets like PerfBudgets'. probes.hz: request 25,180 bytes (budget 27,700; about 48 KB before #2608), answer 3,617 (4,000); the B2T2 leftjoin program: 60,628 (66,700) and 21,258 (23,400). Requests vary by a few dozen bytes run to run (fresh ids); answers do not. 2 tests pass, twice. It uses #2606's request fields, so it lands after both. Nothing pushed. Waiting on Matthew. | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: a draft PR against dev saying it merges after #2606 and #2608. 🌙 long run; no headless browser on the laptop. | 21:12: OPENED as draft PR #2691 against dev (Matthew's default), saying it merges after #2608 and #2606; the branch was already current with dev and both. Its CI runs the tests again on GitHub.",
+   "work": {
+    "work_minutes": 10
+   },
+   "log": [
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 122,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    }
+   ],
+   "status": "done",
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T21:49-06:00",
+   "outcome": "Draft PR #2691 (ci/byte-budgets), opened 2026-10-16 21:12 on Matthew's default: Test_ByteBudgets, what the page posts to the eval worker and gets back held to ratchet budgets (probes.hz 25,180 / 3,617 bytes; the B2T2 leftjoin program 60,628 / 21,258); merges after #2608 and #2606. Its CI: all green.",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 1,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 216,
+    "tokens_est": 54,
+    "sync_minutes_est": 3.0,
+    "work_minutes": 10.0
+   }
+  },
+  {
+   "id": 14,
+   "area": "performance, CI",
+   "text": "A budget on a slide: the evaluator's work after a figure move in the woods, where reuse failed before #2675. <b>2026-10-15T21:29:</b> Matthew: after hours tonight if time is left (🌙), as local branches against dev for his review.",
+   "source": "^report(6)",
+   "url": "http://localhost:8131/series/006/#next",
+   "added": "2026-10-12",
+   "tags": [
+    "long run"
+   ],
+   "progress": "2026-10-15 23:32: BUILT, local only. Branch ci/recursive-let-budget in ~/hazel-ab-coal, off dev: merges of #2678 (the step budgets) and #2675 (reuse around a recursive let), then d706264f3f, a third PerfBudgets case: a library module with recursive members, a picture from it, and a knob; an edit to the knob re-runs in 132 steps (budget 145; a cold run is 127,394). Without #2675 (checked on #2678 alone) the same re-run takes 252 steps and fails: the module's binding is not reused, though its items still are. PerfBudgets: 3 tests pass. The woods slide itself is not on dev, so this is its shape in a small program. Nothing pushed. Waiting on Matthew: a PR stacked on #2678 and #2675, or fold into #2678? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: a draft PR against dev saying it merges after #2678 and #2675. 🌙 long run; no headless browser on the laptop. | 21:12: OPENED as draft PR #2690 against dev (Matthew's default), saying it merges after #2678 and #2675; the branch was already current with dev and both. Its CI runs the tests again on GitHub.",
+   "work": {
+    "work_minutes": 10
+   },
+   "log": [
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 122,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    }
+   ],
+   "status": "done",
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T21:49-06:00",
+   "outcome": "Draft PR #2690 (ci/recursive-let-budget), opened 2026-10-16 21:12 on Matthew's default: a third PerfBudgets case, a re-run beside a library with recursive members, 132 steps (budget 145; 252 and failing without #2675); merges after #2678 and #2675. Its CI: all green.",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 1,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 216,
+    "tokens_est": 54,
+    "sync_minutes_est": 3.0,
+    "work_minutes": 10.0
+   }
+  },
+  {
+   "id": 13,
+   "area": "performance, CI",
+   "text": "Statics counts on <code>dev</code>: the analyses-per-expression counter and <code>Test_StaticsPasses</code> from #2635 (bd90642654, da3251d3e5), with a small corpus subset in the quick suite. <b>2026-10-15T21:29:</b> Matthew: after hours tonight if time is left (🌙), as local branches against dev for his review.",
+   "source": "^report(6)",
+   "url": "http://localhost:8131/series/006/#next",
+   "added": "2026-10-12",
+   "tags": [
+    "long run"
+   ],
+   "progress": "2026-10-15 23:28: BUILT, local only. Branch ci/statics-passes-dev in ~/hazel-ab-coal, off dev e12145c69b: 4b84cc1f8f the --count-passes counter (from bd90642654, one conflict in Statics.re: dev lacks the livelit refs above it), merges of #2603 and #2651 (the test's budgets assume their fixes), and 0d5d015eff Test_StaticsPasses (from da3251d3e5; corpus check fitted to dev's 73 programs; NEW: four programs in the quick suite). On dev alone, the counter shows docs/reference/modules.hz with one expression analyzed 24x and polymorphism.hz at 2.65 analyses per expression, over the budgets (5x, 2.5): so the test must merge after #2603 and #2651. StaticsPasses: 9 tests pass, 2.9 s; the quick suite: 4335 tests pass, 109 s. Nothing pushed. Waiting on Matthew: open it as a PR stacked on #2603 and #2651, or fold it into one of them? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: a draft PR against dev saying it merges after #2603 and #2651. 🌙 long run; no headless browser on the laptop. | 21:12: OPENED as draft PR #2689 against dev (Matthew's default), saying it merges after #2603 and #2651; the branch was already current with dev and both. Its CI runs the tests again on GitHub.",
+   "work": {
+    "work_minutes": 14
+   },
+   "log": [
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 122,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    }
+   ],
+   "status": "done",
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T21:49-06:00",
+   "outcome": "Draft PR #2689 (ci/statics-passes-dev), opened 2026-10-16 21:12 on Matthew's default: hazel analyze --count-passes and Test_StaticsPasses on dev, with four corpus programs in the quick suite; merges after #2603 and #2651 (whose fixes its budgets assume). Its CI: fast checks, full tests and coverage all green.",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 1,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 216,
+    "tokens_est": 54,
+    "sync_minutes_est": 3.0,
+    "work_minutes": 14.0
+   }
+  },
   {
    "id": 25,
    "area": "testing, UX",
@@ -4909,9 +4951,6 @@
   167,
   160,
   156,
-  13,
-  14,
-  15,
   176,
   177,
   43,
