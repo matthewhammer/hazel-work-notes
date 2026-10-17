@@ -760,28 +760,6 @@
    "waiting": "Matthew: look at OBJECTS.md on branch objects-180 (GitHub renders it), then merge."
   },
   {
-   "id": 182,
-   "area": "work notes, publishing",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T22:44-06:00",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "https://matthewhammer.org/hazel/work-notes",
-   "text": "<b>A gallery of the work notes at matthewhammer.org/hazel/work-notes.</b> Matthew, 2026-10-16 night: \"create https://matthewhammer.org/hazel/work-notes as a page that summarizes the work notes index, as a gallery, with short summaries, and creative image thumb nails for each (be creative), and links to the full content, but as HTML and maybe hyperlinked to other things. With tickets, and reports, and PRs and Issues on GH, we like to have hover over.\" From hazel-work-notes/work-notes/YYYY/MM/DD/*.html: a card per note, newest first, with a short summary of what it says, a thumbnail drawn for it (an inline SVG made from its subject, no two alike), and a link to the note itself; ^ticket(N), ^report(N), ^du_report(N), PR and issue numbers linked with hover cards, as the dashboard and the performance series do (notes_page.py's chips, tools/link_prs.py). Published in matthewhammer.github.io at hazel/work-notes/, beside the dashboard's new home (^ticket(181)); made again when a note is added.",
-   "tags": [
-    "long run"
-   ],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-16T22:44-06:00",
-     "from": "matthew",
-     "chars": 358,
-     "asks": true
-    }
-   ],
-   "progress": "22:44: minted; queued after ^ticket(181)."
-  },
-  {
    "id": 183,
    "area": "Dress Up, pictures archive",
    "added": "2026-10-16",
@@ -808,6 +786,40 @@
  "current_ticket": 183,
  "current_note": "23:51: ^ticket(183): the 2026/10/17 pictures day rendering on GitHub's computers (kids-choice-games archive-183, run 39007795796): main, plus a control at 0.0.90 that measures whether GitHub's Chrome draws byte for byte what the laptop's did. New in the archive: moves/, the friend climbing each place's ladder (dress-up-pictures branch moves-183). ^ticket(156)'s CI is running.",
  "closed_tickets": [
+  {
+   "id": 182,
+   "area": "work notes, publishing",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T22:44-06:00",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/hazel/work-notes",
+   "text": "<b>A gallery of the work notes at matthewhammer.org/hazel/work-notes.</b> Matthew, 2026-10-16 night: \"create https://matthewhammer.org/hazel/work-notes as a page that summarizes the work notes index, as a gallery, with short summaries, and creative image thumb nails for each (be creative), and links to the full content, but as HTML and maybe hyperlinked to other things. With tickets, and reports, and PRs and Issues on GH, we like to have hover over.\" From hazel-work-notes/work-notes/YYYY/MM/DD/*.html: a card per note, newest first, with a short summary of what it says, a thumbnail drawn for it (an inline SVG made from its subject, no two alike), and a link to the note itself; ^ticket(N), ^report(N), ^du_report(N), PR and issue numbers linked with hover cards, as the dashboard and the performance series do (notes_page.py's chips, tools/link_prs.py). Published in matthewhammer.github.io at hazel/work-notes/, beside the dashboard's new home (^ticket(181)); made again when a note is added.",
+   "tags": [
+    "long run"
+   ],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-16T22:44-06:00",
+     "from": "matthew",
+     "chars": 358,
+     "asks": true
+    }
+   ],
+   "progress": "22:44: minted; queued after ^ticket(181).",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T00:03-06:00",
+   "outcome": "Live at https://matthewhammer.org/hazel/work-notes/ (homepage e0ce293), linked from the Hazel page beside the dashboard: a card per work note, newest first (all 8), each with a picture drawn for it (ink on cream, hatching, a little oxblood, ochre and green: a frozen laptop and a crash log of 33 tally marks, a witch's hut over deep water, a ladder climbed from behind, a teetering undo stack, a chain link in an address bar...), a two-to-three-sentence summary of what it records (checked against the notes), its next steps, and a link to the note. Tickets, reports and Dress Up reports are chips, PR numbers links, with the dashboard's hover cards. Made by dashboard/notes_gallery.py from work-notes/gallery.json, pictures by gallery_art.py (hazel-work-notes a447ce2); agent-instructions says to add a note's entry and rerun. Checked: rendered by GitHub's Chrome at 1400 and 390 wide, light and dark, no sideways scroll on a phone; the live page carries 8 cards, 35 chips, 10 PR links and both card scripts. Not checked in a browser: the hover cards themselves (no browser on the laptop tonight; they are the dashboard's own scripts).",
+   "metrics": {
+    "open_minutes": 80,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 358,
+    "tokens_est": 89,
+    "sync_minutes_est": 0,
+    "work_minutes": 55.0
+   }
+  },
   {
    "id": 181,
    "area": "dashboard, publishing",
@@ -5114,7 +5126,6 @@
  "queue": [
   183,
   156,
-  182,
   160,
   18,
   102,
