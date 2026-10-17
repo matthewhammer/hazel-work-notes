@@ -657,7 +657,8 @@
    "opened": "2026-10-17T16:29-06:00",
    "source": "Matthew, 2026-10-17, in chat",
    "url": "",
-   "text": "<b>Dress Up: no picture on a tree house room's wall behind a ladder or other furniture.</b> Matthew: \"let's not place any pictures in the tree house behind any ladders, or other furniture. For ladders esp, we can easily click on the picture when we meant the ladder, or vice versa -- best just to separate them on the screen more.\" To do: each tree room's pictures placed only where nothing stands in front of them (its ladders and trapdoor ladders first, then the furniture), with room between a picture and a ladder on the screen so a tap means one or the other; a check that every room at every setting keeps them apart."
+   "text": "<b>Dress Up: no picture on a tree house room's wall behind a ladder or other furniture.</b> Matthew: \"let's not place any pictures in the tree house behind any ladders, or other furniture. For ladders esp, we can easily click on the picture when we meant the ladder, or vice versa -- best just to separate them on the screen more.\" To do: each tree room's pictures placed only where nothing stands in front of them (its ladders and trapdoor ladders first, then the furniture), with room between a picture and a ladder on the screen so a tap means one or the other; a check that every room at every setting keeps them apart.",
+   "progress": "Parked 17:39 for ^ticket(254) (his interruption: dragging things stutters the music). Local commit 2f1dc33 on main of ~/kids-choice-games, NOT pushed: treeBusyMeasure measures each piece of the furniture, trunk, side doors, ladder up, hatch and window (diag-242: 71 boxes), placeTreePictures picks the nearest clear spot. BUG FOUND: the scene is cached by partByReads on the settings it reads (sceneOpts), so after the measure the redraw reuses the cached scene and the pictures are never drawn (slots stay null, 0 pictures in all rooms). FIX: let the scene read the measure through sceneOpts (a key such as 'tree:busy' returning treeBusy.key), so a new measure rebuilds it; then rerun pictures242 (checks-242b) and release 0.0.171."
   },
   {
    "id": 243,
@@ -748,11 +749,29 @@
    "source": "Matthew, 2026-10-17, in chat (\"after 243 and 241 -- please mint and enqueue\")",
    "url": "",
    "text": "<b>Dress Up: climbing up through a trapdoor or out of a pit, the friend is cut off at the opening (no fade); and each trapdoor's and pit's opening a choice of shape: triangle, square, circle.</b> Matthew: \"the trapdoor-stairs in the tree house animate very nicely now, on the floor. But the ones going up still do not clip the character right, and we instead use a fade away, which doesn't look as nice. Let's fix that, and at the same time, the way up the pits by ladder, which has the same issue. Finally, in this ticket, can we offer a chance, for each tree-house trap door (defined by two houses, stacked) we get to choose the opening: * triangle * square (current image) * circle (like the pits in the castle). Same for the pits -- can we offer a chance to change the shape?\" To do: (1) up a tree room's ladder through the ceiling's hole, and up a dungeon's ladder out of its pit: the friend cut off at the opening's edge as they go up (as the climb down is since 0.0.167, ^ticket(238)), not faded; (2) a setting per trapdoor (per pair of stacked houses) and per pit: its opening ▲ triangle, ■ square (now), ● circle (as the castle's pits), drawn so in both rooms (the hatch in the floor above, the hole in the ceiling below), its solid (data-hole, ^ticket(237)) and its clip the same shape."
+  },
+  {
+   "id": 253,
+   "area": "dress up, castle rooms, collisions, walls",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T17:39-06:00",
+   "source": "Matthew, 2026-10-17, in chat, with a picture of the spiral staircase room, ♿ collision boxes on",
+   "url": "",
+   "text": "<b>Dress Up: a room's side limits follow its floor in more than two segments, so every door can be reached (the spiral staircase's first).</b> Matthew: \"this was a good try, but the cut offs don't permit me to reach the doors! We may need more than 2 segments for those 'side' cut offs, in general WDYT?\" In his picture the spiral stairs' side limits (the orange dashed lines) are two straight segments from the floor's front corners up to a point by the column, so doors 3 (left, on a landing) and 4 (right) are outside where the friend can walk. Claude's answer: yes; each side's limit a polyline of several points that follows the room's real floor (out along a landing to a door, round the column, in at the wall), castleWalls' half(z) from that polyline; and a check that every door's spot in every room lies inside the walkable area and is reached by a planned walk."
+  },
+  {
+   "id": 254,
+   "area": "dress up, performance, music, dragging",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T17:39-06:00",
+   "source": "Matthew, 2026-10-17, in chat (interrupting)",
+   "url": "",
+   "text": "<b>Dress Up: dragging a placed thing stutters the music again.</b> Matthew: \"the dragging performance issue we had in prior days is re-surfacing, but now with placed objects in the scene designer. when we drag them, the music pauses and glitches\". To do: find what each move of a thing's drag costs (the whole changed(): saving, the world's keeping, every control's sync, the scene built again), make a drag move only as much as the friend's drag does (tickets 117, 133), saving and the rest once at its end; music unbroken while dragging, measured."
   }
  ],
- "next_ticket": 253,
- "current_ticket": 242,
- "current_note": "17:19: 0.0.171 committed locally (06de375, not pushed): tree rooms' pictures hang clear of ladders, hatch and furniture (measured once per room); diagnostic 39078591455 with the six rooms, then the release",
+ "next_ticket": 255,
+ "current_ticket": 254,
+ "current_note": "17:39: his interruption: dragging a placed thing stutters the music; finding what each move of the drag costs (242 parked, its fix known, not released)",
  "closed_tickets": [
   {
    "id": 241,
@@ -7225,6 +7244,7 @@
   }
  ],
  "queue": [
+  254,
   242,
   243,
   252,
@@ -7236,6 +7256,7 @@
   249,
   250,
   251,
+  253,
   209,
   184,
   198,
@@ -7249,5 +7270,5 @@
   166,
   225
  ],
- "current_since": "2026-10-17T16:35-06:00"
+ "current_since": "2026-10-17T17:39-06:00"
 }
