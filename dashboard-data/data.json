@@ -557,7 +557,12 @@
     }
    ],
    "progress": "11:11: minted; queued after ^ticket(199) (in progress)."
-  },
+  }
+ ],
+ "next_ticket": 187,
+ "current_ticket": 200,
+ "current_note": "11:36: M's what's-new box: every version's notes in a scrolling box at the end of ⚙️ Advanced.",
+ "closed_tickets": [
   {
    "id": 201,
    "area": "dress up, performance, world designer",
@@ -566,7 +571,7 @@
    "source": "Matthew, about N, 2026-10-17, in chat",
    "text": "<b>Dress Up: watch the frame rate as things are put in a place; stop more of an expensive thing (a cauldron) when it drops too low, and point at the things costing the most.</b> Matthew, 2026-10-17: \"N added as many cauldrons as he could to a scene, with the world builder, on the black laptop ... it looked like many 15 or more, and the whole laptop grinded to a hault. Can we do some diagnostics every so often, or maybe after each expensive object is added (like a cauldron) cheaply to detect this issue and limit adding more when the FPS drops too low. Related -- can we find which objects in the world designer's current grid square are causing the most slowdown to FPS, and offer a hint to remove them? (like the dotted shape for fixing issues with the arrow passages).\"",
    "tags": [],
-   "status": "open",
+   "status": "done",
    "log": [
     {
      "at": "2026-10-17T11:23-06:00",
@@ -575,13 +580,19 @@
      "asks": true
     }
    ],
-   "progress": "11:23: minted; queued right after ^ticket(199) (performance first)."
-  }
- ],
- "next_ticket": 187,
- "current_ticket": 201,
- "current_note": "11:30: Frame-rate guard as things are put in a place (N's 15 cauldrons stalled the Ubuntu laptop), and hints at the costliest things.",
- "closed_tickets": [
+   "progress": "11:23: minted; queued right after ^ticket(199) (performance first).",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T11:36-06:00",
+   "outcome": "Released in 0.0.127 (live), checked on GitHub first (runs 39054146372, 39054307894). Measured there, still: a cauldron is about 240 moving parts (its fumes' spiral most of them); 0, 5, 10, 15 cauldrons in the clearing: 60, 48-49, 25-26, 13-14 frames a second. Now, after a moving thing (cauldron, campfire) is put in a place, and every ten seconds while the things are listed, a second of frames is sampled; below 48, or over 1000 moving parts (about four cauldrons), no more moving things can be added (buttons greyed, a 🐢 note), and the busiest things are marked with dashed red frames (rows and picture) as the ones to take away. Not changed: the cauldron's drawing (its fumes could be made shorter to cost less, if wanted).",
+   "metrics": {
+    "open_minutes": 13,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 560,
+    "tokens_est": 140,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 199,
    "area": "dress up, navigation",
@@ -5756,7 +5767,6 @@
   }
  ],
  "queue": [
-  201,
   200,
   198,
   160,
