@@ -493,6 +493,12 @@
      "from": "matthew",
      "chars": 257,
      "asks": true
+    },
+    {
+     "at": "2026-10-17T13:41-06:00",
+     "from": "matthew",
+     "chars": 20,
+     "asks": true
     }
    ],
    "progress": "06:28: minted; started. 0.0.95 went out deploy-first already (main 1599fd9, tag dress-up-0.0.95, live), its checks still running on the release branch. | 06:32: BUILT and released as 0.0.96 (main 11b26ba, tag dress-up-0.0.96, live): .github/workflows/dress-up-speed.yml on each release tag (checks, gate both tiers, audit, leak), tools/speed_record.py writes dress-up/speed.json on main, the game's markSpeed shows 🚧🐢 / 🚧 after its version (tools/checks/speedmark184.mjs checks it), and the release steps in agent-instructions.md say deploy first. Speed runs going: 0.0.96 (run 39032830033, from its tag) and 0.0.95 (39032851446, by hand). Left: see each record its result and speed.json go live. | 09:49: Matthew: is GitHub's shared computer the cause? Read the runs: in 0.0.113 every case was at 60; the steady failure was the still pictures (fixed in 0.0.116, a real bug). The gate now retries a frame-rate-only failure once (RETRIES=1, bar still 55) and names why a case failed. The imagination's slow drag still flickers on GitHub (60 in 0.0.113; 52.6 then 54.7 today) with no change to it: proposal, not started: measure main on the same runner in the same job and fail only when the release is slower than main by more than the noise. | 10:40: 0.0.116's speed run is the first 'ok': every check, the gate and the slow scenes (still pictures fixed in 0.0.116, the retry in the gate). 0.0.115 slow (before those). 0.0.120's run is going; 0.0.124's waits (0.0.121-0.0.123 replaced in the queue). Proposal still open, not started: compare against main on the same runner."
@@ -512,6 +518,12 @@
      "from": "matthew",
      "chars": 90,
      "asks": true
+    },
+    {
+     "at": "2026-10-17T13:41-06:00",
+     "from": "matthew",
+     "chars": 18,
+     "asks": true
     }
    ],
    "progress": "11:00: minted from ^du_report(3)'s step 3, on publishing it; queued."
@@ -526,7 +538,15 @@
    "text": "<b>Dress Up 0.0.130: its own fumes check failed in the speed run, 15 cauldrons about 16% slower than 0.0.129.</b> fumes205 (from ^ticket(205)), 15 cauldrons with simple fumes taking turns, on GitHub's Chrome: 0.0.129's 58, 57.1, 48.2, 52.7 fps (median 54.9; 225 moving parts), 0.0.130's 52, 49.8, 42.8, 41.4 (median 46.3; 255 moving parts); its bar is 10% fewer at most. ^ticket(205)'s own same-runner A/B measured 7% fewer (42.5 to 39.4). One run of four samples each, on a shared runner, so the size is not settled. The frame-rate gate itself passed; speed.json marks 0.0.130 broken by the checks (this and the tree house layering check fixed under ^ticket(207)). Next: the same-runner A/B a few times over to see whether the drop is real; if it is, make the band cheaper (fewer moving parts) before more cauldron work.",
    "tags": [],
    "status": "open",
-   "log": []
+   "log": [
+    {
+     "at": "2026-10-17T13:41-06:00",
+     "from": "matthew",
+     "chars": 20,
+     "asks": true
+    }
+   ],
+   "progress": "13:41: PARKED, moved to the end of the active queue (Matthew: \"put 209 and 184 last\"). Where it stands: fumes205 is itself a same-page A/B (0.0.129's fume code inside it, taking turns with the current); readings -7% (^ticket(205)'s branch run) and -16% (0.0.130's speed run, run 39056565230). Next: read 0.0.131's speed run (39061694679, the same fumes code) as a third reading; if the drop holds past the 10% bar, make the band cheaper (fewer moving parts: 255 against 0.0.129's 225 at 15 cauldrons)."
   },
   {
    "id": 210,
@@ -543,6 +563,12 @@
      "at": "2026-10-17T12:59-06:00",
      "from": "matthew",
      "chars": 447,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:41-06:00",
+     "from": "matthew",
+     "chars": 18,
      "asks": true
     }
    ]
@@ -782,8 +808,8 @@
   }
  ],
  "next_ticket": 222,
- "current_ticket": 209,
- "current_note": "13:17: fumes205 is itself a same-page A/B (0.0.129's fume code inside it, taking turns with the current); readings so far -7% (^ticket(205)'s branch run) and -16% (0.0.130's speed run). 0.0.131's speed run (39061694679, same fumes code) gives a third; waiting on it.",
+ "current_ticket": 210,
+ "current_note": "13:41: started: reading how the 🎵 Music tab's full screen works, the World design tab's grid, and the music full screen's sizes, to plan the compact full screens and the grid that fills its room.",
  "closed_tickets": [
   {
    "id": 177,
@@ -6259,9 +6285,6 @@
   }
  ],
  "queue": [
-  209,
-  184,
-  198,
   210,
   215,
   216,
@@ -6270,6 +6293,9 @@
   219,
   220,
   221,
+  209,
+  184,
+  198,
   160,
   18,
   102,
@@ -6277,5 +6303,5 @@
   19,
   166
  ],
- "current_since": "2026-10-17T12:39-06:00"
+ "current_since": "2026-10-17T13:41-06:00"
 }
