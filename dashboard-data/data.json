@@ -528,39 +528,6 @@
    "waiting": "Matthew: which computers/browsers show the flashes; then try branch flash-177 there (headless Chrome cannot show it)."
   },
   {
-   "id": 178,
-   "area": "dress up, code",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T22:28-06:00",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "",
-   "text": "<b>Dress Up: the code in files of its own, by section, to read and revise.</b> Matthew, 2026-10-16 night: \"should we mint and enqueue a task that refactors the Dress Up code into multiple modules/files/directories? Would it be easier to read and revise?\" Today dress-up/index.html is one page of about 15,200 lines, one inline script. Proposed, the cheapest safe split: the sections agent-instructions.md already lists (\"The code, by section\") become classic scripts in dress-up/js/, loaded in order with &lt;script src&gt;: classic scripts share one global scope, so nothing is renamed and no import/export is needed; the CSS to dress-up/style.css. Checked by the safety net (sweep: every picture's markup identical; structure identical), the gate and every branch check, on GitHub. Also to update: check_script.py (every script), the archive and test tools that copy or load the page as one file, the agent instructions, and the ?v= cache-busting (each file gets it). AFTER the open Dress Up branches land (collisions-176, flash-177, postcards-43, diagonals-144, speedlog-166, the ^ticket(167) fix): a split moves every line, so their patches would no longer apply.",
-   "tags": [],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-16T22:28-06:00",
-     "from": "matthew",
-     "chars": 146,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T22:48-06:00",
-     "from": "claude",
-     "chars": 420,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T22:48-06:00",
-     "from": "matthew",
-     "chars": 24,
-     "asks": false
-    }
-   ],
-   "waiting": false,
-   "progress": "22:28: minted on Matthew's question; my answer: yes, after the open branches land. | 22:48: Matthew asked if it is blocked: yes; offered splitting now and redoing the 7 open branches on top. His call: WAIT for the branches (176, 177, 43, 144, 166, 167's bgtab-167, 179) to be reviewed and merged, then split. | 06:32: UNBLOCKED: every open branch it waited for is merged and released (0.0.95). Next: split dress-up/index.html into files, by section, with no change in behaviour (the checks and the speed run say so). | 06:42: STARTED, timeboxed to 45 minutes (Matthew), then a replan; ^ticket(185), the world designer, follows."
-  },
-  {
    "id": 184,
    "area": "dress up, releases, CI, performance",
    "added": "2026-10-17",
@@ -596,13 +563,58 @@
      "asks": true
     }
    ],
-   "progress": "06:42: minted; queued after ^ticket(178) (timeboxed to 45 minutes, then a replan). | 07:00: Matthew: sharing a world could go through the Fumola canister (^ticket(166)), at first within the family; noted there. No change to this ticket's work."
+   "progress": "06:42: minted; queued after ^ticket(178) (timeboxed to 45 minutes, then a replan). | 07:00: Matthew: sharing a world could go through the Fumola canister (^ticket(166)), at first within the family; noted there. No change to this ticket's work. | 07:04: RELEASED in 0.0.98 (live): the 🛤️ forest crossing (8 paths, floor colour), its things (rock, bush, tree, pine; dragged; per thing: mirror, another shape, a rock's colour, a tree's height and leaves, a pine's tiers, a bush's flowers), the 🗺️ World design tab (coming soon), the ▼ way out toward us (castle rooms, living room, tree rooms), the save-and-load check in CI, and the world's first grid in DEFAULTS.world (not shown yet). Next: the grid shown in the World design tab with its mistakes (ways leading off the map, to an empty square, or to a place with no way back), the insides off the grid with ids; then dragging places onto it and zooming into a cell."
   }
  ],
  "next_ticket": 186,
- "current_ticket": 178,
- "current_note": "06:42: ^ticket(178): splitting Dress Up's one page into files by section, timeboxed to 45 minutes, then a replan with Matthew; ^ticket(185), the world designer, next. ^ticket(184)'s first speed runs still going.",
+ "current_ticket": 185,
+ "current_note": "07:04: ^ticket(185): 0.0.98 is live (the forest crossing, things with parameters, the ▼ way out, the code in files); building the grid view in 🗺️ World design next, with its mistakes list. ^ticket(178) done.",
  "closed_tickets": [
+  {
+   "id": 178,
+   "area": "dress up, code",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T22:28-06:00",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "",
+   "text": "<b>Dress Up: the code in files of its own, by section, to read and revise.</b> Matthew, 2026-10-16 night: \"should we mint and enqueue a task that refactors the Dress Up code into multiple modules/files/directories? Would it be easier to read and revise?\" Today dress-up/index.html is one page of about 15,200 lines, one inline script. Proposed, the cheapest safe split: the sections agent-instructions.md already lists (\"The code, by section\") become classic scripts in dress-up/js/, loaded in order with &lt;script src&gt;: classic scripts share one global scope, so nothing is renamed and no import/export is needed; the CSS to dress-up/style.css. Checked by the safety net (sweep: every picture's markup identical; structure identical), the gate and every branch check, on GitHub. Also to update: check_script.py (every script), the archive and test tools that copy or load the page as one file, the agent instructions, and the ?v= cache-busting (each file gets it). AFTER the open Dress Up branches land (collisions-176, flash-177, postcards-43, diagonals-144, speedlog-166, the ^ticket(167) fix): a split moves every line, so their patches would no longer apply.",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-16T22:28-06:00",
+     "from": "matthew",
+     "chars": 146,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T22:48-06:00",
+     "from": "claude",
+     "chars": 420,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T22:48-06:00",
+     "from": "matthew",
+     "chars": 24,
+     "asks": false
+    }
+   ],
+   "waiting": false,
+   "progress": "22:28: minted on Matthew's question; my answer: yes, after the open branches land. | 22:48: Matthew asked if it is blocked: yes; offered splitting now and redoing the 7 open branches on top. His call: WAIT for the branches (176, 177, 43, 144, 166, 167's bgtab-167, 179) to be reviewed and merged, then split. | 06:32: UNBLOCKED: every open branch it waited for is merged and released (0.0.95). Next: split dress-up/index.html into files, by section, with no change in behaviour (the checks and the speed run say so). | 06:42: STARTED, timeboxed to 45 minutes (Matthew), then a replan; ^ticket(185), the world designer, follows.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T07:04-06:00",
+   "outcome": "Released in 0.0.98 (main b5d89d5, live, every part loading with ?v=0.0.98): index.html is the page (89 lines), dress-up/style.css the style, dress-up/js/ the script in 25 parts cut at its own section headers, the places in eight (houses and huts; clearing and castle; castle rooms and map; outdoors; place picker; objects and solids; moving and climbing; drawing), the same code line for line (checked against main's one script). tools/check_script.py checks the parts joined, each \"use strict\", each with the page's version; the agent instructions map the parts; the archive copies the game's folder. The split's own GitHub run: the safety net and every check passed. Timeboxed to 45 minutes; done in about 20.",
+   "metrics": {
+    "open_minutes": 516,
+    "matthew_messages": 2,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 590,
+    "tokens_est": 147,
+    "sync_minutes_est": 0.0,
+    "work_minutes": 20.0
+   }
+  },
   {
    "id": 180,
    "area": "dress up, docs",
@@ -5260,9 +5272,8 @@
   }
  ],
  "queue": [
-  178,
-  184,
   185,
+  184,
   160,
   18,
   102,
@@ -5272,5 +5283,5 @@
   167,
   177
  ],
- "current_since": "2026-10-17T06:42-06:00"
+ "current_since": "2026-10-17T07:04-06:00"
 }
