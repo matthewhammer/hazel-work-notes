@@ -770,11 +770,48 @@
    "tags": [],
    "status": "open",
    "log": []
+  },
+  {
+   "id": 227,
+   "area": "dress up, accessibility, bug",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T14:33-06:00",
+   "source": "Matthew, 2026-10-17, in chat, a bug report on 0.0.137 with a screenshot (the living room, collision boxes shown)",
+   "url": "",
+   "text": "<b>Dress Up ♿ bugs: arrows misplaced with the overlays shown, collision boxes vanishing, chips far too long.</b> Matthew: \"some bug with scaling the font or arrow size misplaces them in the scene\", \"on 0.0.137 -- bug report -- prioritize a fix please\", \"collision boxes should not disappear until we untoggle them\", \"These toggle chips' text is way, way too long. Just a few words please. Or just two words, or even one, if possible.\" Found: the overlays (the collision boxes, the planned path) were put in the arrows' own layer (#ways), whose children worldWaysHud takes as its arrows by index: the boxes, put first, shifted every arrow onto another's place; and each new square's arrows replaced the layer, boxes and all. No scene text carries a transform of its own, so the words' scaling moves nothing.",
+   "tags": [],
+   "status": "open",
+   "log": [
+    {
+     "at": "2026-10-17T14:33-06:00",
+     "from": "matthew",
+     "chars": 72,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T14:33-06:00",
+     "from": "matthew",
+     "chars": 51,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T14:33-06:00",
+     "from": "matthew",
+     "chars": 142,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T14:33-06:00",
+     "from": "matthew",
+     "chars": 44,
+     "asks": true
+    }
+   ]
   }
  ],
- "next_ticket": 227,
- "current_ticket": 219,
- "current_note": "14:31: 226 done (0.0.137, 0.0.138). 219, the 🪸 deep sea: place tables written (PLACES, water group, world pairs: deep water meets open water), the scene and the 🐚 sea things next; released as one version, pictures after.",
+ "next_ticket": 228,
+ "current_ticket": 227,
+ "current_note": "14:33: his bug report, first: fixed and RELEASED as 0.0.139 (main ac9b82e): the overlays in their own layer (#access-layer), so the arrows stay put and the boxes stay shown; boxes with their height; chips two words each, lit while on. Check + pictures running on GitHub (checks-139); then back to 219.",
  "closed_tickets": [
   {
    "id": 226,
@@ -6586,6 +6623,7 @@
   }
  ],
  "queue": [
+  227,
   219,
   220,
   221,
@@ -6603,5 +6641,5 @@
   19,
   166
  ],
- "current_since": "2026-10-17T14:28-06:00"
+ "current_since": "2026-10-17T14:33-06:00"
 }
