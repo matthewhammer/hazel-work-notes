@@ -574,38 +574,13 @@
    ]
   },
   {
-   "id": 211,
-   "area": "dress up, places, open water",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T13:05-06:00",
-   "source": "Matthew, 2026-10-17, in chat (\"mint tickets for that better open water scene\")",
-   "url": "",
-   "text": "<b>Dress Up: the 🌊 open water without its island and sail boat.</b> Matthew: \"the 'open water' background has some extras I didn't ask for: island in distance, sail boat that seems stationary. Let's remove those, since they currently seem like promises for stuff that doesn't exist, and cannot be reached.\" They are drawn in the sea scene (js/15-place-picker.js, ticket 186's open water: \"far off a sail and an island\"). Take both away, and write the rule into agent-instructions.md's design rules: scenery never promises a place or thing that does not exist or cannot be reached (beside \"Doorways go somewhere sensible\"). His question with it, whether the instructions keep backgrounds and objects composable as they grow: partly (one table per kind of thing, the shared organic helpers, connected views share their settings), but nothing yet on backdrops built from shared, combinable layers; ^ticket(212) adds that.",
-   "tags": [],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T13:05-06:00",
-     "from": "matthew",
-     "chars": 1066,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T13:05-06:00",
-     "from": "matthew",
-     "chars": 46,
-     "asks": true
-    }
-   ]
-  },
-  {
    "id": 212,
    "area": "dress up, places, open water",
    "added": "2026-10-17",
    "opened": "2026-10-17T13:05-06:00",
    "source": "Matthew, 2026-10-17, in chat (\"mint tickets for that better open water scene\")",
    "url": "",
-   "text": "<b>Dress Up: a distant shore for the 🌊 open water, in layers that combine: beach, forest, mountains.</b> Matthew: \"having the option to display a shoreline, or treeline, in the distance, would be a good set of parameters to make the 'open water' more useful in more situations\", with options for: \"different forest styles, maybe 2 or 3. default is off\"; \"different mountain styles, maybe 2 or 3. default is off\"; \"forest and mountain styles layer and combine naturally\"; \"optional beach, drawn between the horizon and the forest\". To do: the distant shore as layers on the horizon, back to front mountains, forest, beach, each its own setting in 🏞️ Background (shown only at the open water); built as shared backdrop layers other places can use too, with the shared organic helpers, and the recipe written into agent-instructions.md (his question: a composable system for objects and backgrounds as we add more). Off by default, so today's open water stays as it is but for ^ticket(211). Still, at 60 frames a second (drawn once, nothing moving).",
+   "text": "<b>Dress Up: the 🌊 open water, made better: its island and sail boat taken away, a distant shore in layers that combine (beach, forest, mountains), and a slider for the shore's size.</b> Combined from ^ticket(211), ^ticket(212) and ^ticket(213) (Matthew, 2026-10-17: \"combine 211 and 212 into one ticket\", \"and include 213\"). Part 1, from ^ticket(211): Matthew: \"the 'open water' background has some extras I didn't ask for: island in distance, sail boat that seems stationary. Let's remove those, since they currently seem like promises for stuff that doesn't exist, and cannot be reached.\" They are drawn in the sea scene (js/15-place-picker.js, ticket 186's open water: \"far off a sail and an island\"). Take both away, and write the rule into agent-instructions.md's design rules: scenery never promises a place or thing that does not exist or cannot be reached (beside \"Doorways go somewhere sensible\"). His question with it, whether the instructions keep backgrounds and objects composable as they grow: partly (one table per kind of thing, the shared organic helpers, connected views share their settings), but nothing yet on backdrops built from shared, combinable layers; Part 2 adds that. Part 2: Matthew: \"having the option to display a shoreline, or treeline, in the distance, would be a good set of parameters to make the 'open water' more useful in more situations\", with options for: \"different forest styles, maybe 2 or 3. default is off\"; \"different mountain styles, maybe 2 or 3. default is off\"; \"forest and mountain styles layer and combine naturally\"; \"optional beach, drawn between the horizon and the forest\". To do: the distant shore as layers on the horizon, back to front mountains, forest, beach, each its own setting in 🏞️ Background (shown only at the open water); built as shared backdrop layers other places can use too, with the shared organic helpers, and the recipe written into agent-instructions.md (his question: a composable system for objects and backgrounds as we add more). Off by default, so today's open water stays as it is but for part 1. Still, at 60 frames a second (drawn once, nothing moving). Part 3, from ^ticket(213): Matthew: \"Permit a 'distant shore size' slider so we can rescale the open water, and potentially stack them into a column in the world grid and rescale the distant shore in each to make it seem like we are getting closer as we go north, square by square.\" Needs part 2's shore. Open: a place's settings are now one per kind of place (state.background), so two open water squares share them; a size per square needs the world's squares to carry settings of their own (as each already carries its things), or the size worked out from where the square stands in its column.",
    "tags": [],
    "status": "open",
    "log": [
@@ -620,20 +595,7 @@
      "from": "matthew",
      "chars": 46,
      "asks": true
-    }
-   ]
-  },
-  {
-   "id": 213,
-   "area": "dress up, places, open water, world designer",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T13:05-06:00",
-   "source": "Matthew, 2026-10-17, in chat (\"mint tickets for that better open water scene\")",
-   "url": "",
-   "text": "<b>Dress Up: a \"distant shore size\" slider for the 🌊 open water, so a column of it in the world grid comes closer square by square.</b> Matthew: \"Permit a 'distant shore size' slider so we can rescale the open water, and potentially stack them into a column in the world grid and rescale the distant shore in each to make it seem like we are getting closer as we go north, square by square.\" Needs ^ticket(212)'s shore. Open: a place's settings are now one per kind of place (state.background), so two open water squares share them; a size per square needs the world's squares to carry settings of their own (as each already carries its things), or the size worked out from where the square stands in its column.",
-   "tags": [],
-   "status": "open",
-   "log": [
+    },
     {
      "at": "2026-10-17T13:05-06:00",
      "from": "matthew",
@@ -644,6 +606,18 @@
      "at": "2026-10-17T13:05-06:00",
      "from": "matthew",
      "chars": 46,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:43-06:00",
+     "from": "matthew",
+     "chars": 36,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:43-06:00",
+     "from": "matthew",
+     "chars": 16,
      "asks": true
     }
    ]
@@ -811,6 +785,90 @@
  "current_ticket": 210,
  "current_note": "13:41: started: reading how the 🎵 Music tab's full screen works, the World design tab's grid, and the music full screen's sizes, to plan the compact full screens and the grid that fills its room.",
  "closed_tickets": [
+  {
+   "id": 213,
+   "area": "dress up, places, open water, world designer",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T13:05-06:00",
+   "source": "Matthew, 2026-10-17, in chat (\"mint tickets for that better open water scene\")",
+   "url": "",
+   "text": "<b>Dress Up: a \"distant shore size\" slider for the 🌊 open water, so a column of it in the world grid comes closer square by square.</b> Matthew: \"Permit a 'distant shore size' slider so we can rescale the open water, and potentially stack them into a column in the world grid and rescale the distant shore in each to make it seem like we are getting closer as we go north, square by square.\" Needs ^ticket(212)'s shore. Open: a place's settings are now one per kind of place (state.background), so two open water squares share them; a size per square needs the world's squares to carry settings of their own (as each already carries its things), or the size worked out from where the square stands in its column.",
+   "tags": [],
+   "status": "superseded",
+   "log": [
+    {
+     "at": "2026-10-17T13:05-06:00",
+     "from": "matthew",
+     "chars": 1066,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:05-06:00",
+     "from": "matthew",
+     "chars": 46,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:43-06:00",
+     "from": "matthew",
+     "chars": 16,
+     "asks": true
+    }
+   ],
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T13:43-06:00",
+   "outcome": "Combined into ^ticket(212) (Matthew, 2026-10-17: \"and include 213\"): its part 3, the distant shore's size slider, for a column of open water that comes closer square by square.",
+   "metrics": {
+    "open_minutes": 39,
+    "matthew_messages": 3,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1128,
+    "tokens_est": 282,
+    "sync_minutes_est": 0.0
+   }
+  },
+  {
+   "id": 211,
+   "area": "dress up, places, open water",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T13:05-06:00",
+   "source": "Matthew, 2026-10-17, in chat (\"mint tickets for that better open water scene\")",
+   "url": "",
+   "text": "<b>Dress Up: the 🌊 open water without its island and sail boat.</b> Matthew: \"the 'open water' background has some extras I didn't ask for: island in distance, sail boat that seems stationary. Let's remove those, since they currently seem like promises for stuff that doesn't exist, and cannot be reached.\" They are drawn in the sea scene (js/15-place-picker.js, ticket 186's open water: \"far off a sail and an island\"). Take both away, and write the rule into agent-instructions.md's design rules: scenery never promises a place or thing that does not exist or cannot be reached (beside \"Doorways go somewhere sensible\"). His question with it, whether the instructions keep backgrounds and objects composable as they grow: partly (one table per kind of thing, the shared organic helpers, connected views share their settings), but nothing yet on backdrops built from shared, combinable layers; ^ticket(212) adds that.",
+   "tags": [],
+   "status": "superseded",
+   "log": [
+    {
+     "at": "2026-10-17T13:05-06:00",
+     "from": "matthew",
+     "chars": 1066,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:05-06:00",
+     "from": "matthew",
+     "chars": 46,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:43-06:00",
+     "from": "matthew",
+     "chars": 36,
+     "asks": true
+    }
+   ],
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T13:43-06:00",
+   "outcome": "Combined into ^ticket(212) (Matthew, 2026-10-17: \"combine 211 and 212 into one ticket\"): its part 1, the island and the sail boat taken away and the no-promises rule written into the instructions.",
+   "metrics": {
+    "open_minutes": 38,
+    "matthew_messages": 3,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1148,
+    "tokens_est": 287,
+    "sync_minutes_est": 0.0
+   }
+  },
   {
    "id": 177,
    "area": "dress up, performance, bug",
