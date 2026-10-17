@@ -272,7 +272,7 @@
    "url": "http://localhost:8131/series/005/#where",
    "added": "2026-10-12",
    "tags": [
-    "long run"
+    "blocked on Matthew"
    ],
    "log": [
     {
@@ -288,7 +288,8 @@
      "asks": false
     }
    ],
-   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: move only the costly livelits' views to the worker, and send the on-screen ids in the request. Code tonight; measuring waits for a daytime browser run. 🌙 long run; no headless browser on the laptop."
+   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: move only the costly livelits' views to the worker, and send the on-screen ids in the request. Code tonight; measuring waits for a daytime browser run. 🌙 long run; no headless browser on the laptop. | 00:47: CODED, the defaults (hazelgrove/hazel branch perf/2635-views-in-worker-costly, ee885708ac, on #2635's head 438812718b with the 10-14 experiments rebased under it; pushed for CI, no PR): the page times each livelit view it runs (LivelitProj.live_html); a projector whose view took 8 ms or more is costly (new ViewRoute); a request names the costly ones whose element meets the window (Request.view_ids); the worker runs only those to Html, Pure(html), which the page answers at once and does not time, so a view keeps its cost while the worker runs it; every other view runs on the page as before. Tests: new ViewRoute group (2) and StreamInterests, WorkerServer, UserLivelits (70), UserLivelits.Members pass locally. NOT MEASURED: needs a browser (Full Body's main thread per change, and Kids' Choice's release, against #2635), so it waits on Matthew for a daytime run. Open: the cost table keeps every projector it has timed (small, but never pruned); 8 ms is a first guess.",
+   "waiting": true
   },
   {
    "id": 43,
