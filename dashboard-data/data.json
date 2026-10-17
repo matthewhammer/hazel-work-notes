@@ -629,62 +629,6 @@
    ]
   },
   {
-   "id": 217,
-   "area": "dress up, accessibility, passages",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T13:25-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "url": "",
-   "text": "<b>Dress Up: a new ♿ Accessibility tab: every nav arrow always shown, their size, and the game's font size.</b> Matthew: (1) \"toggle for -- always show all nav arrows, perhaps dimly and/or in a special color -- perhaps a slider to control how dim. and a color chooser, defaulting to something distinct from the in-game trigger color, which is sort of white\"; (2) \"controls to make those bigger or smaller (slider to control scale of nav arrows)\"; (3) \"slider for in-game font size, generally, like on signs in the game\". To do: a tab of its own, its settings each with a visible label and an emoji (the design rules); (1) a toggle showing every way's arrow at all times, not only near ones (now: .way-arrow at opacity 0 unless near or aimed, tickets 185, 187, 199), how dim (a slider), and their colour (a chooser; its default distinct from the near/aimed arrows' warm white #fff4cf); (2) a slider for the arrows' size (the 44px triangle and its words), with waysApart keeping arrows shown together apart at any size (^ticket(208)'s measure scales with it, and arrows208.mjs checks it); (3) a slider for the size of the words drawn in the places (signs, the arrows' words, labels in the scenes). Saved with the rest (Load, the autosave). (4) Matthew, added: \"toggle to show the planned path each time it's created and being executed in game\": a toggle in the same tab that draws the path ^ticket(215) plans (its waypoints and the line through them) as soon as it is made, and while the friend walks, swims or climbs along it, the part already walked fading. (5) Matthew, added: \"another accessibility toggle -- show the collision boxes you are using for collision tests, if you can\": 🟥 each solid's box on the floor as solidAt tests it (grown by the feet's margin), named, a castle room's side walls, and the floor's back limit.",
-   "tags": [],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T13:25-06:00",
-     "from": "matthew",
-     "chars": 431,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T13:59-06:00",
-     "from": "matthew",
-     "chars": 96,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T14:13-06:00",
-     "from": "matthew",
-     "chars": 102,
-     "asks": true
-    }
-   ]
-  },
-  {
-   "id": 218,
-   "area": "dress up, world designer, forest crossing, passages",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T13:30-06:00",
-   "source": "Matthew, 2026-10-17, in chat, with a full-screen screenshot of a forest crossing (C5, its SW way to the jungle waterfall)",
-   "url": "",
-   "text": "<b>Dress Up: a forest crossing's SW trail ends at the SW nav arrow, and the SE one at the SE arrow.</b> Matthew: \"align the nav arrow for SW with the trail being draw, favoring the placement of the nav arrow and moving the trail SW (and mirrored in the SE direction).\" and: \"moving the SW trail, i meant.\" In his picture the SW trail leaves the picture's left edge about two thirds of the way down, while the ↙️ arrow (to the jungle waterfall) stands in the bottom left corner, below it on the open grass. To do: keep the arrows where they are (worldWaysSvg's AT: SW at the bottom left corner, SE at the bottom right) and draw the SW and SE trails (crossGeom, 14-outdoors.js) toward those corners, so each ends under its arrow; mirrored alike. A check on GitHub: in a crossing with SW and SE open, each trail's end within reach of its arrow's spot, at the usual window sizes and full screen.",
-   "tags": [],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T13:30-06:00",
-     "from": "matthew",
-     "chars": 173,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T13:30-06:00",
-     "from": "matthew",
-     "chars": 29,
-     "asks": false
-    }
-   ]
-  },
-  {
    "id": 219,
    "area": "dress up, places, world designer, objects, bubbles",
    "added": "2026-10-17",
@@ -814,12 +758,102 @@
      "asks": true
     }
    ]
+  },
+  {
+   "id": 225,
+   "area": "dress up, passages, bug",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T14:27-06:00",
+   "source": "Found by ^ticket(217)'s check on GitHub (runs 39065772429 and 39066250387)",
+   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39065772429",
+   "text": "<b>Dress Up: after Surprise me, a tap on a passage sometimes does nothing (suspected; random).</b> In one run, access217 pressed 🎲 Surprise me five times, then in the living room neither a walk to a passage nor a tap on a far picture started (the friend stayed where they were, nothing glowed through); the autosave carried that friend into the next check (nav199), whose living-room picture tap failed the same way. Run first, nav199 passes; in another run the same check's trip worked. So some outcome of Surprise me's dice (a pose, a seat, an animation such as 🧗 climbing with no ladder, or crouching) seems to leave a friend that walkInto/enterScene will not move. Not reproduced on purpose yet. To do: a check that presses Surprise me many times, each time tapping a far picture and a door, and records the friend's pose, animation and seat when a tap does nothing; then put right what it finds (Surprise me never leaves a friend that cannot go through a passage, or a tap stands them up first).",
+   "tags": [],
+   "status": "open",
+   "log": []
   }
  ],
- "next_ticket": 225,
- "current_ticket": 217,
- "current_note": "14:22: 216 → 0.0.133 and 215 → 0.0.134 released (Matthew: get them out, not delayed by checks; checks run after on each tag, read and fixed next). 217: a diagnosis run going (did its check's leftover autosave break a living-room walk, or its code?); then 0.0.135, 218 → 0.0.136.",
+ "next_ticket": 226,
+ "current_ticket": 219,
+ "current_note": "14:27: started: 216 → 0.0.133, 215 → 0.0.134, 217 → 0.0.135, 218 → 0.0.136 released; their speed runs follow on the tags (read after). 219, the 🪸 deep sea: the place, its sandy bottom and light; things to place (coral, shells, a chest, an anchor with a broken chain, sea plants); starfish that crawl and fish that swim and blow bubbles.",
  "closed_tickets": [
+  {
+   "id": 218,
+   "area": "dress up, world designer, forest crossing, passages",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T13:30-06:00",
+   "source": "Matthew, 2026-10-17, in chat, with a full-screen screenshot of a forest crossing (C5, its SW way to the jungle waterfall)",
+   "url": "",
+   "text": "<b>Dress Up: a forest crossing's SW trail ends at the SW nav arrow, and the SE one at the SE arrow.</b> Matthew: \"align the nav arrow for SW with the trail being draw, favoring the placement of the nav arrow and moving the trail SW (and mirrored in the SE direction).\" and: \"moving the SW trail, i meant.\" In his picture the SW trail leaves the picture's left edge about two thirds of the way down, while the ↙️ arrow (to the jungle waterfall) stands in the bottom left corner, below it on the open grass. To do: keep the arrows where they are (worldWaysSvg's AT: SW at the bottom left corner, SE at the bottom right) and draw the SW and SE trails (crossGeom, 14-outdoors.js) toward those corners, so each ends under its arrow; mirrored alike. A check on GitHub: in a crossing with SW and SE open, each trail's end within reach of its arrow's spot, at the usual window sizes and full screen.",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T13:30-06:00",
+     "from": "matthew",
+     "chars": 173,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:30-06:00",
+     "from": "matthew",
+     "chars": 29,
+     "asks": false
+    }
+   ],
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T14:27-06:00",
+   "outcome": "Released in Dress Up 0.0.136 (main 5c7b9ce, tag dress-up-0.0.136; the work b1c4b3b): crossGeom aims the SW and SE trails from the meeting place through their arrows' spots (the picture's bottom corners) on past its bottom edge. tools/checks/trails218.mjs (run 39065662632): at five windows and full screen the arrow's spot is inside its trail as drawn; the old aim missed (Matthew's case); pictures at 1600, 2400 full screen and a phone.",
+   "metrics": {
+    "open_minutes": 57,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 202,
+    "tokens_est": 50,
+    "sync_minutes_est": 0.0
+   }
+  },
+  {
+   "id": 217,
+   "area": "dress up, accessibility, passages",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T13:25-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: a new ♿ Accessibility tab: every nav arrow always shown, their size, and the game's font size.</b> Matthew: (1) \"toggle for -- always show all nav arrows, perhaps dimly and/or in a special color -- perhaps a slider to control how dim. and a color chooser, defaulting to something distinct from the in-game trigger color, which is sort of white\"; (2) \"controls to make those bigger or smaller (slider to control scale of nav arrows)\"; (3) \"slider for in-game font size, generally, like on signs in the game\". To do: a tab of its own, its settings each with a visible label and an emoji (the design rules); (1) a toggle showing every way's arrow at all times, not only near ones (now: .way-arrow at opacity 0 unless near or aimed, tickets 185, 187, 199), how dim (a slider), and their colour (a chooser; its default distinct from the near/aimed arrows' warm white #fff4cf); (2) a slider for the arrows' size (the 44px triangle and its words), with waysApart keeping arrows shown together apart at any size (^ticket(208)'s measure scales with it, and arrows208.mjs checks it); (3) a slider for the size of the words drawn in the places (signs, the arrows' words, labels in the scenes). Saved with the rest (Load, the autosave). (4) Matthew, added: \"toggle to show the planned path each time it's created and being executed in game\": a toggle in the same tab that draws the path ^ticket(215) plans (its waypoints and the line through them) as soon as it is made, and while the friend walks, swims or climbs along it, the part already walked fading. (5) Matthew, added: \"another accessibility toggle -- show the collision boxes you are using for collision tests, if you can\": 🟥 each solid's box on the floor as solidAt tests it (grown by the feet's margin), named, a castle room's side walls, and the floor's back limit.",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T13:25-06:00",
+     "from": "matthew",
+     "chars": 431,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:59-06:00",
+     "from": "matthew",
+     "chars": 96,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T14:13-06:00",
+     "from": "matthew",
+     "chars": 102,
+     "asks": true
+    }
+   ],
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T14:27-06:00",
+   "outcome": "Released in Dress Up 0.0.135 (main cbde41b, tag dress-up-0.0.135; the work 2e74346): the ♿ Accessibility tab (state.access): every nav arrow shown (the far ones dimmer, in a colour of the player's), the arrows' size, the game's words' size (signs, the arrows' words), the planned path drawn while walking (pathHud, from ^ticket(215)'s walkPath), and the collision boxes (solidsHud: each solid as solidAt tests it, named, a castle room's walls, the floor's back limit). Its check before release (run 39066250387): the tab, Surprise me leaving it alone, every arrow shown at its brightness and colour, words twice the size, the collision boxes: ok; double-size arrows still overlapping in crowded places (waysApart given 16 passes, not 4, in the release) and the path test choosing a passage flown into, not walked to (fixed in the check): its run on the tag reads them again. The living-room walk that failed after it: not this ticket's code, the check's Surprise me dice carried by the autosave into the next check (nav199 passes run first); see ^ticket(225).",
+   "metrics": {
+    "open_minutes": 62,
+    "matthew_messages": 3,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 629,
+    "tokens_est": 157,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 215,
    "area": "dress up, walking, passages",
@@ -6522,8 +6556,6 @@
   }
  ],
  "queue": [
-  217,
-  218,
   219,
   220,
   221,
@@ -6533,6 +6565,7 @@
   198,
   222,
   224,
+  225,
   160,
   18,
   102,
