@@ -745,7 +745,7 @@
    "url": "https://github.com/matthewhammer/kids-choice-games/blob/main/dress-up/OBJECTS.md",
    "text": "<b>Dress Up: OBJECTS.md shows each object, a clipped screenshot beside its row.</b> Matthew, 2026-10-16 night: \"include clipped screen shots in this doc, going forward\". OBJECTS.md (ticket 99) lists what stands in each place by depth (588 lines, as of 0.0.46, made by depthsheet.mjs and objects_md.py). Going forward: each object's row gets a small picture clipped to that object's box in its place (the scene drawn at the defaults, the object's getBBox through the screen, a little margin), and the place a picture of its own; made in CI on GitHub's Chrome (no browser on the laptop), as PNGs in dress-up/objects/ (or WebP), and objects_md.py writes them into the table. Also brings the list up to date from 0.0.46.",
    "tags": [
-    "long run"
+    "blocked on Matthew"
    ],
    "status": "open",
    "log": [
@@ -756,7 +756,8 @@
      "asks": true
     }
    ],
-   "progress": "22:40: minted; queued."
+   "progress": "22:40: minted; queued. | 23:17: DONE on branch objects-180 (217ef63, kids-choice-games; not on main): OBJECTS.md as of 0.0.94 (was 0.0.46), 40 places each with its picture, 377 objects with 376 clipped pictures (WebP, 2.4 MB in dress-up/objects/), notes kept; made on GitHub by tools/checks/objects180.mjs (every branch's run leaves fresh pictures), written by tools/objects_md.py; the agent instructions say how. Waiting on Matthew: merge the branch (a push to main deploys the game; only docs and pictures change).",
+   "waiting": "Matthew: look at OBJECTS.md on branch objects-180 (GitHub renders it), then merge."
   },
   {
    "id": 181,
@@ -804,8 +805,8 @@
   }
  ],
  "next_ticket": 183,
- "current_ticket": 156,
- "current_note": "23:15: the trial merge of #2469 into #2635: two merge faults found and fixed (Key.mk's target tag; the rename of a type in a module's path); the outline groups pass locally; HeadlessRows' corpus case running, then a push for GitHub's full tests. Next: ^ticket(180) (OBJECTS.md pictures, made), ^ticket(181) the dashboard's move.",
+ "current_ticket": 181,
+ "current_note": "23:17: moving the dashboard to matthewhammer.org/hazel/dashboard: the publish step's public copy into the site's repository, the old addresses redirecting with their #ticket anchors, then every link. ^ticket(156)'s HeadlessRows corpus case still running locally.",
  "closed_tickets": [
   {
    "id": 15,
@@ -5077,9 +5078,8 @@
   }
  ],
  "queue": [
-  156,
-  180,
   181,
+  156,
   182,
   160,
   18,
@@ -5094,7 +5094,8 @@
   144,
   179,
   165,
-  177
+  177,
+  180
  ],
- "current_since": "2026-10-16T23:15-06:00"
+ "current_since": "2026-10-16T23:17-06:00"
 }
