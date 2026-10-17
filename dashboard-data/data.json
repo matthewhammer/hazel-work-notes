@@ -722,9 +722,18 @@
    "source": "Matthew, 2026-10-17, in chat, after 0.0.159 (^ticket(224)'s full screen)",
    "url": "",
    "text": "<b>Dress Up: the world designer's full screen shows the in-game view, pinned atop its right side, with an 👁️ to hide it.</b> Matthew: \"a new UX feature for the FS world designer --- show the in-game view as the first sub-panel, the full width of the RHS of the full screen view. Then a way to scroll the panels below and keep that in-game view fixed. An eye-ball to hide it (our current feature set) --- off by default, so we are showing it by default. The user can now drag LHS vs RHS of the world designer, so they can effectively re-balance the screen real estate as needed.\" To do: in body.world-big on a wide window, the picture itself (#pic, live: walking, the ways' arrows, things dragged into it) as the first card of the right side, its whole width, held in place under the bar while the cards below scroll; an 👁️ folds it away to its name and back (shown by default, kept in this browser); ticket 224's dragger then sizes it; leaving full screen puts the picture back."
+  },
+  {
+   "id": 232,
+   "area": "dress up, world designer",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T15:58-06:00",
+   "source": "Matthew, 2026-10-17, in chat, with a screenshot of the world designer's full screen (1 warning, E6 fairy forest red, 🔗 6 ways added)",
+   "url": "",
+   "text": "<b>Dress Up: 🔗 all passageways (and a place put on the grid) respect the grid's edge: no way out that leads off the map.</b> Matthew: \"I've noticed a consistent issue that 'all passageways' does not respect the edge of the grid\" \"and it introduces issues that can be avoided\". Found (not yet fixed): worldJoinAll (25-world.js) only ADDS ways between two placed neighbours and never takes one away; worldPut gives a dropped place its usual ways (worldUsualWays) wherever it lands, so the fairy forest at E6 kept its SW way off the bottom edge (D7), a warning that 🔗 left standing. worldMove and worldResize (− row/column) can strand ways off the edge the same way. To do: worldPut, worldMove and worldResize leave no way off the map (worldOffMap, ticket 189), and 🔗 all passageways also takes away any way off the edge (and says so in its note); a check in tools/checks/."
   }
  ],
- "next_ticket": 232,
+ "next_ticket": 233,
  "current_ticket": 231,
  "current_note": "15:57: 0.0.160 built and committed locally (eb1b069, tag dress-up-0.0.160, not pushed): the picture moves into the world designer's full screen as the right side's first card, sticky, 👁️ to fold; script + load checks pass; diagnostic branch checks-231 running on GitHub (its check + 5 pictures), then the release push",
  "closed_tickets": [
@@ -6875,6 +6884,7 @@
   198,
   222,
   225,
+  232,
   160,
   18,
   102,
