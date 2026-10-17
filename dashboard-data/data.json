@@ -651,15 +651,6 @@
    ]
   },
   {
-   "id": 239,
-   "area": "dress up, tree house, walking, doors",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T16:18-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "url": "",
-   "text": "<b>Dress Up: a friend too tall for a tree house's small door crawls the last stretch through it.</b> Matthew: \"it makes sense that the doors of the tree house are smaller than ordinary doors -- Can we do a nice check to see if we are currently 'too tall' and if so, part of the path plan for going out is crawling at the end of the animation, near to the threshold of the door.\" To do: at a doorway, the friend's standing height where they reach it (their size, at that depth: figureT, depthSize) against the door's opening (its arch's top over the floor); taller, the walk's last stretch to the threshold (walkInto's path, planPath, ticket 215) is a crawl (the crawling animation) and they go through crawling; a door they fit through, walked as now. Every door that can be too small, the tree house's first; a check in tools/checks/ with pictures of the crawl."
-  },
-  {
    "id": 240,
    "area": "dress up, tree house, collisions, ♿",
    "added": "2026-10-17",
@@ -751,9 +742,31 @@
   }
  ],
  "next_ticket": 250,
- "current_ticket": 239,
- "current_note": "16:49: AFK run: 238 done (0.0.167). On 239: too tall for a tree house's small door, the last stretch of the walk is a crawl",
+ "current_ticket": 240,
+ "current_note": "16:55: 0.0.169 committed locally (8e2901a, not pushed): the swing's box and the friend's on it swing with it (♿ boxes), and walking meets the seat where it is; diagnostic 39076982207, then the release",
  "closed_tickets": [
+  {
+   "id": 239,
+   "area": "dress up, tree house, walking, doors",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:18-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: a friend too tall for a tree house's small door crawls the last stretch through it.</b> Matthew: \"it makes sense that the doors of the tree house are smaller than ordinary doors -- Can we do a nice check to see if we are currently 'too tall' and if so, part of the path plan for going out is crawling at the end of the animation, near to the threshold of the door.\" To do: at a doorway, the friend's standing height where they reach it (their size, at that depth: figureT, depthSize) against the door's opening (its arch's top over the floor); taller, the walk's last stretch to the threshold (walkInto's path, planPath, ticket 215) is a crawl (the crawling animation) and they go through crawling; a door they fit through, walked as now. Every door that can be too small, the tree house's first; a check in tools/checks/ with pictures of the crawl.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T16:54-06:00",
+   "outcome": "Released in 0.0.168 (live): walkInto's doorTooLow (the friend's crown standing at the door's depth over 0.97 of its opening): the last stretch, about a body's length, and the step through are crawled at CRAWL_IN_PACE; not for world ways, rooms' ways toward us, ladders or pits. crawl239.mjs (new): a tree room's bridge door, opening 176 against a friend 223 tall there, walked then crawled into room 2; the king's room's door walked at 100%, crawled at 300% (run 39076688937, all ok; nav199, passages187, places114, treehouse216 all ok); a picture mid-crawl to room 4's door.",
+   "metrics": {
+    "open_minutes": 36,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 20.0
+   }
+  },
   {
    "id": 238,
    "area": "dress up, tree house, layering, ladders",
@@ -765,7 +778,7 @@
    "status": "done",
    "closed": "2026-10-17",
    "closed_at": "2026-10-17T16:49-06:00",
-   "outcome": "Released in 0.0.167 (1f50bce, live): the hatch (lid, hole, ladder's top) is one object at the lid's foot, the hole's far edge, so the friend at its near edge, climbing down or beside it, is drawn over it, cut off at the near rim going down; only one standing behind the hole is behind its lid; a hatch ladder's foot read from data-down (ladderAt), not its object's depth. hatch238.mjs (new), nav199, treehouse216, trapdoor237, passages187 all ok (run 39076392971). Pictures of the climb at four depths for Matthew: run 39076614434 (branch shots-238).",
+   "outcome": "Released in 0.0.167 (1f50bce, live): the hatch (lid, hole, ladder's top) is one object at the lid's foot, the hole's far edge, so the friend at its near edge, climbing down or beside it, is drawn over it, cut off at the near rim going down; only one standing behind the hole is behind its lid; a hatch ladder's foot read from data-down (ladderAt), not its object's depth. hatch238.mjs (new), nav199, treehouse216, trapdoor237, passages187 all ok (run 39076392971). Pictures of the climb at four depths for Matthew: run 39076614434 (branch shots-238). Pictures (run 39076614434): at 37, 74 and 117 units down the friend is drawn over the hatch's lid and ladder, cut off at the near rim; the first picture, 3 units down, showed no friend at all (the run's first picture, at a narrower layout): if the friend blinks out at the very start of a climb down in play, that is still to fix.",
    "metrics": {
     "open_minutes": 34,
     "matthew_messages": 0,
@@ -7159,7 +7172,6 @@
   }
  ],
  "queue": [
-  239,
   240,
   241,
   242,
