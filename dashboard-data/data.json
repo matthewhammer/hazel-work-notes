@@ -479,29 +479,6 @@
    ]
   },
   {
-   "id": 177,
-   "area": "dress up, performance, bug",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T21:25-06:00",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "",
-   "text": "<b>Dress Up: white flashes (blank frames) while walking or dragging, on every background.</b> Matthew, 2026-10-16 evening: \"ever since the latest performance fixes (bitmap introduction?) — we notice white flashes (blank frames) during walking or other dragging animations on all backgrounds. Some bug it seems.\" Since about 0.0.93 (still pictures as bitmaps on a slow computer; choppy windows of 60 frames) or 0.0.94. Which computers and browsers: not said yet. Suspects, unverified: a frame between hiding the scene and the still parts' bitmaps being decoded (showStillPic: visibility hidden, then new &lt;image&gt;s from blob URLs), or the switch back after STILL_PIC_HOLD; and 0.0.93 turning the still pictures on for more computers (choppy windows of 60, not 120 frames). Plan (no browser on the laptop tonight): catch it on GitHub's runners (the ci branch, ^ticket(165)): every frame of a walk and a drag recorded (CDP screencast), the still pictures forced on and off, a frame counted blank when it is mostly the page's white; then find the swap that leaves it and fix it on a branch. A release waits for Matthew.",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-16T21:25-06:00",
-     "from": "matthew",
-     "chars": 225,
-     "asks": true
-    }
-   ],
-   "progress": "21:25: minted; queued tonight, right after ^ticket(176). | 21:35: read the code (no browser): while moving on a slow-marked computer, showStillPic hides the scene (visibility) and shows the parts' PNG bitmaps (stillPart, 0.0.93). A part is 'ready' on the <image>'s load event, which is not decode: a browser may paint the first frame of a newly shown screen-size PNG before decoding it, and with the scene hidden that frame is the page's white. Parts change as the friend passes an object's depth, so it can recur along a walk. Proposed: decode each picture before it counts as ready (decode(), or a decoded Image of the same URL kept alive), and decoding=\"sync\" on the <image>. To verify on GitHub's Chrome: a check that records a walk and a drag frame by frame (CDP screencast) with the still pictures forced on, counting frames mostly white, main against the branch. Unverified so far. | 21:42: branch flash-177 pushed (81e30ed, kids-choice-games; not released): a part is ready only once decoded (img.decode() where it exists, an Image of the same URL kept beside it, decoding=sync). Its check, tools/checks/flash177.mjs, runs on GitHub's Chrome: still pictures forced on (SPEED_TEST.still), walks and a drag in 5 places, every screencast frame scored for how much of the picture is the colour behind it, this branch against main. | 22:04: GitHub's headless Chrome draws NO blank frame on main either (flash177: 0 of ~1,700 frames, 5 places, walks and a drag, still pictures forced on; the colour behind the picture is the paper, #fffdf7). So the flash is another browser's (Firefox's or Safari's image decoding), not reproducible there. Added a browser-independent second defence (628b3a1): a picture shown for the first time keeps the scene visible under it until two frames on. Branch flash-177 (not released) has both. Waiting on Matthew: which computers and browsers flash, and a try of the branch (or a release) on them. | 22:50: flash-177 (628b3a1) GREEN (run 39001183343): both defences in; headless Chrome shows no blank frame on main either. | 06:32: both defences RELEASED in 0.0.95 (live). Waiting on Matthew: try 0.0.95 on the computers and browsers that flashed (which were they?), walking and dragging. | 09:49: 0.0.116 RELEASED: the still pictures were never ready in Chrome since 0.0.95 (this ticket's flash fix waited for the <image>'s load, which Chrome never fires; stills164 found it on GitHub, run 39046117550). That wait is now at most 250 ms; the gate's still-pictures cases read 99-100% (were 0%). Still waiting on Matthew: try the devices that flashed.",
-   "waiting": "Matthew: which computers/browsers show the flashes; then try branch flash-177 there (headless Chrome cannot show it)."
-  },
-  {
    "id": 184,
    "area": "dress up, releases, CI, performance",
    "added": "2026-10-17",
@@ -751,6 +728,43 @@
  "current_ticket": 209,
  "current_note": "13:17: fumes205 is itself a same-page A/B (0.0.129's fume code inside it, taking turns with the current); readings so far -7% (^ticket(205)'s branch run) and -16% (0.0.130's speed run). 0.0.131's speed run (39061694679, same fumes code) gives a third; waiting on it.",
  "closed_tickets": [
+  {
+   "id": 177,
+   "area": "dress up, performance, bug",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T21:25-06:00",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "",
+   "text": "<b>Dress Up: white flashes (blank frames) while walking or dragging, on every background.</b> Matthew, 2026-10-16 evening: \"ever since the latest performance fixes (bitmap introduction?) — we notice white flashes (blank frames) during walking or other dragging animations on all backgrounds. Some bug it seems.\" Since about 0.0.93 (still pictures as bitmaps on a slow computer; choppy windows of 60 frames) or 0.0.94. Which computers and browsers: not said yet. Suspects, unverified: a frame between hiding the scene and the still parts' bitmaps being decoded (showStillPic: visibility hidden, then new &lt;image&gt;s from blob URLs), or the switch back after STILL_PIC_HOLD; and 0.0.93 turning the still pictures on for more computers (choppy windows of 60, not 120 frames). Plan (no browser on the laptop tonight): catch it on GitHub's runners (the ci branch, ^ticket(165)): every frame of a walk and a drag recorded (CDP screencast), the still pictures forced on and off, a frame counted blank when it is mostly the page's white; then find the swap that leaves it and fix it on a branch. A release waits for Matthew.",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-16T21:25-06:00",
+     "from": "matthew",
+     "chars": 225,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:33-06:00",
+     "from": "matthew",
+     "chars": 154,
+     "asks": false
+    }
+   ],
+   "progress": "21:25: minted; queued tonight, right after ^ticket(176). | 21:35: read the code (no browser): while moving on a slow-marked computer, showStillPic hides the scene (visibility) and shows the parts' PNG bitmaps (stillPart, 0.0.93). A part is 'ready' on the <image>'s load event, which is not decode: a browser may paint the first frame of a newly shown screen-size PNG before decoding it, and with the scene hidden that frame is the page's white. Parts change as the friend passes an object's depth, so it can recur along a walk. Proposed: decode each picture before it counts as ready (decode(), or a decoded Image of the same URL kept alive), and decoding=\"sync\" on the <image>. To verify on GitHub's Chrome: a check that records a walk and a drag frame by frame (CDP screencast) with the still pictures forced on, counting frames mostly white, main against the branch. Unverified so far. | 21:42: branch flash-177 pushed (81e30ed, kids-choice-games; not released): a part is ready only once decoded (img.decode() where it exists, an Image of the same URL kept beside it, decoding=sync). Its check, tools/checks/flash177.mjs, runs on GitHub's Chrome: still pictures forced on (SPEED_TEST.still), walks and a drag in 5 places, every screencast frame scored for how much of the picture is the colour behind it, this branch against main. | 22:04: GitHub's headless Chrome draws NO blank frame on main either (flash177: 0 of ~1,700 frames, 5 places, walks and a drag, still pictures forced on; the colour behind the picture is the paper, #fffdf7). So the flash is another browser's (Firefox's or Safari's image decoding), not reproducible there. Added a browser-independent second defence (628b3a1): a picture shown for the first time keeps the scene visible under it until two frames on. Branch flash-177 (not released) has both. Waiting on Matthew: which computers and browsers flash, and a try of the branch (or a release) on them. | 22:50: flash-177 (628b3a1) GREEN (run 39001183343): both defences in; headless Chrome shows no blank frame on main either. | 06:32: both defences RELEASED in 0.0.95 (live). Waiting on Matthew: try 0.0.95 on the computers and browsers that flashed (which were they?), walking and dragging. | 09:49: 0.0.116 RELEASED: the still pictures were never ready in Chrome since 0.0.95 (this ticket's flash fix waited for the <image>'s load, which Chrome never fires; stills164 found it on GitHub, run 39046117550). That wait is now at most 250 ms; the gate's still-pictures cases read 99-100% (were 0%). Still waiting on Matthew: try the devices that flashed.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T13:33-06:00",
+   "outcome": "Matthew, 2026-10-17: no flashes in any recent version on the four devices he tests with (his phone the fourth). What went out: both defences in Dress Up 0.0.95 (628b3a1, branch flash-177): a still picture counts as ready only once decoded (decode(), an Image of the same URL kept beside it, decoding=sync), and a picture shown for the first time keeps the scene visible under it until two frames on. 0.0.95's wait for the load event, which Chrome never fires, kept the still pictures off in Chrome; fixed in 0.0.97 (decode() waits at most a quarter second, d8e7470) and 0.0.116 (f98b766; stills164 checks it). GitHub's headless Chrome never showed the flash (flash177: 0 of about 1,700 frames on main too), so his devices are the evidence.",
+   "metrics": {
+    "open_minutes": 969,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 379,
+    "tokens_est": 94,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 208,
    "area": "dress up, world designer",
@@ -6201,8 +6215,7 @@
   102,
   54,
   19,
-  166,
-  177
+  166
  ],
  "current_since": "2026-10-17T12:39-06:00"
 }
