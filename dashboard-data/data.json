@@ -538,7 +538,12 @@
     }
    ],
    "progress": "11:00: minted from ^du_report(3)'s step 3, on publishing it; queued."
-  },
+  }
+ ],
+ "next_ticket": 187,
+ "current_ticket": 184,
+ "current_note": "12:11: 0.0.130 out (205, 206); 207 was the check, fixed on world-185; 0.0.129 and 0.0.130 speed runs still queued on GitHub",
+ "closed_tickets": [
   {
    "id": 207,
    "area": "dress up",
@@ -547,15 +552,21 @@
    "source": "the 0.0.125 speed run (^ticket(184)), 2026-10-17",
    "text": "<b>Dress Up: the friend is drawn under a tree house room's side door again</b> (^ticket(192)'s fix, 0.0.120, regressed). 0.0.125's speed run recorded broken (the checks): passages187's \"tree house room 2: the friend in front of its side door is drawn over it\" failed, the side door's rect on top. It fails at 0.0.129 too (world-185's full run). Find the version that broke it, fix it, or the check if state leaked into it from an earlier check.",
    "tags": [],
-   "status": "open",
+   "status": "done",
    "log": [],
-   "progress": "12:06: minted from the speed record; next."
-  }
- ],
- "next_ticket": 187,
- "current_ticket": 207,
- "current_note": "12:06: 0.0.130 out (205, 206); the tree house side-door layering regressed (0.0.125's speed run): finding where",
- "closed_tickets": [
+   "progress": "12:06: minted from the speed record; next.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T12:11-06:00",
+   "outcome": "Not a game regression: passages187's layering probe tested one point at the friend's edge, and a ghost costume left by an earlier check made that point empty beside the friend, the door rightly there (0.0.124/0.0.125 speed runs; also seen at 0.0.129). Passes alone and after moving188 on GitHub. The probe now finds every point where the friend is with the door hidden and requires each still the friend with it shown: ok with the earlier checks run first (49 points, costume ghost). On world-185; goes out with the next release. The 0.0.129/0.0.130 speed runs, queued with the old check, may still record it.",
+   "metrics": {
+    "open_minutes": 6,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 206,
    "area": "dress up, performance, world designer",
@@ -5940,7 +5951,6 @@
   }
  ],
  "queue": [
-  207,
   184,
   198,
   160,
