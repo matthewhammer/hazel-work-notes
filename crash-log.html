@@ -29,7 +29,7 @@
 <body>
 <main>
 <h1>Crash log</h1>
-<p class="sub">Matthew’s work laptop (a Framework Laptop 13, 13th Gen Intel Core, BIOS 03.04, 20 CPUs). Started 2026-10-16 after the day’s third crash, from the system journal back to 2026-08-18. Kept by Claude with Matthew; a new crash gets a row at the top. Updated 2026-10-16 21:10 MDT.</p>
+<p class="sub">Matthew’s work laptop (a Framework Laptop 13, 13th Gen Intel Core, BIOS 03.04, 20 CPUs). Started 2026-10-16 after the day’s third crash, from the system journal back to 2026-08-18. Kept by Claude with Matthew; a new crash gets a row at the top. Updated 2026-10-16 20:59 MDT.</p>
 
 <h2 id="known">What the evidence says</h2>
 <ul>
@@ -42,7 +42,7 @@
 </ul>
 <p class="note"><b>A reading that fits all of it, not proven:</b> a laptop with a battery rides through a burst of power above what its adapter gives, and through a dip in the adapter, cable or USB-C power negotiation. This one has nothing to draw on, so either one stops it, at idle or under load. What would test it: a battery it can see (or, if one is fitted, its connector reseated), or a stronger USB-C adapter and cable; then see whether the crashes stop. Until then the rule stands: one heavy job at a time, and commit and push early.</p>
 <p><b>In use since 2026-10-16 17:05</b> (Matthew’s call, after the 16:47 freeze): headless Chrome and the tools that drive it are pinned to 4 of the 20 threads (<code>taskset -c 0-3 nice -n 10</code>), to cap a burst of power. By 18:10 it had run the fps gate five times, 🧪, the still-picture, door, collision and pit checks, and the day&#8217;s 586-picture archive, about an hour of browser work, with no crash; the gate read the same as unpinned (10 of 10 at 59.3 to 60). Not proof that it helps: the 16:46 trial and the 16:40 gate ran unpinned without a crash too. <b>It did not prevent the 20:47 freeze</b>, about 90 seconds into a pinned headless-Firefox run (the same 4 threads, <code>nice -n 10</code>); the run before it read the CPU package at 58 to 72 °C. <b>Nor the 20:53 one</b>, about 45 seconds into the same run started again. All four crashes of the evening came while a headless browser ran.</p>
-<p class="note"><b>From 2026-10-16 21:10, Matthew’s ask:</b> no headless browser (Chromium or Firefox) runs on this laptop, pinned or not, and one heavy job at a time across all sessions.</p>
+<p class="note"><b>From 2026-10-16 20:56, Matthew’s ask:</b> no headless browser (Chromium or Firefox) runs on this laptop, pinned or not, and one heavy job at a time across all sessions.</p>
 
 <h2 id="next-time">Worth noting next time</h2>
 <ul>
