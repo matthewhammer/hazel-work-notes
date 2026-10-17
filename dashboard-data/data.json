@@ -439,7 +439,7 @@
    "area": "dress up, performance, black laptop",
    "added": "2026-10-16",
    "opened": "2026-10-16T16:08-06:00",
-   "text": "<b>Dress Up: a leak? After the duck pond, the empty room is as slow as the pond, until the page is reloaded.</b> Matthew, 2026-10-16, on the black laptop (Firefox 136, 0.0.83): after going to the duck pond, back in the empty room it is just as slow; reload, the empty room is fast again; back to the pond, immediately slow, with long pauses. Suspect: a swimming friend's wake rings carry about 22 SMIL animations, made anew at every drawing (60 a second); if Firefox's SVG animation clock keeps them, every frame after grows slower, anywhere, until a reload.",
+   "text": "<b>Dress Up: a leak? After the duck pond, the empty room is as slow as the pond, until the page is reloaded.</b> Matthew, 2026-10-16, on the black laptop (Firefox 136, 0.0.83): after going to the duck pond, back in the empty room it is just as slow; reload, the empty room is fast again; back to the pond, immediately slow, with long pauses. Suspect: a swimming friend's wake rings carry about 22 SMIL animations, made anew at every drawing (60 a second); if Firefox's SVG animation clock keeps them, every frame after grows slower, anywhere, until a reload. Matthew, 2026-10-16 ~20:35, on 0.0.94 on his own laptop (Firefox 157): a setting at the pond (his saved friend: 13 ducks at 233%, 39 cattails, 9 clouds at 197%) is slow until he refreshes the page, then the same scene is very responsive; he has noticed that a lot. Is there a memory or resource leak when we change settings, or backgrounds, or something else?",
    "source": "Matthew, 2026-10-16, in chat",
    "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
    "log": [
@@ -451,10 +451,8 @@
     }
    ],
    "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "progress": "16:43: 0.0.86's 🧪 ends with the empty room after the pond (passes 11, 12): headless Chrome stays at 60 fps there, so the leak, if it is one, is Firefox's. NEXT: his black-laptop line; if roomAfter is slow, count live SMIL animations / document.getAnimations() after the pond in Firefox. | 17:02: 0.0.86's passes 11-12 on both of Matthew's devices: the empty room after the pond runs 59 (black laptop, Firefox) and 60 (iPad, Safari), with music too. The slowdown did not come back by 🧪's route (it changes place in code, not through the menu or a doorway). Matthew's call: close as not reproduced, or try his route on the black laptop once more. | 19:29: both devices on 0.0.92: the empty room after the pond 57-59 (black laptop), 60 (iPad). Not reproduced; recommend closing, his call.",
+   "tags": [],
+   "progress": "16:43: 0.0.86's 🧪 ends with the empty room after the pond (passes 11, 12): headless Chrome stays at 60 fps there, so the leak, if it is one, is Firefox's. NEXT: his black-laptop line; if roomAfter is slow, count live SMIL animations / document.getAnimations() after the pond in Firefox. | 17:02: 0.0.86's passes 11-12 on both of Matthew's devices: the empty room after the pond runs 59 (black laptop, Firefox) and 60 (iPad, Safari), with music too. The slowdown did not come back by 🧪's route (it changes place in code, not through the menu or a doorway). Matthew's call: close as not reproduced, or try his route on the black laptop once more. | 19:29: both devices on 0.0.92: the empty room after the pond 57-59 (black laptop), 60 (iPad). Not reproduced; recommend closing, his call. | 20:45: measuring. Chrome (leak167.mjs, his friend through 📂 Load, fresh / after 2 rounds of changes: every place, a gate trip, a pit, a ladder, 60 slider changes, the tabs / after a reload): 60 fps throughout; nothing per frame grows (page elements, listeners, timers, Web Animations, SMIL); JS heap 6.5 -> 74 MB with the changes (PARTS memo, capped at 400 entries); one extra rAF loop: ⚙️ Advanced's meter, never stopped. Headless Firefox (leakff.py): 60 -> 58.8 -> 51.6 -> 43.1 fps over 3 rounds of changes, the drawing itself 1.2-1.7 ms; but right after a reload 24 (and a control run, only swimming, was noisy: the choppy mark and warm-up interfered). Now: changes vs only swimming, never held still, warm-up before each measure, CPU heat logged.",
    "waiting": "Waiting on Matthew's 🧪 run on the black laptop (no hurry): Dress Up 0.0.86 is live; ⚙️ Advanced → 🧪 this computer's speed (about 40 s), then paste the line in the pad."
   },
   {
@@ -581,8 +579,8 @@
   }
  ],
  "next_ticket": 177,
- "current_ticket": null,
- "current_note": "20:30: Matthew tried 0.0.94 and the earlier ones: 'all really nice now'; 173, 174, 147, 149, 162, 145 closed. ^ticket(176) minted for 149's remainder (objects and flat rooms' walls), first in the queue.",
+ "current_ticket": 167,
+ "current_note": "20:45: ^ticket(167): the pond slow until a reload on Matthew's laptop. Reproducing in headless Firefox (changes vs a control), heat logged.",
  "closed_tickets": [
   {
    "id": 149,
@@ -4598,12 +4596,12 @@
   }
  ],
  "queue": [
+  167,
   176,
   156,
   160,
   165,
   166,
-  167,
   164,
   18,
   102,
@@ -4614,5 +4612,5 @@
   15,
   19
  ],
- "current_since": "2026-10-16T19:52-06:00"
+ "current_since": "2026-10-16T20:45-06:00"
 }
