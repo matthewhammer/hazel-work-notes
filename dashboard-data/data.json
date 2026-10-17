@@ -540,25 +540,6 @@
    "progress": "11:00: minted from ^du_report(3)'s step 3, on publishing it; queued."
   },
   {
-   "id": 208,
-   "area": "dress up, world designer",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T12:39-06:00",
-   "source": "Matthew, 2026-10-17, in chat, with a screenshot of the witch's woods",
-   "text": "<b>Dress Up: the nav arrows shown at once overlap each other in the corners</b>. Matthew: \"the nav arrows that appear often overlap each other in the corners, like SE corner of this picture\" (the witch's woods, the friend at the right: the arrow to the forest crossing C3 and the one to the beach drawn over each other, their words unreadable).",
-   "tags": [],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T12:39-06:00",
-     "from": "matthew",
-     "chars": 95,
-     "asks": true
-    }
-   ],
-   "progress": "12:39: minted; next. | 12:51: laptop powered off at 12:41 for a move (a clean poweroff, not a crash); servers 8000 + 8133 back. Fix a52aac0 (world-185, not pushed there; on checks-185 under the diagnostic 4f3ae25): an arrow on a side slides along its edge, away from the other. GitHub run 39059115047: with the fix, 0 of 64 spots overlap at all three sizes; but the control (the fix turned off) ALSO found 0, so tools/checks/arrows208.mjs does not see what Matthew saw yet. Next: make it find the witch's woods' SE corner (the arrows to C3 and to the beach) without the fix, then rerun."
-  },
-  {
    "id": 209,
    "area": "dress up, performance, releases",
    "added": "2026-10-17",
@@ -685,9 +666,39 @@
   }
  ],
  "next_ticket": 215,
- "current_ticket": 208,
- "current_note": "13:10: FIXED and checked on GitHub (run 39060840646): his witch's woods 34/34 spots overlapping with the fix off, 0 with it on, at five sizes; every way open in 16 places, 0. 0.0.131 prepared on main locally (merge of world-185, not pushed); waiting on one more run of the before/after pictures (the first pictures ran with the fix left off by the before shot), then release.",
+ "current_ticket": 209,
+ "current_note": "13:16: started: first a free noise reading, 0.0.131's speed run compares its fumes with 0.0.130's (the same fumes code), then the same-runner A/B of 0.0.130 vs 0.0.129 a few times over.",
  "closed_tickets": [
+  {
+   "id": 208,
+   "area": "dress up, world designer",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T12:39-06:00",
+   "source": "Matthew, 2026-10-17, in chat, with a screenshot of the witch's woods",
+   "text": "<b>Dress Up: the nav arrows shown at once overlap each other in the corners</b>. Matthew: \"the nav arrows that appear often overlap each other in the corners, like SE corner of this picture\" (the witch's woods, the friend at the right: the arrow to the forest crossing C3 and the one to the beach drawn over each other, their words unreadable).",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T12:39-06:00",
+     "from": "matthew",
+     "chars": 95,
+     "asks": true
+    }
+   ],
+   "progress": "12:39: minted; next. | 12:51: laptop powered off at 12:41 for a move (a clean poweroff, not a crash); servers 8000 + 8133 back. Fix a52aac0 (world-185, not pushed there; on checks-185 under the diagnostic 4f3ae25): an arrow on a side slides along its edge, away from the other. GitHub run 39059115047: with the fix, 0 of 64 spots overlap at all three sizes; but the control (the fix turned off) ALSO found 0, so tools/checks/arrows208.mjs does not see what Matthew saw yet. Next: make it find the witch's woods' SE corner (the arrows to C3 and to the beach) without the fix, then rerun.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T13:16-06:00",
+   "outcome": "Released in Dress Up 0.0.131 (main 6a7a289, tag dress-up-0.0.131, live): way arrows shown together are kept apart; where two would overlap, one on a side (E, W) slides up or down its edge, one at the top or bottom or a corner slides across, each measured as its triangle turned to its angle plus its 5px bob, and its words (25-world.js waysApart; a52aac0, 37fe23f). The first check could not see the bug (the first world has no square with E beside SE); tools/checks/arrows208.mjs now stands the friend in his witch's woods with ways E and SE, and in every kind of place with every way open, at five sizes, full screen too: with the fix off 34 of 34 spots in his woods overlap, with it on 0, and 0 of 825 spots a size with every way open (GitHub run 39060840646; pictures run 39061276912). 0.0.131's speed run follows on its tag.",
+   "metrics": {
+    "open_minutes": 38,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 95,
+    "tokens_est": 23,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 207,
    "area": "dress up",
@@ -6095,7 +6106,6 @@
   }
  ],
  "queue": [
-  208,
   209,
   184,
   198,
