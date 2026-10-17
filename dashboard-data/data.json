@@ -739,9 +739,18 @@
    "source": "Matthew, 2026-10-17, in chat",
    "url": "",
    "text": "<b>Dress Up: a ♿ toggle, walk where you click: a glowing circle on walkable ground under the pointer, and a click walks there.</b> Matthew: \"mint and enqueue --- accessibility toggle, and walk to click feature. When enabled, we show a glowing circle of some custom color over any area on the ground that's 'walkable' when the cursor is over it. When clicked, we plan a path to that point, and execute the path plan.\" To do: in ♿ Accessibility, a toggle (and its colour, as the other overlays have); while on, the pointer over the floor where the friend can stand (inside the place's floor and limits, not in a solid or a pit) shows a glowing circle there, in perspective; a click plans the path there (planPath, round what stands in the way) and walks it (walkInto's walk, or walkTo), the planned path shown when 👣 is on; a click on a passage, the friend or a thing keeps doing what it does now."
+  },
+  {
+   "id": 252,
+   "area": "dress up, tree house, castle, ladders, pits",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T17:22-06:00",
+   "source": "Matthew, 2026-10-17, in chat (\"after 243 and 241 -- please mint and enqueue\")",
+   "url": "",
+   "text": "<b>Dress Up: climbing up through a trapdoor or out of a pit, the friend is cut off at the opening (no fade); and each trapdoor's and pit's opening a choice of shape: triangle, square, circle.</b> Matthew: \"the trapdoor-stairs in the tree house animate very nicely now, on the floor. But the ones going up still do not clip the character right, and we instead use a fade away, which doesn't look as nice. Let's fix that, and at the same time, the way up the pits by ladder, which has the same issue. Finally, in this ticket, can we offer a chance, for each tree-house trap door (defined by two houses, stacked) we get to choose the opening: * triangle * square (current image) * circle (like the pits in the castle). Same for the pits -- can we offer a chance to change the shape?\" To do: (1) up a tree room's ladder through the ceiling's hole, and up a dungeon's ladder out of its pit: the friend cut off at the opening's edge as they go up (as the climb down is since 0.0.167, ^ticket(238)), not faded; (2) a setting per trapdoor (per pair of stacked houses) and per pit: its opening ▲ triangle, ■ square (now), ● circle (as the castle's pits), drawn so in both rooms (the hatch in the floor above, the hole in the ceiling below), its solid (data-hole, ^ticket(237)) and its clip the same shape."
   }
  ],
- "next_ticket": 252,
+ "next_ticket": 253,
  "current_ticket": 242,
  "current_note": "17:19: 0.0.171 committed locally (06de375, not pushed): tree rooms' pictures hang clear of ladders, hatch and furniture (measured once per room); diagnostic 39078591455 with the six rooms, then the release",
  "closed_tickets": [
@@ -7218,6 +7227,7 @@
  "queue": [
   242,
   243,
+  252,
   244,
   245,
   246,
@@ -7226,7 +7236,6 @@
   249,
   250,
   251,
-  225,
   209,
   184,
   198,
@@ -7237,7 +7246,8 @@
   102,
   54,
   19,
-  166
+  166,
+  225
  ],
  "current_since": "2026-10-17T16:35-06:00"
 }
