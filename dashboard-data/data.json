@@ -651,15 +651,6 @@
    ]
   },
   {
-   "id": 240,
-   "area": "dress up, tree house, collisions, ♿",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T16:19-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "url": "",
-   "text": "<b>Dress Up: at the tree house, the swing's collision box swings with it, and so do the friend's while they swing.</b> Matthew: \"the swing's collision box does not swing at the tree house. our collision boxes don't swing either. I've noticed other animations do show the correct boxes (walking, climbing, running, etc)\". To do: the swing (a SMIL swinging part of the tree house's drawing) and the friend on it: their boxes (solidsHere, the ♿ 🧱 collision boxes overlay, the feet's and torso's boxes of ticket 214) follow the swing's angle as it moves, as the walk's and the climb's do; a check with pictures at the swing's two ends."
-  },
-  {
    "id": 241,
    "area": "dress up, tree house, collisions",
    "added": "2026-10-17",
@@ -751,9 +742,31 @@
   }
  ],
  "next_ticket": 251,
- "current_ticket": 240,
- "current_note": "16:55: 0.0.169 committed locally (8e2901a, not pushed): the swing's box and the friend's on it swing with it (♿ boxes), and walking meets the seat where it is; diagnostic 39076982207, then the release",
+ "current_ticket": 241,
+ "current_note": "17:04: 0.0.170 committed locally (9ba3cbe, not pushed): the tree house's trunk a solid, in bands, by its braid alone; diagnostic 39077550532, then the release",
  "closed_tickets": [
+  {
+   "id": 240,
+   "area": "dress up, tree house, collisions, ♿",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:19-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: at the tree house, the swing's collision box swings with it, and so do the friend's while they swing.</b> Matthew: \"the swing's collision box does not swing at the tree house. our collision boxes don't swing either. I've noticed other animations do show the correct boxes (walking, climbing, running, etc)\". To do: the swing (a SMIL swinging part of the tree house's drawing) and the friend on it: their boxes (solidsHere, the ♿ 🧱 collision boxes overlay, the feet's and torso's boxes of ticket 214) follow the swing's angle as it moves, as the walk's and the climb's do; a check with pictures at the swing's two ends.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T17:03-06:00",
+   "outcome": "Released in 0.0.169 (live): swingNow() reads the tree house's swing from its seat's group (data-swing-seat; the SMIL turn is in the screen matrix): angle, hook, the seat's offset; solidAt meets the swing's box where the seat is; swingHud (its own loop while ♿ boxes show there) turns the swing's box about the hook, and the friend's boxes while they sit on it. swing240.mjs (new) all ok (run 39077339908); a picture at an end of the swing, the friend sitting, both boxes swung out (~/du-shots/runs/240).",
+   "metrics": {
+    "open_minutes": 44,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 22.0
+   }
+  },
   {
    "id": 239,
    "area": "dress up, tree house, walking, doors",
@@ -7181,7 +7194,6 @@
   }
  ],
  "queue": [
-  240,
   241,
   242,
   243,
