@@ -26,7 +26,7 @@
 <body>
 <main>
 <h1>Night of 10-16: no browser on the laptop, GitHub's computers instead</h1>
-<p class="sub">2026-10-16 21:00 to 2026-10-17 01:10 MDT, Claude, while Matthew was away and then asleep. No crash since the 20:53 freeze.</p>
+<p class="sub">2026-10-16 21:00 to 2026-10-17 00:50 MDT, Claude, while Matthew was away and then asleep. No crash since the 20:53 freeze.</p>
 
 <h2 id="rule">The rule tonight</h2>
 <ul>
@@ -44,7 +44,7 @@
 
 <h2 id="hazel">Hazel</h2>
 <ul>
-<li><b><a href="https://matthewhammer.org/hazel/dashboard/#ticket-156"><code class="ref"><b>^ticket(</b>156<b>)</b></code></a>, the trial merge of <a href="https://github.com/hazelgrove/hazel/pull/2469">#2469</a> into <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a></b> (<code>trial/2635-up-to-date</code>, <code>9e7258b55b</code>): its 11 new CI failures are fixed. Key.mk read an optional tagName; OutlineRename's module path; and two places where <a href="https://github.com/hazelgrove/hazel/pull/2469">#2469</a>'s cell code had never met <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a>'s syntax: a run of <code>hint "…" test … end</code> tests (the mvu docs) and a <code>do x &lt;- e in</code> block (splice-row.hz). Fast checks now fail only on the 10 expected tests (DefStaticsParity per member, Editing.TableDecorations). Full tests were still running at 01:10.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/#ticket-156"><code class="ref"><b>^ticket(</b>156<b>)</b></code></a>, the trial merge of <a href="https://github.com/hazelgrove/hazel/pull/2469">#2469</a> into <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a></b> (<code>trial/2635-up-to-date</code>, <code>9e7258b55b</code>): its 11 new CI failures are fixed. Key.mk read an optional tagName; OutlineRename's module path; and two places where <a href="https://github.com/hazelgrove/hazel/pull/2469">#2469</a>'s cell code had never met <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a>'s syntax: a run of <code>hint "…" test … end</code> tests (the mvu docs) and a <code>do x &lt;- e in</code> block (splice-row.hz). Fast checks now fail only on the 10 expected tests (DefStaticsParity per member, Editing.TableDecorations). Full tests were still running at 00:50.</li>
 <li><b><a href="https://matthewhammer.org/hazel/dashboard/#ticket-18"><code class="ref"><b>^ticket(</b>18<b>)</b></code></a>, views in the worker, coded</b> with Matthew's defaults (<code>perf/2635-views-in-worker-costly</code>, <code>ee885708ac</code>, pushed for CI, no PR): only the costly livelit views (8 ms or more on the page) on the screen run in the worker. The tests pass; nothing is measured yet, as that needs a browser.</li>
 </ul>
 

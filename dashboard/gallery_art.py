@@ -185,7 +185,7 @@ def morning_1014():
 
 def night_1016():
     stars = "".join(f'<path d="M{x} {y-3} v6 M{x-3} {y} h6" stroke-width="0.9"/>' for x, y in ((60, 22), (88, 36), (140, 18), (214, 30), (30, 46)))
-    return plate("i0110", "the laptop asleep under a moon with no browser, while a cloud of GitHub's computers sends down pictures and a ladder", (
+    return plate("i0050", "the laptop asleep under a moon with no browser, while a cloud of GitHub's computers sends down pictures and a ladder", (
         f'<rect x="10" y="10" width="220" height="130" fill="#L" stroke="none" opacity="0.5"/>' + stars +
         # the moon
         f'<path d="M40 16 a14 14 0 1 0 14 22 a11 11 0 1 1 -14 -22 z" fill="{OCHRE}"/>'
@@ -207,7 +207,7 @@ def night_1016():
         + doll(203, 106, 0.55, f"{OX}", "climb", back=True)))
 
 ART = {
-    "work-notes/2026/10/17/2026-10-17T0110-0600.html": night_1016,
+    "work-notes/2026/10/17/2026-10-17T0050-0600.html": night_1016,
     "work-notes/2026/10/16/2026-10-16T1810-0600.html": evening_1016,
     "work-notes/2026/10/16/2026-10-16T1035-0600.html": late_morning_1016,
     "work-notes/2026/10/16/2026-10-16T0905-0600.html": morning_1016,
