@@ -610,61 +610,6 @@
    ]
   },
   {
-   "id": 214,
-   "area": "dress up, places, world designer, walking",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T13:07-06:00",
-   "source": "Matthew, 2026-10-17, in chat (\"related, and maybe with the composibility rule and new open water refinements\")",
-   "url": "",
-   "text": "<b>Dress Up: audit every background so the horizon or back wall stops the friend, and running into any edge (N, E, S, W or a diagonal) takes the passage that way.</b> Matthew: \"audit every background option and check that the horizon triggers some action, at least a collision. It's possible that on many scenes, that collision should also make the N nav arrow appear, and trigger it automatically.\" Check that one \"cannot 'walk up the back wall' or 'walk up the sky in the background'\", and \"where it makes sense, walking N triggers the nav N action\". Where it stands (read from the code, 2026-10-17): only the indoor rooms have a back the feet stop at (SCENE_BACK: the imagination, the empty room, the castle rooms but the spiral stair's, the living room, the tree house rooms, the witch's and healer's huts, the tent; tickets 145, 149, 176). Every outdoor place falls back to figYMin's frame limit, 60% of the way from the ground up to the picture's top, so the friend can walk well up into the sky. To do: for every place and its options (room styles, the castle's rooms, the tree house's, the open water's coming shore), a back limit at its horizon or wall foot as drawn (the controller, a drag and the place control all keeping to it), and where a square has a way N (and, perhaps, in a place whose far edge leads somewhere), reaching that limit shows the N arrow and takes it, as reaching a side does now. A check on GitHub walks N in each. The open water's own audit is part 4 of ^ticket(212). Related: the composable layers and the no-promises rule of ^ticket(212) (a backdrop layer knows where its horizon is). AMENDED (Matthew, 2026-10-17): \"all collision directions that correspond to: edge of the N 'back wall' (or horizon); E, S or W edges of the screen; Or their diagonals, to trigger the enter passage action\". So every edge counts, not only N: meeting the back wall or horizon (N), the picture's E, S or W edge, or a corner where two meet (NE, NW, SE, SW), takes the passage that way when there is one (the nav arrow's way, as enterScene does); the check walks into each of the eight in each place. Matthew, later, with a screenshot of the forest path, the collision boxes shown: \"let's audit each scene -- that blue dashed line, which I assume is a North boundary, seems off in this scene --- forest path -- -is it also wrong in other scenes?\" Yes: the dashed line is the back limit (figYMin), and every outdoor place still has the frame's stand-in (60% of the way from the ground up to the picture's top), in the forest path up among the tree trunks. WIDENED (Matthew, with screenshots of the forest path, collision boxes shown): \"the sign post and trees each have a box that looks misaligned\", \"some mushrooms look right (the ones on the right hand side) and the ones of the left also look off too, like the trees\", \"let's do a full audit of each scene, in terms of these collision detection layers\". So: every place's layers, each looked at: the solids (each thing's box where it stands, none missing), a castle room's walls, and the back limit; then put right, by kind of fault. First fault, released in 0.0.147: a tree's or a post's box was the middle of its whole drawing (a canopy spreading to one side, a signpost's boards off its post); now its trunk or post. Matthew: \"the horz blue line in each scene is wrong, and always too high -- it doesn't correspond with where we'd walk or run -- we'd need to fly.\" AUDIT (0.0.147's pictures of all 28 places): the back limit was the stand-in, 309 units up, in all 19 outdoor places; the indoor rooms' right. Boxes: trees and posts fixed in 0.0.147; the witch's cauldron's box face reaching up through its fumes; the living room's plant box as wide as its leaves; the forest path's edge trees' boxes off their trunks; two small mushrooms there with none. RELEASED 0.0.149: each outdoor place's limit at its ground's far edge (SCENE_FAR), the far arrows at it, and pushing into an edge or the back limit takes the way out (his amendment).",
-   "tags": [],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T13:07-06:00",
-     "from": "matthew",
-     "chars": 504,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T13:45-06:00",
-     "from": "matthew",
-     "chars": 199,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T14:50-06:00",
-     "from": "matthew",
-     "chars": 162,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T14:54-06:00",
-     "from": "matthew",
-     "chars": 62,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T14:54-06:00",
-     "from": "matthew",
-     "chars": 119,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T14:54-06:00",
-     "from": "matthew",
-     "chars": 82,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T15:00-06:00",
-     "from": "matthew",
-     "chars": 136,
-     "asks": true
-    }
-   ]
-  },
-  {
    "id": 222,
    "area": "dress up, performance, releases",
    "added": "2026-10-17",
@@ -764,12 +709,133 @@
    "source": "Matthew, 2026-10-17, in chat",
    "url": "",
    "text": "<b>Dress Up: the tree house's trunk (outside) is solid: the friend walks round it, and ♿'s collision boxes show it.</b> Matthew: \"there's no collision info for the outside tree house tree trunk system\". To do: the braided trunk and its roots (and the other parts of the tree a friend could walk into: the ladders' feet stay reachable) as solids in solidsHere at their foot's depth, sized by the tree's size setting, as other places' trunks are since 0.0.153 (\"trunks as five stacked boxes\"); shown by 🧱 collision boxes; a check walks into it. Next to ^ticket(240) (the swing's boxes)."
+  },
+  {
+   "id": 242,
+   "area": "dress up, tree house, pictures, ladders",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:29-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: no picture on a tree house room's wall behind a ladder or other furniture.</b> Matthew: \"let's not place any pictures in the tree house behind any ladders, or other furniture. For ladders esp, we can easily click on the picture when we meant the ladder, or vice versa -- best just to separate them on the screen more.\" To do: each tree room's pictures placed only where nothing stands in front of them (its ladders and trapdoor ladders first, then the furniture), with room between a picture and a ladder on the screen so a tap means one or the other; a check that every room at every setting keeps them apart."
+  },
+  {
+   "id": 243,
+   "area": "dress up, tree house, collisions",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:29-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: the tree's trunk in a tree house room (as in room 4's NE corner) has a tighter collision shape, in more segments.</b> Matthew, with a picture of room 4 (🐰 4, the telescope, ♿ 🧱 collision boxes on): \"need more segments for this feature of this tree house room (NE corner) -- the tree's box is too big.\" In the picture the \"tree trunk\" box spans the whole corner, from the wall's foot out over the floor, far wider than the trunk. To do: the trunk as stacked boxes following its shape (as the outdoor trunks since 0.0.153), so the friend can stand beside it, and its box in 🧱 shows that."
+  },
+  {
+   "id": 244,
+   "area": "dress up, tree house, signs",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:29-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: each tree house's sign has a small map of the tree house under its number, the house you are in marked.</b> Matthew: \"Each tree house in the complex has a sign saying its number and type. Below that, on that sign, let's include a graphic that serves as a map for the person in the room -- it looks like the treehouse, but in a few dark colors (not colorful) and maybe even reuses some of the tree house drawing logic. The sign indicates, with a bright white circle, which of the 6 possible houses in the map graphic is the current house.\" To do: under the number and type on each room's sign, the tree house drawn small in a few dark colours (from the tree house's own drawing, as connected views share settings), its houses where they are, a bright white circle on this one."
+  },
+  {
+   "id": 245,
+   "area": "dress up, tree house, walking, collisions",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:29-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: walking across the tree house's rope bridges, outside, at the right size, on the bridge's curved path only.</b> Matthew: \"mint and enqueue -- some logic for walking across bridges, on the outside of the tree house, with the correct figure size, and collision boxes (and maybe other structures in that system we lack now) that indicate the curved path that's allowed -- it's very linear in this case, and no N/S is permitted, except to re-orient the pose.\" To do: on a bridge between two houses, the friend sized for its depth, walking along the bridge's sag (the curve), boxes (🧱) that show the allowed path, N/S only turning the pose; and the other parts of the tree house's outside a friend can stand on (platforms, ladders' tops) found and given the same."
+  },
+  {
+   "id": 246,
+   "area": "dress up, tree house, passages, walking",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:29-06:00",
+   "source": "Matthew, 2026-10-17, in chat (after ^ticket(245))",
+   "url": "",
+   "text": "<b>Dress Up: through a tree house room's door to a rope bridge, the friend goes outside and walks the bridge's curve to the house on the other side.</b> Matthew: \"once we have that logic --- we want a transition on bridges where a door passageway that leads to a bridge transitions outside of the treehouse, and lets the game player walk along that curved route, to the other side.\" Builds on ^ticket(245) (walking the bridges outside, on their curved path). To do: a room's bridge door, taken, leaves the room for the tree house outside at that bridge's end; the friend walks (the player steering, N/S only turning) along the bridge's curve; at its far end, the other house's door takes them into that room."
+  },
+  {
+   "id": 247,
+   "area": "dress up, tree house, views",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:30-06:00",
+   "source": "Matthew, 2026-10-17, in chat (with ^ticket(245), ^ticket(246))",
+   "url": "",
+   "text": "<b>Dress Up: looking out a tree house room's bridge door, the view shows the house the bridge leads to.</b> Matthew: \"let's also enhance the picture we see out the doors of the tree house that are for bridges, so they resemble the target of the bridge, somehow.\" To do: the view through each bridge door drawn from the target house's own look (its animal, its colours, its style: houseLook; connected views share settings), at the bridge's far end, the bridge's planks leading to it."
   }
  ],
- "next_ticket": 242,
- "current_ticket": 214,
- "current_note": "16:22: 0.0.163 committed locally (91df78e, not pushed): big ♿ arrows kept apart (a last step in waysApart), passages187 measures each spot again (the far views were the check's, not the game's: X takes them in play); diagnostic run checks-214b on GitHub, then the release",
+ "next_ticket": 248,
+ "current_ticket": 225,
+ "current_note": "16:30: Matthew AFK (16:3x); working the queue in order, a release per ticket. On 225: its check aimed its taps at the doorway's whole box, which for a picture spills past the frame (taps fell off the page or on the wall): re-aimed at the box the game knows; diagnostic checks-225b running",
  "closed_tickets": [
+  {
+   "id": 214,
+   "area": "dress up, places, world designer, walking",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T13:07-06:00",
+   "source": "Matthew, 2026-10-17, in chat (\"related, and maybe with the composibility rule and new open water refinements\")",
+   "url": "",
+   "text": "<b>Dress Up: audit every background so the horizon or back wall stops the friend, and running into any edge (N, E, S, W or a diagonal) takes the passage that way.</b> Matthew: \"audit every background option and check that the horizon triggers some action, at least a collision. It's possible that on many scenes, that collision should also make the N nav arrow appear, and trigger it automatically.\" Check that one \"cannot 'walk up the back wall' or 'walk up the sky in the background'\", and \"where it makes sense, walking N triggers the nav N action\". Where it stands (read from the code, 2026-10-17): only the indoor rooms have a back the feet stop at (SCENE_BACK: the imagination, the empty room, the castle rooms but the spiral stair's, the living room, the tree house rooms, the witch's and healer's huts, the tent; tickets 145, 149, 176). Every outdoor place falls back to figYMin's frame limit, 60% of the way from the ground up to the picture's top, so the friend can walk well up into the sky. To do: for every place and its options (room styles, the castle's rooms, the tree house's, the open water's coming shore), a back limit at its horizon or wall foot as drawn (the controller, a drag and the place control all keeping to it), and where a square has a way N (and, perhaps, in a place whose far edge leads somewhere), reaching that limit shows the N arrow and takes it, as reaching a side does now. A check on GitHub walks N in each. The open water's own audit is part 4 of ^ticket(212). Related: the composable layers and the no-promises rule of ^ticket(212) (a backdrop layer knows where its horizon is). AMENDED (Matthew, 2026-10-17): \"all collision directions that correspond to: edge of the N 'back wall' (or horizon); E, S or W edges of the screen; Or their diagonals, to trigger the enter passage action\". So every edge counts, not only N: meeting the back wall or horizon (N), the picture's E, S or W edge, or a corner where two meet (NE, NW, SE, SW), takes the passage that way when there is one (the nav arrow's way, as enterScene does); the check walks into each of the eight in each place. Matthew, later, with a screenshot of the forest path, the collision boxes shown: \"let's audit each scene -- that blue dashed line, which I assume is a North boundary, seems off in this scene --- forest path -- -is it also wrong in other scenes?\" Yes: the dashed line is the back limit (figYMin), and every outdoor place still has the frame's stand-in (60% of the way from the ground up to the picture's top), in the forest path up among the tree trunks. WIDENED (Matthew, with screenshots of the forest path, collision boxes shown): \"the sign post and trees each have a box that looks misaligned\", \"some mushrooms look right (the ones on the right hand side) and the ones of the left also look off too, like the trees\", \"let's do a full audit of each scene, in terms of these collision detection layers\". So: every place's layers, each looked at: the solids (each thing's box where it stands, none missing), a castle room's walls, and the back limit; then put right, by kind of fault. First fault, released in 0.0.147: a tree's or a post's box was the middle of its whole drawing (a canopy spreading to one side, a signpost's boards off its post); now its trunk or post. Matthew: \"the horz blue line in each scene is wrong, and always too high -- it doesn't correspond with where we'd walk or run -- we'd need to fly.\" AUDIT (0.0.147's pictures of all 28 places): the back limit was the stand-in, 309 units up, in all 19 outdoor places; the indoor rooms' right. Boxes: trees and posts fixed in 0.0.147; the witch's cauldron's box face reaching up through its fumes; the living room's plant box as wide as its leaves; the forest path's edge trees' boxes off their trunks; two small mushrooms there with none. RELEASED 0.0.149: each outdoor place's limit at its ground's far edge (SCENE_FAR), the far arrows at it, and pushing into an edge or the back limit takes the way out (his amendment).",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T13:07-06:00",
+     "from": "matthew",
+     "chars": 504,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:45-06:00",
+     "from": "matthew",
+     "chars": 199,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T14:50-06:00",
+     "from": "matthew",
+     "chars": 162,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T14:54-06:00",
+     "from": "matthew",
+     "chars": 62,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T14:54-06:00",
+     "from": "matthew",
+     "chars": 119,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T14:54-06:00",
+     "from": "matthew",
+     "chars": 82,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T15:00-06:00",
+     "from": "matthew",
+     "chars": 136,
+     "asks": true
+    }
+   ],
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T16:29-06:00",
+   "outcome": "Done across 0.0.149-0.0.163: every outdoor place's back limit at its ground's far edge, the edges (and corners, 0.0.151) taking the way out that way (0.0.149); collision boxes under each foot and the torso (0.0.150), solid while walking (0.0.152), by height with trunks as stacked boxes (0.0.153); walks round what they start or end beside (0.0.156); the trap room's pits as obstacles (0.0.157); far passages past the back limit in reach (0.0.159). 0.0.163 (05f864b, tag dress-up-0.0.163): big ♿ arrows no longer cover each other (a last step in waysApart: a side's arrow still over another goes to the nearest free place along its edge; GitHub run 39074795680: twice-size arrows, arrows208, world185, nav199 all ok); passages187's far-view failure was the check's (it judged the instant the feet were put down; the game, a moment later, has the castle and tree house as X's), and access217's path test looked for the retired ▼. The open water's own audit stays with ^ticket(212).",
+   "metrics": {
+    "open_minutes": 203,
+    "matthew_messages": 7,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1264,
+    "tokens_est": 316,
+    "sync_minutes_est": 10.0,
+    "work_minutes": 25.0
+   }
+  },
   {
    "id": 223,
    "area": "dress up, depth, castle rooms, tree house",
@@ -7020,7 +7086,6 @@
   }
  ],
  "queue": [
-  214,
   225,
   232,
   235,
@@ -7029,6 +7094,12 @@
   239,
   240,
   241,
+  242,
+  243,
+  244,
+  245,
+  246,
+  247,
   209,
   184,
   198,
@@ -7041,5 +7112,5 @@
   19,
   166
  ],
- "current_since": "2026-10-17T16:18-06:00"
+ "current_since": "2026-10-17T16:30-06:00"
 }
