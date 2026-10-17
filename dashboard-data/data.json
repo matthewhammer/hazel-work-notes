@@ -741,9 +741,18 @@
    "source": "Matthew, 2026-10-17, in chat (the other half of ^ticket(234))",
    "url": "",
    "text": "<b>Dress Up: a school of fish in the deep sea that is animated well, to bring the feature back.</b> Matthew: \"the animation for the school of fish in deep sea is really bad -- let's drop that feature of the background until we can animate a school of fish better.\" The dropped one: nine fish as ellipses, all sliding together round one 3.2 s loop of translations (no turning to face where they go, no fish of their own). Within 60 fps (the first rule)."
+  },
+  {
+   "id": 236,
+   "area": "dress up, CI, accessibility, testing",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:14-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: every CI test runs with the ♿ accessibility features on.</b> Matthew: \"add to performance tests that we do in CI: Turn on the accessibility features during all tests, because: * we want them to always work. * the screenshots may be more informative.\" To do: in the CI runs (dress-up-tests.yml on branches, dress-up-speed.yml after a release: the checks, the pictures in shots.json, the frame-rate gate and its slow scenes, the audit, the leak tests), the page starts with every ♿ overlay on (state.access: 🧭 all arrows, 👣 planned path, the collision boxes, and the rest), one shared switch so each tool need not set it; the gate's numbers then include the overlays' cost, so compare its first run against the last one without them, and say so in speed.json or the run's summary; checks that count elements or read colours may need to know."
   }
  ],
- "next_ticket": 236,
+ "next_ticket": 237,
  "current_ticket": 233,
  "current_note": "16:11: 0.0.162 committed locally (6f383a0, not pushed): old link signs gone, rooms' ways toward us are nav arrows and may lead nowhere; diagnostic run checks-233 on GitHub (southways233 + the 5 checks it touches + pictures), then the release",
  "closed_tickets": [
@@ -6940,6 +6949,7 @@
   225,
   232,
   235,
+  236,
   160,
   18,
   102,
