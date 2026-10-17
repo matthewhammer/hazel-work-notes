@@ -651,15 +651,6 @@
    ]
   },
   {
-   "id": 237,
-   "area": "dress up, tree house, collisions",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T16:16-06:00",
-   "source": "Matthew, 2026-10-17, in chat, after 0.0.161 (the square tree rooms of 0.0.158)",
-   "url": "",
-   "text": "<b>Dress Up: a walk in a tree house room goes round its trapdoors, never over them.</b> Matthew: \"collision detection should avoid walking over the trap doors in the floor of the tree houses. otherwise, the new tree house interiors look good\". To do: each tree room's trapdoors (the holes to the room below) count in the walk's planning as the trap room's pits do since 0.0.157 (planPath goes round them; ticket 214), while a walk to the trapdoor's own ladder, and climbing down it, still work; a check in tools/checks/."
-  },
-  {
    "id": 238,
    "area": "dress up, tree house, layering, ladders",
    "added": "2026-10-17",
@@ -748,12 +739,43 @@
    "source": "Matthew, 2026-10-17, in chat (with ^ticket(245), ^ticket(246))",
    "url": "",
    "text": "<b>Dress Up: looking out a tree house room's bridge door, the view shows the house the bridge leads to.</b> Matthew: \"let's also enhance the picture we see out the doors of the tree house that are for bridges, so they resemble the target of the bridge, somehow.\" To do: the view through each bridge door drawn from the target house's own look (its animal, its colours, its style: houseLook; connected views share settings), at the bridge's far end, the bridge's planks leading to it."
+  },
+  {
+   "id": 248,
+   "area": "dress up, collisions, jumping",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:44-06:00",
+   "source": "found by collide176 in the diagnostic run 39075912049 (0.0.166), Matthew AFK",
+   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39075912049",
+   "text": "<b>Dress Up: a high jump over a small far thing can land inside it and stay stuck there.</b> collide176, since 0.0.162 took away the path through the woods' signpost (so the check now picks this one): \"mushroom, right inner\" 206..232 at depth 340..351, height 22; from x 146, holding ➡️ with a high jump for 2.2 s, the friend lands at x 230, inside its box, and is still there (a 2-unit miss; elsewhere high jumps carry 100-200 units). Two things to look at: how far a jump carries at a far depth (the floor's perspective slows it), and why, having landed inside a solid, walking on out of it (not deeper) didn't move them. Then collide176 passes again."
   }
  ],
- "next_ticket": 248,
- "current_ticket": 237,
- "current_note": "16:38: 0.0.166 committed locally (6ca96ed, not pushed): the tree rooms' trapdoor holes are solids (walks go round, feet stop at the edge, ♿ boxes show it); diagnostic 39075912049 on GitHub before the release",
+ "next_ticket": 249,
+ "current_ticket": 238,
+ "current_note": "16:45: AFK run: 237 done (0.0.166). On 238: the trapdoor ladder's climb down, the friend drawn in front of the ladder and the flap and sinking into the hole",
  "closed_tickets": [
+  {
+   "id": 237,
+   "area": "dress up, tree house, collisions",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:16-06:00",
+   "source": "Matthew, 2026-10-17, in chat, after 0.0.161 (the square tree rooms of 0.0.158)",
+   "url": "",
+   "text": "<b>Dress Up: a walk in a tree house room goes round its trapdoors, never over them.</b> Matthew: \"collision detection should avoid walking over the trap doors in the floor of the tree houses. otherwise, the new tree house interiors look good\". To do: each tree room's trapdoors (the holes to the room below) count in the walk's planning as the trap room's pits do since 0.0.157 (planPath goes round them; ticket 214), while a walk to the trapdoor's own ladder, and climbing down it, still work; a check in tools/checks/.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T16:45-06:00",
+   "outcome": "Released in 0.0.166 (e6f8320, live): each tree room's trapdoor marks its hole (data-hole) and holesHere adds it to solidsHere as \"trapdoor\" (HOLE_H 30): the feet stop at its edge, planPath goes round it, a jump clears it, ♿ 🧱 shows it; its ladder down still taken from the near edge. trapdoor237.mjs (new) all ok, nav199's and treehouse216's trapdoor climbs ok, passages187 now all ok (diagnostic run 39075912049). collide176's woodpath high-jump failure there is unrelated: ^ticket(248).",
+   "metrics": {
+    "open_minutes": 29,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 16.0
+   }
+  },
   {
    "id": 235,
    "area": "dress up, deep sea, animation",
@@ -7115,7 +7137,6 @@
   }
  ],
  "queue": [
-  237,
   238,
   239,
   240,
@@ -7126,6 +7147,7 @@
   245,
   246,
   247,
+  248,
   225,
   209,
   184,
