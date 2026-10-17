@@ -663,9 +663,47 @@
      "asks": true
     }
    ]
+  },
+  {
+   "id": 215,
+   "area": "dress up, walking, passages",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T13:23-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: path planning to a passage, something very simple for now.</b> Matthew: \"when the player clicks a picture, or another passageway, we should plan a path for walking, swimming or climbing to it, and do it in a natural way, avoiding obstacles in the room, and walking (or swimming) around them.\" Now: walkInto (ticket 147) walks the friend straight to the passage's foot, at most 2.5 s, and solidMove (ticket 149) only slides them along what they meet. To do, simply: a path around the place's solids (seats, the things that can't be walked through, tickets 149 and 176) and walls (castleWalls, SCENE_BACK), e.g. a few waypoints round each obstacle's corners in floor units and the shortest way through them; walked, or swum in deep water (ticket 199's swim), then climbed where the passage is a ladder (climbLadder). A check on GitHub: a click on a passage behind a seat ends at its foot without the feet ever inside a solid.",
+   "tags": [],
+   "status": "open",
+   "log": [
+    {
+     "at": "2026-10-17T13:23-06:00",
+     "from": "matthew",
+     "chars": 737,
+     "asks": true
+    }
+   ]
+  },
+  {
+   "id": 216,
+   "area": "dress up, tree house, passages",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T13:23-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: the tree house's trap door goes down the right way, clipped like the pits, and the tree house gets doors that open like the castle's.</b> Matthew, on the tree house trap door's way down: \"we trigger going 'down' the ladder by pressing up, and animating an upward climb; that's backwards.\"; \"for that hole, we should clip the body like the pit room, which looks really good.\"; and \"let's show doors on the treehouse, we can reuse the castle doors (or re-style them), but they open like the castle doors when we trigger them as a passage way, and we walk through them, like the castle.\" To do: (1) the trap door taken with ⬇ (down), not ⬆, and the climb drawn going down (anim and climb direction, ticket 199's trapdoor ladder); (2) the friend clipped at the hole's near rim as they go down, as the trap room's pits do (fallDown's clip, ticket 162); (3) doors on the tree house's doorways: the castle's (hallSideDoor, a data-door with a data-leaf and its data-open shape) or restyled in wood, swinging open as the passage is taken, and walked through (walkInto, ticket 147).",
+   "tags": [],
+   "status": "open",
+   "log": [
+    {
+     "at": "2026-10-17T13:23-06:00",
+     "from": "matthew",
+     "chars": 737,
+     "asks": true
+    }
+   ]
   }
  ],
- "next_ticket": 215,
+ "next_ticket": 217,
  "current_ticket": 209,
  "current_note": "13:17: fumes205 is itself a same-page A/B (0.0.129's fume code inside it, taking turns with the current); readings so far -7% (^ticket(205)'s branch run) and -16% (0.0.130's speed run). 0.0.131's speed run (39061694679, same fumes code) gives a third; waiting on it.",
  "closed_tickets": [
@@ -6110,6 +6148,8 @@
   184,
   198,
   210,
+  215,
+  216,
   160,
   18,
   102,
