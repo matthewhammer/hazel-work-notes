@@ -602,7 +602,12 @@
     }
    ],
    "progress": "09:49: minted and queued, not started. Defaults keep today's feel (PAD_SPEED; instant start and stop); the gate's walk cases must stay at 60 fps."
-  },
+  }
+ ],
+ "next_ticket": 187,
+ "current_ticket": 187,
+ "current_note": "09:56: Starting: one way through every passage (audit done: 180 passages; gaps in unmarked doorways, signs, covered passages, ladders' climb speed).",
+ "closed_tickets": [
   {
    "id": 189,
    "area": "dress up, world designer",
@@ -611,7 +616,7 @@
    "source": "M, through Matthew, 2026-10-17, in chat",
    "text": "<b>Dress Up: in World design, a square's ways out that lead off the map can't be turned on, and an off way that would put a warning right is starred.</b> Matthew, 2026-10-17: \"M found a way to improve the world design UX -- for each grid square, disable the arrows that point off the edge of the grid system, so there's no way to make that mistake. For other arrows that are off, but if turned on, would fix a warning could have an indication next to them when the warnings are shown, like a star or underline or some other highlight hinting that: this is off, but we could and maybe should consider putting it on.\" Then: \"do this as a new ticket, then 187\".",
    "tags": [],
-   "status": "open",
+   "status": "done",
    "log": [
     {
      "at": "2026-10-17T09:53-06:00",
@@ -620,13 +625,19 @@
      "asks": true
     }
    ],
-   "progress": "09:53: minted (Matthew: a new ticket, then ^ticket(187)). Written on world-185: worldOffMap disables a way off the map's edge (one on from before can still be turned off, outlined); worldWaysToTurnOn tries each off way and stars it (★, dashed outline) when on would leave fewer warnings, shown only with the warnings. Next: a check, GitHub, release."
-  }
- ],
- "next_ticket": 187,
- "current_ticket": 189,
- "current_note": "09:53: M's idea: ways off the map's edge can't be turned on; an off way that would fix a warning is starred. Written; checking on GitHub, then release, then ^ticket(187).",
- "closed_tickets": [
+   "progress": "09:53: minted (Matthew: a new ticket, then ^ticket(187)). Written on world-185: worldOffMap disables a way off the map's edge (one on from before can still be turned off, outlined); worldWaysToTurnOn tries each off way and stars it (★, dashed outline) when on would leave fewer warnings, shown only with the warnings. Next: a check, GitHub, release.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T09:56-06:00",
+   "outcome": "Released in 0.0.117 (live), checked on GitHub first (run 39047046365): in World design a square's ways out that lead off the map's edge are greyed and can't be turned on (one on from before can be turned off), and with the warnings shown an off way that would leave fewer warnings is starred ★ with a dashed outline. M's idea.",
+   "metrics": {
+    "open_minutes": 4,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 480,
+    "tokens_est": 120,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 185,
    "area": "dress up, world designer",
@@ -5359,7 +5370,6 @@
   }
  ],
  "queue": [
-  189,
   187,
   188,
   186,
