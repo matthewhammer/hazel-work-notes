@@ -546,7 +546,7 @@
      "asks": true
     }
    ],
-   "progress": "13:41: PARKED, moved to the end of the active queue (Matthew: \"put 209 and 184 last\"). Where it stands: fumes205 is itself a same-page A/B (0.0.129's fume code inside it, taking turns with the current); readings -7% (^ticket(205)'s branch run) and -16% (0.0.130's speed run, run 39056565230). Next: read 0.0.131's speed run (39061694679, the same fumes code) as a third reading; if the drop holds past the 10% bar, make the band cheaper (fewer moving parts: 255 against 0.0.129's 225 at 15 cauldrons)."
+   "progress": "13:41: PARKED, moved to the end of the active queue (Matthew: \"put 209 and 184 last\"). Where it stands: fumes205 is itself a same-page A/B (0.0.129's fume code inside it, taking turns with the current); readings -7% (^ticket(205)'s branch run) and -16% (0.0.130's speed run, run 39056565230). Next: read 0.0.131's speed run (39061694679, the same fumes code) as a third reading; if the drop holds past the 10% bar, make the band cheaper (fewer moving parts: 255 against 0.0.129's 225 at 15 cauldrons). | 13:54: third reading, 0.0.131's speed run (39061694679): 0.0.129's fumes 46.1 fps, the current 43.3 (-6%; passes the 10% bar). So -7%, -16%, -6%: the -16% looks like a noisy run, the drop about 6-7%, as ^ticket(205) measured. Next, when it comes up: decide whether 6-7% at 15 cauldrons is worth a cheaper band, or close it as within the bar."
   },
   {
    "id": 210,
@@ -821,9 +821,21 @@
      "asks": true
     }
    ]
+  },
+  {
+   "id": 222,
+   "area": "dress up, performance, releases",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T13:54-06:00",
+   "source": "0.0.131's speed run, read after release (^ticket(184): a slow result gets a ticket)",
+   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39061694679",
+   "text": "<b>Dress Up 0.0.131 marked 🐢 slow: two of the frame-rate gate's slow-computer cases under 55.</b> 💭 our imagination, drag: 53.3 fps (runs 53.3, 52.7, 54.3; first try 54.3, 52.3, 52.7), and 🌲 forest: 52, where 0.0.130's run read 60 for both. 0.0.131 changed only how nav arrows shown together are kept apart (^ticket(208)), arithmetic that runs only in a world square with two or more arrows shown; the imagination is not a world square (worldWaysAt is empty there and worldWaysHud returns at once), so its drag cannot have changed. Likely the runner flicker ^ticket(184) describes (the imagination's slow drag at 52.6 and 54.7 earlier on 10-17 with no change to it). Next: the gate's slow cases for 0.0.131's tag and 0.0.130's on the same runner, one after the other, a few times; if they match, the mark is noise and ^ticket(184)'s proposal (compare against the previous release on the same runner, fail only beyond the noise) is the fix.",
+   "tags": [],
+   "status": "open",
+   "log": []
   }
  ],
- "next_ticket": 222,
+ "next_ticket": 223,
  "current_ticket": 210,
  "current_note": "13:51: all six parts coded on branch fullscreen-210 (1f5fecb, kids-choice-games, not released): the grid fills its room, squares tinted by kind, thicker error/current outlines, World design full screen, both full screens compact (a slim bar, music as cards). Pictures running on GitHub (checks-210, f7e7ffd); then release.",
  "closed_tickets": [
@@ -6396,6 +6408,7 @@
   209,
   184,
   198,
+  222,
   160,
   18,
   102,
