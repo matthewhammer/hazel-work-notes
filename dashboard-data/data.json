@@ -217,7 +217,7 @@
    "live": [
     [
      "the dashboard, published",
-     "http://matthewhammer.org/hazel/work-dashboard/"
+     "https://matthewhammer.org/hazel/dashboard/"
     ],
     [
      "the dashboard, localhost:8000",
@@ -228,7 +228,7 @@
      "http://localhost:8000/notes/"
     ]
    ],
-   "note": "This page's code (<code>dashboard/</code>, run in place: <code>~/localhost-index</code> links to it), its history and <a href=\"https://github.com/matthewhammer/hazel-work-notes/blob/main/agent-instructions.md\">agent-instructions.md</a>. PUBLIC since 2026-10-13: its Pages site serves a copy of this page (noindex), redirected to from matthewhammer.org/hazel/work-dashboard/. Cron commits and pushes a snapshot, data.json and the public copy when the page changes; the code is committed by hand."
+   "note": "This page's code (<code>dashboard/</code>, run in place: <code>~/localhost-index</code> links to it), its history and <a href=\"https://github.com/matthewhammer/hazel-work-notes/blob/main/agent-instructions.md\">agent-instructions.md</a>. PUBLIC since 2026-10-13. Since 2026-10-16 (^ticket(181)) the public copy of this page (noindex) is at matthewhammer.org/hazel/dashboard/, in the homepage's repository: <code>site_publish.py</code> commits it there at most every ten minutes, without touching the homepage's checkout (so pull there before pushing). This repository's root and matthewhammer.org/hazel/work-dashboard/ redirect to it. Cron commits and pushes a snapshot and data.json here when the page changes; the code is committed by hand."
   },
   {
    "repo": "matthewhammer/hazel-performance-analysis",
@@ -1872,7 +1872,7 @@
    "opened": "2026-10-15T21:37-06:00",
    "text": "<b>A report on the performance PRs to dev: an executive summary and a merge plan.</b> Matthew, 2026-10-15 21:37: a report about the dashboard's set of performance PRs (https://matthewhammer.org/hazel-work-notes/#perf-prs: #2681, #2679, #2678, #2675, #2673, #2661, #2651, #2652, #2614, #2610, #2671, #2672, #2606, #2603, and the #2490 spike), giving an executive summary for Cyrus, or Alexander, or Andrew, or Matt K: for each PR, (1) why it is important (the savings in responsiveness, or memory, etc., with the measured numbers and where they come from), and (2) reasons not to merge it to dev ASAP, hopefully not too many, but honest and open, doing the work for them (conflicts with dev's head, tests and CI state, risks, what a reviewer should look at, what overlaps #2469). And a <b>merge plan</b> (Matthew, 21:38): an order, which can go together, what depends on what, and what each needs first. A draft in the performance series for his review; nothing posted to GitHub or published until he says. Tonight, after hours (🌙). <b>21:38, Matthew:</b> include a dependency graph of the PRs as a picture (which PR builds on, or conflicts with, which), and repeat the relevant plots from earlier reports where they show a PR's savings (with their sources).",
    "source": "Matthew, 2026-10-15",
-   "url": "https://matthewhammer.org/hazel-work-notes/#perf-prs",
+   "url": "https://matthewhammer.org/hazel/dashboard/#perf-prs",
    "tags": [
     "long run",
     "blocked on Matthew"
@@ -4394,7 +4394,7 @@
    "closed": "2026-10-13",
    "status": "done",
    "outcome": "hazel-work-notes is public; its Pages site serves a copy of the page and the closed tickets (noindex, a note, history links on GitHub), written by log_notes.py on each change. matthewhammer.org/hazel/work-dashboard/ redirects there, and the Hazel menu has a work-dashboard chip.",
-   "outcome_url": "http://matthewhammer.org/hazel/work-dashboard/"
+   "outcome_url": "https://matthewhammer.org/hazel/dashboard/"
   },
   {
    "id": 31,
