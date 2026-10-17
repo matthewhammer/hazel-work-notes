@@ -346,78 +346,6 @@
    "tags": []
   },
   {
-   "id": 145,
-   "area": "dress up, places",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T10:03-06:00",
-   "text": "<b>Dress Up: the imagination's pictures, reached on foot, and any picture entered from close by.</b> Matthew, 2026-10-16: in the 💭 imagination, each column of pictures has a ladder gently floating next to it (animated very slightly, and slowly); the friend can climb each ladder, walking, running or crawling to it. Whichever picture is near enough, and the closest of all those near, glows, and X (on his SNES-style controller) goes into it. The same for pictures in other places: close enough, X twirls the friend into the picture, as clicking it does now. (X is the button ^ticket(146) keeps free.)",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "log": [
-    {
-     "at": "2026-10-16T10:03-06:00",
-     "from": "matthew",
-     "chars": 560,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T10:28-06:00",
-     "from": "matthew",
-     "chars": 15,
-     "asks": true
-    }
-   ],
-   "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "progress": "11:21: LIVE as Dress Up 0.0.75 (bdc744f, tag dress-up-0.0.75; Pages green, live page and version.json checked in a fresh context). Six floating ladders (objects ladder 1-6), climbed by hand with a controller (up at a foot, down off), solid back wall, the nearest reachable picture glows in any place, X (enter) goes in. Checked: ~/du-shots/tools/ladders145.mjs; sweep vs 0.0.74 only the imagination (waterfall differs run to run in 0.0.74 itself). Work 11:11-11:22. Matthew's taught pad gets enter on L if free: re-teach (🎓) to put it on X. Waiting on Matthew to try it."
-  },
-  {
-   "id": 147,
-   "area": "dress up, places, game controller",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T10:05-06:00",
-   "text": "<b>Dress Up: doors that open, and walking through them.</b> Matthew, 2026-10-16: each castle door, the front door too, opens when the friend comes up to it and we press X. The same as ^ticket(145)'s pictures: whichever door or picture is closest gets the chance (it glows), and X goes in. For a door, it now swings open (by magic: no reaching for a handle yet) and the friend walks through, instead of the spin. The spinning trip is only for windows and pictures now, 'it's the most \"magical\" looking.'",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "log": [
-    {
-     "at": "2026-10-16T10:05-06:00",
-     "from": "matthew",
-     "chars": 420,
-     "asks": true
-    }
-   ],
-   "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "progress": "17:37: BUILT (0.0.88, gate running): doors are .portal[data-door] (castle wooden side doors with a swinging [data-leaf], archways, the dining room's far door, the hallway's far arch, the gate, the house's front door) and glow + X like pictures (marks.pics door: true); enterScene: flyInto (spin) only for portals with a view (pictures, windows), walkInto for any other: walk to the doorway's foot, the leaf swings (SMIL d to data-open, removed after), step in fading, fade in at ARRIVE facing us; signs at the foot walk out toward us; from a ladder's top, step + fade only. Checked pinned (~/du-shots/tools/door147.mjs): hallway door glows, X walks + swings + arrives, door shut again after; archways (spiral, trap) and the gate walk; a picture still spins; no page errors. | 17:39: Dress Up 0.0.88 LIVE (4d71449, tag dress-up-0.0.88); fps gate 12/12. Waiting on Matthew to try it (with the kids)."
-  },
-  {
-   "id": 149,
-   "area": "dress up, places, game controller",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T10:30-06:00",
-   "text": "<b>Dress Up: collisions: walls and things the friend can't walk through, and jumping over the small ones.</b> Matthew, 2026-10-16: collision detection for the back and side walls; for the objects in a room that one can't reasonably walk through, like a barrel one sits on; and for 'small objects' (small next to their legs at the time) the friend can clear them with a jump, short or high, depending on the geometry. The imagination room's back wall in particular should be solid, the way up being its ladders (that wall comes with ^ticket(145)). Builds on closed ^ticket(50), whose 'collision shape for the places it makes no sense to stand' was never built (it shipped seats only, 0.0.54): each place's floor bounds and each standing object's footprint (99's objects have a depth; they need a width and a height), checked as the friend moves (the controller, a drag), and a jump's height against an object's.",
-   "source": "Matthew, 2026-10-16, in chat",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "log": [
-    {
-     "at": "2026-10-16T10:30-06:00",
-     "from": "matthew",
-     "chars": 470,
-     "asks": true
-    }
-   ],
-   "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "progress": "17:45: FIRST STEP BUILT (0.0.89, gate running): castle rooms' back and side walls from roomFrame (castleWalls; SCENE_BACK.castleroom; not the spiral stair's room, whose doors are up the stairs); the place's seats solid (solidsHere from SEATS: x0..x1, from z back by half their height); solidMove for the controller's step and a drag (slide along; inside one already, let out); jumping clears a solid under half legReach (short) or under legReach (high); landing inside, solidUnstick. Checked pinned (~/du-shots/tools/collide149.mjs): walls in king/hallway/kitchen, a dining chair and a campsite log stopped and jumped, the couch stopped and too wide to jump; every door of all 12 castle room styles still reachable (door147.mjs passes). NOT YET: tables, beds, trees, rocks (standing objects have a depth, no footprint), the flat rooms' walls. | 17:52: Dress Up 0.0.89 LIVE (091f113, tag dress-up-0.0.89): gate 12/12, every gate walk and drag ending where it began. Waiting on Matthew to try it; the rest (tables, beds, trees, rocks; the flat rooms' walls) is the next step when he says."
-  },
-  {
    "id": 160,
    "area": "dress up, performance, touch, testing",
    "added": "2026-10-16",
@@ -438,28 +366,6 @@
     "long run"
    ],
    "progress": "17:02: the audit's first full run (42 cases x 3, headless Chromium, begun 16:47:00) crashed the laptop at once (journal ends 16:47:01; the <a href=\"http://matthewhammer.org/hazel-work-notes/crash-log.html\">crash log</a> has it). Tool: ~/du-shots/tools/audit160.mjs (its 2-place trial ran fine). Not rerun: a 15-20 min headless-Chrome run is the kind of job both of today's afternoon crashes came during. Next: Matthew's call whether, and how small (1 run a case, or a few places at a time). | 17:27: Matthew: \"audit tonight, last in long run queue\". Plan (his OK to pinned Chrome, 17:05): headless Chromium under taskset -c 0-3 nice -n 10, node under taskset -c 0-3, RUNS=1, batches of 6 cases with 20 s between (only=...): the 24 places; castleroom:king..cats; treeroom:1-6; then check the batches' case counts add up to the page's 42. OUT=~/du-shots/audit160/0.0.87-bN.json."
-  },
-  {
-   "id": 162,
-   "area": "dress up, castle, game controller, animation",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T14:41-06:00",
-   "text": "<b>Dress Up: falling into the castle's pits (N's).</b> From N, via Matthew, 2026-10-16: (1) the trap room's pits: the friend can fall into them, with more realistic motion than the spin used to go into a picture; (2) a falling animation, like climbing at first, tuned as we use it; (3) a landing animation, perhaps reusing part of jumping (the landing on bent knees); (4) each pit drops the friend into the dungeon room below it. <b>Regression test:</b> each pit works, the friend can climb back out (the dungeon's ladder up, ticket 137), and it all animates.",
-   "source": "N, via Matthew, 2026-10-16, in chat",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "log": [
-    {
-     "at": "2026-10-16T14:41-06:00",
-     "from": "matthew",
-     "chars": 480,
-     "asks": true
-    }
-   ],
-   "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "progress": "17:52: BUILT (0.0.90, gate running): pits carry data-pit (hole); walking onto one (not jumping) or landing a jump on one falls in (pitAt in padPoll and endJump); X/click/🚪 walk to its middle first. fallDown: anim 'fall' (arms flung up, held), a 250 ms teeter, then the figure sinks 600 ms ease-in clipped above the near rim; arriving, fallLand drops them in from above (input held), then the high jump's landing. Checked pinned (~/du-shots/tools/pit162.mjs): both pits -> rooms 4 and 5, landing seen, standing after, climbed back out to the trap room by the ladder; shots of the drop (1350-1800 ms) show the sink; no page errors. First try's drop never showed: the waving arms' own frames redrew the figure and threw the wrapper away; the pose is held now. | 17:57: Dress Up 0.0.90 LIVE (9958ca2, tag dress-up-0.0.90); gate 12/12 (castle walk A/B/A vs 0.0.89: 58.3 both). Waiting on Matthew (and N) to try it."
   },
   {
    "id": 164,
@@ -663,17 +569,161 @@
    ]
   },
   {
-   "id": 173,
-   "area": "dress up, ladders, animation",
+   "id": 176,
+   "area": "dress up, places, game controller",
    "added": "2026-10-16",
-   "opened": "2026-10-16T19:07-06:00",
-   "source": "Matthew, 2026-10-16, in chat, after trying 0.0.92",
+   "opened": "2026-10-16T20:30-06:00",
+   "source": "the rest of ^ticket(149) (Matthew, 2026-10-16), closed on its first step after he tried 0.0.94",
    "url": "",
-   "text": "Dress Up: clicking a ladder climbs it. Matthew, 2026-10-16: when he clicks on a ladder he likes how the friend walks to it (0.0.88's walk), but the climb upward should be animated too: today the walk ends in a step and a fade at the ladder's foot. Walk to it, then climb it (ticket 137's climb, as the controller's up does), and go through at the top. Matthew, 2026-10-16 (later): the same for the tree house ladders outside: they don't glow, but they could, and the friend could walk to them and climb them. So: every ladder that is a way somewhere (a dungeon's, a tree room's, each tree's up to its house) glows when the friend comes near, as pictures and doors do, and X, a click or 🚪 walks them to its foot and they climb it, going through at the top.",
+   "tags": [],
+   "text": "Dress Up: the rest of the collisions. ^ticket(149)'s first step (0.0.89) made the castle rooms' walls and the things one sits on solid, with low ones jumped. Still to do, from Matthew's ask: the standing objects one can't reasonably walk through (tables, beds, trees, rocks, wells: they have a depth, not yet a footprint), small ones cleared by a jump, short or high, by the geometry; and the walls of the flat rooms (the tree house's rooms, the living room, the huts), which keep only to the picture's frame.",
+   "progress": "20:30: minted from 149's remainder. Builds on solidsHere/solidMove/castleWalls (0.0.89): a footprint per standing object (its width at its depth, from its drawing's box; groups like a row of trees need their own parts)."
+  }
+ ],
+ "next_ticket": 177,
+ "current_ticket": null,
+ "current_note": "20:30: Matthew tried 0.0.94 and the earlier ones: 'all really nice now'; 173, 174, 147, 149, 162, 145 closed. ^ticket(176) minted for 149's remainder (objects and flat rooms' walls), first in the queue.",
+ "closed_tickets": [
+  {
+   "id": 149,
+   "area": "dress up, places, game controller",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T10:30-06:00",
+   "text": "<b>Dress Up: collisions: walls and things the friend can't walk through, and jumping over the small ones.</b> Matthew, 2026-10-16: collision detection for the back and side walls; for the objects in a room that one can't reasonably walk through, like a barrel one sits on; and for 'small objects' (small next to their legs at the time) the friend can clear them with a jump, short or high, depending on the geometry. The imagination room's back wall in particular should be solid, the way up being its ladders (that wall comes with ^ticket(145)). Builds on closed ^ticket(50), whose 'collision shape for the places it makes no sense to stand' was never built (it shipped seats only, 0.0.54): each place's floor bounds and each standing object's footprint (99's objects have a depth; they need a width and a height), checked as the friend moves (the controller, a drag), and a jump's height against an object's.",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T10:30-06:00",
+     "from": "matthew",
+     "chars": 470,
+     "asks": true
+    }
+   ],
+   "status": "done",
    "tags": [
     "blocked on Matthew"
    ],
-   "progress": "19:07: minted. Where: enterScene/walkInto for a ladder portal (ladderUp; [data-ladder]); the climb is startClimb/climb (CLIMB_SPEED, climbThrough at the top). | 19:09: scope widened to the tree house ladders (his word). Today: ladders are in marks.ladders (climbing by the controller's up at a ladder's foot, ticket 137/145), not glow targets (marks.pics); a tree house's portal is the whole house, so a click walks to the house's box's foot and fades. | 19:56: BUILT (0.0.94, gate running): ladders that are a way somewhere in marks.pics (ladder: true): they glow, X climbs; a click on any [data-ladder] climbs it; a doorway with a ladder to it (ladderOf: inside it, or a tree's for its house) is climbed to; climbLadder = walkInto(..., 'climb') then the chip's climb, through at the top (climbThrough) or holding on (hay loft). Checked pinned (~/du-shots/tools/ladder173.mjs): a tree's ladder clicked -> treeroom 1; house 2 clicked -> its ladder -> treeroom 2; the dungeon's ladder -> room 3; the hay loft -> holds at the top; near a tree's ladder it glows, X -> treeroom 1; no errors. Houses 3 and 4 have no ladder from the ground: walk and fade, as before. | 20:00: Dress Up 0.0.94 LIVE (6e264f9, tag dress-up-0.0.94); gate 12/12. Waiting on Matthew to try it."
+   "progress": "17:45: FIRST STEP BUILT (0.0.89, gate running): castle rooms' back and side walls from roomFrame (castleWalls; SCENE_BACK.castleroom; not the spiral stair's room, whose doors are up the stairs); the place's seats solid (solidsHere from SEATS: x0..x1, from z back by half their height); solidMove for the controller's step and a drag (slide along; inside one already, let out); jumping clears a solid under half legReach (short) or under legReach (high); landing inside, solidUnstick. Checked pinned (~/du-shots/tools/collide149.mjs): walls in king/hallway/kitchen, a dining chair and a campsite log stopped and jumped, the couch stopped and too wide to jump; every door of all 12 castle room styles still reachable (door147.mjs passes). NOT YET: tables, beds, trees, rocks (standing objects have a depth, no footprint), the flat rooms' walls. | 17:52: Dress Up 0.0.89 LIVE (091f113, tag dress-up-0.0.89): gate 12/12, every gate walk and drag ending where it began. Waiting on Matthew to try it; the rest (tables, beds, trees, rocks; the flat rooms' walls) is the next step when he says.",
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T20:30-06:00",
+   "outcome": "First step, Dress Up 0.0.89 (091f113): castle rooms' back and side walls solid (not the spiral stair's room), the things one sits on solid, low ones cleared by a jump. The rest of 149's ask (tables, beds, trees, rocks: the standing objects; the flat rooms' walls) is ticket 176. Matthew, 2026-10-16 ~20:05, after trying them: 'I've tested these and they are all really nice now.'",
+   "metrics": {
+    "open_minutes": 601,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 470,
+    "tokens_est": 117,
+    "sync_minutes_est": 0
+   },
+   "outcome_url": "https://github.com/matthewhammer/kids-choice-games/commit/091f113"
+  },
+  {
+   "id": 145,
+   "area": "dress up, places",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T10:03-06:00",
+   "text": "<b>Dress Up: the imagination's pictures, reached on foot, and any picture entered from close by.</b> Matthew, 2026-10-16: in the 💭 imagination, each column of pictures has a ladder gently floating next to it (animated very slightly, and slowly); the friend can climb each ladder, walking, running or crawling to it. Whichever picture is near enough, and the closest of all those near, glows, and X (on his SNES-style controller) goes into it. The same for pictures in other places: close enough, X twirls the friend into the picture, as clicking it does now. (X is the button ^ticket(146) keeps free.)",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T10:03-06:00",
+     "from": "matthew",
+     "chars": 560,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T10:28-06:00",
+     "from": "matthew",
+     "chars": 15,
+     "asks": true
+    }
+   ],
+   "status": "done",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "progress": "11:21: LIVE as Dress Up 0.0.75 (bdc744f, tag dress-up-0.0.75; Pages green, live page and version.json checked in a fresh context). Six floating ladders (objects ladder 1-6), climbed by hand with a controller (up at a foot, down off), solid back wall, the nearest reachable picture glows in any place, X (enter) goes in. Checked: ~/du-shots/tools/ladders145.mjs; sweep vs 0.0.74 only the imagination (waterfall differs run to run in 0.0.74 itself). Work 11:11-11:22. Matthew's taught pad gets enter on L if free: re-teach (🎓) to put it on X. Waiting on Matthew to try it.",
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T20:30-06:00",
+   "outcome": "Dress Up 0.0.74: the imagination's floating ladders climbed by hand, the nearest picture glowing, X goes in. Matthew, 2026-10-16 ~20:05, after trying them: 'I've tested these and they are all really nice now.'",
+   "metrics": {
+    "open_minutes": 628,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 575,
+    "tokens_est": 143,
+    "sync_minutes_est": 0
+   }
+  },
+  {
+   "id": 162,
+   "area": "dress up, castle, game controller, animation",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T14:41-06:00",
+   "text": "<b>Dress Up: falling into the castle's pits (N's).</b> From N, via Matthew, 2026-10-16: (1) the trap room's pits: the friend can fall into them, with more realistic motion than the spin used to go into a picture; (2) a falling animation, like climbing at first, tuned as we use it; (3) a landing animation, perhaps reusing part of jumping (the landing on bent knees); (4) each pit drops the friend into the dungeon room below it. <b>Regression test:</b> each pit works, the friend can climb back out (the dungeon's ladder up, ticket 137), and it all animates.",
+   "source": "N, via Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T14:41-06:00",
+     "from": "matthew",
+     "chars": 480,
+     "asks": true
+    }
+   ],
+   "status": "done",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "progress": "17:52: BUILT (0.0.90, gate running): pits carry data-pit (hole); walking onto one (not jumping) or landing a jump on one falls in (pitAt in padPoll and endJump); X/click/🚪 walk to its middle first. fallDown: anim 'fall' (arms flung up, held), a 250 ms teeter, then the figure sinks 600 ms ease-in clipped above the near rim; arriving, fallLand drops them in from above (input held), then the high jump's landing. Checked pinned (~/du-shots/tools/pit162.mjs): both pits -> rooms 4 and 5, landing seen, standing after, climbed back out to the trap room by the ladder; shots of the drop (1350-1800 ms) show the sink; no page errors. First try's drop never showed: the waving arms' own frames redrew the figure and threw the wrapper away; the pose is held now. | 17:57: Dress Up 0.0.90 LIVE (9958ca2, tag dress-up-0.0.90); gate 12/12 (castle walk A/B/A vs 0.0.89: 58.3 both). Waiting on Matthew (and N) to try it.",
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T20:30-06:00",
+   "outcome": "Dress Up 0.0.90 (9958ca2): walking onto a trap room's pit falls in (arms up, a teeter, sinking below the rim), dropping into the dungeon its sign names and landing on bent knees; the ladder climbs back out. Matthew, 2026-10-16 ~20:05, after trying them: 'I've tested these and they are all really nice now.'",
+   "metrics": {
+    "open_minutes": 350,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 480,
+    "tokens_est": 120,
+    "sync_minutes_est": 0
+   },
+   "outcome_url": "https://github.com/matthewhammer/kids-choice-games/commit/9958ca2"
+  },
+  {
+   "id": 147,
+   "area": "dress up, places, game controller",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T10:05-06:00",
+   "text": "<b>Dress Up: doors that open, and walking through them.</b> Matthew, 2026-10-16: each castle door, the front door too, opens when the friend comes up to it and we press X. The same as ^ticket(145)'s pictures: whichever door or picture is closest gets the chance (it glows), and X goes in. For a door, it now swings open (by magic: no reaching for a handle yet) and the friend walks through, instead of the spin. The spinning trip is only for windows and pictures now, 'it's the most \"magical\" looking.'",
+   "source": "Matthew, 2026-10-16, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "log": [
+    {
+     "at": "2026-10-16T10:05-06:00",
+     "from": "matthew",
+     "chars": 420,
+     "asks": true
+    }
+   ],
+   "status": "done",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "progress": "17:37: BUILT (0.0.88, gate running): doors are .portal[data-door] (castle wooden side doors with a swinging [data-leaf], archways, the dining room's far door, the hallway's far arch, the gate, the house's front door) and glow + X like pictures (marks.pics door: true); enterScene: flyInto (spin) only for portals with a view (pictures, windows), walkInto for any other: walk to the doorway's foot, the leaf swings (SMIL d to data-open, removed after), step in fading, fade in at ARRIVE facing us; signs at the foot walk out toward us; from a ladder's top, step + fade only. Checked pinned (~/du-shots/tools/door147.mjs): hallway door glows, X walks + swings + arrives, door shut again after; archways (spiral, trap) and the gate walk; a picture still spins; no page errors. | 17:39: Dress Up 0.0.88 LIVE (4d71449, tag dress-up-0.0.88); fps gate 12/12. Waiting on Matthew to try it (with the kids).",
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T20:30-06:00",
+   "outcome": "Dress Up 0.0.88 (4d71449): doors glow and X goes through; the friend walks up, a wooden door swings open, they step in and fade, and fade in beyond; the spin only for pictures and windows. Matthew, 2026-10-16 ~20:05, after trying them: 'I've tested these and they are all really nice now.'",
+   "metrics": {
+    "open_minutes": 626,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 420,
+    "tokens_est": 105,
+    "sync_minutes_est": 0
+   },
+   "outcome_url": "https://github.com/matthewhammer/kids-choice-games/commit/4d71449"
   },
   {
    "id": 174,
@@ -686,13 +736,47 @@
    "tags": [
     "blocked on Matthew"
    ],
-   "progress": "19:07: minted. Today (moveNow, anim climbup): both arms overhead, swung side to side by ±30° together (Arm up(sd) + 30·sd·s), elbows bending in turn. Wanted: one hand reaching up to the next rung while the other, holding a rung, pulls down by the shoulder, then the other way: hands kept on the rungs as the body rises (an IK on the hands, as posing by touch does), the arms close to the ladder's rails. | 19:56: BUILT (0.0.94, gate running): moveNow climbup: each hand's height above its shoulder from 0.92 to 0.25 of the arm over 62% of a cycle (as far as the body rises: the hand stays on its rung), then a quick arc up; the other half a cycle behind; cycle reckoned from climb.at; two-bone solve from the shoulder, elbow out; legs on the same cycle. Checked (~/du-shots/tools/climb174.mjs): hand heights alternate 87<->24 and 29<->85 (friend's units) every 33 units of climb; shots show hand over hand. | 20:00: Dress Up 0.0.94 LIVE (6e264f9, tag dress-up-0.0.94); gate 12/12. Waiting on Matthew to try it."
-  }
- ],
- "next_ticket": 176,
- "current_ticket": null,
- "current_note": "20:00: WAITING ON MATTHEW. Dress Up 0.0.94 is live: climbing hand over hand (^ticket(174)), ladders clicked and glowing (^ticket(173)). To try: 173, 174, 147, 149, 162, 145; the kids' devices' 🧪 on 0.0.93+ when convenient.",
- "closed_tickets": [
+   "progress": "19:07: minted. Today (moveNow, anim climbup): both arms overhead, swung side to side by ±30° together (Arm up(sd) + 30·sd·s), elbows bending in turn. Wanted: one hand reaching up to the next rung while the other, holding a rung, pulls down by the shoulder, then the other way: hands kept on the rungs as the body rises (an IK on the hands, as posing by touch does), the arms close to the ladder's rails. | 19:56: BUILT (0.0.94, gate running): moveNow climbup: each hand's height above its shoulder from 0.92 to 0.25 of the arm over 62% of a cycle (as far as the body rises: the hand stays on its rung), then a quick arc up; the other half a cycle behind; cycle reckoned from climb.at; two-bone solve from the shoulder, elbow out; legs on the same cycle. Checked (~/du-shots/tools/climb174.mjs): hand heights alternate 87<->24 and 29<->85 (friend's units) every 33 units of climb; shots show hand over hand. | 20:00: Dress Up 0.0.94 LIVE (6e264f9, tag dress-up-0.0.94); gate 12/12. Waiting on Matthew to try it.",
+   "status": "done",
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T20:30-06:00",
+   "outcome": "Dress Up 0.0.94 (6e264f9): climbing hand over hand, each hand holding its rung as the body rises past it, then reaching up for the next, the other half a cycle behind. Matthew, 2026-10-16 ~20:05, after trying them: 'I've tested these and they are all really nice now.'",
+   "metrics": {
+    "open_minutes": 84,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0
+   },
+   "outcome_url": "https://github.com/matthewhammer/kids-choice-games/commit/6e264f9"
+  },
+  {
+   "id": 173,
+   "area": "dress up, ladders, animation",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T19:07-06:00",
+   "source": "Matthew, 2026-10-16, in chat, after trying 0.0.92",
+   "url": "",
+   "text": "Dress Up: clicking a ladder climbs it. Matthew, 2026-10-16: when he clicks on a ladder he likes how the friend walks to it (0.0.88's walk), but the climb upward should be animated too: today the walk ends in a step and a fade at the ladder's foot. Walk to it, then climb it (ticket 137's climb, as the controller's up does), and go through at the top. Matthew, 2026-10-16 (later): the same for the tree house ladders outside: they don't glow, but they could, and the friend could walk to them and climb them. So: every ladder that is a way somewhere (a dungeon's, a tree room's, each tree's up to its house) glows when the friend comes near, as pictures and doors do, and X, a click or 🚪 walks them to its foot and they climb it, going through at the top.",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "progress": "19:07: minted. Where: enterScene/walkInto for a ladder portal (ladderUp; [data-ladder]); the climb is startClimb/climb (CLIMB_SPEED, climbThrough at the top). | 19:09: scope widened to the tree house ladders (his word). Today: ladders are in marks.ladders (climbing by the controller's up at a ladder's foot, ticket 137/145), not glow targets (marks.pics); a tree house's portal is the whole house, so a click walks to the house's box's foot and fades. | 19:56: BUILT (0.0.94, gate running): ladders that are a way somewhere in marks.pics (ladder: true): they glow, X climbs; a click on any [data-ladder] climbs it; a doorway with a ladder to it (ladderOf: inside it, or a tree's for its house) is climbed to; climbLadder = walkInto(..., 'climb') then the chip's climb, through at the top (climbThrough) or holding on (hay loft). Checked pinned (~/du-shots/tools/ladder173.mjs): a tree's ladder clicked -> treeroom 1; house 2 clicked -> its ladder -> treeroom 2; the dungeon's ladder -> room 3; the hay loft -> holds at the top; near a tree's ladder it glows, X -> treeroom 1; no errors. Houses 3 and 4 have no ladder from the ground: walk and fade, as before. | 20:00: Dress Up 0.0.94 LIVE (6e264f9, tag dress-up-0.0.94); gate 12/12. Waiting on Matthew to try it.",
+   "status": "done",
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T20:30-06:00",
+   "outcome": "Dress Up 0.0.94 (6e264f9): ladders that lead somewhere glow and X climbs them; a click on a ladder, or on a house reached by one, walks the friend to its foot and climbs it, through at the top (or holding on, the hay loft). Matthew, 2026-10-16 ~20:05, after trying them: 'I've tested these and they are all really nice now.'",
+   "metrics": {
+    "open_minutes": 84,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0
+   },
+   "outcome_url": "https://github.com/matthewhammer/kids-choice-games/commit/6e264f9"
+  },
   {
    "id": 175,
    "area": "dress up, reports, performance",
@@ -4514,16 +4598,11 @@
   }
  ],
  "queue": [
+  176,
   156,
   160,
   165,
   166,
-  173,
-  174,
-  162,
-  149,
-  147,
-  145,
   167,
   164,
   18,
@@ -4535,6 +4614,5 @@
   15,
   19
  ],
- "current_since": "2026-10-16T19:52-06:00",
- "current_waiting": "trying 0.0.94's climbing and the earlier try-it tickets"
+ "current_since": "2026-10-16T19:52-06:00"
 }
