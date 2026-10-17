@@ -663,17 +663,6 @@
    ]
   },
   {
-   "id": 172,
-   "area": "dress up, performance",
-   "added": "2026-10-16",
-   "opened": "2026-10-16T18:30-06:00",
-   "source": "Matthew, 2026-10-16, in chat, after trying 0.0.90 on his laptop",
-   "url": "",
-   "text": "Dress Up: pauses on trips, on Matthew's laptop. Matthew, 2026-10-16: 0.0.90 is slow on his laptop; time for more performance analysis, especially the castle door entrance (clicking a door and its animation) and going into a pit (by clicking and by walking into it, and falling): he gets pauses there.",
-   "tags": [],
-   "progress": "18:30: MEASURED here, no pauses: headless Chrome (trips_perf.mjs, CDP profile) and headless Firefox 157 (tripsff.py) at his laptop's size (1203x802@1.875), normal and as a choppy computer, all four trips (gate, hallway door, pit click, pit walk) run 59-60 fps; one 34-83 ms frame where the new place is built and first painted (the game's work there 13-16 ms). So his pauses are the browser's painting in a Firefox window. Built ⏱️ time the next trip (0.0.91, ⚙️ Advanced under 🧪) for him to run on his laptop: each long frame with its phase and the game's share. NEXT: his ⏱️ lines (a castle door, a pit by click, a pit by walking), from the pad. | 18:34: Dress Up 0.0.91 LIVE (51f13e1, tag dress-up-0.0.91), gate 12/12. Waiting on Matthew's ⏱️ lines from his laptop: a castle door, a pit by click, a pit by walking (pad). | 19:02: Matthew's 🧪 on 0.0.91, his laptop (Firefox 157, 1203x802@1.875, 20 cores): every pass 57-61 fps (pond 58, held still 60, still picture 61, bitmap 60, music 57) yet found CHOPPY: the mark kept in the browser since some bad moment held every place still on every visit, and made 0.0.87's still pictures build on every arrival. Headless Firefox as choppy, walking after arrival too: still smooth (one 49 ms frame), so whether that is his pause needs his ⏱️ lines. FIX (0.0.92, gate running): choppy measured afresh each visit (the key removed on load), marked only after 2 windows of 120 moving frames over 25% late, not during a trip. Tested (choppy172.mjs, frames made late by busy work, drawing fast): full speed never, 12 ms busy never, 30 ms busy marked after ~8 s; a stored mark cleared on load. NEXT: in ~20 min Matthew measures the kids' computers (black laptop, iPad): 🧪 and ⏱️ (a castle door, a pit clicked, a pit walked onto); and his laptop's ⏱️ lines."
-  },
-  {
    "id": 173,
    "area": "dress up, ladders, animation",
    "added": "2026-10-16",
@@ -697,9 +686,33 @@
   }
  ],
  "next_ticket": 175,
- "current_ticket": 172,
- "current_note": "19:02: ^ticket(172): his laptop was marked choppy wrongly (🧪 57-61 fps everywhere); 0.0.92 measures it afresh each visit, gate running. In ~20 min Matthew measures the kids' computers (🧪 + ⏱️ trips).",
+ "current_ticket": null,
+ "current_note": "19:08: WAITING ON MATTHEW. ^ticket(172) closed (0.0.92 live, his pauses gone). Reviewing the open tickets with him: try 147/149/162/145; queued 173/174 (ladders); decisions on 165, 166, 167, 102, 13-15, 18, 19, 24, 25; the kids' devices separately (164).",
  "closed_tickets": [
+  {
+   "id": 172,
+   "area": "dress up, performance",
+   "added": "2026-10-16",
+   "opened": "2026-10-16T18:30-06:00",
+   "source": "Matthew, 2026-10-16, in chat, after trying 0.0.90 on his laptop",
+   "url": "",
+   "text": "Dress Up: pauses on trips, on Matthew's laptop. Matthew, 2026-10-16: 0.0.90 is slow on his laptop; time for more performance analysis, especially the castle door entrance (clicking a door and its animation) and going into a pit (by clicking and by walking into it, and falling): he gets pauses there.",
+   "tags": [],
+   "progress": "18:30: MEASURED here, no pauses: headless Chrome (trips_perf.mjs, CDP profile) and headless Firefox 157 (tripsff.py) at his laptop's size (1203x802@1.875), normal and as a choppy computer, all four trips (gate, hallway door, pit click, pit walk) run 59-60 fps; one 34-83 ms frame where the new place is built and first painted (the game's work there 13-16 ms). So his pauses are the browser's painting in a Firefox window. Built ⏱️ time the next trip (0.0.91, ⚙️ Advanced under 🧪) for him to run on his laptop: each long frame with its phase and the game's share. NEXT: his ⏱️ lines (a castle door, a pit by click, a pit by walking), from the pad. | 18:34: Dress Up 0.0.91 LIVE (51f13e1, tag dress-up-0.0.91), gate 12/12. Waiting on Matthew's ⏱️ lines from his laptop: a castle door, a pit by click, a pit by walking (pad). | 19:02: Matthew's 🧪 on 0.0.91, his laptop (Firefox 157, 1203x802@1.875, 20 cores): every pass 57-61 fps (pond 58, held still 60, still picture 61, bitmap 60, music 57) yet found CHOPPY: the mark kept in the browser since some bad moment held every place still on every visit, and made 0.0.87's still pictures build on every arrival. Headless Firefox as choppy, walking after arrival too: still smooth (one 49 ms frame), so whether that is his pause needs his ⏱️ lines. FIX (0.0.92, gate running): choppy measured afresh each visit (the key removed on load), marked only after 2 windows of 120 moving frames over 25% late, not during a trip. Tested (choppy172.mjs, frames made late by busy work, drawing fast): full speed never, 12 ms busy never, 30 ms busy marked after ~8 s; a stored mark cleared on load. NEXT: in ~20 min Matthew measures the kids' computers (black laptop, iPad): 🧪 and ⏱️ (a castle door, a pit clicked, a pit walked onto); and his laptop's ⏱️ lines.",
+   "status": "done",
+   "closed": "2026-10-16",
+   "closed_at": "2026-10-16T19:08-06:00",
+   "outcome": "Dress Up 0.0.92 (119c5c6): the choppy mark is measured afresh each visit, with stronger evidence and not during trips; Matthew's laptop had been held still on every visit by a stale mark (its 🧪: 57-61 fps everywhere, found choppy). Matthew, on 0.0.92: the pauses are gone. Also 🧪's held-still passes now really hold still. The kids' devices are a separate track (164).",
+   "metrics": {
+    "open_minutes": 39,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0
+   },
+   "outcome_url": "https://github.com/matthewhammer/kids-choice-games/commit/119c5c6"
+  },
   {
    "id": 171,
    "area": "dress up, pictures, archive",
@@ -4473,7 +4486,6 @@
   }
  ],
  "queue": [
-  172,
   173,
   174,
   156,
@@ -4495,5 +4507,6 @@
   15,
   19
  ],
- "current_since": "2026-10-16T18:30-06:00"
+ "current_since": "2026-10-16T18:30-06:00",
+ "current_waiting": "the ticket review: where to start"
 }
