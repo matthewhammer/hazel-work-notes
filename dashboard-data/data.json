@@ -566,24 +566,48 @@
    "progress": "07:18: minted; queued, not started (Matthew: \"but not yet\")."
   },
   {
-   "id": 188,
-   "area": "dress up, controls",
+   "id": 194,
+   "area": "dress up, UX",
    "added": "2026-10-17",
-   "opened": "2026-10-17T09:49-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "text": "<b>Dress Up: sliders for the friend's top running speed, and for how fast they speed up and slow down.</b> Matthew, 2026-10-17: \"slider to control max running speed, and an acceleration/deceleration speed slider -- it seems like the current behavior, which can be the default, is immediate accel/deccel\"",
+   "opened": "2026-10-17T10:23-06:00",
+   "source": "M, through Matthew, 2026-10-17, in chat",
+   "text": "<b>Dress Up: a light / dark switch (auto, light, dark), maybe under ⚙️ Advanced.</b> Matthew, 2026-10-17: \"feat request from M -- a light/dark control button, maybe under advanced, for setting the theme between: auto/light/dark. please enqueue and do it.\"",
    "tags": [],
    "status": "open",
    "log": [
     {
-     "at": "2026-10-17T09:49-06:00",
+     "at": "2026-10-17T10:23-06:00",
      "from": "matthew",
-     "chars": 170,
+     "chars": 150,
      "asks": true
     }
    ],
-   "progress": "09:49: minted and queued, not started. Defaults keep today's feel (PAD_SPEED; instant start and stop); the gate's walk cases must stay at 60 fps."
+   "progress": "10:23: minted; taken now."
   },
+  {
+   "id": 195,
+   "area": "dress up, world designer",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T10:23-06:00",
+   "source": "M, through Matthew, 2026-10-17, in chat",
+   "text": "<b>Dress Up: an \"all passageways\" button in World design: join every pair of neighbouring squares whose places both have a way that way.</b> Matthew, 2026-10-17, M's request: \"is it possible to have a 'all passageways' button that tries to: * place matching passage ways on all adjacent grid squares, but only if both sides the scene naturally have those passage ways there -- the 8-way trail system would expand to all 8, though, since it always acomodates all directions. * other scenes maybe naturally have a limitation where some passage directions are unavailable - the dungeon should maybe only permit a passage way if we can add arb doors, and similar for other rooms too. * the waterfall should interpret 'the waterfall' with the north passage way, for now -- having both and having them mean different things is too strange. So there's no grid-wise north in that scene, for instance.\"",
+   "tags": [],
+   "status": "open",
+   "log": [
+    {
+     "at": "2026-10-17T10:23-06:00",
+     "from": "matthew",
+     "chars": 700,
+     "asks": true
+    }
+   ],
+   "progress": "10:23: minted; queued after ^ticket(194)."
+  }
+ ],
+ "next_ticket": 187,
+ "current_ticket": 194,
+ "current_note": "10:23: M's theme switch: auto / light / dark, under ⚙️ Advanced.",
+ "closed_tickets": [
   {
    "id": 193,
    "area": "dress up, animation, regression",
@@ -592,7 +616,7 @@
    "source": "Matthew, 2026-10-17, in chat",
    "text": "<b>Dress Up: the spin into and out of a picture has regressed: no spin going in, and some limbs already in place, never spinning, coming out.</b> Matthew, 2026-10-17: \"there's been a number of regressions in the spinning into and out of scene (for pictures only now): * the animation does not play for spinning in --- the main char freezes in place, and we wait * then the person does spin into the new scene, but often some limbs are waiting in their final place already, and never spinning. Seems like something that got introduced and worse as we did animation work.\"",
    "tags": [],
-   "status": "open",
+   "status": "done",
    "log": [
     {
      "at": "2026-10-17T10:15-06:00",
@@ -601,13 +625,49 @@
      "asks": true
     }
    ],
-   "progress": "10:15: minted; taken right after ^ticket(188) (a regression, ahead of ^ticket(186))."
-  }
- ],
- "next_ticket": 187,
- "current_ticket": 188,
- "current_note": "10:14: Sliders: top running speed, and how fast the friend speeds up and slows down (default: at once, as now).",
- "closed_tickets": [
+   "progress": "10:15: minted; taken right after ^ticket(188) (a regression, ahead of ^ticket(186)).",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T10:23-06:00",
+   "outcome": "Released in 0.0.121 (live), checked on GitHub first (run 39049012459): the friend is drawn in pieces (the far arm apart) and every drawing replaced them, so the spin turned one piece in a group the next drawing emptied (the freeze), and the far arm never turned (the limbs waiting). Now a copy of every piece spins, kept through drawings, the friend hidden meanwhile; in and out, and the back chip's spin too.",
+   "metrics": {
+    "open_minutes": 8,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 380,
+    "tokens_est": 95,
+    "sync_minutes_est": 0
+   }
+  },
+  {
+   "id": 188,
+   "area": "dress up, controls",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T09:49-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "text": "<b>Dress Up: sliders for the friend's top running speed, and for how fast they speed up and slow down.</b> Matthew, 2026-10-17: \"slider to control max running speed, and an acceleration/deceleration speed slider -- it seems like the current behavior, which can be the default, is immediate accel/deccel\"",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T09:49-06:00",
+     "from": "matthew",
+     "chars": 170,
+     "asks": true
+    }
+   ],
+   "progress": "09:49: minted and queued, not started. Defaults keep today's feel (PAD_SPEED; instant start and stop); the gate's walk cases must stay at 60 fps.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T10:23-06:00",
+   "outcome": "Released in 0.0.121 (live), checked on GitHub first (run 39049012459): in 🎮 Controls, 🏃 top running speed (body.runSpeed, 50-250, 100 as before; scales running and fast swimming) and 🚀 speeding up and slowing down (body.accel, 0 at once as before, up to a 1.2 s ramp; let go, the friend coasts, legs going, then stands). Kept with the friend, not a controller's layout.",
+   "metrics": {
+    "open_minutes": 34,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 170,
+    "tokens_est": 42,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 192,
    "area": "dress up, tree house",
@@ -5490,8 +5550,8 @@
   }
  ],
  "queue": [
-  188,
-  193,
+  194,
+  195,
   186,
   184,
   160,
@@ -5503,5 +5563,5 @@
   167,
   177
  ],
- "current_since": "2026-10-17T10:11-06:00"
+ "current_since": "2026-10-17T10:23-06:00"
 }
