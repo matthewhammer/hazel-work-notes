@@ -418,13 +418,19 @@
      "from": "matthew",
      "chars": 94,
      "asks": false
+    },
+    {
+     "at": "2026-10-17T07:00-06:00",
+     "from": "matthew",
+     "chars": 350,
+     "asks": false
     }
    ],
    "status": "open",
    "tags": [
     "blocked on Matthew"
    ],
-   "progress": "17:52: WAITING ON MATTHEW before building: where the canister runs (the IC mainnet costs cycles, paid from his identity; a local replica would not reach the black laptop), and who may write to it (anyone with the page, as the pad now, or a key the game holds)? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: write the canister tonight; deploy (his cycles) only on his word. 🌙 long run; no headless browser on the laptop. | 21:58: NO CANISTER CODE NEEDED: fumola_canister (Adapton/fumola ic-canister, ~/fumola-canister c80fcae) already keeps an append-only log per space, POST/GET /s/<space>/log, CORS * with OPTIONS. Game side BUILT on branch speedlog-166 (7d0a682; not released): 📮 'send it to Matthew' beside the 🧪 and ⏱️ lines posts {key: 'speed|trip <version> <when>', value: line} on a press; hidden while SPEED_LOG_DEPLOYED is null (the 📝 pad stays). tools/speedlog.py reads it back; checked against a stand-in server in CI. Waiting on Matthew: deploy the canister to mainnet (his cycles), then its log URL goes in SPEED_LOG_DEPLOYED. Open: anyone with the page can write (as the pad); no rate limit. | 22:50: speedlog-166 (7d0a682) GREEN (run 39000824663): speedlog166 ok against the stand-in server; no buttons without a log address. | 06:32: the game side RELEASED in 0.0.95, its 📮 buttons hidden until SPEED_LOG_DEPLOYED is set. Left, waiting on Matthew: deploy the canister to mainnet.",
+   "progress": "17:52: WAITING ON MATTHEW before building: where the canister runs (the IC mainnet costs cycles, paid from his identity; a local replica would not reach the black laptop), and who may write to it (anyone with the page, as the pad now, or a key the game holds)? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: write the canister tonight; deploy (his cycles) only on his word. 🌙 long run; no headless browser on the laptop. | 21:58: NO CANISTER CODE NEEDED: fumola_canister (Adapton/fumola ic-canister, ~/fumola-canister c80fcae) already keeps an append-only log per space, POST/GET /s/<space>/log, CORS * with OPTIONS. Game side BUILT on branch speedlog-166 (7d0a682; not released): 📮 'send it to Matthew' beside the 🧪 and ⏱️ lines posts {key: 'speed|trip <version> <when>', value: line} on a press; hidden while SPEED_LOG_DEPLOYED is null (the 📝 pad stays). tools/speedlog.py reads it back; checked against a stand-in server in CI. Waiting on Matthew: deploy the canister to mainnet (his cycles), then its log URL goes in SPEED_LOG_DEPLOYED. Open: anyone with the page can write (as the pad); no rate limit. | 22:50: speedlog-166 (7d0a682) GREEN (run 39000824663): speedlog166 ok against the stand-in server; no buttons without a log address. | 06:32: the game side RELEASED in 0.0.95, its 📮 buttons hidden until SPEED_LOG_DEPLOYED is set. Left, waiting on Matthew: deploy the canister to mainnet. | 07:00: MATTHEW'S DIRECTION, 2026-10-17 (a thought for later; nothing changes now): \"having the chance to create a world motivates the fumola canister for sharing data -- it can gather telemetry when the user opts in, and also, the user can choose to share the world with others on that canister -- initially it will be closed to our family, but maybe we can expand it to some of the kids' friends, with their parents' permission, etc.\" So the canister is for two things: (1) telemetry, only when the player opts in (the 🧪 and ⏱️ lines, the 📮 button already built); (2) sharing worlds made in the world designer (^ticket(185)): a player chooses to share a world, and others load it from the canister. Who can read and write: at first our family only; later perhaps some of the kids' friends, with their parents' permission. So it needs access control from the start (closed by default, a family list, room to add people), not \"anyone with the page can write\" as the 📝 pad and today's stand-in are.",
    "waiting": "Matthew: deploy fumola_canister to mainnet (his cycles); its /s/dress-up-speed/log URL then goes in SPEED_LOG_DEPLOYED."
   },
   {
@@ -590,7 +596,7 @@
      "asks": true
     }
    ],
-   "progress": "06:42: minted; queued after ^ticket(178) (timeboxed to 45 minutes, then a replan)."
+   "progress": "06:42: minted; queued after ^ticket(178) (timeboxed to 45 minutes, then a replan). | 07:00: Matthew: sharing a world could go through the Fumola canister (^ticket(166)), at first within the family; noted there. No change to this ticket's work."
   }
  ],
  "next_ticket": 186,
