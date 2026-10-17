@@ -602,7 +602,12 @@
     }
    ],
    "progress": "09:57: minted and queued after ^ticket(187) (Matthew: use the ticket system; after 187 deploy and go on through the queue). Chips from each ticket's area (most already say 'dress up', 'performance', 'hazel'...)."
-  },
+  }
+ ],
+ "next_ticket": 187,
+ "current_ticket": 190,
+ "current_note": "10:10: Dashboard: a chip per ticket for what it is about (hazel, dress-up, performance, dashboard) and filter buttons over the backlog and the queue.",
+ "closed_tickets": [
   {
    "id": 191,
    "area": "dress up, world designer",
@@ -611,7 +616,7 @@
    "source": "Matthew, 2026-10-17, in chat",
    "text": "<b>Dress Up: World design's warnings point at the fix: the red square is the one whose way to toggle puts it right, and a way to take away is marked too.</b> Matthew, 2026-10-17: \"the error reporting and fixing system for the world designer has some issues still: * the red square on the grid square should correspond to the placement of the dotted red suggestion square (to fix the error), not its neighbor. * we should also use the dotted red square to indicate when _taking away_ a passage fixes the error -- especially when passages are placed that lead to empty grid squares (another kind of edge in the world).\" Then: \"mint enqueue and do please.\"",
    "tags": [],
-   "status": "open",
+   "status": "done",
    "log": [
     {
      "at": "2026-10-17T10:05-06:00",
@@ -620,13 +625,19 @@
      "asks": true
     }
    ],
-   "progress": "10:05: minted; queued right after ^ticket(187), which is finishing (Matthew: do please). Plan: suggestions both ways (a way on that would fix, a way on to take away that would fix), the grid's red squares the squares with a suggestion."
-  }
- ],
- "next_ticket": 187,
- "current_ticket": 191,
- "current_note": "10:07: World design's warnings point at the fix: red squares where a toggle is suggested; ways to take away marked ✕. Written; checking on GitHub.",
- "closed_tickets": [
+   "progress": "10:05: minted; queued right after ^ticket(187), which is finishing (Matthew: do please). Plan: suggestions both ways (a way on that would fix, a way on to take away that would fix), the grid's red squares the squares with a suggestion.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T10:10-06:00",
+   "outcome": "Released in 0.0.119 (live), checked on GitHub first (run 39048048749): in World design with the warnings shown, a way whose toggle would leave fewer warnings is marked dotted, ★ to turn on, ✕ to take away (a way into an empty square, off the map, or with no way back); the grid's red squares are the squares with such a fix, not their neighbours (worldWaysToToggle, worldFixSquares).",
+   "metrics": {
+    "open_minutes": 5,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 430,
+    "tokens_est": 107,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 187,
    "area": "dress up, navigation",
@@ -5419,7 +5430,6 @@
   }
  ],
  "queue": [
-  191,
   190,
   188,
   186,
