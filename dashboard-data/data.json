@@ -639,24 +639,6 @@
    "progress": "Matthew, 2026-10-17 ~16:35: \"do ticket 225 before performance, and label all performance and that one with 'long run' to make it clear we aren't doing them now\": first of tonight's 🌙 long runs. Found so far: its check (tools/checks/surprise225.mjs, LOCAL and untracked in ~/kids-choice-games; on branch checks-225b, bceb104) aimed each tap at the middle of the doorway's whole box, which for a picture includes its scene spilling past the frame, hidden: in run 39072074252 four of five dead taps had nothing under the point (off the page) and one hit the wall (a rect). Re-aimed at the box the game itself knows (marks' stage box, on screen, clipped to the picture, skipping the friend, the arrows and buttons). Diagnostic run 39075350602 (checks-225b) started 16:3x: read it; if no dead taps remain, the bug was the check's (commit the check, close); if some remain, their pose/anim/climb say which state blocks a tap (try 9 was 🧗 climbup with climb set). RESULT (run 39075350602): with the taps re-aimed, 12 of 12 picture taps after Surprise me started the trip, none dead: the dead taps were the check's. The door half found no door to tap (the living room's way out is a nav arrow since 0.0.162). Tonight: tap the S arrow there, and a room with real doors (the castle's king's room), with 🧗 climbup and the seats among Surprise me's outcomes; if all go, commit the check and close 225."
   },
   {
-   "id": 232,
-   "area": "dress up, world designer",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T15:58-06:00",
-   "source": "Matthew, 2026-10-17, in chat, with a screenshot of the world designer's full screen (1 warning, E6 fairy forest red, 🔗 6 ways added)",
-   "url": "",
-   "text": "<b>Dress Up: 🔗 all passageways (and a place put on the grid) respect the grid's edge: no way out that leads off the map.</b> Matthew: \"I've noticed a consistent issue that 'all passageways' does not respect the edge of the grid\" \"and it introduces issues that can be avoided\". Found (not yet fixed): worldJoinAll (25-world.js) only ADDS ways between two placed neighbours and never takes one away; worldPut gives a dropped place its usual ways (worldUsualWays) wherever it lands, so the fairy forest at E6 kept its SW way off the bottom edge (D7), a warning that 🔗 left standing. worldMove and worldResize (− row/column) can strand ways off the edge the same way. To do: worldPut, worldMove and worldResize leave no way off the map (worldOffMap, ticket 189), and 🔗 all passageways also takes away any way off the edge (and says so in its note); a check in tools/checks/."
-  },
-  {
-   "id": 235,
-   "area": "dress up, deep sea, animation",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T16:08-06:00",
-   "source": "Matthew, 2026-10-17, in chat (the other half of ^ticket(234))",
-   "url": "",
-   "text": "<b>Dress Up: a school of fish in the deep sea that is animated well, to bring the feature back.</b> Matthew: \"the animation for the school of fish in deep sea is really bad -- let's drop that feature of the background until we can animate a school of fish better.\" The dropped one: nine fish as ellipses, all sliding together round one 3.2 s loop of translations (no turning to face where they go, no fish of their own). Within 60 fps (the first rule)."
-  },
-  {
    "id": 236,
    "area": "dress up, CI, accessibility, testing",
    "added": "2026-10-17",
@@ -769,9 +751,53 @@
   }
  ],
  "next_ticket": 248,
- "current_ticket": 235,
- "current_note": "16:35: 0.0.165 committed locally (not pushed): the school of fish back, each fish following a loop facing its heading (animateMotion rotate=auto), lagging the one ahead, tail beating; checking stills at four moments on GitHub before releasing",
+ "current_ticket": 237,
+ "current_note": "16:37: AFK run: 232 (0.0.164) and 235 (0.0.165) done. On 237: tree house rooms' trapdoors as obstacles a walk goes round (as the trap room's pits since 0.0.157), the trapdoor's own ladder still reachable",
  "closed_tickets": [
+  {
+   "id": 235,
+   "area": "dress up, deep sea, animation",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:08-06:00",
+   "source": "Matthew, 2026-10-17, in chat (the other half of ^ticket(234))",
+   "url": "",
+   "text": "<b>Dress Up: a school of fish in the deep sea that is animated well, to bring the feature back.</b> Matthew: \"the animation for the school of fish in deep sea is really bad -- let's drop that feature of the background until we can animate a school of fish better.\" The dropped one: nine fish as ellipses, all sliding together round one 3.2 s loop of translations (no turning to face where they go, no fish of their own). Within 60 fps (the first rule).",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T16:37-06:00",
+   "outcome": "Released in 0.0.165 (c72ea0c, live): the deep sea's school of fish back, each of nine fish following one flat loop over the far ridges by animateMotion rotate=auto (facing its heading, drawn top-bottom alike so the way back looks right), a little behind the one ahead, at its own place across the school, its tail beating; about 18 moving parts. deepsea219.mjs checks all of it (run 39075670599: all ok); stills at four moments looked like a school swimming right on the loop's top (~/du-shots/runs/235/zsheet.png).",
+   "metrics": {
+    "open_minutes": 30,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 14.0
+   }
+  },
+  {
+   "id": 232,
+   "area": "dress up, world designer",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T15:58-06:00",
+   "source": "Matthew, 2026-10-17, in chat, with a screenshot of the world designer's full screen (1 warning, E6 fairy forest red, 🔗 6 ways added)",
+   "url": "",
+   "text": "<b>Dress Up: 🔗 all passageways (and a place put on the grid) respect the grid's edge: no way out that leads off the map.</b> Matthew: \"I've noticed a consistent issue that 'all passageways' does not respect the edge of the grid\" \"and it introduces issues that can be avoided\". Found (not yet fixed): worldJoinAll (25-world.js) only ADDS ways between two placed neighbours and never takes one away; worldPut gives a dropped place its usual ways (worldUsualWays) wherever it lands, so the fairy forest at E6 kept its SW way off the bottom edge (D7), a warning that 🔗 left standing. worldMove and worldResize (− row/column) can strand ways off the edge the same way. To do: worldPut, worldMove and worldResize leave no way off the map (worldOffMap, ticket 189), and 🔗 all passageways also takes away any way off the edge (and says so in its note); a check in tools/checks/.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T16:37-06:00",
+   "outcome": "Released in 0.0.164 (ef59bec, live): worldTrimEdges takes away a square's ways off the map's edge where a place is put (worldPut), a square moved (worldMove), the grid made smaller (worldResize), and with 🔗 all passageways, whose note says how many ('; N off the edge taken away'); a crossing's dead-end paths stay its own look. tools/checks/edges232.mjs (run 39075611161: all ok but one assertion of mine, corrected in 0.0.165: the fairy forest's only usual way is SW, so in E6 it keeps none); world185 all ok.",
+   "metrics": {
+    "open_minutes": 40,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 12.0
+   }
+  },
   {
    "id": 214,
    "area": "dress up, places, world designer, walking",
@@ -7089,8 +7115,6 @@
   }
  ],
  "queue": [
-  235,
-  232,
   237,
   238,
   239,
