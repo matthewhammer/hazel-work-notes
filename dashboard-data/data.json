@@ -629,31 +629,6 @@
    ]
   },
   {
-   "id": 219,
-   "area": "dress up, places, world designer, objects, bubbles",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T13:40-06:00",
-   "source": "Matthew, 2026-10-17, in chat (\"push to back\": the end of the active queue)",
-   "url": "",
-   "text": "<b>Dress Up: a 🐠 deep sea, as a world square and a background: a sandy bottom, things to place (coral, shells), and things that move (starfish that crawl, fish that swim and blow bubbles).</b> Matthew: \"background system for 'deep sea', as a grid square and a background --- sandy bottom with objects to place, like coral, shells, and animated objects to place, like starfish that crawl around, and fish that swim in the psuedo 3d space, and create bubbles that go up, and disappear when not visible -- we may need a more complex object system, since now placed objects can create temp, dynamic objects.\" And the bubble, eventually a concept of its own: \"color, size and shininess (like stars we add or not, and controls over their color and type)\"; \"these initial bubbles can be the default, simple, small kind within this concept.\" To do: (1) the place: PLACES, SCENES and the rest of the place recipe, a world square kind (beside today's 🌊 open water and the 🐟 underwater reached through the lake), a sandy floor in depth; (2) placeable things (the things system, ^ticket(201)): coral and shells that stand, and starfish and fish that move, the fish in the pseudo-3D space (depth: smaller and behind farther back); (3) the object system grown so a placed thing can make short-lived things of its own (a fish's bubbles: rise, and are dropped once out of sight), counted against the place's busyness (the red frames, ^ticket(203)) and at 60 frames a second (anything costly optional, off by default); (4) the bubble as one shared concept (colour, size, shine, its sparkles' colour and kind), these first bubbles its simple, small default; ^ticket(220) and ^ticket(221) use it. (5) More things to place, Matthew: \"treasure chest (we already have a few of these, right?)\", \"anchor with broken chain attached\", \"sea plants, of 3 or 4 types, with controls for color and size, and L vs R\". On the chest: yes, drawn in places today but not one to place: the castle throne room's chest of gold, the cave behind the falls' old chest, a toy chest (OBJECTS.md names \"chest\", \"chest of gold\", \"toy chest\"); reuse one of those drawings for the deep sea's placeable chest. Sea plants: 3 or 4 kinds (kelp, sea grass, a fan, a bushy weed, say), each with its colour, its size and ↔️ mirror (L or R) as a thing's own settings (thingParams, as a rock's).",
-   "tags": [],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T13:40-06:00",
-     "from": "matthew",
-     "chars": 1412,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T14:05-06:00",
-     "from": "matthew",
-     "chars": 209,
-     "asks": true
-    }
-   ]
-  },
-  {
    "id": 220,
    "area": "dress up, places, bubbles",
    "added": "2026-10-17",
@@ -741,7 +716,7 @@
    "opened": "2026-10-17T14:02-06:00",
    "source": "Matthew, 2026-10-17, in chat, after 0.0.132 (^ticket(210))",
    "url": "",
-   "text": "<b>Dress Up: the world designer's full screen: its columns and rows labelled, its controls scrolling on their own beside a grid that stays put, and a dragger between them.</b> Matthew: \"in FS mode for world design, let's show A, B, C ... and 1, 2, 3 as the row and column labels, with scaled font --- looks really good so far, BTW.\" To do: in body.world-big, a row of column letters over the grid and a column of row numbers beside it (the same names squareName gives, A1 at the top left), sized from --cell like the squares' words, the grid's height reckoned with them so it still fits the window. (2) Matthew, with a screenshot of 0.0.132's full screen: \"in FS mode for world designer, we want to let the user scroll the RHS (with controls and things to add) and the LHS (the grid of squares) stays in place, and maximal -- maybe also a dragger for LHS vs RHS size.\" To do: the right side its own scrolling box, the window's height; the grid fixed on the left at its largest (as tall as the window allows, and as wide as its side); a dragger between the two sides (as the page's own divider between the picture and the controls), the split kept in this browser. (3) Matthew, with a screenshot of the full screen (the square E2's \"ways out:\" eight buttons in a row): \"The N, NE, E, SE, S, etc buttons that toggle nav arrows for each grid square should be arranged in a little 9-cell grid (with the icon of the current square shown in the center of the 9).\" To do: the ways-out buttons as a 3×3 compass, NW N NE / W ● E / SW S SE, the square's own place emoji in the middle; each button keeping its states (on, off, off the map, suggested ★, a warning's ✕). (4) Matthew: \"name on signs field for each grid square has no margin/padding around it, and should have more emphasis on this FS mode meaning larger font\": the square's ✏️ name on signs box with room around it and inside it, and in full screen a larger font.",
+   "text": "<b>Dress Up: the world designer's full screen: its columns and rows labelled, its controls scrolling on their own beside a grid that stays put, and a dragger between them.</b> Matthew: \"in FS mode for world design, let's show A, B, C ... and 1, 2, 3 as the row and column labels, with scaled font --- looks really good so far, BTW.\" To do: in body.world-big, a row of column letters over the grid and a column of row numbers beside it (the same names squareName gives, A1 at the top left), sized from --cell like the squares' words, the grid's height reckoned with them so it still fits the window. (2) Matthew, with a screenshot of 0.0.132's full screen: \"in FS mode for world designer, we want to let the user scroll the RHS (with controls and things to add) and the LHS (the grid of squares) stays in place, and maximal -- maybe also a dragger for LHS vs RHS size.\" To do: the right side its own scrolling box, the window's height; the grid fixed on the left at its largest (as tall as the window allows, and as wide as its side); a dragger between the two sides (as the page's own divider between the picture and the controls), the split kept in this browser. (3) Matthew, with a screenshot of the full screen (the square E2's \"ways out:\" eight buttons in a row): \"The N, NE, E, SE, S, etc buttons that toggle nav arrows for each grid square should be arranged in a little 9-cell grid (with the icon of the current square shown in the center of the 9).\" To do: the ways-out buttons as a 3×3 compass, NW N NE / W ● E / SW S SE, the square's own place emoji in the middle; each button keeping its states (on, off, off the map, suggested ★, a warning's ✕). (4) Matthew: \"name on signs field for each grid square has no margin/padding around it, and should have more emphasis on this FS mode meaning larger font\": the square's ✏️ name on signs box with room around it and inside it, and in full screen a larger font. (5) Matthew: \"when they are shown, but the warnings below the nav arrow add/remove controls, not at the top of the panel -- and use some dotted sub-panel to organize them more. The errors for other squares can be hidden entirely until we make that the 'active square' to edit.\" To do: with the warnings shown, this square's under its ways-out controls in a dotted sub-panel of their own; the other squares' not listed at all (their squares still marked red), till one becomes the square being edited; in the tab and full screen.",
    "tags": [],
    "status": "open",
    "log": [
@@ -767,6 +742,12 @@
      "at": "2026-10-17T14:35-06:00",
      "from": "matthew",
      "chars": 140,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T14:36-06:00",
+     "from": "matthew",
+     "chars": 263,
      "asks": true
     }
    ]
@@ -822,9 +803,45 @@
   }
  ],
  "next_ticket": 228,
- "current_ticket": 227,
- "current_note": "14:33: his bug report, first: fixed and RELEASED as 0.0.139 (main ac9b82e): the overlays in their own layer (#access-layer), so the arrows stay put and the boxes stay shown; boxes with their height; chips two words each, lit while on. Check + pictures running on GitHub (checks-139); then back to 219.",
+ "current_ticket": 220,
+ "current_note": "14:36: 219 → 0.0.140 released. 220, 🫧 bubble space: the empty room full of bubbles that drift in a wind, stick together and pop on the friend; how many, the wind, three bubble themes A, B, C (colour, size, shine, sparkle).",
  "closed_tickets": [
+  {
+   "id": 219,
+   "area": "dress up, places, world designer, objects, bubbles",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T13:40-06:00",
+   "source": "Matthew, 2026-10-17, in chat (\"push to back\": the end of the active queue)",
+   "url": "",
+   "text": "<b>Dress Up: a 🐠 deep sea, as a world square and a background: a sandy bottom, things to place (coral, shells), and things that move (starfish that crawl, fish that swim and blow bubbles).</b> Matthew: \"background system for 'deep sea', as a grid square and a background --- sandy bottom with objects to place, like coral, shells, and animated objects to place, like starfish that crawl around, and fish that swim in the psuedo 3d space, and create bubbles that go up, and disappear when not visible -- we may need a more complex object system, since now placed objects can create temp, dynamic objects.\" And the bubble, eventually a concept of its own: \"color, size and shininess (like stars we add or not, and controls over their color and type)\"; \"these initial bubbles can be the default, simple, small kind within this concept.\" To do: (1) the place: PLACES, SCENES and the rest of the place recipe, a world square kind (beside today's 🌊 open water and the 🐟 underwater reached through the lake), a sandy floor in depth; (2) placeable things (the things system, ^ticket(201)): coral and shells that stand, and starfish and fish that move, the fish in the pseudo-3D space (depth: smaller and behind farther back); (3) the object system grown so a placed thing can make short-lived things of its own (a fish's bubbles: rise, and are dropped once out of sight), counted against the place's busyness (the red frames, ^ticket(203)) and at 60 frames a second (anything costly optional, off by default); (4) the bubble as one shared concept (colour, size, shine, its sparkles' colour and kind), these first bubbles its simple, small default; ^ticket(220) and ^ticket(221) use it. (5) More things to place, Matthew: \"treasure chest (we already have a few of these, right?)\", \"anchor with broken chain attached\", \"sea plants, of 3 or 4 types, with controls for color and size, and L vs R\". On the chest: yes, drawn in places today but not one to place: the castle throne room's chest of gold, the cave behind the falls' old chest, a toy chest (OBJECTS.md names \"chest\", \"chest of gold\", \"toy chest\"); reuse one of those drawings for the deep sea's placeable chest. Sea plants: 3 or 4 kinds (kelp, sea grass, a fan, a bushy weed, say), each with its colour, its size and ↔️ mirror (L or R) as a thing's own settings (thingParams, as a rock's).",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T13:40-06:00",
+     "from": "matthew",
+     "chars": 1412,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T14:05-06:00",
+     "from": "matthew",
+     "chars": 209,
+     "asks": true
+    }
+   ],
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T14:36-06:00",
+   "outcome": "Released in Dress Up 0.0.140 (main 3bdc396, tag dress-up-0.0.140; the work 49f3625): the 🪸 deep sea, a place and a world square (deep water meets open water and more deep sea, nothing on land): deep water, shimmering light shafts (slow LFO), far ridges, a rippled sandy bottom, swaying kelp, rocks, a darting school of fish (quick LFO), a vent with bubbles rising. The 🐚 sea things (any place): coral, shells (scallop, conch, clam), a crawling starfish, a fish swimming round in depth and blowing bubbles, a treasure chest, an anchor with a broken chain, kelp, sea grass, a sea fan, sea lettuce; colour, size, mirror each (and a shell's shape, a fish's bubbles, the chest open, the anchor's chain). The bubble as one drawing (bubbleSvg: colour, shine, sparkle; risingBubbles), its simple default here, for ^ticket(220) and ^ticket(221). tools/checks/deepsea219.mjs and pictures run on GitHub after release (checks-219).",
+   "metrics": {
+    "open_minutes": 57,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1621,
+    "tokens_est": 405,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 226,
    "area": "dress up, music, UX",
@@ -6635,9 +6652,8 @@
   }
  ],
  "queue": [
-  227,
-  219,
   220,
+  227,
   221,
   223,
   209,
@@ -6653,5 +6669,5 @@
   19,
   166
  ],
- "current_since": "2026-10-17T14:33-06:00"
+ "current_since": "2026-10-17T14:36-06:00"
 }
