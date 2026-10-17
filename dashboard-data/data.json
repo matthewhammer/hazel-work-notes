@@ -748,9 +748,18 @@
    "source": "found by collide176 in the diagnostic run 39075912049 (0.0.166), Matthew AFK",
    "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39075912049",
    "text": "<b>Dress Up: a high jump over a small far thing can land inside it and stay stuck there.</b> collide176, since 0.0.162 took away the path through the woods' signpost (so the check now picks this one): \"mushroom, right inner\" 206..232 at depth 340..351, height 22; from x 146, holding ➡️ with a high jump for 2.2 s, the friend lands at x 230, inside its box, and is still there (a 2-unit miss; elsewhere high jumps carry 100-200 units). Two things to look at: how far a jump carries at a far depth (the floor's perspective slows it), and why, having landed inside a solid, walking on out of it (not deeper) didn't move them. Then collide176 passes again."
+  },
+  {
+   "id": 249,
+   "area": "dress up, forest crossing, world designer, 🔭",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:48-06:00",
+   "source": "Matthew, 2026-10-17, in chat, with a picture of the forest crossing and its controls (pine 3, the paths that meet here as a list, off in the distance)",
+   "url": "",
+   "text": "<b>Dress Up: the 🔭 smaller-going-north slider rescales the friend and the placed things; the crossing's three far-off choices in the world designer; its paths as the 9-cell compass.</b> Matthew: \"feature request: * rescale the placed objects when I drag the 'smaller going north' slider, including the main char. That's the purpose of this slider -- it does not affect the static parts of the background, but it affects the dynamic player, and placed objects, if any. * expose the three far away options to the world designer -- I don't see them exposed. * for the toggles for N/S/E/W, etc.... use the UX we made for world designer, with the 9 cells -- the center cell be empty in this case.\" To do: (1) the 🔭 setting (0.0.153's depthSize falloff) drives the friend's size by depth and each placed thing's (thingsLayer), live as the slider moves, and nothing of the place's own drawing; (2) the forest crossing's \"🌄 off in the distance\" (crossBack: 🌲 tall trees and shafts of light, ☁️ sky, sun and clouds over the trees, ⛰️ mountains far off) in the World design tab's square panel for a crossing; (3) \"🛤️ the paths that meet here\" as a compass, NW N NE / W · E / SW S SE, its middle empty, as the world designer's ways out (.world-compass)."
   }
  ],
- "next_ticket": 249,
+ "next_ticket": 250,
  "current_ticket": 238,
  "current_note": "16:46: 0.0.167 committed locally (1f50bce, not pushed): the hatch drawn at its lid's foot so the friend climbing down is in front of it, cut off at the near rim; diagnostic 39076392971 with pictures of the climb, then the release",
  "closed_tickets": [
@@ -7148,6 +7157,7 @@
   246,
   247,
   248,
+  249,
   225,
   209,
   184,
