@@ -758,7 +758,12 @@
    ],
    "progress": "22:40: minted; queued. | 23:17: DONE on branch objects-180 (217ef63, kids-choice-games; not on main): OBJECTS.md as of 0.0.94 (was 0.0.46), 40 places each with its picture, 377 objects with 376 clipped pictures (WebP, 2.4 MB in dress-up/objects/), notes kept; made on GitHub by tools/checks/objects180.mjs (every branch's run leaves fresh pictures), written by tools/objects_md.py; the agent instructions say how. Waiting on Matthew: merge the branch (a push to main deploys the game; only docs and pictures change).",
    "waiting": "Matthew: look at OBJECTS.md on branch objects-180 (GitHub renders it), then merge."
-  },
+  }
+ ],
+ "next_ticket": 184,
+ "current_ticket": 160,
+ "current_note": "00:18: ^ticket(160): which part of the on-screen controller costs ~5 fps over the forest: its shadows, its see-through, or sharing a layer? layer160 on GitHub's Chrome (cost-160, run 39009423261). ^ticket(156) waits on its Full tests (CI on 9e7258b55b).",
+ "closed_tickets": [
   {
    "id": 183,
    "area": "Dress Up, pictures archive",
@@ -770,7 +775,7 @@
    "tags": [
     "long run"
    ],
-   "status": "open",
+   "status": "done",
    "log": [
     {
      "at": "2026-10-16T23:46-06:00",
@@ -779,13 +784,20 @@
      "asks": true
     }
    ],
-   "progress": "23:46: minted; queued for early tomorrow. 23:51: the archive never drew climbing (a move, not a menu): archive.mjs now adds moves/, the friend climbing each place's ladder low, halfway and near the top (dress-up-pictures branch moves-183, 1 commit). Rendering on GitHub (kids-choice-games branch archive-183, workflow dress-up-archive.yml, run 39007795796): the day at main, and a control at 0.0.90 (the 2026/10/16 day's commit) whose pictures should all be links if GitHub's Chrome draws what the laptop's drew. Then: look at the climbing pictures; if the control matches, add the day from the artifact (source.json, days_index.mjs, push) and give moves a chip on the pictures page; if not, make the day on the laptop in the morning, with Matthew up."
-  }
- ],
- "next_ticket": 184,
- "current_ticket": 183,
- "current_note": "23:51: ^ticket(183): the 2026/10/17 pictures day rendering on GitHub's computers (kids-choice-games archive-183, run 39007795796): main, plus a control at 0.0.90 that measures whether GitHub's Chrome draws byte for byte what the laptop's did. New in the archive: moves/, the friend climbing each place's ladder (dress-up-pictures branch moves-183). ^ticket(156)'s CI is running.",
- "closed_tickets": [
+   "progress": "23:46: minted; queued for early tomorrow. 23:51: the archive never drew climbing (a move, not a menu): archive.mjs now adds moves/, the friend climbing each place's ladder low, halfway and near the top (dress-up-pictures branch moves-183, 1 commit). Rendering on GitHub (kids-choice-games branch archive-183, workflow dress-up-archive.yml, run 39007795796): the day at main, and a control at 0.0.90 (the 2026/10/16 day's commit) whose pictures should all be links if GitHub's Chrome draws what the laptop's drew. Then: look at the climbing pictures; if the control matches, add the day from the artifact (source.json, days_index.mjs, push) and give moves a chip on the pictures page; if not, make the day on the laptop in the morning, with Matthew up.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T00:17-06:00",
+   "outcome": "The pictures page offers 2026/10/17 first: Messed Up Dress Up 0.0.94 (main 78428f7), dress-up-pictures 8f02605, checked live (days.json, the manifest's 604 entries, pictures and thumbnails load; the page's new 🧗 climbing chip, homepage 425e60d). New in the archive: moves/, the friend climbing the ladder of each place that has one (both dungeons, the stable, the imagination, the tree house, a tree room), low, halfway and near the top, 18 pictures, looked at. 0.0.91 to 0.0.94 changed no picture at the defaults. Made on GitHub's computers, not the laptop (kids-choice-games run 39007795796; thumbnails here, as ffmpeg is not on GitHub's image). A control run of 0.0.90 found GitHub's Chrome draws as the laptop's did, not byte for byte: 264 of 349 the same, 73 off by a few anti-aliased pixels, 12 caught at another moment of an animation (as between any two runs). The music links of 10/16 and 10/17 (days the music archive lacks) now go to its index. The workflow that made it, now run by hand for any day (ffmpeg installed, failures loud), is on kids-choice-games branch archive-183: it can be started only once it is on main, which is Matthew's call.",
+   "metrics": {
+    "open_minutes": 31,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 154,
+    "tokens_est": 38,
+    "sync_minutes_est": 0,
+    "work_minutes": 30.0
+   }
+  },
   {
    "id": 182,
    "area": "work notes, publishing",
@@ -5124,9 +5136,8 @@
   }
  ],
  "queue": [
-  183,
-  156,
   160,
+  156,
   18,
   102,
   54,
@@ -5142,5 +5153,5 @@
   177,
   180
  ],
- "current_since": "2026-10-16T23:47-06:00"
+ "current_since": "2026-10-17T00:18-06:00"
 }
