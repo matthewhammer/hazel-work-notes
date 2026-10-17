@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Night notes, 10-16 to 10-17</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --hi: #fef3c7; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --hi: #3a3218; --warn: #fbbf24; --ok: #4ade80; }
+  }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; }
+  h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; }
+  code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); }
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9em; }
+  th, td { border-bottom: 1px solid var(--line); padding: 5px 6px; text-align: left; vertical-align: top; }
+  li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Night of 10-16: no browser on the laptop, GitHub's computers instead</h1>
+<p class="sub">2026-10-16 21:00 to 2026-10-17 01:10 MDT, Claude, while Matthew was away and then asleep. No crash since the 20:53 freeze.</p>
+
+<h2 id="rule">The rule tonight</h2>
+<ul>
+<li>After the 20:53 freeze (the crash log's 35th row), Matthew's word: no browser on the laptop. Every browser run went to GitHub Actions instead: the Dress Up branches' tests, the pictures, page screenshots. The laptop ran one pinned job at a time (<code>taskset -c 0-3 nice -n 10</code>, <code>dune -j 4</code>): builds, node test runs, ffmpeg.</li>
+<li>Learned: GitHub's ubuntu-24.04 image has Chrome but no ffmpeg, and a job-level <code>if</code> cannot read the matrix.</li>
+</ul>
+
+<h2 id="done">Done and live</h2>
+<ul>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-181"><code class="ref"><b>^ticket(</b>181<b>)</b></code></a>, the dashboard moved</b> to <a href="https://matthewhammer.org/hazel/dashboard/">matthewhammer.org/hazel/dashboard/</a>, in the homepage's repository. <code>dashboard/site_publish.py</code> commits it there with git's plumbing (never touching the checkout), at most every ten minutes, as the homepage's Pages build takes about two. The old addresses redirect with their <code>#ticket-N</code>. The homepage's checkout is now usually behind its origin: pull before pushing there.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-182"><code class="ref"><b>^ticket(</b>182<b>)</b></code></a>, a gallery of these notes</b> at <a href="https://matthewhammer.org/hazel/work-notes/">matthewhammer.org/hazel/work-notes/</a>: a card per note with a picture drawn for it, a summary, its next steps and the chips and hover cards. A new note needs its entry in <code>work-notes/gallery.json</code> and a picture in <code>dashboard/gallery_art.py</code>, then <code>notes_gallery.py</code>.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-183"><code class="ref"><b>^ticket(</b>183<b>)</b></code></a>, the pictures of 2026/10/17</b>: Dress Up 0.0.94, with a new folder of the friend climbing each place's ladder (18 pictures), made on GitHub's computers. A control run of 0.0.90 found GitHub's Chrome draws what the laptop's drew, though not byte for byte (264 of 349 the same, 73 off by a few anti-aliased pixels, 12 caught at another moment of an animation). The workflow is on kids-choice-games' <code>archive-183</code> branch; it can be started by hand once it is on main.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-164"><code class="ref"><b>^ticket(</b>164<b>)</b></code></a> closed</b> on Matthew's word, after his 🧪 runs of 0.0.94 on the Ubuntu laptop (Intel i7) and the iPad.</li>
+</ul>
+
+<h2 id="hazel">Hazel</h2>
+<ul>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/#ticket-156"><code class="ref"><b>^ticket(</b>156<b>)</b></code></a>, the trial merge of <a href="https://github.com/hazelgrove/hazel/pull/2469">#2469</a> into <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a></b> (<code>trial/2635-up-to-date</code>, <code>9e7258b55b</code>): its 11 new CI failures are fixed. Key.mk read an optional tagName; OutlineRename's module path; and two places where <a href="https://github.com/hazelgrove/hazel/pull/2469">#2469</a>'s cell code had never met <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a>'s syntax: a run of <code>hint "…" test … end</code> tests (the mvu docs) and a <code>do x &lt;- e in</code> block (splice-row.hz). Fast checks now fail only on the 10 expected tests (DefStaticsParity per member, Editing.TableDecorations). Full tests were still running at 01:10.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/#ticket-18"><code class="ref"><b>^ticket(</b>18<b>)</b></code></a>, views in the worker, coded</b> with Matthew's defaults (<code>perf/2635-views-in-worker-costly</code>, <code>ee885708ac</code>, pushed for CI, no PR): only the costly livelit views (8 ms or more on the page) on the screen run in the worker. The tests pass; nothing is measured yet, as that needs a browser.</li>
+</ul>
+
+<h2 id="dress-up">Dress Up</h2>
+<ul>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/#ticket-160"><code class="ref"><b>^ticket(</b>160<b>)</b></code></a> settled on GitHub's computers</b>: the on-screen controller costs nothing we can see. Walking the forest three times each way, holding the on-screen arrows averaged 55.7 frames a second, and the game controller with it hidden 57.4, with a spread of 5.7 between its own runs. No shadow, layer or see-through change mattered. An earlier note of mine said it cost about 5 frames a second; that run never showed the controller (a connected game controller hides it) and sat inside the noise. Only the kids' devices can decide now.</li>
+<li>Branches built and green on GitHub, each waiting on Matthew's review: <code>collisions-176</code>, <code>flash-177</code>, <code>postcards-43</code>, <code>diagonals-144</code>, <code>speedlog-166</code>, <code>bgtab-167</code>, <code>measure-179</code>, <code>objects-180</code>, and <code>ci</code> (the tests' workflow). The next <a href="https://matthewhammer.org/kids-choice-games/dress-up/reports/">Dress Up report</a>, <code class="ref"><b>^du_report(</b>3<b>)</b></code>, is drafted on <code>report-003</code>, not pushed.</li>
+</ul>
+
+<h2 id="waiting">Waiting on Matthew</h2>
+<ul>
+<li>Review and merge the Dress Up branches above (then <a href="https://matthewhammer.org/hazel/dashboard/#ticket-178"><code class="ref"><b>^ticket(</b>178<b>)</b></code></a>, splitting the game into files, can start), and publish <code class="ref"><b>^du_report(</b>3<b>)</b></code> (the draft, on <code>report-003</code>).</li>
+<li><a href="https://matthewhammer.org/hazel/dashboard/#ticket-18"><code class="ref"><b>^ticket(</b>18<b>)</b></code></a>: a daytime browser run to measure Full Body's main thread and Kids' Choice's release, against <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a>.</li>
+<li><a href="https://matthewhammer.org/hazel/dashboard/#ticket-160"><code class="ref"><b>^ticket(</b>160<b>)</b></code></a>: the forest on the iPad and the Ubuntu laptop, held arrows against keys or a controller.</li>
+<li><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-183"><code class="ref"><b>^ticket(</b>183<b>)</b></code></a>'s workflow onto kids-choice-games' main, if days should be made on GitHub from now on.</li>
+</ul>
+
+<h2 id="next">Next</h2>
+<ul>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/#ticket-156"><code class="ref"><b>^ticket(</b>156<b>)</b></code></a>: read the trial branch's Full tests</b>, and HeadlessRows there.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/#ticket-18"><code class="ref"><b>^ticket(</b>18<b>)</b></code></a>: measure the views in the worker</b> in a browser, by day, and choose the threshold.</li>
+<li><b>Merge the reviewed Dress Up branches</b>, one at a time, each with its version.</li>
+</ul>
+</main>
+<!-- pr-cards: begin -->
+<style>
+  .pr-card { position: absolute; z-index: 40; width: max-content; max-width: min(380px, calc(100vw - 32px)); box-sizing: border-box;
+    padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line, #d0d7de); background: var(--paper, var(--bg, Canvas));
+    color: var(--ink, CanvasText); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18); font: 13px/1.45 system-ui, sans-serif; pointer-events: none; }
+  .pr-card .pr-head { color: var(--muted, GrayText); font-size: 12px; }
+  .pr-card .pr-title { font-weight: 600; margin: 3px 0 4px; }
+  .pr-card .pr-meta { color: var(--muted, GrayText); font-size: 12px; }
+  .pr-card .pr-note { color: var(--muted, GrayText); font-size: 11px; margin-top: 5px; font-style: italic; }
+  .pr-state { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; margin-left: 6px; vertical-align: 1px; }
+  .pr-state.open { background: #1f883d; } .pr-state.merged { background: #8250df; } .pr-state.closed { background: #cf222e; } .pr-state.draft { background: #6e7781; }
+</style>
+<script>
+/* A card for each link to a GitHub PR or issue, on hover or focus: its
+   title, state, author, dates and comments, asked of GitHub live, once per
+   number per page load; if GitHub does not answer, what it said when the
+   page was built (tools/link_prs.py writes this block). */
+(() => {
+  const CACHED = {"hazelgrove/hazel#2469": {"author": "disconcision", "comments": 15, "created": "2026-08-27T04:14:59Z", "kind": "pull", "state": "open", "title": "Modular editors", "updated": "2026-10-17T04:11:27Z"}, "hazelgrove/hazel#2635": {"author": "matthewhammer", "comments": 2, "created": "2026-10-01T22:50:14Z", "kind": "pull", "state": "draft", "title": "Livelits × modular editors: merge #2469 into the livelits branch", "updated": "2026-10-17T03:13:13Z"}}, BUILT = "2026-10-17";
+  const RX = /^https:\/\/github\.com\/([^/]+\/[^/]+)\/(?:pull|issues)\/(\d+)$/;
+  const asked = new Map();
+  const ask = key => {
+    if (!asked.has(key)) {
+      const [repo, n] = key.split("#");
+      asked.set(key, fetch(`https://api.github.com/repos/${repo}/issues/${n}`)
+        .then(r => r.ok ? r.json() : Promise.reject(r.status))
+        .then(j => ({ title: j.title, author: j.user && j.user.login, created: j.created_at, updated: j.updated_at,
+                      comments: j.comments, kind: j.pull_request ? "pull" : "issues",
+                      state: j.pull_request && j.pull_request.merged_at ? "merged" : j.draft ? "draft" : j.state }))
+        .catch(() => null));
+    }
+    return asked.get(key);
+  };
+  const day = iso => new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+  const ago = iso => {
+    const s = (Date.now() - new Date(iso)) / 1000;
+    for (const [u, k] of [["year", 31536000], ["month", 2592000], ["day", 86400], ["hour", 3600], ["minute", 60]])
+      if (s >= k) { const v = Math.floor(s / k); return `${v} ${u}${v === 1 ? "" : "s"} ago`; }
+    return "just now";
+  };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const fill = (key, d, note) => {
+    const [repo, n] = key.split("#"), what = d.kind === "pull" ? "Pull request" : "Issue";
+    return `<div class="pr-head">${esc(repo)} #${n} · ${what}<span class="pr-state ${esc(d.state)}">${esc(d.state)}</span></div>` +
+      `<div class="pr-title">${esc(d.title)}</div>` +
+      `<div class="pr-meta">by ${esc(d.author)} · opened ${day(d.created)} · updated ${ago(d.updated)} · ${d.comments} comment${d.comments === 1 ? "" : "s"}</div>` +
+      (note ? `<div class="pr-note">${note}</div>` : "");
+  };
+  let card = null, over = null, timer = null;
+  const place = a => {
+    const r = a.getBoundingClientRect(), w = card.offsetWidth, h = card.offsetHeight;
+    const left = Math.max(16, Math.min(r.left, document.documentElement.clientWidth - w - 16));
+    const below = r.bottom + 6 + h < innerHeight;
+    card.style.left = (left + scrollX) + "px";
+    card.style.top = ((below ? r.bottom + 6 : r.top - 6 - h) + scrollY) + "px";
+  };
+  const hide = () => { clearTimeout(timer); over = null; if (card) card.hidden = true; };
+  const show = a => {
+    const m = RX.exec(a.href);
+    if (!m) return;
+    const key = m[1] + "#" + m[2];
+    over = a; clearTimeout(timer);
+    timer = setTimeout(async () => {
+      if (!card) { card = document.createElement("div"); card.className = "pr-card"; card.setAttribute("role", "tooltip"); document.body.append(card); }
+      const cached = CACHED[key];
+      card.innerHTML = cached ? fill(key, cached, "asking GitHub…") : `<div class="pr-head">${esc(key)}</div><div class="pr-note">asking GitHub…</div>`;
+      card.hidden = false; place(a);
+      const d = await ask(key);
+      if (over !== a) return;
+      card.innerHTML = d ? fill(key, d, "")
+        : cached ? fill(key, cached, `GitHub didn't answer just now (its limit is 60 lookups an hour per network): as of ${BUILT}`)
+        : `<div class="pr-head">${esc(key)}</div><div class="pr-note">GitHub didn't answer just now.</div>`;
+      place(a);
+    }, 250);
+  };
+  const linkOf = t => t && t.closest && t.closest("a[href]");
+  document.addEventListener("mouseover", e => { const a = linkOf(e.target); if (a && a !== over && RX.test(a.href)) show(a); });
+  document.addEventListener("mouseout", e => { const a = linkOf(e.target); if (a && a === over && !a.contains(e.relatedTarget)) hide(); });
+  document.addEventListener("focusin", e => { const a = linkOf(e.target); if (a && RX.test(a.href)) show(a); });
+  document.addEventListener("focusout", hide);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") hide(); });
+  addEventListener("scroll", () => { if (over && card && !card.hidden) place(over); }, { passive: true });
+})();
+</script>
+<!-- pr-cards: end -->
+<!-- ref-cards: begin -->
+<style>
+  .ref-card { position: absolute; z-index: 40; width: max-content; max-width: min(400px, calc(100vw - 32px)); box-sizing: border-box;
+    padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line, #d0d7de); background: var(--paper, var(--bg, Canvas));
+    color: var(--ink, CanvasText); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18); font: 13px/1.45 system-ui, sans-serif; pointer-events: none; }
+  .ref-card .rc-head { color: var(--muted, GrayText); font-size: 12px; }
+  .ref-card .rc-title { font-weight: 600; margin: 3px 0 4px; }
+  .ref-card .rc-meta { color: var(--muted, GrayText); font-size: 12px; }
+  .ref-card .rc-note { color: var(--muted, GrayText); font-size: 11px; margin-top: 5px; font-style: italic; }
+  .rc-state { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; margin-left: 6px;
+    vertical-align: 1px; background: #6e7781; }
+  .rc-state.current { background: #1f883d; } .rc-state.queued { background: #9a6700; } .rc-state.open { background: #0969da; }
+  .rc-state.done { background: #8250df; }
+</style>
+<script>
+/* A card for each ^ticket(N) and ^report(N) link, on hover or focus: a
+   ticket from the work dashboard's data (its area, its status, its first
+   line), carried by the dashboard's own pages and read live from the
+   published data anywhere else; a report from its own page, live (its
+   title, date and opening). Once per page load each. */
+(() => {
+  const PUBLIC = "https://matthewhammer.org/hazel-work-notes/dashboard-data/data.json";
+  const DATA = location.port === "8000" && /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? "/data.json" : PUBLIC;
+  /* the dashboard itself carries its tickets (made with the page, changed
+     with it); any other page asks the published data */
+  const EMBED = null;
+  let data = EMBED ? Promise.resolve(EMBED) : null;
+  const loadData = () => data || (data = fetch(DATA, { cache: "no-store" }).then(r => r.ok ? r.json() : Promise.reject(r.status)).catch(() => null));
+  const pages = new Map();
+  const loadReport = url => {
+    if (!pages.has(url)) pages.set(url, fetch(url).then(r => r.ok ? r.text() : Promise.reject(r.status)).then(t => {
+      const doc = new DOMParser().parseFromString(t, "text/html"), h1 = doc.querySelector("h1");
+      let p = h1 && h1.nextElementSibling;
+      while (p && p.tagName !== "P") p = p.nextElementSibling;
+      const label = (doc.querySelector(".series") || {}).textContent || "";
+      return { title: h1 ? h1.textContent.trim() : doc.title, date: (label.match(/\d{4}-\d{2}-\d{2}/) || [""])[0],
+               lead: p ? p.textContent.replace(/\s+/g, " ").trim() : "" };
+    }).catch(() => null));
+    return pages.get(url);
+  };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const cut = (t, n) => t.length <= n ? t : t.slice(0, n).replace(/\s+\S*$/, "") + "…";
+  const plain = h => new DOMParser().parseFromString("<div>" + (h || "") + "</div>", "text/html").body.textContent.replace(/\s+/g, " ").trim();
+  const lead = h => { const m = /^\s*<b>([\s\S]*?)<\/b>/.exec(h || ""); return m ? plain(m[1]) : cut(plain(h), 200); };
+  const ticketCard = (n, d) => {
+    const open = (d.tickets || []).find(t => t.id === n), closed = (d.closed_tickets || []).find(t => t.id === n), t = open || closed;
+    if (!t) return `<div class="rc-head">^ticket(${n})</div><div class="rc-note">Not on the dashboard.</div>`;
+    const q = (d.queue || []).indexOf(n);
+    const [cls, state] = closed ? ["done", `${t.status || "closed"}, ${t.closed || ""}`]
+      : d.current_ticket === n ? ["current", "current" + (d.current_waiting ? " · ✋❔ waiting on Matthew" : "")]
+      : q >= 0 ? ["queued", `queued, ${q + 1} in line`] : ["open", "open"];
+    return `<div class="rc-head">^ticket(${n}) · ${esc(t.area || "")}<span class="rc-state ${cls}">${esc(state)}</span></div>` +
+      `<div class="rc-title">${esc(lead(t.text))}</div>` +
+      `<div class="rc-meta">${t.added ? "added " + esc(t.added) + " · " : ""}from ${esc(plain(t.source || "") || "?")}</div>` +
+      (closed && t.outcome ? `<div class="rc-meta">${esc(cut(plain(t.outcome), 180))}</div>` : "");
+  };
+  const reportCard = (n, r) => r
+    ? `<div class="rc-head">^report(${n}) · Hazel performance analysis${r.date ? " · " + esc(r.date) : ""}</div>` +
+      `<div class="rc-title">${esc(r.title)}</div>` + (r.lead ? `<div class="rc-meta">${esc(cut(r.lead, 240))}</div>` : "")
+    : `<div class="rc-head">^report(${n})</div><div class="rc-note">The report's page didn't load just now.</div>`;
+  let card = null, over = null, timer = null;
+  const place = a => {
+    const r = a.getBoundingClientRect(), w = card.offsetWidth, h = card.offsetHeight;
+    card.style.left = (Math.max(16, Math.min(r.left, document.documentElement.clientWidth - w - 16)) + scrollX) + "px";
+    card.style.top = ((r.bottom + 6 + h < innerHeight ? r.bottom + 6 : r.top - 6 - h) + scrollY) + "px";
+  };
+  const refOf = a => { const c = a.querySelector("code.ref"); const m = c && /^\^(ticket|report)\((\d+)\)$/.exec(c.textContent.trim()); return m && { kind: m[1], n: Number(m[2]) }; };
+  const hide = () => { clearTimeout(timer); over = null; if (card) card.hidden = true; };
+  const show = (a, ref) => {
+    over = a; clearTimeout(timer);
+    timer = setTimeout(async () => {
+      if (!card) { card = document.createElement("div"); card.className = "ref-card"; card.setAttribute("role", "tooltip"); document.body.append(card); }
+      card.innerHTML = `<div class="rc-head">^${ref.kind}(${ref.n})</div><div class="rc-note">loading…</div>`;
+      card.hidden = false; place(a);
+      let html;
+      if (ref.kind === "ticket") { const d = await loadData(); html = d ? ticketCard(ref.n, d) : `<div class="rc-head">^ticket(${ref.n})</div><div class="rc-note">The dashboard's data didn't load just now.</div>`; }
+      else html = reportCard(ref.n, await loadReport(a.href));
+      if (over !== a) return;
+      card.innerHTML = html; place(a);
+    }, 250);
+  };
+  const linkOf = t => t && t.closest && t.closest("a[href]");
+  document.addEventListener("mouseover", e => { const a = linkOf(e.target), r = a && refOf(a); if (r && a !== over) show(a, r); });
+  document.addEventListener("mouseout", e => { const a = linkOf(e.target); if (a && a === over && !a.contains(e.relatedTarget)) hide(); });
+  document.addEventListener("focusin", e => { const a = linkOf(e.target), r = a && refOf(a); if (r) show(a, r); });
+  document.addEventListener("focusout", hide);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") hide(); });
+  addEventListener("scroll", () => { if (over && card && !card.hidden) place(over); }, { passive: true });
+})();
+</script>
+<!-- ref-cards: end -->
+<!-- notes: begin -->
+<style>
+  code.ref { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; white-space: nowrap; }
+  code.ref b { font-weight: 800; }
+  button.mint { margin-left: 4px; font: inherit; font-size: 0.75em; padding: 0 6px; border: 1px solid var(--line, #ccc);
+    border-radius: 4px; background: transparent; color: var(--muted, #666); cursor: pointer; vertical-align: 1px; }
+  button.mint:hover { color: inherit; }
+  button.mint.done { color: var(--good, #15803d); border-color: var(--good, #15803d); }
+  a.step-link { color: var(--muted, #666); text-decoration: none; font-size: 0.85em; margin-left: 4px; }
+  a.step-link:hover { text-decoration: underline; }
+  li:target { background: color-mix(in srgb, var(--good, #15803d) 12%, transparent); border-radius: 6px; }
+</style>
+<script>
+/* Each step under "Next": a link to it, a chip copying that link, and a
+   chip copying a request to mint a ticket for it (to paste to Claude). */
+(() => {
+  const h = document.getElementById("next");
+  if (!h) return;
+  let list = h.nextElementSibling;
+  while (list && !/^(OL|UL)$/.test(list.tagName)) {
+    if (list.tagName === "H2") return;
+    list = list.nextElementSibling;
+  }
+  if (!list) return;
+  const page = location.origin + location.pathname, name = document.title;
+  const copy = async (b, text) => {
+    try { await navigator.clipboard.writeText(text); }
+    catch (_) { const t = document.createElement("textarea"); t.value = text; document.body.append(t); t.select(); document.execCommand("copy"); t.remove(); }
+    const was = b.textContent; b.textContent = "copied"; b.classList.add("done");
+    setTimeout(() => { b.textContent = was; b.classList.remove("done"); }, 1500);
+  };
+  [...list.children].filter(li => li.tagName === "LI").forEach((li, i) => {
+    const n = i + 1;
+    if (!li.id) li.id = "step-" + n;
+    const url = page + "#" + li.id;
+    const b = li.querySelector("b, strong");
+    const title = (b ? b.textContent : li.textContent).replace(/\s+/g, " ").trim().replace(/[:.,;]$/, "").slice(0, 160);
+    const a = document.createElement("a");
+    a.href = "#" + li.id; a.className = "step-link"; a.textContent = "#" + n; a.title = "A link to this step";
+    const link = document.createElement("button");
+    link.type = "button"; link.className = "mint"; link.textContent = "copy link"; link.title = "Copies a link to this step";
+    link.addEventListener("click", () => copy(link, url));
+    const mint = document.createElement("button");
+    mint.type = "button"; mint.className = "mint"; mint.textContent = "copy for a ticket";
+    mint.title = "Copies a request to mint a ticket for this step, to paste to Claude";
+    mint.addEventListener("click", () => copy(mint, "Mint a ticket for this step: " + name + ", Next, step " + n + ': "' + title + '". ' + url));
+    li.append(" ", a, " ", link, " ", mint);
+  });
+  if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
+})();
+</script>
+<!-- notes: end -->
+</body>
+</html>

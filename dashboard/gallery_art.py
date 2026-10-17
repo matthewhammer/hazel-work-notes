@@ -183,7 +183,31 @@ def morning_1014():
         + "".join(f'<path d="M158 {52 + i * 10} h{30 + (i * 13) % 26} M{200} {52 + i * 10} h14" stroke-width="0.9"/>' for i in range(6)) +
         f'<circle cx="214" cy="36" r="4" stroke-width="0.9"/><path d="M214 33.5 V36 h2" stroke-width="0.8"/>'))
 
+def night_1016():
+    stars = "".join(f'<path d="M{x} {y-3} v6 M{x-3} {y} h6" stroke-width="0.9"/>' for x, y in ((60, 22), (88, 36), (140, 18), (214, 30), (30, 46)))
+    return plate("i0110", "the laptop asleep under a moon with no browser, while a cloud of GitHub's computers sends down pictures and a ladder", (
+        f'<rect x="10" y="10" width="220" height="130" fill="#L" stroke="none" opacity="0.5"/>' + stars +
+        # the moon
+        f'<path d="M40 16 a14 14 0 1 0 14 22 a11 11 0 1 1 -14 -22 z" fill="{OCHRE}"/>'
+        # the laptop, shut, asleep, no browser
+        '<path d="M14 128 H226" stroke-width="1"/>'
+        f'<path d="M22 126 H88 L94 120 H28 Z" fill="{PAPER}"/><path d="M28 120 L34 112 H88 L94 120" fill="#H"/>'
+        '<text x="66" y="104" font-family="Georgia, serif" font-size="10" font-style="italic" fill="#2b2118" stroke="none">z</text>'
+        '<text x="74" y="94" font-family="Georgia, serif" font-size="13" font-style="italic" fill="#2b2118" stroke="none">z</text>'
+        f'<g transform="translate(36 78)"><rect width="24" height="18" rx="2" fill="{PAPER}"/><path d="M0 5 h24" stroke-width="1"/>'
+        f'<circle cx="12" cy="11" r="10" stroke="{OX}" stroke-width="2"/><path d="M5 18 L19 4" stroke="{OX}" stroke-width="2"/></g>'
+        # GitHub's computers, a cloud at work
+        f'<path d="M128 58 q-14 0 -14 -12 q0 -12 14 -12 q4 -12 20 -12 q14 0 18 10 q16 -2 18 12 q12 2 10 14 z" fill="{PAPER}" stroke-width="1.6"/>'
+        f'<g transform="translate(150 44)"><circle r="7" fill="{GREEN}"/>' + "".join(f'<rect x="-2" y="-10" width="4" height="5" fill="{GREEN}" transform="rotate({a})"/>' for a in range(0, 360, 60)) + f'<circle r="2.5" fill="{PAPER}"/></g>'
+        # pictures falling from it, and a ladder with the friend climbing
+        f'<g stroke-width="1.1"><rect x="124" y="70" width="16" height="12" fill="{PAPER}" transform="rotate(-10 132 76)"/><path d="M126 80 l4 -5 l4 4 l3 -3 l3 4" transform="rotate(-10 132 76)"/>'
+        f'<rect x="150" y="86" width="16" height="12" fill="{PAPER}" transform="rotate(8 158 92)"/><circle cx="155" cy="90" r="2" fill="{OCHRE}" stroke="none"/>'
+        f'<rect x="132" y="104" width="16" height="12" fill="{PAPER}" transform="rotate(-4 140 110)"/><path d="M134 113 h12" /></g>'
+        '<path d="M190 128 L196 64 M214 128 L208 64" stroke-width="1.8"/>' + "".join(f'<path d="M{191 + i * 0.4} {120 - i * 9} H{213 - i * 0.4}"/>' for i in range(7))
+        + doll(203, 106, 0.55, f"{OX}", "climb", back=True)))
+
 ART = {
+    "work-notes/2026/10/17/2026-10-17T0110-0600.html": night_1016,
     "work-notes/2026/10/16/2026-10-16T1810-0600.html": evening_1016,
     "work-notes/2026/10/16/2026-10-16T1035-0600.html": late_morning_1016,
     "work-notes/2026/10/16/2026-10-16T0905-0600.html": morning_1016,
