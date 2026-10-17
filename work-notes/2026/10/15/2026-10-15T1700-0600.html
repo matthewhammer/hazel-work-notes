@@ -30,7 +30,7 @@
 
 <h2 id="crash">The 15:33 crash, recovered</h2>
 <ul>
-<li>The laptop went down at 15:33 in the middle of <a href="http://matthewhammer.org/hazel-work-notes/#ticket-112"><code class="ref"><b>^ticket(</b>112<b>)</b></code></a>. The game's edits in <code>~/kids-choice-games/dress-up/index.html</code> survived intact.</li>
+<li>The laptop went down at 15:33 in the middle of <a href="https://matthewhammer.org/hazel/dashboard/#ticket-112"><code class="ref"><b>^ticket(</b>112<b>)</b></code></a>. The game's edits in <code>~/kids-choice-games/dress-up/index.html</code> survived intact.</li>
 <li>The music archive did not: <code>vibes.mp3</code> was left empty but listed as done. It was moved aside to <code>~/du-shots/crash-2026-10-15/</code> (deleting it was refused), re-rendered, and the day was published (dress-up-music <code>e0d5474</code>, all 28 tunes).</li>
 <li>Only some servers were restarted at first, and 8131 (the perf series) was found down by Matthew. The rule since then (in <code>agent-instructions.md</code>): serve everything the dashboard links, probe each link, and mark anything unservable "not served", with the reason.</li>
 <li>8342 is not served. The desktop app allows 5 preview servers per worktree, and 8000, 8131, 8133, 8311 and 8341 hold them. Still open: Matthew's choice to bring it back in a Terminal tab or drop its row.</li>
@@ -39,13 +39,13 @@
 <h2 id="releases">Dress Up releases (all pushed, Pages run green, live page checked)</h2>
 <div class="scroll"><table>
 <tr><th>Version</th><th>Commit</th><th>Ticket</th><th>What</th></tr>
-<tr><td>0.0.42</td><td><code>20dee4f</code></td><td><a href="http://matthewhammer.org/hazel-work-notes/#ticket-112"><code class="ref"><b>^ticket(</b>112<b>)</b></code></a></td><td>⬇️ the door behind you: every room can have a way out behind the viewer (<code>castleBack</code>), drawn as a sign at the bottom edge. It fixes castle N's one-way arch in the designer.</td></tr>
-<tr><td>0.0.43</td><td><code>fcba6f4</code></td><td><a href="http://matthewhammer.org/hazel-work-notes/#ticket-113"><code class="ref"><b>^ticket(</b>113<b>)</b></code></a></td><td>M: up to 8 side doors in a hallway, 6 in the dining room plus a door in its far wall. A range slider's maximum now follows the room (<code>roomDoorMax</code>, an optional limit function on range controls).</td></tr>
-<tr><td>0.0.44</td><td><code>1d1889a</code></td><td><a href="http://matthewhammer.org/hazel-work-notes/#ticket-116"><code class="ref"><b>^ticket(</b>116<b>)</b></code></a></td><td>Matthew and M: the doors stand closer and every sign can be read (16 px text at 1280×720, none overlapping). The whole window is used: at 1280×720 the picture went from 542×402 to 849×628. A draggable divider (remembered; double-click for the best fit) and a Save menu.</td></tr>
-<tr><td>0.0.45</td><td><code>295f402</code></td><td><a href="http://matthewhammer.org/hazel-work-notes/#ticket-117"><code class="ref"><b>^ticket(</b>117<b>)</b></code></a></td><td>Matthew: dragging the friend while the scene animates ground down and froze the music. Fixed; details below.</td></tr>
+<tr><td>0.0.42</td><td><code>20dee4f</code></td><td><a href="https://matthewhammer.org/hazel/dashboard/#ticket-112"><code class="ref"><b>^ticket(</b>112<b>)</b></code></a></td><td>⬇️ the door behind you: every room can have a way out behind the viewer (<code>castleBack</code>), drawn as a sign at the bottom edge. It fixes castle N's one-way arch in the designer.</td></tr>
+<tr><td>0.0.43</td><td><code>fcba6f4</code></td><td><a href="https://matthewhammer.org/hazel/dashboard/#ticket-113"><code class="ref"><b>^ticket(</b>113<b>)</b></code></a></td><td>M: up to 8 side doors in a hallway, 6 in the dining room plus a door in its far wall. A range slider's maximum now follows the room (<code>roomDoorMax</code>, an optional limit function on range controls).</td></tr>
+<tr><td>0.0.44</td><td><code>1d1889a</code></td><td><a href="https://matthewhammer.org/hazel/dashboard/#ticket-116"><code class="ref"><b>^ticket(</b>116<b>)</b></code></a></td><td>Matthew and M: the doors stand closer and every sign can be read (16 px text at 1280×720, none overlapping). The whole window is used: at 1280×720 the picture went from 542×402 to 849×628. A draggable divider (remembered; double-click for the best fit) and a Save menu.</td></tr>
+<tr><td>0.0.45</td><td><code>295f402</code></td><td><a href="https://matthewhammer.org/hazel/dashboard/#ticket-117"><code class="ref"><b>^ticket(</b>117<b>)</b></code></a></td><td>Matthew: dragging the friend while the scene animates ground down and froze the music. Fixed; details below.</td></tr>
 </table></div>
 
-<h2 id="t117"><a href="http://matthewhammer.org/hazel-work-notes/#ticket-117"><code class="ref"><b>^ticket(</b>117<b>)</b></code></a>: why the drag ground down</h2>
+<h2 id="t117"><a href="https://matthewhammer.org/hazel/dashboard/#ticket-117"><code class="ref"><b>^ticket(</b>117<b>)</b></code></a>: why the drag ground down</h2>
 <ul>
 <li>Since 0.0.35 (seven LFOs; every scene moving with the music), <code>lfoBegin</code> timed each scene animation from <code>pic.getCurrentTime()</code> minus the music's phase, read afresh at every draw.</li>
 <li>The picture's SMIL clock moves once a frame, but the music's clock moves continuously. So the begins wobbled past their 0.05 s rounding, the scene's text changed on every draw, and <code>mountScene</code> rebuilt the whole scene on every move. Each slow frame widened the wobble.</li>
@@ -68,11 +68,11 @@
 
 <h2 id="dashboard">Dashboard</h2>
 <ul>
-<li>Closed: <a href="http://matthewhammer.org/hazel-work-notes/#ticket-92"><code class="ref"><b>^ticket(</b>92<b>)</b></code></a>, <a href="http://matthewhammer.org/hazel-work-notes/#ticket-112"><code class="ref"><b>^ticket(</b>112<b>)</b></code></a>, <a href="http://matthewhammer.org/hazel-work-notes/#ticket-113"><code class="ref"><b>^ticket(</b>113<b>)</b></code></a>, <a href="http://matthewhammer.org/hazel-work-notes/#ticket-114"><code class="ref"><b>^ticket(</b>114<b>)</b></code></a>, <a href="http://matthewhammer.org/hazel-work-notes/#ticket-115"><code class="ref"><b>^ticket(</b>115<b>)</b></code></a>, <a href="http://matthewhammer.org/hazel-work-notes/#ticket-116"><code class="ref"><b>^ticket(</b>116<b>)</b></code></a> and <a href="http://matthewhammer.org/hazel-work-notes/#ticket-117"><code class="ref"><b>^ticket(</b>117<b>)</b></code></a>.</li>
-<li>New tags, each grouped at the end of the queue (<a href="http://matthewhammer.org/hazel-work-notes/#ticket-114"><code class="ref"><b>^ticket(</b>114<b>)</b></code></a>, <a href="http://matthewhammer.org/hazel-work-notes/#ticket-115"><code class="ref"><b>^ticket(</b>115<b>)</b></code></a>):
+<li>Closed: <a href="https://matthewhammer.org/hazel/dashboard/#ticket-92"><code class="ref"><b>^ticket(</b>92<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/#ticket-112"><code class="ref"><b>^ticket(</b>112<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/#ticket-113"><code class="ref"><b>^ticket(</b>113<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/#ticket-114"><code class="ref"><b>^ticket(</b>114<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/#ticket-115"><code class="ref"><b>^ticket(</b>115<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/#ticket-116"><code class="ref"><b>^ticket(</b>116<b>)</b></code></a> and <a href="https://matthewhammer.org/hazel/dashboard/#ticket-117"><code class="ref"><b>^ticket(</b>117<b>)</b></code></a>.</li>
+<li>New tags, each grouped at the end of the queue (<a href="https://matthewhammer.org/hazel/dashboard/#ticket-114"><code class="ref"><b>^ticket(</b>114<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/#ticket-115"><code class="ref"><b>^ticket(</b>115<b>)</b></code></a>):
   <ul>
-  <li>🌙 <b>long run</b>: work to do while Matthew is away from the keyboard: <a href="http://matthewhammer.org/hazel-work-notes/#ticket-99"><code class="ref"><b>^ticket(</b>99<b>)</b></code></a>, <a href="http://matthewhammer.org/hazel-work-notes/#ticket-106"><code class="ref"><b>^ticket(</b>106<b>)</b></code></a> and <a href="http://matthewhammer.org/hazel-work-notes/#ticket-104"><code class="ref"><b>^ticket(</b>104<b>)</b></code></a>.</li>
-  <li>🪷 <b>blocked on Matthew</b>: waiting for his answer: <a href="http://matthewhammer.org/hazel-work-notes/#ticket-102"><code class="ref"><b>^ticket(</b>102<b>)</b></code></a>.</li>
+  <li>🌙 <b>long run</b>: work to do while Matthew is away from the keyboard: <a href="https://matthewhammer.org/hazel/dashboard/#ticket-99"><code class="ref"><b>^ticket(</b>99<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/#ticket-106"><code class="ref"><b>^ticket(</b>106<b>)</b></code></a> and <a href="https://matthewhammer.org/hazel/dashboard/#ticket-104"><code class="ref"><b>^ticket(</b>104<b>)</b></code></a>.</li>
+  <li>🪷 <b>blocked on Matthew</b>: waiting for his answer: <a href="https://matthewhammer.org/hazel/dashboard/#ticket-102"><code class="ref"><b>^ticket(</b>102<b>)</b></code></a>.</li>
   </ul></li>
 <li>The queue: 91, 90, 18, 60, 50, 29, then 🌙 99, 106, 104, then 🪷 102.</li>
 </ul>
@@ -81,9 +81,9 @@
 <ul>
 <li>Tonight's 🌙 long runs, one at a time, once Matthew says he is stepping away:
   <ul>
-  <li><a href="http://matthewhammer.org/hazel-work-notes/#ticket-99"><code class="ref"><b>^ticket(</b>99<b>)</b></code></a>: modular, composable routines in Dress Up;</li>
-  <li><a href="http://matthewhammer.org/hazel-work-notes/#ticket-106"><code class="ref"><b>^ticket(</b>106<b>)</b></code></a>: today's pictures day is still 0.0.36's, so rerun it on 0.0.45, and do the rest of the ticket;</li>
-  <li><a href="http://matthewhammer.org/hazel-work-notes/#ticket-104"><code class="ref"><b>^ticket(</b>104<b>)</b></code></a>: every tune as an MP3.</li>
+  <li><a href="https://matthewhammer.org/hazel/dashboard/#ticket-99"><code class="ref"><b>^ticket(</b>99<b>)</b></code></a>: modular, composable routines in Dress Up;</li>
+  <li><a href="https://matthewhammer.org/hazel/dashboard/#ticket-106"><code class="ref"><b>^ticket(</b>106<b>)</b></code></a>: today's pictures day is still 0.0.36's, so rerun it on 0.0.45, and do the rest of the ticket;</li>
+  <li><a href="https://matthewhammer.org/hazel/dashboard/#ticket-104"><code class="ref"><b>^ticket(</b>104<b>)</b></code></a>: every tune as an MP3.</li>
   </ul></li>
 <li>Muted headless Chromium is still running on 9333 (its pid is in <code>~/du-shots/chrome.pid</code>).</li>
 <li>Servers:

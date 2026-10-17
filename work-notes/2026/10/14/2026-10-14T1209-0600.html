@@ -26,8 +26,8 @@
 </head>
 <body>
 <main>
-<h1><a href="http://matthewhammer.org/hazel-work-notes/#ticket-45"><code class="ref"><b>^ticket(</b>45<b>)</b></code></a>: what the page keeps, an audit</h1>
-<p class="sub">2026-10-14, Matthew and Claude. <a href="http://matthewhammer.org/hazel-work-notes/#ticket-45"><code class="ref"><b>^ticket(</b>45<b>)</b></code></a> on the dashboard; the series report it feeds is <a href="http://matthewhammer.org/hazel-work-notes/#ticket-53"><code class="ref"><b>^ticket(</b>53<b>)</b></code></a>. Branch measured: <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a> at <code>c4e411f9c2</code>. The question <a href="http://matthewhammer.org/hazel/performance-analysis/005/"><code class="ref"><b>^report(</b>5<b>)</b></code></a> left open ("what memory these take has not been measured") is answered here in part.</p>
+<h1><a href="https://matthewhammer.org/hazel/dashboard/#ticket-45"><code class="ref"><b>^ticket(</b>45<b>)</b></code></a>: what the page keeps, an audit</h1>
+<p class="sub">2026-10-14, Matthew and Claude. <a href="https://matthewhammer.org/hazel/dashboard/#ticket-45"><code class="ref"><b>^ticket(</b>45<b>)</b></code></a> on the dashboard; the series report it feeds is <a href="https://matthewhammer.org/hazel/dashboard/#ticket-53"><code class="ref"><b>^ticket(</b>53<b>)</b></code></a>. Branch measured: <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a> at <code>c4e411f9c2</code>. The question <a href="http://matthewhammer.org/hazel/performance-analysis/005/"><code class="ref"><b>^report(</b>5<b>)</b></code></a> left open ("what memory these take has not been measured") is answered here in part.</p>
 
 <h2 id="leak">The leak</h2>
 <p>A tab on <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a>, the Full Body slide, the shirt-width slider set again and again: the live heap after two forced GCs grows about 85 MB per edit, steadily, with no plateau: 399, 482, 562, 656, 749, 830, 907 MB over six edits; +1,388 MB after 15. Measured in headless Chromium with precise memory info, first through chromedriver, then over the DevTools protocol directly (node's WebSocket).</p>
@@ -83,7 +83,7 @@
 <li><b>Count, don't guess:</b> a build of <a href="https://github.com/hazelgrove/hazel/pull/2597">#2597</a> that reports, after every edit, the size of each highlighted table (and the ruled-out ones, for comparison). The one that grows with every edit is the holder; then clear it in an experiment and measure.</li>
 <li>Its fix: an owner and a lifetime for that table (entries for the ids of the program shown now, dropped when the program moves on), not a weaker reference.</li>
 <li>The same check on <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a>.</li>
-<li>Then the series report (<a href="http://matthewhammer.org/hazel-work-notes/#ticket-53"><code class="ref"><b>^ticket(</b>53<b>)</b></code></a>).</li>
+<li>Then the series report (<a href="https://matthewhammer.org/hazel/dashboard/#ticket-53"><code class="ref"><b>^ticket(</b>53<b>)</b></code></a>).</li>
 </ol>
 </main>
 <!-- pr-cards: begin -->

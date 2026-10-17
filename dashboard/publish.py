@@ -9,7 +9,9 @@ data.json changes only when we edit it: a ticket opened, made current, closed
 or parked, current_waiting raised or lowered, a note, a port, a PR. Each such
 edit is published within a minute, without waiting for anyone to remember to.
 What comes from GitHub (PR status, deploys) is not in data.json, so it is
-refreshed on the quarter hour, as before.
+refreshed on the quarter hour, as before. The public copy at
+matthewhammer.org/hazel/dashboard/ goes up at most every ten minutes
+(site_publish.py); while one waits, each minute runs site_publish.py alone.
 
 A lock keeps two runs from overlapping: a cron run that finds one in progress
 skips, and --now waits for it. The hash of the data.json a run rendered is
@@ -43,12 +45,14 @@ elif digest != last:
     why = "data.json changed"
 elif minute % 15 == 0:
     why = "quarter hour"
+elif os.path.exists(os.path.join(HERE, ".site-pending")):
+    why = "a public copy waiting"   # (site_publish.py: at most one push to the homepage every ten minutes)
 else:
     sys.exit(0)
 
 out = [f"{datetime.now().astimezone():%Y-%m-%d %H:%M:%S %Z}: {why}"]
 ok = True
-for script in ("update.py", "log_notes.py"):
+for script in ("site_publish.py",) if why == "a public copy waiting" else ("update.py", "log_notes.py"):
     try:
         r = subprocess.run([sys.executable, os.path.join(HERE, script)], cwd=HERE,
                            capture_output=True, text=True, timeout=600)

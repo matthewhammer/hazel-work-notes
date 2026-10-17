@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Save index.html, and data.json, into ~/hazel-work-notes, commit them, publish a public copy, and push to GitHub.
+"""Save index.html, and data.json, into ~/hazel-work-notes, commit them, publish a public copy (site_publish.py), and push to GitHub.
 
   python3 ~/localhost-index/log_notes.py
 
@@ -66,42 +66,13 @@ if not os.path.exists(KEPT) or open(KEPT).read() != data:
     git("commit", "-q", "-m", f"Data {datetime.now().astimezone().strftime('%Y-%m-%d %H:%M %Z')}")
     print("wrote dashboard-data/data.json")
 
-# The public copy, at the repository's root, served by its Pages site
-# (matthewhammer.org/hazel-work-notes/, and matthewhammer.org/hazel/work-dashboard/
-# redirects there): the page and the closed tickets as served locally, with a
-# line saying what it is, links to the history on GitHub instead of on
-# localhost, and noindex (findable by its link, not by search). Written when
-# a page changed in more than its "Updated" line.
-REPO = "https://github.com/matthewhammer/hazel-work-notes"
-NOTE = ('<p class="note">A copy of the Hazel Work Dashboard that Matthew runs on his laptop, published within a minute or '
-        'two of each change to its notes, and every 15 minutes for the status from GitHub. Its <code>localhost</code> links work only there.</p>')
-
-def public(text):
-    text = text.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n<meta name="robots" content="noindex">', 1)
-    text = text.replace("http://localhost:8000/notes/dashboard-snapshots/", REPO + "/tree/main/dashboard-snapshots")
-    text = text.replace(' (<a href="http://localhost:8000/notes/agent-instructions.md">local</a>)', "")
-    text = text.replace("http://localhost:8000/notes/agent-instructions.md", REPO + "/blob/main/agent-instructions.md")
-    # The outline's link to the series: the published reports, as the local page links the local ones.
-    text = text.replace('<ul class="outline-out">\n<li><a href="http://localhost:8131/series/">',
-                        '<ul class="outline-out">\n<li><a href="http://matthewhammer.org/hazel/performance-analysis/">', 1)
-    for h1 in ("<h1>Hazel Work Dashboard</h1>", "<h1>Closed tickets</h1>"):
-        text = text.replace(h1, h1 + "\n" + NOTE, 1)
-    return text
-
-published = []
-for name in ("index.html", "closed.html"):
-    src = os.path.join(HERE, name)
-    if not os.path.exists(src):
-        continue
-    out = os.path.join(NOTES, name)
-    copy = public(open(src).read())
-    if not os.path.exists(out) or body(open(out).read()) != body(copy):
-        open(out, "w").write(copy)
-        git("add", name)
-        published.append(name)
-if published:
-    git("commit", "-q", "-m", f"Publish {datetime.now().astimezone().strftime('%Y-%m-%d %H:%M %Z')}: {', '.join(published)}")
-    print("published " + ", ".join(published))
+# The public copy: matthewhammer.org/hazel/dashboard/, in the homepage's repository,
+# by site_publish.py (^ticket(181), 2026-10-16). Until then it was written here, at
+# this repository's root, served at matthewhammer.org/hazel-work-notes/; the root's
+# index.html and closed.html now redirect to the new address.
+r = subprocess.run([sys.executable, os.path.join(HERE, "site_publish.py")], capture_output=True, text=True, timeout=300)
+if (r.stdout + r.stderr).strip():
+    print((r.stdout + r.stderr).strip())
 
 upstream = subprocess.run(["git", "-C", NOTES, "rev-parse", "-q", "--verify", "@{u}"], capture_output=True).returncode == 0
 if not upstream:

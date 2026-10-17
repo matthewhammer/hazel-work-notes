@@ -6,10 +6,11 @@ Matthew Hammer's working record for his [Hazel](https://hazel.org) work, kept wi
 
 ## What's here
 
-- `index.html` and `closed.html`: the published copy of the dashboard and of its closed tickets. Their address is http://matthewhammer.org/hazel/work-dashboard/, beside the series at http://matthewhammer.org/hazel/performance-analysis/; it redirects to this repository's own Pages site, http://matthewhammer.org/hazel-work-notes/, keeping any `#ticket-N`. They are republished within a minute of each change to the dashboard's data, and every 15 minutes for the status from GitHub.
+- The published dashboard, and its closed tickets, are at https://matthewhammer.org/hazel/dashboard/, beside the series at https://matthewhammer.org/hazel/performance-analysis/, in the homepage's repository (since 2026-10-16). `dashboard/site_publish.py` republishes them at most ten minutes after each change to the dashboard's data, and to the status from GitHub, read every 15 minutes.
+- `index.html` and `closed.html`: redirects to that address, keeping any `#ticket-N`: until 2026-10-16 the dashboard was published here, at http://matthewhammer.org/hazel-work-notes/ (and http://matthewhammer.org/hazel/work-dashboard/ redirected here; it now goes to the new address too).
 - `dashboard/`: the code that makes the dashboard from its data and publishes it:
   - `update.py` makes the dashboard;
-  - `publish.py` and `log_notes.py` publish it;
+  - `publish.py`, `log_notes.py` and `site_publish.py` publish it;
   - `notes_page.py`, `prlinks.py` and `refcards.py` give a notes page the same links and hover cards.
 - `dashboard-data/data.json`: the data the dashboard is made from, as last published.
 - `dashboard-snapshots/YYYY/MM/DD/`: every change to the dashboard, a folder per day.
