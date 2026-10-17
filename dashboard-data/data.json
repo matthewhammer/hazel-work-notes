@@ -702,6 +702,46 @@
    ]
   },
   {
+   "id": 225,
+   "area": "dress up, passages, bug",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T14:27-06:00",
+   "source": "Found by ^ticket(217)'s check on GitHub (runs 39065772429 and 39066250387)",
+   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39065772429",
+   "text": "<b>Dress Up: after Surprise me, a tap on a passage sometimes does nothing (suspected; random).</b> In one run, access217 pressed 🎲 Surprise me five times, then in the living room neither a walk to a passage nor a tap on a far picture started (the friend stayed where they were, nothing glowed through); the autosave carried that friend into the next check (nav199), whose living-room picture tap failed the same way. Run first, nav199 passes; in another run the same check's trip worked. So some outcome of Surprise me's dice (a pose, a seat, an animation such as 🧗 climbing with no ladder, or crouching) seems to leave a friend that walkInto/enterScene will not move. Not reproduced on purpose yet. To do: a check that presses Surprise me many times, each time tapping a far picture and a door, and records the friend's pose, animation and seat when a tap does nothing; then put right what it finds (Surprise me never leaves a friend that cannot go through a passage, or a tap stands them up first).",
+   "tags": [],
+   "status": "open",
+   "log": []
+  }
+ ],
+ "next_ticket": 231,
+ "current_ticket": 223,
+ "current_note": "15:34: 0.0.158 RELEASED: the tree house rooms are square rooms like the castle's (Matthew's call, then AFK): back wall, side walls, rafters, floorboards; bridge doors on the side walls (2 depths a side), the back wall's things fitted at 0.72 toward the middle, side walls stop the friend. Pictures of all six rooms at every setting's most + tree house, collision, path, passage, pit checks on GitHub (checks-158). 0.0.157: pits in collision detection.",
+ "closed_tickets": [
+  {
+   "id": 230,
+   "area": "dress up, accessibility, UX",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T15:14-06:00",
+   "source": "Matthew, 2026-10-17, in chat, with a screenshot of 0.0.150's ♿ tab",
+   "url": "",
+   "tags": [],
+   "status": "done",
+   "log": [],
+   "text": "<b>Dress Up: a nicer, more organized ♿ Accessibility tab: each overlay a chip with its own controls beside it, in a box of its own; the other sliders shorter, in a box apart.</b> Matthew: \"can we make the accessibility menu nicer, and more organized? for each of: all arrows (nice emoji -- keep it), planned path (nice emoji -- keep it), collision boxes (show a brick wall, not a red box please): chip toggle, as we have now, and then when on, color and stroke/font-size controls. -- all on one line, if possible. Each one gets a box around it to organize it when enabled. the other sliders can maybe be in another box, organized away. Try to make each slider less long in this view, and use the mixer/music as inspiration.\" To do: 🧭 all arrows, 👣 planned path, 🧱 collision boxes (the brick wall, not 🟥), each a row: its chip, and while on, its colour picker and its size controls (the arrows' size and dimness; the path's and the boxes' stroke widths, the boxes' labels' size), boxed while on; the other sliders (text size, glow fade) in a box of their own, each short, as the 🎵 mixer's are.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T15:34-06:00",
+   "outcome": "Released in 0.0.154 (+ 0.0.157 the rows wrap per item). The ♿ tab as accbox rows: 🧭 all arrows (colour, brightness, size), 👣 planned path (colour, line width), 🧱 collision boxes (a brick wall now; colour, line width, names' size, glow fade), each its chip and, while on, its controls beside it, boxed as a mixer strip; text size in a dashed box of its own. New settings pathWidth, boxWidth, boxFont (CSS vars on #access-layer). access217 updated and passing for the tab (run 39070425859); its twice-size arrows case still fails, marginally (word boxes touching by a few px), a separate matter.",
+   "metrics": {
+    "open_minutes": 20,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0
+   }
+  },
+  {
    "id": 224,
    "area": "dress up, world designer, UX",
    "added": "2026-10-17",
@@ -710,7 +750,7 @@
    "url": "",
    "text": "<b>Dress Up: the world designer's full screen: its columns and rows labelled, its controls scrolling on their own beside a grid that stays put, and a dragger between them.</b> Matthew: \"in FS mode for world design, let's show A, B, C ... and 1, 2, 3 as the row and column labels, with scaled font --- looks really good so far, BTW.\" To do: in body.world-big, a row of column letters over the grid and a column of row numbers beside it (the same names squareName gives, A1 at the top left), sized from --cell like the squares' words, the grid's height reckoned with them so it still fits the window. (2) Matthew, with a screenshot of 0.0.132's full screen: \"in FS mode for world designer, we want to let the user scroll the RHS (with controls and things to add) and the LHS (the grid of squares) stays in place, and maximal -- maybe also a dragger for LHS vs RHS size.\" To do: the right side its own scrolling box, the window's height; the grid fixed on the left at its largest (as tall as the window allows, and as wide as its side); a dragger between the two sides (as the page's own divider between the picture and the controls), the split kept in this browser. (3) Matthew, with a screenshot of the full screen (the square E2's \"ways out:\" eight buttons in a row): \"The N, NE, E, SE, S, etc buttons that toggle nav arrows for each grid square should be arranged in a little 9-cell grid (with the icon of the current square shown in the center of the 9).\" To do: the ways-out buttons as a 3×3 compass, NW N NE / W ● E / SW S SE, the square's own place emoji in the middle; each button keeping its states (on, off, off the map, suggested ★, a warning's ✕). (4) Matthew: \"name on signs field for each grid square has no margin/padding around it, and should have more emphasis on this FS mode meaning larger font\": the square's ✏️ name on signs box with room around it and inside it, and in full screen a larger font. (5) Matthew: \"when they are shown, but the warnings below the nav arrow add/remove controls, not at the top of the panel -- and use some dotted sub-panel to organize them more. The errors for other squares can be hidden entirely until we make that the 'active square' to edit.\" To do: with the warnings shown, this square's under its ways-out controls in a dotted sub-panel of their own; the other squares' not listed at all (their squares still marked red), till one becomes the square being edited; in the tab and full screen. (6) Matthew: \"all of the sub-panels of FS world designer should use the improved sub-panel design of the FS music panel (squar-ish sub-panels, next to each other, and organized into a grid of their own)\": the right side's parts (warnings, places to drag, sizes, the square's name and ways out, things here, off the grid) as cards in an auto-fill grid, as the music full screen's. Matthew, on (6): \"especially for squares with lots of objects, each with their own controls, etc.\": the things here, each with its own controls, as cards too.",
    "tags": [],
-   "status": "open",
+   "status": "done",
    "log": [
     {
      "at": "2026-10-17T14:02-06:00",
@@ -760,37 +800,19 @@
      "chars": 17,
      "asks": true
     }
-   ]
+   ],
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T15:34-06:00",
+   "outcome": "Released in 0.0.155 (+ 0.0.156 the compass's pressed style). Full screen: the grid's column sticky at its largest beside the right side scrolling past it (held at 1180 wide; moves 14px at 1600 when the page scrolls to its end), a dragger setting the split (kept in this browser as a percentage), A B C / 1 2 3 labels sized with the squares, the ways out as a 3x3 compass round the square's emoji, the name box padded and bigger, with warnings shown this square's listed in a dotted box under the compass and the other squares' only counted (red on the grid), the right side as cards in a grid, each thing its own card. world185 (updated: squares counted as [data-square], others counted not listed), world2-185, crossing185 all pass (run 39070595660); pictures at 1600, 1180, a 40% split and phone checked.",
+   "metrics": {
+    "open_minutes": 92,
+    "matthew_messages": 8,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1385,
+    "tokens_est": 346,
+    "sync_minutes_est": 6.0
+   }
   },
-  {
-   "id": 225,
-   "area": "dress up, passages, bug",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T14:27-06:00",
-   "source": "Found by ^ticket(217)'s check on GitHub (runs 39065772429 and 39066250387)",
-   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39065772429",
-   "text": "<b>Dress Up: after Surprise me, a tap on a passage sometimes does nothing (suspected; random).</b> In one run, access217 pressed 🎲 Surprise me five times, then in the living room neither a walk to a passage nor a tap on a far picture started (the friend stayed where they were, nothing glowed through); the autosave carried that friend into the next check (nav199), whose living-room picture tap failed the same way. Run first, nav199 passes; in another run the same check's trip worked. So some outcome of Surprise me's dice (a pose, a seat, an animation such as 🧗 climbing with no ladder, or crouching) seems to leave a friend that walkInto/enterScene will not move. Not reproduced on purpose yet. To do: a check that presses Surprise me many times, each time tapping a far picture and a door, and records the friend's pose, animation and seat when a tap does nothing; then put right what it finds (Surprise me never leaves a friend that cannot go through a passage, or a tap stands them up first).",
-   "tags": [],
-   "status": "open",
-   "log": []
-  },
-  {
-   "id": 230,
-   "area": "dress up, accessibility, UX",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T15:14-06:00",
-   "source": "Matthew, 2026-10-17, in chat, with a screenshot of 0.0.150's ♿ tab",
-   "url": "",
-   "tags": [],
-   "status": "open",
-   "log": [],
-   "text": "<b>Dress Up: a nicer, more organized ♿ Accessibility tab: each overlay a chip with its own controls beside it, in a box of its own; the other sliders shorter, in a box apart.</b> Matthew: \"can we make the accessibility menu nicer, and more organized? for each of: all arrows (nice emoji -- keep it), planned path (nice emoji -- keep it), collision boxes (show a brick wall, not a red box please): chip toggle, as we have now, and then when on, color and stroke/font-size controls. -- all on one line, if possible. Each one gets a box around it to organize it when enabled. the other sliders can maybe be in another box, organized away. Try to make each slider less long in this view, and use the mixer/music as inspiration.\" To do: 🧭 all arrows, 👣 planned path, 🧱 collision boxes (the brick wall, not 🟥), each a row: its chip, and while on, its colour picker and its size controls (the arrows' size and dimness; the path's and the boxes' stroke widths, the boxes' labels' size), boxed while on; the other sliders (text size, glow fade) in a box of their own, each short, as the 🎵 mixer's are."
-  }
- ],
- "next_ticket": 231,
- "current_ticket": 223,
- "current_note": "15:29: WAITING ON MATTHEW (^ticket(223)): the tree rooms' bridge doors sit in the back wall's corners, where 4 of 6 rooms keep their big furniture (bunk beds, counter, bookcase, keyboard); asked him how to clear them. 0.0.157 RELEASED: pits in collision detection (gone round, fallen into by the soles, shown, glowing), castle side doors behind the friend, ♿ rows wrap per item. 0.0.156's checks still running on GitHub.",
- "closed_tickets": [
   {
    "id": 229,
    "area": "dress up, accessibility, collisions",
@@ -6836,8 +6858,6 @@
  ],
  "queue": [
   223,
-  224,
-  230,
   214,
   209,
   184,
