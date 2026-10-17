@@ -621,11 +621,30 @@
     }
    ],
    "progress": "09:49: minted and queued, not started. Defaults keep today's feel (PAD_SPEED; instant start and stop); the gate's walk cases must stay at 60 fps."
+  },
+  {
+   "id": 189,
+   "area": "dress up, world designer",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T09:53-06:00",
+   "source": "M, through Matthew, 2026-10-17, in chat",
+   "text": "<b>Dress Up: in World design, a square's ways out that lead off the map can't be turned on, and an off way that would put a warning right is starred.</b> Matthew, 2026-10-17: \"M found a way to improve the world design UX -- for each grid square, disable the arrows that point off the edge of the grid system, so there's no way to make that mistake. For other arrows that are off, but if turned on, would fix a warning could have an indication next to them when the warnings are shown, like a star or underline or some other highlight hinting that: this is off, but we could and maybe should consider putting it on.\" Then: \"do this as a new ticket, then 187\".",
+   "tags": [],
+   "status": "open",
+   "log": [
+    {
+     "at": "2026-10-17T09:53-06:00",
+     "from": "matthew",
+     "chars": 480,
+     "asks": true
+    }
+   ],
+   "progress": "09:53: minted (Matthew: a new ticket, then ^ticket(187)). Written on world-185: worldOffMap disables a way off the map's edge (one on from before can still be turned off, outlined); worldWaysToTurnOn tries each off way and stars it (★, dashed outline) when on would leave fewer warnings, shown only with the warnings. Next: a check, GitHub, release."
   }
  ],
  "next_ticket": 187,
- "current_ticket": 185,
- "current_note": "09:49: 0.0.116 live: still pictures work in Chrome again. Minted ^ticket(187) (one way through every passage; audit done) and ^ticket(188) (speed and acceleration sliders), queued next.",
+ "current_ticket": 189,
+ "current_note": "09:53: M's idea: ways off the map's edge can't be turned on; an off way that would fix a warning is starred. Written; checking on GitHub, then release, then ^ticket(187).",
  "closed_tickets": [
   {
    "id": 178,
@@ -5329,6 +5348,7 @@
   }
  ],
  "queue": [
+  189,
   185,
   187,
   188,
@@ -5343,5 +5363,5 @@
   167,
   177
  ],
- "current_since": "2026-10-17T07:04-06:00"
+ "current_since": "2026-10-17T09:53-06:00"
 }
