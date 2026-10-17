@@ -629,25 +629,6 @@
    ]
   },
   {
-   "id": 221,
-   "area": "dress up, controls, actions, bubbles",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T13:40-06:00",
-   "source": "Matthew, 2026-10-17, in chat (\"push to back\": the end of the active queue)",
-   "url": "",
-   "text": "<b>Dress Up: a \"🫧 blow bubbles\" action for the friend, from the mouth or either hand, in any place.</b> Matthew: \"along with walk, enter passage, etc, --- a new 'create bubbles' action for the player, where they can blow bubbles out of their mouth of any style (up to three at once) in any scene, or either hand. They can choose which of the three places they come from.\" To do: an action beside walking and taking a passage (the 🎮 Controls tab and the controller, ^ticket(141)): bubbles of up to three styles at once (the bubble themes A, B and C of ^ticket(220), the concept of ^ticket(219)), coming from the mouth, the left hand or the right hand, the player choosing which; they float up and are dropped once out of sight; in bubble space they meet the others (stick, pop).",
-   "tags": [],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T13:40-06:00",
-     "from": "matthew",
-     "chars": 1412,
-     "asks": true
-    }
-   ]
-  },
-  {
    "id": 222,
    "area": "dress up, performance, releases",
    "added": "2026-10-17",
@@ -759,9 +740,39 @@
   }
  ],
  "next_ticket": 228,
- "current_ticket": 221,
- "current_note": "14:42: 220 → 0.0.143 released; 227's fixes confirmed. 221, 🫧 blow bubbles: an action beside walking and passages, bubbles of up to three styles from the mouth or a hand, the player choosing which.",
+ "current_ticket": 223,
+ "current_note": "14:46: 221 → 0.0.144 released (bubble space's check passed: 60 fps, sticking, popping). 223: the layering audit: castle side doors and tree house furniture that the friend half-hides behind; tree houses at their most, furniture off the doorways and ladders.",
  "closed_tickets": [
+  {
+   "id": 221,
+   "area": "dress up, controls, actions, bubbles",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T13:40-06:00",
+   "source": "Matthew, 2026-10-17, in chat (\"push to back\": the end of the active queue)",
+   "url": "",
+   "text": "<b>Dress Up: a \"🫧 blow bubbles\" action for the friend, from the mouth or either hand, in any place.</b> Matthew: \"along with walk, enter passage, etc, --- a new 'create bubbles' action for the player, where they can blow bubbles out of their mouth of any style (up to three at once) in any scene, or either hand. They can choose which of the three places they come from.\" To do: an action beside walking and taking a passage (the 🎮 Controls tab and the controller, ^ticket(141)): bubbles of up to three styles at once (the bubble themes A, B and C of ^ticket(220), the concept of ^ticket(219)), coming from the mouth, the left hand or the right hand, the player choosing which; they float up and are dropped once out of sight; in bubble space they meet the others (stick, pop).",
+   "tags": [],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T13:40-06:00",
+     "from": "matthew",
+     "chars": 1412,
+     "asks": true
+    }
+   ],
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T14:46-06:00",
+   "outcome": "Released in Dress Up 0.0.144 (main c337a6e; the work 2931aa6): 🫧 blow bubbles, held (the controller's button 6, a 🫧 beside select on the on-screen controller, or B on the keyboard): a bubble every 140 ms from the mouth (faceFrame's mouth, toward the way they face) or the left or right hand (poseJoints), the themes switched on (A, B, C) taking turns, each floating up, drifting, gone at the top or after 7 s; drawn over the picture (#access-layer). The themes' looks are bubble space's, editable in 🎮 Controls too (BUBBLE_THEME_CTLS). Not yet: blown bubbles meeting bubble space's (sticking, popping): they float over it. tools/checks/blow221.mjs and pictures run on GitHub after release.",
+   "metrics": {
+    "open_minutes": 66,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1412,
+    "tokens_est": 353,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 220,
    "area": "dress up, places, bubbles",
@@ -6686,7 +6697,6 @@
   }
  ],
  "queue": [
-  221,
   223,
   209,
   184,
