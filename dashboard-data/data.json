@@ -651,15 +651,6 @@
    ]
   },
   {
-   "id": 238,
-   "area": "dress up, tree house, layering, ladders",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T16:16-06:00",
-   "source": "Matthew, 2026-10-17, in chat (\"another long-standing issue, still not resolved\")",
-   "url": "",
-   "text": "<b>Dress Up: going down a tree house room's trapdoor ladder, the friend is drawn in front of the ladder and the trapdoor's flap, and visibly goes down into the hole.</b> Matthew: \"another long-standing issue, still not resolved: there's a layering issue when we use the trap door ladders in the tree house: we get (the main char) gets drawn below the ladder, the trap door flap, and we don't visibly go into the hole in a way that I can check about clipping ATM.\" To do: on the way down (climbLadder through a tree room's trapdoor; ticket 199's climb down, cut off below its edge), the friend in front of the ladder and the flap, and sinking into the hole, cut off at the hole's edge where it can be seen; then going up. Pictures of each step of the climb for him to check the clipping. Next to ^ticket(237) (walks round the trapdoors)."
-  },
-  {
    "id": 239,
    "area": "dress up, tree house, walking, doors",
    "added": "2026-10-17",
@@ -760,9 +751,31 @@
   }
  ],
  "next_ticket": 250,
- "current_ticket": 238,
- "current_note": "16:46: 0.0.167 committed locally (1f50bce, not pushed): the hatch drawn at its lid's foot so the friend climbing down is in front of it, cut off at the near rim; diagnostic 39076392971 with pictures of the climb, then the release",
+ "current_ticket": 239,
+ "current_note": "16:49: AFK run: 238 done (0.0.167). On 239: too tall for a tree house's small door, the last stretch of the walk is a crawl",
  "closed_tickets": [
+  {
+   "id": 238,
+   "area": "dress up, tree house, layering, ladders",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:16-06:00",
+   "source": "Matthew, 2026-10-17, in chat (\"another long-standing issue, still not resolved\")",
+   "url": "",
+   "text": "<b>Dress Up: going down a tree house room's trapdoor ladder, the friend is drawn in front of the ladder and the trapdoor's flap, and visibly goes down into the hole.</b> Matthew: \"another long-standing issue, still not resolved: there's a layering issue when we use the trap door ladders in the tree house: we get (the main char) gets drawn below the ladder, the trap door flap, and we don't visibly go into the hole in a way that I can check about clipping ATM.\" To do: on the way down (climbLadder through a tree room's trapdoor; ticket 199's climb down, cut off below its edge), the friend in front of the ladder and the flap, and sinking into the hole, cut off at the hole's edge where it can be seen; then going up. Pictures of each step of the climb for him to check the clipping. Next to ^ticket(237) (walks round the trapdoors).",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T16:49-06:00",
+   "outcome": "Released in 0.0.167 (1f50bce, live): the hatch (lid, hole, ladder's top) is one object at the lid's foot, the hole's far edge, so the friend at its near edge, climbing down or beside it, is drawn over it, cut off at the near rim going down; only one standing behind the hole is behind its lid; a hatch ladder's foot read from data-down (ladderAt), not its object's depth. hatch238.mjs (new), nav199, treehouse216, trapdoor237, passages187 all ok (run 39076392971). Pictures of the climb at four depths for Matthew: run 39076614434 (branch shots-238).",
+   "metrics": {
+    "open_minutes": 34,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 18.0
+   }
+  },
   {
    "id": 237,
    "area": "dress up, tree house, collisions",
@@ -7146,7 +7159,6 @@
   }
  ],
  "queue": [
-  238,
   239,
   240,
   241,
