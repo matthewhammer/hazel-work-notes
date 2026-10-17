@@ -514,9 +514,10 @@
    ],
    "status": "open",
    "tags": [
-    "long run"
+    "blocked on Matthew"
    ],
-   "progress": "17:52: WAITING ON MATTHEW before building: where the canister runs (the IC mainnet costs cycles, paid from his identity; a local replica would not reach the black laptop), and who may write to it (anyone with the page, as the pad now, or a key the game holds)? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: write the canister tonight; deploy (his cycles) only on his word. 🌙 long run; no headless browser on the laptop."
+   "progress": "17:52: WAITING ON MATTHEW before building: where the canister runs (the IC mainnet costs cycles, paid from his identity; a local replica would not reach the black laptop), and who may write to it (anyone with the page, as the pad now, or a key the game holds)? | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: write the canister tonight; deploy (his cycles) only on his word. 🌙 long run; no headless browser on the laptop. | 21:58: NO CANISTER CODE NEEDED: fumola_canister (Adapton/fumola ic-canister, ~/fumola-canister c80fcae) already keeps an append-only log per space, POST/GET /s/<space>/log, CORS * with OPTIONS. Game side BUILT on branch speedlog-166 (7d0a682; not released): 📮 'send it to Matthew' beside the 🧪 and ⏱️ lines posts {key: 'speed|trip <version> <when>', value: line} on a press; hidden while SPEED_LOG_DEPLOYED is null (the 📝 pad stays). tools/speedlog.py reads it back; checked against a stand-in server in CI. Waiting on Matthew: deploy the canister to mainnet (his cycles), then its log URL goes in SPEED_LOG_DEPLOYED. Open: anyone with the page can write (as the pad); no rate limit.",
+   "waiting": "Matthew: deploy fumola_canister to mainnet (his cycles); its /s/dress-up-speed/log URL then goes in SPEED_LOG_DEPLOYED."
   },
   {
    "id": 167,
@@ -4956,10 +4957,10 @@
   43,
   144,
   18,
-  166,
   102,
   54,
-  19
+  19,
+  166
  ],
  "current_since": "2026-10-16T21:17-06:00"
 }
