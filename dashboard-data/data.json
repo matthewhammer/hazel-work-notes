@@ -1047,6 +1047,12 @@
      "from": "matthew",
      "chars": 1113,
      "asks": true
+    },
+    {
+     "at": "2026-10-18T15:35-06:00",
+     "from": "matthew",
+     "chars": 30,
+     "asks": false
     }
    ],
    "source": "Matthew, 2026-10-18, in chat",
@@ -1396,26 +1402,6 @@
    "progress": "15:08: RELEASED 0.0.228 (b7f83cc, live 15:08:25), NOT proven to fix it: not reproduced here. In the app's hidden browser pane on 8133, a MutationObserver on the lid saw the whole swing (13-14 steps) on each of four pulls in a row, for the trap room's pits and for a placed lever and trap door, with and without 🔬 Inspection's overlays (all arrows, path, made of); the lid was never replaced mid-swing; a click on a room lever goes through the same roomLeverPull and starts no walk (walkableAt refuses the wall). Fix made on the likeliest cause that fits 'first time only' on Firefox: lidSwing and turnArm took t0 at the pull, before the redraw; the trap room since 0.0.226 has 271 moss shapes; a slow repaint could use up the 520 ms before the first frame. Both now start their clocks at their first frame. WAITING ON MATTHEW: does the swing play every time on 0.0.228? If not: which lever, where the friend stands, Firefox or not. 15:15: Matthew: \"I'm using 228 and I see no animations of the pits at all, or the levers.\" (worse than 0.0.227's first-time-only). Investigating. 15:2x: a real-click check (tools/checks/lidswing322.mjs: music on, #inspect overlays, real mouse clicks, every frame's lid fold and the room's rebuilds) is running on GitHub, branch lid-322 (only that check). Meanwhile ^ticket(324). 15:26: GitHub's Chrome (run 39167354761, branch lid-322, tools/checks/lidswing322.mjs): real mouse clicks, music playing, #inspect overlays, 0.0.228: all four pulls swing in full (the lid mid-swing on 26 frames each, the handle on 33), one rebuild of the room per pull. So the swing works in Chrome. Likeliest Firefox cause (ff198.py's finding: Firefox's music clock can stand still): picGapNow re-measures the gap every 0.25 s of drift, the scene's LFO begins change, the room is rebuilt, and the swinging lid and handle are replaced by their end state. Fix: each swing finds its lid and handle again by selector every frame, so a rebuild mid-swing carries on in the new drawing. 15:30: RELEASED 0.0.230 (0c08619): swingOn re-finds the lid and handle by selector every frame; mountScene redraws a swing in progress in the room it just built. Checked in the app's pane: two forced rebuilds mid-swing, no end-state frame. Matthew asked 'did you fix it? put 323 ahead if so, and close 322': not closed, as not confirmed on his Firefox; PARKED, waiting on Matthew to try 0.0.230 (blocked on Matthew). ^ticket(323) taken next, as he asked."
   },
   {
-   "id": 323,
-   "area": "dress up, levers, boulders and the trap room",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T15:02-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up, for N: boulder levers: a second pair under the first, with blue knobs, that drop boulders from the ceiling onto the holes.</b> Matthew: \"N wants another pair of levers, mounted under the current pair (let's use a distinct color for the knob, like blue, and offer that param as a color selector generally). In this case, the blue levers do not shut the doors, but rather let 'boulders' fall from the ceiling of the room down to cover the holes. Let's let the designer choose the style and color of the rock from our object system. Not every trap door has a boulder lever, but each lever should choose going forward: controls doors; lets a boulder fall from somewhere, of a certain style (including random/surprise me).\" So: every lever (the trap room's and placed ones) gets a knob colour (a colour chooser) and a choice of what it does: works trap doors, or drops a boulder (where from, which rock style and colour from the rocks we place, or 🎲 a surprise); the trap room gets a second pair, blue-knobbed, under the first, dropping boulders onto its pits.",
-   "source": "Matthew for N, 2026-10-18, in chat (\"mint a ticket and enqueue\")",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T15:02-06:00",
-     "from": "matthew",
-     "chars": 560,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 325,
    "area": "dress up, ⚙️ Advanced",
    "added": "2026-10-18",
@@ -1497,9 +1483,40 @@
   }
  ],
  "next_ticket": 328,
- "current_ticket": 323,
- "current_note": "15:30: N's boulder levers (Matthew put it next): a second pair with blue knobs under the first; each lever chooses what it does (work trap doors, or drop a boulder of a chosen rock style and colour, or a surprise); knob colour a chooser",
+ "current_ticket": 295,
+ "current_note": "15:35: ^ticket(323) closed (done); ^ticket(295) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 323,
+   "area": "dress up, levers, boulders and the trap room",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T15:02-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up, for N: boulder levers: a second pair under the first, with blue knobs, that drop boulders from the ceiling onto the holes.</b> Matthew: \"N wants another pair of levers, mounted under the current pair (let's use a distinct color for the knob, like blue, and offer that param as a color selector generally). In this case, the blue levers do not shut the doors, but rather let 'boulders' fall from the ceiling of the room down to cover the holes. Let's let the designer choose the style and color of the rock from our object system. Not every trap door has a boulder lever, but each lever should choose going forward: controls doors; lets a boulder fall from somewhere, of a certain style (including random/surprise me).\" So: every lever (the trap room's and placed ones) gets a knob colour (a colour chooser) and a choice of what it does: works trap doors, or drops a boulder (where from, which rock style and colour from the rocks we place, or 🎲 a surprise); the trap room gets a second pair, blue-knobbed, under the first, dropping boulders onto its pits.",
+   "source": "Matthew for N, 2026-10-18, in chat (\"mint a ticket and enqueue\")",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T15:02-06:00",
+     "from": "matthew",
+     "chars": 560,
+     "asks": false
+    }
+   ],
+   "progress": "15:35: RELEASED 0.0.231 (live 15:35:39) (6c1c3f5): the trap room's blue boulder levers under the red pair (on by default per room, 🪨 setting + rock tone or surprise), a fallen boulder covers its pit (no way down) and stands as a solid 'boulder, left/right'; falls and rises on swingOn. Placed levers: 'does' (doors or boulder), rock, knob colour (auto red/blue). Checked in node; tools/checks/boulder323.mjs in the speed run. Known limits: a placed trap door's boulder is no solid and vanishes on lifting instead of rising.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T15:35-06:00",
+   "outcome": "Released in Dress Up 0.0.231 (6c1c3f5, live 15:35): for N, the trap room's blue boulder levers under the red ones, a boulder falling from the ceiling to cover its pit (no way down, a solid) and rising away again, its rock a tone or a surprise; and every placed lever choosing what it does (trap doors or a boulder), its boulder's rock and its knob's colour. Known limits: a placed trap door's boulder is no solid, and vanishes on lifting. Not seen on a screen here.",
+   "metrics": {
+    "open_minutes": 34,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 560,
+    "tokens_est": 140,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 324,
    "area": "dress up, levers",
@@ -9581,9 +9598,9 @@
   }
  ],
  "queue": [
-  323,
   295,
   290,
+  300,
   284,
   283,
   286,
@@ -9594,7 +9611,6 @@
   297,
   298,
   299,
-  300,
   301,
   304,
   308,
@@ -9622,5 +9638,5 @@
   315,
   322
  ],
- "current_since": "2026-10-18T15:30-06:00"
+ "current_since": "2026-10-18T15:35-06:00"
 }
