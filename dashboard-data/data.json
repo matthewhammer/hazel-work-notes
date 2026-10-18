@@ -1521,9 +1521,15 @@
      "from": "matthew",
      "chars": 190,
      "asks": true
+    },
+    {
+     "at": "2026-10-18T16:25-06:00",
+     "from": "matthew",
+     "chars": 263,
+     "asks": false
     }
    ],
-   "progress": "15:57: his floor-trap-door report (\"we climb up again, and get stuck\") checked on 0.0.233 in the app's pane: the hatch's click goes to climbLadder, ladderAt reads it as going down (data-down 304.5), walkInto starts the climb, no error; the climb itself cannot be watched there (a hidden pane runs no frames). Likely the same bug as ^ticket(330) (a hatch's trip leaves a way back, and backSync threw until 0.0.233): asked him to try it on 0.0.233. PLAN for this ticket: a side door's crawl clipped at the doorway's edge (as walkInto clips a pit's or hatch's climb), the friend shrinking as they go out, then standing and walking along the bridge, smaller and smaller, to the size of the far tree house drawn in the doorway, and going in at its door. 16:11: 0.0.234 LIVE: the crawl through a side door is cut off at the doorway from its first step; outside, a bridge's end goes in through the porch door (platformIn, clipped to the cabin's door) and lands beside the side door back; on a bridge the friend's size moves from the one house's to the other's. tools/checks/bridgein331.mjs. NEXT: from inside, the walk out seen in the doorway: shrinking as they crawl out, standing on the bridge drawn there, walking to the far house's size, in at its door. 16:22: 0.0.235 LIVE: out through a tree room's door to a bridge, the friend shrinks as they crawl through (room size to the size of the bridge drawn in the doorway, about a twentieth), stands, faces away, and walks to 0.45 of the drawn bridge (smaller still), seen inside the doorway only; then outside on the bridge as before (246's walk kept; the end goes in through the porch door since 0.0.234). tools/checks/doorout331.mjs. Waiting on the speed run of both tags before closing."
+   "progress": "15:57: his floor-trap-door report (\"we climb up again, and get stuck\") checked on 0.0.233 in the app's pane: the hatch's click goes to climbLadder, ladderAt reads it as going down (data-down 304.5), walkInto starts the climb, no error; the climb itself cannot be watched there (a hidden pane runs no frames). Likely the same bug as ^ticket(330) (a hatch's trip leaves a way back, and backSync threw until 0.0.233): asked him to try it on 0.0.233. PLAN for this ticket: a side door's crawl clipped at the doorway's edge (as walkInto clips a pit's or hatch's climb), the friend shrinking as they go out, then standing and walking along the bridge, smaller and smaller, to the size of the far tree house drawn in the doorway, and going in at its door. 16:11: 0.0.234 LIVE: the crawl through a side door is cut off at the doorway from its first step; outside, a bridge's end goes in through the porch door (platformIn, clipped to the cabin's door) and lands beside the side door back; on a bridge the friend's size moves from the one house's to the other's. tools/checks/bridgein331.mjs. NEXT: from inside, the walk out seen in the doorway: shrinking as they crawl out, standing on the bridge drawn there, walking to the far house's size, in at its door. 16:22: 0.0.235 LIVE: out through a tree room's door to a bridge, the friend shrinks as they crawl through (room size to the size of the bridge drawn in the doorway, about a twentieth), stands, faces away, and walks to 0.45 of the drawn bridge (smaller still), seen inside the doorway only; then outside on the bridge as before (246's walk kept; the end goes in through the porch door since 0.0.234). tools/checks/doorout331.mjs. Waiting on the speed run of both tags before closing. 16:22: 0.0.235 LIVE: out through a tree room's door to a bridge, the friend shrinks crawling through (room size to the size of the bridge drawn in the doorway), stands, faces away, walks to 0.45 of the drawn bridge, seen inside the doorway only; then outside on the bridge as before. tools/checks/doorout331.mjs. 16:25: Matthew checked 0.0.235 (\"the shrink factor is extreme, but a param I can adjust later\") and asked for the tree house door to swing open as we go in, as the castle's do. Built: each outside cabin draws its own door leaf (bg-cabin-body + data-cabin-leaf), platformIn swings it in (leafOpen, factored from walkInto) 36 units before the door; checked in the pane. Releasing as 0.0.236."
   },
   {
    "id": 332,
@@ -1584,11 +1590,31 @@
     }
    ],
    "progress": ""
+  },
+  {
+   "id": 334,
+   "area": "dress up, tree house trap doors and castle pits",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T16:25-06:00",
+   "status": "open",
+   "tags": [],
+   "text": "<b>Dress Up: a lever for each tree house room's trap door; three trap door shapes; a spikes toggle for the castle's other pits.</b> Matthew: \"each tree house with a trap door has a level on the wall. the default is the open state. switching it leads to the closed state. reuse what you can from the dungeon here.\" (level = lever, as in his earlier tickets.) \"Also, let's offer three shapes for the trap door, like pits/dungeon. No spikes here.\" \"Also, add a spikes toggle for the other pits in the castle, and default to 'off'.\" So: (1) in every tree room with a hatch (a ladder down), a 🎚️ lever on a wall (leverSvg, turnArm's rock, the hover glow, its speed), the hatch OPEN by default, a pull swings its lid shut (lidSwing) and the way down is closed (no climb down, a planned walk goes over it), a pull again opens it; kept per house in the room's settings, as trapState keeps the trap room's. (2) A choice of three shapes for the tree rooms' trap doors, the dungeon pits' own three, no spikes. (3) In the castle, a spikes toggle for the other pits (all but the tree rooms'), default off.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T16:25-06:00",
+     "from": "matthew",
+     "chars": 351,
+     "asks": false
+    }
+   ],
+   "progress": ""
   }
  ],
- "next_ticket": 334,
+ "next_ticket": 335,
  "current_ticket": 331,
- "current_note": "16:22: 0.0.235 live (shrinking out through the doorway's picture, walking part of its bridge); checking the speed run, then closing 331",
+ "current_note": "16:25: the tree house's outside door swinging open as the friend goes in (0.0.236), the last piece of 331",
  "closed_tickets": [
   {
    "id": 330,
@@ -9838,6 +9864,7 @@
   327,
   329,
   332,
+  334,
   222,
   225,
   289,
