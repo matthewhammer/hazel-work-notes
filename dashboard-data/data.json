@@ -576,32 +576,6 @@
    "text": "<b>Dress Up: a component designer, along the lines of the world designer, for the objects baked into each place: adjust each one's default position and every setting of how it is drawn that its place in the scene doesn't fix (scale, layering, and so on).</b> Matthew: \"we want to think about a feature built on this -- for adjusting the default position and settings of each of those objects, including every rendering param that isn't fixed by its position alone in the scene (for scale, or layering, etc).\" \"that would be another feature along the lines of the existing world designer interface, but geared towards designing re-usable components -- let's mint a ticket and put 'blocked on matthew' on it.\" Builds on ^ticket(258) (♿ 🧩: each place's objects boxed and named, its plants by the procedure that drew them). Blocked on Matthew: his design of it first."
   },
   {
-   "id": 275,
-   "area": "dress up, save files",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T09:16-06:00",
-   "status": "open",
-   "tags": [],
-   "log": [
-    {
-     "at": "2026-10-18T09:14-06:00",
-     "from": "matthew",
-     "chars": 1211,
-     "asks": true
-    },
-    {
-     "at": "2026-10-18T09:30-06:00",
-     "from": "matthew",
-     "chars": 179,
-     "asks": true
-    }
-   ],
-   "progress": "",
-   "source": "Matthew, 2026-10-18, in chat (with ^ticket(274)); ^du_report(4), What next, step 2",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/004/#step-2",
-   "text": "<b>Dress Up: a \"full snapshot\" file beside the picture file.</b> The picture file (what the archive keeps) holds only what determines the SVG, so an unchanged picture keeps its bytes. The full snapshot is a superset: the same, plus extra fields that (1) do not determine the SVG and (2) are there for the person who made the file, not for drawing it again, such as the date and time it was saved (today's \"saved\", which Load ignores and the archive now leaves out). Mark them as extra in the format itself, so a tool can drop them without knowing their names. Check what else is extra: Load keeps the player's music volume and mute, not the file's."
-  },
-  {
    "id": 276,
    "area": "dress up, archives",
    "added": "2026-10-18",
@@ -643,9 +617,54 @@
   }
  ],
  "next_ticket": 278,
- "current_ticket": 275,
- "current_note": "09:44: Starting: the full snapshot. Save will write the picture file plus an extra object (when it was saved, which game version), which Load never reads and the archive drops.",
+ "current_ticket": 276,
+ "current_note": "09:47: Starting: archive runs without the laptop. The workflow will commit, tag and push its run itself when a secret ARCHIVE_TOKEN is set; making that token is Matthew's.",
  "closed_tickets": [
+  {
+   "id": 275,
+   "area": "dress up, save files",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T09:16-06:00",
+   "status": "done",
+   "tags": [],
+   "log": [
+    {
+     "at": "2026-10-18T09:14-06:00",
+     "from": "matthew",
+     "chars": 1211,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T09:30-06:00",
+     "from": "matthew",
+     "chars": 179,
+     "asks": true
+    }
+   ],
+   "progress": "",
+   "source": "Matthew, 2026-10-18, in chat (with ^ticket(274)); ^du_report(4), What next, step 2",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/004/#step-2",
+   "text": "<b>Dress Up: a \"full snapshot\" file beside the picture file.</b> The picture file (what the archive keeps) holds only what determines the SVG, so an unchanged picture keeps its bytes. The full snapshot is a superset: the same, plus extra fields that (1) do not determine the SVG and (2) are there for the person who made the file, not for drawing it again, such as the date and time it was saved (today's \"saved\", which Load ignores and the archive now leaves out). Mark them as extra in the format itself, so a tool can drop them without knowing their names. Check what else is extra: Load keeps the player's music volume and mute, not the file's.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T09:47-06:00",
+   "outcome": "Released in Dress Up 0.0.203 (kids-choice-games eb22c60, tag dress-up-0.0.203, live by 09:47): Save's .json is a full snapshot, snapshotFile() = { app, version, extra: { saved, game }, state }; pictureFile() drops extra (and an older file's top-level saved), leaving the picture file the archive keeps. Load reads only the settings; old files still load. Checked in the desktop app's Chrome (keys and order, extra, picture file, Load of both kinds); its check tools/checks/save275.mjs runs in the tag's speed run. The archive writes its settings with the game's pictureFile(snapshotFile()) from now on, the same bytes (dress-up-pictures 0d83774). Load's music volume and mute come from the player, not the file: left in the settings for now.",
+   "metrics": {
+    "open_minutes": 31,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1390,
+    "tokens_est": 347,
+    "sync_minutes_est": 0,
+    "work_minutes": 1.0
+   },
+   "outcome_url": "https://github.com/matthewhammer/kids-choice-games/commit/eb22c60bef6d98d9d8d00ac5d608c5522145c0ba",
+   "work": {
+    "work_minutes": 1.0,
+    "start": "2026-10-18T09:45:04-06:00",
+    "end": "2026-10-18T09:46:03-06:00",
+    "note": "timed from the first edit to the release commit; the reading before and the archive change after not timed"
+   }
+  },
   {
    "id": 274,
    "area": "dress up, save files",
@@ -8069,7 +8088,6 @@
   }
  ],
  "queue": [
-  275,
   276,
   277,
   222,
