@@ -895,50 +895,6 @@
    "text": "<b>A Dress Up report: Messed Up Dress Up beside the adventure-game editors of the late 1980s and early 1990s.</b> Compare and contrast, with images (or links to images where we may not copy them): Sierra On-Line's adventure-game editors over time, in the 1980s and early 1990s, before full 3D while still pseudo-3D, especially on VGA with 256 colours and grainy graphics; SCUMM and LucasArts, the same era and style of technology with their own flavour; and Messed Up Dress Up today, and in its near and medium-term future, if we keep going into this adventure-game tool system and the adventure-game experience of that era. Footnotes on other engines of the era are welcome. He recalls playing \"Hugo\" in the mid 1990s: compare to that too; \"it feels like we are on par with that game play experience already\"."
   },
   {
-   "id": 296,
-   "area": "pages, matthewhammer.org, fumola.org, adapton.org",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T11:55-06:00",
-   "status": "open",
-   "tags": [],
-   "progress": "11:59: the audit. Crawled from https://matthewhammer.org/, https://fumola.org/ and https://adapton.org/ (links within the three sites, snapshots skipped): 116 URLs, 47 reachable pages without the Auto / Light / Dark choice: 37 with no dark mode at all (matthewhammer.org's front page and pubs.html; the old research pages pubs links: adapton, icfp11, ismm08, jfp2014, oopsla11, plas2013, selfadjmachines, pldi09 and its 8 manual pages; replayground/mergeSort44.html; fumola.org's front page, alignment, press, web-play, hazel-integration and a Hazel build page; adapton.org and its lab-results; the Dress Up archives' pages; the game) and 10 that follow the system with no choice (the crash log and nine work notes). Everything under /hazel/, the dashboard and the Dress Up reports already offer the choice (hazel-perf-report/tools/add_theme.py's block). The 40 course pages and the snapshots are not reachable: left alone. Found on the way: broken links (pubs.html: oakland2014 and a relative www.umut-acar.org; adapton.org/lab-results: 16 rustdoc pages; Dress Up reports 2 to 4: their data/, drivers/ and pictures/ folders, which have no index; a work note's dress-up-pictures day). NEXT: the nav bar's design first (it can carry the theme choice), shown to Matthew on a few pages, then both rolled out. 12:06: PROTOTYPE, not committed: ~/matthewhammer.github.io/nav/nav.js, one script holding the outline of the whole constellation (OUTLINE), its projection (the four sites; this page's branch opened, its parents, siblings and children; the page marked, with its own headings or its own outline taken in; a dot on each entry the page links to), the drag controls (the right edge to resize, double-click to reset; « hide, » show; remembered per site; ☰ on a phone) and the theme choice (◐ auto, ☀ light, ☾ dark; localStorage \"theme\", as add_theme.py). A page with no answer to data-theme gets a plain dark style from it. Tried in the browser pane on the front page, a CEAL manual page (light and dark), the dashboard (its own outline taken in) and adapton.org (on 8765), and at phone width. For Matthew's look, six pages in the homepage's local copy include it (uncommitted): http://localhost:8136/ , /pubs.html , /pldi09/manual/ex_add.html , /hazel/ , /hazel/dress-up/ , /hazel/dashboard/ . NEXT, once he settles it: the include on every reachable page (fumola.org's and adapton.org's too), each page's CSS answering data-theme where it does not, and agent instructions for the nav bar. 12:08: MATTHEW SETTLED THE DESIGN (\"settle design.\"): rolling it out, then the agent instructions. 12:24: ROLLED OUT. matthewhammer.org: nav/nav.js, add_nav.py, check_nav.py and agent-instructions.md, 42 pages (214f658, 06599c4). hazel-work-notes: the crash log and work notes, update.py and notes_gallery.py write it (506894cc). Dress Up 0.0.210 (3158f05): the game (hidden, its own colours), the reports and their drivers; check_script and check_load skip the outside script. The pictures and music archives and their page writers (b702da8, 21a31b9). The perf series: add_theme.py puts it in (a9153ca). adapton.org (678f86d). fumola.org: Adapton/fumola#146, waiting for Matthew's merge (its pages, and assemble-site.sh stamping every hosted Hazel, with a test: 80 passed). check_nav.py on the live sites: 81 reachable pages, 70 with the bar; the 11 without are fumola.org's 6 (the PR) and the 5 of dress-up-pictures-2026-10-18, which is ARCHIVED on GitHub (read-only): its stamped pages are a local commit in ~/dress-up-pictures-2026-10-18, unpushed, until Matthew says to unarchive it or leave it. Also: 8136 now serves the project sites beside the homepage (symlinks in .git/info/exclude), so the Dress Up pictures and music pages work locally. 12:27: Matthew: merge #146, and leave the archived dress-up-pictures-2026-10-18 as it is (its 5 pages keep no bar).",
-   "log": [
-    {
-     "at": "2026-10-18T11:55-06:00",
-     "from": "matthew",
-     "chars": 161,
-     "asks": true
-    },
-    {
-     "at": "2026-10-18T11:57-06:00",
-     "from": "matthew",
-     "chars": 106,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T11:59-06:00",
-     "from": "matthew",
-     "chars": 400,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T12:08-06:00",
-     "from": "matthew",
-     "chars": 14,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T12:27-06:00",
-     "from": "matthew",
-     "chars": 97,
-     "asks": false
-    }
-   ],
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "text": "<b>Every page of his sites lets its reader choose Auto, Light or Dark.</b> Audit his pages on matthewhammer.org, fumola.org and adapton.org, and ensure that each one permits the reader to select between auto, light and dark modes. Scope (Matthew, 11:57): only the pages reachable from his active pages; \"especially not the snapshots\". And (Matthew, 11:59, rolled into this ticket): each page we can reach has a nav bar on its left, with drag controls, and a meaningful connection, through that bar, to its related (linked) pages; ideally one outline, with a different part of it projected out for each page in this constellation. Once the design is settled, agent instructions for the nav bar."
-  },
-  {
    "id": 297,
    "area": "dress up, depth",
    "added": "2026-10-18",
@@ -980,9 +936,64 @@
   }
  ],
  "next_ticket": 299,
- "current_ticket": 296,
- "current_note": "12:27: Merging Adapton/fumola#146 on Matthew's word; the archived pictures repo stays as it is. Then checking fumola.org once it deploys, and on to ^ticket(285).",
+ "current_ticket": 285,
+ "current_note": "12:35: Matthew's call (\"do 285 next, when settled\"): ^du_report(5)'s suggestions across the whole UI, as it prescribes. Starting from the report's What next: step 1, the shared pieces (a box, the one-line row, the designer's shell); step 5, the house's toys slider never shown, a quick fix first.",
  "closed_tickets": [
+  {
+   "id": 296,
+   "area": "pages, matthewhammer.org, fumola.org, adapton.org",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T11:55-06:00",
+   "status": "done",
+   "tags": [],
+   "progress": "11:59: the audit. Crawled from https://matthewhammer.org/, https://fumola.org/ and https://adapton.org/ (links within the three sites, snapshots skipped): 116 URLs, 47 reachable pages without the Auto / Light / Dark choice: 37 with no dark mode at all (matthewhammer.org's front page and pubs.html; the old research pages pubs links: adapton, icfp11, ismm08, jfp2014, oopsla11, plas2013, selfadjmachines, pldi09 and its 8 manual pages; replayground/mergeSort44.html; fumola.org's front page, alignment, press, web-play, hazel-integration and a Hazel build page; adapton.org and its lab-results; the Dress Up archives' pages; the game) and 10 that follow the system with no choice (the crash log and nine work notes). Everything under /hazel/, the dashboard and the Dress Up reports already offer the choice (hazel-perf-report/tools/add_theme.py's block). The 40 course pages and the snapshots are not reachable: left alone. Found on the way: broken links (pubs.html: oakland2014 and a relative www.umut-acar.org; adapton.org/lab-results: 16 rustdoc pages; Dress Up reports 2 to 4: their data/, drivers/ and pictures/ folders, which have no index; a work note's dress-up-pictures day). NEXT: the nav bar's design first (it can carry the theme choice), shown to Matthew on a few pages, then both rolled out. 12:06: PROTOTYPE, not committed: ~/matthewhammer.github.io/nav/nav.js, one script holding the outline of the whole constellation (OUTLINE), its projection (the four sites; this page's branch opened, its parents, siblings and children; the page marked, with its own headings or its own outline taken in; a dot on each entry the page links to), the drag controls (the right edge to resize, double-click to reset; « hide, » show; remembered per site; ☰ on a phone) and the theme choice (◐ auto, ☀ light, ☾ dark; localStorage \"theme\", as add_theme.py). A page with no answer to data-theme gets a plain dark style from it. Tried in the browser pane on the front page, a CEAL manual page (light and dark), the dashboard (its own outline taken in) and adapton.org (on 8765), and at phone width. For Matthew's look, six pages in the homepage's local copy include it (uncommitted): http://localhost:8136/ , /pubs.html , /pldi09/manual/ex_add.html , /hazel/ , /hazel/dress-up/ , /hazel/dashboard/ . NEXT, once he settles it: the include on every reachable page (fumola.org's and adapton.org's too), each page's CSS answering data-theme where it does not, and agent instructions for the nav bar. 12:08: MATTHEW SETTLED THE DESIGN (\"settle design.\"): rolling it out, then the agent instructions. 12:24: ROLLED OUT. matthewhammer.org: nav/nav.js, add_nav.py, check_nav.py and agent-instructions.md, 42 pages (214f658, 06599c4). hazel-work-notes: the crash log and work notes, update.py and notes_gallery.py write it (506894cc). Dress Up 0.0.210 (3158f05): the game (hidden, its own colours), the reports and their drivers; check_script and check_load skip the outside script. The pictures and music archives and their page writers (b702da8, 21a31b9). The perf series: add_theme.py puts it in (a9153ca). adapton.org (678f86d). fumola.org: Adapton/fumola#146, waiting for Matthew's merge (its pages, and assemble-site.sh stamping every hosted Hazel, with a test: 80 passed). check_nav.py on the live sites: 81 reachable pages, 70 with the bar; the 11 without are fumola.org's 6 (the PR) and the 5 of dress-up-pictures-2026-10-18, which is ARCHIVED on GitHub (read-only): its stamped pages are a local commit in ~/dress-up-pictures-2026-10-18, unpushed, until Matthew says to unarchive it or leave it. Also: 8136 now serves the project sites beside the homepage (symlinks in .git/info/exclude), so the Dress Up pictures and music pages work locally. 12:27: Matthew: merge #146, and leave the archived dress-up-pictures-2026-10-18 as it is (its 5 pages keep no bar).",
+   "log": [
+    {
+     "at": "2026-10-18T11:55-06:00",
+     "from": "matthew",
+     "chars": 161,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T11:57-06:00",
+     "from": "matthew",
+     "chars": 106,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T11:59-06:00",
+     "from": "matthew",
+     "chars": 400,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T12:08-06:00",
+     "from": "matthew",
+     "chars": 14,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T12:27-06:00",
+     "from": "matthew",
+     "chars": 97,
+     "asks": false
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "text": "<b>Every page of his sites lets its reader choose Auto, Light or Dark.</b> Audit his pages on matthewhammer.org, fumola.org and adapton.org, and ensure that each one permits the reader to select between auto, light and dark modes. Scope (Matthew, 11:57): only the pages reachable from his active pages; \"especially not the snapshots\". And (Matthew, 11:59, rolled into this ticket): each page we can reach has a nav bar on its left, with drag controls, and a meaningful connection, through that bar, to its related (linked) pages; ideally one outline, with a different part of it projected out for each page in this constellation. Once the design is settled, agent instructions for the nav bar.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T12:35-06:00",
+   "outcome": "Every page reachable from matthewhammer.org, fumola.org and adapton.org has the nav bar Matthew designed (settled 12:00): one outline of the three sites in https://matthewhammer.org/nav/nav.js, a part of it projected for each page (its branch opened, the page marked with its own headings or outline, a dot on each entry it links to), drag-resize, hide and show, and the auto, light and dark choice at its top, which every page answers (its own CSS, 46 pages, or the bar's plain dark style, 35). check_nav.py on the live sites, 13:40: 81 reachable pages, 76 with the bar; the 5 without are the archived dress-up-pictures-2026-10-18's, left as they are on his word. Commits: homepage 214f658, 06599c4, 6266786; hazel-work-notes 506894cc; Dress Up 0.0.210 (3158f05); the archives b702da8, 21a31b9; hazel-performance-analysis a9153ca; adapton.org 678f86d; Adapton/fumola#146 (merged, 2ec634b5df). Agent instructions: nav/agent-instructions.md. Found on the way: 27 links to missing pages (check_nav.py --all), among them pubs.html's oakland2014, adapton.org/lab-results' 16 rustdoc pages, the Dress Up reports' data/ and drivers/ folders; and the hosted Hazel build asks for fumola_wasm.js beside itself (404).",
+   "metrics": {
+    "open_minutes": 40,
+    "matthew_messages": 5,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 778,
+    "tokens_est": 194,
+    "sync_minutes_est": 13.0
+   }
+  },
   {
    "id": 292,
    "area": "dashboard",
@@ -8755,7 +8766,6 @@
   }
  ],
  "queue": [
-  296,
   285,
   284,
   283,
@@ -8780,5 +8790,5 @@
   166,
   259
  ],
- "current_since": "2026-10-18T11:55-06:00"
+ "current_since": "2026-10-18T12:35-06:00"
 }
