@@ -1494,7 +1494,7 @@
    "opened": "2026-10-18T15:54-06:00",
    "status": "open",
    "tags": [],
-   "text": "<b>Dress Up: crawling out through a small side door, the friend is not cut off at the doorway.</b> Matthew, with a screenshot in a tree house room (kept locally, ~/du-shots/ticket-331/): \"crawling out of a small door looks okay, except we aren't clipping yet. ... The trapdoor and pit ladder animation does clip very well so far.\" The friend, crawling into the door to the bridge (🦉 2 ➡️), is drawn whole over the wall past the doorway's edge. Then: \"another note about making that 'crawl out the treehouse door onto a bridge' look right: We need to make the scale down extreme to match how we draw the tree house outside the door, which is very shrunk down.\" And: \"we should do that gradually as we crawl out, and onto the bridge -- we should animate a part of walking on the bridge (after standing up, post crawl) where we meet the scale of the destination tree house before going inside the door.\"",
+   "text": "<b>Dress Up: crawling out through a small side door, the friend is not cut off at the doorway.</b> Matthew, with a screenshot in a tree house room (kept locally, ~/du-shots/ticket-331/): \"crawling out of a small door looks okay, except we aren't clipping yet. ... The trapdoor and pit ladder animation does clip very well so far.\" The friend, crawling into the door to the bridge (🦉 2 ➡️), is drawn whole over the wall past the doorway's edge. Then: \"another note about making that 'crawl out the treehouse door onto a bridge' look right: We need to make the scale down extreme to match how we draw the tree house outside the door, which is very shrunk down.\" And: \"we should do that gradually as we crawl out, and onto the bridge -- we should animate a part of walking on the bridge (after standing up, post crawl) where we meet the scale of the destination tree house before going inside the door.\" And: \"when we walk across the bridge by click, we animate the walk, but then we do not animate going into the door --- we do it pretty well for the ladder climbs outside of the tree house, so can't we reuse that again?\"",
    "source": "Matthew, 2026-10-18, in chat",
    "url": "",
    "log": [
@@ -1515,6 +1515,12 @@
      "from": "matthew",
      "chars": 200,
      "asks": false
+    },
+    {
+     "at": "2026-10-18T15:58-06:00",
+     "from": "matthew",
+     "chars": 190,
+     "asks": true
     }
    ],
    "progress": "15:57: his floor-trap-door report (\"we climb up again, and get stuck\") checked on 0.0.233 in the app's pane: the hatch's click goes to climbLadder, ladderAt reads it as going down (data-down 304.5), walkInto starts the climb, no error; the climb itself cannot be watched there (a hidden pane runs no frames). Likely the same bug as ^ticket(330) (a hatch's trip leaves a way back, and backSync threw until 0.0.233): asked him to try it on 0.0.233. PLAN for this ticket: a side door's crawl clipped at the doorway's edge (as walkInto clips a pit's or hatch's climb), the friend shrinking as they go out, then standing and walking along the bridge, smaller and smaller, to the size of the far tree house drawn in the doorway, and going in at its door."
