@@ -965,9 +965,29 @@
    "source": "Matthew, 2026-10-18, in chat",
    "url": "",
    "text": "<b>Dress Up: point to sit, and point to lie down.</b> Sitting already happens automatically on some objects; make its collision boxes explicit, in one of the sub-categories planned for ♿'s inspection. And identify where and how the friend would lie down, with a direction, on beds and on beach blankets. And (Matthew, 12:41) a pose for it: lying down on the flat surface. And (Matthew, 12:41): pointing at a place to sit or lie down shows a pop-up that says so; and maybe, with a toggle under ♿ Accessibility, its boxes shown on hover, and not otherwise."
+  },
+  {
+   "id": 300,
+   "area": "dress up, world designer and 🏞️ Background",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T12:48-06:00",
+   "status": "open",
+   "tags": [],
+   "progress": "Found while minting it (12:48): a world square keeps only its placed things (and the crossing's paths) as its own: cellKeys (js/25-world.js 177), copied into the place on entering (worldEnter 184) and back as it changes (worldKeep 714); every other setting (the lake's ducks, a castle's look) is one set per kind in state.background, shared by every square of that kind. So instances = cellKeys widened to all of a place's settings, the template being the kind's own set (DEFAULTS.background and what is set there now). Removing a square deletes it (worldRemove 785: delete W.cells[key]). The world palette leaves out INSIDES (rooms through a door) and ELSEWHERE (imagination, emptyroom, bubblespace) (js/25-world.js 20-23). Hiding a built-in object: objectsOff, per place (objPlace), not per instance; a hidden object is out of the collisions too (solidsHere skips it). Things drawn into a place that are not objects cannot be hidden yet (dress-up/BAKED-IN.md, ^ticket(284)).",
+   "log": [
+    {
+     "at": "2026-10-18T12:48-06:00",
+     "from": "matthew",
+     "chars": 1113,
+     "asks": true
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "text": "<b>Dress Up: the background designer aligned with the world designer, and places with instances.</b> Close the gaps that remain between them: each background lets every built-in object be removed (hidden and inactive); every background is categorized and available for a world design, even the very abstract ones. And, more than before: each background has instances (in the world designer for now; later, with several worlds, perhaps this week), each with its own settings, independent of the other instances. In 🏞️ Background, choose whether the change is to the template (each background's default instance) or to a specific instance we have named. In the world designer, removing a grid square does not remove its instance from the world: it goes into a list of instances \"unreachable in the current world design\" (unreachable, for short), from which it can be put back into the grid without setting again what makes it differ from the template."
   }
  ],
- "next_ticket": 300,
+ "next_ticket": 301,
  "current_ticket": 285,
  "current_note": "12:45: 0.0.213 is live: 🏞️ Background as a full-screen designer (places and objects as pictures, the game as the first card). Next on this ticket: the rest of step 2 (the friend, the ways and the music as boxes; overlays and the archive by the game), then the castle's themes and the bubble themes as cards.",
  "closed_tickets": [
@@ -8811,6 +8831,7 @@
   297,
   298,
   299,
+  300,
   222,
   225,
   289,
