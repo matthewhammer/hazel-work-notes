@@ -760,26 +760,6 @@
    "text": "<b>Dress Up, for N: 🫧 bubbles, a place group of its own, and a room made of bubble foam.</b> A new background category, bubbles, with two places (Matthew, 11:03, to be clear): the <b>blank room</b>, the room we have now (🫧 bubble space) with its ambient bubbles, moved there; and the <b>bubble room</b>, new, made of bubbles, with placeable bubble machines. For the bubble room, N wants the walls and floors \"made of bubbles\": the look of fractal bubble foam, with sizes and placements chosen to mimic that kind of pattern, on the walls and floors. They move, by some parameters: maybe a setting for each of the left wall, the back wall, the right wall, the floor and the ceiling (on or off, and height controls too). The bubble room's bubbles stream out of bubble makers: little boxes with turning wheels on the front, simplified to a few shapes at first (his picture: a round toy bubble machine with a wheel of bubble rings turning on its front, a handle on top, a base under it). Bubble makers are placeable objects in the world designer, each with controls over how it makes bubbles (the rate, the kind of bubble). Do this ticket after the Background panel is redesigned with its full-screen mode (^ticket(285))."
   },
   {
-   "id": 291,
-   "area": "dress up, pages and links",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T11:07-06:00",
-   "status": "open",
-   "tags": [],
-   "progress": "",
-   "log": [
-    {
-     "at": "2026-10-18T11:07-06:00",
-     "from": "matthew",
-     "chars": 294,
-     "asks": false
-    }
-   ],
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "text": "<b>Every \"Messed Up Dress Up\" link lands on its page, matthewhammer.org/hazel/dress-up/.</b> On Matthew's pages, in various places: that page is the main landing page for all \"Messed Up Dress Up\" links elsewhere, unless the link really says \"play Messed Up Dress Up\"; the decision to play is staged behind that page at all times."
-  },
-  {
    "id": 292,
    "area": "dashboard",
    "added": "2026-10-18",
@@ -813,9 +793,40 @@
   }
  ],
  "next_ticket": 293,
- "current_ticket": 291,
- "current_note": "11:07: Matthew's link nit, taken now (284 parked with its state): finding every link named \"Messed Up Dress Up\" on his pages (the homepage repository, kids-choice-games, the dashboard and its notes) and pointing it at matthewhammer.org/hazel/dress-up/, except links that say to play. Then ^ticket(292), the local URLs in the dashboard's outline, then back to ^ticket(284).",
+ "current_ticket": 292,
+ "current_note": "11:12: The dashboard's outline: just before the current ticket, every local URL in the last column of Localhost ports, and near the top a link to the Dress Up page. In dashboard/update.py, which has another session's changes from 10-16 and 10-17 that are live but were never committed (the outline hidden and resized, the queue's column wrapping, the about chips): looking at those first, so a commit carries the right changes.",
  "closed_tickets": [
+  {
+   "id": 291,
+   "area": "dress up, pages and links",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T11:07-06:00",
+   "status": "done",
+   "tags": [],
+   "progress": "",
+   "log": [
+    {
+     "at": "2026-10-18T11:07-06:00",
+     "from": "matthew",
+     "chars": 294,
+     "asks": false
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "text": "<b>Every \"Messed Up Dress Up\" link lands on its page, matthewhammer.org/hazel/dress-up/.</b> On Matthew's pages, in various places: that page is the main landing page for all \"Messed Up Dress Up\" links elsewhere, unless the link really says \"play Messed Up Dress Up\"; the decision to play is staged behind that page at all times.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T11:12-06:00",
+   "outcome": "Every link named Messed Up Dress Up now lands on https://matthewhammer.org/hazel/dress-up/ (live 11:11): the Hazel page (homepage 3c328c5, with the Dress Up reports' page, the pictures page's \"the game\" and ^report(1)'s \"Dress Up\"), the header of ^du_report(1) to ^du_report(5) and the series index with their build scripts (kids-choice-games f7b0c65), ^report(1)'s source (hazel-performance-analysis e3cc7ad), and the dashboard's Repos table. Only the landing page's own \"Play it\" and \"Play the game\" go to the game itself. Left as they are: the closed tickets' source links, which record where a request was made.",
+   "metrics": {
+    "open_minutes": 5,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 294,
+    "tokens_est": 73,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 279,
    "area": "dress up, reports, UX",
@@ -8514,7 +8525,6 @@
   }
  ],
  "queue": [
-  291,
   292,
   284,
   283,
@@ -8535,5 +8545,5 @@
   166,
   259
  ],
- "current_since": "2026-10-18T11:07-06:00"
+ "current_since": "2026-10-18T11:12-06:00"
 }
