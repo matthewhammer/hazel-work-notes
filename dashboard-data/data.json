@@ -503,7 +503,7 @@
      "asks": true
     }
    ],
-   "progress": "06:28: minted; started. 0.0.95 went out deploy-first already (main 1599fd9, tag dress-up-0.0.95, live), its checks still running on the release branch. | 06:32: BUILT and released as 0.0.96 (main 11b26ba, tag dress-up-0.0.96, live): .github/workflows/dress-up-speed.yml on each release tag (checks, gate both tiers, audit, leak), tools/speed_record.py writes dress-up/speed.json on main, the game's markSpeed shows 🚧🐢 / 🚧 after its version (tools/checks/speedmark184.mjs checks it), and the release steps in agent-instructions.md say deploy first. Speed runs going: 0.0.96 (run 39032830033, from its tag) and 0.0.95 (39032851446, by hand). Left: see each record its result and speed.json go live. | 09:49: Matthew: is GitHub's shared computer the cause? Read the runs: in 0.0.113 every case was at 60; the steady failure was the still pictures (fixed in 0.0.116, a real bug). The gate now retries a frame-rate-only failure once (RETRIES=1, bar still 55) and names why a case failed. The imagination's slow drag still flickers on GitHub (60 in 0.0.113; 52.6 then 54.7 today) with no change to it: proposal, not started: measure main on the same runner in the same job and fail only when the release is slower than main by more than the noise. | 10:40: 0.0.116's speed run is the first 'ok': every check, the gate and the slow scenes (still pictures fixed in 0.0.116, the retry in the gate). 0.0.115 slow (before those). 0.0.120's run is going; 0.0.124's waits (0.0.121-0.0.123 replaced in the queue). Proposal still open, not started: compare against main on the same runner."
+   "progress": "06:28: minted; started. 0.0.95 went out deploy-first already (main 1599fd9, tag dress-up-0.0.95, live), its checks still running on the release branch. | 06:32: BUILT and released as 0.0.96 (main 11b26ba, tag dress-up-0.0.96, live): .github/workflows/dress-up-speed.yml on each release tag (checks, gate both tiers, audit, leak), tools/speed_record.py writes dress-up/speed.json on main, the game's markSpeed shows 🚧🐢 / 🚧 after its version (tools/checks/speedmark184.mjs checks it), and the release steps in agent-instructions.md say deploy first. Speed runs going: 0.0.96 (run 39032830033, from its tag) and 0.0.95 (39032851446, by hand). Left: see each record its result and speed.json go live. | 09:49: Matthew: is GitHub's shared computer the cause? Read the runs: in 0.0.113 every case was at 60; the steady failure was the still pictures (fixed in 0.0.116, a real bug). The gate now retries a frame-rate-only failure once (RETRIES=1, bar still 55) and names why a case failed. The imagination's slow drag still flickers on GitHub (60 in 0.0.113; 52.6 then 54.7 today) with no change to it: proposal, not started: measure main on the same runner in the same job and fail only when the release is slower than main by more than the noise. | 10:40: 0.0.116's speed run is the first 'ok': every check, the gate and the slow scenes (still pictures fixed in 0.0.116, the retry in the gate). 0.0.115 slow (before those). 0.0.120's run is going; 0.0.124's waits (0.0.121-0.0.123 replaced in the queue). Proposal still open, not started: compare against main on the same runner. | 23:30 (overnight long runs): every known cause of the red speed runs fixed and released: the pitsHere load error (0.0.196), the bubble pop check, the gate's duck pond drag pressing a hand (fpsgate.mjs on main), the controller audit's STUCK tree house and healer's hut (0.0.200: arriving inside a solid, settled out; audit160 counts either way). Waiting on 0.0.201's speed run (overlays on now, ticket 236) to read green or not; the slow tier's imagination and forest sit near 55 (ticket 222), so a 🐢 there is still possible."
   },
   {
    "id": 212,
@@ -591,18 +591,6 @@
    "progress": "Matthew, 2026-10-17 ~16:35: \"do ticket 225 before performance, and label all performance and that one with 'long run' to make it clear we aren't doing them now\": first of tonight's 🌙 long runs. Found so far: its check (tools/checks/surprise225.mjs, LOCAL and untracked in ~/kids-choice-games; on branch checks-225b, bceb104) aimed each tap at the middle of the doorway's whole box, which for a picture includes its scene spilling past the frame, hidden: in run 39072074252 four of five dead taps had nothing under the point (off the page) and one hit the wall (a rect). Re-aimed at the box the game itself knows (marks' stage box, on screen, clipped to the picture, skipping the friend, the arrows and buttons). Diagnostic run 39075350602 (checks-225b) started 16:3x: read it; if no dead taps remain, the bug was the check's (commit the check, close); if some remain, their pose/anim/climb say which state blocks a tap (try 9 was 🧗 climbup with climb set). RESULT (run 39075350602): with the taps re-aimed, 12 of 12 picture taps after Surprise me started the trip, none dead: the dead taps were the check's. The door half found no door to tap (the living room's way out is a nav arrow since 0.0.162). Tonight: tap the S arrow there, and a room with real doors (the castle's king's room), with 🧗 climbup and the seats among Surprise me's outcomes; if all go, commit the check and close 225."
   },
   {
-   "id": 236,
-   "area": "dress up, CI, accessibility, testing",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T16:14-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "url": "",
-   "text": "<b>Dress Up: every CI test runs with the ♿ accessibility features on.</b> Matthew: \"add to performance tests that we do in CI: Turn on the accessibility features during all tests, because: * we want them to always work. * the screenshots may be more informative.\" To do: in the CI runs (dress-up-tests.yml on branches, dress-up-speed.yml after a release: the checks, the pictures in shots.json, the frame-rate gate and its slow scenes, the audit, the leak tests), the page starts with every ♿ overlay on (state.access: 🧭 all arrows, 👣 planned path, the collision boxes, and the rest), one shared switch so each tool need not set it; the gate's numbers then include the overlays' cost, so compare its first run against the last one without them, and say so in speed.json or the run's summary; checks that count elements or read colours may need to know.",
-   "tags": [
-    "long run"
-   ]
-  },
-  {
    "id": 259,
    "area": "dress up, designer, components",
    "added": "2026-10-17",
@@ -616,9 +604,34 @@
   }
  ],
  "next_ticket": 272,
- "current_ticket": 236,
- "current_note": "23:14: Overnight long runs: 0.0.199 (198 fixed: Firefox's lost frames were the music's stopped clock rebuilding the scene) and 0.0.198 (261) live; 262, 265, 209 closed. On 236: reading the full run with every 🔬 overlay on (#inspect)",
+ "current_ticket": 184,
+ "current_note": "23:29: Overnight long runs done but the wait: 0.0.198 (261 culling), 0.0.199 (198 Firefox music clock), 0.0.200 (184 arrivals), 0.0.201 (236 overlays in CI) live; 262 archive, 265 OBJECTS.md, 263 tune, 209 closed. Waiting on 0.0.201's speed run to call 184 green.",
  "closed_tickets": [
+  {
+   "id": 236,
+   "area": "dress up, CI, accessibility, testing",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:14-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: every CI test runs with the ♿ accessibility features on.</b> Matthew: \"add to performance tests that we do in CI: Turn on the accessibility features during all tests, because: * we want them to always work. * the screenshots may be more informative.\" To do: in the CI runs (dress-up-tests.yml on branches, dress-up-speed.yml after a release: the checks, the pictures in shots.json, the frame-rate gate and its slow scenes, the audit, the leak tests), the page starts with every ♿ overlay on (state.access: 🧭 all arrows, 👣 planned path, the collision boxes, and the rest), one shared switch so each tool need not set it; the gate's numbers then include the overlays' cost, so compare its first run against the last one without them, and say so in speed.json or the run's summary; checks that count elements or read colours may need to know.",
+   "tags": [
+    "long run"
+   ],
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T23:29-06:00",
+   "outcome": "0.0.201 live: every CI test with every 🔬 overlay on: the game reads #inspect (INSPECT_ALL: allArrows, showPath, showSolids, showMadeOf as defaults and over a save), both workflows' PAGE end in #inspect, speed.json notes inspect: true. First run with them vs the last without: gate 12/12 + slow 10/10 pass, draw a median 28% up (under 1 ms). What it found, fixed: hovering a shown arrow never lit it (pointermove now on the picture's box); madeOfHud ran every sync, reopening the moving-things guard (now the 🧩 chips' own); a walk's foot grazing a cauldron corner on slow frames (PATH_PAD 5->9). 9 related checks green with overlays on (checks-236b).",
+   "metrics": {
+    "open_minutes": 436,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 75.0
+   }
+  },
   {
    "id": 198,
    "area": "dress up, performance, Firefox",
@@ -7815,7 +7828,6 @@
   }
  ],
  "queue": [
-  236,
   184,
   222,
   160,
