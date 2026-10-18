@@ -709,11 +709,20 @@
     "long run"
    ],
    "text": "<b>Dress Up: OBJECTS.md made again at today's version, and the rule to refresh it and the archives' galleries each day the game's pictures or sounds change.</b> Matthew: \"long run ticket for later -- update this: OBJECTS.md -- is that the basis for the pictures we show in the gallery, or distinct? Let's add agent instructions to load these updates as long runs each day we make changes or additions to the objects or backgrounds, or music\"; \"or animations, or main char stuff too\"; \"anything in the cache of those galleries.\" Answer: distinct. OBJECTS.md (the game repo) is made by tools/checks/objects180.mjs on GitHub and tools/objects_md.py: each place's objects list, each clipped from its picture; the gallery is the dress-up-pictures archive (archive-today.sh, archive.mjs: every background with and without the friend, every chip menu's options). To do: run objects180 at today's version (new places, the palms, the deep sea's things, Matthew's world) and objects_md.py, commit OBJECTS.md and its pictures; the agent-instructions rule (added 0.0.188): any day whose releases change objects, backgrounds, music, animations or the friend, anything those galleries hold, queues these as that night's long runs."
+  },
+  {
+   "id": 271,
+   "area": "dress up, castle, trap room",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T22:10-06:00",
+   "source": "Matthew, 2026-10-17, in chat (a picture of N's room 3, the trap room, its pit chips)",
+   "url": "",
+   "text": "<b>Dress Up: a trap room's pits' shapes belong to that room (its number), not to every trap room in the castle; a chip changes them at once.</b> Matthew: \"bug report: the trap room pit style is a property of the room number, not all pit rooms. also, the chip doesn't seem to affect it immediately.\" To do: the pit shape settings per castle and room (castlePitShape1/2 + castle + room), the old per-castle ones read as the default for its trap rooms; the trap room's drawing keyed on them so a chip redraws it at once; the rooms below (the dungeons' ceiling holes) read the room above's."
   }
  ],
- "next_ticket": 271,
- "current_ticket": 209,
- "current_note": "22:04: 0.0.195 live: every non-long-run ticket done (244-270 today). Next: tonight's long runs, in order: 209, 184, 198, 222, 236, 261, 262, 263, 265",
+ "next_ticket": 272,
+ "current_ticket": 271,
+ "current_note": "22:10: Matthew's bug at 22:08 (then good night): the trap room's pit shapes per room, chips redraw at once. Long runs after: 209 measured (A/B x4: -4% to -15%), the bubble and gate-drag checks in hand",
  "closed_tickets": [
   {
    "id": 269,
@@ -7716,6 +7725,7 @@
   }
  ],
  "queue": [
+  271,
   209,
   184,
   198,
@@ -7734,5 +7744,5 @@
   259,
   225
  ],
- "current_since": "2026-10-17T21:57-06:00"
+ "current_since": "2026-10-17T22:10-06:00"
 }
