@@ -651,15 +651,6 @@
    ]
   },
   {
-   "id": 250,
-   "area": "dress up, music, UX",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T17:00-06:00",
-   "source": "Matthew, 2026-10-17, in chat, with a picture of the 🎵 Music full screen",
-   "url": "",
-   "text": "<b>Dress Up: the 🎵 Music tab gets the full screen's cards in its normal view too; in full screen, \"where the tune is\" fills the rest of its row.</b> Matthew: \"let's use these UX improvements in the non-FS mode of Music panel. Also, in this FS mode, the song progress sub-panel (last sub-panel in first row, on right) -- can extend to fill the rest of the row -- that's the one thing that we do want to be longer, if possible. It doesn't need its own row, though.\" To do: (1) the Music tab, not full screen: its controls as the full screen's cards (squarish sub-panels side by side in a grid, the mixing board's parts each a card), in the side column's width; (2) full screen: the first row's last card, ⏯️ where the tune is (rewind, pause, tape stop, the bar/beat/section line, the slider, the sections), spanning to the row's end, wherever the row ends, without a row of its own. Matthew, 2026-10-17, with a later picture of the full screen: \"in this view (FS music), maybe stack the first two subpanels vertically -- they are each rather short, and then they take up a lot of horz space side by side.\" So (3): full screen, the first two cards (🔊 sound on: tap to mute, ▶ playing: ...) one over the other in one column, \"where the tune is\" beside them filling the rest of the row."
-  },
-  {
    "id": 251,
    "area": "dress up, ♿, walking",
    "added": "2026-10-17",
@@ -745,9 +736,31 @@
   }
  ],
  "next_ticket": 265,
- "current_ticket": 250,
- "current_note": "21:06: 0.0.185 live (249, 🔬 Inspection, ♿ Accessibility tab). On 250: the Music tab as cards outside full screen; in full screen the first two cards stacked, where the tune is filling its row. 264 (tree house ways in and out) minted, after 255",
+ "current_ticket": 251,
+ "current_note": "21:19: 0.0.186 live (250, Music as cards). On 251: 🔬/♿ walk where you click: a glowing circle on walkable ground, a click walks there",
  "closed_tickets": [
+  {
+   "id": 250,
+   "area": "dress up, music, UX",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T17:00-06:00",
+   "source": "Matthew, 2026-10-17, in chat, with a picture of the 🎵 Music full screen",
+   "url": "",
+   "text": "<b>Dress Up: the 🎵 Music tab gets the full screen's cards in its normal view too; in full screen, \"where the tune is\" fills the rest of its row.</b> Matthew: \"let's use these UX improvements in the non-FS mode of Music panel. Also, in this FS mode, the song progress sub-panel (last sub-panel in first row, on right) -- can extend to fill the rest of the row -- that's the one thing that we do want to be longer, if possible. It doesn't need its own row, though.\" To do: (1) the Music tab, not full screen: its controls as the full screen's cards (squarish sub-panels side by side in a grid, the mixing board's parts each a card), in the side column's width; (2) full screen: the first row's last card, ⏯️ where the tune is (rewind, pause, tape stop, the bar/beat/section line, the slider, the sections), spanning to the row's end, wherever the row ends, without a row of its own. Matthew, 2026-10-17, with a later picture of the full screen: \"in this view (FS music), maybe stack the first two subpanels vertically -- they are each rather short, and then they take up a lot of horz space side by side.\" So (3): full screen, the first two cards (🔊 sound on: tap to mute, ▶ playing: ...) one over the other in one column, \"where the tune is\" beside them filling the rest of the row.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T21:19-06:00",
+   "outcome": "0.0.186: the Music tab's controls are cards in a grid in both views (two across in the side column); the full-screen chip, tune picker and mixer across; where there are two columns, 🔊 and ▶ stacked in the first and ⏯️ where the tune is spanning the rest of their two rows. music250 + 5 checks green on CI (checks-250), pictures of both views checked.",
+   "metrics": {
+    "open_minutes": 260,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 20.0
+   }
+  },
   {
    "id": 249,
    "area": "dress up, forest crossing, world designer, 🔭",
@@ -7529,7 +7542,6 @@
   }
  ],
  "queue": [
-  250,
   251,
   253,
   255,
