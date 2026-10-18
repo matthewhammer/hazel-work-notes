@@ -479,33 +479,6 @@
    ]
   },
   {
-   "id": 184,
-   "area": "dress up, releases, CI, performance",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T06:28-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "text": "<b>Dress Up releases deploy first; speed is checked after, on every release, and a slow version is marked 🚧🐢.</b> Matthew, 2026-10-17: \"when N and M start asking for updates later today, I want to deploy publicly asap, so they can test, and support that creative loop -- separately, I want to keep checking performance in a systematic way, so they don't have to, and I don't have to, as we go.\" and, asked to switch releases to deploy first, speed tests after: \"yes.\" To do: (1) a workflow on each release tag (dress-up-X.Y.Z) runs the checks, the frame-rate gate (both tiers), the on-screen controller audit and the leak tests on GitHub's computers, and records the result per version in dress-up/speed.json on main; (2) the game reads speed.json with version.json and marks its own version 🚧🐢 slow (with what failed, and a link to the run) when its speed tests failed; (3) the release steps in agent-instructions.md: deploy first (the script check only), the speed tests after, a slow version fixed in the next one, never undone; and after each release, read its result and mint a ticket when it is slow. Replaces 10-16's rule \"we fix it before we commit new versions\" (Matthew's own change).",
-   "tags": [
-    "long run"
-   ],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T06:28-06:00",
-     "from": "matthew",
-     "chars": 257,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T13:41-06:00",
-     "from": "matthew",
-     "chars": 20,
-     "asks": true
-    }
-   ],
-   "progress": "06:28: minted; started. 0.0.95 went out deploy-first already (main 1599fd9, tag dress-up-0.0.95, live), its checks still running on the release branch. | 06:32: BUILT and released as 0.0.96 (main 11b26ba, tag dress-up-0.0.96, live): .github/workflows/dress-up-speed.yml on each release tag (checks, gate both tiers, audit, leak), tools/speed_record.py writes dress-up/speed.json on main, the game's markSpeed shows 🚧🐢 / 🚧 after its version (tools/checks/speedmark184.mjs checks it), and the release steps in agent-instructions.md say deploy first. Speed runs going: 0.0.96 (run 39032830033, from its tag) and 0.0.95 (39032851446, by hand). Left: see each record its result and speed.json go live. | 09:49: Matthew: is GitHub's shared computer the cause? Read the runs: in 0.0.113 every case was at 60; the steady failure was the still pictures (fixed in 0.0.116, a real bug). The gate now retries a frame-rate-only failure once (RETRIES=1, bar still 55) and names why a case failed. The imagination's slow drag still flickers on GitHub (60 in 0.0.113; 52.6 then 54.7 today) with no change to it: proposal, not started: measure main on the same runner in the same job and fail only when the release is slower than main by more than the noise. | 10:40: 0.0.116's speed run is the first 'ok': every check, the gate and the slow scenes (still pictures fixed in 0.0.116, the retry in the gate). 0.0.115 slow (before those). 0.0.120's run is going; 0.0.124's waits (0.0.121-0.0.123 replaced in the queue). Proposal still open, not started: compare against main on the same runner. | 23:30 (overnight long runs): every known cause of the red speed runs fixed and released: the pitsHere load error (0.0.196), the bubble pop check, the gate's duck pond drag pressing a hand (fpsgate.mjs on main), the controller audit's STUCK tree house and healer's hut (0.0.200: arriving inside a solid, settled out; audit160 counts either way). Waiting on 0.0.201's speed run (overlays on now, ticket 236) to read green or not; the slow tier's imagination and forest sit near 55 (ticket 222), so a 🐢 there is still possible. | 01:50: 0.0.201's speed run: both gate tiers pass everywhere (12/12, 10/10), no longer slow; 'broken' only for things201, all its cases. Bisected (four runs, each a quarter of the checks then things201) and a full check run at 0.0.201 (39106198855): things201 passes every time, every check green, the audit all pass: a one-off on the speed-run machine. The audit's one stable NaN not reproducible with the pad and its exact setup; audit160 now falls back (main 6517625). Re-running 0.0.201's speed run to record it."
-  },
-  {
    "id": 212,
    "area": "dress up, places, open water",
    "added": "2026-10-17",
@@ -604,9 +577,48 @@
   }
  ],
  "next_ticket": 272,
- "current_ticket": 184,
- "current_note": "01:55: Overnight: releases 0.0.197-0.0.201 live; full check set at 0.0.201 green (every check, gate 12/12 + slow 10/10, audit). 0.0.201's speed run read broken once (things201, a one-off: passes in 5 reruns); re-running it to record green. 222 and 225 open with notes; the picture archive is past 1 GB (his call).",
+ "current_ticket": 222,
+ "current_note": "02:45: Overnight long runs done. Released 0.0.197-0.0.201; 0.0.201's speed run records ok (first green since 0.0.160). Open: 222 (slow-tier imagination/forest near 55: 57/56 'near' in the last audit, gate passing), 225 (1 dead tap in 30 after Surprise me, a rare race). Waiting on Matthew: the picture archive is ~1.25 GB, past Pages' 1 GB guideline; the blocked tickets.",
  "closed_tickets": [
+  {
+   "id": 184,
+   "area": "dress up, releases, CI, performance",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T06:28-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "text": "<b>Dress Up releases deploy first; speed is checked after, on every release, and a slow version is marked 🚧🐢.</b> Matthew, 2026-10-17: \"when N and M start asking for updates later today, I want to deploy publicly asap, so they can test, and support that creative loop -- separately, I want to keep checking performance in a systematic way, so they don't have to, and I don't have to, as we go.\" and, asked to switch releases to deploy first, speed tests after: \"yes.\" To do: (1) a workflow on each release tag (dress-up-X.Y.Z) runs the checks, the frame-rate gate (both tiers), the on-screen controller audit and the leak tests on GitHub's computers, and records the result per version in dress-up/speed.json on main; (2) the game reads speed.json with version.json and marks its own version 🚧🐢 slow (with what failed, and a link to the run) when its speed tests failed; (3) the release steps in agent-instructions.md: deploy first (the script check only), the speed tests after, a slow version fixed in the next one, never undone; and after each release, read its result and mint a ticket when it is slow. Replaces 10-16's rule \"we fix it before we commit new versions\" (Matthew's own change).",
+   "tags": [
+    "long run"
+   ],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T06:28-06:00",
+     "from": "matthew",
+     "chars": 257,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:41-06:00",
+     "from": "matthew",
+     "chars": 20,
+     "asks": true
+    }
+   ],
+   "progress": "06:28: minted; started. 0.0.95 went out deploy-first already (main 1599fd9, tag dress-up-0.0.95, live), its checks still running on the release branch. | 06:32: BUILT and released as 0.0.96 (main 11b26ba, tag dress-up-0.0.96, live): .github/workflows/dress-up-speed.yml on each release tag (checks, gate both tiers, audit, leak), tools/speed_record.py writes dress-up/speed.json on main, the game's markSpeed shows 🚧🐢 / 🚧 after its version (tools/checks/speedmark184.mjs checks it), and the release steps in agent-instructions.md say deploy first. Speed runs going: 0.0.96 (run 39032830033, from its tag) and 0.0.95 (39032851446, by hand). Left: see each record its result and speed.json go live. | 09:49: Matthew: is GitHub's shared computer the cause? Read the runs: in 0.0.113 every case was at 60; the steady failure was the still pictures (fixed in 0.0.116, a real bug). The gate now retries a frame-rate-only failure once (RETRIES=1, bar still 55) and names why a case failed. The imagination's slow drag still flickers on GitHub (60 in 0.0.113; 52.6 then 54.7 today) with no change to it: proposal, not started: measure main on the same runner in the same job and fail only when the release is slower than main by more than the noise. | 10:40: 0.0.116's speed run is the first 'ok': every check, the gate and the slow scenes (still pictures fixed in 0.0.116, the retry in the gate). 0.0.115 slow (before those). 0.0.120's run is going; 0.0.124's waits (0.0.121-0.0.123 replaced in the queue). Proposal still open, not started: compare against main on the same runner. | 23:30 (overnight long runs): every known cause of the red speed runs fixed and released: the pitsHere load error (0.0.196), the bubble pop check, the gate's duck pond drag pressing a hand (fpsgate.mjs on main), the controller audit's STUCK tree house and healer's hut (0.0.200: arriving inside a solid, settled out; audit160 counts either way). Waiting on 0.0.201's speed run (overlays on now, ticket 236) to read green or not; the slow tier's imagination and forest sit near 55 (ticket 222), so a 🐢 there is still possible. | 01:50: 0.0.201's speed run: both gate tiers pass everywhere (12/12, 10/10), no longer slow; 'broken' only for things201, all its cases. Bisected (four runs, each a quarter of the checks then things201) and a full check run at 0.0.201 (39106198855): things201 passes every time, every check green, the audit all pass: a one-off on the speed-run machine. The audit's one stable NaN not reproducible with the pad and its exact setup; audit160 now falls back (main 6517625). Re-running 0.0.201's speed run to record it.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T02:45-06:00",
+   "outcome": "Green: 0.0.201's speed run records ok in speed.json (08:44Z, run 39100712067, overlays on): every check passes, the gate 12/12 and slow 10/10 at 55+, the controller audit only 'near' for the imagination and the greenhouse. The first green since 0.0.160. Fixed on the way: the pitsHere load error (0.0.196), the bubble pop check, the gate's duck pond drag pressing a hand (fpsgate.mjs), arrivals inside solids (0.0.200), a walk's foot grazing a cauldron (0.0.201, PATH_PAD 9); the first 0.0.201 run's things201 failure was a one-off (passed in 4 bisect runs, a full check run and the rerun).",
+   "metrics": {
+    "open_minutes": 1218,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 277,
+    "tokens_est": 69,
+    "sync_minutes_est": 0,
+    "work_minutes": 90.0
+   }
+  },
   {
    "id": 236,
    "area": "dress up, CI, accessibility, testing",
@@ -7828,7 +7840,6 @@
   }
  ],
  "queue": [
-  184,
   222,
   160,
   18,
