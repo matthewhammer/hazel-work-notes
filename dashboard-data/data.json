@@ -651,15 +651,6 @@
    ]
   },
   {
-   "id": 243,
-   "area": "dress up, tree house, collisions",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T16:29-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "url": "",
-   "text": "<b>Dress Up: the tree's trunk in a tree house room (as in room 4's NE corner) has a tighter collision shape, in more segments.</b> Matthew, with a picture of room 4 (🐰 4, the telescope, ♿ 🧱 collision boxes on): \"need more segments for this feature of this tree house room (NE corner) -- the tree's box is too big.\" In the picture the \"tree trunk\" box spans the whole corner, from the wall's foot out over the floor, far wider than the trunk. To do: the trunk as stacked boxes following its shape (as the outdoor trunks since 0.0.153), so the friend can stand beside it, and its box in 🧱 shows that."
-  },
-  {
    "id": 244,
    "area": "dress up, tree house, signs",
    "added": "2026-10-17",
@@ -702,7 +693,7 @@
    "opened": "2026-10-17T16:44-06:00",
    "source": "found by collide176 in the diagnostic run 39075912049 (0.0.166), Matthew AFK",
    "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39075912049",
-   "text": "<b>Dress Up: a high jump over a small far thing can land inside it and stay stuck there.</b> collide176, since 0.0.162 took away the path through the woods' signpost (so the check now picks this one): \"mushroom, right inner\" 206..232 at depth 340..351, height 22; from x 146, holding ➡️ with a high jump for 2.2 s, the friend lands at x 230, inside its box, and is still there (a 2-unit miss; elsewhere high jumps carry 100-200 units). Two things to look at: how far a jump carries at a far depth (the floor's perspective slows it), and why, having landed inside a solid, walking on out of it (not deeper) didn't move them. Then collide176 passes again."
+   "text": "<b>Dress Up: a high jump over a small far thing can land inside it and stay stuck there.</b> collide176, since 0.0.162 took away the path through the woods' signpost (so the check now picks this one): \"mushroom, right inner\" 206..232 at depth 340..351, height 22; from x 146, holding ➡️ with a high jump for 2.2 s, the friend lands at x 230, inside its box, and is still there (a 2-unit miss; elsewhere high jumps carry 100-200 units). Two things to look at: how far a jump carries at a far depth (the floor's perspective slows it), and why, having landed inside a solid, walking on out of it (not deeper) didn't move them. Then collide176 passes again. Also from collide176 since 0.0.173 (ticket 243 gave the tree rooms' trunk bands): (a) its back-wall case in tree room 1 now picks x -330, beside the left wall, where the side wall stops the feet before the back wall (the old oversized trunk box had kept it away): choose x inside the walls at the back; (b) walking left into room 1's trunk with the controller ends 20 units inside its footprint (x -268.5, the friend inside it), though a step-by-step walk with the walking pose stops at the lowest band's edge, -217 (diagnostic diag-243): the controller's walk with its sliding along solids and swinging soles lets the friend in."
   },
   {
    "id": 249,
@@ -760,9 +751,31 @@
   }
  ],
  "next_ticket": 256,
- "current_ticket": 243,
- "current_note": "17:52: AFK run: 242 done (0.0.172). On 243: the tree trunk's box in tree rooms (room 4's NE corner) too big: more segments",
+ "current_ticket": 252,
+ "current_note": "18:00: AFK run: 243 done (0.0.173). On 252: climbing up through a trapdoor or out of a pit cut off at the opening (no fade); then each opening's shape",
  "closed_tickets": [
+  {
+   "id": 243,
+   "area": "dress up, tree house, collisions",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:29-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: the tree's trunk in a tree house room (as in room 4's NE corner) has a tighter collision shape, in more segments.</b> Matthew, with a picture of room 4 (🐰 4, the telescope, ♿ 🧱 collision boxes on): \"need more segments for this feature of this tree house room (NE corner) -- the tree's box is too big.\" In the picture the \"tree trunk\" box spans the whole corner, from the wall's foot out over the floor, far wider than the trunk. To do: the trunk as stacked boxes following its shape (as the outdoor trunks since 0.0.153), so the friend can stand beside it, and its box in 🧱 shows that.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T18:00-06:00",
+   "outcome": "Released in 0.0.173 (live): the tree rooms' braid marked data-trunk, so the trunk's box is its braid's alone, in 5 bands up it (standingHere), not its whole drawing with its limbs: the foot 45 wide against a drawing 111-261 wide (trunk243.mjs, all six rooms, all ok, run 39080689281); a step-by-step walk stops at the lowest band's edge. collide176's two new tree-room failures (the back-wall case's x, and a controller walk ending inside the trunk) are noted on ^ticket(248).",
+   "metrics": {
+    "open_minutes": 91,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 25.0
+   }
+  },
   {
    "id": 242,
    "area": "dress up, tree house, pictures, ladders",
@@ -7279,7 +7292,6 @@
   }
  ],
  "queue": [
-  243,
   252,
   244,
   245,
