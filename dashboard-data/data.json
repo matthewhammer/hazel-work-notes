@@ -1049,13 +1049,18 @@
    "source": "Matthew, 2026-10-18, in chat",
    "url": "",
    "text": "<b>Dress Up: collision boxes that reach past what stands there, beginning with the king's chest.</b> In the king's room the treasure chest's collision box reaches too far to the left, where there are only some coins on the ground and no chest. Minor, but it hints at the need for a larger audit: every object's collision box against what really stands there."
-  },
+  }
+ ],
+ "next_ticket": 306,
+ "current_ticket": 284,
+ "current_note": "13:34: ^ticket(306) closed (done); ^ticket(284) is next in the queue",
+ "closed_tickets": [
   {
    "id": 306,
    "area": "dress up, places",
    "added": "2026-10-18",
    "opened": "2026-10-18T13:15-06:00",
-   "status": "open",
+   "status": "done",
    "tags": [],
    "progress": "13:15: taken now (284 parked): the beam comes out of the flashlight's tail, toward the tent door; it should come out of the lens, the yellow end, along the shaft, up and to the right.",
    "log": [
@@ -1068,13 +1073,19 @@
    ],
    "source": "Matthew, 2026-10-18, in chat, with a screenshot of the orange tent under ♿",
    "url": "",
-   "text": "<b>Dress Up: the flashlight's beam, in the orange tent, comes out of the wrong end.</b> Matthew: \"flashlight beam doesn't go out the right direction, as drawn. it should be coming out of the same direction as the shaft, towards the yellow edge of the lit part, and its mirrored as is. (coming out of the bottom)\""
-  }
- ],
- "next_ticket": 306,
- "current_ticket": 306,
- "current_note": "13:25: the laptop crashed at 13:16, seconds after 0.0.219 (the flashlight beam) was pushed; main and the tag reached GitHub, the local repos are repaired. But 0.0.219 went out with an EMPTY version.json (its release script truncated it), so the game's update check and the tag's speed run cannot read it. 0.0.220 restores it: committed locally (f38f893), checks pass, waiting on Matthew's word to push.",
- "closed_tickets": [
+   "text": "<b>Dress Up: the flashlight's beam, in the orange tent, comes out of the wrong end.</b> Matthew: \"flashlight beam doesn't go out the right direction, as drawn. it should be coming out of the same direction as the shaft, towards the yellow edge of the lit part, and its mirrored as is. (coming out of the bottom)\"",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T13:34-06:00",
+   "outcome": "Released in Dress Up 0.0.219: the tent's flashlight beam comes out of its lens, the yellow end, along the shaft, with an oval of light where it meets the side wall (brighter at night). 0.0.219 went out with an empty version.json, which its release script truncated; 0.0.220 (live 13:33:56) puts it back, and check_script.py now fails on an empty or mismatched version.json. The laptop crashed at 13:16, seconds after the 0.0.219 push; nothing was lost.",
+   "metrics": {
+    "open_minutes": 19,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 190,
+    "tokens_est": 47,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 305,
    "area": "dress up, castles",
@@ -8995,7 +9006,6 @@
   }
  ],
  "queue": [
-  306,
   284,
   285,
   283,
@@ -9024,6 +9034,5 @@
   166,
   259
  ],
- "current_since": "2026-10-18T13:15-06:00",
- "current_waiting": true
+ "current_since": "2026-10-18T13:34-06:00"
 }
