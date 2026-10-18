@@ -27,6 +27,13 @@ if work is not None: m["work_minutes"] = work
 t["metrics"] = m
 d["tickets"].remove(t); d["closed_tickets"].insert(0, t)
 d["queue"] = [q for q in d["queue"] if q != tid]
-if d.get("current_ticket") == tid: d["current_ticket"] = d["queue"][0] if d["queue"] else None
+# (closing the current ticket makes the queue's next one current AS OF NOW: it
+# kept the closed ticket's start and note, and now.py then left them in place)
+if d.get("current_ticket") == tid:
+    tags = {x["id"]: x.get("tags") or [] for x in d["tickets"]}
+    nxt = next((q for q in d["queue"] if "blocked on Matthew" not in tags.get(q, [])), None)
+    d["current_ticket"], d["current_since"] = nxt, now.isoformat(timespec="minutes")
+    d["current_note"] = f"{now:%H:%M}: ^ticket({tid}) closed ({status}); " + (f"^ticket({nxt}) is next in the queue" if nxt else "the rest of the queue is blocked on Matthew" if d["queue"] else "the queue is empty")
+    d.pop("current_waiting", None)
 json.dump(d, open(DATA, "w"), indent=1, ensure_ascii=False)
 print(tid, status, m)
