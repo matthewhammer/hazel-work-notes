@@ -651,15 +651,6 @@
    ]
   },
   {
-   "id": 255,
-   "area": "dress up, world designer, UX",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T17:41-06:00",
-   "source": "Matthew, 2026-10-17, in chat (he read his square F5 as F3)",
-   "url": "",
-   "text": "<b>Dress Up: the world designer's grid, outside full screen, shows its letters and numbers big enough to read.</b> Matthew: \"ooops -- the letters do not scale large enough in the grid when not full screen. I misread them\" (he put rocks at F5 and took it for F3). To do: in the 🗺️ World design tab (not full screen), the A, B, C... and 1, 2, 3... labels round the grid (shown only full screen since ticket 224) and each square's own name (an empty square's \"F3\"), sized from the square (--cell) as full screen does, so a square's name reads at a glance."
-  },
-  {
    "id": 259,
    "area": "dress up, designer, components",
    "added": "2026-10-17",
@@ -754,12 +745,43 @@
    "source": "Matthew, 2026-10-17, in chat",
    "url": "",
    "text": "<b>Dress Up: the spiral staircase drawn whole, its front half too, and walks up it along the middle of its steps.</b> Matthew: \"the motion plan for the spiral stairs needs work. it should follow the center of the stairs, not the farthest edge. Also, this scene needs work in terms of representing the room. We see the back half of a screw, and the front half is missing. let's draw it all, and if we have to make certain parts transparent while we are occluded by them temporarily, we can (the front part of the spiral stairs, coming out toward the viewer). I have a feeling that won't be necessarily, let's find out.\" To do: (1) a walk to a door up the stairs (planPath/walkInto in the spiral room) along the stairs' middle line (spiralGeom's radius between the column and the wall), climbing as the steps do; (2) spiralSvg draws the front half of the helix too, the steps coming toward us; the friend sorted among the steps by where they are on it; any part that would hide the friend see-through while it does (if it ever does)."
+  },
+  {
+   "id": 269,
+   "area": "dress up, tree house, ladders",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T21:45-06:00",
+   "source": "Matthew, 2026-10-17, in chat (split from ^ticket(264))",
+   "url": "",
+   "text": "<b>Dress Up: up the tree house's outside ladder, then a walk along the platform to the house's door and through it, cut off at the doorway.</b> Matthew: \"when I climb to the top of the external tree house ladder, it looks great --- but then I get to the top and there's no motion plan of walking to the door, and walking through it (it's fine for it to open magically as we get to the top of the stairs), but the animation, again, of going through the doorway, with clipping, is very compelling.\" Split from ^ticket(264) (the rest of it released in 0.0.190): this needs walking on a house's platform outside (as the bridges are walked, ^ticket(245)): at the ladder's top, onto the platform at the tree's size, along it to the door, the door open, and in, clipped at its frame."
   }
  ],
- "next_ticket": 269,
- "current_ticket": 255,
- "current_note": "21:34: 0.0.188 live (253 spiral doors reachable; 👆 on at first). On 255: the world designer's grid labels big enough outside full screen",
+ "next_ticket": 270,
+ "current_ticket": 264,
+ "current_note": "21:36: 0.0.189 live (255). On 264: the tree house's and castle's doors: ladder down to its foot facing us; bridge doors stay open, walked through clipped; up the outside ladder and through; clicks on the far house followed; castle doors clipped",
  "closed_tickets": [
+  {
+   "id": 255,
+   "area": "dress up, world designer, UX",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T17:41-06:00",
+   "source": "Matthew, 2026-10-17, in chat (he read his square F5 as F3)",
+   "url": "",
+   "text": "<b>Dress Up: the world designer's grid, outside full screen, shows its letters and numbers big enough to read.</b> Matthew: \"ooops -- the letters do not scale large enough in the grid when not full screen. I misread them\" (he put rocks at F5 and took it for F3). To do: in the 🗺️ World design tab (not full screen), the A, B, C... and 1, 2, 3... labels round the grid (shown only full screen since ticket 224) and each square's own name (an empty square's \"F3\"), sized from the square (--cell) as full screen does, so a square's name reads at a glance.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T21:36-06:00",
+   "outcome": "0.0.189: the World design tab's grid has the columns' letters and rows' numbers outside full screen too (a label band the cell size is reckoned with, at least 13px, scaling with the square), and empty squares' names as big. grid255 green on CI, picture checked.",
+   "metrics": {
+    "open_minutes": 235,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 10.0
+   }
+  },
   {
    "id": 253,
    "area": "dress up, castle rooms, collisions, walls",
@@ -7607,11 +7629,11 @@
   }
  ],
  "queue": [
-  255,
   264,
   266,
   267,
   268,
+  269,
   209,
   184,
   198,
