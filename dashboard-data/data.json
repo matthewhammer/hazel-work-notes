@@ -651,15 +651,6 @@
    ]
   },
   {
-   "id": 248,
-   "area": "dress up, collisions, jumping",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T16:44-06:00",
-   "source": "found by collide176 in the diagnostic run 39075912049 (0.0.166), Matthew AFK",
-   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39075912049",
-   "text": "<b>Dress Up: a high jump over a small far thing can land inside it and stay stuck there.</b> collide176, since 0.0.162 took away the path through the woods' signpost (so the check now picks this one): \"mushroom, right inner\" 206..232 at depth 340..351, height 22; from x 146, holding ➡️ with a high jump for 2.2 s, the friend lands at x 230, inside its box, and is still there (a 2-unit miss; elsewhere high jumps carry 100-200 units). Two things to look at: how far a jump carries at a far depth (the floor's perspective slows it), and why, having landed inside a solid, walking on out of it (not deeper) didn't move them. Then collide176 passes again. Also from collide176 since 0.0.173 (ticket 243 gave the tree rooms' trunk bands): (a) its back-wall case in tree room 1 now picks x -330, beside the left wall, where the side wall stops the feet before the back wall (the old oversized trunk box had kept it away): choose x inside the walls at the back; (b) walking left into room 1's trunk with the controller ends 20 units inside its footprint (x -268.5, the friend inside it), though a step-by-step walk with the walking pose stops at the lowest band's edge, -217 (diagnostic diag-243): the controller's walk with its sliding along solids and swinging soles lets the friend in."
-  },
-  {
    "id": 249,
    "area": "dress up, forest crossing, world designer, 🔭",
    "added": "2026-10-17",
@@ -715,9 +706,31 @@
   }
  ],
  "next_ticket": 257,
- "current_ticket": 248,
- "current_note": "18:52: AFK run: 244-247 done (0.0.176-0.0.180: sign map, bridges walkable, bridge doors out and in, door views). On 248: the high jump stuck in a small far thing, and collide176's tree-room findings",
+ "current_ticket": 256,
+ "current_note": "19:40: Matthew back: 248 done (0.0.181). On 256 (his, just now): a side wall's door opens while it glows, showing what is behind (the house across the bridge; a castle room's brightness), closes when the glow goes; walking into an open door takes it",
  "closed_tickets": [
+  {
+   "id": 248,
+   "area": "dress up, collisions, jumping",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:44-06:00",
+   "source": "found by collide176 in the diagnostic run 39075912049 (0.0.166), Matthew AFK",
+   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39075912049",
+   "text": "<b>Dress Up: a high jump over a small far thing can land inside it and stay stuck there.</b> collide176, since 0.0.162 took away the path through the woods' signpost (so the check now picks this one): \"mushroom, right inner\" 206..232 at depth 340..351, height 22; from x 146, holding ➡️ with a high jump for 2.2 s, the friend lands at x 230, inside its box, and is still there (a 2-unit miss; elsewhere high jumps carry 100-200 units). Two things to look at: how far a jump carries at a far depth (the floor's perspective slows it), and why, having landed inside a solid, walking on out of it (not deeper) didn't move them. Then collide176 passes again. Also from collide176 since 0.0.173 (ticket 243 gave the tree rooms' trunk bands): (a) its back-wall case in tree room 1 now picks x -330, beside the left wall, where the side wall stops the feet before the back wall (the old oversized trunk box had kept it away): choose x inside the walls at the back; (b) walking left into room 1's trunk with the controller ends 20 units inside its footprint (x -268.5, the friend inside it), though a step-by-step walk with the walking pose stops at the lowest band's edge, -217 (diagnostic diag-243): the controller's walk with its sliding along solids and swinging soles lets the friend in.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T19:40-06:00",
+   "outcome": "0.0.181: solidMove lets the friend out of every solid they are in and into no other (a foot in the toy chest let a walk on into tree room 1's trunk); solidUnstick finds the nearest clear spot, back the way they came (the high jump stopped by the tree past woodpath's mushroom came down inside it); a stopped walk steps out of a thing its planted feet are in, a step at most; planPath goes round each solid as wide as its bands up to the crown (paths215 was red on main: the tree house's trunk). collide176 green again: jumps skipped only past something too tall, the tree room back wall walked inside the side walls. solids248 + 15 collision/movement checks green on CI (checks-248).",
+   "metrics": {
+    "open_minutes": 176,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 40.0
+   }
+  },
   {
    "id": 247,
    "area": "dress up, tree house, views",
@@ -7367,7 +7380,6 @@
   }
  ],
  "queue": [
-  248,
   256,
   249,
   250,
