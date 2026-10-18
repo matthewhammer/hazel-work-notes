@@ -689,7 +689,7 @@
    "opened": "2026-10-18T10:50-06:00",
    "status": "open",
    "tags": [],
-   "progress": "The report is published (live 11:01): https://matthewhammer.org/kids-choice-games/dress-up/reports/005/ . Its What next steps 1 to 7 are this ticket's plan; step 8, the speed of the full-screen designer, is ^ticket(289). 12:19: Matthew: \"do 285 next, when settled\": next after ^ticket(296), ahead of ^ticket(284). 12:37: RELEASED 0.0.211 (517e292): the report's findings, steps 5 and 7: the house's toys slider shows (each of its two rows its own rule), a flip whose two words are the same is lit while on (the bubble themes' on and off), \"color\" in the bubble rows, two stale comments, two stale lines in agent-instructions.md. Tried in the app's browser pane. NEXT: step 1, the shared pieces (a box, the one-line row, the designer's shell), the two full screens moved onto them looking the same; then step 2, 🏞️ Background as a designer. 12:40: RELEASED 0.0.212 (c300d49): step 1, the pieces: the designer's shell (designerShell, DESIGNERS, body.designer-big in js/22-full-screen.js), a box (.box, .boxes) and the one-line row (.row1), sized by tokens on :root in style.css; the music and world full screens moved onto them with every element's computed style the same (558 elements, 0 differences, compared in the app's browser pane at 1280x800). NEXT: step 2, 🏞️ Background as a designer: full screen with the game as its first card, the places as pictures, the place's own box, what stands in it as cards with their pictures; then steps 3, 4 and 6. 12:45: RELEASED 0.0.213 (8b5003f): step 2, version 1: 🏞️ Background as a designer, full screen on the shared shell: its rows as boxes in a grid, the game live as the first card on the right (one 👁️ fold with the world designer's), the places as the archive's thumbnails, what stands in the place as OBJECTS.md's pictures, lit in the game while pointed at; the side panel unchanged, no picture fetched there. Tried in the app's browser pane at 1280x800 (the lake: 16 boxes, 6 place pictures, 17 object pictures, far wood lit while pointed at, back to the side panel with the picture home). NOT YET from the report's step 2: the friend here, the ways and the music each a box of their own, the 🔬 overlays and 🖼️ the archive under the game card, and a click in the game finding its box. Then steps 3 (the castle's themes), 4 (the bubble themes as cards) and 6 (the other tabs). 12:55: Matthew: \"background designer FS has no drag between LHS and RHS -- that's a key feature of world designer\". RELEASED 0.0.214 (8d0c7f6): the world designer's dragger is now designerSplit() (js/20-controls.js), shared; the background designer has the same bar between its boxes and the game, kept apart (dress-up-bg-split). Tried with a real drag in the browser pane (to 46.9%: the game grew to 527x390); the world designer's still at its 60%. 12:57: Matthew: v1 does not use the report's full proposal, and the castle's themes are not there yet: TRUE. PARKED for M's version pop-up. THE DESIGN, NOT BUILT: (1) a TABS row kind \"box\" [\"box\", key, label or label(b), rows]: its name once at its top, emoji first, its rows; hidden by its SHOWN_WHEN or when every row in it is hidden; a lone row's label hidden (the box names it). (2) The Background tab sorted into boxes by row key, the rows staying where they are defined: 🗺️ the place (places); <the place's own label> (everything of the place itself); 🧍 the friend here (figSize, figPos, seat, north_*, waterSee/Wake/Tread, the of-body blowing bubbles, padmap); 👁️ what stands here (objectsOff); 🪨 things to put here (things); 🎵 here (lfoFast, lfoSlow, lfoWings); 🏰 the castles (castle, castleLook*, castleThemes*, castleRoomList*, castleRoomBox*, the residents' lists). (3) A label's parenthesis into a hint on pointing (control(): name built at js/20-controls.js ~1166). (4) Mirror: the friend's box lights the friend, a click on an object in the game finds its card. (5) Under the game card: 🔬 the overlays as of-access rows (showSolids, showMadeOf, showPath, the arrows) and 🖼️ the archive (a link to the pictures page). (6) Step 3, the castle's themes: one box, A and B side by side each drawn as its flag with its four rows (color 1, color 2, together, carpet), and 🚪 its rooms: each room's flag in its theme's colors, tapped to swap (castleRoomTheme<n><id>), or \"· its own\" where it takes none (OWN_EXIT_ROOMS); the per-room \"🎨 its colors\" row goes (one decision, one place). Theme model: castleOf (js/01-state.js 240), castleFlagFill 271.",
+   "progress": "The report is published (live 11:01): https://matthewhammer.org/kids-choice-games/dress-up/reports/005/ . Its What next steps 1 to 7 are this ticket's plan; step 8, the speed of the full-screen designer, is ^ticket(289). 12:19: Matthew: \"do 285 next, when settled\": next after ^ticket(296), ahead of ^ticket(284). 12:37: RELEASED 0.0.211 (517e292): the report's findings, steps 5 and 7: the house's toys slider shows (each of its two rows its own rule), a flip whose two words are the same is lit while on (the bubble themes' on and off), \"color\" in the bubble rows, two stale comments, two stale lines in agent-instructions.md. Tried in the app's browser pane. NEXT: step 1, the shared pieces (a box, the one-line row, the designer's shell), the two full screens moved onto them looking the same; then step 2, 🏞️ Background as a designer. 12:40: RELEASED 0.0.212 (c300d49): step 1, the pieces: the designer's shell (designerShell, DESIGNERS, body.designer-big in js/22-full-screen.js), a box (.box, .boxes) and the one-line row (.row1), sized by tokens on :root in style.css; the music and world full screens moved onto them with every element's computed style the same (558 elements, 0 differences, compared in the app's browser pane at 1280x800). NEXT: step 2, 🏞️ Background as a designer: full screen with the game as its first card, the places as pictures, the place's own box, what stands in it as cards with their pictures; then steps 3, 4 and 6. 12:45: RELEASED 0.0.213 (8b5003f): step 2, version 1: 🏞️ Background as a designer, full screen on the shared shell: its rows as boxes in a grid, the game live as the first card on the right (one 👁️ fold with the world designer's), the places as the archive's thumbnails, what stands in the place as OBJECTS.md's pictures, lit in the game while pointed at; the side panel unchanged, no picture fetched there. Tried in the app's browser pane at 1280x800 (the lake: 16 boxes, 6 place pictures, 17 object pictures, far wood lit while pointed at, back to the side panel with the picture home). NOT YET from the report's step 2: the friend here, the ways and the music each a box of their own, the 🔬 overlays and 🖼️ the archive under the game card, and a click in the game finding its box. Then steps 3 (the castle's themes), 4 (the bubble themes as cards) and 6 (the other tabs). 12:55: Matthew: \"background designer FS has no drag between LHS and RHS -- that's a key feature of world designer\". RELEASED 0.0.214 (8d0c7f6): the world designer's dragger is now designerSplit() (js/20-controls.js), shared; the background designer has the same bar between its boxes and the game, kept apart (dress-up-bg-split). Tried with a real drag in the browser pane (to 46.9%: the game grew to 527x390); the world designer's still at its 60%. 12:57: Matthew: v1 does not use the report's full proposal, and the castle's themes are not there yet: TRUE. PARKED for M's version pop-up. THE DESIGN, NOT BUILT: (1) a TABS row kind \"box\" [\"box\", key, label or label(b), rows]: its name once at its top, emoji first, its rows; hidden by its SHOWN_WHEN or when every row in it is hidden; a lone row's label hidden (the box names it). (2) The Background tab sorted into boxes by row key, the rows staying where they are defined: 🗺️ the place (places); <the place's own label> (everything of the place itself); 🧍 the friend here (figSize, figPos, seat, north_*, waterSee/Wake/Tread, the of-body blowing bubbles, padmap); 👁️ what stands here (objectsOff); 🪨 things to put here (things); 🎵 here (lfoFast, lfoSlow, lfoWings); 🏰 the castles (castle, castleLook*, castleThemes*, castleRoomList*, castleRoomBox*, the residents' lists). (3) A label's parenthesis into a hint on pointing (control(): name built at js/20-controls.js ~1166). (4) Mirror: the friend's box lights the friend, a click on an object in the game finds its card. (5) Under the game card: 🔬 the overlays as of-access rows (showSolids, showMadeOf, showPath, the arrows) and 🖼️ the archive (a link to the pictures page). (6) Step 3, the castle's themes: one box, A and B side by side each drawn as its flag with its four rows (color 1, color 2, together, carpet), and 🚪 its rooms: each room's flag in its theme's colors, tapped to swap (castleRoomTheme<n><id>), or \"· its own\" where it takes none (OWN_EXIT_ROOMS); the per-room \"🎨 its colors\" row goes (one decision, one place). Theme model: castleOf (js/01-state.js 240), castleFlagFill 271. 13:02: parked again for M's lever bug (^ticket(303)).",
    "log": [
     {
      "at": "2026-10-18T12:19-06:00",
@@ -1017,11 +1017,31 @@
    "source": "Matthew, 2026-10-18, in chat, for M",
    "url": "",
    "text": "<b>Dress Up, for M: more versions of \"🛋️ couch-cushion rave\", under 🏠 house.</b> More variations of similar duration. From version to version, vary the drums (experiment with triplets and polyrhythms, and drum solos) and the chord progressions (different ones, especially upbeat and funky ones)."
+  },
+  {
+   "id": 303,
+   "area": "dress up, levers and trap doors, for M",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T13:02-06:00",
+   "status": "open",
+   "tags": [],
+   "progress": "13:02: NOT REPRODUCED with the real controls in the app's browser pane at 0.0.215 (the lake, a world square): added a lever and a trap door with the panel's buttons, wired them with the lever row's chip (works held the door's uid), tapped the lever's knob in the picture: the lever on, the door open, its hole there. Most likely M's: a wiring chip not pressed looks much like one pressed (\"🕳️ 4\" under \"🔗 it opens and shuts\" either way), and a lever added after its door starts with no wires. Fix: new levers and trap doors join what is already in the place, either order; the chips say joined or not (🔗 / ➕).",
+   "log": [
+    {
+     "at": "2026-10-18T13:02-06:00",
+     "from": "matthew",
+     "chars": 168,
+     "asks": false
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat, for M",
+   "url": "",
+   "text": "<b>Dress Up, for M: a lever wired to a trap door does not open it.</b> M made a lever and a trap door; they seem wired together, but the trap door does not change when the lever is flipped (the lever itself does flip)."
   }
  ],
- "next_ticket": 303,
- "current_ticket": 285,
- "current_note": "12:59: Back on it after M's pop-up (^ticket(302), released as 0.0.215): building the report's full proposal for 🏞️ Background, as written in this ticket's progress: boxes declared in TABS and named for what they hold, short labels with hints, mirroring both ways, the overlays and the archive by the game, then the castle's themes as flags.",
+ "next_ticket": 304,
+ "current_ticket": 303,
+ "current_note": "13:02: M's lever bug, taken now (285 parked): not reproduced with the real controls; most likely an unpressed wiring chip that looked wired. Fixing the controls: new levers and trap doors join each other automatically, and the chips say joined (🔗) or not (➕).",
  "closed_tickets": [
   {
    "id": 302,
@@ -8881,6 +8901,7 @@
   }
  ],
  "queue": [
+  303,
   285,
   284,
   283,
@@ -8908,5 +8929,5 @@
   166,
   259
  ],
- "current_since": "2026-10-18T12:59-06:00"
+ "current_since": "2026-10-18T13:02-06:00"
 }
