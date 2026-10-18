@@ -605,7 +605,7 @@
    "opened": "2026-10-18T09:54-06:00",
    "status": "open",
    "tags": [],
-   "progress": "Drafted 10:07: survey of the code (13 shared choices of the two full-screen designers; Background 1,337 rows in 100 groups, 9 to 50 shown per place; every tab's size), six before pictures, three after mockups (castle themes, bubble themes, a full-screen Background designer on the lake), nine rules, 7 steps; found the house's toys slider never shown (duplicate key) and the bubble theme switches looking the same on and off. Built by 005/drivers/build.py from 005/data/report.json and 005/drivers/mockups.html; series index card added. Not committed. 10:1x Matthew: the draft \"looks really good\"; before publishing, an fps check of the proposed full-screen Background designer (many place pictures at once were slow on the black laptop), and the place pictures cached so they cost little.",
+   "progress": "Drafted 10:07: survey of the code (13 shared choices of the two full-screen designers; Background 1,337 rows in 100 groups, 9 to 50 shown per place; every tab's size), six before pictures, three after mockups (castle themes, bubble themes, a full-screen Background designer on the lake), nine rules, 7 steps; found the house's toys slider never shown (duplicate key) and the bubble theme switches looking the same on and off. Built by 005/drivers/build.py from 005/data/report.json and 005/drivers/mockups.html; series index card added. Not committed. 10:1x Matthew: the draft \"looks really good\"; before publishing, an fps check of the proposed full-screen Background designer (many place pictures at once were slow on the black laptop), and the place pictures cached so they cost little. 10:3x: the stand-in picker (tools/checks/bgfs279-panel.js, 30 places, live / still SVG / bitmap) tried in the pane: 30 tiles take 57 ms live (15,121 elements), ~100-400 ms as still SVGs, ~1.1 s as bitmaps (one at a time); the measuring run (bgfs279.mjs: the gate's walk and drag, emptyroom and the lake, CPU 1 and 4, with and without resizing) pushed as branch bgfs-279, on GitHub.",
    "log": [
     {
      "at": "2026-10-18T09:54-06:00",
@@ -629,11 +629,31 @@
    "source": "Matthew, 2026-10-18, in chat: \"please create a du_report draft for the new FS interfaces we designed, for music production/remixing, and for the world designer\"",
    "url": "",
    "text": "<b>Draft ^du_report(5): the full-screen designers' UX, and a global shift to it.</b> The new full-screen interfaces (music production and remixing; the world designer): the choices applied consistently in both, and the work left. Then the analysis, with the full design work, of applying the same approach to every other panel in Dress Up's (very large) set of menus, proposed as a global shift. His terms: knolling (\"always be knolling\": tools and materials laid out in order, in plain view); sub-structure visually apparent, boxes within boxes, minimal visual noise; fractal organization; Gelernter's <i>Mirror Worlds</i> (the day software puts the universe in a shoebox). Drafted locally, published only on his word. <b>In particular</b> (his follow-up): before and proposed after for the castle's theme choices, the bubble themes' choices, and above all the 🏞️ background settings, perhaps with a full-screen designer of its own that puts the game's view in a small panel, as the world designer does."
+  },
+  {
+   "id": 282,
+   "area": "dress up, places, for M",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T10:35-06:00",
+   "status": "open",
+   "tags": [],
+   "progress": "",
+   "log": [
+    {
+     "at": "2026-10-18T10:35-06:00",
+     "from": "matthew",
+     "chars": 496,
+     "asks": true
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat, on ^ticket(281)'s round grass hut (0.0.205)",
+   "url": "",
+   "text": "<b>Dress Up, for M: a cluster of grass huts.</b> \"All of the rooms look good.\" The outside drawn as one cylinder-and-dome hut, or as a cluster of them making a bigger building: two side by side; three in a triad, with rotational symmetry; four to six, more rotational symmetry. The number of rooms goes from 1 to 6. Optional: at the cluster's center, another, larger cylinder and dome, a special room called \"hut center\", not counted in the number of rooms."
   }
  ],
- "next_ticket": 282,
- "current_ticket": 279,
- "current_note": "10:31: ^du_report(5) before publishing (his ask): an fps check of the proposed Background designer's place picker (live SVG pictures against cached bitmaps), normal and slow, and the caching it needs. Reading how pictures within pictures are cached today.",
+ "next_ticket": 283,
+ "current_ticket": 282,
+ "current_note": "10:35: M's grass hut cluster (1 to 6 huts in rotational symmetry, an optional larger \"hut center\"), while ^ticket(279)'s fps run is on GitHub (branch bgfs-279).",
  "closed_tickets": [
   {
    "id": 280,
@@ -8258,6 +8278,7 @@
   }
  ],
  "queue": [
+  282,
   279,
   222,
   225,
@@ -8270,5 +8291,5 @@
   166,
   259
  ],
- "current_since": "2026-10-18T10:31-06:00"
+ "current_since": "2026-10-18T10:35-06:00"
 }
