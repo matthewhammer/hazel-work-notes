@@ -711,15 +711,6 @@
    "text": "<b>Dress Up: OBJECTS.md made again at today's version, and the rule to refresh it and the archives' galleries each day the game's pictures or sounds change.</b> Matthew: \"long run ticket for later -- update this: OBJECTS.md -- is that the basis for the pictures we show in the gallery, or distinct? Let's add agent instructions to load these updates as long runs each day we make changes or additions to the objects or backgrounds, or music\"; \"or animations, or main char stuff too\"; \"anything in the cache of those galleries.\" Answer: distinct. OBJECTS.md (the game repo) is made by tools/checks/objects180.mjs on GitHub and tools/objects_md.py: each place's objects list, each clipped from its picture; the gallery is the dress-up-pictures archive (archive-today.sh, archive.mjs: every background with and without the friend, every chip menu's options). To do: run objects180 at today's version (new places, the palms, the deep sea's things, Matthew's world) and objects_md.py, commit OBJECTS.md and its pictures; the agent-instructions rule (added 0.0.188): any day whose releases change objects, backgrounds, music, animations or the friend, anything those galleries hold, queues these as that night's long runs."
   },
   {
-   "id": 268,
-   "area": "dress up, castle, spiral staircase",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T21:57-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "url": "",
-   "text": "<b>Dress Up: the spiral staircase drawn whole, its front half too, and walks up it along the middle of its steps.</b> Matthew: \"the motion plan for the spiral stairs needs work. it should follow the center of the stairs, not the farthest edge. Also, this scene needs work in terms of representing the room. We see the back half of a screw, and the front half is missing. let's draw it all, and if we have to make certain parts transparent while we are occluded by them temporarily, we can (the front part of the spiral stairs, coming out toward the viewer). I have a feeling that won't be necessarily, let's find out.\" To do: (1) a walk to a door up the stairs (planPath/walkInto in the spiral room) along the stairs' middle line (spiralGeom's radius between the column and the wall), climbing as the steps do; (2) spiralSvg draws the front half of the helix too, the steps coming toward us; the friend sorted among the steps by where they are on it; any part that would hide the friend see-through while it does (if it ever does)."
-  },
-  {
    "id": 269,
    "area": "dress up, tree house, ladders",
    "added": "2026-10-17",
@@ -727,12 +718,43 @@
    "source": "Matthew, 2026-10-17, in chat (split from ^ticket(264))",
    "url": "",
    "text": "<b>Dress Up: up the tree house's outside ladder, then a walk along the platform to the house's door and through it, cut off at the doorway.</b> Matthew: \"when I climb to the top of the external tree house ladder, it looks great --- but then I get to the top and there's no motion plan of walking to the door, and walking through it (it's fine for it to open magically as we get to the top of the stairs), but the animation, again, of going through the doorway, with clipping, is very compelling.\" Split from ^ticket(264) (the rest of it released in 0.0.190): this needs walking on a house's platform outside (as the bridges are walked, ^ticket(245)): at the ladder's top, onto the platform at the tree's size, along it to the door, the door open, and in, clipped at its frame."
+  },
+  {
+   "id": 270,
+   "area": "dress up, castle, spiral staircase",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T21:57-06:00",
+   "source": "found doing ^ticket(268)",
+   "url": "",
+   "text": "<b>Dress Up: up the spiral staircase, the friend their size for where they are on the steps, not shrinking as they climb.</b> Found doing ^ticket(268): depthSize reads height on the picture as distance, so higher up the stairs the friend is drawn as if far off, tiny by door 4. To do: in the spiral room, size them by their place on the helix (its depth, the sine of their angle, as the steps' own sizes go), not the screen's height; the doors' signs and the steps already shrink only with the turn's depth."
   }
  ],
- "next_ticket": 270,
- "current_ticket": 268,
- "current_note": "21:52: 0.0.192 live (267 pits as hole + sign). On 268: the spiral staircase drawn whole, walks along the middle of its steps",
+ "next_ticket": 271,
+ "current_ticket": 270,
+ "current_note": "21:57: 0.0.193 live (268). On 270 first (small): up the spiral, the friend sized by their depth on the steps, not shrinking with height; then 269",
  "closed_tickets": [
+  {
+   "id": 268,
+   "area": "dress up, castle, spiral staircase",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T21:57-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: the spiral staircase drawn whole, its front half too, and walks up it along the middle of its steps.</b> Matthew: \"the motion plan for the spiral stairs needs work. it should follow the center of the stairs, not the farthest edge. Also, this scene needs work in terms of representing the room. We see the back half of a screw, and the front half is missing. let's draw it all, and if we have to make certain parts transparent while we are occluded by them temporarily, we can (the front part of the spiral stairs, coming out toward the viewer). I have a feeling that won't be necessarily, let's find out.\" To do: (1) a walk to a door up the stairs (planPath/walkInto in the spiral room) along the stairs' middle line (spiralGeom's radius between the column and the wall), climbing as the steps do; (2) spiralSvg draws the front half of the helix too, the steps coming toward us; the friend sorted among the steps by where they are on it; any part that would hide the friend see-through while it does (if it ever does).",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T21:57-06:00",
+   "outcome": "0.0.193: the upper turns' front steps drawn (40 in N's room 2 made the spiral), each seen through (0.3) while it covers the friend; walks to the stairs' doors along the steps' middle line (spiralPath), arriving. spiral268 + spiral253 green on CI; pictures: the whole screw, the friend on the back-left steps clear. Found: the friend shrinks going up (sized by screen height): ^ticket(270).",
+   "metrics": {
+    "open_minutes": 0,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 25.0
+   }
+  },
   {
    "id": 267,
    "area": "dress up, castle, pits, clicks",
@@ -7668,7 +7690,7 @@
   }
  ],
  "queue": [
-  268,
+  270,
   269,
   209,
   184,
@@ -7688,5 +7710,5 @@
   259,
   225
  ],
- "current_since": "2026-10-17T19:51-06:00"
+ "current_since": "2026-10-17T21:57-06:00"
 }
