@@ -310,6 +310,23 @@ def tag_chips(t, sep="<br>"):
     return "".join(f'{sep}<span class="badge {TAG_CHIPS.get(g, ("tag",))[0]}" title="{e(TAG_CHIPS.get(g, (0, 0, g))[2])}">'
                    f'{e(TAG_CHIPS.get(g, (0, g))[1])}</span>' for g in t.get("tags", []))
 
+# (^ticket(190), Matthew 2026-10-17) what a ticket is about, as chips: hazel,
+# dress-up, performance, dashboard (one, several or none), from its area
+# (data.json's "chips" on a ticket, when given, instead); and a filter bar of
+# them over the work queue and the backlog
+ABOUT = [("hazel", "hazel", r"hazel|#2\d{3}|livelit|\bseries\b"), ("dress-up", "dress-up", r"dress[ -]?up"),
+         ("performance", "performance", r"\bperf"), ("dashboard", "dashboard", r"dashboard")]
+def about(t):
+    # (^ticket(196): a ticket's own "chips" add to those its area gives, as hazel on 16-19, whose areas say only CI or performance)
+    a, own = t.get("area", "").lower(), t.get("chips") if isinstance(t.get("chips"), list) else []
+    return [c for c, _, rx in ABOUT if c in own or re.search(rx, a)]
+def about_chips(t, sep="<br>"):
+    return "".join(f'{sep}<span class="badge about about-{c}" title="about {c}">{c}</span>' for c in about(t))
+def about_filter(table):
+    return (f'<div class="about-filter" data-for="{table}"><span class="note">show:</span> ' +
+            "".join(f'<button type="button" data-about="{c}" aria-pressed="false">{label}</button>' for c, label, _ in ABOUT) +
+            ' <button type="button" data-about="" class="about-all" aria-pressed="true">all</button></div>')
+
 # a ticket's status chip beside "current": "queued", for a ticket in the work
 # queue that is not the current one (its place in line is its tooltip)
 def queue_badge(t):
@@ -320,9 +337,9 @@ def queue_badge(t):
 # Our tickets: data.json's next_ticket is never reused, so a number names one
 # ticket for good, open or closed.
 ticket_rows = "\n".join(
-    f'<tr id="ticket-{t["id"]}"{" class=\"current\"" if t is CURRENT else ""}>{num_cell(t)}'
+    f'<tr id="ticket-{t["id"]}" data-about="{" ".join(about(t))}"{" class=\"current\"" if t is CURRENT else ""}>{num_cell(t)}'
     f'<td>{e(t.get("area", ""))}{"<br><span class=\"badge\">current</span>" + (" " + hand() if WAITING else "") if t is CURRENT else ""}'
-    f'{queue_badge(t)}{tag_chips(t)}</td>'
+    f'{queue_badge(t)}{tag_chips(t)}{about_chips(t)}</td>'
     f'<td>{linkify(t["text"])}</td><td>{from_cell(t)}</td></tr>'
     for t in TICKETS)
 
@@ -364,7 +381,7 @@ def short(html_text, n=46):
 # reorder it, as we go.
 def queue_row(i, t):
     tag = ' <span class="badge">current</span>' + (" " + hand() if WAITING else "") if t is CURRENT else ""
-    return (f'<tr><td class="num">{i}</td><td class="num"><a href="#ticket-{t["id"]}">{tk(t["id"])}</a>{tag}{tag_chips(t, " ")}</td>'
+    return (f'<tr data-about="{" ".join(about(t))}"><td class="num">{i}</td><td class="tkcell"><a href="#ticket-{t["id"]}">{tk(t["id"])}</a>{tag}{tag_chips(t)}{about_chips(t)}</td>'
             f'<td>{e(t.get("area", ""))}</td><td>{e(short(t["text"], 140))}</td></tr>')
 # (the queue's categories, at its end, each under a line of its own: the long runs, the work for when
 # Matthew is away; then the tickets blocked on his response. Shown in data.json's order: a line goes
@@ -381,8 +398,8 @@ def queue_rows():
 
 queue_section = f"""<h2 id="queue">Work Queue (Active Tickets)</h2>
 <p class="note">What we mean to do next, in order: a few tickets, not the backlog. We push a ticket onto the front or the back, and reorder as we go; a ticket leaves the queue when it closes. Each links to its full row in <a href="#backlog">the backlog</a>.</p>
-""" + (f"""<table class="queue">
-<tr><th class="num">Next</th><th class="num">Ticket</th><th class="area">Area</th><th>Ticket</th></tr>
+""" + (about_filter("queue") + f"""<table class="queue" data-about-table="queue">
+<tr><th class="num">Next</th><th class="tkcell">Ticket</th><th class="area">Area</th><th>Ticket</th></tr>
 {queue_rows()}
 </table>
 """ if QUEUE else '<p><i>Empty: push a ticket onto it.</i></p>\n')
@@ -426,7 +443,8 @@ page = f"""<!doctype html>
   h2, h3, tr[id] {{ scroll-margin-top: 12px; }}
   /* The outline, as on fumola.org: beside the page when there is room
      (48rem and up), and behind a button at the top left when there is not. */
-  .outline {{ display: none; position: fixed; top: 0; left: 0; width: 15rem; height: 100vh; box-sizing: border-box;
+  :root {{ --outline-w: 15rem; }}
+  .outline {{ display: none; position: fixed; top: 0; left: 0; width: var(--outline-w); height: 100vh; box-sizing: border-box;
     padding: 1.5rem 0.75rem 3rem 1rem; overflow-y: auto; overscroll-behavior: contain; background: Canvas;
     border-right: 1px solid var(--line); font-size: 0.82rem; line-height: 1.4; z-index: 15; scrollbar-width: thin; }}
   .outline.is-open {{ display: block; width: auto; right: 0; padding: 4rem 1.25rem 3rem; font-size: 0.95rem; }}
@@ -447,10 +465,24 @@ page = f"""<!doctype html>
   .outline-toggle[aria-expanded="true"] .bars {{ display: none; }}
   .outline-toggle[aria-expanded="true"] .ex {{ display: block; }}
   @media (max-width: 47.99rem) {{ main {{ padding-top: 3.6rem; }} }}
+  /* (Matthew, 2026-10-16) beside the page, the outline can be hidden (« at
+     its top right, » to bring it back) and made wider or narrower by
+     dragging its right edge (double-click: as it was); this browser keeps both */
+  .outline-grip, .outline-hide, .outline-show {{ display: none; }}
+  .outline-hide, .outline-show {{ position: fixed; top: 0.6rem; z-index: 20; width: 2rem; height: 2rem; align-items: center; justify-content: center;
+    padding: 0; background: Canvas; color: var(--muted); border: 1px solid var(--line); border-radius: 5px; cursor: pointer; font: 1.05rem/1 system-ui, sans-serif; }}
+  .outline-hide:hover, .outline-show:hover {{ color: CanvasText; }}
   @media (min-width: 48rem) {{
     .outline {{ display: block; }}
     .outline-toggle {{ display: none; }}
-    main {{ margin-left: 15rem; padding: 24px 24px 60px; }}
+    main {{ margin-left: var(--outline-w); padding: 24px 24px 60px; }}
+    .outline-grip {{ display: block; position: fixed; top: 0; left: calc(var(--outline-w) - 3px); width: 7px; height: 100vh; z-index: 16; cursor: col-resize; touch-action: none; }}
+    .outline-grip:hover, .outline-grip.dragging {{ background: color-mix(in srgb, var(--line) 70%, transparent); }}
+    .outline-hide {{ display: flex; left: calc(var(--outline-w) - 2.6rem); }}
+    html.outline-collapsed .outline, html.outline-collapsed .outline-grip, html.outline-collapsed .outline-hide {{ display: none; }}
+    html.outline-collapsed main {{ margin-left: 0; padding-left: 3.4rem; }}
+    html.outline-collapsed .outline-show {{ display: flex; left: 0.6rem; }}
+    body.dragging-outline {{ cursor: col-resize; user-select: none; }}
   }}
   table {{ border-collapse: collapse; width: 100%; max-width: 1200px; margin-bottom: 8px; }}
   /* words wrap whole; only long code names (branches) may break anywhere,
@@ -487,15 +519,30 @@ page = f"""<!doctype html>
   @media (prefers-reduced-motion: reduce) {{ .changes-chip {{ animation: none; }} }}
   .badge {{ display: inline-block; margin-top: 4px; padding: 0 6px; font-size: 0.8em; border-radius: 4px; color: var(--good); border: 1px solid var(--good); }}
   .badge.queued {{ color: var(--wait); border-color: var(--wait); text-decoration: none; }}
+  /* (^ticket(190)) what a ticket is about, and the filter bars */
+  .badge.about {{ color: var(--muted); border-color: var(--line); }}
+  /* (^ticket(196), Matthew: hazel and dress-up solid, bright, black text) */
+  .badge.about-hazel {{ background: #facc15; color: #000; border-color: #eab308; font-weight: 600; }}
+  .badge.about-dress-up {{ background: #f472b6; color: #000; border-color: #ec4899; font-weight: 600; }}
+  .badge.about-performance {{ color: #0f766e; border-color: #0f766e; }}
+  .badge.about-dashboard {{ color: #4f46e5; border-color: #4f46e5; }}
+  .about-filter {{ display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 6px 0 8px; }}
+  .about-filter button {{ font: inherit; font-size: 0.85em; padding: 1px 10px; border-radius: 999px; border: 1px solid var(--line); background: Canvas; color: CanvasText; cursor: pointer; }}
+  .about-filter button[aria-pressed="true"] {{ background: color-mix(in srgb, var(--good) 18%, Canvas); border-color: var(--good); }}
+  tr.about-hidden {{ display: none; }}
   .badge.longrun, .badge.tag {{ color: #8b5cf6; border-color: #8b5cf6; }}
   .badge.blocked {{ color: #0f9f8f; border-color: #0f9f8f; }}
   tr.longrun-head td {{ background: color-mix(in srgb, #8b5cf6 9%, transparent); }}
   tr.blocked-head td {{ background: color-mix(in srgb, #0f9f8f 9%, transparent); }}
   table.queue td:first-child {{ font-weight: 700; }}
+  /* (Matthew, 2026-10-16: the ticket column was too wide; its chips wrap, one to a line, under the ticket, and the description gets the room) */
+  table.queue th.tkcell, table.queue td.tkcell {{ white-space: normal; width: 9.5em; }}
   tr.current td {{ background: color-mix(in srgb, var(--good) 7%, transparent); }}
   td.status {{ white-space: nowrap; }}
   .since {{ margin: 6px 0; }}
 </style>
+<script>try {{ var w = localStorage.getItem("dash-outline-w"); if (w) document.documentElement.style.setProperty("--outline-w", w);
+  if (localStorage.getItem("dash-outline-collapsed") === "1") document.documentElement.classList.add("outline-collapsed"); }} catch (e) {{}}</script>
 </head>
 <body>
 <button class="outline-toggle" id="outline-toggle" type="button" aria-controls="outline" aria-expanded="false" aria-label="Open the outline">
@@ -512,6 +559,9 @@ page = f"""<!doctype html>
 {outline}
 </ul>
 </nav>
+<div class="outline-grip" id="outline-grip" role="separator" aria-orientation="vertical" aria-controls="outline" title="Drag to make the outline wider or narrower (double-click: as it was)"></div>
+<button class="outline-hide" id="outline-hide" type="button" title="Hide the outline" aria-label="Hide the outline">«</button>
+<button class="outline-show" id="outline-show" type="button" title="Show the outline" aria-label="Show the outline">»</button>
 <main>
 <h1>Hazel Work Dashboard</h1>
 <p class="note">Updated {e(now)}, by <code>~/localhost-index/update.py</code> (PR titles and status from GitHub).</p>
@@ -556,11 +606,40 @@ page = f"""<!doctype html>
 
 <h2 id="backlog"><span id="tickets"></span>Full Backlog (All Tickets)</h2>
 <p class="note">All our open tickets: important and not done; the few we mean to do next are in <a href="#queue">the work queue</a>. Numbered in our own sequence from #1; a number is never reused. A closed ticket moves to <a href="closed.html">the closed tickets</a>, with how it ended.</p>
-<table>
+{about_filter("backlog")}
+<table data-about-table="backlog">
 <tr><th class="num">Ticket</th><th class="area">Area</th><th>Text</th><th class="from">From</th></tr>
 {ticket_rows}
 </table>
 <script>
+/* (^ticket(190)) The filter bars over the work queue and the backlog: a chip
+   pressed shows the tickets about it (several pressed, any of them); "all",
+   or none pressed, shows every ticket. A table's group lines stay. This
+   browser keeps each table's choice. */
+(() => {{
+  for (const bar of document.querySelectorAll(".about-filter")) {{
+    const name = bar.dataset.for, table = document.querySelector('table[data-about-table="' + name + '"]'), key = "dash-about-" + name;
+    if (!table) continue;
+    let on = [];
+    try {{ on = JSON.parse(localStorage.getItem(key) || "[]"); }} catch (_) {{}}
+    const show = () => {{
+      for (const b of bar.querySelectorAll("button[data-about]")) b.setAttribute("aria-pressed", String(b.dataset.about ? on.includes(b.dataset.about) : !on.length));
+      for (const tr of table.querySelectorAll("tr[data-about]")) {{
+        const mine = tr.dataset.about.split(" ").filter(Boolean);
+        tr.classList.toggle("about-hidden", on.length > 0 && !mine.some(c => on.includes(c)));
+      }}
+      try {{ on.length ? localStorage.setItem(key, JSON.stringify(on)) : localStorage.removeItem(key); }} catch (_) {{}}
+    }};
+    bar.addEventListener("click", e => {{
+      const b = e.target.closest("button[data-about]");
+      if (!b) return;
+      const c = b.dataset.about;
+      on = !c ? [] : on.includes(c) ? on.filter(x => x !== c) : [...on, c];
+      show();
+    }});
+    show();
+  }}
+}})();
 /* Old links (#next-N, from before tickets had the name) and links to a
    ticket that has closed since: find the ticket where it is now. */
 (() => {{
@@ -669,6 +748,23 @@ for (const b of document.querySelectorAll("button.copy")) {{
   document.addEventListener("keydown", ev => {{ if (ev.key === "Escape" && nav.classList.contains("is-open")) {{ setOpen(false); toggle.focus(); }} }});
   const wide = window.matchMedia("(min-width: 48rem)");
   wide.addEventListener("change", () => {{ if (wide.matches) setOpen(false); }});
+  // (Matthew, 2026-10-16) hide or show the outline beside the page, and drag its width; kept in this browser
+  const root = document.documentElement, grip = document.getElementById("outline-grip");
+  const keep = (k, v) => {{ try {{ if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); }} catch (e) {{}} }};
+  document.getElementById("outline-hide").addEventListener("click", () => {{ root.classList.add("outline-collapsed"); keep("dash-outline-collapsed", "1"); }});
+  document.getElementById("outline-show").addEventListener("click", () => {{ root.classList.remove("outline-collapsed"); keep("dash-outline-collapsed", null); }});
+  grip.addEventListener("pointerdown", ev => {{ ev.preventDefault(); grip.setPointerCapture(ev.pointerId); grip.classList.add("dragging"); document.body.classList.add("dragging-outline"); }});
+  grip.addEventListener("pointermove", ev => {{
+    if (!grip.classList.contains("dragging")) return;
+    root.style.setProperty("--outline-w", Math.round(Math.max(140, Math.min(window.innerWidth * 0.6, ev.clientX))) + "px");
+  }});
+  const letGo = () => {{
+    if (!grip.classList.contains("dragging")) return;
+    grip.classList.remove("dragging"); document.body.classList.remove("dragging-outline");
+    keep("dash-outline-w", root.style.getPropertyValue("--outline-w"));
+  }};
+  grip.addEventListener("pointerup", letGo); grip.addEventListener("pointercancel", letGo);
+  grip.addEventListener("dblclick", () => {{ root.style.removeProperty("--outline-w"); keep("dash-outline-w", null); }});
 }})();
 </script>
 </main>
