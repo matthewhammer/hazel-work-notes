@@ -649,9 +649,42 @@
    "source": "Matthew, 2026-10-18, in chat, after the 10:40 crash",
    "url": "",
    "text": "<b>Dress Up: show the game's own logic on screen, with toggles, in ♿.</b> \"The water effect is really good, at the castle moat, and the tree house stream, etc.\", but he could not see what triggers it: it is not in the collision information in the inspection panel. A sub-panel of toggles for the collision boxes, showing their sub-categories if there are any; it seems there are boxes for layering, separate from collision. \"Let's try to represent the internal game logic on screen, and let's give toggles to prevent it from getting overwhelming to view as we interactively answer different questions we have about each scene we are designing.\" Related: placed trees have no collision boxes. A toggle (on by default) where they do: slim vertically, precise at the base, and in segments for trees that lean a lot."
+  },
+  {
+   "id": 284,
+   "area": "dress up, placed objects and the world designer",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T10:50-06:00",
+   "status": "open",
+   "tags": [],
+   "progress": "",
+   "log": [
+    {
+     "at": "2026-10-18T10:50-06:00",
+     "from": "matthew",
+     "chars": 1021,
+     "asks": false
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue\" ... \"High priority.\")",
+   "url": "",
+   "text": "<b>Dress Up: every object in every scene placeable, as an experiment (high priority).</b> Audit each scene for objects we can offer as new placed objects, distinct from the ones offered now. The ticket is complete when every object in each scene is something that can also be placed. During the audit, list what is \"baked into\" the background's drawing and is not an object under ♿'s inspection, and work toward making each one show up that way, and be placeable. For instance the switch on the wall of the dungeon room: placeable switches, their moving animated, and the world designer wiring up what they do (open and close trap doors, for a start). \"Let's try to do all of this as an experiment in this ticket.\""
+  },
+  {
+   "id": 285,
+   "area": "dress up, the whole UI",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T10:50-06:00",
+   "status": "open",
+   "tags": [],
+   "progress": "",
+   "log": [],
+   "source": "Matthew, 2026-10-18, in chat, in the same message as ^ticket(284)",
+   "url": "",
+   "text": "<b>Dress Up: apply ^du_report(5)'s suggestions to the whole UI, as it prescribes.</b> The report (^ticket(279), drafted, not yet published) proposes the full-screen designers' approach as a global shift for every panel in Dress Up's menus. Do it across the full UI. If it does not work well on the kids' more limited devices or on Matthew's phone, roll it back later: \"Let's be bold for now.\""
   }
  ],
- "next_ticket": 284,
+ "next_ticket": 286,
  "current_ticket": 279,
  "current_note": "10:45: After the 10:40 crash (crash log row 5f341721; nothing lost; 8000 and 8133 restarted). ^ticket(282) closed: 0.0.207 was live before the crash. This ticket's fps run of the proposed full-screen Background designer (branch bgfs-279, GitHub 39145656496) is still running on GitHub; next: read it, then cache the place pictures, then Matthew's look before ^du_report(5) is published. The draft (dress-up/reports/005/) and the stand-in picker (tools/checks/bgfs279*) are untracked in ~/kids-choice-games and came through the crash intact.",
  "closed_tickets": [
@@ -8310,7 +8343,9 @@
  ],
  "queue": [
   279,
+  284,
   283,
+  285,
   222,
   225,
   276,
