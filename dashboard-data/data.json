@@ -1550,9 +1550,43 @@
     }
    ],
    "progress": "16:05: diagnosed in the app's pane on 0.0.233 (solidsHere, planPath from his walk's start): the start is in the lane behind the trunk, planPath returns the straight line [[374, 0]]; one unit further forward it finds a way round. Not started on a fix."
+  },
+  {
+   "id": 333,
+   "area": "dress up, archives",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T16:16-06:00",
+   "status": "open",
+   "tags": [
+    "long run"
+   ],
+   "text": "<b>Dress Up, a long run tonight: a new pictures run for the archive (dress-up-pictures), at the day's last release.</b> Matthew: \"do we have a long-run tonight for new pictures for the dress-up archive? If not, please enqueue.\" (none was queued; ^ticket(326) is the archive pages' conventions, not a run). In TODAY's convention (Matthew: \"we changed the convention today, to save space all year, and beyond\"; ^ticket(272)): one pictures/ folder rewritten whole by each run, each run a git tag (git's diffs keep it small), no PNG (only .svg, the settings .json without its saved time, WebP thumbs), never a folder per day. As ^ticket(272) set it up: a kids-choice-games branch archive-333 off main with .github/workflows/dress-up-archive.yml and tools/checks/.only (as branch archive-272); the pictures job's artifact downloaded (gh run download -n pictures into an empty folder), then ~/dress-up-pictures/tools/add_run.sh on it: one tag run-2026-10-18-HH-MM, runs.json and the viewer (matthewhammer.org/hazel/dress-up/pictures.html) showing it. The music job too only if a tune changed since run-2026-10-18 (0.0.201). Then the archive branch deleted. Laptop care: the 140 MB download and the rsync are the only local load (no browser); find .git/objects -empty after, per the crash notes. ^ticket(276) (the workflow committing its own run) would remove the laptop step but waits on Matthew's token.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T16:16-06:00",
+     "from": "matthew",
+     "chars": 96,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T16:16-06:00",
+     "from": "matthew",
+     "chars": 68,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T16:16-06:00",
+     "from": "claude",
+     "chars": 420,
+     "asks": false
+    }
+   ],
+   "progress": ""
   }
  ],
- "next_ticket": 333,
+ "next_ticket": 334,
  "current_ticket": 331,
  "current_note": "16:11: 0.0.234 live (crawl clipped, bridge end in through the porch door); next, the walk out seen through the doorway, shrinking to the far house's size",
  "closed_tickets": [
@@ -9809,6 +9843,7 @@
   289,
   312,
   326,
+  333,
   276,
   160,
   18,
