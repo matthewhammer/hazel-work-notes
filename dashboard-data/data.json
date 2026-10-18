@@ -651,15 +651,6 @@
    ]
   },
   {
-   "id": 251,
-   "area": "dress up, ♿, walking",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T17:09-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "url": "",
-   "text": "<b>Dress Up: a ♿ toggle, walk where you click: a glowing circle on walkable ground under the pointer, and a click walks there.</b> Matthew: \"mint and enqueue --- accessibility toggle, and walk to click feature. When enabled, we show a glowing circle of some custom color over any area on the ground that's 'walkable' when the cursor is over it. When clicked, we plan a path to that point, and execute the path plan.\" To do: in ♿ Accessibility, a toggle (and its colour, as the other overlays have); while on, the pointer over the floor where the friend can stand (inside the place's floor and limits, not in a solid or a pit) shows a glowing circle there, in perspective; a click plans the path there (planPath, round what stands in the way) and walks it (walkInto's walk, or walkTo), the planned path shown when 👣 is on; a click on a passage, the friend or a thing keeps doing what it does now."
-  },
-  {
    "id": 253,
    "area": "dress up, castle rooms, collisions, walls",
    "added": "2026-10-17",
@@ -733,12 +724,46 @@
    "source": "Matthew, 2026-10-17, in chat",
    "url": "",
    "text": "<b>Dress Up: the tree house's ways in and out, and the castle's doors, as the trapdoors and pits do them: down a ladder to its foot facing us; a bridge door that stays open and is walked through, clipped; up the outside ladder and on through the door, clipped; and a click on the far house followed.</b> Matthew: \"* when I come out of the treehouse from a ladder, I should respawn at the base of the ladder, facing the viewer/player. * when I click the door within a tree house to another, via a bridge, it opens and then shuts, and then I fade through the shut door --- that feels like a regression -- I like it opening sooner, but it should stay open, and we should clip the animation of walking through it, in the planned motion -- the trap doors and pits all look great, BTW -- that's the standard now. * when I climb to the top of the external tree house ladder, it looks great --- but then I get to the top and there's no motion plan of walking to the door, and walking through it (it's fine for it to open magically as we get to the top of the stairs), but the animation, again, of going through the doorway, with clipping, is very compelling. * when I exit a treehouse via bridge doorway --- sometimes I click on the treehouse across the bridge, but it's overridden by still standing next to the current tree house and I reenter it, abruptly. We should favor the click target, not where are feet are.\" To do: (1) out of a tree room down its ladder to the ground: outside at that ladder's foot, facing us; (2) a bridge door: the glow's opening (^ticket(256)) not undone as the walk begins, the door open till they are through, the walk through it clipped at the doorway as the trapdoors' and pits' are (^ticket(252)), no fade through a shut door; (3) up the outside ladder to a house: at its top, walked along the platform to the door (open by itself), and through it clipped; (4) on a bridge, a click on a house goes to that house (bridgeGoIn), never the one nearest the feet. Then: \"also -- let's have a clipped version of walking into the castle doors, not the fade out effect anymore.\" So (5): a castle room's doors (side doors, arches) walked through clipped at the doorway, no fade."
+  },
+  {
+   "id": 265,
+   "area": "dress up, docs, objects, archive",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T21:47-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "https://github.com/matthewhammer/kids-choice-games/blob/main/dress-up/OBJECTS.md",
+   "tags": [
+    "long run"
+   ],
+   "text": "<b>Dress Up: OBJECTS.md made again at today's version, and the rule to refresh it and the archives' galleries each day the game's pictures or sounds change.</b> Matthew: \"long run ticket for later -- update this: OBJECTS.md -- is that the basis for the pictures we show in the gallery, or distinct? Let's add agent instructions to load these updates as long runs each day we make changes or additions to the objects or backgrounds, or music\"; \"or animations, or main char stuff too\"; \"anything in the cache of those galleries.\" Answer: distinct. OBJECTS.md (the game repo) is made by tools/checks/objects180.mjs on GitHub and tools/objects_md.py: each place's objects list, each clipped from its picture; the gallery is the dress-up-pictures archive (archive-today.sh, archive.mjs: every background with and without the friend, every chip menu's options). To do: run objects180 at today's version (new places, the palms, the deep sea's things, Matthew's world) and objects_md.py, commit OBJECTS.md and its pictures; the agent-instructions rule (added 0.0.188): any day whose releases change objects, backgrounds, music, animations or the friend, anything those galleries hold, queues these as that night's long runs."
   }
  ],
- "next_ticket": 265,
- "current_ticket": 251,
+ "next_ticket": 266,
+ "current_ticket": 253,
  "current_note": "21:19: 0.0.186 live (250, Music as cards). On 251: 🔬/♿ walk where you click: a glowing circle on walkable ground, a click walks there",
  "closed_tickets": [
+  {
+   "id": 251,
+   "area": "dress up, ♿, walking",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T17:09-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: a ♿ toggle, walk where you click: a glowing circle on walkable ground under the pointer, and a click walks there.</b> Matthew: \"mint and enqueue --- accessibility toggle, and walk to click feature. When enabled, we show a glowing circle of some custom color over any area on the ground that's 'walkable' when the cursor is over it. When clicked, we plan a path to that point, and execute the path plan.\" To do: in ♿ Accessibility, a toggle (and its colour, as the other overlays have); while on, the pointer over the floor where the friend can stand (inside the place's floor and limits, not in a solid or a pit) shows a glowing circle there, in perspective; a click plans the path there (planPath, round what stands in the way) and walks it (walkInto's walk, or walkTo), the planned path shown when 👣 is on; a click on a passage, the friend or a thing keeps doing what it does now.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T21:26-06:00",
+   "outcome": "0.0.187: ♿ 👆 walk where you click (with its colour): the floor under the pointer glows where the friend could stand (walkableAt: floor, walls, solids, pits; not on the friend, things, passages, ladders); a click walks a planned path there (planPath with 10 more margin, legs by walkTo, 👣 shows it). walk251 green on CI.",
+   "metrics": {
+    "open_minutes": 257,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 25.0
+   }
+  },
   {
    "id": 250,
    "area": "dress up, music, UX",
@@ -7542,7 +7567,6 @@
   }
  ],
  "queue": [
-  251,
   253,
   255,
   264,
@@ -7554,6 +7578,7 @@
   261,
   262,
   263,
+  265,
   160,
   18,
   102,
