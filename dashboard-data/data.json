@@ -696,15 +696,6 @@
    "text": "<b>Dress Up: the world designer's grid, outside full screen, shows its letters and numbers big enough to read.</b> Matthew: \"ooops -- the letters do not scale large enough in the grid when not full screen. I misread them\" (he put rocks at F5 and took it for F3). To do: in the 🗺️ World design tab (not full screen), the A, B, C... and 1, 2, 3... labels round the grid (shown only full screen since ticket 224) and each square's own name (an empty square's \"F3\"), sized from the square (--cell) as full screen does, so a square's name reads at a glance."
   },
   {
-   "id": 258,
-   "area": "dress up, accessibility, objects, plants",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T19:58-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "url": "",
-   "text": "<b>Dress Up: under ♿, a toggle that shows what each place is made of: every object baked into the background with its box and label, and inside them, each plant boxed and named by the procedure that drew it.</b> Matthew: \"let's add another feature, under accessibility (using that word as a pun now, and using that panel because it also has collision box controls) --- lets mint and do a ticket for showing all of the 'objects' that are baked into the background options, with their bounding box and label. OBJECTS.md content should appear, right? I'm very curious to see how the decomposition into re-usable procedures visually represented, even if those objects are not positionable, and are fixed in the scene. Let's start with all plants, in all scenes.\" To do: a ♿ chip; an overlay with each named object's box and name (the place's objects list, OBJECTS.md's), and each plant's box labelled with its procedure (pine, oak, bush, fern, leaf pad, flower, palm...), a legend of the procedures and their counts; in every place."
-  },
-  {
    "id": 259,
    "area": "dress up, designer, components",
    "added": "2026-10-17",
@@ -715,15 +706,6 @@
     "blocked on Matthew"
    ],
    "text": "<b>Dress Up: a component designer, along the lines of the world designer, for the objects baked into each place: adjust each one's default position and every setting of how it is drawn that its place in the scene doesn't fix (scale, layering, and so on).</b> Matthew: \"we want to think about a feature built on this -- for adjusting the default position and settings of each of those objects, including every rendering param that isn't fixed by its position alone in the scene (for scale, or layering, etc).\" \"that would be another feature along the lines of the existing world designer interface, but geared towards designing re-usable components -- let's mint a ticket and put 'blocked on matthew' on it.\" Builds on ^ticket(258) (♿ 🧩: each place's objects boxed and named, its plants by the procedure that drew them). Blocked on Matthew: his design of it first."
-  },
-  {
-   "id": 260,
-   "area": "dress up, world designer, defaults",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T20:13-06:00",
-   "source": "Matthew, 2026-10-17, in chat (his save my-friend-2026-10-17-20-09-32.json)",
-   "url": "",
-   "text": "<b>Dress Up: Matthew's world design grid as the new default world.</b> Matthew: \"Let's use this world design grid as the new default in future releases. Mint and wait for next release, and tag along with it please.\" To do: WORLD_DEFAULT from his save's world alone (6 by 7, 31 squares, starting at 3,3, the clearing; its squares' ways, crossings and the things he put in them), nothing else from the save; today's default kept as WORLD_DEFAULT_0183 so a save still holding it, untouched, is moved to the new one (upgradeWorld), as the earlier defaults are; the checks that name squares of the old grid brought up to date. Ships with the next release (^ticket(258)'s)."
   },
   {
    "id": 261,
@@ -763,9 +745,53 @@
   }
  ],
  "next_ticket": 264,
- "current_ticket": 258,
- "current_note": "19:59: 0.0.183 (257, the greenhouse palms) live. On 258: ♿ 🧩 what a place is made of: objects boxed and named, plants by their procedures, a chip per kind",
+ "current_ticket": 249,
+ "current_note": "20:52: 0.0.184 live: 258 (♿ 🧩 what it's made of) and 260 (Matthew's world the default). Next: 249 (🔭 rescales, crossing's far-off choices, 9-cell compass); long runs tonight now include 261 (occlusion audit), 262 (pictures x3), 263 (🔥 turtle super-dub step)",
  "closed_tickets": [
+  {
+   "id": 260,
+   "area": "dress up, world designer, defaults",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T20:13-06:00",
+   "source": "Matthew, 2026-10-17, in chat (his save my-friend-2026-10-17-20-09-32.json)",
+   "url": "",
+   "text": "<b>Dress Up: Matthew's world design grid as the new default world.</b> Matthew: \"Let's use this world design grid as the new default in future releases. Mint and wait for next release, and tag along with it please.\" To do: WORLD_DEFAULT from his save's world alone (6 by 7, 31 squares, starting at 3,3, the clearing; its squares' ways, crossings and the things he put in them), nothing else from the save; today's default kept as WORLD_DEFAULT_0183 so a save still holding it, untouched, is moved to the new one (upgradeWorld), as the earlier defaults are; the checks that name squares of the old grid brought up to date. Ships with the next release (^ticket(258)'s).",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T20:52-06:00",
+   "outcome": "0.0.184: WORLD_DEFAULT is Matthew's save's world alone (6x7, 31 squares, start 3,3 the clearing, 68 things); 0.0.183's kept as WORLD_DEFAULT_0183, and an untouched save of it (or the earlier ones) comes back as his, from its start; 21 checks that walk the old layout now set it explicitly. world260 green on CI.",
+   "metrics": {
+    "open_minutes": 40,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 12.0
+   }
+  },
+  {
+   "id": 258,
+   "area": "dress up, accessibility, objects, plants",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T19:58-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: under ♿, a toggle that shows what each place is made of: every object baked into the background with its box and label, and inside them, each plant boxed and named by the procedure that drew it.</b> Matthew: \"let's add another feature, under accessibility (using that word as a pun now, and using that panel because it also has collision box controls) --- lets mint and do a ticket for showing all of the 'objects' that are baked into the background options, with their bounding box and label. OBJECTS.md content should appear, right? I'm very curious to see how the decomposition into re-usable procedures visually represented, even if those objects are not positionable, and are fixed in the scene. Let's start with all plants, in all scenes.\" To do: a ♿ chip; an overlay with each named object's box and name (the place's objects list, OBJECTS.md's), and each plant's box labelled with its procedure (pine, oak, bush, fern, leaf pad, flower, palm...), a legend of the procedures and their counts; in every place.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T20:52-06:00",
+   "outcome": "0.0.184: ♿ 🧩 what it's made of: each place's objects (its objects list, OBJECTS.md's) boxed and named; its plants boxed and named by the procedure that drew them (drawnBy marks; a <use> by the drawing it uses), nested; a chip per kind (MADE_CATS) with its count here, leaf pads and grass off at first; a legend. Marked: leafyTree, pineTree, bushSvg, grassTuft, padSvg/padDef, tulip, daisy, palmTrunkSvg, the greenhouse's palm/fern/monstera/hibiscus/paradise/vine, beach palms, kelp, ivy (not yet: the greenhouse's potted plants, the healer's flowers, mushrooms). made258 + 28 checks green on CI (checks-258).",
+   "metrics": {
+    "open_minutes": 55,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 35.0
+   }
+  },
   {
    "id": 257,
    "area": "dress up, castle, greenhouse, collisions",
@@ -7481,8 +7507,6 @@
   }
  ],
  "queue": [
-  258,
-  260,
   249,
   250,
   251,
