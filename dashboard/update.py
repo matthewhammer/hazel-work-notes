@@ -409,7 +409,16 @@ def entry(href, text, sub=False, n=None):
     label = (tk(n) + " " if n is not None else "") + e(text)
     return f'<li{" class=\"sub\"" if sub else ""}><a href="{href}">{label}</a></li>'
 
-outline = "\n".join(
+# (^ticket(292), Matthew 2026-10-18: "so I don't have to click so much") every
+# URL in the last column of Localhost ports, just before the current ticket
+LOCAL_URLS = {}
+for r in data["ports"]:
+    for t, u in r["links"]: LOCAL_URLS.setdefault(u, t)   # (in the table's order, each URL once)
+LOCAL_URLS = list(LOCAL_URLS.items())
+local_entries = ([entry("#ports", f"Local URLs ({len(LOCAL_URLS)})")] +
+                 [f'<li class="sub"><a href="{e(u)}">{e(t)}</a></li>' for u, t in LOCAL_URLS]) if LOCAL_URLS else []
+
+outline = "\n".join(local_entries +
     ([f'<li><a href="#current">Current ticket: {tk(CURRENT["id"])}' + (f" {HAND}" if WAITING else "") + '</a></li>'] if CURRENT else []) + [
     entry("#queue", f"Work Queue ({len(QUEUE)})"),
 ] + [f'<li class="sub"><a href="#ticket-{t["id"]}">{i + 1}. {tk(t["id"])} {TAG_ICON(t)}{e(short(t["text"]))}</a></li>' for i, t in enumerate(QUEUE)] + [
@@ -552,7 +561,8 @@ page = f"""<!doctype html>
 <nav class="outline" id="outline" aria-label="Outline">
 <p class="outline-label">Hazel Work Dashboard</p>
 <ul class="outline-out">
-<li><a href="{SERIES_LOCAL}">Performance reports&nbsp;<span aria-hidden="true">↗</span></a></li>
+<li><a href="https://matthewhammer.org/hazel/dress-up/">Messed Up Dress Up&nbsp;<span aria-hidden="true">↗</span></a></li>
+<li><a href="{SERIES_PUBLIC}">Performance reports&nbsp;<span aria-hidden="true">↗</span></a></li>
 <li><a href="https://github.com/matthewhammer/hazel-work-notes">On GitHub&nbsp;<span aria-hidden="true">↗</span></a></li>
 </ul>
 <ul id="outline-list">
