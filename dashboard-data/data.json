@@ -599,38 +599,6 @@
    "waiting": "Matthew: make a fine-grained token (resource owner matthewhammer; only the repositories dress-up-pictures and dress-up-music; permission Contents: Read and write), then add it to matthewhammer/kids-choice-games as the Actions secret ARCHIVE_TOKEN (Settings, Secrets and variables, Actions; or: gh secret set ARCHIVE_TOKEN -R matthewhammer/kids-choice-games). The next archive run then lands by itself."
   },
   {
-   "id": 279,
-   "area": "dress up, reports, UX",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T09:54-06:00",
-   "status": "open",
-   "tags": [],
-   "progress": "Drafted 10:07: survey of the code (13 shared choices of the two full-screen designers; Background 1,337 rows in 100 groups, 9 to 50 shown per place; every tab's size), six before pictures, three after mockups (castle themes, bubble themes, a full-screen Background designer on the lake), nine rules, 7 steps; found the house's toys slider never shown (duplicate key) and the bubble theme switches looking the same on and off. Built by 005/drivers/build.py from 005/data/report.json and 005/drivers/mockups.html; series index card added. Not committed. 10:1x Matthew: the draft \"looks really good\"; before publishing, an fps check of the proposed full-screen Background designer (many place pictures at once were slow on the black laptop), and the place pictures cached so they cost little. 10:3x: the stand-in picker (tools/checks/bgfs279-panel.js, 30 places, live / still SVG / bitmap) tried in the pane: 30 tiles take 57 ms live (15,121 elements), ~100-400 ms as still SVGs, ~1.1 s as bitmaps (one at a time); the measuring run (bgfs279.mjs: the gate's walk and drag, emptyroom and the lake, CPU 1 and 4, with and without resizing) pushed as branch bgfs-279, on GitHub.",
-   "log": [
-    {
-     "at": "2026-10-18T09:54-06:00",
-     "from": "matthew",
-     "chars": 884,
-     "asks": true
-    },
-    {
-     "at": "2026-10-18T09:56-06:00",
-     "from": "matthew",
-     "chars": 271,
-     "asks": true
-    },
-    {
-     "at": "2026-10-18T10:31-06:00",
-     "from": "matthew",
-     "chars": 422,
-     "asks": true
-    }
-   ],
-   "source": "Matthew, 2026-10-18, in chat: \"please create a du_report draft for the new FS interfaces we designed, for music production/remixing, and for the world designer\"",
-   "url": "",
-   "text": "<b>Draft ^du_report(5): the full-screen designers' UX, and a global shift to it.</b> The new full-screen interfaces (music production and remixing; the world designer): the choices applied consistently in both, and the work left. Then the analysis, with the full design work, of applying the same approach to every other panel in Dress Up's (very large) set of menus, proposed as a global shift. His terms: knolling (\"always be knolling\": tools and materials laid out in order, in plain view); sub-structure visually apparent, boxes within boxes, minimal visual noise; fractal organization; Gelernter's <i>Mirror Worlds</i> (the day software puts the universe in a shoebox). Drafted locally, published only on his word. <b>In particular</b> (his follow-up): before and proposed after for the castle's theme choices, the bubble themes' choices, and above all the 🏞️ background settings, perhaps with a full-screen designer of its own that puts the game's view in a small panel, as the world designer does."
-  },
-  {
    "id": 283,
    "area": "dress up, ♿ inspection, for designing scenes",
    "added": "2026-10-18",
@@ -677,7 +645,7 @@
    "opened": "2026-10-18T10:50-06:00",
    "status": "open",
    "tags": [],
-   "progress": "",
+   "progress": "The report is published (live 11:01): https://matthewhammer.org/kids-choice-games/dress-up/reports/005/ . Its What next steps 1 to 7 are this ticket's plan; step 8, the speed of the full-screen designer, is ^ticket(289).",
    "log": [],
    "source": "Matthew, 2026-10-18, in chat, in the same message as ^ticket(284)",
    "url": "",
@@ -767,9 +735,53 @@
   }
  ],
  "next_ticket": 290,
- "current_ticket": 279,
- "current_note": "10:58: Publishing ^du_report(5) on Matthew's word (10:58: \"publish report 5, and we can update it with numbers if we get more later\"): checking the draft (dress-up/reports/005/, untracked in ~/kids-choice-games), then committing it with the series index and pushing main. Then closing this ticket, his call, and minting a ticket at the end of the queue for the report's outstanding performance analysis.",
+ "current_ticket": 284,
+ "current_note": "11:01: Starting the audit (high priority, Matthew's word): what stands in each place (dress-up/OBJECTS.md, made from the depth sheets) against what can be placed now (the world designer's things), then the list of what is drawn into each background but is not an object under ♿'s inspection. First to make placeable, his example: the switch on the dungeon room's wall, animated, with the world designer wiring it to open and close trap doors.",
  "closed_tickets": [
+  {
+   "id": 279,
+   "area": "dress up, reports, UX",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T09:54-06:00",
+   "status": "done",
+   "tags": [],
+   "progress": "Drafted 10:07: survey of the code (13 shared choices of the two full-screen designers; Background 1,337 rows in 100 groups, 9 to 50 shown per place; every tab's size), six before pictures, three after mockups (castle themes, bubble themes, a full-screen Background designer on the lake), nine rules, 7 steps; found the house's toys slider never shown (duplicate key) and the bubble theme switches looking the same on and off. Built by 005/drivers/build.py from 005/data/report.json and 005/drivers/mockups.html; series index card added. Not committed. 10:1x Matthew: the draft \"looks really good\"; before publishing, an fps check of the proposed full-screen Background designer (many place pictures at once were slow on the black laptop), and the place pictures cached so they cost little. 10:3x: the stand-in picker (tools/checks/bgfs279-panel.js, 30 places, live / still SVG / bitmap) tried in the pane: 30 tiles take 57 ms live (15,121 elements), ~100-400 ms as still SVGs, ~1.1 s as bitmaps (one at a time); the measuring run (bgfs279.mjs: the gate's walk and drag, emptyroom and the lake, CPU 1 and 4, with and without resizing) pushed as branch bgfs-279, on GitHub.",
+   "log": [
+    {
+     "at": "2026-10-18T09:54-06:00",
+     "from": "matthew",
+     "chars": 884,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T09:56-06:00",
+     "from": "matthew",
+     "chars": 271,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T10:31-06:00",
+     "from": "matthew",
+     "chars": 422,
+     "asks": true
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat: \"please create a du_report draft for the new FS interfaces we designed, for music production/remixing, and for the world designer\"",
+   "url": "",
+   "text": "<b>Draft ^du_report(5): the full-screen designers' UX, and a global shift to it.</b> The new full-screen interfaces (music production and remixing; the world designer): the choices applied consistently in both, and the work left. Then the analysis, with the full design work, of applying the same approach to every other panel in Dress Up's (very large) set of menus, proposed as a global shift. His terms: knolling (\"always be knolling\": tools and materials laid out in order, in plain view); sub-structure visually apparent, boxes within boxes, minimal visual noise; fractal organization; Gelernter's <i>Mirror Worlds</i> (the day software puts the universe in a shoebox). Drafted locally, published only on his word. <b>In particular</b> (his follow-up): before and proposed after for the castle's theme choices, the bubble themes' choices, and above all the 🏞️ background settings, perhaps with a full-screen designer of its own that puts the game's view in a small panel, as the world designer does.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T11:01-06:00",
+   "outcome": "Published as ^du_report(5), \"Always be knolling\" (kids-choice-games f10d4a1, live at 11:01, its Pages build done 11:00:53), on Matthew's word before its speed measurements (10:58: \"publish report 5, and we can update it with numbers if we get more later\"). Its What next has eight steps; step 8, measuring the full-screen designer's speed, is ^ticket(289), a long run (the bgfs-279 run finished at 10:46, its numbers not read yet); applying the report to the whole UI is ^ticket(285).",
+   "metrics": {
+    "open_minutes": 67,
+    "matthew_messages": 3,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1577,
+    "tokens_est": 394,
+    "sync_minutes_est": 2.0
+   },
+   "outcome_url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/005/"
+  },
   {
    "id": 282,
    "area": "dress up, places, for M",
@@ -8424,7 +8436,6 @@
   }
  ],
  "queue": [
-  279,
   284,
   283,
   285,
@@ -8443,5 +8454,5 @@
   166,
   259
  ],
- "current_since": "2026-10-18T10:45-06:00"
+ "current_since": "2026-10-18T11:01-06:00"
 }
