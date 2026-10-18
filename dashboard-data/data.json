@@ -1482,11 +1482,36 @@
    "progress": ""
   },
   {
+   "id": 329,
+   "area": "dress up, 🫧 bubble space",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T15:40-06:00",
+   "status": "open",
+   "tags": [],
+   "text": "<b>Dress Up, 🫧 bubble space: a popped bubble can burst into smaller bubbles.</b> Matthew: \"when we 'pop' a bubble in bubble space: the likelihood of creating new, smaller bubbles (0 to 100); the number of new, smaller bubbles, on average -- same style as the popped bubble, for now.\" Two settings in bubble space: how likely a pop makes smaller bubbles (0 to 100), and how many on average, each in the popped bubble's style.",
+   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue\")",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T15:40-06:00",
+     "from": "matthew",
+     "chars": 200,
+     "asks": false
+    }
+   ],
+   "progress": ""
+  }
+ ],
+ "next_ticket": 330,
+ "current_ticket": 295,
+ "current_note": "15:40: ^ticket(328) closed (done); ^ticket(295) is next in the queue",
+ "closed_tickets": [
+  {
    "id": 328,
    "area": "dress up, levers, boulders and the trap room",
    "added": "2026-10-18",
    "opened": "2026-10-18T15:37-06:00",
-   "status": "open",
+   "status": "done",
    "tags": [],
    "text": "<b>Dress Up: the levers' and the boulders' movements easy to see, with a speed setting for each in the trap room.</b> Matthew, on 0.0.231: \"okay 231 looks good, but we need animation for: lever, falling boulder. And params in the room for each, in terms of animation speed.\" A follow-up to ^ticket(323).",
    "source": "Matthew, 2026-10-18, in chat",
@@ -1499,13 +1524,19 @@
      "asks": false
     }
    ],
-   "progress": ""
-  }
- ],
- "next_ticket": 329,
- "current_ticket": 328,
- "current_note": "15:37: the levers' and boulders' movements easy to see, with a speed setting for each (and the trap doors' swing) in the trap room",
- "closed_tickets": [
+   "progress": "15:40: RELEASED 0.0.232 (f691b01, live 15:40:28): LEVER_TURN 1400, BOULDER_FALL 1300, PIT_SWING 800 ms; the trap room's three speed sliders (levers, boulders, trap doors; 25-300); each pit's boulder its own seed (the R lever no longer redraws the L rock). Checked in node and in the app's pane (frames at 100 and 300).",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T15:40-06:00",
+   "outcome": "Released in Dress Up 0.0.232 (f691b01, live 15:40): levers, boulders and trap doors slower so they are seen moving (about 1.4 s, 1.3 s, 0.8 s), each with a speed slider in the trap room's box; and each pit's boulder keeps its own rock (pulling the right lever had redrawn the left pit's rock). Checked in node and in the app's pane, not on his Firefox.",
+   "metrics": {
+    "open_minutes": 4,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 150,
+    "tokens_est": 37,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 323,
    "area": "dress up, levers, boulders and the trap room",
@@ -9618,7 +9649,6 @@
   }
  ],
  "queue": [
-  328,
   295,
   290,
   300,
@@ -9642,6 +9672,7 @@
   321,
   325,
   327,
+  329,
   222,
   225,
   289,
@@ -9659,5 +9690,5 @@
   315,
   322
  ],
- "current_since": "2026-10-18T15:37-06:00"
+ "current_since": "2026-10-18T15:40-06:00"
 }
