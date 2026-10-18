@@ -651,15 +651,6 @@
    ]
   },
   {
-   "id": 245,
-   "area": "dress up, tree house, walking, collisions",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T16:29-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "url": "",
-   "text": "<b>Dress Up: walking across the tree house's rope bridges, outside, at the right size, on the bridge's curved path only.</b> Matthew: \"mint and enqueue -- some logic for walking across bridges, on the outside of the tree house, with the correct figure size, and collision boxes (and maybe other structures in that system we lack now) that indicate the curved path that's allowed -- it's very linear in this case, and no N/S is permitted, except to re-orient the pose.\" To do: on a bridge between two houses, the friend sized for its depth, walking along the bridge's sag (the curve), boxes (🧱) that show the allowed path, N/S only turning the pose; and the other parts of the tree house's outside a friend can stand on (platforms, ladders' tops) found and given the same."
-  },
-  {
    "id": 246,
    "area": "dress up, tree house, passages, walking",
    "added": "2026-10-17",
@@ -733,9 +724,31 @@
   }
  ],
  "next_ticket": 256,
- "current_ticket": 245,
- "current_note": "18:21: AFK run: 244 done (0.0.176 the sign's map, 0.0.177 its numbers on top). On 245: walking across the rope bridges outside, along their curve, at the right size",
+ "current_ticket": 246,
+ "current_note": "18:32: AFK run: 245 done (0.0.178, walking the rope bridges). On 246: a tree room's bridge door leads out onto the bridge, walked to the house at its other end",
  "closed_tickets": [
+  {
+   "id": 245,
+   "area": "dress up, tree house, walking, collisions",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T16:29-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: walking across the tree house's rope bridges, outside, at the right size, on the bridge's curved path only.</b> Matthew: \"mint and enqueue -- some logic for walking across bridges, on the outside of the tree house, with the correct figure size, and collision boxes (and maybe other structures in that system we lack now) that indicate the curved path that's allowed -- it's very linear in this case, and no N/S is permitted, except to re-orient the pose.\" To do: on a bridge between two houses, the friend sized for its depth, walking along the bridge's sag (the curve), boxes (🧱) that show the allowed path, N/S only turning the pose; and the other parts of the tree house's outside a friend can stand on (platforms, ladders' tops) found and given the same.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T18:32-06:00",
+   "outcome": "0.0.178: dragged until their feet are on a rope bridge, the friend stands on it, sized to fit the doors (60 tree units tall x the slider's share), in front of the tree; ◀ ▶ walk along its curve to its ends, ⬆ ⬇ only turn; ♿ boxes show each bridge's path in green; dragged down = off; leaving the place = off. Check bridge245 + 8 tree/movement checks green on CI (checks-245). Found: a friend this small is mostly joints to a press (hands/feet have a 12 px minimum + 8 px slop), so a press near the middle can pose instead of move; the torso's centre still moves them.",
+   "metrics": {
+    "open_minutes": 123,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 14.0
+   }
+  },
   {
    "id": 244,
    "area": "dress up, tree house, signs",
@@ -7319,7 +7332,6 @@
   }
  ],
  "queue": [
-  245,
   246,
   247,
   248,
