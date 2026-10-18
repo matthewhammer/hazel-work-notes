@@ -26,7 +26,7 @@ Read this before working with Matthew on Hazel. Keep the dashboard current as yo
 
 ## The page
 
-The title is **Hazel Work Dashboard**. An outline on the side lists the sections, every open ticket by its number, and the closed tickets' page. The sections, in order:
+The title is **Hazel Work Dashboard**. An outline on the side lists the sections, every open ticket by its number, and the closed tickets' page; near its top it links Messed Up Dress Up's page (matthewhammer.org/hazel/dress-up/), and just before the current ticket it lists every local URL from the last column of Localhost ports (^ticket(292)). The sections, in order:
 
 The page reloads itself when it changes (a version tag, checked every 90 s while it is in view), so an open tab, local or published, stays current. A button, top right, switches its theme (Auto / Light / Dark, remembered per site); keep any new colours in the CSS variables, with dark values under both the `prefers-color-scheme` query and `:root[data-theme="dark"]`.
 
