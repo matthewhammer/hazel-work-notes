@@ -709,7 +709,12 @@
     "long run"
    ],
    "text": "<b>Dress Up: OBJECTS.md made again at today's version, and the rule to refresh it and the archives' galleries each day the game's pictures or sounds change.</b> Matthew: \"long run ticket for later -- update this: OBJECTS.md -- is that the basis for the pictures we show in the gallery, or distinct? Let's add agent instructions to load these updates as long runs each day we make changes or additions to the objects or backgrounds, or music\"; \"or animations, or main char stuff too\"; \"anything in the cache of those galleries.\" Answer: distinct. OBJECTS.md (the game repo) is made by tools/checks/objects180.mjs on GitHub and tools/objects_md.py: each place's objects list, each clipped from its picture; the gallery is the dress-up-pictures archive (archive-today.sh, archive.mjs: every background with and without the friend, every chip menu's options). To do: run objects180 at today's version (new places, the palms, the deep sea's things, Matthew's world) and objects_md.py, commit OBJECTS.md and its pictures; the agent-instructions rule (added 0.0.188): any day whose releases change objects, backgrounds, music, animations or the friend, anything those galleries hold, queues these as that night's long runs."
-  },
+  }
+ ],
+ "next_ticket": 271,
+ "current_ticket": 209,
+ "current_note": "22:04: 0.0.195 live: every non-long-run ticket done (244-270 today). Next: tonight's long runs, in order: 209, 184, 198, 222, 236, 261, 262, 263, 265",
+ "closed_tickets": [
   {
    "id": 269,
    "area": "dress up, tree house, ladders",
@@ -717,13 +722,21 @@
    "opened": "2026-10-17T21:45-06:00",
    "source": "Matthew, 2026-10-17, in chat (split from ^ticket(264))",
    "url": "",
-   "text": "<b>Dress Up: up the tree house's outside ladder, then a walk along the platform to the house's door and through it, cut off at the doorway.</b> Matthew: \"when I climb to the top of the external tree house ladder, it looks great --- but then I get to the top and there's no motion plan of walking to the door, and walking through it (it's fine for it to open magically as we get to the top of the stairs), but the animation, again, of going through the doorway, with clipping, is very compelling.\" Split from ^ticket(264) (the rest of it released in 0.0.190): this needs walking on a house's platform outside (as the bridges are walked, ^ticket(245)): at the ladder's top, onto the platform at the tree's size, along it to the door, the door open, and in, clipped at its frame."
-  }
- ],
- "next_ticket": 271,
- "current_ticket": 269,
- "current_note": "22:00: 0.0.194 live (270 spiral sizing). On 269, the last non-long-run: up the outside ladder, along the platform, through the door, clipped",
- "closed_tickets": [
+   "text": "<b>Dress Up: up the tree house's outside ladder, then a walk along the platform to the house's door and through it, cut off at the doorway.</b> Matthew: \"when I climb to the top of the external tree house ladder, it looks great --- but then I get to the top and there's no motion plan of walking to the door, and walking through it (it's fine for it to open magically as we get to the top of the stairs), but the animation, again, of going through the doorway, with clipping, is very compelling.\" Split from ^ticket(264) (the rest of it released in 0.0.190): this needs walking on a house's platform outside (as the bridges are walked, ^ticket(245)): at the ladder's top, onto the platform at the tree's size, along it to the door, the door open, and in, clipped at its frame.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T22:04-06:00",
+   "outcome": "0.0.195: at a house's ladder's top (climbThrough), platformIn: on the platform at the tree's size (as a bridge), walked to the house's middle, then back into the door seen only inside its opening (figClipRect), no fade, into the room. platform269 + bridge245 + doors264 green on CI.",
+   "metrics": {
+    "open_minutes": 19,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 20.0
+   }
+  },
   {
    "id": 270,
    "area": "dress up, castle, spiral staircase",
@@ -7703,7 +7716,6 @@
   }
  ],
  "queue": [
-  269,
   209,
   184,
   198,
