@@ -661,7 +661,12 @@
     "blocked on Matthew"
    ],
    "text": "<b>Dress Up: a component designer, along the lines of the world designer, for the objects baked into each place: adjust each one's default position and every setting of how it is drawn that its place in the scene doesn't fix (scale, layering, and so on).</b> Matthew: \"we want to think about a feature built on this -- for adjusting the default position and settings of each of those objects, including every rendering param that isn't fixed by its position alone in the scene (for scale, or layering, etc).\" \"that would be another feature along the lines of the existing world designer interface, but geared towards designing re-usable components -- let's mint a ticket and put 'blocked on matthew' on it.\" Builds on ^ticket(258) (♿ 🧩: each place's objects boxed and named, its plants by the procedure that drew them). Blocked on Matthew: his design of it first."
-  },
+  }
+ ],
+ "next_ticket": 272,
+ "current_ticket": 198,
+ "current_note": "23:04: Overnight long runs: 0.0.198 (261, hidden drawings culled) live; 262's archive run live. On 198: every tab, even Body, costs Firefox ~10 fps, and each first click starts the music (headless Firefox's audio stays suspended); confirming with music-only and muted cases",
+ "closed_tickets": [
   {
    "id": 265,
    "area": "dress up, docs, objects, archive",
@@ -672,13 +677,21 @@
    "tags": [
     "long run"
    ],
-   "text": "<b>Dress Up: OBJECTS.md made again at today's version, and the rule to refresh it and the archives' galleries each day the game's pictures or sounds change.</b> Matthew: \"long run ticket for later -- update this: OBJECTS.md -- is that the basis for the pictures we show in the gallery, or distinct? Let's add agent instructions to load these updates as long runs each day we make changes or additions to the objects or backgrounds, or music\"; \"or animations, or main char stuff too\"; \"anything in the cache of those galleries.\" Answer: distinct. OBJECTS.md (the game repo) is made by tools/checks/objects180.mjs on GitHub and tools/objects_md.py: each place's objects list, each clipped from its picture; the gallery is the dress-up-pictures archive (archive-today.sh, archive.mjs: every background with and without the friend, every chip menu's options). To do: run objects180 at today's version (new places, the palms, the deep sea's things, Matthew's world) and objects_md.py, commit OBJECTS.md and its pictures; the agent-instructions rule (added 0.0.188): any day whose releases change objects, backgrounds, music, animations or the friend, anything those galleries hold, queues these as that night's long runs."
-  }
- ],
- "next_ticket": 272,
- "current_ticket": 198,
- "current_note": "23:04: Overnight long runs: 0.0.198 (261, hidden drawings culled) live; 262's archive run live. On 198: every tab, even Body, costs Firefox ~10 fps, and each first click starts the music (headless Firefox's audio stays suspended); confirming with music-only and muted cases",
- "closed_tickets": [
+   "text": "<b>Dress Up: OBJECTS.md made again at today's version, and the rule to refresh it and the archives' galleries each day the game's pictures or sounds change.</b> Matthew: \"long run ticket for later -- update this: OBJECTS.md -- is that the basis for the pictures we show in the gallery, or distinct? Let's add agent instructions to load these updates as long runs each day we make changes or additions to the objects or backgrounds, or music\"; \"or animations, or main char stuff too\"; \"anything in the cache of those galleries.\" Answer: distinct. OBJECTS.md (the game repo) is made by tools/checks/objects180.mjs on GitHub and tools/objects_md.py: each place's objects list, each clipped from its picture; the gallery is the dress-up-pictures archive (archive-today.sh, archive.mjs: every background with and without the friend, every chip menu's options). To do: run objects180 at today's version (new places, the palms, the deep sea's things, Matthew's world) and objects_md.py, commit OBJECTS.md and its pictures; the agent-instructions rule (added 0.0.188): any day whose releases change objects, backgrounds, music, animations or the friend, anything those galleries hold, queues these as that night's long runs.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T23:07-06:00",
+   "outcome": "OBJECTS.md remade at 0.0.198 and pushed (main 1d74e12): 44 places, 475 objects (377 before), 474 pictures in dress-up/objects/, the new places (bubble space, deep sea, open water, crossing) in; notes under headings kept. Made by objects180.mjs on GitHub (checks-265) + objects_md.py here. The answer to his question: OBJECTS.md and the gallery are distinct (OBJECTS.md from objects180; the gallery is dress-up-pictures' archive.mjs); the agent rule to refresh both as long runs each day pictures/sounds change has been in agent-instructions.md since 0.0.188.",
+   "metrics": {
+    "open_minutes": 80,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 15.0
+   }
+  },
   {
    "id": 261,
    "area": "dress up, performance, scenes, audit",
@@ -7782,7 +7795,6 @@
   184,
   222,
   236,
-  265,
   160,
   18,
   102,
