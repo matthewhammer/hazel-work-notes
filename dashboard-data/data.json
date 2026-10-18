@@ -651,15 +651,6 @@
    ]
   },
   {
-   "id": 253,
-   "area": "dress up, castle rooms, collisions, walls",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T17:39-06:00",
-   "source": "Matthew, 2026-10-17, in chat, with a picture of the spiral staircase room, ♿ collision boxes on",
-   "url": "",
-   "text": "<b>Dress Up: a room's side limits follow its floor in more than two segments, so every door can be reached (the spiral staircase's first).</b> Matthew: \"this was a good try, but the cut offs don't permit me to reach the doors! We may need more than 2 segments for those 'side' cut offs, in general WDYT?\" In his picture the spiral stairs' side limits (the orange dashed lines) are two straight segments from the floor's front corners up to a point by the column, so doors 3 (left, on a landing) and 4 (right) are outside where the friend can walk. Claude's answer: yes; each side's limit a polyline of several points that follows the room's real floor (out along a landing to a door, round the column, in at the wall), castleWalls' half(z) from that polyline; and a check that every door's spot in every room lies inside the walkable area and is reached by a planned walk."
-  },
-  {
    "id": 255,
    "area": "dress up, world designer, UX",
    "added": "2026-10-17",
@@ -754,12 +745,43 @@
    "source": "Matthew, 2026-10-17, in chat",
    "url": "",
    "text": "<b>Dress Up: a pit's hover and click area as two, the pit itself (an oval, its opening's shape) and the sign above it, not one box round both.</b> Matthew: \"let's limit the pit click hover-over box to have two separate boxes: pit itself (maybe even an oval for it) sign above it. the combination is so large, I can't find anywhere else to click on the floor to walk around and explore.\" To do: a pit passage's mark (measureMarks: the box the glow and a click use) made of its hole (its opening's shape, data-pit) and its sign's box apart; the floor between and round them free for 👆 walk where you click (^ticket(251)); the glow drawn on the two."
+  },
+  {
+   "id": 268,
+   "area": "dress up, castle, spiral staircase",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T21:57-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: the spiral staircase drawn whole, its front half too, and walks up it along the middle of its steps.</b> Matthew: \"the motion plan for the spiral stairs needs work. it should follow the center of the stairs, not the farthest edge. Also, this scene needs work in terms of representing the room. We see the back half of a screw, and the front half is missing. let's draw it all, and if we have to make certain parts transparent while we are occluded by them temporarily, we can (the front part of the spiral stairs, coming out toward the viewer). I have a feeling that won't be necessarily, let's find out.\" To do: (1) a walk to a door up the stairs (planPath/walkInto in the spiral room) along the stairs' middle line (spiralGeom's radius between the column and the wall), climbing as the steps do; (2) spiralSvg draws the front half of the helix too, the steps coming toward us; the friend sorted among the steps by where they are on it; any part that would hide the friend see-through while it does (if it ever does)."
   }
  ],
- "next_ticket": 268,
- "current_ticket": 253,
- "current_note": "21:19: 0.0.186 live (250, Music as cards). On 251: 🔬/♿ walk where you click: a glowing circle on walkable ground, a click walks there",
+ "next_ticket": 269,
+ "current_ticket": 255,
+ "current_note": "21:34: 0.0.188 live (253 spiral doors reachable; 👆 on at first). On 255: the world designer's grid labels big enough outside full screen",
  "closed_tickets": [
+  {
+   "id": 253,
+   "area": "dress up, castle rooms, collisions, walls",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T17:39-06:00",
+   "source": "Matthew, 2026-10-17, in chat, with a picture of the spiral staircase room, ♿ collision boxes on",
+   "url": "",
+   "text": "<b>Dress Up: a room's side limits follow its floor in more than two segments, so every door can be reached (the spiral staircase's first).</b> Matthew: \"this was a good try, but the cut offs don't permit me to reach the doors! We may need more than 2 segments for those 'side' cut offs, in general WDYT?\" In his picture the spiral stairs' side limits (the orange dashed lines) are two straight segments from the floor's front corners up to a point by the column, so doors 3 (left, on a landing) and 4 (right) are outside where the friend can walk. Claude's answer: yes; each side's limit a polyline of several points that follows the room's real floor (out along a landing to a door, round the column, in at the wall), castleWalls' half(z) from that polyline; and a check that every door's spot in every room lies inside the walkable area and is reached by a planned walk.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T21:34-06:00",
+   "outcome": "0.0.188: the spiral room's sides a polyline through each door's foot (spiralDoorAt) out by a friend's reach, never narrower than the straight sides, flat above the highest door (a vanishing-line point had pinched them between landings). All three doors of N's room 2 made a spiral inside the sides and reached. spiral253 green on CI. Follow-up 268 (his): walks along the stairs' middle, the front half drawn.",
+   "metrics": {
+    "open_minutes": 235,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 25.0
+   }
+  },
   {
    "id": 251,
    "area": "dress up, ♿, walking",
@@ -7585,11 +7607,11 @@
   }
  ],
  "queue": [
-  253,
   255,
   264,
   266,
   267,
+  268,
   209,
   184,
   198,
