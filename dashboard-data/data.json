@@ -629,9 +629,29 @@
    "source": "Matthew, 2026-10-18, in chat: \"please create a du_report draft for the new FS interfaces we designed, for music production/remixing, and for the world designer\"",
    "url": "",
    "text": "<b>Draft ^du_report(5): the full-screen designers' UX, and a global shift to it.</b> The new full-screen interfaces (music production and remixing; the world designer): the choices applied consistently in both, and the work left. Then the analysis, with the full design work, of applying the same approach to every other panel in Dress Up's (very large) set of menus, proposed as a global shift. His terms: knolling (\"always be knolling\": tools and materials laid out in order, in plain view); sub-structure visually apparent, boxes within boxes, minimal visual noise; fractal organization; Gelernter's <i>Mirror Worlds</i> (the day software puts the universe in a shoebox). Drafted locally, published only on his word. <b>In particular</b> (his follow-up): before and proposed after for the castle's theme choices, the bubble themes' choices, and above all the 🏞️ background settings, perhaps with a full-screen designer of its own that puts the game's view in a small panel, as the world designer does."
+  },
+  {
+   "id": 283,
+   "area": "dress up, ♿ inspection, for designing scenes",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T10:47-06:00",
+   "status": "open",
+   "tags": [],
+   "progress": "Found while minting it (10:47): the water is not a collision box. Each place has its own water shape, WATER in js/16-objects-and-solids.js (527): the moat's near half without the drawbridge, the tree house's stream and the cemetery's brook as their outlines are drawn, the lake, the sea, the beach, the falls' pool. inWater (551) tests it at the friend's feet, in js/18-drawing.js (289: the wake, see-through below the waist) and js/26-drags-and-start.js (631: swimming instead of walking); SHALLOW_WATER (554) makes the stream and the brook knee deep. ♿'s collision overlay (solidsHud, js/25-world.js 377) draws only what solidAt keeps the feet out of: each solid's box, a castle room's side walls, and the back limit. So the water test is one of the hidden rules a toggle could show.",
+   "log": [
+    {
+     "at": "2026-10-18T10:47-06:00",
+     "from": "matthew",
+     "chars": 811,
+     "asks": true
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat, after the 10:40 crash",
+   "url": "",
+   "text": "<b>Dress Up: show the game's own logic on screen, with toggles, in ♿.</b> \"The water effect is really good, at the castle moat, and the tree house stream, etc.\", but he could not see what triggers it: it is not in the collision information in the inspection panel. A sub-panel of toggles for the collision boxes, showing their sub-categories if there are any; it seems there are boxes for layering, separate from collision. \"Let's try to represent the internal game logic on screen, and let's give toggles to prevent it from getting overwhelming to view as we interactively answer different questions we have about each scene we are designing.\" Related: placed trees have no collision boxes. A toggle (on by default) where they do: slim vertically, precise at the base, and in segments for trees that lean a lot."
   }
  ],
- "next_ticket": 283,
+ "next_ticket": 284,
  "current_ticket": 279,
  "current_note": "10:45: After the 10:40 crash (crash log row 5f341721; nothing lost; 8000 and 8133 restarted). ^ticket(282) closed: 0.0.207 was live before the crash. This ticket's fps run of the proposed full-screen Background designer (branch bgfs-279, GitHub 39145656496) is still running on GitHub; next: read it, then cache the place pictures, then Matthew's look before ^du_report(5) is published. The draft (dress-up/reports/005/) and the stand-in picker (tools/checks/bgfs279*) are untracked in ~/kids-choice-games and came through the crash intact.",
  "closed_tickets": [
@@ -8290,6 +8310,7 @@
  ],
  "queue": [
   279,
+  283,
   222,
   225,
   276,
