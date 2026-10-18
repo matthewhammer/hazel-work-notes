@@ -802,9 +802,29 @@
    "source": "Matthew, 2026-10-18, in chat",
    "url": "",
    "text": "<b>Dress Up: up to six thrones in each king's room.</b> Each king's room permits up to 6 thrones, each with a size and a theme control. The default, going forward, is 2 (a king's and a queen's), in theme A and theme B, perhaps. And so the doors go on the sides wherever thrones would be in their way. Each throne also has an option: 🐈 has a cat (Matthew, 11:23); and with a cat, all of the cat's options (11:23): its animation (sitting, walking, standing, and so on), its colors, and its size. Reuse the cat room's code: these are the same controls."
+  },
+  {
+   "id": 294,
+   "area": "dress up, controls and accessibility",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T11:26-06:00",
+   "status": "open",
+   "tags": [],
+   "progress": "Found while minting it (11:26): 👆 walk where you click is state.access.clickWalk (js/01-state.js 579, with its glow's colours clickWalkColor and pathAltColor). A click while walking is queued after the current walk (js/26-drags-and-start.js 344; ^ticket(266), the queue of plans drawn in turn in the two colours, js/25-world.js 606). One setting, shown in both 🎮 Controls and ♿ Accessibility from the same row.",
+   "log": [
+    {
+     "at": "2026-10-18T11:26-06:00",
+     "from": "matthew",
+     "chars": 405,
+     "asks": false
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "text": "<b>Dress Up: walking to a click, a new click queues or replaces the plan, the player's choice.</b> He really likes the multi-path planning walk-to-click supports now, but that is more for a designer; in play it is often expected, and more useful, to cancel the current plan and replace it with the one for the next click. In 🎮 Controls, let the player choose which they prefer, and repeat that same choice under ♿ Accessibility, reusing the code."
   }
  ],
- "next_ticket": 294,
+ "next_ticket": 295,
  "current_ticket": 284,
  "current_note": "11:23: Releasing Dress Up 0.0.208, the first part: 📦 from the places, a new group in 🏞️ Background's things (any object of any of 49 places, lifted from its place's drawing, placed anywhere; tried in the app's browser pane: the oven, anvil, throne, umbrella, drum kit, cauldron in the empty room, each with its home collision box). Known limit: the stable's horse is only its head over the stall door. Next: the list of what is drawn into the places (the survey), then the switch and trap doors.",
  "closed_tickets": [
@@ -8588,6 +8608,7 @@
   288,
   290,
   293,
+  294,
   222,
   225,
   289,
