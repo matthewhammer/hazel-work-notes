@@ -1523,7 +1523,7 @@
      "asks": true
     }
    ],
-   "progress": "15:57: his floor-trap-door report (\"we climb up again, and get stuck\") checked on 0.0.233 in the app's pane: the hatch's click goes to climbLadder, ladderAt reads it as going down (data-down 304.5), walkInto starts the climb, no error; the climb itself cannot be watched there (a hidden pane runs no frames). Likely the same bug as ^ticket(330) (a hatch's trip leaves a way back, and backSync threw until 0.0.233): asked him to try it on 0.0.233. PLAN for this ticket: a side door's crawl clipped at the doorway's edge (as walkInto clips a pit's or hatch's climb), the friend shrinking as they go out, then standing and walking along the bridge, smaller and smaller, to the size of the far tree house drawn in the doorway, and going in at its door. 16:11: 0.0.234 LIVE: the crawl through a side door is cut off at the doorway from its first step; outside, a bridge's end goes in through the porch door (platformIn, clipped to the cabin's door) and lands beside the side door back; on a bridge the friend's size moves from the one house's to the other's. tools/checks/bridgein331.mjs. NEXT: from inside, the walk out seen in the doorway: shrinking as they crawl out, standing on the bridge drawn there, walking to the far house's size, in at its door."
+   "progress": "15:57: his floor-trap-door report (\"we climb up again, and get stuck\") checked on 0.0.233 in the app's pane: the hatch's click goes to climbLadder, ladderAt reads it as going down (data-down 304.5), walkInto starts the climb, no error; the climb itself cannot be watched there (a hidden pane runs no frames). Likely the same bug as ^ticket(330) (a hatch's trip leaves a way back, and backSync threw until 0.0.233): asked him to try it on 0.0.233. PLAN for this ticket: a side door's crawl clipped at the doorway's edge (as walkInto clips a pit's or hatch's climb), the friend shrinking as they go out, then standing and walking along the bridge, smaller and smaller, to the size of the far tree house drawn in the doorway, and going in at its door. 16:11: 0.0.234 LIVE: the crawl through a side door is cut off at the doorway from its first step; outside, a bridge's end goes in through the porch door (platformIn, clipped to the cabin's door) and lands beside the side door back; on a bridge the friend's size moves from the one house's to the other's. tools/checks/bridgein331.mjs. NEXT: from inside, the walk out seen in the doorway: shrinking as they crawl out, standing on the bridge drawn there, walking to the far house's size, in at its door. 16:22: 0.0.235 LIVE: out through a tree room's door to a bridge, the friend shrinks as they crawl through (room size to the size of the bridge drawn in the doorway, about a twentieth), stands, faces away, and walks to 0.45 of the drawn bridge (smaller still), seen inside the doorway only; then outside on the bridge as before (246's walk kept; the end goes in through the porch door since 0.0.234). tools/checks/doorout331.mjs. Waiting on the speed run of both tags before closing."
   },
   {
    "id": 332,
@@ -1588,7 +1588,7 @@
  ],
  "next_ticket": 334,
  "current_ticket": 331,
- "current_note": "16:11: 0.0.234 live (crawl clipped, bridge end in through the porch door); next, the walk out seen through the doorway, shrinking to the far house's size",
+ "current_note": "16:22: 0.0.235 live (shrinking out through the doorway's picture, walking part of its bridge); checking the speed run, then closing 331",
  "closed_tickets": [
   {
    "id": 330,
