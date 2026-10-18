@@ -581,8 +581,10 @@
    "added": "2026-10-18",
    "opened": "2026-10-18T09:30-06:00",
    "status": "open",
-   "tags": [],
-   "progress": "",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "progress": "Built 09:49: the workflow on branch archive-272 (2315e18) adds each run itself when the secret ARCHIVE_TOKEN is set (a fresh clone with the token, then the archive's own tools/add_run.sh: dress-up-pictures fac56b5, dress-up-music 26de477); without it, the artifact as before. Left: the token (his), then one run to see it land.",
    "log": [
     {
      "at": "2026-10-18T09:30-06:00",
@@ -593,7 +595,8 @@
    ],
    "source": "^du_report(4), What next, step 3 (Matthew, 2026-10-18 09:30: \"all four next steps look good -- let's enqueue them in that order\")",
    "url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/004/#step-3",
-   "text": "<b>Archive runs without the laptop:</b> the archive workflow commits and tags its run itself, with a token that can write to the two archives (dress-up-pictures, dress-up-music); the laptop's step (a 140 MB download, tools/add_run.sh) goes away. Making the token is Matthew's."
+   "text": "<b>Archive runs without the laptop:</b> the archive workflow commits and tags its run itself, with a token that can write to the two archives (dress-up-pictures, dress-up-music); the laptop's step (a 140 MB download, tools/add_run.sh) goes away. Making the token is Matthew's.",
+   "waiting": "Matthew: make a fine-grained token (resource owner matthewhammer; only the repositories dress-up-pictures and dress-up-music; permission Contents: Read and write), then add it to matthewhammer/kids-choice-games as the Actions secret ARCHIVE_TOKEN (Settings, Secrets and variables, Actions; or: gh secret set ARCHIVE_TOKEN -R matthewhammer/kids-choice-games). The next archive run then lands by itself."
   },
   {
    "id": 277,
@@ -614,11 +617,31 @@
    "source": "^du_report(4), What next, step 4 (Matthew, 2026-10-18 09:30)",
    "url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/004/#step-4",
    "text": "<b>Watch the archives' size:</b> each run's entry in runs.json says what it added to git, and the front page a running total, so the archive's growth is read, not guessed."
+  },
+  {
+   "id": 278,
+   "area": "dress up, places, for M",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T09:50-06:00",
+   "status": "open",
+   "tags": [],
+   "progress": "",
+   "log": [
+    {
+     "at": "2026-10-18T09:50-06:00",
+     "from": "matthew",
+     "chars": 761,
+     "asks": true
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat: \"mint and enqueue a ticket for M ... a set of new backgrounds, that are related\"",
+   "url": "",
+   "text": "<b>Dress Up, for M: hut places.</b> (1) A hut outside, made of grass (its top) and sticks (its walls and door): rounded, like the healer's hut from outside, but plainly sticks and grass. (2) Inside the hut, a living room: a couch, as in the living room, with the hut's walls; the rendering shared by both rooms, with color options (or color themes, as the castle has) for the couches, rugs and the rest. (3) More rooms in the hut: a bedroom, and a potion room (things like the healer's hut inside, with the hut's walls, floor and ceiling)."
   }
  ],
- "next_ticket": 278,
- "current_ticket": 276,
- "current_note": "09:47: Starting: archive runs without the laptop. The workflow will commit, tag and push its run itself when a secret ARCHIVE_TOKEN is set; making that token is Matthew's.",
+ "next_ticket": 279,
+ "current_ticket": 278,
+ "current_note": "09:50: For M: hut places (a stick-and-grass hut outside, its living room, bedroom and potion room). Reading how the healer's hut, the living room and the castle's color themes are drawn first. ^ticket(277) waits on the archive run (GitHub run 39142213148); ^ticket(276) waits on Matthew's token.",
  "closed_tickets": [
   {
    "id": 275,
@@ -8088,10 +8111,11 @@
   }
  ],
  "queue": [
-  276,
+  278,
   277,
   222,
   225,
+  276,
   160,
   18,
   102,
@@ -8100,5 +8124,5 @@
   166,
   259
  ],
- "current_since": "2026-10-18T09:16-06:00"
+ "current_since": "2026-10-18T09:50-06:00"
 }
