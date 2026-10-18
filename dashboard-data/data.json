@@ -1235,7 +1235,9 @@
    "added": "2026-10-18",
    "opened": "2026-10-18T14:33-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "text": "<b>fumola.org: with ☀️ light chosen in the nav bar, the page stays dark.</b> Matthew, with a screenshot at 14:32 (kept locally, ~/du-shots/ticket-315/fumola-light-mode.webp): \"light mode bug\". The nav bar is light, its \"☀️ light\" chip pressed, but fumola.org's page is black with light text: the page's own colours do not follow the nav bar's theme choice (likely only prefers-color-scheme).",
    "source": "Matthew, 2026-10-18, in chat",
    "url": "",
@@ -1245,9 +1247,15 @@
      "from": "matthew",
      "chars": 16,
      "asks": false
+    },
+    {
+     "at": "2026-10-18T15:22-06:00",
+     "from": "matthew",
+     "chars": 1,
+     "asks": true
     }
    ],
-   "progress": ""
+   "progress": "15:22: CAUSE: fumola.org's page had dark colours only (CSS variables from the Fumola VS Code theme, no light set, nothing answering data-theme), so the nav bar's light did nothing. PR Adapton/fumola#147 (branch pages-light-theme, worktree ~/fumola-light): a light palette answering :root[data-theme=light] and, on auto, a light system; theme-support meta for nav.js; five written-out colours made palette entries; dark stays the default. WAITING ON MATTHEW: his OK to merge #147 (then the Pages workflow_dispatch deploys main). Not done: the other pages under pages/ (alignment, web-play, web-repl)."
   },
   {
    "id": 316,
@@ -1353,7 +1361,7 @@
      "asks": false
     }
    ],
-   "progress": "15:08: RELEASED 0.0.228 (b7f83cc, live 15:08:25), NOT proven to fix it: not reproduced here. In the app's hidden browser pane on 8133, a MutationObserver on the lid saw the whole swing (13-14 steps) on each of four pulls in a row, for the trap room's pits and for a placed lever and trap door, with and without 🔬 Inspection's overlays (all arrows, path, made of); the lid was never replaced mid-swing; a click on a room lever goes through the same roomLeverPull and starts no walk (walkableAt refuses the wall). Fix made on the likeliest cause that fits 'first time only' on Firefox: lidSwing and turnArm took t0 at the pull, before the redraw; the trap room since 0.0.226 has 271 moss shapes; a slow repaint could use up the 520 ms before the first frame. Both now start their clocks at their first frame. WAITING ON MATTHEW: does the swing play every time on 0.0.228? If not: which lever, where the friend stands, Firefox or not. 15:15: Matthew: \"I'm using 228 and I see no animations of the pits at all, or the levers.\" (worse than 0.0.227's first-time-only). Investigating."
+   "progress": "15:08: RELEASED 0.0.228 (b7f83cc, live 15:08:25), NOT proven to fix it: not reproduced here. In the app's hidden browser pane on 8133, a MutationObserver on the lid saw the whole swing (13-14 steps) on each of four pulls in a row, for the trap room's pits and for a placed lever and trap door, with and without 🔬 Inspection's overlays (all arrows, path, made of); the lid was never replaced mid-swing; a click on a room lever goes through the same roomLeverPull and starts no walk (walkableAt refuses the wall). Fix made on the likeliest cause that fits 'first time only' on Firefox: lidSwing and turnArm took t0 at the pull, before the redraw; the trap room since 0.0.226 has 271 moss shapes; a slow repaint could use up the 520 ms before the first frame. Both now start their clocks at their first frame. WAITING ON MATTHEW: does the swing play every time on 0.0.228? If not: which lever, where the friend stands, Firefox or not. 15:15: Matthew: \"I'm using 228 and I see no animations of the pits at all, or the levers.\" (worse than 0.0.227's first-time-only). Investigating. 15:2x: a real-click check (tools/checks/lidswing322.mjs: music on, #inspect overlays, real mouse clicks, every frame's lid fold and the room's rebuilds) is running on GitHub, branch lid-322 (only that check). Meanwhile ^ticket(324)."
   },
   {
    "id": 323,
@@ -1439,8 +1447,8 @@
   }
  ],
  "next_ticket": 327,
- "current_ticket": 322,
- "current_note": "15:15: Matthew answered (on 0.0.228 no pit or lever animation at all); reproducing with real pointer events and a slow computer's still pictures in the app's browser pane",
+ "current_ticket": 324,
+ "current_note": "15:22: levers glow under the pointer (high priority): a warm torch-light glow, in CSS, for the trap room's levers and placed ones; ^ticket(322)'s real-click check runs on GitHub meanwhile",
  "closed_tickets": [
   {
    "id": 319,
@@ -9492,8 +9500,8 @@
   }
  ],
  "queue": [
-  322,
   324,
+  322,
   284,
   283,
   286,
@@ -9530,7 +9538,8 @@
   19,
   166,
   259,
-  285
+  285,
+  315
  ],
- "current_since": "2026-10-18T15:02-06:00"
+ "current_since": "2026-10-18T15:22-06:00"
 }
