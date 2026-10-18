@@ -576,32 +576,6 @@
    "text": "<b>Dress Up: a component designer, along the lines of the world designer, for the objects baked into each place: adjust each one's default position and every setting of how it is drawn that its place in the scene doesn't fix (scale, layering, and so on).</b> Matthew: \"we want to think about a feature built on this -- for adjusting the default position and settings of each of those objects, including every rendering param that isn't fixed by its position alone in the scene (for scale, or layering, etc).\" \"that would be another feature along the lines of the existing world designer interface, but geared towards designing re-usable components -- let's mint a ticket and put 'blocked on matthew' on it.\" Builds on ^ticket(258) (♿ 🧩: each place's objects boxed and named, its plants by the procedure that drew them). Blocked on Matthew: his design of it first."
   },
   {
-   "id": 274,
-   "area": "dress up, save files",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T09:16-06:00",
-   "status": "open",
-   "tags": [],
-   "log": [
-    {
-     "at": "2026-10-18T09:14-06:00",
-     "from": "matthew",
-     "chars": 1211,
-     "asks": true
-    },
-    {
-     "at": "2026-10-18T09:30-06:00",
-     "from": "matthew",
-     "chars": 179,
-     "asks": true
-    }
-   ],
-   "progress": "",
-   "source": "Matthew, 2026-10-18, in chat, from ^ticket(272)'s findings: \"the .json file should be self-determined, in the sense that it fully determines the .svg output, and we get the one every time. So random seeds need to be in there too\"; ^du_report(4), What next, step 1",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/004/#step-1",
-   "text": "<b>Dress Up: a save file that fully determines its picture.</b> Today the SVG also depends on things outside the JSON: animation phases from the page's clocks (fairyPhase in 08-body.js, from performance.now; lfoBegin, from the picture's SVG clock and the music's), and Math.random (a figure's clip-path id, 18-drawing.js:900; bubble space's bubbles, 14-outdoors.js:826). The archive holds the clocks at 0 and seeds Math.random itself (dress-up-pictures a73a50a); the game's own save should carry what it needs instead: random seeds, a time origin for the phases. And a simulation: bubble space's bubbles move every frame (bubbleTick, 14-outdoors.js, timed by requestAnimationFrame), so their places are in no settings at all: the save needs their state, or a rule drawing them from the seed and the time. Done when loading a save draws the same SVG every time."
-  },
-  {
    "id": 275,
    "area": "dress up, save files",
    "added": "2026-10-18",
@@ -669,9 +643,54 @@
   }
  ],
  "next_ticket": 278,
- "current_ticket": 274,
- "current_note": "09:32: Starting: a save file that fully draws its picture. First, map every place the drawing reads the page's clocks, Math.random or a frame's time, then put a seed and a time origin in the state.",
+ "current_ticket": 275,
+ "current_note": "09:44: Starting: the full snapshot. Save will write the picture file plus an extra object (when it was saved, which game version), which Load never reads and the archive drops.",
  "closed_tickets": [
+  {
+   "id": 274,
+   "area": "dress up, save files",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T09:16-06:00",
+   "status": "done",
+   "tags": [],
+   "log": [
+    {
+     "at": "2026-10-18T09:14-06:00",
+     "from": "matthew",
+     "chars": 1211,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T09:30-06:00",
+     "from": "matthew",
+     "chars": 179,
+     "asks": true
+    }
+   ],
+   "progress": "",
+   "source": "Matthew, 2026-10-18, in chat, from ^ticket(272)'s findings: \"the .json file should be self-determined, in the sense that it fully determines the .svg output, and we get the one every time. So random seeds need to be in there too\"; ^du_report(4), What next, step 1",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/004/#step-1",
+   "text": "<b>Dress Up: a save file that fully determines its picture.</b> Today the SVG also depends on things outside the JSON: animation phases from the page's clocks (fairyPhase in 08-body.js, from performance.now; lfoBegin, from the picture's SVG clock and the music's), and Math.random (a figure's clip-path id, 18-drawing.js:900; bubble space's bubbles, 14-outdoors.js:826). The archive holds the clocks at 0 and seeds Math.random itself (dress-up-pictures a73a50a); the game's own save should carry what it needs instead: random seeds, a time origin for the phases. And a simulation: bubble space's bubbles move every frame (bubbleTick, 14-outdoors.js, timed by requestAnimationFrame), so their places are in no settings at all: the save needs their state, or a rule drawing them from the seed and the time. Done when loading a save draws the same SVG every time.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T09:44-06:00",
+   "outcome": "Released in Dress Up 0.0.202 (kids-choice-games 3a2f3db, tag dress-up-0.0.202, live by 09:44): a drawing reads the time only through picClock() and chance only through a seed in the settings; holdStill(t) holds the picture's clock (SVG, music, LFOs, bubble steps) and keeps slow-computer still pictures out; the friend's clip-path named by its shape; bubble space from bubbleSeed, with a 🎲 \"other places for the bubbles\" button. Checked in the desktop app's Chrome: all 28 places alike, byte for byte, across two loads (the second marked slow); bubbles still drift in play. Its check, tools/checks/still274.mjs, runs in the speed run 39141771207 (read it after). The picture archive uses holdStill(0) from now on (dress-up-pictures 32c3f16). Not covered: what an action leaves mid-way (a jump, a climb started by the friend, blown bubbles).",
+   "metrics": {
+    "open_minutes": 29,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1390,
+    "tokens_est": 347,
+    "sync_minutes_est": 0,
+    "work_minutes": 7.2
+   },
+   "outcome_url": "https://github.com/matthewhammer/kids-choice-games/commit/3a2f3dba13830ca97806e15462b7a1053c1f5a38",
+   "work": {
+    "work_minutes": 7.2,
+    "start": "2026-10-18T09:36:13-06:00",
+    "end": "2026-10-18T09:43:25-06:00",
+    "note": "the edits, the tests in the desktop app and the release commit; the mapping before (from 09:32) not timed"
+   }
+  },
   {
    "id": 272,
    "area": "dress up, archives",
@@ -8050,7 +8069,6 @@
   }
  ],
  "queue": [
-  274,
   275,
   276,
   277,
