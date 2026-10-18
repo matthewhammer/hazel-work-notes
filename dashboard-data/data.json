@@ -625,7 +625,7 @@
    "opened": "2026-10-18T10:50-06:00",
    "status": "open",
    "tags": [],
-   "progress": "Parked 11:06 for ^ticket(291) (Matthew's link nit). FOUND: OBJECTS.md (0.0.198, no hut places) lists 475 objects of 245 kinds in 44 places; about 30 kinds are placeable already (rocks, trees, pines, bushes, toadstools, logs, campfire, barrels, cauldron, skeletons, chests, fish, kelp), about 40 are ways, doors, ladders, hatches and lights (dark, mist, sunbeams), about 170 cannot be placed. Every object is its own <g data-obj data-z> in its place's drawing (obj(), js/09-backgrounds.js 50). DESIGN, not built: a general placeable \"from a place\" thing: build the source place with its defaults the way pictureSvg does (js/11-houses-and-huts.js 78: backgroundSvg + unmarked + prefixIds, DOMParser), take the object's group and the defs it uses, and draw it through thingSvg/thingsLayer (js/14-outdoors.js 1263) at the new x and depth, scaled by depthSize(here)/depthSize(there); the add menu as place, then its objects (not 170 kinds in one list). Then proper kinds for the ones that matter, the switch first: a placeable lever (the trap room's, js/13-castle-rooms-and-map.js 186) that animates, and a placeable trap door (the tree rooms' holes, data-hole, js/16-objects-and-solids.js 259), wired in the world designer. A read-only survey of what is drawn into each place but is not an object was started at 11:06 (a background agent of this session).",
+   "progress": "Parked 11:06 for ^ticket(291) (Matthew's link nit). FOUND: OBJECTS.md (0.0.198, no hut places) lists 475 objects of 245 kinds in 44 places; about 30 kinds are placeable already (rocks, trees, pines, bushes, toadstools, logs, campfire, barrels, cauldron, skeletons, chests, fish, kelp), about 40 are ways, doors, ladders, hatches and lights (dark, mist, sunbeams), about 170 cannot be placed. Every object is its own <g data-obj data-z> in its place's drawing (obj(), js/09-backgrounds.js 50). DESIGN, not built: a general placeable \"from a place\" thing: build the source place with its defaults the way pictureSvg does (js/11-houses-and-huts.js 78: backgroundSvg + unmarked + prefixIds, DOMParser), take the object's group and the defs it uses, and draw it through thingSvg/thingsLayer (js/14-outdoors.js 1263) at the new x and depth, scaled by depthSize(here)/depthSize(there); the add menu as place, then its objects (not 170 kinds in one list). Then proper kinds for the ones that matter, the switch first: a placeable lever (the trap room's, js/13-castle-rooms-and-map.js 186) that animates, and a placeable trap door (the tree rooms' holes, data-hole, js/16-objects-and-solids.js 259), wired in the world designer. A read-only survey of what is drawn into each place but is not an object was started at 11:06 (a background agent of this session). 11:15: the survey is back, saved at ~/du-shots/ticket-284/baked-in-survey.txt (local, not public): every place's baked-in things with file:line, and a top 15 to make placeable, the trap room's lever first, then the wall torch, the pit or floor opening, the hanging lantern, the rug, the framed picture, the banner, the wall clock, the fireplace, the potion shelf, the herb bundle, the crow in a cage, the shackles, the bats, the beach blanket.",
    "log": [
     {
      "at": "2026-10-18T10:50-06:00",
@@ -758,13 +758,18 @@
    "source": "Matthew, 2026-10-18, in chat, for N, with a picture of a toy bubble machine (\"mint and enqueue after 288\")",
    "url": "",
    "text": "<b>Dress Up, for N: 🫧 bubbles, a place group of its own, and a room made of bubble foam.</b> A new background category, bubbles, with two places (Matthew, 11:03, to be clear): the <b>blank room</b>, the room we have now (🫧 bubble space) with its ambient bubbles, moved there; and the <b>bubble room</b>, new, made of bubbles, with placeable bubble machines. For the bubble room, N wants the walls and floors \"made of bubbles\": the look of fractal bubble foam, with sizes and placements chosen to mimic that kind of pattern, on the walls and floors. They move, by some parameters: maybe a setting for each of the left wall, the back wall, the right wall, the floor and the ceiling (on or off, and height controls too). The bubble room's bubbles stream out of bubble makers: little boxes with turning wheels on the front, simplified to a few shapes at first (his picture: a round toy bubble machine with a wheel of bubble rings turning on its front, a handle on top, a base under it). Bubble makers are placeable objects in the world designer, each with controls over how it makes bubbles (the rate, the kind of bubble). Do this ticket after the Background panel is redesigned with its full-screen mode (^ticket(285))."
-  },
+  }
+ ],
+ "next_ticket": 293,
+ "current_ticket": 284,
+ "current_note": "11:16: Back on it after 291 and 292. Designing the general way to place any object from any place (lifted from its place's drawing, its definitions with it, drawn as a placed thing at a new spot and depth), then the switch: the trap room's lever as a placeable thing that moves when pressed, and trap doors in the floor that the world designer wires to it.",
+ "closed_tickets": [
   {
    "id": 292,
    "area": "dashboard",
    "added": "2026-10-18",
    "opened": "2026-10-18T11:07-06:00",
-   "status": "open",
+   "status": "done",
    "tags": [],
    "progress": "",
    "log": [
@@ -789,13 +794,19 @@
    ],
    "source": "Matthew, 2026-10-18, in chat",
    "url": "",
-   "text": "<b>Dashboard: the local URLs in the outline.</b> On the left-hand outline, just before the current ticket, a list of all the locally served URLs that appear in the last column of \"Localhost ports\", so he does not have to click so much to get them. And (11:07) a link in that outline, near the top, to the Dress Up page, https://matthewhammer.org/hazel/dress-up/ ."
-  }
- ],
- "next_ticket": 293,
- "current_ticket": 292,
- "current_note": "11:12: The dashboard's outline: just before the current ticket, every local URL in the last column of Localhost ports, and near the top a link to the Dress Up page. In dashboard/update.py, which has another session's changes from 10-16 and 10-17 that are live but were never committed (the outline hidden and resized, the queue's column wrapping, the about chips): looking at those first, so a commit carries the right changes.",
- "closed_tickets": [
+   "text": "<b>Dashboard: the local URLs in the outline.</b> On the left-hand outline, just before the current ticket, a list of all the locally served URLs that appear in the last column of \"Localhost ports\", so he does not have to click so much to get them. And (11:07) a link in that outline, near the top, to the Dress Up page, https://matthewhammer.org/hazel/dress-up/ .",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T11:16-06:00",
+   "outcome": "In the dashboard's outline (hazel-work-notes f594dd88, live locally 11:15): just before the current ticket, \"Local URLs\" lists every link in the last column of Localhost ports, each URL once; near the top, \"Messed Up Dress Up\" opens https://matthewhammer.org/hazel/dress-up/ . Fixed on the way: the outline's \"Performance reports\" opened localhost:8131, no longer served; it opens the published series. Before it, f3bc1d8f committed the outline, queue and about-chip changes that had run uncommitted since 10-16 and 10-17.",
+   "metrics": {
+    "open_minutes": 10,
+    "matthew_messages": 3,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 325,
+    "tokens_est": 81,
+    "sync_minutes_est": 0.0
+   }
+  },
   {
    "id": 291,
    "area": "dress up, pages and links",
@@ -8525,7 +8536,6 @@
   }
  ],
  "queue": [
-  292,
   284,
   283,
   285,
@@ -8545,5 +8555,5 @@
   166,
   259
  ],
- "current_since": "2026-10-18T11:12-06:00"
+ "current_since": "2026-10-18T11:16-06:00"
 }
