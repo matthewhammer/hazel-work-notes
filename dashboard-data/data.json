@@ -933,9 +933,41 @@
    "source": "Matthew, 2026-10-18, in chat, with a screenshot of the tree house with ♿'s collision boxes on",
    "url": "",
    "text": "<b>Dress Up: ♿'s back limit line in the tree house is too low.</b> \"Blue horz line in this scene is not accurate -- too low.\" The line drawn across the tree house, with ♿'s collision boxes shown, is not where it should be: too low."
+  },
+  {
+   "id": 299,
+   "area": "dress up, moving and ♿ inspection",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T12:41-06:00",
+   "status": "open",
+   "tags": [],
+   "progress": "Found while minting it (12:41): where the friend can sit is SEATS[kind](c, B) (js/17-moving-and-climbing.js 30, seatsHere 42), defined for the house, the tree house, its rooms, the living room, the healer's hut, the fairy forest, the castle, and the grass hut's room and center; a friend let go of over a seat sits on it (dropOnSeat, js/26-drags-and-start.js), and the seats are among the solids (solidsHere, js/16-objects-and-solids.js). The sub-categories of ♿'s collision boxes are ^ticket(283)'s. Beds: tree house room 1's bunk beds (an object, js/11-houses-and-huts.js 642), the grass hut's bedroom (hutbedScene, 1907). Beach blankets: drawn into the beach (js/15-place-picker.js 640), not objects yet (dress-up/BAKED-IN.md, ^ticket(284)). The poses are the 🧍 Body tab's \"🤸 poses\" choice (js/20-controls.js 120: standing, sitting, cross-legged, dancing, hugging ...): lying down joins them.",
+   "log": [
+    {
+     "at": "2026-10-18T12:41-06:00",
+     "from": "matthew",
+     "chars": 333,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T12:41-06:00",
+     "from": "matthew",
+     "chars": 50,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T12:41-06:00",
+     "from": "matthew",
+     "chars": 161,
+     "asks": false
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "text": "<b>Dress Up: point to sit, and point to lie down.</b> Sitting already happens automatically on some objects; make its collision boxes explicit, in one of the sub-categories planned for ♿'s inspection. And identify where and how the friend would lie down, with a direction, on beds and on beach blankets. And (Matthew, 12:41) a pose for it: lying down on the flat surface. And (Matthew, 12:41): pointing at a place to sit or lie down shows a pop-up that says so; and maybe, with a toggle under ♿ Accessibility, its boxes shown on hover, and not otherwise."
   }
  ],
- "next_ticket": 299,
+ "next_ticket": 300,
  "current_ticket": 285,
  "current_note": "12:40: 0.0.212 is live: the pieces every tab will be built from (a box, the one-line row, the designer's shell), the two full screens on them, looking exactly as before. Next: step 2, 🏞️ Background as a full-screen designer.",
  "closed_tickets": [
@@ -8778,6 +8810,7 @@
   295,
   297,
   298,
+  299,
   222,
   225,
   289,
