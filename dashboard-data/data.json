@@ -576,53 +576,30 @@
    "text": "<b>Dress Up: a component designer, along the lines of the world designer, for the objects baked into each place: adjust each one's default position and every setting of how it is drawn that its place in the scene doesn't fix (scale, layering, and so on).</b> Matthew: \"we want to think about a feature built on this -- for adjusting the default position and settings of each of those objects, including every rendering param that isn't fixed by its position alone in the scene (for scale, or layering, etc).\" \"that would be another feature along the lines of the existing world designer interface, but geared towards designing re-usable components -- let's mint a ticket and put 'blocked on matthew' on it.\" Builds on ^ticket(258) (♿ 🧩: each place's objects boxed and named, its plants by the procedure that drew them). Blocked on Matthew: his design of it first."
   },
   {
-   "id": 272,
-   "area": "dress up, archives",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T08:10-06:00",
-   "source": "Matthew, 2026-10-18 08:10, in chat (the picture archive past Pages' 1 GB)",
-   "url": "https://github.com/matthewhammer/dress-up-pictures",
-   "text": "<b>Dress Up archives redesigned: one folder, each run a git tag, no PNG.</b> The old dress-up-pictures (a folder per day, PNGs, 1.1 GB) is kept as it was as dress-up-pictures-2026-10-18. The new dress-up-pictures keeps pictures/ (SVG, settings JSON, WebP thumbnail), rewritten by each run; its five runs replayed from the old one's commits (24 MiB). The music archive: one copy of each tune in music/, each run a tag. Viewer and player read runs.json and the tags. Still to do: the workflow that makes runs in the new layout (Chrome makes the thumbnails), and a music run with the 🔥 turtle super-dub step.",
-   "status": "open",
-   "tags": [],
-   "log": [
-    "08:10 asked (Matthew); 08:11 the laptop crashed 30 s in (crash 37, near idle)",
-    "08:29 new dress-up-pictures built locally: 5 old runs replayed, 24 MiB packed (old repo 1.1 GB)",
-    "08:31 old repo renamed dress-up-pictures-2026-10-18; new one created, pushed, Pages on",
-    "08:36 viewer + music player read runs.json and tags (homepage 7302f18, f382598)",
-    "08:44 music: one copy per tune (e963885); run-2026-10-18 adds superdub, the fire-emoji turtle super-dub step",
-    "08:47 old repo archived read-only on GitHub",
-    "08:55 pictures run-2026-10-18 added (0.0.201): 7.6 MiB, ~7 of it the one-time Chrome thumbnails",
-    "08:58 clocks held at 0 in archive.mjs (5d19609); two same-commit runs still differed in 15 of 525 SVGs (Math.random)",
-    "09:12 seeded Math.random (a73a50a); both runs re-running on GitHub"
-   ],
-   "progress": "PARKED 09:16 for ^du_report(4) (his ask). Done and live: both archives in the new layout (one folder, every run a tag, no PNG), old one kept read-only as dress-up-pictures-2026-10-18, viewer and player, music with superdub, agent-instructions (kids-choice-games d32479c), workflow on branch archive-272 (+ archive-272b, a copy for the determinism check). OPEN: the determinism check. Runs 39138361693 (archive-272) and 39138363460 (archive-272b) re-run with archive.mjs a73a50a (clocks at 0 + seeded Math.random). Next: compare the two 'fingerprint of every svg/json/webp' lines in their Pictures job logs (gh run view --job <id> --log | grep fingerprint). Equal: the drawings are deterministic; delete branch archive-272b, add neither run. Not equal: download both 'pictures' artifacts into ~/du-shots/det-a, det-b and cmp the SVGs. Do NOT add these runs to the archive (same game as run-2026-10-18)."
-  },
-  {
-   "id": 273,
-   "area": "dress up, reports, archives",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T09:16-06:00",
-   "status": "open",
-   "tags": [],
-   "log": [],
-   "source": "Matthew, 2026-10-18 morning, in chat: \"let's draft report 4 for dress-up based on this repo migration task\"",
-   "url": "",
-   "text": "<b>Draft ^du_report(4): the archives' migration.</b> Sizes: the PNGs per run before against none now; the WebP thumbnails before and now; the repo before and after. Before-and-after pictures of the places where 0.0.198 left out hidden drawings (they should look the same; SVG sizes and object counts differ). What in a drawing is not set by its settings JSON (clock phases, random choices, the saved time), with ^ticket(274) and ^ticket(275). Drafted locally, previewed on 8133, published only on his word.",
-   "progress": ""
-  },
-  {
    "id": 274,
    "area": "dress up, save files",
    "added": "2026-10-18",
    "opened": "2026-10-18T09:16-06:00",
    "status": "open",
    "tags": [],
-   "log": [],
+   "log": [
+    {
+     "at": "2026-10-18T09:14-06:00",
+     "from": "matthew",
+     "chars": 1211,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T09:30-06:00",
+     "from": "matthew",
+     "chars": 179,
+     "asks": true
+    }
+   ],
    "progress": "",
-   "source": "Matthew, 2026-10-18, in chat, from ^ticket(272)'s findings: \"the .json file should be self-determined, in the sense that it fully determines the .svg output, and we get the one every time. So random seeds need to be in there too\"",
-   "url": "",
-   "text": "<b>Dress Up: a save file that fully determines its picture.</b> Today the SVG also depends on things outside the JSON: animation phases from the page's clocks (fairyPhase in 08-body.js, from performance.now; lfoBegin, from the picture's SVG clock and the music's), and Math.random (a figure's clip-path id, 18-drawing.js:900; bubble space's bubbles, 14-outdoors.js:826). The archive holds the clocks at 0 and seeds Math.random itself (dress-up-pictures a73a50a); the game's own save should carry what it needs instead: random seeds, a time origin for the phases. Done when loading a save draws the same SVG every time."
+   "source": "Matthew, 2026-10-18, in chat, from ^ticket(272)'s findings: \"the .json file should be self-determined, in the sense that it fully determines the .svg output, and we get the one every time. So random seeds need to be in there too\"; ^du_report(4), What next, step 1",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/004/#step-1",
+   "text": "<b>Dress Up: a save file that fully determines its picture.</b> Today the SVG also depends on things outside the JSON: animation phases from the page's clocks (fairyPhase in 08-body.js, from performance.now; lfoBegin, from the picture's SVG clock and the music's), and Math.random (a figure's clip-path id, 18-drawing.js:900; bubble space's bubbles, 14-outdoors.js:826). The archive holds the clocks at 0 and seeds Math.random itself (dress-up-pictures a73a50a); the game's own save should carry what it needs instead: random seeds, a time origin for the phases. And a simulation: bubble space's bubbles move every frame (bubbleTick, 14-outdoors.js, timed by requestAnimationFrame), so their places are in no settings at all: the save needs their state, or a rule drawing them from the seed and the time. Done when loading a save draws the same SVG every time."
   },
   {
    "id": 275,
@@ -631,17 +608,188 @@
    "opened": "2026-10-18T09:16-06:00",
    "status": "open",
    "tags": [],
-   "log": [],
+   "log": [
+    {
+     "at": "2026-10-18T09:14-06:00",
+     "from": "matthew",
+     "chars": 1211,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T09:30-06:00",
+     "from": "matthew",
+     "chars": 179,
+     "asks": true
+    }
+   ],
    "progress": "",
-   "source": "Matthew, 2026-10-18, in chat (with ^ticket(274))",
-   "url": "",
+   "source": "Matthew, 2026-10-18, in chat (with ^ticket(274)); ^du_report(4), What next, step 2",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/004/#step-2",
    "text": "<b>Dress Up: a \"full snapshot\" file beside the picture file.</b> The picture file (what the archive keeps) holds only what determines the SVG, so an unchanged picture keeps its bytes. The full snapshot is a superset: the same, plus extra fields that (1) do not determine the SVG and (2) are there for the person who made the file, not for drawing it again, such as the date and time it was saved (today's \"saved\", which Load ignores and the archive now leaves out). Mark them as extra in the format itself, so a tool can drop them without knowing their names. Check what else is extra: Load keeps the player's music volume and mute, not the file's."
+  },
+  {
+   "id": 276,
+   "area": "dress up, archives",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T09:30-06:00",
+   "status": "open",
+   "tags": [],
+   "progress": "",
+   "log": [
+    {
+     "at": "2026-10-18T09:30-06:00",
+     "from": "matthew",
+     "chars": 179,
+     "asks": true
+    }
+   ],
+   "source": "^du_report(4), What next, step 3 (Matthew, 2026-10-18 09:30: \"all four next steps look good -- let's enqueue them in that order\")",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/004/#step-3",
+   "text": "<b>Archive runs without the laptop:</b> the archive workflow commits and tags its run itself, with a token that can write to the two archives (dress-up-pictures, dress-up-music); the laptop's step (a 140 MB download, tools/add_run.sh) goes away. Making the token is Matthew's."
+  },
+  {
+   "id": 277,
+   "area": "dress up, archives",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T09:30-06:00",
+   "status": "open",
+   "tags": [],
+   "progress": "",
+   "log": [
+    {
+     "at": "2026-10-18T09:30-06:00",
+     "from": "matthew",
+     "chars": 179,
+     "asks": true
+    }
+   ],
+   "source": "^du_report(4), What next, step 4 (Matthew, 2026-10-18 09:30)",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/004/#step-4",
+   "text": "<b>Watch the archives' size:</b> each run's entry in runs.json says what it added to git, and the front page a running total, so the archive's growth is read, not guessed."
   }
  ],
- "next_ticket": 276,
- "current_ticket": 273,
- "current_note": "09:24: Drafted ^du_report(4), One folder, every run: local, uncommitted, previewing at localhost:8133/du-reports/004/ (sizes before and after, before-and-after pictures with live difference pictures, what the JSON does not decide, steps for ^ticket(274) and ^ticket(275)). One paragraph waits on the determinism re-runs on GitHub (due ~09:27); then it waits on Matthew to read before any push.",
+ "next_ticket": 278,
+ "current_ticket": 274,
+ "current_note": "09:32: Starting: a save file that fully draws its picture. First, map every place the drawing reads the page's clocks, Math.random or a frame's time, then put a seed and a time origin in the state.",
  "closed_tickets": [
+  {
+   "id": 272,
+   "area": "dress up, archives",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T08:10-06:00",
+   "source": "Matthew, 2026-10-18 08:10, in chat (the picture archive past Pages' 1 GB)",
+   "url": "https://github.com/matthewhammer/dress-up-pictures",
+   "text": "<b>Dress Up archives redesigned: one folder, each run a git tag, no PNG.</b> The old dress-up-pictures (a folder per day, PNGs, 1.1 GB) is kept as it was as dress-up-pictures-2026-10-18. The new dress-up-pictures keeps pictures/ (SVG, settings JSON, WebP thumbnail), rewritten by each run; its five runs replayed from the old one's commits (24 MiB). The music archive: one copy of each tune in music/, each run a tag. Viewer and player read runs.json and the tags. Still to do: the workflow that makes runs in the new layout (Chrome makes the thumbnails), and a music run with the 🔥 turtle super-dub step.",
+   "status": "done",
+   "tags": [],
+   "log": [
+    {
+     "at": "2026-10-18T08:10-06:00",
+     "from": "matthew",
+     "chars": 1197,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T08:19-06:00",
+     "from": "matthew",
+     "chars": 233,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T08:45-06:00",
+     "from": "claude",
+     "chars": 2412,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T08:58-06:00",
+     "from": "claude",
+     "chars": 1677,
+     "asks": false
+    }
+   ],
+   "progress": "Timeline: 08:10 asked (Matthew); 08:11 the laptop crashed 30 s in (crash 37, near idle); 08:29 new dress-up-pictures built locally: 5 old runs replayed, 24 MiB packed (old repo 1.1 GB); 08:31 old repo renamed dress-up-pictures-2026-10-18; new one created, pushed, Pages on; 08:36 viewer + music player read runs.json and tags (homepage 7302f18, f382598); 08:44 music: one copy per tune (e963885); run-2026-10-18 adds superdub, the fire-emoji turtle super-dub step; 08:47 old repo archived read-only on GitHub; 08:55 pictures run-2026-10-18 added (0.0.201): 7.6 MiB, ~7 of it the one-time Chrome thumbnails; 08:58 clocks held at 0 in archive.mjs (5d19609); two same-commit runs still differed in 15 of 525 SVGs (Math.random); 09:12 seeded Math.random (a73a50a); both runs re-running on GitHub. Determinism (09:28): with the clocks held and Math.random seeded (a73a50a), two runs of one game commit match in every drawing but bubble space (6 SVGs, 6 thumbnails): a simulation moved every frame by requestAnimationFrame's time; carried into ^ticket(274). Test branch archive-272b deleted.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T09:32-06:00",
+   "outcome": "Both archives moved (Matthew's design): the old dress-up-pictures kept read-only as dress-up-pictures-2026-10-18; the new dress-up-pictures keeps pictures/ (SVG, settings, WebP; no PNG), every run a tag, its five runs replayed (24 MiB against 1.1 GB) plus run-2026-10-18 (0.0.201); dress-up-music keeps one copy per tune, run-2026-10-18 adds the fire-emoji turtle super-dub step; viewer and player read runs.json and tags (homepage 7302f18, f382598); runs made on GitHub (kids-choice-games branch archive-272), added with tools/add_run.sh; archive.mjs holds the clocks and seeds Math.random (a73a50a), so two runs of one game commit match but for bubble space (now in ^ticket(274)). Written up as ^du_report(4).",
+   "metrics": {
+    "open_minutes": 82,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 5519,
+    "tokens_est": 1379,
+    "sync_minutes_est": 9.0
+   },
+   "outcome_url": "https://github.com/matthewhammer/dress-up-pictures"
+  },
+  {
+   "id": 273,
+   "area": "dress up, reports, archives",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T09:16-06:00",
+   "status": "done",
+   "tags": [],
+   "log": [
+    {
+     "at": "2026-10-18T09:14-06:00",
+     "from": "matthew",
+     "chars": 1211,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T09:15-06:00",
+     "from": "matthew",
+     "chars": 278,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T09:15-06:00",
+     "from": "matthew",
+     "chars": 51,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T09:15-06:00",
+     "from": "matthew",
+     "chars": 22,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T09:23-06:00",
+     "from": "matthew",
+     "chars": 63,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T09:25-06:00",
+     "from": "claude",
+     "chars": 2444,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T09:30-06:00",
+     "from": "matthew",
+     "chars": 179,
+     "asks": true
+    }
+   ],
+   "source": "Matthew, 2026-10-18 morning, in chat: \"let's draft report 4 for dress-up based on this repo migration task\"",
+   "url": "",
+   "text": "<b>Draft ^du_report(4): the archives' migration.</b> Sizes: the PNGs per run before against none now; the WebP thumbnails before and now; the repo before and after. Before-and-after pictures of the places where 0.0.198 left out hidden drawings (they should look the same; SVG sizes and object counts differ). What in a drawing is not set by its settings JSON (clock phases, random choices, the saved time), with ^ticket(274) and ^ticket(275). Drafted locally, previewed on 8133, published only on his word.",
+   "progress": "",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T09:32-06:00",
+   "outcome": "^du_report(4), One folder, every run, published (kids-choice-games e09fd18): the PNGs per run before (185 to 397 MB) against none; thumbnails 7.3 -> 7.4 MB; git 768 -> 24 MiB for the same five runs; before-and-after pictures of 0.0.198's hidden drawings with live difference pictures (waterfall 183 -> 116 KB, 0.54% of pixels differ); what the settings file does not decide. Its four steps are ^ticket(274) to ^ticket(277).",
+   "metrics": {
+    "open_minutes": 16,
+    "matthew_messages": 6,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 4248,
+    "tokens_est": 1062,
+    "sync_minutes_est": 16.0
+   },
+   "outcome_url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/004/"
+  },
   {
    "id": 184,
    "area": "dress up, releases, CI, performance",
@@ -7902,19 +8050,19 @@
   }
  ],
  "queue": [
-  273,
-  272,
+  274,
+  275,
+  276,
+  277,
   222,
+  225,
   160,
   18,
   102,
   54,
   19,
   166,
-  259,
-  225,
-  274,
-  275
+  259
  ],
  "current_since": "2026-10-18T09:16-06:00"
 }
