@@ -930,40 +930,6 @@
    "text": "<b>Dress Up: walking to a click, a new click queues or replaces the plan, the player's choice.</b> He really likes the multi-path planning walk-to-click supports now, but that is more for a designer; in play it is often expected, and more useful, to cancel the current plan and replace it with the one for the next click. In 🎮 Controls, let the player choose which they prefer, and repeat that same choice under ♿ Accessibility, reusing the code."
   },
   {
-   "id": 295,
-   "area": "dress up, reports",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T11:50-06:00",
-   "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "progress": "Notes for starting (11:50, from memory, to be checked against sources while writing): Sierra's engines went from AGI (about 1984-89, 16 colours, pictures drawn as vector commands) to SCI0 (1988) and SCI1 (about 1990, 256-colour VGA, painted and scanned art), with their in-house picture, view and room tools; LucasArts' SCUMM (Maniac Mansion, 1987, to the VGA games of the early 1990s) with its own room, object and walk-box tools. \"Hugo\" is most likely Hugo's House of Horrors and its sequels (Gray Design Associates, early 1990s, shareware); Hugo is also the name of a later text-adventure language (1995): ask Matthew which, if unsure. Footnote candidates: Revolution's Virtual Theatre, Coktel Vision's Gob engine, Westwood's Kyrandia engine, Adventure Soft's AGOS, and, later, Adventure Game Studio (1997). IMAGES: these games' screenshots and tools are copyrighted; link to them (the games' pages on sites that host them) rather than copying them into the report, unless a picture is under a license that allows it. The report goes up only after Matthew has read it (dress-up/reports, ^du_report series rules). 15:37: started: research done (Sierra AGI/SCI priority and control screens, SCUMM's FLEM/MMUCUS/BYLE and SCUMM University, iMUSE, King's Quest V's VGA and floppies, Hugo's House of Horrors); outline made (then-and-now table, what is new now, Hugo, What next). PARKED for ^ticket(328) (Matthew's animation-speed ask). Nothing drafted yet. 15:44: DRAFTED ^du_report(6), \"Then and now\", NOT committed or pushed (series rule): kids-choice-games/dress-up/reports/006/ (index.html built by drivers/build.py from data/report.json; pictures: the trap room and its collision boxes from the archive's 2026-10-18 09:49 run; Figure 2 a layers diagram drawn for it; card added to reports/index.html locally). Local preview: http://localhost:8133/du-reports/006/ . Sections: the same layers (priority/control vs depth/collision), the engines and their editors (AGI, SCI0/SCI1, SCUMM, Hugo; footnotes unverified), the same problems then and now (11 rows, 9 back again), what is new now, Hugo and 'on par', What next (7 steps), what the sources did not say, method and 17 sources. WAITING ON MATTHEW: read it, then his word to publish (commit + push).",
-   "log": [
-    {
-     "at": "2026-10-18T11:50-06:00",
-     "from": "matthew",
-     "chars": 795,
-     "asks": true
-    },
-    {
-     "at": "2026-10-18T14:33-06:00",
-     "from": "matthew",
-     "chars": 200,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T15:30-06:00",
-     "from": "matthew",
-     "chars": 90,
-     "asks": false
-    }
-   ],
-   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue -- du_report\")",
-   "url": "",
-   "text": "<b>A Dress Up report: Messed Up Dress Up beside the adventure-game editors of the late 1980s and early 1990s.</b> Compare and contrast, with images (or links to images where we may not copy them): Sierra On-Line's adventure-game editors over time, in the 1980s and early 1990s, before full 3D while still pseudo-3D, especially on VGA with 256 colours and grainy graphics; SCUMM and LucasArts, the same era and style of technology with their own flavour; and Messed Up Dress Up today, and in its near and medium-term future, if we keep going into this adventure-game tool system and the adventure-game experience of that era. Footnotes on other engines of the era are welcome. He recalls playing \"Hugo\" in the mid 1990s: compare to that too; \"it feels like we are on par with that game play experience already\". Then (Matthew, 14:33): \"Let's also look into the design process, and dev process of those engines -- what challenges did they have at the time? Do we have analogues of them now? Or are our challenges distinct for this time? Compare and contrast.\""
-  },
-  {
    "id": 297,
    "area": "dress up, depth",
    "added": "2026-10-18",
@@ -1399,9 +1365,15 @@
      "from": "matthew",
      "chars": 14,
      "asks": false
+    },
+    {
+     "at": "2026-10-18T15:51-06:00",
+     "from": "matthew",
+     "chars": 95,
+     "asks": false
     }
    ],
-   "progress": "15:08: RELEASED 0.0.228 (b7f83cc, live 15:08:25), NOT proven to fix it: not reproduced here. In the app's hidden browser pane on 8133, a MutationObserver on the lid saw the whole swing (13-14 steps) on each of four pulls in a row, for the trap room's pits and for a placed lever and trap door, with and without 🔬 Inspection's overlays (all arrows, path, made of); the lid was never replaced mid-swing; a click on a room lever goes through the same roomLeverPull and starts no walk (walkableAt refuses the wall). Fix made on the likeliest cause that fits 'first time only' on Firefox: lidSwing and turnArm took t0 at the pull, before the redraw; the trap room since 0.0.226 has 271 moss shapes; a slow repaint could use up the 520 ms before the first frame. Both now start their clocks at their first frame. WAITING ON MATTHEW: does the swing play every time on 0.0.228? If not: which lever, where the friend stands, Firefox or not. 15:15: Matthew: \"I'm using 228 and I see no animations of the pits at all, or the levers.\" (worse than 0.0.227's first-time-only). Investigating. 15:2x: a real-click check (tools/checks/lidswing322.mjs: music on, #inspect overlays, real mouse clicks, every frame's lid fold and the room's rebuilds) is running on GitHub, branch lid-322 (only that check). Meanwhile ^ticket(324). 15:26: GitHub's Chrome (run 39167354761, branch lid-322, tools/checks/lidswing322.mjs): real mouse clicks, music playing, #inspect overlays, 0.0.228: all four pulls swing in full (the lid mid-swing on 26 frames each, the handle on 33), one rebuild of the room per pull. So the swing works in Chrome. Likeliest Firefox cause (ff198.py's finding: Firefox's music clock can stand still): picGapNow re-measures the gap every 0.25 s of drift, the scene's LFO begins change, the room is rebuilt, and the swinging lid and handle are replaced by their end state. Fix: each swing finds its lid and handle again by selector every frame, so a rebuild mid-swing carries on in the new drawing. 15:30: RELEASED 0.0.230 (0c08619): swingOn re-finds the lid and handle by selector every frame; mountScene redraws a swing in progress in the room it just built. Checked in the app's pane: two forced rebuilds mid-swing, no end-state frame. Matthew asked 'did you fix it? put 323 ahead if so, and close 322': not closed, as not confirmed on his Firefox; PARKED, waiting on Matthew to try 0.0.230 (blocked on Matthew). ^ticket(323) taken next, as he asked."
+   "progress": "15:08: RELEASED 0.0.228 (b7f83cc, live 15:08:25), NOT proven to fix it: not reproduced here. In the app's hidden browser pane on 8133, a MutationObserver on the lid saw the whole swing (13-14 steps) on each of four pulls in a row, for the trap room's pits and for a placed lever and trap door, with and without 🔬 Inspection's overlays (all arrows, path, made of); the lid was never replaced mid-swing; a click on a room lever goes through the same roomLeverPull and starts no walk (walkableAt refuses the wall). Fix made on the likeliest cause that fits 'first time only' on Firefox: lidSwing and turnArm took t0 at the pull, before the redraw; the trap room since 0.0.226 has 271 moss shapes; a slow repaint could use up the 520 ms before the first frame. Both now start their clocks at their first frame. WAITING ON MATTHEW: does the swing play every time on 0.0.228? If not: which lever, where the friend stands, Firefox or not. 15:15: Matthew: \"I'm using 228 and I see no animations of the pits at all, or the levers.\" (worse than 0.0.227's first-time-only). Investigating. 15:2x: a real-click check (tools/checks/lidswing322.mjs: music on, #inspect overlays, real mouse clicks, every frame's lid fold and the room's rebuilds) is running on GitHub, branch lid-322 (only that check). Meanwhile ^ticket(324). 15:26: GitHub's Chrome (run 39167354761, branch lid-322, tools/checks/lidswing322.mjs): real mouse clicks, music playing, #inspect overlays, 0.0.228: all four pulls swing in full (the lid mid-swing on 26 frames each, the handle on 33), one rebuild of the room per pull. So the swing works in Chrome. Likeliest Firefox cause (ff198.py's finding: Firefox's music clock can stand still): picGapNow re-measures the gap every 0.25 s of drift, the scene's LFO begins change, the room is rebuilt, and the swinging lid and handle are replaced by their end state. Fix: each swing finds its lid and handle again by selector every frame, so a rebuild mid-swing carries on in the new drawing. 15:30: RELEASED 0.0.230 (0c08619): swingOn re-finds the lid and handle by selector every frame; mountScene redraws a swing in progress in the room it just built. Checked in the app's pane: two forced rebuilds mid-swing, no end-state frame. Matthew asked 'did you fix it? put 323 ahead if so, and close 322': not closed, as not confirmed on his Firefox; PARKED, waiting on Matthew to try 0.0.230 (blocked on Matthew). ^ticket(323) taken next, as he asked. 15:51: Matthew on 0.0.232: \"i turned down the speed and they still seem immediate to me, on my reliable computer.\" GitHub's headless Firefox 157 (run 39169277890, branch lid-322ff, tools/checks/lidff322.py): the page moves the boulder, handle and lid frame by frame (232 / 211 / 159 mid frames at speed 25), and the SCREENSHOTS show the boulder falling (top at 1.5 s, mid-wall at 3 s, in the pit at 4.5 s): ~/du-shots/ticket-322-firefox-boulder-fall.png. So Firefox paints it; something on his laptop differs (real GPU/WebRender, his saved state, the hover glow's filter on the lever under the pointer, how he pulls). Asked him."
   },
   {
    "id": 325,
@@ -1520,6 +1492,55 @@
  "current_ticket": 290,
  "current_note": "15:44: N's bubbles: reading the ticket",
  "closed_tickets": [
+  {
+   "id": 295,
+   "area": "dress up, reports",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T11:50-06:00",
+   "status": "done",
+   "tags": [],
+   "progress": "Notes for starting (11:50, from memory, to be checked against sources while writing): Sierra's engines went from AGI (about 1984-89, 16 colours, pictures drawn as vector commands) to SCI0 (1988) and SCI1 (about 1990, 256-colour VGA, painted and scanned art), with their in-house picture, view and room tools; LucasArts' SCUMM (Maniac Mansion, 1987, to the VGA games of the early 1990s) with its own room, object and walk-box tools. \"Hugo\" is most likely Hugo's House of Horrors and its sequels (Gray Design Associates, early 1990s, shareware); Hugo is also the name of a later text-adventure language (1995): ask Matthew which, if unsure. Footnote candidates: Revolution's Virtual Theatre, Coktel Vision's Gob engine, Westwood's Kyrandia engine, Adventure Soft's AGOS, and, later, Adventure Game Studio (1997). IMAGES: these games' screenshots and tools are copyrighted; link to them (the games' pages on sites that host them) rather than copying them into the report, unless a picture is under a license that allows it. The report goes up only after Matthew has read it (dress-up/reports, ^du_report series rules). 15:37: started: research done (Sierra AGI/SCI priority and control screens, SCUMM's FLEM/MMUCUS/BYLE and SCUMM University, iMUSE, King's Quest V's VGA and floppies, Hugo's House of Horrors); outline made (then-and-now table, what is new now, Hugo, What next). PARKED for ^ticket(328) (Matthew's animation-speed ask). Nothing drafted yet. 15:44: DRAFTED ^du_report(6), \"Then and now\", NOT committed or pushed (series rule): kids-choice-games/dress-up/reports/006/ (index.html built by drivers/build.py from data/report.json; pictures: the trap room and its collision boxes from the archive's 2026-10-18 09:49 run; Figure 2 a layers diagram drawn for it; card added to reports/index.html locally). Local preview: http://localhost:8133/du-reports/006/ . Sections: the same layers (priority/control vs depth/collision), the engines and their editors (AGI, SCI0/SCI1, SCUMM, Hugo; footnotes unverified), the same problems then and now (11 rows, 9 back again), what is new now, Hugo and 'on par', What next (7 steps), what the sources did not say, method and 17 sources. WAITING ON MATTHEW: read it, then his word to publish (commit + push).",
+   "log": [
+    {
+     "at": "2026-10-18T11:50-06:00",
+     "from": "matthew",
+     "chars": 795,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T14:33-06:00",
+     "from": "matthew",
+     "chars": 200,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T15:30-06:00",
+     "from": "matthew",
+     "chars": 90,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T15:51-06:00",
+     "from": "matthew",
+     "chars": 330,
+     "asks": false
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue -- du_report\")",
+   "url": "",
+   "text": "<b>A Dress Up report: Messed Up Dress Up beside the adventure-game editors of the late 1980s and early 1990s.</b> Compare and contrast, with images (or links to images where we may not copy them): Sierra On-Line's adventure-game editors over time, in the 1980s and early 1990s, before full 3D while still pseudo-3D, especially on VGA with 256 colours and grainy graphics; SCUMM and LucasArts, the same era and style of technology with their own flavour; and Messed Up Dress Up today, and in its near and medium-term future, if we keep going into this adventure-game tool system and the adventure-game experience of that era. Footnotes on other engines of the era are welcome. He recalls playing \"Hugo\" in the mid 1990s: compare to that too; \"it feels like we are on par with that game play experience already\". Then (Matthew, 14:33): \"Let's also look into the design process, and dev process of those engines -- what challenges did they have at the time? Do we have analogues of them now? Or are our challenges distinct for this time? Compare and contrast.\"",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T15:51-06:00",
+   "outcome": "Published as ^du_report(6), \"Then and now\" (kids-choice-games c39c89d, on Matthew's word: \"new report looks good -- publish\"), with his editor's note: \"I appreciate getting reminded that we don't have all of the ingredients of a game, or even a game maker, yet. We need more ability to script events, add special items with special events attached, and write a story that the NP[C]s help create -- they are still just standins for that.\" Sierra's AGI and SCI, LucasArts' SCUMM, the Hugo games beside Dress Up: the same layers behind a picture, eleven problems of making them (nine back again), what is new now, Hugo and 'on par', seven steps next.",
+   "metrics": {
+    "open_minutes": 242,
+    "matthew_messages": 4,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1415,
+    "tokens_est": 353,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 328,
    "area": "dress up, levers, boulders and the trap room",
@@ -9701,8 +9722,7 @@
   259,
   285,
   315,
-  322,
-  295
+  322
  ],
  "current_since": "2026-10-18T15:44-06:00"
 }
