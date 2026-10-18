@@ -533,28 +533,6 @@
    "progress": "11:00: minted from ^du_report(3)'s step 3, on publishing it; queued."
   },
   {
-   "id": 209,
-   "area": "dress up, performance, releases",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T12:58-06:00",
-   "source": "0.0.130's speed run, read after release (^ticket(184): a slow result gets a ticket)",
-   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39056565230",
-   "text": "<b>Dress Up 0.0.130: its own fumes check failed in the speed run, 15 cauldrons about 16% slower than 0.0.129.</b> fumes205 (from ^ticket(205)), 15 cauldrons with simple fumes taking turns, on GitHub's Chrome: 0.0.129's 58, 57.1, 48.2, 52.7 fps (median 54.9; 225 moving parts), 0.0.130's 52, 49.8, 42.8, 41.4 (median 46.3; 255 moving parts); its bar is 10% fewer at most. ^ticket(205)'s own same-runner A/B measured 7% fewer (42.5 to 39.4). One run of four samples each, on a shared runner, so the size is not settled. The frame-rate gate itself passed; speed.json marks 0.0.130 broken by the checks (this and the tree house layering check fixed under ^ticket(207)). Next: the same-runner A/B a few times over to see whether the drop is real; if it is, make the band cheaper (fewer moving parts) before more cauldron work.",
-   "tags": [
-    "long run"
-   ],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T13:41-06:00",
-     "from": "matthew",
-     "chars": 20,
-     "asks": true
-    }
-   ],
-   "progress": "13:41: PARKED, moved to the end of the active queue (Matthew: \"put 209 and 184 last\"). Where it stands: fumes205 is itself a same-page A/B (0.0.129's fume code inside it, taking turns with the current); readings -7% (^ticket(205)'s branch run) and -16% (0.0.130's speed run, run 39056565230). Next: read 0.0.131's speed run (39061694679, the same fumes code) as a third reading; if the drop holds past the 10% bar, make the band cheaper (fewer moving parts: 255 against 0.0.129's 225 at 15 cauldrons). | 13:54: third reading, 0.0.131's speed run (39061694679): 0.0.129's fumes 46.1 fps, the current 43.3 (-6%; passes the 10% bar). So -7%, -16%, -6%: the -16% looks like a noisy run, the drop about 6-7%, as ^ticket(205) measured. Next, when it comes up: decide whether 6-7% at 15 cauldrons is worth a cheaper band, or close it as within the bar."
-  },
-  {
    "id": 212,
    "area": "dress up, places, open water",
    "added": "2026-10-17",
@@ -621,7 +599,8 @@
     "long run"
    ],
    "status": "open",
-   "log": []
+   "log": [],
+   "progress": " | 23:20 (overnight long runs): the full run with the gate's fixed drag press (checks-lr-full, 39096563486, at 0.0.196): the slow tier still reads 💭 our imagination walk 53.7, drag 53.3 (and 54.2 in the controller audit) and 🌲 forest 51.3, all else a pass; the same pattern as 0.0.131's and 0.0.189's runs, so a standing cost on GitHub's slow tier, not one release's. 0.0.198 draws 25 fewer elements in the forest (ticket 261); the next speed run will say if that helps. Next: profile the imagination at the slow tier (its pictures within pictures)."
   },
   {
    "id": 225,
@@ -667,6 +646,40 @@
  "current_ticket": 198,
  "current_note": "23:04: Overnight long runs: 0.0.198 (261, hidden drawings culled) live; 262's archive run live. On 198: every tab, even Body, costs Firefox ~10 fps, and each first click starts the music (headless Firefox's audio stays suspended); confirming with music-only and muted cases",
  "closed_tickets": [
+  {
+   "id": 209,
+   "area": "dress up, performance, releases",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T12:58-06:00",
+   "source": "0.0.130's speed run, read after release (^ticket(184): a slow result gets a ticket)",
+   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39056565230",
+   "text": "<b>Dress Up 0.0.130: its own fumes check failed in the speed run, 15 cauldrons about 16% slower than 0.0.129.</b> fumes205 (from ^ticket(205)), 15 cauldrons with simple fumes taking turns, on GitHub's Chrome: 0.0.129's 58, 57.1, 48.2, 52.7 fps (median 54.9; 225 moving parts), 0.0.130's 52, 49.8, 42.8, 41.4 (median 46.3; 255 moving parts); its bar is 10% fewer at most. ^ticket(205)'s own same-runner A/B measured 7% fewer (42.5 to 39.4). One run of four samples each, on a shared runner, so the size is not settled. The frame-rate gate itself passed; speed.json marks 0.0.130 broken by the checks (this and the tree house layering check fixed under ^ticket(207)). Next: the same-runner A/B a few times over to see whether the drop is real; if it is, make the band cheaper (fewer moving parts) before more cauldron work.",
+   "tags": [
+    "long run"
+   ],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T13:41-06:00",
+     "from": "matthew",
+     "chars": 20,
+     "asks": true
+    }
+   ],
+   "progress": "13:41: PARKED, moved to the end of the active queue (Matthew: \"put 209 and 184 last\"). Where it stands: fumes205 is itself a same-page A/B (0.0.129's fume code inside it, taking turns with the current); readings -7% (^ticket(205)'s branch run) and -16% (0.0.130's speed run, run 39056565230). Next: read 0.0.131's speed run (39061694679, the same fumes code) as a third reading; if the drop holds past the 10% bar, make the band cheaper (fewer moving parts: 255 against 0.0.129's 225 at 15 cauldrons). | 13:54: third reading, 0.0.131's speed run (39061694679): 0.0.129's fumes 46.1 fps, the current 43.3 (-6%; passes the 10% bar). So -7%, -16%, -6%: the -16% looks like a noisy run, the drop about 6-7%, as ^ticket(205) measured. Next, when it comes up: decide whether 6-7% at 15 cauldrons is worth a cheaper band, or close it as within the bar.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T23:08-06:00",
+   "outcome": "Measured, five same-page A/B readings of the fumes (0.0.129's code against the current, taking turns): -15%, -8.8%, -4.6%, -4.4%, -6.6% (median -6.6%; only the first, a noisy run, over the 10% bar). No return to the old 16%: a small real cost, ~5-9%, from 30 more moving parts (255 against 225 at 15 cauldrons). The speed runs' failures it was parked with were other things, all fixed: the pitsHere load-order error (0.0.196), the bubble pop check, and the gate's duck pond drag pressing a treading hand (fpsgate.mjs fixed on main, d52769a; the drag now 60 fps, a pass). If wanted: a cheaper band (fewer moving parts) as its own ticket.",
+   "metrics": {
+    "open_minutes": 611,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 20,
+    "tokens_est": 5,
+    "sync_minutes_est": 0,
+    "work_minutes": 45.0
+   }
+  },
   {
    "id": 265,
    "area": "dress up, docs, objects, archive",
@@ -7791,7 +7804,6 @@
  ],
  "queue": [
   198,
-  209,
   184,
   222,
   236,
