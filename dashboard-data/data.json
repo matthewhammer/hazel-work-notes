@@ -625,7 +625,7 @@
    "opened": "2026-10-18T10:50-06:00",
    "status": "open",
    "tags": [],
-   "progress": "",
+   "progress": "Parked 11:06 for ^ticket(291) (Matthew's link nit). FOUND: OBJECTS.md (0.0.198, no hut places) lists 475 objects of 245 kinds in 44 places; about 30 kinds are placeable already (rocks, trees, pines, bushes, toadstools, logs, campfire, barrels, cauldron, skeletons, chests, fish, kelp), about 40 are ways, doors, ladders, hatches and lights (dark, mist, sunbeams), about 170 cannot be placed. Every object is its own <g data-obj data-z> in its place's drawing (obj(), js/09-backgrounds.js 50). DESIGN, not built: a general placeable \"from a place\" thing: build the source place with its defaults the way pictureSvg does (js/11-houses-and-huts.js 78: backgroundSvg + unmarked + prefixIds, DOMParser), take the object's group and the defs it uses, and draw it through thingSvg/thingsLayer (js/14-outdoors.js 1263) at the new x and depth, scaled by depthSize(here)/depthSize(there); the add menu as place, then its objects (not 170 kinds in one list). Then proper kinds for the ones that matter, the switch first: a placeable lever (the trap room's, js/13-castle-rooms-and-map.js 186) that animates, and a placeable trap door (the tree rooms' holes, data-hole, js/16-objects-and-solids.js 259), wired in the world designer. A read-only survey of what is drawn into each place but is not an object was started at 11:06 (a background agent of this session).",
    "log": [
     {
      "at": "2026-10-18T10:50-06:00",
