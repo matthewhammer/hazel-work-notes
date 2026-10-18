@@ -663,18 +663,6 @@
    "text": "<b>Dress Up: a component designer, along the lines of the world designer, for the objects baked into each place: adjust each one's default position and every setting of how it is drawn that its place in the scene doesn't fix (scale, layering, and so on).</b> Matthew: \"we want to think about a feature built on this -- for adjusting the default position and settings of each of those objects, including every rendering param that isn't fixed by its position alone in the scene (for scale, or layering, etc).\" \"that would be another feature along the lines of the existing world designer interface, but geared towards designing re-usable components -- let's mint a ticket and put 'blocked on matthew' on it.\" Builds on ^ticket(258) (♿ 🧩: each place's objects boxed and named, its plants by the procedure that drew them). Blocked on Matthew: his design of it first."
   },
   {
-   "id": 261,
-   "area": "dress up, performance, scenes, audit",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T20:24-06:00",
-   "source": "Matthew, 2026-10-17, in chat (with a picture of ♿ 🧩 at the tree house: daisies and tulips boxed behind the great tree's trunk)",
-   "url": "",
-   "tags": [
-    "long run"
-   ],
-   "text": "<b>Dress Up: an audit of things drawn where nothing of them is seen: each place's drawings more than 75% hidden by what is drawn over them, dropped from the scene.</b> Matthew: \"looks like we are wasting time drawing flowers behind the tree house tree? Can we do an audit, long run tagged ticket, minted now: check to see if we are drawing totally occluded objects -- remove them from the scene if they are more than 75% occluded (rough approx is fine).\" To do: for every place at its defaults (and the busier settings), each drawing ^ticket(258) boxes (the plants by procedure, and the objects) measured for how much of it is covered by what is drawn after it (rough: sample points in its box, elementsFromPoint, or a coverage mask); a report of the ones more than 75% hidden; then the scenes' code changed so those are not drawn (the tree house's flowers placed off the trunk, for one); every picture checked against main after."
-  },
-  {
    "id": 265,
    "area": "dress up, docs, objects, archive",
    "added": "2026-10-17",
@@ -688,9 +676,34 @@
   }
  ],
  "next_ticket": 272,
- "current_ticket": 261,
- "current_note": "22:52: Overnight long runs. 262: today's run (22-28, Mountain) made on GitHub, 804 pictures incl. the 3 ways, thumbs being made here, then pushed. 261: hidden pines/pads/flowers culled by outline (437 -> ~330 in the audit); pixel check running. 198: the TABS part alone loses Firefox's frames (57.8 -> 44.9); per-tab run going. 236: full run with overlays on going.",
+ "current_ticket": 198,
+ "current_note": "23:04: Overnight long runs: 0.0.198 (261, hidden drawings culled) live; 262's archive run live. On 198: every tab, even Body, costs Firefox ~10 fps, and each first click starts the music (headless Firefox's audio stays suspended); confirming with music-only and muted cases",
  "closed_tickets": [
+  {
+   "id": 261,
+   "area": "dress up, performance, scenes, audit",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T20:24-06:00",
+   "source": "Matthew, 2026-10-17, in chat (with a picture of ♿ 🧩 at the tree house: daisies and tulips boxed behind the great tree's trunk)",
+   "url": "",
+   "tags": [
+    "long run"
+   ],
+   "text": "<b>Dress Up: an audit of things drawn where nothing of them is seen: each place's drawings more than 75% hidden by what is drawn over them, dropped from the scene.</b> Matthew: \"looks like we are wasting time drawing flowers behind the tree house tree? Can we do an audit, long run tagged ticket, minted now: check to see if we are drawing totally occluded objects -- remove them from the scene if they are more than 75% occluded (rough approx is fine).\" To do: for every place at its defaults (and the busier settings), each drawing ^ticket(258) boxes (the plants by procedure, and the objects) measured for how much of it is covered by what is drawn after it (rough: sample points in its box, elementsFromPoint, or a coverage mask); a report of the ones more than 75% hidden; then the scenes' code changed so those are not drawn (the tree house's flowers placed off the trunk, for one); every picture checked against main after.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T23:04-06:00",
+   "outcome": "0.0.198 live: drawings more than 75% hidden left out by their outlines (seenOnly): 675 fewer drawn over the places at their defaults (waterfall 171, busiest tree house 112, clearing 103, tree house 72, castle 55), each picture changed by under 2% of its pixels (cull261.mjs, animation noise taken off). His tree house flowers behind the trunk: out (at the tree's size). First try (6x6 grid, even-odd) dropped near pines whose visible bottoms showed as gaps; fixed by the nonzero rule and per-polygon samples; the waterfall's skyline columns kept. Left: ~346 still >75% hidden on screen (objects, castle trees behind the castle, the greenhouse's ferns, the witch's tufts), budgeted in occlude261.mjs. Cost: +45 ms over all places' first builds.",
+   "metrics": {
+    "open_minutes": 160,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 120.0
+   }
+  },
   {
    "id": 262,
    "area": "dress up, archive, pictures",
@@ -7764,10 +7777,9 @@
   }
  ],
  "queue": [
-  261,
+  198,
   209,
   184,
-  198,
   222,
   236,
   265,
@@ -7780,5 +7792,5 @@
   259,
   225
  ],
- "current_since": "2026-10-17T22:52-06:00"
+ "current_since": "2026-10-17T23:04-06:00"
 }
