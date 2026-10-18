@@ -1610,9 +1610,31 @@
     }
    ],
    "progress": ""
+  },
+  {
+   "id": 335,
+   "area": "dress up, layering",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T16:28-06:00",
+   "status": "open",
+   "tags": [
+    "long run"
+   ],
+   "text": "<b>Dress Up, a long run tonight: a layering audit (the friend in front of what should cover them, and behind what they should cover), starting with the tree house.</b> Matthew, with a screenshot at the tree house, 0.0.235 locally: \"layer bug: I'm on top of the owl tree house that should be 'in front' of me. Let's audit, as a long-run tonight, to prevent this going forward.\" The case: on bridge 3-4 near house 4 (🐰, high up), the friend is drawn over house 2 (🦉, lower, so nearer: a lower house covers the one above it, as the tree draws them). On a bridge or a platform the friend is sorted \"just in front of the tree house, all of them\" (feetZ = ground + 0.5, ticket 245), so every house is behind them. PLAN: (1) the tree's houses, bridges and platforms layered among themselves by height (each its own object, or the friend inserted between the house parts), so a friend up at houses 3-4 is behind houses 1-2, and on bridge 1-2 in front of the houses above; (2) the audit: in every place, at a grid of spots and on every bridge, platform, ladder, seat and stair, the friend's depth against each object's (data-z) and against what overlaps them on the screen, listing every pair drawn in the wrong order; (3) a 🔬 check for the speed run from that list, so it stays fixed.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T16:28-06:00",
+     "from": "matthew",
+     "chars": 143,
+     "asks": false
+    }
+   ],
+   "progress": ""
   }
  ],
- "next_ticket": 335,
+ "next_ticket": 336,
  "current_ticket": 331,
  "current_note": "16:25: the tree house's outside door swinging open as the friend goes in (0.0.236), the last piece of 331",
  "closed_tickets": [
@@ -9871,6 +9893,7 @@
   312,
   326,
   333,
+  335,
   276,
   160,
   18,
