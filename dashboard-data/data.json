@@ -1065,26 +1065,6 @@
    "text": "<b>Dress Up: collision boxes that reach past what stands there, beginning with the king's chest.</b> In the king's room the treasure chest's collision box reaches too far to the left, where there are only some coins on the ground and no chest. Minor, but it hints at the need for a larger audit: every object's collision box against what really stands there."
   },
   {
-   "id": 307,
-   "area": "dress up, the trap room and placed trap doors",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T13:54-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up: pits and trap doors open and shut with an animation, closed by default, and the lever rocks.</b> Matthew: \"pit open and close work via switch -- let's animate it, like the doors opening and closing are now.\" \"let's have them closed by default now that we can open them with the switch.\" \"the switch should animate too -- rocking back and forth somehow.\"",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T13:54-06:00",
-     "from": "matthew",
-     "chars": 230,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 308,
    "area": "dress up, the friend's moves",
    "added": "2026-10-18",
@@ -1152,9 +1132,40 @@
   }
  ],
  "next_ticket": 311,
- "current_ticket": 307,
- "current_note": "13:54: the pits and trap doors: opening and shutting animated (as the doors are), shut by default, the lever rocking; reading how the doors animate first. ^ticket(285)'s proposal waits on Matthew",
+ "current_ticket": 284,
+ "current_note": "14:05: back on the re-audit after ^ticket(307) (0.0.222): the cat room and the stable next, then the houses and huts, from BAKED-IN.md",
  "closed_tickets": [
+  {
+   "id": 307,
+   "area": "dress up, the trap room and placed trap doors",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T13:54-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up: pits and trap doors open and shut with an animation, closed by default, and the lever rocks.</b> Matthew: \"pit open and close work via switch -- let's animate it, like the doors opening and closing are now.\" \"let's have them closed by default now that we can open them with the switch.\" \"the switch should animate too -- rocking back and forth somehow.\"",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T13:54-06:00",
+     "from": "matthew",
+     "chars": 230,
+     "asks": false
+    }
+   ],
+   "progress": "14:05: RELEASED 0.0.222 (b943a93, live 14:05:14): pitLidSvg (hole, lid hinged at the far edge, rim) for the trap room's pits and the trapdoor thing; lidSwing folds it down into the pit or back across (PIT_SWING 520 ms); leverDown: a lever never set is down, so pits start shut; turnArm rocks past and settles (900 ms). Checked in node (the trap room draws two lids across, no way down, both levers down) and by script/load checks; tools/checks/pitlids307.mjs runs on the tag's speed run; the four pit checks set the levers up. NOT watched on a screen here (no browser on the laptop; the app's pane was hidden). Same release: the on-screen controller shown in the full-screen Background and World designers (it was hidden by a rule meant for the music), from Matthew's report on 0.0.221.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T14:05-06:00",
+   "outcome": "Released in Dress Up 0.0.222 (b943a93, live 14:05): a pit's or trap door's lid swings down into it when its lever opens it, and back across when it shuts it; the trap room's pits start shut (a lever never set is down); a pulled lever's handle swings past and rocks back to its angle. Checked in node and by tools/checks/pitlids307.mjs on the tag's speed run; not watched on a screen here.",
+   "metrics": {
+    "open_minutes": 12,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 230,
+    "tokens_est": 57,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 306,
    "area": "dress up, places",
@@ -9106,7 +9117,6 @@
   }
  ],
  "queue": [
-  307,
   284,
   283,
   286,
@@ -9138,5 +9148,5 @@
   259,
   285
  ],
- "current_since": "2026-10-18T13:54-06:00"
+ "current_since": "2026-10-18T14:05-06:00"
 }
