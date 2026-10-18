@@ -1343,7 +1343,9 @@
    "added": "2026-10-18",
    "opened": "2026-10-18T15:02-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "text": "<b>Dress Up: a trap door's lid swings only the first time; after that it changes at once.</b> Matthew, on 0.0.226: \"the trap door animations happen the first time, and then it reverts to non animation (immediate change)\". A regression in ^ticket(307)'s lidSwing (0.0.222).",
    "source": "Matthew, 2026-10-18, in chat",
    "url": "",
@@ -1359,9 +1361,27 @@
      "from": "matthew",
      "chars": 80,
      "asks": false
+    },
+    {
+     "at": "2026-10-18T15:30-06:00",
+     "from": "matthew",
+     "chars": 60,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T15:30-06:00",
+     "from": "matthew",
+     "chars": 40,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T15:30-06:00",
+     "from": "matthew",
+     "chars": 14,
+     "asks": false
     }
    ],
-   "progress": "15:08: RELEASED 0.0.228 (b7f83cc, live 15:08:25), NOT proven to fix it: not reproduced here. In the app's hidden browser pane on 8133, a MutationObserver on the lid saw the whole swing (13-14 steps) on each of four pulls in a row, for the trap room's pits and for a placed lever and trap door, with and without 🔬 Inspection's overlays (all arrows, path, made of); the lid was never replaced mid-swing; a click on a room lever goes through the same roomLeverPull and starts no walk (walkableAt refuses the wall). Fix made on the likeliest cause that fits 'first time only' on Firefox: lidSwing and turnArm took t0 at the pull, before the redraw; the trap room since 0.0.226 has 271 moss shapes; a slow repaint could use up the 520 ms before the first frame. Both now start their clocks at their first frame. WAITING ON MATTHEW: does the swing play every time on 0.0.228? If not: which lever, where the friend stands, Firefox or not. 15:15: Matthew: \"I'm using 228 and I see no animations of the pits at all, or the levers.\" (worse than 0.0.227's first-time-only). Investigating. 15:2x: a real-click check (tools/checks/lidswing322.mjs: music on, #inspect overlays, real mouse clicks, every frame's lid fold and the room's rebuilds) is running on GitHub, branch lid-322 (only that check). Meanwhile ^ticket(324). 15:26: GitHub's Chrome (run 39167354761, branch lid-322, tools/checks/lidswing322.mjs): real mouse clicks, music playing, #inspect overlays, 0.0.228: all four pulls swing in full (the lid mid-swing on 26 frames each, the handle on 33), one rebuild of the room per pull. So the swing works in Chrome. Likeliest Firefox cause (ff198.py's finding: Firefox's music clock can stand still): picGapNow re-measures the gap every 0.25 s of drift, the scene's LFO begins change, the room is rebuilt, and the swinging lid and handle are replaced by their end state. Fix: each swing finds its lid and handle again by selector every frame, so a rebuild mid-swing carries on in the new drawing."
+   "progress": "15:08: RELEASED 0.0.228 (b7f83cc, live 15:08:25), NOT proven to fix it: not reproduced here. In the app's hidden browser pane on 8133, a MutationObserver on the lid saw the whole swing (13-14 steps) on each of four pulls in a row, for the trap room's pits and for a placed lever and trap door, with and without 🔬 Inspection's overlays (all arrows, path, made of); the lid was never replaced mid-swing; a click on a room lever goes through the same roomLeverPull and starts no walk (walkableAt refuses the wall). Fix made on the likeliest cause that fits 'first time only' on Firefox: lidSwing and turnArm took t0 at the pull, before the redraw; the trap room since 0.0.226 has 271 moss shapes; a slow repaint could use up the 520 ms before the first frame. Both now start their clocks at their first frame. WAITING ON MATTHEW: does the swing play every time on 0.0.228? If not: which lever, where the friend stands, Firefox or not. 15:15: Matthew: \"I'm using 228 and I see no animations of the pits at all, or the levers.\" (worse than 0.0.227's first-time-only). Investigating. 15:2x: a real-click check (tools/checks/lidswing322.mjs: music on, #inspect overlays, real mouse clicks, every frame's lid fold and the room's rebuilds) is running on GitHub, branch lid-322 (only that check). Meanwhile ^ticket(324). 15:26: GitHub's Chrome (run 39167354761, branch lid-322, tools/checks/lidswing322.mjs): real mouse clicks, music playing, #inspect overlays, 0.0.228: all four pulls swing in full (the lid mid-swing on 26 frames each, the handle on 33), one rebuild of the room per pull. So the swing works in Chrome. Likeliest Firefox cause (ff198.py's finding: Firefox's music clock can stand still): picGapNow re-measures the gap every 0.25 s of drift, the scene's LFO begins change, the room is rebuilt, and the swinging lid and handle are replaced by their end state. Fix: each swing finds its lid and handle again by selector every frame, so a rebuild mid-swing carries on in the new drawing. 15:30: RELEASED 0.0.230 (0c08619): swingOn re-finds the lid and handle by selector every frame; mountScene redraws a swing in progress in the room it just built. Checked in the app's pane: two forced rebuilds mid-swing, no end-state frame. Matthew asked 'did you fix it? put 323 ahead if so, and close 322': not closed, as not confirmed on his Firefox; PARKED, waiting on Matthew to try 0.0.230 (blocked on Matthew). ^ticket(323) taken next, as he asked."
   },
   {
    "id": 323,
@@ -1378,26 +1398,6 @@
      "at": "2026-10-18T15:02-06:00",
      "from": "matthew",
      "chars": 560,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
-   "id": 324,
-   "area": "dress up, levers",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T15:03-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up (high priority): a lever glows when the pointer is over it.</b> Matthew: \"levers glow when we hover over them.\" The trap room's levers and placed 🎚️ levers alike, as a passage glows when it can be taken.",
-   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue high priority\")",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T15:03-06:00",
-     "from": "matthew",
-     "chars": 75,
      "asks": false
     }
    ],
@@ -1485,9 +1485,40 @@
   }
  ],
  "next_ticket": 328,
- "current_ticket": 324,
- "current_note": "15:22: levers glow under the pointer (high priority): a warm torch-light glow, in CSS, for the trap room's levers and placed ones; ^ticket(322)'s real-click check runs on GitHub meanwhile",
+ "current_ticket": 323,
+ "current_note": "15:30: N's boulder levers (Matthew put it next): a second pair with blue knobs under the first; each lever chooses what it does (work trap doors, or drop a boulder of a chosen rock style and colour, or a surprise); knob colour a chooser",
  "closed_tickets": [
+  {
+   "id": 324,
+   "area": "dress up, levers",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T15:03-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up (high priority): a lever glows when the pointer is over it.</b> Matthew: \"levers glow when we hover over them.\" The trap room's levers and placed 🎚️ levers alike, as a passage glows when it can be taken.",
+   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue high priority\")",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T15:03-06:00",
+     "from": "matthew",
+     "chars": 75,
+     "asks": false
+    }
+   ],
+   "progress": "",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T15:30-06:00",
+   "outcome": "Released in Dress Up 0.0.229 (cbe7623, live): a lever glows warm under the pointer, as a torch's light: the trap room's levers and every placed 🎚️ lever (a CSS hover filter, costing nothing otherwise).",
+   "metrics": {
+    "open_minutes": 27,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 75,
+    "tokens_est": 18,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 319,
    "area": "dress up, lichen, and the placed things",
@@ -9538,8 +9569,7 @@
   }
  ],
  "queue": [
-  324,
-  322,
+  323,
   284,
   283,
   286,
@@ -9561,7 +9591,6 @@
   316,
   317,
   321,
-  323,
   325,
   327,
   222,
@@ -9578,7 +9607,8 @@
   166,
   259,
   285,
-  315
+  315,
+  322
  ],
- "current_since": "2026-10-18T15:22-06:00"
+ "current_since": "2026-10-18T15:30-06:00"
 }
