@@ -1019,11 +1019,36 @@
    "text": "<b>Dress Up, for M: more versions of \"🛋️ couch-cushion rave\", under 🏠 house.</b> More variations of similar duration. From version to version, vary the drums (experiment with triplets and polyrhythms, and drum solos) and the chord progressions (different ones, especially upbeat and funky ones)."
   },
   {
+   "id": 304,
+   "area": "dress up, collisions",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T13:03-06:00",
+   "status": "open",
+   "tags": [],
+   "progress": "Found while minting it (13:03): the king's \"chest of gold\" (js/13-castle-rooms-and-map.js 1047-1052) draws six coins spilled on the floor to its left (cx - 50k to cx - 80k) inside its own object, and a standing object's collision box is the box round its whole drawing (standingHere, js/16-objects-and-solids.js 199: getBBox of the object, STANDING by name), so the coins widen it to the left. The same holds wherever an object's drawing carries flat bits on the floor (shadows, spills, rugs under it). There is a way to leave parts out already: .fumes is hidden while a box is measured (ticket 214); a .flat class doing the same would let each object say which of its parts lie on the floor. The audit: every place's standing objects, each box against the foot it stands on (♿'s collision boxes, OBJECTS.md's pictures, the depth sheets).",
+   "log": [
+    {
+     "at": "2026-10-18T13:03-06:00",
+     "from": "matthew",
+     "chars": 193,
+     "asks": false
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "text": "<b>Dress Up: collision boxes that reach past what stands there, beginning with the king's chest.</b> In the king's room the treasure chest's collision box reaches too far to the left, where there are only some coins on the ground and no chest. Minor, but it hints at the need for a larger audit: every object's collision box against what really stands there."
+  }
+ ],
+ "next_ticket": 305,
+ "current_ticket": 285,
+ "current_note": "13:03: Back on it after M's lever fix (0.0.216, ^ticket(303)) and the chest's collision box (^ticket(304), queued): the report's full proposal for 🏞️ Background, as this ticket's progress sets out, then the castle's themes as flags.",
+ "closed_tickets": [
+  {
    "id": 303,
    "area": "dress up, levers and trap doors, for M",
    "added": "2026-10-18",
    "opened": "2026-10-18T13:02-06:00",
-   "status": "open",
+   "status": "done",
    "tags": [],
    "progress": "13:02: NOT REPRODUCED with the real controls in the app's browser pane at 0.0.215 (the lake, a world square): added a lever and a trap door with the panel's buttons, wired them with the lever row's chip (works held the door's uid), tapped the lever's knob in the picture: the lever on, the door open, its hole there. Most likely M's: a wiring chip not pressed looks much like one pressed (\"🕳️ 4\" under \"🔗 it opens and shuts\" either way), and a lever added after its door starts with no wires. Fix: new levers and trap doors join what is already in the place, either order; the chips say joined or not (🔗 / ➕).",
    "log": [
@@ -1036,13 +1061,19 @@
    ],
    "source": "Matthew, 2026-10-18, in chat, for M",
    "url": "",
-   "text": "<b>Dress Up, for M: a lever wired to a trap door does not open it.</b> M made a lever and a trap door; they seem wired together, but the trap door does not change when the lever is flipped (the lever itself does flip)."
-  }
- ],
- "next_ticket": 304,
- "current_ticket": 303,
- "current_note": "13:02: M's lever bug, taken now (285 parked): not reproduced with the real controls; most likely an unpressed wiring chip that looked wired. Fixing the controls: new levers and trap doors join each other automatically, and the chips say joined (🔗) or not (➕).",
- "closed_tickets": [
+   "text": "<b>Dress Up, for M: a lever wired to a trap door does not open it.</b> M made a lever and a trap door; they seem wired together, but the trap door does not change when the lever is flipped (the lever itself does flip).",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T13:03-06:00",
+   "outcome": "Released in Dress Up 0.0.216 for M (kids-choice-games 33b02ce, tag dress-up-0.0.216, live at once): a lever and a trap door put in one place join each other, whichever comes first; the lever's chips say joined (🔗 🕳️ n) or not (➕ 🕳️ n). M's case was not reproduced with the real controls (wired by the chip, the lever tapped in the picture: the door opened); most likely a chip that was never pressed looked wired. Tried in the app's browser pane: a door then a lever, then another door, all joined; one pull opened both; unjoining showed ➕.",
+   "metrics": {
+    "open_minutes": 2,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 168,
+    "tokens_est": 42,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 302,
    "area": "dress up, versions, for M",
@@ -8901,7 +8932,6 @@
   }
  ],
  "queue": [
-  303,
   285,
   284,
   283,
@@ -8917,6 +8947,7 @@
   299,
   300,
   301,
+  304,
   222,
   225,
   289,
@@ -8929,5 +8960,5 @@
   166,
   259
  ],
- "current_since": "2026-10-18T13:02-06:00"
+ "current_since": "2026-10-18T13:03-06:00"
 }
