@@ -706,8 +706,10 @@
    "added": "2026-10-18",
    "opened": "2026-10-18T10:50-06:00",
    "status": "open",
-   "tags": [],
-   "progress": "The report is published (live 11:01): https://matthewhammer.org/kids-choice-games/dress-up/reports/005/ . Its What next steps 1 to 7 are this ticket's plan; step 8, the speed of the full-screen designer, is ^ticket(289). 12:19: Matthew: \"do 285 next, when settled\": next after ^ticket(296), ahead of ^ticket(284). 12:37: RELEASED 0.0.211 (517e292): the report's findings, steps 5 and 7: the house's toys slider shows (each of its two rows its own rule), a flip whose two words are the same is lit while on (the bubble themes' on and off), \"color\" in the bubble rows, two stale comments, two stale lines in agent-instructions.md. Tried in the app's browser pane. NEXT: step 1, the shared pieces (a box, the one-line row, the designer's shell), the two full screens moved onto them looking the same; then step 2, 🏞️ Background as a designer. 12:40: RELEASED 0.0.212 (c300d49): step 1, the pieces: the designer's shell (designerShell, DESIGNERS, body.designer-big in js/22-full-screen.js), a box (.box, .boxes) and the one-line row (.row1), sized by tokens on :root in style.css; the music and world full screens moved onto them with every element's computed style the same (558 elements, 0 differences, compared in the app's browser pane at 1280x800). NEXT: step 2, 🏞️ Background as a designer: full screen with the game as its first card, the places as pictures, the place's own box, what stands in it as cards with their pictures; then steps 3, 4 and 6. 12:45: RELEASED 0.0.213 (8b5003f): step 2, version 1: 🏞️ Background as a designer, full screen on the shared shell: its rows as boxes in a grid, the game live as the first card on the right (one 👁️ fold with the world designer's), the places as the archive's thumbnails, what stands in the place as OBJECTS.md's pictures, lit in the game while pointed at; the side panel unchanged, no picture fetched there. Tried in the app's browser pane at 1280x800 (the lake: 16 boxes, 6 place pictures, 17 object pictures, far wood lit while pointed at, back to the side panel with the picture home). NOT YET from the report's step 2: the friend here, the ways and the music each a box of their own, the 🔬 overlays and 🖼️ the archive under the game card, and a click in the game finding its box. Then steps 3 (the castle's themes), 4 (the bubble themes as cards) and 6 (the other tabs). 12:55: Matthew: \"background designer FS has no drag between LHS and RHS -- that's a key feature of world designer\". RELEASED 0.0.214 (8d0c7f6): the world designer's dragger is now designerSplit() (js/20-controls.js), shared; the background designer has the same bar between its boxes and the game, kept apart (dress-up-bg-split). Tried with a real drag in the browser pane (to 46.9%: the game grew to 527x390); the world designer's still at its 60%. 12:57: Matthew: v1 does not use the report's full proposal, and the castle's themes are not there yet: TRUE. PARKED for M's version pop-up. THE DESIGN, NOT BUILT: (1) a TABS row kind \"box\" [\"box\", key, label or label(b), rows]: its name once at its top, emoji first, its rows; hidden by its SHOWN_WHEN or when every row in it is hidden; a lone row's label hidden (the box names it). (2) The Background tab sorted into boxes by row key, the rows staying where they are defined: 🗺️ the place (places); <the place's own label> (everything of the place itself); 🧍 the friend here (figSize, figPos, seat, north_*, waterSee/Wake/Tread, the of-body blowing bubbles, padmap); 👁️ what stands here (objectsOff); 🪨 things to put here (things); 🎵 here (lfoFast, lfoSlow, lfoWings); 🏰 the castles (castle, castleLook*, castleThemes*, castleRoomList*, castleRoomBox*, the residents' lists). (3) A label's parenthesis into a hint on pointing (control(): name built at js/20-controls.js ~1166). (4) Mirror: the friend's box lights the friend, a click on an object in the game finds its card. (5) Under the game card: 🔬 the overlays as of-access rows (showSolids, showMadeOf, showPath, the arrows) and 🖼️ the archive (a link to the pictures page). (6) Step 3, the castle's themes: one box, A and B side by side each drawn as its flag with its four rows (color 1, color 2, together, carpet), and 🚪 its rooms: each room's flag in its theme's colors, tapped to swap (castleRoomTheme<n><id>), or \"· its own\" where it takes none (OWN_EXIT_ROOMS); the per-room \"🎨 its colors\" row goes (one decision, one place). Theme model: castleOf (js/01-state.js 240), castleFlagFill 271. 13:02: parked again for M's lever bug (^ticket(303)). 13:05: parked for ^ticket(284), Matthew's trap-room screenshot (wall and floor things in the objects list). 13:49: Matthew, with a screenshot of the full-screen 🏞️ Background designer in the deep sea (nine placed shells, each a size slider, mirror, another shape, three shape chips, six colour chips and a ✖, each row about 160 px tall, the list longer than the screen): \"follow up to the du_report issue about knolling. If we go deep enough, there's a lack of it here (see the individual objects placed in scene controls). Are we not going deep enough? Please propose an update to the report, and a new background FS mode, fixed.\" Taken now.",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "progress": "The report is published (live 11:01): https://matthewhammer.org/kids-choice-games/dress-up/reports/005/ . Its What next steps 1 to 7 are this ticket's plan; step 8, the speed of the full-screen designer, is ^ticket(289). 12:19: Matthew: \"do 285 next, when settled\": next after ^ticket(296), ahead of ^ticket(284). 12:37: RELEASED 0.0.211 (517e292): the report's findings, steps 5 and 7: the house's toys slider shows (each of its two rows its own rule), a flip whose two words are the same is lit while on (the bubble themes' on and off), \"color\" in the bubble rows, two stale comments, two stale lines in agent-instructions.md. Tried in the app's browser pane. NEXT: step 1, the shared pieces (a box, the one-line row, the designer's shell), the two full screens moved onto them looking the same; then step 2, 🏞️ Background as a designer. 12:40: RELEASED 0.0.212 (c300d49): step 1, the pieces: the designer's shell (designerShell, DESIGNERS, body.designer-big in js/22-full-screen.js), a box (.box, .boxes) and the one-line row (.row1), sized by tokens on :root in style.css; the music and world full screens moved onto them with every element's computed style the same (558 elements, 0 differences, compared in the app's browser pane at 1280x800). NEXT: step 2, 🏞️ Background as a designer: full screen with the game as its first card, the places as pictures, the place's own box, what stands in it as cards with their pictures; then steps 3, 4 and 6. 12:45: RELEASED 0.0.213 (8b5003f): step 2, version 1: 🏞️ Background as a designer, full screen on the shared shell: its rows as boxes in a grid, the game live as the first card on the right (one 👁️ fold with the world designer's), the places as the archive's thumbnails, what stands in the place as OBJECTS.md's pictures, lit in the game while pointed at; the side panel unchanged, no picture fetched there. Tried in the app's browser pane at 1280x800 (the lake: 16 boxes, 6 place pictures, 17 object pictures, far wood lit while pointed at, back to the side panel with the picture home). NOT YET from the report's step 2: the friend here, the ways and the music each a box of their own, the 🔬 overlays and 🖼️ the archive under the game card, and a click in the game finding its box. Then steps 3 (the castle's themes), 4 (the bubble themes as cards) and 6 (the other tabs). 12:55: Matthew: \"background designer FS has no drag between LHS and RHS -- that's a key feature of world designer\". RELEASED 0.0.214 (8d0c7f6): the world designer's dragger is now designerSplit() (js/20-controls.js), shared; the background designer has the same bar between its boxes and the game, kept apart (dress-up-bg-split). Tried with a real drag in the browser pane (to 46.9%: the game grew to 527x390); the world designer's still at its 60%. 12:57: Matthew: v1 does not use the report's full proposal, and the castle's themes are not there yet: TRUE. PARKED for M's version pop-up. THE DESIGN, NOT BUILT: (1) a TABS row kind \"box\" [\"box\", key, label or label(b), rows]: its name once at its top, emoji first, its rows; hidden by its SHOWN_WHEN or when every row in it is hidden; a lone row's label hidden (the box names it). (2) The Background tab sorted into boxes by row key, the rows staying where they are defined: 🗺️ the place (places); <the place's own label> (everything of the place itself); 🧍 the friend here (figSize, figPos, seat, north_*, waterSee/Wake/Tread, the of-body blowing bubbles, padmap); 👁️ what stands here (objectsOff); 🪨 things to put here (things); 🎵 here (lfoFast, lfoSlow, lfoWings); 🏰 the castles (castle, castleLook*, castleThemes*, castleRoomList*, castleRoomBox*, the residents' lists). (3) A label's parenthesis into a hint on pointing (control(): name built at js/20-controls.js ~1166). (4) Mirror: the friend's box lights the friend, a click on an object in the game finds its card. (5) Under the game card: 🔬 the overlays as of-access rows (showSolids, showMadeOf, showPath, the arrows) and 🖼️ the archive (a link to the pictures page). (6) Step 3, the castle's themes: one box, A and B side by side each drawn as its flag with its four rows (color 1, color 2, together, carpet), and 🚪 its rooms: each room's flag in its theme's colors, tapped to swap (castleRoomTheme<n><id>), or \"· its own\" where it takes none (OWN_EXIT_ROOMS); the per-room \"🎨 its colors\" row goes (one decision, one place). Theme model: castleOf (js/01-state.js 240), castleFlagFill 271. 13:02: parked again for M's lever bug (^ticket(303)). 13:05: parked for ^ticket(284), Matthew's trap-room screenshot (wall and floor things in the objects list). 13:49: Matthew, with a screenshot of the full-screen 🏞️ Background designer in the deep sea (nine placed shells, each a size slider, mirror, another shape, three shape chips, six colour chips and a ✖, each row about 160 px tall, the list longer than the screen): \"follow up to the du_report issue about knolling. If we go deep enough, there's a lack of it here (see the individual objects placed in scene controls). Are we not going deep enough? Please propose an update to the report, and a new background FS mode, fixed.\" Taken now. 13:54: PROPOSAL in chat, waiting on Matthew: a dated Update to ^du_report(5), \"Knolled all the way down\" (a tenth rule: every list of like things a grid of same-size cards, each its picture, name once, controls inside; like things grouped, shared controls once), and the Background designer's placed things moved under the fixed game card on the right, as cards. Nothing built yet.",
    "log": [
     {
      "at": "2026-10-18T12:19-06:00",
@@ -1061,11 +1063,31 @@
    "source": "Matthew, 2026-10-18, in chat",
    "url": "",
    "text": "<b>Dress Up: collision boxes that reach past what stands there, beginning with the king's chest.</b> In the king's room the treasure chest's collision box reaches too far to the left, where there are only some coins on the ground and no chest. Minor, but it hints at the need for a larger audit: every object's collision box against what really stands there."
+  },
+  {
+   "id": 307,
+   "area": "dress up, the trap room and placed trap doors",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T13:54-06:00",
+   "status": "open",
+   "tags": [],
+   "text": "<b>Dress Up: pits and trap doors open and shut with an animation, closed by default, and the lever rocks.</b> Matthew: \"pit open and close work via switch -- let's animate it, like the doors opening and closing are now.\" \"let's have them closed by default now that we can open them with the switch.\" \"the switch should animate too -- rocking back and forth somehow.\"",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T13:54-06:00",
+     "from": "matthew",
+     "chars": 230,
+     "asks": false
+    }
+   ],
+   "progress": ""
   }
  ],
- "next_ticket": 306,
- "current_ticket": 285,
- "current_note": "13:51: Matthew's follow-up: ^du_report(5) did not go deep enough: the placed objects' rows in the full-screen Background designer are not knolled. Reading the report and the designer, then a proposed update to the report and a fixed Background full-screen mode",
+ "next_ticket": 308,
+ "current_ticket": 307,
+ "current_note": "13:54: the pits and trap doors: opening and shutting animated (as the doors are), shut by default, the lever rocking; reading how the doors animate first. ^ticket(285)'s proposal waits on Matthew",
  "closed_tickets": [
   {
    "id": 306,
@@ -9018,7 +9040,7 @@
   }
  ],
  "queue": [
-  285,
+  307,
   284,
   283,
   286,
@@ -9044,7 +9066,8 @@
   54,
   19,
   166,
-  259
+  259,
+  285
  ],
- "current_since": "2026-10-18T13:51-06:00"
+ "current_since": "2026-10-18T13:54-06:00"
 }
