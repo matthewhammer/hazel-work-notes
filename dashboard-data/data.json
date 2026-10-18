@@ -1345,9 +1345,15 @@
      "from": "matthew",
      "chars": 110,
      "asks": false
+    },
+    {
+     "at": "2026-10-18T15:15-06:00",
+     "from": "matthew",
+     "chars": 80,
+     "asks": false
     }
    ],
-   "progress": "15:08: RELEASED 0.0.228 (b7f83cc, live 15:08:25), NOT proven to fix it: not reproduced here. In the app's hidden browser pane on 8133, a MutationObserver on the lid saw the whole swing (13-14 steps) on each of four pulls in a row, for the trap room's pits and for a placed lever and trap door, with and without 🔬 Inspection's overlays (all arrows, path, made of); the lid was never replaced mid-swing; a click on a room lever goes through the same roomLeverPull and starts no walk (walkableAt refuses the wall). Fix made on the likeliest cause that fits 'first time only' on Firefox: lidSwing and turnArm took t0 at the pull, before the redraw; the trap room since 0.0.226 has 271 moss shapes; a slow repaint could use up the 520 ms before the first frame. Both now start their clocks at their first frame. WAITING ON MATTHEW: does the swing play every time on 0.0.228? If not: which lever, where the friend stands, Firefox or not."
+   "progress": "15:08: RELEASED 0.0.228 (b7f83cc, live 15:08:25), NOT proven to fix it: not reproduced here. In the app's hidden browser pane on 8133, a MutationObserver on the lid saw the whole swing (13-14 steps) on each of four pulls in a row, for the trap room's pits and for a placed lever and trap door, with and without 🔬 Inspection's overlays (all arrows, path, made of); the lid was never replaced mid-swing; a click on a room lever goes through the same roomLeverPull and starts no walk (walkableAt refuses the wall). Fix made on the likeliest cause that fits 'first time only' on Firefox: lidSwing and turnArm took t0 at the pull, before the redraw; the trap room since 0.0.226 has 271 moss shapes; a slow repaint could use up the 520 ms before the first frame. Both now start their clocks at their first frame. WAITING ON MATTHEW: does the swing play every time on 0.0.228? If not: which lever, where the friend stands, Firefox or not. 15:15: Matthew: \"I'm using 228 and I see no animations of the pits at all, or the levers.\" (worse than 0.0.227's first-time-only). Investigating."
   },
   {
    "id": 323,
@@ -1412,7 +1418,7 @@
  ],
  "next_ticket": 326,
  "current_ticket": 322,
- "current_note": "15:08: 0.0.228 live with a likely fix for the lid swing playing only once (not reproduced here). Waiting on Matthew to try it in the trap room.",
+ "current_note": "15:15: Matthew answered (on 0.0.228 no pit or lever animation at all); reproducing with real pointer events and a slow computer's still pictures in the app's browser pane",
  "closed_tickets": [
   {
    "id": 319,
@@ -9503,6 +9509,5 @@
   259,
   285
  ],
- "current_since": "2026-10-18T15:02-06:00",
- "current_waiting": "try 0.0.228 in the trap room: does the lid swing every time now?"
+ "current_since": "2026-10-18T15:02-06:00"
 }
