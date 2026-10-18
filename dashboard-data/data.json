@@ -675,18 +675,6 @@
    "text": "<b>Dress Up: an audit of things drawn where nothing of them is seen: each place's drawings more than 75% hidden by what is drawn over them, dropped from the scene.</b> Matthew: \"looks like we are wasting time drawing flowers behind the tree house tree? Can we do an audit, long run tagged ticket, minted now: check to see if we are drawing totally occluded objects -- remove them from the scene if they are more than 75% occluded (rough approx is fine).\" To do: for every place at its defaults (and the busier settings), each drawing ^ticket(258) boxes (the plants by procedure, and the objects) measured for how much of it is covered by what is drawn after it (rough: sample points in its box, elementsFromPoint, or a coverage mask); a report of the ones more than 75% hidden; then the scenes' code changed so those are not drawn (the tree house's flowers placed off the trunk, for one); every picture checked against main after."
   },
   {
-   "id": 262,
-   "area": "dress up, archive, pictures",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T20:38-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "url": "",
-   "tags": [
-    "long run"
-   ],
-   "text": "<b>Dress Up: today's pictures in the public archive, each place three ways: as it is, with ♿ 🧩 what it's made of on, and with ♿ 🧱 collision boxes on; archive times in Matthew's local time.</b> Matthew: \"enqueue a long run for tonight --- new pictures for the day for dress-up, posted to our public archive. No changes to music, yet.\" \"regarding the way we present the archives, pictures or otherwise --- use a localized timestamp (whatever format, but presented in local time to me) in case we did that already today (and in general, for multiple runs per day)\"; \"do the pictures in each scene, with and without 'what its made of' on. And with and without collision boxes on. So 3x the pictures in total, plus any new scenes.\" To do: the day's run into dress-up-pictures (^ticket(183)'s archive): every place (the new ones since the last run too) plain, with 🧩 (its default chips), and with 🧱; each run stamped in local time (Mountain), so a second run the same day is its own; the archive's pages showing those times."
-  },
-  {
    "id": 265,
    "area": "dress up, docs, objects, archive",
    "added": "2026-10-17",
@@ -703,6 +691,31 @@
  "current_ticket": 261,
  "current_note": "22:52: Overnight long runs. 262: today's run (22-28, Mountain) made on GitHub, 804 pictures incl. the 3 ways, thumbs being made here, then pushed. 261: hidden pines/pads/flowers culled by outline (437 -> ~330 in the audit); pixel check running. 198: the TABS part alone loses Firefox's frames (57.8 -> 44.9); per-tab run going. 236: full run with overlays on going.",
  "closed_tickets": [
+  {
+   "id": 262,
+   "area": "dress up, archive, pictures",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T20:38-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "tags": [
+    "long run"
+   ],
+   "text": "<b>Dress Up: today's pictures in the public archive, each place three ways: as it is, with ♿ 🧩 what it's made of on, and with ♿ 🧱 collision boxes on; archive times in Matthew's local time.</b> Matthew: \"enqueue a long run for tonight --- new pictures for the day for dress-up, posted to our public archive. No changes to music, yet.\" \"regarding the way we present the archives, pictures or otherwise --- use a localized timestamp (whatever format, but presented in local time to me) in case we did that already today (and in general, for multiple runs per day)\"; \"do the pictures in each scene, with and without 'what its made of' on. And with and without collision boxes on. So 3x the pictures in total, plus any new scenes.\" To do: the day's run into dress-up-pictures (^ticket(183)'s archive): every place (the new ones since the last run too) plain, with 🧩 (its default chips), and with 🧱; each run stamped in local time (Mountain), so a second run the same day is its own; the archive's pages showing those times.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T22:59-06:00",
+   "outcome": "Live: http://matthewhammer.org/dress-up-pictures/2026/10/17/22-28/index.html (0.0.197). Every place three ways: as it is, 🔬 🧩 made of, 🔬 🧱 collision boxes (with and without the friend; 4 new folders, 156 pictures), plus every menu and climb: 530 distinct drawings, made on GitHub (archive-262, run 39097179612), thumbnails here (no ffmpeg on GitHub now). Runs stamped in Mountain time: a later run that day is YYYY/MM/DD/HH-MM; the front page and days.json say when each was made. Tools on dress-up-pictures main. The archive is now ~1.25 GB, past GitHub Pages' 1 GB guideline (it still built); moving storage is Matthew's call.",
+   "metrics": {
+    "open_minutes": 141,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 60.0
+   }
+  },
   {
    "id": 263,
    "area": "dress up, music",
@@ -7752,7 +7765,6 @@
  ],
  "queue": [
   261,
-  262,
   209,
   184,
   198,
