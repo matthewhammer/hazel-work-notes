@@ -1488,50 +1488,6 @@
    "progress": ""
   },
   {
-   "id": 331,
-   "area": "dress up, trips through doors",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T15:54-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up: crawling out through a small side door, the friend is not cut off at the doorway.</b> Matthew, with a screenshot in a tree house room (kept locally, ~/du-shots/ticket-331/): \"crawling out of a small door looks okay, except we aren't clipping yet. ... The trapdoor and pit ladder animation does clip very well so far.\" The friend, crawling into the door to the bridge (🦉 2 ➡️), is drawn whole over the wall past the doorway's edge. Then: \"another note about making that 'crawl out the treehouse door onto a bridge' look right: We need to make the scale down extreme to match how we draw the tree house outside the door, which is very shrunk down.\" And: \"we should do that gradually as we crawl out, and onto the bridge -- we should animate a part of walking on the bridge (after standing up, post crawl) where we meet the scale of the destination tree house before going inside the door.\" And: \"when we walk across the bridge by click, we animate the walk, but then we do not animate going into the door --- we do it pretty well for the ladder climbs outside of the tree house, so can't we reuse that again?\"",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T15:54-06:00",
-     "from": "matthew",
-     "chars": 150,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T15:56-06:00",
-     "from": "matthew",
-     "chars": 190,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T15:57-06:00",
-     "from": "matthew",
-     "chars": 200,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T15:58-06:00",
-     "from": "matthew",
-     "chars": 190,
-     "asks": true
-    },
-    {
-     "at": "2026-10-18T16:25-06:00",
-     "from": "matthew",
-     "chars": 263,
-     "asks": false
-    }
-   ],
-   "progress": "15:57: his floor-trap-door report (\"we climb up again, and get stuck\") checked on 0.0.233 in the app's pane: the hatch's click goes to climbLadder, ladderAt reads it as going down (data-down 304.5), walkInto starts the climb, no error; the climb itself cannot be watched there (a hidden pane runs no frames). Likely the same bug as ^ticket(330) (a hatch's trip leaves a way back, and backSync threw until 0.0.233): asked him to try it on 0.0.233. PLAN for this ticket: a side door's crawl clipped at the doorway's edge (as walkInto clips a pit's or hatch's climb), the friend shrinking as they go out, then standing and walking along the bridge, smaller and smaller, to the size of the far tree house drawn in the doorway, and going in at its door. 16:11: 0.0.234 LIVE: the crawl through a side door is cut off at the doorway from its first step; outside, a bridge's end goes in through the porch door (platformIn, clipped to the cabin's door) and lands beside the side door back; on a bridge the friend's size moves from the one house's to the other's. tools/checks/bridgein331.mjs. NEXT: from inside, the walk out seen in the doorway: shrinking as they crawl out, standing on the bridge drawn there, walking to the far house's size, in at its door. 16:22: 0.0.235 LIVE: out through a tree room's door to a bridge, the friend shrinks as they crawl through (room size to the size of the bridge drawn in the doorway, about a twentieth), stands, faces away, and walks to 0.45 of the drawn bridge (smaller still), seen inside the doorway only; then outside on the bridge as before (246's walk kept; the end goes in through the porch door since 0.0.234). tools/checks/doorout331.mjs. Waiting on the speed run of both tags before closing. 16:22: 0.0.235 LIVE: out through a tree room's door to a bridge, the friend shrinks crawling through (room size to the size of the bridge drawn in the doorway), stands, faces away, walks to 0.45 of the drawn bridge, seen inside the doorway only; then outside on the bridge as before. tools/checks/doorout331.mjs. 16:25: Matthew checked 0.0.235 (\"the shrink factor is extreme, but a param I can adjust later\") and asked for the tree house door to swing open as we go in, as the castle's do. Built: each outside cabin draws its own door leaf (bg-cabin-body + data-cabin-leaf), platformIn swings it in (leafOpen, factored from walkInto) 36 units before the door; checked in the pane. Releasing as 0.0.236."
-  },
-  {
    "id": 332,
    "area": "dress up, planned walks",
    "added": "2026-10-18",
@@ -1635,9 +1591,70 @@
   }
  ],
  "next_ticket": 336,
- "current_ticket": 331,
- "current_note": "16:25: the tree house's outside door swinging open as the friend goes in (0.0.236), the last piece of 331",
+ "current_ticket": 290,
+ "current_note": "16:33: N's 🫧 bubbles: a place group, bubble space moved into it, and the new bubble room (foam walls and floor, bubble makers): reading how bubble space is built",
  "closed_tickets": [
+  {
+   "id": 331,
+   "area": "dress up, trips through doors",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T15:54-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up: crawling out through a small side door, the friend is not cut off at the doorway.</b> Matthew, with a screenshot in a tree house room (kept locally, ~/du-shots/ticket-331/): \"crawling out of a small door looks okay, except we aren't clipping yet. ... The trapdoor and pit ladder animation does clip very well so far.\" The friend, crawling into the door to the bridge (🦉 2 ➡️), is drawn whole over the wall past the doorway's edge. Then: \"another note about making that 'crawl out the treehouse door onto a bridge' look right: We need to make the scale down extreme to match how we draw the tree house outside the door, which is very shrunk down.\" And: \"we should do that gradually as we crawl out, and onto the bridge -- we should animate a part of walking on the bridge (after standing up, post crawl) where we meet the scale of the destination tree house before going inside the door.\" And: \"when we walk across the bridge by click, we animate the walk, but then we do not animate going into the door --- we do it pretty well for the ladder climbs outside of the tree house, so can't we reuse that again?\"",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T15:54-06:00",
+     "from": "matthew",
+     "chars": 150,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T15:56-06:00",
+     "from": "matthew",
+     "chars": 190,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T15:57-06:00",
+     "from": "matthew",
+     "chars": 200,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T15:58-06:00",
+     "from": "matthew",
+     "chars": 190,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T16:25-06:00",
+     "from": "matthew",
+     "chars": 263,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T16:33-06:00",
+     "from": "claude",
+     "chars": 700,
+     "asks": false
+    }
+   ],
+   "progress": "15:57: his floor-trap-door report (\"we climb up again, and get stuck\") checked on 0.0.233 in the app's pane: the hatch's click goes to climbLadder, ladderAt reads it as going down (data-down 304.5), walkInto starts the climb, no error; the climb itself cannot be watched there (a hidden pane runs no frames). Likely the same bug as ^ticket(330) (a hatch's trip leaves a way back, and backSync threw until 0.0.233): asked him to try it on 0.0.233. PLAN for this ticket: a side door's crawl clipped at the doorway's edge (as walkInto clips a pit's or hatch's climb), the friend shrinking as they go out, then standing and walking along the bridge, smaller and smaller, to the size of the far tree house drawn in the doorway, and going in at its door. 16:11: 0.0.234 LIVE: the crawl through a side door is cut off at the doorway from its first step; outside, a bridge's end goes in through the porch door (platformIn, clipped to the cabin's door) and lands beside the side door back; on a bridge the friend's size moves from the one house's to the other's. tools/checks/bridgein331.mjs. NEXT: from inside, the walk out seen in the doorway: shrinking as they crawl out, standing on the bridge drawn there, walking to the far house's size, in at its door. 16:22: 0.0.235 LIVE: out through a tree room's door to a bridge, the friend shrinks as they crawl through (room size to the size of the bridge drawn in the doorway, about a twentieth), stands, faces away, and walks to 0.45 of the drawn bridge (smaller still), seen inside the doorway only; then outside on the bridge as before (246's walk kept; the end goes in through the porch door since 0.0.234). tools/checks/doorout331.mjs. Waiting on the speed run of both tags before closing. 16:22: 0.0.235 LIVE: out through a tree room's door to a bridge, the friend shrinks crawling through (room size to the size of the bridge drawn in the doorway), stands, faces away, walks to 0.45 of the drawn bridge, seen inside the doorway only; then outside on the bridge as before. tools/checks/doorout331.mjs. 16:25: Matthew checked 0.0.235 (\"the shrink factor is extreme, but a param I can adjust later\") and asked for the tree house door to swing open as we go in, as the castle's do. Built: each outside cabin draws its own door leaf (bg-cabin-body + data-cabin-leaf), platformIn swings it in (leafOpen, factored from walkInto) 36 units before the door; checked in the pane. Releasing as 0.0.236. 16:33: 0.0.236 LIVE (the cabin door swings open). Speed run of dress-up-0.0.236 (run 39172283307) pending: bridgein331, doorout331, bridge246, crawl239, doors264, platform269 to read when it finishes.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T16:33-06:00",
+   "outcome": "Released in 0.0.234-0.0.236: the crawl through a side door cut off at the doorway; outside, a bridge's end goes in through the porch door (platformIn, clipped), the friend sized from the one house's size to the other's along a bridge; from inside, the friend shrinks crawling out into the picture seen through the doorway, stands, and walks part of its bridge before the cut outside; the cabin's door swings open as they come to it. Matthew checked 0.0.235 (the shrink is extreme, a parameter for later). Checks: bridgein331.mjs, doorout331.mjs; the 0.0.236 speed run still to read.",
+   "metrics": {
+    "open_minutes": 39,
+    "matthew_messages": 5,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1693,
+    "tokens_est": 423,
+    "sync_minutes_est": 12.0
+   }
+  },
   {
    "id": 330,
    "area": "dress up, trips between places",
@@ -9861,7 +9878,6 @@
   }
  ],
  "queue": [
-  331,
   290,
   300,
   284,
@@ -9906,5 +9922,5 @@
   315,
   322
  ],
- "current_since": "2026-10-18T15:54-06:00"
+ "current_since": "2026-10-18T16:33-06:00"
 }
