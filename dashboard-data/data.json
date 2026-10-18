@@ -913,6 +913,12 @@
      "from": "claude",
      "chars": 900,
      "asks": false
+    },
+    {
+     "at": "2026-10-18T17:07-06:00",
+     "from": "matthew",
+     "chars": 66,
+     "asks": false
     }
    ],
    "source": "Matthew, 2026-10-18, in chat, for N, with a picture of a toy bubble machine (\"mint and enqueue after 288\")",
@@ -1734,9 +1740,63 @@
     }
    ],
    "progress": ""
+  },
+  {
+   "id": 340,
+   "area": "dress up, performance (report)",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T17:07-06:00",
+   "status": "open",
+   "tags": [
+    "long run"
+   ],
+   "text": "<b>Dress Up, a long run: a performance analysis of the bubble room with bubble makers, written up as a ^du_report, and what lets it scale.</b> Matthew: \"bubble room with one bubble machine is stressing my modern laptop.\" Then: \"let's do a long-run analysis about performance, and write a new du_report where we add bubble machines in bubble rooms, and see what we can do to support scaling better.\" PLAN: measured on GitHub's runners (no browser on the laptop) with the speed run's frame-rate tools, at full speed and at the slow-computer throttle, Chrome and Firefox: the bubble room as 0.0.239 drew it (~7,600 shapes, ~140 animations) and as the fix of 17:1x draws it (the static foam as images, the moving bubbles live), with 0, 1, 2, 4, 8 bubble makers and on (Matthew: \"scaling to the extreme, the way a kid would use the system (pressing +bubble machine until it breaks)\": tap \"+ 🫧 bubble maker\" again and again, 16, 32, 64, 128 and more, until the frame rate falls apart, the page stalls or memory runs out, and say where and why it breaks), standing and walking; frame times, paint and layout per frame, the number of shapes and animations; then the levers that scale (shapes per surface, how many move, makers' bubble caps, the stuck-out balls, still pictures) and their cost, as a report in dress-up/reports/ with its numbers embedded (the series' form), and a 🔬 check that keeps the room within a frame budget. The breaking point itself is a result: what a kid's endless taps should meet (a cap, a shared budget for all makers' bubbles, a gentle refusal), not a frozen page.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T17:07-06:00",
+     "from": "matthew",
+     "chars": 169,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T17:07-06:00",
+     "from": "matthew",
+     "chars": 101,
+     "asks": false
+    }
+   ],
+   "progress": ""
+  },
+  {
+   "id": 341,
+   "area": "dress up, bubbles",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T17:08-06:00",
+   "status": "open",
+   "tags": [],
+   "text": "<b>Dress Up: moving bubbles stick, some of them, to the bubbles standing out from the floor and walls; a slider for how often.</b> Matthew: \"ticket -- find a way to for dynamic bubbles in scene, in some proportion, to stick to bubbles extending from floors and walls in this scene, and others.\" And: \"slider to control how often they stick\". The moving bubbles are the bubble makers' (and bubble space's; the friend's blown bubbles too). PLAN: the stuck-out bubbles' places on the screen kept with the scene (each its middle and size, as drawn); a moving bubble touching one sticks to it, by \"🫧 how often moving bubbles stick\" (0 to 100), and stays there, swelling and fading out after a while or popping at a touch, so the room grows clusters; in other places, the same against what bubbles can stick to there (bubble space's own, the foam of any place that has it, and whatever stands out). Mind ^ticket(340)'s budget: no layout reads a frame, a capped count of stuck ones.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T17:08-06:00",
+     "from": "matthew",
+     "chars": 152,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T17:08-06:00",
+     "from": "matthew",
+     "chars": 38,
+     "asks": false
+    }
+   ],
+   "progress": ""
   }
  ],
- "next_ticket": 340,
+ "next_ticket": 342,
  "current_ticket": 290,
  "current_note": "17:03: 0.0.239 live (foam breathing and popping, his defaults, 🫧 bubble super-dub step); 290 waits on his look",
  "closed_tickets": [
@@ -10053,6 +10113,7 @@
   337,
   338,
   339,
+  341,
   222,
   225,
   289,
@@ -10060,6 +10121,7 @@
   326,
   333,
   335,
+  340,
   276,
   160,
   18,
