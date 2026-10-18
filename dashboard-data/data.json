@@ -699,15 +699,6 @@
    "text": "<b>Dress Up: a new tune, 🔥 turtle super-dub step: turtle steppers dub as Matthew set it, as a track of its own.</b> Matthew: \"One new track for music -- 'turtle super-dub step', based on the last .json file I shared with you ... I tweaked the settings, and am currently playing: ▶ playing: 🐢 turtle steppers dub (153 beats a minute, down 12 half steps). Please use those settings for a new version of that song, with a new title, in the track list, same category. use fire emoji as the emoji.\" To do: from his save's music settings (153 bpm, down 12 half steps, and the mixing board and anything else he changed for it), a new tune in turtle steppers dub's category, 🔥 turtle super-dub step, those as its own; the tune list and its checks; the music archive left as it is."
   },
   {
-   "id": 264,
-   "area": "dress up, tree house, castle, doors",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T21:06-06:00",
-   "source": "Matthew, 2026-10-17, in chat",
-   "url": "",
-   "text": "<b>Dress Up: the tree house's ways in and out, and the castle's doors, as the trapdoors and pits do them: down a ladder to its foot facing us; a bridge door that stays open and is walked through, clipped; up the outside ladder and on through the door, clipped; and a click on the far house followed.</b> Matthew: \"* when I come out of the treehouse from a ladder, I should respawn at the base of the ladder, facing the viewer/player. * when I click the door within a tree house to another, via a bridge, it opens and then shuts, and then I fade through the shut door --- that feels like a regression -- I like it opening sooner, but it should stay open, and we should clip the animation of walking through it, in the planned motion -- the trap doors and pits all look great, BTW -- that's the standard now. * when I climb to the top of the external tree house ladder, it looks great --- but then I get to the top and there's no motion plan of walking to the door, and walking through it (it's fine for it to open magically as we get to the top of the stairs), but the animation, again, of going through the doorway, with clipping, is very compelling. * when I exit a treehouse via bridge doorway --- sometimes I click on the treehouse across the bridge, but it's overridden by still standing next to the current tree house and I reenter it, abruptly. We should favor the click target, not where are feet are.\" To do: (1) out of a tree room down its ladder to the ground: outside at that ladder's foot, facing us; (2) a bridge door: the glow's opening (^ticket(256)) not undone as the walk begins, the door open till they are through, the walk through it clipped at the doorway as the trapdoors' and pits' are (^ticket(252)), no fade through a shut door; (3) up the outside ladder to a house: at its top, walked along the platform to the door (open by itself), and through it clipped; (4) on a bridge, a click on a house goes to that house (bridgeGoIn), never the one nearest the feet. Then: \"also -- let's have a clipped version of walking into the castle doors, not the fade out effect anymore.\" So (5): a castle room's doors (side doors, arches) walked through clipped at the doorway, no fade."
-  },
-  {
    "id": 265,
    "area": "dress up, docs, objects, archive",
    "added": "2026-10-17",
@@ -757,9 +748,31 @@
   }
  ],
  "next_ticket": 270,
- "current_ticket": 264,
- "current_note": "21:36: 0.0.189 live (255). On 264: the tree house's and castle's doors: ladder down to its foot facing us; bridge doors stay open, walked through clipped; up the outside ladder and through; clicks on the far house followed; castle doors clipped",
+ "current_ticket": 266,
+ "current_note": "21:44: 0.0.190 live (264 doors clipped; A4-B5 unjoined; unibrow off). On 266: 👆 a queue of clicks, alternating colours",
  "closed_tickets": [
+  {
+   "id": 264,
+   "area": "dress up, tree house, castle, doors",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T21:06-06:00",
+   "source": "Matthew, 2026-10-17, in chat",
+   "url": "",
+   "text": "<b>Dress Up: the tree house's ways in and out, and the castle's doors, as the trapdoors and pits do them: down a ladder to its foot facing us; a bridge door that stays open and is walked through, clipped; up the outside ladder and on through the door, clipped; and a click on the far house followed.</b> Matthew: \"* when I come out of the treehouse from a ladder, I should respawn at the base of the ladder, facing the viewer/player. * when I click the door within a tree house to another, via a bridge, it opens and then shuts, and then I fade through the shut door --- that feels like a regression -- I like it opening sooner, but it should stay open, and we should clip the animation of walking through it, in the planned motion -- the trap doors and pits all look great, BTW -- that's the standard now. * when I climb to the top of the external tree house ladder, it looks great --- but then I get to the top and there's no motion plan of walking to the door, and walking through it (it's fine for it to open magically as we get to the top of the stairs), but the animation, again, of going through the doorway, with clipping, is very compelling. * when I exit a treehouse via bridge doorway --- sometimes I click on the treehouse across the bridge, but it's overridden by still standing next to the current tree house and I reenter it, abruptly. We should favor the click target, not where are feet are.\" To do: (1) out of a tree room down its ladder to the ground: outside at that ladder's foot, facing us; (2) a bridge door: the glow's opening (^ticket(256)) not undone as the walk begins, the door open till they are through, the walk through it clipped at the doorway as the trapdoors' and pits' are (^ticket(252)), no fade through a shut door; (3) up the outside ladder to a house: at its top, walked along the platform to the door (open by itself), and through it clipped; (4) on a bridge, a click on a house goes to that house (bridgeGoIn), never the one nearest the feet. Then: \"also -- let's have a clipped version of walking into the castle doors, not the fade out effect anymore.\" So (5): a castle room's doors (side doors, arches) walked through clipped at the doorway, no fade.",
+   "status": "done",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T21:44-06:00",
+   "outcome": "0.0.190: side-wall doors (tree rooms' bridge doors, castle side doors) stay open while walked through (the glow's door not shut mid-walk), the friend clipped at the wall line, no fade; on a bridge a clicked house at either end is followed; down a tree room's ladder: its own way out (not the window), at that ladder's foot facing us. Part 3 (up the outside ladder, along the platform, through the door) split to 269. doors264 + bridge246 + crawl239 green on CI.",
+   "metrics": {
+    "open_minutes": 38,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 35.0
+   }
+  },
   {
    "id": 255,
    "area": "dress up, world designer, UX",
@@ -7629,7 +7642,6 @@
   }
  ],
  "queue": [
-  264,
   266,
   267,
   268,
