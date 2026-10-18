@@ -506,33 +506,6 @@
    "progress": "06:28: minted; started. 0.0.95 went out deploy-first already (main 1599fd9, tag dress-up-0.0.95, live), its checks still running on the release branch. | 06:32: BUILT and released as 0.0.96 (main 11b26ba, tag dress-up-0.0.96, live): .github/workflows/dress-up-speed.yml on each release tag (checks, gate both tiers, audit, leak), tools/speed_record.py writes dress-up/speed.json on main, the game's markSpeed shows 🚧🐢 / 🚧 after its version (tools/checks/speedmark184.mjs checks it), and the release steps in agent-instructions.md say deploy first. Speed runs going: 0.0.96 (run 39032830033, from its tag) and 0.0.95 (39032851446, by hand). Left: see each record its result and speed.json go live. | 09:49: Matthew: is GitHub's shared computer the cause? Read the runs: in 0.0.113 every case was at 60; the steady failure was the still pictures (fixed in 0.0.116, a real bug). The gate now retries a frame-rate-only failure once (RETRIES=1, bar still 55) and names why a case failed. The imagination's slow drag still flickers on GitHub (60 in 0.0.113; 52.6 then 54.7 today) with no change to it: proposal, not started: measure main on the same runner in the same job and fail only when the release is slower than main by more than the noise. | 10:40: 0.0.116's speed run is the first 'ok': every check, the gate and the slow scenes (still pictures fixed in 0.0.116, the retry in the gate). 0.0.115 slow (before those). 0.0.120's run is going; 0.0.124's waits (0.0.121-0.0.123 replaced in the queue). Proposal still open, not started: compare against main on the same runner."
   },
   {
-   "id": 198,
-   "area": "dress up, performance, Firefox",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T11:00-06:00",
-   "source": "^du_report(3), step 3 (Matthew, 2026-10-17: mint its steps 2 and 3 as their own tickets)",
-   "text": "<b>Dress Up: find the frames Firefox loses after a session of play.</b> From ^du_report(3) (https://matthewhammer.org/kids-choice-games/dress-up/reports/003/#step-3): on GitHub's Firefox 157, the duck pond at 58.5 fps fresh and 50.8 after two rounds of changes, against 60 for a control that only swam; not the caches, the music or listeners. Next: a fresh Firefox for each case (a reload there runs at 30), and each part of a round on its own: the places, the trips, the sliders, the tabs. On GitHub's runners only (no browser on Matthew's laptop).",
-   "tags": [
-    "long run"
-   ],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T11:00-06:00",
-     "from": "matthew",
-     "chars": 90,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T13:41-06:00",
-     "from": "matthew",
-     "chars": 18,
-     "asks": true
-    }
-   ],
-   "progress": "11:00: minted from ^du_report(3)'s step 3, on publishing it; queued."
-  },
-  {
    "id": 212,
    "area": "dress up, places, open water",
    "added": "2026-10-17",
@@ -643,9 +616,48 @@
   }
  ],
  "next_ticket": 272,
- "current_ticket": 198,
- "current_note": "23:04: Overnight long runs: 0.0.198 (261, hidden drawings culled) live; 262's archive run live. On 198: every tab, even Body, costs Firefox ~10 fps, and each first click starts the music (headless Firefox's audio stays suspended); confirming with music-only and muted cases",
+ "current_ticket": 236,
+ "current_note": "23:14: Overnight long runs: 0.0.199 (198 fixed: Firefox's lost frames were the music's stopped clock rebuilding the scene) and 0.0.198 (261) live; 262, 265, 209 closed. On 236: reading the full run with every 🔬 overlay on (#inspect)",
  "closed_tickets": [
+  {
+   "id": 198,
+   "area": "dress up, performance, Firefox",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T11:00-06:00",
+   "source": "^du_report(3), step 3 (Matthew, 2026-10-17: mint its steps 2 and 3 as their own tickets)",
+   "text": "<b>Dress Up: find the frames Firefox loses after a session of play.</b> From ^du_report(3) (https://matthewhammer.org/kids-choice-games/dress-up/reports/003/#step-3): on GitHub's Firefox 157, the duck pond at 58.5 fps fresh and 50.8 after two rounds of changes, against 60 for a control that only swam; not the caches, the music or listeners. Next: a fresh Firefox for each case (a reload there runs at 30), and each part of a round on its own: the places, the trips, the sliders, the tabs. On GitHub's runners only (no browser on Matthew's laptop).",
+   "tags": [
+    "long run"
+   ],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T11:00-06:00",
+     "from": "matthew",
+     "chars": 90,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:41-06:00",
+     "from": "matthew",
+     "chars": 18,
+     "asks": true
+    }
+   ],
+   "progress": "11:00: minted from ^du_report(3)'s step 3, on publishing it; queued.",
+   "closed": "2026-10-17",
+   "closed_at": "2026-10-17T23:14-06:00",
+   "outcome": "0.0.199 live: found and fixed. Per part, each in a fresh Firefox (leakff.py PART): places, trips, sliders lost nothing; any click lost ~10 fps, every tab alike, even Body; the first click starts the music; music started by script lost it too, muted no click nothing. Cause: in a suspended AudioContext (Firefox headless) musicSeconds read a clock standing still, picGapNow's gap ran away every 0.25 s, every LFO's begin moved, the whole scene rebuilt (ticket 117's way). Fix: the music's clock only while audio.state is running. After: whole round -0.9 fps (was -13), music +0.0 (was -7.8), tab -0.5 (was -13.4). ff198.py now a Firefox check (fails on a >5 fps loss).",
+   "metrics": {
+    "open_minutes": 734,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 108,
+    "tokens_est": 27,
+    "sync_minutes_est": 0,
+    "work_minutes": 70.0
+   }
+  },
   {
    "id": 209,
    "area": "dress up, performance, releases",
@@ -7803,10 +7815,9 @@
   }
  ],
  "queue": [
-  198,
+  236,
   184,
   222,
-  236,
   160,
   18,
   102,
@@ -7816,5 +7827,5 @@
   259,
   225
  ],
- "current_since": "2026-10-17T23:04-06:00"
+ "current_since": "2026-10-17T23:14-06:00"
 }
