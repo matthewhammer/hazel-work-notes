@@ -758,11 +758,55 @@
    "source": "Matthew, 2026-10-18, in chat, for N, with a picture of a toy bubble machine (\"mint and enqueue after 288\")",
    "url": "",
    "text": "<b>Dress Up, for N: 🫧 bubbles, a place group of its own, and a room made of bubble foam.</b> A new background category, bubbles, with two places (Matthew, 11:03, to be clear): the <b>blank room</b>, the room we have now (🫧 bubble space) with its ambient bubbles, moved there; and the <b>bubble room</b>, new, made of bubbles, with placeable bubble machines. For the bubble room, N wants the walls and floors \"made of bubbles\": the look of fractal bubble foam, with sizes and placements chosen to mimic that kind of pattern, on the walls and floors. They move, by some parameters: maybe a setting for each of the left wall, the back wall, the right wall, the floor and the ceiling (on or off, and height controls too). The bubble room's bubbles stream out of bubble makers: little boxes with turning wheels on the front, simplified to a few shapes at first (his picture: a round toy bubble machine with a wheel of bubble rings turning on its front, a handle on top, a base under it). Bubble makers are placeable objects in the world designer, each with controls over how it makes bubbles (the rate, the kind of bubble). Do this ticket after the Background panel is redesigned with its full-screen mode (^ticket(285))."
+  },
+  {
+   "id": 293,
+   "area": "dress up, castles",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T11:23-06:00",
+   "status": "open",
+   "tags": [],
+   "progress": "Found while minting it (11:23): the throne is one object, \"throne\", drawn on its dais in kingRoomSvg (js/13-castle-rooms-and-map.js 962, the throne 994-1008). The castle's two color themes are THEMES (js/01-state.js 89), set per castle (castleThemeA/B, js/20-controls.js 428) and chosen per room (castleRoomTheme). The king's room's doors are on its sides already (ROOM_KINDS.king exits: \"side\", js/01-state.js 145): check that it holds with six thrones across the room. Matthew (11:23): \"please try to reuse code where possible --- these are the same controls as the cat room\". The cat room's per-cat controls are one table in js/01-state.js (CAT_POSES 172; each cat's rows, colors, eyes and pose, about 200-215), drawn by catRoomSvg (js/13-castle-rooms-and-map.js 1292): build a throne's cat from the same table and drawing, not a copy.",
+   "log": [
+    {
+     "at": "2026-10-18T11:23-06:00",
+     "from": "matthew",
+     "chars": 178,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T11:23-06:00",
+     "from": "matthew",
+     "chars": 75,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T11:23-06:00",
+     "from": "matthew",
+     "chars": 49,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T11:23-06:00",
+     "from": "matthew",
+     "chars": 107,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T11:23-06:00",
+     "from": "matthew",
+     "chars": 87,
+     "asks": false
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "text": "<b>Dress Up: up to six thrones in each king's room.</b> Each king's room permits up to 6 thrones, each with a size and a theme control. The default, going forward, is 2 (a king's and a queen's), in theme A and theme B, perhaps. And so the doors go on the sides wherever thrones would be in their way. Each throne also has an option: 🐈 has a cat (Matthew, 11:23); and with a cat, all of the cat's options (11:23): its animation (sitting, walking, standing, and so on), its colors, and its size. Reuse the cat room's code: these are the same controls."
   }
  ],
- "next_ticket": 293,
+ "next_ticket": 294,
  "current_ticket": 284,
- "current_note": "11:16: Back on it after 291 and 292. Designing the general way to place any object from any place (lifted from its place's drawing, its definitions with it, drawn as a placed thing at a new spot and depth), then the switch: the trap room's lever as a placeable thing that moves when pressed, and trap doors in the floor that the world designer wires to it.",
+ "current_note": "11:23: Releasing Dress Up 0.0.208, the first part: 📦 from the places, a new group in 🏞️ Background's things (any object of any of 49 places, lifted from its place's drawing, placed anywhere; tried in the app's browser pane: the oven, anvil, throne, umbrella, drum kit, cauldron in the empty room, each with its home collision box). Known limit: the stable's horse is only its head over the stall door. Next: the list of what is drawn into the places (the survey), then the switch and trap doors.",
  "closed_tickets": [
   {
    "id": 292,
@@ -8543,6 +8587,7 @@
   287,
   288,
   290,
+  293,
   222,
   225,
   289,
