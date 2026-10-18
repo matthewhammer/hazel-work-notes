@@ -89,12 +89,14 @@ def card(path, e):
 def page(cards, count):
     THEME_HEAD = ('<!-- theme: head begin -->\n<script>try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") '
                   'document.documentElement.setAttribute("data-theme", t); } catch (e) {}</script>\n<!-- theme: head end -->')
+    NAV_HEAD = '<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->'   # (ticket 296: the nav bar; ~/matthewhammer.github.io/nav/agent-instructions.md)
     THEME = open(os.path.expanduser("~/matthewhammer.github.io/hazel/dress-up/index.html"), encoding="utf-8").read()
     THEME = THEME[THEME.index("<!-- theme: begin -->"):THEME.index("<!-- theme: end -->") + len("<!-- theme: end -->")]
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+{NAV_HEAD}
 {THEME_HEAD}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
