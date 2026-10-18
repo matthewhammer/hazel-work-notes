@@ -626,13 +626,18 @@
    "url": "",
    "text": "<b>Draft ^du_report(5): the full-screen designers' UX, and a global shift to it.</b> The new full-screen interfaces (music production and remixing; the world designer): the choices applied consistently in both, and the work left. Then the analysis, with the full design work, of applying the same approach to every other panel in Dress Up's (very large) set of menus, proposed as a global shift. His terms: knolling (\"always be knolling\": tools and materials laid out in order, in plain view); sub-structure visually apparent, boxes within boxes, minimal visual noise; fractal organization; Gelernter's <i>Mirror Worlds</i> (the day software puts the universe in a shoebox). Drafted locally, published only on his word. <b>In particular</b> (his follow-up): before and proposed after for the castle's theme choices, the bubble themes' choices, and above all the 🏞️ background settings, perhaps with a full-screen designer of its own that puts the game's view in a small panel, as the world designer does.",
    "waiting": "Matthew: read the ^du_report(5) draft at http://localhost:8133/du-reports/005/ (uncommitted in ~/kids-choice-games/dress-up/reports/005/) and say whether to publish it, and which of its 7 steps to mint."
-  },
+  }
+ ],
+ "next_ticket": 282,
+ "current_ticket": null,
+ "current_note": "10:14: Waiting on Matthew: ^ticket(279), read the ^du_report(5) draft at localhost:8133/du-reports/005/ (publish? which steps to mint?); ^ticket(276), the ARCHIVE_TOKEN secret. Released today: 0.0.202 (pictures from settings alone), 0.0.203 (full snapshot), 0.0.204 and 0.0.205 (the grass hut, round), 0.0.206 (signpost boards navigate). Speed runs: 0.0.202's in progress, then 0.0.206's (all four new checks). The 🌙 long runs (222, 225) wait for when he is away.",
+ "closed_tickets": [
   {
    "id": 280,
    "area": "dress up, world, nav",
    "added": "2026-10-18",
    "opened": "2026-10-18T09:58-06:00",
-   "status": "open",
+   "status": "done",
    "tags": [],
    "progress": "",
    "log": [
@@ -651,13 +656,21 @@
    ],
    "source": "Matthew, 2026-10-18, in chat, with a screenshot of the forest's signpost (\"mint and enqueue -- low priority\")",
    "url": "",
-   "text": "<b>Dress Up: the signpost's boards take you where they point</b> (low priority). The automatic sign with its labeled boards (\"⬆️ 🏰 castle E4\", \"↖️ 🌲 forest D4\", ...) gives each board the nav action of its way: a click on a board is as if the matching nav arrow at the picture's edge were clicked. The sign looks the same as now. (His follow-up: a click is the nav action; a drag still moves the signpost, and does not navigate.)"
-  }
- ],
- "next_ticket": 282,
- "current_ticket": 280,
- "current_note": "10:10: Low priority: the signpost's boards take you where they point (a click is the board's nav action, a drag still moves the signpost). Finding how the sign is drawn and how a nav arrow's click is taken.",
- "closed_tickets": [
+   "text": "<b>Dress Up: the signpost's boards take you where they point</b> (low priority). The automatic sign with its labeled boards (\"⬆️ 🏰 castle E4\", \"↖️ 🌲 forest D4\", ...) gives each board the nav action of its way: a click on a board is as if the matching nav arrow at the picture's edge were clicked. The sign looks the same as now. (His follow-up: a click is the nav action; a drag still moves the signpost, and does not navigate.)",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T10:14-06:00",
+   "outcome": "Released in Dress Up 0.0.206 (kids-choice-games b4904c0, tag dress-up-0.0.206, live by 10:14): each board of the 🧭 sign with directions is a .sign-board with its data-way; a press let go on a board takes that way as its nav arrow does (the scene's portal, enterScene), a press that moves 6 px first drags the signpost as before; a board behind something nearer (a tree) is that thing's to press. Checked in the desktop app: a click on the SE board walked the friend to the lake (square 2,3); a drag by the S board moved the sign (x 60 to -57) with no trip. Its check, tools/checks/sign280.mjs, runs in the tag's speed run.",
+   "metrics": {
+    "open_minutes": 17,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 419,
+    "tokens_est": 104,
+    "sync_minutes_est": 0.0,
+    "work_minutes": 3.0
+   },
+   "outcome_url": "https://github.com/matthewhammer/kids-choice-games/commit/b4904c05e9cd3881faad47d73d48549925e0d65c"
+  },
   {
    "id": 281,
    "area": "dress up, places, for M",
@@ -8242,7 +8255,6 @@
   }
  ],
  "queue": [
-  280,
   222,
   225,
   279,
