@@ -1361,7 +1361,7 @@
      "asks": false
     }
    ],
-   "progress": "15:08: RELEASED 0.0.228 (b7f83cc, live 15:08:25), NOT proven to fix it: not reproduced here. In the app's hidden browser pane on 8133, a MutationObserver on the lid saw the whole swing (13-14 steps) on each of four pulls in a row, for the trap room's pits and for a placed lever and trap door, with and without 🔬 Inspection's overlays (all arrows, path, made of); the lid was never replaced mid-swing; a click on a room lever goes through the same roomLeverPull and starts no walk (walkableAt refuses the wall). Fix made on the likeliest cause that fits 'first time only' on Firefox: lidSwing and turnArm took t0 at the pull, before the redraw; the trap room since 0.0.226 has 271 moss shapes; a slow repaint could use up the 520 ms before the first frame. Both now start their clocks at their first frame. WAITING ON MATTHEW: does the swing play every time on 0.0.228? If not: which lever, where the friend stands, Firefox or not. 15:15: Matthew: \"I'm using 228 and I see no animations of the pits at all, or the levers.\" (worse than 0.0.227's first-time-only). Investigating. 15:2x: a real-click check (tools/checks/lidswing322.mjs: music on, #inspect overlays, real mouse clicks, every frame's lid fold and the room's rebuilds) is running on GitHub, branch lid-322 (only that check). Meanwhile ^ticket(324)."
+   "progress": "15:08: RELEASED 0.0.228 (b7f83cc, live 15:08:25), NOT proven to fix it: not reproduced here. In the app's hidden browser pane on 8133, a MutationObserver on the lid saw the whole swing (13-14 steps) on each of four pulls in a row, for the trap room's pits and for a placed lever and trap door, with and without 🔬 Inspection's overlays (all arrows, path, made of); the lid was never replaced mid-swing; a click on a room lever goes through the same roomLeverPull and starts no walk (walkableAt refuses the wall). Fix made on the likeliest cause that fits 'first time only' on Firefox: lidSwing and turnArm took t0 at the pull, before the redraw; the trap room since 0.0.226 has 271 moss shapes; a slow repaint could use up the 520 ms before the first frame. Both now start their clocks at their first frame. WAITING ON MATTHEW: does the swing play every time on 0.0.228? If not: which lever, where the friend stands, Firefox or not. 15:15: Matthew: \"I'm using 228 and I see no animations of the pits at all, or the levers.\" (worse than 0.0.227's first-time-only). Investigating. 15:2x: a real-click check (tools/checks/lidswing322.mjs: music on, #inspect overlays, real mouse clicks, every frame's lid fold and the room's rebuilds) is running on GitHub, branch lid-322 (only that check). Meanwhile ^ticket(324). 15:26: GitHub's Chrome (run 39167354761, branch lid-322, tools/checks/lidswing322.mjs): real mouse clicks, music playing, #inspect overlays, 0.0.228: all four pulls swing in full (the lid mid-swing on 26 frames each, the handle on 33), one rebuild of the room per pull. So the swing works in Chrome. Likeliest Firefox cause (ff198.py's finding: Firefox's music clock can stand still): picGapNow re-measures the gap every 0.25 s of drift, the scene's LFO begins change, the room is rebuilt, and the swinging lid and handle are replaced by their end state. Fix: each swing finds its lid and handle again by selector every frame, so a rebuild mid-swing carries on in the new drawing."
   },
   {
    "id": 323,
@@ -1452,7 +1452,7 @@
    "opened": "2026-10-18T15:23-06:00",
    "status": "open",
    "tags": [],
-   "text": "<b>matthewhammer.org/pubs.html and the other pages in the nav bar's outline: fix their formatting, the left margin most of all (lowest priority).</b> Matthew, with a screenshot at 15:22 (kept locally, ~/du-shots/ticket-327/pubs-left-margin.webp): \"fix formatting for pubs page, esp left margin\". The page's title and text run right up against the nav bar's edge. Then: \"ditto for other pages in the outline (like adapton, etc)\". Then (same ticket): \"please complete https://matthewhammer.org/pubs.html to reflect this list, as much as possible: https://matthewhammer.org/pubs.html -- there's a lot missing, do your best.\" (Both links are the same page; taken to mean the page's own 'See also' sources, DBLP first, then Google Scholar: every publication and draft listed there, added to pubs.html in its style.)",
+   "text": "<b>matthewhammer.org/pubs.html and the other pages in the nav bar's outline: fix their formatting, the left margin most of all (lowest priority).</b> Matthew, with a screenshot at 15:22 (kept locally, ~/du-shots/ticket-327/pubs-left-margin.webp): \"fix formatting for pubs page, esp left margin\". The page's title and text run right up against the nav bar's edge. Then: \"ditto for other pages in the outline (like adapton, etc)\". Then (same ticket): \"please complete https://matthewhammer.org/pubs.html to reflect this list, as much as possible: https://matthewhammer.org/pubs.html -- there's a lot missing, do your best.\" (Both links are the same page; taken to mean the page's own 'See also' sources, DBLP first, then Google Scholar: every publication and draft listed there, added to pubs.html in its style.) Matthew then downloaded DBLP's page for the list: ~/Downloads/dblp_ Matthew A. Hammer.html (data, read as such).",
    "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue -- lowest priority\")",
    "url": "https://matthewhammer.org/pubs.html",
    "log": [
@@ -1472,6 +1472,12 @@
      "at": "2026-10-18T15:24-06:00",
      "from": "matthew",
      "chars": 170,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T15:26-06:00",
+     "from": "matthew",
+     "chars": 60,
      "asks": false
     }
    ],
