@@ -856,7 +856,7 @@
    "opened": "2026-10-18T11:55-06:00",
    "status": "open",
    "tags": [],
-   "progress": "11:59: the audit. Crawled from https://matthewhammer.org/, https://fumola.org/ and https://adapton.org/ (links within the three sites, snapshots skipped): 116 URLs, 47 reachable pages without the Auto / Light / Dark choice: 37 with no dark mode at all (matthewhammer.org's front page and pubs.html; the old research pages pubs links: adapton, icfp11, ismm08, jfp2014, oopsla11, plas2013, selfadjmachines, pldi09 and its 8 manual pages; replayground/mergeSort44.html; fumola.org's front page, alignment, press, web-play, hazel-integration and a Hazel build page; adapton.org and its lab-results; the Dress Up archives' pages; the game) and 10 that follow the system with no choice (the crash log and nine work notes). Everything under /hazel/, the dashboard and the Dress Up reports already offer the choice (hazel-perf-report/tools/add_theme.py's block). The 40 course pages and the snapshots are not reachable: left alone. Found on the way: broken links (pubs.html: oakland2014 and a relative www.umut-acar.org; adapton.org/lab-results: 16 rustdoc pages; Dress Up reports 2 to 4: their data/, drivers/ and pictures/ folders, which have no index; a work note's dress-up-pictures day). NEXT: the nav bar's design first (it can carry the theme choice), shown to Matthew on a few pages, then both rolled out. 12:06: PROTOTYPE, not committed: ~/matthewhammer.github.io/nav/nav.js, one script holding the outline of the whole constellation (OUTLINE), its projection (the four sites; this page's branch opened, its parents, siblings and children; the page marked, with its own headings or its own outline taken in; a dot on each entry the page links to), the drag controls (the right edge to resize, double-click to reset; « hide, » show; remembered per site; ☰ on a phone) and the theme choice (◐ auto, ☀ light, ☾ dark; localStorage \"theme\", as add_theme.py). A page with no answer to data-theme gets a plain dark style from it. Tried in the browser pane on the front page, a CEAL manual page (light and dark), the dashboard (its own outline taken in) and adapton.org (on 8765), and at phone width. For Matthew's look, six pages in the homepage's local copy include it (uncommitted): http://localhost:8136/ , /pubs.html , /pldi09/manual/ex_add.html , /hazel/ , /hazel/dress-up/ , /hazel/dashboard/ . NEXT, once he settles it: the include on every reachable page (fumola.org's and adapton.org's too), each page's CSS answering data-theme where it does not, and agent instructions for the nav bar.",
+   "progress": "11:59: the audit. Crawled from https://matthewhammer.org/, https://fumola.org/ and https://adapton.org/ (links within the three sites, snapshots skipped): 116 URLs, 47 reachable pages without the Auto / Light / Dark choice: 37 with no dark mode at all (matthewhammer.org's front page and pubs.html; the old research pages pubs links: adapton, icfp11, ismm08, jfp2014, oopsla11, plas2013, selfadjmachines, pldi09 and its 8 manual pages; replayground/mergeSort44.html; fumola.org's front page, alignment, press, web-play, hazel-integration and a Hazel build page; adapton.org and its lab-results; the Dress Up archives' pages; the game) and 10 that follow the system with no choice (the crash log and nine work notes). Everything under /hazel/, the dashboard and the Dress Up reports already offer the choice (hazel-perf-report/tools/add_theme.py's block). The 40 course pages and the snapshots are not reachable: left alone. Found on the way: broken links (pubs.html: oakland2014 and a relative www.umut-acar.org; adapton.org/lab-results: 16 rustdoc pages; Dress Up reports 2 to 4: their data/, drivers/ and pictures/ folders, which have no index; a work note's dress-up-pictures day). NEXT: the nav bar's design first (it can carry the theme choice), shown to Matthew on a few pages, then both rolled out. 12:06: PROTOTYPE, not committed: ~/matthewhammer.github.io/nav/nav.js, one script holding the outline of the whole constellation (OUTLINE), its projection (the four sites; this page's branch opened, its parents, siblings and children; the page marked, with its own headings or its own outline taken in; a dot on each entry the page links to), the drag controls (the right edge to resize, double-click to reset; « hide, » show; remembered per site; ☰ on a phone) and the theme choice (◐ auto, ☀ light, ☾ dark; localStorage \"theme\", as add_theme.py). A page with no answer to data-theme gets a plain dark style from it. Tried in the browser pane on the front page, a CEAL manual page (light and dark), the dashboard (its own outline taken in) and adapton.org (on 8765), and at phone width. For Matthew's look, six pages in the homepage's local copy include it (uncommitted): http://localhost:8136/ , /pubs.html , /pldi09/manual/ex_add.html , /hazel/ , /hazel/dress-up/ , /hazel/dashboard/ . NEXT, once he settles it: the include on every reachable page (fumola.org's and adapton.org's too), each page's CSS answering data-theme where it does not, and agent instructions for the nav bar. 12:08: MATTHEW SETTLED THE DESIGN (\"settle design.\"): rolling it out, then the agent instructions.",
    "log": [
     {
      "at": "2026-10-18T11:55-06:00",
@@ -874,6 +874,12 @@
      "at": "2026-10-18T11:59-06:00",
      "from": "matthew",
      "chars": 400,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T12:08-06:00",
+     "from": "matthew",
+     "chars": 14,
      "asks": false
     }
    ],
@@ -900,11 +906,31 @@
    "source": "Matthew, 2026-10-18, in chat, with a full-screen screenshot of the tree house: the friend among the flowers by the trunk, flowers that stand nearer drawn under her legs",
    "url": "",
    "text": "<b>Dress Up: flowers, and every plant growing up into the sky, layered by depth.</b> When the friend comes near them, flowers (and all the other plants that grow \"up\" into the sky) layer correctly: one standing nearer than the friend's feet is drawn in front of the friend, one farther back behind."
+  },
+  {
+   "id": 298,
+   "area": "dress up, ♿ collision boxes",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T12:08-06:00",
+   "status": "open",
+   "tags": [],
+   "progress": "The line is ♿'s back limit, where the friend's feet stop going back: figYMin (js/25-world.js, solidsHud: \"the back limit the feet stop at (figYMin: a back wall's foot, else the frame's)\"). Matthew's screenshot, kept locally (not public) at ~/du-shots/ref-298/treehouse-back-line.webp: the tree house, full screen, with ♿'s boxes on; the dashed horizontal line runs across at about the height of the friend's \"you\" ring, by the stream. Check what figYMin says for the tree house against where the feet really stop, and draw the line where they stop.",
+   "log": [
+    {
+     "at": "2026-10-18T12:08-06:00",
+     "from": "matthew",
+     "chars": 56,
+     "asks": false
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat, with a screenshot of the tree house with ♿'s collision boxes on",
+   "url": "",
+   "text": "<b>Dress Up: ♿'s back limit line in the tree house is too low.</b> \"Blue horz line in this scene is not accurate -- too low.\" The line drawn across the tree house, with ♿'s collision boxes shown, is not where it should be: too low."
   }
  ],
- "next_ticket": 298,
+ "next_ticket": 299,
  "current_ticket": 296,
- "current_note": "12:06: The nav bar prototype is ready for Matthew's look, waiting on him to settle the design: http://localhost:8136/ (also /pubs.html, /pldi09/manual/ex_add.html, /hazel/, /hazel/dress-up/, /hazel/dashboard/), served from the homepage's local copy, nothing committed or pushed.",
+ "current_note": "12:08: Matthew settled the nav bar's design. Rolling it out: the script committed on matthewhammer.org, then the include on every reachable page of the three sites (and in the scripts that make the dashboard, the work notes and the reports), each page's CSS answering data-theme, then the agent instructions.",
  "closed_tickets": [
   {
    "id": 292,
@@ -8690,6 +8716,7 @@
   294,
   295,
   297,
+  298,
   222,
   225,
   289,
@@ -8702,6 +8729,5 @@
   166,
   259
  ],
- "current_since": "2026-10-18T11:55-06:00",
- "current_waiting": "the nav bar's design: settle it, or change what?"
+ "current_since": "2026-10-18T11:55-06:00"
 }
