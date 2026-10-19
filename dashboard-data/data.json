@@ -4,8 +4,7 @@
    "pr": 2635,
    "repo": "hazelgrove/hazel",
    "branch": "integration/livelits-modular-editors",
-   "links": [],
-   "links_paused": [
+   "links": [
     [
      "localhost:8341",
      "http://localhost:8341/"
@@ -15,7 +14,7 @@
      "http://localhost:8341/?slide=livelit-playground-scenes"
     ]
    ],
-   "branch_note": "(<b>not served</b> since the 2026-10-16 16:33 crash: Matthew's call at 16:37, only the dashboard and Dress Up on local ports for now, no Hazel ports)"
+   "branch_note": "(served again since 10:09 on 2026-10-19: a fresh build of 9e7258b55b, #2635's head, for ^ticket(387). Documentation &gt; Livelits &gt; Overview, then ^flag's eye: the model pane)"
   },
   {
    "pr": 2597,
@@ -28,7 +27,7 @@
      "http://localhost:8311/"
     ]
    ],
-   "branch_note": "(<b>not served</b> since the 2026-10-16 16:33 crash: Matthew's call at 16:37, only the dashboard and Dress Up on local ports for now, no Hazel ports)"
+   "branch_note": "(<b>not served</b>: served 10:08 to 10:12 on 2026-10-19 to compare ^ticket(387) with #2635, then stopped to stay within the app's 5 preview servers; its build is f8ae6f2b9c)"
   },
   {
    "pr": 2635,
@@ -50,14 +49,37 @@
    "repo": "hazelgrove/hazel",
    "branch": "cursor-inspector-full-types",
    "base": "dev",
-   "links": []
+   "links": [],
+   "branch_note": "(no local build: #2698 below is stacked on it and contains it)"
+  },
+  {
+   "pr": 2698,
+   "repo": "hazelgrove/hazel",
+   "branch": "context-inspector-long-types",
+   "base": "cursor-inspector-full-types",
+   "links": [
+    [
+     "localhost:8361",
+     "http://localhost:8361/"
+    ]
+   ],
+   "branch_note": "(^ticket(386), draft PR stacked on #2676: Gamma's long types. A build of 20ade6928b, worktree <code>~/hazel-dev-inspector</code>. Open &Gamma; at the bottom bar's left and click an entry's &#9656;)"
   },
   {
    "name": "Hazel performance analysis (the report's sources)",
    "repo_html": "<a href=\"https://github.com/matthewhammer/hazel-performance-analysis\">matthewhammer/hazel-performance-analysis</a>, checked out at <code>~/hazel-perf-report</code>",
    "branch": "main",
-   "branch_note": "(public: a push publishes, so drafts wait)",
-   "links": []
+   "branch_note": "(public: a push publishes, so drafts wait. ^report(18), why #2635 fails CI, is a local draft waiting on Matthew)",
+   "links": [
+    [
+     "localhost:8131/series/",
+     "http://localhost:8131/series/"
+    ],
+    [
+     "^report(18) draft: localhost:8131/018/",
+     "http://localhost:8131/018/"
+    ]
+   ]
   },
   {
    "name": "Messed Up Dress Up (the game)",
@@ -78,7 +100,8 @@
    "name": "matthewhammer.org (the homepage's local copy)",
    "repo_html": "<a href=\"https://github.com/matthewhammer/matthewhammer.github.io\">matthewhammer/matthewhammer.github.io</a>, checked out at <code>~/matthewhammer.github.io</code>, with the project sites linked in beside it as on the real domain (<code>dress-up-pictures</code>, <code>dress-up-music</code>, <code>dress-up-pictures-2026-10-18</code>, <code>kids-choice-games</code>, <code>hazel-work-notes</code>: symlinks to their clones, in <code>.git/info/exclude</code>), so the Dress Up pictures and music pages read their archives here too<br>Every reachable page here loads the nav bar from matthewhammer.org (^ticket(296)).",
    "branch": "master",
-   "links": [
+   "links": [],
+   "links_paused": [
     [
      "localhost:8136/",
      "http://localhost:8136/"
@@ -99,18 +122,21 @@
      "localhost:8136/hazel/dress-up/music.html",
      "http://localhost:8136/hazel/dress-up/music.html"
     ]
-   ]
+   ],
+   "branch_note": "(<b>not served</b> since 10:09 on 2026-10-19: stopped to stay within the app's 5 preview servers; back on request)"
   },
   {
    "name": "adapton.org (its local copy)",
    "repo_html": "<a href=\"https://github.com/Adapton/adapton-homepage\">Adapton/adapton-homepage</a>, branch <code>gh-pages</code> (the site itself), checked out at <code>~/adapton-homepage</code>",
    "branch": "gh-pages",
-   "links": [
+   "links": [],
+   "links_paused": [
     [
      "localhost:8765/",
      "http://localhost:8765/"
     ]
-   ]
+   ],
+   "branch_note": "(<b>not served</b> since 10:09 on 2026-10-19: stopped to stay within the app's 5 preview servers; back on request)"
   }
  ],
  "tracking_issue": 2609,
@@ -688,7 +714,7 @@
    "tags": [],
    "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
    "url": "",
-   "progress": "09:14: minted. 09:34 Matthew: \"item 7 -- yes. (387 and 388 after 386, in that order)\"",
+   "progress": "09:14: minted. 09:34 Matthew: \"item 7 -- yes. (387 and 388 after 386, in that order)\" 10:10: FOUND, on BOTH livelits branches (#2597 at f8ae6f2b9c on 8311, #2635 at 9e7258b55b on 8341, Livelits > Overview, ^flag's eye): the eye's pane already shows the model as TILES, a splice sub-editor (code-editor sub-editor): caret, Shift+Arrow selection, the inspector reads 'Boolean literal', right click opens Hazel's context menu; Perform.in_revealed_model refuses text edits. What is NOT tiles: the pane's head line (^flag) and params line (HTML inputs, editable by design); the Projectors sidebar card of a docked livelit (ProjectorView: 'a preview, not an editing surface', default_render_splice = simple_code text); and refractors (RefractorView, also default_render_splice). Asked Matthew which surface Cyrus meant.",
    "log": [
     {
      "at": "2026-10-19T09:14-06:00",
@@ -799,8 +825,8 @@
   }
  ],
  "next_ticket": 393,
- "current_ticket": 389,
- "current_note": "10:07: ^ticket(386) closed (done); ^ticket(389) is next in the queue",
+ "current_ticket": 387,
+ "current_note": "10:10: Found the eye's model pane is already tiles on both livelits branches; asking Matthew which surface Cyrus meant (sidebar card, refractors, or the head/params lines).",
  "closed_tickets": [
   {
    "id": 386,
@@ -12742,8 +12768,8 @@
   }
  ],
  "queue": [
-  389,
   387,
+  389,
   388,
   374,
   326,
@@ -12758,5 +12784,5 @@
   344,
   391
  ],
- "current_since": "2026-10-19T10:07-06:00"
+ "current_since": "2026-10-19T10:10-06:00"
 }
