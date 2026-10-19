@@ -101,6 +101,13 @@ The dashboard's code has a version number, `VERSION` in `dashboard/update.py`, w
 - **The performance analysis series:** http://matthewhammer.org/hazel/performance-analysis/, its reports, `^report(1)` onward. The sources are in `~/hazel-perf-report`, served at http://localhost:8131/series/.
   - Write a report as a draft. Matthew reviews it, then publish: copy it to `~/matthewhammer.github.io/hazel/performance-analysis/`, push, wait for the Pages run, and check the live page.
   - A correction to a published report is a dated update box under the short answers, a note after each claim it supersedes, and an "Update" section. The original text stays as written.
+  - **A meeting's agenda is a special kind of report** (Matthew, 2026-10-19; the model is `^report(20)`, for the meeting with Cyrus on 2026-10-21). It is a work in progress, compiled over the days before the meeting:
+    - The page is generated: edit `NNN/data/agenda.json`, then run `NNN/drivers/gen020.py` (copied and renamed per agenda) and the series tools `report_refs.py`, `link_prs.py` and `add_theme.py`.
+    - Its series line says "agenda", has a "work in progress" label, and gives the date it started and when it was last updated. Then come an "In short" box and a table of the items.
+    - Each item gets a card: who asked and when, a status label (fixed, draft PR, queued, to come, for discussion), the time that status is from, what we know, and **For the meeting:**, saying what to discuss or decide.
+    - It ends with "If there is time" and "How this agenda is kept".
+    - Link it from the meeting's ticket, and keep its items in step with that ticket and the tickets it lists. When an item moves, update its status and as-of time, and the page's updated line.
+    - Like any report, it is a local draft, published only on Matthew's word. A report it links must be published with it or before it.
 - **Performance is the highest priority.** Profile, and measure before and after. One heavy job at a time: the laptop crashes under load.
 - **PRs:**
   - Ask before merging; a PR to `dev` also needs an approving review.
