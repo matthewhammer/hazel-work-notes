@@ -676,46 +676,6 @@
    "text": "<b>Dress Up: replacement candidates for 🐢 turtle steppers dub D.</b> Matthew: \"turtle stepper's dub D is awlful -- the others -- A, B, C are great. Let's make several replacement candidates.\" D (ticket 301) is \"a drum break\": 92 beats a minute, E9 A9 B7 chords (stabs of ninths on the chop), a break whose snare and rim race in fives, sixes and sevens. A (triplet shuffle, 150, A minor), B (one-drop, 84, G major) and C (rockers, three against four, 88, F major) work: plain chords, idiomatic drums. Make several candidates in their spirit, each its own drums and chords, beside A to C in 🌴 reggae, for him to pick one to become D."
   },
   {
-   "id": 383,
-   "area": "dress up, performance (^du_report(12)'s next steps)",
-   "added": "2026-10-19",
-   "opened": "2026-10-19T07:52-06:00",
-   "status": "open",
-   "tags": [
-    "long run"
-   ],
-   "source": "Matthew, 2026-10-19 07:51, in chat: \"enqueue each next step from http://localhost:8133/du-reports/012/ and do your best.\"",
-   "url": "http://localhost:8133/du-reports/012/",
-   "progress": "07:52: minted from ^du_report(12)'s next step 4 of 5. 07:56: READ the foam (js/14-outdoors.js bubbleroomScene): what does not move is baked into <image>s already; what moves (lifeOf: up to 16 breathing and 4 popping bubbles a surface) is SMIL scale animations inside the scene SVG, spread over every surface, so the browser repaints the whole picture each frame. Layers the browser moves without repainting must be page elements (a composited div/img), not SVG children; and the foam is BEHIND the friend inside the one picture. So the step means: the room's shell and foam drawn as page layers behind a scene picture that is see-through there (the moving bubbles' bands as their own img layers, animated by CSS opacity/transform: e.g. breathing as two baked states cross-fading, popping as a band fading out and back), touching the still pictures, the picture archive and 🔬's overlays. The report makes it conditional: 'if the moving foam is wanted back on by default'; still since 0.0.306 (his rule: costly effects off at the start). ✋ Waiting on Matthew: is moving foam wanted on by default? If yes, the above is the plan (a long run, measured in Firefox and Chrome on GitHub before and after). 09:07 Matthew: \"Yes, I want moving foam back on by default: build 383's layered foam as a long run.\" Unblocked; started. 09:08 Matthew: \"in 30min, let's park every dress-up ticket, and switch over to hazel tickets. We will do hazel tickets for most of the work day, but we can do a few dress-up tasks if they are lingering.\" So: 383 until ~09:40, then parked with its state written here. 09:09 DESIGN (to build after the spike): in the bubble room, the room's backdrop (bubbleroom-shell and the five foam surfaces' still pictures) drawn under a see-through #pic (#pic-under, before #pic in .pic-box, placed as #pic-over is, inside the border; #pic's paper background off there, body.foam-under), and each moving bubble (lifeOf's choice: up to 16 breathing and 4 popping a surface) a small page element of its own in a layer between them (#foam-layers: a div per bubble at its spot in CSS px, mapped from the scene's viewBox and updated on resize, its own inline svg bubble, scaled by a CSS animation, transform only: the compositor's work, no repaint of the picture). Kept as they are: the stuck-out balls and everything else in #pic (the friend passes in front of and behind them); 👁️ hiding a foam surface and 🔬's objects must reach the moved surfaces (showObjects and sceneObjects look in #pic-under too); still pictures on a slow computer and the picture archive draw #pic-under's picture under #pic's (or the bubble room keeps its backdrop in #pic while held still). Then foamMove's default back to 88 (a save at 0 since 0.0.306 kept, a fresh one moving). Measured before and after in Chrome (CPU 1, 4) and Firefox at Matthew's screen on GitHub. 09:14 SPIKE READ (diag-383, run 39275366785; the bubble room standing, 3 s, first run of two each): Chrome CPU 1: moving foam today (139 SMIL animations) 52.3 fps, still 60, still + 120 breathing page layers (a div each, CSS transform animation) 60. Chrome CPU 4 (the slow tier): 22.3 / 60 / 56.4-58.3. Firefox at Matthew's screen size: 28.3 / 60 / 60. The design holds: moving bubbles as page layers cost next to nothing where the picture's own animations cost 8 to 38 fps. The spike's layers sat OVER the picture (cost only); the build puts them between the backdrop and a see-through picture, as designed above. 09:14 PARKED (Matthew: Hazel tickets for most of the day): the spike settles the design (above); nothing built yet. A worktree waits for it: ~/kcg-foam-383 on branch foam-layers-383 (off main at 0.0.333, no commits, not pushed). Next: build the design above there, measure as the spike did, then foamMove's default 88. 09:15 Matthew, on the spike's result and the plan to build in a worktree of its own: \"Great -- please continue that, and make sure there's a ticket to track it.\" This ticket tracks it; unparked. The build: ~/kcg-foam-383, branch foam-layers-383 (off main at 0.0.333); measured as the spike was before it turns on by default. 09:23 BUILT on foam-layers-383 (2a754ec, local, not pushed): foamLayersRun (js/14-outdoors.js) puts the bubble room's backdrop (data-under: shell + 5 foam surfaces) into #pic-under under a see-through #pic and each moving bubble (data-foam, lifeOf's choice) into #foam-layers as a page element (its own little svg, CSS scale animation), in a .foam-in box placed where the scene is drawn (fitPic and a ResizeObserver place it again); taken down at once (the backdrop put back where it was) when the picture or scenery is held still, the place changes or the foam is made still; balls hold still when layered; foamMove 88 by default, a 0.0.306-still save moves once; the guard no longer blames layered foam. App's pane: 92 layers, 0 animations in the picture, each layer within 0.03 px of its bubble (after placing; the hidden pane runs no ResizeObserver), held/choppy/still-0/another place all right. Checks: layers383 (new), bubbleroom290, makers340 updated. diag-383b running them with the gate's bubble room (now moving) and Firefox.",
-   "log": [
-    {
-     "at": "2026-10-19T07:52-06:00",
-     "from": "matthew",
-     "chars": 80,
-     "asks": false
-    },
-    {
-     "at": "2026-10-19T09:07-06:00",
-     "from": "matthew",
-     "chars": 84,
-     "asks": false
-    },
-    {
-     "at": "2026-10-19T09:08-06:00",
-     "from": "matthew",
-     "chars": 170,
-     "asks": false
-    },
-    {
-     "at": "2026-10-19T09:15-06:00",
-     "from": "matthew",
-     "chars": 90,
-     "asks": false
-    }
-   ],
-   "text": "<b>Dress Up: moving foam that costs little (the layered foam, on by default).</b> ^du_report(12) (\"The foam, not the makers\"), its next step 4: if the moving foam is wanted back on by default: its bands as layers of their own the browser moves without repainting, not 139 animations inside the picture."
-  },
-  {
    "id": 386,
    "area": "hazel, types, the type expansion in Gamma",
    "added": "2026-10-19",
@@ -839,9 +799,61 @@
   }
  ],
  "next_ticket": 392,
- "current_ticket": 386,
- "current_note": "09:36: ^ticket(19) closed (done); ^ticket(386) is next in the queue",
+ "current_ticket": 16,
+ "current_note": "09:37: drafting the ask to require the test jobs on dev (16) and the timing-report proposal (17); Matthew: yes",
  "closed_tickets": [
+  {
+   "id": 383,
+   "area": "dress up, performance (^du_report(12)'s next steps)",
+   "added": "2026-10-19",
+   "opened": "2026-10-19T07:52-06:00",
+   "status": "done",
+   "tags": [
+    "long run"
+   ],
+   "source": "Matthew, 2026-10-19 07:51, in chat: \"enqueue each next step from http://localhost:8133/du-reports/012/ and do your best.\"",
+   "url": "http://localhost:8133/du-reports/012/",
+   "progress": "07:52: minted from ^du_report(12)'s next step 4 of 5. 07:56: READ the foam (js/14-outdoors.js bubbleroomScene): what does not move is baked into <image>s already; what moves (lifeOf: up to 16 breathing and 4 popping bubbles a surface) is SMIL scale animations inside the scene SVG, spread over every surface, so the browser repaints the whole picture each frame. Layers the browser moves without repainting must be page elements (a composited div/img), not SVG children; and the foam is BEHIND the friend inside the one picture. So the step means: the room's shell and foam drawn as page layers behind a scene picture that is see-through there (the moving bubbles' bands as their own img layers, animated by CSS opacity/transform: e.g. breathing as two baked states cross-fading, popping as a band fading out and back), touching the still pictures, the picture archive and 🔬's overlays. The report makes it conditional: 'if the moving foam is wanted back on by default'; still since 0.0.306 (his rule: costly effects off at the start). ✋ Waiting on Matthew: is moving foam wanted on by default? If yes, the above is the plan (a long run, measured in Firefox and Chrome on GitHub before and after). 09:07 Matthew: \"Yes, I want moving foam back on by default: build 383's layered foam as a long run.\" Unblocked; started. 09:08 Matthew: \"in 30min, let's park every dress-up ticket, and switch over to hazel tickets. We will do hazel tickets for most of the work day, but we can do a few dress-up tasks if they are lingering.\" So: 383 until ~09:40, then parked with its state written here. 09:09 DESIGN (to build after the spike): in the bubble room, the room's backdrop (bubbleroom-shell and the five foam surfaces' still pictures) drawn under a see-through #pic (#pic-under, before #pic in .pic-box, placed as #pic-over is, inside the border; #pic's paper background off there, body.foam-under), and each moving bubble (lifeOf's choice: up to 16 breathing and 4 popping a surface) a small page element of its own in a layer between them (#foam-layers: a div per bubble at its spot in CSS px, mapped from the scene's viewBox and updated on resize, its own inline svg bubble, scaled by a CSS animation, transform only: the compositor's work, no repaint of the picture). Kept as they are: the stuck-out balls and everything else in #pic (the friend passes in front of and behind them); 👁️ hiding a foam surface and 🔬's objects must reach the moved surfaces (showObjects and sceneObjects look in #pic-under too); still pictures on a slow computer and the picture archive draw #pic-under's picture under #pic's (or the bubble room keeps its backdrop in #pic while held still). Then foamMove's default back to 88 (a save at 0 since 0.0.306 kept, a fresh one moving). Measured before and after in Chrome (CPU 1, 4) and Firefox at Matthew's screen on GitHub. 09:14 SPIKE READ (diag-383, run 39275366785; the bubble room standing, 3 s, first run of two each): Chrome CPU 1: moving foam today (139 SMIL animations) 52.3 fps, still 60, still + 120 breathing page layers (a div each, CSS transform animation) 60. Chrome CPU 4 (the slow tier): 22.3 / 60 / 56.4-58.3. Firefox at Matthew's screen size: 28.3 / 60 / 60. The design holds: moving bubbles as page layers cost next to nothing where the picture's own animations cost 8 to 38 fps. The spike's layers sat OVER the picture (cost only); the build puts them between the backdrop and a see-through picture, as designed above. 09:14 PARKED (Matthew: Hazel tickets for most of the day): the spike settles the design (above); nothing built yet. A worktree waits for it: ~/kcg-foam-383 on branch foam-layers-383 (off main at 0.0.333, no commits, not pushed). Next: build the design above there, measure as the spike did, then foamMove's default 88. 09:15 Matthew, on the spike's result and the plan to build in a worktree of its own: \"Great -- please continue that, and make sure there's a ticket to track it.\" This ticket tracks it; unparked. The build: ~/kcg-foam-383, branch foam-layers-383 (off main at 0.0.333); measured as the spike was before it turns on by default. 09:23 BUILT on foam-layers-383 (2a754ec, local, not pushed): foamLayersRun (js/14-outdoors.js) puts the bubble room's backdrop (data-under: shell + 5 foam surfaces) into #pic-under under a see-through #pic and each moving bubble (data-foam, lifeOf's choice) into #foam-layers as a page element (its own little svg, CSS scale animation), in a .foam-in box placed where the scene is drawn (fitPic and a ResizeObserver place it again); taken down at once (the backdrop put back where it was) when the picture or scenery is held still, the place changes or the foam is made still; balls hold still when layered; foamMove 88 by default, a 0.0.306-still save moves once; the guard no longer blames layered foam. App's pane: 92 layers, 0 animations in the picture, each layer within 0.03 px of its bubble (after placing; the hidden pane runs no ResizeObserver), held/choppy/still-0/another place all right. Checks: layers383 (new), bubbleroom290, makers340 updated. diag-383b running them with the gate's bubble room (now moving) and Firefox.",
+   "log": [
+    {
+     "at": "2026-10-19T07:52-06:00",
+     "from": "matthew",
+     "chars": 80,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T09:07-06:00",
+     "from": "matthew",
+     "chars": 84,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T09:08-06:00",
+     "from": "matthew",
+     "chars": 170,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T09:15-06:00",
+     "from": "matthew",
+     "chars": 90,
+     "asks": false
+    }
+   ],
+   "text": "<b>Dress Up: moving foam that costs little (the layered foam, on by default).</b> ^du_report(12) (\"The foam, not the makers\"), its next step 4: if the moving foam is wanted back on by default: its bands as layers of their own the browser moves without repainting, not 139 animations inside the picture.",
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T09:37-06:00",
+   "outcome": "Released 0.0.334 (2739126, with de7a2e4 + 217260c from foam-layers-383), on Matthew's word ('Yes, I want moving foam back on by default: build 383's layered foam as a long run'): the bubble room's foam moving by default again (88), its backdrop under a see-through picture (#pic-under), each moving bubble a page layer (#foam-layers, CSS scale animations), no animation left in the picture; taken down at once when held still (the archive), on a slow computer, in another place, or with the foam at 0; the stuck-out balls hold still for now (moving them would mean layering them by depth around the friend: a later ticket if wanted). Measured: the spike, Chrome 52 -> 60, slow tier 22 -> 56-58, Firefox at Matthew's screen 28 -> 60 (the room alone); diag-383b: layers383 all facts (alignment within half a pixel, after a resize too), the gate's bubble room with moving foam 60 / 60 full speed, 59.7 / 59.7 black tier; headless Firefox with 4 makers 47.6 fps (55.6 with the foam still: not free there). Checked on main (port 8133): 0.0.334, 92 layers, 0 picture animations. Note: 0.0.333's speed run failed the gate's new bubble room drag (49.6 fps on that loaded runner; 59-60 in the diagnostics): 0.0.334's run will show whether that case is steady.",
+   "metrics": {
+    "open_minutes": 106,
+    "matthew_messages": 4,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 424,
+    "tokens_est": 106,
+    "sync_minutes_est": 8.0,
+    "work_minutes": 75.0
+   }
+  },
   {
    "id": 19,
    "area": "performance, CI",
@@ -12689,7 +12701,6 @@
   389,
   387,
   388,
-  383,
   374,
   326,
   276,
@@ -12703,5 +12714,5 @@
   344,
   391
  ],
- "current_since": "2026-10-19T09:36-06:00"
+ "current_since": "2026-10-19T09:37-06:00"
 }
