@@ -1310,7 +1310,7 @@
    "tags": [],
    "source": "Matthew, chat, 2026-10-18 20:45",
    "url": "",
-   "progress": "Minted 20:26; queued at the end of the active tickets.",
+   "progress": "Minted 20:26; queued at the end of the active tickets. 21:31: drafted locally (not committed) as ^du_report(8), 'Piece by piece': dress-up/reports/008 (index.html, data/report.json, drivers/build.py, pictures/castle.svg) and its card on the local series index; preview localhost:8133/du-reports/008/. Inventory (56% pure), what Hazel has and lacks, two- and three-month week-by-week plans with the archive as the oracle, risks, decisions. ✋ Waiting on Matthew to read it before it is pushed.",
    "log": [
     {
      "at": "2026-10-18T20:26-06:00",
@@ -1320,26 +1320,6 @@
     }
    ],
    "text": "<b>A ^du_report draft: porting Messed Up Dress Up (MUDU) to Hazel, piece by piece: how to port all of its current features in two months, and in three.</b> Matthew: \"report draft --- porting MUDU (messed up dress up) to Hazel, piece by piece. How can we do this port, of all current features, over the next 2 months? 3 months?\" His method (memory, 10-11): prototype in JS with real players, then formulate in Hazel. PLAN: (1) an inventory of what MUDU is today (0.0.265+: 26 script parts, ~21,800 lines; the friend and its poses and costumes, the places and their objects, collisions and walking, the world designer, music and LFOs, 🔬 and ♿, the archives, the checks) and what each rests on (SVG strings, the scene cache, requestAnimationFrame loops, WebAudio); (2) what Hazel has for it now (the livelits and their GUIs, splices, the evaluator, the editor, projectors, the performance work of #2469/#2635, what is known slow), and what each part of MUDU would need from Hazel that it lacks; (3) the order: pieces that stand alone and show Hazel well first (the friend's drawing as a pure function from settings to a picture; a place as a function; the pose rig), the runtime last (input, animation, sound), each piece a livelit or a slide with the JS still running beside it until its Hazel twin draws the same picture (the archives' pictures as the oracle: same settings, same SVG); (4) two schedules, two months and three, week by week, with what each leaves in JS at its end, and the risks (performance, the 60 fps rule, Hazel's missing pieces); (5) what to decide first."
-  },
-  {
-   "id": 361,
-   "area": "dress up, music: a dup chip on each channel",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T20:54-06:00",
-   "status": "open",
-   "tags": [],
-   "source": "Matthew, chat, 2026-10-18 20:54",
-   "url": "",
-   "progress": "Minted 20:54; queued at the end of the active tickets.",
-   "log": [
-    {
-     "at": "2026-10-18T20:54-06:00",
-     "from": "matthew",
-     "chars": 452,
-     "asks": false
-    }
-   ],
-   "text": "<b>🎚️ The mixing board: a \"dup\" chip on each channel, duplicating its part in the mix, named \"X dup\".</b> Matthew: \"mint and enqueue a new feature for music production -- not sure how deep it reaches, since it means making new instruments and MIDI data dynamically: On each instrument, permit a \"dup\" chip, that duplicates the instrument in the mix. The default is to name the new one \"X dup\" for \"X\" as the original. The usecase is changing a part up or down an octave, to boost that part a bit in the mix.\" NOTES (from ticket 360's look at the board, js/19-music.js): a channel is keyed name·inst (channelKey) and its settings live in state.music.mix[tune][key] (level, echo, rev, tone, pan, knob, upN/upIv, mute, solo, lfo); the song's parts come from TUNES[id].make() and play() maps song.T.parts to ups (chanUp) and buses. A dup is likely a list per tune in the mix (e.g. mix[id].dups = [{of: key, name: \"X dup\"}]) that songOf/play adds as a copy of the part's notes (same line, same inst) under its own channel key, so it gets its own strip, knobs and octave presses; saved with the friend's mix, removable (a ✖ on the dup's strip), and renamable. Depth: no new instrument code needed if a dup reuses the part's inst and line; the cost is in songOf's caching and the strips' build."
   },
   {
    "id": 363,
@@ -1428,8 +1408,39 @@
  ],
  "next_ticket": 360,
  "current_ticket": 359,
- "current_note": "21:28: Drafting ^du_report(8): porting MUDU to Hazel, piece by piece, in 2 or 3 months",
+ "current_note": "21:30: ^ticket(361) closed (done); ^ticket(359) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 361,
+   "area": "dress up, music: a dup chip on each channel",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T20:54-06:00",
+   "status": "done",
+   "tags": [],
+   "source": "Matthew, chat, 2026-10-18 20:54",
+   "url": "",
+   "progress": "Minted 20:54; queued at the end of the active tickets.",
+   "log": [
+    {
+     "at": "2026-10-18T20:54-06:00",
+     "from": "matthew",
+     "chars": 452,
+     "asks": false
+    }
+   ],
+   "text": "<b>🎚️ The mixing board: a \"dup\" chip on each channel, duplicating its part in the mix, named \"X dup\".</b> Matthew: \"mint and enqueue a new feature for music production -- not sure how deep it reaches, since it means making new instruments and MIDI data dynamically: On each instrument, permit a \"dup\" chip, that duplicates the instrument in the mix. The default is to name the new one \"X dup\" for \"X\" as the original. The usecase is changing a part up or down an octave, to boost that part a bit in the mix.\" NOTES (from ticket 360's look at the board, js/19-music.js): a channel is keyed name·inst (channelKey) and its settings live in state.music.mix[tune][key] (level, echo, rev, tone, pan, knob, upN/upIv, mute, solo, lfo); the song's parts come from TUNES[id].make() and play() maps song.T.parts to ups (chanUp) and buses. A dup is likely a list per tune in the mix (e.g. mix[id].dups = [{of: key, name: \"X dup\"}]) that songOf/play adds as a copy of the part's notes (same line, same inst) under its own channel key, so it gets its own strip, knobs and octave presses; saved with the friend's mix, removable (a ✖ on the dup's strip), and renamable. Depth: no new instrument code needed if a dup reuses the part's inst and line; the cost is in songOf's caching and the strips' build.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T21:30-06:00",
+   "outcome": "0.0.290: ⧉ dup on every channel: a copy part 'X dup' (same notes, instrument, playing where the original plays), its channel starting from the original's settings, ✖ to remove, saved in the tune's mix (dups), a playing tune carried on from its step. Not yet: renaming a dup. tools/checks/dup361.mjs.",
+   "metrics": {
+    "open_minutes": 36,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 452,
+    "tokens_est": 113,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 358,
    "area": "dress up, collisions (under the sea, then every place)",
@@ -11568,5 +11579,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T21:28-06:00"
+ "current_since": "2026-10-18T21:30-06:00"
 }
