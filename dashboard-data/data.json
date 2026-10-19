@@ -945,34 +945,6 @@
    "text": "<b>Dress Up: replacement candidates for 🐢 turtle steppers dub D.</b> Matthew: \"turtle stepper's dub D is awlful -- the others -- A, B, C are great. Let's make several replacement candidates.\" D (ticket 301) is \"a drum break\": 92 beats a minute, E9 A9 B7 chords (stabs of ninths on the chop), a break whose snare and rim race in fives, sixes and sevens. A (triplet shuffle, 150, A minor), B (one-drop, 84, G major) and C (rockers, three against four, 88, F major) work: plain chords, idiomatic drums. Make several candidates in their spirit, each its own drums and chords, beside A to C in 🌴 reggae, for him to pick one to become D."
   },
   {
-   "id": 375,
-   "area": "dress up, the menu's panels (UI)",
-   "added": "2026-10-19T00:48-06:00",
-   "opened": "2026-10-19T00:50-06:00",
-   "status": "open",
-   "tags": [
-    "long run"
-   ],
-   "source": "Matthew, in chat",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/005/",
-   "progress": " 00:50: Matthew: \"a basic check of knowling all panel is --- does the non FS sub panel system look as well as the FS version? Are they each knowlled equally?\" Taken as the audit's first test (the report's rule 8, the same at every scale: the side panel is the designer's boxes, smaller, not a different layout). 00:56: AUDIT (the app's pane, 1280x800 window, the side panel 324-456 px): all 19 side panels one column of rows, 0 boxes; dashed boxes in World design (12), Controls (6), Advanced (6), Background (2); explanations in labels in 11 tabs; the controller's rows ran past the panel. Only the three full screens (Music, World, Background) are boxes: so NO, the side panels were not knolled as the full screens are. RELEASED 0.0.310 (6167de4): TAB_BOXES + boxLayout box the 13 friend tabs (Body .. Costume), names once, boxes hidden while empty, no repeated box-words, sliders one line, switches as chips; label parentheses and colon explanations into hints; every dashed border solid; padrow fits. Check knoll375.mjs. NEXT: 🏞️ Background's side panel into the same boxes as its full screen; 🎮 Controls' groups as boxes of their own (the bubble themes as three cards, step 4); 🎵 Music and 🗺️ World design side panels against their full screens; the castle's themes (step 3). 01:00: RELEASED 0.0.311 (08ba5d6): 🏞️ Background boxed by thing in side panel and full screen alike (BG_BOX/bgBoxes); every group named once (tidyGroups), bubble themes drawn by their names, a group of groups a grid of same-size cards; ⚙️ Advanced six boxes, long test accounts folded under ℹ️ (2,790 -> 1,699 px). Side panels vs full screens now: Background the same boxes; Music already cards (ticket 250); World design its full screen's parts stacked. NEXT: the placed things as same-size cards (Matthew's 13:49 'knolled all the way down': nine shells each ~160 px of controls), then the castle's themes (step 3), 🔬/♿. 01:01: RELEASED 0.0.312 (221653f): each thing put in a place a card (picture from the scene, name once, ✖, chips line, a line per setting), the list a grid of same-size cards. NEXT: the castle's themes in one place (report step 3), then 🔬 and ♿. 01:02: RELEASED 0.0.313 (c49604d): the castle's themes as flags by their names, and each room's theme chips with their theme's flag (step 3: one decision, its colors seen). NEXT: 🔬 Inspection and ♿ Accessibility.",
-   "log": [
-    {
-     "at": "2026-10-19T00:48-06:00",
-     "from": "matthew",
-     "chars": 172,
-     "asks": false
-    },
-    {
-     "at": "2026-10-19T00:50-06:00",
-     "from": "matthew",
-     "chars": 133,
-     "asks": true
-    }
-   ],
-   "text": "<b>Dress Up, a long run for tonight: redesign every panel of the menu that does not follow ^du_report(5)'s guidance (\"Always Be Knolling\").</b> Matthew: \"mint and enqueue for tonight --- redesign all panels in menu of dress up that are not following the guidance and insights outlined in the knowling report --- 005\". The report's rules (a grid of same-size cards for like things, each its picture and name once, its controls inside; like things grouped, shared controls once; and the rest it sets out) applied to every tab of the menu: an audit of each panel against them, then the redesign, panel by panel, released as it goes. Carries ^ticket(285) (the same aim, minted earlier, nothing built yet)."
-  },
-  {
    "id": 376,
    "area": "dress up, reports index",
    "added": "2026-10-19T00:53-06:00",
@@ -999,12 +971,64 @@
     }
    ],
    "text": "<b>Dress Up reports index: newest first, as the Hazel series is.</b> Matthew: \"enqueue at the end, low priority -- http://localhost:8133/du-reports/ does not order by date. Let's match hazel reports -- more recent first, and then onward from that order downward.\" The cards are 1-4 ascending, then the later ones in no one order (the published index has 6 before 5). Newest first, by number, all the way down; the published index reordered too, without the drafts' cards (they publish with their reports, on his word)."
+  },
+  {
+   "id": 377,
+   "area": "dress up, the menu's panels (UI)",
+   "added": "2026-10-19T01:05-06:00",
+   "opened": null,
+   "status": "open",
+   "tags": [],
+   "source": "from ticket 375 (the report's rule 7, the rest)",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/005/",
+   "progress": "",
+   "log": [],
+   "text": "<b>Dress Up: pointing at a box lights its part of the friend (^du_report(5)'s rule 7, the rest).</b> Left from ^ticket(375): every tab is a designer now, but pointing at 👄 the mouth, 💪 the arms or 🔷 its pattern does not light that part in the game, and a tap on a part of the friend does not find its box. The friend's drawing marks no parts outside exact see-through (unveil strips data-veil), so the drawing needs part marks (by the boxes' own names) first; then a lit outline on pointing, as the background designer lights an object."
   }
  ],
- "next_ticket": 377,
- "current_ticket": 375,
- "current_note": "01:01: 0.0.312 out (placed things as cards); now the castle's color themes in one place (step 3)",
+ "next_ticket": 378,
+ "current_ticket": 376,
+ "current_note": "01:05: reordering the Dress Up reports index newest first (the published one, and the local one with the drafts)",
  "closed_tickets": [
+  {
+   "id": 375,
+   "area": "dress up, the menu's panels (UI)",
+   "added": "2026-10-19T00:48-06:00",
+   "opened": "2026-10-19T00:50-06:00",
+   "status": "done",
+   "tags": [
+    "long run"
+   ],
+   "source": "Matthew, in chat",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/005/",
+   "progress": " 00:50: Matthew: \"a basic check of knowling all panel is --- does the non FS sub panel system look as well as the FS version? Are they each knowlled equally?\" Taken as the audit's first test (the report's rule 8, the same at every scale: the side panel is the designer's boxes, smaller, not a different layout). 00:56: AUDIT (the app's pane, 1280x800 window, the side panel 324-456 px): all 19 side panels one column of rows, 0 boxes; dashed boxes in World design (12), Controls (6), Advanced (6), Background (2); explanations in labels in 11 tabs; the controller's rows ran past the panel. Only the three full screens (Music, World, Background) are boxes: so NO, the side panels were not knolled as the full screens are. RELEASED 0.0.310 (6167de4): TAB_BOXES + boxLayout box the 13 friend tabs (Body .. Costume), names once, boxes hidden while empty, no repeated box-words, sliders one line, switches as chips; label parentheses and colon explanations into hints; every dashed border solid; padrow fits. Check knoll375.mjs. NEXT: 🏞️ Background's side panel into the same boxes as its full screen; 🎮 Controls' groups as boxes of their own (the bubble themes as three cards, step 4); 🎵 Music and 🗺️ World design side panels against their full screens; the castle's themes (step 3). 01:00: RELEASED 0.0.311 (08ba5d6): 🏞️ Background boxed by thing in side panel and full screen alike (BG_BOX/bgBoxes); every group named once (tidyGroups), bubble themes drawn by their names, a group of groups a grid of same-size cards; ⚙️ Advanced six boxes, long test accounts folded under ℹ️ (2,790 -> 1,699 px). Side panels vs full screens now: Background the same boxes; Music already cards (ticket 250); World design its full screen's parts stacked. NEXT: the placed things as same-size cards (Matthew's 13:49 'knolled all the way down': nine shells each ~160 px of controls), then the castle's themes (step 3), 🔬/♿. 01:01: RELEASED 0.0.312 (221653f): each thing put in a place a card (picture from the scene, name once, ✖, chips line, a line per setting), the list a grid of same-size cards. NEXT: the castle's themes in one place (report step 3), then 🔬 and ♿. 01:02: RELEASED 0.0.313 (c49604d): the castle's themes as flags by their names, and each room's theme chips with their theme's flag (step 3: one decision, its colors seen). NEXT: 🔬 Inspection and ♿ Accessibility. 01:05: RELEASED 0.0.314 (c029766: 🔬/♿ switches side by side) and 0.0.315 (3e37522): every tab without its own designer IS one (tabDesigner/setTabBig on the shared shell): ⛶ chip first, boxes in a grid left, the live game card right, dragger, ✕/Escape; checked in the pane (Face 2 columns + game; switching tabs keeps it; Music leaves it; Escape puts the game home). STATE vs the report's nine rules: 1 box per thing named once ✓ (13 friend tabs, Background, Controls' groups, Advanced); 2 nesting by boxes, no dashed ✓ (none left in any panel); 3 knolled ✓ (grids, same-size cards: placed things, bubble themes, overlay chips); 4 a row on one line ✓ (sliders, hints for explanations, long test accounts folded); 5 show the thing ✓ partly (bubble themes drawn, castle flags, placed things' pictures; place pictures in the designer); 6 one decision one place ✓ (room theme chips show their flags); 7 mirror the picture: designers everywhere ✓, BUT pointing at a box does not yet light its part of the friend (the friend's drawing marks no parts outside exact see-through); 8 the same at every scale ✓; 9 fast: box syncs are lookups. Left for a later step: the friend's parts lit while their box is pointed at (needs part marks in the drawing), and Matthew's eye on all of it.",
+   "log": [
+    {
+     "at": "2026-10-19T00:48-06:00",
+     "from": "matthew",
+     "chars": 172,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T00:50-06:00",
+     "from": "matthew",
+     "chars": 133,
+     "asks": true
+    }
+   ],
+   "text": "<b>Dress Up, a long run for tonight: redesign every panel of the menu that does not follow ^du_report(5)'s guidance (\"Always Be Knolling\").</b> Matthew: \"mint and enqueue for tonight --- redesign all panels in menu of dress up that are not following the guidance and insights outlined in the knowling report --- 005\". The report's rules (a grid of same-size cards for like things, each its picture and name once, its controls inside; like things grouped, shared controls once; and the rest it sets out) applied to every tab of the menu: an audit of each panel against them, then the redesign, panel by panel, released as it goes. Carries ^ticket(285) (the same aim, minted earlier, nothing built yet).",
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T01:05-06:00",
+   "outcome": "Every panel redesigned to ^du_report(5)'s rules, released as it went, 0.0.310 to 0.0.315: the 13 friend tabs in boxes (TAB_BOXES/boxLayout), hints for explanations, one-line sliders, switches as chips, no dashed borders anywhere; Background boxed by thing in side panel and full screen alike (BG_BOX); every group named once, bubble themes drawn, groups of groups as same-size cards; Advanced in six boxes with long accounts folded; placed things as cards with their pictures; castle themes as flags where set and where chosen; Inspection/Accessibility switches side by side; and every other tab a designer on the shared shell, full screen beside the game. Matthew's test answered: the side panels were NOT knolled as the full screens (0 boxes in 19 tabs); now each side panel is its designer's boxes, smaller. Check: knoll375.mjs. Left: pointing at a box lights its part of the friend (minted as ticket 377).",
+   "metrics": {
+    "open_minutes": 16,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 305,
+    "tokens_est": 76,
+    "sync_minutes_est": 2.0
+   }
+  },
   {
    "id": 340,
    "area": "dress up, performance (report)",
@@ -12006,7 +12030,7 @@
   }
  ],
  "queue": [
-  375,
+  376,
   374,
   326,
   359,
@@ -12023,7 +12047,7 @@
   315,
   322,
   344,
-  376
+  377
  ],
- "current_since": "2026-10-19T00:49-06:00"
+ "current_since": "2026-10-19T01:05-06:00"
 }
