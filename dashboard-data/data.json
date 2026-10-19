@@ -1119,21 +1119,6 @@
    "waiting": "Wednesday: which of the 19 PRs get their own tests first (^report(21) lists them per PR); and a look at draft #2700."
   },
   {
-   "id": 420,
-   "area": "dress up, performance: 💭 our imagination below 55 fps on 0.0.335",
-   "added": "2026-10-19T15:33-06:00",
-   "opened": "2026-10-19T15:33-06:00",
-   "status": "open",
-   "tags": [
-    "long run"
-   ],
-   "source": "0.0.335's speed run (after a release), read during ^ticket(413)",
-   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39317599161",
-   "text": "<b>The frame-rate gate's slow scenes failed on 0.0.335: 💭 our imagination, walk 53.7 fps (runs 53.7, 53.3, 53.7; first try 52.3, 53.3, 52.4) and drag 52.7 fps (53, 52.7, 51.3; first try 52, 51.7, 52); 8 of 10 cases passed.</b> 0.0.334's run passed. The instructions note this case read 53 in one release and 60 in the next with no change (GitHub's shared computers), so it may be noise; both tries failed this time. Draw time 3.3 ms, worst gap 33 ms, p95 gap 33.3 ms: frames every other vsync, the browser's painting, not the game's drawing.",
-   "progress": "15:34: minted as a 🌙 long run (perf, Matthew's 10-17 call). Next: compare 0.0.336's and 0.0.337's results for the same case; if it repeats, TWEAK= one thing at a time in the imagination (its pictures, the map, the nav arrows of ticket 404). 16:36: read 0.0.335's diff (ticket 404) for work on every frame of a walk or drag: none found (its new layout read is in the hover path only; the arrows' new fade is a CSS transition). Waiting for 0.0.336's run (on its last step) and 0.0.343's; if the case repeats under 55, TWEAK= one thing at a time.",
-   "log": []
-  },
-  {
    "id": 421,
    "area": "dress up, seats: the doubtful ones (SEATS.md, For Matthew)",
    "added": "2026-10-19T15:34-06:00",
@@ -1177,12 +1162,51 @@
    "text": "<b>A weekly <code>git gc</code> of hazel-work-notes, from cron, holding the publish lock</b> (^ticket(417)'s plan: \"a weekly git gc keeps .git packed\"; once by hand on 2026-10-19, .git 40 MB to 16 MB). The line, for Matthew to approve, as it changes his crontab: <code>17 4 * * 0 cd ~/hazel-work-notes &amp;&amp; flock ~/localhost-index/.publish.lock git gc -q</code>.",
    "progress": "16:33: minted, blocked on Matthew: a crontab change needs his OK.",
    "log": []
+  },
+  {
+   "id": 424,
+   "area": "dress up, ♿ all arrows: the far ones appear slowly since 0.0.335",
+   "added": "2026-10-19T16:37-06:00",
+   "opened": "2026-10-19T16:37-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "0.0.336's speed run: access217, \"the far ones at the brightness set (40%)\"",
+   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39326440718",
+   "text": "<b>With 🧭 all arrows switched on, the far arrows came in slowly: 0.31 of the 0.40 set, 470 ms after the switch (access217 on 0.0.336).</b> 0.0.335 (^ticket(404)) gave every arrow the slow fade meant for going away (--label-stay, 500 ms, held near where it starts); only near and aimed arrows kept the quick 0.25 s. The far ones shown by all arrows (.always) got the slow curve for appearing too.",
+   "progress": "16:37: minted and started: .way-arrow.always appears in 0.25 s, as a near one does; going away (the class taken off) still takes the slow fade.",
+   "log": []
   }
  ],
- "next_ticket": 424,
- "current_ticket": 420,
- "current_note": "16:36: ^ticket(420): waiting for 0.0.336's speed run (its last step) and then 0.0.343's, to see whether 💭 our imagination is still under 55 fps. Everything else in the queue waits on Matthew: report 14 to read (422), the seat questions (421), the weekly gc (423), 401's click.",
+ "next_ticket": 425,
+ "current_ticket": 424,
+ "current_note": "16:37: ^ticket(424): the far arrows that ♿ all arrows shows appear slowly since 0.0.335; fixing the CSS.",
  "closed_tickets": [
+  {
+   "id": 420,
+   "area": "dress up, performance: 💭 our imagination below 55 fps on 0.0.335",
+   "added": "2026-10-19T15:33-06:00",
+   "opened": "2026-10-19T15:33-06:00",
+   "status": "not needed",
+   "tags": [
+    "long run"
+   ],
+   "source": "0.0.335's speed run (after a release), read during ^ticket(413)",
+   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39317599161",
+   "text": "<b>The frame-rate gate's slow scenes failed on 0.0.335: 💭 our imagination, walk 53.7 fps (runs 53.7, 53.3, 53.7; first try 52.3, 53.3, 52.4) and drag 52.7 fps (53, 52.7, 51.3; first try 52, 51.7, 52); 8 of 10 cases passed.</b> 0.0.334's run passed. The instructions note this case read 53 in one release and 60 in the next with no change (GitHub's shared computers), so it may be noise; both tries failed this time. Draw time 3.3 ms, worst gap 33 ms, p95 gap 33.3 ms: frames every other vsync, the browser's painting, not the game's drawing.",
+   "progress": "15:34: minted as a 🌙 long run (perf, Matthew's 10-17 call). Next: compare 0.0.336's and 0.0.337's results for the same case; if it repeats, TWEAK= one thing at a time in the imagination (its pictures, the map, the nav arrows of ticket 404). 16:36: read 0.0.335's diff (ticket 404) for work on every frame of a walk or drag: none found (its new layout read is in the hover path only; the arrows' new fade is a CSS transition). Waiting for 0.0.336's run (on its last step) and 0.0.343's; if the case repeats under 55, TWEAK= one thing at a time.",
+   "log": [],
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T16:37-06:00",
+   "outcome": "Not repeated: on 0.0.336's speed run 💭 our imagination passed, walk 57.3 fps (runs 47.3, 57.3, 60) and drag 60, against 53.7 and 52.7 on 0.0.335; the gate passed. 0.0.335's diff (ticket 404) has no work on every frame of a walk or drag. Noise on GitHub's shared computers, as this case has shown before.",
+   "metrics": {
+    "open_minutes": 65,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 417,
    "area": "dashboard, hazel-work-notes: one file per page, its versions in git history",
@@ -13770,7 +13794,7 @@
   }
  ],
  "queue": [
-  420,
+  424,
   389,
   406,
   411,
@@ -13799,7 +13823,7 @@
   422,
   423
  ],
- "current_since": "2026-10-19T16:34-06:00",
+ "current_since": "2026-10-19T16:37-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
