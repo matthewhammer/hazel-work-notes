@@ -905,7 +905,7 @@
      "asks": false
     }
    ],
-   "progress": ""
+   "progress": "21:55: checked live with a dark system (the pane's dark emulation): matthewhammer.org/dress-up-pictures/ follows it now (body #16181d, the nav bar's dark style, since the nav bar came to it in 296's b702da8). The archived 2026-10-18 copy is matthewhammer/dress-up-pictures-2026-10-18, ARCHIVED on GitHub (read-only): no nav bar, light, no archive notice. Changing it means unarchiving the repository, a setting that is Matthew's, and his 12:27 call (296) was to leave it as it is. ✋ Waiting on Matthew: unarchive it so it can get the nav bar and an 'archived' line, or leave it."
   },
   {
    "id": 333,
@@ -1095,40 +1095,6 @@
    "progress": "20:31 (from ^ticket(301), 0.0.267): nine new tracks to record too: couch-cushion rave A-E and turtle steppers dub A-D. 21:50: the music job of 333's run (39195452158, branch archive-333 at 0.0.294) records every tune at its defaults, the nine new ones (301), the dubs (346) and today's (360's mixes as their defaults) included; added to dress-up-music with its add_run.sh when it ends."
   },
   {
-   "id": 348,
-   "area": "sites, the nav bar (fumola.org and the rest)",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T18:10-06:00",
-   "status": "open",
-   "tags": [
-    "long run"
-   ],
-   "text": "<b>The constellation nav bar folded away still leaves a wide left margin (fumola.org), low priority.</b> Matthew, with a screenshot of fumola.org at 200%, the nav bar folded to its » button: \"mint and enqueue -- low priority, and long-run. Why the huge left margin when nav system is minimal?\" The page's column starts far right of the » button, as if the open bar's width were still kept for it. PLAN: in matthewhammer.org/nav/nav.js (one outline on every page, ^constellation): when the bar is folded, the page gets back its own margins (the bar's reserved width only while it is open, or none, overlaying); checked at several widths and zooms on fumola.org, adapton.org and matthewhammer.org's pages; with ^ticket(327) (the pages' own left margins), which this may share a cause with. Then (Matthew): \"let's do something more space efficient, and use that margin.\": the page's column widens into the space the folded bar leaves (its text measure kept readable, wide things like code and pictures using the room), not just a smaller empty margin.",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "https://fumola.org/",
-   "log": [
-    {
-     "at": "2026-10-18T18:10-06:00",
-     "from": "matthew",
-     "chars": 100,
-     "asks": true
-    },
-    {
-     "at": "2026-10-18T18:10-06:00",
-     "from": "matthew",
-     "chars": 61,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T18:10-06:00",
-     "from": "claude",
-     "chars": 200,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 352,
    "area": "dress up, scale (tree house) + a report",
    "added": "2026-10-18",
@@ -1307,8 +1273,53 @@
  ],
  "next_ticket": 360,
  "current_ticket": 326,
- "current_note": "21:36: The picture archive pages: the live one follows the theme, the archived one today's conventions (while 333's run goes on GitHub)",
+ "current_note": "21:37: ^ticket(348) closed (done); ^ticket(326) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 348,
+   "area": "sites, the nav bar (fumola.org and the rest)",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T18:10-06:00",
+   "status": "done",
+   "tags": [
+    "long run"
+   ],
+   "text": "<b>The constellation nav bar folded away still leaves a wide left margin (fumola.org), low priority.</b> Matthew, with a screenshot of fumola.org at 200%, the nav bar folded to its » button: \"mint and enqueue -- low priority, and long-run. Why the huge left margin when nav system is minimal?\" The page's column starts far right of the » button, as if the open bar's width were still kept for it. PLAN: in matthewhammer.org/nav/nav.js (one outline on every page, ^constellation): when the bar is folded, the page gets back its own margins (the bar's reserved width only while it is open, or none, overlaying); checked at several widths and zooms on fumola.org, adapton.org and matthewhammer.org's pages; with ^ticket(327) (the pages' own left margins), which this may share a cause with. Then (Matthew): \"let's do something more space efficient, and use that margin.\": the page's column widens into the space the folded bar leaves (its text measure kept readable, wide things like code and pictures using the room), not just a smaller empty margin.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "https://fumola.org/",
+   "log": [
+    {
+     "at": "2026-10-18T18:10-06:00",
+     "from": "matthew",
+     "chars": 100,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T18:10-06:00",
+     "from": "matthew",
+     "chars": 61,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T18:10-06:00",
+     "from": "claude",
+     "chars": 200,
+     "asks": false
+    }
+   ],
+   "progress": "",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T21:37-06:00",
+   "outcome": "matthewhammer.github.io: nav.js keeps main's margin-left auto with the bar folded too (the page's old-outline margin, 15rem on fumola.org and the homepage, was kept), and a column narrower than 54rem widens to 54rem while folded (cnav-widen). Checked on the homepage's pubs.html with the new nav.js: open 255/748 px as before; folded 79/898 px (was 296/713 on fumola.org). fumola.org gets it from the shared nav.js on the next Pages build.",
+   "metrics": {
+    "open_minutes": 208,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 361,
+    "tokens_est": 90,
+    "sync_minutes_est": 0.0
+   }
+  },
   {
    "id": 284,
    "area": "dress up, placed objects and the world designer",
@@ -11608,7 +11619,6 @@
   333,
   335,
   347,
-  348,
   352,
   355,
   356,
@@ -11626,5 +11636,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T21:36-06:00"
+ "current_since": "2026-10-18T21:37-06:00"
 }
