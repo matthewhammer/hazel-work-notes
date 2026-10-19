@@ -766,7 +766,7 @@
    "tags": [],
    "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
    "url": "",
-   "progress": "09:14: minted.",
+   "progress": "09:14: minted. 09:31 IDEAS (read on integration/livelits-modular-editors): the result-type expansion is Matthew's own b6896f5b13 (10-12): CursorInspector's inspector_expanded prints with inline: false and lays the segment out with PrettySegment.prettify ~width (panel_columns, from the window and font_metrics.col_width); 5f04a9e265 adds an alias's definition beside its name. Gamma is ContextInspector.re (104 lines): every entry printed inline: true on one line, its click a jump to the definition. (1) Reuse the path as is: a shared helper (CodeViewable or a small TypLayout module: prettify to a width, falling back to one line) used by both inspectors. (2) Per entry, not all at once (Gamma can be the whole prelude): an entry whose one-line type is wider than the panel shows its first line and a ▸; the ▸ (not the row, whose click jumps) unfolds it to the laid-out form under the name, a hanging indent so names stay in a column. (3) The cursor inspector's ⤢ toggle as 'unfold all' in Gamma too, or Gamma's own, kept in settings. (4) The entry for the variable under the cursor unfolded and marked automatically. (5) Width from Gamma's panel, not the window: its own box's width over col_width. (6) Cost: lay out only unfolded entries, memoized by (type, width), so a big context costs nothing until opened. (7) Aliases and modules: an alias by name with its definition on unfold (as 5f04a9e265), a module's members one per line, each foldable. Recommendation: (1) + (2) + (5) + (6) first; (3), (4), (7) after.",
    "log": [
     {
      "at": "2026-10-19T09:14-06:00",
@@ -838,11 +838,33 @@
     }
    ],
    "text": "<b>Meeting with Cyrus, Wednesday 2026-10-21: the tickets to bring.</b> Matthew: \"My next meeting with Cyrus is Wed -- let's make a ticket that links to all related tickets for that meeting please. For now, it's just a bulleted list based on what you know now.\"<ul><li>^ticket(385): why CI fails on the livelits x modular editing branch (#2635, into ...full): Cyrus's question on Friday; ANSWERED 10-19 09:31: it is the merge (Modules II on the livelits branch meeting #2469's per-member DefStatics; one table test input), neither branch broken: <a href=\"https://claude.ai/artifact/RCpsLbKgrdfY9fvtHE3Dha\">the write-up</a> (private until shared).</li><li>^ticket(386): the type syntax expansion for types in Gamma too, as for the result type (long types on one line): ideas.</li><li>^ticket(387): livelits' model sub-editors as read-only tiles, with tiles' selection UX (right click and the rest); it follows his 10-03 call, the revealed model read-only and selectable.</li><li>^ticket(388): why the right-hand side that explains each syntax form shows no example syntax as read-only tiles (older than Matthew's time on the team).</li><li>Open and waiting on Matthew, in case they come up: ^ticket(54) (offer ^ticket(7)'s three ports to #2469), ^ticket(19) (perf budgets harder to fool, a draft PR?), ^ticket(18) (option B: livelit views evaluated in the worker), ^ticket(102) (the reply to Alexander on #2583), ^ticket(16) (asking the maintainers to require the test jobs for merging into dev).</li></ul>More to come from Matthew."
+  },
+  {
+   "id": 391,
+   "area": "dashboard, hazel-work-notes, its repository's size",
+   "added": "2026-10-19",
+   "opened": "2026-10-19T09:32-06:00",
+   "status": "open",
+   "tags": [
+    "long run"
+   ],
+   "source": "Matthew, 2026-10-19 09:32, in chat (\"very low priority, after EOD (long run)\")",
+   "url": "https://github.com/matthewhammer/hazel-work-notes",
+   "progress": "09:32: minted; queued last (very low priority), for after end of day as a long run.",
+   "log": [
+    {
+     "at": "2026-10-19T09:32-06:00",
+     "from": "matthew",
+     "chars": 560,
+     "asks": true
+    }
+   ],
+   "text": "<b>Dashboard: does hazel-work-notes grow too fast, keeping every snapshot of the page?</b> Matthew: \"Does the dashboard repo consume too much space by storing every snapshot of the HTML file? With our huge PNG files for the dress-up pictures archive we did two things: * stopped storing PNG files, and just store mark up and data (svg and json). * used a single path in the repo for all versions, so git's diff'ing system helps. The ticket would do some analysis and answer a few questions: * at the current rate, how long will the repo be under the space limit? Can we plot our estimates? * what steps can we take if the rate of space usage is too fast at present?\" (The archive's lesson: ^du_report(4), One folder, every run.)"
   }
  ],
- "next_ticket": 391,
+ "next_ticket": 392,
  "current_ticket": 386,
- "current_note": "09:31: ideas for the type syntax expansion in Gamma: reading how the result type's expansion works",
+ "current_note": "09:32: ideas for Gamma's type expansion written in the ticket (reuse the cursor inspector's layout, per-entry unfold, Gamma's own width, lazy and memoized); waiting on Matthew's pick; 383's diagnostic still running",
  "closed_tickets": [
   {
    "id": 385,
@@ -12604,7 +12626,8 @@
   259,
   315,
   322,
-  344
+  344,
+  391
  ],
  "current_since": "2026-10-19T09:31-06:00"
 }
