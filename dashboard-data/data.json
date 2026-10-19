@@ -1052,26 +1052,6 @@
    "progress": ""
   },
   {
-   "id": 338,
-   "area": "dress up, trap room boulders",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T16:51-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up: a fallen boulder becomes a placed thing, \"fallen 1\", \"fallen 2\", ..., to drag where you like.</b> Matthew: \"the falling rocks work. But let's let them be placeable -- so we as the user/tester can move them after they fall, if we choose. They have the same status as other placed objects, but maybe a special name 'fallen 1, 2, 3' etc\" Today a boulder lever (the trap room's blue pair, ^ticket(323), and placed 🎚️ levers set to drop a boulder) drops a rock into its pit, covering it, and lifts it away again on the next pull; the rock is part of the room's drawing (trapState: covered, its seed and tone). PLAN: once it has landed, the rock is a thing in the place's things (kind rock, its seed and tone, its size the pit's), named \"fallen N\" in 🔬 and the 👁️ list, draggable and with the same buttons as any placed thing; while it is still in its pit it covers the pit, dragged off it the pit is open again (and the lever's next pull drops a new one, or lifts away the one still there); its name kept through saves.",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T16:51-06:00",
-     "from": "matthew",
-     "chars": 226,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 339,
    "area": "dress up, reports",
    "added": "2026-10-18",
@@ -1589,9 +1569,40 @@
   }
  ],
  "next_ticket": 360,
- "current_ticket": 338,
- "current_note": "21:05: A fallen boulder becomes a placed thing, 'fallen N', to drag where you like",
+ "current_ticket": 339,
+ "current_note": "21:09: ^ticket(338) closed (done); ^ticket(339) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 338,
+   "area": "dress up, trap room boulders",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T16:51-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up: a fallen boulder becomes a placed thing, \"fallen 1\", \"fallen 2\", ..., to drag where you like.</b> Matthew: \"the falling rocks work. But let's let them be placeable -- so we as the user/tester can move them after they fall, if we choose. They have the same status as other placed objects, but maybe a special name 'fallen 1, 2, 3' etc\" Today a boulder lever (the trap room's blue pair, ^ticket(323), and placed 🎚️ levers set to drop a boulder) drops a rock into its pit, covering it, and lifts it away again on the next pull; the rock is part of the room's drawing (trapState: covered, its seed and tone). PLAN: once it has landed, the rock is a thing in the place's things (kind rock, its seed and tone, its size the pit's), named \"fallen N\" in 🔬 and the 👁️ list, draggable and with the same buttons as any placed thing; while it is still in its pit it covers the pit, dragged off it the pit is open again (and the lever's next pull drops a new one, or lifts away the one still there); its name kept through saves.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T16:51-06:00",
+     "from": "matthew",
+     "chars": 226,
+     "asks": false
+    }
+   ],
+   "progress": "",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T21:09-06:00",
+   "outcome": "0.0.282 (de797d5): the trap room's blue levers' rocks land as placed rocks 'fallen N' (draggable, solid ovals, named in 🔬 and the 👁️ list); one covers its pit while it lies where it landed, dragged off the pit is open; the next pull lifts a rock still there or drops a new one. Not done: placed 🎚️ boulder levers' rocks (still part of their trap door). tools/checks/fallen338.mjs.",
+   "metrics": {
+    "open_minutes": 258,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 226,
+    "tokens_est": 56,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 364,
    "area": "dress up, levers: pull from where you stand (Advanced)",
@@ -11366,7 +11377,6 @@
   }
  ],
  "queue": [
-  338,
   339,
   341,
   342,
@@ -11404,5 +11414,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T21:05-06:00"
+ "current_since": "2026-10-18T21:09-06:00"
 }
