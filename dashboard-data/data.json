@@ -1564,6 +1564,28 @@
     }
    ],
    "text": "<b>🎚️ Each channel (dups most of all) a reflection setting: transpose, extended; by default an octave up or down.</b> Matthew: \"every channel (esp useful for dups) should offer a reflection setting. similar to transpose, but extended. default reflection is up/down by one octave, transposed. Transposed is one mode -- let me know if you think of others --- like moving the note within the current key (do we know that?) and reflecting in some melodic way that's dynamic, based on another part -- producing counter harmony for it? Can we code that as simple JS logic, or not?\" WHAT WE KNOW (js/19-music.js): a song's events are {at, m (MIDI), dur} per part; it stores no key, and the chords only inside some tunes' makers (9 declare chords:), but the key can be inferred from every note's pitch class (a Krumhansl-style profile match, ~20 lines), and the chord at each beat from what the bass and stabs sound then. MODES (each a function from a part's notes, and the song's, to new notes): (1) transpose: N half steps, default 12 (the board's upN today); (2) in key: N scale steps up or down, staying in the inferred key (parallel thirds, sixths); (3) mirror (inversion): each note reflected about an axis (the tonic, or the part's first note), snapped to the key; (4) backward (retrograde): each bar's notes in reverse; (5) canon: the same notes N beats later; (6) harmony: the nearest chord tone above or below each note; (7) counter (counter-harmony of another chosen part): for each note, a chord tone a third or sixth from the leader's note sounding then, preferring contrary motion and avoiding parallel fifths and octaves (first-species rules, a heuristic, not Bach). All are plain JS over the event lists, run when the song is built (songOf), cached with it."
+  },
+  {
+   "id": 365,
+   "area": "dress up, the castle designer, full screen",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T21:09-06:00",
+   "status": "open",
+   "tags": [
+    "long run"
+   ],
+   "source": "Matthew, chat, 2026-10-18 21:09",
+   "url": "",
+   "progress": "Minted 21:09 for a long run, after ^ticket(285) (knolling on all panels).",
+   "log": [
+    {
+     "at": "2026-10-18T21:09-06:00",
+     "from": "matthew",
+     "chars": 129,
+     "asks": false
+    }
+   ],
+   "text": "<b>🗺️ The castle designer in a full-screen mode, as the world designer and the music producer have.</b> Matthew: \"mint and enqueue for long run --- castle designer FS mode -- after we do knowlling on all panels, as per our ticket before this one.\" So after ^ticket(285) (^du_report(5)'s knolling applied to every panel): the castle designer (🏞️ Background's 🗺️ castle designer, castleDesign) opened full screen, the game's view in a small panel as the world designer does it, its rooms, their kinds and settings laid out in order in plain view (knolling: boxes within boxes, minimal visual noise), with the report's shared choices (its 13), and an fps check on the black laptop's tier as ^ticket(289) asks of the Background designer."
   }
  ],
  "next_ticket": 360,
