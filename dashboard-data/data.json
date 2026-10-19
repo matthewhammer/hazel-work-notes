@@ -1030,26 +1030,6 @@
    "progress": ""
   },
   {
-   "id": 334,
-   "area": "dress up, tree house trap doors and castle pits",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T16:25-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up: a lever for each tree house room's trap door; three trap door shapes; a spikes toggle for the castle's other pits.</b> Matthew: \"each tree house with a trap door has a level on the wall. the default is the open state. switching it leads to the closed state. reuse what you can from the dungeon here.\" (level = lever, as in his earlier tickets.) \"Also, let's offer three shapes for the trap door, like pits/dungeon. No spikes here.\" \"Also, add a spikes toggle for the other pits in the castle, and default to 'off'.\" So: (1) in every tree room with a hatch (a ladder down), a 🎚️ lever on a wall (leverSvg, turnArm's rock, the hover glow, its speed), the hatch OPEN by default, a pull swings its lid shut (lidSwing) and the way down is closed (no climb down, a planned walk goes over it), a pull again opens it; kept per house in the room's settings, as trapState keeps the trap room's. (2) A choice of three shapes for the tree rooms' trap doors, the dungeon pits' own three, no spikes. (3) In the castle, a spikes toggle for the other pits (all but the tree rooms'), default off.",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T16:25-06:00",
-     "from": "matthew",
-     "chars": 351,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 335,
    "area": "dress up, layering",
    "added": "2026-10-18",
@@ -1613,9 +1593,40 @@
   }
  ],
  "next_ticket": 360,
- "current_ticket": 334,
- "current_note": "20:58: Tree house trap doors: a lever on the wall (open by default), three shapes; the castle pits' spikes toggle (off)",
+ "current_ticket": 337,
+ "current_note": "21:01: Collision shapes that follow the things: ovals for round things; tables, beds and furniture as their parts",
  "closed_tickets": [
+  {
+   "id": 334,
+   "area": "dress up, tree house trap doors and castle pits",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T16:25-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up: a lever for each tree house room's trap door; three trap door shapes; a spikes toggle for the castle's other pits.</b> Matthew: \"each tree house with a trap door has a level on the wall. the default is the open state. switching it leads to the closed state. reuse what you can from the dungeon here.\" (level = lever, as in his earlier tickets.) \"Also, let's offer three shapes for the trap door, like pits/dungeon. No spikes here.\" \"Also, add a spikes toggle for the other pits in the castle, and default to 'off'.\" So: (1) in every tree room with a hatch (a ladder down), a 🎚️ lever on a wall (leverSvg, turnArm's rock, the hover glow, its speed), the hatch OPEN by default, a pull swings its lid shut (lidSwing) and the way down is closed (no climb down, a planned walk goes over it), a pull again opens it; kept per house in the room's settings, as trapState keeps the trap room's. (2) A choice of three shapes for the tree rooms' trap doors, the dungeon pits' own three, no spikes. (3) In the castle, a spikes toggle for the other pits (all but the tree rooms'), default off.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T16:25-06:00",
+     "from": "matthew",
+     "chars": 351,
+     "asks": false
+    }
+   ],
+   "progress": "",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T21:01-06:00",
+   "outcome": "0.0.279 (9eaf331): every tree room with a way down has the trap room's lever on its back wall (open by default, handle up); pulled, the trap door shuts (plank lid in the house's opening shape, swung by lidSwing; no hole solid, no ladder, no doorway; the house below's ladder up goes nowhere), pulled again it opens. The three shapes were already there (ticket 252: hatchShape square/circle/triangle) and the shut lid takes them. The trap room's pits: spikes now a per-room toggle, off by default. Also a 'trap door shut' switch per house in Background. tools/checks/trap334.mjs.",
+   "metrics": {
+    "open_minutes": 276,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 351,
+    "tokens_est": 87,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 332,
    "area": "dress up, planned walks",
@@ -11291,7 +11302,6 @@
   }
  ],
  "queue": [
-  334,
   337,
   338,
   339,
@@ -11331,5 +11341,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T20:58-06:00"
+ "current_since": "2026-10-18T21:01-06:00"
 }
