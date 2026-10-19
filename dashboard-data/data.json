@@ -1842,9 +1842,35 @@
     }
    ],
    "progress": "18:35: 0.0.253 LIVE: touchstart keeps a press on [data-lever] (and holds the page still), so a tap pulls the trap room's levers. Checked with a synthetic touch in the pane. Asked Matthew to try it on M's iPad (reload for 0.0.253)."
+  },
+  {
+   "id": 351,
+   "area": "dress up, castle (outside)",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T18:39-06:00",
+   "status": "open",
+   "tags": [],
+   "text": "<b>Dress Up: the castle's birds, far off in the sky, flap and glide (very minor).</b> Matthew, with a screenshot of the castle under 🔬 Inspection (\"birds\", an object since 0.0.250): \"very minor birds in top box are not animated, but should they be? I go into advanced, and all animations seem enabled?\" Found: they were never animated: six still \"m\" strokes (js/12-clearing-and-castle.js, the castle-sky part), so no Advanced setting reaches them; the part takes the scene's quick LFO key and uses it for nothing. PLAN: each bird's wings flap (its stroke between up and down, with the scene's wings LFO, each its own way in, as the butterflies' wings) and it glides slowly back and forth; six small shapes, nothing costly.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T18:39-06:00",
+     "from": "matthew",
+     "chars": 118,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T18:39-06:00",
+     "from": "claude",
+     "chars": 330,
+     "asks": false
+    }
+   ],
+   "progress": ""
   }
  ],
- "next_ticket": 351,
+ "next_ticket": 352,
  "current_ticket": 350,
  "current_note": "18:35: 0.0.253 live: the trap room's levers by touch (M's iPad); asked Matthew to try it there",
  "closed_tickets": [
@@ -10493,6 +10519,7 @@
   342,
   343,
   340,
+  351,
   222,
   225,
   289,
