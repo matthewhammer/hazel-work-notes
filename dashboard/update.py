@@ -311,11 +311,13 @@ def tag_chips(t, sep="<br>"):
                    f'{e(TAG_CHIPS.get(g, (0, g))[1])}</span>' for g in t.get("tags", []))
 
 # (^ticket(190), Matthew 2026-10-17) what a ticket is about, as chips: hazel,
-# dress-up, performance, dashboard (one, several or none), from its area
+# dress-up, performance, dashboard, operations (one, several or none), from its area
 # (data.json's "chips" on a ticket, when given, instead); and a filter bar of
 # them over the work queue and the backlog
 ABOUT = [("hazel", "hazel", r"hazel|#2\d{3}|livelit|\bseries\b"), ("dress-up", "dress-up", r"dress[ -]?up"),
-         ("performance", "performance", r"\bperf"), ("dashboard", "dashboard", r"dashboard")]
+         ("performance", "performance", r"\bperf"), ("dashboard", "dashboard", r"dashboard"),
+         # (Matthew 2026-10-19) operations: the machines and services the work runs on, such as the laptop's battery
+         ("operations", "operations", r"\boperations\b")]
 def about(t):
     # (^ticket(196): a ticket's own "chips" add to those its area gives, as hazel on 16-19, whose areas say only CI or performance)
     a, own = t.get("area", "").lower(), t.get("chips") if isinstance(t.get("chips"), list) else []
@@ -449,10 +451,10 @@ page = f"""<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{HAND + ' ' if WAITING else ''}Hazel Work Dashboard</title>
 <style>
-  :root {{ color-scheme: light dark; --line: #d0d0d0; --muted: #666; --good: #1a7f37; --bad: #cf222e; --wait: #9a6700; }}
-  @media (prefers-color-scheme: dark) {{ :root:not([data-theme="light"]) {{ --line: #444; --muted: #aaa; --good: #3fb950; --bad: #f85149; --wait: #d29922; }} }}
+  :root {{ color-scheme: light dark; --line: #d0d0d0; --muted: #666; --good: #1a7f37; --bad: #cf222e; --wait: #9a6700; --ops: #c2410c; }}
+  @media (prefers-color-scheme: dark) {{ :root:not([data-theme="light"]) {{ --line: #444; --muted: #aaa; --good: #3fb950; --bad: #f85149; --wait: #d29922; --ops: #fb923c; }} }}
   :root[data-theme="light"] {{ color-scheme: light; }}
-  :root[data-theme="dark"] {{ color-scheme: dark; --line: #444; --muted: #aaa; --good: #3fb950; --bad: #f85149; --wait: #d29922; }}
+  :root[data-theme="dark"] {{ color-scheme: dark; --line: #444; --muted: #aaa; --good: #3fb950; --bad: #f85149; --wait: #d29922; --ops: #fb923c; }}
   body {{ font: 15px/1.45 system-ui, sans-serif; margin: 0; background: Canvas; color: CanvasText; }}
   code.ref {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; white-space: nowrap; }}
   code.ref b {{ font-weight: 800; }}
@@ -552,6 +554,7 @@ page = f"""<!doctype html>
   .badge.about-dress-up {{ background: #f472b6; color: #000; border-color: #ec4899; font-weight: 600; }}
   .badge.about-performance {{ color: #0f766e; border-color: #0f766e; }}
   .badge.about-dashboard {{ color: #4f46e5; border-color: #4f46e5; }}
+  .badge.about-operations {{ color: var(--ops); border-color: var(--ops); }}
   .about-filter {{ display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 6px 0 8px; }}
   .about-filter button {{ font: inherit; font-size: 0.85em; padding: 1px 10px; border-radius: 999px; border: 1px solid var(--line); background: Canvas; color: CanvasText; cursor: pointer; }}
   .about-filter button[aria-pressed="true"] {{ background: color-mix(in srgb, var(--good) 18%, Canvas); border-color: var(--good); }}
