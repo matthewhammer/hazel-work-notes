@@ -478,43 +478,6 @@
    "waiting": "Matthew: deploy fumola_canister to mainnet (his cycles); its /s/dress-up-speed/log URL then goes in SPEED_LOG_DEPLOYED."
   },
   {
-   "id": 19,
-   "area": "performance, CI",
-   "text": "Budgets harder to fool (^report(6)'s update, a count is not a time): count the call memo's own work (the nodes its keys put in form) and, if js_of_ocaml can report it, memory allocated, beside the evaluator's steps. <b>2026-10-15T21:29:</b> Matthew: after hours tonight if time is left (🌙), as local branches against dev for his review.",
-   "source": "^report(6)",
-   "url": "http://localhost:8131/series/006/#update",
-   "added": "2026-10-12",
-   "tags": [],
-   "progress": "2026-10-15 23:34: LOOKED INTO, nothing built. Neither half applies to dev as it stands: (1) the call memo is only on the livelits branches (CallMemo is not in dev's language library), so counting its keys' work belongs on #2635/#2597; (2) js_of_ocaml reports zero for every GC counter (its runtime's caml_gc_quick_stat, caml_gc_counters and caml_gc_minor_words return constant zeros), so memory allocated cannot be counted under it, and node's heap figures move with GC timing, which a budget cannot use. What would work: a deterministic count of the nodes the evaluator builds (the copies #2679 removed were one step each, invisible to steps), by counting constructions in the transition code; or, on #2635, the call memo's key normalization in nodes. Matthew's call which, if either. | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: count the nodes the evaluator builds (deterministic), on dev, as a local branch for his review. 🌙 long run; no headless browser on the laptop. | 21:47: BUILT, local only (Matthew's default: the node count, on dev): branch ci/node-budgets in ~/hazel-dev-perfgate = #2678 + #2679 merged + 7f1343268d. IdTagged.built counts every term made fresh, copied or rewrapped; Test_PerfBudgets holds nodes beside steps: cold run 17,464 (budget 19,200), re-run 90 (100), and a new case, typed rows (100 labeled tuples through a typed parameter, 10 passes): 21,155 nodes (23,300). Checked: with dev's Ascriptions (no #2679) the same program takes the SAME 195,319 steps but 27,777 nodes, and fails. PerfBudgets 4/4 pass, 8.6 s; fmt clean. Not pushed. Waiting on Matthew: a draft PR stacked on #2678 + #2679, as #2689-#2691? 09:34 Matthew: \"ticket 19 -- yes, draft PR.\"",
-   "work": {
-    "work_minutes": 4
-   },
-   "log": [
-    {
-     "at": "2026-10-16T20:59-06:00",
-     "from": "claude",
-     "chars": 155,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T21:02-06:00",
-     "from": "matthew",
-     "chars": 94,
-     "asks": false
-    },
-    {
-     "at": "2026-10-19T09:34-06:00",
-     "from": "matthew",
-     "chars": 27,
-     "asks": false
-    }
-   ],
-   "waiting": "Matthew's word: open ci/node-budgets as a draft PR stacked on #2678 and #2679?",
-   "chips": [
-    "hazel"
-   ]
-  },
-  {
    "id": 259,
    "area": "dress up, designer, components",
    "added": "2026-10-17",
@@ -876,9 +839,59 @@
   }
  ],
  "next_ticket": 392,
- "current_ticket": 19,
- "current_note": "09:35: the perf budgets as a draft PR stacked on #2678 + #2679 (Matthew: yes)",
+ "current_ticket": 386,
+ "current_note": "09:36: ^ticket(19) closed (done); ^ticket(386) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 19,
+   "area": "performance, CI",
+   "text": "Budgets harder to fool (^report(6)'s update, a count is not a time): count the call memo's own work (the nodes its keys put in form) and, if js_of_ocaml can report it, memory allocated, beside the evaluator's steps. <b>2026-10-15T21:29:</b> Matthew: after hours tonight if time is left (🌙), as local branches against dev for his review.",
+   "source": "^report(6)",
+   "url": "http://localhost:8131/series/006/#update",
+   "added": "2026-10-12",
+   "tags": [],
+   "progress": "2026-10-15 23:34: LOOKED INTO, nothing built. Neither half applies to dev as it stands: (1) the call memo is only on the livelits branches (CallMemo is not in dev's language library), so counting its keys' work belongs on #2635/#2597; (2) js_of_ocaml reports zero for every GC counter (its runtime's caml_gc_quick_stat, caml_gc_counters and caml_gc_minor_words return constant zeros), so memory allocated cannot be counted under it, and node's heap figures move with GC timing, which a budget cannot use. What would work: a deterministic count of the nodes the evaluator builds (the copies #2679 removed were one step each, invisible to steps), by counting constructions in the transition code; or, on #2635, the call memo's key normalization in nodes. Matthew's call which, if either. | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: count the nodes the evaluator builds (deterministic), on dev, as a local branch for his review. 🌙 long run; no headless browser on the laptop. | 21:47: BUILT, local only (Matthew's default: the node count, on dev): branch ci/node-budgets in ~/hazel-dev-perfgate = #2678 + #2679 merged + 7f1343268d. IdTagged.built counts every term made fresh, copied or rewrapped; Test_PerfBudgets holds nodes beside steps: cold run 17,464 (budget 19,200), re-run 90 (100), and a new case, typed rows (100 labeled tuples through a typed parameter, 10 passes): 21,155 nodes (23,300). Checked: with dev's Ascriptions (no #2679) the same program takes the SAME 195,319 steps but 27,777 nodes, and fails. PerfBudgets 4/4 pass, 8.6 s; fmt clean. Not pushed. Waiting on Matthew: a draft PR stacked on #2678 + #2679, as #2689-#2691? 09:34 Matthew: \"ticket 19 -- yes, draft PR.\"",
+   "work": {
+    "work_minutes": 4
+   },
+   "log": [
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 155,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T09:34-06:00",
+     "from": "matthew",
+     "chars": 27,
+     "asks": false
+    }
+   ],
+   "waiting": "Matthew's word: open ci/node-budgets as a draft PR stacked on #2678 and #2679?",
+   "chips": [
+    "hazel"
+   ],
+   "status": "done",
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T09:36-06:00",
+   "outcome": "DRAFT PR OPENED on Matthew's word (09:34 \"ticket 19 -- yes, draft PR\"): hazelgrove/hazel#2697, ci/node-budgets -> dev, 'Test: the nodes an evaluation builds, held to budgets beside its steps', stacked on #2678 + #2679 as #2689-#2691 are (their commits in the diff until they land; this PR's commit 7f1343268d). dune fmt clean; PerfBudgets 4/4; GitHub's CI running (bound in the app). Nodes: cold 17,464 / 19,200, re-run 90 / 100, typed rows 21,155 / 23,300; without #2679 typed rows 27,777 nodes, same steps.",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 2,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 276,
+    "tokens_est": 69,
+    "sync_minutes_est": 3.0,
+    "work_minutes": 6.0
+   }
+  },
   {
    "id": 54,
    "area": "performance, #2469",
@@ -12672,7 +12685,6 @@
   }
  ],
  "queue": [
-  19,
   386,
   389,
   387,
@@ -12691,5 +12703,5 @@
   344,
   391
  ],
- "current_since": "2026-10-19T09:35-06:00"
+ "current_since": "2026-10-19T09:36-06:00"
 }
