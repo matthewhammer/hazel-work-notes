@@ -847,7 +847,7 @@
    "source": "Matthew, 2026-10-19 10:14, in chat (during ^ticket(387))",
    "url": "",
    "text": "<b>^report(19): where the Hazel UI shows syntax as tiles, and where as text.</b> Matthew: \"please file a hazel ^report with our investigation into how much tiles are applied to all representations of Hazel syntax within the Hazel UI.\" Every place the UI draws Hazel syntax (the editor, splices, the eye's model pane, the Projectors sidebar card, refractors, the cursor inspector, Gamma, the explainer's examples, the result and stepper, probes, the outline, tests, hovers, completions, the livelit head and params lines, ...), classed as interactive tiles (caret, selection, right click), static tiles (drawn as tiles, no interaction), or plain text; with the code path behind each, checked in the running app. Builds on ^ticket(387) and ^ticket(388); for the 2026-10-21 meeting with Cyrus (^ticket(389)).",
-   "progress": "10:15: minted; surveying before 387's build, since it decides 387's and 388's scope. 10:15 Matthew: \"mint a ticket for the report and do it today, asap.\" (deadline: today).",
+   "progress": "10:15: minted; surveying before 387's build, since it decides 387's and 388's scope. 10:15 Matthew: \"mint a ticket for the report and do it today, asap.\" (deadline: today). 10:52: (after the 10:26 crash; the survey agent died with it and was rerun) CHECKED IN THE APP on 8341 (#2635, b44bb9c50f): INTERACTIVE tiles: main editor (caret, selection, right-click menu); livelit eye pane's model (sub-editor, read-only; head line is an HTML input); stepper steps (caret, but no right-click menu, and the inspector does not follow). STATIC tiles: cursor inspector bar + full view; &Gamma; entries (no menu); explainer syntactic form; explainer examples (locked cell editors: DOM focus, no caret, no menu); probe values; the program's value (#2635 draws it as a program-value refractor: no caret; its own 'Show steps' menu). PLAIN TEXT: outline sidebar; explainer's inline `code` spans; stepper header; docked Projectors card (^flag(true) is ONE .token element holding printed text: token-styled text, not tiles). Side finding: after switching Documentation (Probes) to Scratch and pasting a program, the program value kept showing the Probes slide's value under STOPPED until a reload.",
    "log": [
     {
      "at": "2026-10-19T10:14-06:00",
@@ -893,7 +893,7 @@
    "source": "Matthew, 2026-10-19 10:22, in chat, on #2635's local build (8341)",
    "url": "http://localhost:8341/?slide=livelit-playground-scenes",
    "text": "<b>Bug: pressing &Gamma; on #2635's Scenes slide freezes the browser.</b> Matthew: \"on http://localhost:8341/?slide=livelit-playground-scenes mint and enqueue bug fix -- pressing gamma in lower left corner freezes the browser --- do some tests on github, on simpler slides first, to see if there's some non-linear computation behind that click\" Plan: on GitHub (a diagnostic branch, the runner's headless browser, never this laptop), time opening &Gamma; on slides of growing size, simplest first, and the Scenes slide last, to find what grows faster than the context: every entry is printed and laid out as tiles (ContextInspector: CodeViewable per entry, Measured.of_segment each), and Scenes' context holds large types (Picture and the scene types). Note: #2698 adds a one-line print per entry to decide the unfold toggle, so measure with and without it.",
-   "progress": "10:22: minted and enqueued.",
+   "progress": "10:22: minted and enqueued. 10:52: A LEAD, seen during ^ticket(393)'s survey on 8341 (#2635 at b44bb9c50f): opening &Gamma; on a 4-line scratch program draws 6,802 .token spans, because the context holds the prelude's types (ColorScheme, ColorRoles, ColorPalette, ...), each printed whole as tiles. So the cost is there before any user code; the Scenes slide adds its own large types on top.",
    "log": [
     {
      "at": "2026-10-19T10:22-06:00",
@@ -953,7 +953,7 @@
  ],
  "next_ticket": 399,
  "current_ticket": 393,
- "current_note": "10:42: ^report(19), where the UI shows syntax as tiles and where as text: starting the survey (every surface that draws Hazel syntax, checked in the running app on 8341), with 387's findings as its first rows.",
+ "current_note": "10:52: ^report(19): the in-app checks are done for the editor, eye pane, stepper, inspector, &Gamma;, explainer, probes, program value, outline and Projectors card. Waiting on the code survey for the rest (completions, hovers, refractors, tests), then drafting the report.",
  "closed_tickets": [
   {
    "id": 394,
