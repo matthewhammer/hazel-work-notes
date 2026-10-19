@@ -660,26 +660,6 @@
    "progress": "15:22: CAUSE: fumola.org's page had dark colours only (CSS variables from the Fumola VS Code theme, no light set, nothing answering data-theme), so the nav bar's light did nothing. PR Adapton/fumola#147 (branch pages-light-theme, worktree ~/fumola-light): a light palette answering :root[data-theme=light] and, on auto, a light system; theme-support meta for nav.js; five written-out colours made palette entries; dark stays the default. WAITING ON MATTHEW: his OK to merge #147 (then the Pages workflow_dispatch deploys main). Not done: the other pages under pages/ (alignment, web-play, web-repl)."
   },
   {
-   "id": 320,
-   "area": "dress up, 🗺️ World design",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T14:49-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up, 🗺️ World design: ＋/－ a row or a column at the left or top edge, with a toggle.</b> Matthew: \"world design +/- row -- toggle for left/top edge, which is not the default.\" Today ＋/－ adds or takes away at the right and bottom edges (worldResize); a toggle chooses the left and top edges instead, the squares shifting over (and the friend, the start, the ways with them). The rule stays: a column or row is taken away only while it is empty (Matthew: \"I like that we cannot remove a col or row that's non-empty\", written into agent-instructions.md's design rules).",
-   "source": "Matthew, 2026-10-18, in chat (\"ticket\")",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T14:49-06:00",
-     "from": "matthew",
-     "chars": 200,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 322,
    "area": "dress up, the pits' and trap doors' lids",
    "added": "2026-10-18",
@@ -887,8 +867,40 @@
  ],
  "next_ticket": 379,
  "current_ticket": 365,
- "current_note": "02:56: back on 365: reading diag-365's checks (castle365, castlefs365) before closing; 0.0.319-0.0.321 speed runs queued for 369",
+ "current_note": "02:58: ^ticket(320) closed (done); ^ticket(365) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 320,
+   "area": "dress up, 🗺️ World design",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T14:49-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up, 🗺️ World design: ＋/－ a row or a column at the left or top edge, with a toggle.</b> Matthew: \"world design +/- row -- toggle for left/top edge, which is not the default.\" Today ＋/－ adds or takes away at the right and bottom edges (worldResize); a toggle chooses the left and top edges instead, the squares shifting over (and the friend, the start, the ways with them). The rule stays: a column or row is taken away only while it is empty (Matthew: \"I like that we cannot remove a col or row that's non-empty\", written into agent-instructions.md's design rules).",
+   "source": "Matthew, 2026-10-18, in chat (\"ticket\")",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T14:49-06:00",
+     "from": "matthew",
+     "chars": 200,
+     "asks": false
+    }
+   ],
+   "progress": "",
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T02:58-06:00",
+   "outcome": "Released 0.0.322 (0306403, 02:58), my call from the backlog while every queued ticket waited (Matthew AFK): a ↖️ left and top edges chip in 🗺️ World design (off by default, kept for the visit) makes ＋/－ column work at the left edge and ＋/－ row at the top; worldShift moves every square's key with W.start, W.at, W.applied, worldHome's sq: key and each unreachable square's from (worldRestore skips a from off the grid's start); taken away only while that edge is empty (his rule). In the app's pane: grown at left and top and shrunk again gave the world exactly as it was (every place's neighbours the same), the friend still in the clearing with its square shown, the waiting square put back in its place; a non-empty left column refused. Check world320.mjs (its first run in 0.0.322's speed run, read under ^ticket(369)).",
+   "metrics": {
+    "open_minutes": 729,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 200,
+    "tokens_est": 50,
+    "sync_minutes_est": 0,
+    "work_minutes": 4.0
+   }
+  },
   {
    "id": 313,
    "area": "dress up, the nav arrows",
@@ -12131,5 +12143,5 @@
   322,
   344
  ],
- "current_since": "2026-10-19T02:56-06:00"
+ "current_since": "2026-10-19T02:58-06:00"
 }
