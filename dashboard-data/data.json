@@ -780,46 +780,6 @@
    "text": "<b>Dress Up: the speed measurements ^du_report(5) still wants.</b> Before publishing, Matthew had asked for a frame-rate check of the proposed full-screen 🏞️ Background designer (many place pictures at once were slow on the black laptop), with the place pictures kept as pictures so they cost little; he published the report first. Measure the designer's place pictures drawn live, as still SVGs and as bitmaps, and the friend's walk and drag with the designer open, at normal speed and on the slow tiers, then add the numbers to the report as a dated note (its What next, step 8)."
   },
   {
-   "id": 304,
-   "area": "dress up, collisions",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T13:03-06:00",
-   "status": "open",
-   "tags": [],
-   "progress": "Found while minting it (13:03): the king's \"chest of gold\" (js/13-castle-rooms-and-map.js 1047-1052) draws six coins spilled on the floor to its left (cx - 50k to cx - 80k) inside its own object, and a standing object's collision box is the box round its whole drawing (standingHere, js/16-objects-and-solids.js 199: getBBox of the object, STANDING by name), so the coins widen it to the left. The same holds wherever an object's drawing carries flat bits on the floor (shadows, spills, rugs under it). There is a way to leave parts out already: .fumes is hidden while a box is measured (ticket 214); a .flat class doing the same would let each object say which of its parts lie on the floor. The audit: every place's standing objects, each box against the foot it stands on (🔬's collision boxes, OBJECTS.md's pictures, the depth sheets).",
-   "log": [
-    {
-     "at": "2026-10-18T13:03-06:00",
-     "from": "matthew",
-     "chars": 193,
-     "asks": false
-    }
-   ],
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "text": "<b>Dress Up: collision boxes that reach past what stands there, beginning with the king's chest.</b> In the king's room the treasure chest's collision box reaches too far to the left, where there are only some coins on the ground and no chest. Minor, but it hints at the need for a larger audit: every object's collision box against what really stands there."
-  },
-  {
-   "id": 308,
-   "area": "dress up, the friend's moves",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T13:55-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up: walking up and down stairs, an animation with a flag for which way.</b> Matthew: \"two new animations: walking up/down stairs. its a stair walking animation with a flag saying if we are facing towards up the stairs, or down. no need to render actual stairs. Notice how these actions are different in physical space. Walking up a stairs is a kind of climbing with our feet. Walking down is a kind of controlled falling, like running but more extreme.\"",
-   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue\")",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T13:55-06:00",
-     "from": "matthew",
-     "chars": 520,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 309,
    "area": "dress up, the friend's moves",
    "added": "2026-10-18",
@@ -1770,7 +1730,7 @@
    "tags": [],
    "source": "Matthew, chat, 2026-10-18 20:30",
    "url": "",
-   "progress": "Minted 20:22; queued at the end of the active tickets.",
+   "progress": "Minted 20:22; queued at the end of the active tickets. 20:33 (from ^ticket(304), 0.0.268): boxes now leave out .flat parts and shadows; mark spilled or flat bits .flat when found.",
    "log": [
     {
      "at": "2026-10-18T20:22-06:00",
@@ -1815,9 +1775,83 @@
   }
  ],
  "next_ticket": 360,
- "current_ticket": 304,
- "current_note": "20:31: collision boxes that reach past what stands there: the king's chest's spilled coins; flat parts left out of a box",
+ "current_ticket": 309,
+ "current_note": "20:34: walking refined: the knee leads each step, the foot follows (the shin a beat behind the thigh)",
  "closed_tickets": [
+  {
+   "id": 308,
+   "area": "dress up, the friend's moves",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T13:55-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up: walking up and down stairs, an animation with a flag for which way.</b> Matthew: \"two new animations: walking up/down stairs. its a stair walking animation with a flag saying if we are facing towards up the stairs, or down. no need to render actual stairs. Notice how these actions are different in physical space. Walking up a stairs is a kind of climbing with our feet. Walking down is a kind of controlled falling, like running but more extreme.\"",
+   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue\")",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T13:55-06:00",
+     "from": "matthew",
+     "chars": 520,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T20:34-06:00",
+     "from": "claude",
+     "chars": 400,
+     "asks": false
+    }
+   ],
+   "progress": " 20:34 DONE, 0.0.269: anim 'stairs' in moveNow (js/17-moving-and-climbing.js) with body.stairsWay; up: knees lifted high (a knee 33 below the hip, a walk's 64), lift 7; down: grounded on the reaching foot, the bent leg's foot 31 higher. Not wired to the castle's spiral staircase yet (it walks there as before): a follow-up if wanted. Check: stairs308.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T20:34-06:00",
+   "outcome": "Released in 0.0.269: a 🔼 walking-up-or-down-stairs animation with a choice for the way: up, climbing with the feet (high knees, a rise each step); down, a controlled fall (quicker, reaching on while the other knee bends, arms out). No stairs drawn. Check: stairs308.",
+   "metrics": {
+    "open_minutes": 400,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 920,
+    "tokens_est": 230,
+    "sync_minutes_est": 0
+   }
+  },
+  {
+   "id": 304,
+   "area": "dress up, collisions",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T13:03-06:00",
+   "status": "done",
+   "tags": [],
+   "progress": "Found while minting it (13:03): the king's \"chest of gold\" (js/13-castle-rooms-and-map.js 1047-1052) draws six coins spilled on the floor to its left (cx - 50k to cx - 80k) inside its own object, and a standing object's collision box is the box round its whole drawing (standingHere, js/16-objects-and-solids.js 199: getBBox of the object, STANDING by name), so the coins widen it to the left. The same holds wherever an object's drawing carries flat bits on the floor (shadows, spills, rugs under it). There is a way to leave parts out already: .fumes is hidden while a box is measured (ticket 214); a .flat class doing the same would let each object say which of its parts lie on the floor. The audit: every place's standing objects, each box against the foot it stands on (🔬's collision boxes, OBJECTS.md's pictures, the depth sheets). 20:33 DONE, 0.0.268: standingHere hides .fumes, .flat and faint black ellipses (shadows) while measuring; the chest's coins .flat. The audit as measured (every place and three castle rooms, the box against the old rule): 32 narrower, none wider: forest rocks 1-15, fairy forest stones, mountain rocks, waterfall rocks and two pines, the castle's hay cart and rocks, the chest of gold (99 -> 72), the fountain (285 -> 258). The rest of the audit (things with no box at all, the trough, ladders) is ^ticket(358)'s. Check: flat304.",
+   "log": [
+    {
+     "at": "2026-10-18T13:03-06:00",
+     "from": "matthew",
+     "chars": 193,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T20:33-06:00",
+     "from": "claude",
+     "chars": 500,
+     "asks": false
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "text": "<b>Dress Up: collision boxes that reach past what stands there, beginning with the king's chest.</b> In the king's room the treasure chest's collision box reaches too far to the left, where there are only some coins on the ground and no chest. Minor, but it hints at the need for a larger audit: every object's collision box against what really stands there.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T20:33-06:00",
+   "outcome": "Released in 0.0.268: a standing thing's collision box now leaves out what lies flat beside it: the king's chest no longer reaches over its spilled coins, and rocks, stones, the fountain and the hay cart no longer reach over their shadows (32 boxes narrower, none wider). Things with no box at all are ticket 358's. Check: flat304.",
+   "metrics": {
+    "open_minutes": 450,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 693,
+    "tokens_est": 173,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 301,
    "area": "dress up, music, for M",
@@ -11031,8 +11065,6 @@
   }
  ],
  "queue": [
-  304,
-  308,
   309,
   310,
   316,
@@ -11082,5 +11114,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T20:31-06:00"
+ "current_since": "2026-10-18T20:34-06:00"
 }
