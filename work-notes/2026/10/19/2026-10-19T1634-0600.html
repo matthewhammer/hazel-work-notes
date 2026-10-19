@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Afternoon Work Notes</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9em; } th, td { border-bottom: 1px solid var(--line); padding: 5px 6px; text-align: left; } td.n { font-variant-numeric: tabular-nums; }
+  svg.chart { width: 100%; height: auto; font: 12px system-ui, sans-serif; } svg .g { stroke: var(--line); } svg .t { fill: var(--muted); }
+  svg .raw { fill: none; stroke: var(--warn); stroke-width: 2.5; } svg .gh { fill: none; stroke: var(--ok); stroke-width: 2.5; } svg .dash { stroke-dasharray: 6 4; }
+  svg .ghp { fill: var(--ok); } svg .lim { stroke: var(--muted); stroke-dasharray: 2 3; } svg .lt { fill: var(--muted); font-size: 11px; }
+  svg .rl { fill: var(--warn); } svg .gl { fill: var(--ok); }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-10-19, after crash 42</h1>
+<p class="sub">Claude, one session from 14:43 (back up after the 14:42 crash) to about 16:35 MDT, Matthew there for the Dress Up poses and then away. What was done, where it is, what is next.</p>
+<h2>Where things are</h2>
+<ul>
+<li><b>Servers</b> (restarted after the crash): 8000 (the dashboard), 8341 (#2635 at 5961401df2), 8361 (#2698 at 4c9cc34d3b), 8131 (the Hazel reports' sources), 8133 (Dress Up's working copy).</li>
+<li><b>Dress Up</b> on <code>main</code>, live as <b>0.0.343</b> (d2c4512) plus a check-only commit (54aedf6). Its speed runs: 0.0.336's on its last step, 0.0.343's waiting (the five between were replaced, as GitHub keeps one waiting). Local only, not committed: report 5's draft (another session's), reports 11 to 13 (drafts), and <b>report 14</b> (Posing the Body, this session: dress-up/reports/014/, waiting for Matthew to read).</li>
+<li><b>Branches</b>: <code>lie-along-412</code> (pushed; the parked tries at lying along a bag, squashed into main in 0.0.338; its stale test run cancelled). <code>diag-419</code> deleted after its run.</li>
+<li><b>Hazel</b>: #2673 9de7d81838 and e1edf94a12, #2661 67f676852b, #2681 1ef39abd4b (their CI running); #2635 green on 90ed4505bf, then 5961401df2 (ticket 401) pushed on top.</li>
+</ul>
+<h2>Done</h2>
+<ul>
+<li>Crash 42 (14:42, about 20 s into an un-niced <code>dune build</code>): 2,027 empty build outputs deleted, nothing else lost; logged (crash-log 553ec233).</li>
+<li>Ticket 418: #2673's term hash finalized per lane; #2661's type hash three finalized lanes (about 90 bits), merged into #2681; four PR descriptions (#2675's unused-variable warning confirmed by running).</li>
+<li>Tickets 416 and 405 closed on green CI (#2610; #2635's first green Full tests since 10-01). Agenda (^report(20)) republished.</li>
+<li>Dress Up: 0.0.336 (part-by-part bubbles, 415), 0.0.337 (44 more seats and SEATS.md, 413), 0.0.338 to 0.0.342 (lying along the tent's bags, a view of its own, 412, with Matthew's calls), 0.0.343 (elbows and knees in three dimensions, 414). Ticket 419: access217's 0.0.335 failure did not reproduce; the check now waits out the 500 ms fade.</li>
+<li>Ticket 417: the dashboard's history is one file per page and its git log (1,830 dated files out of the tree, still in history; .git 40 to 16 MB).</li>
+</ul>
+<h2>Next</h2>
+<ul>
+<li>Ticket 420 (long run): read 0.0.336's and 0.0.343's speed runs for 💭 our imagination's walk and drag (53.7 and 52.7 fps on 0.0.335).</li>
+<li>Waiting on Matthew: report 14 to read (ticket 422), the seat questions (421), the weekly gc's crontab line (423), the full-screen button's real click (401), and the Hazel tickets tagged so.</li>
+</ul>
+</main>
+</body>
+</html>
