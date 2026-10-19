@@ -951,7 +951,7 @@
      "asks": false
     }
    ],
-   "progress": ""
+   "progress": "21:50: the fix attached here done first: dress-up-pictures tools/archive.mjs (bf1f5a0) sets access.solidCats.you to whether the shot has the friend. Run started: branch archive-333 off main at 0.0.294 (the archive workflow as archive-272, checks folder emptied), run 39195452158 (pictures and music jobs). NEXT when it ends: gh run download -n pictures (and -n music) into empty folders, tools/add_run.sh in each archive, then delete the branch."
   },
   {
    "id": 335,
@@ -994,6 +994,21 @@
     }
    ],
    "progress": "21:20: drafted locally (not committed): dress-up/reports/007 (index.html, data/report.json, drivers/build.py, pictures/dining-room.svg, trap-room.svg from the 10-18 09:49 run). 22 of M's tickets, 13 of N's (67 shared), read one by one; 16 false matches left out (compass N, ^du_report(N), mentions). N: 8 of 13 stress or edge; M: 9 of 22 story, 6 of 22 tools. Waiting on Matthew to read it; the series index card not added yet. Paused for his bug report (ticket 366). 21:15: built and previewed at localhost:8133/du-reports/007/ (the working copy), with its card on the local series index. ✋ Waiting on Matthew to read it before it is committed and pushed (a push publishes)."
+  },
+  {
+   "id": 369,
+   "area": "dress up, the speed run's checks",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T21:47-06:00",
+   "status": "open",
+   "tags": [
+    "long run"
+   ],
+   "source": "found by Claude, 2026-10-18 21:47, Matthew AFK",
+   "url": "",
+   "progress": "Minted 21:47, my call (Matthew AFK): first among the long runs, since every release's speed run marks it 🚧 (checks failing).",
+   "log": [],
+   "text": "<b>Dress Up: every check passes on GitHub's runner again, so a release is not marked 🚧 for stale checks.</b> Found while starting tonight's long runs: the last recorded speed run (0.0.259, run 39187301078) is 'broken: the checks', about twenty checks failing: some assert what later tickets changed on purpose (crawl286's hands query, the bubble room's foam counts, the witch's fumes, the made-of legend's counts, the 'from the places' list, the cauldron guard's rows, the lever's settle angles, the budget of 0.0.198's drawing counts), some may be real (a pit walk-in not falling, the swing's box, an image decode error, a regex in a check). The game reads speed.json and shows 🚧 on its own version when the checks fail. PLAN: read 0.0.294's run (all of tonight's checks in it), sort each failure into stale (update the check to what the game now does, citing the ticket that changed it) or real (fix the game), reproduce each in the app's pane, push, and confirm on the next release's run."
   },
   {
    "id": 340,
@@ -1077,7 +1092,7 @@
      "asks": false
     }
    ],
-   "progress": " 20:31 (from ^ticket(301), 0.0.267): nine new tracks to record too: couch-cushion rave A-E and turtle steppers dub A-D."
+   "progress": "20:31 (from ^ticket(301), 0.0.267): nine new tracks to record too: couch-cushion rave A-E and turtle steppers dub A-D. 21:50: the music job of 333's run (39195452158, branch archive-333 at 0.0.294) records every tune at its defaults, the nine new ones (301), the dubs (346) and today's (360's mixes as their defaults) included; added to dress-up-music with its add_run.sh when it ends."
   },
   {
    "id": 348,
@@ -1291,8 +1306,8 @@
   }
  ],
  "next_ticket": 360,
- "current_ticket": 359,
- "current_note": "21:34: ^ticket(284) closed (done); ^ticket(359) is next in the queue",
+ "current_ticket": 326,
+ "current_note": "21:36: The picture archive pages: the live one follows the theme, the archived one today's conventions (while 333's run goes on GitHub)",
  "closed_tickets": [
   {
    "id": 284,
@@ -11582,6 +11597,7 @@
   }
  ],
  "queue": [
+  326,
   359,
   339,
   340,
@@ -11589,7 +11605,6 @@
   225,
   289,
   312,
-  326,
   333,
   335,
   347,
@@ -11611,5 +11626,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T21:34-06:00"
+ "current_since": "2026-10-18T21:36-06:00"
 }
