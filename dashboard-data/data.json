@@ -1135,28 +1135,6 @@
    "progress": ""
   },
   {
-   "id": 355,
-   "area": "dress up, collisions (tree house room)",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T19:33-06:00",
-   "status": "open",
-   "tags": [
-    "long run"
-   ],
-   "source": "Matthew, chat, 2026-10-18 19:40, with a screenshot",
-   "url": "",
-   "progress": "Minted 19:33 as a long run for tonight. 21:20: ticket 332 (0.0.278) closed the lane behind the tree room's corner trunk (its back was 4 short of the back line, now at it) and stopped planned walks falling back to a line through it; tonight's run should start by re-testing his screenshot's walk on 0.0.278 before anything else.",
-   "log": [
-    {
-     "at": "2026-10-18T19:33-06:00",
-     "from": "matthew",
-     "chars": 172,
-     "asks": false
-    }
-   ],
-   "text": "<b>Dress Up, a long run tonight: in a tree house room, the friend walks into the tree trunk in the back corner, through its collision boxes: find out why (too small? at the wrong depth?) and fix it, with a check that walks into it from every side.</b> Matthew: \"long run for tonnight -- test this actual \\\"corner case\\\" in the tree house -- why can I walk through these collision boxes near the corner,for the tree?  Are they too small?\" His screenshot (tree house room 4, the 🐰 room, under 🔬 Inspection): the friend stands right of the round window, feet at the trunk's base, overlapping the \"tree trunk\" boxes (a tall narrow dashed box from the ceiling to the floor, and the base box at the back line) and the \"you\" box; the planned path (yellow dots) runs from them down-right to the target ring. Related: ^ticket(332) (the planned path through the corner trunk), ^ticket(345) (finer boxes for the outdoor trunk's base, closed). TO TEST FIRST: whether the room's trunk is solid only at the back line's depth (so a friend a little in front of it passes by its boxes in the picture), whether its boxes are measured at the friend's row (solidAt's trunk bands, the `up` offset), and whether a drag or the controller skips the test. PLAN: reproduce it (walk, run, crawl and drag into the trunk from the left, the front and the right), give the trunk a footprint on the floor as deep as it looks, and add a check."
-  },
-  {
    "id": 356,
    "area": "dress up, reports (drawing the friend's poses)",
    "added": "2026-10-18",
@@ -1272,9 +1250,42 @@
   }
  ],
  "next_ticket": 360,
- "current_ticket": 355,
- "current_note": "21:38: Long run: the tree house corner trunk's collision boxes, re-tested on 0.0.294 (332 closed its lane)",
+ "current_ticket": 326,
+ "current_note": "21:39: ^ticket(355) closed (done); ^ticket(326) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 355,
+   "area": "dress up, collisions (tree house room)",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T19:33-06:00",
+   "status": "done",
+   "tags": [
+    "long run"
+   ],
+   "source": "Matthew, chat, 2026-10-18 19:40, with a screenshot",
+   "url": "",
+   "progress": "Minted 19:33 as a long run for tonight. 21:20: ticket 332 (0.0.278) closed the lane behind the tree room's corner trunk (its back was 4 short of the back line, now at it) and stopped planned walks falling back to a line through it; tonight's run should start by re-testing his screenshot's walk on 0.0.278 before anything else.",
+   "log": [
+    {
+     "at": "2026-10-18T19:33-06:00",
+     "from": "matthew",
+     "chars": 172,
+     "asks": false
+    }
+   ],
+   "text": "<b>Dress Up, a long run tonight: in a tree house room, the friend walks into the tree trunk in the back corner, through its collision boxes: find out why (too small? at the wrong depth?) and fix it, with a check that walks into it from every side.</b> Matthew: \"long run for tonnight -- test this actual \\\"corner case\\\" in the tree house -- why can I walk through these collision boxes near the corner,for the tree?  Are they too small?\" His screenshot (tree house room 4, the 🐰 room, under 🔬 Inspection): the friend stands right of the round window, feet at the trunk's base, overlapping the \"tree trunk\" boxes (a tall narrow dashed box from the ceiling to the floor, and the base box at the back line) and the \"you\" box; the planned path (yellow dots) runs from them down-right to the target ring. Related: ^ticket(332) (the planned path through the corner trunk), ^ticket(345) (finer boxes for the outdoor trunk's base, closed). TO TEST FIRST: whether the room's trunk is solid only at the back line's depth (so a friend a little in front of it passes by its boxes in the picture), whether its boxes are measured at the friend's row (solidAt's trunk bands, the `up` offset), and whether a drag or the controller skips the test. PLAN: reproduce it (walk, run, crawl and drag into the trunk from the left, the front and the right), give the trunk a footprint on the floor as deep as it looks, and add a check.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T21:39-06:00",
+   "outcome": "0.0.295: found: the tree rooms' trunk draws its foot as a dark ellipse in the floor 9 units in front of its box (outside its data-trunk shapes), so the feet stood on it; the sides were right. A trunk's box front is now its whole object's drawn bottom (faint shadows out), capped at half its width past its depth. All six rooms: box to -61, walking in from the front stops at -57, the sides at the bands. 332's lane fix stands. tools/checks/trunk355.mjs.",
+   "metrics": {
+    "open_minutes": 127,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 172,
+    "tokens_est": 43,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 348,
    "area": "sites, the nav bar (fumola.org and the rest)",
@@ -11608,7 +11619,6 @@
   }
  ],
  "queue": [
-  355,
   326,
   359,
   339,
@@ -11636,5 +11646,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T21:38-06:00"
+ "current_since": "2026-10-18T21:39-06:00"
 }
