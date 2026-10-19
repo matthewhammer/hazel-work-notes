@@ -855,29 +855,6 @@
    "text": "<b>Meeting with Cyrus, Wednesday 2026-10-21: the tickets to bring.</b> <b>The agenda:</b> ^report(20), public and kept up to date until the meeting (generated from 020/data/agenda.json; republished with tools/publish_agenda.py). Matthew: \"My next meeting with Cyrus is Wed -- let's make a ticket that links to all related tickets for that meeting please. For now, it's just a bulleted list based on what you know now.\"<ul><li>^ticket(385): why CI fails on the livelits x modular editing branch (#2635, into ...full): Cyrus's question on Friday; ANSWERED 10-19 09:31: it is the merge (Modules II on the livelits branch meeting #2469's per-member DefStatics; one table test input), neither branch broken: ^report(18), published 2026-10-19 with a dated update (each cause now has a fix).</li><li>^ticket(386): the type syntax expansion for types in Gamma too, as for the result type (long types on one line): ideas.</li><li>^ticket(387): livelits' model sub-editors as read-only tiles, with tiles' selection UX (right click and the rest); it follows his 10-03 call, the revealed model read-only and selectable.</li><li>^ticket(388): why the right-hand side that explains each syntax form shows no example syntax as read-only tiles (older than Matthew's time on the team).</li><li>^ticket(398): do the performance PRs (against #2609) keep typing and evaluation correct? Cyrus wants more analysis and coverage of functional correctness: an argument for each PR in a report, and more correctness tests (a new PR to dev, and tests on each of our PRs). Deadline: tomorrow morning, ideally.</li><li><a href=\"https://matthewhammer.org/hazel/reports/019/\">^report(19)</a>, published 10-19 (^ticket(393)): the Hazel UI draws syntax as tiles on 22 of 39 surfaces, but only 6 take a caret.</li><li>Open and waiting on Matthew, in case they come up: ^ticket(54) (offer ^ticket(7)'s three ports to #2469), ^ticket(19) (perf budgets harder to fool, a draft PR?), ^ticket(18) (option B: livelit views evaluated in the worker), ^ticket(102) (the reply to Alexander on #2583), ^ticket(16) (asking the maintainers to require the test jobs for merging into dev).</li></ul>More to come from Matthew."
   },
   {
-   "id": 391,
-   "area": "dashboard, hazel-work-notes, its repository's size",
-   "added": "2026-10-19",
-   "opened": "2026-10-19T09:32-06:00",
-   "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "source": "Matthew, 2026-10-19 09:32, in chat (\"very low priority, after EOD (long run)\")",
-   "url": "https://github.com/matthewhammer/hazel-work-notes",
-   "progress": "09:32: minted; queued last (very low priority), for after end of day as a long run. 14:18: ANALYZED (work note https://matthewhammer.org/hazel/work-notes/ , 2026-10-19T1420): GitHub holds the repo in 23 MB (1,793 snapshots = 341 MB of HTML, packed as ~13 KB deltas each): 1 GB about 8 months away at ~300 snapshots/day. The LAPTOP is the problem: the snapshot folder is 341 MB and grows ~95 MB/day and rising (the page grew 33 -> 314 KB in a week): ~8.7 GB in 30 days, ~58 GB in 90. Local .git 243 MB of loose objects (gc packs to ~23 MB). Recommended: one path per page with versions in git history (the Dress Up archives' fix, du_report(4)); also possible: at most one snapshot per 10 min, a shared stylesheet, a weekly git gc.",
-   "log": [
-    {
-     "at": "2026-10-19T09:32-06:00",
-     "from": "matthew",
-     "chars": 560,
-     "asks": true
-    }
-   ],
-   "text": "<b>Dashboard: does hazel-work-notes grow too fast, keeping every snapshot of the page?</b> Matthew: \"Does the dashboard repo consume too much space by storing every snapshot of the HTML file? With our huge PNG files for the dress-up pictures archive we did two things: * stopped storing PNG files, and just store mark up and data (svg and json). * used a single path in the repo for all versions, so git's diff'ing system helps. The ticket would do some analysis and answer a few questions: * at the current rate, how long will the repo be under the space limit? Can we plot our estimates? * what steps can we take if the rate of space usage is too fast at present?\" (The archive's lesson: ^du_report(4), One folder, every run.)",
-   "waiting": "Matthew: pick the fix for the snapshots' growth on the laptop (recommended: one path per page, versions in git history, as the picture archive does)."
-  },
-  {
    "id": 392,
    "area": "dress up, the menus' panel headers",
    "added": "2026-10-19T09:40-06:00",
@@ -1287,12 +1264,72 @@
    "text": "<b>Fix #2610 before it merges: the segmented load fallback turns <code>x - y</code> into <code>x ¿ - y</code> when a split lands just after an operand.</b> Confirmed 2026-10-19 by running Hazel's format at #2610's head and its parent on a fallback-shaped program: the parent loads <code>aaa…a - b</code>, #2610 <code>aaa…a ¿ - b</code>. Each piece after the first is typed as if it began the program, so a token whose mold depends on its left neighbour (<code>-</code>, <code>(</code>, an ascription's type) is molded wrong, and the join is only re-grouted, never remolded. Fix to try: remold the joined zipper once before the final re-grout (or split only where the next token's mold cannot depend on what precedes it). Test: the constructed cases, and a sweep of split offsets over the corpus against the character-by-character parser.",
    "progress": "14:19: opened from ^report(21)'s first next step; started.",
    "log": []
+  },
+  {
+   "id": 417,
+   "area": "dashboard, hazel-work-notes: one file per page, its versions in git history",
+   "added": "2026-10-19T14:26-06:00",
+   "opened": "2026-10-19T14:26-06:00",
+   "status": "open",
+   "tags": [
+    "long run"
+   ],
+   "source": "Matthew, 2026-10-19 14:26, in chat, after ^ticket(391)'s analysis",
+   "url": "",
+   "text": "<b>The dashboard repository keeps the current page only, and every earlier snapshot only in git's history, as the Dress Up picture archive does (^du_report(4)).</b> Matthew, \"mint and enqueue for tonight -- long run\": \"revise the dashboard repo so that the current dashboard is kept, and no prior snapshots are kept as separate files, but only as part of the git history. analogous to the change we made for dress-up-pictures, and for a similar reason ---- this protocol is not going to scale.\" From ^ticket(391)'s analysis: 1,793 snapshot files, 341 MB on the laptop and ~95 MB a day more, while GitHub packs them into 23 MB. To do: log_notes.py writes the page and the closed page to one path each and commits; the dated files leave the working tree (kept in history, or moved to an archive repository as the pictures' were); the snapshots' gallery and the notes/ browsing list versions from git log (each version's time is its commit's); links to dated snapshot files (the dashboard's History line, notes pages) point at the history; a weekly git gc keeps .git packed.",
+   "progress": "14:26: minted, a long run for tonight (Matthew).",
+   "log": [
+    {
+     "at": "2026-10-19T14:26-06:00",
+     "from": "matthew",
+     "chars": 321,
+     "asks": false
+    }
+   ]
   }
  ],
- "next_ticket": 417,
+ "next_ticket": 418,
  "current_ticket": 416,
  "current_note": "14:19: Started: fixing #2610's split-point bug (the segmented load fallback molds a piece's first token without its left context). Fresh worktree from the PR's head; no browser needed. ^ticket(405): #2635's Full tests due ~15:05.",
  "closed_tickets": [
+  {
+   "id": 391,
+   "area": "dashboard, hazel-work-notes, its repository's size",
+   "added": "2026-10-19",
+   "opened": "2026-10-19T09:32-06:00",
+   "status": "done",
+   "tags": [],
+   "source": "Matthew, 2026-10-19 09:32, in chat (\"very low priority, after EOD (long run)\")",
+   "url": "https://github.com/matthewhammer/hazel-work-notes",
+   "progress": "09:32: minted; queued last (very low priority), for after end of day as a long run. 14:18: ANALYZED (work note https://matthewhammer.org/hazel/work-notes/ , 2026-10-19T1420): GitHub holds the repo in 23 MB (1,793 snapshots = 341 MB of HTML, packed as ~13 KB deltas each): 1 GB about 8 months away at ~300 snapshots/day. The LAPTOP is the problem: the snapshot folder is 341 MB and grows ~95 MB/day and rising (the page grew 33 -> 314 KB in a week): ~8.7 GB in 30 days, ~58 GB in 90. Local .git 243 MB of loose objects (gc packs to ~23 MB). Recommended: one path per page with versions in git history (the Dress Up archives' fix, du_report(4)); also possible: at most one snapshot per 10 min, a shared stylesheet, a weekly git gc. 14:26: Matthew chose the fix (one path per page, versions in git history) and made it ^ticket(417), a long run for tonight.",
+   "log": [
+    {
+     "at": "2026-10-19T09:32-06:00",
+     "from": "matthew",
+     "chars": 560,
+     "asks": true
+    },
+    {
+     "at": "2026-10-19T14:26-06:00",
+     "from": "matthew",
+     "chars": 321,
+     "asks": false
+    }
+   ],
+   "text": "<b>Dashboard: does hazel-work-notes grow too fast, keeping every snapshot of the page?</b> Matthew: \"Does the dashboard repo consume too much space by storing every snapshot of the HTML file? With our huge PNG files for the dress-up pictures archive we did two things: * stopped storing PNG files, and just store mark up and data (svg and json). * used a single path in the repo for all versions, so git's diff'ing system helps. The ticket would do some analysis and answer a few questions: * at the current rate, how long will the repo be under the space limit? Can we plot our estimates? * what steps can we take if the rate of space usage is too fast at present?\" (The archive's lesson: ^du_report(4), One folder, every run.)",
+   "waiting": null,
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T14:26-06:00",
+   "outcome": "Analyzed 2026-10-19 (work note 2026-10-19T1420): GitHub holds the repo in 23 MB (snapshots packed as ~13 KB deltas), but the laptop's snapshot folder grows ~95 MB a day and rising (341 MB, 8.7 GB in 30 days at this rate). Matthew chose the fix, one path per page with versions in git history: ^ticket(417), tonight's long run.",
+   "metrics": {
+    "open_minutes": 294,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 881,
+    "tokens_est": 220,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 404,
    "area": "dress up, the scene's exit arrows: hover area and label time",
@@ -13550,7 +13587,7 @@
   412,
   414,
   415,
-  391,
+  417,
   411,
   408,
   401,
