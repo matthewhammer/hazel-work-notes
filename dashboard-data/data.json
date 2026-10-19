@@ -758,26 +758,6 @@
    "text": "<b>Dress Up: apply ^du_report(5)'s suggestions to the whole UI, as it prescribes.</b> The report (^ticket(279), drafted, not yet published) proposes the full-screen designers' approach as a global shift for every panel in Dress Up's menus. Do it across the full UI. If it does not work well on the kids' more limited devices or on Matthew's phone, roll it back later: \"Let's be bold for now.\""
   },
   {
-   "id": 286,
-   "area": "dress up, moving",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T10:53-06:00",
-   "status": "open",
-   "tags": [],
-   "progress": "Found while minting it (10:53): the crawl is in js/17-moving-and-climbing.js (653). From the side the whole friend turns about the hips by the angle that puts hands and knees on the ground together (rot: tilt * dir). Toward or away from us there is no turn (rot 0): the friend stays upright, with the side pose's hip, knee and foot angles laid flat in the picture, which reads as crawling up or down a wall. Toward and away, the body runs into the depth, so it needs a drawing of its own, foreshortened on the floor, not the side pose. His reference picture is kept locally (not in a public repository) at ~/du-shots/ref-286/crawl-away.png.",
-   "log": [
-    {
-     "at": "2026-10-18T10:53-06:00",
-     "from": "matthew",
-     "chars": 511,
-     "asks": false
-    }
-   ],
-   "source": "Matthew, 2026-10-18, in chat, with a photo for reference",
-   "url": "",
-   "text": "<b>Dress Up: crawling toward us and away from us, on the floor.</b> From the side (crawling left or right) the crawl looks good enough; the forward and backward views are \"really goofy\": they look more like someone crawling up or down the walls of the room. We watch from a pseudo-3D vantage point, seeing the horizon line, the floor, and some ceiling or sky, so we should see the friend on that floor. His reference for a baby-like friend crawling away: a baby on a carpeted floor, seen from behind and a little above, the body foreshortened along the floor; the seat and the soles of the feet nearest us, the lower legs flat on the floor pointing back toward us, the knees under the hips, a hand on the floor beside the body, and the head beyond, turned a little to one side."
-  },
-  {
    "id": 287,
    "area": "dress up, moving",
    "added": "2026-10-18",
@@ -1907,9 +1887,46 @@
   }
  ],
  "next_ticket": 355,
- "current_ticket": 286,
- "current_note": "19:07: crawling toward and away from us: the friend on the floor, foreshortened along it, as a baby crawling away seen from behind and a little above",
+ "current_ticket": 287,
+ "current_note": "19:25: starting: Dress Up: swimming for real when running in the water. What we have now for swimming is treading water. When we \"run\" in the water, the friend should actually s",
  "closed_tickets": [
+  {
+   "id": 286,
+   "area": "dress up, moving",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T10:53-06:00",
+   "status": "done",
+   "tags": [],
+   "progress": "Found while minting it (10:53): the crawl is in js/17-moving-and-climbing.js (653). From the side the whole friend turns about the hips by the angle that puts hands and knees on the ground together (rot: tilt * dir). Toward or away from us there is no turn (rot 0): the friend stays upright, with the side pose's hip, knee and foot angles laid flat in the picture, which reads as crawling up or down a wall. Toward and away, the body runs into the depth, so it needs a drawing of its own, foreshortened on the floor, not the side pose. His reference picture is kept locally (not in a public repository) at ~/du-shots/ref-286/crawl-away.png. DONE 19:25, 0.0.256: away, the back seen short and drawn after the head (it hides long hair hanging down; the neck stays behind with the hair), standing on the legs as drawn (grounded: it floated over its shadow by the legs' foreshortening); toward, the head down in front of the shoulders (chin 0.45 of the arm), the arms straight down to the hands on the floor (the ground), the shirt and pants turned over about the shoulders behind it (back 0.55), the pants clipped to a round seat (seat 0.4), a costume's tail flipped up from it, the feet hidden. Check: tools/checks/crawl286.mjs (its logic run in the pane: all pass).",
+   "log": [
+    {
+     "at": "2026-10-18T10:53-06:00",
+     "from": "matthew",
+     "chars": 511,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T19:25-06:00",
+     "from": "claude",
+     "chars": 1100,
+     "asks": false
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat, with a photo for reference",
+   "url": "",
+   "text": "<b>Dress Up: crawling toward us and away from us, on the floor.</b> From the side (crawling left or right) the crawl looks good enough; the forward and backward views are \"really goofy\": they look more like someone crawling up or down the walls of the room. We watch from a pseudo-3D vantage point, seeing the horizon line, the floor, and some ceiling or sky, so we should see the friend on that floor. His reference for a baby-like friend crawling away: a baby on a carpeted floor, seen from behind and a little above, the body foreshortened along the floor; the seat and the soles of the feet nearest us, the lower legs flat on the floor pointing back toward us, the knees under the hips, a hand on the floor beside the body, and the head beyond, turned a little to one side.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T19:25-06:00",
+   "outcome": "Released in 0.0.256: crawling toward and away is on the floor, not up a wall. Away (his picture of a baby crawling off on a carpet): the back seen short, in front of long hair, the seat and the soles nearest, hands beside the body, the head beyond, standing on its shadow. Toward: the face low, the arms straight down to the hands on the floor, the back rising behind the head to a raised seat (a costume's tail up from it). Check: crawl286.",
+   "metrics": {
+    "open_minutes": 512,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1611,
+    "tokens_est": 402,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 283,
    "area": "dress up, ♿ inspection, for designing scenes",
@@ -10604,7 +10621,6 @@
   }
  ],
  "queue": [
-  286,
   287,
   288,
   293,
@@ -10659,5 +10675,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T19:07-06:00"
+ "current_since": "2026-10-18T19:25-06:00"
 }
