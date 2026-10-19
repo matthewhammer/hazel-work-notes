@@ -576,21 +576,6 @@
    "progress": null
   },
   {
-   "id": 222,
-   "area": "dress up, performance, releases",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T13:54-06:00",
-   "source": "0.0.131's speed run, read after release (^ticket(184): a slow result gets a ticket)",
-   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39061694679",
-   "text": "<b>Dress Up 0.0.131 marked 🐢 slow: two of the frame-rate gate's slow-computer cases under 55.</b> 💭 our imagination, drag: 53.3 fps (runs 53.3, 52.7, 54.3; first try 54.3, 52.3, 52.7), and 🌲 forest: 52, where 0.0.130's run read 60 for both. 0.0.131 changed only how nav arrows shown together are kept apart (^ticket(208)), arithmetic that runs only in a world square with two or more arrows shown; the imagination is not a world square (worldWaysAt is empty there and worldWaysHud returns at once), so its drag cannot have changed. Likely the runner flicker ^ticket(184) describes (the imagination's slow drag at 52.6 and 54.7 earlier on 10-17 with no change to it). Next: the gate's slow cases for 0.0.131's tag and 0.0.130's on the same runner, one after the other, a few times; if they match, the mark is noise and ^ticket(184)'s proposal (compare against the previous release on the same runner, fail only beyond the noise) is the fix.",
-   "tags": [
-    "long run"
-   ],
-   "status": "open",
-   "log": [],
-   "progress": " | 23:20 (overnight long runs): the full run with the gate's fixed drag press (checks-lr-full, 39096563486, at 0.0.196): the slow tier still reads 💭 our imagination walk 53.7, drag 53.3 (and 54.2 in the controller audit) and 🌲 forest 51.3, all else a pass; the same pattern as 0.0.131's and 0.0.189's runs, so a standing cost on GitHub's slow tier, not one release's. 0.0.198 draws 25 fewer elements in the forest (ticket 261); the next speed run will say if that helps. Next: profile the imagination at the slow tier (its pictures within pictures)."
-  },
-  {
    "id": 225,
    "area": "dress up, passages, bug",
    "added": "2026-10-17",
@@ -1007,8 +992,34 @@
  ],
  "next_ticket": 374,
  "current_ticket": 357,
- "current_note": "23:35: drafting ^du_report(11), costumes and an adventure game's cast: 27 people rendered in the game, the throne room and the beach with people in them; 340's and 225's runs going on GitHub",
+ "current_note": "23:37: drafting ^du_report(11) (cast built, waiting on the costume inventory); 340b and 225d running on GitHub",
  "closed_tickets": [
+  {
+   "id": 222,
+   "area": "dress up, performance, releases",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T13:54-06:00",
+   "source": "0.0.131's speed run, read after release (^ticket(184): a slow result gets a ticket)",
+   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39061694679",
+   "text": "<b>Dress Up 0.0.131 marked 🐢 slow: two of the frame-rate gate's slow-computer cases under 55.</b> 💭 our imagination, drag: 53.3 fps (runs 53.3, 52.7, 54.3; first try 54.3, 52.3, 52.7), and 🌲 forest: 52, where 0.0.130's run read 60 for both. 0.0.131 changed only how nav arrows shown together are kept apart (^ticket(208)), arithmetic that runs only in a world square with two or more arrows shown; the imagination is not a world square (worldWaysAt is empty there and worldWaysHud returns at once), so its drag cannot have changed. Likely the runner flicker ^ticket(184) describes (the imagination's slow drag at 52.6 and 54.7 earlier on 10-17 with no change to it). Next: the gate's slow cases for 0.0.131's tag and 0.0.130's on the same runner, one after the other, a few times; if they match, the mark is noise and ^ticket(184)'s proposal (compare against the previous release on the same runner, fail only beyond the noise) is the fix.",
+   "tags": [
+    "long run"
+   ],
+   "status": "done",
+   "log": [],
+   "progress": " | 23:20 (overnight long runs): the full run with the gate's fixed drag press (checks-lr-full, 39096563486, at 0.0.196): the slow tier still reads 💭 our imagination walk 53.7, drag 53.3 (and 54.2 in the controller audit) and 🌲 forest 51.3, all else a pass; the same pattern as 0.0.131's and 0.0.189's runs, so a standing cost on GitHub's slow tier, not one release's. 0.0.198 draws 25 fewer elements in the forest (ticket 261); the next speed run will say if that helps. Next: profile the imagination at the slow tier (its pictures within pictures).",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T23:37-06:00",
+   "outcome": "Resolved by later work, not by a change of its own: the frame-rate gate's slow tier passes since 0.0.259 - 0.0.259 (run 39187301078): imagination walk 57 (46.4, 57, 60), drag 60; 0.0.297 (run 39196610392): imagination walk 60 (45.4, 60, 60), drag 60; empty room and see-through 60. The 53/52 of 0.0.131-0.0.196 no longer happen. Left over, recorded each release by the controller audit (one run, full speed, the on-screen pad): imagination 44-47 and bubble room 39-41 (the bubble room goes to ticket 340's report); both look like a first run's cost (the gate's first imagination walk reads 45-46 too, later ones 60).",
+   "metrics": {
+    "open_minutes": 2024,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 356,
    "area": "dress up, reports (drawing the friend's poses)",
@@ -11873,7 +11884,6 @@
   326,
   359,
   339,
-  222,
   225,
   276,
   160,
