@@ -1086,28 +1086,6 @@
    "waiting": "Matthew: read ^du_report(13) (localhost:8133/du-reports/013/); publish on your word."
   },
   {
-   "id": 403,
-   "area": "dress up, reports: ^du_report(11)'s beach picture",
-   "added": "2026-10-19T11:24-06:00",
-   "opened": "2026-10-19T11:24-06:00",
-   "status": "open",
-   "tags": [
-    "low priority"
-   ],
-   "source": "Matthew, 2026-10-19 11:24, in chat",
-   "url": "http://localhost:8133/du-reports/011/pictures/beach.svg",
-   "text": "<b>Bug: in ^du_report(11)'s beach picture, two people have no torso.</b> Matthew: \"this image looks wrong ... the toros of 3rd and 5th person (left to right) are missing/transparent?\" The picture is du-reports/011/pictures/beach.svg (the game's reports folder). Find why the 3rd and 5th figures from the left draw without a torso (a costume or pose whose body part is left out of the SVG, or a fill that comes out transparent), fix it where the game draws it, and redraw the picture, here and in the published report.",
-   "progress": "11:24: minted and enqueued (low priority).",
-   "log": [
-    {
-     "at": "2026-10-19T11:24-06:00",
-     "from": "matthew",
-     "chars": 187,
-     "asks": false
-    }
-   ]
-  },
-  {
    "id": 404,
    "area": "dress up, the scene's exit arrows: hover area and label time",
    "added": "2026-10-19T11:25-06:00",
@@ -1302,9 +1280,42 @@
   }
  ],
  "next_ticket": 415,
- "current_ticket": 403,
- "current_note": "14:07: Started: why two figures in ^du_report(11)'s beach picture draw without a torso; reading the picture and the code that draws the friend's body. ^ticket(405): #2635's Full tests due ~15:05.",
+ "current_ticket": 404,
+ "current_note": "14:10: Started: the exit arrows' hover labels: where they sit (the fairy forest's arrow to bubble space shows its label from the flower below it), and a slider in Accessibility for how long a label stays (default twice today's). Reading the code; a game release follows. ^ticket(405): #2635's Full tests due ~15:05.",
  "closed_tickets": [
+  {
+   "id": 403,
+   "area": "dress up, reports: ^du_report(11)'s beach picture",
+   "added": "2026-10-19T11:24-06:00",
+   "opened": "2026-10-19T11:24-06:00",
+   "status": "done",
+   "tags": [
+    "low priority"
+   ],
+   "source": "Matthew, 2026-10-19 11:24, in chat",
+   "url": "http://localhost:8133/du-reports/011/pictures/beach.svg",
+   "text": "<b>Bug: in ^du_report(11)'s beach picture, two people have no torso.</b> Matthew: \"this image looks wrong ... the toros of 3rd and 5th person (left to right) are missing/transparent?\" The picture is du-reports/011/pictures/beach.svg (the game's reports folder). Find why the 3rd and 5th figures from the left draw without a torso (a costume or pose whose body part is left out of the SVG, or a fill that comes out transparent), fix it where the game draws it, and redraw the picture, here and in the published report.",
+   "progress": "11:24: minted and enqueued (low priority).",
+   "log": [
+    {
+     "at": "2026-10-19T11:24-06:00",
+     "from": "matthew",
+     "chars": 187,
+     "asks": false
+    }
+   ],
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T14:10-06:00",
+   "outcome": "Fixed 2026-10-19 in ^du_report(11)'s draft picture (du-reports/011/pictures/beach.svg; the 011 folder is an untracked draft awaiting Matthew's word, so nothing committed). The two figures without torsos were the pirate (white shirt, red stripes) and voodoo (purple, gold stars): their torsos were filled with url(#n1-pat-shirt) and url(#n2-pat-shirt), but the picture defined no pattern, so the fills drew as nothing. Cause: the people were placed by hand in a browser session that prefixed each person's ids (n1-, n2-) in the fills but dropped their <defs>; the game itself does not yet draw people in places. Added the two patterns, written as the game's patternDef writes them from each person's settings; checked in the browser. No other report picture has a fill pointing at an undefined id (all scanned). For the future feature (a person as a thing of the place): carry each person's <defs> with the prefixed ids, and a check that no fill points nowhere.",
+   "metrics": {
+    "open_minutes": 166,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 187,
+    "tokens_est": 46,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 410,
    "area": "hazel reports: the series' new name (was \"Hazel performance analysis\")",
@@ -13484,10 +13495,9 @@
   }
  ],
  "queue": [
-  403,
+  404,
   389,
   405,
-  404,
   406,
   412,
   413,
@@ -13516,7 +13526,7 @@
   322,
   344
  ],
- "current_since": "2026-10-19T14:07-06:00",
+ "current_since": "2026-10-19T14:10-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
