@@ -959,12 +959,13 @@
    "opened": "2026-10-19T10:37-06:00",
    "status": "open",
    "tags": [
-    "deadline: morning of 2026-10-20 (ideally)"
+    "deadline: morning of 2026-10-20 (ideally)",
+    "blocked on Matthew"
    ],
    "source": "Matthew, 2026-10-19 10:37, in chat, from Cyrus (for ^ticket(389), the 2026-10-21 meeting)",
    "url": "",
    "text": "<b>Do the performance PRs keep typing and evaluation correct? An argument for each one, and the tests to back it.</b> Matthew: \"Cyrus wanted more analysis and coverage of functional correctness -- do our performance PRs (the ones from issue #2609) compromise any sense of correctness of typing or evaluation?\" For the meeting with Cyrus, ^ticket(389). Two parts:<ul><li><b>The arguments, in a report.</b> Go through each PR against #2609 (the dashboard's Performance list) and check whether it changes what the type checker or the evaluator computes. For each one, write down why it is sound: what it caches, skips or shares, and why the result is the same as without it (the key it is looked up by, what invalidates it, what it assumes). Compile all of them in a new ^report in the performance analysis series, with any PR whose argument does not hold called out.</li><li><b>The tests.</b> \"add a new PR to dev that does even more correctness tests, if they aren't complete enough as is. -- ditto for our PRs -- add coverage of the features that they add.\" So: a new PR to dev with correctness tests where today's are thin (for example, typing and evaluation results with an optimization on and off, compared). And on each of our perf PRs, tests that cover what that PR adds.</li></ul>",
-   "progress": "10:37: minted and enqueued (deadline: tomorrow morning, ideally). 13:02: four read-only reviews running in parallel (statics 2603/2651/2661/2679/2681; evaluator 2606/2608/2673/2675; parsing/editor/worker 2610/2614/2671/2672/2652; tests/CI/spike 2678/2689/2690/2691/2490), from GitHub diffs, no builds. The report's generator is ready (021/drivers/gen021.py: a verdict per PR, a figure by area, a section per PR). Dev today: 41 hand-made incremental-eval tests and property tests, but no corpus-wide incremental-vs-from-scratch comparison (a candidate for the tests PR). 13:10: ALL FOUR REVIEWS IN (from GitHub diffs, nothing run): 19 PRs: 4 cannot change a type or value (2678, 2689, 2690, 2691: test-only, though three are stacked on runtime PRs); 5 hold (2608, 2675, 2679, 2672, 2652); 7 hold under stated assumptions (2603, 2606, 2661, 2673, 2681, 2614, 2671; the hash ones assume no collisions; #2673 not quite the old check); 2 do NOT hold in corners (2610: the segmented load fallback can turn x - y into x ¿ -y at a split; 2651: a module under a one-member signature evaluates differently, and a self-naming module loses its error); 1 spike not for merging (2490). Also: the incremental-vs-fresh property is disabled on dev (#2457). Data assembled: 021/data/prs.json. NEXT: confirm 2610 and 2651 by running them before the report says so; then draft ^report(21). 13:13: CONFIRMED by running (CLI at head and parent): #2651 changes a result: module M : { let x : Int } = { let x = 1; let y = 2 } in M gives (x=({ let x = 1; let y = 2 })) on dev, (x=1, y=2) with #2651 (M.x: the module vs 1; dev already flags it as a type error; new result looks right). #2610 at its head loads a forced-fallback 'aaa…a - b' (101+ chars) as 'aaa…a ¿ - b'; the parent's output is being built for comparison (temp worktree ~/hazel-check-2610-parent). The report's text is drafted (021/data/meta.json).",
+   "progress": "10:37: minted and enqueued (deadline: tomorrow morning, ideally). 13:02: four read-only reviews running in parallel (statics 2603/2651/2661/2679/2681; evaluator 2606/2608/2673/2675; parsing/editor/worker 2610/2614/2671/2672/2652; tests/CI/spike 2678/2689/2690/2691/2490), from GitHub diffs, no builds. The report's generator is ready (021/drivers/gen021.py: a verdict per PR, a figure by area, a section per PR). Dev today: 41 hand-made incremental-eval tests and property tests, but no corpus-wide incremental-vs-from-scratch comparison (a candidate for the tests PR). 13:10: ALL FOUR REVIEWS IN (from GitHub diffs, nothing run): 19 PRs: 4 cannot change a type or value (2678, 2689, 2690, 2691: test-only, though three are stacked on runtime PRs); 5 hold (2608, 2675, 2679, 2672, 2652); 7 hold under stated assumptions (2603, 2606, 2661, 2673, 2681, 2614, 2671; the hash ones assume no collisions; #2673 not quite the old check); 2 do NOT hold in corners (2610: the segmented load fallback can turn x - y into x ¿ -y at a split; 2651: a module under a one-member signature evaluates differently, and a self-naming module loses its error); 1 spike not for merging (2490). Also: the incremental-vs-fresh property is disabled on dev (#2457). Data assembled: 021/data/prs.json. NEXT: confirm 2610 and 2651 by running them before the report says so; then draft ^report(21). 13:13: CONFIRMED by running (CLI at head and parent): #2651 changes a result: module M : { let x : Int } = { let x = 1; let y = 2 } in M gives (x=({ let x = 1; let y = 2 })) on dev, (x=1, y=2) with #2651 (M.x: the module vs 1; dev already flags it as a type error; new result looks right). #2610 at its head loads a forced-fallback 'aaa…a - b' (101+ chars) as 'aaa…a ¿ - b'; the parent's output is being built for comparison (temp worktree ~/hazel-check-2610-parent). The report's text is drafted (021/data/meta.json). 13:16: REPORT DRAFTED: ^report(21) at http://localhost:8131/021/ (local commit 1bda94e in ~/hazel-perf-report, not pushed). 16 of 19 keep types and values the same (4 cannot change, 5 hold, 7 under stated assumptions); 2 change a result in a corner, BOTH CONFIRMED BY RUNNING the CLI at head and parent: #2610 loads a forced-fallback 'aaa…a - b' as 'aaa…a ¿ - b' (parent: 'aaa…a - b'); #2651 evaluates module M : {{ let x : Int }} = {{ let x = 1; let y = 2 }} in M to (x=1, y=2) (dev: (x=({{ let x = 1; let y = 2 }}))); 1 spike (2490). Biggest gap: tests (the incremental-vs-fresh property is off on dev, #2457; no on/off comparison). WAITING ON MATTHEW: read and publish word. The tests half moves to its own ticket so it is not blocked.",
    "log": [
     {
      "at": "2026-10-19T10:37-06:00",
@@ -978,7 +979,8 @@
      "chars": 69,
      "asks": false
     }
-   ]
+   ],
+   "waiting": "Matthew: read the ^report(21) draft (http://localhost:8131/021/); publish on his word. The tests half is ^ticket(411)."
   },
   {
    "id": 399,
@@ -1227,9 +1229,22 @@
      "asks": false
     }
    ]
+  },
+  {
+   "id": 411,
+   "area": "hazel, correctness tests for the performance PRs (a PR to dev)",
+   "added": "2026-10-19T13:16-06:00",
+   "opened": "2026-10-19T13:16-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "split from ^ticket(398), 2026-10-19 13:16 (Matthew's ask there: \"add a new PR to dev that does even more correctness tests ... ditto for our PRs\")",
+   "url": "",
+   "text": "<b>A tests PR to dev that checks the performance PRs keep types and values the same, plus each PR's own missing tests.</b> The second half of ^ticket(398); ^report(21)'s \"What to add\": <ol><li>turn the incremental-against-fresh property back on for completed results (#2457's stuck ones skipped), fixed seed, with recursive lets in the generator;</li><li>a corpus comparison: every program in hazel-programs analyzed and evaluated with each optimization on and off, incrementally after an edit and from scratch (types, marks, elaborations ignoring ids, values, probes, test results);</li><li>hash checks: equal hash implies equal term, for the type hash (#2661, #2681) and the term hash (#2673), plus a census over the corpus;</li><li>a parser comparison: the load fallback against character-by-character typing at every split offset (finds #2610's case);</li><li>budget tests that also assert results.</li></ol> And on each of our PRs, the tests ^report(21) lists in its section.",
+   "progress": "13:16: minted from ^ticket(398)'s second half and enqueued after the Hazel tickets.",
+   "log": []
   }
  ],
- "next_ticket": 411,
+ "next_ticket": 412,
  "current_ticket": 398,
  "current_note": "12:58: Started: reading each of the 19 PRs against #2609 for what it caches, skips or shares, to write why each computes the same types and values (deadline: tomorrow morning, ideally). ^ticket(405): #2699's Full tests are nearly done; on green it merges into #2635.",
  "closed_tickets": [
@@ -13334,7 +13349,6 @@
   }
  ],
  "queue": [
-  398,
   389,
   405,
   387,
@@ -13345,12 +13359,14 @@
   407,
   408,
   410,
+  411,
   399,
   402,
   403,
   404,
   406,
   391,
+  398,
   18,
   102,
   315,
