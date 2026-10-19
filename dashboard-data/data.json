@@ -14,7 +14,7 @@
      "http://localhost:8341/?slide=livelit-playground-scenes"
     ]
    ],
-   "branch_note": "(served again since 10:35 on 2026-10-19, after the 10:26 crash: a build of b44bb9c50f, worktree <code>~/hazel-livelits-modular</code> on local branch trial/2635-up-to-date: #2635's head then; since pushed, with the merge of #2597's branch (cf325d4f61) and a test fix (27f100e37c), which change no app code (the bar's toggle beside the type; aliases expanded in the full view). Documentation &gt; Livelits &gt; Overview, then ^flag's eye: the model pane)"
+   "branch_note": "(served again since 14:46 on 2026-10-19, after the 14:42 crash: the 13:34 build of 5961401df2, worktree <code>~/hazel-livelits-modular</code> on local branch trial/2635-up-to-date: #2635's pushed head 90ed4505bf plus the local full-screen button (the bar's toggle beside the type; aliases expanded in the full view). Documentation &gt; Livelits &gt; Overview, then ^flag's eye: the model pane)"
   },
   {
    "pr": 2597,
@@ -63,7 +63,7 @@
      "http://localhost:8361/"
     ]
    ],
-   "branch_note": "(^ticket(386), draft PR stacked on #2676: Gamma's long types. Served again since 10:35 on 2026-10-19, after the 10:26 crash: a build of 4c9cc34d3b, worktree <code>~/hazel-dev-inspector</code>, with ^ticket(394)'s commits merged in from #2676's branch, not pushed yet (pushed head 20ade6928b). Open &Gamma; at the bottom bar's left and click an entry's &#9656;)"
+   "branch_note": "(^ticket(386), draft PR stacked on #2676: Gamma's long types. Served again since 14:46 on 2026-10-19, after the 14:42 crash: a build of 4c9cc34d3b (pushed), worktree <code>~/hazel-dev-inspector</code>, with ^ticket(394)'s commits merged in from #2676's branch. Open &Gamma; at the bottom bar's left and click an entry's &#9656;)"
   },
   {
    "name": "Hazel reports (the report's sources)",
@@ -1303,13 +1303,13 @@
    "source": "^report(21) (^ticket(398)), What next, steps 3 and 5; opened by Claude during the AFK protocol",
    "url": "https://github.com/hazelgrove/hazel/pull/2673",
    "text": "<b>Strengthen the performance PRs' hashes, and say what two of them change, before they merge.</b> ^report(21)'s next steps 3 and 5:<ul><li><b>#2673's term hash:</b> each lane is an xor-multiply chain, so two children that both differ only in bit 31 cancel. Add a finalizer per lane (a mixing step after each combine) so no single bit passes through unmixed, and a test that pins it.</li><li><b>#2661's type hash, used by #2681 too:</b> two 30-bit lanes, and for atoms the second lane is an affine function of the first. Either widen it or check equality behind a hit, so a collision can never give a wrong consistency answer.</li><li><b>Descriptions:</b> #2675's, the unused-variable warning it now gives for a binding a recursive let shadows; #2673's, that its reuse decisions differ from the old check in two corners.</li></ul>",
-   "progress": "14:41: opened from ^report(21)'s next steps 3 and 5 while #2610's and #2635's Full tests run; started.",
+   "progress": "14:41: opened from ^report(21)'s next steps 3 and 5 while #2610's and #2635's Full tests run; started. 14:42: <b>the laptop crashed</b> (crash 42) about 20 s into <code>dune build test/haz3ltest.bc.js</code> in <code>~/hazel-reuse-hash</code>. Parked state, uncommitted in that worktree (both files whole): <code>test/Test_ValueHash.re</code> has the new case \"parts that differ only in the same bit do not cancel\", which FAILED against the old mix (bit 30, fields 1, 2 hashed alike), and <code>src/util/ValueHash.re</code> has the fix: a finalizer per lane after each step (Murmur3's fmix32 for lane 0, lowbias32 for lane 1) inside <code>mix</code>. Not yet built or run. The crashed build's 2,027 zero-byte outputs were deleted. <b>Next:</b> <code>nice -n 10 dune build test/haz3ltest.bc.js</code> there, run <code>test ValueHash</code>, then the rest of the ticket (#2661's type hash, the two descriptions).",
    "log": []
   }
  ],
  "next_ticket": 419,
  "current_ticket": 418,
- "current_note": "14:41: ^ticket(418): strengthening #2673's term hash first (report 21, next step 3), while #2610's and #2635's Full tests run (^ticket(416), ^ticket(405): close on green).",
+ "current_note": "14:47: after the 14:42 crash (crash 42, a <code>dune build</code> in ^ticket(418)'s worktree): recovered; nothing lost but build outputs. ^ticket(418) is parked with #2673's hash fix and its test written but not yet built; next is that build and test run. #2610's and #2635's Full tests run on GitHub (^ticket(416), ^ticket(405): close on green).",
  "closed_tickets": [
   {
    "id": 391,
