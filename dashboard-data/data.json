@@ -790,7 +790,7 @@
    ],
    "source": "Matthew, 2026-10-19 09:15, in chat",
    "url": "",
-   "progress": "09:15: minted, the list as of now; 385 in progress (answer due EOD). 09:56: 385's answer is now ^report(18), a local draft (http://localhost:8131/018/), waiting on Matthew's read; the 09:30 artifact is superseded (it had two errors, listed on 385). 10:15: + ^ticket(393), ^report(19): where the UI shows syntax as tiles and where as text (Matthew's ask). 10:37: + ^ticket(398), the perf PRs' correctness (Cyrus's ask). 11:06: Matthew relayed CYRUS'S MERGE PLAN for dev, broadly: (1) PRs that have been waiting (which ones not clear), (2) Andrew's modular editing PR(s), (3) our livelits and performance PRs, in some order. ^report(18)'s local draft (http://localhost:8131/018/, still unpublished) revised to match, story unchanged: short answer 4, cause 1's last paragraph, What next steps 1 and 4 (the per-member analysis reaches the livelits branch through dev anyway; a port into #2635 now is ^ticket(400)'s separate exploratory draft). + ^ticket(398) (perf PRs' correctness) and ^report(19) published today.",
+   "progress": "09:15: minted, the list as of now; 385 in progress (answer due EOD). 09:56: 385's answer is now ^report(18), a local draft (http://localhost:8131/018/), waiting on Matthew's read; the 09:30 artifact is superseded (it had two errors, listed on 385). 10:15: + ^ticket(393), ^report(19): where the UI shows syntax as tiles and where as text (Matthew's ask). 10:37: + ^ticket(398), the perf PRs' correctness (Cyrus's ask). 11:06: Matthew relayed CYRUS'S MERGE PLAN for dev, broadly: (1) PRs that have been waiting (which ones not clear), (2) Andrew's modular editing PR(s), (3) our livelits and performance PRs, in some order. ^report(18)'s local draft (http://localhost:8131/018/, still unpublished) revised to match, story unchanged: short answer 4, cause 1's last paragraph, What next steps 1 and 4 (the per-member analysis reaches the livelits branch through dev anyway; a port into #2635 now is ^ticket(400)'s separate exploratory draft). + ^ticket(398) (perf PRs' correctness) and ^report(19) published today. 12:18: ^report(19) linked in the list (Matthew). Matthew: an AGENDA, \"another kind of special report\", a WIP compiled over the next couple of days: drafting it as ^report(20), local only until he says.",
    "log": [
     {
      "at": "2026-10-19T09:15-06:00",
@@ -809,9 +809,21 @@
      "from": "matthew",
      "chars": 353,
      "asks": false
+    },
+    {
+     "at": "2026-10-19T12:18-06:00",
+     "from": "matthew",
+     "chars": 100,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T12:18-06:00",
+     "from": "matthew",
+     "chars": 124,
+     "asks": false
     }
    ],
-   "text": "<b>Meeting with Cyrus, Wednesday 2026-10-21: the tickets to bring.</b> Matthew: \"My next meeting with Cyrus is Wed -- let's make a ticket that links to all related tickets for that meeting please. For now, it's just a bulleted list based on what you know now.\"<ul><li>^ticket(385): why CI fails on the livelits x modular editing branch (#2635, into ...full): Cyrus's question on Friday; ANSWERED 10-19 09:31: it is the merge (Modules II on the livelits branch meeting #2469's per-member DefStatics; one table test input), neither branch broken: <a href=\"https://claude.ai/artifact/RCpsLbKgrdfY9fvtHE3Dha\">the write-up</a> (private until shared).</li><li>^ticket(386): the type syntax expansion for types in Gamma too, as for the result type (long types on one line): ideas.</li><li>^ticket(387): livelits' model sub-editors as read-only tiles, with tiles' selection UX (right click and the rest); it follows his 10-03 call, the revealed model read-only and selectable.</li><li>^ticket(388): why the right-hand side that explains each syntax form shows no example syntax as read-only tiles (older than Matthew's time on the team).</li><li>^ticket(398): do the performance PRs (against #2609) keep typing and evaluation correct? Cyrus wants more analysis and coverage of functional correctness: an argument for each PR in a report, and more correctness tests (a new PR to dev, and tests on each of our PRs). Deadline: tomorrow morning, ideally.</li><li>Open and waiting on Matthew, in case they come up: ^ticket(54) (offer ^ticket(7)'s three ports to #2469), ^ticket(19) (perf budgets harder to fool, a draft PR?), ^ticket(18) (option B: livelit views evaluated in the worker), ^ticket(102) (the reply to Alexander on #2583), ^ticket(16) (asking the maintainers to require the test jobs for merging into dev).</li></ul>More to come from Matthew."
+   "text": "<b>Meeting with Cyrus, Wednesday 2026-10-21: the tickets to bring.</b> Matthew: \"My next meeting with Cyrus is Wed -- let's make a ticket that links to all related tickets for that meeting please. For now, it's just a bulleted list based on what you know now.\"<ul><li>^ticket(385): why CI fails on the livelits x modular editing branch (#2635, into ...full): Cyrus's question on Friday; ANSWERED 10-19 09:31: it is the merge (Modules II on the livelits branch meeting #2469's per-member DefStatics; one table test input), neither branch broken: <a href=\"https://claude.ai/artifact/RCpsLbKgrdfY9fvtHE3Dha\">the write-up</a> (private until shared).</li><li>^ticket(386): the type syntax expansion for types in Gamma too, as for the result type (long types on one line): ideas.</li><li>^ticket(387): livelits' model sub-editors as read-only tiles, with tiles' selection UX (right click and the rest); it follows his 10-03 call, the revealed model read-only and selectable.</li><li>^ticket(388): why the right-hand side that explains each syntax form shows no example syntax as read-only tiles (older than Matthew's time on the team).</li><li>^ticket(398): do the performance PRs (against #2609) keep typing and evaluation correct? Cyrus wants more analysis and coverage of functional correctness: an argument for each PR in a report, and more correctness tests (a new PR to dev, and tests on each of our PRs). Deadline: tomorrow morning, ideally.</li><li><a href=\"https://matthewhammer.org/hazel/performance-analysis/019/\">^report(19)</a>, published 10-19 (^ticket(393)): the Hazel UI draws syntax as tiles on 22 of 39 surfaces, but only 6 take a caret.</li><li>Open and waiting on Matthew, in case they come up: ^ticket(54) (offer ^ticket(7)'s three ports to #2469), ^ticket(19) (perf budgets harder to fool, a draft PR?), ^ticket(18) (option B: livelit views evaluated in the worker), ^ticket(102) (the reply to Alexander on #2583), ^ticket(16) (asking the maintainers to require the test jobs for merging into dev).</li></ul>More to come from Matthew."
   },
   {
    "id": 391,
@@ -1083,7 +1095,7 @@
    "source": "Matthew, 2026-10-19 11:31, in chat",
    "url": "https://github.com/hazelgrove/hazel/pull/2635",
    "text": "<b>Fix #2635's CI errors: highest priority.</b> Matthew: \"highest priority after we settle is, fixing the CI errors on our livelits x modular editors PR.\" What fails, as ^report(18) found (^ticket(385)): 8 DefStaticsParity module cases (modules analyzed whole since the merge), <code>Editing.TableDecorations 1</code> (dev's canonical completion closes the stray bracket the test relies on), and the corpus test's one mismatch (<code>macro-result.hz</code>, cause unknown); and GitHub shows #2635 conflicting with its base. ^ticket(400)'s draft #2699 clears the 8 locally (DefStaticsParity 42/43). Today's push (b44bb9c50f, ^ticket(394)) failed Fast checks too: read it first.",
-   "progress": "11:31: minted as first priority, after ^ticket(400) (closed: draft #2699). 11:38: (Matthew AFK, async) 1) MERGE CONFLICTS FIXED: merged #2597's branch into #2635 (cf325d4f61), every conflict to #2635's side: all 110 of #2597's commits since 3efe8c7e52 are already here (79 same patch, 26 same title, 5 checked by content); the merge adds only Test_CopyDescendants (passes). GitHub: MERGEABLE. 2) TableDecorations 1 FIXED (27f100e37c): the hidden error now comes from a wrong row label; 3/3 pass locally. Both pushed to #2635. NEXT: the corpus mismatch (macro-result.hz); the 8 module cases are #2699's (CI running on GitHub) - merging it into #2635 is Matthew's call, as it was meant exploratory. 11:53: CRASH at 11:46 (crash 41), mid-test; nothing lost. CORPUS CAUSE FOUND before it (macro-result.hz): after the corpus test's edit (1 -> 2) and back, the ^^livelit(^inc(...)) use kept the edited expansion (a + 2), because DefStatics.entry_name named a livelit entry `inc` while a use records `^inc` in its co_ctx, so a changed livelit dirtied nothing. Fix (uncommitted, in hazel-livelits-modular): entry_name gives \"^\" ++ name. NEXT: rerun DefStaticsParity, then commit + push to #2635. 11:58: 3) CORPUS CASE FIXED, pushed to #2635 as 1131a457e4: DefStaticsParity 35 of 43 locally, the corpus case passes; the 8 failures are exactly the module cases. FOUND on #2699's CI (Fast checks, 2 failures): TableDecorations 1 (fixed on #2635 since) and the corpus case on a DIFFERENT file, color-fig3.hz (extra Livelit name / Constructor errors, field types ? vs SpliceRef), which #2635 passes. So merging #2699 as it is still leaves one red test. NEXT: does #2699 + 1131a457e4 clear color-fig3 locally? 12:06: 4) #2699's OWN CORPUS FAILURE FIXED, pushed to #2699 (223357135a, on a merge of #2635's 1131a457e4, 206aed1715): `let ^color = {...}` binds a Var, so #2699's module_literal_members analyzed a livelit DEFINITION member by member, skipping UserLivelit.detect; Model/Action stayed unresolved and every ^color use was unbound (color-fig3.hz). A livelit binder is no longer `simple`. Locally #2699 now passes DefStaticsParity 43 of 43. CI running on both PRs. WAITING ON MATTHEW: merge #2699 into #2635 (it was meant as exploratory)? 12:16: Matthew: \"Yes: merge #2699 into #2635 once #2699's CI is green.\" So: watching #2699's CI (223357135a), then merging it into #2635.",
+   "progress": "11:31: minted as first priority, after ^ticket(400) (closed: draft #2699). 11:38: (Matthew AFK, async) 1) MERGE CONFLICTS FIXED: merged #2597's branch into #2635 (cf325d4f61), every conflict to #2635's side: all 110 of #2597's commits since 3efe8c7e52 are already here (79 same patch, 26 same title, 5 checked by content); the merge adds only Test_CopyDescendants (passes). GitHub: MERGEABLE. 2) TableDecorations 1 FIXED (27f100e37c): the hidden error now comes from a wrong row label; 3/3 pass locally. Both pushed to #2635. NEXT: the corpus mismatch (macro-result.hz); the 8 module cases are #2699's (CI running on GitHub) - merging it into #2635 is Matthew's call, as it was meant exploratory. 11:53: CRASH at 11:46 (crash 41), mid-test; nothing lost. CORPUS CAUSE FOUND before it (macro-result.hz): after the corpus test's edit (1 -> 2) and back, the ^^livelit(^inc(...)) use kept the edited expansion (a + 2), because DefStatics.entry_name named a livelit entry `inc` while a use records `^inc` in its co_ctx, so a changed livelit dirtied nothing. Fix (uncommitted, in hazel-livelits-modular): entry_name gives \"^\" ++ name. NEXT: rerun DefStaticsParity, then commit + push to #2635. 11:58: 3) CORPUS CASE FIXED, pushed to #2635 as 1131a457e4: DefStaticsParity 35 of 43 locally, the corpus case passes; the 8 failures are exactly the module cases. FOUND on #2699's CI (Fast checks, 2 failures): TableDecorations 1 (fixed on #2635 since) and the corpus case on a DIFFERENT file, color-fig3.hz (extra Livelit name / Constructor errors, field types ? vs SpliceRef), which #2635 passes. So merging #2699 as it is still leaves one red test. NEXT: does #2699 + 1131a457e4 clear color-fig3 locally? 12:06: 4) #2699's OWN CORPUS FAILURE FIXED, pushed to #2699 (223357135a, on a merge of #2635's 1131a457e4, 206aed1715): `let ^color = {...}` binds a Var, so #2699's module_literal_members analyzed a livelit DEFINITION member by member, skipping UserLivelit.detect; Model/Action stayed unresolved and every ^color use was unbound (color-fig3.hz). A livelit binder is no longer `simple`. Locally #2699 now passes DefStaticsParity 43 of 43. CI running on both PRs. WAITING ON MATTHEW: merge #2699 into #2635 (it was meant as exploratory)? 12:16: Matthew: \"Yes: merge #2699 into #2635 once #2699's CI is green.\" So: watching #2699's CI (223357135a), then merging it into #2635. 12:18: parked while #2699's CI runs (background watch in this session); on green, merge #2699 into #2635 (Matthew's yes, 12:1x).",
    "log": [
     {
      "at": "2026-10-19T11:31-06:00",
@@ -1166,8 +1178,8 @@
   }
  ],
  "next_ticket": 409,
- "current_ticket": 405,
- "current_note": "12:16: Matthew said yes: #2699 goes into #2635 once #2699's CI is green. Watching its CI (Fast checks, Full tests) on 223357135a; then the merge and #2635's own CI.",
+ "current_ticket": 389,
+ "current_note": "12:18: Drafting the agenda for Wednesday's meeting with Cyrus as ^report(20), a work in progress (local only until Matthew says). ^ticket(405) waits on #2699's CI; on green, #2699 merges into #2635.",
  "closed_tickets": [
   {
    "id": 400,
@@ -13239,10 +13251,10 @@
   }
  ],
  "queue": [
+  389,
   405,
   387,
   396,
-  389,
   388,
   395,
   374,
@@ -13268,6 +13280,5 @@
   344,
   397
  ],
- "current_since": "2026-10-19T11:31-06:00",
- "current_waiting": null
+ "current_since": "2026-10-19T12:18-06:00"
 }
