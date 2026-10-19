@@ -780,26 +780,6 @@
    "text": "<b>Dress Up: the speed measurements ^du_report(5) still wants.</b> Before publishing, Matthew had asked for a frame-rate check of the proposed full-screen 🏞️ Background designer (many place pictures at once were slow on the black laptop), with the place pictures kept as pictures so they cost little; he published the report first. Measure the designer's place pictures drawn live, as still SVGs and as bitmaps, and the friend's walk and drag with the designer open, at normal speed and on the slow tiers, then add the numbers to the report as a dated note (its What next, step 8)."
   },
   {
-   "id": 309,
-   "area": "dress up, the friend's moves",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T13:55-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up: walking refined: the knee leads each step, the foot follows.</b> Matthew: \"Let's also refine walking --- our knees should lead each step, and our foot follows, as two separate parts of the motion, in phase.\"",
-   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue\")",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T13:55-06:00",
-     "from": "matthew",
-     "chars": 0,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 310,
    "area": "dress up, depth and collision outdoors",
    "added": "2026-10-18",
@@ -1775,9 +1755,46 @@
   }
  ],
  "next_ticket": 360,
- "current_ticket": 309,
- "current_note": "20:34: walking refined: the knee leads each step, the foot follows (the shin a beat behind the thigh)",
+ "current_ticket": 310,
+ "current_note": "20:35: ^ticket(309) closed (done); ^ticket(310) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 309,
+   "area": "dress up, the friend's moves",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T13:55-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up: walking refined: the knee leads each step, the foot follows.</b> Matthew: \"Let's also refine walking --- our knees should lead each step, and our foot follows, as two separate parts of the motion, in phase.\"",
+   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue\")",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T13:55-06:00",
+     "from": "matthew",
+     "chars": 0,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T20:35-06:00",
+     "from": "claude",
+     "chars": 400,
+     "asks": false
+    }
+   ],
+   "progress": " 20:35 DONE, 0.0.270: the profile walk's shin follows the thigh WALK_LAG = 1.1 rad behind (js/17-moving-and-climbing.js), Knee = 4 + 1.7 * max(0, thigh - shin): the knee 45 -> 20 ahead of the foot as the thigh comes through, the foot 14-16 past it at the top, straight in stance. Toward and away unchanged (Step). Check: walk309.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T20:35-06:00",
+   "outcome": "Released in 0.0.270: walking from the side now leads each step with the knee, bent, the foot trailing; the foot then swings on ahead to land and the leg straightens; straight while the foot is down. Check: walk309.",
+   "metrics": {
+    "open_minutes": 401,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 400,
+    "tokens_est": 100,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 308,
    "area": "dress up, the friend's moves",
@@ -11065,7 +11082,6 @@
   }
  ],
  "queue": [
-  309,
   310,
   316,
   317,
@@ -11114,5 +11130,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T20:34-06:00"
+ "current_since": "2026-10-18T20:35-06:00"
 }
