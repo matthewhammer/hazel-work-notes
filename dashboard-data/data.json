@@ -856,9 +856,51 @@
      "asks": false
     }
    ]
+  },
+  {
+   "id": 394,
+   "area": "hazel, types, the type expansion: its button, and aliases",
+   "added": "2026-10-19T10:19-06:00",
+   "opened": "2026-10-19T10:19-06:00",
+   "status": "open",
+   "tags": [
+    "deadline: EOD 2026-10-19"
+   ],
+   "source": "Matthew, 2026-10-19 10:18, in chat",
+   "url": "",
+   "text": "<b>The type expansion: its button is in the wrong place, and an alias (Picture) does not expand into its definition.</b> Matthew: \"type expansion button is in the wrong place, and Picture does not expand into its definition --- I thought we addressed that issue (type aliases should expand and show their def, util their def uses that same type recursively (then don't expand further))\". So: in the expanded views (the cursor inspector's full view, #2676 on dev and b6896f5b13 on #2635; Gamma's unfolded entries, #2698), a type naming an alias shows the alias's definition, and the aliases inside that, stopping where a definition refers back to a type already being expanded. Today, 5f04a9e265 / d7c03d8d88 show a definition only with the caret on the alias's binder. And the button moves to where Matthew wants it (asked).",
+   "progress": "10:19: minted; asking Matthew which button and where.",
+   "log": [
+    {
+     "at": "2026-10-19T10:18-06:00",
+     "from": "matthew",
+     "chars": 477,
+     "asks": false
+    }
+   ]
+  },
+  {
+   "id": 395,
+   "area": "hazel, types, right-click to expand a type",
+   "added": "2026-10-19T10:19-06:00",
+   "opened": "2026-10-19T10:19-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, 2026-10-19 10:18, in chat (\"mint and enqueue\")",
+   "url": "",
+   "text": "<b>Explore: every type offers \"right-click, expand its definition, show it in a box above it\".</b> Matthew: \"Mint and enqueue a related ticket to explore an idea --- every type offers a 'right-click and expand the def and show it in a box above it,' feature, based on this expansion feature we are doing now.\" Builds on ^ticket(394) (aliases expand), ^ticket(386) (Gamma's unfold, #2698) and #2676 (the full view); the context menu is ContextMenu.re. An exploration: where types appear (code, inspector, Gamma, explainer), what the box shows, how it closes.",
+   "progress": "10:19: minted and enqueued after today's tickets.",
+   "log": [
+    {
+     "at": "2026-10-19T10:18-06:00",
+     "from": "matthew",
+     "chars": 477,
+     "asks": false
+    }
+   ]
   }
  ],
- "next_ticket": 394,
+ "next_ticket": 396,
  "current_ticket": 393,
  "current_note": "10:15: Matthew: a ^report on how much of the UI's Hazel syntax is tiles. Surveying every rendering path (it decides 387's and 388's scope).",
  "closed_tickets": [
@@ -12803,9 +12845,11 @@
  ],
  "queue": [
   393,
+  394,
   387,
   389,
   388,
+  395,
   374,
   326,
   276,
