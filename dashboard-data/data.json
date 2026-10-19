@@ -1610,30 +1610,67 @@
    "text": "<b>A ^du_report draft: porting Messed Up Dress Up (MUDU) to Hazel, piece by piece: how to port all of its current features in two months, and in three.</b> Matthew: \"report draft --- porting MUDU (messed up dress up) to Hazel, piece by piece. How can we do this port, of all current features, over the next 2 months? 3 months?\" His method (memory, 10-11): prototype in JS with real players, then formulate in Hazel. PLAN: (1) an inventory of what MUDU is today (0.0.265+: 26 script parts, ~21,800 lines; the friend and its poses and costumes, the places and their objects, collisions and walking, the world designer, music and LFOs, 🔬 and ♿, the archives, the checks) and what each rests on (SVG strings, the scene cache, requestAnimationFrame loops, WebAudio); (2) what Hazel has for it now (the livelits and their GUIs, splices, the evaluator, the editor, projectors, the performance work of #2469/#2635, what is known slow), and what each part of MUDU would need from Hazel that it lacks; (3) the order: pieces that stand alone and show Hazel well first (the friend's drawing as a pure function from settings to a picture; a place as a function; the pose rig), the runtime last (input, animation, sound), each piece a livelit or a slide with the JS still running beside it until its Hazel twin draws the same picture (the archives' pictures as the oracle: same settings, same SVG); (4) two schedules, two months and three, week by week, with what each leaves in JS at its end, and the risks (performance, the 60 fps rule, Hazel's missing pieces); (5) what to decide first."
   },
   {
+   "id": 361,
+   "area": "dress up, music: a dup chip on each channel",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T20:56-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, chat, 2026-10-18 20:56",
+   "url": "",
+   "progress": "Minted 20:56; queued at the end of the active tickets.",
+   "log": [
+    {
+     "at": "2026-10-18T20:56-06:00",
+     "from": "matthew",
+     "chars": 452,
+     "asks": false
+    }
+   ],
+   "text": "<b>🎚️ The mixing board: a \"dup\" chip on each channel, duplicating its part in the mix, named \"X dup\".</b> Matthew: \"mint and enqueue a new feature for music production -- not sure how deep it reaches, since it means making new instruments and MIDI data dynamically: On each instrument, permit a \"dup\" chip, that duplicates the instrument in the mix. The default is to name the new one \"X dup\" for \"X\" as the original. The usecase is changing a part up or down an octave, to boost that part a bit in the mix.\" NOTES (from ticket 360's look at the board, js/19-music.js): a channel is keyed name·inst (channelKey) and its settings live in state.music.mix[tune][key] (level, echo, rev, tone, pan, knob, upN/upIv, mute, solo, lfo); the song's parts come from TUNES[id].make() and play() maps song.T.parts to ups (chanUp) and buses. A dup is likely a list per tune in the mix (e.g. mix[id].dups = [{of: key, name: \"X dup\"}]) that songOf/play adds as a copy of the part's notes (same line, same inst) under its own channel key, so it gets its own strip, knobs and octave presses; saved with the friend's mix, removable (a ✖ on the dup's strip), and renamable. Depth: no new instrument code needed if a dup reuses the part's inst and line; the cost is in songOf's caching and the strips' build."
+  }
+ ],
+ "next_ticket": 360,
+ "current_ticket": 329,
+ "current_note": "20:52: Bubble space: pops burst into smaller bubbles, a pop animation and sound, and bubbles smaller farther back",
+ "closed_tickets": [
+  {
    "id": 360,
    "area": "dress up, music: his couch-cushion rave mixes as the defaults",
    "added": "2026-10-18",
-   "opened": "2026-10-18T20:58-06:00",
-   "status": "open",
+   "opened": "2026-10-18T20:48-06:00",
+   "status": "done",
    "tags": [],
-   "source": "Matthew, chat, 2026-10-18 20:55",
+   "source": "Matthew, chat, 2026-10-18 20:48",
    "url": "",
    "progress": "Minted 20:58 and started at once (a few minutes' work).",
    "log": [
     {
-     "at": "2026-10-18T20:55-06:00",
+     "at": "2026-10-18T20:48-06:00",
      "from": "matthew",
      "chars": 240,
      "asks": true
+    },
+    {
+     "at": "2026-10-18T20:51-06:00",
+     "from": "matthew",
+     "chars": 137,
+     "asks": true
     }
    ],
-   "text": "<b>Couch-cushion raves A and B: his post-production as the tracks' starting mix.</b> Matthew: \"I like the new songs. I did some post-production -- here are my new \\\"defaults\\\" for a couple of those tracks (compare to your defaults please)\" (his save ~/Downloads/my-friend-2026-10-18-20-48-45(1).json, game 0.0.268). PLAN: compare his board with the defaults (level 0 dB, echo/room from the part, tone open, pan middle, knob 50, no presses), then give CUSHION_RAVE A and B his board as their mix:, as the super-dub step's (ticket 263); release."
-  }
- ],
- "next_ticket": 360,
- "current_ticket": 360,
- "current_note": "20:50: Comparing his couch-cushion rave mixes with the defaults; making them the tracks' starting mix",
- "closed_tickets": [
+   "text": "<b>Couch-cushion raves A and B: his post-production as the tracks' starting mix.</b> Matthew: \"I like the new songs. I did some post-production -- here are my new \\\"defaults\\\" for a couple of those tracks (compare to your defaults please)\" (his save ~/Downloads/my-friend-2026-10-18-20-48-45(1).json, game 0.0.268). PLAN: compare his board with the defaults (level 0 dB, echo/room from the part, tone open, pan middle, knob 50, no presses), then give CUSHION_RAVE A and B his board as their mix:, as the super-dub step's (ticket 263); release. Then, 20:51: \"I like more low octave play in the rhythm and melody in general -- and more groovy bass, with more wah and effects (and more level).\" (saved as a memory) So the other new tracks (raves B-E, steppers dubs A-D) start the same way.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T20:52-06:00",
+   "outcome": "0.0.276 (36fc945): rave A starts from his board exactly, B with his two basses; after his 'more low octave ... more groovy bass, more wah, effects, level', raves B-E get the hooks 3 octaves down / stabs, sparkle, ghost 2, both basses +5..+7 dB, wah 95-100, wet, panned apart; steppers dubs A-D get a wah bass (+7 dB, wah 90, echo 40, room 30), melodicas 2 down, chop 1 down. A player's own board wins once they touch a knob. Checked in the page (his board matches, every key a real channel); not listened to.",
+   "metrics": {
+    "open_minutes": 4,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 377,
+    "tokens_est": 94,
+    "sync_minutes_est": 7.0
+   }
+  },
   {
    "id": 327,
    "area": "matthewhammer.org, the publications page",
@@ -11234,5 +11271,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T20:50-06:00"
+ "current_since": "2026-10-18T20:52-06:00"
 }
