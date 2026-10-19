@@ -860,13 +860,18 @@
     }
    ],
    "text": "<b>Meeting with Cyrus, Wednesday 2026-10-21: the tickets to bring.</b> Matthew: \"My next meeting with Cyrus is Wed -- let's make a ticket that links to all related tickets for that meeting please. For now, it's just a bulleted list based on what you know now.\"<ul><li>^ticket(385): why CI fails on the livelits x modular editing branch (#2635, into ...full): Cyrus's question on Friday; the answer is due today, 10-19, end of day.</li><li>^ticket(386): the type syntax expansion for types in Gamma too, as for the result type (long types on one line): ideas.</li><li>^ticket(387): livelits' model sub-editors as read-only tiles, with tiles' selection UX (right click and the rest); it follows his 10-03 call, the revealed model read-only and selectable.</li><li>^ticket(388): why the right-hand side that explains each syntax form shows no example syntax as read-only tiles (older than Matthew's time on the team).</li><li>Open and waiting on Matthew, in case they come up: ^ticket(54) (offer ^ticket(7)'s three ports to #2469), ^ticket(19) (perf budgets harder to fool, a draft PR?), ^ticket(18) (option B: livelit views evaluated in the worker), ^ticket(102) (the reply to Alexander on #2583), ^ticket(16) (asking the maintainers to require the test jobs for merging into dev).</li></ul>More to come from Matthew."
-  },
+  }
+ ],
+ "next_ticket": 391,
+ "current_ticket": 385,
+ "current_note": "09:29: #2635 CI: 10 failing tests read (DefStaticsParity 1, 2, 4, 33, 38-42; TableDecorations 1); both parents pass alone; tracing each to its cause",
+ "closed_tickets": [
   {
    "id": 390,
    "area": "dashboard, the nav bar's outline of this page",
    "added": "2026-10-19",
    "opened": "2026-10-19T09:25-06:00",
-   "status": "open",
+   "status": "done",
    "tags": [],
    "source": "Matthew, 2026-10-19 09:25, in chat, with a screenshot of matthewhammer.org/hazel/dashboard/ in Firefox",
    "url": "https://matthewhammer.org/hazel/dashboard/",
@@ -879,13 +884,20 @@
      "asks": false
     }
    ],
-   "text": "<b>Dashboard: the left-hand nav panel's lists indented and folding.</b> Matthew: \"minor nit on dashboard -- new ticket -- do as you please, sooner rather than later. On LHS nav panel, * looks good overall. * add indentation to: * local ports served list * work queue * full backlog * work queue and local ports list are open by default, but can be collapsed with those triangles. * full blacklog is collapsed by default, but can be expanded.\""
-  }
- ],
- "next_ticket": 391,
- "current_ticket": 390,
- "current_note": "09:25: the dashboard's nav panel: its Local URLs, Work Queue and Full Backlog lists indented, folding (backlog folded by default)",
- "closed_tickets": [
+   "text": "<b>Dashboard: the left-hand nav panel's lists indented and folding.</b> Matthew: \"minor nit on dashboard -- new ticket -- do as you please, sooner rather than later. On LHS nav panel, * looks good overall. * add indentation to: * local ports served list * work queue * full backlog * work queue and local ports list are open by default, but can be collapsed with those triangles. * full blacklog is collapsed by default, but can be expanded.\"",
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T09:29-06:00",
+   "outcome": "Done (hazel-work-notes 8f72c5e6, 09:29): the outline's Local URLs, Work Queue and Full Backlog are groups, each a ▾/▸ triangle before its heading and its entries indented under it (inside the nav bar too: nav.js's #cnav ul ul rule had flattened the old padding-indented entries; the dashboard's own #cnav #outline ul.kids rule now indents them, 13 px past the heading's text); Local URLs and the Work Queue open at the start, the Full Backlog folded; each reader's choice kept in their browser (dash-grp-local, -queue, -backlog). Tried at localhost:8000 in the app's pane, in the nav bar: open, fold, kept, unfold. The public copy (matthewhammer.org/hazel/dashboard/) follows within ten minutes (site_publish.py). VERSIONS.md: under Unreleased.",
+   "metrics": {
+    "open_minutes": 4,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 330,
+    "tokens_est": 82,
+    "sync_minutes_est": 0,
+    "work_minutes": 5.0
+   }
+  },
   {
    "id": 384,
    "area": "dress up, performance (^du_report(12)'s next steps)",
@@ -12563,7 +12575,6 @@
   }
  ],
  "queue": [
-  390,
   385,
   389,
   386,
@@ -12584,5 +12595,5 @@
   322,
   344
  ],
- "current_since": "2026-10-19T09:25-06:00"
+ "current_since": "2026-10-19T09:29-06:00"
 }
