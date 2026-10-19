@@ -714,7 +714,7 @@
    "tags": [],
    "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
    "url": "",
-   "progress": "09:14: minted. 09:34 Matthew: \"item 7 -- yes. (387 and 388 after 386, in that order)\" 10:10: FOUND, on BOTH livelits branches (#2597 at f8ae6f2b9c on 8311, #2635 at 9e7258b55b on 8341, Livelits > Overview, ^flag's eye): the eye's pane already shows the model as TILES, a splice sub-editor (code-editor sub-editor): caret, Shift+Arrow selection, the inspector reads 'Boolean literal', right click opens Hazel's context menu; Perform.in_revealed_model refuses text edits. What is NOT tiles: the pane's head line (^flag) and params line (HTML inputs, editable by design); the Projectors sidebar card of a docked livelit (ProjectorView: 'a preview, not an editing surface', default_render_splice = simple_code text); and refractors (RefractorView, also default_render_splice). Asked Matthew which surface Cyrus meant.",
+   "progress": "09:14: minted. 09:34 Matthew: \"item 7 -- yes. (387 and 388 after 386, in that order)\" 10:10: FOUND, on BOTH livelits branches (#2597 at f8ae6f2b9c on 8311, #2635 at 9e7258b55b on 8341, Livelits > Overview, ^flag's eye): the eye's pane already shows the model as TILES, a splice sub-editor (code-editor sub-editor): caret, Shift+Arrow selection, the inspector reads 'Boolean literal', right click opens Hazel's context menu; Perform.in_revealed_model refuses text edits. What is NOT tiles: the pane's head line (^flag) and params line (HTML inputs, editable by design); the Projectors sidebar card of a docked livelit (ProjectorView: 'a preview, not an editing surface', default_render_splice = simple_code text); and refractors (RefractorView, also default_render_splice). Asked Matthew which surface Cyrus meant. 10:13 Matthew (asked which surface): \"All of the plain-text ones (sidebar card and refractors become read-only tiles; head and params lines stay)\".",
    "log": [
     {
      "at": "2026-10-19T09:14-06:00",
@@ -726,6 +726,12 @@
      "at": "2026-10-19T09:34-06:00",
      "from": "matthew",
      "chars": 53,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T10:13-06:00",
+     "from": "matthew",
+     "chars": 107,
      "asks": false
     }
    ],
@@ -768,7 +774,7 @@
    ],
    "source": "Matthew, 2026-10-19 09:15, in chat",
    "url": "",
-   "progress": "09:15: minted, the list as of now; 385 in progress (answer due EOD). 09:56: 385's answer is now ^report(18), a local draft (http://localhost:8131/018/), waiting on Matthew's read; the 09:30 artifact is superseded (it had two errors, listed on 385).",
+   "progress": "09:15: minted, the list as of now; 385 in progress (answer due EOD). 09:56: 385's answer is now ^report(18), a local draft (http://localhost:8131/018/), waiting on Matthew's read; the 09:30 artifact is superseded (it had two errors, listed on 385). 10:15: + ^ticket(393), ^report(19): where the UI shows syntax as tiles and where as text (Matthew's ask).",
    "log": [
     {
      "at": "2026-10-19T09:15-06:00",
@@ -822,11 +828,31 @@
      "asks": false
     }
    ]
+  },
+  {
+   "id": 393,
+   "area": "hazel, the UI's syntax: tiles or text",
+   "added": "2026-10-19T10:15-06:00",
+   "opened": "2026-10-19T10:15-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, 2026-10-19 10:14, in chat (during ^ticket(387))",
+   "url": "",
+   "text": "<b>^report(19): where the Hazel UI shows syntax as tiles, and where as text.</b> Matthew: \"please file a hazel ^report with our investigation into how much tiles are applied to all representations of Hazel syntax within the Hazel UI.\" Every place the UI draws Hazel syntax (the editor, splices, the eye's model pane, the Projectors sidebar card, refractors, the cursor inspector, Gamma, the explainer's examples, the result and stepper, probes, the outline, tests, hovers, completions, the livelit head and params lines, ...), classed as interactive tiles (caret, selection, right click), static tiles (drawn as tiles, no interaction), or plain text; with the code path behind each, checked in the running app. Builds on ^ticket(387) and ^ticket(388); for the 2026-10-21 meeting with Cyrus (^ticket(389)).",
+   "progress": "10:15: minted; surveying before 387's build, since it decides 387's and 388's scope.",
+   "log": [
+    {
+     "at": "2026-10-19T10:14-06:00",
+     "from": "matthew",
+     "chars": 142,
+     "asks": false
+    }
+   ]
   }
  ],
- "next_ticket": 393,
- "current_ticket": 387,
- "current_note": "10:10: Found the eye's model pane is already tiles on both livelits branches; asking Matthew which surface Cyrus meant (sidebar card, refractors, or the head/params lines).",
+ "next_ticket": 394,
+ "current_ticket": 393,
+ "current_note": "10:15: Matthew: a ^report on how much of the UI's Hazel syntax is tiles. Surveying every rendering path (it decides 387's and 388's scope).",
  "closed_tickets": [
   {
    "id": 386,
@@ -12768,6 +12794,7 @@
   }
  ],
  "queue": [
+  393,
   387,
   389,
   388,
@@ -12784,5 +12811,5 @@
   344,
   391
  ],
- "current_since": "2026-10-19T10:10-06:00"
+ "current_since": "2026-10-19T10:15-06:00"
 }
