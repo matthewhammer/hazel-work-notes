@@ -780,38 +780,6 @@
    "text": "<b>Dress Up: the speed measurements ^du_report(5) still wants.</b> Before publishing, Matthew had asked for a frame-rate check of the proposed full-screen 🏞️ Background designer (many place pictures at once were slow on the black laptop), with the place pictures kept as pictures so they cost little; he published the report first. Measure the designer's place pictures drawn live, as still SVGs and as bitmaps, and the friend's walk and drag with the designer open, at normal speed and on the slow tiers, then add the numbers to the report as a dated note (its What next, step 8)."
   },
   {
-   "id": 298,
-   "area": "dress up, ♿ collision boxes",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T12:08-06:00",
-   "status": "open",
-   "tags": [],
-   "progress": "The line is 🔬's back limit, where the friend's feet stop going back: figYMin (js/25-world.js, solidsHud: \"the back limit the feet stop at (figYMin: a back wall's foot, else the frame's)\"). Matthew's screenshot, kept locally (not public) at ~/du-shots/ref-298/treehouse-back-line.webp: the tree house, full screen, with 🔬's boxes on; the dashed horizontal line runs across at about the height of the friend's \"you\" ring, by the stream. Check what figYMin says for the tree house against where the feet really stop, and draw the line where they stop. 17:51: Matthew, after ^ticket(345): \"would be easier to walk around the tree house trunk if the horizon line was corrected -- still in the queue? but its possible now.\" Yes, still queued.",
-   "log": [
-    {
-     "at": "2026-10-18T12:08-06:00",
-     "from": "matthew",
-     "chars": 56,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T17:51-06:00",
-     "from": "matthew",
-     "chars": 130,
-     "asks": true
-    },
-    {
-     "at": "2026-10-18T17:51-06:00",
-     "from": "claude",
-     "chars": 300,
-     "asks": false
-    }
-   ],
-   "source": "Matthew, 2026-10-18, in chat, with a screenshot of the tree house with ♿'s collision boxes on",
-   "url": "",
-   "text": "<b>Dress Up: 🔬's back limit line in the tree house is too low.</b> \"Blue horz line in this scene is not accurate -- too low.\" The line drawn across the tree house, with 🔬's collision boxes shown, is not where it should be: too low."
-  },
-  {
    "id": 299,
    "area": "dress up, moving and ♿ inspection",
    "added": "2026-10-18",
@@ -1867,15 +1835,70 @@
      "from": "matthew",
      "chars": 173,
      "asks": false
+    },
+    {
+     "at": "2026-10-18T20:24-06:00",
+     "from": "matthew",
+     "chars": 113,
+     "asks": false
     }
    ],
-   "text": "<b>Dress Up: under the sea, most things get a small collision box: every plant growing up (kelp, seaweed, coral), and the shells past a small size.</b> Matthew: \"revision and refinement -- most deep sea objects should have a very small collision box. Each plant extending upwards, but also shells beyond a certain small size --- It can be a very small box in all cases, but it will help the motion planning and execution look more natural.\" PLAN: in the sea places (under the sea, the deep sea, the sea floor ones), each standing plant and each shell over a small size stands in the way with a small box at its foot (a share of its width, a step deep: STANDING and the solids, as the trunks' bands are measured), so a planned walk goes round them and the friend weaves among them; the tiny ones stay walk-through; a check that a planned walk goes round a kelp, not through it. AND (Matthew, 20:23): \"let's think of the same logic for other scenes too, and the objects that do not have them. A blatant example is any large object, especially the water trough in the stable.\" So: an audit of every place's objects (🔬 Inspection's list, the solids, STANDING in js/16-objects-and-solids.js) for the ones that stand in the way but have no collision box, the big ones first (the stable's water trough), each given a box at its foot sized to it (small for a thin plant, its footprint for a trough, a table's legs and top as ^ticket(337) says); the list of what was found and what each got, in the ticket; a check per place that a planned walk goes round them."
+   "text": "<b>Dress Up: under the sea, most things get a small collision box: every plant growing up (kelp, seaweed, coral), and the shells past a small size.</b> Matthew: \"revision and refinement -- most deep sea objects should have a very small collision box. Each plant extending upwards, but also shells beyond a certain small size --- It can be a very small box in all cases, but it will help the motion planning and execution look more natural.\" PLAN: in the sea places (under the sea, the deep sea, the sea floor ones), each standing plant and each shell over a small size stands in the way with a small box at its foot (a share of its width, a step deep: STANDING and the solids, as the trunks' bands are measured), so a planned walk goes round them and the friend weaves among them; the tiny ones stay walk-through; a check that a planned walk goes round a kelp, not through it. AND (Matthew, 20:23): \"let's think of the same logic for other scenes too, and the objects that do not have them. A blatant example is any large object, especially the water trough in the stable.\" So: an audit of every place's objects (🔬 Inspection's list, the solids, STANDING in js/16-objects-and-solids.js) for the ones that stand in the way but have no collision box, the big ones first (the stable's water trough), each given a box at its foot sized to it (small for a thin plant, its footprint for a trough, a table's legs and top as ^ticket(337) says); the list of what was found and what each got, in the ticket; a check per place that a planned walk goes round them. AND (Matthew, 20:24): \"ladders in the tree house scene should have collision boxes near the base but do not. All ladders probably. etc.\" So: every ladder ([data-ladder], the tree house's up to its houses, the dungeons', the tree rooms', the hay loft's) gets a small box at its foot, its two rails' width and a step deep, so a walk goes round a ladder it is not climbing; climbing one (startClimb, mountLadder) must still reach its foot, so the box stops a step short of where a climb begins."
   }
  ],
  "next_ticket": 359,
- "current_ticket": 298,
- "current_note": "20:22: the tree house's back limit: where the friend's feet stop going back, and 🔬's line for it, too low",
+ "current_ticket": 299,
+ "current_note": "20:24: point to sit, point to lie down: a lying pose, beds and blankets as places to lie, seats in 🔬, a pop-up when pointing at one",
  "closed_tickets": [
+  {
+   "id": 298,
+   "area": "dress up, ♿ collision boxes",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T12:08-06:00",
+   "status": "done",
+   "tags": [],
+   "progress": "The line is 🔬's back limit, where the friend's feet stop going back: figYMin (js/25-world.js, solidsHud: \"the back limit the feet stop at (figYMin: a back wall's foot, else the frame's)\"). Matthew's screenshot, kept locally (not public) at ~/du-shots/ref-298/treehouse-back-line.webp: the tree house, full screen, with 🔬's boxes on; the dashed horizontal line runs across at about the height of the friend's \"you\" ring, by the stream. Check what figYMin says for the tree house against where the feet really stop, and draw the line where they stop. 17:51: Matthew, after ^ticket(345): \"would be easier to walk around the tree house trunk if the horizon line was corrected -- still in the queue? but its possible now.\" Yes, still queued. 20:24 DONE, 0.0.265: SCENE_FAR.treehouse 90 -> 118 (js/16-objects-and-solids.js): the meadow's land is drawn to 130 and its far row of trees stands at 124 (z 214 in the pane's frame), so the limit is at 222, in front of them; before, 246, just behind the trunk's footprint (solid back to about 255), no room to get round. Check: back298 (its numbers measured in the pane: the limit 98 behind the trunk's foot, the walk across crossing behind it at 249).",
+   "log": [
+    {
+     "at": "2026-10-18T12:08-06:00",
+     "from": "matthew",
+     "chars": 56,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T17:51-06:00",
+     "from": "matthew",
+     "chars": 130,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T17:51-06:00",
+     "from": "claude",
+     "chars": 300,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T20:24-06:00",
+     "from": "claude",
+     "chars": 400,
+     "asks": false
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat, with a screenshot of the tree house with ♿'s collision boxes on",
+   "url": "",
+   "text": "<b>Dress Up: 🔬's back limit line in the tree house is too low.</b> \"Blue horz line in this scene is not accurate -- too low.\" The line drawn across the tree house, with 🔬's collision boxes shown, is not where it should be: too low.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T20:24-06:00",
+   "outcome": "Released in 0.0.265: the tree house's back limit, and 🔬's blue line for it, now sit at the meadow's far edge, just in front of the far row of trees, so the friend can walk round behind the trunk. Check: back298.",
+   "metrics": {
+    "open_minutes": 496,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 886,
+    "tokens_est": 221,
+    "sync_minutes_est": 0.0
+   }
+  },
   {
    "id": 297,
    "area": "dress up, depth",
@@ -10930,7 +10953,6 @@
   }
  ],
  "queue": [
-  298,
   299,
   301,
   304,
@@ -10983,5 +11005,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T20:22-06:00"
+ "current_since": "2026-10-18T20:24-06:00"
 }
