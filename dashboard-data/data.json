@@ -1202,12 +1202,15 @@
    "added": "2026-10-19T13:16-06:00",
    "opened": "2026-10-19T13:16-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "source": "split from ^ticket(398), 2026-10-19 13:16 (Matthew's ask there: \"add a new PR to dev that does even more correctness tests ... ditto for our PRs\")",
    "url": "",
    "text": "<b>A tests PR to dev that checks the performance PRs keep types and values the same, plus each PR's own missing tests.</b> The second half of ^ticket(398); ^report(21)'s \"What to add\": <ol><li>turn the incremental-against-fresh property back on for completed results (#2457's stuck ones skipped), fixed seed, with recursive lets in the generator;</li><li>a corpus comparison: every program in hazel-programs analyzed and evaluated with each optimization on and off, incrementally after an edit and from scratch (types, marks, elaborations ignoring ids, values, probes, test results);</li><li>hash checks: equal hash implies equal term, for the type hash (#2661, #2681) and the term hash (#2673), plus a census over the corpus;</li><li>a parser comparison: the load fallback against character-by-character typing at every split offset (finds #2610's case);</li><li>budget tests that also assert results.</li></ol> And on each of our PRs, the tests ^report(21) lists in its section.",
-   "progress": "13:16: minted from ^ticket(398)'s second half and enqueued after the Hazel tickets. 14:02: DRAFT PR #2700 to dev (branch test/incremental-matches-fresh, 58ac45008a, worktree ~/hazel-dev-tests; CI running): (1) the incremental-vs-fresh property back on for value results (stuck ones skipped, #2457 pinned), passes under 6 seeds; (2) six recursive-let templates, every literal edited, comparisons required; (3) Evaluator.IncrCorpus (Slow): 150 literal edits over all 73 corpus programs, at least 120 required, ~11 s. MUTATION-CHECKED: with reuse_check ignoring changed dependencies, (2) and (3) fail, but the random property (1) still passes. Left for later: hash checks and parser comparisons belong on the PRs that add them (#2661, #2673, #2610), and per-PR tests from ^report(21).",
-   "log": []
+   "progress": "13:16: minted from ^ticket(398)'s second half and enqueued after the Hazel tickets. 14:02: DRAFT PR #2700 to dev (branch test/incremental-matches-fresh, 58ac45008a, worktree ~/hazel-dev-tests; CI running): (1) the incremental-vs-fresh property back on for value results (stuck ones skipped, #2457 pinned), passes under 6 seeds; (2) six recursive-let templates, every literal edited, comparisons required; (3) Evaluator.IncrCorpus (Slow): 150 literal edits over all 73 corpus programs, at least 120 required, ~11 s. MUTATION-CHECKED: with reuse_check ignoring changed dependencies, (2) and (3) fail, but the random property (1) still passes. Left for later: hash checks and parser comparisons belong on the PRs that add them (#2661, #2673, #2610), and per-PR tests from ^report(21). 14:03: the dev PR is up (#2700, draft). PARKED: tests on each of our 19 PRs, since the agenda asks Cyrus on Wednesday which PRs come first.",
+   "log": [],
+   "waiting": "Wednesday: which of the 19 PRs get their own tests first (^report(21) lists them per PR); and a look at draft #2700."
   },
   {
    "id": 412,
@@ -1295,8 +1298,8 @@
   }
  ],
  "next_ticket": 415,
- "current_ticket": 411,
- "current_note": "13:54: Started: a tests PR to dev checking that incremental evaluation and statics keep results the same (^report(21)'s 'what to add'). First: dev's disabled incremental-vs-fresh property (#2457) and a corpus comparison. ^ticket(405): #2635's Full tests due ~15:05.",
+ "current_ticket": 402,
+ "current_note": "14:03: Started: the Dress Up to Hazel port report (due today): which drawing is hardest for Hazel, can Hazel do music, and the knolled menus; research done (saved in ~/du-shots/ticket-402); next, a small try in Hazel and the report. ^ticket(405): #2635's Full tests due ~15:05.",
  "closed_tickets": [
   {
    "id": 410,
@@ -13477,11 +13480,10 @@
   }
  ],
  "queue": [
-  411,
+  402,
   389,
   405,
   399,
-  402,
   403,
   404,
   406,
@@ -13489,6 +13491,7 @@
   413,
   414,
   391,
+  411,
   408,
   401,
   396,
@@ -13509,7 +13512,7 @@
   322,
   344
  ],
- "current_since": "2026-10-19T13:54-06:00",
+ "current_since": "2026-10-19T14:03-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
