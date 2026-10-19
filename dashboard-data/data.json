@@ -963,46 +963,6 @@
    "progress": "17:24: 0.0.242 LIVE (17:26): ⚙️ Advanced's \"🧪 this computer's speed\" is now 20 passes, 15-20 the bubble room as it starts: standing; walking across near us through the stuck-out bubbles (popping them, counted); its foam still; with 1, 4 and 16 bubble makers along the floor (their live bubbles counted); and its scene's shape count. The line it gives (copy, or 📝 the pad) carries them in DATA.bubble. HOW TO RUN TONIGHT, on each device (the black laptop, the iPad): open matthewhammer.org/kids-choice-games/dress-up/ fresh (0.0.242 or later in the title), ⚙️ Advanced, \"🧪 this computer's speed\", touch nothing for about a minute (a notice counts it), then \"📋 copy\" and paste the line to me (or the 📝 pad). Two runs a device are better than one (the first warms the browser). Plugged in, other tabs closed. I compare them with GitHub's runners (^ticket(340)) and write it up. Dry run in the app's pane: 20 passes, no error, DATA.bubble filled (its numbers mean nothing there: no real frames). WAITING on Matthew's runs tonight; then the analysis."
   },
   {
-   "id": 352,
-   "area": "dress up, scale (tree house) + a report",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T18:49-06:00",
-   "status": "open",
-   "tags": [
-    "long run"
-   ],
-   "text": "<b>Dress Up, a long run tonight (an audit and a fix): the friend crawls out of a tree house room's door, yet outside walks into the houses' doors standing, and small: align the two, and draft a ^du_report on aligning scale across views, the special challenge of a character the player shapes.</b> Matthew: \"long run for tonight -- we crawl when we run out of tree houses, but on the exterior view, we are tall enough to go into the doors -- and quite small --- Fix this misalignment, and draft a report about the larger issue -- getting scale to be aligned; a special challenge for user-controlled characters\" (his save of 18:47, kept in ~/du-shots/ticket-352/: tree room 1, size 100, legs 140). HYPOTHESIS (to test first): outside, on a porch or a bridge, the friend is scaled to BRIDGE_TALL (60 of the tree's units) whatever their shape (k divided by their own height, js/18-drawing.js), so a long-legged friend still fits the 72-tall cabin doors; inside, their size follows their own proportions (sceneFig and depthSize), so the same friend is taller than the room's side door (doorTooLow) and crawls. PLAN: (1) one scale for the friend across the tree's views (outside sized by their real height against a reference body, as inside; or both normalized), so a friend who crawls through a room's door also has to stoop or crawl at the cabin's door outside, and one who walks in outside walks out inside; the same check for the other inside/outside pairs (house, huts, castle, tent, cave) and the doorway pictures (the bridge view since 0.0.235). (2) The report in dress-up/reports/ (the series' form, its numbers measured): how each place sizes the friend (SCENE_FIG, depth, the vanishing heights, BRIDGE_TALL, seats, ladders, the door pictures), where views disagree (a table of door heights against friend heights for the default body and a few shaped ones: tall legs, a big head, tiny), why a character the player shapes makes this harder than a fixed sprite (games scale a known character to known doors; here the body is the player's), and the choices (normalize, scale with the body and let doors judge, stoop and crawl animations, doors that grow), with what each costs. THEN (Matthew): \"we need to bring background params and characters into alignment, focusing first on the default, and version that's 1.5 bigger, like an adult, and 0.5 size, like a small child.\": three reference friends to align every place and door to, and to measure in the report: the default; one 1.5 times as big (an adult); one 0.5 times (a small child). The default walks through the doors meant for it; the adult stoops or crawls where a door is low; the child walks under everything; the same in every view of a place, inside and out. (Matthew: \"let's add this as part of our ticket and audit for a long run.\": the three sizes are this ticket's audit, every place and every door, inside and out, for each.)",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T18:49-06:00",
-     "from": "matthew",
-     "chars": 374,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T18:50-06:00",
-     "from": "matthew",
-     "chars": 176,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T18:51-06:00",
-     "from": "matthew",
-     "chars": 62,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T18:51-06:00",
-     "from": "claude",
-     "chars": 300,
-     "asks": false
-    }
-   ],
-   "progress": " 22:50: FIX RELEASED in 0.0.302. Confirmed the hypothesis: outside (porches, bridges, the door view) the friend was BRIDGE_TALL whatever their shape. NOTE: the default body has legs 140 (his save IS the default). Now BRIDGE_TALL 70 over BRIDGE_BASE 452 (the default's height); doors sized to the default: tree room side doors 246 (was 172, default 1.27), the witch's room door 242 (1.10), the greenhouse arches 164 (1.04). Audit, every place, castle room and tree room: the default takes 0.68-0.91 of every door meant for it; measured default/adult/child/short legs: 0.90/1.34/0.45/0.81 inside, 0.89/1.34/0.45/0.81 outside; platformIn crawls by the same rule. Findings for the report: the house's front door 0.22 (the house drawn without the perspective the friend gets: a design call, not changed), the clearing's far house 2.41 (exempted: a trip). scale352.mjs. NEXT: draft the ^du_report on scale (local, waits on Matthew); 371 first (a bug the kids see)."
-  },
-  {
    "id": 356,
    "area": "dress up, reports (drawing the friend's poses)",
    "added": "2026-10-18",
@@ -1096,9 +1056,60 @@
   }
  ],
  "next_ticket": 372,
- "current_ticket": 352,
- "current_note": "22:50: 352: drafting the ^du_report on scale across views (local; waits on Matthew to publish). Fix out in 0.0.302; 371 closed (0.0.303).",
+ "current_ticket": 369,
+ "current_note": "22:52: 369: reading 0.0.297's full speed run (the first GitHub run of tonight's new checks; before the fresh-storage step). 0.0.303's run, the first with it, is next in line.",
  "closed_tickets": [
+  {
+   "id": 352,
+   "area": "dress up, scale (tree house) + a report",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T18:49-06:00",
+   "status": "done",
+   "tags": [
+    "long run"
+   ],
+   "text": "<b>Dress Up, a long run tonight (an audit and a fix): the friend crawls out of a tree house room's door, yet outside walks into the houses' doors standing, and small: align the two, and draft a ^du_report on aligning scale across views, the special challenge of a character the player shapes.</b> Matthew: \"long run for tonight -- we crawl when we run out of tree houses, but on the exterior view, we are tall enough to go into the doors -- and quite small --- Fix this misalignment, and draft a report about the larger issue -- getting scale to be aligned; a special challenge for user-controlled characters\" (his save of 18:47, kept in ~/du-shots/ticket-352/: tree room 1, size 100, legs 140). HYPOTHESIS (to test first): outside, on a porch or a bridge, the friend is scaled to BRIDGE_TALL (60 of the tree's units) whatever their shape (k divided by their own height, js/18-drawing.js), so a long-legged friend still fits the 72-tall cabin doors; inside, their size follows their own proportions (sceneFig and depthSize), so the same friend is taller than the room's side door (doorTooLow) and crawls. PLAN: (1) one scale for the friend across the tree's views (outside sized by their real height against a reference body, as inside; or both normalized), so a friend who crawls through a room's door also has to stoop or crawl at the cabin's door outside, and one who walks in outside walks out inside; the same check for the other inside/outside pairs (house, huts, castle, tent, cave) and the doorway pictures (the bridge view since 0.0.235). (2) The report in dress-up/reports/ (the series' form, its numbers measured): how each place sizes the friend (SCENE_FIG, depth, the vanishing heights, BRIDGE_TALL, seats, ladders, the door pictures), where views disagree (a table of door heights against friend heights for the default body and a few shaped ones: tall legs, a big head, tiny), why a character the player shapes makes this harder than a fixed sprite (games scale a known character to known doors; here the body is the player's), and the choices (normalize, scale with the body and let doors judge, stoop and crawl animations, doors that grow), with what each costs. THEN (Matthew): \"we need to bring background params and characters into alignment, focusing first on the default, and version that's 1.5 bigger, like an adult, and 0.5 size, like a small child.\": three reference friends to align every place and door to, and to measure in the report: the default; one 1.5 times as big (an adult); one 0.5 times (a small child). The default walks through the doors meant for it; the adult stoops or crawls where a door is low; the child walks under everything; the same in every view of a place, inside and out. (Matthew: \"let's add this as part of our ticket and audit for a long run.\": the three sizes are this ticket's audit, every place and every door, inside and out, for each.)",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T18:49-06:00",
+     "from": "matthew",
+     "chars": 374,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T18:50-06:00",
+     "from": "matthew",
+     "chars": 176,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T18:51-06:00",
+     "from": "matthew",
+     "chars": 62,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T18:51-06:00",
+     "from": "claude",
+     "chars": 300,
+     "asks": false
+    }
+   ],
+   "progress": " 22:50: FIX RELEASED in 0.0.302. Confirmed the hypothesis: outside (porches, bridges, the door view) the friend was BRIDGE_TALL whatever their shape. NOTE: the default body has legs 140 (his save IS the default). Now BRIDGE_TALL 70 over BRIDGE_BASE 452 (the default's height); doors sized to the default: tree room side doors 246 (was 172, default 1.27), the witch's room door 242 (1.10), the greenhouse arches 164 (1.04). Audit, every place, castle room and tree room: the default takes 0.68-0.91 of every door meant for it; measured default/adult/child/short legs: 0.90/1.34/0.45/0.81 inside, 0.89/1.34/0.45/0.81 outside; platformIn crawls by the same rule. Findings for the report: the house's front door 0.22 (the house drawn without the perspective the friend gets: a design call, not changed), the clearing's far house 2.41 (exempted: a trip). scale352.mjs. NEXT: draft the ^du_report on scale (local, waits on Matthew); 371 first (a bug the kids see).",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T22:52-06:00",
+   "outcome": "Fix in 0.0.302 (one scale inside and out: BRIDGE_TALL 70 over BRIDGE_BASE 452; doors sized to the default; platformIn crawls by doorTooLow's rule; scale352.mjs). The report, ^du_report(9) 'One size, every view', DRAFTED and kept local (dress-up/reports/009/, its card in reports/index.html, uncommitted, waiting on Matthew's word): how each view sizes the friend; every door for the child, the default and the adult, a chart against the 0.97 crawl line; the tree house's pairs for four bodies; before and after; why a player-shaped friend is harder; the choices and their costs; what is left (the house's front door at 0.22, the whole-picture huts, the clearing's far house); next steps. Read it at localhost:8133/dress-up/reports/009/.",
+   "metrics": {
+    "open_minutes": 244,
+    "matthew_messages": 3,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 912,
+    "tokens_est": 228,
+    "sync_minutes_est": 2.0
+   }
+  },
   {
    "id": 333,
    "area": "dress up, archives",
@@ -11773,7 +11784,6 @@
   }
  ],
  "queue": [
-  352,
   326,
   359,
   339,
@@ -11796,5 +11806,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T22:50-06:00"
+ "current_since": "2026-10-18T22:52-06:00"
 }
