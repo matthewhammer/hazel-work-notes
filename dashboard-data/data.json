@@ -1141,19 +1141,6 @@
    ]
   },
   {
-   "id": 419,
-   "area": "dress up, 0.0.335's speed run: access217's far arrows",
-   "added": "2026-10-19T15:33-06:00",
-   "opened": "2026-10-19T15:33-06:00",
-   "status": "open",
-   "tags": [],
-   "source": "0.0.335's speed run (after a release), read during ^ticket(413)",
-   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39317599161",
-   "text": "<b>0.0.335 is marked broken: one assertion of tools/checks/access217.mjs failed.</b> \"off: the far arrows hidden, as before\": with ♿'s arrows at their defaults (off), all 5 far nav arrows still read an opacity over 0.05 (offShown 5 of 5; far opacity 0.41). Every other assertion of that check passed. Likely cause, from reading: 0.0.335 (^ticket(404)) made an arrow's fade-out slower, 500 ms held near full before it fades (style.css, .way-arrow's transition, --label-stay), and the check reads the opacities 4 frames (~67 ms) after switching the overlay off (clearing()), so it may catch them mid-fade: the check's timing, not the game. Not proven: it could be a real regression (far arrows shown when they should not be).",
-   "progress": "15:34: minted. Next: a diagnostic branch (tools/checks/.only: access217) with the read taken after --label-stay plus a frame, and the opacity logged over time; if the arrows end hidden, fix the check's wait; if they stay shown, fix the game. No headless browser on the laptop. 16:23: diagnostic branch diag-419 pushed (d05f526: only access217.mjs and a probe, access419.mjs, which logs the far arrows' opacity every 50 ms for 1.5 s after switching off, after all were shown and from a fresh load). Its run is on GitHub (Dress Up tests); read it, then fix the check's wait or the game. Also cancelled run 39331268623 (all the checks on the already-merged WIP branch lie-along-412).",
-   "log": []
-  },
-  {
    "id": 420,
    "area": "dress up, performance: 💭 our imagination below 55 fps on 0.0.335",
    "added": "2026-10-19T15:33-06:00",
@@ -1200,9 +1187,33 @@
   }
  ],
  "next_ticket": 423,
- "current_ticket": 422,
- "current_note": "16:23: ^ticket(422): drafting ^du_report(14), posing the body, from its log (22 entries), local only; diag-419's run is on GitHub.",
+ "current_ticket": 417,
+ "current_note": "16:29: ^ticket(417) (long run): the dashboard's history repo keeps the current page only; earlier snapshots only in git history. Reading log_notes.py.",
  "closed_tickets": [
+  {
+   "id": 419,
+   "area": "dress up, 0.0.335's speed run: access217's far arrows",
+   "added": "2026-10-19T15:33-06:00",
+   "opened": "2026-10-19T15:33-06:00",
+   "status": "done",
+   "tags": [],
+   "source": "0.0.335's speed run (after a release), read during ^ticket(413)",
+   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39317599161",
+   "text": "<b>0.0.335 is marked broken: one assertion of tools/checks/access217.mjs failed.</b> \"off: the far arrows hidden, as before\": with ♿'s arrows at their defaults (off), all 5 far nav arrows still read an opacity over 0.05 (offShown 5 of 5; far opacity 0.41). Every other assertion of that check passed. Likely cause, from reading: 0.0.335 (^ticket(404)) made an arrow's fade-out slower, 500 ms held near full before it fades (style.css, .way-arrow's transition, --label-stay), and the check reads the opacities 4 frames (~67 ms) after switching the overlay off (clearing()), so it may catch them mid-fade: the check's timing, not the game. Not proven: it could be a real regression (far arrows shown when they should not be).",
+   "progress": "15:34: minted. Next: a diagnostic branch (tools/checks/.only: access217) with the read taken after --label-stay plus a frame, and the opacity logged over time; if the arrows end hidden, fix the check's wait; if they stay shown, fix the game. No headless browser on the laptop. 16:23: diagnostic branch diag-419 pushed (d05f526: only access217.mjs and a probe, access419.mjs, which logs the far arrows' opacity every 50 ms for 1.5 s after switching off, after all were shown and from a fresh load). Its run is on GitHub (Dress Up tests); read it, then fix the check's wait or the game. Also cancelled run 39331268623 (all the checks on the already-merged WIP branch lie-along-412).",
+   "log": [],
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T16:29-06:00",
+   "outcome": "Not reproduced: on 0.0.343, access217 passed in full on GitHub (diag-419, run 39334586096), 'off: the far arrows hidden' included. The check read the arrows 4 frames after switching off, while since 0.0.335 they fade over --label-stay (500 ms): it now waits that out (54aedf6). The probe beside it (access419) was inconclusive (its first case left all arrows on, saved for its second); the diag branch is deleted.",
+   "metrics": {
+    "open_minutes": 56,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 414,
    "area": "dress up, poses: two sliders each for elbows and knees, and an audit of every animation",
@@ -13733,10 +13744,9 @@
   }
  ],
  "queue": [
-  419,
+  417,
   389,
   406,
-  417,
   420,
   411,
   408,
@@ -13763,7 +13773,7 @@
   421,
   422
  ],
- "current_since": "2026-10-19T16:23-06:00",
+ "current_since": "2026-10-19T16:29-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
