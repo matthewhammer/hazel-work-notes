@@ -1810,13 +1810,18 @@
     }
    ],
    "progress": ""
-  },
+  }
+ ],
+ "next_ticket": 350,
+ "current_ticket": 284,
+ "current_note": "18:23: every object placeable: outdoors, the next places' baked-in things (flowers, tufts, paths, the brook and stream, the castle's birds and road, the hut's butterflies)",
+ "closed_tickets": [
   {
    "id": 349,
    "area": "dress up, trap room (for N)",
    "added": "2026-10-18",
    "opened": "2026-10-18T18:16-06:00",
-   "status": "open",
+   "status": "done",
    "tags": [],
    "text": "<b>Dress Up, for N: hit by a falling boulder, the friend bursts into rainbow bubbles, then comes back.</b> Matthew, with a screenshot in the trap room (the friend standing on a pit as its boulder lands on them): \"in this situation, let's have a default animation sequence: we turn into a stack of rainbow bubbles, and spill out, in all directions, and pop, at different rates. then, as we were before, we fade back in, re-generating and continuing, after the animation of bubbles completes. it's simulating getting crushed by a rock in a whimsical way that N wanted. -- no blood, just rainbow bubbles, getting wild.\" Then: \"high priority for N's new rock falling sequence.\" PLAN: when a boulder falls into a pit (roomBoulderPull, a placed boulder lever too) while the friend stands where it lands, as it lands: the friend hidden at once, in their place a stack of rainbow bubbles their shape and size (head to feet), which spill out every way, drift, and pop each at its own time; when the last has popped, the friend fades back in where they stood (beside the boulder, not under it), as they were, and play goes on. Nothing frightening: bubbles only.",
    "source": "Matthew, 2026-10-18, in chat",
@@ -1833,15 +1838,33 @@
      "from": "matthew",
      "chars": 48,
      "asks": false
+    },
+    {
+     "at": "2026-10-18T18:23-06:00",
+     "from": "claude",
+     "chars": 500,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T18:23-06:00",
+     "from": "matthew",
+     "chars": 16,
+     "asks": false
     }
    ],
-   "progress": ""
-  }
- ],
- "next_ticket": 350,
- "current_ticket": 349,
- "current_note": "18:16: N's rock falling sequence: hit by a boulder, the friend bursts into rainbow bubbles, then fades back (high priority)",
- "closed_tickets": [
+   "progress": "18:23: 0.0.251 LIVE: a boulder landing on the friend (trap room blue levers, placed boulder levers; feet on the landed boulder's box) bursts them into 52 vivid rainbow bubbles in their shape (red at the head to violet at the feet) that spill out, float and pop between 0.45 and 2.4 s; then the friend fades back where they stood and plays on. Checked in the pane (frames by timer), a mid-burst screenshot; tools/checks/burst349.mjs. Asked him to try it with N.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T18:23-06:00",
+   "outcome": "Released in 0.0.251: a falling boulder landing on the friend bursts them into a stack of vivid rainbow bubbles that spill out, float and pop one by one; then the friend fades back where they stood and plays on. Matthew: \"looks really good.\"",
+   "metrics": {
+    "open_minutes": 8,
+    "matthew_messages": 3,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 1031,
+    "tokens_est": 257,
+    "sync_minutes_est": 7.0
+   }
+  },
   {
    "id": 336,
    "area": "dress up, objects (🔬 names)",
@@ -10407,7 +10430,6 @@
   }
  ],
  "queue": [
-  349,
   284,
   283,
   286,
@@ -10460,5 +10482,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T18:16-06:00"
+ "current_since": "2026-10-18T18:23-06:00"
 }
