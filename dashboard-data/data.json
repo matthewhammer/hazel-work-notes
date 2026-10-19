@@ -1119,28 +1119,6 @@
    "waiting": "Wednesday: which of the 19 PRs get their own tests first (^report(21) lists them per PR); and a look at draft #2700."
   },
   {
-   "id": 417,
-   "area": "dashboard, hazel-work-notes: one file per page, its versions in git history",
-   "added": "2026-10-19T14:26-06:00",
-   "opened": "2026-10-19T14:26-06:00",
-   "status": "open",
-   "tags": [
-    "long run"
-   ],
-   "source": "Matthew, 2026-10-19 14:26, in chat, after ^ticket(391)'s analysis",
-   "url": "",
-   "text": "<b>The dashboard repository keeps the current page only, and every earlier snapshot only in git's history, as the Dress Up picture archive does (^du_report(4)).</b> Matthew, \"mint and enqueue for tonight -- long run\": \"revise the dashboard repo so that the current dashboard is kept, and no prior snapshots are kept as separate files, but only as part of the git history. analogous to the change we made for dress-up-pictures, and for a similar reason ---- this protocol is not going to scale.\" From ^ticket(391)'s analysis: 1,793 snapshot files, 341 MB on the laptop and ~95 MB a day more, while GitHub packs them into 23 MB. To do: log_notes.py writes the page and the closed page to one path each and commits; the dated files leave the working tree (kept in history, or moved to an archive repository as the pictures' were); the snapshots' gallery and the notes/ browsing list versions from git log (each version's time is its commit's); links to dated snapshot files (the dashboard's History line, notes pages) point at the history; a weekly git gc keeps .git packed.",
-   "progress": "14:26: minted, a long run for tonight (Matthew). 16:32: DONE in hazel-work-notes: ec60d98 (1,830 dated files out of the tree, still in history: the tree of df072c9), log_notes.py writes dashboard-snapshots/index.html and closed.html, one path each, and versions.html from one git log pass; the History line links versions.html (public: GitHub's history of the file). git gc once by hand: .git 40 MB to 16 MB; the folder 341 MB to 1.4 MB. Docs a933805.",
-   "log": [
-    {
-     "at": "2026-10-19T14:26-06:00",
-     "from": "matthew",
-     "chars": 321,
-     "asks": false
-    }
-   ]
-  },
-  {
    "id": 420,
    "area": "dress up, performance: 💭 our imagination below 55 fps on 0.0.335",
    "added": "2026-10-19T15:33-06:00",
@@ -1184,12 +1162,60 @@
    "text": "<b>A report on posing the friend's body, logged as we go: how each pose is built, layering by depth, and notes for poses to come.</b> Matthew: \"we need the back leg to obscure the front leg; the torso obscures the back arm, etc\"; \"start to log details for a report about posing our body --- we want notes for further poses, if possible.\" The log: kids-choice-games/dress-up/reports/014/data/pose-notes.json (findings, rules, next steps; each with its ticket). A draft report from it later, pushed only on his word.",
    "progress": "15:42: log started with 8 entries from ^ticket(412) (the turn that read as a roll, the skew that reads face up, the layering rule, how layering works today, the poses so far, three next poses). Add an entry whenever a pose ticket finds something. 15:46: + 4 entries (the skew 'too flat', the direction: new angles as drawing routines of their own, the angles today and where they branch in the code, three angles to draw); 12 in all. 15:58: + 3 entries (his pick of the first angle, the lying-along routine, its first fixes); 15 in all. 16:01: + the hair's layering on the lying head; 16 entries. 16:06: + the face-up rule; 17 entries. 16:26: DRAFT of ^du_report(14), 'Posing the Body', made from the log: kids-choice-games/dress-up/reports/014/ (data/report.json, data/pose-notes.json, drivers/build.py, pictures/: the friend lying on the red bag, and four elbow and knee settings, the game's own drawings). Preview: localhost:8133/du-reports/014/. Sections: the views we have (and where the code branches on them), the lying-along view's eight tries with Matthew's words, elbows and knees in three dimensions, layering by depth, every animation's bends, the log, What next (7 steps). Local only, not committed: WAITING ON MATTHEW to read it before it is published (a push publishes). The log goes on with each pose ticket.",
    "log": []
+  },
+  {
+   "id": 423,
+   "area": "dashboard, hazel-work-notes: a weekly git gc",
+   "added": "2026-10-19T16:33-06:00",
+   "opened": "2026-10-19T16:33-06:00",
+   "status": "open",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "source": "^ticket(417)'s last step",
+   "url": "",
+   "text": "<b>A weekly <code>git gc</code> of hazel-work-notes, from cron, holding the publish lock</b> (^ticket(417)'s plan: \"a weekly git gc keeps .git packed\"; once by hand on 2026-10-19, .git 40 MB to 16 MB). The line, for Matthew to approve, as it changes his crontab: <code>17 4 * * 0 cd ~/hazel-work-notes &amp;&amp; flock ~/localhost-index/.publish.lock git gc -q</code>.",
+   "progress": "16:33: minted, blocked on Matthew: a crontab change needs his OK.",
+   "log": []
   }
  ],
- "next_ticket": 423,
- "current_ticket": 417,
- "current_note": "16:29: ^ticket(417) (long run): the dashboard's history repo keeps the current page only; earlier snapshots only in git history. Reading log_notes.py.",
+ "next_ticket": 424,
+ "current_ticket": 420,
+ "current_note": "16:34: ^ticket(420) (long run): 💭 our imagination under 55 fps on 0.0.335; waiting for 0.0.336's speed run (last step), then 0.0.343's, to see whether it repeats.",
  "closed_tickets": [
+  {
+   "id": 417,
+   "area": "dashboard, hazel-work-notes: one file per page, its versions in git history",
+   "added": "2026-10-19T14:26-06:00",
+   "opened": "2026-10-19T14:26-06:00",
+   "status": "done",
+   "tags": [
+    "long run"
+   ],
+   "source": "Matthew, 2026-10-19 14:26, in chat, after ^ticket(391)'s analysis",
+   "url": "",
+   "text": "<b>The dashboard repository keeps the current page only, and every earlier snapshot only in git's history, as the Dress Up picture archive does (^du_report(4)).</b> Matthew, \"mint and enqueue for tonight -- long run\": \"revise the dashboard repo so that the current dashboard is kept, and no prior snapshots are kept as separate files, but only as part of the git history. analogous to the change we made for dress-up-pictures, and for a similar reason ---- this protocol is not going to scale.\" From ^ticket(391)'s analysis: 1,793 snapshot files, 341 MB on the laptop and ~95 MB a day more, while GitHub packs them into 23 MB. To do: log_notes.py writes the page and the closed page to one path each and commits; the dated files leave the working tree (kept in history, or moved to an archive repository as the pictures' were); the snapshots' gallery and the notes/ browsing list versions from git log (each version's time is its commit's); links to dated snapshot files (the dashboard's History line, notes pages) point at the history; a weekly git gc keeps .git packed.",
+   "progress": "14:26: minted, a long run for tonight (Matthew). 16:32: DONE in hazel-work-notes: ec60d98 (1,830 dated files out of the tree, still in history: the tree of df072c9), log_notes.py writes dashboard-snapshots/index.html and closed.html, one path each, and versions.html from one git log pass; the History line links versions.html (public: GitHub's history of the file). git gc once by hand: .git 40 MB to 16 MB; the folder 341 MB to 1.4 MB. Docs a933805.",
+   "log": [
+    {
+     "at": "2026-10-19T14:26-06:00",
+     "from": "matthew",
+     "chars": 321,
+     "asks": false
+    }
+   ],
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T16:33-06:00",
+   "outcome": "hazel-work-notes keeps one file per page: dashboard-snapshots/index.html and closed.html, each change a commit, listed in versions.html (from one git log pass); the History line links that list (public: GitHub's history of the file). The 1,830 dated snapshot files (341 MB on the laptop) left the tree in ec60d98 and stay in history (the tree of df072c9). git gc once: .git 40 MB to 16 MB. log_notes.py, update.py, site_publish.py, README, agent-instructions, VERSIONS (Unreleased). The weekly gc waits for Matthew: ^ticket(423).",
+   "metrics": {
+    "open_minutes": 128,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 321,
+    "tokens_est": 80,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 419,
    "area": "dress up, 0.0.335's speed run: access217's far arrows",
@@ -13744,10 +13770,9 @@
   }
  ],
  "queue": [
-  417,
+  420,
   389,
   406,
-  420,
   411,
   408,
   401,
@@ -13771,9 +13796,10 @@
   322,
   344,
   421,
-  422
+  422,
+  423
  ],
- "current_since": "2026-10-19T16:29-06:00",
+ "current_since": "2026-10-19T16:34-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
