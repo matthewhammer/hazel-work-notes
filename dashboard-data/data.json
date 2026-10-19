@@ -724,11 +724,12 @@
    "opened": "2026-10-19T07:52-06:00",
    "status": "open",
    "tags": [
-    "long run"
+    "long run",
+    "parked"
    ],
    "source": "Matthew, 2026-10-19 07:51, in chat: \"enqueue each next step from http://localhost:8133/du-reports/012/ and do your best.\"",
    "url": "http://localhost:8133/du-reports/012/",
-   "progress": "07:52: minted from ^du_report(12)'s next step 4 of 5. 07:56: READ the foam (js/14-outdoors.js bubbleroomScene): what does not move is baked into <image>s already; what moves (lifeOf: up to 16 breathing and 4 popping bubbles a surface) is SMIL scale animations inside the scene SVG, spread over every surface, so the browser repaints the whole picture each frame. Layers the browser moves without repainting must be page elements (a composited div/img), not SVG children; and the foam is BEHIND the friend inside the one picture. So the step means: the room's shell and foam drawn as page layers behind a scene picture that is see-through there (the moving bubbles' bands as their own img layers, animated by CSS opacity/transform: e.g. breathing as two baked states cross-fading, popping as a band fading out and back), touching the still pictures, the picture archive and 🔬's overlays. The report makes it conditional: 'if the moving foam is wanted back on by default'; still since 0.0.306 (his rule: costly effects off at the start). ✋ Waiting on Matthew: is moving foam wanted on by default? If yes, the above is the plan (a long run, measured in Firefox and Chrome on GitHub before and after). 09:07 Matthew: \"Yes, I want moving foam back on by default: build 383's layered foam as a long run.\" Unblocked; started. 09:08 Matthew: \"in 30min, let's park every dress-up ticket, and switch over to hazel tickets. We will do hazel tickets for most of the work day, but we can do a few dress-up tasks if they are lingering.\" So: 383 until ~09:40, then parked with its state written here. 09:09 DESIGN (to build after the spike): in the bubble room, the room's backdrop (bubbleroom-shell and the five foam surfaces' still pictures) drawn under a see-through #pic (#pic-under, before #pic in .pic-box, placed as #pic-over is, inside the border; #pic's paper background off there, body.foam-under), and each moving bubble (lifeOf's choice: up to 16 breathing and 4 popping a surface) a small page element of its own in a layer between them (#foam-layers: a div per bubble at its spot in CSS px, mapped from the scene's viewBox and updated on resize, its own inline svg bubble, scaled by a CSS animation, transform only: the compositor's work, no repaint of the picture). Kept as they are: the stuck-out balls and everything else in #pic (the friend passes in front of and behind them); 👁️ hiding a foam surface and 🔬's objects must reach the moved surfaces (showObjects and sceneObjects look in #pic-under too); still pictures on a slow computer and the picture archive draw #pic-under's picture under #pic's (or the bubble room keeps its backdrop in #pic while held still). Then foamMove's default back to 88 (a save at 0 since 0.0.306 kept, a fresh one moving). Measured before and after in Chrome (CPU 1, 4) and Firefox at Matthew's screen on GitHub.",
+   "progress": "07:52: minted from ^du_report(12)'s next step 4 of 5. 07:56: READ the foam (js/14-outdoors.js bubbleroomScene): what does not move is baked into <image>s already; what moves (lifeOf: up to 16 breathing and 4 popping bubbles a surface) is SMIL scale animations inside the scene SVG, spread over every surface, so the browser repaints the whole picture each frame. Layers the browser moves without repainting must be page elements (a composited div/img), not SVG children; and the foam is BEHIND the friend inside the one picture. So the step means: the room's shell and foam drawn as page layers behind a scene picture that is see-through there (the moving bubbles' bands as their own img layers, animated by CSS opacity/transform: e.g. breathing as two baked states cross-fading, popping as a band fading out and back), touching the still pictures, the picture archive and 🔬's overlays. The report makes it conditional: 'if the moving foam is wanted back on by default'; still since 0.0.306 (his rule: costly effects off at the start). ✋ Waiting on Matthew: is moving foam wanted on by default? If yes, the above is the plan (a long run, measured in Firefox and Chrome on GitHub before and after). 09:07 Matthew: \"Yes, I want moving foam back on by default: build 383's layered foam as a long run.\" Unblocked; started. 09:08 Matthew: \"in 30min, let's park every dress-up ticket, and switch over to hazel tickets. We will do hazel tickets for most of the work day, but we can do a few dress-up tasks if they are lingering.\" So: 383 until ~09:40, then parked with its state written here. 09:09 DESIGN (to build after the spike): in the bubble room, the room's backdrop (bubbleroom-shell and the five foam surfaces' still pictures) drawn under a see-through #pic (#pic-under, before #pic in .pic-box, placed as #pic-over is, inside the border; #pic's paper background off there, body.foam-under), and each moving bubble (lifeOf's choice: up to 16 breathing and 4 popping a surface) a small page element of its own in a layer between them (#foam-layers: a div per bubble at its spot in CSS px, mapped from the scene's viewBox and updated on resize, its own inline svg bubble, scaled by a CSS animation, transform only: the compositor's work, no repaint of the picture). Kept as they are: the stuck-out balls and everything else in #pic (the friend passes in front of and behind them); 👁️ hiding a foam surface and 🔬's objects must reach the moved surfaces (showObjects and sceneObjects look in #pic-under too); still pictures on a slow computer and the picture archive draw #pic-under's picture under #pic's (or the bubble room keeps its backdrop in #pic while held still). Then foamMove's default back to 88 (a save at 0 since 0.0.306 kept, a fresh one moving). Measured before and after in Chrome (CPU 1, 4) and Firefox at Matthew's screen on GitHub. 09:14 SPIKE READ (diag-383, run 39275366785; the bubble room standing, 3 s, first run of two each): Chrome CPU 1: moving foam today (139 SMIL animations) 52.3 fps, still 60, still + 120 breathing page layers (a div each, CSS transform animation) 60. Chrome CPU 4 (the slow tier): 22.3 / 60 / 56.4-58.3. Firefox at Matthew's screen size: 28.3 / 60 / 60. The design holds: moving bubbles as page layers cost next to nothing where the picture's own animations cost 8 to 38 fps. The spike's layers sat OVER the picture (cost only); the build puts them between the backdrop and a see-through picture, as designed above. 09:14 PARKED (Matthew: Hazel tickets for most of the day): the spike settles the design (above); nothing built yet. A worktree waits for it: ~/kcg-foam-383 on branch foam-layers-383 (off main at 0.0.333, no commits, not pushed). Next: build the design above there, measure as the spike did, then foamMove's default 88.",
    "log": [
     {
      "at": "2026-10-19T07:52-06:00",
@@ -750,11 +751,115 @@
     }
    ],
    "text": "<b>Dress Up: moving foam that costs little.</b> ^du_report(12) (\"The foam, not the makers\"), its next step 4: if the moving foam is wanted back on by default: its bands as layers of their own the browser moves without repainting, not 139 animations inside the picture."
+  },
+  {
+   "id": 385,
+   "area": "hazel, CI, integration/livelits-modular-editors (#2635)",
+   "added": "2026-10-19",
+   "opened": "2026-10-19T09:14-06:00",
+   "status": "open",
+   "tags": [
+    "deadline: EOD 2026-10-19"
+   ],
+   "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
+   "url": "",
+   "progress": "09:14: minted.",
+   "log": [
+    {
+     "at": "2026-10-19T09:14-06:00",
+     "from": "matthew",
+     "chars": 900,
+     "asks": true
+    }
+   ],
+   "text": "<b>Why is CI failing on the livelits x modular editing branch?</b> Matthew: \"why is CI failing on my livelits x modular editing branch -- he asked and I didn't have a complete answer -- I felt like it was due to merging with modular editors, but I'm not really sure still. I need an answer by EOD.\" Cyrus asked on Friday. The branch: integration/livelits-modular-editors (draft hazelgrove/hazel#2635, into ...full), ~/hazel-livelits-modular. Wanted: each failing test, and for each whether it comes from the modular-editors merge, from the livelits work, or from both meeting; by end of day."
+  },
+  {
+   "id": 386,
+   "area": "hazel, types, the type expansion in Gamma",
+   "added": "2026-10-19",
+   "opened": "2026-10-19T09:14-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
+   "url": "",
+   "progress": "09:14: minted.",
+   "log": [
+    {
+     "at": "2026-10-19T09:14-06:00",
+     "from": "matthew",
+     "chars": 900,
+     "asks": true
+    }
+   ],
+   "text": "<b>The type syntax expansion feature, for types in Gamma too.</b> Matthew: \"the type syntax expansion feature --- we want to have it work for types in Gamma too, since they can be too long on one line, just like the result type -- any ideas?\" (Cyrus, Friday). Ideas wanted first."
+  },
+  {
+   "id": 387,
+   "area": "hazel, livelits, the model's sub-editors",
+   "added": "2026-10-19",
+   "opened": "2026-10-19T09:14-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
+   "url": "",
+   "progress": "09:14: minted.",
+   "log": [
+    {
+     "at": "2026-10-19T09:14-06:00",
+     "from": "matthew",
+     "chars": 900,
+     "asks": true
+    }
+   ],
+   "text": "<b>Livelits' model sub-editors as read-only tiles, with tiles' selection UX.</b> Matthew: \"sub-editors for livelits that show the model are read-only, but they don't use tiles and we want them to. In particular, we want to be able to use the selection UX of tiles on those parts of the syntax, including right click, etc.\" (Cyrus, Friday)."
+  },
+  {
+   "id": 388,
+   "area": "hazel, the syntax explainer (RHS)",
+   "added": "2026-10-19",
+   "opened": "2026-10-19T09:14-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
+   "url": "",
+   "progress": "09:14: minted.",
+   "log": [
+    {
+     "at": "2026-10-19T09:14-06:00",
+     "from": "matthew",
+     "chars": 900,
+     "asks": true
+    }
+   ],
+   "text": "<b>Why does the right-hand side that explains each syntax form not show its example syntax as read-only tiles?</b> Matthew: \"related, but separate ticket, and new -- why is the RHS that explains each syntax form not showing example syntax with read-only tiles as well? Cyrus wondered that in Friday's meeting, and it predates my being on the team.\""
+  },
+  {
+   "id": 389,
+   "area": "hazel, meetings (Cyrus, Wed 2026-10-21)",
+   "added": "2026-10-19",
+   "opened": "2026-10-19T09:15-06:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-10-21"
+   ],
+   "source": "Matthew, 2026-10-19 09:15, in chat",
+   "url": "",
+   "progress": "09:15: minted, the list as of now; 385 in progress (answer due EOD).",
+   "log": [
+    {
+     "at": "2026-10-19T09:15-06:00",
+     "from": "matthew",
+     "chars": 170,
+     "asks": true
+    }
+   ],
+   "text": "<b>Meeting with Cyrus, Wednesday 2026-10-21: the tickets to bring.</b> Matthew: \"My next meeting with Cyrus is Wed -- let's make a ticket that links to all related tickets for that meeting please. For now, it's just a bulleted list based on what you know now.\"<ul><li>^ticket(385): why CI fails on the livelits x modular editing branch (#2635, into ...full): Cyrus's question on Friday; the answer is due today, 10-19, end of day.</li><li>^ticket(386): the type syntax expansion for types in Gamma too, as for the result type (long types on one line): ideas.</li><li>^ticket(387): livelits' model sub-editors as read-only tiles, with tiles' selection UX (right click and the rest); it follows his 10-03 call, the revealed model read-only and selectable.</li><li>^ticket(388): why the right-hand side that explains each syntax form shows no example syntax as read-only tiles (older than Matthew's time on the team).</li><li>Open and waiting on Matthew, in case they come up: ^ticket(54) (offer ^ticket(7)'s three ports to #2469), ^ticket(19) (perf budgets harder to fool, a draft PR?), ^ticket(18) (option B: livelit views evaluated in the worker), ^ticket(102) (the reply to Alexander on #2583), ^ticket(16) (asking the maintainers to require the test jobs for merging into dev).</li></ul>More to come from Matthew."
   }
  ],
- "next_ticket": 385,
- "current_ticket": 383,
- "current_note": "09:08: layered foam until ~09:40 (Matthew: then park every Dress Up ticket, Hazel tickets for most of the day): a measured spike of the design first",
+ "next_ticket": 390,
+ "current_ticket": 385,
+ "current_note": "09:14: why #2635 (livelits x modular editors) CI fails: its latest run, each failing test and where it comes from (answer due EOD); Dress Up parked",
  "closed_tickets": [
   {
    "id": 384,
@@ -12433,6 +12538,11 @@
   }
  ],
  "queue": [
+  385,
+  389,
+  386,
+  387,
+  388,
   383,
   374,
   326,
@@ -12448,5 +12558,5 @@
   322,
   344
  ],
- "current_since": "2026-10-19T09:07-06:00"
+ "current_since": "2026-10-19T09:14-06:00"
 }
