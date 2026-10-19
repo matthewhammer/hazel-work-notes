@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="dashboard-version" content="c3b99fb602c1">
+<meta name="dashboard-version" content="852be54d9054">
 <!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
 <!-- theme: head begin -->
 <script>try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}</script>
@@ -134,7 +134,7 @@
 <body>
 <main>
 <h1>Closed tickets</h1>
-<p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated 2026-10-19 16:31 MDT. Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are on the dashboard: <a href="./#queue">the work queue</a> and <a href="./#backlog">the full backlog</a>.</p>
+<p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated 2026-10-19 16:33 MDT. Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are on the dashboard: <a href="./#queue">the work queue</a> and <a href="./#backlog">the full backlog</a>.</p>
 <div class="scroll"><table>
 <tr><th class="num">Ticket</th><th class="area">Area</th><th>Status, closed</th><th>Outcome</th><th>The ticket, as it last read</th></tr>
 <tr id="ticket-419"><td class="num"><a class="anchor" href="#ticket-419"><code class="ref"><b>^ticket(</b>419<b>)</b></code></a><button class="copy" type="button" data-anchor="ticket-419" title="Copy a link to ^ticket(419)">copy link</button></td><td>dress up, 0.0.335&#x27;s speed run: access217&#x27;s far arrows</td><td class="status"><span class="good">done</span><br><span class="note">2026-10-19</span></td><td>Not reproduced: on 0.0.343, access217 passed in full on GitHub (diag-419, run 39334586096), 'off: the far arrows hidden' included. The check read the arrows 4 frames after switching off, while since 0.0.335 they fade over --label-stay (500 ms): it now waits that out (54aedf6). The probe beside it (access419) was inconclusive (its first case left all arrows on, saved for its second); the diag branch is deleted.<br><span class="note">⏱ opened 2026-10-19 15:33, closed 16:29 (56 min) · 0 messages from Matthew, 0 questions to him · ~0 chars (~0 tokens) · ~0 min together</span></td><td><b>0.0.335 is marked broken: one assertion of tools/checks/access217.mjs failed.</b> "off: the far arrows hidden, as before": with ♿'s arrows at their defaults (off), all 5 far nav arrows still read an opacity over 0.05 (offShown 5 of 5; far opacity 0.41). Every other assertion of that check passed. Likely cause, from reading: 0.0.335 (<a href="#ticket-404"><code class="ref"><b>^ticket(</b>404<b>)</b></code></a>) made an arrow's fade-out slower, 500 ms held near full before it fades (style.css, .way-arrow's transition, --label-stay), and the check reads the opacities 4 frames (~67 ms) after switching the overlay off (clearing()), so it may catch them mid-fade: the check's timing, not the game. Not proven: it could be a real regression (far arrows shown when they should not be).<br><span class="note">from <a href="https://github.com/matthewhammer/kids-choice-games/actions/runs/39317599161">0.0.335&#x27;s speed run (after a release), read during ^ticket(413)</a></span></td></tr>
