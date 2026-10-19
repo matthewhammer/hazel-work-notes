@@ -415,22 +415,30 @@ LOCAL_URLS = {}
 for r in data["ports"]:
     for t, u in r["links"]: LOCAL_URLS.setdefault(u, t)   # (in the table's order, each URL once)
 LOCAL_URLS = list(LOCAL_URLS.items())
-local_entries = ([entry("#ports", f"Local URLs ({len(LOCAL_URLS)})")] +
-                 [f'<li class="sub"><a href="{e(u)}">{e(t)}</a></li>' for u, t in LOCAL_URLS]) if LOCAL_URLS else []
+# (^ticket(390), Matthew 2026-10-19: "add indentation to: local ports served list, work queue, full backlog"; "work queue and local
+# ports list are open by default, but can be collapsed with those triangles"; "full backlog is collapsed by default, but can be
+# expanded") a list in the outline as a group: its heading with a triangle, its entries indented under it, folded or not as it
+# starts (open: data-open), each reader's choice kept in their browser ("dash-grp-<name>"), whether beside the page or in the nav bar
+def group(name, href, text, kids, open_default):
+    on = "true" if open_default else "false"
+    return (f'<li class="grp" data-grp="{name}" data-open="{on}"><div class="grp-row"><button type="button" class="grp-tw" aria-expanded="{on}" '
+            f'aria-label="{"Fold" if open_default else "Unfold"} {e(text)}">{"▾" if open_default else "▸"}</button><a href="{href}">{text}</a></div>'
+            f'<ul class="kids"{"" if open_default else " hidden"}>' + "".join(kids) + '</ul></li>')
+local_entries = [group("local", "#ports", e(f"Local URLs ({len(LOCAL_URLS)})"),
+                       [f'<li><a href="{e(u)}">{e(t)}</a></li>' for u, t in LOCAL_URLS], True)] if LOCAL_URLS else []
 
 outline = "\n".join(local_entries +
     ([f'<li><a href="#current">Current ticket: {tk(CURRENT["id"])}' + (f" {HAND}" if WAITING else "") + '</a></li>'] if CURRENT else []) + [
-    entry("#queue", f"Work Queue ({len(QUEUE)})"),
-] + [f'<li class="sub"><a href="#ticket-{t["id"]}">{i + 1}. {tk(t["id"])} {TAG_ICON(t)}{e(short(t["text"]))}</a></li>' for i, t in enumerate(QUEUE)] + [
+    group("queue", "#queue", e(f"Work Queue ({len(QUEUE)})"), [f'<li><a href="#ticket-{t["id"]}">{i + 1}. {tk(t["id"])} {TAG_ICON(t)}{e(short(t["text"]))}</a></li>' for i, t in enumerate(QUEUE)], True),
+] + [
     entry("#ports", "Localhost ports"),
     entry("#other", "Other PRs we are tracking"),
     entry("#repos", "Repositories we deploy"),
     entry("#perf", "Performance Analysis and Improvement"),
     entry("#perf-prs", "Performance PRs", sub=True),
     entry("#integration", "Integration branches", sub=True),
-    entry("#backlog", f"Full Backlog ({len(TICKETS)})"),
-] + [entry(f'#ticket-{t["id"]}', short(t["text"]), sub=True, n=t["id"]) for t in TICKETS]
-  + [entry("closed.html", f"Closed tickets ({len(CLOSED)})")])
+    group("backlog", "#backlog", e(f"Full Backlog ({len(TICKETS)})"), [entry(f'#ticket-{t["id"]}', short(t["text"]), n=t["id"]) for t in TICKETS], False),
+] + [entry("closed.html", f"Closed tickets ({len(CLOSED)})")])
 
 issue = data["tracking_issue"]
 now = datetime.now(LOCAL).strftime("%Y-%m-%d %H:%M %Z")
@@ -465,6 +473,15 @@ page = f"""<!doctype html>
   .outline a:hover {{ color: CanvasText; }}
   .outline ul.outline-out {{ margin-bottom: 0.9rem; }}
   .outline li.sub a {{ padding-left: 1.4rem; font-size: 0.95em; }}
+  /* (^ticket(390)) a list as a group: a triangle before its heading, its entries indented under it, folding */
+  .outline .grp-row {{ display: flex; align-items: baseline; }}
+  .outline .grp-row > a {{ flex: 1; min-width: 0; }}
+  .outline .grp-tw {{ flex: none; width: 1.1em; padding: 0; border: 0; background: none; color: var(--muted); cursor: pointer; font: inherit; line-height: 1.4; }}
+  .outline .grp-tw:hover {{ color: CanvasText; }}
+  .outline ul.kids {{ margin: 0 0 0.4rem 1.6em; padding: 0 0 0 0.5em; border-left: 1px solid var(--line); font-size: 0.95em; }}
+  .outline ul.kids[hidden] {{ display: none; }}
+  #cnav #outline ul.kids {{ margin: 0 0 0.3rem 1.6em; padding-left: 0.5em; }}   /* (in the nav bar too: its own lists' rule is #cnav ul ul) */
+  #cnav #outline ul.kids[hidden] {{ display: none; }}
   .outline a[aria-current="true"] {{ color: CanvasText; border-left-color: var(--good); }}
   .outline-toggle {{ display: flex; position: fixed; top: 0.6rem; left: 0.6rem; z-index: 20; width: 2.4rem; height: 2.4rem;
     align-items: center; justify-content: center; padding: 0; background: Canvas; color: CanvasText;
@@ -718,6 +735,19 @@ for (const b of document.querySelectorAll("button.copy")) {{
     setTimeout(() => {{ b.textContent = "copy link"; b.classList.remove("done"); }}, 1500);
   }});
 }}
+
+/* (^ticket(390)) The outline's groups: each folds and unfolds by its triangle, as it starts unless this
+   reader chose otherwise (kept in this browser), beside the page or in the nav bar alike. */
+(() => {{
+  const set = (li, on) => {{ const b = li.querySelector(":scope > .grp-row > .grp-tw"), ul = li.querySelector(":scope > ul.kids"); if (!b || !ul) return;
+    b.setAttribute("aria-expanded", on ? "true" : "false"); b.textContent = on ? "▾" : "▸"; ul.hidden = !on;
+    b.setAttribute("aria-label", (on ? "Fold " : "Unfold ") + ((li.querySelector(":scope > .grp-row > a") || {{}}).textContent || "")); }};
+  for (const li of document.querySelectorAll("#outline li.grp")) {{ let v = null; try {{ v = localStorage.getItem("dash-grp-" + li.dataset.grp); }} catch (e) {{}}
+    if (v === "open" || v === "closed") set(li, v === "open"); }}
+  document.addEventListener("click", ev => {{ const b = ev.target.closest && ev.target.closest("#outline .grp-tw"); if (!b) return;
+    const li = b.closest("li.grp"), on = b.getAttribute("aria-expanded") !== "true"; set(li, on);
+    try {{ localStorage.setItem("dash-grp-" + li.dataset.grp, on ? "open" : "closed"); }} catch (e) {{}} }});
+}})();
 
 /* The outline: the entry for where the reader is (the last target above a
    line a third of the way down), and opening it on a narrow screen. */
