@@ -1225,13 +1225,18 @@
     }
    ],
    "text": "<b>🗺️ The castle designer in a full-screen mode, as the world designer and the music producer have.</b> Matthew: \"mint and enqueue for long run --- castle designer FS mode -- after we do knowlling on all panels, as per our ticket before this one.\" So after ^ticket(285) (^du_report(5)'s knolling applied to every panel): the castle designer (🏞️ Background's 🗺️ castle designer, castleDesign) opened full screen, the game's view in a small panel as the world designer does it, its rooms, their kinds and settings laid out in order in plain view (knolling: boxes within boxes, minimal visual noise), with the report's shared choices (its 13), and an fps check on the black laptop's tier as ^ticket(289) asks of the Background designer."
-  },
+  }
+ ],
+ "next_ticket": 360,
+ "current_ticket": 326,
+ "current_note": "21:39: ^ticket(355) closed (done); ^ticket(326) is next in the queue",
+ "closed_tickets": [
   {
    "id": 367,
    "area": "dress up, walking: the spiral staircase and the path planner",
    "added": "2026-10-18",
    "opened": "2026-10-18T21:15-06:00",
-   "status": "open",
+   "status": "done",
    "tags": [
     "long run"
    ],
@@ -1246,13 +1251,19 @@
      "asks": false
     }
    ],
-   "text": "<b>The spiral staircase's topology still perplexes the path planner.</b> Matthew: \"file for tonight: spiral stair topology is still perplexing the path planner.\" His screenshot (the castle's spiral staircase room, 🔬 collision boxes and the planned path on): the friend stands just left of the column's box at its front; a click on the floor a little to the left, by the foot of the stairs (the glowing spot under step 5), planned a path that goes the long way: right along the front of the column's box, up its right side, back across behind the column at the height of steps 4 and 5, and down onto the steps, instead of the few units left; the steps' boxes (step 4, step 5, sit) and the column's box overlap where the stairs meet the floor. TO LOOK AT: the spiral room's own planner (spiralPath, ticket 268) against planPath: which one a click uses there (walkPlanned always uses planPath; walkInto uses spiralPath for doors); the steps as seats and solids at once (each step a seat, \"sit\"); the column's box reaching down over the stairs' foot; a walk on the floor should not climb, and a walk to a step should go up the stairs' curve. A check: in the spiral room, from free spots on the floor to each other and to each step, every plan short and through no box."
-  }
- ],
- "next_ticket": 360,
- "current_ticket": 326,
- "current_note": "21:39: ^ticket(355) closed (done); ^ticket(326) is next in the queue",
- "closed_tickets": [
+   "text": "<b>The spiral staircase's topology still perplexes the path planner.</b> Matthew: \"file for tonight: spiral stair topology is still perplexing the path planner.\" His screenshot (the castle's spiral staircase room, 🔬 collision boxes and the planned path on): the friend stands just left of the column's box at its front; a click on the floor a little to the left, by the foot of the stairs (the glowing spot under step 5), planned a path that goes the long way: right along the front of the column's box, up its right side, back across behind the column at the height of steps 4 and 5, and down onto the steps, instead of the few units left; the steps' boxes (step 4, step 5, sit) and the column's box overlap where the stairs meet the floor. TO LOOK AT: the spiral room's own planner (spiralPath, ticket 268) against planPath: which one a click uses there (walkPlanned always uses planPath; walkInto uses spiralPath for doors); the steps as seats and solids at once (each step a seat, \"sit\"); the column's box reaching down over the stairs' foot; a walk on the floor should not climb, and a walk to a step should go up the stairs' curve. A check: in the spiral room, from free spots on the floor to each other and to each step, every plan short and through no box.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T21:41-06:00",
+   "outcome": "0.0.296: reproduced his screenshot (-51,-32 to -111,-102): planPath went round the column (612 vs 131 straight) because the gap between step 5's box and the column (28) is narrower than the feet (64). planWalk (click walks) takes spiralPath, up the steps' middle, when the floor plan goes over twice the straight way or finds none and the stairs are shorter: now 160, arriving. Floor walks unchanged. tools/checks/spiral367.mjs.",
+   "metrics": {
+    "open_minutes": 26,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 80,
+    "tokens_est": 20,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 355,
    "area": "dress up, collisions (tree house room)",
