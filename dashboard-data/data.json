@@ -758,28 +758,6 @@
    "text": "<b>Dress Up: moving foam that costs little (the layered foam, on by default).</b> ^du_report(12) (\"The foam, not the makers\"), its next step 4: if the moving foam is wanted back on by default: its bands as layers of their own the browser moves without repainting, not 139 animations inside the picture."
   },
   {
-   "id": 385,
-   "area": "hazel, CI, integration/livelits-modular-editors (#2635)",
-   "added": "2026-10-19",
-   "opened": "2026-10-19T09:14-06:00",
-   "status": "open",
-   "tags": [
-    "deadline: EOD 2026-10-19"
-   ],
-   "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
-   "url": "",
-   "progress": "09:14: minted.",
-   "log": [
-    {
-     "at": "2026-10-19T09:14-06:00",
-     "from": "matthew",
-     "chars": 900,
-     "asks": true
-    }
-   ],
-   "text": "<b>Why is CI failing on the livelits x modular editing branch?</b> Matthew: \"why is CI failing on my livelits x modular editing branch -- he asked and I didn't have a complete answer -- I felt like it was due to merging with modular editors, but I'm not really sure still. I need an answer by EOD.\" Cyrus asked on Friday. The branch: integration/livelits-modular-editors (draft hazelgrove/hazel#2635, into ...full), ~/hazel-livelits-modular. Wanted: each failing test, and for each whether it comes from the modular-editors merge, from the livelits work, or from both meeting; by end of day."
-  },
-  {
    "id": 386,
    "area": "hazel, types, the type expansion in Gamma",
    "added": "2026-10-19",
@@ -859,13 +837,47 @@
      "asks": true
     }
    ],
-   "text": "<b>Meeting with Cyrus, Wednesday 2026-10-21: the tickets to bring.</b> Matthew: \"My next meeting with Cyrus is Wed -- let's make a ticket that links to all related tickets for that meeting please. For now, it's just a bulleted list based on what you know now.\"<ul><li>^ticket(385): why CI fails on the livelits x modular editing branch (#2635, into ...full): Cyrus's question on Friday; the answer is due today, 10-19, end of day.</li><li>^ticket(386): the type syntax expansion for types in Gamma too, as for the result type (long types on one line): ideas.</li><li>^ticket(387): livelits' model sub-editors as read-only tiles, with tiles' selection UX (right click and the rest); it follows his 10-03 call, the revealed model read-only and selectable.</li><li>^ticket(388): why the right-hand side that explains each syntax form shows no example syntax as read-only tiles (older than Matthew's time on the team).</li><li>Open and waiting on Matthew, in case they come up: ^ticket(54) (offer ^ticket(7)'s three ports to #2469), ^ticket(19) (perf budgets harder to fool, a draft PR?), ^ticket(18) (option B: livelit views evaluated in the worker), ^ticket(102) (the reply to Alexander on #2583), ^ticket(16) (asking the maintainers to require the test jobs for merging into dev).</li></ul>More to come from Matthew."
+   "text": "<b>Meeting with Cyrus, Wednesday 2026-10-21: the tickets to bring.</b> Matthew: \"My next meeting with Cyrus is Wed -- let's make a ticket that links to all related tickets for that meeting please. For now, it's just a bulleted list based on what you know now.\"<ul><li>^ticket(385): why CI fails on the livelits x modular editing branch (#2635, into ...full): Cyrus's question on Friday; ANSWERED 10-19 09:31: it is the merge (Modules II on the livelits branch meeting #2469's per-member DefStatics; one table test input), neither branch broken: <a href=\"https://claude.ai/artifact/RCpsLbKgrdfY9fvtHE3Dha\">the write-up</a> (private until shared).</li><li>^ticket(386): the type syntax expansion for types in Gamma too, as for the result type (long types on one line): ideas.</li><li>^ticket(387): livelits' model sub-editors as read-only tiles, with tiles' selection UX (right click and the rest); it follows his 10-03 call, the revealed model read-only and selectable.</li><li>^ticket(388): why the right-hand side that explains each syntax form shows no example syntax as read-only tiles (older than Matthew's time on the team).</li><li>Open and waiting on Matthew, in case they come up: ^ticket(54) (offer ^ticket(7)'s three ports to #2469), ^ticket(19) (perf budgets harder to fool, a draft PR?), ^ticket(18) (option B: livelit views evaluated in the worker), ^ticket(102) (the reply to Alexander on #2583), ^ticket(16) (asking the maintainers to require the test jobs for merging into dev).</li></ul>More to come from Matthew."
   }
  ],
  "next_ticket": 391,
- "current_ticket": 385,
- "current_note": "09:29: #2635 CI: 10 failing tests read (DefStaticsParity 1, 2, 4, 33, 38-42; TableDecorations 1); both parents pass alone; tracing each to its cause",
+ "current_ticket": 386,
+ "current_note": "09:31: ideas for the type syntax expansion in Gamma: reading how the result type's expansion works",
  "closed_tickets": [
+  {
+   "id": 385,
+   "area": "hazel, CI, integration/livelits-modular-editors (#2635)",
+   "added": "2026-10-19",
+   "opened": "2026-10-19T09:14-06:00",
+   "status": "done",
+   "tags": [
+    "deadline: EOD 2026-10-19"
+   ],
+   "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
+   "url": "",
+   "progress": "09:14: minted. 09:30 ANSWER (ready for Cyrus): Matthew's hunch is right, it is the merge, and nothing in either branch is broken. #2635's last CI run (39031252985, on 9e7258b55b, 10-17, after ^ticket(156) brought it up to date with #2469 at 19fef7c9bb): 10 failures, the same in Fast checks and Full tests: DefStaticsParity 1, 2, 4, 33, 38, 39, 40, 41, 42 and Editing.TableDecorations 1. Both parents pass alone: #2597 (...full) green at f8ae6f2b9c (10-15); #2469 green at c349058154 (10-18), which contains 19fef7c9bb with the same Test_DefStaticsParity.re, 4,810 + 5,202 tests passing. Each failing test is one side's: DefStaticsParity only on modular-editors (Andrew's, 10-10), TableDecorations only on ...full (Test_Editing.re). The cause, recorded in the trial merge 8c968efcc4: Modules II is on ...full only (18 commits; none on dev or modular-editors) and replaced dev's module helpers that #2469's per-member DefStatics builds on, so on the merge a module literal is analyzed whole: the per-member counts (expected 2, 4, 6) come out 1 or 2 (tests 1, 4, 33, 38-42: 8 of the 9). Test 2: hazel-programs/docs/livelits/expansion-errors/macro-result.hz, per-item vs monolithic elaboration differ at a livelit application (livelits x per-item elaboration; cross-document aliasing suspected, cause not found). TableDecorations 1: with #2469's canonical completion a stray `[` in a table cell errors inside the cell, so the hidden-row case's input no longer makes a hidden-row error; it needs a new input. Ways to green: skip the per-member cases under Modules II and give TableDecorations a new input; or port DefStatics' per-member path to Modules II (Andrew and Alexander's ground).",
+   "log": [
+    {
+     "at": "2026-10-19T09:14-06:00",
+     "from": "matthew",
+     "chars": 900,
+     "asks": true
+    }
+   ],
+   "text": "<b>Why is CI failing on the livelits x modular editing branch?</b> Matthew: \"why is CI failing on my livelits x modular editing branch -- he asked and I didn't have a complete answer -- I felt like it was due to merging with modular editors, but I'm not really sure still. I need an answer by EOD.\" Cyrus asked on Friday. The branch: integration/livelits-modular-editors (draft hazelgrove/hazel#2635, into ...full), ~/hazel-livelits-modular. Wanted: each failing test, and for each whether it comes from the modular-editors merge, from the livelits work, or from both meeting; by end of day.",
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T09:31-06:00",
+   "outcome": "ANSWERED 09:31, written up for Cyrus: https://claude.ai/artifact/RCpsLbKgrdfY9fvtHE3Dha (private until Matthew shares it). It is the merge, and neither branch is broken: #2597 green at f8ae6f2b9c, #2469 green at c349058154 (which contains the merged 19fef7c9bb, identical DefStaticsParity tests); each failing test belongs to one side (DefStaticsParity: modular-editors; TableDecorations: ...full); Modules II is on ...full only. DefStaticsParity 1, 4, 33, 38-42: module literals analyzed whole on Modules II, so per-member re-analysis counts come out 1-2 where 2-6 are expected; DefStaticsParity 2: macro-result.hz per-item vs monolithic elaboration at a livelit application (cause not found); TableDecorations 1: needs a new input under canonical completion. Ways to green: skip per-member cases under Modules II + new table input (quick), or rebuild DefStatics' per-member path on Modules II (Andrew/Alexander). Also: #2635 conflicts with its base now. Same finding as ^ticket(156) on 10-17, with today's evidence that both parents pass alone. On ^ticket(389)'s agenda.",
+   "metrics": {
+    "open_minutes": 17,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 900,
+    "tokens_est": 225,
+    "sync_minutes_est": 0,
+    "work_minutes": 25.0
+   }
+  },
   {
    "id": 390,
    "area": "dashboard, the nav bar's outline of this page",
@@ -12575,9 +12587,8 @@
   }
  ],
  "queue": [
-  385,
-  389,
   386,
+  389,
   387,
   388,
   383,
@@ -12595,5 +12606,5 @@
   322,
   344
  ],
- "current_since": "2026-10-19T09:29-06:00"
+ "current_since": "2026-10-19T09:31-06:00"
 }
