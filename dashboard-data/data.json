@@ -287,6 +287,26 @@
  ],
  "tickets": [
   {
+   "id": 368,
+   "area": "dress up, 🧩 what a place is made of: the witch's woods",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T21:20-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, chat, 2026-10-18 21:20, with a screenshot",
+   "url": "",
+   "progress": "Minted 21:20; started at once (his report). Answered: no, the full audit is ^ticket(284), open, the last long run.",
+   "log": [
+    {
+     "at": "2026-10-18T21:20-06:00",
+     "from": "matthew",
+     "chars": 108,
+     "asks": true
+    }
+   ],
+   "text": "<b>The witch's woods: its trees, its fence and the fence's skulls found one by one.</b> Matthew, with a screenshot of the witch's woods in 🔬 Inspection's 🧩 what it's made of (16 objects boxed: bats, dead trees far and near rows, hut, fence, skulls, giant tree, tree right, the skeletons, cauldron, ways): \"seems like all trees and fence and fence skulls are missing from the object list? DId we really do a full audit?\" FOUND: in the 👁️ list they are rows (\"dead trees, far row\", \"dead trees, near row\", \"fence\", \"skulls\"), one object each; 🧩 finds plants and things by the procedure that drew them (data-proc, drawnBy, PROC_CAT), and deadTree, the skulls and the fence were never tagged, so none is found or counted. The full audit (every object placeable, every baked-in thing an object) is ^ticket(284), open, queued last of the long runs. PLAN here: tag deadTree (🌳 trees), each skull (a 💀 skulls kind) and the fence's boards (a 🪵 fences kind), so 🧩 boxes and counts each; then the same tags wherever those procedures draw (the cemetery's, the forest's)."
+  },
+  {
    "id": 16,
    "area": "CI",
    "text": "Ask the maintainers to require the test jobs for merging into <code>dev</code>: today no check is required, so a red budget is a signal, not a gate.",
@@ -1106,26 +1126,6 @@
    "progress": ""
   },
   {
-   "id": 343,
-   "area": "dress up, animations",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T17:16-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up: standing and walking on bubbles, as swimming has its own: braced feet and arms out, a wobblier walk.</b> Matthew, in the bubble room: \"and --- like swimming -- we need special animations: standing on bubbles, with a param for how much they are moving under us --- the more they do, the more we 'brace our feet' and 'stick out our arms'; walking on bubbles -- with arms out sideways for balance ... more precarious than the usual walk. running and crawling, etc can remain the same for now.\" PLAN: where the floor is bubbles (the bubble room's floor foam; later anywhere a place says so, as WATER says where one wades), standing becomes a balancing stance: feet apart and knees a little bent, arms out to the sides, the body swaying, all by \"〰️ how much the bubbles move under you\" (0 to 100: still, a wobble, hard bracing), and following the foam's own motion; walking becomes a careful walk, shorter steps, arms out sideways and rocking against each step, the body tipping a little each way; running, crawling and the rest as they are. Like the swim's switch, from where the friend stands, each frame.",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T17:16-06:00",
-     "from": "matthew",
-     "chars": 359,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 344,
    "area": "dress up, 🧪 tests (advanced tab)",
    "added": "2026-10-18",
@@ -1545,9 +1545,40 @@
   }
  ],
  "next_ticket": 360,
- "current_ticket": 343,
- "current_note": "21:17: Standing and walking on bubbles: a balancing stance and a careful walk, by how much the bubbles move",
+ "current_ticket": 368,
+ "current_note": "21:19: The witch's woods: dead trees, fence and skulls found one by one in 🧩 (284's full audit is still open)",
  "closed_tickets": [
+  {
+   "id": 343,
+   "area": "dress up, animations",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T17:16-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up: standing and walking on bubbles, as swimming has its own: braced feet and arms out, a wobblier walk.</b> Matthew, in the bubble room: \"and --- like swimming -- we need special animations: standing on bubbles, with a param for how much they are moving under us --- the more they do, the more we 'brace our feet' and 'stick out our arms'; walking on bubbles -- with arms out sideways for balance ... more precarious than the usual walk. running and crawling, etc can remain the same for now.\" PLAN: where the floor is bubbles (the bubble room's floor foam; later anywhere a place says so, as WATER says where one wades), standing becomes a balancing stance: feet apart and knees a little bent, arms out to the sides, the body swaying, all by \"〰️ how much the bubbles move under you\" (0 to 100: still, a wobble, hard bracing), and following the foam's own motion; walking becomes a careful walk, shorter steps, arms out sideways and rocking against each step, the body tipping a little each way; running, crawling and the rest as they are. Like the swim's switch, from where the friend stands, each frame.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T17:16-06:00",
+     "from": "matthew",
+     "chars": 359,
+     "asks": false
+    }
+   ],
+   "progress": "",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T21:18-06:00",
+   "outcome": "0.0.286: on the bubble room's floor (bubbleFloorWobble, 60 to start; 0 = a plain floor), standing is a balancing stance (feet apart, knees bent, arms out; in profile forward and back; swaying, arms rocking against it) and walking a careful walk (stride 24 -> 18 at 60, bent knees, arms spread and rocking, tipping). tools/checks/bubblewalk343.mjs.",
+   "metrics": {
+    "open_minutes": 243,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 359,
+    "tokens_est": 89,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 342,
    "area": "dress up, placed things",
@@ -11452,7 +11483,6 @@
   }
  ],
  "queue": [
-  343,
   339,
   351,
   353,
@@ -11487,5 +11517,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T21:17-06:00"
+ "current_since": "2026-10-18T21:19-06:00"
 }
