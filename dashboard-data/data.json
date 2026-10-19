@@ -1162,25 +1162,36 @@
    "text": "<b>A weekly <code>git gc</code> of hazel-work-notes, from cron, holding the publish lock</b> (^ticket(417)'s plan: \"a weekly git gc keeps .git packed\"; once by hand on 2026-10-19, .git 40 MB to 16 MB). The line, for Matthew to approve, as it changes his crontab: <code>17 4 * * 0 cd ~/hazel-work-notes &amp;&amp; flock ~/localhost-index/.publish.lock git gc -q</code>.",
    "progress": "16:33: minted, blocked on Matthew: a crontab change needs his OK.",
    "log": []
-  },
+  }
+ ],
+ "next_ticket": 425,
+ "current_ticket": null,
+ "current_note": "16:39: 16:40: no ticket in hand: the rest of the queue waits on Matthew (report 14 to read, ^ticket(422); the seat questions, ^ticket(421); the weekly gc, ^ticket(423); 401's click; the Hazel tickets so tagged) or is parked (389, 406). Watching 0.0.343's speed run (all of today's new checks), then 0.0.344's.",
+ "closed_tickets": [
   {
    "id": 424,
    "area": "dress up, ♿ all arrows: the far ones appear slowly since 0.0.335",
    "added": "2026-10-19T16:37-06:00",
    "opened": "2026-10-19T16:37-06:00",
-   "status": "open",
+   "status": "done",
    "tags": [],
    "source": "0.0.336's speed run: access217, \"the far ones at the brightness set (40%)\"",
    "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39326440718",
    "text": "<b>With 🧭 all arrows switched on, the far arrows came in slowly: 0.31 of the 0.40 set, 470 ms after the switch (access217 on 0.0.336).</b> 0.0.335 (^ticket(404)) gave every arrow the slow fade meant for going away (--label-stay, 500 ms, held near where it starts); only near and aimed arrows kept the quick 0.25 s. The far ones shown by all arrows (.always) got the slow curve for appearing too.",
    "progress": "16:37: minted and started: .way-arrow.always appears in 0.25 s, as a near one does; going away (the class taken off) still takes the slow fade.",
-   "log": []
-  }
- ],
- "next_ticket": 425,
- "current_ticket": 424,
- "current_note": "16:37: ^ticket(424): the far arrows that ♿ all arrows shows appear slowly since 0.0.335; fixing the CSS.",
- "closed_tickets": [
+   "log": [],
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T16:39-06:00",
+   "outcome": "Released as Dress Up 0.0.344 (883980d, on main through the merge 7e8dd05; live): arrows shown by ♿ all arrows (.way-arrow.always) appear in 0.25 s as near ones do; going away still takes the slow fade of ticket 404. Found by access217 on 0.0.336's speed run. 0.0.344's run (queued) carries access217's new wait and every new check of today.",
+   "metrics": {
+    "open_minutes": 2,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 420,
    "area": "dress up, performance: 💭 our imagination below 55 fps on 0.0.335",
@@ -13794,7 +13805,6 @@
   }
  ],
  "queue": [
-  424,
   389,
   406,
   411,
@@ -13823,7 +13833,7 @@
   422,
   423
  ],
- "current_since": "2026-10-19T16:37-06:00",
+ "current_since": "2026-10-19T16:39-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
