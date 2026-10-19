@@ -296,7 +296,7 @@
    "chips": [
     "hazel"
    ],
-   "progress": " 09:34 Matthew: \"tickets 16 and 17 -- yes.\"",
+   "progress": " 09:34 Matthew: \"tickets 16 and 17 -- yes.\" 09:38 DRAFTED (Matthew: yes): ~/hazel/experiments/2026-10-19/ticket-16-require-test-jobs.md, as an issue for the maintainers: dev is protected but requires no status check (checked: required_status_checks.contexts [], enforce_admins off); require checks / Fast checks (10-15 min; the quick suite and the budgets #2678, #2697, #2689-#2691), keep Full tests informational or require it too, quarantine chance failures (Evaluator.Properties) first, mind Fork CI's job names. Waiting on Matthew to send it (the gh command is in its first lines).",
    "log": [
     {
      "at": "2026-10-19T09:34-06:00",
@@ -305,7 +305,9 @@
      "asks": false
     }
    ],
-   "tags": []
+   "tags": [
+    "blocked on Matthew"
+   ]
   },
   {
    "id": 17,
@@ -317,7 +319,7 @@
    "chips": [
     "hazel"
    ],
-   "progress": " 09:34 Matthew: \"tickets 16 and 17 -- yes.\"",
+   "progress": " 09:34 Matthew: \"tickets 16 and 17 -- yes.\" 09:38 DRAFTED (Matthew: yes): ~/hazel/experiments/2026-10-19/ticket-17-timing-report.md, for David, building on what dev has: /perf (perf.yml: base and head on one runner, #2161's harness) and /bench-compare (bench/compare.js, {size}/{scenario}/{phase}); proposal: every PR (or a perf label), base/head interleaved about five times each on one runner, per phase and scenario, medians and spreads, marked only when spreads don't overlap, a sticky comment, never failing (the gates stay the counts: steps, nodes, statics passes, bytes), a base-vs-base noise floor; questions: land #2161's harness on dev first? which scenarios? where to post?. Waiting on Matthew to send it (the gh command is in its first lines).",
    "log": [
     {
      "at": "2026-10-19T09:34-06:00",
@@ -326,7 +328,9 @@
      "asks": false
     }
    ],
-   "tags": []
+   "tags": [
+    "blocked on Matthew"
+   ]
   },
   {
    "id": 18,
