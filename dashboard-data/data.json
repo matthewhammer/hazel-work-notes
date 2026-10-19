@@ -949,9 +949,31 @@
      "asks": false
     }
    ]
+  },
+  {
+   "id": 399,
+   "area": "dress up, its repository: the name and the layout",
+   "added": "2026-10-19T10:58-06:00",
+   "opened": "2026-10-19T10:58-06:00",
+   "status": "open",
+   "tags": [
+    "low priority"
+   ],
+   "source": "Matthew, 2026-10-19 10:58, in chat",
+   "url": "https://github.com/matthewhammer/kids-choice-games",
+   "text": "<b>Messed Up Dress Up gets a repository of its own: rename it, and lay it out as the only project in it.</b> Matthew: \"let's embrace that the dress-up game is becoming all-encompassing, not some small step leading to more complex things. It is becoming that more complex thing, day by day.\" <ul><li>Rename the GitHub repository matthewhammer/kids-choice-games to <b>messed-up-dress-up</b>.</li><li>Move <code>dress-up/</code>'s contents to the root, \"the form we'd expect if it were the only project in the repo\": with them go <code>tools/</code>, the workflows (<code>dress-up-speed.yml</code>, <code>dress-up-tests.yml</code>, whose paths change), <code>agent-instructions.md</code> and the README.</li></ul>To plan for: GitHub redirects the repository's git and web addresses after a rename, but <b>not its Pages address</b>. /kids-choice-games/dress-up/... becomes /messed-up-dress-up/..., so the old game links need redirect pages (the homepage repository can serve /kids-choice-games/). Also update everything that names the repository or its paths: the homepage's Dress Up pages (hazel/dress-up/ and its pictures, music and reports pages, and hazel/index.html), the dashboard's <code>repos</code> entry and its VERSIONS.md path, the release, load and check scripts, the speed-run workflow, the picture and music archive repositories' links, the local clone and its 27 <code>kids-choice-games-*</code> worktrees, the <code>dress-up</code> launch entry, and the agent instructions and memory. Version tags (<code>dress-up-0.0.N</code>) can keep their names.",
+   "progress": "10:58: minted and enqueued (low priority).",
+   "log": [
+    {
+     "at": "2026-10-19T10:58-06:00",
+     "from": "matthew",
+     "chars": 436,
+     "asks": false
+    }
+   ]
   }
  ],
- "next_ticket": 399,
+ "next_ticket": 400,
  "current_ticket": 393,
  "current_note": "10:52: ^report(19): the in-app checks are done for the editor, eye pane, stepper, inspector, &Gamma;, explainer, probes, program value, outline and Projectors card. Waiting on the code survey for the rest (completions, hovers, refractors, tests), then drafting the report.",
  "closed_tickets": [
@@ -12948,6 +12970,7 @@
   395,
   374,
   398,
+  399,
   326,
   391,
   276,
