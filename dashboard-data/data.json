@@ -917,28 +917,6 @@
    "progress": "17:24: 0.0.242 LIVE (17:26): ⚙️ Advanced's \"🧪 this computer's speed\" is now 20 passes, 15-20 the bubble room as it starts: standing; walking across near us through the stuck-out bubbles (popping them, counted); its foam still; with 1, 4 and 16 bubble makers along the floor (their live bubbles counted); and its scene's shape count. The line it gives (copy, or 📝 the pad) carries them in DATA.bubble. HOW TO RUN TONIGHT, on each device (the black laptop, the iPad): open matthewhammer.org/kids-choice-games/dress-up/ fresh (0.0.242 or later in the title), ⚙️ Advanced, \"🧪 this computer's speed\", touch nothing for about a minute (a notice counts it), then \"📋 copy\" and paste the line to me (or the 📝 pad). Two runs a device are better than one (the first warms the browser). Plugged in, other tabs closed. I compare them with GitHub's runners (^ticket(340)) and write it up. Dry run in the app's pane: 20 passes, no error, DATA.bubble filled (its numbers mean nothing there: no real frames). WAITING on Matthew's runs tonight; then the analysis."
   },
   {
-   "id": 357,
-   "area": "dress up, reports (costumes and a cast of NPCs)",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T20:02-06:00",
-   "status": "open",
-   "tags": [
-    "long run"
-   ],
-   "source": "Matthew, chat, 2026-10-18, during ^ticket(288)",
-   "url": "",
-   "progress": "Minted 20:02 as a long run. 23:36: started (AFK; my calls on scope). A cast of 27 by place (castle, village, magic folk, wilds, sea and pirates, haunted house), each as the friend's own settings at 0.0.305 applied through set() (every one took: data/cast.json), rendered in the pane to reports/011/pictures/cast/; what each lacks listed. Two places with people in them, made in the game (each person drawn at its spot by the game, then put into one scene at its depth): the king's room (king and queen sat on the thrones, two guards) and the beach (captain, pirate, ghost pirate, voodoo lady). Measured on this laptop: a person walking costs 1.7-2.8 ms a drawing (64-147 shapes, 7-20 KB); a still copy 0.4-1.4 ms to put in. Found: the dressing room zooms out to fit a fairy's wings (so the gallery's fairies look smaller; in a place, one scale: checked on the beach, k 0.45 both); the healer in her hut is today's one hand-drawn NPC. A background agent is inventorying the costume code and its history for section 1. Draft stays local (✋).",
-   "log": [
-    {
-     "at": "2026-10-18T20:02-06:00",
-     "from": "matthew",
-     "chars": 222,
-     "asks": false
-    }
-   ],
-   "text": "<b>Dress Up, a long run: a ^du_report on making new costumes, and on making a whole cast of NPCs for an adventure game like Hugo, Hero's Quest (Quest for Glory), King's Quest or Monkey Island, all with our own character design system.</b> Matthew: \"let's do a report, in queue long-run, about making new costumes, and creating all of the NPCs for a game like Hugo, or Hero's Quest (Quest for Glory), or Kinds Quest, or Monkey Island, all with our character design system.\" Prompted by ^ticket(288) (the diving suits and gear: costumes as kinds that swap the clothes and draw over the head, gear worn with any of them). PLAN: (1) how a costume is made today, from the code (js/06-costumes.js, the kinds and their settings in js/20-controls.js, the drawing branches in js/18-drawing.js: clothes swapped, a hood or helmet over the head, things on the back, gear worn with anything), what each new one cost, and what would make the next ones cheaper (a costume as data: its clothes, head, back, gear and settings in one place); (2) the cast of such a game, by role and place (a king and queen, guards, a wizard, a witch, a troll, a pirate crew, a shopkeeper, a blacksmith, a ghost, monsters), each as a friend made with the sliders and costumes we have, or what it would need (a beard, armour, a peg leg, a crown); pictures of each, made in the game (the same shots tool); (3) NPCs in a place: standing, walking a path, talking (a speech bubble), what the world designer and the object system would need to place them, and what it costs at 60 fps on the black laptop; (4) what to build first, in small steps."
-  },
-  {
    "id": 359,
    "area": "dress up -> hazel, a report (the port)",
    "added": "2026-10-18",
@@ -983,8 +961,41 @@
  ],
  "next_ticket": 374,
  "current_ticket": 340,
- "current_note": "23:40: Matthew 23:39, live 0.0.305 in Firefox: one bubble maker in the bubble room, 'About 19 frames a second here' (fairy, mask, snorkel; 160% zoom). Debugging on GitHub (no test browsers on the laptop)",
+ "current_note": "23:41: back on 340: the Firefox probe (measure-340c) queued on GitHub; 340b (Chrome levers) running",
  "closed_tickets": [
+  {
+   "id": 357,
+   "area": "dress up, reports (costumes and a cast of NPCs)",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T20:02-06:00",
+   "status": "done",
+   "tags": [
+    "long run"
+   ],
+   "source": "Matthew, chat, 2026-10-18, during ^ticket(288)",
+   "url": "",
+   "progress": "Minted 20:02 as a long run. 23:36: started (AFK; my calls on scope). A cast of 27 by place (castle, village, magic folk, wilds, sea and pirates, haunted house), each as the friend's own settings at 0.0.305 applied through set() (every one took: data/cast.json), rendered in the pane to reports/011/pictures/cast/; what each lacks listed. Two places with people in them, made in the game (each person drawn at its spot by the game, then put into one scene at its depth): the king's room (king and queen sat on the thrones, two guards) and the beach (captain, pirate, ghost pirate, voodoo lady). Measured on this laptop: a person walking costs 1.7-2.8 ms a drawing (64-147 shapes, 7-20 KB); a still copy 0.4-1.4 ms to put in. Found: the dressing room zooms out to fit a fairy's wings (so the gallery's fairies look smaller; in a place, one scale: checked on the beach, k 0.45 both); the healer in her hut is today's one hand-drawn NPC. A background agent is inventorying the costume code and its history for section 1. Draft stays local (✋).",
+   "log": [
+    {
+     "at": "2026-10-18T20:02-06:00",
+     "from": "matthew",
+     "chars": 222,
+     "asks": false
+    }
+   ],
+   "text": "<b>Dress Up, a long run: a ^du_report on making new costumes, and on making a whole cast of NPCs for an adventure game like Hugo, Hero's Quest (Quest for Glory), King's Quest or Monkey Island, all with our own character design system.</b> Matthew: \"let's do a report, in queue long-run, about making new costumes, and creating all of the NPCs for a game like Hugo, or Hero's Quest (Quest for Glory), or Kinds Quest, or Monkey Island, all with our character design system.\" Prompted by ^ticket(288) (the diving suits and gear: costumes as kinds that swap the clothes and draw over the head, gear worn with any of them). PLAN: (1) how a costume is made today, from the code (js/06-costumes.js, the kinds and their settings in js/20-controls.js, the drawing branches in js/18-drawing.js: clothes swapped, a hood or helmet over the head, things on the back, gear worn with anything), what each new one cost, and what would make the next ones cheaper (a costume as data: its clothes, head, back, gear and settings in one place); (2) the cast of such a game, by role and place (a king and queen, guards, a wizard, a witch, a troll, a pirate crew, a shopkeeper, a blacksmith, a ghost, monsters), each as a friend made with the sliders and costumes we have, or what it would need (a beard, armour, a peg leg, a crown); pictures of each, made in the game (the same shots tool); (3) NPCs in a place: standing, walking a path, talking (a speech bubble), what the world designer and the object system would need to place them, and what it costs at 60 fps on the black laptop; (4) what to build first, in small steps.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T23:41-06:00",
+   "outcome": "^du_report(11) 'A cast of friends' DRAFTED, local only (✋ waits on Matthew's word to publish): localhost:8133/dress-up/reports/011/. (1) Costumes from the code: 20 kinds (15 ANIMALS rows, 5 hand-written in drawNow) + gear, first version, commits, own lines (fairy 245, witch 165, diver 74, ghost 72; jaguar 2), the 9 steps a new one touches today (13 edits in drawNow for the diving suits), and a costume-as-record design. (2) 27 people of Hugo/QfG/KQ/Monkey Island by place, made in the game with set() alone (pictures/cast/), what each lacks; tally: something held 8, a hat or crown 8, a beard 5; 4 complete. (3) The king's room (king and queen sat on the thrones, guards) and the beach (pirates) with people in them, made in the game; standing/walking/talking/world designer/object system; measured 1.7-2.8 ms a walking drawing here, 6-10 on the slow tier. (4) Seven small steps, first a standing person as a place's thing. Found: Surprise me never picks witch/fairy/ghost/diving suits; fins lack FOOT_REACH; the dressing room zooms out for wings. Card added to reports/index.html (uncommitted).",
+   "metrics": {
+    "open_minutes": 220,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 222,
+    "tokens_est": 55,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 225,
    "area": "dress up, passages, bug",
@@ -11897,7 +11908,6 @@
  ],
  "queue": [
   340,
-  357,
   326,
   359,
   339,
