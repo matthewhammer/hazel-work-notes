@@ -917,7 +917,7 @@
    "source": "Matthew, 2026-10-19 10:22, in chat, on #2635's local build (8341)",
    "url": "http://localhost:8341/?slide=livelit-playground-scenes",
    "text": "<b>Bug: pressing &Gamma; on #2635's Scenes slide freezes the browser.</b> Matthew: \"on http://localhost:8341/?slide=livelit-playground-scenes mint and enqueue bug fix -- pressing gamma in lower left corner freezes the browser --- do some tests on github, on simpler slides first, to see if there's some non-linear computation behind that click\" Plan: on GitHub (a diagnostic branch, the runner's headless browser, never this laptop), time opening &Gamma; on slides of growing size, simplest first, and the Scenes slide last, to find what grows faster than the context: every entry is printed and laid out as tiles (ContextInspector: CodeViewable per entry, Measured.of_segment each), and Scenes' context holds large types (Picture and the scene types). Note: #2698 adds a one-line print per entry to decide the unfold toggle, so measure with and without it.",
-   "progress": "10:22: minted and enqueued. 10:52: A LEAD, seen during ^ticket(393)'s survey on 8341 (#2635 at b44bb9c50f): opening &Gamma; on a 4-line scratch program draws 6,802 .token spans, because the context holds the prelude's types (ColorScheme, ColorRoles, ColorPalette, ...), each printed whole as tiles. So the cost is there before any user code; the Scenes slide adds its own large types on top.",
+   "progress": "10:22: minted and enqueued. 10:52: A LEAD, seen during ^ticket(393)'s survey on 8341 (#2635 at b44bb9c50f): opening &Gamma; on a 4-line scratch program draws 6,802 .token spans, because the context holds the prelude's types (ColorScheme, ColorRoles, ColorPalette, ...), each printed whole as tiles. So the cost is there before any user code; the Scenes slide adds its own large types on top. 13:23: CAUSE FOUND AND FIXED (no browser needed): a node probe of Γ on Scenes: one entry, Drawing (a module of livelit definitions), is 91,567 type nodes and printed to 474,304 chars in ~6.4 s (then the page lays it out: the freeze); the other 417 entries ~0.2 s; Polygons' 348 entries ~0.24 s; next-largest entry anywhere is Html.T, 693 nodes. FIX (local commit 2dcde8ee09 on #2635's branch, pushed with #2699's merge): Γ shows an entry over 2,000 type nodes as an outline (a module's member names, else …) with a tooltip; counting stops at the budget. Tests: ContextInspector (Slow, 2 cases) pass. Visual check waits for the pane to be on screen.",
    "log": [
     {
      "at": "2026-10-19T10:22-06:00",
@@ -1245,8 +1245,8 @@
   }
  ],
  "next_ticket": 412,
- "current_ticket": 396,
- "current_note": "13:17: Started: why opening Γ on #2635's Scenes slide freezes the browser. Lead: Γ prints every context entry's type whole as tiles (6,802 tokens on a 4-line program). Reading the inspector's drawing code; no browser runs (the pane is hidden while Matthew is away). ^ticket(405): #2699's Full tests due ~13:38, then the merge.",
+ "current_ticket": 388,
+ "current_note": "13:23: Started: why the explainer's examples are not read-only selectable tiles (Cyrus's ask). ^report(19): they are tiles already, in a locked cell editor (focus, no caret, no selection, no menu). Reading the code. ^ticket(405): #2699's Full tests due ~13:38; 387 and 396 are committed locally to go with the merge.",
  "closed_tickets": [
   {
    "id": 409,
@@ -13349,11 +13349,11 @@
   }
  ],
  "queue": [
+  388,
   396,
   389,
   405,
   387,
-  388,
   395,
   401,
   407,
@@ -13380,7 +13380,7 @@
   322,
   344
  ],
- "current_since": "2026-10-19T13:17-06:00",
+ "current_since": "2026-10-19T13:23-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
