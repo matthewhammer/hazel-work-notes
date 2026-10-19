@@ -759,10 +759,13 @@
    "added": "2026-10-19",
    "opened": "2026-10-19T09:14-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew",
+    "meeting 2026-10-21"
+   ],
    "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
    "url": "",
-   "progress": "09:14: minted. 09:34 Matthew: \"item 7 -- yes. (387 and 388 after 386, in that order)\"",
+   "progress": "09:14: minted. 09:34 Matthew: \"item 7 -- yes. (387 and 388 after 386, in that order)\" 13:23: READ THE CODE (#2635): each example is drawn by CellEditor.View.view with ~inject and ~signal ignored, ~selected=None, ~locked=true, from a model rebuilt every draw (ExplainThis.re:243-259, :463); so there is no state for a caret or a selection to live in. WHAT IT WOULD TAKE: an editor state per example kept in the explainer's model (keyed by example), inject routing Move/Select into it, a read-only guard like the revealed model's (Perform.re in_revealed_model/changes_text: edits refused, selections pass), and the tiles' context menu limited to non-editing items (copy). PARKED until Wednesday: ^report(20)'s agenda asks Cyrus whether one shared read-only, selectable view should serve all 16 look-only surfaces (^report(19)); building this one surface first may be rework.",
    "log": [
     {
      "at": "2026-10-19T09:14-06:00",
@@ -777,7 +780,8 @@
      "asks": false
     }
    ],
-   "text": "<b>Why does the right-hand side that explains each syntax form not show its example syntax as read-only tiles?</b> Matthew: \"related, but separate ticket, and new -- why is the RHS that explains each syntax form not showing example syntax with read-only tiles as well? Cyrus wondered that in Friday's meeting, and it predates my being on the team.\""
+   "text": "<b>Why does the right-hand side that explains each syntax form not show its example syntax as read-only tiles?</b> Matthew: \"related, but separate ticket, and new -- why is the RHS that explains each syntax form not showing example syntax with read-only tiles as well? Cyrus wondered that in Friday's meeting, and it predates my being on the team.\"",
+   "waiting": "Wednesday's meeting: one shared read-only, selectable view for every look-only surface (as ^report(19) suggests), or the explainer's examples alone first?"
   },
   {
    "id": 389,
@@ -790,7 +794,7 @@
    ],
    "source": "Matthew, 2026-10-19 09:15, in chat",
    "url": "",
-   "progress": "09:15: minted, the list as of now; 385 in progress (answer due EOD). 09:56: 385's answer is now ^report(18), a local draft (http://localhost:8131/018/), waiting on Matthew's read; the 09:30 artifact is superseded (it had two errors, listed on 385). 10:15: + ^ticket(393), ^report(19): where the UI shows syntax as tiles and where as text (Matthew's ask). 10:37: + ^ticket(398), the perf PRs' correctness (Cyrus's ask). 11:06: Matthew relayed CYRUS'S MERGE PLAN for dev, broadly: (1) PRs that have been waiting (which ones not clear), (2) Andrew's modular editing PR(s), (3) our livelits and performance PRs, in some order. ^report(18)'s local draft (http://localhost:8131/018/, still unpublished) revised to match, story unchanged: short answer 4, cause 1's last paragraph, What next steps 1 and 4 (the per-member analysis reaches the livelits branch through dev anyway; a port into #2635 now is ^ticket(400)'s separate exploratory draft). + ^ticket(398) (perf PRs' correctness) and ^report(19) published today. 12:18: ^report(19) linked in the list (Matthew). Matthew: an AGENDA, \"another kind of special report\", a WIP compiled over the next couple of days: drafting it as ^report(20), local only until he says. 12:21: AGENDA DRAFTED as ^report(20) (local commit 18df531 in ~/hazel-perf-report, not pushed): 7 items with status chips and 'for the meeting' asks (#2635's CI, model views as tiles, explainer examples, Gamma's long types, perf PRs' correctness, merge plan for dev, requiring test jobs on dev) + 'if there is time'. To add or change an item: edit 020/data/agenda.json, run 020/drivers/gen020.py + report_refs/link_prs/add_theme. Publishing it needs ^report(18) published too (item 1 links it). 12:27: Matthew on the agenda draft: \"Is really nice.\" 12:33: Matthew: the agenda goes PUBLIC from now on (to share with Cyrus; transparency), with a \"Next meeting agenda, WIP\" link near the top of the dashboard's nav bar. PUBLISHED ^report(20): https://matthewhammer.org/hazel/performance-analysis/020/ (homepage 2bae2a1, series c7a785a; card + Hazel page list); its ^report(18) chip stays unlinked until 18 is published. Dashboard: data.json next_meeting {report, with, date} draws the link first in the outline's links. 12:36: LIVE: https://matthewhammer.org/hazel/performance-analysis/020/ (series card, Hazel page list). From now on each change is republished with tools/publish_agenda.py 20 \"what changed\" (8299e18); protocol updated (60652b2b). Nav link 'Next meeting agenda, WIP' is first under the dashboard in the nav bar. 12:41: Matthew: replace the private write-up's link with our public report everywhere. So ^report(18) is PUBLISHED (homepage aff4479, series dd1bca1) with a dated update box (12:45: each cause has a fix; #2635's Fast checks fail only the 8 module tests now, #2699's pass), and the link is gone from the dashboard (this ticket, ^ticket(385)'s outcome). The agenda's ^report(18) chip now links. Left alone: the dashboard's history snapshots, which are verbatim copies. 12:58: parked (the agenda is public and current; next: item 1 after #2699 merges, then Matthew's additions).",
+   "progress": "09:15: minted, the list as of now; 385 in progress (answer due EOD). 09:56: 385's answer is now ^report(18), a local draft (http://localhost:8131/018/), waiting on Matthew's read; the 09:30 artifact is superseded (it had two errors, listed on 385). 10:15: + ^ticket(393), ^report(19): where the UI shows syntax as tiles and where as text (Matthew's ask). 10:37: + ^ticket(398), the perf PRs' correctness (Cyrus's ask). 11:06: Matthew relayed CYRUS'S MERGE PLAN for dev, broadly: (1) PRs that have been waiting (which ones not clear), (2) Andrew's modular editing PR(s), (3) our livelits and performance PRs, in some order. ^report(18)'s local draft (http://localhost:8131/018/, still unpublished) revised to match, story unchanged: short answer 4, cause 1's last paragraph, What next steps 1 and 4 (the per-member analysis reaches the livelits branch through dev anyway; a port into #2635 now is ^ticket(400)'s separate exploratory draft). + ^ticket(398) (perf PRs' correctness) and ^report(19) published today. 12:18: ^report(19) linked in the list (Matthew). Matthew: an AGENDA, \"another kind of special report\", a WIP compiled over the next couple of days: drafting it as ^report(20), local only until he says. 12:21: AGENDA DRAFTED as ^report(20) (local commit 18df531 in ~/hazel-perf-report, not pushed): 7 items with status chips and 'for the meeting' asks (#2635's CI, model views as tiles, explainer examples, Gamma's long types, perf PRs' correctness, merge plan for dev, requiring test jobs on dev) + 'if there is time'. To add or change an item: edit 020/data/agenda.json, run 020/drivers/gen020.py + report_refs/link_prs/add_theme. Publishing it needs ^report(18) published too (item 1 links it). 12:27: Matthew on the agenda draft: \"Is really nice.\" 12:33: Matthew: the agenda goes PUBLIC from now on (to share with Cyrus; transparency), with a \"Next meeting agenda, WIP\" link near the top of the dashboard's nav bar. PUBLISHED ^report(20): https://matthewhammer.org/hazel/performance-analysis/020/ (homepage 2bae2a1, series c7a785a; card + Hazel page list); its ^report(18) chip stays unlinked until 18 is published. Dashboard: data.json next_meeting {report, with, date} draws the link first in the outline's links. 12:36: LIVE: https://matthewhammer.org/hazel/performance-analysis/020/ (series card, Hazel page list). From now on each change is republished with tools/publish_agenda.py 20 \"what changed\" (8299e18); protocol updated (60652b2b). Nav link 'Next meeting agenda, WIP' is first under the dashboard in the nav bar. 12:41: Matthew: replace the private write-up's link with our public report everywhere. So ^report(18) is PUBLISHED (homepage aff4479, series dd1bca1) with a dated update box (12:45: each cause has a fix; #2635's Fast checks fail only the 8 module tests now, #2699's pass), and the link is gone from the dashboard (this ticket, ^ticket(385)'s outcome). The agenda's ^report(18) chip now links. Left alone: the dashboard's history snapshots, which are verbatim copies. 12:58: parked (the agenda is public and current; next: item 1 after #2699 merges, then Matthew's additions). 13:23: + ^ticket(388) parked for the meeting's answer on one shared read-only selectable view.",
    "log": [
     {
      "at": "2026-10-19T09:15-06:00",
@@ -893,11 +897,13 @@
    "added": "2026-10-19T10:19-06:00",
    "opened": "2026-10-19T10:19-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "source": "Matthew, 2026-10-19 10:18, in chat (\"mint and enqueue\")",
    "url": "",
    "text": "<b>Explore: every type offers \"right-click, expand its definition, show it in a box above it\".</b> Matthew: \"Mint and enqueue a related ticket to explore an idea --- every type offers a 'right-click and expand the def and show it in a box above it,' feature, based on this expansion feature we are doing now.\" Builds on ^ticket(394) (aliases expand), ^ticket(386) (Gamma's unfold, #2698) and #2676 (the full view); the context menu is ContextMenu.re. An exploration: where types appear (code, inspector, Gamma, explainer), what the box shows, how it closes.",
-   "progress": "10:19: minted and enqueued after today's tickets.",
+   "progress": "10:19: minted and enqueued after today's tickets. 13:24: EXPLORATION (read on #2635, nothing built): <b>Where types show:</b> in code (annotations, aliases), the cursor inspector's bar and full view (#2676: long types whole, aliases expand, ^ticket(394)), &Gamma; (#2698: per-entry unfold; ^ticket(396): oversized entries now outlined), the explainer, hovers, completions, livelit heads (^report(19) lists all 39 surfaces). <b>How the menu works:</b> ContextMenu.get_sections reads the caret's indicated Info (Indicated.ci_of); sections are splice host, navigation (Goto definition: Move(Goal(BindingSiteOfIndicatedVar)), only for variables), clipboard, refactoring, probes/statics refractors (Add type probe: Probe(ToggleStatics)), projectors. <b>Proposal:</b> (1) in code, a new item for an InfoTyp that is an alias (Var with a Singleton kind in its ctx): 'Show definition', drawn as a refractor box above the type (the type probe's machinery: a refractor anchored at the tile, read-only tiles, removed by the same item or Esc), so it lives where probes live and survives edits by id; 'Goto definition' for aliases too (the TVarEntry's id). (2) in the read-only surfaces (inspector, &Gamma;), the same item on a right-click over an alias token, opening the definition in a box above that token inside the surface (the inspector already expands aliases on a toggle, #2676). (3) nested: the box's own aliases can be expanded the same way, so a long chain unfolds one level per click instead of all at once (which is what made Drawing 474k chars). <b>Open questions for Matthew:</b> box above vs inline expansion in place; whether it belongs on #2597/#2635 (refractors) or on dev (inspector, &Gamma;); one level per click or all. Next step if wanted: a prototype of (1) on #2635.",
    "log": [
     {
      "at": "2026-10-19T10:18-06:00",
@@ -905,7 +911,8 @@
      "chars": 477,
      "asks": false
     }
-   ]
+   ],
+   "waiting": "Matthew: the exploration is on the ticket; pick: a box above vs expansion in place, #2635 (refractors) vs dev (inspector, Γ), one level per click vs all; then a prototype."
   },
   {
    "id": 396,
@@ -1245,8 +1252,8 @@
   }
  ],
  "next_ticket": 412,
- "current_ticket": 388,
- "current_note": "13:23: Started: why the explainer's examples are not read-only selectable tiles (Cyrus's ask). ^report(19): they are tiles already, in a locked cell editor (focus, no caret, no selection, no menu). Reading the code. ^ticket(405): #2699's Full tests due ~13:38; 387 and 396 are committed locally to go with the merge.",
+ "current_ticket": 401,
+ "current_note": "13:24: Started: full screen for any livelit view that draws a picture (SVG), on #2635: a control on the view, the Fullscreen API on the view's element, scaled to fit, Esc to leave. ^ticket(405): #2699 merged locally into #2635; tests running before the push.",
  "closed_tickets": [
   {
    "id": 409,
@@ -13349,13 +13356,11 @@
   }
  ],
  "queue": [
-  388,
+  401,
   396,
   389,
   405,
   387,
-  395,
-  401,
   407,
   408,
   410,
@@ -13366,6 +13371,8 @@
   404,
   406,
   391,
+  388,
+  395,
   398,
   18,
   102,
@@ -13380,7 +13387,7 @@
   322,
   344
  ],
- "current_since": "2026-10-19T13:23-06:00",
+ "current_since": "2026-10-19T13:24-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
