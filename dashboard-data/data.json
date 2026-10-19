@@ -296,7 +296,16 @@
    "chips": [
     "hazel"
    ],
-   "progress": null
+   "progress": " 09:34 Matthew: \"tickets 16 and 17 -- yes.\"",
+   "log": [
+    {
+     "at": "2026-10-19T09:34-06:00",
+     "from": "matthew",
+     "chars": 25,
+     "asks": false
+    }
+   ],
+   "tags": []
   },
   {
    "id": 17,
@@ -308,7 +317,16 @@
    "chips": [
     "hazel"
    ],
-   "progress": null
+   "progress": " 09:34 Matthew: \"tickets 16 and 17 -- yes.\"",
+   "log": [
+    {
+     "at": "2026-10-19T09:34-06:00",
+     "from": "matthew",
+     "chars": 25,
+     "asks": false
+    }
+   ],
+   "tags": []
   },
   {
    "id": 18,
@@ -339,33 +357,6 @@
    "chips": [
     "hazel"
    ]
-  },
-  {
-   "id": 54,
-   "area": "performance, #2469",
-   "added": "2026-10-14",
-   "text": "<b>Offer ^ticket(7)'s three ports to #2469, from the local branch, with ^report(13)'s numbers.</b> ^report(13)'s What next, step 1: \"Offer the three ports to #2469, from the local branch, with this report's numbers.\" The branch: <code>port-2469-t7</code> in ~/hazel-port-2469, three commits on #2469's head <code>c1e4aeee4a</code>, which is still its head (2026-10-14), so they apply as they are: <code>128f3f303d</code> (the worker's statics projection updated, not rebuilt), <code>cdb799a376</code> (EvalInfo updated at the keys DefStatics changed), <code>474b1e050e</code> (DefStatics keeps an item's patched root when nothing it is made from changed). Its quick tests passed whole. To do: push the branch under a name of Matthew's, and post on #2469 the branch, the three commits and ^report(13)'s numbers for them; #2469 is Andrew's PR, so a progress note, no @-mention, no action asked; Matthew approves the post before it goes.",
-   "source": "Matthew, 2026-10-14 (^report(13), What next, step 1)",
-   "url": "http://matthewhammer.org/hazel/performance-analysis/013/#step-1",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "log": [
-    {
-     "at": "2026-10-16T20:59-06:00",
-     "from": "claude",
-     "chars": 168,
-     "asks": true
-    },
-    {
-     "at": "2026-10-16T21:02-06:00",
-     "from": "matthew",
-     "chars": 94,
-     "asks": false
-    }
-   ],
-   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: push port-2469-t7 under his name; draft the post on #2469 for his approval in the morning (no post tonight). 🌙 long run; no headless browser on the laptop. | 21:12: #2469 moved to 19fef7c9bb (52 commits since c1e4aeee4a); only test/haz3ltest.re overlaps the ports' files. The three ports replayed cleanly on it as port-2469-t7-on-19fef7c (b68bb584f2, 8f18165f37, 4e11145dda; dotted email), local in ~/hazel-port-2469. Quick suite + fmt building, pinned (taskset -c 0-3 nice -n 10, -j 4). | 21:17: quick suite + fmt on #2469's head 19fef7c9bb with the three ports: 4,800 tests pass, 359 s (pinned build). PUSHED as perf/2469-ports-what-changed (4e11145dda; GitHub's CI runs it). The post on #2469 is DRAFTED, not posted: ~/hazel/experiments/night-2026-10-16/post-2469-draft.md (the gh command to post it is in its first lines). Waiting on Matthew's approval of the post.",
-   "waiting": "Matthew's approval of the drafted post on #2469 (~/hazel/experiments/night-2026-10-16/post-2469-draft.md)."
   },
   {
    "id": 102,
@@ -493,10 +484,8 @@
    "source": "^report(6)",
    "url": "http://localhost:8131/series/006/#update",
    "added": "2026-10-12",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "progress": "2026-10-15 23:34: LOOKED INTO, nothing built. Neither half applies to dev as it stands: (1) the call memo is only on the livelits branches (CallMemo is not in dev's language library), so counting its keys' work belongs on #2635/#2597; (2) js_of_ocaml reports zero for every GC counter (its runtime's caml_gc_quick_stat, caml_gc_counters and caml_gc_minor_words return constant zeros), so memory allocated cannot be counted under it, and node's heap figures move with GC timing, which a budget cannot use. What would work: a deterministic count of the nodes the evaluator builds (the copies #2679 removed were one step each, invisible to steps), by counting constructions in the transition code; or, on #2635, the call memo's key normalization in nodes. Matthew's call which, if either. | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: count the nodes the evaluator builds (deterministic), on dev, as a local branch for his review. 🌙 long run; no headless browser on the laptop. | 21:47: BUILT, local only (Matthew's default: the node count, on dev): branch ci/node-budgets in ~/hazel-dev-perfgate = #2678 + #2679 merged + 7f1343268d. IdTagged.built counts every term made fresh, copied or rewrapped; Test_PerfBudgets holds nodes beside steps: cold run 17,464 (budget 19,200), re-run 90 (100), and a new case, typed rows (100 labeled tuples through a typed parameter, 10 passes): 21,155 nodes (23,300). Checked: with dev's Ascriptions (no #2679) the same program takes the SAME 195,319 steps but 27,777 nodes, and fails. PerfBudgets 4/4 pass, 8.6 s; fmt clean. Not pushed. Waiting on Matthew: a draft PR stacked on #2678 + #2679, as #2689-#2691?",
+   "tags": [],
+   "progress": "2026-10-15 23:34: LOOKED INTO, nothing built. Neither half applies to dev as it stands: (1) the call memo is only on the livelits branches (CallMemo is not in dev's language library), so counting its keys' work belongs on #2635/#2597; (2) js_of_ocaml reports zero for every GC counter (its runtime's caml_gc_quick_stat, caml_gc_counters and caml_gc_minor_words return constant zeros), so memory allocated cannot be counted under it, and node's heap figures move with GC timing, which a budget cannot use. What would work: a deterministic count of the nodes the evaluator builds (the copies #2679 removed were one step each, invisible to steps), by counting constructions in the transition code; or, on #2635, the call memo's key normalization in nodes. Matthew's call which, if either. | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: count the nodes the evaluator builds (deterministic), on dev, as a local branch for his review. 🌙 long run; no headless browser on the laptop. | 21:47: BUILT, local only (Matthew's default: the node count, on dev): branch ci/node-budgets in ~/hazel-dev-perfgate = #2678 + #2679 merged + 7f1343268d. IdTagged.built counts every term made fresh, copied or rewrapped; Test_PerfBudgets holds nodes beside steps: cold run 17,464 (budget 19,200), re-run 90 (100), and a new case, typed rows (100 labeled tuples through a typed parameter, 10 passes): 21,155 nodes (23,300). Checked: with dev's Ascriptions (no #2679) the same program takes the SAME 195,319 steps but 27,777 nodes, and fails. PerfBudgets 4/4 pass, 8.6 s; fmt clean. Not pushed. Waiting on Matthew: a draft PR stacked on #2678 + #2679, as #2689-#2691? 09:34 Matthew: \"ticket 19 -- yes, draft PR.\"",
    "work": {
     "work_minutes": 4
    },
@@ -511,6 +500,12 @@
      "at": "2026-10-16T21:02-06:00",
      "from": "matthew",
      "chars": 94,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T09:34-06:00",
+     "from": "matthew",
+     "chars": 27,
      "asks": false
     }
    ],
@@ -766,13 +761,19 @@
    "tags": [],
    "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
    "url": "",
-   "progress": "09:14: minted. 09:31 IDEAS (read on integration/livelits-modular-editors): the result-type expansion is Matthew's own b6896f5b13 (10-12): CursorInspector's inspector_expanded prints with inline: false and lays the segment out with PrettySegment.prettify ~width (panel_columns, from the window and font_metrics.col_width); 5f04a9e265 adds an alias's definition beside its name. Gamma is ContextInspector.re (104 lines): every entry printed inline: true on one line, its click a jump to the definition. (1) Reuse the path as is: a shared helper (CodeViewable or a small TypLayout module: prettify to a width, falling back to one line) used by both inspectors. (2) Per entry, not all at once (Gamma can be the whole prelude): an entry whose one-line type is wider than the panel shows its first line and a ▸; the ▸ (not the row, whose click jumps) unfolds it to the laid-out form under the name, a hanging indent so names stay in a column. (3) The cursor inspector's ⤢ toggle as 'unfold all' in Gamma too, or Gamma's own, kept in settings. (4) The entry for the variable under the cursor unfolded and marked automatically. (5) Width from Gamma's panel, not the window: its own box's width over col_width. (6) Cost: lay out only unfolded entries, memoized by (type, width), so a big context costs nothing until opened. (7) Aliases and modules: an alias by name with its definition on unfold (as 5f04a9e265), a module's members one per line, each foldable. Recommendation: (1) + (2) + (5) + (6) first; (3), (4), (7) after.",
+   "progress": "09:14: minted. 09:31 IDEAS (read on integration/livelits-modular-editors): the result-type expansion is Matthew's own b6896f5b13 (10-12): CursorInspector's inspector_expanded prints with inline: false and lays the segment out with PrettySegment.prettify ~width (panel_columns, from the window and font_metrics.col_width); 5f04a9e265 adds an alias's definition beside its name. Gamma is ContextInspector.re (104 lines): every entry printed inline: true on one line, its click a jump to the definition. (1) Reuse the path as is: a shared helper (CodeViewable or a small TypLayout module: prettify to a width, falling back to one line) used by both inspectors. (2) Per entry, not all at once (Gamma can be the whole prelude): an entry whose one-line type is wider than the panel shows its first line and a ▸; the ▸ (not the row, whose click jumps) unfolds it to the laid-out form under the name, a hanging indent so names stay in a column. (3) The cursor inspector's ⤢ toggle as 'unfold all' in Gamma too, or Gamma's own, kept in settings. (4) The entry for the variable under the cursor unfolded and marked automatically. (5) Width from Gamma's panel, not the window: its own box's width over col_width. (6) Cost: lay out only unfolded entries, memoized by (type, width), so a big context costs nothing until opened. (7) Aliases and modules: an alias by name with its definition on unfold (as 5f04a9e265), a module's members one per line, each foldable. Recommendation: (1) + (2) + (5) + (6) first; (3), (4), (7) after. 09:34 Matthew: \"ticket 386 -- follow your recommendation.\"",
    "log": [
     {
      "at": "2026-10-19T09:14-06:00",
      "from": "matthew",
      "chars": 900,
      "asks": true
+    },
+    {
+     "at": "2026-10-19T09:34-06:00",
+     "from": "matthew",
+     "chars": 41,
+     "asks": false
     }
    ],
    "text": "<b>The type syntax expansion feature, for types in Gamma too.</b> Matthew: \"the type syntax expansion feature --- we want to have it work for types in Gamma too, since they can be too long on one line, just like the result type -- any ideas?\" (Cyrus, Friday). Ideas wanted first."
@@ -786,13 +787,19 @@
    "tags": [],
    "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
    "url": "",
-   "progress": "09:14: minted.",
+   "progress": "09:14: minted. 09:34 Matthew: \"item 7 -- yes. (387 and 388 after 386, in that order)\"",
    "log": [
     {
      "at": "2026-10-19T09:14-06:00",
      "from": "matthew",
      "chars": 900,
      "asks": true
+    },
+    {
+     "at": "2026-10-19T09:34-06:00",
+     "from": "matthew",
+     "chars": 53,
+     "asks": false
     }
    ],
    "text": "<b>Livelits' model sub-editors as read-only tiles, with tiles' selection UX.</b> Matthew: \"sub-editors for livelits that show the model are read-only, but they don't use tiles and we want them to. In particular, we want to be able to use the selection UX of tiles on those parts of the syntax, including right click, etc.\" (Cyrus, Friday)."
@@ -806,13 +813,19 @@
    "tags": [],
    "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
    "url": "",
-   "progress": "09:14: minted.",
+   "progress": "09:14: minted. 09:34 Matthew: \"item 7 -- yes. (387 and 388 after 386, in that order)\"",
    "log": [
     {
      "at": "2026-10-19T09:14-06:00",
      "from": "matthew",
      "chars": 900,
      "asks": true
+    },
+    {
+     "at": "2026-10-19T09:34-06:00",
+     "from": "matthew",
+     "chars": 53,
+     "asks": false
     }
    ],
    "text": "<b>Why does the right-hand side that explains each syntax form not show its example syntax as read-only tiles?</b> Matthew: \"related, but separate ticket, and new -- why is the RHS that explains each syntax form not showing example syntax with read-only tiles as well? Cyrus wondered that in Friday's meeting, and it predates my being on the team.\""
@@ -863,9 +876,53 @@
   }
  ],
  "next_ticket": 392,
- "current_ticket": 386,
- "current_note": "09:32: ideas for Gamma's type expansion written in the ticket (reuse the cursor inspector's layout, per-entry unfold, Gamma's own width, lazy and memoized); waiting on Matthew's pick; 383's diagnostic still running",
+ "current_ticket": 19,
+ "current_note": "09:35: the perf budgets as a draft PR stacked on #2678 + #2679 (Matthew: yes)",
  "closed_tickets": [
+  {
+   "id": 54,
+   "area": "performance, #2469",
+   "added": "2026-10-14",
+   "text": "<b>Offer ^ticket(7)'s three ports to #2469, from the local branch, with ^report(13)'s numbers.</b> ^report(13)'s What next, step 1: \"Offer the three ports to #2469, from the local branch, with this report's numbers.\" The branch: <code>port-2469-t7</code> in ~/hazel-port-2469, three commits on #2469's head <code>c1e4aeee4a</code>, which is still its head (2026-10-14), so they apply as they are: <code>128f3f303d</code> (the worker's statics projection updated, not rebuilt), <code>cdb799a376</code> (EvalInfo updated at the keys DefStatics changed), <code>474b1e050e</code> (DefStatics keeps an item's patched root when nothing it is made from changed). Its quick tests passed whole. To do: push the branch under a name of Matthew's, and post on #2469 the branch, the three commits and ^report(13)'s numbers for them; #2469 is Andrew's PR, so a progress note, no @-mention, no action asked; Matthew approves the post before it goes.",
+   "source": "Matthew, 2026-10-14 (^report(13), What next, step 1)",
+   "url": "http://matthewhammer.org/hazel/performance-analysis/013/#step-1",
+   "tags": [],
+   "log": [
+    {
+     "at": "2026-10-16T20:59-06:00",
+     "from": "claude",
+     "chars": 168,
+     "asks": true
+    },
+    {
+     "at": "2026-10-16T21:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T09:34-06:00",
+     "from": "matthew",
+     "chars": 37,
+     "asks": false
+    }
+   ],
+   "progress": "21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: push port-2469-t7 under his name; draft the post on #2469 for his approval in the morning (no post tonight). 🌙 long run; no headless browser on the laptop. | 21:12: #2469 moved to 19fef7c9bb (52 commits since c1e4aeee4a); only test/haz3ltest.re overlaps the ports' files. The three ports replayed cleanly on it as port-2469-t7-on-19fef7c (b68bb584f2, 8f18165f37, 4e11145dda; dotted email), local in ~/hazel-port-2469. Quick suite + fmt building, pinned (taskset -c 0-3 nice -n 10, -j 4). | 21:17: quick suite + fmt on #2469's head 19fef7c9bb with the three ports: 4,800 tests pass, 359 s (pinned build). PUSHED as perf/2469-ports-what-changed (4e11145dda; GitHub's CI runs it). The post on #2469 is DRAFTED, not posted: ~/hazel/experiments/night-2026-10-16/post-2469-draft.md (the gh command to post it is in its first lines). Waiting on Matthew's approval of the post. 09:34 Matthew: \"ticket 54 -- yes please, offer those.\"",
+   "waiting": "Matthew's approval of the drafted post on #2469 (~/hazel/experiments/night-2026-10-16/post-2469-draft.md).",
+   "status": "done",
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T09:35-06:00",
+   "outcome": "POSTED on Matthew's word (09:34 \"ticket 54 -- yes please, offer those\"): the progress note on #2469, no @-mention, 'no action needed', offering perf/2469-ports-what-changed (b68bb584f2, 8f18165f37, 4e11145dda on 19fef7c9bb; CI green) with ^report(13)'s numbers: https://github.com/hazelgrove/hazel/pull/2469#issuecomment-6271042113 (posted from experiments/night-2026-10-16/post-2469-body.md, checked as posted).",
+   "metrics": {
+    "open_minutes": null,
+    "matthew_messages": 2,
+    "questions_to_matthew": 1,
+    "chars_exchanged": 299,
+    "tokens_est": 74,
+    "sync_minutes_est": 3.0,
+    "work_minutes": 3.0
+   }
+  },
   {
    "id": 385,
    "area": "hazel, CI, integration/livelits-modular-editors (#2635)",
@@ -884,12 +941,18 @@
      "from": "matthew",
      "chars": 900,
      "asks": true
+    },
+    {
+     "at": "2026-10-19T09:34-06:00",
+     "from": "matthew",
+     "chars": 122,
+     "asks": false
     }
    ],
    "text": "<b>Why is CI failing on the livelits x modular editing branch?</b> Matthew: \"why is CI failing on my livelits x modular editing branch -- he asked and I didn't have a complete answer -- I felt like it was due to merging with modular editors, but I'm not really sure still. I need an answer by EOD.\" Cyrus asked on Friday. The branch: integration/livelits-modular-editors (draft hazelgrove/hazel#2635, into ...full), ~/hazel-livelits-modular. Wanted: each failing test, and for each whether it comes from the modular-editors merge, from the livelits work, or from both meeting; by end of day.",
    "closed": "2026-10-19",
    "closed_at": "2026-10-19T09:31-06:00",
-   "outcome": "ANSWERED 09:31, written up for Cyrus: https://claude.ai/artifact/RCpsLbKgrdfY9fvtHE3Dha (private until Matthew shares it). It is the merge, and neither branch is broken: #2597 green at f8ae6f2b9c, #2469 green at c349058154 (which contains the merged 19fef7c9bb, identical DefStaticsParity tests); each failing test belongs to one side (DefStaticsParity: modular-editors; TableDecorations: ...full); Modules II is on ...full only. DefStaticsParity 1, 4, 33, 38-42: module literals analyzed whole on Modules II, so per-member re-analysis counts come out 1-2 where 2-6 are expected; DefStaticsParity 2: macro-result.hz per-item vs monolithic elaboration at a livelit application (cause not found); TableDecorations 1: needs a new input under canonical completion. Ways to green: skip per-member cases under Modules II + new table input (quick), or rebuild DefStatics' per-member path on Modules II (Andrew/Alexander). Also: #2635 conflicts with its base now. Same finding as ^ticket(156) on 10-17, with today's evidence that both parents pass alone. On ^ticket(389)'s agenda.",
+   "outcome": "ANSWERED 09:31, written up for Cyrus: https://claude.ai/artifact/RCpsLbKgrdfY9fvtHE3Dha (private until Matthew shares it). It is the merge, and neither branch is broken: #2597 green at f8ae6f2b9c, #2469 green at c349058154 (which contains the merged 19fef7c9bb, identical DefStaticsParity tests); each failing test belongs to one side (DefStaticsParity: modular-editors; TableDecorations: ...full); Modules II is on ...full only. DefStaticsParity 1, 4, 33, 38-42: module literals analyzed whole on Modules II, so per-member re-analysis counts come out 1-2 where 2-6 are expected; DefStaticsParity 2: macro-result.hz per-item vs monolithic elaboration at a livelit application (cause not found); TableDecorations 1: needs a new input under canonical completion. Ways to green: skip per-member cases under Modules II + new table input (quick), or rebuild DefStatics' per-member path on Modules II (Andrew/Alexander). Also: #2635 conflicts with its base now. Same finding as ^ticket(156) on 10-17, with today's evidence that both parents pass alone. On ^ticket(389)'s agenda. 09:34 Matthew: \"ticket 385 -- draft a report -- I prefer HTML based reports in our hazel report system over these artifacts going forward.\"",
    "metrics": {
     "open_minutes": 17,
     "matthew_messages": 1,
@@ -12609,6 +12672,7 @@
   }
  ],
  "queue": [
+  19,
   386,
   389,
   387,
@@ -12620,8 +12684,6 @@
   160,
   18,
   102,
-  54,
-  19,
   166,
   259,
   315,
@@ -12629,5 +12691,5 @@
   344,
   391
  ],
- "current_since": "2026-10-19T09:31-06:00"
+ "current_since": "2026-10-19T09:35-06:00"
 }
