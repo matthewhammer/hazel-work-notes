@@ -869,12 +869,18 @@
    "source": "Matthew, 2026-10-19 10:18, in chat",
    "url": "",
    "text": "<b>The type expansion: its button is in the wrong place, and an alias (Picture) does not expand into its definition.</b> Matthew: \"type expansion button is in the wrong place, and Picture does not expand into its definition --- I thought we addressed that issue (type aliases should expand and show their def, util their def uses that same type recursively (then don't expand further))\". So: in the expanded views (the cursor inspector's full view, #2676 on dev and b6896f5b13 on #2635; Gamma's unfolded entries, #2698), a type naming an alias shows the alias's definition, and the aliases inside that, stopping where a definition refers back to a type already being expanded. Today, 5f04a9e265 / d7c03d8d88 show a definition only with the caret on the alias's binder. And the button moves to where Matthew wants it (asked).",
-   "progress": "10:19: minted; asking Matthew which button and where.",
+   "progress": "10:19: minted; asking Matthew which button and where. 10:20 Matthew (asked which button): \"Bar's ⤢, beside the type\": the cursor inspector's ⤢ moves from the bar's far right to next to the type it expands.",
    "log": [
     {
      "at": "2026-10-19T10:18-06:00",
      "from": "matthew",
      "chars": 477,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T10:20-06:00",
+     "from": "matthew",
+     "chars": 24,
      "asks": false
     }
    ]
@@ -901,8 +907,8 @@
   }
  ],
  "next_ticket": 396,
- "current_ticket": 393,
- "current_note": "10:15: Matthew: a ^report on how much of the UI's Hazel syntax is tiles. Surveying every rendering path (it decides 387's and 388's scope).",
+ "current_ticket": 394,
+ "current_note": "10:19: Fixing today: the bar's ⤢ beside the type, and aliases (Picture) expanding to their definitions in the full view. ^report(19)'s survey runs alongside.",
  "closed_tickets": [
   {
    "id": 386,
@@ -12844,8 +12850,8 @@
   }
  ],
  "queue": [
-  393,
   394,
+  393,
   387,
   389,
   388,
@@ -12863,5 +12869,5 @@
   344,
   391
  ],
- "current_since": "2026-10-19T10:15-06:00"
+ "current_since": "2026-10-19T10:19-06:00"
 }
