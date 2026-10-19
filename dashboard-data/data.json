@@ -1864,9 +1864,49 @@
     }
    ],
    "progress": ""
+  },
+  {
+   "added": "2026-10-18",
+   "opened": "2026-10-18T19:18-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, chat, 2026-10-18 19:15",
+   "url": "https://matthewhammer.org/hazel/dress-up/",
+   "id": 353,
+   "area": "matthewhammer.org, the Dress Up page",
+   "progress": "Minted 19:15; queued (low priority).",
+   "log": [
+    {
+     "at": "2026-10-18T19:18-06:00",
+     "from": "matthew",
+     "chars": 119,
+     "asks": false
+    }
+   ],
+   "text": "<b>The Dress Up page (matthewhammer.org/hazel/dress-up/): its big chips (Play the game, Hear its music, See its pictures, Read its reports) in a 2 x 2 grid while there are four or fewer of them (minor, low priority).</b> Matthew, with a screenshot at 140%: \"let's make the messed up dress up big chips be 2 x 2, until we have for than four of them.\" Today <code>.doors</code> is <code>repeat(auto-fit, minmax(11rem, 1fr))</code> (hazel/dress-up/index.html in matthewhammer.github.io), so a wide window puts three in the first row and the fourth alone below it. PLAN: two columns while there are at most four chips (one column at phone width), auto-fit again past four; check at 100% and 140% and at phone width."
+  },
+  {
+   "added": "2026-10-18",
+   "opened": "2026-10-18T19:18-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, chat, 2026-10-18 19:15",
+   "url": "https://matthewhammer.org/hazel/dress-up/",
+   "id": 354,
+   "area": "matthewhammer.org, the Dress Up page",
+   "progress": "Minted 19:15; queued (low priority).",
+   "log": [
+    {
+     "at": "2026-10-18T19:18-06:00",
+     "from": "matthew",
+     "chars": 146,
+     "asks": false
+    }
+   ],
+   "text": "<b>The Dress Up page: its big picture (the friend on the castle's drawbridge) drawn from an SVG in the picture archive instead of a screenshot, with a selector for which picture to show; the castle stays the default.</b> Matthew: \"let's replace the screenshot with an SVG, and a selector for which one to show -- the current default is fine, if we have some SVG in our archive.\" Today the hero is <code>#hero</code>, a 480 x 356 webp thumb from the old archive (dress-up-pictures-2026-10-18/.../backgrounds-with-friend/castle.webp). PLAN: find the castle-with-friend SVG in the current archive (pictures/, one folder, a git tag per run, since 2026-10-18); show it as the hero at full width, sharp at any zoom; a small selector (the places with the friend in them, from the same run) swaps it, the choice remembered per viewer; keep the alt text right for each; mind the page weight (load the chosen SVG only)."
   }
  ],
- "next_ticket": 353,
+ "next_ticket": 355,
  "current_ticket": 286,
  "current_note": "19:07: crawling toward and away from us: the friend on the floor, foreshortened along it, as a baby crawling away seen from behind and a little above",
  "closed_tickets": [
@@ -10591,8 +10631,10 @@
   341,
   342,
   343,
-  340,
   351,
+  353,
+  354,
+  340,
   222,
   225,
   289,
