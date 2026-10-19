@@ -13,7 +13,7 @@ Matthew Hammer's working record for his [Hazel](https://hazel.org) work, kept wi
   - `publish.py`, `log_notes.py` and `site_publish.py` publish it;
   - `notes_page.py`, `prlinks.py` and `refcards.py` give a notes page the same links and hover cards.
 - `dashboard-data/data.json`: the data the dashboard is made from, as last published.
-- `dashboard-snapshots/YYYY/MM/DD/`: every change to the dashboard, a folder per day.
+- `dashboard-snapshots/index.html` and `closed.html`: the dashboard and its closed tickets' page, one file each; every change is a commit of them (since 2026-10-19, ^ticket(417)), listed in `versions.html`. The dated files from before, a folder per day, are in git's history (the tree of `df072c9d`).
 - `work-notes/YYYY/MM/DD/`: dated work notes, as HTML.
 - `agent-instructions.md`: how we work with the dashboard.
 - `VERSIONS.md`: the dashboard's features, version by version.

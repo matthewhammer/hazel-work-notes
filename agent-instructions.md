@@ -95,7 +95,7 @@ The dashboard's code has a version number, `VERSION` in `dashboard/update.py`, w
 
 ## The history
 
-`log_notes.py` writes the page to `dashboard-snapshots/<YYYY>/<MM>/<DD>/<YYYY-MM-DD>T<HHMM><+-hhmm>.html`: a folder for each year, month and day, and a file name that carries the whole date and time zone, so a file still says when it was taken if the folders are ever reorganized (as they were on 2026-10-12, from one folder per day at the top). It writes nothing when the page changed only in its "Updated" line, then commits and pushes, retrying the push on every run. The files are exactly the page as served, in HTML.
+`log_notes.py` writes the page and the closed page to one path each, `dashboard-snapshots/index.html` and `closed.html`, exactly as served, and commits them when they changed in more than the "Updated" line: every version is a commit, its time the commit's, and `dashboard-snapshots/versions.html` lists them from `git log` (one pass, newest first, links to each on GitHub); then it commits data.json, publishes the public copy and pushes, retrying the push on every run. Since 2026-10-19 (^ticket(417), Matthew: "no prior snapshots are kept as separate files, but only as part of the git history ... this protocol is not going to scale"): until then each version was a dated file, `dashboard-snapshots/<YYYY>/<MM>/<DD>/<YYYY-MM-DD>T<HHMM><+-hhmm>.html`, 1,830 of them and 341 MB on the laptop, ~95 MB a day (^ticket(391)); they left the tree and stay in history, all in the tree of `df072c9d` (`dashboard-snapshots/.dated-until`). To see a version: `git show <commit>:dashboard-snapshots/index.html > then.html`. Keep `.git` packed with a `git gc` now and then, holding the publish lock.
 
 ## Related practice
 
