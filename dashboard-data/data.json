@@ -6,7 +6,7 @@
    "branch": "integration/livelits-modular-editors",
    "links": [
     [
-     "localhost:8341 (#2635 at 27f100e37c + the uncommitted ^name fix, built 11:45)",
+     "localhost:8341 (#2635 at 1131a457e4)",
      "http://localhost:8341/"
     ],
     [
@@ -1083,7 +1083,7 @@
    "source": "Matthew, 2026-10-19 11:31, in chat",
    "url": "https://github.com/hazelgrove/hazel/pull/2635",
    "text": "<b>Fix #2635's CI errors: highest priority.</b> Matthew: \"highest priority after we settle is, fixing the CI errors on our livelits x modular editors PR.\" What fails, as ^report(18) found (^ticket(385)): 8 DefStaticsParity module cases (modules analyzed whole since the merge), <code>Editing.TableDecorations 1</code> (dev's canonical completion closes the stray bracket the test relies on), and the corpus test's one mismatch (<code>macro-result.hz</code>, cause unknown); and GitHub shows #2635 conflicting with its base. ^ticket(400)'s draft #2699 clears the 8 locally (DefStaticsParity 42/43). Today's push (b44bb9c50f, ^ticket(394)) failed Fast checks too: read it first.",
-   "progress": "11:31: minted as first priority, after ^ticket(400) (closed: draft #2699). 11:38: (Matthew AFK, async) 1) MERGE CONFLICTS FIXED: merged #2597's branch into #2635 (cf325d4f61), every conflict to #2635's side: all 110 of #2597's commits since 3efe8c7e52 are already here (79 same patch, 26 same title, 5 checked by content); the merge adds only Test_CopyDescendants (passes). GitHub: MERGEABLE. 2) TableDecorations 1 FIXED (27f100e37c): the hidden error now comes from a wrong row label; 3/3 pass locally. Both pushed to #2635. NEXT: the corpus mismatch (macro-result.hz); the 8 module cases are #2699's (CI running on GitHub) - merging it into #2635 is Matthew's call, as it was meant exploratory. 11:53: CRASH at 11:46 (crash 41), mid-test; nothing lost. CORPUS CAUSE FOUND before it (macro-result.hz): after the corpus test's edit (1 -> 2) and back, the ^^livelit(^inc(...)) use kept the edited expansion (a + 2), because DefStatics.entry_name named a livelit entry `inc` while a use records `^inc` in its co_ctx, so a changed livelit dirtied nothing. Fix (uncommitted, in hazel-livelits-modular): entry_name gives \"^\" ++ name. NEXT: rerun DefStaticsParity, then commit + push to #2635.",
+   "progress": "11:31: minted as first priority, after ^ticket(400) (closed: draft #2699). 11:38: (Matthew AFK, async) 1) MERGE CONFLICTS FIXED: merged #2597's branch into #2635 (cf325d4f61), every conflict to #2635's side: all 110 of #2597's commits since 3efe8c7e52 are already here (79 same patch, 26 same title, 5 checked by content); the merge adds only Test_CopyDescendants (passes). GitHub: MERGEABLE. 2) TableDecorations 1 FIXED (27f100e37c): the hidden error now comes from a wrong row label; 3/3 pass locally. Both pushed to #2635. NEXT: the corpus mismatch (macro-result.hz); the 8 module cases are #2699's (CI running on GitHub) - merging it into #2635 is Matthew's call, as it was meant exploratory. 11:53: CRASH at 11:46 (crash 41), mid-test; nothing lost. CORPUS CAUSE FOUND before it (macro-result.hz): after the corpus test's edit (1 -> 2) and back, the ^^livelit(^inc(...)) use kept the edited expansion (a + 2), because DefStatics.entry_name named a livelit entry `inc` while a use records `^inc` in its co_ctx, so a changed livelit dirtied nothing. Fix (uncommitted, in hazel-livelits-modular): entry_name gives \"^\" ++ name. NEXT: rerun DefStaticsParity, then commit + push to #2635. 11:58: 3) CORPUS CASE FIXED, pushed to #2635 as 1131a457e4: DefStaticsParity 35 of 43 locally, the corpus case passes; the 8 failures are exactly the module cases. FOUND on #2699's CI (Fast checks, 2 failures): TableDecorations 1 (fixed on #2635 since) and the corpus case on a DIFFERENT file, color-fig3.hz (extra Livelit name / Constructor errors, field types ? vs SpliceRef), which #2635 passes. So merging #2699 as it is still leaves one red test. NEXT: does #2699 + 1131a457e4 clear color-fig3 locally?",
    "log": [
     {
      "at": "2026-10-19T11:31-06:00",
@@ -1118,7 +1118,7 @@
  ],
  "next_ticket": 407,
  "current_ticket": 405,
- "current_note": "11:53: back after crash 41 (11:46). The corpus mismatch's cause is found: a livelit use never re-expanded when its livelit changed (entry_name said `inc`, uses say `^inc`). One-line fix in hand; rerunning DefStaticsParity, then pushing to #2635. The 8 module cases are #2699's, waiting on Matthew's call to merge it.",
+ "current_note": "11:58: #2635's corpus case fixed and pushed (1131a457e4); locally only the 8 module cases fail now, and #2699 clears those. But #2699's own CI has a different corpus failure (color-fig3.hz); checking whether today's fix covers it. Merging #2699 stays Matthew's call.",
  "closed_tickets": [
   {
    "id": 400,
