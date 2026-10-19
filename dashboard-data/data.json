@@ -612,26 +612,6 @@
    "waiting": "Matthew: make a fine-grained token (resource owner matthewhammer; only the repositories dress-up-pictures and dress-up-music; permission Contents: Read and write), then add it to matthewhammer/kids-choice-games as the Actions secret ARCHIVE_TOKEN (Settings, Secrets and variables, Actions; or: gh secret set ARCHIVE_TOKEN -R matthewhammer/kids-choice-games). The next archive run then lands by itself."
   },
   {
-   "id": 314,
-   "area": "matthewhammer.org, the nav bar",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T14:33-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>The nav bar: hidden by default on matthewhammer.org, shown by default everywhere else.</b> Matthew: \"on matthewhammer.org by default, the LHS nav bar is hidden. on all other pages, it shows up be default.\" Find why (a page marked as an app, or a choice to hide it kept for the whole site in that browser) and make it show by default there as on the other sites. nav.js: ~/matthewhammer.github.io/nav/.",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T14:33-06:00",
-     "from": "matthew",
-     "chars": 110,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 315,
    "area": "fumola.org, light mode",
    "added": "2026-10-18",
@@ -867,8 +847,40 @@
  ],
  "next_ticket": 379,
  "current_ticket": 365,
- "current_note": "02:58: ^ticket(320) closed (done); ^ticket(365) is next in the queue",
+ "current_note": "03:01: ^ticket(314) closed (done); ^ticket(365) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 314,
+   "area": "matthewhammer.org, the nav bar",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T14:33-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>The nav bar: hidden by default on matthewhammer.org, shown by default everywhere else.</b> Matthew: \"on matthewhammer.org by default, the LHS nav bar is hidden. on all other pages, it shows up be default.\" Find why (a page marked as an app, or a choice to hide it kept for the whole site in that browser) and make it show by default there as on the other sites. nav.js: ~/matthewhammer.github.io/nav/.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T14:33-06:00",
+     "from": "matthew",
+     "chars": 110,
+     "asks": false
+    }
+   ],
+   "progress": "",
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T03:01-06:00",
+   "outcome": "Published (matthewhammer.github.io 3159917, 02:58), my call from the backlog (Matthew AFK). Why: a « once on any matthewhammer.org page was kept for the whole site (localStorage cnav-hidden), so every page of it started hidden; fumola.org and adapton.org are other origins and showed the bar. A fresh profile showed it on matthewhammer.org too. Now « lasts the visit (sessionStorage cnav-hidden), as an app page's choice does, and the old key is removed on load; the width is still remembered on the site. Checked on the live site in the app's pane: with localStorage cnav-hidden=1 set (as his browser likely has it), the page loaded with the bar shown and the key gone; « hid it for the visit, » brought it back. His browser may keep the old nav.js up to 10 minutes (max-age=600).",
+   "metrics": {
+    "open_minutes": 748,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 110,
+    "tokens_est": 27,
+    "sync_minutes_est": 0,
+    "work_minutes": 5.0
+   }
+  },
   {
    "id": 320,
    "area": "dress up, 🗺️ World design",
@@ -12143,5 +12155,5 @@
   322,
   344
  ],
- "current_since": "2026-10-19T02:58-06:00"
+ "current_since": "2026-10-19T03:01-06:00"
 }
