@@ -1119,38 +1119,6 @@
    "waiting": "Wednesday: which of the 19 PRs get their own tests first (^report(21) lists them per PR); and a look at draft #2700."
   },
   {
-   "id": 414,
-   "area": "dress up, poses: two sliders each for elbows and knees, and an audit of every animation",
-   "added": "2026-10-19T13:42-06:00",
-   "opened": "2026-10-19T13:42-06:00",
-   "status": "open",
-   "tags": [],
-   "source": "Matthew, 2026-10-19 13:42, in chat",
-   "url": "",
-   "text": "<b>Two sliders for each elbow's bend: in and out (a curl with a weight), and side to side (swinging a kettle across a table, the forearm turning at the elbow).</b> Matthew, \"mint and enqueue dress-up (not prioritized)\": \"two sliders for elbows bend --- elbow muscle in-out (like doing a curl with a weight); elbow rotation, side to side (like moving a tea kettle from one side of the table to another, by swing our arm, and rotating laterally at elbow).\" Not during Hazel work time: Dress Up tickets come after the Hazel ones. Matthew, 13:42: \"same for knees too\", and \"re-adjust and audit all animations while we do this, and again, not now.\" So: two sliders for each knee as well (its bend, and its side-to-side turn), and with the new joints, re-adjust every animation (walk, crawl, swim, climb, sit, lie, balance, ...) and audit each one for how it uses elbows and knees. Still not now: after the Hazel tickets.",
-   "progress": "13:42: minted and enqueued at the end of the Dress Up tickets (not prioritized). 13:42: + knees too; + re-adjust and audit every animation while doing it (Matthew). Not now.",
-   "log": [
-    {
-     "at": "2026-10-19T13:42-06:00",
-     "from": "matthew",
-     "chars": 283,
-     "asks": false
-    },
-    {
-     "at": "2026-10-19T13:42-06:00",
-     "from": "matthew",
-     "chars": 18,
-     "asks": false
-    },
-    {
-     "at": "2026-10-19T13:42-06:00",
-     "from": "matthew",
-     "chars": 72,
-     "asks": false
-    }
-   ]
-  },
-  {
    "id": 417,
    "area": "dashboard, hazel-work-notes: one file per page, its versions in git history",
    "added": "2026-10-19T14:26-06:00",
@@ -1182,7 +1150,7 @@
    "source": "0.0.335's speed run (after a release), read during ^ticket(413)",
    "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39317599161",
    "text": "<b>0.0.335 is marked broken: one assertion of tools/checks/access217.mjs failed.</b> \"off: the far arrows hidden, as before\": with ♿'s arrows at their defaults (off), all 5 far nav arrows still read an opacity over 0.05 (offShown 5 of 5; far opacity 0.41). Every other assertion of that check passed. Likely cause, from reading: 0.0.335 (^ticket(404)) made an arrow's fade-out slower, 500 ms held near full before it fades (style.css, .way-arrow's transition, --label-stay), and the check reads the opacities 4 frames (~67 ms) after switching the overlay off (clearing()), so it may catch them mid-fade: the check's timing, not the game. Not proven: it could be a real regression (far arrows shown when they should not be).",
-   "progress": "15:34: minted. Next: a diagnostic branch (tools/checks/.only: access217) with the read taken after --label-stay plus a frame, and the opacity logged over time; if the arrows end hidden, fix the check's wait; if they stay shown, fix the game. No headless browser on the laptop.",
+   "progress": "15:34: minted. Next: a diagnostic branch (tools/checks/.only: access217) with the read taken after --label-stay plus a frame, and the opacity logged over time; if the arrows end hidden, fix the check's wait; if they stay shown, fix the game. No headless browser on the laptop. 16:23: diagnostic branch diag-419 pushed (d05f526: only access217.mjs and a probe, access419.mjs, which logs the far arrows' opacity every 50 ms for 1.5 s after switching off, after all were shown and from a fresh load). Its run is on GitHub (Dress Up tests); read it, then fix the check's wait or the game. Also cancelled run 39331268623 (all the checks on the already-merged WIP branch lie-along-412).",
    "log": []
   },
   {
@@ -1230,9 +1198,52 @@
   }
  ],
  "next_ticket": 423,
- "current_ticket": 414,
- "current_note": "16:11: ^ticket(414): elbow and knee sliders (bend, side to side) and an audit of every animation; first the speed runs of 0.0.336 to 0.0.342. Matthew AFK.",
+ "current_ticket": 422,
+ "current_note": "16:23: ^ticket(422): drafting ^du_report(14), posing the body, from its log (22 entries), local only; diag-419's run is on GitHub.",
  "closed_tickets": [
+  {
+   "id": 414,
+   "area": "dress up, poses: two sliders each for elbows and knees, and an audit of every animation",
+   "added": "2026-10-19T13:42-06:00",
+   "opened": "2026-10-19T13:42-06:00",
+   "status": "done",
+   "tags": [],
+   "source": "Matthew, 2026-10-19 13:42, in chat",
+   "url": "",
+   "text": "<b>Two sliders for each elbow's bend: in and out (a curl with a weight), and side to side (swinging a kettle across a table, the forearm turning at the elbow).</b> Matthew, \"mint and enqueue dress-up (not prioritized)\": \"two sliders for elbows bend --- elbow muscle in-out (like doing a curl with a weight); elbow rotation, side to side (like moving a tea kettle from one side of the table to another, by swing our arm, and rotating laterally at elbow).\" Not during Hazel work time: Dress Up tickets come after the Hazel ones. Matthew, 13:42: \"same for knees too\", and \"re-adjust and audit all animations while we do this, and again, not now.\" So: two sliders for each knee as well (its bend, and its side-to-side turn), and with the new joints, re-adjust every animation (walk, crawl, swim, climb, sit, lie, balance, ...) and audit each one for how it uses elbows and knees. Still not now: after the Hazel tickets.",
+   "progress": "13:42: minted and enqueued at the end of the Dress Up tickets (not prioritized). 13:42: + knees too; + re-adjust and audit every animation while doing it (Matthew). Not now.",
+   "log": [
+    {
+     "at": "2026-10-19T13:42-06:00",
+     "from": "matthew",
+     "chars": 283,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T13:42-06:00",
+     "from": "matthew",
+     "chars": 18,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T13:42-06:00",
+     "from": "matthew",
+     "chars": 72,
+     "asks": false
+    }
+   ],
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T16:22-06:00",
+   "outcome": "Released as Dress Up 0.0.343 (d2c4512): elbows and knees curl and swing in three dimensions (turned3): four sliders (🏋️ elbows curl, 🫖 elbows swing, 🦶 knees curl, ↔️ knees swing), both sides alike, on top of every pose and animation; facing us a foot turned behind its leg is drawn under it. The audit of every animation's bends (in the posing log, ^ticket(422)) re-adjusted the crouch (facing us, its arms reach toward us). Open for Matthew: per-side sliders, and whether the old 💪 bend stays beside the swing. Check: tools/checks/joints414.mjs.",
+   "metrics": {
+    "open_minutes": 160,
+    "matthew_messages": 3,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 373,
+    "tokens_est": 93,
+    "sync_minutes_est": 0.0
+   }
+  },
   {
    "id": 412,
    "area": "dress up, poses: lying down along a side wall, in its perspective",
@@ -13720,11 +13731,10 @@
   }
  ],
  "queue": [
-  414,
+  422,
+  419,
   389,
   406,
-  419,
-  422,
   417,
   420,
   411,
@@ -13751,7 +13761,7 @@
   344,
   421
  ],
- "current_since": "2026-10-19T16:11-06:00",
+ "current_since": "2026-10-19T16:23-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
