@@ -861,11 +861,11 @@
    "opened": "2026-10-19T09:32-06:00",
    "status": "open",
    "tags": [
-    "long run"
+    "blocked on Matthew"
    ],
    "source": "Matthew, 2026-10-19 09:32, in chat (\"very low priority, after EOD (long run)\")",
    "url": "https://github.com/matthewhammer/hazel-work-notes",
-   "progress": "09:32: minted; queued last (very low priority), for after end of day as a long run.",
+   "progress": "09:32: minted; queued last (very low priority), for after end of day as a long run. 14:18: ANALYZED (work note https://matthewhammer.org/hazel/work-notes/ , 2026-10-19T1420): GitHub holds the repo in 23 MB (1,793 snapshots = 341 MB of HTML, packed as ~13 KB deltas each): 1 GB about 8 months away at ~300 snapshots/day. The LAPTOP is the problem: the snapshot folder is 341 MB and grows ~95 MB/day and rising (the page grew 33 -> 314 KB in a week): ~8.7 GB in 30 days, ~58 GB in 90. Local .git 243 MB of loose objects (gc packs to ~23 MB). Recommended: one path per page with versions in git history (the Dress Up archives' fix, du_report(4)); also possible: at most one snapshot per 10 min, a shared stylesheet, a weekly git gc.",
    "log": [
     {
      "at": "2026-10-19T09:32-06:00",
@@ -874,7 +874,8 @@
      "asks": true
     }
    ],
-   "text": "<b>Dashboard: does hazel-work-notes grow too fast, keeping every snapshot of the page?</b> Matthew: \"Does the dashboard repo consume too much space by storing every snapshot of the HTML file? With our huge PNG files for the dress-up pictures archive we did two things: * stopped storing PNG files, and just store mark up and data (svg and json). * used a single path in the repo for all versions, so git's diff'ing system helps. The ticket would do some analysis and answer a few questions: * at the current rate, how long will the repo be under the space limit? Can we plot our estimates? * what steps can we take if the rate of space usage is too fast at present?\" (The archive's lesson: ^du_report(4), One folder, every run.)"
+   "text": "<b>Dashboard: does hazel-work-notes grow too fast, keeping every snapshot of the page?</b> Matthew: \"Does the dashboard repo consume too much space by storing every snapshot of the HTML file? With our huge PNG files for the dress-up pictures archive we did two things: * stopped storing PNG files, and just store mark up and data (svg and json). * used a single path in the repo for all versions, so git's diff'ing system helps. The ticket would do some analysis and answer a few questions: * at the current rate, how long will the repo be under the space limit? Can we plot our estimates? * what steps can we take if the rate of space usage is too fast at present?\" (The archive's lesson: ^du_report(4), One folder, every run.)",
+   "waiting": "Matthew: pick the fix for the snapshots' growth on the laptop (recommended: one path per page, versions in git history, as the picture archive does)."
   },
   {
    "id": 392,
