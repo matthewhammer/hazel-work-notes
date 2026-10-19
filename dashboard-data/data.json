@@ -794,7 +794,7 @@
    ],
    "source": "Matthew, 2026-10-19 09:15, in chat",
    "url": "",
-   "progress": "09:15: minted, the list as of now; 385 in progress (answer due EOD). 09:56: 385's answer is now ^report(18), a local draft (http://localhost:8131/018/), waiting on Matthew's read; the 09:30 artifact is superseded (it had two errors, listed on 385). 10:15: + ^ticket(393), ^report(19): where the UI shows syntax as tiles and where as text (Matthew's ask). 10:37: + ^ticket(398), the perf PRs' correctness (Cyrus's ask). 11:06: Matthew relayed CYRUS'S MERGE PLAN for dev, broadly: (1) PRs that have been waiting (which ones not clear), (2) Andrew's modular editing PR(s), (3) our livelits and performance PRs, in some order. ^report(18)'s local draft (http://localhost:8131/018/, still unpublished) revised to match, story unchanged: short answer 4, cause 1's last paragraph, What next steps 1 and 4 (the per-member analysis reaches the livelits branch through dev anyway; a port into #2635 now is ^ticket(400)'s separate exploratory draft). + ^ticket(398) (perf PRs' correctness) and ^report(19) published today. 12:18: ^report(19) linked in the list (Matthew). Matthew: an AGENDA, \"another kind of special report\", a WIP compiled over the next couple of days: drafting it as ^report(20), local only until he says. 12:21: AGENDA DRAFTED as ^report(20) (local commit 18df531 in ~/hazel-perf-report, not pushed): 7 items with status chips and 'for the meeting' asks (#2635's CI, model views as tiles, explainer examples, Gamma's long types, perf PRs' correctness, merge plan for dev, requiring test jobs on dev) + 'if there is time'. To add or change an item: edit 020/data/agenda.json, run 020/drivers/gen020.py + report_refs/link_prs/add_theme. Publishing it needs ^report(18) published too (item 1 links it). 12:27: Matthew on the agenda draft: \"Is really nice.\"",
+   "progress": "09:15: minted, the list as of now; 385 in progress (answer due EOD). 09:56: 385's answer is now ^report(18), a local draft (http://localhost:8131/018/), waiting on Matthew's read; the 09:30 artifact is superseded (it had two errors, listed on 385). 10:15: + ^ticket(393), ^report(19): where the UI shows syntax as tiles and where as text (Matthew's ask). 10:37: + ^ticket(398), the perf PRs' correctness (Cyrus's ask). 11:06: Matthew relayed CYRUS'S MERGE PLAN for dev, broadly: (1) PRs that have been waiting (which ones not clear), (2) Andrew's modular editing PR(s), (3) our livelits and performance PRs, in some order. ^report(18)'s local draft (http://localhost:8131/018/, still unpublished) revised to match, story unchanged: short answer 4, cause 1's last paragraph, What next steps 1 and 4 (the per-member analysis reaches the livelits branch through dev anyway; a port into #2635 now is ^ticket(400)'s separate exploratory draft). + ^ticket(398) (perf PRs' correctness) and ^report(19) published today. 12:18: ^report(19) linked in the list (Matthew). Matthew: an AGENDA, \"another kind of special report\", a WIP compiled over the next couple of days: drafting it as ^report(20), local only until he says. 12:21: AGENDA DRAFTED as ^report(20) (local commit 18df531 in ~/hazel-perf-report, not pushed): 7 items with status chips and 'for the meeting' asks (#2635's CI, model views as tiles, explainer examples, Gamma's long types, perf PRs' correctness, merge plan for dev, requiring test jobs on dev) + 'if there is time'. To add or change an item: edit 020/data/agenda.json, run 020/drivers/gen020.py + report_refs/link_prs/add_theme. Publishing it needs ^report(18) published too (item 1 links it). 12:27: Matthew on the agenda draft: \"Is really nice.\" 12:33: Matthew: the agenda goes PUBLIC from now on (to share with Cyrus; transparency), with a \"Next meeting agenda, WIP\" link near the top of the dashboard's nav bar. PUBLISHED ^report(20): https://matthewhammer.org/hazel/performance-analysis/020/ (homepage 2bae2a1, series c7a785a; card + Hazel page list); its ^report(18) chip stays unlinked until 18 is published. Dashboard: data.json next_meeting {report, with, date} draws the link first in the outline's links.",
    "log": [
     {
      "at": "2026-10-19T09:15-06:00",
@@ -830,6 +830,12 @@
      "at": "2026-10-19T12:27-06:00",
      "from": "matthew",
      "chars": 43,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T12:33-06:00",
+     "from": "matthew",
+     "chars": 279,
      "asks": false
     }
    ],
@@ -1185,9 +1191,29 @@
    "text": "<b>A report on the <a href=\"https://andrewblinn.com/hazel/weekly/\">Hazel Weekly</a> agent: how it credits each team member's contributions, with a list of corrections where it is plainly wrong.</b> Matthew, \"separate, and even lower priority\": \"maybe you could also do a report --- a hazel 'agent' performance report, cross-checking how it refers to different team member's contributions, and offering a list of corrections, if you find obvious mistakes.\" Even lower priority than ^ticket(407), whose reading of the issues it can share. A ^report(N) in our series (~/hazel-perf-report), drafted locally; published only on Matthew's word.",
    "progress": "12:04: minted and enqueued, even lower priority than ^ticket(407).",
    "log": []
+  },
+  {
+   "id": 409,
+   "area": "dashboard, the nav bar: hover cards under it",
+   "added": "2026-10-19T12:33-06:00",
+   "opened": "2026-10-19T12:33-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, 2026-10-19 12:33, in chat (a screenshot of the public dashboard)",
+   "url": "https://matthewhammer.org/hazel/dashboard/",
+   "text": "<b>Bug: a ticket's hover card on a link in the nav bar opens underneath the bar.</b> Matthew: \"dashboard bug report -- hover-over layer issue with LHS nav bar.\" His screenshot: hovering ^ticket(405) in the nav bar's Work Queue, the card opens beside it with its left part hidden under the bar. Cause: the cards (ref_cards.html, pr_cards.html) sit at z-index 40, and nav.js draws the bar at z-index 2147483000 and up.",
+   "progress": "12:33: minted; fixed at once: both cards at z-index 2147483003 (above the bar), in the dashboard's copies and the series tools' copies.",
+   "log": [
+    {
+     "at": "2026-10-19T12:33-06:00",
+     "from": "matthew",
+     "chars": 64,
+     "asks": false
+    }
+   ]
   }
  ],
- "next_ticket": 409,
+ "next_ticket": 410,
  "current_ticket": 389,
  "current_note": "12:21: The agenda for Wednesday is drafted as ^report(20), a work in progress: http://localhost:8131/020/ (local only). Next on it: Matthew's additions, item 1's status once #2699 lands, ^ticket(398)'s report. ^ticket(405): #2699's CI is running; on green, #2699 merges into #2635.",
  "closed_tickets": [
@@ -13290,5 +13316,10 @@
   344,
   397
  ],
- "current_since": "2026-10-19T12:18-06:00"
+ "current_since": "2026-10-19T12:18-06:00",
+ "next_meeting": {
+  "report": 20,
+  "with": "Cyrus",
+  "date": "2026-10-21"
+ }
 }
