@@ -84,6 +84,7 @@ Text already inside a link is left alone. Give a ticket a `url` only when it has
 - **The 5-server limit is the Claude desktop app's** (its preview tool, `preview_start`: "Maximum 5 servers per worktree"), not the laptop's: every entry in `~/hazel/.claude/launch.json` started from a session in `~/hazel` counts against `~/hazel`. A sixth needs one stopped, a session opened in another worktree (its own five), or Matthew's go-ahead to run it in a Terminal tab instead.
 - **Launch entries are named with their PR,** such as `#2635 hazel-livelits-modular` or `fumola#129 fumola-pages-wt`. Rename an entry when its worktree's branch, and so its PR, changes. The app runs at most 5 preview servers per worktree, so stopping one may be needed to start another.
 - **Always tell Matthew the port, and what build it serves,** in chat. Never put local ports in a PR description: there, say "in the browser".
+- **The AFK protocol** (Matthew, 2026-10-19: "keep going and signal with 'blocked on Matthew' for any ticket that needs me. let's be efficient, and asynchronous!"). While Matthew is away, never stop to wait. A ticket that needs his answer is tagged "blocked on Matthew" (with `waiting`), its question goes in its progress, and work moves to the next ticket in the queue (`now.py`). A wait on CI is not a reason to stop either: leave a background watch on it and work on something else until it reports.
 
 ## Versions
 
