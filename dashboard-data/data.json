@@ -968,7 +968,7 @@
    ],
    "source": "Matthew, in chat",
    "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "progress": " 01:07: Matthew: \"hmm... other glowing things (like the doorway to the bridge) are also inactive on click.\" So after the lever, clicks on every passage stop: a state left stuck by the lever's click path (my first try pulled it by its function and found the hatch's mark and the stack under the pointer as before).",
+   "progress": " 01:07: Matthew: \"hmm... other glowing things (like the doorway to the bridge) are also inactive on click.\" So after the lever, clicks on every passage stop: a state left stuck by the lever's click path (my first try pulled it by its function and found the hatch's mark and the stack under the pointer as before). 01:15: FOUND (checks-378, real clicks in Chrome and Firefox on GitHub): a click on a lever was taken twice, at its letting go (the lever) and by the browser's click after it, which pic's click handler sent through the passage the pointer was near (hoverPass; the pointer captured, the target the picture, so its #figure test missed): in Chrome the first click on the trap door's lever sent the friend out through a passage instead of to the lever; in Firefox the second did (the friend standing in front of the lever covered it). A trip and a walk at odds can leave entering stuck: every passage dead. RELEASED 0.0.316 (95f7ef2): pressTaken swallows the click after a press the page took itself; after a pull the friend steps aside toward the room's middle, uncovering the lever. Pane, real clicks: shut, aside, reopen, aside, hatch clicked: climbed down and out, entering cleared. Probes running again on 0.0.316.",
    "log": [
     {
      "at": "2026-10-19T01:06-06:00",
