@@ -8,7 +8,7 @@ Read this before working with Matthew on Hazel. Keep the dashboard current as yo
 
 **This repository is our working record, for the two of us:** what is served where, how the PRs stand, what to do next, and the dashboard's history. It is written in shorthand, for people who were there.
 
-**The Hazel performance analysis series is separate,** in its own repository, [`hazel-performance-analysis`](https://github.com/matthewhammer/hazel-performance-analysis), with its own agent instructions. It is written for readers outside the loop: Cyrus, the Hazel team and others. The dashboard links to the series (`^report(7)`), but working notes never go into a report. When work here answers a question worth sharing, that answer becomes a report there.
+**The Hazel reports series (until 2026-10-19 "Hazel performance analysis"; its old addresses forward) is separate,** in its own repository, [`hazel-performance-analysis`](https://github.com/matthewhammer/hazel-performance-analysis), with its own agent instructions. It is written for readers outside the loop: Cyrus, the Hazel team and others. The dashboard links to the series (`^report(7)`), but working notes never go into a report. When work here answers a question worth sharing, that answer becomes a report there.
 
 ## Where things are
 
@@ -61,7 +61,7 @@ We call them **tickets**, not issues: an issue is a GitHub issue, and the perfor
   - `log`: one entry per message about the ticket, appended in the same turn: `{"at": <ISO time>, "from": "matthew" | "claude", "chars": <its length>, "asks": true | false}`. `at` for Matthew's message is the time it arrived (the clock at the start of the turn); `chars` is the message's length (for a reply that is mostly tool output, only the text he reads); `asks` is true when a message of Claude's puts a question to Matthew that needs his answer before the work can go on (an offer he may ignore is not one).
   - On closing, `metrics`, computed from the log: `open_minutes` (opened to closed); `matthew_messages` (his entries); `questions_to_matthew` (Claude's entries that ask); `chars_exchanged` (all entries' chars) and `tokens_est` (chars / 4); `sync_minutes_est`, the time spent together: the sum of the gaps between consecutive entries shorter than 10 minutes, so that work either of us did alone, between messages, is left out; and `work_minutes`, when the work itself was timed (as `^ticket(92)`'s hallway was), with its start and end.
   - The closed tickets' page shows the metrics under each outcome. A ticket from before 2026-10-15 has none; estimate them only if its messages can still be found.
-- **A pasted ticket request mints a ticket.** Each "What next" step in the performance analysis series has a "copy for a ticket" button; it copies `Mint a ticket for this step: Hazel performance analysis, ^report(N), What next, step N: "<title>". <URL>` (before 2026-10-14, "issue NNN"). When Matthew pastes that, open a ticket for exactly that step: its text from the step, `source` "issue NNN, What next, step N", `url` the step's URL. Ask whether it becomes the current ticket, unless he says so.
+- **A pasted ticket request mints a ticket.** Each "What next" step in the Hazel reports series has a "copy for a ticket" button; it copies `Mint a ticket for this step: Hazel performance analysis, ^report(N), What next, step N: "<title>". <URL>` (before 2026-10-14, "issue NNN"). When Matthew pastes that, open a ticket for exactly that step: its text from the step, `source` "issue NNN, What next, step N", `url` the step's URL. Ask whether it becomes the current ticket, unless he says so.
 - **A parked ticket stays open,** with "PARKED", the date, and the measurement that parked it.
 - Each ticket's row has the anchor `#ticket-N`, and a "copy link" button that copies http://localhost:8000/#ticket-N. Old links, `#next-N`, still work, and a link to a closed ticket takes the reader to its row on the closed page. **When Matthew pastes such a link, he means exactly that ticket:** read the ticket with that number in `data.json`, in `tickets` or `closed_tickets`. Never guess from the wording.
 
@@ -69,7 +69,7 @@ We call them **tickets**, not issues: an issue is a GitHub issue, and the perfor
 
 Write references plainly in `data.json`, and `update.py` links them the same way everywhere:
 
-- `^report(6)` links to that report of the performance analysis series (an older "issue 006" in a text still does). That is the public page once it is published (`~/matthewhammer.github.io/hazel/performance-analysis/006/` exists), and the local draft at http://localhost:8131/series/006/ until then.
+- `^report(6)` links to that report of the Hazel reports series (an older "issue 006" in a text still does). That is the public page once it is published (`~/matthewhammer.github.io/hazel/reports/006/` exists), and the local draft at http://localhost:8131/series/006/ until then.
 - `#2161`, four digits or more, links to hazelgrove/hazel on GitHub, and `owner/repo#N` to that repository; every such link gets a card on hover or focus (title, state, author, dates, comments), asked of GitHub live, with what GitHub said at the last publish as the fallback (`dashboard/prlinks.py`, `pr_cards.html`; Matthew's rule, 2026-10-14).
 - `^ticket(10)` links to that ticket (an older `#10`, one to three digits, still does): its row on the dashboard while it is open, and on the closed page once it is closed.
 - A 10-character commit id, such as `bd90642654`, links to the commit.
@@ -99,8 +99,8 @@ The dashboard's code has a version number, `VERSION` in `dashboard/update.py`, w
 
 ## Related practice
 
-- **The performance analysis series:** http://matthewhammer.org/hazel/performance-analysis/, its reports, `^report(1)` onward. The sources are in `~/hazel-perf-report`, served at http://localhost:8131/series/.
-  - Write a report as a draft. Matthew reviews it, then publish: copy it to `~/matthewhammer.github.io/hazel/performance-analysis/`, push, wait for the Pages run, and check the live page.
+- **The Hazel reports series:** https://matthewhammer.org/hazel/reports/, its reports, `^report(1)` onward. The sources are in `~/hazel-perf-report`, served at http://localhost:8131/series/.
+  - Write a report as a draft. Matthew reviews it, then publish: copy it to `~/matthewhammer.github.io/hazel/reports/`, push, wait for the Pages run, and check the live page.
   - A correction to a published report is a dated update box under the short answers, a note after each claim it supersedes, and an "Update" section. The original text stays as written.
   - **A meeting's agenda is a special kind of report** (Matthew, 2026-10-19; the model is `^report(20)`, for the meeting with Cyrus on 2026-10-21). It is a work in progress, compiled over the days before the meeting:
     - The page is generated: edit `NNN/data/agenda.json`, then run `NNN/drivers/gen020.py` (copied and renamed per agenda) and the series tools `report_refs.py`, `link_prs.py` and `add_theme.py`.

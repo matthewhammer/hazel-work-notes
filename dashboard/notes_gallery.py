@@ -30,7 +30,7 @@ DATA = os.path.expanduser("~/localhost-index/data.json")
 CACHE = os.path.expanduser("~/localhost-index/.prlinks-cache.json")
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.expanduser("~/matthewhammer.github.io/hazel/work-notes/index.html")
 DASH = "https://matthewhammer.org/hazel/dashboard/"
-SERIES = "https://matthewhammer.org/hazel/performance-analysis/"
+SERIES = "https://matthewhammer.org/hazel/reports/"
 DU_REPORTS = "https://matthewhammer.org/kids-choice-games/dress-up/reports/"
 PUBLIC = "https://matthewhammer.org/hazel-work-notes/"
 REPO = "https://github.com/matthewhammer/hazel-work-notes"
@@ -151,7 +151,7 @@ def page(cards, count):
       <li><a href="../">Hazel</a></li>
       <li><a href="../dashboard/">Work dashboard</a></li>
       <li><span class="here">Work notes</span></li>
-      <li><a href="../performance-analysis/">Performance analysis</a></li>
+      <li><a href="../reports/">Hazel reports</a></li>
       <li><a href="../dress-up/">Dress Up</a></li>
     </ul>
   </nav>
@@ -159,7 +159,7 @@ def page(cards, count):
     <header>
       <h1>Hazel Work Notes</h1>
       <p class="tagline">What each of our working notes records, at a glance</p>
-      <p>When a session with Claude pauses (a shutdown, a crash, the end of a long stretch), it writes a dated note: what was done, where things are, and what is next. Here are all {count} of them, newest first, each with a picture drawn for it. The notes themselves are in <a href="{REPO}/tree/main/work-notes">matthewhammer/hazel-work-notes</a>, beside the <a href="../dashboard/">work dashboard</a>'s history. They are written in shorthand, for the two of us; the write-ups for other readers are the <a href="../performance-analysis/">performance analysis</a> series and the <a href="../dress-up/reports/">Dress Up reports</a>.</p>
+      <p>When a session with Claude pauses (a shutdown, a crash, the end of a long stretch), it writes a dated note: what was done, where things are, and what is next. Here are all {count} of them, newest first, each with a picture drawn for it. The notes themselves are in <a href="{REPO}/tree/main/work-notes">matthewhammer/hazel-work-notes</a>, beside the <a href="../dashboard/">work dashboard</a>'s history. They are written in shorthand, for the two of us; the write-ups for other readers are the <a href="../reports/">Hazel reports</a> and the <a href="../dress-up/reports/">Dress Up reports</a>.</p>
     </header>
     <section class="gallery" aria-label="The notes, newest first">
 {cards}

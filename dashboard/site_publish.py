@@ -44,7 +44,7 @@ def public(text):
     text = text.replace("http://localhost:8000/notes/agent-instructions.md", REPO + "/blob/main/agent-instructions.md")
     # The outline's link to the series: the published reports, as the local page links the local ones.
     text = text.replace('<ul class="outline-out">\n<li><a href="http://localhost:8131/series/">',
-                        '<ul class="outline-out">\n<li><a href="http://matthewhammer.org/hazel/performance-analysis/">', 1)
+                        '<ul class="outline-out">\n<li><a href="https://matthewhammer.org/hazel/reports/">', 1)
     for h1 in ("<h1>Hazel Work Dashboard</h1>", "<h1>Closed tickets</h1>"):
         text = text.replace(h1, h1 + "\n" + NOTE, 1)
     return text

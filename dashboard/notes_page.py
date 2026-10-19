@@ -22,7 +22,7 @@ import prlinks, refcards
 DATA = os.path.expanduser("~/localhost-index/data.json")
 CACHE = os.path.expanduser("~/localhost-index/.prlinks-cache.json")
 DASH = "https://matthewhammer.org/hazel/dashboard/"   # (until 2026-10-16: /hazel-work-notes/, which redirects)
-SERIES = "http://matthewhammer.org/hazel/performance-analysis/"
+SERIES = "https://matthewhammer.org/hazel/reports/"
 data = json.load(open(DATA))
 OPEN = {t["id"] for t in data["tickets"]}
 CLOSED = {t["id"] for t in data.get("closed_tickets", [])}

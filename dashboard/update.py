@@ -45,11 +45,11 @@ def pr(n):
 e = html.escape
 
 # Links made the same way everywhere on the page: a report of the
-# performance-analysis series (^report(N)), a hazelgrove/hazel issue or PR (#NNNN), and a
+# Hazel reports series (^report(N)), a hazelgrove/hazel issue or PR (#NNNN), and a
 # commit (10 hex digits). Text already inside a link is left alone.
-SERIES_PUBLIC = "http://matthewhammer.org/hazel/performance-analysis/"
+SERIES_PUBLIC = "https://matthewhammer.org/hazel/reports/"
 SERIES_LOCAL = "http://localhost:8131/series/"
-PUBLISHED = os.path.expanduser("~/matthewhammer.github.io/hazel/performance-analysis")
+PUBLISHED = os.path.expanduser("~/matthewhammer.github.io/hazel/reports")
 
 def series_url(n):
     nnn = f"{int(n):03d}"
@@ -70,7 +70,7 @@ LINKABLE = re.compile(
 # (Matthew's syntax since 2026-10-14, as our numbers will reach the
 # thousands, past where "#1000" could pass for a PR; an old "#10" in a text
 # reads as ^ticket(10) too.) Shown in monospace, "^ticket(" and ")" bold.
-# The same for the reports of the performance-analysis series: ^report(13)
+# The same for the reports of the Hazel reports series: ^report(13)
 # links to its page (a report is never "issue 013" now: "issue" is GitHub's).
 def chip(kind, n):
     return f'<code class="ref"><b>^{kind}(</b>{int(n)}<b>)</b></code>'
@@ -588,7 +588,7 @@ page = f"""<!doctype html>
 <p class="outline-label">Hazel Work Dashboard</p>
 <ul class="outline-out">
 {agenda_entry}<li><a href="https://matthewhammer.org/hazel/dress-up/">Messed Up Dress Up&nbsp;<span aria-hidden="true">↗</span></a></li>
-<li><a href="{SERIES_PUBLIC}">Performance reports&nbsp;<span aria-hidden="true">↗</span></a></li>
+<li><a href="{SERIES_PUBLIC}">Hazel reports&nbsp;<span aria-hidden="true">↗</span></a></li>
 <li><a href="https://github.com/matthewhammer/hazel-work-notes">On GitHub&nbsp;<span aria-hidden="true">↗</span></a></li>
 </ul>
 <ul id="outline-list">
