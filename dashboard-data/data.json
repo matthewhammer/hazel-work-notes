@@ -1106,52 +1106,6 @@
    "progress": ""
   },
   {
-   "id": 341,
-   "area": "dress up, bubbles",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T17:08-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up: moving bubbles stick, some of them, to the bubbles standing out from the floor and walls; a slider for how often.</b> Matthew: \"ticket -- find a way to for dynamic bubbles in scene, in some proportion, to stick to bubbles extending from floors and walls in this scene, and others.\" And: \"slider to control how often they stick\". The moving bubbles are the bubble makers' (and bubble space's; the friend's blown bubbles too). PLAN: the stuck-out bubbles' places on the screen kept with the scene (each its middle and size, as drawn); a moving bubble touching one sticks to it, by \"🫧 how often moving bubbles stick\" (0 to 100), and stays there, swelling and fading out after a while or popping at a touch, so the room grows clusters; in other places, the same against what bubbles can stick to there (bubble space's own, the foam of any place that has it, and whatever stands out). Mind ^ticket(340)'s budget: no layout reads a frame, a capped count of stuck ones.",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T17:08-06:00",
-     "from": "matthew",
-     "chars": 152,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T17:08-06:00",
-     "from": "matthew",
-     "chars": 38,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
-   "id": 342,
-   "area": "dress up, placed things",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T17:09-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up: a placed thing glows under the pointer, as the doors and levers do.</b> Matthew: \"quick fix -- mint and enqueue --- when we hover over a placeable object, it glows like the doors, etc.\" Today only placed 🎚️ levers glow (data-lever-thing, ^ticket(324)'s CSS rule); every other thing (.thing[data-drag=\"thing:N\"]) shows only the grab cursor. PLAN: the same hover glow for every placed thing (#bg .thing:hover, the levers' drop-shadow), not for the room's own objects; checked over a few kinds (rock, bubble maker, trap door).",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T17:09-06:00",
-     "from": "matthew",
-     "chars": 102,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 343,
    "area": "dress up, animations",
    "added": "2026-10-18",
@@ -1591,9 +1545,77 @@
   }
  ],
  "next_ticket": 360,
- "current_ticket": 341,
- "current_note": "21:13: Bubbles: moving bubbles stick to the bubbles standing out from the bubble room's walls and floor, by a slider",
+ "current_ticket": 343,
+ "current_note": "21:17: Standing and walking on bubbles: a balancing stance and a careful walk, by how much the bubbles move",
  "closed_tickets": [
+  {
+   "id": 342,
+   "area": "dress up, placed things",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T17:09-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up: a placed thing glows under the pointer, as the doors and levers do.</b> Matthew: \"quick fix -- mint and enqueue --- when we hover over a placeable object, it glows like the doors, etc.\" Today only placed 🎚️ levers glow (data-lever-thing, ^ticket(324)'s CSS rule); every other thing (.thing[data-drag=\"thing:N\"]) shows only the grab cursor. PLAN: the same hover glow for every placed thing (#bg .thing:hover, the levers' drop-shadow), not for the room's own objects; checked over a few kinds (rock, bubble maker, trap door).",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T17:09-06:00",
+     "from": "matthew",
+     "chars": 102,
+     "asks": false
+    }
+   ],
+   "progress": "",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T21:16-06:00",
+   "outcome": "0.0.285: every placed thing glows under the pointer (the levers' drop shadow, CSS #bg .thing[data-drag^=thing:]:hover); checked with a real mouse over a rock, a bubble maker and a trap door (tools/checks/glow342.mjs).",
+   "metrics": {
+    "open_minutes": 248,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 102,
+    "tokens_est": 25,
+    "sync_minutes_est": 0
+   }
+  },
+  {
+   "id": 341,
+   "area": "dress up, bubbles",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T17:08-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up: moving bubbles stick, some of them, to the bubbles standing out from the floor and walls; a slider for how often.</b> Matthew: \"ticket -- find a way to for dynamic bubbles in scene, in some proportion, to stick to bubbles extending from floors and walls in this scene, and others.\" And: \"slider to control how often they stick\". The moving bubbles are the bubble makers' (and bubble space's; the friend's blown bubbles too). PLAN: the stuck-out bubbles' places on the screen kept with the scene (each its middle and size, as drawn); a moving bubble touching one sticks to it, by \"🫧 how often moving bubbles stick\" (0 to 100), and stays there, swelling and fading out after a while or popping at a touch, so the room grows clusters; in other places, the same against what bubbles can stick to there (bubble space's own, the foam of any place that has it, and whatever stands out). Mind ^ticket(340)'s budget: no layout reads a frame, a capped count of stuck ones.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T17:08-06:00",
+     "from": "matthew",
+     "chars": 152,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T17:08-06:00",
+     "from": "matthew",
+     "chars": 38,
+     "asks": false
+    }
+   ],
+   "progress": "",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T21:16-06:00",
+   "outcome": "0.0.284 (4247ac8): a bubble maker's bubbles stick (foamStick in the bubble room, bubbleStick in bubble space, 30 to start) to the room's standing-out bubbles or bubble space's own, just touching; they swell, fade after 6-12 s, pop on the friend, fall free if their hold pops; 30 at most; makerTick 0.1-0.3 ms with 689 targets. Not yet: the friend's blown bubbles. tools/checks/stick341.mjs.",
+   "metrics": {
+    "open_minutes": 248,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 190,
+    "tokens_est": 47,
+    "sync_minutes_est": 0.0
+   }
+  },
   {
    "id": 366,
    "area": "dress up, walking: click to walk while sitting",
@@ -11430,10 +11452,8 @@
   }
  ],
  "queue": [
-  341,
-  339,
-  342,
   343,
+  339,
   351,
   353,
   354,
@@ -11467,5 +11487,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T21:13-06:00"
+ "current_since": "2026-10-18T21:17-06:00"
 }
