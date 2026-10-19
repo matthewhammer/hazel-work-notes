@@ -780,38 +780,6 @@
    "text": "<b>Dress Up: the speed measurements ^du_report(5) still wants.</b> Before publishing, Matthew had asked for a frame-rate check of the proposed full-screen 🏞️ Background designer (many place pictures at once were slow on the black laptop), with the place pictures kept as pictures so they cost little; he published the report first. Measure the designer's place pictures drawn live, as still SVGs and as bitmaps, and the friend's walk and drag with the designer open, at normal speed and on the slow tiers, then add the numbers to the report as a dated note (its What next, step 8)."
   },
   {
-   "id": 294,
-   "area": "dress up, controls and accessibility",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T11:26-06:00",
-   "status": "open",
-   "tags": [],
-   "progress": "Found while minting it (11:26): 👆 walk where you click is state.access.clickWalk (js/01-state.js 579, with its glow's colours clickWalkColor and pathAltColor). A click while walking is queued after the current walk (js/26-drags-and-start.js 344; ^ticket(266), the queue of plans drawn in turn in the two colours, js/25-world.js 606). One setting, shown in both 🎮 Controls and ♿ Accessibility from the same row.",
-   "log": [
-    {
-     "at": "2026-10-18T11:26-06:00",
-     "from": "matthew",
-     "chars": 405,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T20:17-06:00",
-     "from": "matthew",
-     "chars": 38,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T20:18-06:00",
-     "from": "matthew",
-     "chars": 133,
-     "asks": false
-    }
-   ],
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "text": "<b>Dress Up: walking to a click, a new click queues or replaces the plan, the player's choice.</b> He really likes the multi-path planning walk-to-click supports now, but that is more for a designer; in play it is often expected, and more useful, to cancel the current plan and replace it with the one for the next click. In 🎮 Controls, let the player choose which they prefer, and repeat that same choice under ♿ Accessibility, reusing the code."
-  },
-  {
    "id": 297,
    "area": "dress up, depth",
    "added": "2026-10-18",
@@ -1887,9 +1855,58 @@
   }
  ],
  "next_ticket": 358,
- "current_ticket": 294,
- "current_note": "20:18: ^ticket(294): a click while walking replaces the plan or adds to it, the player's choice (Matthew: push on through the queue, he reviews tomorrow)",
+ "current_ticket": 297,
+ "current_note": "20:19: flowers and upright plants layered by depth: in rows, each an object at its depth, nearer than the friend drawn in front",
  "closed_tickets": [
+  {
+   "id": 294,
+   "area": "dress up, controls and accessibility",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T11:26-06:00",
+   "status": "done",
+   "tags": [],
+   "progress": "Found while minting it (11:26): 👆 walk where you click is state.access.clickWalk (js/01-state.js 579, with its glow's colours clickWalkColor and pathAltColor). A click while walking is queued after the current walk (js/26-drags-and-start.js 344; ^ticket(266), the queue of plans drawn in turn in the two colours, js/25-world.js 606). One setting, shown in both 🎮 Controls and ♿ Accessibility from the same row. 20:19 DONE, 0.0.263: access.clickPlan ('replace', the default, or 'queue'); replacing bumps walkStop, which walkTo's steps check, so the leg under way ends where the friend is, and plans afresh from there; the clickWalk accbox takes a choice (chips); the same row in Controls via 'of'. Check: click294 (its walks run in the pane with frames on a timer: replace never walked on toward the first click, queue reached it first).",
+   "log": [
+    {
+     "at": "2026-10-18T11:26-06:00",
+     "from": "matthew",
+     "chars": 405,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T20:17-06:00",
+     "from": "matthew",
+     "chars": 38,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T20:18-06:00",
+     "from": "matthew",
+     "chars": 133,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T20:19-06:00",
+     "from": "claude",
+     "chars": 600,
+     "asks": false
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "text": "<b>Dress Up: walking to a click, a new click queues or replaces the plan, the player's choice.</b> He really likes the multi-path planning walk-to-click supports now, but that is more for a designer; in play it is often expected, and more useful, to cancel the current plan and replace it with the one for the next click. In 🎮 Controls, let the player choose which they prefer, and repeat that same choice under ♿ Accessibility, reusing the code.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T20:19-06:00",
+   "outcome": "Released in 0.0.263: a click on the ground while walking now walks there instead (the walk stops where the friend is and sets off anew), or, as the player chooses, walks there next, after (the queue). The choice is in ♿ Accessibility beside 👆, and in 🎮 Controls. Check: click294.",
+   "metrics": {
+    "open_minutes": 534,
+    "matthew_messages": 3,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1176,
+    "tokens_est": 294,
+    "sync_minutes_est": 2.0
+   }
+  },
   {
    "id": 293,
    "area": "dress up, castles",
@@ -10858,7 +10875,6 @@
   }
  ],
  "queue": [
-  294,
   297,
   298,
   299,
@@ -10912,5 +10928,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T20:13-06:00"
+ "current_since": "2026-10-18T20:19-06:00"
 }
