@@ -714,7 +714,7 @@
    "tags": [],
    "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
    "url": "",
-   "progress": "09:14: minted. 09:34 Matthew: \"item 7 -- yes. (387 and 388 after 386, in that order)\" 10:10: FOUND, on BOTH livelits branches (#2597 at f8ae6f2b9c on 8311, #2635 at 9e7258b55b on 8341, Livelits > Overview, ^flag's eye): the eye's pane already shows the model as TILES, a splice sub-editor (code-editor sub-editor): caret, Shift+Arrow selection, the inspector reads 'Boolean literal', right click opens Hazel's context menu; Perform.in_revealed_model refuses text edits. What is NOT tiles: the pane's head line (^flag) and params line (HTML inputs, editable by design); the Projectors sidebar card of a docked livelit (ProjectorView: 'a preview, not an editing surface', default_render_splice = simple_code text); and refractors (RefractorView, also default_render_splice). Asked Matthew which surface Cyrus meant. 10:13 Matthew (asked which surface): \"All of the plain-text ones (sidebar card and refractors become read-only tiles; head and params lines stay)\". 11:00: CORRECTION from ^ticket(393)'s survey (^report(19) draft): the 10:10 finding was half wrong. default_render_splice calls simple_code -> Code.view, so the docked Projectors card's SPLICES (ProjectorView.re:1050) and the refractors' splices (RefractorView.re:276) are already STATIC TILES (no caret, no selection, no menu), not text. Only the card's one-line HEADER is text (text_code via chip_syntax, ProjectorView.re:564-586, 632; in the app ^flag(true) is one token-styled element). So the work is to give those splices the revealed model's read-only selection (caret, Shift+Arrow, right-click menu), plus a decision on the header; Matthew's 10:13 answer (head and params lines stay) still holds.",
+   "progress": "09:14: minted. 09:34 Matthew: \"item 7 -- yes. (387 and 388 after 386, in that order)\" 10:10: FOUND, on BOTH livelits branches (#2597 at f8ae6f2b9c on 8311, #2635 at 9e7258b55b on 8341, Livelits > Overview, ^flag's eye): the eye's pane already shows the model as TILES, a splice sub-editor (code-editor sub-editor): caret, Shift+Arrow selection, the inspector reads 'Boolean literal', right click opens Hazel's context menu; Perform.in_revealed_model refuses text edits. What is NOT tiles: the pane's head line (^flag) and params line (HTML inputs, editable by design); the Projectors sidebar card of a docked livelit (ProjectorView: 'a preview, not an editing surface', default_render_splice = simple_code text); and refractors (RefractorView, also default_render_splice). Asked Matthew which surface Cyrus meant. 10:13 Matthew (asked which surface): \"All of the plain-text ones (sidebar card and refractors become read-only tiles; head and params lines stay)\". 11:00: CORRECTION from ^ticket(393)'s survey (^report(19) draft): the 10:10 finding was half wrong. default_render_splice calls simple_code -> Code.view, so the docked Projectors card's SPLICES (ProjectorView.re:1050) and the refractors' splices (RefractorView.re:276) are already STATIC TILES (no caret, no selection, no menu), not text. Only the card's one-line HEADER is text (text_code via chip_syntax, ProjectorView.re:564-586, 632; in the app ^flag(true) is one token-styled element). So the work is to give those splices the revealed model's read-only selection (caret, Shift+Arrow, right-click menu), plus a decision on the header; Matthew's 10:13 answer (head and params lines stay) still holds. 11:18: Matthew, with a screenshot of Scenes' eye_rate eye pane on 8341: \"Livelit syntax is still not tile based , right?\" Answered: the HEAD line (Drawing.^slider(\"blinks a minute\", 0, 240), an HTML input; his orange is the browser's text selection) is text, by his 10:13 call; the MODEL line (...(30)) is tiles (read-only sub-editor; his green is a tile selection, and the inspector's Tuple literal : (String, Int, Int) reads it). If he wants the head line as tiles too, 387 widens.",
    "log": [
     {
      "at": "2026-10-19T09:14-06:00",
@@ -732,6 +732,12 @@
      "at": "2026-10-19T10:13-06:00",
      "from": "matthew",
      "chars": 107,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T11:18-06:00",
+     "from": "matthew",
+     "chars": 47,
      "asks": false
     }
    ],
@@ -968,7 +974,7 @@
    "source": "^report(18), What next, step 1 (Matthew pasted it, 2026-10-19 11:03)",
    "url": "http://matthewhammer.org/hazel/performance-analysis/018/#step-1",
    "text": "<b>Andrew's per-member analysis on Modules II, brought into #2635: a separate, exploratory draft.</b> ^report(18), What next, step 1: \"Bring Andrew&#x27;s per-member analysis on Modules II (00bc805ca1, on #2687) into #2635, adapted to Modules II part 3. Until then, skip the 8 cases when Modules II is on, each with a reason that links here, so that a red run means something new.\" Matthew: \"let's do\", \"as a draft -- and separate/exploratory.\" So: its own branch off #2635's (integration/livelits-modular-editors), and a DRAFT PR into it, not pushed to #2635 itself; exploratory, so it may end as a finding rather than a merge. Andrew's commit is 00bc805ca1 on #2687 (the standard library, into #2469); #2635 has Modules II part 3, which his port predates, so expect to adapt it. Goal: the 8 DefStaticsParity cases that fail on #2635 pass. (The step's link goes live when ^report(18) is published; it is a local draft today.)",
-   "progress": "11:03: minted from the pasted step; Matthew: let's do, as a separate exploratory draft. Starts once ^report(19) is published (^ticket(393)). 11:14: IN PROGRESS in ~/hazel-2635-permember (branch explore/2635-per-member-modules-ii off #2635's b44bb9c50f; uncommitted): found the source is Andrew's a6b5478f52 (10-16, Modules II part 1 merged into stdlib: per-member DefStatics on Modules II), re-ported in 00bc805ca1 onto spans stage 6; #2635 lacks stage 6, so porting the pre-stage-6 form (as at 77e07a0b4c). DONE: ModuleHelpers (stable ids in modlet_pat/wrap_item; exported_names, lower_tail, item_ana_labels; stdlib's lower). NEXT: DefStatics (lower_item/lower_items/module_elab, compose_free, module_literal_members, calc_module_item, calc_item dispatch, Module root in chain_root/calc/whole_elab), build, DefStaticsParity.",
+   "progress": "11:03: minted from the pasted step; Matthew: let's do, as a separate exploratory draft. Starts once ^report(19) is published (^ticket(393)). 11:14: IN PROGRESS in ~/hazel-2635-permember (branch explore/2635-per-member-modules-ii off #2635's b44bb9c50f; uncommitted): found the source is Andrew's a6b5478f52 (10-16, Modules II part 1 merged into stdlib: per-member DefStatics on Modules II), re-ported in 00bc805ca1 onto spans stage 6; #2635 lacks stage 6, so porting the pre-stage-6 form (as at 77e07a0b4c). DONE: ModuleHelpers (stable ids in modlet_pat/wrap_item; exported_names, lower_tail, item_ana_labels; stdlib's lower). NEXT: DefStatics (lower_item/lower_items/module_elab, compose_free, module_literal_members, calc_module_item, calc_item dispatch, Module root in chain_root/calc/whole_elab), build, DefStaticsParity. 11:17: DefStatics ported too; libraries and test runner build; committed locally 18a657f23e (not pushed). Running DefStaticsParity.",
    "log": [
     {
      "at": "2026-10-19T11:03-06:00",
@@ -1032,7 +1038,7 @@
  ],
  "next_ticket": 403,
  "current_ticket": 400,
- "current_note": "11:07: Starting: reading Andrew's 00bc805ca1 (#2687: per-member DefStatics on Modules II parts 1-2) against #2635's Modules II part 3, to plan a separate exploratory draft branch off #2635's.",
+ "current_note": "11:17: Port written and building (local commit 18a657f23e on explore/2635-per-member-modules-ii, ~/hazel-2635-permember, not pushed): Andrew's pre-stage-6 per-member DefStatics on Modules II, onto #2635. Running DefStaticsParity now; then fmt, the module test groups, and a draft PR into #2635's branch.",
  "closed_tickets": [
   {
    "id": 393,
