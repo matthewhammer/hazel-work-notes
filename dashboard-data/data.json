@@ -527,7 +527,9 @@
    "source": "Matthew, 2026-10-17, in chat (\"mint tickets for that better open water scene\")",
    "url": "",
    "text": "<b>Dress Up: the 🌊 open water, made better: its island and sail boat taken away, a distant shore in layers that combine (beach, forest, mountains), a slider for the shore's size, and its own horizon audit.</b> Combined from ^ticket(211), ^ticket(212) and ^ticket(213) (Matthew, 2026-10-17: \"combine 211 and 212 into one ticket\", \"and include 213\", \"and include an audit, just for that background as in 214, for the new revisions to open water\"). Part 1, from ^ticket(211): Matthew: \"the 'open water' background has some extras I didn't ask for: island in distance, sail boat that seems stationary. Let's remove those, since they currently seem like promises for stuff that doesn't exist, and cannot be reached.\" They are drawn in the sea scene (js/15-place-picker.js, ticket 186's open water: \"far off a sail and an island\"). Take both away, and write the rule into agent-instructions.md's design rules: scenery never promises a place or thing that does not exist or cannot be reached (beside \"Doorways go somewhere sensible\"). His question with it, whether the instructions keep backgrounds and objects composable as they grow: partly (one table per kind of thing, the shared organic helpers, connected views share their settings), but nothing yet on backdrops built from shared, combinable layers; Part 2 adds that. Part 2: Matthew: \"having the option to display a shoreline, or treeline, in the distance, would be a good set of parameters to make the 'open water' more useful in more situations\", with options for: \"different forest styles, maybe 2 or 3. default is off\"; \"different mountain styles, maybe 2 or 3. default is off\"; \"forest and mountain styles layer and combine naturally\"; \"optional beach, drawn between the horizon and the forest\". To do: the distant shore as layers on the horizon, back to front mountains, forest, beach, each its own setting in 🏞️ Background (shown only at the open water); built as shared backdrop layers other places can use too, with the shared organic helpers, and the recipe written into agent-instructions.md (his question: a composable system for objects and backgrounds as we add more). Off by default, so today's open water stays as it is but for part 1. Still, at 60 frames a second (drawn once, nothing moving). Part 3, from ^ticket(213): Matthew: \"Permit a 'distant shore size' slider so we can rescale the open water, and potentially stack them into a column in the world grid and rescale the distant shore in each to make it seem like we are getting closer as we go north, square by square.\" Needs part 2's shore. Open: a place's settings are now one per kind of place (state.background), so two open water squares share them; a size per square needs the world's squares to carry settings of their own (as each already carries its things), or the size worked out from where the square stands in its column. Part 4, the horizon audit of ^ticket(214) for the open water alone, with these revisions: the friend cannot swim up into the sky or onto the distant shore at any shore setting or size (a back limit at the horizon, or at the shore's water line when it is shown); and where the square has a way N, swimming N into that limit shows the N arrow and takes it. A check on GitHub swims N with the shore off, on, and at its smallest and largest sizes. ^ticket(214) stays the audit of every other background.",
-   "tags": [],
+   "tags": [
+    "long run"
+   ],
    "status": "open",
    "log": [
     {
@@ -573,7 +575,7 @@
      "asks": true
     }
    ],
-   "progress": null
+   "progress": "03:05, my call (Matthew AFK; every queued ticket waiting on him): found open and unqueued (minted 10-17, never started); queued after 365 and taken as tonight's long run. Part 1 first (the island and sail boat still drawn)."
   },
   {
    "id": 259,
@@ -807,7 +809,7 @@
    ],
    "source": "Matthew, chat, 2026-10-18 21:09",
    "url": "",
-   "progress": "Minted 21:09 for a long run, after ^ticket(285) (knolling on all panels). 02:49: was never put in the queue at its minting (found while the queue held only ✋ tickets and 369's wait); queued after 369, ^ticket(285) and ^ticket(375) (knolling on all panels) being done. 02:53: BUILT (uncommitted): setCastleBig/body.castle-big over bg-big (the background designer's columns, game card, dragger): only 🏰 the castles; map open, min(58vh, 600px); every room a box in order (data-group keys), named '2 · 🌿 greenhouse', its picture from the picture archive's thumbs (castleroom--<style>.webp, only fetched in castle-big), kind chips smaller, its 'room n is' label hidden; the room you're in marked, a room tapped on the map outlined and scrolled to; ✕ back to the game, or to the background designer when opened from it (Escape one step). Tried in the pane at 1600x1000: all of it. Checks: castle365 (verdict), castlefs365 (fps, CPU 2 = black laptop tier: side panel vs background designer vs castle designer, recorded). Diagnostic branch diag-365 running on GitHub. RELEASED 0.0.320 (324a76b, 02:54), deploy first; diag-365's checks to read.",
+   "progress": "Minted 21:09 for a long run, after ^ticket(285) (knolling on all panels). 02:49: was never put in the queue at its minting (found while the queue held only ✋ tickets and 369's wait); queued after 369, ^ticket(285) and ^ticket(375) (knolling on all panels) being done. 02:53: BUILT (uncommitted): setCastleBig/body.castle-big over bg-big (the background designer's columns, game card, dragger): only 🏰 the castles; map open, min(58vh, 600px); every room a box in order (data-group keys), named '2 · 🌿 greenhouse', its picture from the picture archive's thumbs (castleroom--<style>.webp, only fetched in castle-big), kind chips smaller, its 'room n is' label hidden; the room you're in marked, a room tapped on the map outlined and scrolled to; ✕ back to the game, or to the background designer when opened from it (Escape one step). Tried in the pane at 1600x1000: all of it. Checks: castle365 (verdict), castlefs365 (fps, CPU 2 = black laptop tier: side panel vs background designer vs castle designer, recorded). Diagnostic branch diag-365 running on GitHub. RELEASED 0.0.320 (324a76b, 02:54), deploy first; diag-365's checks to read. 03:04: diag-365 READ: castle365 16/16 ok; castlefs365 at CPU 2 (black laptop tier, GitHub's Chrome, 3 runs each): side panel walk 42.4 / drag 46.6 fps, background designer 43.0 / 46.3, castle designer 34.1 / 37.9. Found why: the Background tab's round of syncs (changed, and settle every 250 ms while moving) took 37 ms in the pane, 31 of it 84 theme flags each copying ~1,900 settings for castleOf; plus the castle designer redrawing on every round. RELEASED 0.0.323 (a813040): castleView (prototype view, 0.03 ms vs 0.4), flagCastle (one castle per id per round), the designer's draw only on a changed look: 6.6 ms a round (side), 6.7 (castle designer), 6.1 (background designer), pane averages of 100 rounds. diag-365b re-measuring castlefs365.",
    "log": [
     {
      "at": "2026-10-18T21:09-06:00",
@@ -846,8 +848,8 @@
   }
  ],
  "next_ticket": 379,
- "current_ticket": 365,
- "current_note": "03:01: ^ticket(314) closed (done); ^ticket(365) is next in the queue",
+ "current_ticket": 212,
+ "current_note": "03:05: open water, part 1: the island and the sail boat taken away; then the distant shore's layers (365's frame-rate diagnostic running meanwhile)",
  "closed_tickets": [
   {
    "id": 314,
@@ -12138,6 +12140,7 @@
   }
  ],
  "queue": [
+  212,
   365,
   374,
   326,
@@ -12155,5 +12158,5 @@
   322,
   344
  ],
- "current_since": "2026-10-19T03:01-06:00"
+ "current_since": "2026-10-19T03:05-06:00"
 }
