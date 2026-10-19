@@ -1810,11 +1810,31 @@
     }
    ],
    "progress": ""
+  },
+  {
+   "id": 350,
+   "area": "dress up, touch (trap room levers)",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T18:33-06:00",
+   "status": "open",
+   "tags": [],
+   "text": "<b>Dress Up: the trap room's red and blue levers do nothing to a touch (M's iPad).</b> Matthew: \"the red and blue levers do not work with touch on M's ipad -- she also has a broken screen, but I tested it, and it seems like some device specific issue, perhaps? touch/tap event?\" FOUND: a touch fires pointerdown, then touchstart. pointerdown starts the lever's press (drag.roomLever, pulled on letting go), but the picture's touchstart handler keeps a press only on a joint, the face, the friend or a placed thing (onThing), and otherwise sets drag = null: the room's levers are none of those, so the press is gone before the finger lifts. A mouse sends no touchstart, so it works on a laptop; placed levers work by touch, being things. PLAN: touchstart keeps a room lever's press (and stops the page panning under it).",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T18:33-06:00",
+     "from": "matthew",
+     "chars": 180,
+     "asks": true
+    }
+   ],
+   "progress": ""
   }
  ],
- "next_ticket": 350,
- "current_ticket": 284,
- "current_note": "18:23: every object placeable: outdoors, the next places' baked-in things (flowers, tufts, paths, the brook and stream, the castle's birds and road, the hut's butterflies)",
+ "next_ticket": 351,
+ "current_ticket": 350,
+ "current_note": "18:33: the trap room's levers by touch (M's iPad): touchstart dropped the press; fixing",
  "closed_tickets": [
   {
    "id": 349,
@@ -10430,6 +10450,7 @@
   }
  ],
  "queue": [
+  350,
   284,
   283,
   286,
@@ -10482,5 +10503,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T18:23-06:00"
+ "current_since": "2026-10-18T18:33-06:00"
 }
