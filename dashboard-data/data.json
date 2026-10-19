@@ -1124,13 +1124,11 @@
    "added": "2026-10-19T13:34-06:00",
    "opened": "2026-10-19T13:34-06:00",
    "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
+   "tags": [],
    "source": "Matthew, 2026-10-19 13:34, in chat, with a screenshot of the tent's inside (full screen): the friend standing between the two sleeping bags",
    "url": "",
    "text": "<b>A lying-down pose in the perspective of a surface along the left or right wall: the tent's sleeping bags first, then beds or bunk beds along a side wall (if they are redesigned that way).</b> Matthew, \"mint and enqueue, dress-up, and not prioritized during hazel work time ATM\": \"new laying down pose that matches the perspective of these sleeping bags, or any other surface against the L or R walls (like beds or bunk beds, if we redesign them, etc.)\" His screenshot: inside the tent, the red sleeping bag runs along the left wall and the purple one along the right, each receding from the front corner toward the back, with its pillow at the back end; today's lying pose does not follow that slant. Not during Hazel work time: Dress Up tickets come after the Hazel ones. Matthew, 13:34, also: \"click to lay down on the sleeping bags, once we can.\" So, once the pose exists: clicking a sleeping bag (as clicking a seat sits the friend down) walks the friend there and lays them down on it, in that bag's perspective.",
-   "progress": "13:34: minted and enqueued at the end of the Dress Up tickets. 13:34: + click a sleeping bag to lie down on it, once the pose exists (Matthew). 15:46: three drawing tries, none released: the body turned to the bag's slant (\"tilting to roll over, not face up\"), a skew (\"too flat\"), and the head and feet set upright on the skew (not shown). Matthew's call: \"we just need more angles of the body, as their own drawing routine, not cheap 2d transformations of the poses that we have now.\" Parked on kids-choice-games branch lie-along-412 (2dd96e6, pushed, not deployed): the seats part is ready (the bags as lie seats with their ends, click to lie, standing up at the open end), the drawing waits for a new angle, 'lying face up, seen from the feet end', drawn as its own routine. WAITING ON MATTHEW: which angle first, and whether it starts with the plain friend or covers every costume and hair style at once.",
+   "progress": "13:34: minted and enqueued at the end of the Dress Up tickets. 13:34: + click a sleeping bag to lie down on it, once the pose exists (Matthew). 15:46: three drawing tries, none released: the body turned to the bag's slant (\"tilting to roll over, not face up\"), a skew (\"too flat\"), and the head and feet set upright on the skew (not shown). Matthew's call: \"we just need more angles of the body, as their own drawing routine, not cheap 2d transformations of the poses that we have now.\" Parked on kids-choice-games branch lie-along-412 (2dd96e6, pushed, not deployed): the seats part is ready (the bags as lie seats with their ends, click to lie, standing up at the open end), the drawing waits for a new angle, 'lying face up, seen from the feet end', drawn as its own routine. WAITING ON MATTHEW: which angle first, and whether it starts with the plain friend or covers every costume and hair style at once. 15:50: Matthew: \"lying with head and feet at a 45 degree angle --- as in the tent. it's specialized to that, I think. L/R symmetry works, but otherwise it's specialized for laying down near the L or R wall edge of a room, where the pseudo 3d perspective requires a new approach, just for that.\" So: a drawing routine of its own for lying face up along a side wall, mirrored for the other wall; on branch lie-along-412.",
    "log": [
     {
      "at": "2026-10-19T13:34-06:00",
@@ -1259,7 +1257,7 @@
  ],
  "next_ticket": 423,
  "current_ticket": 412,
- "current_note": "15:34: ^ticket(412): lying down along a side wall, in its perspective (the tent's sleeping bags first). 0.0.336 and 0.0.337 released this hour; their speed runs are on GitHub.",
+ "current_note": "15:50: ^ticket(412): drawing the friend lying face up along a side wall (the tent's bags, 45 degrees, mirrored L/R) as its own routine, Matthew's call; on branch lie-along-412.",
  "closed_tickets": [
   {
    "id": 413,
@@ -13711,6 +13709,7 @@
   }
  ],
  "queue": [
+  412,
   389,
   406,
   414,
@@ -13740,14 +13739,12 @@
   259,
   322,
   344,
-  421,
-  412
+  421
  ],
  "current_since": "2026-10-19T15:34-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
   "date": "2026-10-21"
- },
- "current_waiting": "Ticket 412: which new angle of the body to draw first (as its own routine), and plain friend first or every costume at once?"
+ }
 }
