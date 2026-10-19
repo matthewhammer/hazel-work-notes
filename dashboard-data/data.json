@@ -847,7 +847,7 @@
    "source": "Matthew, 2026-10-19 10:14, in chat (during ^ticket(387))",
    "url": "",
    "text": "<b>^report(19): where the Hazel UI shows syntax as tiles, and where as text.</b> Matthew: \"please file a hazel ^report with our investigation into how much tiles are applied to all representations of Hazel syntax within the Hazel UI.\" Every place the UI draws Hazel syntax (the editor, splices, the eye's model pane, the Projectors sidebar card, refractors, the cursor inspector, Gamma, the explainer's examples, the result and stepper, probes, the outline, tests, hovers, completions, the livelit head and params lines, ...), classed as interactive tiles (caret, selection, right click), static tiles (drawn as tiles, no interaction), or plain text; with the code path behind each, checked in the running app. Builds on ^ticket(387) and ^ticket(388); for the 2026-10-21 meeting with Cyrus (^ticket(389)).",
-   "progress": "10:15: minted; surveying before 387's build, since it decides 387's and 388's scope. 10:15 Matthew: \"mint a ticket for the report and do it today, asap.\" (deadline: today). 10:52: (after the 10:26 crash; the survey agent died with it and was rerun) CHECKED IN THE APP on 8341 (#2635, b44bb9c50f): INTERACTIVE tiles: main editor (caret, selection, right-click menu); livelit eye pane's model (sub-editor, read-only; head line is an HTML input); stepper steps (caret, but no right-click menu, and the inspector does not follow). STATIC tiles: cursor inspector bar + full view; &Gamma; entries (no menu); explainer syntactic form; explainer examples (locked cell editors: DOM focus, no caret, no menu); probe values; the program's value (#2635 draws it as a program-value refractor: no caret; its own 'Show steps' menu). PLAIN TEXT: outline sidebar; explainer's inline `code` spans; stepper header; docked Projectors card (^flag(true) is ONE .token element holding printed text: token-styled text, not tiles). Side finding: after switching Documentation (Probes) to Scratch and pasting a program, the program value kept showing the Probes slide's value under STOPPED until a reload. Drafted ^report(19) at 019/ (gen019.py from 019/data/surfaces.json + meta.json), local commits 8729be1 + 6d1b038, not pushed; waiting for Matthew's read.",
+   "progress": "10:15: minted; surveying before 387's build, since it decides 387's and 388's scope. 10:15 Matthew: \"mint a ticket for the report and do it today, asap.\" (deadline: today). 10:52: (after the 10:26 crash; the survey agent died with it and was rerun) CHECKED IN THE APP on 8341 (#2635, b44bb9c50f): INTERACTIVE tiles: main editor (caret, selection, right-click menu); livelit eye pane's model (sub-editor, read-only; head line is an HTML input); stepper steps (caret, but no right-click menu, and the inspector does not follow). STATIC tiles: cursor inspector bar + full view; &Gamma; entries (no menu); explainer syntactic form; explainer examples (locked cell editors: DOM focus, no caret, no menu); probe values; the program's value (#2635 draws it as a program-value refractor: no caret; its own 'Show steps' menu). PLAIN TEXT: outline sidebar; explainer's inline `code` spans; stepper header; docked Projectors card (^flag(true) is ONE .token element holding printed text: token-styled text, not tiles). Side finding: after switching Documentation (Probes) to Scratch and pasting a program, the program value kept showing the Probes slide's value under STOPPED until a reload. Drafted ^report(19) at 019/ (gen019.py from 019/data/surfaces.json + meta.json), local commits 8729be1 + 6d1b038, not pushed; waiting for Matthew's read. 11:02: Matthew: \"Report 19 looks good: publish it.\"",
    "log": [
     {
      "at": "2026-10-19T10:14-06:00",
@@ -859,6 +859,12 @@
      "at": "2026-10-19T10:15-06:00",
      "from": "matthew",
      "chars": 51,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T11:02-06:00",
+     "from": "matthew",
+     "chars": 33,
      "asks": false
     }
    ]
@@ -981,7 +987,7 @@
  ],
  "next_ticket": 400,
  "current_ticket": 393,
- "current_note": "11:00: ^report(19) is DRAFTED, committed locally in hazel-perf-report (6d1b038), not pushed: http://localhost:8131/019/ . 22 of 39 surfaces draw tiles, only 6 take a caret; the Projectors card's splices and refractors are already static tiles (corrects 387). Waiting for Matthew's read before publishing.",
+ "current_note": "11:02: Matthew said publish ^report(19): copying it to the homepage's performance-analysis series, with its card, then checking the live page.",
  "closed_tickets": [
   {
    "id": 394,
@@ -12990,6 +12996,5 @@
   344,
   397
  ],
- "current_since": "2026-10-19T10:42-06:00",
- "current_waiting": "Read the ^report(19) draft (localhost:8131/019/) and say whether to publish"
+ "current_since": "2026-10-19T10:42-06:00"
 }
