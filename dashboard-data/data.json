@@ -866,52 +866,6 @@
    "progress": "21:55: checked live with a dark system (the pane's dark emulation): matthewhammer.org/dress-up-pictures/ follows it now (body #16181d, the nav bar's dark style, since the nav bar came to it in 296's b702da8). The archived 2026-10-18 copy is matthewhammer/dress-up-pictures-2026-10-18, ARCHIVED on GitHub (read-only): no nav bar, light, no archive notice. Changing it means unarchiving the repository, a setting that is Matthew's, and his 12:27 call (296) was to leave it as it is. ✋ Waiting on Matthew: unarchive it so it can get the nav bar and an 'archived' line, or leave it."
   },
   {
-   "id": 333,
-   "area": "dress up, archives",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T16:16-06:00",
-   "status": "open",
-   "tags": [
-    "long run"
-   ],
-   "text": "<b>Dress Up, a long run tonight: a new pictures run for the archive (dress-up-pictures), at the day's last release.</b> Matthew: \"do we have a long-run tonight for new pictures for the dress-up archive? If not, please enqueue.\" (none was queued; ^ticket(326) is the archive pages' conventions, not a run). In TODAY's convention (Matthew: \"we changed the convention today, to save space all year, and beyond\"; ^ticket(272)): one pictures/ folder rewritten whole by each run, each run a git tag (git's diffs keep it small), no PNG (only .svg, the settings .json without its saved time, WebP thumbs), never a folder per day. As ^ticket(272) set it up: a kids-choice-games branch archive-333 off main with .github/workflows/dress-up-archive.yml and tools/checks/.only (as branch archive-272); the pictures job's artifact downloaded (gh run download -n pictures into an empty folder), then ~/dress-up-pictures/tools/add_run.sh on it: one tag run-2026-10-18-HH-MM, runs.json and the viewer (matthewhammer.org/hazel/dress-up/pictures.html) showing it. The music job too only if a tune changed since run-2026-10-18 (0.0.201). Then the archive branch deleted. Laptop care: the 140 MB download and the rsync are the only local load (no browser); find .git/objects -empty after, per the crash notes. ^ticket(276) (the workflow committing its own run) would remove the laptop step but waits on Matthew's token. ADDED 17:03: run the music job too: a new tune since run-2026-10-18, 🫧 bubble super-dub step (0.0.239). ADDED 17:50: and 🌊 turtle deep-dub (0.0.244, ^ticket(346)); the music run itself is ^ticket(347). <b>FIX BEFORE THIS RUN</b> (Matthew, 20:21): \"https://matthewhammer.org/hazel/dress-up/pictures.html#backgrounds-collision-boxes has the \\\"you\\\" collision box included in each shot -- that's sort of okay, but sort of confusing -- we are supposed to see the scene without the main char (or their collision boxes).\" Then: \"attach to the ticket for the next archive.\" WHERE: dress-up-pictures/tools/archive.mjs, the 🔬 🧱 overlay (OVERLAYS, line 90; set at line 187: <code>Object.assign(state.access, ... { showSolids: true })</code>): in the shots without the friend, switch off 🔬's 🧍 you chip too, <code>solidCats: { you: false }</code> (SOLID_CATS in js/25-world.js, since 0.0.255), so the feet and torso boxes of a friend who is not in the picture are not drawn; keep them in the with-the-friend set, where they belong to the friend shown. Check one shot of each set before the run.",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T16:16-06:00",
-     "from": "matthew",
-     "chars": 96,
-     "asks": true
-    },
-    {
-     "at": "2026-10-18T16:16-06:00",
-     "from": "matthew",
-     "chars": 68,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T16:16-06:00",
-     "from": "claude",
-     "chars": 420,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T20:21-06:00",
-     "from": "matthew",
-     "chars": 285,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T20:21-06:00",
-     "from": "matthew",
-     "chars": 42,
-     "asks": false
-    }
-   ],
-   "progress": "21:50: the fix attached here done first: dress-up-pictures tools/archive.mjs (bf1f5a0) sets access.solidCats.you to whether the shot has the friend. Run started: branch archive-333 off main at 0.0.294 (the archive workflow as archive-272, checks folder emptied), run 39195452158 (pictures and music jobs). NEXT when it ends: gh run download -n pictures (and -n music) into empty folders, tools/add_run.sh in each archive, then delete the branch. 21:52: the pictures job FAILED at 0.0.294: a DOMException decoding a picture, the cave's broken markup (cx=\"\"..., found under 369; fixed in 0.0.297). Music half added (run-2026-10-18-21-36, closes 347). Pictures job re-run on main at 0.0.297 (gh run rerun --failed); NEXT: download -n pictures, ~/dress-up-pictures/tools/add_run.sh, then delete branch archive-333 and the scratchpad worktree."
-  },
-  {
    "id": 339,
    "area": "dress up, reports",
    "added": "2026-10-18",
@@ -1139,13 +1093,75 @@
     }
    ],
    "text": "<b>🗺️ The castle designer in a full-screen mode, as the world designer and the music producer have.</b> Matthew: \"mint and enqueue for long run --- castle designer FS mode -- after we do knowlling on all panels, as per our ticket before this one.\" So after ^ticket(285) (^du_report(5)'s knolling applied to every panel): the castle designer (🏞️ Background's 🗺️ castle designer, castleDesign) opened full screen, the game's view in a small panel as the world designer does it, its rooms, their kinds and settings laid out in order in plain view (knolling: boxes within boxes, minimal visual noise), with the report's shared choices (its 13), and an fps check on the black laptop's tier as ^ticket(289) asks of the Background designer."
+  }
+ ],
+ "next_ticket": 372,
+ "current_ticket": 352,
+ "current_note": "22:50: 352: drafting the ^du_report on scale across views (local; waits on Matthew to publish). Fix out in 0.0.302; 371 closed (0.0.303).",
+ "closed_tickets": [
+  {
+   "id": 333,
+   "area": "dress up, archives",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T16:16-06:00",
+   "status": "done",
+   "tags": [
+    "long run"
+   ],
+   "text": "<b>Dress Up, a long run tonight: a new pictures run for the archive (dress-up-pictures), at the day's last release.</b> Matthew: \"do we have a long-run tonight for new pictures for the dress-up archive? If not, please enqueue.\" (none was queued; ^ticket(326) is the archive pages' conventions, not a run). In TODAY's convention (Matthew: \"we changed the convention today, to save space all year, and beyond\"; ^ticket(272)): one pictures/ folder rewritten whole by each run, each run a git tag (git's diffs keep it small), no PNG (only .svg, the settings .json without its saved time, WebP thumbs), never a folder per day. As ^ticket(272) set it up: a kids-choice-games branch archive-333 off main with .github/workflows/dress-up-archive.yml and tools/checks/.only (as branch archive-272); the pictures job's artifact downloaded (gh run download -n pictures into an empty folder), then ~/dress-up-pictures/tools/add_run.sh on it: one tag run-2026-10-18-HH-MM, runs.json and the viewer (matthewhammer.org/hazel/dress-up/pictures.html) showing it. The music job too only if a tune changed since run-2026-10-18 (0.0.201). Then the archive branch deleted. Laptop care: the 140 MB download and the rsync are the only local load (no browser); find .git/objects -empty after, per the crash notes. ^ticket(276) (the workflow committing its own run) would remove the laptop step but waits on Matthew's token. ADDED 17:03: run the music job too: a new tune since run-2026-10-18, 🫧 bubble super-dub step (0.0.239). ADDED 17:50: and 🌊 turtle deep-dub (0.0.244, ^ticket(346)); the music run itself is ^ticket(347). <b>FIX BEFORE THIS RUN</b> (Matthew, 20:21): \"https://matthewhammer.org/hazel/dress-up/pictures.html#backgrounds-collision-boxes has the \\\"you\\\" collision box included in each shot -- that's sort of okay, but sort of confusing -- we are supposed to see the scene without the main char (or their collision boxes).\" Then: \"attach to the ticket for the next archive.\" WHERE: dress-up-pictures/tools/archive.mjs, the 🔬 🧱 overlay (OVERLAYS, line 90; set at line 187: <code>Object.assign(state.access, ... { showSolids: true })</code>): in the shots without the friend, switch off 🔬's 🧍 you chip too, <code>solidCats: { you: false }</code> (SOLID_CATS in js/25-world.js, since 0.0.255), so the feet and torso boxes of a friend who is not in the picture are not drawn; keep them in the with-the-friend set, where they belong to the friend shown. Check one shot of each set before the run.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T16:16-06:00",
+     "from": "matthew",
+     "chars": 96,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T16:16-06:00",
+     "from": "matthew",
+     "chars": 68,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T16:16-06:00",
+     "from": "claude",
+     "chars": 420,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T20:21-06:00",
+     "from": "matthew",
+     "chars": 285,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T20:21-06:00",
+     "from": "matthew",
+     "chars": 42,
+     "asks": false
+    }
+   ],
+   "progress": "21:50: the fix attached here done first: dress-up-pictures tools/archive.mjs (bf1f5a0) sets access.solidCats.you to whether the shot has the friend. Run started: branch archive-333 off main at 0.0.294 (the archive workflow as archive-272, checks folder emptied), run 39195452158 (pictures and music jobs). NEXT when it ends: gh run download -n pictures (and -n music) into empty folders, tools/add_run.sh in each archive, then delete the branch. 21:52: the pictures job FAILED at 0.0.294: a DOMException decoding a picture, the cave's broken markup (cx=\"\"..., found under 369; fixed in 0.0.297). Music half added (run-2026-10-18-21-36, closes 347). Pictures job re-run on main at 0.0.297 (gh run rerun --failed); NEXT: download -n pictures, ~/dress-up-pictures/tools/add_run.sh, then delete branch archive-333 and the scratchpad worktree.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T22:51-06:00",
+   "outcome": "The archive run at last: branch archive-333's run 39195452158. Music job (the game at 0.0.294): 13 tunes recorded, 27 kept, added to dress-up-music as run-2026-10-18-21-36 (closed 347). Pictures job failed first at 0.0.294 on the cave's broken markup (cx=\"\"..., found under 369, fixed in 0.0.297); re-run on main at 0.0.297: 944 pictures planned, 589 distinct drawings written (17 repeats, 265 same as default), 0 page errors; added to dress-up-pictures as run-2026-10-18-21-51 (ddc5c8e, 6.8 MiB in git), pushed. The overlay's you-box (bf1f5a0) in it. Branch archive-333 and its worktree removed; no empty git objects.",
+   "metrics": {
+    "open_minutes": 396,
+    "matthew_messages": 4,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 911,
+    "tokens_est": 227,
+    "sync_minutes_est": 0.0
+   }
   },
   {
    "id": 371,
    "area": "dress up, the friend's gear in each pose",
    "added": "2026-10-18",
    "opened": "2026-10-18T22:35-06:00",
-   "status": "open",
+   "status": "done",
    "tags": [
     "long run"
    ],
@@ -1166,13 +1182,19 @@
      "asks": true
     }
    ],
-   "text": "<b>Dress Up: the scuba tank on the friend's belly when crawling, and an audit for mistakes like it.</b> Matthew, with a screenshot of the friend crawling toward us in the tree house in the 🤿 scuba gear: \"crawling animation for scuba tank has it on our belly -- inverted from correct. Let's do an audit, long run, for similar mistakes.\" Crawling, the body is drawn lying forward (squashed, the soles up, ticket 286), and the tank, worn on the back, came out on the side toward the floor. PLAN: (1) fix the tank: on the back in every crawl facing (toward us: on top, mostly hidden by the body; away: on top, seen; in profile: on the upper side); (2) the audit: every worn thing that has a front and a back (the tank, the snorkel and mask, the old diving helmet's hose, capes, backpacks, wings, tails, the witch's hat brim, the corselet, belts, bows, pockets, a hood) in every pose and animation (standing, sitting, lying, crawling, climbing, swimming, jumping, hugging) and every facing (toward us, away, left, right), each drawn on the side it belongs: a contact sheet of every pair for the eye, and a check of what can be measured (which side of the body each lies on, in front or behind the body in drawing order); (3) fix what the audit finds; (4) Matthew, 22:44, with a screenshot of the fairy from behind, the tank still on her back: \"something about the tank seems buggy. Switched to fairy costume and its still there?\" The tank, mask and snorkel are gear, worn with any costume (ticket 288: \"separate from the scuba suit\"), so a costume change left them on. MY CALL (Matthew AFK): changing out of a diving suit (scuba or the old one) takes its diving gear off with it; any gear can still be put on again with any costume; (5) a 🔬 check for the speed run."
-  }
- ],
- "next_ticket": 372,
- "current_ticket": 371,
- "current_note": "22:45: 371: the scuba tank on the friend's belly when crawling; leaving a diving suit takes its gear off (my call on his fairy question); then the audit of gear in every pose and facing. 352's fix out (0.0.302); its report draft after this.",
- "closed_tickets": [
+   "text": "<b>Dress Up: the scuba tank on the friend's belly when crawling, and an audit for mistakes like it.</b> Matthew, with a screenshot of the friend crawling toward us in the tree house in the 🤿 scuba gear: \"crawling animation for scuba tank has it on our belly -- inverted from correct. Let's do an audit, long run, for similar mistakes.\" Crawling, the body is drawn lying forward (squashed, the soles up, ticket 286), and the tank, worn on the back, came out on the side toward the floor. PLAN: (1) fix the tank: on the back in every crawl facing (toward us: on top, mostly hidden by the body; away: on top, seen; in profile: on the upper side); (2) the audit: every worn thing that has a front and a back (the tank, the snorkel and mask, the old diving helmet's hose, capes, backpacks, wings, tails, the witch's hat brim, the corselet, belts, bows, pockets, a hood) in every pose and animation (standing, sitting, lying, crawling, climbing, swimming, jumping, hugging) and every facing (toward us, away, left, right), each drawn on the side it belongs: a contact sheet of every pair for the eye, and a check of what can be measured (which side of the body each lies on, in front or behind the body in drawing order); (3) fix what the audit finds; (4) Matthew, 22:44, with a screenshot of the fairy from behind, the tank still on her back: \"something about the tank seems buggy. Switched to fairy costume and its still there?\" The tank, mask and snorkel are gear, worn with any costume (ticket 288: \"separate from the scuba suit\"), so a costume change left them on. MY CALL (Matthew AFK): changing out of a diving suit (scuba or the old one) takes its diving gear off with it; any gear can still be put on again with any costume; (5) a 🔬 check for the speed run.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T22:50-06:00",
+   "outcome": "0.0.303. The tank: crawling toward us the back is turned up over the head (flipped, ticket 286) and the tank was not turned with it, so it hung on the belly side: now drawn over the turned back, under the head (mostly hidden by the head, as it should be), the straps showing the back's band instead of the chest buckle; crawling away it is seen short with the back; in profile it rides on top (it already did). The audit: contact sheets of the tank, mask, snorkel, fairy and falcon wings, a suit's tail, the old diving suit's helmet and hose, the witch's hat and shoulder cat, the ghost, in 12 poses and facings (standing 4 ways, walking, sitting, lying, crawling 3 ways, swimming, climbing) and swimming upright (under the sea) and flat (open water). One more mistake found: the diving hose turned with the body (lying, crawling in profile, swimming flat) and pointed the way the head does; now counter-turned from where the turn puts the helmet's fitting, rising (each about 400 tall by 30-130 wide). His fairy question: the tank is gear worn with any costume (ticket 288); my call: leaving a diving suit takes its snorkel, mask and tank off, and gear can still be put on with any costume. tools/checks/gear371.mjs.",
+   "metrics": {
+    "open_minutes": 15,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 215,
+    "tokens_est": 53,
+    "sync_minutes_est": 9.0
+   }
+  },
   {
    "id": 370,
    "area": "dress up, the underwater place",
@@ -11751,7 +11773,6 @@
   }
  ],
  "queue": [
-  371,
   352,
   326,
   359,
@@ -11760,7 +11781,6 @@
   222,
   225,
   289,
-  333,
   356,
   357,
   276,
@@ -11776,5 +11796,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T22:45-06:00"
+ "current_since": "2026-10-18T22:50-06:00"
 }
