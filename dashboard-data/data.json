@@ -163,6 +163,10 @@
  ],
  "other_prs": [
   {
+   "pr": 2700,
+   "note": "DRAFT tests PR to dev (^ticket(411), from ^report(21)): incremental evaluation agrees with evaluation from scratch: the property back on for values, recursive-let templates, and the slide corpus (150 edits). Mutation-checked."
+  },
+  {
    "pr": 2699,
    "note": "Exploratory DRAFT into #2635 (^ticket(400)): per-member module analysis on Modules II, Andrew's stdlib port (a6b5478f52 / 00bc805ca1) fitted to #2635. 12:06 10-19: #2635's 1131a457e4 merged in and its own corpus failure (color-fig3.hz, livelit definitions taken for modules) fixed in 223357135a: DefStaticsParity 43 of 43 locally. Merging it into #2635 is Matthew's call."
   },
@@ -1202,7 +1206,7 @@
    "source": "split from ^ticket(398), 2026-10-19 13:16 (Matthew's ask there: \"add a new PR to dev that does even more correctness tests ... ditto for our PRs\")",
    "url": "",
    "text": "<b>A tests PR to dev that checks the performance PRs keep types and values the same, plus each PR's own missing tests.</b> The second half of ^ticket(398); ^report(21)'s \"What to add\": <ol><li>turn the incremental-against-fresh property back on for completed results (#2457's stuck ones skipped), fixed seed, with recursive lets in the generator;</li><li>a corpus comparison: every program in hazel-programs analyzed and evaluated with each optimization on and off, incrementally after an edit and from scratch (types, marks, elaborations ignoring ids, values, probes, test results);</li><li>hash checks: equal hash implies equal term, for the type hash (#2661, #2681) and the term hash (#2673), plus a census over the corpus;</li><li>a parser comparison: the load fallback against character-by-character typing at every split offset (finds #2610's case);</li><li>budget tests that also assert results.</li></ol> And on each of our PRs, the tests ^report(21) lists in its section.",
-   "progress": "13:16: minted from ^ticket(398)'s second half and enqueued after the Hazel tickets.",
+   "progress": "13:16: minted from ^ticket(398)'s second half and enqueued after the Hazel tickets. 14:02: DRAFT PR #2700 to dev (branch test/incremental-matches-fresh, 58ac45008a, worktree ~/hazel-dev-tests; CI running): (1) the incremental-vs-fresh property back on for value results (stuck ones skipped, #2457 pinned), passes under 6 seeds; (2) six recursive-let templates, every literal edited, comparisons required; (3) Evaluator.IncrCorpus (Slow): 150 literal edits over all 73 corpus programs, at least 120 required, ~11 s. MUTATION-CHECKED: with reuse_check ignoring changed dependencies, (2) and (3) fail, but the random property (1) still passes. Left for later: hash checks and parser comparisons belong on the PRs that add them (#2661, #2673, #2610), and per-PR tests from ^report(21).",
    "log": []
   },
   {
