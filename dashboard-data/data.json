@@ -1191,13 +1191,18 @@
    "text": "<b>A report on the <a href=\"https://andrewblinn.com/hazel/weekly/\">Hazel Weekly</a> agent: how it credits each team member's contributions, with a list of corrections where it is plainly wrong.</b> Matthew, \"separate, and even lower priority\": \"maybe you could also do a report --- a hazel 'agent' performance report, cross-checking how it refers to different team member's contributions, and offering a list of corrections, if you find obvious mistakes.\" Even lower priority than ^ticket(407), whose reading of the issues it can share. A ^report(N) in our series (~/hazel-perf-report), drafted locally; published only on Matthew's word.",
    "progress": "12:04: minted and enqueued, even lower priority than ^ticket(407).",
    "log": []
-  },
+  }
+ ],
+ "next_ticket": 410,
+ "current_ticket": 389,
+ "current_note": "12:21: The agenda for Wednesday is drafted as ^report(20), a work in progress: http://localhost:8131/020/ (local only). Next on it: Matthew's additions, item 1's status once #2699 lands, ^ticket(398)'s report. ^ticket(405): #2699's CI is running; on green, #2699 merges into #2635.",
+ "closed_tickets": [
   {
    "id": 409,
    "area": "dashboard, the nav bar: hover cards under it",
    "added": "2026-10-19T12:33-06:00",
    "opened": "2026-10-19T12:33-06:00",
-   "status": "open",
+   "status": "done",
    "tags": [],
    "source": "Matthew, 2026-10-19 12:33, in chat (a screenshot of the public dashboard)",
    "url": "https://matthewhammer.org/hazel/dashboard/",
@@ -1210,13 +1215,19 @@
      "chars": 64,
      "asks": false
     }
-   ]
-  }
- ],
- "next_ticket": 410,
- "current_ticket": 389,
- "current_note": "12:21: The agenda for Wednesday is drafted as ^report(20), a work in progress: http://localhost:8131/020/ (local only). Next on it: Matthew's additions, item 1's status once #2699 lands, ^ticket(398)'s report. ^ticket(405): #2699's CI is running; on green, #2699 merges into #2635.",
- "closed_tickets": [
+   ],
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T12:35-06:00",
+   "outcome": "Fixed 2026-10-19: hover cards (ticket and PR) open above the nav bar, z-index 2147483003 over nav.js's 2147483000+; in the dashboard's ref_cards.html/pr_cards.html and the series tools' copies (c7a785a). Checked on localhost:8000: ^ticket(405)'s card from the nav's Work Queue draws over the bar.",
+   "metrics": {
+    "open_minutes": 2,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 64,
+    "tokens_est": 16,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 400,
    "area": "hazel, #2635's CI: module statics per member, on Modules II",
