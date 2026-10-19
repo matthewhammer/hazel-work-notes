@@ -520,64 +520,6 @@
    ]
   },
   {
-   "id": 212,
-   "area": "dress up, places, open water",
-   "added": "2026-10-17",
-   "opened": "2026-10-17T13:05-06:00",
-   "source": "Matthew, 2026-10-17, in chat (\"mint tickets for that better open water scene\")",
-   "url": "",
-   "text": "<b>Dress Up: the 🌊 open water, made better: its island and sail boat taken away, a distant shore in layers that combine (beach, forest, mountains), a slider for the shore's size, and its own horizon audit.</b> Combined from ^ticket(211), ^ticket(212) and ^ticket(213) (Matthew, 2026-10-17: \"combine 211 and 212 into one ticket\", \"and include 213\", \"and include an audit, just for that background as in 214, for the new revisions to open water\"). Part 1, from ^ticket(211): Matthew: \"the 'open water' background has some extras I didn't ask for: island in distance, sail boat that seems stationary. Let's remove those, since they currently seem like promises for stuff that doesn't exist, and cannot be reached.\" They are drawn in the sea scene (js/15-place-picker.js, ticket 186's open water: \"far off a sail and an island\"). Take both away, and write the rule into agent-instructions.md's design rules: scenery never promises a place or thing that does not exist or cannot be reached (beside \"Doorways go somewhere sensible\"). His question with it, whether the instructions keep backgrounds and objects composable as they grow: partly (one table per kind of thing, the shared organic helpers, connected views share their settings), but nothing yet on backdrops built from shared, combinable layers; Part 2 adds that. Part 2: Matthew: \"having the option to display a shoreline, or treeline, in the distance, would be a good set of parameters to make the 'open water' more useful in more situations\", with options for: \"different forest styles, maybe 2 or 3. default is off\"; \"different mountain styles, maybe 2 or 3. default is off\"; \"forest and mountain styles layer and combine naturally\"; \"optional beach, drawn between the horizon and the forest\". To do: the distant shore as layers on the horizon, back to front mountains, forest, beach, each its own setting in 🏞️ Background (shown only at the open water); built as shared backdrop layers other places can use too, with the shared organic helpers, and the recipe written into agent-instructions.md (his question: a composable system for objects and backgrounds as we add more). Off by default, so today's open water stays as it is but for part 1. Still, at 60 frames a second (drawn once, nothing moving). Part 3, from ^ticket(213): Matthew: \"Permit a 'distant shore size' slider so we can rescale the open water, and potentially stack them into a column in the world grid and rescale the distant shore in each to make it seem like we are getting closer as we go north, square by square.\" Needs part 2's shore. Open: a place's settings are now one per kind of place (state.background), so two open water squares share them; a size per square needs the world's squares to carry settings of their own (as each already carries its things), or the size worked out from where the square stands in its column. Part 4, the horizon audit of ^ticket(214) for the open water alone, with these revisions: the friend cannot swim up into the sky or onto the distant shore at any shore setting or size (a back limit at the horizon, or at the shore's water line when it is shown); and where the square has a way N, swimming N into that limit shows the N arrow and takes it. A check on GitHub swims N with the shore off, on, and at its smallest and largest sizes. ^ticket(214) stays the audit of every other background.",
-   "tags": [
-    "long run"
-   ],
-   "status": "open",
-   "log": [
-    {
-     "at": "2026-10-17T13:05-06:00",
-     "from": "matthew",
-     "chars": 1066,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T13:05-06:00",
-     "from": "matthew",
-     "chars": 46,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T13:05-06:00",
-     "from": "matthew",
-     "chars": 1066,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T13:05-06:00",
-     "from": "matthew",
-     "chars": 46,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T13:43-06:00",
-     "from": "matthew",
-     "chars": 36,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T13:43-06:00",
-     "from": "matthew",
-     "chars": 16,
-     "asks": true
-    },
-    {
-     "at": "2026-10-17T13:44-06:00",
-     "from": "matthew",
-     "chars": 94,
-     "asks": true
-    }
-   ],
-   "progress": "03:05, my call (Matthew AFK; every queued ticket waiting on him): found open and unqueued (minted 10-17, never started); queued after 365 and taken as tonight's long run. Part 1 first (the island and sail boat still drawn). RELEASED 0.0.324 (d1d67c1, part 1: island and sail boat gone, the design rule 'Scenery never promises what is not there'). RELEASED 0.0.325 (7eef676, parts 2-4): farLayers (js/14-outdoors.js), shared backdrop layers on any horizon: mountains (snowy, blue, hills), forest (pines, round, mixed), beach, back to front, scaled by size, each a wall object, none below the water line; the open water's seaMountains/seaForest/seaBeach/seaShoreSize in '🏝️ a distant shore' (off by default). Part 3's open question answered by ticket 300's instances: with 📍 only this square, each square keeps its own size (tried: 60 south, 220 north, the template's layers shared). Part 4 in the pane: swum north at shore off and on at 25/100/300, the feet stop at hz + 7.3 every time, every layer ends at or above the water line; a way N's arrow shows and the way is taken. Check shore212.mjs; diag-new-checks running it with world320 and spaced313. The recipe in agent-instructions.md ('Backdrops from shared layers')."
-  },
-  {
    "id": 259,
    "area": "dress up, designer, components",
    "added": "2026-10-17",
@@ -826,9 +768,79 @@
   }
  ],
  "next_ticket": 379,
- "current_ticket": 212,
- "current_note": "03:09: 0.0.325 released (the distant shore); its check shore212 running on GitHub with world320 and spaced313 before closing",
+ "current_ticket": 369,
+ "current_note": "03:12: back on 369: 0.0.319's speed run finishing; 0.0.325's (covering 320-325 and the new checks) next",
  "closed_tickets": [
+  {
+   "id": 212,
+   "area": "dress up, places, open water",
+   "added": "2026-10-17",
+   "opened": "2026-10-17T13:05-06:00",
+   "source": "Matthew, 2026-10-17, in chat (\"mint tickets for that better open water scene\")",
+   "url": "",
+   "text": "<b>Dress Up: the 🌊 open water, made better: its island and sail boat taken away, a distant shore in layers that combine (beach, forest, mountains), a slider for the shore's size, and its own horizon audit.</b> Combined from ^ticket(211), ^ticket(212) and ^ticket(213) (Matthew, 2026-10-17: \"combine 211 and 212 into one ticket\", \"and include 213\", \"and include an audit, just for that background as in 214, for the new revisions to open water\"). Part 1, from ^ticket(211): Matthew: \"the 'open water' background has some extras I didn't ask for: island in distance, sail boat that seems stationary. Let's remove those, since they currently seem like promises for stuff that doesn't exist, and cannot be reached.\" They are drawn in the sea scene (js/15-place-picker.js, ticket 186's open water: \"far off a sail and an island\"). Take both away, and write the rule into agent-instructions.md's design rules: scenery never promises a place or thing that does not exist or cannot be reached (beside \"Doorways go somewhere sensible\"). His question with it, whether the instructions keep backgrounds and objects composable as they grow: partly (one table per kind of thing, the shared organic helpers, connected views share their settings), but nothing yet on backdrops built from shared, combinable layers; Part 2 adds that. Part 2: Matthew: \"having the option to display a shoreline, or treeline, in the distance, would be a good set of parameters to make the 'open water' more useful in more situations\", with options for: \"different forest styles, maybe 2 or 3. default is off\"; \"different mountain styles, maybe 2 or 3. default is off\"; \"forest and mountain styles layer and combine naturally\"; \"optional beach, drawn between the horizon and the forest\". To do: the distant shore as layers on the horizon, back to front mountains, forest, beach, each its own setting in 🏞️ Background (shown only at the open water); built as shared backdrop layers other places can use too, with the shared organic helpers, and the recipe written into agent-instructions.md (his question: a composable system for objects and backgrounds as we add more). Off by default, so today's open water stays as it is but for part 1. Still, at 60 frames a second (drawn once, nothing moving). Part 3, from ^ticket(213): Matthew: \"Permit a 'distant shore size' slider so we can rescale the open water, and potentially stack them into a column in the world grid and rescale the distant shore in each to make it seem like we are getting closer as we go north, square by square.\" Needs part 2's shore. Open: a place's settings are now one per kind of place (state.background), so two open water squares share them; a size per square needs the world's squares to carry settings of their own (as each already carries its things), or the size worked out from where the square stands in its column. Part 4, the horizon audit of ^ticket(214) for the open water alone, with these revisions: the friend cannot swim up into the sky or onto the distant shore at any shore setting or size (a back limit at the horizon, or at the shore's water line when it is shown); and where the square has a way N, swimming N into that limit shows the N arrow and takes it. A check on GitHub swims N with the shore off, on, and at its smallest and largest sizes. ^ticket(214) stays the audit of every other background.",
+   "tags": [
+    "long run"
+   ],
+   "status": "done",
+   "log": [
+    {
+     "at": "2026-10-17T13:05-06:00",
+     "from": "matthew",
+     "chars": 1066,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:05-06:00",
+     "from": "matthew",
+     "chars": 46,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:05-06:00",
+     "from": "matthew",
+     "chars": 1066,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:05-06:00",
+     "from": "matthew",
+     "chars": 46,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:43-06:00",
+     "from": "matthew",
+     "chars": 36,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:43-06:00",
+     "from": "matthew",
+     "chars": 16,
+     "asks": true
+    },
+    {
+     "at": "2026-10-17T13:44-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": true
+    }
+   ],
+   "progress": "03:05, my call (Matthew AFK; every queued ticket waiting on him): found open and unqueued (minted 10-17, never started); queued after 365 and taken as tonight's long run. Part 1 first (the island and sail boat still drawn). RELEASED 0.0.324 (d1d67c1, part 1: island and sail boat gone, the design rule 'Scenery never promises what is not there'). RELEASED 0.0.325 (7eef676, parts 2-4): farLayers (js/14-outdoors.js), shared backdrop layers on any horizon: mountains (snowy, blue, hills), forest (pines, round, mixed), beach, back to front, scaled by size, each a wall object, none below the water line; the open water's seaMountains/seaForest/seaBeach/seaShoreSize in '🏝️ a distant shore' (off by default). Part 3's open question answered by ticket 300's instances: with 📍 only this square, each square keeps its own size (tried: 60 south, 220 north, the template's layers shared). Part 4 in the pane: swum north at shore off and on at 25/100/300, the feet stop at hz + 7.3 every time, every layer ends at or above the water line; a way N's arrow shows and the way is taken. Check shore212.mjs; diag-new-checks running it with world320 and spaced313. The recipe in agent-instructions.md ('Backdrops from shared layers').",
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T03:12-06:00",
+   "outcome": "All four parts released. 0.0.324 (d1d67c1): the open water's island and sail boat taken away; agent-instructions.md's design rule 'Scenery never promises what is not there'. 0.0.325 (7eef676): farLayers (js/14-outdoors.js), shared backdrop layers on any horizon: ⛰️ mountains (snowy peaks, a blue range, rolling hills), 🌲 a forest (pines, round trees, mixed), 🏖️ a beach between the water and the trees, back to front, scaled by 📏 the size, each a wall object (far mountains/forest/beach), none below the water line; the open water's group '🏝️ a distant shore' (off by default); the recipe written as 'Backdrops from shared layers'. Part 3's open question (a size per square): ticket 300's instances do it (📍 only this square: 60 south, 220 north, the layers shared). Part 4, the horizon audit: shore212 passed 12/12 on GitHub (diag-new-checks): swum north with the shore off and on at 25/100/300, the feet stop at the horizon (hz 122, feet 130) and never above; every layer ends at or above the water line; a way N's arrow shows and the way is taken; no island or sail boat.",
+   "metrics": {
+    "open_minutes": 2288,
+    "matthew_messages": 7,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 2370,
+    "tokens_est": 592,
+    "sync_minutes_est": 1.0,
+    "work_minutes": 22.0
+   }
+  },
   {
    "id": 365,
    "area": "dress up, the castle designer, full screen",
@@ -12152,7 +12164,6 @@
   }
  ],
  "queue": [
-  212,
   374,
   326,
   359,
@@ -12169,5 +12180,5 @@
   322,
   344
  ],
- "current_since": "2026-10-19T03:09-06:00"
+ "current_since": "2026-10-19T03:12-06:00"
 }
