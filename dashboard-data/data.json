@@ -890,26 +890,6 @@
    "progress": "15:22: CAUSE: fumola.org's page had dark colours only (CSS variables from the Fumola VS Code theme, no light set, nothing answering data-theme), so the nav bar's light did nothing. PR Adapton/fumola#147 (branch pages-light-theme, worktree ~/fumola-light): a light palette answering :root[data-theme=light] and, on auto, a light system; theme-support meta for nav.js; five written-out colours made palette entries; dark stays the default. WAITING ON MATTHEW: his OK to merge #147 (then the Pages workflow_dispatch deploys main). Not done: the other pages under pages/ (alignment, web-play, web-repl)."
   },
   {
-   "id": 316,
-   "area": "dress up, levers, the friend's moves and the 🧍 Body tab",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T14:37-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up: pulling a lever is a planned action: walk to it, pull it with the dominant hand, then the trap door opens.</b> Matthew: \"when we trigger a lever for a trap door, we plan an animation and path: walk to the lever, facing it. pull it --- new animation for reaching up and pulling down with dominate hand -- a new toggle on the body panel (left or right or ambidextrous, in which case we do it by coin flip, somehow). then after the pull, the door opens, animated, somehow.\" Builds on ^ticket(307) (the lid's swing, the rocking handle, since 0.0.222), the walk to a click (planPath), and the trap room's levers and placed ones alike.",
-   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue\")",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T14:37-06:00",
-     "from": "matthew",
-     "chars": 330,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 317,
    "area": "dress up, the trap room's things and the object system",
    "added": "2026-10-18",
@@ -1729,9 +1709,46 @@
   }
  ],
  "next_ticket": 360,
- "current_ticket": 316,
- "current_note": "20:38: pulling a lever as a planned action: walk to it, face it, pull with the dominant hand (a new Body choice), then the door opens",
+ "current_ticket": 317,
+ "current_note": "20:40: the trap room's helmet, levers and sword in more detail everywhere; a lever's shine following the room's torchlight",
  "closed_tickets": [
+  {
+   "id": 316,
+   "area": "dress up, levers, the friend's moves and the 🧍 Body tab",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T14:37-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up: pulling a lever is a planned action: walk to it, pull it with the dominant hand, then the trap door opens.</b> Matthew: \"when we trigger a lever for a trap door, we plan an animation and path: walk to the lever, facing it. pull it --- new animation for reaching up and pulling down with dominate hand -- a new toggle on the body panel (left or right or ambidextrous, in which case we do it by coin flip, somehow). then after the pull, the door opens, animated, somehow.\" Builds on ^ticket(307) (the lid's swing, the rocking handle, since 0.0.222), the walk to a click (planPath), and the trap room's levers and placed ones alike.",
+   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue\")",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T14:37-06:00",
+     "from": "matthew",
+     "chars": 330,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T20:40-06:00",
+     "from": "claude",
+     "chars": 500,
+     "asks": false
+    }
+   ],
+   "progress": " 20:40 DONE, 0.0.272: leverAct + startPull (js/26-drags-and-start.js), the 'pull' animation in moveNow (pullAt, pullSide), body.hand; letGo routes the trap room's levers and placed ones through leverAct. From behind the side is flipped so the right hand shows on our right. Measured in the pane: walked from (200, 80) to (-91, -87), faced back, the lever went over during the pull, the right hand raised. Check: lever316.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T20:40-06:00",
+   "outcome": "Released in 0.0.272: with 👆 on, pressing a lever walks the friend to it; they face it, reach up and pull it down with the dominant hand (a new ✋ Body choice: right, left, or a coin flip), and it goes over during the pull, its door swinging after. Check: lever316.",
+   "metrics": {
+    "open_minutes": 363,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 830,
+    "tokens_est": 207,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 310,
    "area": "dress up, depth and collision outdoors",
@@ -11099,7 +11116,6 @@
   }
  ],
  "queue": [
-  316,
   317,
   321,
   325,
@@ -11146,5 +11162,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T20:38-06:00"
+ "current_since": "2026-10-18T20:40-06:00"
 }
