@@ -978,7 +978,7 @@
    "source": "Matthew, 2026-10-19 10:37, in chat, from Cyrus (for ^ticket(389), the 2026-10-21 meeting)",
    "url": "",
    "text": "<b>Do the performance PRs keep typing and evaluation correct? An argument for each one, and the tests to back it.</b> Matthew: \"Cyrus wanted more analysis and coverage of functional correctness -- do our performance PRs (the ones from issue #2609) compromise any sense of correctness of typing or evaluation?\" For the meeting with Cyrus, ^ticket(389). Two parts:<ul><li><b>The arguments, in a report.</b> Go through each PR against #2609 (the dashboard's Performance list) and check whether it changes what the type checker or the evaluator computes. For each one, write down why it is sound: what it caches, skips or shares, and why the result is the same as without it (the key it is looked up by, what invalidates it, what it assumes). Compile all of them in a new ^report in the performance analysis series, with any PR whose argument does not hold called out.</li><li><b>The tests.</b> \"add a new PR to dev that does even more correctness tests, if they aren't complete enough as is. -- ditto for our PRs -- add coverage of the features that they add.\" So: a new PR to dev with correctness tests where today's are thin (for example, typing and evaluation results with an optimization on and off, compared). And on each of our perf PRs, tests that cover what that PR adds.</li></ul>",
-   "progress": "10:37: minted and enqueued (deadline: tomorrow morning, ideally). 13:02: four read-only reviews running in parallel (statics 2603/2651/2661/2679/2681; evaluator 2606/2608/2673/2675; parsing/editor/worker 2610/2614/2671/2672/2652; tests/CI/spike 2678/2689/2690/2691/2490), from GitHub diffs, no builds. The report's generator is ready (021/drivers/gen021.py: a verdict per PR, a figure by area, a section per PR). Dev today: 41 hand-made incremental-eval tests and property tests, but no corpus-wide incremental-vs-from-scratch comparison (a candidate for the tests PR). 13:10: ALL FOUR REVIEWS IN (from GitHub diffs, nothing run): 19 PRs: 4 cannot change a type or value (2678, 2689, 2690, 2691: test-only, though three are stacked on runtime PRs); 5 hold (2608, 2675, 2679, 2672, 2652); 7 hold under stated assumptions (2603, 2606, 2661, 2673, 2681, 2614, 2671; the hash ones assume no collisions; #2673 not quite the old check); 2 do NOT hold in corners (2610: the segmented load fallback can turn x - y into x ¿ -y at a split; 2651: a module under a one-member signature evaluates differently, and a self-naming module loses its error); 1 spike not for merging (2490). Also: the incremental-vs-fresh property is disabled on dev (#2457). Data assembled: 021/data/prs.json. NEXT: confirm 2610 and 2651 by running them before the report says so; then draft ^report(21). 13:13: CONFIRMED by running (CLI at head and parent): #2651 changes a result: module M : { let x : Int } = { let x = 1; let y = 2 } in M gives (x=({ let x = 1; let y = 2 })) on dev, (x=1, y=2) with #2651 (M.x: the module vs 1; dev already flags it as a type error; new result looks right). #2610 at its head loads a forced-fallback 'aaa…a - b' (101+ chars) as 'aaa…a ¿ - b'; the parent's output is being built for comparison (temp worktree ~/hazel-check-2610-parent). The report's text is drafted (021/data/meta.json). 13:16: REPORT DRAFTED: ^report(21) at http://localhost:8131/021/ (local commit 1bda94e in ~/hazel-perf-report, not pushed). 16 of 19 keep types and values the same (4 cannot change, 5 hold, 7 under stated assumptions); 2 change a result in a corner, BOTH CONFIRMED BY RUNNING the CLI at head and parent: #2610 loads a forced-fallback 'aaa…a - b' as 'aaa…a ¿ - b' (parent: 'aaa…a - b'); #2651 evaluates module M : {{ let x : Int }} = {{ let x = 1; let y = 2 }} in M to (x=1, y=2) (dev: (x=({{ let x = 1; let y = 2 }}))); 1 spike (2490). Biggest gap: tests (the incremental-vs-fresh property is off on dev, #2457; no on/off comparison). WAITING ON MATTHEW: read and publish word. The tests half moves to its own ticket so it is not blocked.",
+   "progress": "10:37: minted and enqueued (deadline: tomorrow morning, ideally). 13:02: four read-only reviews running in parallel (statics 2603/2651/2661/2679/2681; evaluator 2606/2608/2673/2675; parsing/editor/worker 2610/2614/2671/2672/2652; tests/CI/spike 2678/2689/2690/2691/2490), from GitHub diffs, no builds. The report's generator is ready (021/drivers/gen021.py: a verdict per PR, a figure by area, a section per PR). Dev today: 41 hand-made incremental-eval tests and property tests, but no corpus-wide incremental-vs-from-scratch comparison (a candidate for the tests PR). 13:10: ALL FOUR REVIEWS IN (from GitHub diffs, nothing run): 19 PRs: 4 cannot change a type or value (2678, 2689, 2690, 2691: test-only, though three are stacked on runtime PRs); 5 hold (2608, 2675, 2679, 2672, 2652); 7 hold under stated assumptions (2603, 2606, 2661, 2673, 2681, 2614, 2671; the hash ones assume no collisions; #2673 not quite the old check); 2 do NOT hold in corners (2610: the segmented load fallback can turn x - y into x ¿ -y at a split; 2651: a module under a one-member signature evaluates differently, and a self-naming module loses its error); 1 spike not for merging (2490). Also: the incremental-vs-fresh property is disabled on dev (#2457). Data assembled: 021/data/prs.json. NEXT: confirm 2610 and 2651 by running them before the report says so; then draft ^report(21). 13:13: CONFIRMED by running (CLI at head and parent): #2651 changes a result: module M : { let x : Int } = { let x = 1; let y = 2 } in M gives (x=({ let x = 1; let y = 2 })) on dev, (x=1, y=2) with #2651 (M.x: the module vs 1; dev already flags it as a type error; new result looks right). #2610 at its head loads a forced-fallback 'aaa…a - b' (101+ chars) as 'aaa…a ¿ - b'; the parent's output is being built for comparison (temp worktree ~/hazel-check-2610-parent). The report's text is drafted (021/data/meta.json). 13:16: REPORT DRAFTED: ^report(21) at http://localhost:8131/021/ (local commit 1bda94e in ~/hazel-perf-report, not pushed). 16 of 19 keep types and values the same (4 cannot change, 5 hold, 7 under stated assumptions); 2 change a result in a corner, BOTH CONFIRMED BY RUNNING the CLI at head and parent: #2610 loads a forced-fallback 'aaa…a - b' as 'aaa…a ¿ - b' (parent: 'aaa…a - b'); #2651 evaluates module M : {{ let x : Int }} = {{ let x = 1; let y = 2 }} in M to (x=1, y=2) (dev: (x=({{ let x = 1; let y = 2 }}))); 1 spike (2490). Biggest gap: tests (the incremental-vs-fresh property is off on dev, #2457; no on/off comparison). WAITING ON MATTHEW: read and publish word. The tests half moves to its own ticket so it is not blocked. 13:54: SLIP: the draft's source (commit 1bda94e, 021/) went to the public hazel-performance-analysis repo on GitHub at ~13:2x, carried by an agenda republish (publish_agenda.py pushed every local commit). The rendered page is NOT on matthewhammer.org. publish_agenda.py now refuses to push when other commits wait. ^report(22)'s draft stayed local.",
    "log": [
     {
      "at": "2026-10-19T10:37-06:00",
@@ -993,7 +993,7 @@
      "asks": false
     }
    ],
-   "waiting": "Matthew: read the ^report(21) draft (http://localhost:8131/021/); publish on his word. The tests half is ^ticket(411)."
+   "waiting": "Matthew: read the ^report(21) draft (http://localhost:8131/021/); publish on his word. The tests half is ^ticket(411). Also: report 21's draft source is already in the public repo by mistake; leave it, or remove it (a force push)?"
   },
   {
    "id": 399,
@@ -1137,7 +1137,7 @@
    "source": "Matthew, 2026-10-19 11:31, in chat",
    "url": "https://github.com/hazelgrove/hazel/pull/2635",
    "text": "<b>Fix #2635's CI errors: highest priority.</b> Matthew: \"highest priority after we settle is, fixing the CI errors on our livelits x modular editors PR.\" What fails, as ^report(18) found (^ticket(385)): 8 DefStaticsParity module cases (modules analyzed whole since the merge), <code>Editing.TableDecorations 1</code> (dev's canonical completion closes the stray bracket the test relies on), and the corpus test's one mismatch (<code>macro-result.hz</code>, cause unknown); and GitHub shows #2635 conflicting with its base. ^ticket(400)'s draft #2699 clears the 8 locally (DefStaticsParity 42/43). Today's push (b44bb9c50f, ^ticket(394)) failed Fast checks too: read it first.",
-   "progress": "11:31: minted as first priority, after ^ticket(400) (closed: draft #2699). 11:38: (Matthew AFK, async) 1) MERGE CONFLICTS FIXED: merged #2597's branch into #2635 (cf325d4f61), every conflict to #2635's side: all 110 of #2597's commits since 3efe8c7e52 are already here (79 same patch, 26 same title, 5 checked by content); the merge adds only Test_CopyDescendants (passes). GitHub: MERGEABLE. 2) TableDecorations 1 FIXED (27f100e37c): the hidden error now comes from a wrong row label; 3/3 pass locally. Both pushed to #2635. NEXT: the corpus mismatch (macro-result.hz); the 8 module cases are #2699's (CI running on GitHub) - merging it into #2635 is Matthew's call, as it was meant exploratory. 11:53: CRASH at 11:46 (crash 41), mid-test; nothing lost. CORPUS CAUSE FOUND before it (macro-result.hz): after the corpus test's edit (1 -> 2) and back, the ^^livelit(^inc(...)) use kept the edited expansion (a + 2), because DefStatics.entry_name named a livelit entry `inc` while a use records `^inc` in its co_ctx, so a changed livelit dirtied nothing. Fix (uncommitted, in hazel-livelits-modular): entry_name gives \"^\" ++ name. NEXT: rerun DefStaticsParity, then commit + push to #2635. 11:58: 3) CORPUS CASE FIXED, pushed to #2635 as 1131a457e4: DefStaticsParity 35 of 43 locally, the corpus case passes; the 8 failures are exactly the module cases. FOUND on #2699's CI (Fast checks, 2 failures): TableDecorations 1 (fixed on #2635 since) and the corpus case on a DIFFERENT file, color-fig3.hz (extra Livelit name / Constructor errors, field types ? vs SpliceRef), which #2635 passes. So merging #2699 as it is still leaves one red test. NEXT: does #2699 + 1131a457e4 clear color-fig3 locally? 12:06: 4) #2699's OWN CORPUS FAILURE FIXED, pushed to #2699 (223357135a, on a merge of #2635's 1131a457e4, 206aed1715): `let ^color = {...}` binds a Var, so #2699's module_literal_members analyzed a livelit DEFINITION member by member, skipping UserLivelit.detect; Model/Action stayed unresolved and every ^color use was unbound (color-fig3.hz). A livelit binder is no longer `simple`. Locally #2699 now passes DefStaticsParity 43 of 43. CI running on both PRs. WAITING ON MATTHEW: merge #2699 into #2635 (it was meant as exploratory)? 12:16: Matthew: \"Yes: merge #2699 into #2635 once #2699's CI is green.\" So: watching #2699's CI (223357135a), then merging it into #2635. 12:18: parked while #2699's CI runs (background watch in this session); on green, merge #2699 into #2635 (Matthew's yes, 12:1x). 13:38: #2699 MERGED into #2635 (its CI green: Fast checks and Full tests), as merge 90ed4505bf with the fixes for 387 and 396, after DefStaticsParity 43/43, Editing.Splice 17/17 and ContextInspector 2/2 locally; pushed. GitHub marked #2699 merged. #2635's CI now runs on 90ed4505bf (Fast checks ~20 min, Full tests ~90 min). On green: close this ticket. The commit for 401 (5961401df2) waits locally so as not to cancel that run.",
+   "progress": "11:31: minted as first priority, after ^ticket(400) (closed: draft #2699). 11:38: (Matthew AFK, async) 1) MERGE CONFLICTS FIXED: merged #2597's branch into #2635 (cf325d4f61), every conflict to #2635's side: all 110 of #2597's commits since 3efe8c7e52 are already here (79 same patch, 26 same title, 5 checked by content); the merge adds only Test_CopyDescendants (passes). GitHub: MERGEABLE. 2) TableDecorations 1 FIXED (27f100e37c): the hidden error now comes from a wrong row label; 3/3 pass locally. Both pushed to #2635. NEXT: the corpus mismatch (macro-result.hz); the 8 module cases are #2699's (CI running on GitHub) - merging it into #2635 is Matthew's call, as it was meant exploratory. 11:53: CRASH at 11:46 (crash 41), mid-test; nothing lost. CORPUS CAUSE FOUND before it (macro-result.hz): after the corpus test's edit (1 -> 2) and back, the ^^livelit(^inc(...)) use kept the edited expansion (a + 2), because DefStatics.entry_name named a livelit entry `inc` while a use records `^inc` in its co_ctx, so a changed livelit dirtied nothing. Fix (uncommitted, in hazel-livelits-modular): entry_name gives \"^\" ++ name. NEXT: rerun DefStaticsParity, then commit + push to #2635. 11:58: 3) CORPUS CASE FIXED, pushed to #2635 as 1131a457e4: DefStaticsParity 35 of 43 locally, the corpus case passes; the 8 failures are exactly the module cases. FOUND on #2699's CI (Fast checks, 2 failures): TableDecorations 1 (fixed on #2635 since) and the corpus case on a DIFFERENT file, color-fig3.hz (extra Livelit name / Constructor errors, field types ? vs SpliceRef), which #2635 passes. So merging #2699 as it is still leaves one red test. NEXT: does #2699 + 1131a457e4 clear color-fig3 locally? 12:06: 4) #2699's OWN CORPUS FAILURE FIXED, pushed to #2699 (223357135a, on a merge of #2635's 1131a457e4, 206aed1715): `let ^color = {...}` binds a Var, so #2699's module_literal_members analyzed a livelit DEFINITION member by member, skipping UserLivelit.detect; Model/Action stayed unresolved and every ^color use was unbound (color-fig3.hz). A livelit binder is no longer `simple`. Locally #2699 now passes DefStaticsParity 43 of 43. CI running on both PRs. WAITING ON MATTHEW: merge #2699 into #2635 (it was meant as exploratory)? 12:16: Matthew: \"Yes: merge #2699 into #2635 once #2699's CI is green.\" So: watching #2699's CI (223357135a), then merging it into #2635. 12:18: parked while #2699's CI runs (background watch in this session); on green, merge #2699 into #2635 (Matthew's yes, 12:1x). 13:38: #2699 MERGED into #2635 (its CI green: Fast checks and Full tests), as merge 90ed4505bf with the fixes for 387 and 396, after DefStaticsParity 43/43, Editing.Splice 17/17 and ContextInspector 2/2 locally; pushed. GitHub marked #2699 merged. #2635's CI now runs on 90ed4505bf (Fast checks ~20 min, Full tests ~90 min). On green: close this ticket. The commit for 401 (5961401df2) waits locally so as not to cancel that run. 13:53: #2635's FAST CHECKS PASS on 90ed4505bf (18 min): its first green Fast checks since 10-01. Full tests running (due ~15:05); then close this ticket and push 401's commit.",
    "log": [
     {
      "at": "2026-10-19T11:31-06:00",
@@ -1191,34 +1191,6 @@
    "progress": "12:04: minted and enqueued, even lower priority than ^ticket(407). 13:47: DRAFTED ^report(22) at http://localhost:8131/022/ (local commit 830fc92, not pushed). 29 of 33 PR credits name the right author (issues 005 and 006: 17 of 17); 10 corrections: 'Matt' used for Matthew Hammer (#2576, #2488, #2525, #2597, #2602, #2635, the Sep 14 Fumola commits), Alexander's #2579 credited to 'Matt', and Alexander's colour vocabulary credited to Matthew (003, 004: his merges read as authorship). Issue 005 already corrected 003's #2587. WAITING ON MATTHEW: read it; publish it, and/or share the corrections with Andrew (it is his project).",
    "log": [],
    "waiting": "Matthew: read ^report(22) (localhost:8131/022/): publish it, and/or pass the ten corrections to Andrew?"
-  },
-  {
-   "id": 410,
-   "area": "hazel reports: the series' new name (was \"Hazel performance analysis\")",
-   "added": "2026-10-19T12:37-06:00",
-   "opened": "2026-10-19T12:37-06:00",
-   "status": "open",
-   "tags": [
-    "low priority"
-   ],
-   "source": "Matthew, 2026-10-19 12:37, in chat",
-   "url": "https://matthewhammer.org/hazel/performance-analysis/020/#method",
-   "text": "<b>Rename the series: \"Hazel performance analysis\" / \"performance reports\" becomes \"Hazel reports\", everywhere, with the old URLs forwarding to the new ones.</b> Matthew, \"mint and enqueue --- low priority\": \"'hazel performance reports' becomes 'hazel reports' in every place we use those terms now. especially throughout the public links\" (his example: ^report(20)'s #method). \"Maybe we can forward URLs from old to new for a while? I don't plan to put something new at the old name, I just want to broaden the scope of these 'hazel reports'. Now they include other things too.\" <ul><li><b>Where the name lives:</b> every report's series line and the series index; the homepage's Hazel page and nav.js's outline; the dashboard (SERIES_PUBLIC/series_url, the outline's \"Performance reports\", the Performance section's links); the series' README and agent-instructions.md; ours (agent-instructions.md); the tools (hazel_page.py, publish_agenda.py, gen020.py's PUBLISHED path).</li><li><b>The URL:</b> /hazel/performance-analysis/ becomes a new path (say /hazel/reports/), and the old one keeps a forwarding page per report (GitHub Pages has no server redirects: a meta refresh plus a script that keeps the #fragment), as the dashboard's old addresses do (^ticket(181)). Nothing new goes at the old name.</li><li><b>The repository</b> hazel-performance-analysis may become hazel-reports (GitHub forwards a renamed repository's URLs); ~/hazel-perf-report and the launch entry \"perf-report\" can follow.</li><li>Links already posted elsewhere (#2609 and PR comments) keep working through the forwarding pages.</li></ul> Matthew, 12:38: \"'hazel performance analysis' becomes 'hazel reports' (by matthew, implied by the URL in all cases).\" So the name is just <b>Hazel reports</b>: no \"Matthew's\" in it, since the address (matthewhammer.org) already says whose they are.",
-   "progress": "12:37: minted and enqueued, low priority. 12:38: Matthew: the name is \"Hazel reports\"; authorship is implied by the URL.",
-   "log": [
-    {
-     "at": "2026-10-19T12:37-06:00",
-     "from": "matthew",
-     "chars": 438,
-     "asks": false
-    },
-    {
-     "at": "2026-10-19T12:38-06:00",
-     "from": "matthew",
-     "chars": 99,
-     "asks": false
-    }
-   ]
   },
   {
    "id": 411,
@@ -1319,9 +1291,48 @@
   }
  ],
  "next_ticket": 415,
- "current_ticket": 410,
- "current_note": "13:47: Started: renaming the series to Hazel reports everywhere, with the old /hazel/performance-analysis/ URLs forwarding to /hazel/reports/. Surveying where the name and path appear. ^ticket(405): #2635's CI on the merge is running.",
+ "current_ticket": 411,
+ "current_note": "13:54: Started: a tests PR to dev checking that incremental evaluation and statics keep results the same (^report(21)'s 'what to add'). First: dev's disabled incremental-vs-fresh property (#2457) and a corpus comparison. ^ticket(405): #2635's Full tests due ~15:05.",
  "closed_tickets": [
+  {
+   "id": 410,
+   "area": "hazel reports: the series' new name (was \"Hazel performance analysis\")",
+   "added": "2026-10-19T12:37-06:00",
+   "opened": "2026-10-19T12:37-06:00",
+   "status": "done",
+   "tags": [
+    "low priority"
+   ],
+   "source": "Matthew, 2026-10-19 12:37, in chat",
+   "url": "https://matthewhammer.org/hazel/performance-analysis/020/#method",
+   "text": "<b>Rename the series: \"Hazel performance analysis\" / \"performance reports\" becomes \"Hazel reports\", everywhere, with the old URLs forwarding to the new ones.</b> Matthew, \"mint and enqueue --- low priority\": \"'hazel performance reports' becomes 'hazel reports' in every place we use those terms now. especially throughout the public links\" (his example: ^report(20)'s #method). \"Maybe we can forward URLs from old to new for a while? I don't plan to put something new at the old name, I just want to broaden the scope of these 'hazel reports'. Now they include other things too.\" <ul><li><b>Where the name lives:</b> every report's series line and the series index; the homepage's Hazel page and nav.js's outline; the dashboard (SERIES_PUBLIC/series_url, the outline's \"Performance reports\", the Performance section's links); the series' README and agent-instructions.md; ours (agent-instructions.md); the tools (hazel_page.py, publish_agenda.py, gen020.py's PUBLISHED path).</li><li><b>The URL:</b> /hazel/performance-analysis/ becomes a new path (say /hazel/reports/), and the old one keeps a forwarding page per report (GitHub Pages has no server redirects: a meta refresh plus a script that keeps the #fragment), as the dashboard's old addresses do (^ticket(181)). Nothing new goes at the old name.</li><li><b>The repository</b> hazel-performance-analysis may become hazel-reports (GitHub forwards a renamed repository's URLs); ~/hazel-perf-report and the launch entry \"perf-report\" can follow.</li><li>Links already posted elsewhere (#2609 and PR comments) keep working through the forwarding pages.</li></ul> Matthew, 12:38: \"'hazel performance analysis' becomes 'hazel reports' (by matthew, implied by the URL in all cases).\" So the name is just <b>Hazel reports</b>: no \"Matthew's\" in it, since the address (matthewhammer.org) already says whose they are.",
+   "progress": "12:37: minted and enqueued, low priority. 12:38: Matthew: the name is \"Hazel reports\"; authorship is implied by the URL.",
+   "log": [
+    {
+     "at": "2026-10-19T12:37-06:00",
+     "from": "matthew",
+     "chars": 438,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T12:38-06:00",
+     "from": "matthew",
+     "chars": 99,
+     "asks": false
+    }
+   ],
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T13:53-06:00",
+   "outcome": "Done 2026-10-19: the series is Hazel reports at https://matthewhammer.org/hazel/reports/ (homepage 3a916cb, cb16afc; series repo c0610b3; dashboard e6e55d37). Every report, generator, tool, the series index (with a broader description), the README, the Hazel page, Dress Up's pages, the site nav bar (which now also lists reports 18-20), the dashboard and both agent-instructions files say Hazel reports. The old /hazel/performance-analysis/ index and each report page forward, query and #fragment kept (meta refresh + location.replace, noindex, canonical); checked live. Not done: renaming the GitHub repo hazel-performance-analysis (GitHub would forward it; Matthew's call).",
+   "metrics": {
+    "open_minutes": 77,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 537,
+    "tokens_est": 134,
+    "sync_minutes_est": 1.0
+   }
+  },
   {
    "id": 407,
    "area": "homepage, Matthew Hammer and Hazel: a Press section",
@@ -13462,10 +13473,9 @@
   }
  ],
  "queue": [
-  410,
+  411,
   389,
   405,
-  411,
   399,
   402,
   403,
@@ -13495,7 +13505,7 @@
   322,
   344
  ],
- "current_since": "2026-10-19T13:47-06:00",
+ "current_since": "2026-10-19T13:54-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
