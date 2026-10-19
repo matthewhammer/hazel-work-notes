@@ -1242,12 +1242,18 @@
    "source": "Matthew, for N, 2026-10-19 14:12, in chat, with a screenshot of the trap room (MIND THE FLOOR, the boulder on a pit, the friend standing beside it)",
    "url": "",
    "text": "<b>For N: the \"turn into rainbow bubbles\" animation, part by part as each is hit: first the head, then the torso, then the legs and feet.</b> Matthew, \"mint and enqueue for N, low priority until hazel work is done for the day\": \"the 'turn into rainbow bubbles' animation is great here, but we could improve it by turning each major part that we draw and control independently into bubbles, as they are hit -- first head, then torso, then legs and feet.\" His screenshot: the trap room (MIND THE FLOOR), the boulder over a pit, the friend standing beside it. So: where the friend turns into rainbow bubbles, each part the game draws on its own (head, torso, legs, feet) bursts into bubbles at the moment it is hit, in that order, instead of the whole friend at once. Low priority while it is Hazel work time.",
-   "progress": "14:12: minted and enqueued at the end of the Dress Up tickets, low priority (for N).",
+   "progress": "14:12: minted and enqueued at the end of the Dress Up tickets, low priority (for N). 14:38: moved up to the first Dress Up ticket for later, ahead of 412 and of 413 (begun, then parked) (Matthew).",
    "log": [
     {
      "at": "2026-10-19T14:12-06:00",
      "from": "matthew",
      "chars": 303,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T14:38-06:00",
+     "from": "matthew",
+     "chars": 129,
      "asks": false
     }
    ]
@@ -1262,7 +1268,7 @@
    "source": "^report(21) (^ticket(398)), What next, step 1: \"Fix #2610 before it merges\"; opened by Claude during the AFK protocol",
    "url": "https://github.com/hazelgrove/hazel/pull/2610",
    "text": "<b>Fix #2610 before it merges: the segmented load fallback turns <code>x - y</code> into <code>x ¿ - y</code> when a split lands just after an operand.</b> Confirmed 2026-10-19 by running Hazel's format at #2610's head and its parent on a fallback-shaped program: the parent loads <code>aaa…a - b</code>, #2610 <code>aaa…a ¿ - b</code>. Each piece after the first is typed as if it began the program, so a token whose mold depends on its left neighbour (<code>-</code>, <code>(</code>, an ascription's type) is molded wrong, and the join is only re-grouted, never remolded. Fix to try: remold the joined zipper once before the final re-grout (or split only where the next token's mold cannot depend on what precedes it). Test: the constructed cases, and a sweep of split offsets over the corpus against the character-by-character parser.",
-   "progress": "14:19: opened from ^report(21)'s first next step; started. 14:29: FIXED and PUSHED to #2610 (94ca8a2daa): the joined pieces go through Zipper.remold_regrout once. Tests: three split cases in Parser.Segmented compared with holes kept (the old comparison stripped them, which hid the bug); without the fix the minus and parentheses cases fail. Locally: Parser.Segmented 9/9, TextRoundtrip.* (DocSlides 73, TutorialLessons 114, SoleHoles, TextReproducers, Property), DocSlides.ReparseBackuptext 73, Editing.Paste 17, RoundTrip.Basic 11 pass. CI running; close on green.",
+   "progress": "14:19: opened from ^report(21)'s first next step; started. 14:29: FIXED and PUSHED to #2610 (94ca8a2daa): the joined pieces go through Zipper.remold_regrout once. Tests: three split cases in Parser.Segmented compared with holes kept (the old comparison stripped them, which hid the bug); without the fix the minus and parentheses cases fail. Locally: Parser.Segmented 9/9, TextRoundtrip.* (DocSlides 73, TutorialLessons 114, SoleHoles, TextReproducers, Property), DocSlides.ReparseBackuptext 73, Editing.Paste 17, RoundTrip.Basic 11 pass. CI running; close on green. 14:38: #2651's corner fixed too (report 21 next step 2): 29c08fd8fa restores the error for a module definition that names itself (the Let's fixpoint is the sign; it strips the name from the co_ctx), and pins the one-member signature result with a test; description updated; draft 21 notes both fixes. Waiting on #2610's Full tests to close this.",
    "log": []
   },
   {
@@ -1290,7 +1296,7 @@
  ],
  "next_ticket": 418,
  "current_ticket": 416,
- "current_note": "14:19: Started: fixing #2610's split-point bug (the segmented load fallback molds a piece's first token without its left context). Fresh worktree from the PR's head; no browser needed. ^ticket(405): #2635's Full tests due ~15:05.",
+ "current_note": "14:38: ^ticket(416): #2610 fixed (94ca8a2daa, Fast checks green, Full tests running) and #2651's self-naming error restored (29c08fd8fa, CI running). Queue: ^ticket(415) is now the first Dress Up ticket for later (Matthew). ^ticket(405): #2635's Full tests still running.",
  "closed_tickets": [
   {
    "id": 391,
@@ -13582,11 +13588,11 @@
   416,
   389,
   405,
+  415,
   413,
   406,
   412,
   414,
-  415,
   417,
   411,
   408,
