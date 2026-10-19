@@ -724,7 +724,7 @@
    ],
    "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
    "url": "",
-   "progress": "09:14: minted. 09:34 Matthew: \"item 7 -- yes. (387 and 388 after 386, in that order)\" 10:10: FOUND, on BOTH livelits branches (#2597 at f8ae6f2b9c on 8311, #2635 at 9e7258b55b on 8341, Livelits > Overview, ^flag's eye): the eye's pane already shows the model as TILES, a splice sub-editor (code-editor sub-editor): caret, Shift+Arrow selection, the inspector reads 'Boolean literal', right click opens Hazel's context menu; Perform.in_revealed_model refuses text edits. What is NOT tiles: the pane's head line (^flag) and params line (HTML inputs, editable by design); the Projectors sidebar card of a docked livelit (ProjectorView: 'a preview, not an editing surface', default_render_splice = simple_code text); and refractors (RefractorView, also default_render_splice). Asked Matthew which surface Cyrus meant. 10:13 Matthew (asked which surface): \"All of the plain-text ones (sidebar card and refractors become read-only tiles; head and params lines stay)\". 11:00: CORRECTION from ^ticket(393)'s survey (^report(19) draft): the 10:10 finding was half wrong. default_render_splice calls simple_code -> Code.view, so the docked Projectors card's SPLICES (ProjectorView.re:1050) and the refractors' splices (RefractorView.re:276) are already STATIC TILES (no caret, no selection, no menu), not text. Only the card's one-line HEADER is text (text_code via chip_syntax, ProjectorView.re:564-586, 632; in the app ^flag(true) is one token-styled element). So the work is to give those splices the revealed model's read-only selection (caret, Shift+Arrow, right-click menu), plus a decision on the header; Matthew's 10:13 answer (head and params lines stay) still holds. 11:18: Matthew, with a screenshot of Scenes' eye_rate eye pane on 8341: \"Livelit syntax is still not tile based , right?\" Answered: the HEAD line (Drawing.^slider(\"blinks a minute\", 0, 240), an HTML input; his orange is the browser's text selection) is text, by his 10:13 call; the MODEL line (...(30)) is tiles (read-only sub-editor; his green is a tile selection, and the inspector's Tuple literal : (String, Int, Int) reads it). If he wants the head line as tiles too, 387 widens. 11:29: Matthew: \"see my highlighted text.\" (both highlights end mid-token). CHECKED on 8341, Livelits > Overview, ^flag's eye: a mouse drag over the MODEL line makes a Hazel selection (no browser selection; the inspector reads it), but its ends do NOT snap to tiles: dragging from inside ^flag to inside true gave a selection x218-267 over tokens ^flag 202-242 and true 251-283, caret mid-word. The same drag in the main editor selects whole tiles (Functional(fun, x296-415 over 297-410). So the revealed model's selection is character-granular: part of 387's 'tiles' selection UX' work. The HEAD line is an HTML input (browser text selection, his orange). ALSO SEEN: while the revealed model has focus, the rest of the editor draws blank (only the livelit's row), until the eye closes: the view's culling seems to follow the focused sub-editor. 13:02: a read-only code search is locating (A) the mouse-drag path that keeps the revealed model's selection character-granular and (B) the culling that blanks the editor while the model has focus; the fix waits until #2699 is merged into #2635's worktree. 13:10: BOTH GAPS FIXED, committed locally on #2635's branch as 1b7a03e8e5 (pushed together with #2699's merge, to spare a CI run): (A) a drag inside the caret's splice was hardcoded to ByChar (Perform.re); now smart unless Character-level mouse is on; new test Editing.Splice 16 passes, and fails with the old line. (B) the code view's memo call passed no ~frame (dropped in merge acfe0d4550), so the model's sub-editor and the root shared a memo entry and the root drew the model's rows: one argument restored. NOT YET SEEN in the app: the browser pane is hidden while Matthew is away (0 frames drawn), so the visual check waits for the pane to be on screen. #2597 has the same code: to port after. 13:38: PUSHED to #2635 (1b7a03e8e5, in 90ed4505bf). Left: the visual check with the pane on screen; port to #2597 (same code).",
+   "progress": "09:14: minted. 09:34 Matthew: \"item 7 -- yes. (387 and 388 after 386, in that order)\" 10:10: FOUND, on BOTH livelits branches (#2597 at f8ae6f2b9c on 8311, #2635 at 9e7258b55b on 8341, Livelits > Overview, ^flag's eye): the eye's pane already shows the model as TILES, a splice sub-editor (code-editor sub-editor): caret, Shift+Arrow selection, the inspector reads 'Boolean literal', right click opens Hazel's context menu; Perform.in_revealed_model refuses text edits. What is NOT tiles: the pane's head line (^flag) and params line (HTML inputs, editable by design); the Projectors sidebar card of a docked livelit (ProjectorView: 'a preview, not an editing surface', default_render_splice = simple_code text); and refractors (RefractorView, also default_render_splice). Asked Matthew which surface Cyrus meant. 10:13 Matthew (asked which surface): \"All of the plain-text ones (sidebar card and refractors become read-only tiles; head and params lines stay)\". 11:00: CORRECTION from ^ticket(393)'s survey (^report(19) draft): the 10:10 finding was half wrong. default_render_splice calls simple_code -> Code.view, so the docked Projectors card's SPLICES (ProjectorView.re:1050) and the refractors' splices (RefractorView.re:276) are already STATIC TILES (no caret, no selection, no menu), not text. Only the card's one-line HEADER is text (text_code via chip_syntax, ProjectorView.re:564-586, 632; in the app ^flag(true) is one token-styled element). So the work is to give those splices the revealed model's read-only selection (caret, Shift+Arrow, right-click menu), plus a decision on the header; Matthew's 10:13 answer (head and params lines stay) still holds. 11:18: Matthew, with a screenshot of Scenes' eye_rate eye pane on 8341: \"Livelit syntax is still not tile based , right?\" Answered: the HEAD line (Drawing.^slider(\"blinks a minute\", 0, 240), an HTML input; his orange is the browser's text selection) is text, by his 10:13 call; the MODEL line (...(30)) is tiles (read-only sub-editor; his green is a tile selection, and the inspector's Tuple literal : (String, Int, Int) reads it). If he wants the head line as tiles too, 387 widens. 11:29: Matthew: \"see my highlighted text.\" (both highlights end mid-token). CHECKED on 8341, Livelits > Overview, ^flag's eye: a mouse drag over the MODEL line makes a Hazel selection (no browser selection; the inspector reads it), but its ends do NOT snap to tiles: dragging from inside ^flag to inside true gave a selection x218-267 over tokens ^flag 202-242 and true 251-283, caret mid-word. The same drag in the main editor selects whole tiles (Functional(fun, x296-415 over 297-410). So the revealed model's selection is character-granular: part of 387's 'tiles' selection UX' work. The HEAD line is an HTML input (browser text selection, his orange). ALSO SEEN: while the revealed model has focus, the rest of the editor draws blank (only the livelit's row), until the eye closes: the view's culling seems to follow the focused sub-editor. 13:02: a read-only code search is locating (A) the mouse-drag path that keeps the revealed model's selection character-granular and (B) the culling that blanks the editor while the model has focus; the fix waits until #2699 is merged into #2635's worktree. 13:10: BOTH GAPS FIXED, committed locally on #2635's branch as 1b7a03e8e5 (pushed together with #2699's merge, to spare a CI run): (A) a drag inside the caret's splice was hardcoded to ByChar (Perform.re); now smart unless Character-level mouse is on; new test Editing.Splice 16 passes, and fails with the old line. (B) the code view's memo call passed no ~frame (dropped in merge acfe0d4550), so the model's sub-editor and the root shared a memo entry and the root drew the model's rows: one argument restored. NOT YET SEEN in the app: the browser pane is hidden while Matthew is away (0 frames drawn), so the visual check waits for the pane to be on screen. #2597 has the same code: to port after. 13:38: PUSHED to #2635 (1b7a03e8e5, in 90ed4505bf). Left: the visual check with the pane on screen; port to #2597 (same code). 14:16: PORTED to #2597 (54e5a66bf2, pushed): the same splice-drag and memo-frame code was there; Editing.Splice 17/17 on #2597.",
    "log": [
     {
      "at": "2026-10-19T09:14-06:00",
@@ -933,7 +933,7 @@
    "source": "Matthew, 2026-10-19 10:22, in chat, on #2635's local build (8341)",
    "url": "http://localhost:8341/?slide=livelit-playground-scenes",
    "text": "<b>Bug: pressing &Gamma; on #2635's Scenes slide freezes the browser.</b> Matthew: \"on http://localhost:8341/?slide=livelit-playground-scenes mint and enqueue bug fix -- pressing gamma in lower left corner freezes the browser --- do some tests on github, on simpler slides first, to see if there's some non-linear computation behind that click\" Plan: on GitHub (a diagnostic branch, the runner's headless browser, never this laptop), time opening &Gamma; on slides of growing size, simplest first, and the Scenes slide last, to find what grows faster than the context: every entry is printed and laid out as tiles (ContextInspector: CodeViewable per entry, Measured.of_segment each), and Scenes' context holds large types (Picture and the scene types). Note: #2698 adds a one-line print per entry to decide the unfold toggle, so measure with and without it.",
-   "progress": "10:22: minted and enqueued. 10:52: A LEAD, seen during ^ticket(393)'s survey on 8341 (#2635 at b44bb9c50f): opening &Gamma; on a 4-line scratch program draws 6,802 .token spans, because the context holds the prelude's types (ColorScheme, ColorRoles, ColorPalette, ...), each printed whole as tiles. So the cost is there before any user code; the Scenes slide adds its own large types on top. 13:23: CAUSE FOUND AND FIXED (no browser needed): a node probe of Γ on Scenes: one entry, Drawing (a module of livelit definitions), is 91,567 type nodes and printed to 474,304 chars in ~6.4 s (then the page lays it out: the freeze); the other 417 entries ~0.2 s; Polygons' 348 entries ~0.24 s; next-largest entry anywhere is Html.T, 693 nodes. FIX (local commit 2dcde8ee09 on #2635's branch, pushed with #2699's merge): Γ shows an entry over 2,000 type nodes as an outline (a module's member names, else …) with a tooltip; counting stops at the budget. Tests: ContextInspector (Slow, 2 cases) pass. Visual check waits for the pane to be on screen. 13:38: PUSHED to #2635 (2dcde8ee09, in 90ed4505bf). Left: the visual check with the pane on screen (Gamma on Scenes opens; Drawing shows as an outline).",
+   "progress": "10:22: minted and enqueued. 10:52: A LEAD, seen during ^ticket(393)'s survey on 8341 (#2635 at b44bb9c50f): opening &Gamma; on a 4-line scratch program draws 6,802 .token spans, because the context holds the prelude's types (ColorScheme, ColorRoles, ColorPalette, ...), each printed whole as tiles. So the cost is there before any user code; the Scenes slide adds its own large types on top. 13:23: CAUSE FOUND AND FIXED (no browser needed): a node probe of Γ on Scenes: one entry, Drawing (a module of livelit definitions), is 91,567 type nodes and printed to 474,304 chars in ~6.4 s (then the page lays it out: the freeze); the other 417 entries ~0.2 s; Polygons' 348 entries ~0.24 s; next-largest entry anywhere is Html.T, 693 nodes. FIX (local commit 2dcde8ee09 on #2635's branch, pushed with #2699's merge): Γ shows an entry over 2,000 type nodes as an outline (a module's member names, else …) with a tooltip; counting stops at the budget. Tests: ContextInspector (Slow, 2 cases) pass. Visual check waits for the pane to be on screen. 13:38: PUSHED to #2635 (2dcde8ee09, in 90ed4505bf). Left: the visual check with the pane on screen (Gamma on Scenes opens; Drawing shows as an outline). 14:16: PORTED to #2597 (8a03584ef6, pushed; the test adapted to #2597's APIs): Drawing is over the budget there too; ContextInspector 2/2 on #2597.",
    "log": [
     {
      "at": "2026-10-19T10:22-06:00",
@@ -1084,32 +1084,6 @@
     }
    ],
    "waiting": "Matthew: read ^du_report(13) (localhost:8133/du-reports/013/); publish on your word."
-  },
-  {
-   "id": 404,
-   "area": "dress up, the scene's exit arrows: hover area and label time",
-   "added": "2026-10-19T11:25-06:00",
-   "opened": "2026-10-19T11:25-06:00",
-   "status": "open",
-   "tags": [],
-   "source": "Matthew, 2026-10-19 11:25, in chat",
-   "url": "",
-   "text": "<b>Dress Up: the nav buttons' hover labels sometimes sit in the wrong place, and leave too soon.</b> Matthew: \"the 'hover over' feature of nav buttons sometimes seem misaligned?\" and \"they disappear too quickly -- let's slow it down by a control in accessibility, default 2x slower than now, with room on each side in slider, but more room up than down.\" <ul><li>Find when a hover label is misaligned (which buttons, which panels, full screen or not, after a resize or scroll) and fix where it is placed.</li><li>A slider in the ♿ Accessibility tab for how long a hover label stays: its default twice today's time; its range reaching below the default and further above it (for example from half the default to three times it).</li></ul> <b>11:26, Matthew, where:</b> \"My cursor (not shown in screenshot) is on the lower right white flower, way below the nav that hovers above it.\" His screenshot (0.0.334, live site, the fairy forest, sitting): the 'nav button' is the scene's exit arrow at its right edge, <code>➡ bubble space</code>, and its hover label shows while the pointer is on the white flower well below it. So the arrow's hover area sits lower than the arrow (or the label is drawn above where the hover is caught): find where the hit area is placed relative to the drawn arrow, in and out of full screen.",
-   "progress": "11:25: minted and enqueued. 11:26: Matthew located it: the fairy forest's exit arrow to bubble space; hovering the flower below it shows its label.",
-   "log": [
-    {
-     "at": "2026-10-19T11:25-06:00",
-     "from": "matthew",
-     "chars": 290,
-     "asks": false
-    },
-    {
-     "at": "2026-10-19T11:26-06:00",
-     "from": "matthew",
-     "chars": 111,
-     "asks": false
-    }
-   ]
   },
   {
    "id": 405,
@@ -1302,9 +1276,46 @@
   }
  ],
  "next_ticket": 416,
- "current_ticket": 404,
- "current_note": "14:10: Started: the exit arrows' hover labels: where they sit (the fairy forest's arrow to bubble space shows its label from the flower below it), and a slider in Accessibility for how long a label stays (default twice today's). Reading the code; a game release follows. ^ticket(405): #2635's Full tests due ~15:05.",
+ "current_ticket": 389,
+ "current_note": "14:16: ^ticket(404) closed (done); ^ticket(389) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 404,
+   "area": "dress up, the scene's exit arrows: hover area and label time",
+   "added": "2026-10-19T11:25-06:00",
+   "opened": "2026-10-19T11:25-06:00",
+   "status": "done",
+   "tags": [],
+   "source": "Matthew, 2026-10-19 11:25, in chat",
+   "url": "",
+   "text": "<b>Dress Up: the nav buttons' hover labels sometimes sit in the wrong place, and leave too soon.</b> Matthew: \"the 'hover over' feature of nav buttons sometimes seem misaligned?\" and \"they disappear too quickly -- let's slow it down by a control in accessibility, default 2x slower than now, with room on each side in slider, but more room up than down.\" <ul><li>Find when a hover label is misaligned (which buttons, which panels, full screen or not, after a resize or scroll) and fix where it is placed.</li><li>A slider in the ♿ Accessibility tab for how long a hover label stays: its default twice today's time; its range reaching below the default and further above it (for example from half the default to three times it).</li></ul> <b>11:26, Matthew, where:</b> \"My cursor (not shown in screenshot) is on the lower right white flower, way below the nav that hovers above it.\" His screenshot (0.0.334, live site, the fairy forest, sitting): the 'nav button' is the scene's exit arrow at its right edge, <code>➡ bubble space</code>, and its hover label shows while the pointer is on the white flower well below it. So the arrow's hover area sits lower than the arrow (or the label is drawn above where the hover is caught): find where the hit area is placed relative to the drawn arrow, in and out of full screen.",
+   "progress": "11:25: minted and enqueued. 11:26: Matthew located it: the fairy forest's exit arrow to bubble space; hovering the flower below it shows its label.",
+   "log": [
+    {
+     "at": "2026-10-19T11:25-06:00",
+     "from": "matthew",
+     "chars": 290,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T11:26-06:00",
+     "from": "matthew",
+     "chars": 111,
+     "asks": false
+    }
+   ],
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T14:16-06:00",
+   "outcome": "Released in Dress Up 0.0.335 (2026-10-19, live, checked): a nav arrow's words now show when the pointer is on the arrow as drawn (passUnderPointer judged the pointer against the way's spot on the floor; worldWaysHud spaces the arrows and keeps them inside the picture, so the fairy forest's arrow to bubble space lit from the flower below it). And Accessibility's 'arrow words stay' slider: 500 ms by default (twice the old 250 ms fade), 250 to 1500, held near full then fading. Check tools/checks/ways404.mjs runs in the speed run on the tag.",
+   "metrics": {
+    "open_minutes": 171,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 401,
+    "tokens_est": 100,
+    "sync_minutes_est": 1.0
+   }
+  },
   {
    "id": 403,
    "area": "dress up, reports: ^du_report(11)'s beach picture",
@@ -13519,7 +13530,6 @@
  "queue": [
   389,
   405,
-  404,
   406,
   412,
   413,
@@ -13549,7 +13559,7 @@
   322,
   344
  ],
- "current_since": "2026-10-19T14:10-06:00",
+ "current_since": "2026-10-19T14:16-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
