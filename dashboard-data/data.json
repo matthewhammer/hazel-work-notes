@@ -1145,32 +1145,6 @@
    ]
   },
   {
-   "id": 413,
-   "area": "dress up, click to sit: an audit of every object",
-   "added": "2026-10-19T13:36-06:00",
-   "opened": "2026-10-19T13:36-06:00",
-   "status": "open",
-   "tags": [],
-   "source": "Matthew, 2026-10-19 13:36, in chat",
-   "url": "",
-   "text": "<b>Audit every object for click to sit: is it seat-sized at some scale, and does it have a top a friend could sit on? Then offer it, unless there is a reason to discuss.</b> Matthew, \"mint and enqueue after that dress-up ticket\" (^ticket(412)): \"audit of all objects to determine: do they have the approximate size of a seat, sometimes, at any scale? (rocks often do); do they have a reasonable top surface for sitting (rocks do, but cauldrons do not, since they would burn us...)\". \"For each object we don't offer click to sit, let's consider it -- and lean towards doing it, unless there's a reason to discuss.\" So: a table of every object (by place), its sizes across scales, whether its top is sittable, and whether it already offers click to sit; then add click to sit for the yes ones, and list the doubtful ones for Matthew (blocked on Matthew for those only). Not during Hazel work time. Matthew, 13:38, another example: \"don't sit on bushes -- they would poke us too much, etc.\" So the top must be one a friend would sit on: not hot (cauldrons), not prickly (bushes), and the like.",
-   "progress": "13:36: minted and enqueued right after ^ticket(412). 13:38: + not bushes (they poke), Matthew's example. 14:19: begun: seats are per place (SEATS[kind](c, B) lists name, x0, x1, y, z, facing; rocks have a top to sit on, ticket 50). PARKED for after today's Hazel work (Matthew: Dress Up low priority until then).",
-   "log": [
-    {
-     "at": "2026-10-19T13:36-06:00",
-     "from": "matthew",
-     "chars": 415,
-     "asks": false
-    },
-    {
-     "at": "2026-10-19T13:38-06:00",
-     "from": "matthew",
-     "chars": 77,
-     "asks": false
-    }
-   ]
-  },
-  {
    "id": 414,
    "area": "dress up, poses: two sliders each for elbows and knees, and an audit of every animation",
    "added": "2026-10-19T13:42-06:00",
@@ -1223,12 +1197,92 @@
      "asks": false
     }
    ]
+  },
+  {
+   "id": 419,
+   "area": "dress up, 0.0.335's speed run: access217's far arrows",
+   "added": "2026-10-19T15:33-06:00",
+   "opened": "2026-10-19T15:33-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "0.0.335's speed run (after a release), read during ^ticket(413)",
+   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39317599161",
+   "text": "<b>0.0.335 is marked broken: one assertion of tools/checks/access217.mjs failed.</b> \"off: the far arrows hidden, as before\": with ♿'s arrows at their defaults (off), all 5 far nav arrows still read an opacity over 0.05 (offShown 5 of 5; far opacity 0.41). Every other assertion of that check passed. Likely cause, from reading: 0.0.335 (^ticket(404)) made an arrow's fade-out slower, 500 ms held near full before it fades (style.css, .way-arrow's transition, --label-stay), and the check reads the opacities 4 frames (~67 ms) after switching the overlay off (clearing()), so it may catch them mid-fade: the check's timing, not the game. Not proven: it could be a real regression (far arrows shown when they should not be).",
+   "progress": "15:34: minted. Next: a diagnostic branch (tools/checks/.only: access217) with the read taken after --label-stay plus a frame, and the opacity logged over time; if the arrows end hidden, fix the check's wait; if they stay shown, fix the game. No headless browser on the laptop.",
+   "log": []
+  },
+  {
+   "id": 420,
+   "area": "dress up, performance: 💭 our imagination below 55 fps on 0.0.335",
+   "added": "2026-10-19T15:33-06:00",
+   "opened": "2026-10-19T15:33-06:00",
+   "status": "open",
+   "tags": [
+    "long run"
+   ],
+   "source": "0.0.335's speed run (after a release), read during ^ticket(413)",
+   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39317599161",
+   "text": "<b>The frame-rate gate's slow scenes failed on 0.0.335: 💭 our imagination, walk 53.7 fps (runs 53.7, 53.3, 53.7; first try 52.3, 53.3, 52.4) and drag 52.7 fps (53, 52.7, 51.3; first try 52, 51.7, 52); 8 of 10 cases passed.</b> 0.0.334's run passed. The instructions note this case read 53 in one release and 60 in the next with no change (GitHub's shared computers), so it may be noise; both tries failed this time. Draw time 3.3 ms, worst gap 33 ms, p95 gap 33.3 ms: frames every other vsync, the browser's painting, not the game's drawing.",
+   "progress": "15:34: minted as a 🌙 long run (perf, Matthew's 10-17 call). Next: compare 0.0.336's and 0.0.337's results for the same case; if it repeats, TWEAK= one thing at a time in the imagination (its pictures, the map, the nav arrows of ticket 404).",
+   "log": []
+  },
+  {
+   "id": 421,
+   "area": "dress up, seats: the doubtful ones (SEATS.md, For Matthew)",
+   "added": "2026-10-19T15:34-06:00",
+   "opened": "2026-10-19T15:34-06:00",
+   "status": "open",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "source": "^ticket(413)'s audit",
+   "url": "https://github.com/matthewhammer/kids-choice-games/blob/main/dress-up/SEATS.md#for-matthew",
+   "text": "<b>Seven seat questions from ^ticket(413)'s audit, each a possible seat with a reason to ask first</b> (SEATS.md, For Matthew): (1) tables: do we sit on them (the healer's tea table is a seat's height)? (2) the well and the fountain: a seat on the rim (each needs a rim seat of its own), or none, since a well is somewhere to fall into? (3) the grass hut's woodpile, stacked and uneven? (4) the king's chest of gold, open and full of coins? (5) the stump by the bed (0.49 of the friend's height) and the hay cart (0.66): raise the highest seat from 0.42? (6) the smithy's anvil and coal heap? (7) sitting on the floor: rugs, straw, moss?",
+   "progress": "15:34: minted from ^ticket(413), blocked on Matthew: each answer is a line in SIT_TOPS (or a rim seat), then a release.",
+   "log": []
   }
  ],
- "next_ticket": 419,
- "current_ticket": 413,
- "current_note": "15:19: ^ticket(413): the click-to-sit audit: every object, its sizes, whether its top is one to sit on, and whether it offers a seat; then seats for the yes ones. (0.0.336's speed run is queued on GitHub.)",
+ "next_ticket": 422,
+ "current_ticket": 412,
+ "current_note": "15:34: ^ticket(412): lying down along a side wall, in its perspective (the tent's sleeping bags first). 0.0.336 and 0.0.337 released this hour; their speed runs are on GitHub.",
  "closed_tickets": [
+  {
+   "id": 413,
+   "area": "dress up, click to sit: an audit of every object",
+   "added": "2026-10-19T13:36-06:00",
+   "opened": "2026-10-19T13:36-06:00",
+   "status": "done",
+   "tags": [],
+   "source": "Matthew, 2026-10-19 13:36, in chat",
+   "url": "",
+   "text": "<b>Audit every object for click to sit: is it seat-sized at some scale, and does it have a top a friend could sit on? Then offer it, unless there is a reason to discuss.</b> Matthew, \"mint and enqueue after that dress-up ticket\" (^ticket(412)): \"audit of all objects to determine: do they have the approximate size of a seat, sometimes, at any scale? (rocks often do); do they have a reasonable top surface for sitting (rocks do, but cauldrons do not, since they would burn us...)\". \"For each object we don't offer click to sit, let's consider it -- and lean towards doing it, unless there's a reason to discuss.\" So: a table of every object (by place), its sizes across scales, whether its top is sittable, and whether it already offers click to sit; then add click to sit for the yes ones, and list the doubtful ones for Matthew (blocked on Matthew for those only). Not during Hazel work time. Matthew, 13:38, another example: \"don't sit on bushes -- they would poke us too much, etc.\" So the top must be one a friend would sit on: not hot (cauldrons), not prickly (bushes), and the like.",
+   "progress": "13:36: minted and enqueued right after ^ticket(412). 13:38: + not bushes (they poke), Matthew's example. 14:19: begun: seats are per place (SEATS[kind](c, B) lists name, x0, x1, y, z, facing; rocks have a top to sit on, ticket 50). PARKED for after today's Hazel work (Matthew: Dress Up low priority until then).",
+   "log": [
+    {
+     "at": "2026-10-19T13:36-06:00",
+     "from": "matthew",
+     "chars": 415,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T13:38-06:00",
+     "from": "matthew",
+     "chars": 77,
+     "asks": false
+    }
+   ],
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T15:34-06:00",
+   "outcome": "Released as Dress Up 0.0.337 (658b06f, live): things with a top to sit on are seats wherever they stand, a place's own or put there, when the top is a seat's height for the friend (0.05 to 0.42 of their height, the places' own seats measured so): 44 more seats in 10 places, and placed rocks, toadstools, logs, benches, barrels and chests. A click on a placed one sits there; a press moved on still drags. The audit, every object and why: dress-up/SEATS.md; its seven doubtful ones are ^ticket(421) (blocked on Matthew). Check: tools/checks/seats413.mjs.",
+   "metrics": {
+    "open_minutes": 118,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 492,
+    "tokens_est": 123,
+    "sync_minutes_est": 2.0
+   }
+  },
   {
    "id": 415,
    "area": "dress up, the trap room: turning into rainbow bubbles, part by part",
@@ -13642,12 +13696,13 @@
   }
  ],
  "queue": [
-  413,
+  412,
   389,
   406,
-  412,
   414,
+  419,
   417,
+  420,
   411,
   408,
   401,
@@ -13669,9 +13724,10 @@
   166,
   259,
   322,
-  344
+  344,
+  421
  ],
- "current_since": "2026-10-19T15:19-06:00",
+ "current_since": "2026-10-19T15:34-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
