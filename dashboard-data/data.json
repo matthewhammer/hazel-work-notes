@@ -800,9 +800,31 @@
     }
    ],
    "text": "<b>Dashboard: does hazel-work-notes grow too fast, keeping every snapshot of the page?</b> Matthew: \"Does the dashboard repo consume too much space by storing every snapshot of the HTML file? With our huge PNG files for the dress-up pictures archive we did two things: * stopped storing PNG files, and just store mark up and data (svg and json). * used a single path in the repo for all versions, so git's diff'ing system helps. The ticket would do some analysis and answer a few questions: * at the current rate, how long will the repo be under the space limit? Can we plot our estimates? * what steps can we take if the rate of space usage is too fast at present?\" (The archive's lesson: ^du_report(4), One folder, every run.)"
+  },
+  {
+   "id": 392,
+   "area": "dress up, the menus' panel headers",
+   "added": "2026-10-19T09:40-06:00",
+   "opened": "2026-10-19T09:40-06:00",
+   "status": "open",
+   "tags": [
+    "parked"
+   ],
+   "source": "Matthew, 2026-10-19 09:39, in chat, with a screenshot of 0.0.333's 🧍 Body tab (\"mint and park ticket\")",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "text": "<b>Dress Up: the menus' panels say their header twice.</b> Matthew: \"the new design of the menus looks better overall -- but there are still redundant headers (pose panel says \"the pose\" and then \"poses\", similar for the facing and moving panel next to it). Same for dominant hand -- the controls in the panel are already labeled enough, and there isn't more than one sub control.\" On 0.0.333's 🧍 Body tab: the pose panel heads \"🤸 the pose\" and then \"🤸 poses\"; the facing and moving panel \"↔️ facing and moving\" and then \"↔️ facing\" (its second group, \"🎬 animations\", is fine); the dominant hand panel \"✋ the dominant hand\" and then \"✋ dominant hand\", over one row of buttons. So: a panel with one group of controls shows one header (the panel's), not the group's again; a panel with several groups keeps its group headers, minus any that only repeats the panel's. Sweep every tab for the same, with a check that no panel's first group header repeats the panel header's words.",
+   "progress": "09:40: minted and PARKED, as Matthew asked (today is Hazel tickets; Dress Up only if lingering). Not started.",
+   "log": [
+    {
+     "at": "2026-10-19T09:39-06:00",
+     "from": "matthew",
+     "chars": 311,
+     "asks": false
+    }
+   ]
   }
  ],
- "next_ticket": 392,
+ "next_ticket": 393,
  "current_ticket": 16,
  "current_note": "09:37: drafting the ask to require the test jobs on dev (16) and the timing-report proposal (17); Matthew: yes",
  "closed_tickets": [
