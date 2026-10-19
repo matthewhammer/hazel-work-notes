@@ -768,7 +768,7 @@
    ],
    "source": "Matthew, 2026-10-19 09:15, in chat",
    "url": "",
-   "progress": "09:15: minted, the list as of now; 385 in progress (answer due EOD).",
+   "progress": "09:15: minted, the list as of now; 385 in progress (answer due EOD). 09:56: 385's answer is now ^report(18), a local draft (http://localhost:8131/018/), waiting on Matthew's read; the 09:30 artifact is superseded (it had two errors, listed on 385).",
    "log": [
     {
      "at": "2026-10-19T09:15-06:00",
@@ -825,8 +825,8 @@
   }
  ],
  "next_ticket": 393,
- "current_ticket": 16,
- "current_note": "09:37: drafting the ask to require the test jobs on dev (16) and the timing-report proposal (17); Matthew: yes",
+ "current_ticket": 386,
+ "current_note": "09:56: ✋ ^report(18) (ticket 385's answer, why #2635's CI is red) is drafted locally and waits on Matthew's read before it is published. Starting 386: long types in Gamma, per the recommendation.",
  "closed_tickets": [
   {
    "id": 383,
@@ -981,11 +981,12 @@
    "opened": "2026-10-19T09:14-06:00",
    "status": "done",
    "tags": [
-    "deadline: EOD 2026-10-19"
+    "deadline: EOD 2026-10-19",
+    "blocked on Matthew"
    ],
    "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
-   "url": "",
-   "progress": "09:14: minted. 09:30 ANSWER (ready for Cyrus): Matthew's hunch is right, it is the merge, and nothing in either branch is broken. #2635's last CI run (39031252985, on 9e7258b55b, 10-17, after ^ticket(156) brought it up to date with #2469 at 19fef7c9bb): 10 failures, the same in Fast checks and Full tests: DefStaticsParity 1, 2, 4, 33, 38, 39, 40, 41, 42 and Editing.TableDecorations 1. Both parents pass alone: #2597 (...full) green at f8ae6f2b9c (10-15); #2469 green at c349058154 (10-18), which contains 19fef7c9bb with the same Test_DefStaticsParity.re, 4,810 + 5,202 tests passing. Each failing test is one side's: DefStaticsParity only on modular-editors (Andrew's, 10-10), TableDecorations only on ...full (Test_Editing.re). The cause, recorded in the trial merge 8c968efcc4: Modules II is on ...full only (18 commits; none on dev or modular-editors) and replaced dev's module helpers that #2469's per-member DefStatics builds on, so on the merge a module literal is analyzed whole: the per-member counts (expected 2, 4, 6) come out 1 or 2 (tests 1, 4, 33, 38-42: 8 of the 9). Test 2: hazel-programs/docs/livelits/expansion-errors/macro-result.hz, per-item vs monolithic elaboration differ at a livelit application (livelits x per-item elaboration; cross-document aliasing suspected, cause not found). TableDecorations 1: with #2469's canonical completion a stray `[` in a table cell errors inside the cell, so the hidden-row case's input no longer makes a hidden-row error; it needs a new input. Ways to green: skip the per-member cases under Modules II and give TableDecorations a new input; or port DefStatics' per-member path to Modules II (Andrew and Alexander's ground).",
+   "url": "http://localhost:8131/018/",
+   "progress": "09:14: minted. 09:30 ANSWER (ready for Cyrus): Matthew's hunch is right, it is the merge, and nothing in either branch is broken. #2635's last CI run (39031252985, on 9e7258b55b, 10-17, after ^ticket(156) brought it up to date with #2469 at 19fef7c9bb): 10 failures, the same in Fast checks and Full tests: DefStaticsParity 1, 2, 4, 33, 38, 39, 40, 41, 42 and Editing.TableDecorations 1. Both parents pass alone: #2597 (...full) green at f8ae6f2b9c (10-15); #2469 green at c349058154 (10-18), which contains 19fef7c9bb with the same Test_DefStaticsParity.re, 4,810 + 5,202 tests passing. Each failing test is one side's: DefStaticsParity only on modular-editors (Andrew's, 10-10), TableDecorations only on ...full (Test_Editing.re). The cause, recorded in the trial merge 8c968efcc4: Modules II is on ...full only (18 commits; none on dev or modular-editors) and replaced dev's module helpers that #2469's per-member DefStatics builds on, so on the merge a module literal is analyzed whole: the per-member counts (expected 2, 4, 6) come out 1 or 2 (tests 1, 4, 33, 38-42: 8 of the 9). Test 2: hazel-programs/docs/livelits/expansion-errors/macro-result.hz, per-item vs monolithic elaboration differ at a livelit application (livelits x per-item elaboration; cross-document aliasing suspected, cause not found). TableDecorations 1: with #2469's canonical completion a stray `[` in a table cell errors inside the cell, so the hidden-row case's input no longer makes a hidden-row error; it needs a new input. Ways to green: skip the per-member cases under Modules II and give TableDecorations a new input; or port DefStatics' per-member path to Modules II (Andrew and Alexander's ground). 09:56: DRAFTED ^report(18) as Matthew asked (HTML in the series, not an artifact): ~/hazel-perf-report/018/, local preview http://localhost:8131/018/ and a local card on series/; NOT pushed. Corrections to the 09:30 artifact answer, from reading all 97 of #2635's runs: (a) red on EVERY run since its first, 10-01 (43 failed, 54 cancelled, 0 green); the same 8 failures through 10-17 03:13, 10 after the update (the same causes, #2469's renamed tests); (b) TableDecorations comes from DEV's canonical completion (#2374, 09-22), not #2469: #2597 is on dev from that morning, 484 commits behind, and will meet it at its next dev merge; (c) the fix for the 8 EXISTS: Andrew's #2687 (stdlib -> modular-editors) rebuilt per-member analysis on Modules II parts 1-2 in 00bc805ca1 (10-18), CI green (5,298 + 5,709) with the same cases; #2635 has parts 1-3 as of 09-16, so it may need adapting; (d) ...full has NOT moved since 10-15: #2635's 25-file conflict is from taking 79 of ...full's 110 commits as cherry-picks. #2469 itself is red at a41b292007 this morning (OpenMember 0-5, ItemSpans 6), its own work. ✋ Waiting on Matthew: read the draft; publish only on his word.",
    "log": [
     {
      "at": "2026-10-19T09:14-06:00",
@@ -12740,5 +12741,5 @@
   344,
   391
  ],
- "current_since": "2026-10-19T09:37-06:00"
+ "current_since": "2026-10-19T09:56-06:00"
 }
