@@ -1262,7 +1262,7 @@
    "source": "^report(21) (^ticket(398)), What next, step 1: \"Fix #2610 before it merges\"; opened by Claude during the AFK protocol",
    "url": "https://github.com/hazelgrove/hazel/pull/2610",
    "text": "<b>Fix #2610 before it merges: the segmented load fallback turns <code>x - y</code> into <code>x ¿ - y</code> when a split lands just after an operand.</b> Confirmed 2026-10-19 by running Hazel's format at #2610's head and its parent on a fallback-shaped program: the parent loads <code>aaa…a - b</code>, #2610 <code>aaa…a ¿ - b</code>. Each piece after the first is typed as if it began the program, so a token whose mold depends on its left neighbour (<code>-</code>, <code>(</code>, an ascription's type) is molded wrong, and the join is only re-grouted, never remolded. Fix to try: remold the joined zipper once before the final re-grout (or split only where the next token's mold cannot depend on what precedes it). Test: the constructed cases, and a sweep of split offsets over the corpus against the character-by-character parser.",
-   "progress": "14:19: opened from ^report(21)'s first next step; started.",
+   "progress": "14:19: opened from ^report(21)'s first next step; started. 14:29: FIXED and PUSHED to #2610 (94ca8a2daa): the joined pieces go through Zipper.remold_regrout once. Tests: three split cases in Parser.Segmented compared with holes kept (the old comparison stripped them, which hid the bug); without the fix the minus and parentheses cases fail. Locally: Parser.Segmented 9/9, TextRoundtrip.* (DocSlides 73, TutorialLessons 114, SoleHoles, TextReproducers, Property), DocSlides.ReparseBackuptext 73, Editing.Paste 17, RoundTrip.Basic 11 pass. CI running; close on green.",
    "log": []
   },
   {
