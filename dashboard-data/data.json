@@ -1886,68 +1886,6 @@
    "text": "<b>The Dress Up page: its big picture (the friend on the castle's drawbridge) drawn from an SVG in the picture archive instead of a screenshot, with a selector for which picture to show; the castle stays the default.</b> Matthew: \"let's replace the screenshot with an SVG, and a selector for which one to show -- the current default is fine, if we have some SVG in our archive.\" Today the hero is <code>#hero</code>, a 480 x 356 webp thumb from the old archive (dress-up-pictures-2026-10-18/.../backgrounds-with-friend/castle.webp). PLAN: find the castle-with-friend SVG in the current archive (pictures/, one folder, a git tag per run, since 2026-10-18); show it as the hero at full width, sharp at any zoom; a small selector (the places with the friend in them, from the same run) swaps it, the choice remembered per viewer; keep the alt text right for each; mind the page weight (load the chosen SVG only)."
   },
   {
-   "id": 286,
-   "area": "dress up, moving",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T10:53-06:00",
-   "status": "open",
-   "tags": [],
-   "progress": "Found while minting it (10:53): the crawl is in js/17-moving-and-climbing.js (653). From the side the whole friend turns about the hips by the angle that puts hands and knees on the ground together (rot: tilt * dir). Toward or away from us there is no turn (rot 0): the friend stays upright, with the side pose's hip, knee and foot angles laid flat in the picture, which reads as crawling up or down a wall. Toward and away, the body runs into the depth, so it needs a drawing of its own, foreshortened on the floor, not the side pose. His reference picture is kept locally (not in a public repository) at ~/du-shots/ref-286/crawl-away.png. DONE 19:25, 0.0.256: away, the back seen short and drawn after the head (it hides long hair hanging down; the neck stays behind with the hair), standing on the legs as drawn (grounded: it floated over its shadow by the legs' foreshortening); toward, the head down in front of the shoulders (chin 0.45 of the arm), the arms straight down to the hands on the floor (the ground), the shirt and pants turned over about the shoulders behind it (back 0.55), the pants clipped to a round seat (seat 0.4), a costume's tail flipped up from it, the feet hidden. Check: tools/checks/crawl286.mjs (its logic run in the pane: all pass). REOPENED 19:30: Matthew: \"0.256 crawling looks much better, but the hand position seems off in both toward and away poses. like we are keeping our hands on our hips?\" 19:33 Matthew: \"in the forward crawling view, we should see shoulders, head and arms (we do) but not so much torso, and almost no legs at all -- none maybe.\" 19:35 Matthew: \"also noticed that when we crawl, our collision box does not match our torso -- it stays  upright?\" 19:43 Matthew, of the pane's grid: \"upper right versions shows the issue -- we should see knees between the arms here. *upper right version same with tiger, in row 2, col 2.\" 19:43 Matthew: \"same with witch, in row 2, col 4, and falcon in row 3 col 2.\" 19:44 Matthew: \"knees should be closer down, nearer the hands?\"",
-   "log": [
-    {
-     "at": "2026-10-18T10:53-06:00",
-     "from": "matthew",
-     "chars": 511,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T19:25-06:00",
-     "from": "claude",
-     "chars": 1100,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T19:30-06:00",
-     "from": "matthew",
-     "chars": 139,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T19:33-06:00",
-     "from": "matthew",
-     "chars": 140,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T19:35-06:00",
-     "from": "matthew",
-     "chars": 97,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T19:43-06:00",
-     "from": "matthew",
-     "chars": 137,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T19:43-06:00",
-     "from": "matthew",
-     "chars": 60,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T19:44-06:00",
-     "from": "matthew",
-     "chars": 46,
-     "asks": false
-    }
-   ],
-   "source": "Matthew, 2026-10-18, in chat, with a photo for reference",
-   "url": "",
-   "text": "<b>Dress Up: crawling toward us and away from us, on the floor.</b> From the side (crawling left or right) the crawl looks good enough; the forward and backward views are \"really goofy\": they look more like someone crawling up or down the walls of the room. We watch from a pseudo-3D vantage point, seeing the horizon line, the floor, and some ceiling or sky, so we should see the friend on that floor. His reference for a baby-like friend crawling away: a baby on a carpeted floor, seen from behind and a little above, the body foreshortened along the floor; the seat and the soles of the feet nearest us, the lower legs flat on the floor pointing back toward us, the knees under the hips, a hand on the floor beside the body, and the head beyond, turned a little to one side."
-  },
-  {
    "id": 355,
    "area": "dress up, collisions (tree house room)",
    "added": "2026-10-18",
@@ -1999,9 +1937,94 @@
   }
  ],
  "next_ticket": 357,
- "current_ticket": 286,
- "current_note": "19:30: reopened: the hands look like they rest on the hips in both crawl views (toward and away); putting them on the floor",
+ "current_ticket": 287,
+ "current_note": "19:45: starting: swimming for real when running in the water (the body lying along the water, arms reaching out like a swimmer's)",
  "closed_tickets": [
+  {
+   "id": 286,
+   "area": "dress up, moving",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T10:53-06:00",
+   "status": "done",
+   "tags": [],
+   "progress": "Found while minting it (10:53): the crawl is in js/17-moving-and-climbing.js (653). From the side the whole friend turns about the hips by the angle that puts hands and knees on the ground together (rot: tilt * dir). Toward or away from us there is no turn (rot 0): the friend stays upright, with the side pose's hip, knee and foot angles laid flat in the picture, which reads as crawling up or down a wall. Toward and away, the body runs into the depth, so it needs a drawing of its own, foreshortened on the floor, not the side pose. His reference picture is kept locally (not in a public repository) at ~/du-shots/ref-286/crawl-away.png. DONE 19:25, 0.0.256: away, the back seen short and drawn after the head (it hides long hair hanging down; the neck stays behind with the hair), standing on the legs as drawn (grounded: it floated over its shadow by the legs' foreshortening); toward, the head down in front of the shoulders (chin 0.45 of the arm), the arms straight down to the hands on the floor (the ground), the shirt and pants turned over about the shoulders behind it (back 0.55), the pants clipped to a round seat (seat 0.4), a costume's tail flipped up from it, the feet hidden. Check: tools/checks/crawl286.mjs (its logic run in the pane: all pass). REOPENED 19:30: Matthew: \"0.256 crawling looks much better, but the hand position seems off in both toward and away poses. like we are keeping our hands on our hips?\" 19:33 Matthew: \"in the forward crawling view, we should see shoulders, head and arms (we do) but not so much torso, and almost no legs at all -- none maybe.\" 19:35 Matthew: \"also noticed that when we crawl, our collision box does not match our torso -- it stays  upright?\" 19:43 Matthew, of the pane's grid: \"upper right versions shows the issue -- we should see knees between the arms here. *upper right version same with tiger, in row 2, col 2.\" 19:43 Matthew: \"same with witch, in row 2, col 4, and falcon in row 3 col 2.\" 19:44 Matthew: \"knees should be closer down, nearer the hands?\" 19:45 Matthew: \"looking much better.\" DONE again, 0.0.257: the arms drawn whole (upright, not squashed with the back): away straight down beside the body to hands flat on the floor, low beside the legs; toward down beside the face; toward, back 0.25, no legs or seat, the knees between the arms at 0.85 of the way from the chin to the hands, over long hair; the collision boxes follow the crawl (crawlShape in js/16: side, hands + knees-to-feet + the body lying between, crown as crawled; toward/away the body J.depth deep, crown capped at 0.9 arm + the head); doorTooLow uses youHeights(true), the upright crown. Check crawl286 extended (its logic run in the pane: all pass).",
+   "log": [
+    {
+     "at": "2026-10-18T10:53-06:00",
+     "from": "matthew",
+     "chars": 511,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T19:25-06:00",
+     "from": "claude",
+     "chars": 1100,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T19:30-06:00",
+     "from": "matthew",
+     "chars": 139,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T19:33-06:00",
+     "from": "matthew",
+     "chars": 140,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T19:35-06:00",
+     "from": "matthew",
+     "chars": 97,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T19:43-06:00",
+     "from": "matthew",
+     "chars": 137,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T19:43-06:00",
+     "from": "matthew",
+     "chars": 60,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T19:44-06:00",
+     "from": "matthew",
+     "chars": 46,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T19:45-06:00",
+     "from": "matthew",
+     "chars": 20,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T19:45-06:00",
+     "from": "claude",
+     "chars": 1400,
+     "asks": false
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat, with a photo for reference",
+   "url": "",
+   "text": "<b>Dress Up: crawling toward us and away from us, on the floor.</b> From the side (crawling left or right) the crawl looks good enough; the forward and backward views are \"really goofy\": they look more like someone crawling up or down the walls of the room. We watch from a pseudo-3D vantage point, seeing the horizon line, the floor, and some ceiling or sky, so we should see the friend on that floor. His reference for a baby-like friend crawling away: a baby on a carpeted floor, seen from behind and a little above, the body foreshortened along the floor; the seat and the soles of the feet nearest us, the lower legs flat on the floor pointing back toward us, the knees under the hips, a hand on the floor beside the body, and the head beyond, turned a little to one side.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T19:45-06:00",
+   "outcome": "Released in 0.0.256-0.0.257: crawling toward and away is on the floor, not up a wall. Away (his baby-on-a-carpet picture): the back seen short in front of long hair, the seat and soles nearest, the arms straight down beside the body to hands flat on the floor, the head beyond. Toward: the face, shoulders and arms, a little of the back behind the head, the knees between the arms near the hands, no legs. The collision boxes crawl too: hands, knees-to-feet and the body lying between, from the side; the body running back into the room toward or away. Matthew: \"looking much better.\"",
+   "metrics": {
+    "open_minutes": 533,
+    "matthew_messages": 8,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 3650,
+    "tokens_est": 912,
+    "sync_minutes_est": 20.0
+   }
+  },
   {
    "id": 283,
    "area": "dress up, ♿ inspection, for designing scenes",
@@ -10696,7 +10719,6 @@
   }
  ],
  "queue": [
-  286,
   287,
   288,
   293,
@@ -10753,5 +10775,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T19:30-06:00"
+ "current_since": "2026-10-18T19:45-06:00"
 }
