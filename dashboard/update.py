@@ -429,6 +429,12 @@ def group(name, href, text, kids, open_default):
 local_entries = [group("local", "#ports", e(f"Local URLs ({len(LOCAL_URLS)})"),
                        [f'<li><a href="{e(u)}">{e(t)}</a></li>' for u, t in LOCAL_URLS], True)] if LOCAL_URLS else []
 
+# (Matthew, 2026-10-19: "put the 'next meeting agenda, WIP' link into the nav bar ... near the top", public, to share with
+# Cyrus) data.json's next_meeting {report, with, date}: the agenda report for the next meeting, first in the outline's links
+NEXT_MEETING = data.get("next_meeting")
+agenda_entry = (f'<li><a href="{series_url(NEXT_MEETING["report"])}" title="{e("With " + NEXT_MEETING["with"] + ", " + NEXT_MEETING["date"])}">'
+                f'Next meeting agenda, WIP&nbsp;<span aria-hidden="true">↗</span></a></li>\n') if NEXT_MEETING else ""
+
 outline = "\n".join(local_entries +
     ([f'<li><a href="#current">Current ticket: {tk(CURRENT["id"])}' + (f" {HAND}" if WAITING else "") + '</a></li>'] if CURRENT else []) + [
     group("queue", "#queue", e(f"Work Queue ({len(QUEUE)})"), [f'<li><a href="#ticket-{t["id"]}">{i + 1}. {tk(t["id"])} {TAG_ICON(t)}{e(short(t["text"]))}</a></li>' for i, t in enumerate(QUEUE)], True),
@@ -581,7 +587,7 @@ page = f"""<!doctype html>
 <nav class="outline" id="outline" aria-label="Outline">
 <p class="outline-label">Hazel Work Dashboard</p>
 <ul class="outline-out">
-<li><a href="https://matthewhammer.org/hazel/dress-up/">Messed Up Dress Up&nbsp;<span aria-hidden="true">↗</span></a></li>
+{agenda_entry}<li><a href="https://matthewhammer.org/hazel/dress-up/">Messed Up Dress Up&nbsp;<span aria-hidden="true">↗</span></a></li>
 <li><a href="{SERIES_PUBLIC}">Performance reports&nbsp;<span aria-hidden="true">↗</span></a></li>
 <li><a href="https://github.com/matthewhammer/hazel-work-notes">On GitHub&nbsp;<span aria-hidden="true">↗</span></a></li>
 </ul>

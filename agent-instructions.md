@@ -107,7 +107,9 @@ The dashboard's code has a version number, `VERSION` in `dashboard/update.py`, w
     - Each item gets a card: who asked and when, a status label (fixed, draft PR, queued, to come, for discussion), the time that status is from, what we know, and **For the meeting:**, saying what to discuss or decide.
     - It ends with "If there is time" and "How this agenda is kept".
     - Link it from the meeting's ticket, and keep its items in step with that ticket and the tickets it lists. When an item moves, update its status and as-of time, and the page's updated line.
-    - Like any report, it is a local draft, published only on Matthew's word. A report it links must be published with it or before it.
+    - **Agendas are public, from the first draft on** (Matthew, 2026-10-19: "make it public going forward", to share with Cyrus so he can check it against his own view, and for transparency overall). Unlike other reports, they need no word from Matthew to publish. After each change, run `python3 tools/publish_agenda.py NNN "what changed"`: it regenerates the page, copies it to the homepage and pushes both repositories, committing only the agenda's files. The first time, add its card to the series index and run `hazel_page.py`, both by hand, against the homepage's copy of the index.
+    - A report the agenda cites that is not published yet shows as a chip without a link, and gets its link once that report is published (`unlink_unpublished` in the generator).
+    - The dashboard's nav bar links the next meeting's agenda first, as "Next meeting agenda, WIP": set `next_meeting` in `data.json` when a new agenda starts.
 - **Performance is the highest priority.** Profile, and measure before and after. One heavy job at a time: the laptop crashes under load.
 - **PRs:**
   - Ask before merging; a PR to `dev` also needs an approving review.
@@ -125,6 +127,7 @@ The dashboard's code has a version number, `VERSION` in `dashboard/update.py`, w
 - `tickets`: the open tickets, `{id, area, added, text, source, url}`, and from 2026-10-15 `opened` and `log` (see Tickets above). `text` may hold HTML.
 - `current_ticket`: the number of the ticket we are working on, or `null`; `current_since`: when we started it, ISO 8601 with its offset (`2026-10-13T05:37:37-06:00`); `current_note`: a line on what is next on it, may hold HTML. `current_waiting`: `true`, or a line saying what Matthew needs to decide, while the current ticket waits on him; absent or `false` otherwise.
 - `queue`: the work queue, open ticket numbers, front first (`[18, 45, 46]`).
+- `next_meeting`: the agenda report for the next meeting, `{report, with, date}` (`{"report": 20, "with": "Cyrus", "date": "2026-10-21"}`). The outline links it first, as "Next meeting agenda, WIP"; absent, no link.
 - `closed_tickets`: `{id, area, text, source, listed, closed, status, outcome, outcome_url}`, and from 2026-10-15 `opened`, `closed_at`, `log` and `metrics` (see Tickets above). `status` is `done`, `not needed`, `dropped` or `superseded`; `outcome` may hold HTML; `listed` is the date it was first seen on the page, where `added` was not recorded.
 - `next_ticket`: the next number to give. Never reuse one.
 
