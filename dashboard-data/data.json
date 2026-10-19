@@ -1844,9 +1844,29 @@
     }
    ],
    "text": "<b>Dress Up: under the sea, most things get a small collision box: every plant growing up (kelp, seaweed, coral), and the shells past a small size.</b> Matthew: \"revision and refinement -- most deep sea objects should have a very small collision box. Each plant extending upwards, but also shells beyond a certain small size --- It can be a very small box in all cases, but it will help the motion planning and execution look more natural.\" PLAN: in the sea places (under the sea, the deep sea, the sea floor ones), each standing plant and each shell over a small size stands in the way with a small box at its foot (a share of its width, a step deep: STANDING and the solids, as the trunks' bands are measured), so a planned walk goes round them and the friend weaves among them; the tiny ones stay walk-through; a check that a planned walk goes round a kelp, not through it. AND (Matthew, 20:23): \"let's think of the same logic for other scenes too, and the objects that do not have them. A blatant example is any large object, especially the water trough in the stable.\" So: an audit of every place's objects (🔬 Inspection's list, the solids, STANDING in js/16-objects-and-solids.js) for the ones that stand in the way but have no collision box, the big ones first (the stable's water trough), each given a box at its foot sized to it (small for a thin plant, its footprint for a trough, a table's legs and top as ^ticket(337) says); the list of what was found and what each got, in the ticket; a check per place that a planned walk goes round them. AND (Matthew, 20:24): \"ladders in the tree house scene should have collision boxes near the base but do not. All ladders probably. etc.\" So: every ladder ([data-ladder], the tree house's up to its houses, the dungeons', the tree rooms', the hay loft's) gets a small box at its foot, its two rails' width and a step deep, so a walk goes round a ladder it is not climbing; climbing one (startClimb, mountLadder) must still reach its foot, so the box stops a step short of where a climb begins."
+  },
+  {
+   "id": 359,
+   "area": "dress up -> hazel, a report (the port)",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T20:26-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, chat, 2026-10-18 20:45",
+   "url": "",
+   "progress": "Minted 20:26; queued at the end of the active tickets.",
+   "log": [
+    {
+     "at": "2026-10-18T20:26-06:00",
+     "from": "matthew",
+     "chars": 181,
+     "asks": false
+    }
+   ],
+   "text": "<b>A ^du_report draft: porting Messed Up Dress Up (MUDU) to Hazel, piece by piece: how to port all of its current features in two months, and in three.</b> Matthew: \"report draft --- porting MUDU (messed up dress up) to Hazel, piece by piece. How can we do this port, of all current features, over the next 2 months? 3 months?\" His method (memory, 10-11): prototype in JS with real players, then formulate in Hazel. PLAN: (1) an inventory of what MUDU is today (0.0.265+: 26 script parts, ~21,800 lines; the friend and its poses and costumes, the places and their objects, collisions and walking, the world designer, music and LFOs, 🔬 and ♿, the archives, the checks) and what each rests on (SVG strings, the scene cache, requestAnimationFrame loops, WebAudio); (2) what Hazel has for it now (the livelits and their GUIs, splices, the evaluator, the editor, projectors, the performance work of #2469/#2635, what is known slow), and what each part of MUDU would need from Hazel that it lacks; (3) the order: pieces that stand alone and show Hazel well first (the friend's drawing as a pure function from settings to a picture; a place as a function; the pose rig), the runtime last (input, animation, sound), each piece a livelit or a slide with the JS still running beside it until its Hazel twin draws the same picture (the archives' pictures as the oracle: same settings, same SVG); (4) two schedules, two months and three, week by week, with what each leaves in JS at its end, and the risks (performance, the 60 fps rule, Hazel's missing pieces); (5) what to decide first."
   }
  ],
- "next_ticket": 359,
+ "next_ticket": 360,
  "current_ticket": 299,
  "current_note": "20:24: point to sit, point to lie down: a lying pose, beds and blankets as places to lie, seats in 🔬, a pop-up when pointing at one",
  "closed_tickets": [
@@ -10977,6 +10997,7 @@
   353,
   354,
   358,
+  359,
   340,
   222,
   225,
