@@ -780,32 +780,6 @@
    "text": "<b>Dress Up: the speed measurements ^du_report(5) still wants.</b> Before publishing, Matthew had asked for a frame-rate check of the proposed full-screen 🏞️ Background designer (many place pictures at once were slow on the black laptop), with the place pictures kept as pictures so they cost little; he published the report first. Measure the designer's place pictures drawn live, as still SVGs and as bitmaps, and the friend's walk and drag with the designer open, at normal speed and on the slow tiers, then add the numbers to the report as a dated note (its What next, step 8)."
   },
   {
-   "id": 310,
-   "area": "dress up, depth and collision outdoors",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T14:02-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up: at the castle and the house, the back line is the horizon, and the buildings stand in front of it with collision boxes of their own.</b> Matthew, with a screenshot of the house under 🔬 Inspection (kept locally, ~/du-shots/ticket-310/house-back-line.webp): \"the blue dotted back line is too low -- we are having it coincide with the castle or house. This corresponded with some earlier design, and let's refine it now. Going forward: it's possible to walk behind either of them, and the dotted horizon line coincides with the horizon, not the facade of the building. instead, the building's facade has accurate collision boxes, at some depth representing the perspective, and permitting a space for feet to squeeze between that box and the back horizon line (blue dotted line).\" Then: \"if we have to adjust the house forward, or the castle forward, in the picture to squeeze the default feet, we should. Likewise, default foot span should squeeze between the cauldron and other furniture of the healer's interior hut room.\"",
-   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue -- refinement\")",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T14:02-06:00",
-     "from": "matthew",
-     "chars": 560,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T14:03-06:00",
-     "from": "matthew",
-     "chars": 245,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 311,
    "area": "dress up, arriving in a place",
    "added": "2026-10-18",
@@ -1755,9 +1729,52 @@
   }
  ],
  "next_ticket": 360,
- "current_ticket": 310,
- "current_note": "20:35: ^ticket(309) closed (done); ^ticket(310) is next in the queue",
+ "current_ticket": 316,
+ "current_note": "20:38: pulling a lever as a planned action: walk to it, face it, pull with the dominant hand (a new Body choice), then the door opens",
  "closed_tickets": [
+  {
+   "id": 310,
+   "area": "dress up, depth and collision outdoors",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T14:02-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up: at the castle and the house, the back line is the horizon, and the buildings stand in front of it with collision boxes of their own.</b> Matthew, with a screenshot of the house under 🔬 Inspection (kept locally, ~/du-shots/ticket-310/house-back-line.webp): \"the blue dotted back line is too low -- we are having it coincide with the castle or house. This corresponded with some earlier design, and let's refine it now. Going forward: it's possible to walk behind either of them, and the dotted horizon line coincides with the horizon, not the facade of the building. instead, the building's facade has accurate collision boxes, at some depth representing the perspective, and permitting a space for feet to squeeze between that box and the back horizon line (blue dotted line).\" Then: \"if we have to adjust the house forward, or the castle forward, in the picture to squeeze the default feet, we should. Likewise, default foot span should squeeze between the cauldron and other furniture of the healer's interior hut room.\"",
+   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue -- refinement\")",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T14:02-06:00",
+     "from": "matthew",
+     "chars": 560,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T14:03-06:00",
+     "from": "matthew",
+     "chars": 245,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T20:38-06:00",
+     "from": "claude",
+     "chars": 500,
+     "asks": false
+    }
+   ],
+   "progress": " 20:38 DONE, 0.0.271: SCENE_FAR house 175 -> 200, castle 35 -> 138; SCENE_BOXES (js/16-objects-and-solids.js) for the house (#bg-building's span, 18 deep) and the castle (towers' span, back to the moat's far edge), in the solids; HOUSE_BASE 150 (js/09-backgrounds.js), the lawn kept where it was. Room behind: the house 24 units, the castle 65; walks reach behind each without passing through. The healer's hut already fit round behind the soup pot (16 deep, the feet need about 9). Check: back310.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T20:38-06:00",
+   "outcome": "Released in 0.0.271: at the house and the castle the back line is the horizon, and each building has its own collision box at its foot with room behind it, so the friend can walk round behind them (the house moved a little forward to make room). The healer's hut lets the feet round behind the soup pot. Check: back310.",
+   "metrics": {
+    "open_minutes": 396,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1305,
+    "tokens_est": 326,
+    "sync_minutes_est": 1.0
+   }
+  },
   {
    "id": 309,
    "area": "dress up, the friend's moves",
@@ -11082,7 +11099,6 @@
   }
  ],
  "queue": [
-  310,
   316,
   317,
   321,
@@ -11130,5 +11146,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T20:35-06:00"
+ "current_since": "2026-10-18T20:38-06:00"
 }
