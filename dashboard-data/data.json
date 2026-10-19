@@ -951,7 +951,7 @@
      "asks": false
     }
    ],
-   "progress": "21:50: the fix attached here done first: dress-up-pictures tools/archive.mjs (bf1f5a0) sets access.solidCats.you to whether the shot has the friend. Run started: branch archive-333 off main at 0.0.294 (the archive workflow as archive-272, checks folder emptied), run 39195452158 (pictures and music jobs). NEXT when it ends: gh run download -n pictures (and -n music) into empty folders, tools/add_run.sh in each archive, then delete the branch."
+   "progress": "21:50: the fix attached here done first: dress-up-pictures tools/archive.mjs (bf1f5a0) sets access.solidCats.you to whether the shot has the friend. Run started: branch archive-333 off main at 0.0.294 (the archive workflow as archive-272, checks folder emptied), run 39195452158 (pictures and music jobs). NEXT when it ends: gh run download -n pictures (and -n music) into empty folders, tools/add_run.sh in each archive, then delete the branch. 21:52: the pictures job FAILED at 0.0.294: a DOMException decoding a picture, the cave's broken markup (cx=\"\"..., found under 369; fixed in 0.0.297). Music half added (run-2026-10-18-21-36, closes 347). Pictures job re-run on main at 0.0.297 (gh run rerun --failed); NEXT: download -n pictures, ~/dress-up-pictures/tools/add_run.sh, then delete branch archive-333 and the scratchpad worktree."
   },
   {
    "id": 335,
@@ -1006,7 +1006,7 @@
    ],
    "source": "found by Claude, 2026-10-18 21:47, Matthew AFK",
    "url": "",
-   "progress": "Minted 21:47, my call (Matthew AFK): first among the long runs. 21:41-: 0.0.259's 18 failing checks sorted. REAL (game fixed, uncommitted): the cave's crystals glow and light from the falls written cx=\"\"... / points=\"\"... since 0.0.249 (broken markup: cull261 could not read the picture back, and the archive's pictures job died on it too); MADE_CATS's 🌳 trees and 🌲 pines swallowed by a line comment since 0.0.255 (counted, never boxed: made258); the castle trees/moat defaults swallowed likewise; a check's synthetic press threw on setPointerCapture (sign280). STALE (checks updated, each citing the ticket that changed it): hut282 and crawl286 regexes lost their backslashes in template strings; measure179 (62 s now); bubbles220 (every place in the palette since 0.0.246); library185 (moss, lichen); access217 (two more 🔬 rows); fumes205 (things set before the square's own came); pitlids307 and boulder323 (ticket 328's slower turn and fall); bubbleroom290 (still foam is one picture since 290). GitHub measures slow, and slow holds scenery still: swing240, fumes205, things201 now keep it moving (PERF.slowMoving, as birds351). New check markup369. Diagnostic branch check-369 (only those checks) running; then the rest from its output.",
+   "progress": "Minted 21:47, my call (Matthew AFK): first among the long runs. 21:41-: 0.0.259's 18 failing checks sorted. REAL (game fixed, uncommitted): the cave's crystals glow and light from the falls written cx=\"\"... / points=\"\"... since 0.0.249 (broken markup: cull261 could not read the picture back, and the archive's pictures job died on it too); MADE_CATS's 🌳 trees and 🌲 pines swallowed by a line comment since 0.0.255 (counted, never boxed: made258); the castle trees/moat defaults swallowed likewise; a check's synthetic press threw on setPointerCapture (sign280). STALE (checks updated, each citing the ticket that changed it): hut282 and crawl286 regexes lost their backslashes in template strings; measure179 (62 s now); bubbles220 (every place in the palette since 0.0.246); library185 (moss, lichen); access217 (two more 🔬 rows); fumes205 (things set before the square's own came); pitlids307 and boulder323 (ticket 328's slower turn and fall); bubbleroom290 (still foam is one picture since 290). GitHub measures slow, and slow holds scenery still: swing240, fumes205, things201 now keep it moving (PERF.slowMoving, as birds351). New check markup369. Diagnostic branch check-369 (only those checks) running; then the rest from its output. 22:00: 0.0.297 released (cave markup, MADE_CATS, castle trees/moat defaults, picCapture, 12 checks). Diagnostic run 1 on 0.0.296 confirmed fumes205, hut282, measure179, swing240, world2-185 pass. Found three more swallowed-by-a-note lines (THING_KINDS's sign and THING_DEFAULTS's tree/pine/bush, mine in 0.0.287; a castle room's cache key since 317): 0.0.298, and check_script.py now refuses that shape (it names all six on 0.0.296's code, no false alarms). Also: the run's checks share one browser profile and the game's save, so pits214 inherited boulder323's fallen rock; sign280 found no square at load. Diagnostic run 2 (on 0.0.298) running; 0.0.297's full speed run in progress.",
    "log": [],
    "text": "<b>Dress Up: every check passes on GitHub's runner again, so a release is not marked 🚧 for stale checks.</b> Found while starting tonight's long runs: the last recorded speed run (0.0.259, run 39187301078) is 'broken: the checks', about twenty checks failing: some assert what later tickets changed on purpose (crawl286's hands query, the bubble room's foam counts, the witch's fumes, the made-of legend's counts, the 'from the places' list, the cauldron guard's rows, the lever's settle angles, the budget of 0.0.198's drawing counts), some may be real (a pit walk-in not falling, the swing's box, an image decode error, a regex in a check). The game reads speed.json and shows 🚧 on its own version when the checks fail. PLAN: read 0.0.294's run (all of tonight's checks in it), sort each failure into stale (update the check to what the game now does, citing the ticket that changed it) or real (fix the game), reproduce each in the app's pane, push, and confirm on the next release's run."
   },
@@ -1071,28 +1071,6 @@
     }
    ],
    "progress": "17:24: 0.0.242 LIVE (17:26): ⚙️ Advanced's \"🧪 this computer's speed\" is now 20 passes, 15-20 the bubble room as it starts: standing; walking across near us through the stuck-out bubbles (popping them, counted); its foam still; with 1, 4 and 16 bubble makers along the floor (their live bubbles counted); and its scene's shape count. The line it gives (copy, or 📝 the pad) carries them in DATA.bubble. HOW TO RUN TONIGHT, on each device (the black laptop, the iPad): open matthewhammer.org/kids-choice-games/dress-up/ fresh (0.0.242 or later in the title), ⚙️ Advanced, \"🧪 this computer's speed\", touch nothing for about a minute (a notice counts it), then \"📋 copy\" and paste the line to me (or the 📝 pad). Two runs a device are better than one (the first warms the browser). Plugged in, other tabs closed. I compare them with GitHub's runners (^ticket(340)) and write it up. Dry run in the app's pane: 20 passes, no error, DATA.bubble filled (its numbers mean nothing there: no real frames). WAITING on Matthew's runs tonight; then the analysis."
-  },
-  {
-   "id": 347,
-   "area": "dress up, archives (music)",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T17:48-06:00",
-   "status": "open",
-   "tags": [
-    "long run"
-   ],
-   "text": "<b>Dress Up, a long run: the music archive brought up to date with the new tunes.</b> Matthew: \"mint and enqueue a ticket for adding this to the archive repo\" (the new turtle steppers dub version, ^ticket(346)), then \"let's update the music in long-run queue.\" PLAN: in today's convention (one music/ folder, a tune whose fingerprint is unchanged keeps its file, each run a git tag): the archive workflow's music job on a branch off main, its artifact through ~/dress-up-music/tools/add_run.sh, a new tag run-2026-10-18-HH-MM recording the tunes added since run-2026-10-18: 🫧 bubble super-dub step (0.0.239) and ^ticket(346)'s; the viewer (matthewhammer.org/hazel/dress-up/music.html) showing them. With ^ticket(333)'s pictures run if both go tonight.",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T17:48-06:00",
-     "from": "matthew",
-     "chars": 41,
-     "asks": false
-    }
-   ],
-   "progress": "20:31 (from ^ticket(301), 0.0.267): nine new tracks to record too: couch-cushion rave A-E and turtle steppers dub A-D. 21:50: the music job of 333's run (39195452158, branch archive-333 at 0.0.294) records every tune at its defaults, the nine new ones (301), the dubs (346) and today's (360's mixes as their defaults) included; added to dress-up-music with its add_run.sh when it ends."
   },
   {
    "id": 352,
@@ -1231,6 +1209,39 @@
  "current_ticket": 369,
  "current_note": "21:41: 369: the speed run's checks. 367 released (0.0.296); its speed run 39195847783 is pending (0.0.292-0.0.295's were cancelled by the next tag), so I read 0.0.259's failure list against the code meanwhile.",
  "closed_tickets": [
+  {
+   "id": 347,
+   "area": "dress up, archives (music)",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T17:48-06:00",
+   "status": "done",
+   "tags": [
+    "long run"
+   ],
+   "text": "<b>Dress Up, a long run: the music archive brought up to date with the new tunes.</b> Matthew: \"mint and enqueue a ticket for adding this to the archive repo\" (the new turtle steppers dub version, ^ticket(346)), then \"let's update the music in long-run queue.\" PLAN: in today's convention (one music/ folder, a tune whose fingerprint is unchanged keeps its file, each run a git tag): the archive workflow's music job on a branch off main, its artifact through ~/dress-up-music/tools/add_run.sh, a new tag run-2026-10-18-HH-MM recording the tunes added since run-2026-10-18: 🫧 bubble super-dub step (0.0.239) and ^ticket(346)'s; the viewer (matthewhammer.org/hazel/dress-up/music.html) showing them. With ^ticket(333)'s pictures run if both go tonight.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T17:48-06:00",
+     "from": "matthew",
+     "chars": 41,
+     "asks": false
+    }
+   ],
+   "progress": "20:31 (from ^ticket(301), 0.0.267): nine new tracks to record too: couch-cushion rave A-E and turtle steppers dub A-D. 21:50: the music job of 333's run (39195452158, branch archive-333 at 0.0.294) records every tune at its defaults, the nine new ones (301), the dubs (346) and today's (360's mixes as their defaults) included; added to dress-up-music with its add_run.sh when it ends.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T21:56-06:00",
+   "outcome": "The music job of run 39195452158 (branch archive-333, the game at 0.0.294) recorded 13 tunes at their defaults: couch-cushion rave A-E, turtle steppers dub A-D (the nine of 301), steppers, the super-dub, deep dub and bubble dub; 27 kept from earlier runs, none failed. Added to dress-up-music with tools/add_run.sh as run-2026-10-18-21-36 (da3da2a, 26 MiB in git), pushed; the music viewer lists it.",
+   "metrics": {
+    "open_minutes": 249,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 41,
+    "tokens_est": 10,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 367,
    "area": "dress up, walking: the spiral staircase and the path planner",
@@ -11640,7 +11651,6 @@
   312,
   333,
   335,
-  347,
   352,
   356,
   357,
