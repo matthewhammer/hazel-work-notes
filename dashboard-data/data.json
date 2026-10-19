@@ -715,7 +715,9 @@
    "added": "2026-10-19",
    "opened": "2026-10-19T09:14-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
    "url": "",
    "progress": "09:14: minted. 09:34 Matthew: \"item 7 -- yes. (387 and 388 after 386, in that order)\" 10:10: FOUND, on BOTH livelits branches (#2597 at f8ae6f2b9c on 8311, #2635 at 9e7258b55b on 8341, Livelits > Overview, ^flag's eye): the eye's pane already shows the model as TILES, a splice sub-editor (code-editor sub-editor): caret, Shift+Arrow selection, the inspector reads 'Boolean literal', right click opens Hazel's context menu; Perform.in_revealed_model refuses text edits. What is NOT tiles: the pane's head line (^flag) and params line (HTML inputs, editable by design); the Projectors sidebar card of a docked livelit (ProjectorView: 'a preview, not an editing surface', default_render_splice = simple_code text); and refractors (RefractorView, also default_render_splice). Asked Matthew which surface Cyrus meant. 10:13 Matthew (asked which surface): \"All of the plain-text ones (sidebar card and refractors become read-only tiles; head and params lines stay)\". 11:00: CORRECTION from ^ticket(393)'s survey (^report(19) draft): the 10:10 finding was half wrong. default_render_splice calls simple_code -> Code.view, so the docked Projectors card's SPLICES (ProjectorView.re:1050) and the refractors' splices (RefractorView.re:276) are already STATIC TILES (no caret, no selection, no menu), not text. Only the card's one-line HEADER is text (text_code via chip_syntax, ProjectorView.re:564-586, 632; in the app ^flag(true) is one token-styled element). So the work is to give those splices the revealed model's read-only selection (caret, Shift+Arrow, right-click menu), plus a decision on the header; Matthew's 10:13 answer (head and params lines stay) still holds. 11:18: Matthew, with a screenshot of Scenes' eye_rate eye pane on 8341: \"Livelit syntax is still not tile based , right?\" Answered: the HEAD line (Drawing.^slider(\"blinks a minute\", 0, 240), an HTML input; his orange is the browser's text selection) is text, by his 10:13 call; the MODEL line (...(30)) is tiles (read-only sub-editor; his green is a tile selection, and the inspector's Tuple literal : (String, Int, Int) reads it). If he wants the head line as tiles too, 387 widens. 11:29: Matthew: \"see my highlighted text.\" (both highlights end mid-token). CHECKED on 8341, Livelits > Overview, ^flag's eye: a mouse drag over the MODEL line makes a Hazel selection (no browser selection; the inspector reads it), but its ends do NOT snap to tiles: dragging from inside ^flag to inside true gave a selection x218-267 over tokens ^flag 202-242 and true 251-283, caret mid-word. The same drag in the main editor selects whole tiles (Functional(fun, x296-415 over 297-410). So the revealed model's selection is character-granular: part of 387's 'tiles' selection UX' work. The HEAD line is an HTML input (browser text selection, his orange). ALSO SEEN: while the revealed model has focus, the rest of the editor draws blank (only the livelit's row), until the eye closes: the view's culling seems to follow the focused sub-editor. 13:02: a read-only code search is locating (A) the mouse-drag path that keeps the revealed model's selection character-granular and (B) the culling that blanks the editor while the model has focus; the fix waits until #2699 is merged into #2635's worktree. 13:10: BOTH GAPS FIXED, committed locally on #2635's branch as 1b7a03e8e5 (pushed together with #2699's merge, to spare a CI run): (A) a drag inside the caret's splice was hardcoded to ByChar (Perform.re); now smart unless Character-level mouse is on; new test Editing.Splice 16 passes, and fails with the old line. (B) the code view's memo call passed no ~frame (dropped in merge acfe0d4550), so the model's sub-editor and the root shared a memo entry and the root drew the model's rows: one argument restored. NOT YET SEEN in the app: the browser pane is hidden while Matthew is away (0 frames drawn), so the visual check waits for the pane to be on screen. #2597 has the same code: to port after. 13:38: PUSHED to #2635 (1b7a03e8e5, in 90ed4505bf). Left: the visual check with the pane on screen; port to #2597 (same code).",
@@ -751,7 +753,8 @@
      "asks": false
     }
    ],
-   "text": "<b>Livelits' model sub-editors as read-only tiles, with tiles' selection UX.</b> Matthew: \"sub-editors for livelits that show the model are read-only, but they don't use tiles and we want them to. In particular, we want to be able to use the selection UX of tiles on those parts of the syntax, including right click, etc.\" (Cyrus, Friday)."
+   "text": "<b>Livelits' model sub-editors as read-only tiles, with tiles' selection UX.</b> Matthew: \"sub-editors for livelits that show the model are read-only, but they don't use tiles and we want them to. In particular, we want to be able to use the selection UX of tiles on those parts of the syntax, including right click, etc.\" (Cyrus, Friday).",
+   "waiting": "A look in the app (8341, Livelits > Overview, ^flag's eye): drag over the revealed model selects whole tiles, and the editor no longer goes blank while it has focus. The browser pane draws nothing while hidden."
   },
   {
    "id": 388,
@@ -920,7 +923,9 @@
    "added": "2026-10-19T10:22-06:00",
    "opened": "2026-10-19T10:22-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "source": "Matthew, 2026-10-19 10:22, in chat, on #2635's local build (8341)",
    "url": "http://localhost:8341/?slide=livelit-playground-scenes",
    "text": "<b>Bug: pressing &Gamma; on #2635's Scenes slide freezes the browser.</b> Matthew: \"on http://localhost:8341/?slide=livelit-playground-scenes mint and enqueue bug fix -- pressing gamma in lower left corner freezes the browser --- do some tests on github, on simpler slides first, to see if there's some non-linear computation behind that click\" Plan: on GitHub (a diagnostic branch, the runner's headless browser, never this laptop), time opening &Gamma; on slides of growing size, simplest first, and the Scenes slide last, to find what grows faster than the context: every entry is printed and laid out as tiles (ContextInspector: CodeViewable per entry, Measured.of_segment each), and Scenes' context holds large types (Picture and the scene types). Note: #2698 adds a one-line print per entry to decide the unfold toggle, so measure with and without it.",
@@ -932,7 +937,8 @@
      "chars": 259,
      "asks": false
     }
-   ]
+   ],
+   "waiting": "A look in the app (8341, Scenes slide): pressing Gamma opens without freezing, and Drawing shows as an outline of its members."
   },
   {
    "id": 397,
@@ -1023,7 +1029,9 @@
    "added": "2026-10-19T11:10-06:00",
    "opened": "2026-10-19T11:10-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "source": "Matthew, 2026-10-19 11:10, in chat, with a screenshot of #2635's Scenes slide",
    "url": "http://localhost:8341/?slide=livelit-playground-scenes",
    "text": "<b>Full screen for a livelit's picture: the final scene, and any other SVG a livelit draws.</b> Matthew: \"a way to full-screen a SVG image like the final scene, but in general, any of them.\" On #2635 only, for now (livelits &times; modular editors). His screenshot: Documentation &gt; Livelit Playground &gt; Scenes, the <code>drawn</code> livelit (type Picture) showing the haunted-hut scene inline at about a third of the pane's width. So: a control on any livelit view that draws an SVG (or on the view itself) that shows it full screen, scaled to fit, with a way back (Esc), and the same for every such view, not only Scenes.",
@@ -1035,7 +1043,8 @@
      "chars": 176,
      "asks": false
     }
-   ]
+   ],
+   "waiting": "A look in the app (8341, Scenes slide): the full-screen button by the picture, a real click (full screen needs one), and Esc to leave."
   },
   {
    "id": 402,
@@ -1304,8 +1313,8 @@
   }
  ],
  "next_ticket": 414,
- "current_ticket": 401,
- "current_note": "13:24: Started: full screen for any livelit view that draws a picture (SVG), on #2635: a control on the view, the Fullscreen API on the view's element, scaled to fit, Esc to leave. ^ticket(405): #2699 merged locally into #2635; tests running before the push.",
+ "current_ticket": 407,
+ "current_note": "13:38: Started: a Press section at the end of the Matthew Hammer and Hazel page, indexing the Hazel Weekly issues that mention our work (checking authorship against PRs and commits). ^ticket(405): #2635's CI on 90ed4505bf is running.",
  "closed_tickets": [
   {
    "id": 409,
@@ -13408,12 +13417,9 @@
   }
  ],
  "queue": [
-  401,
-  396,
+  407,
   389,
   405,
-  387,
-  407,
   408,
   410,
   411,
@@ -13425,6 +13431,9 @@
   412,
   413,
   391,
+  401,
+  396,
+  387,
   388,
   395,
   398,
@@ -13441,7 +13450,7 @@
   322,
   344
  ],
- "current_since": "2026-10-19T13:24-06:00",
+ "current_since": "2026-10-19T13:38-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
