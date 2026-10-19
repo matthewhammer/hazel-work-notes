@@ -658,38 +658,6 @@
    "progress": "21:55: checked live with a dark system (the pane's dark emulation): matthewhammer.org/dress-up-pictures/ follows it now (body #16181d, the nav bar's dark style, since the nav bar came to it in 296's b702da8). The archived 2026-10-18 copy is matthewhammer/dress-up-pictures-2026-10-18, ARCHIVED on GitHub (read-only): no nav bar, light, no archive notice. Changing it means unarchiving the repository, a setting that is Matthew's, and his 12:27 call (296) was to leave it as it is. ✋ Waiting on Matthew: unarchive it so it can get the nav bar and an 'archived' line, or leave it."
   },
   {
-   "id": 339,
-   "area": "dress up, reports",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T17:05-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>^du_report(7): M extends the game for social stories, N for stress tests (Matthew's hypothesis, to test).</b> Matthew: \"hypothesis for next report: M is the feature extender, for social stories, about the entire system. N is the feature extender, for stress tests, of the entire system. Very interesting how bubbles are doing that now.\" PLAN: a report in dress-up/reports/007 (the series' form, data in data/report.json, a driver, the reports index card) that tests it against the record rather than assuming it: every ticket that came from M or from N (data.json, open and closed; VERSIONS.md's \"for M\" / \"for N\"), what each asked for, which subsystems it reached (places, objects, characters, the controller, drawing, music, the world), and what it cost or exposed: for N, the stress (bubble space's physics, ^ticket(290)'s bubble room: 521 animations at first, ~140 after, thousands of shapes; the boulder levers; the black laptop as the low end), for M, the stories it made room for (the grass hut and its rooms, moss and lichen to decorate with, who lives where). Where the record disagrees with the hypothesis, say so. Related work: children as design partners (Druin's cooperative inquiry), stress testing by play. Tickets naming each, found while minting (to check by hand): M [67, 72, 73, 99, 108, 110, 113, 125, 150, 195, 200, 278, 281, 282, 301, 302, 303, 319], N [67, 154, 162, 249, 290, 323].",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T17:05-06:00",
-     "from": "matthew",
-     "chars": 215,
-     "asks": false
-    },
-    {
-     "at": "2026-10-19T07:47-06:00",
-     "from": "matthew",
-     "chars": 24,
-     "asks": true
-    },
-    {
-     "at": "2026-10-19T07:47-06:00",
-     "from": "matthew",
-     "chars": 44,
-     "asks": false
-    }
-   ],
-   "progress": "21:20: drafted locally (not committed): dress-up/reports/007 (index.html, data/report.json, drivers/build.py, pictures/dining-room.svg, trap-room.svg from the 10-18 09:49 run). 22 of M's tickets, 13 of N's (67 shared), read one by one; 16 false matches left out (compass N, ^du_report(N), mentions). N: 8 of 13 stress or edge; M: 9 of 22 story, 6 of 22 tools. Waiting on Matthew to read it; the series index card not added yet. Paused for his bug report (ticket 366). 21:15: built and previewed at localhost:8133/du-reports/007/ (the working copy), with its card on the local series index. ✋ Waiting on Matthew to read it before it is committed and pushed (a push publishes). 07:47 Matthew: \"I'll read 007 and 008 first, then tell you.\" Still ✋, his read."
-  },
-  {
    "id": 344,
    "area": "dress up, 🧪 tests (advanced tab)",
    "added": "2026-10-18",
@@ -716,38 +684,6 @@
     }
    ],
    "progress": "17:24: 0.0.242 LIVE (17:26): ⚙️ Advanced's \"🧪 this computer's speed\" is now 20 passes, 15-20 the bubble room as it starts: standing; walking across near us through the stuck-out bubbles (popping them, counted); its foam still; with 1, 4 and 16 bubble makers along the floor (their live bubbles counted); and its scene's shape count. The line it gives (copy, or 📝 the pad) carries them in DATA.bubble. HOW TO RUN TONIGHT, on each device (the black laptop, the iPad): open matthewhammer.org/kids-choice-games/dress-up/ fresh (0.0.242 or later in the title), ⚙️ Advanced, \"🧪 this computer's speed\", touch nothing for about a minute (a notice counts it), then \"📋 copy\" and paste the line to me (or the 📝 pad). Two runs a device are better than one (the first warms the browser). Plugged in, other tabs closed. I compare them with GitHub's runners (^ticket(340)) and write it up. Dry run in the app's pane: 20 passes, no error, DATA.bubble filled (its numbers mean nothing there: no real frames). WAITING on Matthew's runs tonight; then the analysis. 23:59 (ticket 340): since 0.0.306 the bubble room's foam starts still; the 🧪 suite's passes 15 and 16 now set the foam moving (88, the old default) so they measure what they did, 17 still, and the makers' passes (18 to 20) run with the foam still (what the makers cost alone). His runs on the black laptop and iPad, when he makes them, use 0.0.307 or later."
-  },
-  {
-   "id": 359,
-   "area": "dress up -> hazel, a report (the port)",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T20:26-06:00",
-   "status": "open",
-   "tags": [],
-   "source": "Matthew, chat, 2026-10-18 20:45",
-   "url": "",
-   "progress": "Minted 20:26; queued at the end of the active tickets. 21:31: drafted locally (not committed) as ^du_report(8), 'Piece by piece': dress-up/reports/008 (index.html, data/report.json, drivers/build.py, pictures/castle.svg) and its card on the local series index; preview localhost:8133/du-reports/008/. Inventory (56% pure), what Hazel has and lacks, two- and three-month week-by-week plans with the archive as the oracle, risks, decisions. ✋ Waiting on Matthew to read it before it is pushed. 07:47 Matthew: \"I'll read 007 and 008 first, then tell you.\" Still ✋, his read.",
-   "log": [
-    {
-     "at": "2026-10-18T20:26-06:00",
-     "from": "matthew",
-     "chars": 181,
-     "asks": false
-    },
-    {
-     "at": "2026-10-19T07:47-06:00",
-     "from": "matthew",
-     "chars": 24,
-     "asks": true
-    },
-    {
-     "at": "2026-10-19T07:47-06:00",
-     "from": "matthew",
-     "chars": 44,
-     "asks": false
-    }
-   ],
-   "text": "<b>A ^du_report draft: porting Messed Up Dress Up (MUDU) to Hazel, piece by piece: how to port all of its current features in two months, and in three.</b> Matthew: \"report draft --- porting MUDU (messed up dress up) to Hazel, piece by piece. How can we do this port, of all current features, over the next 2 months? 3 months?\" His method (memory, 10-11): prototype in JS with real players, then formulate in Hazel. PLAN: (1) an inventory of what MUDU is today (0.0.265+: 26 script parts, ~21,800 lines; the friend and its poses and costumes, the places and their objects, collisions and walking, the world designer, music and LFOs, 🔬 and ♿, the archives, the checks) and what each rests on (SVG strings, the scene cache, requestAnimationFrame loops, WebAudio); (2) what Hazel has for it now (the livelits and their GUIs, splices, the evaluator, the editor, projectors, the performance work of #2469/#2635, what is known slow), and what each part of MUDU would need from Hazel that it lacks; (3) the order: pieces that stand alone and show Hazel well first (the friend's drawing as a pure function from settings to a picture; a place as a function; the pose rig), the runtime last (input, animation, sound), each piece a livelit or a slide with the JS still running beside it until its Hazel twin draws the same picture (the archives' pictures as the oracle: same settings, same SVG); (4) two schedules, two months and three, week by week, with what each leaves in JS at its end, and the risks (performance, the 60 fps rule, Hazel's missing pieces); (5) what to decide first."
   },
   {
    "id": 374,
@@ -780,28 +716,6 @@
     }
    ],
    "text": "<b>Dress Up: replacement candidates for 🐢 turtle steppers dub D.</b> Matthew: \"turtle stepper's dub D is awlful -- the others -- A, B, C are great. Let's make several replacement candidates.\" D (ticket 301) is \"a drum break\": 92 beats a minute, E9 A9 B7 chords (stabs of ninths on the chop), a break whose snare and rim race in fives, sixes and sevens. A (triplet shuffle, 150, A minor), B (one-drop, 84, G major) and C (rockers, three against four, 88, F major) work: plain chords, idiomatic drums. Make several candidates in their spirit, each its own drums and chords, beside A to C in 🌴 reggae, for him to pick one to become D."
-  },
-  {
-   "id": 380,
-   "area": "dress up, performance (^du_report(12)'s next steps)",
-   "added": "2026-10-19",
-   "opened": "2026-10-19T07:52-06:00",
-   "status": "open",
-   "tags": [
-    "long run"
-   ],
-   "source": "Matthew, 2026-10-19 07:51, in chat: \"enqueue each next step from http://localhost:8133/du-reports/012/ and do your best.\"",
-   "url": "http://localhost:8133/du-reports/012/",
-   "progress": "07:52: minted from ^du_report(12)'s next step 1 of 5.",
-   "log": [
-    {
-     "at": "2026-10-19T07:52-06:00",
-     "from": "matthew",
-     "chars": 80,
-     "asks": false
-    }
-   ],
-   "text": "<b>Dress Up: the things' layer drawn once.</b> ^du_report(12) (\"The foam, not the makers\"), its next step 1: draw the place's things again only when they change, not every frame (today 256 things cost a part() call each per drawing)."
   },
   {
    "id": 381,
@@ -893,9 +807,131 @@
   }
  ],
  "next_ticket": 385,
- "current_ticket": 380,
- "current_note": "07:52: ^du_report(12)'s next steps minted as 380-384 (his ask: enqueue each, do your best); starting 380: the things' layer drawn once",
+ "current_ticket": 381,
+ "current_note": "07:54: ^du_report(12) step 2: placed things' boxes kept per thing; built, testing in the pane (reports 7-10 published and checked live)",
  "closed_tickets": [
+  {
+   "id": 359,
+   "area": "dress up -> hazel, a report (the port)",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T20:26-06:00",
+   "status": "done",
+   "tags": [],
+   "source": "Matthew, chat, 2026-10-18 20:45",
+   "url": "",
+   "progress": "Minted 20:26; queued at the end of the active tickets. 21:31: drafted locally (not committed) as ^du_report(8), 'Piece by piece': dress-up/reports/008 (index.html, data/report.json, drivers/build.py, pictures/castle.svg) and its card on the local series index; preview localhost:8133/du-reports/008/. Inventory (56% pure), what Hazel has and lacks, two- and three-month week-by-week plans with the archive as the oracle, risks, decisions. ✋ Waiting on Matthew to read it before it is pushed. 07:47 Matthew: \"I'll read 007 and 008 first, then tell you.\" Still ✋, his read.",
+   "log": [
+    {
+     "at": "2026-10-18T20:26-06:00",
+     "from": "matthew",
+     "chars": 181,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T07:47-06:00",
+     "from": "matthew",
+     "chars": 24,
+     "asks": true
+    },
+    {
+     "at": "2026-10-19T07:47-06:00",
+     "from": "matthew",
+     "chars": 44,
+     "asks": false
+    }
+   ],
+   "text": "<b>A ^du_report draft: porting Messed Up Dress Up (MUDU) to Hazel, piece by piece: how to port all of its current features in two months, and in three.</b> Matthew: \"report draft --- porting MUDU (messed up dress up) to Hazel, piece by piece. How can we do this port, of all current features, over the next 2 months? 3 months?\" His method (memory, 10-11): prototype in JS with real players, then formulate in Hazel. PLAN: (1) an inventory of what MUDU is today (0.0.265+: 26 script parts, ~21,800 lines; the friend and its poses and costumes, the places and their objects, collisions and walking, the world designer, music and LFOs, 🔬 and ♿, the archives, the checks) and what each rests on (SVG strings, the scene cache, requestAnimationFrame loops, WebAudio); (2) what Hazel has for it now (the livelits and their GUIs, splices, the evaluator, the editor, projectors, the performance work of #2469/#2635, what is known slow), and what each part of MUDU would need from Hazel that it lacks; (3) the order: pieces that stand alone and show Hazel well first (the friend's drawing as a pure function from settings to a picture; a place as a function; the pose rig), the runtime last (input, animation, sound), each piece a livelit or a slide with the JS still running beside it until its Hazel twin draws the same picture (the archives' pictures as the oracle: same settings, same SVG); (4) two schedules, two months and three, week by week, with what each leaves in JS at its end, and the risks (performance, the 60 fps rule, Hazel's missing pieces); (5) what to decide first.",
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T07:54-06:00",
+   "outcome": "PUBLISHED ^du_report(8), Piece by piece (kids-choice-games 9ce072e, 07:51), with (7), (9), (10) on Matthew's word (\"let's publish the others before 10, and 10 as well\"). Series line linked; landing page and nav outline (b6d8346). Live at matthewhammer.org/kids-choice-games/dress-up/reports/008/, checked.",
+   "metrics": {
+    "open_minutes": 689,
+    "matthew_messages": 3,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 249,
+    "tokens_est": 62,
+    "sync_minutes_est": 0.0,
+    "work_minutes": 3.0
+   }
+  },
+  {
+   "id": 339,
+   "area": "dress up, reports",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T17:05-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>^du_report(7): M extends the game for social stories, N for stress tests (Matthew's hypothesis, to test).</b> Matthew: \"hypothesis for next report: M is the feature extender, for social stories, about the entire system. N is the feature extender, for stress tests, of the entire system. Very interesting how bubbles are doing that now.\" PLAN: a report in dress-up/reports/007 (the series' form, data in data/report.json, a driver, the reports index card) that tests it against the record rather than assuming it: every ticket that came from M or from N (data.json, open and closed; VERSIONS.md's \"for M\" / \"for N\"), what each asked for, which subsystems it reached (places, objects, characters, the controller, drawing, music, the world), and what it cost or exposed: for N, the stress (bubble space's physics, ^ticket(290)'s bubble room: 521 animations at first, ~140 after, thousands of shapes; the boulder levers; the black laptop as the low end), for M, the stories it made room for (the grass hut and its rooms, moss and lichen to decorate with, who lives where). Where the record disagrees with the hypothesis, say so. Related work: children as design partners (Druin's cooperative inquiry), stress testing by play. Tickets naming each, found while minting (to check by hand): M [67, 72, 73, 99, 108, 110, 113, 125, 150, 195, 200, 278, 281, 282, 301, 302, 303, 319], N [67, 154, 162, 249, 290, 323].",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T17:05-06:00",
+     "from": "matthew",
+     "chars": 215,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T07:47-06:00",
+     "from": "matthew",
+     "chars": 24,
+     "asks": true
+    },
+    {
+     "at": "2026-10-19T07:47-06:00",
+     "from": "matthew",
+     "chars": 44,
+     "asks": false
+    }
+   ],
+   "progress": "21:20: drafted locally (not committed): dress-up/reports/007 (index.html, data/report.json, drivers/build.py, pictures/dining-room.svg, trap-room.svg from the 10-18 09:49 run). 22 of M's tickets, 13 of N's (67 shared), read one by one; 16 false matches left out (compass N, ^du_report(N), mentions). N: 8 of 13 stress or edge; M: 9 of 22 story, 6 of 22 tools. Waiting on Matthew to read it; the series index card not added yet. Paused for his bug report (ticket 366). 21:15: built and previewed at localhost:8133/du-reports/007/ (the working copy), with its card on the local series index. ✋ Waiting on Matthew to read it before it is committed and pushed (a push publishes). 07:47 Matthew: \"I'll read 007 and 008 first, then tell you.\" Still ✋, his read.",
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T07:54-06:00",
+   "outcome": "PUBLISHED ^du_report(7), Stories and stress (kids-choice-games 9ce072e, 07:51), with (8)-(10): Matthew: \"let's publish the others before 10, and 10 as well, and I will revise them later if need be.\" Its series line linked (his sweep: reports 6-12 opened with 'Dress Up reports' unlinked); on matthewhammer.org's landing page and the nav outline (b6d8346). Live at matthewhammer.org/kids-choice-games/dress-up/reports/007/, checked.",
+   "metrics": {
+    "open_minutes": 890,
+    "matthew_messages": 3,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 283,
+    "tokens_est": 70,
+    "sync_minutes_est": 0.0,
+    "work_minutes": 3.0
+   }
+  },
+  {
+   "id": 380,
+   "area": "dress up, performance (^du_report(12)'s next steps)",
+   "added": "2026-10-19",
+   "opened": "2026-10-19T07:52-06:00",
+   "status": "done",
+   "tags": [
+    "long run"
+   ],
+   "source": "Matthew, 2026-10-19 07:51, in chat: \"enqueue each next step from http://localhost:8133/du-reports/012/ and do your best.\"",
+   "url": "http://localhost:8133/du-reports/012/",
+   "progress": "07:52: minted from ^du_report(12)'s next step 1 of 5.",
+   "log": [
+    {
+     "at": "2026-10-19T07:52-06:00",
+     "from": "matthew",
+     "chars": 80,
+     "asks": false
+    }
+   ],
+   "text": "<b>Dress Up: the things' layer drawn once.</b> ^du_report(12) (\"The foam, not the makers\"), its next step 1: draw the place's things again only when they change, not every frame (today 256 things cost a part() call each per drawing).",
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T07:53-06:00",
+   "outcome": "Released 0.0.330 (9cef147): thingsLayer keeps the whole layer (thingsLayerMemo) while one key holds (the things written out once, the frame, the place, the vanishing line, signposts' boards, levers' shine); a change still rebuilds through each thing's own part, now keyed on the thing, not its JSON written out twice. App's pane, 256 bubble makers in the bubble room: the layer 0.58 -> 0.15 ms a drawing (50 runs each); a moved maker redraws (0.4 ms for the change).",
+   "metrics": {
+    "open_minutes": 2,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 80,
+    "tokens_est": 20,
+    "sync_minutes_est": 0,
+    "work_minutes": 6.0
+   }
+  },
   {
    "id": 379,
    "area": "dress up, performance, 🏞️ Background tab",
@@ -1519,7 +1555,7 @@
    "text": "<b>Dress Up: a ^du_report on how the friend is drawn in each pose, with many pictures of past approaches next to today's.</b> Matthew: \"let's do a report about how to draw each pose. Let's include lots of examples of past approaches compared to now.\" Prompted by ^ticket(286) (crawling toward and away, 0.0.256-0.0.257: from \"up a wall\" to on the floor; the hands from the hips to the floor; the knees between the arms; the collision boxes lying with the body). PLAN: one section per pose and view (standing; walking and running toward, away and from the side; crawling, the three views; treading water and swimming; sitting, cross-legged, dancing, a hug, a jump, a crouch, climbing a ladder), each saying how it is drawn (the joints and their angles, a leg's or an arm's step seen short, the back squashed or turned over, turning about the hips, what is drawn in front of what, where the ground is, the collision boxes) and why; the pictures rendered from the release tags (dress-up-0.0.X: a worktree per tag, the same friend and place each time) to show what each pose looked like before and after each change, and the words that changed it (Matthew's, from the tickets); what is still wrong, and the rules that held (draw what is seen, not what is there; upright limbs are not seen short; the ground is whatever touches it).",
    "closed": "2026-10-18",
    "closed_at": "2026-10-18T23:23-06:00",
-   "outcome": "^du_report(10) 'Pose by pose' DRAFTED, local only (✋ waits on Matthew's word to publish): localhost:8133/dress-up/reports/010/. 17 rows (crawling from three sides) x 7 versions 0.0.30-0.0.303, each version's own set(); short answers, how each is drawn now, found on the way (archive drew sit/meditate/dance standing, fixed in dress-up-pictures 94f7933), next steps. Card added to reports/index.html (uncommitted). Caught on the way: crawling in profile was all fours from 0.0.90; ticket 286 changed toward/away (floating crouch -> hands on floor), so a toward/away row was added. 07:49 Matthew: \"report 10 is good.\"",
+   "outcome": "^du_report(10) 'Pose by pose' DRAFTED, local only (✋ waits on Matthew's word to publish): localhost:8133/dress-up/reports/010/. 17 rows (crawling from three sides) x 7 versions 0.0.30-0.0.303, each version's own set(); short answers, how each is drawn now, found on the way (archive drew sit/meditate/dance standing, fixed in dress-up-pictures 94f7933), next steps. Card added to reports/index.html (uncommitted). Caught on the way: crawling in profile was all fours from 0.0.90; ticket 286 changed toward/away (floating crouch -> hands on floor), so a toward/away row was added. 07:49 Matthew: \"report 10 is good.\" 07:54: PUBLISHED with ^du_report(7)-(10) (kids-choice-games 9ce072e; landing page and nav outline matthewhammer.github.io b6d8346), Matthew 07:51: \"let's publish the others before 10, and 10 as well, and I will revise them later if need be.\" Live, checked.",
    "metrics": {
     "open_minutes": 220,
     "matthew_messages": 2,
@@ -1665,7 +1701,7 @@
    "progress": " 22:50: FIX RELEASED in 0.0.302. Confirmed the hypothesis: outside (porches, bridges, the door view) the friend was BRIDGE_TALL whatever their shape. NOTE: the default body has legs 140 (his save IS the default). Now BRIDGE_TALL 70 over BRIDGE_BASE 452 (the default's height); doors sized to the default: tree room side doors 246 (was 172, default 1.27), the witch's room door 242 (1.10), the greenhouse arches 164 (1.04). Audit, every place, castle room and tree room: the default takes 0.68-0.91 of every door meant for it; measured default/adult/child/short legs: 0.90/1.34/0.45/0.81 inside, 0.89/1.34/0.45/0.81 outside; platformIn crawls by the same rule. Findings for the report: the house's front door 0.22 (the house drawn without the perspective the friend gets: a design call, not changed), the clearing's far house 2.41 (exempted: a trip). scale352.mjs. NEXT: draft the ^du_report on scale (local, waits on Matthew); 371 first (a bug the kids see).",
    "closed": "2026-10-18",
    "closed_at": "2026-10-18T22:52-06:00",
-   "outcome": "Fix in 0.0.302 (one scale inside and out: BRIDGE_TALL 70 over BRIDGE_BASE 452; doors sized to the default; platformIn crawls by doorTooLow's rule; scale352.mjs). The report, ^du_report(9) 'One size, every view', DRAFTED and kept local (dress-up/reports/009/, its card in reports/index.html, uncommitted, waiting on Matthew's word): how each view sizes the friend; every door for the child, the default and the adult, a chart against the 0.97 crawl line; the tree house's pairs for four bodies; before and after; why a player-shaped friend is harder; the choices and their costs; what is left (the house's front door at 0.22, the whole-picture huts, the clearing's far house); next steps. Read it at localhost:8133/dress-up/reports/009/.",
+   "outcome": "Fix in 0.0.302 (one scale inside and out: BRIDGE_TALL 70 over BRIDGE_BASE 452; doors sized to the default; platformIn crawls by doorTooLow's rule; scale352.mjs). The report, ^du_report(9) 'One size, every view', DRAFTED and kept local (dress-up/reports/009/, its card in reports/index.html, uncommitted, waiting on Matthew's word): how each view sizes the friend; every door for the child, the default and the adult, a chart against the 0.97 crawl line; the tree house's pairs for four bodies; before and after; why a player-shaped friend is harder; the choices and their costs; what is left (the house's front door at 0.22, the whole-picture huts, the clearing's far house); next steps. Read it at localhost:8133/dress-up/reports/009/. 07:54: PUBLISHED with ^du_report(7)-(10) (kids-choice-games 9ce072e; landing page and nav outline matthewhammer.github.io b6d8346), Matthew 07:51: \"let's publish the others before 10, and 10 as well, and I will revise them later if need be.\" Live, checked.",
    "metrics": {
     "open_minutes": 244,
     "matthew_messages": 3,
@@ -12349,11 +12385,9 @@
   }
  ],
  "queue": [
-  380,
+  381,
   374,
   326,
-  359,
-  339,
   276,
   160,
   18,
@@ -12365,10 +12399,9 @@
   315,
   322,
   344,
-  381,
   382,
   383,
   384
  ],
- "current_since": "2026-10-19T07:52-06:00"
+ "current_since": "2026-10-19T07:53-06:00"
 }
