@@ -575,7 +575,7 @@
      "asks": true
     }
    ],
-   "progress": "03:05, my call (Matthew AFK; every queued ticket waiting on him): found open and unqueued (minted 10-17, never started); queued after 365 and taken as tonight's long run. Part 1 first (the island and sail boat still drawn)."
+   "progress": "03:05, my call (Matthew AFK; every queued ticket waiting on him): found open and unqueued (minted 10-17, never started); queued after 365 and taken as tonight's long run. Part 1 first (the island and sail boat still drawn). RELEASED 0.0.324 (d1d67c1, part 1: island and sail boat gone, the design rule 'Scenery never promises what is not there'). RELEASED 0.0.325 (7eef676, parts 2-4): farLayers (js/14-outdoors.js), shared backdrop layers on any horizon: mountains (snowy, blue, hills), forest (pines, round, mixed), beach, back to front, scaled by size, each a wall object, none below the water line; the open water's seaMountains/seaForest/seaBeach/seaShoreSize in '🏝️ a distant shore' (off by default). Part 3's open question answered by ticket 300's instances: with 📍 only this square, each square keeps its own size (tried: 60 south, 220 north, the template's layers shared). Part 4 in the pane: swum north at shore off and on at 25/100/300, the feet stop at hz + 7.3 every time, every layer ends at or above the water line; a way N's arrow shows and the way is taken. Check shore212.mjs; diag-new-checks running it with world320 and spaced313. The recipe in agent-instructions.md ('Backdrops from shared layers')."
   },
   {
    "id": 259,
@@ -799,28 +799,6 @@
    "text": "<b>A ^du_report draft: porting Messed Up Dress Up (MUDU) to Hazel, piece by piece: how to port all of its current features in two months, and in three.</b> Matthew: \"report draft --- porting MUDU (messed up dress up) to Hazel, piece by piece. How can we do this port, of all current features, over the next 2 months? 3 months?\" His method (memory, 10-11): prototype in JS with real players, then formulate in Hazel. PLAN: (1) an inventory of what MUDU is today (0.0.265+: 26 script parts, ~21,800 lines; the friend and its poses and costumes, the places and their objects, collisions and walking, the world designer, music and LFOs, 🔬 and ♿, the archives, the checks) and what each rests on (SVG strings, the scene cache, requestAnimationFrame loops, WebAudio); (2) what Hazel has for it now (the livelits and their GUIs, splices, the evaluator, the editor, projectors, the performance work of #2469/#2635, what is known slow), and what each part of MUDU would need from Hazel that it lacks; (3) the order: pieces that stand alone and show Hazel well first (the friend's drawing as a pure function from settings to a picture; a place as a function; the pose rig), the runtime last (input, animation, sound), each piece a livelit or a slide with the JS still running beside it until its Hazel twin draws the same picture (the archives' pictures as the oracle: same settings, same SVG); (4) two schedules, two months and three, week by week, with what each leaves in JS at its end, and the risks (performance, the 60 fps rule, Hazel's missing pieces); (5) what to decide first."
   },
   {
-   "id": 365,
-   "area": "dress up, the castle designer, full screen",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T21:09-06:00",
-   "status": "open",
-   "tags": [
-    "long run"
-   ],
-   "source": "Matthew, chat, 2026-10-18 21:09",
-   "url": "",
-   "progress": "Minted 21:09 for a long run, after ^ticket(285) (knolling on all panels). 02:49: was never put in the queue at its minting (found while the queue held only ✋ tickets and 369's wait); queued after 369, ^ticket(285) and ^ticket(375) (knolling on all panels) being done. 02:53: BUILT (uncommitted): setCastleBig/body.castle-big over bg-big (the background designer's columns, game card, dragger): only 🏰 the castles; map open, min(58vh, 600px); every room a box in order (data-group keys), named '2 · 🌿 greenhouse', its picture from the picture archive's thumbs (castleroom--<style>.webp, only fetched in castle-big), kind chips smaller, its 'room n is' label hidden; the room you're in marked, a room tapped on the map outlined and scrolled to; ✕ back to the game, or to the background designer when opened from it (Escape one step). Tried in the pane at 1600x1000: all of it. Checks: castle365 (verdict), castlefs365 (fps, CPU 2 = black laptop tier: side panel vs background designer vs castle designer, recorded). Diagnostic branch diag-365 running on GitHub. RELEASED 0.0.320 (324a76b, 02:54), deploy first; diag-365's checks to read. 03:04: diag-365 READ: castle365 16/16 ok; castlefs365 at CPU 2 (black laptop tier, GitHub's Chrome, 3 runs each): side panel walk 42.4 / drag 46.6 fps, background designer 43.0 / 46.3, castle designer 34.1 / 37.9. Found why: the Background tab's round of syncs (changed, and settle every 250 ms while moving) took 37 ms in the pane, 31 of it 84 theme flags each copying ~1,900 settings for castleOf; plus the castle designer redrawing on every round. RELEASED 0.0.323 (a813040): castleView (prototype view, 0.03 ms vs 0.4), flagCastle (one castle per id per round), the designer's draw only on a changed look: 6.6 ms a round (side), 6.7 (castle designer), 6.1 (background designer), pane averages of 100 rounds. diag-365b re-measuring castlefs365.",
-   "log": [
-    {
-     "at": "2026-10-18T21:09-06:00",
-     "from": "matthew",
-     "chars": 129,
-     "asks": false
-    }
-   ],
-   "text": "<b>🗺️ The castle designer in a full-screen mode, as the world designer and the music producer have.</b> Matthew: \"mint and enqueue for long run --- castle designer FS mode -- after we do knowlling on all panels, as per our ticket before this one.\" So after ^ticket(285) (^du_report(5)'s knolling applied to every panel): the castle designer (🏞️ Background's 🗺️ castle designer, castleDesign) opened full screen, the game's view in a small panel as the world designer does it, its rooms, their kinds and settings laid out in order in plain view (knolling: boxes within boxes, minimal visual noise), with the report's shared choices (its 13), and an fps check on the black laptop's tier as ^ticket(289) asks of the Background designer."
-  },
-  {
    "id": 374,
    "area": "dress up, 🎵 music (🌴 reggae)",
    "added": "2026-10-19T00:23-06:00",
@@ -849,8 +827,42 @@
  ],
  "next_ticket": 379,
  "current_ticket": 212,
- "current_note": "03:05: open water, part 1: the island and the sail boat taken away; then the distant shore's layers (365's frame-rate diagnostic running meanwhile)",
+ "current_note": "03:09: 0.0.325 released (the distant shore); its check shore212 running on GitHub with world320 and spaced313 before closing",
  "closed_tickets": [
+  {
+   "id": 365,
+   "area": "dress up, the castle designer, full screen",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T21:09-06:00",
+   "status": "done",
+   "tags": [
+    "long run"
+   ],
+   "source": "Matthew, chat, 2026-10-18 21:09",
+   "url": "",
+   "progress": "Minted 21:09 for a long run, after ^ticket(285) (knolling on all panels). 02:49: was never put in the queue at its minting (found while the queue held only ✋ tickets and 369's wait); queued after 369, ^ticket(285) and ^ticket(375) (knolling on all panels) being done. 02:53: BUILT (uncommitted): setCastleBig/body.castle-big over bg-big (the background designer's columns, game card, dragger): only 🏰 the castles; map open, min(58vh, 600px); every room a box in order (data-group keys), named '2 · 🌿 greenhouse', its picture from the picture archive's thumbs (castleroom--<style>.webp, only fetched in castle-big), kind chips smaller, its 'room n is' label hidden; the room you're in marked, a room tapped on the map outlined and scrolled to; ✕ back to the game, or to the background designer when opened from it (Escape one step). Tried in the pane at 1600x1000: all of it. Checks: castle365 (verdict), castlefs365 (fps, CPU 2 = black laptop tier: side panel vs background designer vs castle designer, recorded). Diagnostic branch diag-365 running on GitHub. RELEASED 0.0.320 (324a76b, 02:54), deploy first; diag-365's checks to read. 03:04: diag-365 READ: castle365 16/16 ok; castlefs365 at CPU 2 (black laptop tier, GitHub's Chrome, 3 runs each): side panel walk 42.4 / drag 46.6 fps, background designer 43.0 / 46.3, castle designer 34.1 / 37.9. Found why: the Background tab's round of syncs (changed, and settle every 250 ms while moving) took 37 ms in the pane, 31 of it 84 theme flags each copying ~1,900 settings for castleOf; plus the castle designer redrawing on every round. RELEASED 0.0.323 (a813040): castleView (prototype view, 0.03 ms vs 0.4), flagCastle (one castle per id per round), the designer's draw only on a changed look: 6.6 ms a round (side), 6.7 (castle designer), 6.1 (background designer), pane averages of 100 rounds. diag-365b re-measuring castlefs365.",
+   "log": [
+    {
+     "at": "2026-10-18T21:09-06:00",
+     "from": "matthew",
+     "chars": 129,
+     "asks": false
+    }
+   ],
+   "text": "<b>🗺️ The castle designer in a full-screen mode, as the world designer and the music producer have.</b> Matthew: \"mint and enqueue for long run --- castle designer FS mode -- after we do knowlling on all panels, as per our ticket before this one.\" So after ^ticket(285) (^du_report(5)'s knolling applied to every panel): the castle designer (🏞️ Background's 🗺️ castle designer, castleDesign) opened full screen, the game's view in a small panel as the world designer does it, its rooms, their kinds and settings laid out in order in plain view (knolling: boxes within boxes, minimal visual noise), with the report's shared choices (its 13), and an fps check on the black laptop's tier as ^ticket(289) asks of the Background designer.",
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T03:09-06:00",
+   "outcome": "Released 0.0.320 (324a76b) and 0.0.323 (a813040). The castle designer full screen (setCastleBig, body.castle-big over the background designer's columns): only 🏰 the castles beside the game, which castle and the rooms' map (big) across the top, every room a box in order (its picture from the archive, named '2 · 🌿 greenhouse', its kind chips small, the room you are in marked, a room tapped on the map outlined and scrolled to), then the look, themes, residents; ✕/Escape back one step (to the background designer when opened from it). castle365: 16/16 on GitHub. The fps check at the black laptop's tier (castlefs365, CPU 2, GitHub's Chrome, 3 runs each) found the castle designer at walk 34.1 / drag 37.9 fps against the side panel's 42.4 / 46.6; cause: the Background tab's sync round (changed, and settle every 250 ms while moving) took 37 ms in the pane, 31 of it 84 theme flags each copying ~1,900 settings for castleOf, plus the designer redrawing every round. 0.0.323: castleView (a prototype view), flagCastle (one castle per id per round), the designer's draw only on a changed look: 6.6 ms a round. After (diag-365b, same check): side panel 54.8 / 57.3, background designer 55.1 / 58.0, castle designer 53.1 / 56.0 fps (run-to-run spread 1-2 fps; two runs on two runners, so strong but not airtight).",
+   "metrics": {
+    "open_minutes": 360,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 129,
+    "tokens_est": 32,
+    "sync_minutes_est": 0,
+    "work_minutes": 40.0
+   }
+  },
   {
    "id": 314,
    "area": "matthewhammer.org, the nav bar",
@@ -12141,7 +12153,6 @@
  ],
  "queue": [
   212,
-  365,
   374,
   326,
   359,
@@ -12158,5 +12169,5 @@
   322,
   344
  ],
- "current_since": "2026-10-19T03:05-06:00"
+ "current_since": "2026-10-19T03:09-06:00"
 }
