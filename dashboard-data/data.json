@@ -1052,32 +1052,6 @@
    "progress": ""
   },
   {
-   "id": 337,
-   "area": "dress up, collision shapes",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T16:39-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up: collision shapes that follow the things: ovals for round things, and tables, beds and other furniture as their parts (legs, top, frame).</b> Matthew: \"let's recall a new direction for collision boxes: round / oval objects get oval collision regions, not 'boxes'; let's have tables be precise, in terms of boxes for legs and top.\" Today every solid is a box on the floor (x0..x1 by back..front) with bands up its height (solidBands, one x range a band). PLAN: (1) a solid may be an oval on the floor (its middle and two radii): cauldrons, pots, barrels, stumps, round tables, rocks, toadstools, bushes and the like; solidAt, solidMove, planPath (round an oval: points on it, not a box's corners) and solidUnstick measure it so; 🔬 draws it as an oval, its bands as upright ellipse rims. (2) A table is its top (a band at its height, the whole width) and its legs (a band each from the floor up to the top, as wide as a leg), so feet pass between its legs and the top meets the friend at its height. And (Matthew): \"simillar for beds and other funiture\": beds (frame and legs, the headboard), benches, chairs, couches, desks, shelves on legs, as their parts. (3) A pass over the places for which things are round, and which are tables.",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T16:39-06:00",
-     "from": "matthew",
-     "chars": 179,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T16:40-06:00",
-     "from": "matthew",
-     "chars": 37,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 338,
    "area": "dress up, trap room boulders",
    "added": "2026-10-18",
@@ -1593,9 +1567,77 @@
   }
  ],
  "next_ticket": 360,
- "current_ticket": 337,
- "current_note": "21:01: Collision shapes that follow the things: ovals for round things; tables, beds and furniture as their parts",
+ "current_ticket": 338,
+ "current_note": "21:05: ^ticket(364) closed (done); ^ticket(338) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 364,
+   "area": "dress up, levers: pull from where you stand (Advanced)",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T21:12-06:00",
+   "status": "done",
+   "tags": [],
+   "source": "Matthew, chat, 2026-10-18 21:12",
+   "url": "",
+   "progress": "Minted 21:12; next, right after 337's release (his ask, for N, now).",
+   "log": [
+    {
+     "at": "2026-10-18T21:12-06:00",
+     "from": "matthew",
+     "chars": 300,
+     "asks": false
+    }
+   ],
+   "text": "<b>⚙️ Advanced: a toggle to pull the levers without walking to them.</b> Matthew: \"current releases are great -- let's add a toggle to restore an old thing we could do but now we cannot, for now -- under advanced settings --- a toggle to switch the levers without walking to them, so I can stand on the place where the boulder falls, and still trigger that animation, for N.\" Since ticket 316, with 👆 walk where you click on, a lever pressed is walked to and pulled (leverAct). PLAN: an Advanced toggle (off by default) under which leverAct pulls at once, the friend staying where they stand: every lever (the trap room's red and blue, a placed lever, a tree room's trap door lever).",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T21:05-06:00",
+   "outcome": "0.0.281: ⚙️ Advanced → 🎚️ pull levers from where you stand (access.leverFar, off to start, saved with the friend): leverAct pulls at once, no walk, for every lever; so N can stand where the boulder falls and pull its lever. tools/checks/leverfar364.mjs.",
+   "metrics": {
+    "open_minutes": -6,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 300,
+    "tokens_est": 75,
+    "sync_minutes_est": 0
+   }
+  },
+  {
+   "id": 337,
+   "area": "dress up, collision shapes",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T16:39-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up: collision shapes that follow the things: ovals for round things, and tables, beds and other furniture as their parts (legs, top, frame).</b> Matthew: \"let's recall a new direction for collision boxes: round / oval objects get oval collision regions, not 'boxes'; let's have tables be precise, in terms of boxes for legs and top.\" Today every solid is a box on the floor (x0..x1 by back..front) with bands up its height (solidBands, one x range a band). PLAN: (1) a solid may be an oval on the floor (its middle and two radii): cauldrons, pots, barrels, stumps, round tables, rocks, toadstools, bushes and the like; solidAt, solidMove, planPath (round an oval: points on it, not a box's corners) and solidUnstick measure it so; 🔬 draws it as an oval, its bands as upright ellipse rims. (2) A table is its top (a band at its height, the whole width) and its legs (a band each from the floor up to the top, as wide as a leg), so feet pass between its legs and the top meets the friend at its height. And (Matthew): \"simillar for beds and other funiture\": beds (frame and legs, the headboard), benches, chairs, couches, desks, shelves on legs, as their parts. (3) A pass over the places for which things are round, and which are tables.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T16:39-06:00",
+     "from": "matthew",
+     "chars": 179,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T16:40-06:00",
+     "from": "matthew",
+     "chars": 37,
+     "asks": false
+    }
+   ],
+   "progress": "",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T21:04-06:00",
+   "outcome": "0.0.280 (93638b4): round things are ovals (ROUND: barrels, buckets, cauldrons, pots, stumps, rocks, stones, toadstools, mushrooms, bushes, campfire, well, fountains, heaps; round seats too), met as ovals by solidAt, gone round by planPath on an octagon, drawn as ovals by 🔬. Tables are a top and four legs, the tea table a round top on a pedestal; bunk beds posts and bunks, beds legs and frame, benches legs and seat (solidParts). New: the friend's legs box (ankle to hips) so a table's top meets the shins. Path sweep over 16 places: none through a shape. tools/checks/ovals337.mjs. Other furniture (picnic table, worktable, paint table, shelves) left as boxes for now: their drawings have benches and shelves a top-and-legs model would let walks through.",
+   "metrics": {
+    "open_minutes": 266,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 216,
+    "tokens_est": 54,
+    "sync_minutes_est": 1.0
+   }
+  },
   {
    "id": 334,
    "area": "dress up, tree house trap doors and castle pits",
@@ -11302,7 +11344,6 @@
   }
  ],
  "queue": [
-  337,
   338,
   339,
   341,
@@ -11341,5 +11382,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T21:01-06:00"
+ "current_since": "2026-10-18T21:05-06:00"
 }
