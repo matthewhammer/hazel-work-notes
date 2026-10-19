@@ -1892,7 +1892,7 @@
    "opened": "2026-10-18T10:53-06:00",
    "status": "open",
    "tags": [],
-   "progress": "Found while minting it (10:53): the crawl is in js/17-moving-and-climbing.js (653). From the side the whole friend turns about the hips by the angle that puts hands and knees on the ground together (rot: tilt * dir). Toward or away from us there is no turn (rot 0): the friend stays upright, with the side pose's hip, knee and foot angles laid flat in the picture, which reads as crawling up or down a wall. Toward and away, the body runs into the depth, so it needs a drawing of its own, foreshortened on the floor, not the side pose. His reference picture is kept locally (not in a public repository) at ~/du-shots/ref-286/crawl-away.png. DONE 19:25, 0.0.256: away, the back seen short and drawn after the head (it hides long hair hanging down; the neck stays behind with the hair), standing on the legs as drawn (grounded: it floated over its shadow by the legs' foreshortening); toward, the head down in front of the shoulders (chin 0.45 of the arm), the arms straight down to the hands on the floor (the ground), the shirt and pants turned over about the shoulders behind it (back 0.55), the pants clipped to a round seat (seat 0.4), a costume's tail flipped up from it, the feet hidden. Check: tools/checks/crawl286.mjs (its logic run in the pane: all pass). REOPENED 19:30: Matthew: \"0.256 crawling looks much better, but the hand position seems off in both toward and away poses. like we are keeping our hands on our hips?\" 19:33 Matthew: \"in the forward crawling view, we should see shoulders, head and arms (we do) but not so much torso, and almost no legs at all -- none maybe.\" 19:35 Matthew: \"also noticed that when we crawl, our collision box does not match our torso -- it stays  upright?\"",
+   "progress": "Found while minting it (10:53): the crawl is in js/17-moving-and-climbing.js (653). From the side the whole friend turns about the hips by the angle that puts hands and knees on the ground together (rot: tilt * dir). Toward or away from us there is no turn (rot 0): the friend stays upright, with the side pose's hip, knee and foot angles laid flat in the picture, which reads as crawling up or down a wall. Toward and away, the body runs into the depth, so it needs a drawing of its own, foreshortened on the floor, not the side pose. His reference picture is kept locally (not in a public repository) at ~/du-shots/ref-286/crawl-away.png. DONE 19:25, 0.0.256: away, the back seen short and drawn after the head (it hides long hair hanging down; the neck stays behind with the hair), standing on the legs as drawn (grounded: it floated over its shadow by the legs' foreshortening); toward, the head down in front of the shoulders (chin 0.45 of the arm), the arms straight down to the hands on the floor (the ground), the shirt and pants turned over about the shoulders behind it (back 0.55), the pants clipped to a round seat (seat 0.4), a costume's tail flipped up from it, the feet hidden. Check: tools/checks/crawl286.mjs (its logic run in the pane: all pass). REOPENED 19:30: Matthew: \"0.256 crawling looks much better, but the hand position seems off in both toward and away poses. like we are keeping our hands on our hips?\" 19:33 Matthew: \"in the forward crawling view, we should see shoulders, head and arms (we do) but not so much torso, and almost no legs at all -- none maybe.\" 19:35 Matthew: \"also noticed that when we crawl, our collision box does not match our torso -- it stays  upright?\" 19:43 Matthew, of the pane's grid: \"upper right versions shows the issue -- we should see knees between the arms here. *upper right version same with tiger, in row 2, col 2.\" 19:43 Matthew: \"same with witch, in row 2, col 4, and falcon in row 3 col 2.\" 19:44 Matthew: \"knees should be closer down, nearer the hands?\"",
    "log": [
     {
      "at": "2026-10-18T10:53-06:00",
@@ -1923,6 +1923,24 @@
      "from": "matthew",
      "chars": 97,
      "asks": false
+    },
+    {
+     "at": "2026-10-18T19:43-06:00",
+     "from": "matthew",
+     "chars": 137,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T19:43-06:00",
+     "from": "matthew",
+     "chars": 60,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T19:44-06:00",
+     "from": "matthew",
+     "chars": 46,
+     "asks": false
     }
    ],
    "source": "Matthew, 2026-10-18, in chat, with a photo for reference",
@@ -1950,9 +1968,37 @@
     }
    ],
    "text": "<b>Dress Up, a long run tonight: in a tree house room, the friend walks into the tree trunk in the back corner, through its collision boxes: find out why (too small? at the wrong depth?) and fix it, with a check that walks into it from every side.</b> Matthew: \"long run for tonnight -- test this actual \\\"corner case\\\" in the tree house -- why can I walk through these collision boxes near the corner,for the tree?  Are they too small?\" His screenshot (tree house room 4, the 🐰 room, under 🔬 Inspection): the friend stands right of the round window, feet at the trunk's base, overlapping the \"tree trunk\" boxes (a tall narrow dashed box from the ceiling to the floor, and the base box at the back line) and the \"you\" box; the planned path (yellow dots) runs from them down-right to the target ring. Related: ^ticket(332) (the planned path through the corner trunk), ^ticket(345) (finer boxes for the outdoor trunk's base, closed). TO TEST FIRST: whether the room's trunk is solid only at the back line's depth (so a friend a little in front of it passes by its boxes in the picture), whether its boxes are measured at the friend's row (solidAt's trunk bands, the `up` offset), and whether a drag or the controller skips the test. PLAN: reproduce it (walk, run, crawl and drag into the trunk from the left, the front and the right), give the trunk a footprint on the floor as deep as it looks, and add a check."
+  },
+  {
+   "id": 356,
+   "area": "dress up, reports (drawing the friend's poses)",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T19:44-06:00",
+   "status": "open",
+   "tags": [
+    "long run"
+   ],
+   "source": "Matthew, chat, 2026-10-18, during ^ticket(286)",
+   "url": "",
+   "progress": "Minted 19:44; queued. 19:44: a long run (Matthew: \"do 356 long run.\").",
+   "log": [
+    {
+     "at": "2026-10-18T19:44-06:00",
+     "from": "matthew",
+     "chars": 114,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T19:44-06:00",
+     "from": "matthew",
+     "chars": 16,
+     "asks": false
+    }
+   ],
+   "text": "<b>Dress Up: a ^du_report on how the friend is drawn in each pose, with many pictures of past approaches next to today's.</b> Matthew: \"let's do a report about how to draw each pose. Let's include lots of examples of past approaches compared to now.\" Prompted by ^ticket(286) (crawling toward and away, 0.0.256-0.0.257: from \"up a wall\" to on the floor; the hands from the hips to the floor; the knees between the arms; the collision boxes lying with the body). PLAN: one section per pose and view (standing; walking and running toward, away and from the side; crawling, the three views; treading water and swimming; sitting, cross-legged, dancing, a hug, a jump, a crouch, climbing a ladder), each saying how it is drawn (the joints and their angles, a leg's or an arm's step seen short, the back squashed or turned over, turning about the hips, what is drawn in front of what, where the ground is, the collision boxes) and why; the pictures rendered from the release tags (dress-up-0.0.X: a worktree per tag, the same friend and place each time) to show what each pose looked like before and after each change, and the words that changed it (Matthew's, from the tickets); what is still wrong, and the rules that held (draw what is seen, not what is there; upright limbs are not seen short; the ground is whatever touches it)."
   }
  ],
- "next_ticket": 356,
+ "next_ticket": 357,
  "current_ticket": 286,
  "current_note": "19:30: reopened: the hands look like they rest on the hips in both crawl views (toward and away); putting them on the floor",
  "closed_tickets": [
@@ -10692,6 +10738,7 @@
   348,
   352,
   355,
+  356,
   284,
   276,
   160,
