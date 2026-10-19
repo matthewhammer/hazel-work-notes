@@ -849,52 +849,6 @@
    "text": "<b>Dress Up: every check passes on GitHub's runner again, so a release is not marked 🚧 for stale checks.</b> Found while starting tonight's long runs: the last recorded speed run (0.0.259, run 39187301078) is 'broken: the checks', about twenty checks failing: some assert what later tickets changed on purpose (crawl286's hands query, the bubble room's foam counts, the witch's fumes, the made-of legend's counts, the 'from the places' list, the cauldron guard's rows, the lever's settle angles, the budget of 0.0.198's drawing counts), some may be real (a pit walk-in not falling, the swing's box, an image decode error, a regex in a check). The game reads speed.json and shows 🚧 on its own version when the checks fail. PLAN: read 0.0.294's run (all of tonight's checks in it), sort each failure into stale (update the check to what the game now does, citing the ticket that changed it) or real (fix the game), reproduce each in the app's pane, push, and confirm on the next release's run."
   },
   {
-   "id": 340,
-   "area": "dress up, performance (report)",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T17:07-06:00",
-   "status": "open",
-   "tags": [
-    "long run"
-   ],
-   "text": "<b>Dress Up, a long run: a performance analysis of the bubble room with bubble makers, written up as a ^du_report, and what lets it scale.</b> Matthew: \"bubble room with one bubble machine is stressing my modern laptop.\" Then: \"let's do a long-run analysis about performance, and write a new du_report where we add bubble machines in bubble rooms, and see what we can do to support scaling better.\" PLAN: measured on GitHub's runners (no browser on the laptop) with the speed run's frame-rate tools, at full speed and at the slow-computer throttle, Chrome and Firefox: the bubble room as 0.0.239 drew it (~7,600 shapes, ~140 animations) and as 0.0.240 draws it (the static foam as images, the moving bubbles live, no layout read a frame), with 0, 1, 2, 4, 8 bubble makers and on (Matthew: \"scaling to the extreme, the way a kid would use the system (pressing +bubble machine until it breaks)\": tap \"+ 🫧 bubble maker\" again and again, 16, 32, 64, 128 and more, until the frame rate falls apart, the page stalls or memory runs out, and say where and why it breaks), standing and walking; frame times, paint and layout per frame, the number of shapes and animations; then the levers that scale (shapes per surface, how many move, makers' bubble caps, the stuck-out balls, still pictures) and their cost, as a report in dress-up/reports/ with its numbers embedded (the series' form), and a 🔬 check that keeps the room within a frame budget. The breaking point itself is a result: what a kid's endless taps should meet (a cap, a shared budget for all makers' bubbles, a gentle refusal), not a frozen page.",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T17:07-06:00",
-     "from": "matthew",
-     "chars": 169,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T17:07-06:00",
-     "from": "matthew",
-     "chars": 101,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T17:38-06:00",
-     "from": "matthew",
-     "chars": 51,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T23:40-06:00",
-     "from": "matthew",
-     "chars": 47,
-     "asks": true
-    },
-    {
-     "at": "2026-10-18T23:43-06:00",
-     "from": "matthew",
-     "chars": 41,
-     "asks": true
-    }
-   ],
-   "progress": "23:02: the measurement started (my call on its design, Matthew AFK): branch measure-340 (never merged): tools/checks/bubble340.mjs on GitHub, the bubble room with 0, 1, 2, 4 ... 256 bubble makers (16 to a row, as a kid's taps pile them), CPU 1 and 4 (the slow tier's), today's game and 0.0.239's (served beside it); the frame-rate gate's walk and drag (2 runs each), and a stats pass per count (elements, animations, bubbles in flight, heap, one drawing's time). NEXT: read it, find where and why it breaks, the levers (a shared bubble budget, caps), the ^du_report draft (local). 23:28: READ measure-340 (39202069060). Today vs 0.0.239: per maker a drawing costs ~4x what it did (CPU 4 drag: 0.13 ms a maker against 0.033; 256 makers 41 ms a drawing against 14), the frame rate far under what drawing alone allows (CPU 4 drag at 64 makers: 19 ms drawing, 19 fps), so most of a frame is the browser repainting the picture; with the scenery moving at CPU 1 (4 and 8 makers) 25 fps on 3.5 ms of drawing. Bubbles in flight stay at 70 from 16 makers on (the cap works), but 256 makers blow 1,024 a second, each built and thrown out at the cap. In the pane (this laptop): draw() 5 ms at 0-64 makers, 7.9 at 256; the makers' tick 0.4-0.9 ms: not script. Found on the way (pane artifact, not a game bug): the pane's SVG clock stands still, so the scene's LFO begin drifts and the scene rebuilds 4 times a second there; each rebuild re-measures every placed thing's solids (standingHere, 42 ms at 256 makers) - real whenever a scene does rebuild (a tap adding a maker). MY CALL (AFK): two levers in 14-outdoors.js behind MAKER_LEVERS, both on: budget (MAKER_BUDGET = 12 bubbles a second shared by all makers) and overlay (the makers' bubbles in their own <svg id=pic-over> over the scene's, same viewBox, CSS-placed inside its border; checked in the pane: 0 px off, 0.6 px in full screen). measure-340b (never merged, bbfdb52) runs the gate walk/drag at 0-256 makers x {none, budget, overlay, both} x CPU 1 (scenery kept moving) and 4, plus standing fps and a CDP trace (script/style/layout/paint/raster/GC ms a second). NEXT: read it; if the levers hold, release them; then the ^du_report draft (local). 23:40: Matthew, with a screenshot of the live game (0.0.305, Firefox, 160% zoom, a big screen): \"debug --- but without crashing my machine.\" The bubble room with ONE bubble maker, the friend a fairy with mask and snorkel: the game's own guard reads \"About 19 frames a second here\" and shuts the + buttons. So it is Firefox, one maker, his laptop. My plan: no browser on the laptop beyond the app's pane; a Firefox probe on GitHub that switches each suspect off in turn (the maker's bubbles, the room's moving scenery, the fairy's wings, the overlay and budget levers) and counts frames. 23:58: FOUND and RELEASED. measure-340c (Firefox, headless, his screen: 1250x830 at 1.6) took each suspect away, a fresh Firefox each: room alone 22/45 fps, with his fairy 18/19, + 1 maker 16/31; maker's bubbles hidden 18/18, budget 16/31, overlay 18/18, both 18/37, wings still 18/35; the room HELD STILL (fairy and maker in it) 52/113, the empty room 60/120. So the cost is the bubble room's own moving foam (139 SMIL animations all over the picture), not the maker; the guard blamed the maker because it marks things. 0.0.306 (c39dfe8, tag pushed): foamMove starts at 0 (his rule: a costly effect starts off); upgradeFoamMove makes a save at the old default 88 still once (foamMoveSince marker; a chosen amount kept; checked in the pane); the slider says what moving costs; the guard names the foam first in the bubble room and measures again when it is stilled; the 🧪 suite's first two bubble-room passes keep the foam moving. The levers (budget, overlay) NOT shipped: no gain in Firefox while the room moved. NEXT: the second Firefox round on 0.0.306 (measure-340c, fcf3254: the levers each way with 1, 4, 16 makers, and the old moving foam for reference) and 340b's Chrome numbers decide whether the levers ship; then the ^du_report draft. A mistake of mine tonight: I cancelled 0.0.303's speed run thinking it hung; its slow-tier step had only just started (earlier steps were slow). 0.0.305's run is the definitive one for ticket 369 anyway."
-  },
-  {
    "id": 344,
    "area": "dress up, 🧪 tests (advanced tab)",
    "added": "2026-10-18",
@@ -920,7 +874,7 @@
      "asks": false
     }
    ],
-   "progress": "17:24: 0.0.242 LIVE (17:26): ⚙️ Advanced's \"🧪 this computer's speed\" is now 20 passes, 15-20 the bubble room as it starts: standing; walking across near us through the stuck-out bubbles (popping them, counted); its foam still; with 1, 4 and 16 bubble makers along the floor (their live bubbles counted); and its scene's shape count. The line it gives (copy, or 📝 the pad) carries them in DATA.bubble. HOW TO RUN TONIGHT, on each device (the black laptop, the iPad): open matthewhammer.org/kids-choice-games/dress-up/ fresh (0.0.242 or later in the title), ⚙️ Advanced, \"🧪 this computer's speed\", touch nothing for about a minute (a notice counts it), then \"📋 copy\" and paste the line to me (or the 📝 pad). Two runs a device are better than one (the first warms the browser). Plugged in, other tabs closed. I compare them with GitHub's runners (^ticket(340)) and write it up. Dry run in the app's pane: 20 passes, no error, DATA.bubble filled (its numbers mean nothing there: no real frames). WAITING on Matthew's runs tonight; then the analysis."
+   "progress": "17:24: 0.0.242 LIVE (17:26): ⚙️ Advanced's \"🧪 this computer's speed\" is now 20 passes, 15-20 the bubble room as it starts: standing; walking across near us through the stuck-out bubbles (popping them, counted); its foam still; with 1, 4 and 16 bubble makers along the floor (their live bubbles counted); and its scene's shape count. The line it gives (copy, or 📝 the pad) carries them in DATA.bubble. HOW TO RUN TONIGHT, on each device (the black laptop, the iPad): open matthewhammer.org/kids-choice-games/dress-up/ fresh (0.0.242 or later in the title), ⚙️ Advanced, \"🧪 this computer's speed\", touch nothing for about a minute (a notice counts it), then \"📋 copy\" and paste the line to me (or the 📝 pad). Two runs a device are better than one (the first warms the browser). Plugged in, other tabs closed. I compare them with GitHub's runners (^ticket(340)) and write it up. Dry run in the app's pane: 20 passes, no error, DATA.bubble filled (its numbers mean nothing there: no real frames). WAITING on Matthew's runs tonight; then the analysis. 23:59 (ticket 340): since 0.0.306 the bubble room's foam starts still; the 🧪 suite's passes 15 and 16 now set the foam moving (88, the old default) so they measure what they did, 17 still, and the makers' passes (18 to 20) run with the foam still (what the makers cost alone). His runs on the black laptop and iPad, when he makes them, use 0.0.307 or later."
   },
   {
    "id": 359,
@@ -966,9 +920,66 @@
   }
  ],
  "next_ticket": 374,
- "current_ticket": 340,
- "current_note": "23:41: back on 340: the Firefox probe (measure-340c) queued on GitHub; 340b (Chrome levers) running",
+ "current_ticket": 369,
+ "current_note": "23:59: waiting on GitHub: 0.0.305's speed run (39203988333) for 369, then 0.0.307's; the archive-373 pictures. ✋ Waiting on Matthew: reports 7-12 to publish, 315 merge, 326, 19, 54, 276 token, 322 question",
  "closed_tickets": [
+  {
+   "id": 340,
+   "area": "dress up, performance (report)",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T17:07-06:00",
+   "status": "done",
+   "tags": [
+    "long run"
+   ],
+   "text": "<b>Dress Up, a long run: a performance analysis of the bubble room with bubble makers, written up as a ^du_report, and what lets it scale.</b> Matthew: \"bubble room with one bubble machine is stressing my modern laptop.\" Then: \"let's do a long-run analysis about performance, and write a new du_report where we add bubble machines in bubble rooms, and see what we can do to support scaling better.\" PLAN: measured on GitHub's runners (no browser on the laptop) with the speed run's frame-rate tools, at full speed and at the slow-computer throttle, Chrome and Firefox: the bubble room as 0.0.239 drew it (~7,600 shapes, ~140 animations) and as 0.0.240 draws it (the static foam as images, the moving bubbles live, no layout read a frame), with 0, 1, 2, 4, 8 bubble makers and on (Matthew: \"scaling to the extreme, the way a kid would use the system (pressing +bubble machine until it breaks)\": tap \"+ 🫧 bubble maker\" again and again, 16, 32, 64, 128 and more, until the frame rate falls apart, the page stalls or memory runs out, and say where and why it breaks), standing and walking; frame times, paint and layout per frame, the number of shapes and animations; then the levers that scale (shapes per surface, how many move, makers' bubble caps, the stuck-out balls, still pictures) and their cost, as a report in dress-up/reports/ with its numbers embedded (the series' form), and a 🔬 check that keeps the room within a frame budget. The breaking point itself is a result: what a kid's endless taps should meet (a cap, a shared budget for all makers' bubbles, a gentle refusal), not a frozen page.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T17:07-06:00",
+     "from": "matthew",
+     "chars": 169,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T17:07-06:00",
+     "from": "matthew",
+     "chars": 101,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T17:38-06:00",
+     "from": "matthew",
+     "chars": 51,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T23:40-06:00",
+     "from": "matthew",
+     "chars": 47,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T23:43-06:00",
+     "from": "matthew",
+     "chars": 41,
+     "asks": true
+    }
+   ],
+   "progress": "23:02: the measurement started (my call on its design, Matthew AFK): branch measure-340 (never merged): tools/checks/bubble340.mjs on GitHub, the bubble room with 0, 1, 2, 4 ... 256 bubble makers (16 to a row, as a kid's taps pile them), CPU 1 and 4 (the slow tier's), today's game and 0.0.239's (served beside it); the frame-rate gate's walk and drag (2 runs each), and a stats pass per count (elements, animations, bubbles in flight, heap, one drawing's time). NEXT: read it, find where and why it breaks, the levers (a shared bubble budget, caps), the ^du_report draft (local). 23:28: READ measure-340 (39202069060). Today vs 0.0.239: per maker a drawing costs ~4x what it did (CPU 4 drag: 0.13 ms a maker against 0.033; 256 makers 41 ms a drawing against 14), the frame rate far under what drawing alone allows (CPU 4 drag at 64 makers: 19 ms drawing, 19 fps), so most of a frame is the browser repainting the picture; with the scenery moving at CPU 1 (4 and 8 makers) 25 fps on 3.5 ms of drawing. Bubbles in flight stay at 70 from 16 makers on (the cap works), but 256 makers blow 1,024 a second, each built and thrown out at the cap. In the pane (this laptop): draw() 5 ms at 0-64 makers, 7.9 at 256; the makers' tick 0.4-0.9 ms: not script. Found on the way (pane artifact, not a game bug): the pane's SVG clock stands still, so the scene's LFO begin drifts and the scene rebuilds 4 times a second there; each rebuild re-measures every placed thing's solids (standingHere, 42 ms at 256 makers) - real whenever a scene does rebuild (a tap adding a maker). MY CALL (AFK): two levers in 14-outdoors.js behind MAKER_LEVERS, both on: budget (MAKER_BUDGET = 12 bubbles a second shared by all makers) and overlay (the makers' bubbles in their own <svg id=pic-over> over the scene's, same viewBox, CSS-placed inside its border; checked in the pane: 0 px off, 0.6 px in full screen). measure-340b (never merged, bbfdb52) runs the gate walk/drag at 0-256 makers x {none, budget, overlay, both} x CPU 1 (scenery kept moving) and 4, plus standing fps and a CDP trace (script/style/layout/paint/raster/GC ms a second). NEXT: read it; if the levers hold, release them; then the ^du_report draft (local). 23:40: Matthew, with a screenshot of the live game (0.0.305, Firefox, 160% zoom, a big screen): \"debug --- but without crashing my machine.\" The bubble room with ONE bubble maker, the friend a fairy with mask and snorkel: the game's own guard reads \"About 19 frames a second here\" and shuts the + buttons. So it is Firefox, one maker, his laptop. My plan: no browser on the laptop beyond the app's pane; a Firefox probe on GitHub that switches each suspect off in turn (the maker's bubbles, the room's moving scenery, the fairy's wings, the overlay and budget levers) and counts frames. 23:58: FOUND and RELEASED. measure-340c (Firefox, headless, his screen: 1250x830 at 1.6) took each suspect away, a fresh Firefox each: room alone 22/45 fps, with his fairy 18/19, + 1 maker 16/31; maker's bubbles hidden 18/18, budget 16/31, overlay 18/18, both 18/37, wings still 18/35; the room HELD STILL (fairy and maker in it) 52/113, the empty room 60/120. So the cost is the bubble room's own moving foam (139 SMIL animations all over the picture), not the maker; the guard blamed the maker because it marks things. 0.0.306 (c39dfe8, tag pushed): foamMove starts at 0 (his rule: a costly effect starts off); upgradeFoamMove makes a save at the old default 88 still once (foamMoveSince marker; a chosen amount kept; checked in the pane); the slider says what moving costs; the guard names the foam first in the bubble room and measures again when it is stilled; the 🧪 suite's first two bubble-room passes keep the foam moving. The levers (budget, overlay) NOT shipped: no gain in Firefox while the room moved. NEXT: the second Firefox round on 0.0.306 (measure-340c, fcf3254: the levers each way with 1, 4, 16 makers, and the old moving foam for reference) and 340b's Chrome numbers decide whether the levers ship; then the ^du_report draft. A mistake of mine tonight: I cancelled 0.0.303's speed run thinking it hung; its slow-tier step had only just started (earlier steps were slow). 0.0.305's run is the definitive one for ticket 369 anyway.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T23:59-06:00",
+   "outcome": "Fixed and measured. Matthew's case (Firefox, live 0.0.305, one maker, 19 fps) was the bubble room's own moving foam (139 SMIL animations; held still 52+, empty room 60), not the maker. 0.0.306 (c39dfe8): foam still at the start, old saves at 88 made still once, slider names the cost, the guard names the foam; Firefox his case 18 -> 60. 0.0.307 (12082d1): MAKER_LEVERS budget (12 bubbles a second shared) + overlay (#pic-over); Chrome slow tier 16 makers walk 37 -> 53, drag 24 -> 43, 64 makers walk 23 -> 48; check makers340.mjs; live verified (bubbles within 0.04 px). ^du_report(12) 'The foam, not the makers' DRAFTED, local only (✋ waits on Matthew's word): localhost:8133/dress-up/reports/012/, card on the local index. Next levers in the report: things' layer drawn once, placed things' solids kept per thing (42 ms a rebuild at 256 makers), the slow tier's first walk, cheap moving foam, the bubble room in the gate. Branches measure-340, -340b, -340c deleted.",
+   "metrics": {
+    "open_minutes": 412,
+    "matthew_messages": 5,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 409,
+    "tokens_est": 102,
+    "sync_minutes_est": 3.0
+   }
+  },
   {
    "id": 357,
    "area": "dress up, reports (costumes and a cast of NPCs)",
@@ -11913,7 +11924,6 @@
   }
  ],
  "queue": [
-  340,
   326,
   359,
   339,
@@ -11930,5 +11940,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T23:40-06:00"
+ "current_since": "2026-10-18T23:59-06:00"
 }
