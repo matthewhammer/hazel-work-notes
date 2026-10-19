@@ -1006,12 +1006,13 @@
    "opened": "2026-10-19T10:58-06:00",
    "status": "open",
    "tags": [
-    "low priority"
+    "low priority",
+    "blocked on Matthew"
    ],
    "source": "Matthew, 2026-10-19 10:58, in chat",
    "url": "https://github.com/matthewhammer/kids-choice-games",
    "text": "<b>Messed Up Dress Up gets a repository of its own: rename it, and lay it out as the only project in it.</b> Matthew: \"let's embrace that the dress-up game is becoming all-encompassing, not some small step leading to more complex things. It is becoming that more complex thing, day by day.\" <ul><li>Rename the GitHub repository matthewhammer/kids-choice-games to <b>messed-up-dress-up</b>.</li><li>Move <code>dress-up/</code>'s contents to the root, \"the form we'd expect if it were the only project in the repo\": with them go <code>tools/</code>, the workflows (<code>dress-up-speed.yml</code>, <code>dress-up-tests.yml</code>, whose paths change), <code>agent-instructions.md</code> and the README.</li></ul>To plan for: GitHub redirects the repository's git and web addresses after a rename, but <b>not its Pages address</b>. /kids-choice-games/dress-up/... becomes /messed-up-dress-up/..., so the old game links need redirect pages (the homepage repository can serve /kids-choice-games/). Also update everything that names the repository or its paths: the homepage's Dress Up pages (hazel/dress-up/ and its pictures, music and reports pages, and hazel/index.html), the dashboard's <code>repos</code> entry and its VERSIONS.md path, the release, load and check scripts, the speed-run workflow, the picture and music archive repositories' links, the local clone and its 27 <code>kids-choice-games-*</code> worktrees, the <code>dress-up</code> launch entry, and the agent instructions and memory. Version tags (<code>dress-up-0.0.N</code>) can keep their names. <b>10:59, Matthew, the address too:</b> \"fix this URL too, to be: messed-up-dress-up, with no \\\"kids choice games\\\" anywhere anymore.\" So the game moves from https://matthewhammer.org/kids-choice-games/dress-up/ to https://matthewhammer.org/messed-up-dress-up/ (the repository's Pages address once it is renamed and the game sits at its root), and the name goes from every page, link, script, local folder (~/kids-choice-games and its worktrees) and instruction. To decide when we do it: whether the old address should redirect (a redirect page would keep a /kids-choice-games/ path alive in the homepage repository) or simply stop working.",
-   "progress": "10:58: minted and enqueued (low priority). 10:59: + the URL: matthewhammer.org/messed-up-dress-up/, no \"kids choice games\" anywhere.",
+   "progress": "10:58: minted and enqueued (low priority). 10:59: + the URL: matthewhammer.org/messed-up-dress-up/, no \"kids choice games\" anywhere. 14:07: PLANNED, not started (AFK protocol): the rename changes a repository setting and the live game's address, so it waits for Matthew to say go, and for a quiet repo: ~/kids-choice-games has another session's uncommitted work (reports 005, 011, 012, the series index, tools/checks/bgfs279-panel.js). Plan: (1) commit or park that work; (2) git mv dress-up/* to the root, with tools/, the two workflows (paths fixed), agent-instructions.md, README; (3) rename the repo on GitHub (git and web addresses redirect; the Pages address does not); (4) in the homepage repo, /kids-choice-games/dress-up/... forwarding pages (as for /hazel/performance-analysis/); (5) update the homepage's Dress Up pages, the dashboard's repos entry, VERSIONS, the archive tools, the speed run's paths; (6) check live.",
    "log": [
     {
      "at": "2026-10-19T10:58-06:00",
@@ -1025,7 +1026,8 @@
      "chars": 175,
      "asks": false
     }
-   ]
+   ],
+   "waiting": "Matthew: go ahead with the rename to messed-up-dress-up now (it changes the live game's address; old links will forward)? And the uncommitted reports 005/011/012 in that repo: whose, and keep?"
   },
   {
    "id": 401,
@@ -1066,7 +1068,7 @@
    "source": "Matthew, 2026-10-19 11:14, in chat",
    "url": "",
    "text": "<b>Plan the port of Messed Up Dress Up to Hazel, and a report today on its three hardest questions.</b> Matthew: \"a ticket that plans a port of Messed Up Dress Up to Hazel\" and \"I'm especially interested in a report today answering the following questions:\"<ul><li>\"what parts of Messed Up Dress Up drawing would be most challenging for Hazel?\"</li><li>\"can we do music in Hazel?\"</li><li>\"how would we offer the complex menu system while still doing 'Always be Knowlling'? -- even tho we can hide the program and show only livelits, they do not follow our protocol in Messed Up Dress UP for menu design.\"</li></ul>Builds on: ^du_report(8), Piece by piece (^ticket(359), published this morning: the port, feature by feature, in two months or three); ^report(15) (Dress Up and its livelits side by side, measured); ^du_report(5)'s menu guidance, Always Be Knolling (^ticket(375)). The report likely goes in the Dress Up series as the next ^du_report, with what it measures or tries in Hazel (a drawing, a sound) shown, not only argued. Not blocked on Matthew: the earlier ask, ^ticket(359), is done. <b>11:14, Matthew, a subsection:</b> \"Let's have a subsection that summarizes 'advanced' features of MUDU (world design, animated click to walk, click to sit, etc.) --- and stages them as challenges for Hazel.\" So the report also lists the game's advanced features (the world designer, click to walk with its animation, click to sit, and the rest) and puts them in stages, easiest first, each as a challenge for Hazel: what it would take there, and what stands in the way.",
-   "progress": "11:14: minted and enqueued; Matthew asked whether it already existed or was blocked on him: ^ticket(359) was the earlier ask, done this morning as ^du_report(8). Report due today. 11:14: + the subsection on advanced features, staged as challenges. 13:02: groundwork started (due EOD): ^du_report(8) already says JS stays the engine (Hazel lacks a clock, a sound binding, picture measuring). Three read-only research passes running: the drawing's hardest parts for Hazel; music (pure score vs WebAudio, Hazel's options); menus vs Always Be Knolling (Hazel's livelit layout). Next: try something in Hazel (a drawing, a score) so the report shows, not only argues. 13:03: Matthew reordered the queue: Dress Up tickets after the Hazel ones, so this follows them although it was due at the end of today. Its three research passes were already running and will be kept for it. Unless Matthew says otherwise, it follows the Hazel tickets, and the deadline may slip to tomorrow. 14:06: DRAFTED ^du_report(13) at http://localhost:8133/du-reports/013/ (local commit in ~/kids-choice-games, NOT pushed: a push deploys the game). Answers: (1) the drawing's hard part is its runtime, not its SVG: motion every frame (no clock in livelits), measuring the picture (~104 calls), size (greenhouse 1,906 elements vs Hazel's largest 570 shapes), DOM post-processing, byte-exact numbers (TRIED: to_fixed vs the game's f1 differ on 5 of 7 values); (2) music: computable today (TRIED: a 1,216-event score in ~0.2 s, 12,160 in ~1.2 s, CLI on #2635), playing needs a JS player or builtin; livelits have no sound, MVU apps a sine beep (corrects du_report(8)); (3) menus: Hazel meets ~2 of 9 ABK rules; plan: settings as modules + a knolled UX layout + big livelits for designers; speed is the gap; (4) advanced features in 6 stages. WAITING ON MATTHEW: read; publish on his word (its card in the series index goes in then; the index has another session's uncommitted edits).",
+   "progress": "11:14: minted and enqueued; Matthew asked whether it already existed or was blocked on him: ^ticket(359) was the earlier ask, done this morning as ^du_report(8). Report due today. 11:14: + the subsection on advanced features, staged as challenges. 13:02: groundwork started (due EOD): ^du_report(8) already says JS stays the engine (Hazel lacks a clock, a sound binding, picture measuring). Three read-only research passes running: the drawing's hardest parts for Hazel; music (pure score vs WebAudio, Hazel's options); menus vs Always Be Knolling (Hazel's livelit layout). Next: try something in Hazel (a drawing, a score) so the report shows, not only argues. 13:03: Matthew reordered the queue: Dress Up tickets after the Hazel ones, so this follows them although it was due at the end of today. Its three research passes were already running and will be kept for it. Unless Matthew says otherwise, it follows the Hazel tickets, and the deadline may slip to tomorrow. 14:06: DRAFTED ^du_report(13) at http://localhost:8133/du-reports/013/ (local commit in ~/kids-choice-games, NOT pushed: a push deploys the game). Answers: (1) the drawing's hard part is its runtime, not its SVG: motion every frame (no clock in livelits), measuring the picture (~104 calls), size (greenhouse 1,906 elements vs Hazel's largest 570 shapes), DOM post-processing, byte-exact numbers (TRIED: to_fixed vs the game's f1 differ on 5 of 7 values); (2) music: computable today (TRIED: a 1,216-event score in ~0.2 s, 12,160 in ~1.2 s, CLI on #2635), playing needs a JS player or builtin; livelits have no sound, MVU apps a sine beep (corrects du_report(8)); (3) menus: Hazel meets ~2 of 9 ABK rules; plan: settings as modules + a knolled UX layout + big livelits for designers; speed is the gap; (4) advanced features in 6 stages. WAITING ON MATTHEW: read; publish on his word (its card in the series index goes in then; the index has another session's uncommitted edits). 14:07: the draft lives on branch report-013 in ~/kids-choice-games (main is back at origin/main, so a game release cannot carry it); the files stay in the working tree for the preview.",
    "log": [
     {
      "at": "2026-10-19T11:14-06:00",
@@ -1300,8 +1302,8 @@
   }
  ],
  "next_ticket": 415,
- "current_ticket": 402,
- "current_note": "14:03: Started: the Dress Up to Hazel port report (due today): which drawing is hardest for Hazel, can Hazel do music, and the knolled menus; research done (saved in ~/du-shots/ticket-402); next, a small try in Hazel and the report. ^ticket(405): #2635's Full tests due ~15:05.",
+ "current_ticket": 403,
+ "current_note": "14:07: Started: why two figures in ^du_report(11)'s beach picture draw without a torso; reading the picture and the code that draws the friend's body. ^ticket(405): #2635's Full tests due ~15:05.",
  "closed_tickets": [
   {
    "id": 410,
@@ -13482,10 +13484,9 @@
   }
  ],
  "queue": [
+  403,
   389,
   405,
-  399,
-  403,
   404,
   406,
   412,
@@ -13504,6 +13505,7 @@
   102,
   315,
   397,
+  399,
   402,
   326,
   374,
@@ -13514,7 +13516,7 @@
   322,
   344
  ],
- "current_since": "2026-10-19T14:03-06:00",
+ "current_since": "2026-10-19T14:07-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
