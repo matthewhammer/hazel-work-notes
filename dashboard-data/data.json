@@ -762,14 +762,14 @@
    ],
    "source": "my call (Matthew AFK), from 0.0.327's speed run (the tabs check)",
    "url": "",
-   "progress": "07:14: minted from ^ticket(369)'s green run: the tabs check walks with each tab open; every tab 59.5-60 fps but 🏞️ Background, 56 fps (7% late). Its round of syncs (4,239, 6.6 ms in the pane after 0.0.323) runs in one frame every 250 ms while moving (settle). Plan: while moving, the round in slices across frames.",
+   "progress": "07:14: minted from ^ticket(369)'s green run: the tabs check walks with each tab open; every tab 59.5-60 fps but 🏞️ Background, 56 fps (7% late). Its round of syncs (4,239, 6.6 ms in the pane after 0.0.323) runs in one frame every 250 ms while moving (settle). Plan: while moving, the round in slices across frames. 07:16: RELEASED 0.0.328 (7f7bd08): settle slices the round (3 ms a frame) while moving; whole when still or hidden. Pane: Background's settle piece 5.3 ms median vs Face's 4.9 (the base, worldKeep and the save, ~1.5 ms in a loop; more under the walk's GC). diag-328 running tabs167.",
    "log": [],
    "text": "<b>Dress Up: the 🏞️ Background tab open, walking at 60 frames a second, as with every other tab.</b> 0.0.327's speed run's tabs check: every tab 59.5-60 fps while walking, but 🏞️ Background 56 fps, 7% of frames late. Its controls' refresh (4,239 syncs, 6.6 ms in the app's pane after 0.0.323's fix) runs all at once every 250 ms while the friend moves (settle), a late frame each time; on the black laptop, about twice as long. Matthew's rule: 60 fps first."
   }
  ],
  "next_ticket": 380,
  "current_ticket": 379,
- "current_note": "07:14: the Background tab at 60 fps while walking: the settle round of syncs in slices across frames",
+ "current_note": "07:16: 0.0.328 released (Background's refresh in slices while moving); tabs167 running on GitHub to compare with 56 fps",
  "closed_tickets": [
   {
    "id": 369,
