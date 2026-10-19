@@ -983,11 +983,33 @@
      "asks": false
     }
    ]
+  },
+  {
+   "id": 400,
+   "area": "hazel, #2635's CI: module statics per member, on Modules II",
+   "added": "2026-10-19T11:03-06:00",
+   "opened": "2026-10-19T11:03-06:00",
+   "status": "open",
+   "tags": [
+    "exploratory"
+   ],
+   "source": "^report(18), What next, step 1 (Matthew pasted it, 2026-10-19 11:03)",
+   "url": "http://matthewhammer.org/hazel/performance-analysis/018/#step-1",
+   "text": "<b>Andrew's per-member analysis on Modules II, brought into #2635: a separate, exploratory draft.</b> ^report(18), What next, step 1: \"Bring Andrew&#x27;s per-member analysis on Modules II (00bc805ca1, on #2687) into #2635, adapted to Modules II part 3. Until then, skip the 8 cases when Modules II is on, each with a reason that links here, so that a red run means something new.\" Matthew: \"let's do\", \"as a draft -- and separate/exploratory.\" So: its own branch off #2635's (integration/livelits-modular-editors), and a DRAFT PR into it, not pushed to #2635 itself; exploratory, so it may end as a finding rather than a merge. Andrew's commit is 00bc805ca1 on #2687 (the standard library, into #2469); #2635 has Modules II part 3, which his port predates, so expect to adapt it. Goal: the 8 DefStaticsParity cases that fail on #2635 pass. (The step's link goes live when ^report(18) is published; it is a local draft today.)",
+   "progress": "11:03: minted from the pasted step; Matthew: let's do, as a separate exploratory draft. Starts once ^report(19) is published (^ticket(393)).",
+   "log": [
+    {
+     "at": "2026-10-19T11:03-06:00",
+     "from": "matthew",
+     "chars": 366,
+     "asks": false
+    }
+   ]
   }
  ],
- "next_ticket": 400,
+ "next_ticket": 401,
  "current_ticket": 393,
- "current_note": "11:02: Matthew said publish ^report(19): copying it to the homepage's performance-analysis series, with its card, then checking the live page.",
+ "current_note": "11:02: Matthew said publish ^report(19): copying it to the homepage's performance-analysis series, with its card, then checking the live page. Next: ^ticket(400) (Matthew: let's do), right after.",
  "closed_tickets": [
   {
    "id": 394,
@@ -12975,6 +12997,7 @@
  ],
  "queue": [
   393,
+  400,
   387,
   396,
   389,
