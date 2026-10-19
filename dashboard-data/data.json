@@ -1844,9 +1844,35 @@
     }
    ],
    "text": "<b>Dress Up, a long run: a ^du_report on making new costumes, and on making a whole cast of NPCs for an adventure game like Hugo, Hero's Quest (Quest for Glory), King's Quest or Monkey Island, all with our own character design system.</b> Matthew: \"let's do a report, in queue long-run, about making new costumes, and creating all of the NPCs for a game like Hugo, or Hero's Quest (Quest for Glory), or Kinds Quest, or Monkey Island, all with our character design system.\" Prompted by ^ticket(288) (the diving suits and gear: costumes as kinds that swap the clothes and draw over the head, gear worn with any of them). PLAN: (1) how a costume is made today, from the code (js/06-costumes.js, the kinds and their settings in js/20-controls.js, the drawing branches in js/18-drawing.js: clothes swapped, a hood or helmet over the head, things on the back, gear worn with anything), what each new one cost, and what would make the next ones cheaper (a costume as data: its clothes, head, back, gear and settings in one place); (2) the cast of such a game, by role and place (a king and queen, guards, a wizard, a witch, a troll, a pirate crew, a shopkeeper, a blacksmith, a ghost, monsters), each as a friend made with the sliders and costumes we have, or what it would need (a beard, armour, a peg leg, a crown); pictures of each, made in the game (the same shots tool); (3) NPCs in a place: standing, walking a path, talking (a speech bubble), what the world designer and the object system would need to place them, and what it costs at 60 fps on the black laptop; (4) what to build first, in small steps."
+  },
+  {
+   "id": 358,
+   "area": "dress up, collisions (under the sea, then every place)",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T20:22-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, chat, 2026-10-18 20:30",
+   "url": "",
+   "progress": "Minted 20:22; queued at the end of the active tickets.",
+   "log": [
+    {
+     "at": "2026-10-18T20:22-06:00",
+     "from": "matthew",
+     "chars": 278,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T20:23-06:00",
+     "from": "matthew",
+     "chars": 173,
+     "asks": false
+    }
+   ],
+   "text": "<b>Dress Up: under the sea, most things get a small collision box: every plant growing up (kelp, seaweed, coral), and the shells past a small size.</b> Matthew: \"revision and refinement -- most deep sea objects should have a very small collision box. Each plant extending upwards, but also shells beyond a certain small size --- It can be a very small box in all cases, but it will help the motion planning and execution look more natural.\" PLAN: in the sea places (under the sea, the deep sea, the sea floor ones), each standing plant and each shell over a small size stands in the way with a small box at its foot (a share of its width, a step deep: STANDING and the solids, as the trunks' bands are measured), so a planned walk goes round them and the friend weaves among them; the tiny ones stay walk-through; a check that a planned walk goes round a kelp, not through it. AND (Matthew, 20:23): \"let's think of the same logic for other scenes too, and the objects that do not have them. A blatant example is any large object, especially the water trough in the stable.\" So: an audit of every place's objects (🔬 Inspection's list, the solids, STANDING in js/16-objects-and-solids.js) for the ones that stand in the way but have no collision box, the big ones first (the stable's water trough), each given a box at its foot sized to it (small for a thin plant, its footprint for a trough, a table's legs and top as ^ticket(337) says); the list of what was found and what each got, in the ticket; a check per place that a planned walk goes round them."
   }
  ],
- "next_ticket": 358,
+ "next_ticket": 359,
  "current_ticket": 298,
  "current_note": "20:22: the tree house's back limit: where the friend's feet stop going back, and 🔬's line for it, too low",
  "closed_tickets": [
@@ -10928,6 +10954,7 @@
   351,
   353,
   354,
+  358,
   340,
   222,
   225,
