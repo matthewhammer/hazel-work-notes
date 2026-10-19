@@ -1176,34 +1176,6 @@
    ]
   },
   {
-   "id": 407,
-   "area": "homepage, Matthew Hammer and Hazel: a Press section",
-   "added": "2026-10-19T12:04-06:00",
-   "opened": "2026-10-19T12:04-06:00",
-   "status": "open",
-   "tags": [
-    "low priority"
-   ],
-   "source": "Matthew, 2026-10-19 12:04, in chat",
-   "url": "https://andrewblinn.com/hazel/weekly/",
-   "text": "<b>A \"Press\" subsection at the end of the <a href=\"https://matthewhammer.org/hazel/\">Matthew Hammer and Hazel</a> page, indexing each <a href=\"https://andrewblinn.com/hazel/weekly/\">Hazel Weekly</a> issue that mentions our work.</b> Matthew, \"mint and enqueue, low priority\": \"update our 'matthew hammer and hazel' page to have a 'press' subsection at the end, and index each issue here that mentions our efforts as you recognize them.\" <b>Careful with authorship:</b> in his words, the agent that writes these issues \"is sometimes confused by authorship in the repo\", so check each mention against the PRs and commits before listing it as ours. The page is hazel/index.html in the homepage repo (~/matthewhammer.github.io; pull --rebase first, site_publish.py commits there by plumbing). Related: ^ticket(408).",
-   "progress": "12:04: minted and enqueued, low priority.",
-   "log": [
-    {
-     "at": "2026-10-19T12:04-06:00",
-     "from": "matthew",
-     "chars": 556,
-     "asks": false
-    },
-    {
-     "at": "2026-10-19T12:04-06:00",
-     "from": "matthew",
-     "chars": 37,
-     "asks": false
-    }
-   ]
-  },
-  {
    "id": 408,
    "area": "hazel, Hazel Weekly: how its agent credits the team",
    "added": "2026-10-19T12:04-06:00",
@@ -1345,9 +1317,48 @@
   }
  ],
  "next_ticket": 415,
- "current_ticket": 407,
- "current_note": "13:38: Started: a Press section at the end of the Matthew Hammer and Hazel page, indexing the Hazel Weekly issues that mention our work (checking authorship against PRs and commits). ^ticket(405): #2635's CI on 90ed4505bf is running.",
+ "current_ticket": 408,
+ "current_note": "13:43: Started: a report on how the Week in Hazel agent credits each team member, with a list of corrections. Found so far: Alexander's colour vocabulary credited to Matthew (issues 003, 004), and Matthew's work credited to 'Matt' (issues 002, 004). Cross-checking every credit in issues 001-006 against GitHub.",
  "closed_tickets": [
+  {
+   "id": 407,
+   "area": "homepage, Matthew Hammer and Hazel: a Press section",
+   "added": "2026-10-19T12:04-06:00",
+   "opened": "2026-10-19T12:04-06:00",
+   "status": "done",
+   "tags": [
+    "low priority"
+   ],
+   "source": "Matthew, 2026-10-19 12:04, in chat",
+   "url": "https://andrewblinn.com/hazel/weekly/",
+   "text": "<b>A \"Press\" subsection at the end of the <a href=\"https://matthewhammer.org/hazel/\">Matthew Hammer and Hazel</a> page, indexing each <a href=\"https://andrewblinn.com/hazel/weekly/\">Hazel Weekly</a> issue that mentions our work.</b> Matthew, \"mint and enqueue, low priority\": \"update our 'matthew hammer and hazel' page to have a 'press' subsection at the end, and index each issue here that mentions our efforts as you recognize them.\" <b>Careful with authorship:</b> in his words, the agent that writes these issues \"is sometimes confused by authorship in the repo\", so check each mention against the PRs and commits before listing it as ours. The page is hazel/index.html in the homepage repo (~/matthewhammer.github.io; pull --rebase first, site_publish.py commits there by plumbing). Related: ^ticket(408).",
+   "progress": "12:04: minted and enqueued, low priority.",
+   "log": [
+    {
+     "at": "2026-10-19T12:04-06:00",
+     "from": "matthew",
+     "chars": 556,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T12:04-06:00",
+     "from": "matthew",
+     "chars": 37,
+     "asks": false
+    }
+   ],
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T13:43-06:00",
+   "outcome": "Published 2026-10-19 (homepage 941b96d): a Press section at the end of https://matthewhammer.org/hazel/#press, listing Week in Hazel issues 001-006 with what each says about Matthew's work, every PR linked. Each credit was checked against the PR's author on GitHub; passages crediting Matthew with others' work (Alexander's colour vocabulary, issues 003 and 004) are left out and go to ^ticket(408). The three retrospective issues do not mention him.",
+   "metrics": {
+    "open_minutes": 100,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 593,
+    "tokens_est": 148,
+    "sync_minutes_est": 0.0
+   }
+  },
   {
    "id": 409,
    "area": "dashboard, the nav bar: hover cards under it",
@@ -13449,10 +13460,9 @@
   }
  ],
  "queue": [
-  407,
+  408,
   389,
   405,
-  408,
   410,
   411,
   399,
@@ -13483,7 +13493,7 @@
   322,
   344
  ],
- "current_since": "2026-10-19T13:38-06:00",
+ "current_since": "2026-10-19T13:43-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
