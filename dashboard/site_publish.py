@@ -39,7 +39,9 @@ def public(text):
     """The page as served locally, made public: a line saying what it is, links to the
     history on GitHub instead of on localhost, and noindex (findable by its link, not by search)."""
     text = text.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n<meta name="robots" content="noindex">', 1)
-    text = text.replace("http://localhost:8000/notes/dashboard-snapshots/", REPO + "/tree/main/dashboard-snapshots")
+    # (^ticket(417): the history is the page's own git log since 2026-10-19, not a folder of dated files)
+    text = text.replace("http://localhost:8000/notes/dashboard-snapshots/versions.html", REPO + "/commits/main/dashboard-snapshots/index.html")
+    text = text.replace("http://localhost:8000/notes/dashboard-snapshots/", REPO + "/commits/main/dashboard-snapshots/index.html")
     text = text.replace(' (<a href="http://localhost:8000/notes/agent-instructions.md">local</a>)', "")
     text = text.replace("http://localhost:8000/notes/agent-instructions.md", REPO + "/blob/main/agent-instructions.md")
     # The outline's link to the series: the published reports, as the local page links the local ones.
