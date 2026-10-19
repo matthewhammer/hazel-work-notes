@@ -1916,20 +1916,15 @@
     }
    ],
    "text": "<b>Dress Up, a long run: a ^du_report on making new costumes, and on making a whole cast of NPCs for an adventure game like Hugo, Hero's Quest (Quest for Glory), King's Quest or Monkey Island, all with our own character design system.</b> Matthew: \"let's do a report, in queue long-run, about making new costumes, and creating all of the NPCs for a game like Hugo, or Hero's Quest (Quest for Glory), or Kinds Quest, or Monkey Island, all with our character design system.\" Prompted by ^ticket(288) (the diving suits and gear: costumes as kinds that swap the clothes and draw over the head, gear worn with any of them). PLAN: (1) how a costume is made today, from the code (js/06-costumes.js, the kinds and their settings in js/20-controls.js, the drawing branches in js/18-drawing.js: clothes swapped, a hood or helmet over the head, things on the back, gear worn with anything), what each new one cost, and what would make the next ones cheaper (a costume as data: its clothes, head, back, gear and settings in one place); (2) the cast of such a game, by role and place (a king and queen, guards, a wizard, a witch, a troll, a pirate crew, a shopkeeper, a blacksmith, a ghost, monsters), each as a friend made with the sliders and costumes we have, or what it would need (a beard, armour, a peg leg, a crown); pictures of each, made in the game (the same shots tool); (3) NPCs in a place: standing, walking a path, talking (a speech bubble), what the world designer and the object system would need to place them, and what it costs at 60 fps on the black laptop; (4) what to build first, in small steps."
-  }
- ],
- "next_ticket": 358,
- "current_ticket": 293,
- "current_note": "20:04: starting: Dress Up: up to six thrones in each king's room. Each king's room permits up to 6 thrones, each with a size and a theme control. The default, going fo",
- "closed_tickets": [
+  },
   {
    "id": 288,
    "area": "dress up, costumes",
    "added": "2026-10-18",
    "opened": "2026-10-18T10:57-06:00",
-   "status": "done",
+   "status": "open",
    "tags": [],
-   "progress": "Found while minting it (10:57): nothing for diving exists yet (no snorkel, mask, tank or suit in the code). Costumes are in js/06-costumes.js, worn one at a time (state.costume.kind, js/01-state.js 418), so the tank and mask, worn apart from the suit, need a way to wear more than one piece at once. The ocean places are underwater, deepsea, sea and beach. The cauldron's light fumes, the model for the air hose, are helixCheapSvg (js/09-backgrounds.js 136, ^ticket(202): two plain plumes), the default since ^ticket(206). 20:04 DONE, 0.0.260: costume kinds \"scuba\" (yoke, leg stripes, back zip, fins: a new \"fin\" shoe in js/08-body.js) and \"diver\" (diverHelmet: brass bell with the face port as a hole, bolted rim, side ports, fitting; diverCorselet; canvas, heavy boots; diverHose: one path from the fitting to sceneFrame.top, swaying by SMIL unless sceneryStill); gear costume.snorkel/.mask/.tank worn with any kind but the diver (tank a back item, straps over the shirt, a regulator hose to a mouthpiece without a snorkel); all in js/06-costumes.js; hair and ears hidden under the helmet. Check: dive288 (logic run in the pane: all pass).",
+   "progress": "Found while minting it (10:57): nothing for diving exists yet (no snorkel, mask, tank or suit in the code). Costumes are in js/06-costumes.js, worn one at a time (state.costume.kind, js/01-state.js 418), so the tank and mask, worn apart from the suit, need a way to wear more than one piece at once. The ocean places are underwater, deepsea, sea and beach. The cauldron's light fumes, the model for the air hose, are helixCheapSvg (js/09-backgrounds.js 136, ^ticket(202): two plain plumes), the default since ^ticket(206). 20:04 DONE, 0.0.260: costume kinds \"scuba\" (yoke, leg stripes, back zip, fins: a new \"fin\" shoe in js/08-body.js) and \"diver\" (diverHelmet: brass bell with the face port as a hole, bolted rim, side ports, fitting; diverCorselet; canvas, heavy boots; diverHose: one path from the fitting to sceneFrame.top, swaying by SMIL unless sceneryStill); gear costume.snorkel/.mask/.tank worn with any kind but the diver (tank a back item, straps over the shirt, a regulator hose to a mouthpiece without a snorkel); all in js/06-costumes.js; hair and ears hidden under the helmet. Check: dive288 (logic run in the pane: all pass). REOPENED 20:07: Matthew: \"the scuba scuit costume looks good, but we should have a param for \\\"leaks\\\" -- the default is fine (zero) and up to 100, it should be more and more bubbly, like the bubble machine we added earlier tonight. Also: Adding more details -- like rivits and seams in the metal, would be ideal.\"",
    "log": [
     {
      "at": "2026-10-18T10:57-06:00",
@@ -1948,23 +1943,23 @@
      "from": "claude",
      "chars": 1200,
      "asks": false
+    },
+    {
+     "at": "2026-10-18T20:07-06:00",
+     "from": "matthew",
+     "chars": 285,
+     "asks": false
     }
    ],
    "source": "Matthew, 2026-10-18, in chat",
    "url": "",
-   "text": "<b>Dress Up: new costumes for the ocean and the deep sea.</b> A snorkel, the most minimal change to the friend's appearance. An air tank and a face mask, for scuba, separate from the scuba suit. A scuba suit, modern and stylish. An antique deep-sea diving suit, made of metal and glass, with an air hose reaching up to the top of the scene; for the hose, maybe reuse ideas from the witch's cauldron's light fumes, a single path with minimal load on the drawing.",
-   "closed": "2026-10-18",
-   "closed_at": "2026-10-18T20:04-06:00",
-   "outcome": "Released in 0.0.260: 🤿 a scuba suit (sleek, a bright yoke and leg stripes, fins) and ⚓ an old diving suit (brass helmet with the face through its glass port, a brass collar, canvas, heavy boots, and an air hose swaying up to the top of the place) as costumes; 🤿 a snorkel, 🥽 a face mask and 🛢️ an air tank as gear worn with any costume but the old helmet. Check: dive288.",
-   "metrics": {
-    "open_minutes": 548,
-    "matthew_messages": 2,
-    "questions_to_matthew": 0,
-    "chars_exchanged": 1698,
-    "tokens_est": 424,
-    "sync_minutes_est": 4.0
-   }
-  },
+   "text": "<b>Dress Up: new costumes for the ocean and the deep sea.</b> A snorkel, the most minimal change to the friend's appearance. An air tank and a face mask, for scuba, separate from the scuba suit. A scuba suit, modern and stylish. An antique deep-sea diving suit, made of metal and glass, with an air hose reaching up to the top of the scene; for the hose, maybe reuse ideas from the witch's cauldron's light fumes, a single path with minimal load on the drawing."
+  }
+ ],
+ "next_ticket": 358,
+ "current_ticket": 288,
+ "current_note": "20:07: reopened: a 🫧 leaks slider (0-100, bubbles like the bubble machine's) and rivets and seams on the old diving suit's metal",
+ "closed_tickets": [
   {
    "id": 287,
    "area": "dress up, moving",
@@ -10799,6 +10794,7 @@
   }
  ],
  "queue": [
+  288,
   293,
   294,
   297,
@@ -10854,5 +10850,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T20:04-06:00"
+ "current_since": "2026-10-18T20:07-06:00"
 }
