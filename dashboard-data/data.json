@@ -642,26 +642,6 @@
    "waiting": "Matthew: make a fine-grained token (resource owner matthewhammer; only the repositories dress-up-pictures and dress-up-music; permission Contents: Read and write), then add it to matthewhammer/kids-choice-games as the Actions secret ARCHIVE_TOKEN (Settings, Secrets and variables, Actions; or: gh secret set ARCHIVE_TOKEN -R matthewhammer/kids-choice-games). The next archive run then lands by itself."
   },
   {
-   "id": 283,
-   "area": "dress up, ♿ inspection, for designing scenes",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T10:47-06:00",
-   "status": "open",
-   "tags": [],
-   "progress": "Found while minting it (10:47): the water is not a collision box. Each place has its own water shape, WATER in js/16-objects-and-solids.js (527): the moat's near half without the drawbridge, the tree house's stream and the cemetery's brook as their outlines are drawn, the lake, the sea, the beach, the falls' pool. inWater (551) tests it at the friend's feet, in js/18-drawing.js (289: the wake, see-through below the waist) and js/26-drags-and-start.js (631: swimming instead of walking); SHALLOW_WATER (554) makes the stream and the brook knee deep. 🔬's collision overlay (solidsHud, js/25-world.js 377) draws only what solidAt keeps the feet out of: each solid's box, a castle room's side walls, and the back limit. So the water test is one of the hidden rules a toggle could show.",
-   "log": [
-    {
-     "at": "2026-10-18T10:47-06:00",
-     "from": "matthew",
-     "chars": 811,
-     "asks": true
-    }
-   ],
-   "source": "Matthew, 2026-10-18, in chat, after the 10:40 crash",
-   "url": "",
-   "text": "<b>Dress Up: show the game's own logic on screen, with toggles, in 🔬 Inspection.</b> \"The water effect is really good, at the castle moat, and the tree house stream, etc.\", but he could not see what triggers it: it is not in the collision information in the inspection panel. A sub-panel of toggles for the collision boxes, showing their sub-categories if there are any; it seems there are boxes for layering, separate from collision. \"Let's try to represent the internal game logic on screen, and let's give toggles to prevent it from getting overwhelming to view as we interactively answer different questions we have about each scene we are designing.\" Related: placed trees have no collision boxes. A toggle (on by default) where they do: slim vertically, precise at the base, and in segments for trees that lean a lot."
-  },
-  {
    "id": 284,
    "area": "dress up, placed objects and the world designer",
    "added": "2026-10-18",
@@ -1887,9 +1867,40 @@
   }
  ],
  "next_ticket": 353,
- "current_ticket": 283,
- "current_note": "19:00: 🔬 Inspection shows the game's own logic: the water areas and the other sub-categories, each with its toggle: reading what is there",
+ "current_ticket": 286,
+ "current_note": "19:07: crawling toward and away from us: the friend on the floor, foreshortened along it, as a baby crawling away seen from behind and a little above",
  "closed_tickets": [
+  {
+   "id": 283,
+   "area": "dress up, ♿ inspection, for designing scenes",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T10:47-06:00",
+   "status": "done",
+   "tags": [],
+   "progress": "Found while minting it (10:47): the water is not a collision box. Each place has its own water shape, WATER in js/16-objects-and-solids.js (527): the moat's near half without the drawbridge, the tree house's stream and the cemetery's brook as their outlines are drawn, the lake, the sea, the beach, the falls' pool. inWater (551) tests it at the friend's feet, in js/18-drawing.js (289: the wake, see-through below the waist) and js/26-drags-and-start.js (631: swimming instead of walking); SHALLOW_WATER (554) makes the stream and the brook knee deep. 🔬's collision overlay (solidsHud, js/25-world.js 377) draws only what solidAt keeps the feet out of: each solid's box, a castle room's side walls, and the back limit. So the water test is one of the hidden rules a toggle could show.",
+   "log": [
+    {
+     "at": "2026-10-18T10:47-06:00",
+     "from": "matthew",
+     "chars": 811,
+     "asks": true
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat, after the 10:40 crash",
+   "url": "",
+   "text": "<b>Dress Up: show the game's own logic on screen, with toggles, in 🔬 Inspection.</b> \"The water effect is really good, at the castle moat, and the tree house stream, etc.\", but he could not see what triggers it: it is not in the collision information in the inspection panel. A sub-panel of toggles for the collision boxes, showing their sub-categories if there are any; it seems there are boxes for layering, separate from collision. \"Let's try to represent the internal game logic on screen, and let's give toggles to prevent it from getting overwhelming to view as we interactively answer different questions we have about each scene we are designing.\" Related: placed trees have no collision boxes. A toggle (on by default) where they do: slim vertically, precise at the base, and in segments for trees that lean a lot.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T19:07-06:00",
+   "outcome": "Released in 0.0.254-0.0.255: 🔬 shows the game's own rules, each a toggle: 💧 water (where you wade or swim, its own test, drawn and labelled); 🧱 collision boxes in kinds, a chip each (things, walls, the back line, pits, bridges, you); the 🧩 objects chip says its boxes sort things front to back; placed things (objects already, a tree by its trunk in bands) in the way, more kinds of them now, with 🏞️ Background's toggle (on).",
+   "metrics": {
+    "open_minutes": 500,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 811,
+    "tokens_est": 202,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 350,
    "area": "dress up, touch (trap room levers)",
@@ -10553,7 +10564,6 @@
   }
  ],
  "queue": [
-  283,
   286,
   287,
   288,
@@ -10607,5 +10617,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T19:00-06:00"
+ "current_since": "2026-10-18T19:07-06:00"
 }
