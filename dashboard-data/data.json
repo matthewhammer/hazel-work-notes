@@ -718,39 +718,18 @@
    "text": "<b>Dress Up: replacement candidates for 🐢 turtle steppers dub D.</b> Matthew: \"turtle stepper's dub D is awlful -- the others -- A, B, C are great. Let's make several replacement candidates.\" D (ticket 301) is \"a drum break\": 92 beats a minute, E9 A9 B7 chords (stabs of ninths on the chop), a break whose snare and rim race in fives, sixes and sevens. A (triplet shuffle, 150, A minor), B (one-drop, 84, G major) and C (rockers, three against four, 88, F major) work: plain chords, idiomatic drums. Make several candidates in their spirit, each its own drums and chords, beside A to C in 🌴 reggae, for him to pick one to become D."
   },
   {
-   "id": 382,
-   "area": "dress up, performance (^du_report(12)'s next steps)",
-   "added": "2026-10-19",
-   "opened": "2026-10-19T07:52-06:00",
-   "status": "open",
-   "tags": [
-    "long run"
-   ],
-   "source": "Matthew, 2026-10-19 07:51, in chat: \"enqueue each next step from http://localhost:8133/du-reports/012/ and do your best.\"",
-   "url": "http://localhost:8133/du-reports/012/",
-   "progress": "07:52: minted from ^du_report(12)'s next step 3 of 5.",
-   "log": [
-    {
-     "at": "2026-10-19T07:52-06:00",
-     "from": "matthew",
-     "chars": 80,
-     "asks": false
-    }
-   ],
-   "text": "<b>Dress Up: the first walk on a slow computer.</b> ^du_report(12) (\"The foam, not the makers\"), its next step 3: the slow tier's first walk in the room ran at 5 to 12 frames a second before the game held the scenery still; find out sooner (from the first frames) that a computer is slow."
-  },
-  {
    "id": 383,
    "area": "dress up, performance (^du_report(12)'s next steps)",
    "added": "2026-10-19",
    "opened": "2026-10-19T07:52-06:00",
    "status": "open",
    "tags": [
+    "blocked on Matthew",
     "long run"
    ],
    "source": "Matthew, 2026-10-19 07:51, in chat: \"enqueue each next step from http://localhost:8133/du-reports/012/ and do your best.\"",
    "url": "http://localhost:8133/du-reports/012/",
-   "progress": "07:52: minted from ^du_report(12)'s next step 4 of 5.",
+   "progress": "07:52: minted from ^du_report(12)'s next step 4 of 5. 07:56: READ the foam (js/14-outdoors.js bubbleroomScene): what does not move is baked into <image>s already; what moves (lifeOf: up to 16 breathing and 4 popping bubbles a surface) is SMIL scale animations inside the scene SVG, spread over every surface, so the browser repaints the whole picture each frame. Layers the browser moves without repainting must be page elements (a composited div/img), not SVG children; and the foam is BEHIND the friend inside the one picture. So the step means: the room's shell and foam drawn as page layers behind a scene picture that is see-through there (the moving bubbles' bands as their own img layers, animated by CSS opacity/transform: e.g. breathing as two baked states cross-fading, popping as a band fading out and back), touching the still pictures, the picture archive and 🔬's overlays. The report makes it conditional: 'if the moving foam is wanted back on by default'; still since 0.0.306 (his rule: costly effects off at the start). ✋ Waiting on Matthew: is moving foam wanted on by default? If yes, the above is the plan (a long run, measured in Firefox and Chrome on GitHub before and after).",
    "log": [
     {
      "at": "2026-10-19T07:52-06:00",
@@ -785,9 +764,43 @@
   }
  ],
  "next_ticket": 385,
- "current_ticket": 382,
- "current_note": "07:55: ^du_report(12) step 3: the first walk on a slow computer (5-12 fps before the scenery is held still): find out sooner",
+ "current_ticket": 384,
+ "current_note": "07:56: ^du_report(12) step 5: the bubble room (4 makers) in the frame-rate gate, full speed and the slow tier, each release; 383 parked ✋ (moving foam by default?)",
  "closed_tickets": [
+  {
+   "id": 382,
+   "area": "dress up, performance (^du_report(12)'s next steps)",
+   "added": "2026-10-19",
+   "opened": "2026-10-19T07:52-06:00",
+   "status": "done",
+   "tags": [
+    "long run"
+   ],
+   "source": "Matthew, 2026-10-19 07:51, in chat: \"enqueue each next step from http://localhost:8133/du-reports/012/ and do your best.\"",
+   "url": "http://localhost:8133/du-reports/012/",
+   "progress": "07:52: minted from ^du_report(12)'s next step 3 of 5.",
+   "log": [
+    {
+     "at": "2026-10-19T07:52-06:00",
+     "from": "matthew",
+     "chars": 80,
+     "asks": false
+    }
+   ],
+   "text": "<b>Dress Up: the first walk on a slow computer.</b> ^du_report(12) (\"The foam, not the makers\"), its next step 3: the slow tier's first walk in the room ran at 5 to 12 frames a second before the game held the scenery still; find out sooner (from the first frames) that a computer is slow.",
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T07:56-06:00",
+   "outcome": "Released 0.0.332: noteMoveFrame decides a plainly slow computer early in each walk (frames 4-15, at least 75% late over 25 ms -> choppy, the scenery held still); a pause over 250 ms starts a walk's count again; the two windows of 60 still catch a computer only sometimes late. Made-up walks in the app's pane: 10 fps found at frame 15 (1.5 s, against frame 120, ~12 s), 20 fps at 15 (0.75 s); fast walks (steady, one late in five, three long first frames) never; one late in three found at frame 120 as before. Check choppy382.mjs. Not measured on a real slow computer yet: the speed run's slow tier and the black laptop will show it.",
+   "metrics": {
+    "open_minutes": 4,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 80,
+    "tokens_est": 20,
+    "sync_minutes_est": 0,
+    "work_minutes": 8.0
+   }
+  },
   {
    "id": 381,
    "area": "dress up, performance (^du_report(12)'s next steps)",
@@ -12397,7 +12410,8 @@
   }
  ],
  "queue": [
-  382,
+  384,
+  383,
   374,
   326,
   276,
@@ -12410,9 +12424,7 @@
   259,
   315,
   322,
-  344,
-  383,
-  384
+  344
  ],
- "current_since": "2026-10-19T07:55-06:00"
+ "current_since": "2026-10-19T07:56-06:00"
 }
