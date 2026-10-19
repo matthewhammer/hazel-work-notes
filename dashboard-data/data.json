@@ -682,28 +682,6 @@
    "text": "<b>Dress Up: apply ^du_report(5)'s suggestions to the whole UI, as it prescribes.</b> The report (^ticket(279), drafted, not yet published) proposes the full-screen designers' approach as a global shift for every panel in Dress Up's menus. Do it across the full UI. If it does not work well on the kids' more limited devices or on Matthew's phone, roll it back later: \"Let's be bold for now.\""
   },
   {
-   "id": 289,
-   "area": "dress up, performance, reports",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T10:59-06:00",
-   "status": "open",
-   "tags": [
-    "long run"
-   ],
-   "progress": "From ^ticket(279): a stand-in for the designer's place picker (tools/checks/bgfs279-panel.js, 30 places) tried once in the app's browser pane at about 10:30: 30 tiles drawn live took 57 ms (15,121 elements), about 100 to 400 ms as still SVGs, about 1.1 s as bitmaps (made one at a time); single runs, not yet fit for the report. The measuring run (tools/checks/bgfs279.mjs: the gate's walk and drag, the empty room and the lake, the page 1 and 4 times slower, with and without resizing) is GitHub run 39145656496 on branch bgfs-279: finished 10:46, success, its numbers in the run's artifacts, not read yet.",
-   "log": [
-    {
-     "at": "2026-10-18T10:59-06:00",
-     "from": "matthew",
-     "chars": 139,
-     "asks": false
-    }
-   ],
-   "source": "Matthew, 2026-10-18, in chat, publishing ^du_report(5) first: \"we can update it with numbers if we get more later\"",
-   "url": "",
-   "text": "<b>Dress Up: the speed measurements ^du_report(5) still wants.</b> Before publishing, Matthew had asked for a frame-rate check of the proposed full-screen 🏞️ Background designer (many place pictures at once were slow on the black laptop), with the place pictures kept as pictures so they cost little; he published the report first. Measure the designer's place pictures drawn live, as still SVGs and as bitmaps, and the friend's walk and drag with the designer open, at normal speed and on the slow tiers, then add the numbers to the report as a dated note (its What next, step 8)."
-  },
-  {
    "id": 313,
    "area": "dress up, the nav arrows",
    "added": "2026-10-18",
@@ -1056,9 +1034,42 @@
   }
  ],
  "next_ticket": 372,
- "current_ticket": 289,
- "current_note": "22:55: 289: reading the bgfs-279 run's numbers (the full-screen Background designer's place pictures live, as still SVGs, as bitmaps; the walk and drag beside it) for ^du_report(5)'s dated note. 369's diagnostic run 3 going.",
+ "current_ticket": 326,
+ "current_note": "22:56: ^ticket(289) closed (done); ^ticket(326) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 289,
+   "area": "dress up, performance, reports",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T10:59-06:00",
+   "status": "done",
+   "tags": [
+    "long run"
+   ],
+   "progress": "From ^ticket(279): a stand-in for the designer's place picker (tools/checks/bgfs279-panel.js, 30 places) tried once in the app's browser pane at about 10:30: 30 tiles drawn live took 57 ms (15,121 elements), about 100 to 400 ms as still SVGs, about 1.1 s as bitmaps (made one at a time); single runs, not yet fit for the report. The measuring run (tools/checks/bgfs279.mjs: the gate's walk and drag, the empty room and the lake, the page 1 and 4 times slower, with and without resizing) is GitHub run 39145656496 on branch bgfs-279: finished 10:46, success, its numbers in the run's artifacts, not read yet.",
+   "log": [
+    {
+     "at": "2026-10-18T10:59-06:00",
+     "from": "matthew",
+     "chars": 139,
+     "asks": false
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat, publishing ^du_report(5) first: \"we can update it with numbers if we get more later\"",
+   "url": "",
+   "text": "<b>Dress Up: the speed measurements ^du_report(5) still wants.</b> Before publishing, Matthew had asked for a frame-rate check of the proposed full-screen 🏞️ Background designer (many place pictures at once were slow on the black laptop), with the place pictures kept as pictures so they cost little; he published the report first. Measure the designer's place pictures drawn live, as still SVGs and as bitmaps, and the friend's walk and drag with the designer open, at normal speed and on the slow tiers, then add the numbers to the report as a dated note (its What next, step 8).",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T22:56-06:00",
+   "outcome": "Read the bgfs-279 run (39145656496, GitHub's Chrome, three runs each): 30 place tiles drawn live (15,121 shapes) walk 16.5 / drag 15.2 fps at CPU 1, 4 / 4.3 at CPU 4; as still SVG pictures 60/60 at both, 56.7 and 41.4/39.7 while the panel resizes; as bitmaps 60/60 everywhere; made in 450 ms live, 430 ms still, 797 ms bitmap (CPU 4: 1.96, 1.94, 3.44 s); memory 43, 50, 69 MB. The lake, CPU 1: still 56.7/58, bitmap 58.3/58. Verdict: step 2's place pictures as still SVG pictures made once; bitmaps only if the panel resizes often. Written into ^du_report(5) as a dated note under step 8 (data/report.json speed_note, drivers/build.py, index.html), LOCAL, uncommitted: a change to a published report waits on Matthew's word (localhost:8133/dress-up/reports/005/#step-8-measured).",
+   "metrics": {
+    "open_minutes": 718,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 139,
+    "tokens_est": 34,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 352,
    "area": "dress up, scale (tree house) + a report",
@@ -11784,7 +11795,6 @@
   }
  ],
  "queue": [
-  289,
   326,
   359,
   339,
@@ -11806,5 +11816,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T22:55-06:00"
+ "current_since": "2026-10-18T22:56-06:00"
 }
