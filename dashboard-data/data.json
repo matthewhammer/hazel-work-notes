@@ -962,26 +962,6 @@
    "progress": "15:08: RELEASED 0.0.228 (b7f83cc, live 15:08:25), NOT proven to fix it: not reproduced here. In the app's hidden browser pane on 8133, a MutationObserver on the lid saw the whole swing (13-14 steps) on each of four pulls in a row, for the trap room's pits and for a placed lever and trap door, with and without 🔬 Inspection's overlays (all arrows, path, made of); the lid was never replaced mid-swing; a click on a room lever goes through the same roomLeverPull and starts no walk (walkableAt refuses the wall). Fix made on the likeliest cause that fits 'first time only' on Firefox: lidSwing and turnArm took t0 at the pull, before the redraw; the trap room since 0.0.226 has 271 moss shapes; a slow repaint could use up the 520 ms before the first frame. Both now start their clocks at their first frame. WAITING ON MATTHEW: does the swing play every time on 0.0.228? If not: which lever, where the friend stands, Firefox or not. 15:15: Matthew: \"I'm using 228 and I see no animations of the pits at all, or the levers.\" (worse than 0.0.227's first-time-only). Investigating. 15:2x: a real-click check (tools/checks/lidswing322.mjs: music on, #inspect overlays, real mouse clicks, every frame's lid fold and the room's rebuilds) is running on GitHub, branch lid-322 (only that check). Meanwhile ^ticket(324). 15:26: GitHub's Chrome (run 39167354761, branch lid-322, tools/checks/lidswing322.mjs): real mouse clicks, music playing, #inspect overlays, 0.0.228: all four pulls swing in full (the lid mid-swing on 26 frames each, the handle on 33), one rebuild of the room per pull. So the swing works in Chrome. Likeliest Firefox cause (ff198.py's finding: Firefox's music clock can stand still): picGapNow re-measures the gap every 0.25 s of drift, the scene's LFO begins change, the room is rebuilt, and the swinging lid and handle are replaced by their end state. Fix: each swing finds its lid and handle again by selector every frame, so a rebuild mid-swing carries on in the new drawing. 15:30: RELEASED 0.0.230 (0c08619): swingOn re-finds the lid and handle by selector every frame; mountScene redraws a swing in progress in the room it just built. Checked in the app's pane: two forced rebuilds mid-swing, no end-state frame. Matthew asked 'did you fix it? put 323 ahead if so, and close 322': not closed, as not confirmed on his Firefox; PARKED, waiting on Matthew to try 0.0.230 (blocked on Matthew). ^ticket(323) taken next, as he asked. 15:51: Matthew on 0.0.232: \"i turned down the speed and they still seem immediate to me, on my reliable computer.\" GitHub's headless Firefox 157 (run 39169277890, branch lid-322ff, tools/checks/lidff322.py): the page moves the boulder, handle and lid frame by frame (232 / 211 / 159 mid frames at speed 25), and the SCREENSHOTS show the boulder falling (top at 1.5 s, mid-wall at 3 s, in the pit at 4.5 s): ~/du-shots/ticket-322-firefox-boulder-fall.png. So Firefox paints it; something on his laptop differs (real GPU/WebRender, his saved state, the hover glow's filter on the lever under the pointer, how he pulls). Asked him."
   },
   {
-   "id": 325,
-   "area": "dress up, ⚙️ Advanced",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T15:06-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up: ⚙️ Advanced links to the game's page, matthewhammer.org/hazel/dress-up/.</b> Matthew: \"advanced panel links to matthewhammer.org/hazel/dress-up page\".",
-   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue\")",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T15:06-06:00",
-     "from": "matthew",
-     "chars": 70,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 326,
    "area": "matthewhammer.org, the Dress Up picture archives",
    "added": "2026-10-18",
@@ -1669,9 +1649,40 @@
   }
  ],
  "next_ticket": 360,
- "current_ticket": 325,
- "current_note": "20:44: ⚙️ Advanced links to the game's page, matthewhammer.org/hazel/dress-up/",
+ "current_ticket": 327,
+ "current_note": "20:45: Fixing the left margin on pubs.html and the outline pages; then completing pubs from DBLP",
  "closed_tickets": [
+  {
+   "id": 325,
+   "area": "dress up, ⚙️ Advanced",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T15:06-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up: ⚙️ Advanced links to the game's page, matthewhammer.org/hazel/dress-up/.</b> Matthew: \"advanced panel links to matthewhammer.org/hazel/dress-up page\".",
+   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue\")",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T15:06-06:00",
+     "from": "matthew",
+     "chars": 70,
+     "asks": false
+    }
+   ],
+   "progress": "",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T20:44-06:00",
+   "outcome": "Released in 0.0.275: ⚙️ Advanced links to matthewhammer.org/hazel/dress-up/ (its music, pictures and reports), beside the code's link. Check: advanced325.",
+   "metrics": {
+    "open_minutes": 339,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 70,
+    "tokens_est": 17,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 321,
    "area": "dress up, 🔬 Inspection's planned path",
@@ -11150,7 +11161,6 @@
   }
  ],
  "queue": [
-  325,
   327,
   329,
   332,
