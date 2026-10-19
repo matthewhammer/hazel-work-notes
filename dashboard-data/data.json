@@ -904,9 +904,29 @@
      "asks": false
     }
    ]
+  },
+  {
+   "id": 396,
+   "area": "hazel, Gamma (the context inspector), #2635",
+   "added": "2026-10-19T10:22-06:00",
+   "opened": "2026-10-19T10:22-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, 2026-10-19 10:22, in chat, on #2635's local build (8341)",
+   "url": "http://localhost:8341/?slide=livelit-playground-scenes",
+   "text": "<b>Bug: pressing &Gamma; on #2635's Scenes slide freezes the browser.</b> Matthew: \"on http://localhost:8341/?slide=livelit-playground-scenes mint and enqueue bug fix -- pressing gamma in lower left corner freezes the browser --- do some tests on github, on simpler slides first, to see if there's some non-linear computation behind that click\" Plan: on GitHub (a diagnostic branch, the runner's headless browser, never this laptop), time opening &Gamma; on slides of growing size, simplest first, and the Scenes slide last, to find what grows faster than the context: every entry is printed and laid out as tiles (ContextInspector: CodeViewable per entry, Measured.of_segment each), and Scenes' context holds large types (Picture and the scene types). Note: #2698 adds a one-line print per entry to decide the unfold toggle, so measure with and without it.",
+   "progress": "10:22: minted and enqueued.",
+   "log": [
+    {
+     "at": "2026-10-19T10:22-06:00",
+     "from": "matthew",
+     "chars": 259,
+     "asks": false
+    }
+   ]
   }
  ],
- "next_ticket": 396,
+ "next_ticket": 397,
  "current_ticket": 394,
  "current_note": "10:19: Fixing today: the bar's ⤢ beside the type, and aliases (Picture) expanding to their definitions in the full view. ^report(19)'s survey runs alongside.",
  "closed_tickets": [
@@ -12853,6 +12873,7 @@
   394,
   393,
   387,
+  396,
   389,
   388,
   395,
