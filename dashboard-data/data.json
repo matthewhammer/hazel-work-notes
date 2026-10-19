@@ -984,44 +984,6 @@
    "progress": ""
   },
   {
-   "id": 327,
-   "area": "matthewhammer.org, the publications page",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T15:23-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>matthewhammer.org/pubs.html and the other pages in the nav bar's outline: fix their formatting, the left margin most of all (lowest priority).</b> Matthew, with a screenshot at 15:22 (kept locally, ~/du-shots/ticket-327/pubs-left-margin.webp): \"fix formatting for pubs page, esp left margin\". The page's title and text run right up against the nav bar's edge. Then: \"ditto for other pages in the outline (like adapton, etc)\". Then (same ticket): \"please complete https://matthewhammer.org/pubs.html to reflect this list, as much as possible: https://matthewhammer.org/pubs.html -- there's a lot missing, do your best.\" (Both links are the same page; taken to mean the page's own 'See also' sources, DBLP first, then Google Scholar: every publication and draft listed there, added to pubs.html in its style.) Matthew then downloaded DBLP's page for the list: ~/Downloads/dblp_ Matthew A. Hammer.html (data, read as such).",
-   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue -- lowest priority\")",
-   "url": "https://matthewhammer.org/pubs.html",
-   "log": [
-    {
-     "at": "2026-10-18T15:23-06:00",
-     "from": "matthew",
-     "chars": 60,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T15:23-06:00",
-     "from": "matthew",
-     "chars": 55,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T15:24-06:00",
-     "from": "matthew",
-     "chars": 170,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T15:26-06:00",
-     "from": "matthew",
-     "chars": 60,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 329,
    "area": "dress up, 🫧 bubble space",
    "added": "2026-10-18",
@@ -1646,12 +1608,81 @@
     }
    ],
    "text": "<b>A ^du_report draft: porting Messed Up Dress Up (MUDU) to Hazel, piece by piece: how to port all of its current features in two months, and in three.</b> Matthew: \"report draft --- porting MUDU (messed up dress up) to Hazel, piece by piece. How can we do this port, of all current features, over the next 2 months? 3 months?\" His method (memory, 10-11): prototype in JS with real players, then formulate in Hazel. PLAN: (1) an inventory of what MUDU is today (0.0.265+: 26 script parts, ~21,800 lines; the friend and its poses and costumes, the places and their objects, collisions and walking, the world designer, music and LFOs, 🔬 and ♿, the archives, the checks) and what each rests on (SVG strings, the scene cache, requestAnimationFrame loops, WebAudio); (2) what Hazel has for it now (the livelits and their GUIs, splices, the evaluator, the editor, projectors, the performance work of #2469/#2635, what is known slow), and what each part of MUDU would need from Hazel that it lacks; (3) the order: pieces that stand alone and show Hazel well first (the friend's drawing as a pure function from settings to a picture; a place as a function; the pose rig), the runtime last (input, animation, sound), each piece a livelit or a slide with the JS still running beside it until its Hazel twin draws the same picture (the archives' pictures as the oracle: same settings, same SVG); (4) two schedules, two months and three, week by week, with what each leaves in JS at its end, and the risks (performance, the 60 fps rule, Hazel's missing pieces); (5) what to decide first."
+  },
+  {
+   "id": 360,
+   "area": "dress up, music: his couch-cushion rave mixes as the defaults",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T20:58-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, chat, 2026-10-18 20:55",
+   "url": "",
+   "progress": "Minted 20:58 and started at once (a few minutes' work).",
+   "log": [
+    {
+     "at": "2026-10-18T20:55-06:00",
+     "from": "matthew",
+     "chars": 240,
+     "asks": true
+    }
+   ],
+   "text": "<b>Couch-cushion raves A and B: his post-production as the tracks' starting mix.</b> Matthew: \"I like the new songs. I did some post-production -- here are my new \\\"defaults\\\" for a couple of those tracks (compare to your defaults please)\" (his save ~/Downloads/my-friend-2026-10-18-20-48-45(1).json, game 0.0.268). PLAN: compare his board with the defaults (level 0 dB, echo/room from the part, tone open, pan middle, knob 50, no presses), then give CUSHION_RAVE A and B his board as their mix:, as the super-dub step's (ticket 263); release."
   }
  ],
  "next_ticket": 360,
- "current_ticket": 327,
- "current_note": "20:45: Fixing the left margin on pubs.html and the outline pages; then completing pubs from DBLP",
+ "current_ticket": 360,
+ "current_note": "20:50: Comparing his couch-cushion rave mixes with the defaults; making them the tracks' starting mix",
  "closed_tickets": [
+  {
+   "id": 327,
+   "area": "matthewhammer.org, the publications page",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T15:23-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>matthewhammer.org/pubs.html and the other pages in the nav bar's outline: fix their formatting, the left margin most of all (lowest priority).</b> Matthew, with a screenshot at 15:22 (kept locally, ~/du-shots/ticket-327/pubs-left-margin.webp): \"fix formatting for pubs page, esp left margin\". The page's title and text run right up against the nav bar's edge. Then: \"ditto for other pages in the outline (like adapton, etc)\". Then (same ticket): \"please complete https://matthewhammer.org/pubs.html to reflect this list, as much as possible: https://matthewhammer.org/pubs.html -- there's a lot missing, do your best.\" (Both links are the same page; taken to mean the page's own 'See also' sources, DBLP first, then Google Scholar: every publication and draft listed there, added to pubs.html in its style.) Matthew then downloaded DBLP's page for the list: ~/Downloads/dblp_ Matthew A. Hammer.html (data, read as such).",
+   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue -- lowest priority\")",
+   "url": "https://matthewhammer.org/pubs.html",
+   "log": [
+    {
+     "at": "2026-10-18T15:23-06:00",
+     "from": "matthew",
+     "chars": 60,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T15:23-06:00",
+     "from": "matthew",
+     "chars": 55,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T15:24-06:00",
+     "from": "matthew",
+     "chars": 170,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T15:26-06:00",
+     "from": "matthew",
+     "chars": 60,
+     "asks": false
+    }
+   ],
+   "progress": "",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T20:49-06:00",
+   "outcome": "pubs.html rewritten from the DBLP record in one format per paper (adds ILC PLDI 2019, POPL 2019 typed holes, TFP RAZ, Dagstuhl 16402, Typed Adapton, miniAdapton; old anchors kept; dead ./oakland2014 link fixed). The left margin: .pagecontent (pubs + the 8 paper pages) now gets main's column, 29-30 px clear of the nav; BibTeX scrolls in place. Swept every outline page: all 16-30 px except replayground (8 px) and the full-window apps (web-play, lab-results), left as is. Google Scholar not consulted. f173200.",
+   "metrics": {
+    "open_minutes": 327,
+    "matthew_messages": 4,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 345,
+    "tokens_est": 86,
+    "sync_minutes_est": 3.0
+   }
+  },
   {
    "id": 325,
    "area": "dress up, ⚙️ Advanced",
@@ -11161,7 +11192,6 @@
   }
  ],
  "queue": [
-  327,
   329,
   332,
   334,
@@ -11204,5 +11234,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T20:44-06:00"
+ "current_since": "2026-10-18T20:50-06:00"
 }
