@@ -1322,26 +1322,6 @@
    "text": "<b>A ^du_report draft: porting Messed Up Dress Up (MUDU) to Hazel, piece by piece: how to port all of its current features in two months, and in three.</b> Matthew: \"report draft --- porting MUDU (messed up dress up) to Hazel, piece by piece. How can we do this port, of all current features, over the next 2 months? 3 months?\" His method (memory, 10-11): prototype in JS with real players, then formulate in Hazel. PLAN: (1) an inventory of what MUDU is today (0.0.265+: 26 script parts, ~21,800 lines; the friend and its poses and costumes, the places and their objects, collisions and walking, the world designer, music and LFOs, 🔬 and ♿, the archives, the checks) and what each rests on (SVG strings, the scene cache, requestAnimationFrame loops, WebAudio); (2) what Hazel has for it now (the livelits and their GUIs, splices, the evaluator, the editor, projectors, the performance work of #2469/#2635, what is known slow), and what each part of MUDU would need from Hazel that it lacks; (3) the order: pieces that stand alone and show Hazel well first (the friend's drawing as a pure function from settings to a picture; a place as a function; the pose rig), the runtime last (input, animation, sound), each piece a livelit or a slide with the JS still running beside it until its Hazel twin draws the same picture (the archives' pictures as the oracle: same settings, same SVG); (4) two schedules, two months and three, week by week, with what each leaves in JS at its end, and the risks (performance, the 60 fps rule, Hazel's missing pieces); (5) what to decide first."
   },
   {
-   "id": 363,
-   "area": "dress up, music: each song's key, stored and shown",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T20:56-06:00",
-   "status": "open",
-   "tags": [],
-   "source": "Matthew, chat, 2026-10-18 20:56",
-   "url": "",
-   "progress": "Minted 20:56; queued just before 362 (the reflection modes need each song's key).",
-   "log": [
-    {
-     "at": "2026-10-18T20:56-06:00",
-     "from": "matthew",
-     "chars": 70,
-     "asks": false
-    }
-   ],
-   "text": "<b>🎼 Each song's key, stored in the song and shown.</b> Matthew, after asking (ticket 362) whether we know a song's key: \"let's store key data in the songs going forward, and display it\". PLAN: a key on every TUNES entry (key: \"A minor\", \"D major\"; a variant's from its own chords, as CUSHION_RAVE's and TURTLE_DUB's first chord and their notes say), the rule for new tunes written into agent-instructions.md (a tune without a key fails a check); shown where the track is (▶ playing: ... in A minor; the track list's names or a line under the mixing board), moving with 🎵 transpose (an A minor song transposed up 2 shows B minor). A check that infers each song's key from its notes (a pitch-class profile match) and flags any declared key it disagrees with, as a guard against a typo."
-  },
-  {
    "id": 362,
    "area": "dress up, music: a reflection setting on each channel",
    "added": "2026-10-18",
@@ -1407,9 +1387,40 @@
   }
  ],
  "next_ticket": 360,
- "current_ticket": 359,
- "current_note": "21:30: ^ticket(361) closed (done); ^ticket(359) is next in the queue",
+ "current_ticket": 362,
+ "current_note": "21:31: The mixing board's reflections: in key, mirror, backward, canon, counter (transpose is the octave presses)",
  "closed_tickets": [
+  {
+   "id": 363,
+   "area": "dress up, music: each song's key, stored and shown",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T20:56-06:00",
+   "status": "done",
+   "tags": [],
+   "source": "Matthew, chat, 2026-10-18 20:56",
+   "url": "",
+   "progress": "Minted 20:56; queued just before 362 (the reflection modes need each song's key).",
+   "log": [
+    {
+     "at": "2026-10-18T20:56-06:00",
+     "from": "matthew",
+     "chars": 70,
+     "asks": false
+    }
+   ],
+   "text": "<b>🎼 Each song's key, stored in the song and shown.</b> Matthew, after asking (ticket 362) whether we know a song's key: \"let's store key data in the songs going forward, and display it\". PLAN: a key on every TUNES entry (key: \"A minor\", \"D major\"; a variant's from its own chords, as CUSHION_RAVE's and TURTLE_DUB's first chord and their notes say), the rule for new tunes written into agent-instructions.md (a tune without a key fails a check); shown where the track is (▶ playing: ... in A minor; the track list's names or a line under the mixing board), moving with 🎵 transpose (an A minor song transposed up 2 shows B minor). A check that infers each song's key from its notes (a pitch-class profile match) and flags any declared key it disagrees with, as a guard against a typo.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T21:31-06:00",
+   "outcome": "0.0.291: TUNE_KEYS (40 tunes, keys as they sound incl. part shifts: deep-dub Eb minor; bubbledub A minor by its chords), tuneKey/keyMoved, the playing line 'in X' moved with transpose; new tunes declare key on their TUNES entry (agent instructions + tools/checks/key363.mjs fails a missing or disagreeing key). Not yet: the music page's track list.",
+   "metrics": {
+    "open_minutes": 35,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 70,
+    "tokens_est": 17,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 361,
    "area": "dress up, music: a dup chip on each channel",
@@ -11579,5 +11590,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T21:30-06:00"
+ "current_since": "2026-10-18T21:31-06:00"
 }
