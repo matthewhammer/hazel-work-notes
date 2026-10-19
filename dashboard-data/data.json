@@ -612,26 +612,6 @@
    "waiting": "Matthew: make a fine-grained token (resource owner matthewhammer; only the repositories dress-up-pictures and dress-up-music; permission Contents: Read and write), then add it to matthewhammer/kids-choice-games as the Actions secret ARCHIVE_TOKEN (Settings, Secrets and variables, Actions; or: gh secret set ARCHIVE_TOKEN -R matthewhammer/kids-choice-games). The next archive run then lands by itself."
   },
   {
-   "id": 313,
-   "area": "dress up, the nav arrows",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T14:16-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up: space the nav arrows apart on every background, so their boxes do not overlap, especially SE and E, and SW and W.</b> Matthew: \"the nav arrows as objects are often still overlapped in terms of their bounding boxes -- maybe we should space them further still, on each background?\" \"especially SE and E, and SW and W nav arrows\". Related to ^ticket(311) and ^ticket(312).",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T14:16-06:00",
-     "from": "matthew",
-     "chars": 190,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 314,
    "area": "matthewhammer.org, the nav bar",
    "added": "2026-10-18",
@@ -907,8 +887,40 @@
  ],
  "next_ticket": 379,
  "current_ticket": 365,
- "current_note": "02:54: 0.0.320 released (the castle designer full screen); reading diag-365's checks (castle365, castlefs365) before closing",
+ "current_note": "02:56: back on 365: reading diag-365's checks (castle365, castlefs365) before closing; 0.0.319-0.0.321 speed runs queued for 369",
  "closed_tickets": [
+  {
+   "id": 313,
+   "area": "dress up, the nav arrows",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T14:16-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up: space the nav arrows apart on every background, so their boxes do not overlap, especially SE and E, and SW and W.</b> Matthew: \"the nav arrows as objects are often still overlapped in terms of their bounding boxes -- maybe we should space them further still, on each background?\" \"especially SE and E, and SW and W nav arrows\". Related to ^ticket(311) and ^ticket(312).",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T14:16-06:00",
+     "from": "matthew",
+     "chars": 190,
+     "asks": false
+    }
+   ],
+   "progress": "02:56, my call (Matthew AFK, every queued ticket waiting on him or on a run): taken from the backlog. waysSpaced (js/25-world.js) on every background: E slid up off SE's box (W off SW's) with a 14k gap, never onto NE/NW where they meet across (midway when there is no room for both gaps); wayTriBox gives a triangle's box turned to its angle. Measured in the pane: every place (49), all 8 ways, 3 window shapes, 2,940 pairs: 204 overlapping boxes before (E/SE, W/SW), 0 after. Check spaced313.mjs.",
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T02:56-06:00",
+   "outcome": "Released 0.0.321 (4b0903c, 02:56): waysSpaced (js/25-world.js) on every background slides E up off SE's box and W off SW's (14k between, never onto NE/NW where they meet across); wayTriBox measures a triangle's box turned to its angle. In the app's pane: 49 places, all 8 ways, 3 window shapes, 2,940 pairs: 204 overlapping boxes before (E/SE, W/SW), 0 after. Check spaced313.mjs (its first run in 0.0.321's speed run, read under ^ticket(369)).",
+   "metrics": {
+    "open_minutes": 761,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 190,
+    "tokens_est": 47,
+    "sync_minutes_est": 0,
+    "work_minutes": 6.0
+   }
+  },
   {
    "id": 377,
    "area": "dress up, the menu's panels (UI)",
@@ -12119,5 +12131,5 @@
   322,
   344
  ],
- "current_since": "2026-10-19T02:49-06:00"
+ "current_since": "2026-10-19T02:56-06:00"
 }
