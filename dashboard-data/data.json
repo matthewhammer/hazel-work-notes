@@ -1203,34 +1203,6 @@
    ]
   },
   {
-   "id": 415,
-   "area": "dress up, the trap room: turning into rainbow bubbles, part by part",
-   "added": "2026-10-19T14:12-06:00",
-   "opened": "2026-10-19T14:12-06:00",
-   "status": "open",
-   "tags": [
-    "low priority"
-   ],
-   "source": "Matthew, for N, 2026-10-19 14:12, in chat, with a screenshot of the trap room (MIND THE FLOOR, the boulder on a pit, the friend standing beside it)",
-   "url": "",
-   "text": "<b>For N: the \"turn into rainbow bubbles\" animation, part by part as each is hit: first the head, then the torso, then the legs and feet.</b> Matthew, \"mint and enqueue for N, low priority until hazel work is done for the day\": \"the 'turn into rainbow bubbles' animation is great here, but we could improve it by turning each major part that we draw and control independently into bubbles, as they are hit -- first head, then torso, then legs and feet.\" His screenshot: the trap room (MIND THE FLOOR), the boulder over a pit, the friend standing beside it. So: where the friend turns into rainbow bubbles, each part the game draws on its own (head, torso, legs, feet) bursts into bubbles at the moment it is hit, in that order, instead of the whole friend at once. Low priority while it is Hazel work time.",
-   "progress": "14:12: minted and enqueued at the end of the Dress Up tickets, low priority (for N). 14:38: moved up to the first Dress Up ticket for later, ahead of 412 and of 413 (begun, then parked) (Matthew).",
-   "log": [
-    {
-     "at": "2026-10-19T14:12-06:00",
-     "from": "matthew",
-     "chars": 303,
-     "asks": false
-    },
-    {
-     "at": "2026-10-19T14:38-06:00",
-     "from": "matthew",
-     "chars": 129,
-     "asks": false
-    }
-   ]
-  },
-  {
    "id": 417,
    "area": "dashboard, hazel-work-notes: one file per page, its versions in git history",
    "added": "2026-10-19T14:26-06:00",
@@ -1254,9 +1226,48 @@
   }
  ],
  "next_ticket": 419,
- "current_ticket": 415,
- "current_note": "15:08: ^ticket(415): the trap room's rainbow bubbles, part by part (head, torso, legs, feet) for N; every Hazel ticket left is blocked on Matthew or parked (389). Reading the game's code.",
+ "current_ticket": 413,
+ "current_note": "15:19: ^ticket(413): the click-to-sit audit: every object, its sizes, whether its top is one to sit on, and whether it offers a seat; then seats for the yes ones. (0.0.336's speed run is queued on GitHub.)",
  "closed_tickets": [
+  {
+   "id": 415,
+   "area": "dress up, the trap room: turning into rainbow bubbles, part by part",
+   "added": "2026-10-19T14:12-06:00",
+   "opened": "2026-10-19T14:12-06:00",
+   "status": "done",
+   "tags": [
+    "low priority"
+   ],
+   "source": "Matthew, for N, 2026-10-19 14:12, in chat, with a screenshot of the trap room (MIND THE FLOOR, the boulder on a pit, the friend standing beside it)",
+   "url": "",
+   "text": "<b>For N: the \"turn into rainbow bubbles\" animation, part by part as each is hit: first the head, then the torso, then the legs and feet.</b> Matthew, \"mint and enqueue for N, low priority until hazel work is done for the day\": \"the 'turn into rainbow bubbles' animation is great here, but we could improve it by turning each major part that we draw and control independently into bubbles, as they are hit -- first head, then torso, then legs and feet.\" His screenshot: the trap room (MIND THE FLOOR), the boulder over a pit, the friend standing beside it. So: where the friend turns into rainbow bubbles, each part the game draws on its own (head, torso, legs, feet) bursts into bubbles at the moment it is hit, in that order, instead of the whole friend at once. Low priority while it is Hazel work time.",
+   "progress": "14:12: minted and enqueued at the end of the Dress Up tickets, low priority (for N). 14:38: moved up to the first Dress Up ticket for later, ahead of 412 and of 413 (begun, then parked) (Matthew). 15:17: RELEASED as Dress Up 0.0.336 (bc3c614, tag pushed): as the boulder comes down, each part goes to rainbow bubbles the moment the boulder's lowest edge reaches it, head, then torso and arms, then legs, then feet (boulderFalling each frame of the drop; data-burst on the picture hides a part through every drawing). Checked in the app's pane by stepping the boulder down by hand (the pane was hidden, so no animation frames): head at the boulder's bottom 102 (top 97), torso 150 (148), legs 240 (236), feet 312 (308); 54 bubbles; back after 2.56 s. A runtime error the load checks cannot see (a leftover name) was caught that way and fixed before release. New check tools/checks/burst415.mjs (the order, part by part) runs in the speed run with burst349.",
+   "log": [
+    {
+     "at": "2026-10-19T14:12-06:00",
+     "from": "matthew",
+     "chars": 303,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T14:38-06:00",
+     "from": "matthew",
+     "chars": 129,
+     "asks": false
+    }
+   ],
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T15:19-06:00",
+   "outcome": "Released as Dress Up 0.0.336 (bc3c614, live at 15:18): a falling boulder turns the friend to rainbow bubbles part by part, head, then torso and arms, then legs, then feet, each the moment the boulder reaches it. New check tools/checks/burst415.mjs; the speed run on dress-up-0.0.336 is queued (read its result after).",
+   "metrics": {
+    "open_minutes": 67,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 432,
+    "tokens_est": 108,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 405,
    "area": "hazel, #2635's CI: make it green",
@@ -13631,9 +13642,8 @@
   }
  ],
  "queue": [
-  415,
-  389,
   413,
+  389,
   406,
   412,
   414,
@@ -13661,7 +13671,7 @@
   322,
   344
  ],
- "current_since": "2026-10-19T15:08-06:00",
+ "current_since": "2026-10-19T15:19-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
