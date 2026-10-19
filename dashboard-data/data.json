@@ -1292,11 +1292,24 @@
      "asks": false
     }
    ]
+  },
+  {
+   "id": 418,
+   "area": "hazel, #2673 #2661 #2681 #2675: hashes and descriptions before they merge",
+   "added": "2026-10-19T14:41-06:00",
+   "opened": "2026-10-19T14:41-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "^report(21) (^ticket(398)), What next, steps 3 and 5; opened by Claude during the AFK protocol",
+   "url": "https://github.com/hazelgrove/hazel/pull/2673",
+   "text": "<b>Strengthen the performance PRs' hashes, and say what two of them change, before they merge.</b> ^report(21)'s next steps 3 and 5:<ul><li><b>#2673's term hash:</b> each lane is an xor-multiply chain, so two children that both differ only in bit 31 cancel. Add a finalizer per lane (a mixing step after each combine) so no single bit passes through unmixed, and a test that pins it.</li><li><b>#2661's type hash, used by #2681 too:</b> two 30-bit lanes, and for atoms the second lane is an affine function of the first. Either widen it or check equality behind a hit, so a collision can never give a wrong consistency answer.</li><li><b>Descriptions:</b> #2675's, the unused-variable warning it now gives for a binding a recursive let shadows; #2673's, that its reuse decisions differ from the old check in two corners.</li></ul>",
+   "progress": "14:41: opened from ^report(21)'s next steps 3 and 5 while #2610's and #2635's Full tests run; started.",
+   "log": []
   }
  ],
- "next_ticket": 418,
- "current_ticket": 416,
- "current_note": "14:38: ^ticket(416): #2610 fixed (94ca8a2daa, Fast checks green, Full tests running) and #2651's self-naming error restored (29c08fd8fa, CI running). Queue: ^ticket(415) is now the first Dress Up ticket for later (Matthew). ^ticket(405): #2635's Full tests still running.",
+ "next_ticket": 419,
+ "current_ticket": 418,
+ "current_note": "14:41: ^ticket(418): strengthening #2673's term hash first (report 21, next step 3), while #2610's and #2635's Full tests run (^ticket(416), ^ticket(405): close on green).",
  "closed_tickets": [
   {
    "id": 391,
@@ -13585,6 +13598,7 @@
   }
  ],
  "queue": [
+  418,
   416,
   389,
   405,
@@ -13617,7 +13631,7 @@
   322,
   344
  ],
- "current_since": "2026-10-19T14:19-06:00",
+ "current_since": "2026-10-19T14:41-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
