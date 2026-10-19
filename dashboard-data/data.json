@@ -890,26 +890,6 @@
    "progress": "15:22: CAUSE: fumola.org's page had dark colours only (CSS variables from the Fumola VS Code theme, no light set, nothing answering data-theme), so the nav bar's light did nothing. PR Adapton/fumola#147 (branch pages-light-theme, worktree ~/fumola-light): a light palette answering :root[data-theme=light] and, on auto, a light system; theme-support meta for nav.js; five written-out colours made palette entries; dark stays the default. WAITING ON MATTHEW: his OK to merge #147 (then the Pages workflow_dispatch deploys main). Not done: the other pages under pages/ (alignment, web-play, web-repl)."
   },
   {
-   "id": 317,
-   "area": "dress up, the trap room's things and the object system",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T14:39-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up: a helmet, levers and a sword with more detail, everywhere they are drawn; and a lever's shine that follows the room's light.</b> Matthew: \"helmet in dungeon scene needs more detail to be recognizable -- change it for the entire system, including the placed version (the 'object system' entirely). Likewise, make levels more detailed, especially the panel and add a shine to the level that mimics the light of the room in each instance (configurable though). Shine size and color and 'vibration level' (the torches vibrate and we should mimic that, by default). sword with more detail too.\" So: (1) the helmet (the trap room's, dropped by the left pit; a 📦 lifted one too), recognizable; (2) the lever (leverSvg: the trap room's two, and the placed 🎚️ lever's), its panel more detailed, and a shine on it like the room's light, with settings for its size, its colour and how much it flickers, flickering with the torches by default; (3) the sword (the trap room's, on the floor), more detail. One drawing each, shared by the place and the placed thing, as 0.0.209 shares leverSvg.",
-   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue\")",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T14:39-06:00",
-     "from": "matthew",
-     "chars": 420,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
    "id": 320,
    "area": "dress up, 🗺️ World design",
    "added": "2026-10-18",
@@ -924,26 +904,6 @@
      "at": "2026-10-18T14:49-06:00",
      "from": "matthew",
      "chars": 200,
-     "asks": false
-    }
-   ],
-   "progress": ""
-  },
-  {
-   "id": 321,
-   "area": "dress up, 🔬 Inspection's planned path",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T14:52-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up (low priority): the planned path bounces and flashes at each new segment of a walk, with 🔬 Inspection on.</b> Matthew, with a screenshot of the trap room on 0.0.226 (kept locally, ~/du-shots/ticket-321/path-flicker-trap-room.webp; 👣 planned path on, two paths, yellow and the purple alt): \"there's a bouncing and flashing visually (on the path itself only) when we do multi-segment paths with the inspector on -- as we walk, each time we reach a new segment, there's a visual interruption\". Low priority, his words.",
-   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue, low priority\")",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T14:52-06:00",
-     "from": "matthew",
-     "chars": 230,
      "asks": false
     }
    ],
@@ -1709,9 +1669,83 @@
   }
  ],
  "next_ticket": 360,
- "current_ticket": 317,
- "current_note": "20:40: the trap room's helmet, levers and sword in more detail everywhere; a lever's shine following the room's torchlight",
+ "current_ticket": 325,
+ "current_note": "20:44: ⚙️ Advanced links to the game's page, matthewhammer.org/hazel/dress-up/",
  "closed_tickets": [
+  {
+   "id": 321,
+   "area": "dress up, 🔬 Inspection's planned path",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T14:52-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up (low priority): the planned path bounces and flashes at each new segment of a walk, with 🔬 Inspection on.</b> Matthew, with a screenshot of the trap room on 0.0.226 (kept locally, ~/du-shots/ticket-321/path-flicker-trap-room.webp; 👣 planned path on, two paths, yellow and the purple alt): \"there's a bouncing and flashing visually (on the path itself only) when we do multi-segment paths with the inspector on -- as we walk, each time we reach a new segment, there's a visual interruption\". Low priority, his words.",
+   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue, low priority\")",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T14:52-06:00",
+     "from": "matthew",
+     "chars": 230,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T20:44-06:00",
+     "from": "claude",
+     "chars": 400,
+     "asks": false
+    }
+   ],
+   "progress": " 20:44 DONE, 0.0.274: the cause: each leg of walkPlanned ended the walk (walkTo: B.anim none, entering false, draw) before the next began; pathHud took the path down while not entering, and the friend stood a frame. walkTo(x, y, then, more) now hands on between legs. Measured: five legs, no standing frame, the path gone only at the end. Check: path321.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T20:44-06:00",
+   "outcome": "Released in 0.0.274: a planned walk of several legs no longer stops at each bend, so 🔬's 👣 path no longer flashes and the friend no longer bounces between legs. Check: path321.",
+   "metrics": {
+    "open_minutes": 352,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 630,
+    "tokens_est": 157,
+    "sync_minutes_est": 0
+   }
+  },
+  {
+   "id": 317,
+   "area": "dress up, the trap room's things and the object system",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T14:39-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up: a helmet, levers and a sword with more detail, everywhere they are drawn; and a lever's shine that follows the room's light.</b> Matthew: \"helmet in dungeon scene needs more detail to be recognizable -- change it for the entire system, including the placed version (the 'object system' entirely). Likewise, make levels more detailed, especially the panel and add a shine to the level that mimics the light of the room in each instance (configurable though). Shine size and color and 'vibration level' (the torches vibrate and we should mimic that, by default). sword with more detail too.\" So: (1) the helmet (the trap room's, dropped by the left pit; a 📦 lifted one too), recognizable; (2) the lever (leverSvg: the trap room's two, and the placed 🎚️ lever's), its panel more detailed, and a shine on it like the room's light, with settings for its size, its colour and how much it flickers, flickering with the torches by default; (3) the sword (the trap room's, on the floor), more detail. One drawing each, shared by the place and the placed thing, as 0.0.209 shares leverSvg.",
+   "source": "Matthew, 2026-10-18, in chat (\"mint and enqueue\")",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T14:39-06:00",
+     "from": "matthew",
+     "chars": 420,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T20:43-06:00",
+     "from": "claude",
+     "chars": 500,
+     "asks": false
+    }
+   ],
+   "progress": " 20:43 DONE, 0.0.273: helmetSvg, swordSvg and a detailed leverSvg in js/13-castle-rooms-and-map.js, with leverShine(o) (background.leverShine/leverShineColor/leverFlicker, 🏞️ Background, shown where there are levers); placed levers through leverThingSvg(t, o); the parts' deps carry the settings. A placed helmet or sword is a 📦 lifted copy of the scene's, so it gets the new drawing too. Check: props317.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T20:43-06:00",
+   "outcome": "Released in 0.0.273: the trap room's helmet is a knight's helm with a plume, its sword is detailed, and every lever has a riveted iron panel with a slot and hub and a knob that catches the room's light, flickering with the torches (its size, colour and flicker set in 🏞️ Background). Placed levers and lifted copies too. Check: props317.",
+   "metrics": {
+    "open_minutes": 364,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 920,
+    "tokens_est": 230,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 316,
    "area": "dress up, levers, the friend's moves and the 🧍 Body tab",
@@ -11116,8 +11150,6 @@
   }
  ],
  "queue": [
-  317,
-  321,
   325,
   327,
   329,
@@ -11162,5 +11194,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T20:40-06:00"
+ "current_since": "2026-10-18T20:44-06:00"
 }
