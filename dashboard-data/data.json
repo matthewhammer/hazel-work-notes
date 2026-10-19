@@ -750,13 +750,18 @@
     }
    ],
    "text": "<b>Dress Up: replacement candidates for 🐢 turtle steppers dub D.</b> Matthew: \"turtle stepper's dub D is awlful -- the others -- A, B, C are great. Let's make several replacement candidates.\" D (ticket 301) is \"a drum break\": 92 beats a minute, E9 A9 B7 chords (stabs of ninths on the chop), a break whose snare and rim race in fives, sixes and sevens. A (triplet shuffle, 150, A minor), B (one-drop, 84, G major) and C (rockers, three against four, 88, F major) work: plain chords, idiomatic drums. Make several candidates in their spirit, each its own drums and chords, beside A to C in 🌴 reggae, for him to pick one to become D."
-  },
+  }
+ ],
+ "next_ticket": 380,
+ "current_ticket": null,
+ "current_note": "07:32: ✋ waiting on Matthew: every queued ticket is his (374 pick a dub D, reports 7-12 to read, 315 merge, 326, 54, 276, 322...). Tonight: 369, 365, 313, 320, 314, 212, 379 closed (0.0.319-0.0.329); 0.0.329's speed run running",
+ "closed_tickets": [
   {
    "id": 379,
    "area": "dress up, performance, 🏞️ Background tab",
    "added": "2026-10-19",
    "opened": "2026-10-19T07:14-06:00",
-   "status": "open",
+   "status": "done",
    "tags": [
     "long run"
    ],
@@ -764,13 +769,20 @@
    "url": "",
    "progress": "07:14: minted from ^ticket(369)'s green run: the tabs check walks with each tab open; every tab 59.5-60 fps but 🏞️ Background, 56 fps (7% late). Its round of syncs (4,239, 6.6 ms in the pane after 0.0.323) runs in one frame every 250 ms while moving (settle). Plan: while moving, the round in slices across frames. 07:16: RELEASED 0.0.328 (7f7bd08): settle slices the round (3 ms a frame) while moving; whole when still or hidden. Pane: Background's settle piece 5.3 ms median vs Face's 4.9 (the base, worldKeep and the save, ~1.5 ms in a loop; more under the walk's GC). diag-328 running tabs167.",
    "log": [],
-   "text": "<b>Dress Up: the 🏞️ Background tab open, walking at 60 frames a second, as with every other tab.</b> 0.0.327's speed run's tabs check: every tab 59.5-60 fps while walking, but 🏞️ Background 56 fps, 7% of frames late. Its controls' refresh (4,239 syncs, 6.6 ms in the app's pane after 0.0.323's fix) runs all at once every 250 ms while the friend moves (settle), a late frame each time; on the black laptop, about twice as long. Matthew's rule: 60 fps first."
-  }
- ],
- "next_ticket": 380,
- "current_ticket": 379,
- "current_note": "07:16: 0.0.328 released (Background's refresh in slices while moving); tabs167 running on GitHub to compare with 56 fps",
- "closed_tickets": [
+   "text": "<b>Dress Up: the 🏞️ Background tab open, walking at 60 frames a second, as with every other tab.</b> 0.0.327's speed run's tabs check: every tab 59.5-60 fps while walking, but 🏞️ Background 56 fps, 7% of frames late. Its controls' refresh (4,239 syncs, 6.6 ms in the app's pane after 0.0.323's fix) runs all at once every 250 ms while the friend moves (settle), a late frame each time; on the black laptop, about twice as long. Matthew's rule: 60 fps first.",
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T07:32-06:00",
+   "outcome": "The tabs check (tabs167, GitHub's Chrome, swimming in the duck pond with each tab open): 🏞️ Background 56 fps with 7% of frames late in 0.0.327's run -> 55 fps, 0% late after 0.0.328 -> 59.8 fps, 0% late after 0.0.329 (diag-329), with every other tab. 0.0.328 (7f7bd08): settle runs the round of syncs in 3 ms slices, one a frame, while the friend moves (whole when still). 0.0.329 (1c00de1): a sync writes the page only where a value changed (setPressed/setHidden/setText, the castles' go-to chips, the objects list's friend chip, figPos's picture): one round in Background wrote 3,995 times (3,773 the same value, each a restyle of the panel), now 0 when nothing moved; a 3 s swim 45,589 writes -> a handful. diag-329 also ran knoll375, castle365, crossing185, settings109: all passing. The rule written into agent-instructions.md: compare, then write.",
+   "metrics": {
+    "open_minutes": 18,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0,
+    "work_minutes": 15.0
+   }
+  },
   {
    "id": 369,
    "area": "dress up, the speed run's checks",
@@ -12191,7 +12203,6 @@
   }
  ],
  "queue": [
-  379,
   374,
   326,
   359,
@@ -12208,5 +12219,5 @@
   322,
   344
  ],
- "current_since": "2026-10-19T07:14-06:00"
+ "current_since": "2026-10-19T07:32-06:00"
 }
