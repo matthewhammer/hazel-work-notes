@@ -6,7 +6,7 @@
    "branch": "integration/livelits-modular-editors",
    "links": [
     [
-     "localhost:8341 (#2635 at 90ed4505bf, plus the full-screen button 5961401df2, local)",
+     "localhost:8341 (#2635 at 5961401df2: the full-screen button, pushed)",
      "http://localhost:8341/"
     ],
     [
@@ -14,7 +14,7 @@
      "http://localhost:8341/?slide=livelit-playground-scenes"
     ]
    ],
-   "branch_note": "(served again since 14:46 on 2026-10-19, after the 14:42 crash: the 13:34 build of 5961401df2, worktree <code>~/hazel-livelits-modular</code> on local branch trial/2635-up-to-date: #2635's pushed head 90ed4505bf plus the local full-screen button (the bar's toggle beside the type; aliases expanded in the full view). Documentation &gt; Livelits &gt; Overview, then ^flag's eye: the model pane)"
+   "branch_note": "(served again since 14:46 on 2026-10-19, after the 14:42 crash: the 13:34 build of 5961401df2, worktree <code>~/hazel-livelits-modular</code> on local branch trial/2635-up-to-date: #2635's head since 15:10, the full-screen button on top of 90ed4505bf (the bar's toggle beside the type; aliases expanded in the full view). Documentation &gt; Livelits &gt; Overview, then ^flag's eye: the model pane)"
   },
   {
    "pr": 2597,
@@ -1019,7 +1019,7 @@
    "source": "Matthew, 2026-10-19 11:10, in chat, with a screenshot of #2635's Scenes slide",
    "url": "http://localhost:8341/?slide=livelit-playground-scenes",
    "text": "<b>Full screen for a livelit's picture: the final scene, and any other SVG a livelit draws.</b> Matthew: \"a way to full-screen a SVG image like the final scene, but in general, any of them.\" On #2635 only, for now (livelits &times; modular editors). His screenshot: Documentation &gt; Livelit Playground &gt; Scenes, the <code>drawn</code> livelit (type Picture) showing the haunted-hut scene inline at about a third of the pane's width. So: a control on any livelit view that draws an SVG (or on the view itself) that shows it full screen, scaled to fit, with a way back (Esc), and the same for every such view, not only Scenes.",
-   "progress": "11:10: minted and enqueued. 13:38: BUILT and committed locally (5961401df2 on the #2635 branch; pushed after #2635's current CI run): a full-screen button at the top right of any livelit whose view draws an svg (CSS :has), full-screening the view's largest svg, scaled to fit; Esc leaves. Served on 8341 now. Left: try it with a real click (the pane is hidden while Matthew is away).",
+   "progress": "11:10: minted and enqueued. 13:38: BUILT and committed locally (5961401df2 on the #2635 branch; pushed after #2635's current CI run): a full-screen button at the top right of any livelit whose view draws an svg (CSS :has), full-screening the view's largest svg, scaled to fit; Esc leaves. Served on 8341 now. Left: try it with a real click (the pane is hidden while Matthew is away). 15:10: PUSHED to #2635 (5961401df2 is its head), after #2635's Full tests went green on 90ed4505bf; its CI runs again. Still left, for Matthew: try it with a real click (Scenes slide, the button at the top right of the drawn picture).",
    "log": [
     {
      "at": "2026-10-19T11:10-06:00",
@@ -1062,34 +1062,6 @@
     }
    ],
    "waiting": "Matthew: read ^du_report(13) (localhost:8133/du-reports/013/); publish on your word."
-  },
-  {
-   "id": 405,
-   "area": "hazel, #2635's CI: make it green",
-   "added": "2026-10-19T11:31-06:00",
-   "opened": "2026-10-19T11:31-06:00",
-   "status": "open",
-   "tags": [
-    "highest priority"
-   ],
-   "source": "Matthew, 2026-10-19 11:31, in chat",
-   "url": "https://github.com/hazelgrove/hazel/pull/2635",
-   "text": "<b>Fix #2635's CI errors: highest priority.</b> Matthew: \"highest priority after we settle is, fixing the CI errors on our livelits x modular editors PR.\" What fails, as ^report(18) found (^ticket(385)): 8 DefStaticsParity module cases (modules analyzed whole since the merge), <code>Editing.TableDecorations 1</code> (dev's canonical completion closes the stray bracket the test relies on), and the corpus test's one mismatch (<code>macro-result.hz</code>, cause unknown); and GitHub shows #2635 conflicting with its base. ^ticket(400)'s draft #2699 clears the 8 locally (DefStaticsParity 42/43). Today's push (b44bb9c50f, ^ticket(394)) failed Fast checks too: read it first.",
-   "progress": "11:31: minted as first priority, after ^ticket(400) (closed: draft #2699). 11:38: (Matthew AFK, async) 1) MERGE CONFLICTS FIXED: merged #2597's branch into #2635 (cf325d4f61), every conflict to #2635's side: all 110 of #2597's commits since 3efe8c7e52 are already here (79 same patch, 26 same title, 5 checked by content); the merge adds only Test_CopyDescendants (passes). GitHub: MERGEABLE. 2) TableDecorations 1 FIXED (27f100e37c): the hidden error now comes from a wrong row label; 3/3 pass locally. Both pushed to #2635. NEXT: the corpus mismatch (macro-result.hz); the 8 module cases are #2699's (CI running on GitHub) - merging it into #2635 is Matthew's call, as it was meant exploratory. 11:53: CRASH at 11:46 (crash 41), mid-test; nothing lost. CORPUS CAUSE FOUND before it (macro-result.hz): after the corpus test's edit (1 -> 2) and back, the ^^livelit(^inc(...)) use kept the edited expansion (a + 2), because DefStatics.entry_name named a livelit entry `inc` while a use records `^inc` in its co_ctx, so a changed livelit dirtied nothing. Fix (uncommitted, in hazel-livelits-modular): entry_name gives \"^\" ++ name. NEXT: rerun DefStaticsParity, then commit + push to #2635. 11:58: 3) CORPUS CASE FIXED, pushed to #2635 as 1131a457e4: DefStaticsParity 35 of 43 locally, the corpus case passes; the 8 failures are exactly the module cases. FOUND on #2699's CI (Fast checks, 2 failures): TableDecorations 1 (fixed on #2635 since) and the corpus case on a DIFFERENT file, color-fig3.hz (extra Livelit name / Constructor errors, field types ? vs SpliceRef), which #2635 passes. So merging #2699 as it is still leaves one red test. NEXT: does #2699 + 1131a457e4 clear color-fig3 locally? 12:06: 4) #2699's OWN CORPUS FAILURE FIXED, pushed to #2699 (223357135a, on a merge of #2635's 1131a457e4, 206aed1715): `let ^color = {...}` binds a Var, so #2699's module_literal_members analyzed a livelit DEFINITION member by member, skipping UserLivelit.detect; Model/Action stayed unresolved and every ^color use was unbound (color-fig3.hz). A livelit binder is no longer `simple`. Locally #2699 now passes DefStaticsParity 43 of 43. CI running on both PRs. WAITING ON MATTHEW: merge #2699 into #2635 (it was meant as exploratory)? 12:16: Matthew: \"Yes: merge #2699 into #2635 once #2699's CI is green.\" So: watching #2699's CI (223357135a), then merging it into #2635. 12:18: parked while #2699's CI runs (background watch in this session); on green, merge #2699 into #2635 (Matthew's yes, 12:1x). 13:38: #2699 MERGED into #2635 (its CI green: Fast checks and Full tests), as merge 90ed4505bf with the fixes for 387 and 396, after DefStaticsParity 43/43, Editing.Splice 17/17 and ContextInspector 2/2 locally; pushed. GitHub marked #2699 merged. #2635's CI now runs on 90ed4505bf (Fast checks ~20 min, Full tests ~90 min). On green: close this ticket. The commit for 401 (5961401df2) waits locally so as not to cancel that run. 13:53: #2635's FAST CHECKS PASS on 90ed4505bf (18 min): its first green Fast checks since 10-01. Full tests running (due ~15:05); then close this ticket and push 401's commit.",
-   "log": [
-    {
-     "at": "2026-10-19T11:31-06:00",
-     "from": "matthew",
-     "chars": 248,
-     "asks": false
-    },
-    {
-     "at": "2026-10-19T12:16-06:00",
-     "from": "matthew",
-     "chars": 53,
-     "asks": false
-    }
-   ]
   },
   {
    "id": 406,
@@ -1259,19 +1231,6 @@
    ]
   },
   {
-   "id": 416,
-   "area": "hazel, #2610: the load fallback's split-point bug",
-   "added": "2026-10-19T14:19-06:00",
-   "opened": "2026-10-19T14:19-06:00",
-   "status": "open",
-   "tags": [],
-   "source": "^report(21) (^ticket(398)), What next, step 1: \"Fix #2610 before it merges\"; opened by Claude during the AFK protocol",
-   "url": "https://github.com/hazelgrove/hazel/pull/2610",
-   "text": "<b>Fix #2610 before it merges: the segmented load fallback turns <code>x - y</code> into <code>x ¿ - y</code> when a split lands just after an operand.</b> Confirmed 2026-10-19 by running Hazel's format at #2610's head and its parent on a fallback-shaped program: the parent loads <code>aaa…a - b</code>, #2610 <code>aaa…a ¿ - b</code>. Each piece after the first is typed as if it began the program, so a token whose mold depends on its left neighbour (<code>-</code>, <code>(</code>, an ascription's type) is molded wrong, and the join is only re-grouted, never remolded. Fix to try: remold the joined zipper once before the final re-grout (or split only where the next token's mold cannot depend on what precedes it). Test: the constructed cases, and a sweep of split offsets over the corpus against the character-by-character parser.",
-   "progress": "14:19: opened from ^report(21)'s first next step; started. 14:29: FIXED and PUSHED to #2610 (94ca8a2daa): the joined pieces go through Zipper.remold_regrout once. Tests: three split cases in Parser.Segmented compared with holes kept (the old comparison stripped them, which hid the bug); without the fix the minus and parentheses cases fail. Locally: Parser.Segmented 9/9, TextRoundtrip.* (DocSlides 73, TutorialLessons 114, SoleHoles, TextReproducers, Property), DocSlides.ReparseBackuptext 73, Editing.Paste 17, RoundTrip.Basic 11 pass. CI running; close on green. 14:38: #2651's corner fixed too (report 21 next step 2): 29c08fd8fa restores the error for a module definition that names itself (the Let's fixpoint is the sign; it strips the name from the co_ctx), and pins the one-member signature result with a test; description updated; draft 21 notes both fixes. Waiting on #2610's Full tests to close this.",
-   "log": []
-  },
-  {
    "id": 417,
    "area": "dashboard, hazel-work-notes: one file per page, its versions in git history",
    "added": "2026-10-19T14:26-06:00",
@@ -1292,25 +1251,99 @@
      "asks": false
     }
    ]
+  }
+ ],
+ "next_ticket": 419,
+ "current_ticket": 389,
+ "current_note": "15:07: ^ticket(416) closed (done); ^ticket(389) is next in the queue",
+ "closed_tickets": [
+  {
+   "id": 405,
+   "area": "hazel, #2635's CI: make it green",
+   "added": "2026-10-19T11:31-06:00",
+   "opened": "2026-10-19T11:31-06:00",
+   "status": "done",
+   "tags": [
+    "highest priority"
+   ],
+   "source": "Matthew, 2026-10-19 11:31, in chat",
+   "url": "https://github.com/hazelgrove/hazel/pull/2635",
+   "text": "<b>Fix #2635's CI errors: highest priority.</b> Matthew: \"highest priority after we settle is, fixing the CI errors on our livelits x modular editors PR.\" What fails, as ^report(18) found (^ticket(385)): 8 DefStaticsParity module cases (modules analyzed whole since the merge), <code>Editing.TableDecorations 1</code> (dev's canonical completion closes the stray bracket the test relies on), and the corpus test's one mismatch (<code>macro-result.hz</code>, cause unknown); and GitHub shows #2635 conflicting with its base. ^ticket(400)'s draft #2699 clears the 8 locally (DefStaticsParity 42/43). Today's push (b44bb9c50f, ^ticket(394)) failed Fast checks too: read it first.",
+   "progress": "11:31: minted as first priority, after ^ticket(400) (closed: draft #2699). 11:38: (Matthew AFK, async) 1) MERGE CONFLICTS FIXED: merged #2597's branch into #2635 (cf325d4f61), every conflict to #2635's side: all 110 of #2597's commits since 3efe8c7e52 are already here (79 same patch, 26 same title, 5 checked by content); the merge adds only Test_CopyDescendants (passes). GitHub: MERGEABLE. 2) TableDecorations 1 FIXED (27f100e37c): the hidden error now comes from a wrong row label; 3/3 pass locally. Both pushed to #2635. NEXT: the corpus mismatch (macro-result.hz); the 8 module cases are #2699's (CI running on GitHub) - merging it into #2635 is Matthew's call, as it was meant exploratory. 11:53: CRASH at 11:46 (crash 41), mid-test; nothing lost. CORPUS CAUSE FOUND before it (macro-result.hz): after the corpus test's edit (1 -> 2) and back, the ^^livelit(^inc(...)) use kept the edited expansion (a + 2), because DefStatics.entry_name named a livelit entry `inc` while a use records `^inc` in its co_ctx, so a changed livelit dirtied nothing. Fix (uncommitted, in hazel-livelits-modular): entry_name gives \"^\" ++ name. NEXT: rerun DefStaticsParity, then commit + push to #2635. 11:58: 3) CORPUS CASE FIXED, pushed to #2635 as 1131a457e4: DefStaticsParity 35 of 43 locally, the corpus case passes; the 8 failures are exactly the module cases. FOUND on #2699's CI (Fast checks, 2 failures): TableDecorations 1 (fixed on #2635 since) and the corpus case on a DIFFERENT file, color-fig3.hz (extra Livelit name / Constructor errors, field types ? vs SpliceRef), which #2635 passes. So merging #2699 as it is still leaves one red test. NEXT: does #2699 + 1131a457e4 clear color-fig3 locally? 12:06: 4) #2699's OWN CORPUS FAILURE FIXED, pushed to #2699 (223357135a, on a merge of #2635's 1131a457e4, 206aed1715): `let ^color = {...}` binds a Var, so #2699's module_literal_members analyzed a livelit DEFINITION member by member, skipping UserLivelit.detect; Model/Action stayed unresolved and every ^color use was unbound (color-fig3.hz). A livelit binder is no longer `simple`. Locally #2699 now passes DefStaticsParity 43 of 43. CI running on both PRs. WAITING ON MATTHEW: merge #2699 into #2635 (it was meant as exploratory)? 12:16: Matthew: \"Yes: merge #2699 into #2635 once #2699's CI is green.\" So: watching #2699's CI (223357135a), then merging it into #2635. 12:18: parked while #2699's CI runs (background watch in this session); on green, merge #2699 into #2635 (Matthew's yes, 12:1x). 13:38: #2699 MERGED into #2635 (its CI green: Fast checks and Full tests), as merge 90ed4505bf with the fixes for 387 and 396, after DefStaticsParity 43/43, Editing.Splice 17/17 and ContextInspector 2/2 locally; pushed. GitHub marked #2699 merged. #2635's CI now runs on 90ed4505bf (Fast checks ~20 min, Full tests ~90 min). On green: close this ticket. The commit for 401 (5961401df2) waits locally so as not to cancel that run. 13:53: #2635's FAST CHECKS PASS on 90ed4505bf (18 min): its first green Fast checks since 10-01. Full tests running (due ~15:05); then close this ticket and push 401's commit.",
+   "log": [
+    {
+     "at": "2026-10-19T11:31-06:00",
+     "from": "matthew",
+     "chars": 248,
+     "asks": false
+    },
+    {
+     "at": "2026-10-19T12:16-06:00",
+     "from": "matthew",
+     "chars": 53,
+     "asks": false
+    }
+   ],
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T15:07-06:00",
+   "outcome": "#2635's CI is GREEN on 90ed4505bf (the merge of #2699): Fast checks (18 min) and Full tests (1 h 32 min), its first green Full tests since 2026-10-01.",
+   "metrics": {
+    "open_minutes": 216,
+    "matthew_messages": 2,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 301,
+    "tokens_est": 75,
+    "sync_minutes_est": 0
+   }
+  },
+  {
+   "id": 416,
+   "area": "hazel, #2610: the load fallback's split-point bug",
+   "added": "2026-10-19T14:19-06:00",
+   "opened": "2026-10-19T14:19-06:00",
+   "status": "done",
+   "tags": [],
+   "source": "^report(21) (^ticket(398)), What next, step 1: \"Fix #2610 before it merges\"; opened by Claude during the AFK protocol",
+   "url": "https://github.com/hazelgrove/hazel/pull/2610",
+   "text": "<b>Fix #2610 before it merges: the segmented load fallback turns <code>x - y</code> into <code>x ¿ - y</code> when a split lands just after an operand.</b> Confirmed 2026-10-19 by running Hazel's format at #2610's head and its parent on a fallback-shaped program: the parent loads <code>aaa…a - b</code>, #2610 <code>aaa…a ¿ - b</code>. Each piece after the first is typed as if it began the program, so a token whose mold depends on its left neighbour (<code>-</code>, <code>(</code>, an ascription's type) is molded wrong, and the join is only re-grouted, never remolded. Fix to try: remold the joined zipper once before the final re-grout (or split only where the next token's mold cannot depend on what precedes it). Test: the constructed cases, and a sweep of split offsets over the corpus against the character-by-character parser.",
+   "progress": "14:19: opened from ^report(21)'s first next step; started. 14:29: FIXED and PUSHED to #2610 (94ca8a2daa): the joined pieces go through Zipper.remold_regrout once. Tests: three split cases in Parser.Segmented compared with holes kept (the old comparison stripped them, which hid the bug); without the fix the minus and parentheses cases fail. Locally: Parser.Segmented 9/9, TextRoundtrip.* (DocSlides 73, TutorialLessons 114, SoleHoles, TextReproducers, Property), DocSlides.ReparseBackuptext 73, Editing.Paste 17, RoundTrip.Basic 11 pass. CI running; close on green. 14:38: #2651's corner fixed too (report 21 next step 2): 29c08fd8fa restores the error for a module definition that names itself (the Let's fixpoint is the sign; it strips the name from the co_ctx), and pins the one-member signature result with a test; description updated; draft 21 notes both fixes. Waiting on #2610's Full tests to close this.",
+   "log": [],
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T15:07-06:00",
+   "outcome": "#2610's load fallback remolds the joined pieces once (94ca8a2daa), with three split cases compared with holes kept; #2651's corner fixed too (29c08fd8fa). #2610's CI green on 94ca8a2daa: Fast checks and Full tests.",
+   "metrics": {
+    "open_minutes": 48,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0
+   }
   },
   {
    "id": 418,
    "area": "hazel, #2673 #2661 #2681 #2675: hashes and descriptions before they merge",
    "added": "2026-10-19T14:41-06:00",
    "opened": "2026-10-19T14:41-06:00",
-   "status": "open",
+   "status": "done",
    "tags": [],
    "source": "^report(21) (^ticket(398)), What next, steps 3 and 5; opened by Claude during the AFK protocol",
    "url": "https://github.com/hazelgrove/hazel/pull/2673",
    "text": "<b>Strengthen the performance PRs' hashes, and say what two of them change, before they merge.</b> ^report(21)'s next steps 3 and 5:<ul><li><b>#2673's term hash:</b> each lane is an xor-multiply chain, so two children that both differ only in bit 31 cancel. Add a finalizer per lane (a mixing step after each combine) so no single bit passes through unmixed, and a test that pins it.</li><li><b>#2661's type hash, used by #2681 too:</b> two 30-bit lanes, and for atoms the second lane is an affine function of the first. Either widen it or check equality behind a hit, so a collision can never give a wrong consistency answer.</li><li><b>Descriptions:</b> #2675's, the unused-variable warning it now gives for a binding a recursive let shadows; #2673's, that its reuse decisions differ from the old check in two corners.</li></ul>",
    "progress": "14:41: opened from ^report(21)'s next steps 3 and 5 while #2610's and #2635's Full tests run; started. 14:42: <b>the laptop crashed</b> (crash 42) about 20 s into <code>dune build test/haz3ltest.bc.js</code> in <code>~/hazel-reuse-hash</code>. Parked state, uncommitted in that worktree (both files whole): <code>test/Test_ValueHash.re</code> has the new case \"parts that differ only in the same bit do not cancel\", which FAILED against the old mix (bit 30, fields 1, 2 hashed alike), and <code>src/util/ValueHash.re</code> has the fix: a finalizer per lane after each step (Murmur3's fmix32 for lane 0, lowbias32 for lane 1) inside <code>mix</code>. Not yet built or run. The crashed build's 2,027 zero-byte outputs were deleted. <b>Next:</b> <code>nice -n 10 dune build test/haz3ltest.bc.js</code> there, run <code>test ValueHash</code>, then the rest of the ticket (#2661's type hash, the two descriptions). 14:55: rebuilt (28 s), ValueHash 6/6, Equality 6/6, Evaluator.Incremental 42/42; checked in node that the old mix collided at bits 30 and 31 for every two of three fields and the new one at none. <b>Pushed to #2673: 9de7d81838.</b> Next: #2661's type hash, widened to three 30-bit lanes with a finalizer per lane (no run-time cost), rather than an equality check behind the hit (that would walk the fresh copies, the very calls the cache exists for); then merge into #2681.",
-   "log": []
-  }
- ],
- "next_ticket": 419,
- "current_ticket": 418,
- "current_note": "15:00: ^ticket(418): #2673's term hash fix pushed (9de7d81838); now widening #2661's type hash (three lanes, a finalizer each), then #2681 and the descriptions. #2610's and #2635's Full tests run on GitHub (^ticket(416), ^ticket(405): close on green).",
- "closed_tickets": [
+   "log": [],
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T15:06-06:00",
+   "outcome": "#2673's term hash gets a finalizer per lane (9de7d81838) and a test pinning the two corners where its one walk and the old check disagree (e1edf94a12); #2661's type hash widened to three finalized 30-bit lanes, about 90 bits (67f676852b), merged into #2681 (1ef39abd4b); descriptions of #2661, #2673, #2675 (its unused-variable warning, confirmed with hazel analyze -W at the PR and its parent) and #2681 updated. CI running on all three pushes.",
+   "metrics": {
+    "open_minutes": 26,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 391,
    "area": "dashboard, hazel-work-notes, its repository's size",
@@ -13598,10 +13631,7 @@
   }
  ],
  "queue": [
-  418,
-  416,
   389,
-  405,
   415,
   413,
   406,
@@ -13631,7 +13661,7 @@
   322,
   344
  ],
- "current_since": "2026-10-19T14:41-06:00",
+ "current_since": "2026-10-19T15:07-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
