@@ -1205,7 +1205,7 @@
    "source": "Matthew, 2026-10-19 13:36, in chat",
    "url": "",
    "text": "<b>Audit every object for click to sit: is it seat-sized at some scale, and does it have a top a friend could sit on? Then offer it, unless there is a reason to discuss.</b> Matthew, \"mint and enqueue after that dress-up ticket\" (^ticket(412)): \"audit of all objects to determine: do they have the approximate size of a seat, sometimes, at any scale? (rocks often do); do they have a reasonable top surface for sitting (rocks do, but cauldrons do not, since they would burn us...)\". \"For each object we don't offer click to sit, let's consider it -- and lean towards doing it, unless there's a reason to discuss.\" So: a table of every object (by place), its sizes across scales, whether its top is sittable, and whether it already offers click to sit; then add click to sit for the yes ones, and list the doubtful ones for Matthew (blocked on Matthew for those only). Not during Hazel work time. Matthew, 13:38, another example: \"don't sit on bushes -- they would poke us too much, etc.\" So the top must be one a friend would sit on: not hot (cauldrons), not prickly (bushes), and the like.",
-   "progress": "13:36: minted and enqueued right after ^ticket(412). 13:38: + not bushes (they poke), Matthew's example.",
+   "progress": "13:36: minted and enqueued right after ^ticket(412). 13:38: + not bushes (they poke), Matthew's example. 14:19: begun: seats are per place (SEATS[kind](c, B) lists name, x0, x1, y, z, facing; rocks have a top to sit on, ticket 50). PARKED for after today's Hazel work (Matthew: Dress Up low priority until then).",
    "log": [
     {
      "at": "2026-10-19T13:36-06:00",
@@ -1274,11 +1274,24 @@
      "asks": false
     }
    ]
+  },
+  {
+   "id": 416,
+   "area": "hazel, #2610: the load fallback's split-point bug",
+   "added": "2026-10-19T14:19-06:00",
+   "opened": "2026-10-19T14:19-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "^report(21) (^ticket(398)), What next, step 1: \"Fix #2610 before it merges\"; opened by Claude during the AFK protocol",
+   "url": "https://github.com/hazelgrove/hazel/pull/2610",
+   "text": "<b>Fix #2610 before it merges: the segmented load fallback turns <code>x - y</code> into <code>x ¿ - y</code> when a split lands just after an operand.</b> Confirmed 2026-10-19 by running Hazel's format at #2610's head and its parent on a fallback-shaped program: the parent loads <code>aaa…a - b</code>, #2610 <code>aaa…a ¿ - b</code>. Each piece after the first is typed as if it began the program, so a token whose mold depends on its left neighbour (<code>-</code>, <code>(</code>, an ascription's type) is molded wrong, and the join is only re-grouted, never remolded. Fix to try: remold the joined zipper once before the final re-grout (or split only where the next token's mold cannot depend on what precedes it). Test: the constructed cases, and a sweep of split offsets over the corpus against the character-by-character parser.",
+   "progress": "14:19: opened from ^report(21)'s first next step; started.",
+   "log": []
   }
  ],
- "next_ticket": 416,
- "current_ticket": 413,
- "current_note": "14:19: Started (Hazel tickets all wait on Matthew or CI): the click-to-sit audit: every object, is it seat-sized at some scale, is its top sittable (not hot like a cauldron, not prickly like a bush), and does it offer click to sit already. Analysis first. ^ticket(405): #2635's Full tests due ~15:05.",
+ "next_ticket": 417,
+ "current_ticket": 416,
+ "current_note": "14:19: Started: fixing #2610's split-point bug (the segmented load fallback molds a piece's first token without its left context). Fresh worktree from the PR's head; no browser needed. ^ticket(405): #2635's Full tests due ~15:05.",
  "closed_tickets": [
   {
    "id": 404,
@@ -13529,9 +13542,10 @@
   }
  ],
  "queue": [
-  413,
+  416,
   389,
   405,
+  413,
   406,
   412,
   414,
