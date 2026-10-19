@@ -685,10 +685,12 @@
    "added": "2026-10-19",
    "opened": "2026-10-19T09:14-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
-   "url": "",
-   "progress": "09:14: minted. 09:31 IDEAS (read on integration/livelits-modular-editors): the result-type expansion is Matthew's own b6896f5b13 (10-12): CursorInspector's inspector_expanded prints with inline: false and lays the segment out with PrettySegment.prettify ~width (panel_columns, from the window and font_metrics.col_width); 5f04a9e265 adds an alias's definition beside its name. Gamma is ContextInspector.re (104 lines): every entry printed inline: true on one line, its click a jump to the definition. (1) Reuse the path as is: a shared helper (CodeViewable or a small TypLayout module: prettify to a width, falling back to one line) used by both inspectors. (2) Per entry, not all at once (Gamma can be the whole prelude): an entry whose one-line type is wider than the panel shows its first line and a ▸; the ▸ (not the row, whose click jumps) unfolds it to the laid-out form under the name, a hanging indent so names stay in a column. (3) The cursor inspector's ⤢ toggle as 'unfold all' in Gamma too, or Gamma's own, kept in settings. (4) The entry for the variable under the cursor unfolded and marked automatically. (5) Width from Gamma's panel, not the window: its own box's width over col_width. (6) Cost: lay out only unfolded entries, memoized by (type, width), so a big context costs nothing until opened. (7) Aliases and modules: an alias by name with its definition on unfold (as 5f04a9e265), a module's members one per line, each foldable. Recommendation: (1) + (2) + (5) + (6) first; (3), (4), (7) after. 09:34 Matthew: \"ticket 386 -- follow your recommendation.\"",
+   "url": "http://localhost:8361/",
+   "progress": "09:14: minted. 09:31 IDEAS (read on integration/livelits-modular-editors): the result-type expansion is Matthew's own b6896f5b13 (10-12): CursorInspector's inspector_expanded prints with inline: false and lays the segment out with PrettySegment.prettify ~width (panel_columns, from the window and font_metrics.col_width); 5f04a9e265 adds an alias's definition beside its name. Gamma is ContextInspector.re (104 lines): every entry printed inline: true on one line, its click a jump to the definition. (1) Reuse the path as is: a shared helper (CodeViewable or a small TypLayout module: prettify to a width, falling back to one line) used by both inspectors. (2) Per entry, not all at once (Gamma can be the whole prelude): an entry whose one-line type is wider than the panel shows its first line and a ▸; the ▸ (not the row, whose click jumps) unfolds it to the laid-out form under the name, a hanging indent so names stay in a column. (3) The cursor inspector's ⤢ toggle as 'unfold all' in Gamma too, or Gamma's own, kept in settings. (4) The entry for the variable under the cursor unfolded and marked automatically. (5) Width from Gamma's panel, not the window: its own box's width over col_width. (6) Cost: lay out only unfolded entries, memoized by (type, width), so a big context costs nothing until opened. (7) Aliases and modules: an alias by name with its definition on unfold (as 5f04a9e265), a module's members one per line, each foldable. Recommendation: (1) + (2) + (5) + (6) first; (3), (4), (7) after. 09:34 Matthew: \"ticket 386 -- follow your recommendation.\" 10:03: BUILT (1)+(2)+(5)+(6), plus aliases from (7): commit 20ade6928b on NEW local branch context-inspector-long-types (worktree ~/hazel-dev-inspector), stacked on #2676 (cursor-inspector-full-types, Matthew's PR to dev). A long Gamma entry gets a toggle at its left that lays the type out under the name (CodeViewable.lay_out, shared with the cursor inspector); state is non-persistent globals.context_unfolded keyed by sep+name+id (the prelude shares one id); 60 columns, fewer on a narrow window; Gamma grows to 40vh while one is unfolded; only unfolded entries are laid out, memoized. Checked in the browser on 8361 (this branch's build): 147 of 249 tutorial entries toggled, all cut off, none cut off without one; one click unfolds one entry, no jump, no scroll; row click still jumps; ColorRoles = 114 lines <= 60 cols; no console errors. @check and dune fmt clean; no tests run (view code). NOT pushed. ✋ Waiting on Matthew: push and open a draft PR stacked on #2676? Next after that: 387, then 388.",
    "log": [
     {
      "at": "2026-10-19T09:14-06:00",
@@ -825,8 +827,8 @@
   }
  ],
  "next_ticket": 393,
- "current_ticket": 386,
- "current_note": "09:56: ✋ ^report(18) (ticket 385's answer, why #2635's CI is red) is drafted locally and waits on Matthew's read before it is published. Starting 386: long types in Gamma, per the recommendation.",
+ "current_ticket": null,
+ "current_note": "10:04: ✋ Two things wait on Matthew: (1) ^report(18) (why #2635 fails CI), a local draft at http://localhost:8131/018/, published only on his word; (2) ^ticket(386) built locally (commit 20ade6928b, Gamma's long types, served on 8361): OK to push and open a draft PR stacked on #2676? Next: 387, then 388.",
  "closed_tickets": [
   {
    "id": 383,
