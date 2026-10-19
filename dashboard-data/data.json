@@ -780,56 +780,6 @@
    "text": "<b>Dress Up: the speed measurements ^du_report(5) still wants.</b> Before publishing, Matthew had asked for a frame-rate check of the proposed full-screen 🏞️ Background designer (many place pictures at once were slow on the black laptop), with the place pictures kept as pictures so they cost little; he published the report first. Measure the designer's place pictures drawn live, as still SVGs and as bitmaps, and the friend's walk and drag with the designer open, at normal speed and on the slow tiers, then add the numbers to the report as a dated note (its What next, step 8)."
   },
   {
-   "id": 293,
-   "area": "dress up, castles",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T11:23-06:00",
-   "status": "open",
-   "tags": [],
-   "progress": "Found while minting it (11:23): the throne is one object, \"throne\", drawn on its dais in kingRoomSvg (js/13-castle-rooms-and-map.js 962, the throne 994-1008). The castle's two color themes are THEMES (js/01-state.js 89), set per castle (castleThemeA/B, js/20-controls.js 428) and chosen per room (castleRoomTheme). The king's room's doors are on its sides already (ROOM_KINDS.king exits: \"side\", js/01-state.js 145): check that it holds with six thrones across the room. Matthew (11:23): \"please try to reuse code where possible --- these are the same controls as the cat room\". The cat room's per-cat controls are one table in js/01-state.js (CAT_POSES 172; each cat's rows, colors, eyes and pose, about 200-215), drawn by catRoomSvg (js/13-castle-rooms-and-map.js 1292): build a throne's cat from the same table and drawing, not a copy. Better: RESIDENTS (js/01-state.js 207) is the general table the castle's residents come from (cats in the cat room, horses in the stable): each kind's count and fields give its settings' keys and defaults, castleOf's lists, the TABS controls and SHOWN_WHEN. So thrones can be a resident kind of the king's room (count up to 6, starting at 2; fields: size, theme A or B, has a cat), and a throne's cat can take the cats' own fields (fur, white, eyes, pose, size, tail wag) as they are.",
-   "log": [
-    {
-     "at": "2026-10-18T11:23-06:00",
-     "from": "matthew",
-     "chars": 178,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T11:23-06:00",
-     "from": "matthew",
-     "chars": 75,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T11:23-06:00",
-     "from": "matthew",
-     "chars": 49,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T11:23-06:00",
-     "from": "matthew",
-     "chars": 107,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T11:23-06:00",
-     "from": "matthew",
-     "chars": 87,
-     "asks": false
-    },
-    {
-     "at": "2026-10-18T20:10-06:00",
-     "from": "matthew",
-     "chars": 43,
-     "asks": false
-    }
-   ],
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "text": "<b>Dress Up: up to six thrones in each king's room.</b> Each king's room permits up to 6 thrones, each with a size and a theme control. The default, going forward, is 2 (a king's and a queen's), in theme A and theme B, perhaps. And so the doors go on the sides wherever thrones would be in their way. Each throne also has an option: 🐈 has a cat (Matthew, 11:23); and with a cat, all of the cat's options (11:23): its animation (sitting, walking, standing, and so on), its colors, and its size. Reuse the cat room's code: these are the same controls."
-  },
-  {
    "id": 294,
    "area": "dress up, controls and accessibility",
    "added": "2026-10-18",
@@ -1925,9 +1875,76 @@
   }
  ],
  "next_ticket": 358,
- "current_ticket": 293,
- "current_note": "20:09: starting: up to six thrones in each king's room, each with a size and a theme",
+ "current_ticket": 294,
+ "current_note": "20:13: starting: Dress Up: walking to a click, a new click queues or replaces the plan, the player's choice. He really likes the multi-path planning walk-to-click supp",
  "closed_tickets": [
+  {
+   "id": 293,
+   "area": "dress up, castles",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T11:23-06:00",
+   "status": "done",
+   "tags": [],
+   "progress": "Found while minting it (11:23): the throne is one object, \"throne\", drawn on its dais in kingRoomSvg (js/13-castle-rooms-and-map.js 962, the throne 994-1008). The castle's two color themes are THEMES (js/01-state.js 89), set per castle (castleThemeA/B, js/20-controls.js 428) and chosen per room (castleRoomTheme). The king's room's doors are on its sides already (ROOM_KINDS.king exits: \"side\", js/01-state.js 145): check that it holds with six thrones across the room. Matthew (11:23): \"please try to reuse code where possible --- these are the same controls as the cat room\". The cat room's per-cat controls are one table in js/01-state.js (CAT_POSES 172; each cat's rows, colors, eyes and pose, about 200-215), drawn by catRoomSvg (js/13-castle-rooms-and-map.js 1292): build a throne's cat from the same table and drawing, not a copy. Better: RESIDENTS (js/01-state.js 207) is the general table the castle's residents come from (cats in the cat room, horses in the stable): each kind's count and fields give its settings' keys and defaults, castleOf's lists, the TABS controls and SHOWN_WHEN. So thrones can be a resident kind of the king's room (count up to 6, starting at 2; fields: size, theme A or B, has a cat), and a throne's cat can take the cats' own fields (fur, white, eyes, pose, size, tail wag) as they are. 20:13 DONE, 0.0.262: RESIDENTS.thrones (js/01-state.js: count up to 6, start 2; Size, Theme, Cat, then CAT_FIELDS minus Spot, the cat size as CatSize, each cat field shown only with a cat via a sixth 'when' element, honoured in SHOWN_WHEN generically); throneLayout, throneSvg and kingThrones in js/13 (fitted across the dais, velvet the theme's carpet, crest its flagA; K.themeA kept before a B room swaps), a part croom-thrones of their own; ROOM_SEATS.king a seat per throne; LFO_FOLLOWERS honours R.followsIf. The doors were already on the side walls, clear of the dais. Check: throne293 (logic run in the pane: all pass).",
+   "log": [
+    {
+     "at": "2026-10-18T11:23-06:00",
+     "from": "matthew",
+     "chars": 178,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T11:23-06:00",
+     "from": "matthew",
+     "chars": 75,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T11:23-06:00",
+     "from": "matthew",
+     "chars": 49,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T11:23-06:00",
+     "from": "matthew",
+     "chars": 107,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T11:23-06:00",
+     "from": "matthew",
+     "chars": 87,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T20:10-06:00",
+     "from": "matthew",
+     "chars": 43,
+     "asks": false
+    },
+    {
+     "at": "2026-10-18T20:13-06:00",
+     "from": "claude",
+     "chars": 1000,
+     "asks": false
+    }
+   ],
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "text": "<b>Dress Up: up to six thrones in each king's room.</b> Each king's room permits up to 6 thrones, each with a size and a theme control. The default, going forward, is 2 (a king's and a queen's), in theme A and theme B, perhaps. And so the doors go on the sides wherever thrones would be in their way. Each throne also has an option: 🐈 has a cat (Matthew, 11:23); and with a cat, all of the cat's options (11:23): its animation (sitting, walking, standing, and so on), its colors, and its size. Reuse the cat room's code: these are the same controls.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T20:13-06:00",
+   "outcome": "Released in 0.0.262: each king's room starts with a king's and a queen's throne (themes A and B) and takes up to six across its dais, each with its own size and theme, each a seat; any throne can have a cat with all the cat room's settings, sitting, asleep or pacing on its seat. Check: throne293.",
+   "metrics": {
+    "open_minutes": 530,
+    "matthew_messages": 6,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 539,
+    "tokens_est": 134,
+    "sync_minutes_est": 0.0
+   }
+  },
   {
    "id": 288,
    "area": "dress up, costumes",
@@ -10823,7 +10840,6 @@
   }
  ],
  "queue": [
-  293,
   294,
   297,
   298,
@@ -10878,5 +10894,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T20:09-06:00"
+ "current_since": "2026-10-18T20:13-06:00"
 }
