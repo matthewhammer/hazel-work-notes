@@ -984,32 +984,6 @@
    "progress": ""
   },
   {
-   "id": 332,
-   "area": "dress up, planned walks",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T16:05-06:00",
-   "status": "open",
-   "tags": [],
-   "text": "<b>Dress Up: a planned walk goes straight through the tree trunk in a tree room's corner.</b> Matthew, with a screenshot in the 🐰 4 tree room, 0.0.233, 🔬 collision boxes and planned path on (kept locally, ~/du-shots/ticket-332/): \"path planning bug --- why is the path planned through the collision boxes of the corner tree trunk? Are we squeezing out somehow, legally?\" Measured in the room (the screenshot's walk began at about x 273, figY -91): the walk began BEHIND the trunk, in a lane between it and the back wall. The trunk's footprint stops 4 units short of the floor's back line (back 232.5, the line 228.5) and the feet keep 3 units in depth, so the friend can legally stand there, and walk there with the controller. From there no corner of the trunk can be reached: its back corners would be past the wall and are dropped. So planPath finds no way round and falls back to \"just the end\", the straight line, and a planned walk is followed without collision checks, so it goes through the trunk. Not a legal squeeze: a fallback. PLAN: (1) no lane behind a solid near the back wall: a solid whose back is within a sole's depth of the back line reaches the wall, so the controller cannot slip in either. (2) The planner never falls back to a line through a solid: from a start in a pocket, or inside a box, the nearest way out first, then a plan round. (3) A 🔬 check over the default rooms: from every free spot, every planned path misses every box.",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T16:05-06:00",
-     "from": "matthew",
-     "chars": 138,
-     "asks": true
-    },
-    {
-     "at": "2026-10-18T16:06-06:00",
-     "from": "claude",
-     "chars": 900,
-     "asks": false
-    }
-   ],
-   "progress": "16:05: diagnosed in the app's pane on 0.0.233 (solidsHere, planPath from his walk's start): the start is in the lane behind the trunk, planPath returns the straight line [[374, 0]]; one unit further forward it finds a way round. Not started on a fix."
-  },
-  {
    "id": 333,
    "area": "dress up, archives",
    "added": "2026-10-18",
@@ -1464,7 +1438,7 @@
    ],
    "source": "Matthew, chat, 2026-10-18 19:40, with a screenshot",
    "url": "",
-   "progress": "Minted 19:33 as a long run for tonight.",
+   "progress": "Minted 19:33 as a long run for tonight. 21:20: ticket 332 (0.0.278) closed the lane behind the tree room's corner trunk (its back was 4 short of the back line, now at it) and stopped planned walks falling back to a line through it; tonight's run should start by re-testing his screenshot's walk on 0.0.278 before anything else.",
    "log": [
     {
      "at": "2026-10-18T19:33-06:00",
@@ -1639,9 +1613,46 @@
   }
  ],
  "next_ticket": 360,
- "current_ticket": 332,
- "current_note": "20:56: Planned walks through the tree room's corner trunk: closing the lane behind it, and no straight-line fallback through a solid",
+ "current_ticket": 334,
+ "current_note": "20:58: Tree house trap doors: a lever on the wall (open by default), three shapes; the castle pits' spikes toggle (off)",
  "closed_tickets": [
+  {
+   "id": 332,
+   "area": "dress up, planned walks",
+   "added": "2026-10-18",
+   "opened": "2026-10-18T16:05-06:00",
+   "status": "done",
+   "tags": [],
+   "text": "<b>Dress Up: a planned walk goes straight through the tree trunk in a tree room's corner.</b> Matthew, with a screenshot in the 🐰 4 tree room, 0.0.233, 🔬 collision boxes and planned path on (kept locally, ~/du-shots/ticket-332/): \"path planning bug --- why is the path planned through the collision boxes of the corner tree trunk? Are we squeezing out somehow, legally?\" Measured in the room (the screenshot's walk began at about x 273, figY -91): the walk began BEHIND the trunk, in a lane between it and the back wall. The trunk's footprint stops 4 units short of the floor's back line (back 232.5, the line 228.5) and the feet keep 3 units in depth, so the friend can legally stand there, and walk there with the controller. From there no corner of the trunk can be reached: its back corners would be past the wall and are dropped. So planPath finds no way round and falls back to \"just the end\", the straight line, and a planned walk is followed without collision checks, so it goes through the trunk. Not a legal squeeze: a fallback. PLAN: (1) no lane behind a solid near the back wall: a solid whose back is within a sole's depth of the back line reaches the wall, so the controller cannot slip in either. (2) The planner never falls back to a line through a solid: from a start in a pocket, or inside a box, the nearest way out first, then a plan round. (3) A 🔬 check over the default rooms: from every free spot, every planned path misses every box.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "url": "",
+   "log": [
+    {
+     "at": "2026-10-18T16:05-06:00",
+     "from": "matthew",
+     "chars": 138,
+     "asks": true
+    },
+    {
+     "at": "2026-10-18T16:06-06:00",
+     "from": "claude",
+     "chars": 900,
+     "asks": false
+    }
+   ],
+   "progress": "16:05: diagnosed in the app's pane on 0.0.233 (solidsHere, planPath from his walk's start): the start is in the lane behind the trunk, planPath returns the straight line [[374, 0]]; one unit further forward it finds a way round. Not started on a fix.",
+   "closed": "2026-10-18",
+   "closed_at": "2026-10-18T20:58-06:00",
+   "outcome": "0.0.278 (5e56f72): solids whose back is within 16 of the back line now reach it (tree room trunk 4, living room lamp 6, waterfall tree 8, hut couch 10, castle room chest 11, house front step 12); planPath adds side exits from a gap and never falls back to the straight line (the nearest reachable point, marked short: no sit, no going in). tools/checks/path332.mjs: no lanes in 34 places; 2,944 planned walks over 16 places, none through a box. Long-run 355 noted to re-test on 0.0.278 first.",
+   "metrics": {
+    "open_minutes": 293,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 1038,
+    "tokens_est": 259,
+    "sync_minutes_est": 1.0
+   }
+  },
   {
    "id": 329,
    "area": "dress up, 🫧 bubble space",
@@ -11280,7 +11291,6 @@
   }
  ],
  "queue": [
-  332,
   334,
   337,
   338,
@@ -11321,5 +11331,5 @@
   322,
   344
  ],
- "current_since": "2026-10-18T20:56-06:00"
+ "current_since": "2026-10-18T20:58-06:00"
 }
