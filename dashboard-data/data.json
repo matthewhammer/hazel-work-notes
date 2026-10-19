@@ -774,16 +774,22 @@
    ],
    "source": "Matthew, 2026-10-19 09:15, in chat",
    "url": "",
-   "progress": "09:15: minted, the list as of now; 385 in progress (answer due EOD). 09:56: 385's answer is now ^report(18), a local draft (http://localhost:8131/018/), waiting on Matthew's read; the 09:30 artifact is superseded (it had two errors, listed on 385). 10:15: + ^ticket(393), ^report(19): where the UI shows syntax as tiles and where as text (Matthew's ask).",
+   "progress": "09:15: minted, the list as of now; 385 in progress (answer due EOD). 09:56: 385's answer is now ^report(18), a local draft (http://localhost:8131/018/), waiting on Matthew's read; the 09:30 artifact is superseded (it had two errors, listed on 385). 10:15: + ^ticket(393), ^report(19): where the UI shows syntax as tiles and where as text (Matthew's ask). 10:37: + ^ticket(398), the perf PRs' correctness (Cyrus's ask).",
    "log": [
     {
      "at": "2026-10-19T09:15-06:00",
      "from": "matthew",
      "chars": 170,
      "asks": true
+    },
+    {
+     "at": "2026-10-19T10:37-06:00",
+     "from": "matthew",
+     "chars": 597,
+     "asks": false
     }
    ],
-   "text": "<b>Meeting with Cyrus, Wednesday 2026-10-21: the tickets to bring.</b> Matthew: \"My next meeting with Cyrus is Wed -- let's make a ticket that links to all related tickets for that meeting please. For now, it's just a bulleted list based on what you know now.\"<ul><li>^ticket(385): why CI fails on the livelits x modular editing branch (#2635, into ...full): Cyrus's question on Friday; ANSWERED 10-19 09:31: it is the merge (Modules II on the livelits branch meeting #2469's per-member DefStatics; one table test input), neither branch broken: <a href=\"https://claude.ai/artifact/RCpsLbKgrdfY9fvtHE3Dha\">the write-up</a> (private until shared).</li><li>^ticket(386): the type syntax expansion for types in Gamma too, as for the result type (long types on one line): ideas.</li><li>^ticket(387): livelits' model sub-editors as read-only tiles, with tiles' selection UX (right click and the rest); it follows his 10-03 call, the revealed model read-only and selectable.</li><li>^ticket(388): why the right-hand side that explains each syntax form shows no example syntax as read-only tiles (older than Matthew's time on the team).</li><li>Open and waiting on Matthew, in case they come up: ^ticket(54) (offer ^ticket(7)'s three ports to #2469), ^ticket(19) (perf budgets harder to fool, a draft PR?), ^ticket(18) (option B: livelit views evaluated in the worker), ^ticket(102) (the reply to Alexander on #2583), ^ticket(16) (asking the maintainers to require the test jobs for merging into dev).</li></ul>More to come from Matthew."
+   "text": "<b>Meeting with Cyrus, Wednesday 2026-10-21: the tickets to bring.</b> Matthew: \"My next meeting with Cyrus is Wed -- let's make a ticket that links to all related tickets for that meeting please. For now, it's just a bulleted list based on what you know now.\"<ul><li>^ticket(385): why CI fails on the livelits x modular editing branch (#2635, into ...full): Cyrus's question on Friday; ANSWERED 10-19 09:31: it is the merge (Modules II on the livelits branch meeting #2469's per-member DefStatics; one table test input), neither branch broken: <a href=\"https://claude.ai/artifact/RCpsLbKgrdfY9fvtHE3Dha\">the write-up</a> (private until shared).</li><li>^ticket(386): the type syntax expansion for types in Gamma too, as for the result type (long types on one line): ideas.</li><li>^ticket(387): livelits' model sub-editors as read-only tiles, with tiles' selection UX (right click and the rest); it follows his 10-03 call, the revealed model read-only and selectable.</li><li>^ticket(388): why the right-hand side that explains each syntax form shows no example syntax as read-only tiles (older than Matthew's time on the team).</li><li>^ticket(398): do the performance PRs (against #2609) keep typing and evaluation correct? Cyrus wants more analysis and coverage of functional correctness: an argument for each PR in a report, and more correctness tests (a new PR to dev, and tests on each of our PRs). Deadline: tomorrow morning, ideally.</li><li>Open and waiting on Matthew, in case they come up: ^ticket(54) (offer ^ticket(7)'s three ports to #2469), ^ticket(19) (perf budgets harder to fool, a draft PR?), ^ticket(18) (option B: livelit views evaluated in the worker), ^ticket(102) (the reply to Alexander on #2583), ^ticket(16) (asking the maintainers to require the test jobs for merging into dev).</li></ul>More to come from Matthew."
   },
   {
    "id": 391,
@@ -949,9 +955,31 @@
      "asks": false
     }
    ]
+  },
+  {
+   "id": 398,
+   "area": "hazel, performance, correctness: the #2609 PRs",
+   "added": "2026-10-19T10:37-06:00",
+   "opened": "2026-10-19T10:37-06:00",
+   "status": "open",
+   "tags": [
+    "deadline: morning of 2026-10-20 (ideally)"
+   ],
+   "source": "Matthew, 2026-10-19 10:37, in chat, from Cyrus (for ^ticket(389), the 2026-10-21 meeting)",
+   "url": "",
+   "text": "<b>Do the performance PRs keep typing and evaluation correct? An argument for each one, and the tests to back it.</b> Matthew: \"Cyrus wanted more analysis and coverage of functional correctness -- do our performance PRs (the ones from issue #2609) compromise any sense of correctness of typing or evaluation?\" For the meeting with Cyrus, ^ticket(389). Two parts:<ul><li><b>The arguments, in a report.</b> Go through each PR against #2609 (the dashboard's Performance list) and check whether it changes what the type checker or the evaluator computes. For each one, write down why it is sound: what it caches, skips or shares, and why the result is the same as without it (the key it is looked up by, what invalidates it, what it assumes). Compile all of them in a new ^report in the performance analysis series, with any PR whose argument does not hold called out.</li><li><b>The tests.</b> \"add a new PR to dev that does even more correctness tests, if they aren't complete enough as is. -- ditto for our PRs -- add coverage of the features that they add.\" So: a new PR to dev with correctness tests where today's are thin (for example, typing and evaluation results with an optimization on and off, compared). And on each of our perf PRs, tests that cover what that PR adds.</li></ul>",
+   "progress": "10:37: minted and enqueued (deadline: tomorrow morning, ideally).",
+   "log": [
+    {
+     "at": "2026-10-19T10:37-06:00",
+     "from": "matthew",
+     "chars": 597,
+     "asks": false
+    }
+   ]
   }
  ],
- "next_ticket": 398,
+ "next_ticket": 399,
  "current_ticket": 394,
  "current_note": "10:33: recovering from the 10:26 crash: #2635's cherry-pick is redone (b44bb9c50f), and #2698's and #2635's builds are being redone (the crash emptied their bundles). Next: check Picture's expansion in the full view on 8361 and 8341, then push.",
  "closed_tickets": [
@@ -12903,7 +12931,9 @@
   388,
   395,
   374,
+  398,
   326,
+  391,
   276,
   160,
   18,
@@ -12913,7 +12943,6 @@
   315,
   322,
   344,
-  391,
   397
  ],
  "current_since": "2026-10-19T10:19-06:00"
