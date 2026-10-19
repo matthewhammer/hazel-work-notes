@@ -974,7 +974,7 @@
    "source": "^report(18), What next, step 1 (Matthew pasted it, 2026-10-19 11:03)",
    "url": "http://matthewhammer.org/hazel/performance-analysis/018/#step-1",
    "text": "<b>Andrew's per-member analysis on Modules II, brought into #2635: a separate, exploratory draft.</b> ^report(18), What next, step 1: \"Bring Andrew&#x27;s per-member analysis on Modules II (00bc805ca1, on #2687) into #2635, adapted to Modules II part 3. Until then, skip the 8 cases when Modules II is on, each with a reason that links here, so that a red run means something new.\" Matthew: \"let's do\", \"as a draft -- and separate/exploratory.\" So: its own branch off #2635's (integration/livelits-modular-editors), and a DRAFT PR into it, not pushed to #2635 itself; exploratory, so it may end as a finding rather than a merge. Andrew's commit is 00bc805ca1 on #2687 (the standard library, into #2469); #2635 has Modules II part 3, which his port predates, so expect to adapt it. Goal: the 8 DefStaticsParity cases that fail on #2635 pass. (The step's link goes live when ^report(18) is published; it is a local draft today.)",
-   "progress": "11:03: minted from the pasted step; Matthew: let's do, as a separate exploratory draft. Starts once ^report(19) is published (^ticket(393)). 11:14: IN PROGRESS in ~/hazel-2635-permember (branch explore/2635-per-member-modules-ii off #2635's b44bb9c50f; uncommitted): found the source is Andrew's a6b5478f52 (10-16, Modules II part 1 merged into stdlib: per-member DefStatics on Modules II), re-ported in 00bc805ca1 onto spans stage 6; #2635 lacks stage 6, so porting the pre-stage-6 form (as at 77e07a0b4c). DONE: ModuleHelpers (stable ids in modlet_pat/wrap_item; exported_names, lower_tail, item_ana_labels; stdlib's lower). NEXT: DefStatics (lower_item/lower_items/module_elab, compose_free, module_literal_members, calc_module_item, calc_item dispatch, Module root in chain_root/calc/whole_elab), build, DefStaticsParity. 11:17: DefStatics ported too; libraries and test runner build; committed locally 18a657f23e (not pushed). Running DefStaticsParity.",
+   "progress": "11:03: minted from the pasted step; Matthew: let's do, as a separate exploratory draft. Starts once ^report(19) is published (^ticket(393)). 11:14: IN PROGRESS in ~/hazel-2635-permember (branch explore/2635-per-member-modules-ii off #2635's b44bb9c50f; uncommitted): found the source is Andrew's a6b5478f52 (10-16, Modules II part 1 merged into stdlib: per-member DefStatics on Modules II), re-ported in 00bc805ca1 onto spans stage 6; #2635 lacks stage 6, so porting the pre-stage-6 form (as at 77e07a0b4c). DONE: ModuleHelpers (stable ids in modlet_pat/wrap_item; exported_names, lower_tail, item_ana_labels; stdlib's lower). NEXT: DefStatics (lower_item/lower_items/module_elab, compose_free, module_literal_members, calc_module_item, calc_item dispatch, Module root in chain_root/calc/whole_elab), build, DefStaticsParity. 11:17: DefStatics ported too; libraries and test runner build; committed locally 18a657f23e (not pushed). Running DefStaticsParity. 11:24: DefStaticsParity on the port: 1 failure in 43 (the known corpus case, macro-result.hz); before, #2635 had 9 there. The 8 module cases pass. Next: the module statics groups (the `lower` change), fmt, draft PR.",
    "log": [
     {
      "at": "2026-10-19T11:03-06:00",
@@ -1034,9 +1034,31 @@
      "asks": false
     }
    ]
+  },
+  {
+   "id": 403,
+   "area": "dress up, reports: ^du_report(11)'s beach picture",
+   "added": "2026-10-19T11:24-06:00",
+   "opened": "2026-10-19T11:24-06:00",
+   "status": "open",
+   "tags": [
+    "low priority"
+   ],
+   "source": "Matthew, 2026-10-19 11:24, in chat",
+   "url": "http://localhost:8133/du-reports/011/pictures/beach.svg",
+   "text": "<b>Bug: in ^du_report(11)'s beach picture, two people have no torso.</b> Matthew: \"this image looks wrong ... the toros of 3rd and 5th person (left to right) are missing/transparent?\" The picture is du-reports/011/pictures/beach.svg (the game's reports folder). Find why the 3rd and 5th figures from the left draw without a torso (a costume or pose whose body part is left out of the SVG, or a fill that comes out transparent), fix it where the game draws it, and redraw the picture, here and in the published report.",
+   "progress": "11:24: minted and enqueued (low priority).",
+   "log": [
+    {
+     "at": "2026-10-19T11:24-06:00",
+     "from": "matthew",
+     "chars": 187,
+     "asks": false
+    }
+   ]
   }
  ],
- "next_ticket": 403,
+ "next_ticket": 404,
  "current_ticket": 400,
  "current_note": "11:17: Port written and building (local commit 18a657f23e on explore/2635-per-member-modules-ii, ~/hazel-2635-permember, not pushed): Andrew's pre-stage-6 per-member DefStatics on Modules II, onto #2635. Running DefStaticsParity now; then fmt, the module test groups, and a draft PR into #2635's branch.",
  "closed_tickets": [
@@ -13082,6 +13104,7 @@
   399,
   401,
   402,
+  403,
   326,
   391,
   276,
