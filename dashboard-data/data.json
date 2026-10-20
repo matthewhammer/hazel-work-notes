@@ -2586,30 +2586,45 @@
    ]
   },
   {
-   "id": 480,
-   "area": "dress up × hazel: Hazel as a JS library, and a Scripting panel in Dress Up (what it would take)",
-   "added": "2026-10-20T11:25-06:00",
-   "opened": "2026-10-20T11:25-06:00",
+   "id": 481,
+   "area": "hazel, a draft PR: Hazel as a JS library",
+   "added": "2026-10-20T11:28-06:00",
+   "opened": "2026-10-20T11:28-06:00",
    "status": "open",
    "tags": [
-    "blocked on Matthew",
     "meeting 2026-10-21"
    ],
-   "source": "Matthew, 2026-10-20 11:3x, in chat",
+   "source": "Matthew, 2026-10-20 11:4x, in chat, after ^ticket(480)",
    "url": "",
-   "text": "<b>What it would take to expose Hazel as a JS library for editor panels, and to use it for a Scripting panel in Messed Up Dress Up: one editor per room or square, each a module of one global program, with a common editor of sub-routines, all with the $GameUpdate monad.</b> Matthew: \"what would it take for: * exposing Hazel as a JS library that can be used to create editor panels. * using that experimental JS library to create an editor panel in MUDU, under a new control panel called \"Scripting\" --- with a list of editors, one per room that needs logic, starting only with the dungeon in the castle. The editors are showing sub-programs of a large, global program with global vars, using the $GameUpdate. Initially, it shows one editor per square in any world, and the background template for dungeon. The programs can use sub-routines defined in a common editor that they all have in scope in their subprograms. In terms of a full Hazel AST, each sub-editor (for each room/square in the world) could be a module named by that square's name. Names should be unique, and we should enforce that.\" and \"...using the $GameUpdate monad.\"",
-   "progress": "11:27: ANSWERED, in ^report(20)'s item 11: nothing exports Hazel to JS today (haz3l-semantics-library, 2022, split the OCaml libraries only). Four parts: (1) Hazel as a JS library, a second jsoo entry: analyze/evaluate on the page's thread first (small), then mountEditor(element, opts), the main work, since the code editor assumes the whole app (settings, focus and keys at the document, an unscoped stylesheet) and Dress Up's keys move the friend; ~7 MB, loaded when the panel opens. (2) one global program composed from the editors (module Common, then a module per room named by Dress Up, duplicates refused); #2469's modular editors (cell per definition), on #2635, are the closest start. (3) the $GameUpdate builtin and the game's interpreter (^ticket(479)). (4) the hook: an event asks the room's handler and runs its commands. Order: analyze/evaluate and the monad first, with the rules as plain text, running the dungeon end to end; then the editor, then the panel. ✋ For Matthew: whether to start, and on which branch (#2635 for the modular editors).",
+   "text": "<b>A draft PR to hazel exposing Hazel as a JS library, to analyze and run programs and to mount editor panels in other pages, used by Dress Up's Scripting panel (^ticket(482)).</b> Matthew: \"let's do this MUDU integration as a PR for MUDU, not hazel. On the hazel side, let's draft a PR (and use it) for exposing Hazel as a JS library we can use this way.\" First: compile a program once and call its functions from JS with JS values, results back as JS values (rules return command trees the game interprets); then an editor to mount.",
+   "progress": "",
    "log": [
     {
-     "at": "2026-10-20T11:25-06:00",
+     "at": "2026-10-20T11:28-06:00",
      "from": "matthew",
-     "chars": 814,
+     "chars": 164,
      "asks": false
-    },
+    }
+   ]
+  },
+  {
+   "id": 482,
+   "area": "dress up, a PR: a Scripting panel, the dungeon's logic in Hazel",
+   "added": "2026-10-20T11:28-06:00",
+   "opened": "2026-10-20T11:28-06:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-10-21"
+   ],
+   "source": "Matthew, 2026-10-20 11:4x, in chat, after ^ticket(480)",
+   "url": "",
+   "text": "<b>A PR to Messed Up Dress Up (kids-choice-games), not hazel: a 🧩 Scripting control panel with an editor per room that needs logic, starting with the castle's dungeon, each a module of one global program with global variables and the $GameUpdate monad, a common editor of sub-routines in scope in all, names unique and enforced.</b> Matthew: \"let's do this MUDU integration as a PR for MUDU, not hazel. On the hazel side, let's draft a PR (and use it) for exposing Hazel as a JS library we can use this way.\" Uses ^ticket(481)'s library. The plan is ^ticket(480)'s (^report(20)'s item 11).",
+   "progress": "",
+   "log": [
     {
-     "at": "2026-10-20T11:25-06:00",
+     "at": "2026-10-20T11:28-06:00",
      "from": "matthew",
-     "chars": 31,
+     "chars": 164,
      "asks": false
     }
    ]
@@ -2619,6 +2634,16 @@
  "current_ticket": 469,
  "current_note": "11:15: ^ticket(478) closed (done); ^ticket(469) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 480,
+   "area": "dress up × hazel: Hazel as a JS library, and a Scripting panel in Dress Up (what it would take)",
+   "added": "2026-10-20T11:25-06:00",
+   "text": "What it would take to expose Hazel as a JS library for editor panels, and to use it for a Scripting panel in Messed Up Dress Up: one editor per room or square, each a module of one global program, with a common editor of sub-routines, all with the $GameUpdate monad.",
+   "source": "Matthew, 2026-10-20 11:3x, in chat",
+   "status": "done",
+   "closed": "2026-10-20",
+   "outcome": "Answered in ^report(20)'s item 11: a JS library (analyze, evaluate, then an editor to mount), one global program composed from the panel's editors (a module per room, Common in…"
+  },
   {
    "id": 479,
    "area": "dress up × hazel: the game's logic as a $GameUpdate monad (an estimate)",
@@ -7007,8 +7032,9 @@
  "queue": [
   469,
   472,
+  481,
+  482,
   402,
-  480,
   468,
   470,
   462,
