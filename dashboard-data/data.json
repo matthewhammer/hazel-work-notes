@@ -2566,13 +2566,26 @@
    "source": "from ^ticket(483)'s status, 2026-10-20",
    "url": "https://github.com/hazelgrove/hazel/pull/2583",
    "text": "<b>#2583: the refactor Matthew planned on 10-15, as the reviewer shaped it, then dev merged in.</b> One DeepLink request type, parsing kept apart from applying (testable without a browser), handled as an action in Main.re, slide_name off Globals (a CopyDeepLink action), panel names in one switch in Sidebar.re; the reviewer's 10-15 shape: constructors Documentation and Scratchpad (not Slide and Share), records for several fields, and a construction where a position needs a target. Then dev (293 commits; conflicts in Editors.re and Globals.re), CI, re-request review.",
+   "progress": "12:00 10-20: PARKED for ^ticket(486) (deadline). Done: dev merged (03f1abbd45, local, not pushed; Globals.re both fields kept, Editors.re dev's Config kept). Uncommitted in ~/hazel-deeplinks: DeepLink.re rewritten (target = Documentation(slide) | Scratchpad({name, text}); position = Caret | Select({from, to_}); place = {target, position} so no position without a target; request = {place, panel}; parse(lookup) pure, to_params, settings, action, url); SidebarModel url_name_of_panel switch + inverse; Globals: slide_name gone, FollowDeepLink(request) and CopyDeepLink({position, text}) actions, load back to dev's; Page handles both (Documentation is a pointer, every other mode a snapshot of the clicked editor's text) and passes DeepLink.current().place to Editors.Store.load; Editors.load follows the place, load_scratch no longer re-reads the share on every SwitchMode. Left: ScratchMode.integrate_share(~name, ~text) and Encode via DeepLink.to_params; CodeEditable (selection-or-caret, inject_global CopyDeepLink) and ContextMenu (~linkable gone); Main schedules FollowDeepLink; test/Test_DeepLink.re; build, fmt, push; then CI and re-request review (Matthew's).",
+   "log": []
+  },
+  {
+   "id": 486,
+   "area": "dress up, offline: an installable app that runs without the Internet",
+   "added": "2026-10-20T12:00-06:00",
+   "opened": "2026-10-20T12:00-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, 2026-10-20 12:00, in chat (deadline 14:45 MDT today)",
+   "url": "",
+   "text": "<b>Messed Up Dress Up keeps working with no Internet, on a tablet, a phone or a desktop. Deadline: 14:45 MDT today.</b> Matthew: \"mint and enqueue -- ticket for &quot;hardnening MUDU against lack of internet on a tablet, desktop, or mobile phone&quot; --- What's the best way to make an &quot;app&quot; that can run on the desktop, in the browser, without needing a live Internet connection, given how MUDU is made today?\" Then: \"^ Deadline is 2:45pm today, Mountain Time.\" And: \"On a mobile phone or tablet, I'd want a way to download the JS and have it run from the local storage on the device -- is that a thing?\" The plan: an installable web app (a manifest, plus a service worker that keeps every file of the game on the device, keyed by version), so one online visit is enough; Add to Home Screen on an iPad or phone, Install app on a desktop; the network-only pieces (nav bar, cytoscape) fall back quietly.",
    "progress": "",
    "log": []
   }
  ],
  "next_ticket": 468,
- "current_ticket": 485,
- "current_note": "11:52: #2583: reading the reviewer's 10-15 shape and the current DeepLink code before the refactor",
+ "current_ticket": 486,
+ "current_note": "12:00: ^ticket(486): MUDU offline, deadline 14:45 MDT; ^ticket(485) parked mid-refactor",
  "closed_tickets": [
   {
    "id": 472,
@@ -7000,6 +7013,7 @@
   }
  ],
  "queue": [
+  486,
   485,
   484,
   482,
@@ -7038,7 +7052,7 @@
   429,
   460
  ],
- "current_since": "2026-10-20T11:52-06:00",
+ "current_since": "2026-10-20T12:00-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
