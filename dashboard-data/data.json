@@ -1163,11 +1163,63 @@
    "text": "<b>Seats drawn at a scene's bottom edge cut a sitter's feet off: move them, or leave them?</b> ^ticket(454)'s audit of the picture archive (0.0.347) found 12 pictures of the friend on a place's own seats with their feet below the stage's bottom (3 to 16 units; the stage is 601 tall): the campsite's logs (2), the castle's bench by the cart and another (2), the healer's room stools (2), the hut's logs by the fire (2), the mountains' rock (1, and another rock at the right edge, 1), the wood path's logs (2). The seats themselves are drawn at the edge. A fix would move those objects up a little in 7 places (their collisions and walking with them), which changes the places' layouts: Matthew's call.",
    "progress": "22:14: minted from ^ticket(454), blocked on Matthew's call.",
    "log": []
+  },
+  {
+   "id": 462,
+   "area": "hazel, #2635: Fumola out, into its own PR",
+   "added": "2026-10-20T07:38-06:00",
+   "opened": "2026-10-20T07:38-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, 2026-10-20 07:38, in chat",
+   "url": "",
+   "text": "<b>Separate the Fumola work from #2635 into its own PR, into #2635's branch.</b> Matthew: \"For the first PR (modular editing x livelits): separate the fumola work, including the 'cloud/canister storage' idea into a separate PR, which is set to merge into modular editing x livelits. It was a mistake/oversight/miscommunication that these were not kept separate: rationale --- meetings with Cyrus should only focus on livelits and modular editing, until the conversation has space for Fumola discussions --- it's distracting to have in there, and likely won't be merged into dev near the time that modular editing or livelits are (sooner); it's not clear if Fumola will ever be merged to dev; it may remain experimental forever. That's okay, and we should prepare for that situation now. Bring all PRs (all three I just mentioned) up to date with dev, and mergeable. CI green for all, of course.\" So: every Fumola part of #2635 (the Fumola tiles and VM, the ^fumola livelits, the cloud/canister storage idea, their slides and tests) leaves #2635 and goes into a new PR whose base is integration/livelits-modular-editors, mergeable into it; #2635 keeps livelits and modular editing only; both green.",
+   "progress": "07:38: minted; work begins with a map of the Fumola work in #2635.",
+   "log": []
+  },
+  {
+   "id": 463,
+   "area": "hazel, #2597: up to date with dev",
+   "added": "2026-10-20T07:38-06:00",
+   "opened": "2026-10-20T07:38-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, 2026-10-20 07:38, in chat",
+   "url": "",
+   "text": "<b>#2597 (livelits as in PLDI '21) up to date with dev, mergeable, CI green.</b> Part of Matthew's ask with ^ticket(462): dev merged in (it is 494 commits behind dev, from the morning of 2026-09-22), conflicts resolved, the table test's new input taken from #2635 (27f100e37c, ^report(23)'s next step 1), CI green.",
+   "progress": "07:38: minted; work begins with a map of the Fumola work in #2635.",
+   "log": []
+  },
+  {
+   "id": 464,
+   "area": "hazel, #2635 and the Fumola PR: up to date with dev",
+   "added": "2026-10-20T07:38-06:00",
+   "opened": "2026-10-20T07:38-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, 2026-10-20 07:38, in chat",
+   "url": "",
+   "text": "<b>#2635 (modular editing × livelits) and the new Fumola PR up to date with dev and with their bases, mergeable, CI green.</b> Part of Matthew's ask with ^ticket(462): #2635 takes #2597 (once up to date) and dev, its one-file conflict with #2597 (test/Test_ContextInspector.re) cleared; the Fumola PR takes #2635; all green.",
+   "progress": "07:38: minted; work begins with a map of the Fumola work in #2635.",
+   "log": []
+  },
+  {
+   "id": 465,
+   "area": "hazel, the meeting with Cyrus on 2026-10-21: the plan",
+   "added": "2026-10-20T07:39-06:00",
+   "opened": "2026-10-20T07:39-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, 2026-10-20 07:39, in chat",
+   "url": "",
+   "text": "<b>After ^ticket(462) to ^ticket(464): review every open Hazel ticket blocked on Matthew, and summarize a work plan for the meeting with Cyrus tomorrow (2026-10-21).</b> Matthew: \"after you do this work, please review all hazel tickets that are open and blocked on me. Summarize a work plan, given that we meet with Cyrus tomorrow and we want to fill out the meeting notes with a polished set of PRs (ready to merge, when he chooses; tho likely not tomorrow) and answers about: functional correctness regressions --- how can we guard more in the future, within CI, against this, especially as we do performance PRs (the ones for issue 2609) and they change the behavior of Hazel to cache things and reused cache data.\" Builds on ^report(20) (the agenda; items 5 and 7) and ^report(21) (the performance PRs' correctness, a draft).",
+   "progress": "07:39: minted; after the PR work (^ticket(462) to ^ticket(464)).",
+   "log": []
   }
  ],
- "next_ticket": 462,
- "current_ticket": null,
- "current_note": "07:37: Ports: #2635 (livelits × modular editors) on 8341 and #2597 (livelits as in PLDI '21) on 8311, both at their heads, both green; Dress Up's 8133 closed until some Hazel tickets are done (Matthew, 07:2x). ✋ Waiting on Matthew: what to do on #2635 (his message was cut off), ^ticket(460), drafts ^report(21) and ^report(22).",
+ "next_ticket": 466,
+ "current_ticket": 462,
+ "current_note": "07:38: ^ticket(462): Fumola out of #2635 into its own PR (into #2635's branch); then ^ticket(463) #2597 and ^ticket(464) #2635 + the Fumola PR up to date with dev, mergeable, green. Now: mapping where Fumola is in #2635. Ports: 8341 #2635, 8311 #2597; Dress Up's 8133 closed.",
  "closed_tickets": [
   {
    "id": 446,
@@ -5445,6 +5497,10 @@
   }
  ],
  "queue": [
+  462,
+  463,
+  464,
+  465,
   389,
   411,
   408,
@@ -5474,7 +5530,7 @@
   429,
   460
  ],
- "current_since": "2026-10-19T23:13-06:00",
+ "current_since": "2026-10-20T07:38-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
