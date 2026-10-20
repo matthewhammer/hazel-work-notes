@@ -2001,8 +2001,9 @@
     {
      "at": "2026-10-20T11:12-06:00",
      "from": "matthew",
-     "chars": 159,
-     "asks": false
+     "chars": 160,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ],
    "waiting": "Matthew: read ^du_report(13) (localhost:8133/du-reports/013/); publish on your word."
@@ -2378,6 +2379,13 @@
      "chars": 7103,
      "asks": false,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T11:10-06:00",
+     "from": "claude",
+     "chars": 460,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ]
   },
@@ -2574,6 +2582,34 @@
      "chars": 53,
      "asks": false,
      "note": "from the transcripts"
+    }
+   ]
+  },
+  {
+   "id": 480,
+   "area": "dress up × hazel: Hazel as a JS library, and a Scripting panel in Dress Up (what it would take)",
+   "added": "2026-10-20T11:25-06:00",
+   "opened": "2026-10-20T11:25-06:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-10-21"
+   ],
+   "source": "Matthew, 2026-10-20 11:3x, in chat",
+   "url": "",
+   "text": "<b>What it would take to expose Hazel as a JS library for editor panels, and to use it for a Scripting panel in Messed Up Dress Up: one editor per room or square, each a module of one global program, with a common editor of sub-routines, all with the $GameUpdate monad.</b> Matthew: \"what would it take for: * exposing Hazel as a JS library that can be used to create editor panels. * using that experimental JS library to create an editor panel in MUDU, under a new control panel called \"Scripting\" --- with a list of editors, one per room that needs logic, starting only with the dungeon in the castle. The editors are showing sub-programs of a large, global program with global vars, using the $GameUpdate. Initially, it shows one editor per square in any world, and the background template for dungeon. The programs can use sub-routines defined in a common editor that they all have in scope in their subprograms. In terms of a full Hazel AST, each sub-editor (for each room/square in the world) could be a module named by that square's name. Names should be unique, and we should enforce that.\" and \"...using the $GameUpdate monad.\"",
+   "progress": "",
+   "log": [
+    {
+     "at": "2026-10-20T11:25-06:00",
+     "from": "matthew",
+     "chars": 814,
+     "asks": false
+    },
+    {
+     "at": "2026-10-20T11:25-06:00",
+     "from": "matthew",
+     "chars": 31,
+     "asks": false
     }
    ]
   }
@@ -6971,6 +7007,7 @@
   469,
   472,
   402,
+  480,
   468,
   470,
   462,
