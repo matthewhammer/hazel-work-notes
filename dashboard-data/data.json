@@ -1177,21 +1177,6 @@
    "log": []
   },
   {
-   "id": 454,
-   "area": "dress up, dress-up-pictures: clipped pictures",
-   "added": "2026-10-19T21:36-06:00",
-   "opened": "2026-10-19T21:36-06:00",
-   "status": "open",
-   "tags": [
-    "🌙 long run"
-   ],
-   "source": "Matthew, 2026-10-19 21:36, in chat (\"long-run tickets for tonight\")",
-   "url": "",
-   "text": "<b>Clipped pictures in dress-up-pictures: find them, find what caused them, fix them.</b> Matthew: \"look into the dress-up-pictures for clipped pictures --- I used to notice those but haven't checked recently. Please do your own check, and see if you can find any and what caused them. Fix those if possible.\" So: a check of my own over the archive's pictures for any cut off at an edge (the friend, a costume, a hat, a held thing, a horse), the cause of each (the frame's bounds in drawNow, the archive's own cropping), and fixes in the game or the archive's tools, before ^ticket(455)'s new run.",
-   "progress": "21:36: minted; queued after the other Dress Up tickets in hand (^ticket(438), ^ticket(427), ^ticket(439)), before ^ticket(455).",
-   "log": []
-  },
-  {
    "id": 455,
    "area": "dress up, dress-up-pictures: a new run",
    "added": "2026-10-19T21:36-06:00",
@@ -1218,12 +1203,37 @@
    "text": "<b>A band at the top of the right-hand panel saying where in it you are: \"background / default background objects\".</b> Matthew: \"when we have activated a RHS menu panel (e.g., background), and we scroll the RHS into the sub-panels -- retain a small band above them saying \"background / sub-panel-1 / ... / sub-panel-N\" --- we use slashes as separators to give a tree-path into the panel that we hover over. e.g., while hovering over the \"what stands here\" toggles (let's call this -- \"default background objects\" instead), we'd see a band on top of RHS saying: background / default background objects -- and that band would change as we hover over other sub-panels. On very limited screens, or with a narrow RHS, this could be very helpful.\" So: a band kept at the top of the panel as it scrolls, the tab's name then the box (and any group in it) under the pointer, slash-separated, following the pointer; and the 👁️ \"what stands here\" box renamed \"default background objects\". Matthew, a moment later: \"breadcrumb band was based on M's request earlier -- to at least see the start of the breadcrumb trail (\"background\") in that fixed band.\" So the least it must do: the band stays fixed at the panel's top and always shows the trail's start, the tab's name, however far the panel is scrolled; the box and group under the pointer follow after it.",
    "progress": "21:42: minted and enqueued among tonight's Dress Up tickets, before ^ticket(455) (the pictures' new run goes last, so it has this too). 21:43: Matthew: it comes from M's earlier request; the fixed band showing at least the trail's start (the tab's name) is the core.",
    "log": []
+  },
+  {
+   "id": 460,
+   "area": "dress up, seats at a scene's bottom edge",
+   "added": "2026-10-19T22:14-06:00",
+   "opened": "2026-10-19T22:14-06:00",
+   "status": "open",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "source": "from ^ticket(454)'s audit, 2026-10-19 22:14",
+   "url": "",
+   "text": "<b>Seats drawn at a scene's bottom edge cut a sitter's feet off: move them, or leave them?</b> ^ticket(454)'s audit of the picture archive (0.0.347) found 12 pictures of the friend on a place's own seats with their feet below the stage's bottom (3 to 16 units; the stage is 601 tall): the campsite's logs (2), the castle's bench by the cart and another (2), the healer's room stools (2), the hut's logs by the fire (2), the mountains' rock (1, and another rock at the right edge, 1), the wood path's logs (2). The seats themselves are drawn at the edge. A fix would move those objects up a little in 7 places (their collisions and walking with them), which changes the places' layouts: Matthew's call.",
+   "progress": "22:14: minted from ^ticket(454), blocked on Matthew's call.",
+   "log": []
   }
  ],
- "next_ticket": 460,
- "current_ticket": 454,
- "current_note": "22:10: ^ticket(454): clipped pictures in dress-up-pictures: an audit of every archived picture (the friend against its frame, by pixels) running on GitHub (branch clip-454). ^ticket(459) is live (0.0.368). ^ticket(427) waits for 0.0.362's speed run, still in its checks.",
+ "next_ticket": 461,
+ "current_ticket": 456,
+ "current_note": "22:15: ^ticket(456): the panel's breadcrumb band: the tab's name always in a band fixed at the panel's top, then the box (and group) under the pointer, slash-separated; 👁️ what stands here renamed default background objects. 0.0.369 (the frame holds a lying friend) is live.",
  "closed_tickets": [
+  {
+   "id": 454,
+   "area": "dress up, dress-up-pictures: clipped pictures",
+   "added": "2026-10-19T21:36-06:00",
+   "text": "Clipped pictures in dress-up-pictures: find them, find what caused them, fix them.",
+   "source": "Matthew, 2026-10-19 21:36, in chat (\"long-run tickets for tonight\")",
+   "status": "done",
+   "closed": "2026-10-19",
+   "outcome": "Audit of the archive (24 of 644 pictures with the friend past the frame); the framing bug (lying, crawling, a hug, no place behind) fixed in 0.0.369; meant-to ones left; 12 seats…"
+  },
   {
    "id": 459,
    "area": "dress up, people: a new person from a costume",
@@ -5440,9 +5450,8 @@
   }
  ],
  "queue": [
-  454,
-  427,
   456,
+  427,
   455,
   446,
   389,
@@ -5471,9 +5480,10 @@
   421,
   422,
   423,
-  429
+  429,
+  460
  ],
- "current_since": "2026-10-19T22:10-06:00",
+ "current_since": "2026-10-19T22:15-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",

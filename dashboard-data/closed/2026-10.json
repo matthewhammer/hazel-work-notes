@@ -1,5 +1,32 @@
 [
  {
+  "id": 454,
+  "area": "dress up, dress-up-pictures: clipped pictures",
+  "added": "2026-10-19T21:36-06:00",
+  "opened": "2026-10-19T21:36-06:00",
+  "status": "done",
+  "tags": [
+   "🌙 long run"
+  ],
+  "source": "Matthew, 2026-10-19 21:36, in chat (\"long-run tickets for tonight\")",
+  "url": "",
+  "text": "<b>Clipped pictures in dress-up-pictures: find them, find what caused them, fix them.</b> Matthew: \"look into the dress-up-pictures for clipped pictures --- I used to notice those but haven't checked recently. Please do your own check, and see if you can find any and what caused them. Fix those if possible.\" So: a check of my own over the archive's pictures for any cut off at an edge (the friend, a costume, a hat, a held thing, a horse), the cause of each (the frame's bounds in drawNow, the archive's own cropping), and fixes in the game or the archive's tools, before ^ticket(455)'s new run.",
+  "progress": "21:36: minted; queued after the other Dress Up tickets in hand (^ticket(438), ^ticket(427), ^ticket(439)), before ^ticket(455). 22:14: <b>found, and fixed what is a bug, live in 0.0.369</b>. The audit (branch clip-454, tools/clip_audit.mjs, run 39368168219 on GitHub: each archived SVG drawn with only the friend showing and a wide margin; the friend's pixels outside the frame counted): 24 of 644 pictures. Bugs, fixed: with no place behind, the frame was the standing friend's, so lying down (3 pictures) and crawling in profile (1) cut the head off at the side, and jumping into a hug cut the top of the head (1): the frame now turns with them and rises with the hug. Meant to run off the edge, left: the ladder above a climber, the diver's hose, climbing up through a ceiling (4), the sea (1). Not fixed, a design call: 12 seats at a scene's bottom edge cut a sitter's feet (^ticket(460), blocked on Matthew). The next pictures run (^ticket(455)) is audited again to confirm.",
+  "log": [],
+  "closed": "2026-10-19",
+  "closed_at": "2026-10-19T22:15-06:00",
+  "outcome": "Audit of the archive (24 of 644 pictures with the friend past the frame); the framing bug (lying, crawling, a hug, no place behind) fixed in 0.0.369; meant-to ones left; 12 seats at a scene's bottom edge to ^ticket(460) for Matthew. Confirmed or not by auditing ^ticket(455)'s run.",
+  "metrics": {
+   "open_minutes": 39,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0,
+   "work_minutes": 14.0
+  }
+ },
+ {
   "id": 459,
   "area": "dress up, people: a new person from a costume",
   "added": "2026-10-19T22:00-06:00",
