@@ -855,26 +855,6 @@
    "text": "<b>Meeting with Cyrus, Wednesday 2026-10-21: the tickets to bring.</b> <b>The agenda:</b> ^report(20), public and kept up to date until the meeting (generated from 020/data/agenda.json; republished with tools/publish_agenda.py). Matthew: \"My next meeting with Cyrus is Wed -- let's make a ticket that links to all related tickets for that meeting please. For now, it's just a bulleted list based on what you know now.\"<ul><li>^ticket(385): why CI fails on the livelits x modular editing branch (#2635, into ...full): Cyrus's question on Friday; ANSWERED 10-19 09:31: it is the merge (Modules II on the livelits branch meeting #2469's per-member DefStatics; one table test input), neither branch broken: ^report(18), published 2026-10-19 with a dated update (each cause now has a fix).</li><li>^ticket(386): the type syntax expansion for types in Gamma too, as for the result type (long types on one line): ideas.</li><li>^ticket(387): livelits' model sub-editors as read-only tiles, with tiles' selection UX (right click and the rest); it follows his 10-03 call, the revealed model read-only and selectable.</li><li>^ticket(388): why the right-hand side that explains each syntax form shows no example syntax as read-only tiles (older than Matthew's time on the team).</li><li>^ticket(398): do the performance PRs (against #2609) keep typing and evaluation correct? Cyrus wants more analysis and coverage of functional correctness: an argument for each PR in a report, and more correctness tests (a new PR to dev, and tests on each of our PRs). Deadline: tomorrow morning, ideally.</li><li><a href=\"https://matthewhammer.org/hazel/reports/019/\">^report(19)</a>, published 10-19 (^ticket(393)): the Hazel UI draws syntax as tiles on 22 of 39 surfaces, but only 6 take a caret.</li><li>Open and waiting on Matthew, in case they come up: ^ticket(54) (offer ^ticket(7)'s three ports to #2469), ^ticket(19) (perf budgets harder to fool, a draft PR?), ^ticket(18) (option B: livelit views evaluated in the worker), ^ticket(102) (the reply to Alexander on #2583), ^ticket(16) (asking the maintainers to require the test jobs for merging into dev).</li></ul>More to come from Matthew."
   },
   {
-   "id": 392,
-   "area": "dress up, the menus' panel headers",
-   "added": "2026-10-19T09:40-06:00",
-   "opened": "2026-10-19T09:40-06:00",
-   "status": "open",
-   "tags": [],
-   "source": "Matthew, 2026-10-19 09:39, in chat, with a screenshot of 0.0.333's 🧍 Body tab (\"mint and park ticket\")",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "text": "<b>Dress Up: the menus' panels say their header twice.</b> Matthew: \"the new design of the menus looks better overall -- but there are still redundant headers (pose panel says \"the pose\" and then \"poses\", similar for the facing and moving panel next to it). Same for dominant hand -- the controls in the panel are already labeled enough, and there isn't more than one sub control.\" On 0.0.333's 🧍 Body tab: the pose panel heads \"🤸 the pose\" and then \"🤸 poses\"; the facing and moving panel \"↔️ facing and moving\" and then \"↔️ facing\" (its second group, \"🎬 animations\", is fine); the dominant hand panel \"✋ the dominant hand\" and then \"✋ dominant hand\", over one row of buttons. So: a panel with one group of controls shows one header (the panel's), not the group's again; a panel with several groups keeps its group headers, minus any that only repeats the panel's. Sweep every tab for the same, with a check that no panel's first group header repeats the panel header's words.",
-   "progress": "09:40: minted and PARKED, as Matthew asked (today is Hazel tickets; Dress Up only if lingering). Not started. 19:27: unparked into the queue after ^ticket(406): Matthew asked for the Dress Up tickets that are neither performance nor waiting on him.",
-   "log": [
-    {
-     "at": "2026-10-19T09:39-06:00",
-     "from": "matthew",
-     "chars": 311,
-     "asks": false
-    }
-   ]
-  },
-  {
    "id": 395,
    "area": "hazel, types, right-click to expand a type",
    "added": "2026-10-19T10:19-06:00",
@@ -1169,9 +1149,41 @@
   }
  ],
  "next_ticket": 429,
- "current_ticket": 392,
- "current_note": "19:41: ^ticket(392): the menus' panels say their header twice; a panel with one group shows only the panel's header; sweeping every tab, with a check. 0.0.346 (^ticket(406), many worlds) is live.",
+ "current_ticket": 428,
+ "current_note": "19:50: ^ticket(428): the dashboard repository over time: measuring the history's growth (86 commits since the 16:32 gc, .git 16 -> 39 MB, mostly loose objects), then fewer and smaller commits. No Dress Up ticket left that is neither perf nor waiting on Matthew; 0.0.346 + 0.0.347 live.",
  "closed_tickets": [
+  {
+   "id": 392,
+   "area": "dress up, the menus' panel headers",
+   "added": "2026-10-19T09:40-06:00",
+   "opened": "2026-10-19T09:40-06:00",
+   "status": "done",
+   "tags": [],
+   "source": "Matthew, 2026-10-19 09:39, in chat, with a screenshot of 0.0.333's 🧍 Body tab (\"mint and park ticket\")",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "text": "<b>Dress Up: the menus' panels say their header twice.</b> Matthew: \"the new design of the menus looks better overall -- but there are still redundant headers (pose panel says \"the pose\" and then \"poses\", similar for the facing and moving panel next to it). Same for dominant hand -- the controls in the panel are already labeled enough, and there isn't more than one sub control.\" On 0.0.333's 🧍 Body tab: the pose panel heads \"🤸 the pose\" and then \"🤸 poses\"; the facing and moving panel \"↔️ facing and moving\" and then \"↔️ facing\" (its second group, \"🎬 animations\", is fine); the dominant hand panel \"✋ the dominant hand\" and then \"✋ dominant hand\", over one row of buttons. So: a panel with one group of controls shows one header (the panel's), not the group's again; a panel with several groups keeps its group headers, minus any that only repeats the panel's. Sweep every tab for the same, with a check that no panel's first group header repeats the panel header's words.",
+   "progress": "09:40: minted and PARKED, as Matthew asked (today is Hazel tickets; Dress Up only if lingering). Not started. 19:27: unparked into the queue after ^ticket(406): Matthew asked for the Dress Up tickets that are neither performance nor waiting on him.",
+   "log": [
+    {
+     "at": "2026-10-19T09:39-06:00",
+     "from": "matthew",
+     "chars": 311,
+     "asks": false
+    }
+   ],
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T19:50-06:00",
+   "outcome": "0.0.347 LIVE (verified: version.json, 27 ?v= links, boxHeads + designerHeads in the live code): each panel says its name once. With one row or group showing, its name is the box's and is hidden (✋ the dominant hand, 🐸 the jumps' \"the two jumps\", 👁️ what stands here, 🪨 things to put here; their words become the box name's tooltip); with several, a name whose words are all the box's is hidden (\"🤸 poses\" in 🤸 the pose, \"↔️ facing\" in ↔️ facing and moving, lying down too); sliders keep their names (the brows' \"eyebrows\" is now \"slant (up ↔ down)\"), and \"🌸 the wreath's flowers\" is \"🌸 flowers\". 🎵 Music and 🗺️ World design lose \"⛶ full screen\" over their one button and \"🗺️ world design\" under its tab. Swept every tab (82 boxes, 177 headers; 6 places' own boxes, lying down): none repeats. Also: the 414 elbow/knee sliders were in a box named by the tab; now in 💪 the arms and 🦵 the legs. tools/checks/heads392.mjs runs in 0.0.347's speed run (39355541252), with worlds406 (0.0.346's run was cancelled by the newer tag).",
+   "metrics": {
+    "open_minutes": 610,
+    "matthew_messages": 1,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 311,
+    "tokens_est": 77,
+    "sync_minutes_est": 0,
+    "work_minutes": 30.0
+   }
+  },
   {
    "id": 406,
    "area": "dress up, world design: many worlds, linked",
@@ -13889,7 +13901,6 @@
   }
  ],
  "queue": [
-  392,
   428,
   427,
   389,
@@ -13919,7 +13930,7 @@
   422,
   423
  ],
- "current_since": "2026-10-19T19:40-06:00",
+ "current_since": "2026-10-19T19:50-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
