@@ -1,5 +1,83 @@
 [
  {
+  "id": 467,
+  "area": "hazel, the full view of a module type",
+  "added": "2026-10-20T07:44-06:00",
+  "opened": "2026-10-20T07:44-06:00",
+  "status": "done",
+  "tags": [],
+  "source": "Matthew, 2026-10-20 07:44, in chat (\"mint and enqueue -- hazel work for this morning\"), with a screenshot",
+  "url": "",
+  "text": "<b>A module type in the full view is laid out oddly: its indentation creeps right, and it breaks lines too eagerly.</b> Matthew: \"the formatting of this module type looks a bit strange (left indentation is wrong, and right newlines too aggressive?)\". The screenshot: the livelits documentation's emotion (kids' choice) slide, the cursor on <code>^slider</code>'s pattern (PAT / Variable binding), the full view of its type <code>(String, Int, Int, String) -&gt; ({ type Model = Int; type Action = Int; ... })</code>: the <code>-&gt; (</code> on its own line, the <code>{</code> indented under it, each member further right than the last, and each member broken into three lines (<code>type Model</code> / <code>=</code> / <code>Int;</code>) where one line fits. So: a module type laid out as the editor lays out a module, its members at one indentation, each on one line when it fits. The full view is ^ticket(394) and #2676/#2698's (the long types). Matthew, a moment later: \"from http://localhost:8311/\": #2597 (livelits as in PLDI '21), at 8a03584ef6, the 14:15 build of 2026-10-19.",
+  "progress": "07:44: minted; this morning, after the PR updates (^ticket(462) to ^ticket(464)). 07:45: seen on #2597's build (8311), not #2635's. 08:16: the printer Matthew's build runs (8a03584ef6) has no layout rule for module items, so `type Model = Int` fell to the generic one (a break before `=` and after it) and each member nested inside the one before (the staircase). dev's printer has the rule (module items let/= and type/=), and the updated #2597 carries it. A test of the view's own path (CursorInspector's settings, prettify to the panel width) on ^slider's type: e3a065571a, CI on trial/467-full-view (no build on the laptop). 08:28: the test PASSES on GitHub (trial/467-full-view, 5071 tests = 5069 + its 2): with dev's printer, ^slider's module type stays on one line when it fits, and at widths 60 and 100 each member is on a line of its own, all at one indentation, none broken at its `=`. So the updated #2597 fixes what Matthew saw; the test goes on both branches as the guard. Visual check on the deployed trial build waits on GitHub Pages (its builds keep cancelling each other). 08:44: SEEN in the deployed trial build (hazel.org/build/trial/2597-dev-merge, the kids' choice slide, caret on ^slider, the full view open, window 1024 px): the seven members each on one line, all at one indentation, none broken at its `=`. Left, a smaller oddity for Matthew to weigh: the defensive parentheses around the signature put `-> (` and `{` on two lines, and `}` and `)`; either the arrow's right side drops parentheses a `{...}` does not need, or `({` hangs as one opener. Not done: either is a change to dev's printer or its parenthesizer.",
+  "log": [
+   {
+    "at": "2026-10-20T07:44-06:00",
+    "from": "matthew",
+    "chars": 169,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T07:44-06:00",
+    "from": "matthew",
+    "chars": 27,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T08:32-06:00",
+    "from": "claude",
+    "chars": 10424,
+    "asks": true,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-20",
+  "closed_at": "2026-10-20T10:37-06:00",
+  "outcome": "Fixed by dev's printer, merged into both PRs: ^slider's module type in the full view now stays on one line when it fits, and otherwise puts each member on a line of its own at one indentation, none broken at its <code>=</code> (seen in the deployed build, 08:44). The old printer had no rule for module items. A test of the view's own path (TypToSegment.FullView, widths 60 and 100) is on #2597 (6fbc8268fc) and #2635, green on both. Left for Matthew to weigh: the defensive parentheses put <code>-&gt; (</code> and <code>{</code> on two lines.",
+  "metrics": {
+   "open_minutes": 173,
+   "matthew_messages": 2,
+   "questions_to_matthew": 1,
+   "chars_exchanged": 10620,
+   "tokens_est": 2655,
+   "sync_minutes_est": 0.0
+  }
+ },
+ {
+  "id": 464,
+  "area": "hazel, #2635 and the Fumola PR: up to date with dev",
+  "added": "2026-10-20T07:38-06:00",
+  "opened": "2026-10-20T07:38-06:00",
+  "status": "done",
+  "tags": [],
+  "source": "Matthew, 2026-10-20 07:38, in chat",
+  "url": "",
+  "text": "<b>#2635 (modular editing × livelits) and the new Fumola PR up to date with dev and with their bases, mergeable, CI green.</b> Part of Matthew's ask with ^ticket(462): #2635 takes #2597 (once up to date) and dev, its one-file conflict with #2597 (test/Test_ContextInspector.re) cleared; the Fumola PR takes #2635; all green.",
+  "progress": "07:38: minted; work begins with a map of the Fumola work in #2635. 08:02: Merged #2597's two new commits (no change: #2635 had them) and dev (10 files; the shim's removal ported: ProbePerform, OutlineSidebar, CmdRunner, Page; FocusEffect with dev's press tracking for probes and splices) into #2635 on trial/2635-dev-merge. Its first CI run compiled and stopped at \"Duplicate test path: Ascriptions\" (dev's #2679 registers the suite beside the branch's own entry): fixed on both branches (1d7e6d910f, 9874505b7a), CI rerunning. 08:15: the new #2597 merged into #2635 keeping #2635's tree (b63861d627, then 9afc9f9c80 for 562f852db8), after a line-by-line check: every line #2597 gained is in #2635 except where #2469 rewrote old dev code (ScratchMode, Measured, MarkerParse...), #2469's settings (no CapUndoStack; ShowPendingEval), and the press tracking both merges wrote with the same rule. Push waits for the running CI (a push cancels it). 08:28: Fast checks GREEN on 1d7e6d910f (5554 tests, 1010 s); Full tests running. Locally d14229ee66 (the same tree plus #2597's two new commits; the full-view test beside #2635's own SigParens tests). Both real PR branches get pushed once the trial Full tests are green. 09:19: trial Full tests GREEN too. PUSHED: integration/livelits-modular-editors 5961401df2..d14229ee66 (fast-forward). #2635 MERGEABLE; its CI runs on the PR.",
+  "log": [
+   {
+    "at": "2026-10-20T08:44-06:00",
+    "from": "claude",
+    "chars": 357,
+    "asks": true,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-20",
+  "closed_at": "2026-10-20T10:37-06:00",
+  "outcome": "#2635 is up to date with dev and the new #2597, mergeable, CI green on the PR's own branch (Fast checks and Full tests) at d14229ee66, pushed 09:19 as a fast-forward. The merge with #2597 kept #2635's tree after a line-by-line check (everything #2597 gained was there, or rewritten by #2469 on purpose). #2635 never held the Fumola work: its PR is ^ticket(462). Since then 3d7d5baca0 (^ticket(469)) is on it, its CI running.",
+  "metrics": {
+   "open_minutes": 179,
+   "matthew_messages": 0,
+   "questions_to_matthew": 1,
+   "chars_exchanged": 357,
+   "tokens_est": 89,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 477,
   "area": "dashboard: the meeting's tickets, tagged and filterable",
   "added": "2026-10-20T10:36-06:00",
