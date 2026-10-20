@@ -2740,11 +2740,13 @@
    "added": "2026-10-20T11:45-06:00",
    "opened": "2026-10-20T11:45-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "source": "from ^ticket(483)'s status, 2026-10-20",
    "url": "https://github.com/hazelgrove/hazel/pull/2583",
    "text": "<b>#2583: the refactor Matthew planned on 10-15, as the reviewer shaped it, then dev merged in.</b> One DeepLink request type, parsing kept apart from applying (testable without a browser), handled as an action in Main.re, slide_name off Globals (a CopyDeepLink action), panel names in one switch in Sidebar.re; the reviewer's 10-15 shape: constructors Documentation and Scratchpad (not Slide and Share), records for several fields, and a construction where a position needs a target. Then dev (293 commits; conflicts in Editors.re and Globals.re), CI, re-request review.",
-   "progress": "12:13 10-20: PUSHED to #2583 (deep-links): merge of dev 03f1abbd45 (Globals.re both fields kept; Editors.re dev's Config kept) and the refactor 077a68f9f8 per the 10-15 plan and the reviewer's shape: request = {place: {target, position}, panel}, Documentation(slide) | Scratchpad({name, text}), parse(lookup) pure, FollowDeepLink from Main, CopyDeepLink({position, text}) built in Page, slide_name and ~linkable gone, panel names one switch in SidebarModel, share integrated once at load. Copy URL now everywhere: the slide on a documentation slide, a share of the editor's text elsewhere (Matthew's to reverse if he prefers the row on slides only). The copied position is selection-or-caret (the plan page's suggestion). @check, fmt, test DeepLink (21 cases) pass locally. Next: CI, then the deploy tried in the browser; then re-request review (Matthew's).",
+   "progress": "12:52 10-20: DONE on our side. #2583 at 077a68f9f8: Fast checks, Full tests and codecov GREEN, MERGEABLE (dev merged in, 03f1abbd45). Tried in the browser on its deploy: ?slide=tuples&panel=probes&caret=3,5 opened Documentation on Tuples with the Probes panel; Copy URL on that slide gave ?slide=tuples&panel=probes&caret=5%2C13 and loading it put the caret back on labeled_tuple; a share link (?name=Demo&share=...&caret=1,14) opened Scratch on a new Demo with the caret on x; Copy URL there gave a share link carrying the text, panel and caret, which loaded back the same; switching to Documentation and back left one Demo (dev added one each time). Left, Matthew's: re-request review from 7h3kk1d (it notifies him); and two choices to reverse if he likes: Copy URL in every mode (a snapshot outside the deck), and selection-or-caret instead of the enclosing term.",
    "log": []
   },
   {
