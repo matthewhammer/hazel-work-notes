@@ -2579,13 +2579,13 @@
    "source": "Matthew, 2026-10-20 12:00, in chat (deadline 14:45 MDT today)",
    "url": "",
    "text": "<b>Messed Up Dress Up keeps working with no Internet, on a tablet, a phone or a desktop. Deadline: 14:45 MDT today.</b> Matthew: \"mint and enqueue -- ticket for &quot;hardnening MUDU against lack of internet on a tablet, desktop, or mobile phone&quot; --- What's the best way to make an &quot;app&quot; that can run on the desktop, in the browser, without needing a live Internet connection, given how MUDU is made today?\" Then: \"^ Deadline is 2:45pm today, Mountain Time.\" And: \"On a mobile phone or tablet, I'd want a way to download the JS and have it run from the local storage on the device -- is that a thing?\" The plan: an installable web app (a manifest, plus a service worker that keeps every file of the game on the device, keyed by version), so one online visit is enough; Add to Home Screen on an iPad or phone, Install app on a desktop; the network-only pieces (nav bar, cytoscape) fall back quietly. Then: \"In the advanced tab, let's offer an expandable panel that instructs the user how to add the app to their device (esp mobile and tablets) so they can use in Airplane mode.\"",
-   "progress": "",
+   "progress": "12:09 10-20: RELEASED 0.0.374 (4d665ad, tag dress-up-0.0.374, pushed 12:09). sw.js keeps the game in Cache Storage (page network-first within 4 s, ?v= parts cache-first, update check untouched); manifest.webmanifest + icons/ (the tab icon scaled up, nearest-neighbour); registered over https only. ⚙️ Advanced: folded '✈️ play without the Internet (airplane mode)' with steps for iPad/iPhone, Android, Chrome/Edge, Mac Safari, Firefox, a 📲 button where the browser offers install, and a ✅ kept-here status. Tried in the browser pane on its own server (8486): 28 of 28 files kept; server stopped, the game started from the copy; 0.0.373 to 0.0.374 kept the new parts and dropped the old; 0.0.374 then started with no server. tools/checks/offline486.mjs runs in the tag's speed run. Waiting: Pages deploy, live check over https.",
    "log": []
   }
  ],
  "next_ticket": 468,
- "current_ticket": 486,
- "current_note": "12:00: ^ticket(486): MUDU offline, deadline 14:45 MDT; ^ticket(485) parked mid-refactor",
+ "current_ticket": 485,
+ "current_note": "12:09: #2583's refactor, resumed (^ticket(486)'s 0.0.374 is live; its speed run is on GitHub)",
  "closed_tickets": [
   {
    "id": 472,
@@ -7013,8 +7013,8 @@
   }
  ],
  "queue": [
-  486,
   485,
+  486,
   484,
   482,
   481,
@@ -7052,7 +7052,7 @@
   429,
   460
  ],
- "current_since": "2026-10-20T12:00-06:00",
+ "current_since": "2026-10-20T12:09-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
