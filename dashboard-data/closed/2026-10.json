@@ -1,5 +1,30 @@
 [
  {
+  "id": 457,
+  "area": "dress up, the friend's horse: its size",
+  "added": "2026-10-19T21:45-06:00",
+  "opened": "2026-10-19T21:45-06:00",
+  "status": "done",
+  "tags": [],
+  "source": "Matthew, 2026-10-19 21:45, in chat",
+  "url": "",
+  "text": "<b>The horse's own size, compared to the friend.</b> Matthew: \"horse needs its own 'size compared to main friend' param, to adjust the scales of different characters on the horse, for it to look right (e.g., small gnome on normal horse, next to other horses in stable scene)\". So: a 🐴 its size slider in 🐯 Costume's 🐴 the horse box, the horse scaled about its hooves, led or ridden (the saddle, the seat and the reins with it), so a small friend can ride a horse as big as the stable's. Follows ^ticket(438). Matthew, 21:46: \"yeah, we want that the 'default horse' and its scale looks right in the stable scene.\" So the default size is set against the stable's horses: the friend's horse, at 100, as big as a stable horse looking out of its stall, measured in the stable. Matthew, 21:47: \"test with a small gnome (size in each scene is small)\". The cause to fix: the horse is drawn in the friend's units, so a friend made small in a scene (🧍 size in the scene) shrinks their horse too; its size must follow the scene (and its own slider), not the friend's. Matthew, 21:50, with a screenshot of 0.0.365 in the stable (a small gnome on a tiny horse): \"Maybe we add a body param for 'default size in scene' scale --- otherwise the gnome has to be re-set for each background as we play around with them. But after we have that refinement, adjusting the horse to look right on the character should be possible to set just once, and then reuse in different scenes (stable where we are 'close' to the horizon/backwall) and scenes with far away horizons, like forest crossing.\" So: body.size, 📏 their size, the person's own, in every place (on top of each place's 🧍 size in the scene); the horse follows the place's scale and its own 📏 size, never the rider's own size, so both are set once and hold in every scene.",
+  "progress": "21:45: minted; queued next after ^ticket(439), while the horse is fresh. 21:46: Matthew: the default horse's scale must look right in the stable scene (against its horses). 21:47: taken up now, ahead of finishing ^ticket(439) (its work parked in a git stash), while Matthew is trying the horse. 21:50: folded in Matthew's body size: the friend's own size in every place; the horse independent of it. 21:52: <b>live in 0.0.366</b> (dress-up-0.0.366): the horse at 100 as big as the stable's horses (2.1 times the first drawing, measured face to face at the stalls' depth), 📏 its size (20 to 200); 🧍 Body's 📏 their size, the friend's own in every place; the horse follows the place's size for people, never the rider's own, so a small gnome keeps a full-size horse everywhere; ridden toward us, its head lower and turned a little aside so a small rider shows. Checked by tools/checks/horse457.mjs and horse438.mjs (all ok); seen in the stable and at the forest crossing.",
+  "log": [],
+  "closed": "2026-10-19",
+  "closed_at": "2026-10-19T21:52-06:00",
+  "outcome": "Live in 0.0.366: the horse's own size (100 = the stable's horses), the friend's own size in every place (body.size), the horse independent of the rider's own size, so both are set once; checked by horse457.mjs.",
+  "metrics": {
+   "open_minutes": 8,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0,
+   "work_minutes": 22.0
+  }
+ },
+ {
   "id": 438,
   "area": "dress up, the friend's horse",
   "added": "2026-10-19T20:26-06:00",
