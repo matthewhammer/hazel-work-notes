@@ -1,5 +1,32 @@
 [
  {
+  "id": 455,
+  "area": "dress up, dress-up-pictures: a new run",
+  "added": "2026-10-19T21:36-06:00",
+  "opened": "2026-10-19T21:36-06:00",
+  "status": "done",
+  "tags": [
+   "🌙 long run"
+  ],
+  "source": "Matthew, 2026-10-19 21:36, in chat (\"long-run tickets for tonight\")",
+  "url": "",
+  "text": "<b>Redo the dress-up-pictures repo: a new run of the whole archive.</b> Matthew: \"redo the dress-up-pictures repo, after all other MUDU tickets that you can do long-run mode while I am away. After fixing any clipping issues.\" So: after ^ticket(454)'s clipping fixes and every other Dress Up ticket I can do on my own tonight, a full archive run of the newest release (the costumes since 0.0.347: gnome, wizard, monk or dryad, Robin Hood, knight, queen, king, beards, the horse), its tag, and the viewer checked.",
+  "progress": "21:36: minted; last of tonight's Dress Up tickets, after ^ticket(454); ^ticket(446) (the Hazel report) can run while its archive run is in CI. 22:20: the run is going on GitHub: branch archive-455, run 39369057076, the game at main (0.0.371: the horse led and ridden, people, the gnome, wizard, monk or dryad, Robin Hood, knight, queen and king, beards, the band), with ARCHIVE_TOKEN adding it to dress-up-pictures itself; a step after the pictures audits them for clipping (^ticket(454)'s tools/clip_audit.mjs). 23:13: <b>done: run 2026/10/19/22-20 of 0.0.371 is in dress-up-pictures and live</b> (tag run-2026-10-19-22-20, commit 3304859, 741 KiB in git; matthewhammer.org/dress-up-pictures/ shows 0.0.371). 683 pictures (39 new: the horse led and ridden with its markings and socks, the gnome, wizard, monk or dryad, Robin Hood, knight, queen and king, beards and their styles; 16 changed). The workflow's add step was skipped (ARCHIVE_TOKEN is not set), so it was added from the laptop with tools/add_run.sh (light: one rsync, one commit). Its clip audit (^ticket(454)'s, a new step in the workflow): 19 of 683 past the frame, down from 24: the five the frame fix was for (lying ×3, crawling, the hug) are whole; the rest are meant (a ladder, the diver's hose, climbing through ceilings, the sea) or the 12 seats of ^ticket(460). The archive's README says so.",
+  "log": [],
+  "closed": "2026-10-19",
+  "closed_at": "2026-10-19T23:13-06:00",
+  "outcome": "Run 2026/10/19/22-20 of 0.0.371 added to dress-up-pictures and live (683 pictures, 39 new); its clip audit confirms ^ticket(454)'s fix.",
+  "metrics": {
+   "open_minutes": 97,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0,
+   "work_minutes": 10.0
+  }
+ },
+ {
   "id": 427,
   "area": "dress up, performance: 💭 our imagination at 48 fps on 0.0.345",
   "added": "2026-10-19T18:59-06:00",
@@ -92,7 +119,7 @@
   "log": [],
   "closed": "2026-10-19",
   "closed_at": "2026-10-19T22:15-06:00",
-  "outcome": "Audit of the archive (24 of 644 pictures with the friend past the frame); the framing bug (lying, crawling, a hug, no place behind) fixed in 0.0.369; meant-to ones left; 12 seats at a scene's bottom edge to ^ticket(460) for Matthew. Confirmed or not by auditing ^ticket(455)'s run.",
+  "outcome": "Audit of the archive (24 of 644 pictures with the friend past the frame); the framing bug (lying, crawling, a hug, no place behind) fixed in 0.0.369; meant-to ones left; 12 seats at a scene's bottom edge to ^ticket(460) for Matthew. Confirmed or not by auditing ^ticket(455)'s run. Confirmed by ^ticket(455)'s run (0.0.371): the five are whole, 19 of 683 left, all meant or ^ticket(460)'s seats.",
   "metrics": {
    "open_minutes": 39,
    "matthew_messages": 0,
