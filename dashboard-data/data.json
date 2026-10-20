@@ -2886,7 +2886,7 @@
    "source": "Matthew, 2026-10-20 12:22, in chat (a long run, tonight)",
    "url": "",
    "text": "<b>Knoll the panels: the right-hand side, and in full screen both sides, each into boxes within boxes, as ^du_report(5) (Always Be Knolling) proposed.</b> Matthew: \"mint and enqueue for long run tonight -- how can we best &quot;Knowl&quot; the panels on the RHS (or in FS  mode, both LHS and RHS sometimes.) --- we've got a ^du_report about this, but our menus have expanded since then, and some have not been fully processed.  Especially, for example, non-FS world design control panels.\" Before it, after 0.0.375 (12:22), he wrote \"Always Be Knowling, friend. ; )\": the boxes there are the pattern (⚙️ Advanced's advLayout, ticket 375; nothing left in ⚙️ more). Start from report 005's nine rules and an audit of every tab as it is now (0.0.375: which are knolled, which fall back to one long column), the non-full-screen 🗺️ World design panels first; a report of what is left, then the boxes, one release per tab-sized piece. Then: \"^ Related -- the design experiment from last night, where we pop up a box with chips to select, and a cancel (for creating a template from a costume) --- was a success.  Let's note that in the ticket, and use that more going forward to keep things simpler, and skimmable, as controls.\" So: <b>the chip box is a pattern to use</b>, ticket 459's <code>personCostumeBox</code> in 25-world.js (0.0.366's ➕ from a costume): a box laid over the panels, not inside them, a chip per choice, ✖ cancel at its bottom, Escape or a tap outside closes it. Where a panel has a long dropdown or a list of rarely-changed choices, the knolled box shows the current choice as one chip that opens such a box.",
-   "progress": "",
+   "progress": "16:43 10-20 (Dress Up sprint, Matthew AFK): AUDIT at 0.0.381: boxed (TAB_BOXES): Body, Face, Eyes, Hair, Neck/arms/legs, Shirt, Hands, Pants, Swim, Feet, Visibility, Costume; ⚙️ Advanced (ticket 375). NOT boxed: 🗺️ World design (side panel: one 2,774 px column), 👥 People, 🏞️ Background (its own designer layout), 🎮 Controls, 🎵 Music (side panel), 🔬 Inspection, ♿ Accessibility. DONE: 🗺️ World design's side panel knolled, LIVE in 0.0.382 (f65360d): its parts as named boxes in a grid (one column narrow, side by side wide), in their order; check knoll488.mjs. NEXT: 👥 People, 🔬 Inspection and ♿ Accessibility, 🎮 Controls, 🎵 Music's side panel, then 🏞️ Background; one release per tab-sized piece. Use the chip box pattern (personCostumeBox) where a long list of choices sits in a panel.",
    "log": [
     {
      "at": "2026-10-18T21:06-06:00",
@@ -3090,8 +3090,8 @@
   }
  ],
  "next_ticket": 495,
- "current_ticket": 490,
- "current_note": "16:34: ^ticket(492) closed (done); ^ticket(490) is next in the queue",
+ "current_ticket": 488,
+ "current_note": "16:43: 16:43: Dress Up sprint (AFK): knolling the side panels; World design done (0.0.382); next 👥 People, 🔬 Inspection, ♿ Accessibility",
  "closed_tickets": [
   {
    "id": 492,
@@ -7579,6 +7579,7 @@
   }
  ],
  "queue": [
+  488,
   490,
   470,
   411,
@@ -7617,10 +7618,9 @@
   423,
   429,
   460,
-  488,
   493
  ],
- "current_since": "2026-10-20T16:34-06:00",
+ "current_since": "2026-10-20T16:43-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
