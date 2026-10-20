@@ -1135,23 +1135,36 @@
    "log": []
   },
   {
-   "id": 428,
-   "area": "dashboard, hazel-work-notes: the repository scales over time, locally and on GitHub",
-   "added": "2026-10-19T19:26-06:00",
-   "opened": "2026-10-19T19:26-06:00",
+   "id": 429,
+   "area": "matthewhammer.org, its repository: the dashboard's history in it",
+   "added": "2026-10-19T20:22-06:00",
+   "opened": "2026-10-19T20:22-06:00",
    "status": "open",
-   "tags": [],
-   "source": "Matthew, 2026-10-19 19:3x: \"re-org of dashboard repo so that it scales locally as a checked out copy, and in GH, over time. We discussed this earlier today and made a ticket for it.\" (enqueue after the Dress Up tickets Claude can do alone)",
+   "tags": [
+    "blocked on Matthew",
+    "low priority"
+   ],
+   "source": "Claude, 2026-10-19 20:22, from ^ticket(428)'s measurements",
    "url": "",
-   "text": "<b>The dashboard's repository should scale over time: as a checked-out copy and on GitHub.</b> ^ticket(417) (done at 16:32 while Matthew was away) took the checked-out copy from 341 MB of dated snapshot files to one file per page (1.4 MB; .git 40 to 16 MB after a gc), every version kept in git history. Left for this ticket: how the history itself grows (each change commits the 355 KB page and the 1 MB closed page, plus versions.html, a row a version), measured over a day; and, from that, what keeps GitHub's copy and a fresh clone small for years: fewer commits (a snapshot only on a real change, or at most every few minutes), the closed page split so a closing does not rewrite a megabyte, versions.html paged, an archive repository per year as the pictures' have, and the weekly gc (^ticket(423), waiting on Matthew's OK for the crontab).",
-   "progress": "19:26: minted after Matthew's ask; enqueued after the Dress Up tickets Claude can do alone.",
+   "text": "<b>The homepage's repository holds the dashboard's whole public history: how to keep it lean?</b> Found in ^ticket(428): GitHub puts matthewhammer/matthewhammer.github.io at 764 MB (most of it the music's mp3s); the dashboard's folder, hazel/dashboard/, held ~111 MB of its packs after four days (121 commits on 10-18 alone, each rewriting both pages). Since 428 a page goes up only when it really changed, and the closed page goes by month, so the growth is much slower. For Matthew to choose: <ul><li>leave it so;</li><li>publish the dashboard from a repository of its own (a project site under matthewhammer.org, so its addresses stay), and the homepage stops growing with it;</li><li>also rewrite the homepage's history without the dashboard's old versions (a force-push to his site: only on his word).</li></ul>",
+   "progress": "20:22: minted, blocked on Matthew: his site's repository and history.",
    "log": []
   }
  ],
- "next_ticket": 429,
- "current_ticket": 428,
- "current_note": "20:05: ^ticket(428): the dashboard repository grows by real changes only (one commit per publish; closed page only on a closing; page on a data change or hourly; closed tickets by month; versions.html untracked); the public copy too. Checking a publish that closes nothing: only the page should change.",
+ "next_ticket": 430,
+ "current_ticket": 427,
+ "current_note": "20:19: ^ticket(427): 💭 our imagination below 55 fps in the slow tier: the 0.0.345 re-run reproduces it (walk 48.3, drag 47.2; friend drawn in 2.7 ms, every other frame missed: paint, not script). Finding what paints.",
  "closed_tickets": [
+  {
+   "id": 428,
+   "area": "dashboard, hazel-work-notes: the repository scales over time, locally and on GitHub",
+   "added": "2026-10-19T19:26-06:00",
+   "text": "The dashboard's repository should scale over time: as a checked-out copy and on GitHub.",
+   "source": "Matthew, 2026-10-19 19:3x: \"re-org of dashboard repo so that it scales locally as a checked out copy, and in GH, over…",
+   "status": "done",
+   "closed": "2026-10-19",
+   "outcome": "The dashboard's repository grows by real changes only, and its pages stop growing for good. MEASURED first (10-19 evening): packed, hazel-work-notes grew ~2.9 MB a day (633…"
+  },
   {
    "id": 392,
    "area": "dress up, the menus' panel headers",
@@ -5108,7 +5121,6 @@
   }
  ],
  "queue": [
-  428,
   427,
   389,
   411,
@@ -5135,9 +5147,10 @@
   344,
   421,
   422,
-  423
+  423,
+  429
  ],
- "current_since": "2026-10-19T19:50-06:00",
+ "current_since": "2026-10-19T20:19-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",

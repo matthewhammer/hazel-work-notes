@@ -1,5 +1,30 @@
 [
  {
+  "id": 428,
+  "area": "dashboard, hazel-work-notes: the repository scales over time, locally and on GitHub",
+  "added": "2026-10-19T19:26-06:00",
+  "opened": "2026-10-19T19:26-06:00",
+  "status": "done",
+  "tags": [],
+  "source": "Matthew, 2026-10-19 19:3x: \"re-org of dashboard repo so that it scales locally as a checked out copy, and in GH, over time. We discussed this earlier today and made a ticket for it.\" (enqueue after the Dress Up tickets Claude can do alone)",
+  "url": "",
+  "text": "<b>The dashboard's repository should scale over time: as a checked-out copy and on GitHub.</b> ^ticket(417) (done at 16:32 while Matthew was away) took the checked-out copy from 341 MB of dated snapshot files to one file per page (1.4 MB; .git 40 to 16 MB after a gc), every version kept in git history. Left for this ticket: how the history itself grows (each change commits the 355 KB page and the 1 MB closed page, plus versions.html, a row a version), measured over a day; and, from that, what keeps GitHub's copy and a fresh clone small for years: fewer commits (a snapshot only on a real change, or at most every few minutes), the closed page split so a closing does not rewrite a megabyte, versions.html paged, an archive repository per year as the pictures' have, and the weekly gc (^ticket(423), waiting on Matthew's OK for the crontab).",
+  "progress": "19:26: minted after Matthew's ask; enqueued after the Dress Up tickets Claude can do alone.",
+  "log": [],
+  "closed": "2026-10-19",
+  "closed_at": "2026-10-19T20:19-06:00",
+  "outcome": "The dashboard's repository grows by real changes only, and its pages stop growing for good. MEASURED first (10-19 evening): packed, hazel-work-notes grew ~2.9 MB a day (633 commits on 10-18; 89 commits from 16:32 to 19:50); most of it full copies of the two 1.1 MB files, closed.html and data.json, which git stores again every ~50 versions; closed.html had been rewritten on 22 of 31 publishes that closed nothing (its version meta, its own Updated time, and the hover cards' scripts carrying every ticket's summary). DONE in hazel-work-notes (all pushed): one commit per publish (was up to 3); the closed page kept only when its content changes; the page on a data change or hourly; data.json split: the closed tickets' full records by month in dashboard-data/closed/YYYY-MM.json, data.json keeping each as its hover card's summary (dashboard/data_whole.py joins them; round trip checked equal to the live data, order included); versions.html made from the last 30 days, untracked. The public copy (site_publish.py) the same: a page goes up only when it really changed, and an unchanged page keeps its file in the commit (on 10-18, 121 commits had rewritten both pages in the homepage's repository). Pages carry only the tickets they name in their hover cards (all 202 KB before, growing with every ticket): index.html 353 -> 179 KB; a nav-bar chip for another ticket reads the data live (checked in the browser). The closed page by month: from 11-01 closed.html is the month's, each earlier month closed-YYYY-MM.html, unchanging once over; old closed.html#ticket-N links find their month through closed-where.json (tried as November in a scratch copy: 35 KB vs 1.1 MB; all three redirects checked in the browser). A SLIP, fixed: for 11 minutes (20:01-20:12) the public data.json had no closed tickets, so the published reports' and notes' hover cards for closed tickets said \"Not on the dashboard\"; verified restored (398 closed). LEFT: re-measure the growth over a full day on 10-20 (the window after the change was too quiet to measure); local git gc stays ^ticket(423) (his crontab OK; an alternative there: gc.auto lowered in the repo's own config); the homepage repository's size is ^ticket(429), his call.",
+  "metrics": {
+   "open_minutes": 54,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0,
+   "work_minutes": 75.0
+  }
+ },
+ {
   "id": 392,
   "area": "dress up, the menus' panel headers",
   "added": "2026-10-19T09:40-06:00",
