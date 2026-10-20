@@ -1,5 +1,45 @@
 [
  {
+  "id": 491,
+  "area": "dress up, single-column layout: the panel's breadcrumb drawn over the picture",
+  "added": "2026-10-20T14:01-06:00",
+  "opened": "2026-10-20T14:01-06:00",
+  "status": "done",
+  "tags": [],
+  "source": "Matthew, 2026-10-20 14:01, in chat, with a screenshot",
+  "url": "",
+  "text": "<b>In single-column mode the panel's breadcrumb bar is drawn across the game's picture.</b> Matthew: \"mint and enqueue --- fix for breadcrumbs in single column mode (on my desktop at half screen width)\", with a screenshot of 0.0.375 at about 1130 px wide: the picture (the deep sea, A3) sticks at the top with its buttons under it (Surprise me!, Save, Load, Start over), the panel scrolls beneath, and the panel's breadcrumb bar (\"background\") sits over the picture, a full-width band across its top third, under the 🔊 button. The bar belongs with the panel: below the picture and its buttons, or hidden while the picture holds the top. Then: \"MUDU tickets go after the hazel ones we are doing.\"",
+  "progress": "15:54 10-20: FIXED, committed locally (not released yet): in one column (max-width 760 px) the stage sticks at top 0 (z 1) and #crumbs stuck at top 0 too (z 6), so it lay across the picture. Now .crumbs sticks at top: var(--stage-h), the stage's height from a ResizeObserver in 21-size-and-divider.js. Checked in the browser pane at 753x900 on 8133, scrolled: the band's top 408 = the stage's bottom 408 (before: 0). NEXT: ships with the next release (paused for Matthew's throne bug report).",
+  "log": [
+   {
+    "at": "2026-10-20T14:00-06:00",
+    "from": "matthew",
+    "chars": 101,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T14:00-06:00",
+    "from": "matthew",
+    "chars": 50,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-20",
+  "closed_at": "2026-10-20T16:15-06:00",
+  "outcome": "Live in 0.0.376: in one column (760 px and less) the breadcrumb band sticks just under the picture and its buttons (top: --stage-h, the stage's height from a ResizeObserver), not across the picture. Checked in the browser pane at 753x900 (band top 408 = stage bottom 408); tools/checks/crumbs491.mjs runs in the speed run.",
+  "metrics": {
+   "open_minutes": 134,
+   "matthew_messages": 2,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 151,
+   "tokens_est": 37,
+   "sync_minutes_est": 0.0,
+   "work_minutes": 14.0
+  }
+ },
+ {
   "id": 486,
   "area": "dress up, offline: an installable app that runs without the Internet",
   "added": "2026-10-20T12:00-06:00",

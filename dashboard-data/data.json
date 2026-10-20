@@ -2729,7 +2729,7 @@
    "source": "Matthew, 2026-10-20 09:4x, in chat (\"for after more hazel work gets done first\")",
    "url": "",
    "text": "<b>A cave-room background, with rounded, fractal, walkable ground, and a set of cave objects to place.</b> Matthew: \"* a background that represents being in a cave room, rounded, fractal structure on the ground (walkable) suface. Different cave rock formations (6 styles for floor, and 6 styles for ceiling) --- look at, and refine, the waterfall cave. Gems are extra things to add, including 6 styles. More objects to refine and make placeable -- treasure chest, mushrooms (already have these, but maybe more styles, for a dark cave?) -- puddle on ground, with/without drip from ceiling. Little waterfall coming out of the wall, and trickling down the rock (the placeable object would be the water and the it runs down, into a puddle on the floor; all connected into one placeable object, for now --- 6 styles.\" So: a cave room background, its floor a rounded, fractal surface that can be walked on; 6 rock-formation styles for the floor and 6 for the ceiling; the waterfall cave looked at and refined; gems, 6 styles; placeable and refined: the treasure chest, mushrooms (more styles, for a dark cave), a puddle with or without a drip from the ceiling, and a little waterfall from the wall that trickles down the rock into a puddle on the floor, one connected placeable object for now, 6 styles. Matthew, a moment later: \"we also want to place cave passageways (dark openings that look like natural archways, holes in the wall, and holes in the floor).\" So also placeable: cave passageways, dark openings shaped like natural archways, holes in the wall, and holes in the floor.",
-   "progress": "",
+   "progress": "16:15 10-20: PART 1 LIVE in 0.0.376 (cf13e59): the 🦇 cave room (caveroomScene), in 🏕️ camping, inside the waterfall's square; in through a dark archway at the back of the 🪨 cave behind the falls (the cave's refinement so far), back through its own (caveArchSvg draws both). Fractal rounded floor (caveFractal/caveSmooth: ledges, three sizes of bumps, pebbles), walkable; 6 floor styles (caveFloor: stalagmites, boulders, columns, rimstone pools, crystal clusters, glowing mushrooms; solids via STANDING, glows .fumes and shadows .flat so boxes are the rock; boulders and mushrooms are seats); 6 ceiling styles (caveCeiling: stalactites, soda straws, curtains, a crack of daylight, crystals, glowworms); drops into a puddle (fast LFO), glows breathing (slow), two bats. Room perspective (NORTH_ROOMS). Check: tools/checks/caveroom471.mjs (speed run). MY CALLS (Matthew may change them): a new place rather than restyling the cave behind the falls; styles fixed per room (not per formation); the floor's formations at fixed spots. NEXT (part 2): placeable things for any place: 💎 gems (6 styles), a puddle with or without a drip from the ceiling, a little waterfall from the wall down the rock into a puddle (6 styles); part 3: cave passageways to place (natural archways, holes in the wall, holes in the floor); part 4: more mushroom styles for a dark cave, the treasure chest refined, the waterfall cave refined further.",
    "log": [
     {
      "at": "2026-10-20T09:23-06:00",
@@ -3102,34 +3102,6 @@
    ]
   },
   {
-   "id": 491,
-   "area": "dress up, single-column layout: the panel's breadcrumb drawn over the picture",
-   "added": "2026-10-20T14:01-06:00",
-   "opened": "2026-10-20T14:01-06:00",
-   "status": "open",
-   "tags": [],
-   "source": "Matthew, 2026-10-20 14:01, in chat, with a screenshot",
-   "url": "",
-   "text": "<b>In single-column mode the panel's breadcrumb bar is drawn across the game's picture.</b> Matthew: \"mint and enqueue --- fix for breadcrumbs in single column mode (on my desktop at half screen width)\", with a screenshot of 0.0.375 at about 1130 px wide: the picture (the deep sea, A3) sticks at the top with its buttons under it (Surprise me!, Save, Load, Start over), the panel scrolls beneath, and the panel's breadcrumb bar (\"background\") sits over the picture, a full-width band across its top third, under the 🔊 button. The bar belongs with the panel: below the picture and its buttons, or hidden while the picture holds the top. Then: \"MUDU tickets go after the hazel ones we are doing.\"",
-   "progress": "15:54 10-20: FIXED, committed locally (not released yet): in one column (max-width 760 px) the stage sticks at top 0 (z 1) and #crumbs stuck at top 0 too (z 6), so it lay across the picture. Now .crumbs sticks at top: var(--stage-h), the stage's height from a ResizeObserver in 21-size-and-divider.js. Checked in the browser pane at 753x900 on 8133, scrolled: the band's top 408 = the stage's bottom 408 (before: 0). NEXT: ships with the next release (paused for Matthew's throne bug report).",
-   "log": [
-    {
-     "at": "2026-10-20T14:00-06:00",
-     "from": "matthew",
-     "chars": 101,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T14:00-06:00",
-     "from": "matthew",
-     "chars": 50,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 492,
    "area": "dress up, the friend's horse: part of the body, with collision boxes that fit",
    "text": "<b>The friend's horse as part of their body: its settings under 🧍 Body, and collision boxes that fit horse and rider, ridden or led.</b> Matthew: \"the 'riding horse' needs some system work.\" (1) \"The horse settings should be under 'body', not costume.\" Today they are the 🐴 box in 🐯 Costume (js/20-controls.js, the <code>costume.horse*</code> keys: with the friend, coat, mane, face marking, tack, socks, size; ^ticket(438), ^ticket(457)); move them, and the saved settings with them. (2) \"When 'riding horse' or 'leading horse' -- we need the collision boxes to be more accurate. our actual body is above the horse. the horse has a body, and feet. Do the same we are doing for humanoid bodies, but extended for horses (four legs, not just two).\" So, as <code>feetSoles</code> and <code>youHeights</code> do for the friend (js/16-objects-and-solids.js: a box under each sole, where it is drawn, with its heights): a box under each of the horse's four hooves as drawn, in every view and gait, and the horse's body at its own heights (belly to back, the neck and head); ridden, the friend's boxes are up on the horse (from the saddle to the crown, no soles on the floor); led, the friend's own soles beside the horse's. 🔬 Inspection draws them all. His screenshot (the dungeon, MIND THE FLOOR, ridden): the friend's one box, \"you\", sits on the floor between the horse's legs, and nothing covers the horse; saved at ~/du-shots/ticket-492/ridden-in-the-dungeon.webp.",
@@ -3202,8 +3174,18 @@
  ],
  "next_ticket": 494,
  "current_ticket": 471,
- "current_note": "16:02: 16:02: Dress Up sprint: 493 (thrones) not reproduced, blocked on Matthew for his steps; 491 fixed locally. Now 471: a cave room background and cave objects",
+ "current_note": "16:15: 16:15: part 1 (the cave room) LIVE in 0.0.376; checking it live; next part 2: placeable gems, puddles with drips, little waterfalls",
  "closed_tickets": [
+  {
+   "id": 491,
+   "area": "dress up, single-column layout: the panel's breadcrumb drawn over the picture",
+   "added": "2026-10-20T14:01-06:00",
+   "text": "In single-column mode the panel's breadcrumb bar is drawn across the game's picture.",
+   "source": "Matthew, 2026-10-20 14:01, in chat, with a screenshot",
+   "status": "done",
+   "closed": "2026-10-20",
+   "outcome": "Live in 0.0.376: in one column (760 px and less) the breadcrumb band sticks just under the picture and its buttons (top: --stage-h, the stage's height from a ResizeObserver), not…"
+  },
   {
    "id": 486,
    "area": "dress up, offline: an installable app that runs without the Internet",
@@ -7661,7 +7643,6 @@
  ],
  "queue": [
   471,
-  491,
   492,
   490,
   470,
@@ -7716,7 +7697,7 @@
   },
   "since": "2026-08-27",
   "replies": 4819,
-  "words": 1079039,
+  "words": 1079212,
   "read_hours_est": 75.6,
   "listen_hours_est": 112.4,
   "read_s_avg": 56,
@@ -7939,8 +7920,8 @@
    },
    "2026-10-20": {
     "replies": 64,
-    "words": 14247,
-    "chars": 83193
+    "words": 14420,
+    "chars": 84197
    }
   }
  },
