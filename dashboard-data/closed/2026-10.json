@@ -1,5 +1,124 @@
 [
  {
+  "id": 488,
+  "area": "dress up, panels: knoll every side panel, as ^du_report(5) proposed",
+  "added": "2026-10-20T12:22-06:00",
+  "opened": "2026-10-20T12:22-06:00",
+  "status": "done",
+  "tags": [
+   "long run"
+  ],
+  "source": "Matthew, 2026-10-20 12:22, in chat (a long run, tonight)",
+  "url": "",
+  "text": "<b>Knoll the panels: the right-hand side, and in full screen both sides, each into boxes within boxes, as ^du_report(5) (Always Be Knolling) proposed.</b> Matthew: \"mint and enqueue for long run tonight -- how can we best &quot;Knowl&quot; the panels on the RHS (or in FS  mode, both LHS and RHS sometimes.) --- we've got a ^du_report about this, but our menus have expanded since then, and some have not been fully processed.  Especially, for example, non-FS world design control panels.\" Before it, after 0.0.375 (12:22), he wrote \"Always Be Knowling, friend. ; )\": the boxes there are the pattern (⚙️ Advanced's advLayout, ticket 375; nothing left in ⚙️ more). Start from report 005's nine rules and an audit of every tab as it is now (0.0.375: which are knolled, which fall back to one long column), the non-full-screen 🗺️ World design panels first; a report of what is left, then the boxes, one release per tab-sized piece. Then: \"^ Related -- the design experiment from last night, where we pop up a box with chips to select, and a cancel (for creating a template from a costume) --- was a success.  Let's note that in the ticket, and use that more going forward to keep things simpler, and skimmable, as controls.\" So: <b>the chip box is a pattern to use</b>, ticket 459's <code>personCostumeBox</code> in 25-world.js (0.0.366's ➕ from a costume): a box laid over the panels, not inside them, a chip per choice, ✖ cancel at its bottom, Escape or a tap outside closes it. Where a panel has a long dropdown or a list of rarely-changed choices, the knolled box shows the current choice as one chip that opens such a box.",
+  "progress": "16:43 10-20 (Dress Up sprint, Matthew AFK): AUDIT at 0.0.381: boxed (TAB_BOXES): Body, Face, Eyes, Hair, Neck/arms/legs, Shirt, Hands, Pants, Swim, Feet, Visibility, Costume; ⚙️ Advanced (ticket 375). NOT boxed: 🗺️ World design (side panel: one 2,774 px column), 👥 People, 🏞️ Background (its own designer layout), 🎮 Controls, 🎵 Music (side panel), 🔬 Inspection, ♿ Accessibility. DONE: 🗺️ World design's side panel knolled, LIVE in 0.0.382 (f65360d): its parts as named boxes in a grid (one column narrow, side by side wide), in their order; check knoll488.mjs. NEXT: 👥 People, 🔬 Inspection and ♿ Accessibility, 🎮 Controls, 🎵 Music's side panel, then 🏞️ Background; one release per tab-sized piece. Use the chip box pattern (personCostumeBox) where a long list of choices sits in a panel. 16:47: PAUSED with a design call for Matthew: 🎵 Music's side panel is already cards in a grid (ticket 250), 👥 People one compact list, 🔬/♿ already boxed (accbox). Left: 🎮 Controls (its rows are mostly 'of' rows: settings of Body, Background and Accessibility shown here; boxLayout keys them by the part, so it needs the inner key; and the boxes' names would repeat the groups' own: 🫧 blowing bubbles, 🏃 how your friend moves) and 🏞️ Background (its own designer). Suggested: boxes 🎮 the controller / 🫧 bubbles (blowing + the themes as three cards) / 🏃 moving (how + a click while walking), the groups' own names dropped inside.",
+  "log": [
+   {
+    "at": "2026-10-18T21:06-06:00",
+    "from": "matthew",
+    "chars": 132,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-18T21:06-06:00",
+    "from": "claude",
+    "chars": 132,
+    "asks": false,
+    "words": 29,
+    "read_s": 7,
+    "listen_s": 11,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-18T21:10-06:00",
+    "from": "claude",
+    "chars": 1652,
+    "asks": false,
+    "words": 293,
+    "read_s": 74,
+    "listen_s": 110,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T12:20-06:00",
+    "from": "matthew",
+    "chars": 31,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T12:22-06:00",
+    "from": "matthew",
+    "chars": 313,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T12:22-06:00",
+    "from": "claude",
+    "chars": 519,
+    "asks": false,
+    "words": 95,
+    "read_s": 24,
+    "listen_s": 36,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T12:23-06:00",
+    "from": "matthew",
+    "chars": 284,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T12:23-06:00",
+    "from": "claude",
+    "chars": 376,
+    "asks": false,
+    "words": 68,
+    "read_s": 17,
+    "listen_s": 26,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T12:23-06:00",
+    "from": "matthew",
+    "chars": 284,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T12:25-06:00",
+    "from": "claude",
+    "chars": 4576,
+    "asks": false,
+    "words": 808,
+    "read_s": 204,
+    "listen_s": 303,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-20",
+  "closed_at": "2026-10-20T16:48-06:00",
+  "outcome": "Audit (0.0.381): the dressing tabs and ⚙️ Advanced were boxed already; 🎵 Music's side panel already cards in a grid (ticket 250); 👥 People one compact list; 🔬 Inspection and ♿ Accessibility already in boxes; 🏞️ Background has its own designer (ticket 285). Knolled: 🗺️ World design's side panel (0.0.382, f65360d: its parts as named boxes in a grid, side by side when wide, in their order) and 🎮 Controls (0.0.383, 6ae53b7: three boxes, the game controller, the bubbles, moving; boxLayout boxes a row of another part by its own key unless the plan names the part, so Costume's visibility rows keep their box). Check: tools/checks/knoll488.mjs. Not done: the chip box pattern applied to long lists of choices (no panel needed it in this pass).",
+  "metrics": {
+   "open_minutes": 267,
+   "matthew_messages": 5,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 8299,
+   "tokens_est": 2074,
+   "sync_minutes_est": 9.0,
+   "replies": 5,
+   "claude_words": 1293,
+   "read_minutes_est": 5.4,
+   "listen_minutes_est": 8.1,
+   "read_s_avg": 65,
+   "listen_s_avg": 97,
+   "work_minutes": 40.0
+  }
+ },
+ {
   "id": 492,
   "area": "dress up, the friend's horse: part of the body, with collision boxes that fit",
   "text": "<b>The friend's horse as part of their body: its settings under 🧍 Body, and collision boxes that fit horse and rider, ridden or led.</b> Matthew: \"the 'riding horse' needs some system work.\" (1) \"The horse settings should be under 'body', not costume.\" Today they are the 🐴 box in 🐯 Costume (js/20-controls.js, the <code>costume.horse*</code> keys: with the friend, coat, mane, face marking, tack, socks, size; ^ticket(438), ^ticket(457)); move them, and the saved settings with them. (2) \"When 'riding horse' or 'leading horse' -- we need the collision boxes to be more accurate. our actual body is above the horse. the horse has a body, and feet. Do the same we are doing for humanoid bodies, but extended for horses (four legs, not just two).\" So, as <code>feetSoles</code> and <code>youHeights</code> do for the friend (js/16-objects-and-solids.js: a box under each sole, where it is drawn, with its heights): a box under each of the horse's four hooves as drawn, in every view and gait, and the horse's body at its own heights (belly to back, the neck and head); ridden, the friend's boxes are up on the horse (from the saddle to the crown, no soles on the floor); led, the friend's own soles beside the horse's. 🔬 Inspection draws them all. His screenshot (the dungeon, MIND THE FLOOR, ridden): the friend's one box, \"you\", sits on the floor between the horse's legs, and nothing covers the horse; saved at ~/du-shots/ticket-492/ridden-in-the-dungeon.webp.",
