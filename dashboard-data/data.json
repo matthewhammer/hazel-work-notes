@@ -2165,7 +2165,35 @@
    "url": "",
    "text": "<b>A tests PR to dev that checks the performance PRs keep types and values the same, plus each PR's own missing tests.</b> The second half of ^ticket(398); ^report(21)'s \"What to add\": <ol><li>turn the incremental-against-fresh property back on for completed results (#2457's stuck ones skipped), fixed seed, with recursive lets in the generator;</li><li>a corpus comparison: every program in hazel-programs analyzed and evaluated with each optimization on and off, incrementally after an edit and from scratch (types, marks, elaborations ignoring ids, values, probes, test results);</li><li>hash checks: equal hash implies equal term, for the type hash (#2661, #2681) and the term hash (#2673), plus a census over the corpus;</li><li>a parser comparison: the load fallback against character-by-character typing at every split offset (finds #2610's case);</li><li>budget tests that also assert results.</li></ol> And on each of our PRs, the tests ^report(21) lists in its section.",
    "progress": "12:39 10-20: Matthew: \"whats next for 411 -- how can I help you?\" #2700 (draft): Fast checks and Full tests GREEN on 58ac45008a, mergeable, 0 behind dev. His two calls, asked: (1) out of draft and a reviewer (suggested: ready, Cyrus; tests only); (2) the hash and parser checks on #2661, #2673 and #2610 now (suggested: yes, every ordering needs them), the 19 PRs' own tests after Cyrus's ordering on Wednesday.",
-   "log": [],
+   "log": [
+    {
+     "at": "2026-10-20T12:39-06:00",
+     "from": "matthew",
+     "chars": 41,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T12:39-06:00",
+     "from": "claude",
+     "chars": 94,
+     "asks": false,
+     "words": 16,
+     "read_s": 4,
+     "listen_s": 6,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T12:39-06:00",
+     "from": "claude",
+     "chars": 67,
+     "asks": true,
+     "words": 13,
+     "read_s": 3,
+     "listen_s": 5,
+     "note": "from the transcripts"
+    }
+   ],
    "waiting": "Wednesday: which of the 19 PRs get their own tests first (^report(21) lists them per PR); and a look at draft #2700."
   },
   {
@@ -2492,6 +2520,40 @@
      "words": 138,
      "read_s": 35,
      "listen_s": 52,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T12:38-06:00",
+     "from": "matthew",
+     "chars": 23,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T12:38-06:00",
+     "from": "matthew",
+     "chars": 79,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T12:38-06:00",
+     "from": "claude",
+     "chars": 1664,
+     "asks": false,
+     "words": 296,
+     "read_s": 75,
+     "listen_s": 111,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T12:39-06:00",
+     "from": "claude",
+     "chars": 241,
+     "asks": false,
+     "words": 39,
+     "read_s": 10,
+     "listen_s": 15,
      "note": "from the transcripts"
     }
    ]
@@ -7479,9 +7541,9 @@
   },
   "since": "2026-08-27",
   "replies": 4804,
-  "words": 1075291,
+  "words": 1075790,
   "read_hours_est": 75.3,
-  "listen_hours_est": 112.0,
+  "listen_hours_est": 112.1,
   "read_s_avg": 56,
   "listen_s_avg": 84,
   "days": {
@@ -7702,8 +7764,8 @@
    },
    "2026-10-20": {
     "replies": 49,
-    "words": 10499,
-    "chars": 61643
+    "words": 10998,
+    "chars": 64390
    }
   }
  },
