@@ -2551,12 +2551,13 @@
    "opened": "2026-10-20T09:56-06:00",
    "status": "open",
    "tags": [
+    "blocked on Matthew",
     "meeting 2026-10-21"
    ],
    "source": "Matthew, 2026-10-20 10:0x, in chat (\"after the cave ticket\")",
    "url": "https://arxiv.org/abs/1703.05410",
    "text": "<b>Ideation: Hazel as the editor of a Scratch-like game-building environment, with Messed Up Dress Up as its world, people and objects; partly blocked on Matthew.</b> Matthew: \"Ideation, partly blocked on Matthew, about Hazel as the editor for a Scratch-like game-building environment, based on Messed Up Dress Up as the world/people/object system. Livelits show that hazel can express a lot, but not yet with adequate performance to play the role of the \"game engine\" and the \"drawing logic\". But the \"game logic\", especially simple event-based declarations: When this action in game happens, this other action is queued to happen (perhaps immediately). If we can expose Hazel tiles within Messed Up Dress Up to customize behavior, we'll have a synergistic configuration to drive more play and research, and their combination.\" So: Dress Up keeps its engine and its drawing (JavaScript, at 60 fps); Hazel tiles, inside Dress Up, declare the game logic, as events and the actions they queue (\"when this happens, then that\"), small enough for Hazel's evaluator today. Ideas first: the event and action vocabulary, where the tiles appear in Dress Up, how a declaration runs (when, and how fast), what is Matthew's to decide. Matthew, next: \"Your part of this ticket, to do before blocking, is to compare the ideas of Hazel + Messed Up Dress Up (in the vein of Scratch) to ideas in this paper, which go further, and include Hazel concepts like \"type systems\", \"proofs\", \"logic\" (deductive inference rules), etc. https://arxiv.org/abs/1703.05410\" So Claude's part, before the ticket blocks on Matthew: read <a href=\"https://arxiv.org/abs/1703.05410\">arXiv:1703.05410</a> and compare its ideas with Hazel + Dress Up in Scratch's vein, where it goes further (type systems, proofs, logic as deductive inference rules).",
-   "progress": "",
+   "progress": "10:57: CLAUDE'S PART DONE: read the paper (Martens and Hammer, 2017) and compared, in ^report(20)'s item 11 (\"Hazel tiles for a game's logic\"), published. Where they meet: event rules are the paper's skills-as-programs made reactive. Where it goes further and Hazel could follow: typed intents, the context as types (a rule that cannot apply is a type error), mechanics as inference rules with \"never stuck\" checked, traces as queryable values. What Hazel adds: rules meaningful while half-written, livelits inside rules, proof beside program. Steps, smallest first, listed there. ✋ For Matthew: which events and actions first, where the tiles sit in Dress Up, who writes rules; and whether to show it to Cyrus.",
    "log": [
     {
      "at": "2026-10-20T09:55-06:00",
