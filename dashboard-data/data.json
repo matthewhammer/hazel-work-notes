@@ -1188,7 +1188,7 @@
    "source": "Matthew, 2026-10-19 21:36, in chat (\"long-run tickets for tonight\")",
    "url": "",
    "text": "<b>Redo the dress-up-pictures repo: a new run of the whole archive.</b> Matthew: \"redo the dress-up-pictures repo, after all other MUDU tickets that you can do long-run mode while I am away. After fixing any clipping issues.\" So: after ^ticket(454)'s clipping fixes and every other Dress Up ticket I can do on my own tonight, a full archive run of the newest release (the costumes since 0.0.347: gnome, wizard, monk or dryad, Robin Hood, knight, queen, king, beards, the horse), its tag, and the viewer checked.",
-   "progress": "21:36: minted; last of tonight's Dress Up tickets, after ^ticket(454); ^ticket(446) (the Hazel report) can run while its archive run is in CI.",
+   "progress": "21:36: minted; last of tonight's Dress Up tickets, after ^ticket(454); ^ticket(446) (the Hazel report) can run while its archive run is in CI. 22:20: the run is going on GitHub: branch archive-455, run 39369057076, the game at main (0.0.371: the horse led and ridden, people, the gnome, wizard, monk or dryad, Robin Hood, knight, queen and king, beards, the band), with ARCHIVE_TOKEN adding it to dress-up-pictures itself; a step after the pictures audits them for clipping (^ticket(454)'s tools/clip_audit.mjs).",
    "log": []
   },
   {
@@ -1201,7 +1201,7 @@
    "source": "Matthew, 2026-10-19 21:42, in chat (\"mint and enqueue\"), with a screenshot of 🏞️ Background scrolled down to its boxes in the witch's woods; its origin, 21:43: M's earlier request",
    "url": "",
    "text": "<b>A band at the top of the right-hand panel saying where in it you are: \"background / default background objects\".</b> Matthew: \"when we have activated a RHS menu panel (e.g., background), and we scroll the RHS into the sub-panels -- retain a small band above them saying \"background / sub-panel-1 / ... / sub-panel-N\" --- we use slashes as separators to give a tree-path into the panel that we hover over. e.g., while hovering over the \"what stands here\" toggles (let's call this -- \"default background objects\" instead), we'd see a band on top of RHS saying: background / default background objects -- and that band would change as we hover over other sub-panels. On very limited screens, or with a narrow RHS, this could be very helpful.\" So: a band kept at the top of the panel as it scrolls, the tab's name then the box (and any group in it) under the pointer, slash-separated, following the pointer; and the 👁️ \"what stands here\" box renamed \"default background objects\". Matthew, a moment later: \"breadcrumb band was based on M's request earlier -- to at least see the start of the breadcrumb trail (\"background\") in that fixed band.\" So the least it must do: the band stays fixed at the panel's top and always shows the trail's start, the tab's name, however far the panel is scrolled; the box and group under the pointer follow after it.",
-   "progress": "21:42: minted and enqueued among tonight's Dress Up tickets, before ^ticket(455) (the pictures' new run goes last, so it has this too). 21:43: Matthew: it comes from M's earlier request; the fixed band showing at least the trail's start (the tab's name) is the core.",
+   "progress": "21:42: minted and enqueued among tonight's Dress Up tickets, before ^ticket(455) (the pictures' new run goes last, so it has this too). 21:43: Matthew: it comes from M's earlier request; the fixed band showing at least the trail's start (the tab's name) is the core. 22:20: <b>live in 0.0.370, fixed in 0.0.371</b>: the band (#crumbs) between the tabs and the panel, sticky at the top as the page scrolls: the tab's name, then the boxes and groups round what the pointer is over; 👁️ what stands here renamed 👁️ default background objects. On GitHub (diag-456, run 39368846713) the band showed at the top scrolled 1000 px down saying \"background / default background objects\", but over the jumps it named a group the panel hides (\"body / the jumps / the two jumps\"), and knoll375 found dashed borders in 👥 People and in 🗺️ World design's worlds box (that one since ticket 406): 0.0.371 says only headers that show and makes both borders solid; rerun pushed (diag-456).",
    "log": []
   },
   {
@@ -1221,8 +1221,8 @@
   }
  ],
  "next_ticket": 461,
- "current_ticket": 456,
- "current_note": "22:15: ^ticket(456): the panel's breadcrumb band: the tab's name always in a band fixed at the panel's top, then the box (and group) under the pointer, slash-separated; 👁️ what stands here renamed default background objects. 0.0.369 (the frame holds a lying friend) is live.",
+ "current_ticket": 446,
+ "current_note": "22:20: ^ticket(446): the sequel to ^report(18) (why #2635 failed CI): its questions and next steps, and what is known now (#2635 green since 15:06 on 10-19; #2699 merged), inter-linked with ^report(20); a draft in ~/hazel-perf-report, published only on Matthew's word. On GitHub meanwhile: the pictures run (^ticket(455)) and the band's recheck (^ticket(456)).",
  "closed_tickets": [
   {
    "id": 454,
@@ -5450,10 +5450,10 @@
   }
  ],
  "queue": [
+  446,
   456,
   427,
   455,
-  446,
   389,
   411,
   408,
@@ -5483,7 +5483,7 @@
   429,
   460
  ],
- "current_since": "2026-10-19T22:15-06:00",
+ "current_since": "2026-10-19T22:20-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
