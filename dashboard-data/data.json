@@ -2277,19 +2277,6 @@
    ]
   },
   {
-   "id": 463,
-   "area": "hazel, #2597: up to date with dev",
-   "added": "2026-10-20T07:38-06:00",
-   "opened": "2026-10-20T07:38-06:00",
-   "status": "open",
-   "tags": [],
-   "source": "Matthew, 2026-10-20 07:38, in chat",
-   "url": "",
-   "text": "<b>#2597 (livelits as in PLDI '21) up to date with dev, mergeable, CI green.</b> Part of Matthew's ask with ^ticket(462): dev merged in (it is 494 commits behind dev, from the morning of 2026-09-22), conflicts resolved, the table test's new input taken from #2635 (27f100e37c, ^report(23)'s next step 1), CI green.",
-   "progress": "07:38: minted; work begins with a map of the Fumola work in #2635. 08:02: Merged dev into #2597 on trial/2597-dev-merge (0 behind dev): the 80 conflicting files came down to 6 by merging #2635's 11fbc4480d (its 10-01 merge of dev to 9b3f18323a with the fixes after it, before any #2469); then cbdab791f5 (the reuse check's one-walk lexeme compare, which dev's lexeme check needs here too) and 27f100e37c (the table test's new input, ^report(23)'s step 1); then the rest of dev (5 conflicts, 4 by #2635's own resolutions). dev's #2649 took out the clipboard shim: its uses here ported to dev's replacements; a splice's focus keeper lets a deliberate press elsewhere be, as dev's does for a probe. CI on GitHub (no build on the laptop). 08:15: its CI stopped at compiling: dev's Measured folds a record (measure_acc), and the nested-splice case (8d5d0806c6) still took a 4-tuple apart; the pane layout test read Tile's old label field. Both as #2635 has them (562f852db8); the whole tree type-checks; CI rerunning on trial/2597-dev-merge. 08:29: Fast checks GREEN on 562f852db8 (5069 tests, 430 s); Full tests running. The full-view test (^ticket(467)) cherry-picked on top: 6fbc8268fc, local until Full tests finish. 09:19: trial Full tests GREEN too. PUSHED: integration/livelits-splicerefs-full 8a03584ef6..6fbc8268fc (fast-forward; with the full-view test). #2597 MERGEABLE, CLEAN; its CI runs on the PR.",
-   "log": []
-  },
-  {
    "id": 464,
    "area": "hazel, #2635 and the Fumola PR: up to date with dev",
    "added": "2026-10-20T07:38-06:00",
@@ -2699,6 +2686,16 @@
  "current_ticket": 469,
  "current_note": "10:08: the Html question: a friendlier not-found (Html is a module; HTML is now Html.T) and the full view showing what Html.T is; ^ticket(472)'s probe on GitHub meanwhile",
  "closed_tickets": [
+  {
+   "id": 463,
+   "area": "hazel, #2597: up to date with dev",
+   "added": "2026-10-20T07:38-06:00",
+   "text": "#2597 (livelits as in PLDI '21) up to date with dev, mergeable, CI green.",
+   "source": "Matthew, 2026-10-20 07:38, in chat",
+   "status": "done",
+   "closed": "2026-10-20",
+   "outcome": "#2597 is up to date with dev and mergeable, CI green on the PR's own branch (Fast checks and Full tests) at 6fbc8268fc, pushed 09:19 as a fast-forward (503 commits, mostly dev's).…"
+  },
   {
    "id": 475,
    "area": "hazel, reports: the agenda's items get a copy chip",
@@ -7010,7 +7007,6 @@
   468,
   470,
   464,
-  463,
   462,
   467,
   465,
