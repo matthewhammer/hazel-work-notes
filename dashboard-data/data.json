@@ -3017,16 +3017,6 @@
    ]
   },
   {
-   "id": 492,
-   "area": "dress up, the friend's horse: part of the body, with collision boxes that fit",
-   "text": "<b>The friend's horse as part of their body: its settings under 🧍 Body, and collision boxes that fit horse and rider, ridden or led.</b> Matthew: \"the 'riding horse' needs some system work.\" (1) \"The horse settings should be under 'body', not costume.\" Today they are the 🐴 box in 🐯 Costume (js/20-controls.js, the <code>costume.horse*</code> keys: with the friend, coat, mane, face marking, tack, socks, size; ^ticket(438), ^ticket(457)); move them, and the saved settings with them. (2) \"When 'riding horse' or 'leading horse' -- we need the collision boxes to be more accurate. our actual body is above the horse. the horse has a body, and feet. Do the same we are doing for humanoid bodies, but extended for horses (four legs, not just two).\" So, as <code>feetSoles</code> and <code>youHeights</code> do for the friend (js/16-objects-and-solids.js: a box under each sole, where it is drawn, with its heights): a box under each of the horse's four hooves as drawn, in every view and gait, and the horse's body at its own heights (belly to back, the neck and head); ridden, the friend's boxes are up on the horse (from the saddle to the crown, no soles on the floor); led, the friend's own soles beside the horse's. 🔬 Inspection draws them all. His screenshot (the dungeon, MIND THE FLOOR, ridden): the friend's one box, \"you\", sits on the floor between the horse's legs, and nothing covers the horse; saved at ~/du-shots/ticket-492/ridden-in-the-dungeon.webp.",
-   "source": "Matthew, 2026-10-20 15:50, in chat, with a screenshot (\"Mint and enqueue\")",
-   "url": "",
-   "added": "2026-10-20T15:50-06:00",
-   "opened": "2026-10-20T15:50-06:00",
-   "tags": []
-  },
-  {
    "id": 493,
    "area": "dress up, the king's room: sitting on an added throne",
    "text": "<b>Sitting on a throne that was added to the king's room goes wrong: the friend leaves the castle.</b> Matthew: \"Bug report --- after I added thrones and tried to sit, strange behavior -- leaving castle -- let's repro.\" So: in a castle's 👑 king's room, add thrones (\"👑 how many thrones\", up to 6, ticket 293), then sit on one; reproduce, find why the sit takes the friend out of the castle, fix.",
@@ -3100,9 +3090,19 @@
   }
  ],
  "next_ticket": 495,
- "current_ticket": 492,
- "current_note": "16:26: 16:26: Dress Up sprint: 471 done (0.0.376-0.0.379); 494 minted for tonight's gallery refresh. Now 492: the horse as part of the body: settings under 🧍 Body, collision boxes for horse and rider",
+ "current_ticket": 490,
+ "current_note": "16:34: ^ticket(492) closed (done); ^ticket(490) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 492,
+   "area": "dress up, the friend's horse: part of the body, with collision boxes that fit",
+   "added": "2026-10-20T15:50-06:00",
+   "text": "The friend's horse as part of their body: its settings under 🧍 Body, and collision boxes that fit horse and rider, ridden or led.",
+   "source": "Matthew, 2026-10-20 15:50, in chat, with a screenshot (\"Mint and enqueue\")",
+   "status": "done",
+   "closed": "2026-10-20",
+   "outcome": "Live in 0.0.380 (b4f7c31): (1) the horse's settings in 🧍 Body (body.horse...), in its own box 🐴 the horse, a saved friend's horse carried over (upgradeHorse, pins too); (2)…"
+  },
   {
    "id": 471,
    "area": "dress up, 🏞️ backgrounds: a cave room, and cave objects",
@@ -7579,7 +7579,6 @@
   }
  ],
  "queue": [
-  492,
   490,
   470,
   411,
@@ -7621,7 +7620,7 @@
   488,
   493
  ],
- "current_since": "2026-10-20T16:26-06:00",
+ "current_since": "2026-10-20T16:34-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
@@ -7634,7 +7633,7 @@
   },
   "since": "2026-08-27",
   "replies": 4819,
-  "words": 1079624,
+  "words": 1079881,
   "read_hours_est": 75.6,
   "listen_hours_est": 112.5,
   "read_s_avg": 56,
@@ -7857,8 +7856,8 @@
    },
    "2026-10-20": {
     "replies": 64,
-    "words": 14832,
-    "chars": 86610
+    "words": 15089,
+    "chars": 88201
    }
   }
  },

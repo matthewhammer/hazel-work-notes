@@ -1,5 +1,28 @@
 [
  {
+  "id": 492,
+  "area": "dress up, the friend's horse: part of the body, with collision boxes that fit",
+  "text": "<b>The friend's horse as part of their body: its settings under 🧍 Body, and collision boxes that fit horse and rider, ridden or led.</b> Matthew: \"the 'riding horse' needs some system work.\" (1) \"The horse settings should be under 'body', not costume.\" Today they are the 🐴 box in 🐯 Costume (js/20-controls.js, the <code>costume.horse*</code> keys: with the friend, coat, mane, face marking, tack, socks, size; ^ticket(438), ^ticket(457)); move them, and the saved settings with them. (2) \"When 'riding horse' or 'leading horse' -- we need the collision boxes to be more accurate. our actual body is above the horse. the horse has a body, and feet. Do the same we are doing for humanoid bodies, but extended for horses (four legs, not just two).\" So, as <code>feetSoles</code> and <code>youHeights</code> do for the friend (js/16-objects-and-solids.js: a box under each sole, where it is drawn, with its heights): a box under each of the horse's four hooves as drawn, in every view and gait, and the horse's body at its own heights (belly to back, the neck and head); ridden, the friend's boxes are up on the horse (from the saddle to the crown, no soles on the floor); led, the friend's own soles beside the horse's. 🔬 Inspection draws them all. His screenshot (the dungeon, MIND THE FLOOR, ridden): the friend's one box, \"you\", sits on the floor between the horse's legs, and nothing covers the horse; saved at ~/du-shots/ticket-492/ridden-in-the-dungeon.webp.",
+  "source": "Matthew, 2026-10-20 15:50, in chat, with a screenshot (\"Mint and enqueue\")",
+  "url": "",
+  "added": "2026-10-20T15:50-06:00",
+  "opened": "2026-10-20T15:50-06:00",
+  "tags": [],
+  "status": "done",
+  "closed": "2026-10-20",
+  "closed_at": "2026-10-20T16:34-06:00",
+  "outcome": "Live in 0.0.380 (b4f7c31): (1) the horse's settings in 🧍 Body (body.horse...), in its own box 🐴 the horse, a saved friend's horse carried over (upgradeHorse, pins too); (2) collision boxes: horseSvg reports hooves and barrel, the drawing keeps them (horseNow), horseBoxes makes four hoof boxes (to the fetlock; the far pair farther back when seen end on) and the body's (belly to back, so low things pass under); ridden, the soles are the hooves, the rider's hips on the saddle and crown over them (low doors and bridges meet the rider's head), led, the friend's boxes and the horse's; 🔬 draws them. Checked in the browser pane (side, front, back; ride and lead; a low rock under the belly passes, one at a hoof is met). Checks: horse492 (new); horse438 and horse457 point at Body.",
+  "metrics": {
+   "open_minutes": 44,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0,
+   "work_minutes": 30.0
+  }
+ },
+ {
   "id": 471,
   "area": "dress up, 🏞️ backgrounds: a cave room, and cave objects",
   "added": "2026-10-20T09:40-06:00",
