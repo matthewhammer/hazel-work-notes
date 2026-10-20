@@ -1,5 +1,152 @@
 [
  {
+  "id": 472,
+  "area": "hazel, #2635 on 8341: new static errors on the Scenes slide",
+  "added": "2026-10-20T09:47-06:00",
+  "opened": "2026-10-20T09:47-06:00",
+  "status": "done",
+  "tags": [
+   "meeting 2026-10-21"
+  ],
+  "source": "Matthew, 2026-10-20 09:47, in chat, with a screenshot of http://localhost:8341 (the Scenes slide)",
+  "url": "",
+  "text": "<b>#2635's local build shows errors that were not there before: on the Scenes slide, every livelit use is \"choice not found\" or \"slider not found\" with \"Malformed Label: ^choice\" (^slider), 20 errors, and \"Evaluation timed out\".</b> Matthew: \"after 466 -- please fix our local PR\" and \"why are these errors all new now?\" Seen on 8341 (#2635), the livelit playground's Scenes slide.",
+  "progress": "10:43: FOUND, from the saved slide in Matthew's Firefox (its IndexedDB for localhost:8341, read from a copy): the saved Scenes slide is text, and exactly the uses whose sliders he moved were re-printed with spaces: `Drawing. ^choice @< Scene > (...)`, `Drawing. ^slider(\"figure size\", ...)(23)`, `Drawing. ^slider(\"across\", - 300, 300)(-115)`; untouched uses still read `Drawing.^slider(...)`. A livelit's commit re-prints its use from the term (ProjectorPerform.term_to_segment), and ExpToSegment.should_add_space puts no space after `.` only before a label, a variable or a constructor, so a member livelit's `^name` got one. In the session the tiles are right; the slide is saved as text, and on reload `Drawing. ^choice` no longer reads as a member livelit: \"Malformed Label: ^choice\", \"choice not found\". So the errors are new after a slider is moved and the page reloaded. Ruled out on GitHub: the shipped Scenes loads with 0 errors, and the slow parser reads `D.^c` as the fast one does. A probe (trial/472-scenes) now shows how each spelling parses and what the re-print gives; then the fix: no space between `.` and a livelit name, and, if it can be done safely, reading `Drawing. ^choice` as `Drawing.^choice`, so a slide already saved that way repairs itself. 8341 now serves today's #2635 build, from GitHub's deploy. 10:49: THE PROBE CORRECTED ME: on today's build `Drawing. ^choice` parses exactly as `Drawing.^choice` (a Dot with a LivelitName, plus one space), and the shipped Scenes with three uses spelled as the saved copy spells them has 0 errors. So the errors were yesterday's build (8341 served 5961401df2) reading the spaced text back; 8341 has served today's #2635 (d14229ee66, then 3d7d5baca0 once deployed) since 10:23, which reads it. The re-print does space them (`Drawing. ^slider(\"across\", - 300, 300)(- 115)`): fixed, so saved text stays as written (3a9b3cec53, work/472-member-livelit off #2597, CI on trial/472-fix; tests: the re-print, and Scenes with re-printed uses, 0 errors). ✋ For Matthew: reload 8341's Scenes slide; the saved copy should now load without those errors. 11:10: trial Fast checks GREEN (with its tests); LANDED on both PRs: #2597 at 3a9b3cec53, #2635 at 1f40dae305 (a merge); their CI running.",
+  "log": [
+   {
+    "at": "2026-10-20T09:43-06:00",
+    "from": "claude",
+    "chars": 811,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T09:44-06:00",
+    "from": "matthew",
+    "chars": 141,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T09:45-06:00",
+    "from": "matthew",
+    "chars": 57,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T09:45-06:00",
+    "from": "matthew",
+    "chars": 4,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T09:45-06:00",
+    "from": "claude",
+    "chars": 142,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T09:47-06:00",
+    "from": "matthew",
+    "chars": 71,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-20",
+  "closed_at": "2026-10-20T11:46-06:00",
+  "outcome": "Found from the saved slide in Matthew's Firefox: a livelit's commit re-printed a module member's use spaced, <code>Drawing. ^slider(...)</code>, and the slide is saved as text; the build on 8341 (yesterday's) read that back as \"Malformed Label: ^slider\" and \"slider not found\". Today's parser reads it as written, and 8341 serves today's #2635 since 10:23, so the saved slide loads. And the re-print is fixed, no space after the dot before a livelit's name (3a9b3cec53 on #2597, merged into #2635 as 1f40dae305), with tests (MemberLivelitReprint: the re-print, and the Scenes slide with re-printed uses, no errors). Fast checks green on both PRs. For Matthew, if he likes: reload 8341's Scenes slide.",
+  "metrics": {
+   "open_minutes": 120,
+   "matthew_messages": 4,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 1226,
+   "tokens_est": 306,
+   "sync_minutes_est": 4.0,
+   "work_minutes": 70.0
+  }
+ },
+ {
+  "id": 469,
+  "area": "hazel, livelits slides: expanding the type Html",
+  "added": "2026-10-20T09:22-06:00",
+  "opened": "2026-10-20T09:22-06:00",
+  "status": "done",
+  "tags": [
+   "meeting 2026-10-21"
+  ],
+  "source": "Matthew, 2026-10-20 09:2x, in chat: a question of Cyrus's from Friday's meeting (2026-10-16)",
+  "url": "",
+  "text": "<b>On the livelits slides, expanding the type Html said it was unrecognized, or undefined: why, how to reproduce it, and how to fix it.</b> Matthew: \"in the livelits slides (playground and basic doc slides) -- we wanted to expand the definition of Html, and tried using the type-expansion feature, but it said it was unrecognized/undefinted! That was confusing, and leaves some questions open to answer --- why? how to reproduce? how to fix?\" For the meeting with Cyrus (2026-10-21). The type expansion is the full view's alias expansion (#2676; on #2597 e985a5a67e) and its Gamma counterpart (^ticket(386), #2698; ^ticket(468)).",
+  "progress": "09:35: the message is the inspector's TypFreeTypeVariable: a type name it cannot find prints as \"<name> not found\". Html is a builtin MODULE whose type member Html.T is the HTML type (a manifest sum; the old global alias HTML moved there, BuiltinsADT.HtmlModules.homes). The full view expands an alias at its binder, so the natural way to ask what Html is, `type X = Html in`, names Html as a type, which it is not: \"Html not found\"; `HTML` likewise. Inside `Html.T` the `Html` is checked as a module path and is fine. A probe on GitHub (trial/469-html, aa003964d7, fails on purpose with its report) checks what each spelling gets: Html, HTML, Html.T, Html.App. 10:10: the probe CONFIRMED it: `type X = Html in 1` and `type X = HTML in 1` mark TypFreeTypeVariable (\"Html not found\", \"HTML not found\"); `Html.T` and `Html.App` are fine. The fix (2cf1b59c37, work/469-html off #2597, CI on trial/469-html-fix): the not-found says \"Html is a module, not a type; its types: Html.T, Html.App\", and for an old alias \"HTML not found: it is Html.T now\"; the full view of `type X = Html.T in` shows what Html.T is. Tests: Test_FreeTypeHint (4). 11:10: on both PRs (#2597 2cf1b59c37, Fast checks green there, 300 s; #2635's merge 3d7d5baca0, whose quick tests hit the 20-minute step limit with no test failing, as #2635's suite runs 11.5 to 20+ minutes). Both now carry ^ticket(472) too, and their CI is running again.",
+  "log": [
+   {
+    "at": "2026-10-20T09:21-06:00",
+    "from": "matthew",
+    "chars": 373,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T09:22-06:00",
+    "from": "claude",
+    "chars": 114,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T09:55-06:00",
+    "from": "claude",
+    "chars": 1212,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T10:04-06:00",
+    "from": "claude",
+    "chars": 247,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T10:34-06:00",
+    "from": "claude",
+    "chars": 7103,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T11:10-06:00",
+    "from": "claude",
+    "chars": 460,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T11:16-06:00",
+    "from": "claude",
+    "chars": 525,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-20",
+  "closed_at": "2026-10-20T11:46-06:00",
+  "outcome": "Answered and fixed (^report(20)'s item 5). <b>Why:</b> Html is a module, not a type; the HTML type is Html.T, where the old global alias HTML lives now, and the way to ask the full view what Html is, <code>type X = Html in</code>, names Html as a type: \"Html not found\". <b>Reproduced</b> on GitHub (a probe): Html and HTML as types each mark a free type variable; Html.T and Html.App are fine. <b>Fixed</b> on #2597 (2cf1b59c37) and #2635 (3d7d5baca0): \"Html is a module, not a type; its types: Html.T, Html.App\", and for an old alias \"HTML not found: it is Html.T now\"; the full view of <code>type X = Html.T in</code> shows what Html.T is. Tests: FreeTypeHint (4). Fast checks green on both PRs' heads.",
+  "metrics": {
+   "open_minutes": 145,
+   "matthew_messages": 1,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 10034,
+   "tokens_est": 2508,
+   "sync_minutes_est": 16.0,
+   "work_minutes": 45.0
+  }
+ },
+ {
   "id": 483,
   "area": "hazel, #2583 and #2613: review comments and merge conflicts, a status",
   "added": "2026-10-20T11:37-06:00",
