@@ -332,10 +332,18 @@ ABOUT = [("hazel", "hazel", r"hazel|#2\d{3}|livelit|\bseries\b"), ("dress-up", "
          ("performance", "performance", r"\bperf"), ("dashboard", "dashboard", r"dashboard"),
          # (Matthew 2026-10-19) operations: the machines and services the work runs on, such as the laptop's battery
          ("operations", "operations", r"\boperations\b")]
+# (Matthew 2026-10-20) and the next meeting's tickets: those tagged "meeting <its date>" (data.json's next_meeting)
+_NM = data.get("next_meeting") or {}
+MEETING_TAG = f'meeting {_NM["date"]}' if _NM.get("date") else None
+if MEETING_TAG:
+    ABOUT.append(("meeting", f'🤝 meeting {_NM["date"][5:]}' + (f' ({_NM["with"]})' if _NM.get("with") else ""), None))
 def about(t):
     # (^ticket(196): a ticket's own "chips" add to those its area gives, as hazel on 16-19, whose areas say only CI or performance)
     a, own = t.get("area", "").lower(), t.get("chips") if isinstance(t.get("chips"), list) else []
-    return [c for c, _, rx in ABOUT if c in own or re.search(rx, a)]
+    out = [c for c, _, rx in ABOUT if rx and (c in own or re.search(rx, a))]
+    if MEETING_TAG and MEETING_TAG in (t.get("tags") or []):
+        out.append("meeting")
+    return out
 def about_chips(t, sep="<br>"):
     return "".join(f'{sep}<span class="badge about about-{c}" title="about {c}">{c}</span>' for c in about(t))
 def about_filter(table):
@@ -572,6 +580,7 @@ page = f"""<!doctype html>
   /* (^ticket(196), Matthew: hazel and dress-up solid, bright, black text) */
   .badge.about-hazel {{ background: #facc15; color: #000; border-color: #eab308; font-weight: 600; }}
   .badge.about-dress-up {{ background: #f472b6; color: #000; border-color: #ec4899; font-weight: 600; }}
+  .badge.about-meeting {{ background: #93c5fd; color: #000; border-color: #3b82f6; font-weight: 600; }}
   .badge.about-performance {{ color: #0f766e; border-color: #0f766e; }}
   .badge.about-dashboard {{ color: #4f46e5; border-color: #4f46e5; }}
   .badge.about-operations {{ color: var(--ops); border-color: var(--ops); }}
