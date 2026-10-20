@@ -22,6 +22,10 @@ m = {"open_minutes": round((now - datetime.fromisoformat(t["opened"])).total_sec
      "chars_exchanged": sum(e.get("chars", 0) for e in log)}
 m["tokens_est"] = m["chars_exchanged"] // 4
 m["sync_minutes_est"] = round(sum(g for g in gaps if g < 10), 1)
+# (^ticket(489)) Claude's replies on it, and the time to read them or hear them (log_messages.py keeps the rates)
+sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
+from log_messages import reading_metrics
+m.update(reading_metrics(log))
 if work is None and isinstance(t.get("work"), dict): work = t["work"].get("work_minutes")
 if work is not None: m["work_minutes"] = work
 t["metrics"] = m

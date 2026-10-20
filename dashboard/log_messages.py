@@ -51,6 +51,15 @@ NOTE = "from the transcripts"
 # the incremental run leaves a message this long, so the tickets it mints exist
 SETTLE = timedelta(minutes=12)
 MINT_WINDOW = timedelta(minutes=20)
+# (^ticket(489), Matthew 2026-10-20: "Is there a way you can log how long the average reading time is for each thing you
+# print, and assume that I am reading or listening to it?"; "I want that in the dashboard data, for all time.") Each reply's
+# words, and the time they take at these rates: silent reading of non-fiction, about 238 words a minute (Brysbaert 2019,
+# a meta-analysis of 190 studies); listening, about 160 (speech and narration run 150-160; a reader set faster takes less).
+READ_WPM, LISTEN_WPM = 238, 160
+read_s = lambda words: round(words * 60 / READ_WPM)
+listen_s = lambda words: round(words * 60 / LISTEN_WPM)
+# every project's transcripts, for the all-time tally (the worktree sessions too); ticket logs read TRANSCRIPTS alone
+ALL_TRANSCRIPTS = os.path.expanduser("~/.claude/projects/*/*.jsonl")
 
 REF = re.compile(r"#ticket-(\d+)|\^ticket\((\d+)\)|\bticket[s]?\s*#?\s*(\d{2,4})\b", re.I)
 
@@ -80,76 +89,82 @@ def machine_text(s):
 def events(path, start=0):
     """(kind, time, payload) from one transcript, from byte offset [start]:
     ("matthew", t, text), ("turn", t, None) where a turn starts,
-    ("text", t, chars) for Claude's text, ("ask", t, None)."""
+    ("text", t, (chars, words)) for Claude's text, ("ask", t, None)."""
     with open(path, "rb") as fh:
         fh.seek(start)
         for raw in fh:
-            try:
-                o = json.loads(raw)
-            except ValueError:
+            yield from record_events(raw)
+
+
+def record_events(raw):
+    """events() for one line of a transcript."""
+    try:
+        o = json.loads(raw)
+    except ValueError:
+        return
+    ts = o.get("timestamp")
+    if not ts or o.get("isSidechain"):
+        return
+    t = parse_ts(ts)
+    kind = o.get("type")
+    if kind == "queue-operation" and o.get("operation") in ("enqueue", "remove"):
+        # sent while a turn ran: queued, then absorbed into the turn;
+        # with a screenshot the enqueue holds no text, the remove does
+        c = text_of(o.get("content")).strip()
+        if c and not machine_text(c):
+            yield ("matthew", t, c)
+    elif kind == "attachment" and (o.get("attachment") or {}).get("type") == "queued_command":
+        c = text_of(o["attachment"].get("prompt")).strip()
+        if c and not machine_text(c):
+            yield ("matthew", t, c)
+    elif kind == "user":
+        origin = (o.get("origin") or {}).get("kind")
+        if origin == "human":
+            s = text_of(o["message"].get("content")).strip()
+            if s and not machine_text(s):
+                yield ("turn", t, None)
+                yield ("matthew", t, s)
+        elif origin == "task-notification":
+            yield ("turn", t, None)
+    elif kind == "assistant":
+        for b in o.get("message", {}).get("content", []) or []:
+            if not isinstance(b, dict):
                 continue
-            ts = o.get("timestamp")
-            if not ts or o.get("isSidechain"):
-                continue
-            t = parse_ts(ts)
-            kind = o.get("type")
-            if kind == "queue-operation" and o.get("operation") in ("enqueue", "remove"):
-                # sent while a turn ran: queued, then absorbed into the turn;
-                # with a screenshot the enqueue holds no text, the remove does
-                c = text_of(o.get("content")).strip()
-                if c and not machine_text(c):
-                    yield ("matthew", t, c)
-            elif kind == "attachment" and (o.get("attachment") or {}).get("type") == "queued_command":
-                c = text_of(o["attachment"].get("prompt")).strip()
-                if c and not machine_text(c):
-                    yield ("matthew", t, c)
-            elif kind == "user":
-                origin = (o.get("origin") or {}).get("kind")
-                if origin == "human":
-                    s = text_of(o["message"].get("content")).strip()
-                    if s and not machine_text(s):
-                        yield ("turn", t, None)
-                        yield ("matthew", t, s)
-                elif origin == "task-notification":
-                    yield ("turn", t, None)
-            elif kind == "assistant":
-                for b in o.get("message", {}).get("content", []) or []:
-                    if not isinstance(b, dict):
-                        continue
-                    if b.get("type") == "text" and b.get("text", "").strip():
-                        yield ("text", t, len(b["text"]))
-                    elif b.get("type") == "tool_use":
-                        name, inp = b.get("name", ""), b.get("input") or {}
-                        if name == "AskUserQuestion" or (name.endswith("__wrap_up") and inp.get("ask")):
-                            yield ("ask", t, None)
+            if b.get("type") == "text" and b.get("text", "").strip():
+                yield ("text", t, (len(b["text"]), len(b["text"].split())))
+            elif b.get("type") == "tool_use":
+                name, inp = b.get("name", ""), b.get("input") or {}
+                if name == "AskUserQuestion" or (name.endswith("__wrap_up") and inp.get("ask")):
+                    yield ("ask", t, None)
 
 
 def messages(paths_offsets, since):
     """Matthew's messages and Claude's turns, in time order, since [since]:
-    [("matthew", t, chars, text)], [("claude", t, chars, asks, opening_text)]."""
+    [("matthew", t, chars, text)], [("claude", t, chars, asks, opening_text, words)]."""
     mine, turns = [], []
     for path, start in paths_offsets:
-        cur = None  # the current turn: [start, chars, asks, last_text_t, opening text]
+        cur = None  # the current turn: [start, chars, asks, last_text_t, opening text, words]
         def close():
             if cur and cur[1] > 0 and cur[3] >= since:
-                turns.append(("claude", cur[3], cur[1], cur[2], cur[4]))
+                turns.append(("claude", cur[3], cur[1], cur[2], cur[4], cur[5]))
         for kind, t, p in events(path, start):
             if kind == "turn":
                 close()
-                cur = [t, 0, False, t, None]
+                cur = [t, 0, False, t, None, 0]
             elif kind == "matthew":
                 if t >= since:
                     mine.append(("matthew", t, len(p), p))
                 # what Claude writes after it, until his next message, is the reply to it
                 if cur is not None and cur[1] > 0:
                     close()
-                    cur = [t, 0, False, t, p]
+                    cur = [t, 0, False, t, p, 0]
                 elif cur is not None:
                     cur[4] = cur[4] or p
                 else:
-                    cur = [t, 0, False, t, p]
+                    cur = [t, 0, False, t, p, 0]
             elif kind == "text" and cur is not None:
-                cur[1] += p
+                cur[1] += p[0]
+                cur[5] += p[1]
                 cur[3] = t
             elif kind == "ask" and cur is not None:
                 cur[2] = True
@@ -165,6 +180,62 @@ def messages(paths_offsets, since):
         out.append(m)
     turns.sort(key=lambda m: m[1])
     return out, turns
+
+
+def tally(state, budget_s):
+    """(^ticket(489)) The all-time reading tally: every reply in every transcript, by day. Each file is read on from where
+    the last run stopped (a byte offset, the reply in progress kept with it), within [budget_s] seconds, so a 300 MB
+    transcript is read once and a run under publish.py's lock stays short. A reply is what Claude writes after one of
+    Matthew's messages until the next, or in a turn a notification began, as for the tickets. Returns
+    {day: {replies, words, chars}}, the replies still in progress counted on the day of their last text."""
+    import time
+    stop = time.monotonic() + budget_s
+    R = state.setdefault("reading", {})
+    for path in sorted(glob.glob(ALL_TRANSCRIPTS), key=os.path.getmtime):
+        f = R.setdefault(path, {"offset": 0, "open": None, "days": {}})
+        if os.path.getsize(path) <= f["offset"] or time.monotonic() > stop:
+            continue
+        def close():
+            o = f["open"]
+            if o and o[1] > 0:
+                day = parse_ts(o[2]).astimezone().date().isoformat()
+                x = f["days"].setdefault(day, [0, 0, 0])
+                x[0] += 1; x[1] += o[0]; x[2] += o[1]
+            f["open"] = None
+        with open(path, "rb") as fh:
+            fh.seek(f["offset"])
+            for k, raw in enumerate(iter(fh.readline, b"")):
+                if not raw.endswith(b"\n"):
+                    break
+                for kind, t, p in record_events(raw):
+                    if kind in ("turn", "matthew"):
+                        close()
+                    elif kind == "text":
+                        o = f["open"] or [0, 0, None]
+                        o[0] += p[1]; o[1] += p[0]; o[2] = t.isoformat()
+                        f["open"] = o
+                f["offset"] = fh.tell()
+                if k % 2000 == 0 and time.monotonic() > stop:
+                    break
+    days = {}
+    for f in R.values():
+        rows = list(f["days"].items())
+        if f["open"] and f["open"][1] > 0:
+            rows.append((parse_ts(f["open"][2]).astimezone().date().isoformat(), [1, f["open"][0], f["open"][1]]))
+        for day, (n, w, c) in rows:
+            x = days.setdefault(day, {"replies": 0, "words": 0, "chars": 0})
+            x["replies"] += n; x["words"] += w; x["chars"] += c
+    return dict(sorted(days.items()))
+
+
+def reading_summary(days):
+    """data.json's "reading": the rates, the days, and the totals over all of them."""
+    n = sum(x["replies"] for x in days.values()); w = sum(x["words"] for x in days.values())
+    return {"rates": {"read_wpm": READ_WPM, "listen_wpm": LISTEN_WPM},
+            "since": next(iter(days), None), "replies": n, "words": w,
+            "read_hours_est": round(w / READ_WPM / 60, 1), "listen_hours_est": round(w / LISTEN_WPM / 60, 1),
+            "read_s_avg": round(w * 60 / READ_WPM / n) if n else None, "listen_s_avg": round(w * 60 / LISTEN_WPM / n) if n else None,
+            "days": days}
 
 
 def current_history():
@@ -258,7 +329,20 @@ def recompute_metrics(t):
     m["chars_exchanged"] = sum(e.get("chars", 0) for e in log)
     m["tokens_est"] = m["chars_exchanged"] // 4
     m["sync_minutes_est"] = round(sum(g for g in gaps if g < 10), 1)
+    m.update(reading_metrics(log))
     t["metrics"] = m
+
+
+def reading_metrics(log):
+    """Claude's replies on a ticket, and the time to read them or hear them: from the entries that carry
+    their words (since ^ticket(489)); nothing for a ticket with none."""
+    rs = [e for e in log if e.get("from") == "claude" and "words" in e]
+    if not rs:
+        return {}
+    w = sum(e["words"] for e in rs)
+    return {"replies": len(rs), "claude_words": w,
+            "read_minutes_est": round(sum(e["read_s"] for e in rs) / 60, 1), "listen_minutes_est": round(sum(e["listen_s"] for e in rs) / 60, 1),
+            "read_s_avg": round(sum(e["read_s"] for e in rs) / len(rs)), "listen_s_avg": round(sum(e["listen_s"] for e in rs) / len(rs))}
 
 
 def merge(d, mine, turns, hist, opened_since, dry, since=None):
@@ -316,13 +400,14 @@ def merge(d, mine, turns, hist, opened_since, dry, since=None):
         for tid in ids:
             if in_scope(tid):
                 new.setdefault(tid, []).append({"at": iso_local(t), "from": "matthew", "chars": chars, "asks": False, "note": NOTE})
-    for k, (_, t, chars, asks, opening) in enumerate(turns):
+    for k, (_, t, chars, asks, opening, words) in enumerate(turns):
         ids = turn_claims.get(k) or (where.get(" ".join(opening.split())) if opening else None)
         if not ids:
             ids = attribute(None, t, by_id, added, hist, live_current)
         for tid in ids:
             if in_scope(tid):
-                new.setdefault(tid, []).append({"at": iso_local(t), "from": "claude", "chars": chars, "asks": asks, "note": NOTE})
+                new.setdefault(tid, []).append({"at": iso_local(t), "from": "claude", "chars": chars, "asks": asks,
+                                                "words": words, "read_s": read_s(words), "listen_s": listen_s(words), "note": NOTE})
     touched = set(new)
     for tid, t in by_id.items():
         if not in_scope(tid):
@@ -365,6 +450,8 @@ def main():
         mine = [m for m in mine if m[1] < through]
         turns = [m for m in turns if m[1] < through]
         hist, opened_since, lo = [], None, last
+    # (^ticket(489)) the all-time tally: a minute's work at most under publish.py's lock, the rest on the next run
+    days = tally(state, 600 if "--tally" in sys.argv else 60)
     lock = None
     if "--locked" not in sys.argv and not dry:
         import fcntl
@@ -376,7 +463,9 @@ def main():
     print(f"log_messages: {len(mine)} messages, {len(turns)} replies; {n} entries on {len(new)} tickets" + (" (dry run)" if dry else ""))
     if dry:
         return
-    if n or new:
+    reading = reading_summary(days)
+    if n or new or d.get("reading") != reading:
+        d["reading"] = reading
         tmp = DATA + ".log_messages.tmp"
         json.dump(d, open(tmp, "w"), indent=1, ensure_ascii=False)
         os.replace(tmp, DATA)

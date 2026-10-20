@@ -428,6 +428,23 @@ def queue_rows():
         rows.append(queue_row(i + 1, t))
     return "\n".join(rows)
 
+# (^ticket(489), Matthew 2026-10-20: "log how long the average reading time is for each thing you print, and assume that I am
+# reading or listening to it"; "I want that in the dashboard data, for all time.") log_messages.py's tally, data.json's "reading"
+READING = data.get("reading") or {}
+def reading_note():
+    if not READING.get("replies"):
+        return ""
+    r, rates = READING, READING["rates"]
+    today = (r.get("days") or {}).get(datetime.now().date().isoformat())
+    hm = lambda mins: f"{mins / 60:.1f} h" if mins >= 90 else f"{round(mins)} min"
+    t = (f' Today: {today["replies"]} repl{"y" if today["replies"] == 1 else "ies"}, {today["words"]:,} words, '
+         f'~{hm(today["words"] / rates["read_wpm"])} to read, ~{hm(today["words"] / rates["listen_wpm"])} to hear.') if today else ""
+    return (f'<p class="note" id="reading">\U0001F4D6 What Claude has written to Matthew, since {e(r["since"])} (as far back as the session '
+            f'transcripts go): {r["replies"]:,} replies, {r["words"]:,} words, ~{r["read_hours_est"]} h to read at {rates["read_wpm"]} words a minute, '
+            f'\U0001F3A7 ~{r["listen_hours_est"]} h to hear at {rates["listen_wpm"]}; a reply takes ~{r["read_s_avg"]} s to read, ~{r["listen_s_avg"]} s '
+            f'to hear.{t} Each ticket\'s replies and their times are in its log in data.json.</p>')
+reading_note = reading_note()
+
 queue_section = f"""<h2 id="queue">Work Queue (Active Tickets)</h2>
 <p class="note">What we mean to do next, in order: a few tickets, not the backlog. We push a ticket onto the front or the back, and reorder as we go; a ticket leaves the queue when it closes. Each links to its full row in <a href="#backlog">the backlog</a>.</p>
 """ + (about_filter("queue") + f"""<table class="queue" data-about-table="queue">
@@ -634,6 +651,7 @@ page = f"""<!doctype html>
 <p class="note">Updated {e(now)}, by <code>~/localhost-index/update.py</code> (PR titles and status from GitHub).</p>
 <p class="note">History: <a href="http://localhost:8000/notes/dashboard-snapshots/versions.html">every change to this page</a>, each a commit of one file (^ticket(417): no longer a file a change), also pushed to <a href="https://github.com/matthewhammer/hazel-work-notes">matthewhammer/hazel-work-notes</a> (public). Published at most ten minutes after each change to our notes, and to the status from GitHub (read every 15 minutes): <a href="https://matthewhammer.org/hazel/dashboard/">matthewhammer.org/hazel/dashboard/</a>. How we work with this page: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/agent-instructions.md">agent-instructions.md</a> (<a href="http://localhost:8000/notes/agent-instructions.md">local</a>). This is version {VERSION}: <a href="https://github.com/matthewhammer/hazel-work-notes/blob/main/VERSIONS.md">VERSIONS.md</a> lists what each version has. Closed tickets: <a href="closed.html">their own page</a>. This page reloads itself when it changes (checked every 90 s while it is open).</p>
 
+{reading_note}
 {current_section}
 {queue_section}
 <h2 id="ports">Localhost ports</h2>
@@ -901,6 +919,9 @@ def metrics_line(t):
         bits.append(f'~{m["chars_exchanged"]:,} chars (~{m.get("tokens_est", m["chars_exchanged"] // 4):,} tokens)')
     if m.get("sync_minutes_est") is not None:
         bits.append(f'~{m["sync_minutes_est"]} min together')
+    if m.get("replies"):   # (^ticket(489)) Claude's replies on it: the time to read them, or to hear them
+        bits.append(f'\U0001F4D6 ~{m["read_minutes_est"]} min to read, \U0001F3A7 ~{m["listen_minutes_est"]} min to hear '
+                    f'({m["replies"]} repl{"y" if m["replies"] == 1 else "ies"}, ~{m["read_s_avg"]} s / ~{m["listen_s_avg"]} s each)')
     return '<br><span class="note">\u23f1 ' + " \u00b7 ".join(bits) + "</span>"
 def outcome_cell(t, on):
     out = linkify(t.get("outcome", ""), on=on)
