@@ -1169,11 +1169,13 @@
    "added": "2026-10-19T21:05-06:00",
    "opened": "2026-10-19T21:05-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "source": "Matthew, 2026-10-19 21:05, in chat (\"mint and enqueue for later, after dress up tickets are handled that you can do on your own\")",
    "url": "https://matthewhammer.org/hazel/reports/018/",
    "text": "<b>A sequel to ^report(18): what we know now.</b> Matthew: \"do this on your own as best as possible: revise/update this report https://matthewhammer.org/hazel/reports/018/ I think we've followed the next steps, and we have new information to add? Can we create a report that points back to 18's next steps, and the questions being asked originally, and adds more of what we know now?\" ^report(18) answered why CI failed on the livelits x modular editing branch (#2635, Cyrus's question, ^ticket(385)). The new report: the original questions, 18's next steps one by one with what became of each (PRs, merges, CI since), and what is known now. And (Matthew, 21:06): \"inter-link with https://matthewhammer.org/hazel/reports/020/\": the new report and ^report(20), the agenda for Wednesday's meeting with Cyrus, link to each other.",
-   "progress": "21:05: minted; enqueued after the Dress Up tickets Claude can do alone. To draft in ~/hazel-perf-report as the next ^report(N); published on Matthew's word.",
+   "progress": "21:05: minted; enqueued after the Dress Up tickets Claude can do alone. To draft in ~/hazel-perf-report as the next ^report(N); published on Matthew's word. 22:28: <b>^report(23) drafted, waiting on Matthew's review</b> (not pushed: the reports repository is public). \"#2635 Is Green\": report 18's question and its five next steps, then and now (2 done, 2 partly, 1 for the meeting), #2635's CI since (its first two green runs: 90ed4505bf and 5961401df2, 5,553 + 6,098 tests), the parents (#2597 and #2469 green; #2687's one WorldTree failure is its own), what is still open (#2597's table-test input, a 1-file conflict with #2597 again, the merge plan), three next steps. Data in 023/data, drivers in 023/drivers (collect023.py, gen023.py). Report 18 gets a dated note linking it. Draft at ~/hazel-perf-report/023/index.html, preview http://localhost:8131/023/ , commit 6f2cd40 (local; the repo is 11 ahead of origin). On publishing: link it from ^report(20)'s item 1 (020/data/agenda.json, publish_agenda.py), give it a card and thumbnail in the series index, and publish report 18's note with it.",
    "log": []
   },
   {
@@ -1205,11 +1207,24 @@
    "text": "<b>Seats drawn at a scene's bottom edge cut a sitter's feet off: move them, or leave them?</b> ^ticket(454)'s audit of the picture archive (0.0.347) found 12 pictures of the friend on a place's own seats with their feet below the stage's bottom (3 to 16 units; the stage is 601 tall): the campsite's logs (2), the castle's bench by the cart and another (2), the healer's room stools (2), the hut's logs by the fire (2), the mountains' rock (1, and another rock at the right edge, 1), the wood path's logs (2). The seats themselves are drawn at the edge. A fix would move those objects up a little in 7 places (their collisions and walking with them), which changes the places' layouts: Matthew's call.",
    "progress": "22:14: minted from ^ticket(454), blocked on Matthew's call.",
    "log": []
+  },
+  {
+   "id": 461,
+   "area": "dress up, the panel's band, deeper",
+   "added": "2026-10-19T22:28-06:00",
+   "opened": "2026-10-19T22:28-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, 2026-10-19 22:28, in chat",
+   "url": "",
+   "text": "<b>The band goes as deep as it can: the row, and the parts inside it.</b> Matthew: \"bread crumbs look good, but they don't go as deep as they could -- for instance, background / the place / kind of place vs background / the place / places ('place choices', let's say)\". So the band names the row (and a part of a row, like the place picker's kinds and its choices) under the pointer, below its box and group; and the place picker's \"places\" becomes \"place choices\". Follows ^ticket(456).",
+   "progress": "22:28: minted; next, ahead of the pictures run (^ticket(455) is running on GitHub already, at 0.0.371).",
+   "log": []
   }
  ],
- "next_ticket": 461,
- "current_ticket": 446,
- "current_note": "22:20: ^ticket(446): the sequel to ^report(18) (why #2635 failed CI): its questions and next steps, and what is known now (#2635 green since 15:06 on 10-19; #2699 merged), inter-linked with ^report(20); a draft in ~/hazel-perf-report, published only on Matthew's word. On GitHub meanwhile: the pictures run (^ticket(455)) and the band's recheck (^ticket(456)).",
+ "next_ticket": 462,
+ "current_ticket": 461,
+ "current_note": "22:28: ^ticket(461): the band goes deeper: the row and its parts under the pointer (background / the place / kind of place), and the place picker's places become place choices. ^ticket(446): ^report(23) drafted, ✋ waiting on Matthew's review (local only, http://localhost:8131/023/). ^ticket(455): the pictures run is going on GitHub.",
  "closed_tickets": [
   {
    "id": 456,
@@ -5447,6 +5462,7 @@
   }
  ],
  "queue": [
+  461,
   446,
   427,
   455,
@@ -5479,7 +5495,7 @@
   429,
   460
  ],
- "current_since": "2026-10-19T22:20-06:00",
+ "current_since": "2026-10-19T22:28-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
