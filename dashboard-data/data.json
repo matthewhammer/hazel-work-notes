@@ -2164,7 +2164,7 @@
    "source": "split from ^ticket(398), 2026-10-19 13:16 (Matthew's ask there: \"add a new PR to dev that does even more correctness tests ... ditto for our PRs\")",
    "url": "",
    "text": "<b>A tests PR to dev that checks the performance PRs keep types and values the same, plus each PR's own missing tests.</b> The second half of ^ticket(398); ^report(21)'s \"What to add\": <ol><li>turn the incremental-against-fresh property back on for completed results (#2457's stuck ones skipped), fixed seed, with recursive lets in the generator;</li><li>a corpus comparison: every program in hazel-programs analyzed and evaluated with each optimization on and off, incrementally after an edit and from scratch (types, marks, elaborations ignoring ids, values, probes, test results);</li><li>hash checks: equal hash implies equal term, for the type hash (#2661, #2681) and the term hash (#2673), plus a census over the corpus;</li><li>a parser comparison: the load fallback against character-by-character typing at every split offset (finds #2610's case);</li><li>budget tests that also assert results.</li></ol> And on each of our PRs, the tests ^report(21) lists in its section.",
-   "progress": "13:16: minted from ^ticket(398)'s second half and enqueued after the Hazel tickets. 14:02: DRAFT PR #2700 to dev (branch test/incremental-matches-fresh, 58ac45008a, worktree ~/hazel-dev-tests; CI running): (1) the incremental-vs-fresh property back on for value results (stuck ones skipped, #2457 pinned), passes under 6 seeds; (2) six recursive-let templates, every literal edited, comparisons required; (3) Evaluator.IncrCorpus (Slow): 150 literal edits over all 73 corpus programs, at least 120 required, ~11 s. MUTATION-CHECKED: with reuse_check ignoring changed dependencies, (2) and (3) fail, but the random property (1) still passes. Left for later: hash checks and parser comparisons belong on the PRs that add them (#2661, #2673, #2610), and per-PR tests from ^report(21). 14:03: the dev PR is up (#2700, draft). PARKED: tests on each of our 19 PRs, since the agenda asks Cyrus on Wednesday which PRs come first.",
+   "progress": "12:39 10-20: Matthew: \"whats next for 411 -- how can I help you?\" #2700 (draft): Fast checks and Full tests GREEN on 58ac45008a, mergeable, 0 behind dev. His two calls, asked: (1) out of draft and a reviewer (suggested: ready, Cyrus; tests only); (2) the hash and parser checks on #2661, #2673 and #2610 now (suggested: yes, every ordering needs them), the 19 PRs' own tests after Cyrus's ordering on Wednesday.",
    "log": [],
    "waiting": "Wednesday: which of the 19 PRs get their own tests first (^report(21) lists them per PR); and a look at draft #2700."
   },
@@ -2460,13 +2460,12 @@
    "opened": "2026-10-20T09:19-06:00",
    "status": "open",
    "tags": [
-    "blocked on Matthew",
     "meeting 2026-10-21"
    ],
    "source": "Matthew, 2026-10-20 08:5x, in chat, after the full view's screenshot (\"latest screenshot looks good\")",
    "url": "",
    "text": "<b>Offer the full view's \"several lines\" layout on each type in &Gamma;, by right-click or on hover, with toggles on the configuration slide to try the designs.</b> Matthew: \"Let's offer this 'expand type into multiple lines' button (better name?) to each type in Gamma --- as a right click option, or a hover-over option? Can we have some toggles to play with that design in the configuration slide?\" &Gamma;'s per-entry unfold is ^ticket(386)'s #2698 (a draft into #2676, toward dev), not on the livelits branches; the configuration slide is the Colors slide (hazel-programs/config/colors.hz), whose ^choice already picks the livelit reveal's glyph (`livelit-reveal`), on #2597 and #2635 only.",
-   "progress": "09:31: on a branch off #2597 (work/468-gamma-unfold; CI on trial/468-gamma-unfold, deployed to hazel.org/build/trial/468-gamma-unfold/ once Pages builds): (1) #2698's per-entry unfold ported onto #2597's Gamma (49d286c793), keeping ^ticket(396)'s size budget: an entry past it shows its outline and has nothing to unfold, decided before the type is printed; (2) every entry gets a right-click menu: \"Show in full\" / \"Show on one line\" for a long one, and \"Go to definition\" (888d2167c5); (3) the Colors slide's new ^unfold choice, beside the livelit reveal's: always (the toggle drawn, as before), hover (drawn while the pointer is on the entry), right-click (not drawn; the menu has it). The choice is the slide value's field gamma-unfold, published as --hazel-gamma-unfold and read back by Gamma to class its box; a slide saved before it gets always. Tests: the slide's three choices publish their names and leave the theme as it was. 10:13: its one failure was the golden colours list (test/goldens/colors.tsv) lacking the new property; added (0113e420d0), CI again on trial/468-gamma-unfold. 10:25: Fast checks GREEN on 0113e420d0. To try it: localhost:8312 serves GitHub's build of it. ✋ For Matthew: right-click an entry of Γ (bottom left) for the menu; on the Colors slide press always, hover or right-click; pick one, or keep the choice. It lands on #2597 and #2635 once picked, so the PRs stay as polished for Cyrus.",
+   "progress": "12:39 10-20: UNBLOCKED. Matthew: \"468 -- I wanted a hazel-based configuration setting in the configuration slide.\" The setting is what was asked for, not a pick among its three options, so it lands as built: the Colors slide's ^unfold (always, hover, right-click; always by default), Gamma's per-entry unfold and its right-click menu, on #2597 and then #2635. Before that (09:31-10:25): built on work/468-gamma-unfold off #2597, Fast checks green on 0113e420d0.",
    "log": [
     {
      "at": "2026-10-20T09:17-06:00",
@@ -2819,57 +2818,6 @@
      "read_s": 136,
      "listen_s": 202,
      "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T12:31-06:00",
-     "from": "matthew",
-     "chars": 34,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T12:31-06:00",
-     "from": "claude",
-     "chars": 1194,
-     "asks": false,
-     "words": 213,
-     "read_s": 54,
-     "listen_s": 80,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T12:32-06:00",
-     "from": "matthew",
-     "chars": 83,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T12:32-06:00",
-     "from": "matthew",
-     "chars": 14,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T12:32-06:00",
-     "from": "claude",
-     "chars": 93,
-     "asks": false,
-     "words": 15,
-     "read_s": 4,
-     "listen_s": 6,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T12:33-06:00",
-     "from": "claude",
-     "chars": 741,
-     "asks": false,
-     "words": 138,
-     "read_s": 35,
-     "listen_s": 52,
-     "note": "from the transcripts"
     }
    ]
   },
@@ -2956,6 +2904,13 @@
      "note": "from the transcripts"
     },
     {
+     "at": "2026-10-20T12:23-06:00",
+     "from": "matthew",
+     "chars": 284,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
      "at": "2026-10-20T12:25-06:00",
      "from": "claude",
      "chars": 4576,
@@ -2969,8 +2924,8 @@
   }
  ],
  "next_ticket": 468,
- "current_ticket": 485,
- "current_note": "12:36: #2583's refactor pushed (077a68f9f8): waiting for the deploy to be served, to try it in the browser",
+ "current_ticket": 468,
+ "current_note": "12:39: Landing ^ticket(468)'s Hazel setting (the Colors slide's ^unfold) on #2597, then #2635",
  "closed_tickets": [
   {
    "id": 489,
@@ -7418,13 +7373,13 @@
   }
  ],
  "queue": [
+  468,
   485,
   486,
   484,
   482,
   481,
   402,
-  468,
   470,
   462,
   465,
@@ -7458,7 +7413,7 @@
   460,
   488
  ],
- "current_since": "2026-10-20T12:36-06:00",
+ "current_since": "2026-10-20T12:39-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
@@ -7470,10 +7425,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 4799,
-  "words": 1074510,
-  "read_hours_est": 75.2,
-  "listen_hours_est": 111.9,
+  "replies": 4804,
+  "words": 1075238,
+  "read_hours_est": 75.3,
+  "listen_hours_est": 112.0,
   "read_s_avg": 56,
   "listen_s_avg": 84,
   "days": {
@@ -7693,9 +7648,9 @@
     "chars": 171153
    },
    "2026-10-20": {
-    "replies": 44,
-    "words": 9718,
-    "chars": 57272
+    "replies": 49,
+    "words": 10446,
+    "chars": 61370
    }
   }
  },
