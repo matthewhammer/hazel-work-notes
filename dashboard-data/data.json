@@ -1970,10 +1970,11 @@
      "note": "from the transcripts"
     },
     {
-     "at": "2026-10-20T11:05-06:00",
+     "at": "2026-10-20T11:02-06:00",
      "from": "matthew",
-     "chars": 120,
-     "asks": false
+     "chars": 81,
+     "asks": false,
+     "note": "from the transcripts"
     },
     {
      "at": "2026-10-20T11:06-06:00",
@@ -2565,47 +2566,22 @@
      "note": "from the transcripts"
     }
    ]
-  },
+  }
+ ],
+ "next_ticket": 468,
+ "current_ticket": 469,
+ "current_note": "11:15: ^ticket(478) closed (done); ^ticket(469) is next in the queue",
+ "closed_tickets": [
   {
    "id": 478,
    "area": "dashboard and reports: a PR's hover card names the branch it targets",
    "added": "2026-10-20T11:01-06:00",
-   "opened": "2026-10-20T11:01-06:00",
-   "status": "open",
-   "tags": [
-    "medium priority"
-   ],
+   "text": "A PR's hover card, on the dashboard and in the reports, shows the branch the PR targets: dev, or another branch, the distinction that matters.",
    "source": "Matthew, 2026-10-20 10:59, in chat, with a screenshot of ^report(20)'s card for #2676",
-   "url": "",
-   "text": "<b>A PR's hover card, on the dashboard and in the reports, shows the branch the PR targets: dev, or another branch, the distinction that matters.</b> Matthew: \"In the report and dashboard HTML we generate, The hover-over for GH PRs is very nice. Let's also show what branch is being targeted by the PR in that hover over (dev versus another one is the main distinction to make).\"",
-   "progress": "11:10: DONE in code, live on the dashboard: a PR's card asks GitHub's pulls endpoint (it has the base branch) and shows \"into dev\" in green or \"into <branch>, not dev\" in amber; the cached fallback has the base too (prlinks.py, link_prs.py: one more lookup per PR, cached). The 21 published reports' cards rebuilt in place on the homepage (b5cd31f; only the card blocks changed), so they show it too once Pages has deployed. Notes repo committed; the reports repo's tool commit is local (drafts wait there).",
-   "log": [
-    {
-     "at": "2026-10-20T10:50-06:00",
-     "from": "claude",
-     "chars": 1761,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T11:01-06:00",
-     "from": "matthew",
-     "chars": 218,
-     "asks": false
-    },
-    {
-     "at": "2026-10-20T11:01-06:00",
-     "from": "matthew",
-     "chars": 18,
-     "asks": false
-    }
-   ]
-  }
- ],
- "next_ticket": 468,
- "current_ticket": 478,
- "current_note": "11:01: PR hover cards: the target branch, dev or not",
- "closed_tickets": [
+   "status": "done",
+   "closed": "2026-10-20",
+   "outcome": "Every PR's hover card, on the dashboard and in the reports, names the branch the PR merges into: \"into dev\" in green, or \"into <branch>, not dev\" in amber. The card asks GitHub's…"
+  },
   {
    "id": 396,
    "area": "hazel, Gamma (the context inspector), #2635",
@@ -6974,7 +6950,6 @@
  "queue": [
   469,
   472,
-  478,
   402,
   468,
   470,
@@ -7009,7 +6984,7 @@
   429,
   460
  ],
- "current_since": "2026-10-20T11:01-06:00",
+ "current_since": "2026-10-20T11:15-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",

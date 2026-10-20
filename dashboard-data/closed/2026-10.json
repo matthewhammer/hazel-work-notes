@@ -1,5 +1,75 @@
 [
  {
+  "id": 478,
+  "area": "dashboard and reports: a PR's hover card names the branch it targets",
+  "added": "2026-10-20T11:01-06:00",
+  "opened": "2026-10-20T11:01-06:00",
+  "status": "done",
+  "tags": [
+   "medium priority"
+  ],
+  "source": "Matthew, 2026-10-20 10:59, in chat, with a screenshot of ^report(20)'s card for #2676",
+  "url": "",
+  "text": "<b>A PR's hover card, on the dashboard and in the reports, shows the branch the PR targets: dev, or another branch, the distinction that matters.</b> Matthew: \"In the report and dashboard HTML we generate, The hover-over for GH PRs is very nice. Let's also show what branch is being targeted by the PR in that hover over (dev versus another one is the main distinction to make).\"",
+  "progress": "11:10: DONE in code, live on the dashboard: a PR's card asks GitHub's pulls endpoint (it has the base branch) and shows \"into dev\" in green or \"into <branch>, not dev\" in amber; the cached fallback has the base too (prlinks.py, link_prs.py: one more lookup per PR, cached). The 21 published reports' cards rebuilt in place on the homepage (b5cd31f; only the card blocks changed), so they show it too once Pages has deployed. Notes repo committed; the reports repo's tool commit is local (drafts wait there).",
+  "log": [
+   {
+    "at": "2026-10-20T10:50-06:00",
+    "from": "claude",
+    "chars": 1761,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T11:00-06:00",
+    "from": "matthew",
+    "chars": 220,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T11:00-06:00",
+    "from": "claude",
+    "chars": 1721,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T11:00-06:00",
+    "from": "claude",
+    "chars": 195,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T11:01-06:00",
+    "from": "matthew",
+    "chars": 19,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T11:02-06:00",
+    "from": "claude",
+    "chars": 756,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-20",
+  "closed_at": "2026-10-20T11:15-06:00",
+  "outcome": "Every PR's hover card, on the dashboard and in the reports, names the branch the PR merges into: \"into dev\" in green, or \"into &lt;branch&gt;, not dev\" in amber. The card asks GitHub's pulls endpoint, which has the base branch; the cached fallback written at build time has it too (prlinks.py, link_prs.py: one more lookup per PR, cached). Seen live on ^report(20) at 11:16: #2676 \"into dev\", #2698 \"into cursor-inspector-full-types, not dev\". All 21 published reports' cards rebuilt in place (only the card blocks changed).",
+  "metrics": {
+   "open_minutes": 14,
+   "matthew_messages": 2,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 4672,
+   "tokens_est": 1168,
+   "sync_minutes_est": 2.0,
+   "work_minutes": 14.0
+  }
+ },
+ {
   "id": 396,
   "area": "hazel, Gamma (the context inspector), #2635",
   "added": "2026-10-19T10:22-06:00",
@@ -61,10 +131,11 @@
     "note": "from the transcripts"
    },
    {
-    "at": "2026-10-20T11:04-06:00",
+    "at": "2026-10-20T11:02-06:00",
     "from": "matthew",
-    "chars": 80,
-    "asks": false
+    "chars": 81,
+    "asks": false,
+    "note": "from the transcripts"
    }
   ],
   "waiting": "A look in the app (8341, Scenes slide): pressing Gamma opens without freezing, and Drawing shows as an outline of its members.",
@@ -75,7 +146,7 @@
    "open_minutes": 1482,
    "matthew_messages": 4,
    "questions_to_matthew": 0,
-   "chars_exchanged": 9714,
+   "chars_exchanged": 9715,
    "tokens_est": 2428,
    "sync_minutes_est": 9.0
   }
