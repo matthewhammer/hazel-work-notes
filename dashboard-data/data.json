@@ -3087,9 +3087,19 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 492,
+   "area": "dress up, the friend's horse: part of the body, with collision boxes that fit",
+   "text": "<b>The friend's horse as part of their body: its settings under 🧍 Body, and collision boxes that fit horse and rider, ridden or led.</b> Matthew: \"the 'riding horse' needs some system work.\" (1) \"The horse settings should be under 'body', not costume.\" Today they are the 🐴 box in 🐯 Costume (js/20-controls.js, the <code>costume.horse*</code> keys: with the friend, coat, mane, face marking, tack, socks, size; ^ticket(438), ^ticket(457)); move them, and the saved settings with them. (2) \"When 'riding horse' or 'leading horse' -- we need the collision boxes to be more accurate. our actual body is above the horse. the horse has a body, and feet. Do the same we are doing for humanoid bodies, but extended for horses (four legs, not just two).\" So, as <code>feetSoles</code> and <code>youHeights</code> do for the friend (js/16-objects-and-solids.js: a box under each sole, where it is drawn, with its heights): a box under each of the horse's four hooves as drawn, in every view and gait, and the horse's body at its own heights (belly to back, the neck and head); ridden, the friend's boxes are up on the horse (from the saddle to the crown, no soles on the floor); led, the friend's own soles beside the horse's. 🔬 Inspection draws them all. His screenshot (the dungeon, MIND THE FLOOR, ridden): the friend's one box, \"you\", sits on the floor between the horse's legs, and nothing covers the horse; saved at ~/du-shots/ticket-492/ridden-in-the-dungeon.webp.",
+   "source": "Matthew, 2026-10-20 15:50, in chat, with a screenshot (\"Mint and enqueue\")",
+   "url": "",
+   "added": "2026-10-20T15:50-06:00",
+   "opened": "2026-10-20T15:50-06:00",
+   "tags": []
   }
  ],
- "next_ticket": 468,
+ "next_ticket": 493,
  "current_ticket": 470,
  "current_note": "15:45: 15:45: 411 parked for the 10-21 meeting (its checks green; #2681 got the type-hash check). Now 470: charge library time to the nearest Hazel caller in time_slides.mjs, then rerun on GitHub",
  "closed_tickets": [
@@ -7563,6 +7573,7 @@
   491,
   471,
   490,
+  492,
   473,
   408,
   401,
