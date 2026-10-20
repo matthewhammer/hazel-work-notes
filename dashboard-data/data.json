@@ -1149,21 +1149,6 @@
    "log": []
   },
   {
-   "id": 446,
-   "area": "hazel, reports: a sequel to ^report(18)",
-   "added": "2026-10-19T21:05-06:00",
-   "opened": "2026-10-19T21:05-06:00",
-   "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "source": "Matthew, 2026-10-19 21:05, in chat (\"mint and enqueue for later, after dress up tickets are handled that you can do on your own\")",
-   "url": "https://matthewhammer.org/hazel/reports/018/",
-   "text": "<b>A sequel to ^report(18): what we know now.</b> Matthew: \"do this on your own as best as possible: revise/update this report https://matthewhammer.org/hazel/reports/018/ I think we've followed the next steps, and we have new information to add? Can we create a report that points back to 18's next steps, and the questions being asked originally, and adds more of what we know now?\" ^report(18) answered why CI failed on the livelits x modular editing branch (#2635, Cyrus's question, ^ticket(385)). The new report: the original questions, 18's next steps one by one with what became of each (PRs, merges, CI since), and what is known now. And (Matthew, 21:06): \"inter-link with https://matthewhammer.org/hazel/reports/020/\": the new report and ^report(20), the agenda for Wednesday's meeting with Cyrus, link to each other.",
-   "progress": "21:05: minted; enqueued after the Dress Up tickets Claude can do alone. To draft in ~/hazel-perf-report as the next ^report(N); published on Matthew's word. 22:28: <b>^report(23) drafted, waiting on Matthew's review</b> (not pushed: the reports repository is public). \"#2635 Is Green\": report 18's question and its five next steps, then and now (2 done, 2 partly, 1 for the meeting), #2635's CI since (its first two green runs: 90ed4505bf and 5961401df2, 5,553 + 6,098 tests), the parents (#2597 and #2469 green; #2687's one WorldTree failure is its own), what is still open (#2597's table-test input, a 1-file conflict with #2597 again, the merge plan), three next steps. Data in 023/data, drivers in 023/drivers (collect023.py, gen023.py). Report 18 gets a dated note linking it. Draft at ~/hazel-perf-report/023/index.html, preview http://localhost:8131/023/ , commit 6f2cd40 (local; the repo is 11 ahead of origin). On publishing: link it from ^report(20)'s item 1 (020/data/agenda.json, publish_agenda.py), give it a card and thumbnail in the series index, and publish report 18's note with it.",
-   "log": []
-  },
-  {
    "id": 460,
    "area": "dress up, seats at a scene's bottom edge",
    "added": "2026-10-19T22:14-06:00",
@@ -1181,8 +1166,18 @@
  ],
  "next_ticket": 462,
  "current_ticket": null,
- "current_note": "23:54: Tonight's Dress Up queue is done and checked on GitHub: 0.0.364 to 0.0.372 live (0.0.372's speed run: the gate all pass; robes450's own measuring fixed, 28a13b6); the pictures archive's run of 0.0.371 live. ✋ Waiting on Matthew: ^report(23) (^ticket(446), http://localhost:8131/023/, not pushed) and ^ticket(460) (seats at a scene's bottom edge).",
+ "current_note": "07:20: ^report(23) is published (^ticket(446)). Dress Up: 0.0.364 to 0.0.372 live, the pictures archive's run of 0.0.371 live. ✋ Waiting on Matthew: ^ticket(460) (seats at a scene's bottom edge cut a sitter's feet) and the drafts ^report(21) and ^report(22) (local, not pushed).",
  "closed_tickets": [
+  {
+   "id": 446,
+   "area": "hazel, reports: a sequel to ^report(18)",
+   "added": "2026-10-19T21:05-06:00",
+   "text": "A sequel to ^report(18): what we know now.",
+   "source": "Matthew, 2026-10-19 21:05, in chat (\"mint and enqueue for later, after dress up tickets are handled that you can do on…",
+   "status": "done",
+   "closed": "2026-10-20",
+   "outcome": "Published ^report(23), #2635 Is Green (^report(18)'s next steps followed up), linked from ^report(18)'s dated note and ^report(20)'s item 1; checked live."
+  },
   {
    "id": 455,
    "area": "dress up, dress-up-pictures: a new run",
@@ -5449,7 +5444,6 @@
   }
  ],
  "queue": [
-  446,
   389,
   411,
   408,
