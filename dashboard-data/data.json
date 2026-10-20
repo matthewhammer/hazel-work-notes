@@ -2224,7 +2224,9 @@
    "added": "2026-10-20T07:38-06:00",
    "opened": "2026-10-20T07:38-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "meeting 2026-10-21"
+   ],
    "source": "Matthew, 2026-10-20 07:38, in chat",
    "url": "",
    "text": "<b>Separate the Fumola work from #2635 into its own PR, into #2635's branch.</b> Matthew: \"For the first PR (modular editing x livelits): separate the fumola work, including the 'cloud/canister storage' idea into a separate PR, which is set to merge into modular editing x livelits. It was a mistake/oversight/miscommunication that these were not kept separate: rationale --- meetings with Cyrus should only focus on livelits and modular editing, until the conversation has space for Fumola discussions --- it's distracting to have in there, and likely won't be merged into dev near the time that modular editing or livelits are (sooner); it's not clear if Fumola will ever be merged to dev; it may remain experimental forever. That's okay, and we should prepare for that situation now. Bring all PRs (all three I just mentioned) up to date with dev, and mergeable. CI green for all, of course.\" So: every Fumola part of #2635 (the Fumola tiles and VM, the ^fumola livelits, the cloud/canister storage idea, their slides and tests) leaves #2635 and goes into a new PR whose base is integration/livelits-modular-editors, mergeable into it; #2635 keeps livelits and modular editing only; both green.",
@@ -2278,6 +2280,12 @@
      "chars": 811,
      "asks": false,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T10:51-06:00",
+     "from": "matthew",
+     "chars": 46,
+     "asks": false
     }
    ]
   },
@@ -2311,7 +2319,8 @@
    "opened": "2026-10-20T09:19-06:00",
    "status": "open",
    "tags": [
-    "blocked on Matthew"
+    "blocked on Matthew",
+    "meeting 2026-10-21"
    ],
    "source": "Matthew, 2026-10-20 08:5x, in chat, after the full view's screenshot (\"latest screenshot looks good\")",
    "url": "",
@@ -2331,6 +2340,12 @@
      "chars": 494,
      "asks": false,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T10:51-06:00",
+     "from": "matthew",
+     "chars": 46,
+     "asks": false
     }
    ]
   },
@@ -2391,7 +2406,9 @@
    "added": "2026-10-20T09:23-06:00",
    "opened": "2026-10-20T09:23-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "meeting 2026-10-21"
+   ],
    "source": "Matthew, 2026-10-20 09:3x, in chat",
    "url": "",
    "text": "<b>Time opening every documentation slide on each PR, on GitHub's machines, say what dominates each one's cost, and keep tracking it with the performance PRs applied.</b> Matthew: \"timing on Github (not my machine): * time to open the documentation slides on each PR, including each livelit slide. * for each one, what is the dominate time cost? Or is it heavily mixed? * let's start tracking this (all with our performance PRs applied), and see if we can keep improving things, in terms of loading time.\" So: a CI job (no browser on the laptop) that opens each slide of the documentation and livelit decks on each of our PRs (#2597, #2635, and the #2609 performance PRs, stacked), records the time to a settled view, and splits it by phase (parse, statics, elaboration, evaluation, measure and draw); a series of these runs over time, in the reports series.",
@@ -2410,6 +2427,12 @@
      "chars": 5395,
      "asks": false,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T10:51-06:00",
+     "from": "matthew",
+     "chars": 46,
+     "asks": false
     }
    ]
   },
