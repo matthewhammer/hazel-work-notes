@@ -2553,7 +2553,7 @@
    "source": "from ^ticket(483)'s status, 2026-10-20",
    "url": "https://github.com/hazelgrove/hazel/pull/2613",
    "text": "<b>#2613's review (7h3kk1d, 2026-10-19, changes requested):</b> (1) cursor-inspector.css:263 draws the label header's text on a band of its own color (<code>--surface-label</code> = <code>--token-label</code>); the reviewer's suggestion drops the line: apply it. (2) style.css:367 and :434 give the probe stack's focused breadcrumb a light green pill where <code>--G5</code> was never defined: @disconcision's call, keep the pill or drop the two background lines. Then dev merged in (no conflicts), CI, re-request review.",
-   "progress": "",
+   "progress": "11:52 10-20: (1) applied the reviewer's suggestion, the label header's background line dropped (28fcabfffc); on dev the name was undefined, so the header looks as on dev. dev merged in clean (8ca7a15634, dev at 962a7cb009); @check and fmt pass locally; pushed. (2) the --G5 pill is @disconcision's call: untouched. Left to Matthew: re-request review from 7h3kk1d and resolve the suggestion thread (both notify the reviewer). CI running.",
    "log": []
   },
   {
@@ -2571,8 +2571,8 @@
   }
  ],
  "next_ticket": 468,
- "current_ticket": 482,
- "current_note": "11:35: Dress Up's Scripting panel, a PR: the trap room's levers through a Hazel rule, using #2711's window.Hazel",
+ "current_ticket": 485,
+ "current_note": "11:52: #2583: reading the reviewer's 10-15 shape and the current DeepLink code before the refactor",
  "closed_tickets": [
   {
    "id": 472,
@@ -7000,10 +7000,10 @@
   }
  ],
  "queue": [
+  485,
+  484,
   482,
   481,
-  484,
-  485,
   402,
   468,
   470,
@@ -7038,7 +7038,7 @@
   429,
   460
  ],
- "current_since": "2026-10-20T11:35-06:00",
+ "current_since": "2026-10-20T11:52-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
