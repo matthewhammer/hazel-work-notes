@@ -12,8 +12,8 @@ Matthew Hammer's working record for his [Hazel](https://hazel.org) work, kept wi
   - `update.py` makes the dashboard;
   - `publish.py`, `log_notes.py` and `site_publish.py` publish it;
   - `notes_page.py`, `prlinks.py` and `refcards.py` give a notes page the same links and hover cards.
-- `dashboard-data/data.json`: the data the dashboard is made from, as last published.
-- `dashboard-snapshots/index.html` and `closed.html`: the dashboard and its closed tickets' page, one file each; every change is a commit of them (since 2026-10-19, ^ticket(417)), listed in `versions.html`. The dated files from before, a folder per day, are in git's history (the tree of `df072c9d`).
+- `dashboard-data/data.json` and `closed_tickets.json`: the data the dashboard is made from, as last published, in two files since ^ticket(428) (2026-10-19): all but the closed tickets, and the closed tickets, so a change to an open ticket no longer copies the closed ones. `python3 dashboard/data_whole.py [commit]` prints the whole data.json, now or at any commit.
+- `dashboard-snapshots/index.html` and `closed.html`: the dashboard and its closed tickets' page, one file each; every change is a commit of them (since 2026-10-19, ^ticket(417)). Since ^ticket(428) a publish is one commit, the closed page is kept only when a ticket closes or a closed one changes, and the page when its data changes or at most hourly otherwise; `versions.html` (the last 30 days of versions, made from git log on every run) is no longer committed: GitHub's history of each file is the same list. The dated files from before, a folder per day, are in git's history (the tree of `df072c9d`).
 - `work-notes/YYYY/MM/DD/`: dated work notes, as HTML.
 - `agent-instructions.md`: how we work with the dashboard.
 - `VERSIONS.md`: the dashboard's features, version by version.
