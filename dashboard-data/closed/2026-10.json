@@ -10,17 +10,32 @@
   "url": "",
   "text": "<b>The work queue's \"Blocked on Matthew\" list showed tickets without that tag.</b> Matthew: \"the &quot;blocked on Matthew&quot; list seems inaccurate -- it has tickets with no such tag.\" Cause: update.py draws the category's line above its first tagged ticket in data.json's order and assumes the rest follow; 402 and 468 were tagged mid-queue, so 470, 462, 465, 389 and 471 read as blocked.",
   "progress": "",
-  "log": [],
+  "log": [
+   {
+    "at": "2026-10-20T12:13-06:00",
+    "from": "matthew",
+    "chars": 82,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T12:13-06:00",
+    "from": "claude",
+    "chars": 126,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
   "closed": "2026-10-20",
   "closed_at": "2026-10-20T12:16-06:00",
   "outcome": "Fixed (73704520): update.py sorts the queue's categories to its end (stable: the untagged in data.json's order, then long runs, then blocked), so the 🪷 Blocked on Matthew line has only tagged tickets under it, and the numbers, the table and the outline agree. Before: 470, 462, 465, 389 and 471 showed under it, after 402 and 468 were tagged mid-queue. Regenerated and checked: 28 tickets under the line, all tagged; published.",
   "metrics": {
    "open_minutes": 3,
-   "matthew_messages": 0,
+   "matthew_messages": 1,
    "questions_to_matthew": 0,
-   "chars_exchanged": 0,
-   "tokens_est": 0,
-   "sync_minutes_est": 0,
+   "chars_exchanged": 208,
+   "tokens_est": 52,
+   "sync_minutes_est": 0.0,
    "work_minutes": 4.0
   }
  },
