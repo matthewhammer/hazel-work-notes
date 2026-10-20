@@ -2592,12 +2592,13 @@
    "opened": "2026-10-20T11:25-06:00",
    "status": "open",
    "tags": [
+    "blocked on Matthew",
     "meeting 2026-10-21"
    ],
    "source": "Matthew, 2026-10-20 11:3x, in chat",
    "url": "",
    "text": "<b>What it would take to expose Hazel as a JS library for editor panels, and to use it for a Scripting panel in Messed Up Dress Up: one editor per room or square, each a module of one global program, with a common editor of sub-routines, all with the $GameUpdate monad.</b> Matthew: \"what would it take for: * exposing Hazel as a JS library that can be used to create editor panels. * using that experimental JS library to create an editor panel in MUDU, under a new control panel called \"Scripting\" --- with a list of editors, one per room that needs logic, starting only with the dungeon in the castle. The editors are showing sub-programs of a large, global program with global vars, using the $GameUpdate. Initially, it shows one editor per square in any world, and the background template for dungeon. The programs can use sub-routines defined in a common editor that they all have in scope in their subprograms. In terms of a full Hazel AST, each sub-editor (for each room/square in the world) could be a module named by that square's name. Names should be unique, and we should enforce that.\" and \"...using the $GameUpdate monad.\"",
-   "progress": "",
+   "progress": "11:27: ANSWERED, in ^report(20)'s item 11: nothing exports Hazel to JS today (haz3l-semantics-library, 2022, split the OCaml libraries only). Four parts: (1) Hazel as a JS library, a second jsoo entry: analyze/evaluate on the page's thread first (small), then mountEditor(element, opts), the main work, since the code editor assumes the whole app (settings, focus and keys at the document, an unscoped stylesheet) and Dress Up's keys move the friend; ~7 MB, loaded when the panel opens. (2) one global program composed from the editors (module Common, then a module per room named by Dress Up, duplicates refused); #2469's modular editors (cell per definition), on #2635, are the closest start. (3) the $GameUpdate builtin and the game's interpreter (^ticket(479)). (4) the hook: an event asks the room's handler and runs its commands. Order: analyze/evaluate and the monad first, with the rules as plain text, running the dungeon end to end; then the editor, then the panel. ✋ For Matthew: whether to start, and on which branch (#2635 for the modular editors).",
    "log": [
     {
      "at": "2026-10-20T11:25-06:00",
