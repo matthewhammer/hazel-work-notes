@@ -2663,11 +2663,24 @@
    "text": "<b>Knoll the panels: the right-hand side, and in full screen both sides, each into boxes within boxes, as ^du_report(5) (Always Be Knolling) proposed.</b> Matthew: \"mint and enqueue for long run tonight -- how can we best &quot;Knowl&quot; the panels on the RHS (or in FS  mode, both LHS and RHS sometimes.) --- we've got a ^du_report about this, but our menus have expanded since then, and some have not been fully processed.  Especially, for example, non-FS world design control panels.\" Before it, after 0.0.375 (12:22), he wrote \"Always Be Knowling, friend. ; )\": the boxes there are the pattern (⚙️ Advanced's advLayout, ticket 375; nothing left in ⚙️ more). Start from report 005's nine rules and an audit of every tab as it is now (0.0.375: which are knolled, which fall back to one long column), the non-full-screen 🗺️ World design panels first; a report of what is left, then the boxes, one release per tab-sized piece. Then: \"^ Related -- the design experiment from last night, where we pop up a box with chips to select, and a cancel (for creating a template from a costume) --- was a success.  Let's note that in the ticket, and use that more going forward to keep things simpler, and skimmable, as controls.\" So: <b>the chip box is a pattern to use</b>, ticket 459's <code>personCostumeBox</code> in 25-world.js (0.0.366's ➕ from a costume): a box laid over the panels, not inside them, a chip per choice, ✖ cancel at its bottom, Escape or a tap outside closes it. Where a panel has a long dropdown or a list of rarely-changed choices, the knolled box shows the current choice as one chip that opens such a box.",
    "progress": "",
    "log": []
+  },
+  {
+   "id": 489,
+   "area": "dashboard: how long each reply of Claude's takes to read, or to hear",
+   "added": "2026-10-20T12:33-06:00",
+   "opened": "2026-10-20T12:33-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, 2026-10-20 12:33, in chat",
+   "url": "",
+   "text": "<b>Log the time each reply takes Matthew to read or to hear, and add it up per ticket.</b> Matthew: \"Is there a way you can log how long the average reading time is for each thing you print, and assume that I am reading or listening to it?\" (After: \"I'm listening to you read the above -- please note in the minutes of &quot;conversation&quot;\".) Plan: log_messages.py's Claude entries gain words, read_s and listen_s (at stated rates: silent reading of non-fiction about 238 words a minute, listening about 160); the metrics gain reading and listening minutes; the page shows them.",
+   "progress": "",
+   "log": []
   }
  ],
  "next_ticket": 468,
- "current_ticket": 485,
- "current_note": "12:16: #2583's refactor pushed (077a68f9f8): waiting for CI and the deploy, to try it in the browser",
+ "current_ticket": 489,
+ "current_note": "12:33: ^ticket(489): reading and listening time per reply",
  "closed_tickets": [
   {
    "id": 487,
@@ -7105,6 +7118,7 @@
   }
  ],
  "queue": [
+  489,
   485,
   486,
   484,
@@ -7145,7 +7159,7 @@
   460,
   488
  ],
- "current_since": "2026-10-20T12:09-06:00",
+ "current_since": "2026-10-20T12:33-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
