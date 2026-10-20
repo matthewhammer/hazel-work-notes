@@ -24,9 +24,11 @@ tickets was copied with every change to the open ones. So, one commit per publis
   - a page, when it differs from the kept one in more than what changes on every publish (`VOLATILE`: the "Updated" lines,
     the dashboard-version meta, the hover cards' scripts); index.html besides only when the data changed, or an hour after
     its last snapshot (the quarter-hour runs refresh only what comes from GitHub, and the next snapshot has it);
-  - the data, as two files: dashboard-data/data.json (all but the closed tickets) and dashboard-data/closed_tickets.json
-    (the list `closed_tickets`), each when it changes. data.json as served is the first with "closed_tickets" set to the
-    second: `python3 dashboard/data_whole.py` prints it, from the working tree or any commit.
+  - the data, each file when it changes: dashboard-data/data.json, all but the closed tickets, and the closed tickets by
+    the month each was closed, dashboard-data/closed/<YYYY-MM>.json (each in the order of the list `closed_tickets`), so a
+    closing rewrites only its month's file, never a list that grows for years. data.json as served is the first with
+    "closed_tickets" set to the months, newest first: `python3 dashboard/data_whole.py` prints it, from the working tree
+    or any commit.
 
 dashboard-snapshots/versions.html, the list of the pages' versions with links to each on GitHub, is made here on every run
 from the last 30 days of git log, and is no longer committed (it is in .gitignore): GitHub's history of each file is the
@@ -92,13 +94,23 @@ def write(path, text):
     return True
 
 wrote = []
-# The data first (whether it changed decides index.html): all but the closed tickets, and the closed tickets.
+# The data first (whether it changed decides index.html): all but the closed tickets, and the closed tickets by month.
 live = json.load(open(os.path.join(HERE, "data.json")))
-closed_list = live.pop("closed_tickets", [])
+months = {}
+for t in live.pop("closed_tickets", []):
+    when = str(t.get("closed_at") or t.get("closed") or "")
+    months.setdefault(when[:7] if re.match(r"\d{4}-\d\d", when) else "undated", []).append(t)
 data_changed = False
-for path, part, name in (("dashboard-data/data.json", live, "data"), ("dashboard-data/closed_tickets.json", closed_list, "closed tickets")):
+parts = [("dashboard-data/data.json", live, "data")] + [(f"dashboard-data/closed/{m}.json", ts, f"closed {m}") for m, ts in sorted(months.items())]
+for path, part, name in parts:
     if write(path, json.dumps(part, indent=1, ensure_ascii=False)):
         wrote.append(name)
+        data_changed = True
+# (a month no longer in the list, its file gone; and closed_tickets.json, the one file of the evening before the months)
+for path in git("ls-files", "dashboard-data/closed/", "dashboard-data/closed_tickets.json").split():
+    if path not in [p for p, _, _ in parts]:
+        git("rm", "-q", path)
+        wrote.append("- " + os.path.basename(path))
         data_changed = True
 
 last_index = git("log", "-1", "--format=%ct", "--", "dashboard-snapshots/index.html").strip()
