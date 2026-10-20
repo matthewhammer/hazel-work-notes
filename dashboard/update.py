@@ -101,6 +101,13 @@ CURRENT = next((t for t in TICKETS if t["id"] == data.get("current_ticket")), No
 # whole backlog is below it. A closed or unknown number is left out, and said.
 BY_ID = {t["id"]: t for t in TICKETS}
 QUEUE = [BY_ID[n] for n in data.get("queue", []) if n in BY_ID]
+# (^ticket(487), Matthew 2026-10-20: "the 'blocked on Matthew' list seems inaccurate -- it has tickets with no such tag.") the
+# queue's categories at its end, whatever data.json's order: a line is drawn above a category's first ticket, so a ticket
+# tagged in the middle of the queue put every untagged one after it under "Blocked on Matthew". A stable sort: the untagged
+# in data.json's order, then the long runs, then the blocked (QUEUE_GROUPS' order), so the numbers, the table and the
+# outline all agree.
+QUEUE_CATEGORIES = ["long run", "blocked on Matthew"]
+QUEUE = sorted(QUEUE, key=lambda t: next((i for i, g in enumerate(QUEUE_CATEGORIES) if g in t.get("tags", [])), -1))
 for n in data.get("queue", []):
     if n not in BY_ID:
         print(f"queue: ^ticket({n}) is not an open ticket; left out", file=sys.stderr)
@@ -317,6 +324,7 @@ TAG_CHIPS = {"long run": ("longrun", "🌙 long run", "A long run: to do while M
 # the queue's own categories, at its end, in this order: each tag's tickets under a line of their own
 QUEUE_GROUPS = [("long run", "🌙 <b>Long runs</b>: for when Matthew is away from the keyboard"),
                 ("blocked on Matthew", "🪷 <b>Blocked on Matthew</b>: waiting for his response")]
+assert [g for g, _ in QUEUE_GROUPS] == QUEUE_CATEGORIES   # (the sort above, in the same order)
 def group_of(t):
     return next((g for g, _ in QUEUE_GROUPS if g in t.get("tags", [])), None)
 TAG_ICON = lambda t: "".join(TAG_CHIPS[g][1].split(" ")[0] + " " for g in t.get("tags", []) if g in TAG_CHIPS)
