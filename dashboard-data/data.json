@@ -1283,6 +1283,25 @@
      "text": "mint and enqueue for ticket to answer another Cyrus question from Friday --- in the livelits slides (playground and basic doc slides) -- we wanted to expand the definition of Html, and tried using the type-expansion feature, but it said it was unrecognized/undefinted! That was confusing, and leaves some questions open to answer --- why? how to reproduce? how to fix?"
     }
    ]
+  },
+  {
+   "id": 470,
+   "area": "hazel, performance: opening each documentation slide, timed on GitHub",
+   "added": "2026-10-20T09:23-06:00",
+   "opened": "2026-10-20T09:23-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, 2026-10-20 09:3x, in chat",
+   "url": "",
+   "text": "<b>Time opening every documentation slide on each PR, on GitHub's machines, say what dominates each one's cost, and keep tracking it with the performance PRs applied.</b> Matthew: \"timing on Github (not my machine): * time to open the documentation slides on each PR, including each livelit slide. * for each one, what is the dominate time cost? Or is it heavily mixed? * let's start tracking this (all with our performance PRs applied), and see if we can keep improving things, in terms of loading time.\" So: a CI job (no browser on the laptop) that opens each slide of the documentation and livelit decks on each of our PRs (#2597, #2635, and the #2609 performance PRs, stacked), records the time to a settled view, and splits it by phase (parse, statics, elaboration, evaluation, measure and draw); a series of these runs over time, in the reports series.",
+   "progress": "",
+   "log": [
+    {
+     "at": "2026-10-20T09:23-06:00",
+     "who": "Matthew",
+     "text": "mint and enqueue a ticket: timing on Github (not my machine): * time to open the documentation slides on each PR, including each livelit slide. * for each one, what is the dominate time cost? Or is it heavily mixed? * let's start tracking this (all with our performance PRs applied), and see if we can keep improving things, in terms of loading time."
+    }
+   ]
   }
  ],
  "next_ticket": 468,
@@ -5567,6 +5586,7 @@
  "queue": [
   468,
   469,
+  470,
   464,
   463,
   462,
