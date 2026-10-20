@@ -2602,9 +2602,9 @@
     "meeting 2026-10-21"
    ],
    "source": "Matthew, 2026-10-20 11:4x, in chat, after ^ticket(480)",
-   "url": "",
+   "url": "https://github.com/hazelgrove/hazel/pull/2711",
    "text": "<b>A draft PR to hazel exposing Hazel as a JS library, to analyze and run programs and to mount editor panels in other pages, used by Dress Up's Scripting panel (^ticket(482)).</b> Matthew: \"let's do this MUDU integration as a PR for MUDU, not hazel. On the hazel side, let's draft a PR (and use it) for exposing Hazel as a JS library we can use this way.\" First: compile a program once and call its functions from JS with JS values, results back as JS values (rules return command trees the game interprets); then an editor to mount.",
-   "progress": "",
+   "progress": "11:35: DRAFT PR #2711 to dev (branch js-library, d06dffc838, worktree ~/hazel-lib): www/hazel-lib.js defines window.Hazel: analyze(text) -> {errors}, run(text) -> {errors, value}, values as plain JS (numbers, booleans, strings, arrays, objects for labeled tuples, {{tag, value}} for constructors, null for ()), a Hazel function as a JS function whose arguments go back to Hazel. HazelLibCore (a library, tested: Test_HazelLib, 13 cases under node) + HazelLib (the page's global); docs/hazel-as-a-js-library.md. CI running; once deployed it is at hazel.org/build/js-library/hazel-lib.js. Next on it: mountEditor.",
    "log": [
     {
      "at": "2026-10-20T11:28-06:00",
@@ -2638,8 +2638,8 @@
   }
  ],
  "next_ticket": 468,
- "current_ticket": 469,
- "current_note": "11:15: ^ticket(478) closed (done); ^ticket(469) is next in the queue",
+ "current_ticket": 482,
+ "current_note": "11:35: Dress Up's Scripting panel, a PR: the trap room's levers through a Hazel rule, using #2711's window.Hazel",
  "closed_tickets": [
   {
    "id": 480,
@@ -7037,10 +7037,10 @@
   }
  ],
  "queue": [
+  482,
   469,
   472,
   481,
-  482,
   402,
   468,
   470,
@@ -7075,7 +7075,7 @@
   429,
   460
  ],
- "current_since": "2026-10-20T11:15-06:00",
+ "current_since": "2026-10-20T11:35-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
