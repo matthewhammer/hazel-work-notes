@@ -1174,7 +1174,7 @@
    "source": "Matthew, 2026-10-20 07:38, in chat",
    "url": "",
    "text": "<b>Separate the Fumola work from #2635 into its own PR, into #2635's branch.</b> Matthew: \"For the first PR (modular editing x livelits): separate the fumola work, including the 'cloud/canister storage' idea into a separate PR, which is set to merge into modular editing x livelits. It was a mistake/oversight/miscommunication that these were not kept separate: rationale --- meetings with Cyrus should only focus on livelits and modular editing, until the conversation has space for Fumola discussions --- it's distracting to have in there, and likely won't be merged into dev near the time that modular editing or livelits are (sooner); it's not clear if Fumola will ever be merged to dev; it may remain experimental forever. That's okay, and we should prepare for that situation now. Bring all PRs (all three I just mentioned) up to date with dev, and mergeable. CI green for all, of course.\" So: every Fumola part of #2635 (the Fumola tiles and VM, the ^fumola livelits, the cloud/canister storage idea, their slides and tests) leaves #2635 and goes into a new PR whose base is integration/livelits-modular-editors, mergeable into it; #2635 keeps livelits and modular editing only; both green.",
-   "progress": "07:38: minted; work begins with a map of the Fumola work in #2635.",
+   "progress": "07:38: minted; work begins with a map of the Fumola work in #2635. 08:02: Mapped: #2635 has NO Fumola in it on GitHub (the only mention, a comment in ScratchPersist.re; its description and commits none): the Fumola work is already separate PRs, #2616 (remote refs: splices a Fumola instance reads and writes, into #2597's branch, conflicting, last updated 10-04) and #2650 (Hazel's state and Fumola instances on an IC canister, into #2616's branch); #2577 serves the web build from a canister (into dev, a draft). So the split is a re-stack: the Fumola PR(s) onto #2635's branch, up to date and green. ✋ For Matthew: one Fumola PR (#2650's branch, holding #2616's commits) or the two stacked; done once #2635 is green.",
    "log": []
   },
   {
@@ -1187,7 +1187,7 @@
    "source": "Matthew, 2026-10-20 07:38, in chat",
    "url": "",
    "text": "<b>#2597 (livelits as in PLDI '21) up to date with dev, mergeable, CI green.</b> Part of Matthew's ask with ^ticket(462): dev merged in (it is 494 commits behind dev, from the morning of 2026-09-22), conflicts resolved, the table test's new input taken from #2635 (27f100e37c, ^report(23)'s next step 1), CI green.",
-   "progress": "07:38: minted; work begins with a map of the Fumola work in #2635.",
+   "progress": "07:38: minted; work begins with a map of the Fumola work in #2635. 08:02: Merged dev into #2597 on trial/2597-dev-merge (0 behind dev): the 80 conflicting files came down to 6 by merging #2635's 11fbc4480d (its 10-01 merge of dev to 9b3f18323a with the fixes after it, before any #2469); then cbdab791f5 (the reuse check's one-walk lexeme compare, which dev's lexeme check needs here too) and 27f100e37c (the table test's new input, ^report(23)'s step 1); then the rest of dev (5 conflicts, 4 by #2635's own resolutions). dev's #2649 took out the clipboard shim: its uses here ported to dev's replacements; a splice's focus keeper lets a deliberate press elsewhere be, as dev's does for a probe. CI on GitHub (no build on the laptop).",
    "log": []
   },
   {
@@ -1200,7 +1200,7 @@
    "source": "Matthew, 2026-10-20 07:38, in chat",
    "url": "",
    "text": "<b>#2635 (modular editing × livelits) and the new Fumola PR up to date with dev and with their bases, mergeable, CI green.</b> Part of Matthew's ask with ^ticket(462): #2635 takes #2597 (once up to date) and dev, its one-file conflict with #2597 (test/Test_ContextInspector.re) cleared; the Fumola PR takes #2635; all green.",
-   "progress": "07:38: minted; work begins with a map of the Fumola work in #2635.",
+   "progress": "07:38: minted; work begins with a map of the Fumola work in #2635. 08:02: Merged #2597's two new commits (no change: #2635 had them) and dev (10 files; the shim's removal ported: ProbePerform, OutlineSidebar, CmdRunner, Page; FocusEffect with dev's press tracking for probes and splices) into #2635 on trial/2635-dev-merge. Its first CI run compiled and stopped at \"Duplicate test path: Ascriptions\" (dev's #2679 registers the suite beside the branch's own entry): fixed on both branches (1d7e6d910f, 9874505b7a), CI rerunning.",
    "log": []
   },
   {
@@ -1244,8 +1244,8 @@
   }
  ],
  "next_ticket": 468,
- "current_ticket": 462,
- "current_note": "07:38: ^ticket(462): Fumola out of #2635 into its own PR (into #2635's branch); then ^ticket(463) #2597 and ^ticket(464) #2635 + the Fumola PR up to date with dev, mergeable, green. Now: mapping where Fumola is in #2635. Ports: 8341 #2635, 8311 #2597; Dress Up's 8133 closed.",
+ "current_ticket": 463,
+ "current_note": "08:02: ^ticket(463)/(464): dev merged into #2597 (trial/2597-dev-merge) and #2635 (trial/2635-dev-merge), CI running on GitHub; then #2635 takes the new #2597, and the PR branches move. ^ticket(462): #2635 has no Fumola; the Fumola PRs #2616/#2650 are on #2597's branch: ✋ Matthew's call, one PR or two, re-stacked on #2635.",
  "closed_tickets": [
   {
    "id": 446,
@@ -5523,8 +5523,8 @@
   }
  ],
  "queue": [
-  462,
   463,
+  462,
   464,
   467,
   465,
@@ -5558,7 +5558,7 @@
   429,
   460
  ],
- "current_since": "2026-10-20T07:38-06:00",
+ "current_since": "2026-10-20T08:02-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
