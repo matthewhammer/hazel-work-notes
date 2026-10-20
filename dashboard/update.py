@@ -878,7 +878,8 @@ def metrics_line(t):
     if m.get("work_minutes") is not None:
         bits.append(f'{m["work_minutes"]} min of work, timed')
     if m.get("matthew_messages") is not None:
-        bits.append(f'{m["matthew_messages"]} messages from Matthew, {m.get("questions_to_matthew", 0)} questions to him')
+        n, q = m["matthew_messages"], m.get("questions_to_matthew", 0)
+        bits.append(f'{n} message{"" if n == 1 else "s"} from Matthew, {q} question{"" if q == 1 else "s"} to him')
     if m.get("chars_exchanged") is not None:
         bits.append(f'~{m["chars_exchanged"]:,} chars (~{m.get("tokens_est", m["chars_exchanged"] // 4):,} tokens)')
     if m.get("sync_minutes_est") is not None:

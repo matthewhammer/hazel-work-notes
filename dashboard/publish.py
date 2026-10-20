@@ -33,6 +33,15 @@ try:
 except BlockingIOError:
     sys.exit(0)
 
+# Each ticket's log from the session transcripts (^ticket(466)): every five
+# minutes, before the digest, so new entries publish in the same run.
+if datetime.now().minute % 5 == 0:
+    try:
+        subprocess.run([sys.executable, os.path.join(HERE, "log_messages.py"), "--locked"], cwd=HERE,
+                       capture_output=True, text=True, timeout=120)
+    except subprocess.TimeoutExpired:
+        pass
+
 digest = hashlib.sha256(open(DATA, "rb").read()).hexdigest()
 try:
     last = open(STAMP).read().strip()

@@ -17,8 +17,8 @@ log = sorted(t.get("log", []), key=lambda e: e["at"])
 ts = [datetime.fromisoformat(e["at"]) for e in log]
 gaps = [(b - a).total_seconds() / 60 for a, b in zip(ts, ts[1:])]
 m = {"open_minutes": round((now - datetime.fromisoformat(t["opened"])).total_seconds() / 60) if t.get("opened") else None,
-     "matthew_messages": sum(e["from"] == "matthew" for e in log),
-     "questions_to_matthew": sum(e["from"] == "claude" and e.get("asks") for e in log),
+     "matthew_messages": sum(e.get("from") == "matthew" for e in log),
+     "questions_to_matthew": sum(e.get("from") == "claude" and bool(e.get("asks")) for e in log),
      "chars_exchanged": sum(e.get("chars", 0) for e in log)}
 m["tokens_est"] = m["chars_exchanged"] // 4
 m["sync_minutes_est"] = round(sum(g for g in gaps if g < 10), 1)
