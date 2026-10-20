@@ -82,6 +82,19 @@ TICKETS = sorted(data["tickets"], key=lambda t: t["id"])
 CLOSED = sorted(data.get("closed_tickets", []), key=lambda t: t["id"])
 OPEN_IDS = {t["id"] for t in TICKETS}
 CLOSED_IDS = {t["id"] for t in CLOSED}
+# (^ticket(428), 2026-10-19: the closed page had reached 1.1 MB, a new copy in two repositories' history at every closing, and
+# grew ~120 KB a day) The closed tickets by the month each was closed: closed.html holds this month's, and each earlier month
+# has a page of its own, closed-<YYYY-MM>.html, which stops changing once its month is over. closed-where.json maps each
+# ticket on an earlier month's page to that page, so a link made before it moved (closed.html#ticket-N) still finds it.
+# DASHBOARD_MONTH (YYYY-MM) stands in for this month, to try a month to come.
+def closed_month(t):
+    w = str(t.get("closed_at") or t.get("closed") or "")
+    return w[:7] if re.match(r"\d{4}-\d\d", w) else None
+THIS_MONTH = os.environ.get("DASHBOARD_MONTH") or datetime.now(LOCAL).strftime("%Y-%m")
+def closed_page_of(t):
+    m = closed_month(t)
+    return f"closed-{m}.html" if m and m < THIS_MONTH else "closed.html"
+CLOSED_PAGE = {t["id"]: closed_page_of(t) for t in CLOSED}
 CURRENT = next((t for t in TICKETS if t["id"] == data.get("current_ticket")), None)
 # The work queue: a few open tickets, in the order we mean to take them
 # (data.json's "queue", ticket numbers, front first). Short on purpose: the
@@ -103,11 +116,12 @@ def hand():
     return f'<span class="waiting" title="{e(tip)}" aria-label="{e(tip)}">{HAND}</span>' if WAITING else ""
 
 def ticket_href(n, on):
-    """The link to ticket n from the page `on` ("index" or "closed")."""
+    """The link to ticket n from the page `on` ("index", or a closed page's file name: closed.html, closed-<YYYY-MM>.html)."""
     if n in OPEN_IDS:
         return f"#ticket-{n}" if on == "index" else f"./#ticket-{n}"
     if n in CLOSED_IDS:
-        return f"closed.html#ticket-{n}" if on == "index" else f"#ticket-{n}"
+        page = CLOSED_PAGE.get(n, "closed.html")
+        return f"#ticket-{n}" if on == page else f"{page}#ticket-{n}"
     return None
 
 def linkify(text, on="index"):
@@ -870,46 +884,63 @@ def metrics_line(t):
     if m.get("sync_minutes_est") is not None:
         bits.append(f'~{m["sync_minutes_est"]} min together')
     return '<br><span class="note">\u23f1 ' + " \u00b7 ".join(bits) + "</span>"
-def outcome_cell(t):
-    out = linkify(t.get("outcome", ""), on="closed")
+def outcome_cell(t, on):
+    out = linkify(t.get("outcome", ""), on=on)
     if t.get("outcome_url"):
         out += f' <a href="{e(series_link(t["outcome_url"]))}">(where)</a>'
     return out + metrics_line(t)
-closed_rows = "\n".join(
-    f'<tr id="ticket-{t["id"]}">{num_cell(t)}<td>{e(t.get("area", ""))}</td>'
-    f'<td class="status"><span class="{STATUS_CLASS.get(t["status"], "")}">{e(t["status"])}</span><br>'
-    f'<span class="note">{e(t["closed"])}</span></td>'
-    f'<td>{outcome_cell(t)}</td>'
-    f'<td>{linkify(t["text"], on="closed")}'
-    f'{"<br><span class=" + chr(34) + "note" + chr(34) + ">from " + from_cell(t, on="closed") + "</span>" if t.get("source") else ""}</td></tr>'
-    for t in sorted(CLOSED, key=lambda t: (t["closed"], t["id"]), reverse=True))
+def closed_rows(page):
+    return "\n".join(
+        f'<tr id="ticket-{t["id"]}">{num_cell(t)}<td>{e(t.get("area", ""))}</td>'
+        f'<td class="status"><span class="{STATUS_CLASS.get(t["status"], "")}">{e(t["status"])}</span><br>'
+        f'<span class="note">{e(t["closed"])}</span></td>'
+        f'<td>{outcome_cell(t, page)}</td>'
+        f'<td>{linkify(t["text"], on=page)}'
+        f'{"<br><span class=" + chr(34) + "note" + chr(34) + ">from " + from_cell(t, on=page) + "</span>" if t.get("source") else ""}</td></tr>'
+        for t in sorted(CLOSED, key=lambda t: (t["closed"], t["id"]), reverse=True) if CLOSED_PAGE[t["id"]] == page)
+# (each closed page's line of months: this month's page, then each earlier month's, newest first, with how many each holds)
+CLOSED_PAGES = ["closed.html"] + sorted({p for p in CLOSED_PAGE.values() if p != "closed.html"}, reverse=True)
+def months_line(page):
+    count = lambda p: sum(1 for q in CLOSED_PAGE.values() if q == p)
+    name = lambda p: f"this month, {THIS_MONTH}" if p == "closed.html" else p[len("closed-"):-len(".html")]
+    bits = [f"<b>{e(name(p))}</b> ({count(p)})" if p == page else f'<a href="{p}">{e(name(p))}</a> ({count(p)})' for p in CLOSED_PAGES]
+    return '<p class="note">By the month they were closed: ' + " · ".join(bits) + ".</p>" if len(CLOSED_PAGES) > 1 else ""
 style = page.split("<style>", 1)[1].split("</style>", 1)[0]
 # the copy-link buttons' code only (the index's own redirects stay there)
 script = "/* Each ticket" + page.split("/* Each ticket", 1)[1].split("/* The outline:", 1)[0]
-closed_page = f"""<!doctype html>
+def closed_page(page):
+    month = "" if page == "closed.html" else page[len("closed-"):-len(".html")]
+    return f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Closed Tickets</title>
+<title>Closed Tickets{", " + month if month else ""}</title>
 <style>{style}  main {{ margin-left: 0 !important; padding-top: 24px !important; }}
 </style>
 </head>
 <body>
 <main>
 <h1>Closed tickets</h1>
-<p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated {e(now)}. Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are on the dashboard: <a href="./#queue">the work queue</a> and <a href="./#backlog">the full backlog</a>.</p>
+<p class="note"><a href="./">← the Hazel Work Dashboard</a>. Updated {e(now)}.{" Closed in " + e(month) + "." if month else ""} Our tickets once closed, newest first: done, or closed for another reason (not needed, dropped, superseded), with what came of each. A number is never reused; the open tickets are on the dashboard: <a href="./#queue">the work queue</a> and <a href="./#backlog">the full backlog</a>.</p>
 <div class="scroll"><table>
+{months_line(page)}
 <tr><th class="num">Ticket</th><th class="area">Area</th><th>Status, closed</th><th>Outcome</th><th>The ticket, as it last read</th></tr>
-{closed_rows}
+{closed_rows(page)}
 </table></div>
 <script>
-/* A link to a ticket that is open again, or never closed: the dashboard. */
+/* A link to a ticket that is open again, or never closed: the dashboard. One closed in an earlier month (^ticket(428)): its
+   month's page, from closed-where.json (this month's page asks it; an earlier month's page sends the link here first). */
 (() => {{
-  const find = () => {{
+  const find = async () => {{
     const m = location.hash.match(/^#(?:next|ticket)-(\\d+)$/);
     if (!m) return;
-    if (!document.getElementById("ticket-" + m[1])) location.replace("./#ticket-" + m[1]);
+    if (!document.getElementById("ticket-" + m[1])) {{
+      if ({"true" if page != "closed.html" else "false"}) return location.replace("closed.html#ticket-" + m[1]);
+      let where = null;
+      try {{ const r = await fetch("closed-where.json", {{ cache: "no-store" }}); if (r.ok) where = (await r.json())[m[1]]; }} catch (_) {{}}
+      location.replace((where || "./") + "#ticket-" + m[1]);
+    }}
     else if (location.hash !== "#ticket-" + m[1]) location.replace("#ticket-" + m[1]);
   }};
   find();
@@ -949,8 +980,16 @@ closed_page = f"""<!doctype html>
 </body>
 </html>
 """
-tmp = os.path.join(HERE, ".closed.html.tmp")
-open(tmp, "w").write(versioned(themed(refcards.process(prlinks.process(closed_page, PRLINKS_CACHE), data))))
-os.replace(tmp, os.path.join(HERE, "closed.html"))
+for page in CLOSED_PAGES:
+    tmp = os.path.join(HERE, "." + page + ".tmp")
+    open(tmp, "w").write(versioned(themed(refcards.process(prlinks.process(closed_page(page), PRLINKS_CACHE), data))))
+    os.replace(tmp, os.path.join(HERE, page))
+# (a month's page no longer made, as when its tickets were all reopened, goes)
+for old in os.listdir(HERE):
+    if re.fullmatch(r"closed-\d{4}-\d\d\.html", old) and old not in CLOSED_PAGES:
+        os.remove(os.path.join(HERE, old))
+tmp = os.path.join(HERE, ".closed-where.json.tmp")
+json.dump({str(n): p for n, p in sorted(CLOSED_PAGE.items()) if p != "closed.html"}, open(tmp, "w"))
+os.replace(tmp, os.path.join(HERE, "closed-where.json"))
 print(f"wrote index.html: {len(rows)} ports, {len(other)} other + {len(data['perf_prs'])} perf + {len(data['integration_prs'])} integration PRs, {len(data.get('repos', []))} repos, {len(TICKETS)} tickets"
-      + (f" (current ^ticket({CURRENT['id']}))" if CURRENT else "") + f"; closed.html: {len(CLOSED)} closed tickets")
+      + (f" (current ^ticket({CURRENT['id']}))" if CURRENT else "") + f"; closed.html: {len(CLOSED)} closed tickets" + (f", and {len(CLOSED_PAGES) - 1} earlier month{chr(39) + 's page' if len(CLOSED_PAGES) == 2 else 's' + chr(39) + ' pages'}" if len(CLOSED_PAGES) > 1 else ""))

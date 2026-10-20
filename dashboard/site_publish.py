@@ -70,10 +70,13 @@ def git(*args, env=None, data=None):
 
 def main():
     copies = {}
-    for name in ("index.html", "closed.html"):
+    # (^ticket(428): the closed tickets by month, closed.html this month's and closed-<YYYY-MM>.html each earlier one's, and
+    # closed-where.json, which page each is on, for links made before a month's tickets moved to their own page)
+    names = ["index.html"] + sorted(f for f in os.listdir(HERE) if re.fullmatch(r"closed(-\d{4}-\d\d)?\.html", f)) + ["closed-where.json"]
+    for name in names:
         src = os.path.join(HERE, name)
         if os.path.exists(src):
-            copies[name] = public(open(src).read())
+            copies[name] = open(src).read() if name.endswith(".json") else public(open(src).read())
     try:
         rec = json.load(open(RECORD))
     except (FileNotFoundError, ValueError):

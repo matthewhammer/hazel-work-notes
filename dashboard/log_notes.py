@@ -66,13 +66,14 @@ def body(text):
 
 def versions_page():
     """The versions of the two pages in the last VERSIONS_DAYS days, from git log: when, which, and links to each on GitHub."""
-    rows, PAGES = [], ("dashboard-snapshots/index.html", "dashboard-snapshots/closed.html")
+    rows, PAGES = [], ("dashboard-snapshots/index.html", "dashboard-snapshots/closed.html", ":(glob)dashboard-snapshots/closed-*.html")
     # (one pass: each commit's hash and time, then the files it changed; a commit per line of git show was too slow for long)
     for block in git("log", f"--since={VERSIONS_DAYS} days ago", "--format=%x00%H %cI", "--name-only", "--", *PAGES).split("\0")[1:]:
         lines = [l for l in block.splitlines() if l.strip()]
         sha, when = lines[0].split(" ", 1)
-        t, files = datetime.fromisoformat(when), [f for f in lines[1:] if f in PAGES]
-        links = " · ".join(f'<a href="{REPO}/blob/{sha}/{f}">{"the page" if f.endswith("index.html") else "the closed page"}</a>' for f in files)
+        t, files = datetime.fromisoformat(when), [f for f in lines[1:] if re.fullmatch(r"dashboard-snapshots/(index|closed(-\d{4}-\d\d)?)\.html", f)]
+        name = lambda f: "the page" if f.endswith("index.html") else "the closed page" if f.endswith("closed.html") else "the closed page of " + f[-12:-5]
+        links = " · ".join(f'<a href="{REPO}/blob/{sha}/{f}">{name(f)}</a>' for f in files)
         rows.append(f'<tr><td>{t.strftime("%Y-%m-%d %H:%M")}</td><td><a href="{REPO}/commit/{sha}"><code>{sha[:10]}</code></a></td><td>{links}</td></tr>')
     dated = open(DATED_UNTIL).read().strip() if os.path.exists(DATED_UNTIL) else ""
     before = (f'<p>Before {html.escape(dated.split()[1]) if len(dated.split()) > 1 else "then"}, each version was a file of its own, dated, in a folder per day: '
@@ -121,7 +122,9 @@ for path in git("ls-files", "dashboard-data/closed/", "dashboard-data/closed_tic
 
 last_index = git("log", "-1", "--format=%ct", "--", "dashboard-snapshots/index.html").strip()
 index_due = data_changed or not last_index or time.time() - int(last_index) >= INDEX_EVERY
-for name, src in (("index.html", os.path.join(HERE, "index.html")), ("closed.html", os.path.join(HERE, "closed.html"))):
+# (the closed tickets' pages: closed.html this month's, and since ^ticket(428) closed-<YYYY-MM>.html each earlier month's)
+PAGE_NAMES = ["index.html"] + sorted(f for f in os.listdir(HERE) if re.fullmatch(r"closed(-\d{4}-\d\d)?\.html", f))
+for name, src in ((n, os.path.join(HERE, n)) for n in PAGE_NAMES):
     if not os.path.exists(src) or (name == "index.html" and not index_due):
         continue
     page, kept = open(src).read(), os.path.join(SNAPS, name)
