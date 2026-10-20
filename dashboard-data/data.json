@@ -2570,7 +2570,7 @@
    "source": "Matthew, 2026-10-20 09:3x, in chat",
    "url": "",
    "text": "<b>Time opening every documentation slide on each PR, on GitHub's machines, say what dominates each one's cost, and keep tracking it with the performance PRs applied.</b> Matthew: \"timing on Github (not my machine): * time to open the documentation slides on each PR, including each livelit slide. * for each one, what is the dominate time cost? Or is it heavily mixed? * let's start tracking this (all with our performance PRs applied), and see if we can keep improving things, in terms of loading time.\" So: a CI job (no browser on the laptop) that opens each slide of the documentation and livelit decks on each of our PRs (#2597, #2635, and the #2609 performance PRs, stacked), records the time to a settled view, and splits it by phase (parse, statics, elaboration, evaluation, measure and draw); a series of these runs over time, in the reports series.",
-   "progress": "10:20: the harness, on GitHub only (scripts/slide_timing/ and .github/workflows/slide-timing.yml, commit cfe0ee67f7; not for merging into the PRs): a branch named timing/<x> holding the code plus that commit builds the release bundle, serves it with dev_serve.py, and opens each of the 58 reference, livelit and playground slides in a fresh headless Chrome tab through /fresh. Per slide: time to open (its last change to the page before 2 s of none, up to 180 s), Chrome's script, layout and style metrics, and CPU profiles of the page and the eval worker (self time by function, GC, the browser's own work), with a verdict: the dominant part, or mixed. Running now on timing/2635 (#2635, run 39456483173) and timing/2597 (#2597, run 39456483101); their CI and deploy runs cancelled (the PRs' own cover them). Next: the perf PRs applied, and a report in the series. 10:32: FIRST RESULTS, #2635 at d14229ee66 (run 39456483173, artifact timing.jsonl, ~/du-shots/timing-2635): all 58 slides settled, 256 s in all. Every open is a fresh page load, so ~2.6 to 3 s of each is the app starting. Reference and livelit slides ~3 s, nearly all the page's JS. The dress-up playground slides (Shirt and Pants to Witch) 6 to 12 s and MIXED: page JS 41 to 48% of the busy time, the eval worker 3 to 5 s, GC 2 to 4 s. Outliers: Livelits / Dynamic Row or Column 12.8 s (9.1 s page JS, 3.3 s GC), far above its neighbours; Full Body and Witch 11.7 s; Scenes 9.5 s (with no saved state it loads clean, see ^ticket(472)). Function names are minified in the release build (p, q), so per-phase splits need source maps: next. #2597's run is still going. 10:45: #2597 at 6fbc8268fc (run 39456483101, ~/du-shots/timing-2597): 55 slides (3 fewer than #2635), 53 settled within 180 s, 567 s in all, against #2635's 256 s. The dress-up playground slides open 4 to 16 times slower on #2597: Scenes 156 s (#2635 9.5), Shoes 58 (7.9), Hands 49 (7.6), Eyes 39, Arms 37, Mouth 35, Hair 33, Shirt and Pants 29 (5.7 to 7.2 on #2635), as #2597 lacks #2469's performance work. One the other way: Livelits / Dynamic Row or Column, 3.9 s on #2597 and 12.8 s on #2635, a slowdown on #2635 to find.",
+   "progress": "12:55 10-20: PER-PHASE SPLIT, pushed: on the timing branches only, the release build carries an inline source map (no sources); time_slides.mjs keeps each profiled function's place in its script; phases.py maps it to its source file and the file to a phase (parse, statics with elaboration in it, evaluation with probes, projectors, layout, view, terms, util, runtime, agent), with a dominant-or-mixed verdict per slide and the files it could not place. Decoder tested on a dev bundle's map (1,261 files, 3 left as other). Rebased onto today's heads: timing/2635 a5e61f5418 (#2635 a6eca82049), timing/2597 978315783b (#2597 2cd7b96f24). Timing runs 39478870651 and 39478877542; their CI and deploy runs cancelled (the PRs' own cover them). Next: read both, then the performance PRs applied.",
    "log": [
     {
      "at": "2026-10-20T09:23-06:00",
@@ -3039,8 +3039,8 @@
   }
  ],
  "next_ticket": 468,
- "current_ticket": 468,
- "current_note": "12:39: Landing ^ticket(468)'s Hazel setting (the Colors slide's ^unfold) on #2597, then #2635",
+ "current_ticket": 470,
+ "current_note": "12:55: Slide timing with the time split by phase (source maps), running on GitHub for #2635 and #2597",
  "closed_tickets": [
   {
    "id": 489,
@@ -7488,6 +7488,7 @@
   }
  ],
  "queue": [
+  470,
   468,
   485,
   486,
@@ -7495,7 +7496,6 @@
   482,
   481,
   402,
-  470,
   462,
   465,
   389,
@@ -7528,7 +7528,7 @@
   460,
   488
  ],
- "current_since": "2026-10-20T12:39-06:00",
+ "current_since": "2026-10-20T12:55-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
