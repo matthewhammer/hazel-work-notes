@@ -1162,12 +1162,51 @@
    "text": "<b>A weekly <code>git gc</code> of hazel-work-notes, from cron, holding the publish lock</b> (^ticket(417)'s plan: \"a weekly git gc keeps .git packed\"; once by hand on 2026-10-19, .git 40 MB to 16 MB). The line, for Matthew to approve, as it changes his crontab: <code>17 4 * * 0 cd ~/hazel-work-notes &amp;&amp; flock ~/localhost-index/.publish.lock git gc -q</code>.",
    "progress": "16:33: minted, blocked on Matthew: a crontab change needs his OK.",
    "log": []
+  },
+  {
+   "id": 427,
+   "area": "dress up, performance: 💭 our imagination at 48 fps on 0.0.345",
+   "added": "2026-10-19T18:59-06:00",
+   "opened": "2026-10-19T18:59-06:00",
+   "status": "open",
+   "tags": [
+    "long run"
+   ],
+   "source": "0.0.345's speed run, the frame-rate gate's slow scenes",
+   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39338911817",
+   "text": "<b>💭 our imagination's walk 48.3 fps (runs 49, 48.3, 47.9) and drag 47.7 (46.9, 47.7, 48.6) on 0.0.345</b>, its lowest yet: 53.7 and 52.7 on 0.0.335 (^ticket(420), closed as noise), 57.3 and 60 on 0.0.336, passed on 0.0.343. Nothing in 0.0.344 (the far arrows' quick fade-in, ♿ all arrows only) or 0.0.345 (lying hair, only when lying) runs there, but CI's game is at #inspect, every overlay on, all arrows included, so 0.0.344's change does apply in the gate. Draw 3.4 ms, frames every other vsync: the browser's painting.",
+   "progress": "18:59: minted as a 🌙 long run. First: the speed workflow run again by hand on dress-up-0.0.345, to see whether it repeats; then, if it does, TWEAK= the arrows' transition (0.0.344's) and the other overlays one at a time. 19:00: the speed workflow re-run by hand on dress-up-0.0.345 (run 39350917693; a duplicate I sent by mistake, 39350939811, cancelled while it waited).",
+   "log": []
   }
  ],
- "next_ticket": 426,
- "current_ticket": null,
- "current_note": "17:48: no ticket in hand. 0.0.343's speed run: every check passed but access217's far-arrow brightness step, which ^ticket(424) fixed in 0.0.344; today's new checks (burst415, seats413, lie412, joints414) passed on GitHub, and the gate. Watching 0.0.345's run (the fix, and access217's new wait). The rest of the queue waits on Matthew or is parked.",
+ "next_ticket": 428,
+ "current_ticket": 427,
+ "current_note": "19:00: ^ticket(427) (long run): 💭 our imagination at 48 fps on 0.0.345's gate; its speed run re-run by hand to see whether that repeats.",
  "closed_tickets": [
+  {
+   "id": 426,
+   "area": "dress up, checks: access217 under #inspect",
+   "added": "2026-10-19T18:59-06:00",
+   "opened": "2026-10-19T18:59-06:00",
+   "status": "done",
+   "tags": [],
+   "source": "0.0.345's speed run (access217: \"off: the far arrows hidden, as before\")",
+   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39338911817",
+   "text": "<b>access217's off step reset ♿'s settings to their defaults, but CI opens the game at #inspect, which turns every 🔬 overlay on in the defaults themselves (ticket 236), all arrows too.</b> So the reset switched all arrows on; the step passed only while the far arrows were still fading in, and failed once ^ticket(419) made it wait for the fade (and ^ticket(424) made them come in quickly). 419's \"not reproduced\" was wrong, and its probe had the same flaw. The game is right.",
+   "progress": "18:59: fixed the check: the reset says all arrows off outright. Pushed with no game change; it runs from the next release. 19:00: pushed (81bc89a); it runs from the next release (a run on a tag uses that tag's checks).",
+   "log": [],
+   "closed": "2026-10-19",
+   "closed_at": "2026-10-19T19:00-06:00",
+   "outcome": "access217's off step now says all arrows off outright (81bc89a): under CI's #inspect the defaults have every 🔬 overlay on (ticket 236), so its reset had switched all arrows on, and it passed only while they were still fading in. Corrects ^ticket(419)'s reading. Runs from the next release.",
+   "metrics": {
+    "open_minutes": 2,
+    "matthew_messages": 0,
+    "questions_to_matthew": 0,
+    "chars_exchanged": 0,
+    "tokens_est": 0,
+    "sync_minutes_est": 0
+   }
+  },
   {
    "id": 425,
    "area": "dress up, lying along a bag: the friend's own hair style, and see-through",
@@ -1289,7 +1328,7 @@
    "log": [],
    "closed": "2026-10-19",
    "closed_at": "2026-10-19T16:29-06:00",
-   "outcome": "Not reproduced: on 0.0.343, access217 passed in full on GitHub (diag-419, run 39334586096), 'off: the far arrows hidden' included. The check read the arrows 4 frames after switching off, while since 0.0.335 they fade over --label-stay (500 ms): it now waits that out (54aedf6). The probe beside it (access419) was inconclusive (its first case left all arrows on, saved for its second); the diag branch is deleted.",
+   "outcome": "Not reproduced: on 0.0.343, access217 passed in full on GitHub (diag-419, run 39334586096), 'off: the far arrows hidden' included. The check read the arrows 4 frames after switching off, while since 0.0.335 they fade over --label-stay (500 ms): it now waits that out (54aedf6). The probe beside it (access419) was inconclusive (its first case left all arrows on, saved for its second); the diag branch is deleted. (18:59, CORRECTED by ^ticket(426): the real cause was the check's own reset under CI's #inspect, which puts all arrows on in the defaults; waiting for the fade made it fail every time. The game was right.)",
    "metrics": {
     "open_minutes": 56,
     "matthew_messages": 0,
@@ -13829,6 +13868,7 @@
   }
  ],
  "queue": [
+  427,
   389,
   406,
   411,
@@ -13857,7 +13897,7 @@
   422,
   423
  ],
- "current_since": "2026-10-19T17:02-06:00",
+ "current_since": "2026-10-19T19:00-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
