@@ -2566,6 +2566,35 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 479,
+   "area": "dress up × hazel: the game's logic as a $GameUpdate monad (an estimate)",
+   "added": "2026-10-20T11:17-06:00",
+   "opened": "2026-10-20T11:17-06:00",
+   "status": "open",
+   "tags": [
+    "low priority",
+    "meeting 2026-10-21"
+   ],
+   "source": "Matthew, 2026-10-20 11:2x, in chat",
+   "url": "",
+   "text": "<b>Estimate how Messed Up Dress Up's game logic would look in Hazel, through a new monad, $GameUpdate, with the dungeon room as the case.</b> Matthew: \"can we estimate --- low priority, but meeting tag --- how putting the \"game logic\" of MUDU would look with a new monad called $GameUpdate ? I haven't looked at the JS carefully, but I've played with MUDU a lot. The dungeon room is the most interesting, in terms of doing different things, especially when we toggle the advanced flag for --- walk to switch on/off.\" and \"$GameUpdate would have a way to update variables with new Hazel values, using something like Fumola symbols as the \"pointers\"\" So: sketch $GameUpdate (beside $UpdateCmd and $ViewCmd, the livelits' monads): commands that read and update the game's variables with new Hazel values, a variable named by something like a Fumola symbol, its \"pointer\"; then the dungeon room's logic written in it (its levers, trapdoors, pits and the rest, as the JS has them), with the ⚙️ Advanced flag to pull levers from where you stand on and off; and an estimate of its size and cost. Related: ^ticket(402) (levers and trapdoors, measured), ^ticket(473) (the agenda's item 11).",
+   "progress": "",
+   "log": [
+    {
+     "at": "2026-10-20T11:17-06:00",
+     "from": "matthew",
+     "chars": 363,
+     "asks": false
+    },
+    {
+     "at": "2026-10-20T11:17-06:00",
+     "from": "matthew",
+     "chars": 125,
+     "asks": false
+    }
+   ]
   }
  ],
  "next_ticket": 468,
@@ -6951,6 +6980,7 @@
   469,
   472,
   402,
+  479,
   468,
   470,
   462,
