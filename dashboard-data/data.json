@@ -2158,13 +2158,12 @@
    "opened": "2026-10-19T13:16-06:00",
    "status": "open",
    "tags": [
-    "blocked on Matthew",
     "meeting 2026-10-21"
    ],
    "source": "split from ^ticket(398), 2026-10-19 13:16 (Matthew's ask there: \"add a new PR to dev that does even more correctness tests ... ditto for our PRs\")",
    "url": "",
    "text": "<b>A tests PR to dev that checks the performance PRs keep types and values the same, plus each PR's own missing tests.</b> The second half of ^ticket(398); ^report(21)'s \"What to add\": <ol><li>turn the incremental-against-fresh property back on for completed results (#2457's stuck ones skipped), fixed seed, with recursive lets in the generator;</li><li>a corpus comparison: every program in hazel-programs analyzed and evaluated with each optimization on and off, incrementally after an edit and from scratch (types, marks, elaborations ignoring ids, values, probes, test results);</li><li>hash checks: equal hash implies equal term, for the type hash (#2661, #2681) and the term hash (#2673), plus a census over the corpus;</li><li>a parser comparison: the load fallback against character-by-character typing at every split offset (finds #2610's case);</li><li>budget tests that also assert results.</li></ol> And on each of our PRs, the tests ^report(21) lists in its section.",
-   "progress": "12:39 10-20: Matthew: \"whats next for 411 -- how can I help you?\" #2700 (draft): Fast checks and Full tests GREEN on 58ac45008a, mergeable, 0 behind dev. His two calls, asked: (1) out of draft and a reviewer (suggested: ready, Cyrus; tests only); (2) the hash and parser checks on #2661, #2673 and #2610 now (suggested: yes, every ordering needs them), the 19 PRs' own tests after Cyrus's ordering on Wednesday.",
+   "progress": "13:33 10-20: Matthew: \"Mark #2700 ready for review but don't request anyone; the agenda item makes the ask. Start the hash and parser checks on #2661, #2673 and #2610 now.\" #2700 marked ready for review, no reviewer requested.",
    "log": [
     {
      "at": "2026-10-20T12:39-06:00",
@@ -2940,8 +2939,8 @@
   }
  ],
  "next_ticket": 468,
- "current_ticket": 470,
- "current_note": "13:16: Slide timing again with source maps (dune's sourcemap field); runs on GitHub for #2635 and #2597",
+ "current_ticket": 411,
+ "current_note": "13:33: #2700 out of draft; the hash and parser checks on #2661, #2673 and #2610",
  "closed_tickets": [
   {
    "id": 486,
@@ -7399,6 +7398,7 @@
   }
  ],
  "queue": [
+  411,
   470,
   462,
   468,
@@ -7412,7 +7412,6 @@
   471,
   490,
   473,
-  411,
   408,
   401,
   387,
@@ -7439,7 +7438,7 @@
   460,
   488
  ],
- "current_since": "2026-10-20T13:16-06:00",
+ "current_since": "2026-10-20T13:33-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
