@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Print data.json as the dashboard used it, from the files kept since ^ticket(428): dashboard-data/data.json (all but the
-closed tickets) with "closed_tickets" set to the months of dashboard-data/closed/<YYYY-MM>.json, newest month first (a
+closed tickets but their hover cards' summaries) with "closed_tickets" set to the months of dashboard-data/closed/<YYYY-MM>.json, newest month first (a
 closing goes to the front of the list). For the first hour of ^ticket(428) they were one file, closed_tickets.json.
 
   python3 dashboard/data_whole.py              # from the working tree
@@ -27,6 +27,9 @@ def months(rev):
 
 rev = sys.argv[1] if len(sys.argv) > 1 else None
 d = json.loads(read("dashboard-data/data.json", rev))
+# (since ^ticket(428)'s fix the same evening, data.json's closed_tickets are the cards' summaries: the months replace them)
+if d.pop("closed_tickets_are", None) is not None:
+    d.pop("closed_tickets", None)
 if "closed_tickets" not in d:
     one = read("dashboard-data/closed_tickets.json", rev)
     if one is not None:

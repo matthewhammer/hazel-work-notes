@@ -24,10 +24,12 @@ tickets was copied with every change to the open ones. So, one commit per publis
   - a page, when it differs from the kept one in more than what changes on every publish (`VOLATILE`: the "Updated" lines,
     the dashboard-version meta, the hover cards' scripts); index.html besides only when the data changed, or an hour after
     its last snapshot (the quarter-hour runs refresh only what comes from GitHub, and the next snapshot has it);
-  - the data, each file when it changes: dashboard-data/data.json, all but the closed tickets, and the closed tickets by
-    the month each was closed, dashboard-data/closed/<YYYY-MM>.json (each in the order of the list `closed_tickets`), so a
-    closing rewrites only its month's file, never a list that grows for years. data.json as served is the first with
-    "closed_tickets" set to the months, newest first: `python3 dashboard/data_whole.py` prints it, from the working tree
+  - the data, each file when it changes: the closed tickets by the month each was closed, dashboard-data/closed/<YYYY-MM>.json
+    (each in the order of the list `closed_tickets`), so a closing rewrites only its month's file; and dashboard-data/data.json,
+    everything else, with each closed ticket only as the hover cards' summary of it (`refcards.tickets`: its area, lead line,
+    status, when, outcome), since the published reports' and notes' cards fetch this file from GitHub Pages
+    (matthewhammer.org/hazel-work-notes/dashboard-data/data.json) for every ticket they name. data.json as served is this one
+    with "closed_tickets" set to the months, newest first: `python3 dashboard/data_whole.py` prints it, from the working tree
     or any commit.
 
 dashboard-snapshots/versions.html, the list of the pages' versions with links to each on GitHub, is made here on every run
@@ -37,6 +39,7 @@ same list, and the public copy links to it.
 Pushing is tried on every run, so commits made while offline go up on the next run that has a network."""
 import html, json, os, re, subprocess, sys, time
 from datetime import datetime
+import refcards
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 NOTES = os.path.expanduser("~/hazel-work-notes")
@@ -96,8 +99,11 @@ def write(path, text):
 wrote = []
 # The data first (whether it changed decides index.html): all but the closed tickets, and the closed tickets by month.
 live = json.load(open(os.path.join(HERE, "data.json")))
-months = {}
-for t in live.pop("closed_tickets", []):
+months, closed_all = {}, live.get("closed_tickets", [])
+# (the cards' summaries in data.json, in the list's order; the full records by month)
+live["closed_tickets"] = refcards.tickets({"closed_tickets": closed_all})["closed_tickets"]
+live["closed_tickets_are"] = "summaries for the hover cards; the full records are in dashboard-data/closed/<YYYY-MM>.json (dashboard/data_whole.py joins them)"
+for t in closed_all:
     when = str(t.get("closed_at") or t.get("closed") or "")
     months.setdefault(when[:7] if re.match(r"\d{4}-\d\d", when) else "undated", []).append(t)
 data_changed = False

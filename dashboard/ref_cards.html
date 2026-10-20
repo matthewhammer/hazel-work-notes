@@ -27,6 +27,10 @@
   const EMBED = __TICKETS__;
   let data = EMBED ? Promise.resolve(EMBED) : null;
   const loadData = () => data || (data = fetch(DATA, { cache: "no-store" }).then(r => r.ok ? r.json() : Promise.reject(r.status)).catch(() => null));
+  // (^ticket(428): a page carries only the tickets it names; one it does not, as a chip in the nav bar, is read live)
+  let live = null;
+  const loadLive = () => live || (live = fetch(DATA, { cache: "no-store" }).then(r => r.ok ? r.json() : Promise.reject(r.status)).catch(() => null));
+  const has = (n, d) => (d.tickets || []).some(t => t.id === n) || (d.closed_tickets || []).some(t => t.id === n);
   const pages = new Map();
   const loadReport = url => {
     if (!pages.has(url)) pages.set(url, fetch(url).then(r => r.ok ? r.text() : Promise.reject(r.status)).then(t => {
@@ -74,7 +78,7 @@
       card.innerHTML = `<div class="rc-head">^${ref.kind}(${ref.n})</div><div class="rc-note">loading…</div>`;
       card.hidden = false; place(a);
       let html;
-      if (ref.kind === "ticket") { const d = await loadData(); html = d ? ticketCard(ref.n, d) : `<div class="rc-head">^ticket(${ref.n})</div><div class="rc-note">The dashboard's data didn't load just now.</div>`; }
+      if (ref.kind === "ticket") { let d = await loadData(); if (d && EMBED && !has(ref.n, d)) d = (await loadLive()) || d; html = d ? ticketCard(ref.n, d) : `<div class="rc-head">^ticket(${ref.n})</div><div class="rc-note">The dashboard's data didn't load just now.</div>`; }
       else html = reportCard(ref.n, await loadReport(a.href));
       if (over !== a) return;
       card.innerHTML = html; place(a);
