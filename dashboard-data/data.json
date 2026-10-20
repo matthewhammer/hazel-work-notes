@@ -2331,34 +2331,6 @@
    ]
   },
   {
-   "id": 466,
-   "area": "dashboard: the closed tickets' stats",
-   "added": "2026-10-20T07:40-06:00",
-   "opened": "2026-10-20T07:40-06:00",
-   "status": "open",
-   "tags": [],
-   "source": "Matthew, 2026-10-20 07:40, in chat",
-   "url": "",
-   "text": "<b>The closed tickets' stats say \"0 messages from Matthew\" where we talked a lot: investigate and fix.</b> Matthew: \"the dashboard stats in each closed ticket look suspicious; for instance, I worked with you a lot on the horse and the monk/druid outfits (and others too), but it says 'zero messages from matthew' and hints that we didn't talk at all. Can you mint and enqueue a ticket, dashboard, after the hazel work or within it, that investigates and fixes this?\" A first reading: close_ticket.py counts the ticket's own <code>log</code> (each message from Matthew or Claude, with its time), and tonight's tickets were closed with an empty log, his words only quoted in their text and progress. So: find why the logs are empty (what was meant to fill them, and when it stopped), fill them in from the session transcripts for the tickets closed since, recompute the stats, and make the logging part of every message from here on.",
-   "progress": "07:40: minted; after the Hazel work (^ticket(462) to ^ticket(465)), or within it.",
-   "log": [
-    {
-     "at": "2026-10-20T07:40-06:00",
-     "from": "matthew",
-     "chars": 442,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T07:44-06:00",
-     "from": "claude",
-     "chars": 521,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 467,
    "area": "hazel, the full view of a module type",
    "added": "2026-10-20T07:44-06:00",
@@ -2557,8 +2529,8 @@
    "status": "open",
    "tags": [],
    "source": "Matthew, 2026-10-20 10:0x, in chat (\"after the cave ticket\")",
-   "url": "",
-   "text": "<b>Ideation: Hazel as the editor of a Scratch-like game-building environment, with Messed Up Dress Up as its world, people and objects; partly blocked on Matthew.</b> Matthew: \"Ideation, partly blocked on Matthew, about Hazel as the editor for a Scratch-like game-building environment, based on Messed Up Dress Up as the world/people/object system. Livelits show that hazel can express a lot, but not yet with adequate performance to play the role of the \"game engine\" and the \"drawing logic\". But the \"game logic\", especially simple event-based declarations: When this action in game happens, this other action is queued to happen (perhaps immediately). If we can expose Hazel tiles within Messed Up Dress Up to customize behavior, we'll have a synergistic configuration to drive more play and research, and their combination.\" So: Dress Up keeps its engine and its drawing (JavaScript, at 60 fps); Hazel tiles, inside Dress Up, declare the game logic, as events and the actions they queue (\"when this happens, then that\"), small enough for Hazel's evaluator today. Ideas first: the event and action vocabulary, where the tiles appear in Dress Up, how a declaration runs (when, and how fast), what is Matthew's to decide.",
+   "url": "https://arxiv.org/abs/1703.05410",
+   "text": "<b>Ideation: Hazel as the editor of a Scratch-like game-building environment, with Messed Up Dress Up as its world, people and objects; partly blocked on Matthew.</b> Matthew: \"Ideation, partly blocked on Matthew, about Hazel as the editor for a Scratch-like game-building environment, based on Messed Up Dress Up as the world/people/object system. Livelits show that hazel can express a lot, but not yet with adequate performance to play the role of the \"game engine\" and the \"drawing logic\". But the \"game logic\", especially simple event-based declarations: When this action in game happens, this other action is queued to happen (perhaps immediately). If we can expose Hazel tiles within Messed Up Dress Up to customize behavior, we'll have a synergistic configuration to drive more play and research, and their combination.\" So: Dress Up keeps its engine and its drawing (JavaScript, at 60 fps); Hazel tiles, inside Dress Up, declare the game logic, as events and the actions they queue (\"when this happens, then that\"), small enough for Hazel's evaluator today. Ideas first: the event and action vocabulary, where the tiles appear in Dress Up, how a declaration runs (when, and how fast), what is Matthew's to decide. Matthew, next: \"Your part of this ticket, to do before blocking, is to compare the ideas of Hazel + Messed Up Dress Up (in the vein of Scratch) to ideas in this paper, which go further, and include Hazel concepts like \"type systems\", \"proofs\", \"logic\" (deductive inference rules), etc. https://arxiv.org/abs/1703.05410\" So Claude's part, before the ticket blocks on Matthew: read <a href=\"https://arxiv.org/abs/1703.05410\">arXiv:1703.05410</a> and compare its ideas with Hazel + Dress Up in Scratch's vein, where it goes further (type systems, proofs, logic as deductive inference rules).",
    "progress": "",
    "log": [
     {
@@ -2566,14 +2538,30 @@
      "from": "matthew",
      "chars": 706,
      "asks": false
+    },
+    {
+     "at": "2026-10-20T09:57-06:00",
+     "from": "matthew",
+     "chars": 302,
+     "asks": false
     }
    ]
   }
  ],
  "next_ticket": 468,
- "current_ticket": 466,
- "current_note": "09:45: the closed tickets' message stats: why they say Matthew sent nothing",
+ "current_ticket": 472,
+ "current_note": "09:58: ^ticket(466) closed (done); ^ticket(472) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 466,
+   "area": "dashboard: the closed tickets' stats",
+   "added": "2026-10-20T07:40-06:00",
+   "text": "The closed tickets' stats say \"0 messages from Matthew\" where we talked a lot: investigate and fix.",
+   "source": "Matthew, 2026-10-20 07:40, in chat",
+   "status": "done",
+   "closed": "2026-10-20",
+   "outcome": "Each ticket's log now comes from the session transcripts: dashboard/log_messages.py places every message of Matthew's (sent mid-turn too, screenshots and all) and Claude's replies…"
+  },
   {
    "id": 446,
    "area": "hazel, reports: a sequel to ^report(18)",
@@ -6850,7 +6838,6 @@
   }
  ],
  "queue": [
-  466,
   472,
   469,
   468,
@@ -6891,7 +6878,7 @@
   429,
   460
  ],
- "current_since": "2026-10-20T09:45-06:00",
+ "current_since": "2026-10-20T09:58-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",

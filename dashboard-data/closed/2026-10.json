@@ -1,5 +1,45 @@
 [
  {
+  "id": 466,
+  "area": "dashboard: the closed tickets' stats",
+  "added": "2026-10-20T07:40-06:00",
+  "opened": "2026-10-20T07:40-06:00",
+  "status": "done",
+  "tags": [],
+  "source": "Matthew, 2026-10-20 07:40, in chat",
+  "url": "",
+  "text": "<b>The closed tickets' stats say \"0 messages from Matthew\" where we talked a lot: investigate and fix.</b> Matthew: \"the dashboard stats in each closed ticket look suspicious; for instance, I worked with you a lot on the horse and the monk/druid outfits (and others too), but it says 'zero messages from matthew' and hints that we didn't talk at all. Can you mint and enqueue a ticket, dashboard, after the hazel work or within it, that investigates and fixes this?\" A first reading: close_ticket.py counts the ticket's own <code>log</code> (each message from Matthew or Claude, with its time), and tonight's tickets were closed with an empty log, his words only quoted in their text and progress. So: find why the logs are empty (what was meant to fill them, and when it stopped), fill them in from the session transcripts for the tickets closed since, recompute the stats, and make the logging part of every message from here on.",
+  "progress": "07:40: minted; after the Hazel work (^ticket(462) to ^ticket(465)), or within it.",
+  "log": [
+   {
+    "at": "2026-10-20T07:40-06:00",
+    "from": "matthew",
+    "chars": 442,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T07:44-06:00",
+    "from": "claude",
+    "chars": 521,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-20",
+  "closed_at": "2026-10-20T09:58-06:00",
+  "outcome": "Each ticket's log now comes from the session transcripts: <code>dashboard/log_messages.py</code> places every message of Matthew's (sent mid-turn too, screenshots and all) and Claude's replies on their tickets (named, quoted, minted, a follow-up, else the current one; a hand-kept entry claims its message), and recomputes the closed tickets' metrics; <code>publish.py</code> runs it every five minutes. Back-filled from 2026-10-15: 2,408 entries on 362 tickets. The 100 closed tickets that said Matthew sent nothing are down to 23, all opened by Claude from CI runs and findings, with no message of his. The horse's size now shows 4 of his messages, as it should. Why it happened: the rule asked for an entry in every turn, by hand, and through AFK runs and context resets the entries were not written; six written today were in the wrong shape and would have crashed <code>close_ticket.py</code>, which now reads them either way.",
+  "metrics": {
+   "open_minutes": 138,
+   "matthew_messages": 1,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 963,
+   "tokens_est": 240,
+   "sync_minutes_est": 4.0,
+   "work_minutes": 32.0
+  }
+ },
+ {
   "id": 446,
   "area": "hazel, reports: a sequel to ^report(18)",
   "added": "2026-10-19T21:05-06:00",
