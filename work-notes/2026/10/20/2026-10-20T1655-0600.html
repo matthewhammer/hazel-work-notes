@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Dress Up Sprint Notes</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9em; } th, td { border-bottom: 1px solid var(--line); padding: 5px 6px; text-align: left; } td.n { font-variant-numeric: tabular-nums; }
+  svg.chart { width: 100%; height: auto; font: 12px system-ui, sans-serif; } svg .g { stroke: var(--line); } svg .t { fill: var(--muted); }
+  svg .raw { fill: none; stroke: var(--warn); stroke-width: 2.5; } svg .gh { fill: none; stroke: var(--ok); stroke-width: 2.5; } svg .dash { stroke-dasharray: 6 4; }
+  svg .ghp { fill: var(--ok); } svg .lim { stroke: var(--muted); stroke-dasharray: 2 3; } svg .lt { fill: var(--muted); font-size: 11px; }
+  svg .rl { fill: var(--warn); } svg .gl { fill: var(--ok); }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-10-20, after crash 44, the Dress Up sprint</h1>
+<p class="sub">Claude, one session from 15:35 MDT (back up after the 15:03 crash) to about 16:55, then on. Matthew: "let's switch to all dress-up tickets for a sprint -- for at least 3 hours", then away (AFK). What was done, where it is, what is next.</p>
+<h2>Where things are</h2>
+<ul>
+<li><b>Servers</b> (restarted after the crash): 8000 (the dashboard), 8131 (the Hazel reports' sources), 8341 (#2635, GitHub's build of 1f40dae305), 8311 (#2597, 3a9b3cec53), 8312 (ticket 468's trial), 8361 (#2698, 4c9cc34d3b), and 8133 (Dress Up's working copy, again for the sprint).</li>
+<li><b>Dress Up</b> on <code>main</code>, live as <b>0.0.384</b> (64b94dd), nine releases today from 0.0.376. Its speed runs: 0.0.376's on its checks; 0.0.384's waiting, which carries every new check (crumbs491, caveroom471, cavethings471, horse492, sky490, knoll488); the ones between were cancelled by the next tag, as the workflow's queue does.</li>
+<li><b>Branch</b> <code>archive-494</code> (fa33bd1, never merged): tonight's archive run (pictures and music) on GitHub, run 39510534461, adding itself to the archives. A first push of it went out at main's commit and queued a test run: cancelled.</li>
+<li><b>Hazel</b> (parked for the sprint): ticket 411's checks green on #2661, #2673, #2610 and #2700; #2681 got the type-hash census (a4fee77a63). Ticket 470: timing/2635 has the library-time charging (f6e9b1c4a6); #2597's timing run hangs after Witch (the fix is written in the ticket).</li>
+</ul>
+<h2>Done</h2>
+<ul>
+<li>Crash 44 (15:03:49, at idle; Firefox crashed in PipeWire 19 s later, the machine still writing): nothing lost; logged (crash-log 82e066cc).</li>
+<li>Ticket 491 (0.0.376): the breadcrumbs stay under the picture in one column.</li>
+<li>Ticket 471 (0.0.376 to 0.0.379): the 🦇 cave room (a fractal, rounded floor; 6 floor and 6 ceiling styles; archways both ways to the cave behind the falls); the 🦇 cave things (gems, puddles with a drip, little waterfalls, cave passages to any place, cave mushrooms); the treasure chest's treasure; the waterfall cave's floor.</li>
+<li>Ticket 492 (0.0.380): the horse in 🧍 Body (saved horses carried over); collision boxes for its four hooves and its body, and for the rider up on it.</li>
+<li>Ticket 490, part 1 (0.0.381, 0.0.384): the sun and the moon by the clock, where and when the game says (🌍), worked out on the device; the time of day following the sun; the sky in words. Parked: tagged for the weekend.</li>
+<li>Ticket 488 (0.0.382, 0.0.383): 🗺️ World design's side panel and 🎮 Controls in boxes; the other tabs were boxed already.</li>
+</ul>
+<h2>Next</h2>
+<ul>
+<li>Read 0.0.376's and 0.0.384's speed runs; fix what they find in the next version.</li>
+<li>Ticket 494: read the archive run; OBJECTS.md from the speed run's objects180 output (tools/objects_md.py).</li>
+<li>After the sprint, the Hazel queue: ticket 470's hang fix for #2597's timing, then the meeting's tickets (2026-10-21).</li>
+<li>Waiting on Matthew: ticket 493 (the thrones: not reproduced; which castle and room, how he sat, what "leaving castle" looked like, a 💾 save if he has one).</li>
+</ul>
+</main>
+</body>
+</html>
