@@ -2409,7 +2409,8 @@
   "opened": "2026-10-19T11:31-06:00",
   "status": "done",
   "tags": [
-   "highest priority"
+   "highest priority",
+   "meeting 2026-10-21"
   ],
   "source": "Matthew, 2026-10-19 11:31, in chat",
   "url": "https://github.com/hazelgrove/hazel/pull/2635",
@@ -2585,7 +2586,9 @@
   "added": "2026-10-19T14:41-06:00",
   "opened": "2026-10-19T14:41-06:00",
   "status": "done",
-  "tags": [],
+  "tags": [
+   "meeting 2026-10-21"
+  ],
   "source": "^report(21) (^ticket(398)), What next, steps 3 and 5; opened by Claude during the AFK protocol",
   "url": "https://github.com/hazelgrove/hazel/pull/2673",
   "text": "<b>Strengthen the performance PRs' hashes, and say what two of them change, before they merge.</b> ^report(21)'s next steps 3 and 5:<ul><li><b>#2673's term hash:</b> each lane is an xor-multiply chain, so two children that both differ only in bit 31 cancel. Add a finalizer per lane (a mixing step after each combine) so no single bit passes through unmixed, and a test that pins it.</li><li><b>#2661's type hash, used by #2681 too:</b> two 30-bit lanes, and for atoms the second lane is an affine function of the first. Either widen it or check equality behind a hit, so a collision can never give a wrong consistency answer.</li><li><b>Descriptions:</b> #2675's, the unused-variable warning it now gives for a binding a recursive let shadows; #2673's, that its reuse decisions differ from the old check in two corners.</li></ul>",
@@ -2956,7 +2959,8 @@
   "opened": "2026-10-19T11:03-06:00",
   "status": "done",
   "tags": [
-   "exploratory"
+   "exploratory",
+   "meeting 2026-10-21"
   ],
   "source": "^report(18), What next, step 1 (Matthew pasted it, 2026-10-19 11:03)",
   "url": "http://matthewhammer.org/hazel/performance-analysis/018/#step-1",
@@ -3039,7 +3043,8 @@
   "opened": "2026-10-19T10:15-06:00",
   "status": "done",
   "tags": [
-   "deadline: EOD 2026-10-19"
+   "deadline: EOD 2026-10-19",
+   "meeting 2026-10-21"
   ],
   "source": "Matthew, 2026-10-19 10:14, in chat (during ^ticket(387))",
   "url": "",
@@ -3176,7 +3181,9 @@
   "added": "2026-10-19",
   "opened": "2026-10-19T09:14-06:00",
   "status": "done",
-  "tags": [],
+  "tags": [
+   "meeting 2026-10-21"
+  ],
   "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
   "url": "https://github.com/hazelgrove/hazel/pull/2698",
   "progress": "09:14: minted. 09:31 IDEAS (read on integration/livelits-modular-editors): the result-type expansion is Matthew's own b6896f5b13 (10-12): CursorInspector's inspector_expanded prints with inline: false and lays the segment out with PrettySegment.prettify ~width (panel_columns, from the window and font_metrics.col_width); 5f04a9e265 adds an alias's definition beside its name. Gamma is ContextInspector.re (104 lines): every entry printed inline: true on one line, its click a jump to the definition. (1) Reuse the path as is: a shared helper (CodeViewable or a small TypLayout module: prettify to a width, falling back to one line) used by both inspectors. (2) Per entry, not all at once (Gamma can be the whole prelude): an entry whose one-line type is wider than the panel shows its first line and a ▸; the ▸ (not the row, whose click jumps) unfolds it to the laid-out form under the name, a hanging indent so names stay in a column. (3) The cursor inspector's ⤢ toggle as 'unfold all' in Gamma too, or Gamma's own, kept in settings. (4) The entry for the variable under the cursor unfolded and marked automatically. (5) Width from Gamma's panel, not the window: its own box's width over col_width. (6) Cost: lay out only unfolded entries, memoized by (type, width), so a big context costs nothing until opened. (7) Aliases and modules: an alias by name with its definition on unfold (as 5f04a9e265), a module's members one per line, each foldable. Recommendation: (1) + (2) + (5) + (6) first; (3), (4), (7) after. 09:34 Matthew: \"ticket 386 -- follow your recommendation.\" 10:03: BUILT (1)+(2)+(5)+(6), plus aliases from (7): commit 20ade6928b on NEW local branch context-inspector-long-types (worktree ~/hazel-dev-inspector), stacked on #2676 (cursor-inspector-full-types, Matthew's PR to dev). A long Gamma entry gets a toggle at its left that lays the type out under the name (CodeViewable.lay_out, shared with the cursor inspector); state is non-persistent globals.context_unfolded keyed by sep+name+id (the prelude shares one id); 60 columns, fewer on a narrow window; Gamma grows to 40vh while one is unfolded; only unfolded entries are laid out, memoized. Checked in the browser on 8361 (this branch's build): 147 of 249 tutorial entries toggled, all cut off, none cut off without one; one click unfolds one entry, no jump, no scroll; row click still jumps; ColorRoles = 114 lines <= 60 cols; no console errors. @check and dune fmt clean; no tests run (view code). NOT pushed. ✋ Waiting on Matthew: push and open a draft PR stacked on #2676? Next after that: 387, then 388. 10:06 Matthew: \"ticket 386 -- yes, push it and open a draft PR stacked on #2676, then go on to 387.\" 10:08: PUSHED context-inspector-long-types (20ade6928b) and opened DRAFT PR hazelgrove/hazel#2698, base cursor-inspector-full-types (stacked on #2676), title prefixed non-`dev` per the base, label non-dev; bound in the app; CI pending. Retarget to dev before #2676 is squash-merged with --delete-branch.",
@@ -3350,7 +3357,9 @@
   "source": "^report(6)",
   "url": "http://localhost:8131/series/006/#update",
   "added": "2026-10-12",
-  "tags": [],
+  "tags": [
+   "meeting 2026-10-21"
+  ],
   "progress": "2026-10-15 23:34: LOOKED INTO, nothing built. Neither half applies to dev as it stands: (1) the call memo is only on the livelits branches (CallMemo is not in dev's language library), so counting its keys' work belongs on #2635/#2597; (2) js_of_ocaml reports zero for every GC counter (its runtime's caml_gc_quick_stat, caml_gc_counters and caml_gc_minor_words return constant zeros), so memory allocated cannot be counted under it, and node's heap figures move with GC timing, which a budget cannot use. What would work: a deterministic count of the nodes the evaluator builds (the copies #2679 removed were one step each, invisible to steps), by counting constructions in the transition code; or, on #2635, the call memo's key normalization in nodes. Matthew's call which, if either. | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: count the nodes the evaluator builds (deterministic), on dev, as a local branch for his review. 🌙 long run; no headless browser on the laptop. | 21:47: BUILT, local only (Matthew's default: the node count, on dev): branch ci/node-budgets in ~/hazel-dev-perfgate = #2678 + #2679 merged + 7f1343268d. IdTagged.built counts every term made fresh, copied or rewrapped; Test_PerfBudgets holds nodes beside steps: cold run 17,464 (budget 19,200), re-run 90 (100), and a new case, typed rows (100 labeled tuples through a typed parameter, 10 passes): 21,155 nodes (23,300). Checked: with dev's Ascriptions (no #2679) the same program takes the SAME 195,319 steps but 27,777 nodes, and fails. PerfBudgets 4/4 pass, 8.6 s; fmt clean. Not pushed. Waiting on Matthew: a draft PR stacked on #2678 + #2679, as #2689-#2691? 09:34 Matthew: \"ticket 19 -- yes, draft PR.\"",
   "work": {
    "work_minutes": 4
@@ -3400,7 +3409,9 @@
   "text": "<b>Offer ^ticket(7)'s three ports to #2469, from the local branch, with ^report(13)'s numbers.</b> ^report(13)'s What next, step 1: \"Offer the three ports to #2469, from the local branch, with this report's numbers.\" The branch: <code>port-2469-t7</code> in ~/hazel-port-2469, three commits on #2469's head <code>c1e4aeee4a</code>, which is still its head (2026-10-14), so they apply as they are: <code>128f3f303d</code> (the worker's statics projection updated, not rebuilt), <code>cdb799a376</code> (EvalInfo updated at the keys DefStatics changed), <code>474b1e050e</code> (DefStatics keeps an item's patched root when nothing it is made from changed). Its quick tests passed whole. To do: push the branch under a name of Matthew's, and post on #2469 the branch, the three commits and ^report(13)'s numbers for them; #2469 is Andrew's PR, so a progress note, no @-mention, no action asked; Matthew approves the post before it goes.",
   "source": "Matthew, 2026-10-14 (^report(13), What next, step 1)",
   "url": "http://matthewhammer.org/hazel/performance-analysis/013/#step-1",
-  "tags": [],
+  "tags": [
+   "meeting 2026-10-21"
+  ],
   "log": [
    {
     "at": "2026-10-16T20:59-06:00",
@@ -3445,7 +3456,8 @@
   "status": "done",
   "tags": [
    "deadline: EOD 2026-10-19",
-   "blocked on Matthew"
+   "blocked on Matthew",
+   "meeting 2026-10-21"
   ],
   "source": "Matthew, 2026-10-19 09:14, in chat, from his Friday meeting with Cyrus (2026-10-16)",
   "url": "http://localhost:8131/018/",
@@ -20133,7 +20145,10 @@
    "tokens_est": 0,
    "sync_minutes_est": 0,
    "work_minutes": 0.0
-  }
+  },
+  "tags": [
+   "meeting 2026-10-21"
+  ]
  },
  {
   "id": 41,
