@@ -2639,25 +2639,22 @@
      "note": "from the transcripts"
     }
    ]
-  },
-  {
-   "id": 487,
-   "area": "dashboard: the queue's 🪷 Blocked on Matthew list",
-   "added": "2026-10-20T12:14-06:00",
-   "opened": "2026-10-20T12:14-06:00",
-   "status": "open",
-   "tags": [],
-   "source": "Matthew, 2026-10-20 12:14, in chat",
-   "url": "",
-   "text": "<b>The work queue's \"Blocked on Matthew\" list showed tickets without that tag.</b> Matthew: \"the &quot;blocked on Matthew&quot; list seems inaccurate -- it has tickets with no such tag.\" Cause: update.py draws the category's line above its first tagged ticket in data.json's order and assumes the rest follow; 402 and 468 were tagged mid-queue, so 470, 462, 465, 389 and 471 read as blocked.",
-   "progress": "",
-   "log": []
   }
  ],
  "next_ticket": 468,
  "current_ticket": 485,
- "current_note": "12:09: #2583's refactor, resumed (^ticket(486)'s 0.0.374 is live; its speed run is on GitHub)",
+ "current_note": "12:16: #2583's refactor pushed (077a68f9f8): waiting for CI and the deploy, to try it in the browser",
  "closed_tickets": [
+  {
+   "id": 487,
+   "area": "dashboard: the queue's 🪷 Blocked on Matthew list",
+   "added": "2026-10-20T12:14-06:00",
+   "text": "The work queue's \"Blocked on Matthew\" list showed tickets without that tag.",
+   "source": "Matthew, 2026-10-20 12:14, in chat",
+   "status": "done",
+   "closed": "2026-10-20",
+   "outcome": "Fixed (73704520): update.py sorts the queue's categories to its end (stable: the untagged in data.json's order, then long runs, then blocked), so the 🪷 Blocked on Matthew line has…"
+  },
   {
    "id": 472,
    "area": "hazel, #2635 on 8341: new static errors on the Scenes slide",
@@ -7084,7 +7081,6 @@
   }
  ],
  "queue": [
-  487,
   485,
   486,
   484,
