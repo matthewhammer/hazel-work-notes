@@ -2660,32 +2660,46 @@
    ]
   },
   {
-   "id": 483,
-   "area": "hazel, #2583 and #2613: review comments and merge conflicts, a status",
-   "added": "2026-10-20T11:37-06:00",
-   "opened": "2026-10-20T11:37-06:00",
+   "id": 484,
+   "area": "hazel, #2613 (Colors): its review",
+   "added": "2026-10-20T11:45-06:00",
+   "opened": "2026-10-20T11:45-06:00",
    "status": "open",
-   "tags": [
-    "deadline: EOD 2026-10-20"
-   ],
-   "source": "Matthew, 2026-10-20 11:3x, in chat",
-   "url": "https://github.com/hazelgrove/hazel/pull/2583",
-   "text": "<b>Before the end of the day: the status of #2583 and #2613, which have new review comments and merge conflicts.</b> Matthew: \"mint and enqueue --- before EOD: summarize status of: * https://github.com/hazelgrove/hazel/pull/2583 * https://github.com/hazelgrove/hazel/pull/2613 Looks like we've gotten more review comments, and need to resolve merge conflicts.\" So: each PR's review comments (inline and review bodies), its conflicts with its base, and what each needs.",
+   "tags": [],
+   "source": "from ^ticket(483)'s status, 2026-10-20",
+   "url": "https://github.com/hazelgrove/hazel/pull/2613",
+   "text": "<b>#2613's review (7h3kk1d, 2026-10-19, changes requested):</b> (1) cursor-inspector.css:263 draws the label header's text on a band of its own color (<code>--surface-label</code> = <code>--token-label</code>); the reviewer's suggestion drops the line: apply it. (2) style.css:367 and :434 give the probe stack's focused breadcrumb a light green pill where <code>--G5</code> was never defined: @disconcision's call, keep the pill or drop the two background lines. Then dev merged in (no conflicts), CI, re-request review.",
    "progress": "",
-   "log": [
-    {
-     "at": "2026-10-20T11:37-06:00",
-     "from": "matthew",
-     "chars": 232,
-     "asks": false
-    }
-   ]
+   "log": []
+  },
+  {
+   "id": 485,
+   "area": "hazel, #2583 (Deep links): the agreed refactor, and dev",
+   "added": "2026-10-20T11:45-06:00",
+   "opened": "2026-10-20T11:45-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "from ^ticket(483)'s status, 2026-10-20",
+   "url": "https://github.com/hazelgrove/hazel/pull/2583",
+   "text": "<b>#2583: the refactor Matthew planned on 10-15, as the reviewer shaped it, then dev merged in.</b> One DeepLink request type, parsing kept apart from applying (testable without a browser), handled as an action in Main.re, slide_name off Globals (a CopyDeepLink action), panel names in one switch in Sidebar.re; the reviewer's 10-15 shape: constructors Documentation and Scratchpad (not Slide and Share), records for several fields, and a construction where a position needs a target. Then dev (293 commits; conflicts in Editors.re and Globals.re), CI, re-request review.",
+   "progress": "",
+   "log": []
   }
  ],
  "next_ticket": 468,
  "current_ticket": 482,
  "current_note": "11:35: Dress Up's Scripting panel, a PR: the trap room's levers through a Hazel rule, using #2711's window.Hazel",
  "closed_tickets": [
+  {
+   "id": 483,
+   "area": "hazel, #2583 and #2613: review comments and merge conflicts, a status",
+   "added": "2026-10-20T11:37-06:00",
+   "text": "Before the end of the day: the status of #2583 and #2613, which have new review comments and merge conflicts.",
+   "source": "Matthew, 2026-10-20 11:3x, in chat",
+   "status": "done",
+   "closed": "2026-10-20",
+   "outcome": "#2583, Deep links (deep-links → dev): changes requested by 7h3kk1d on 09-23 (8 inline comments). Matthew answered each on 10-15 with a plan (one DeepLink request type, parsing…"
+  },
   {
    "id": 480,
    "area": "dress up × hazel: Hazel as a JS library, and a Scripting panel in Dress Up (what it would take)",
@@ -7086,7 +7100,8 @@
   469,
   472,
   481,
-  483,
+  484,
+  485,
   402,
   468,
   470,
