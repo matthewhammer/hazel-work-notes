@@ -37,6 +37,11 @@ class Cache:
             info = json.loads(out.stdout)
         except ValueError:
             return e["info"] if e else None   # GitHub unreachable: the last known
+        # (^ticket(478)) a PR's base branch, which the card shows: dev or not
+        if info.get("kind") == "pull":
+            base = subprocess.run(["gh", "api", f"repos/{repo}/pulls/{n}", "--jq", ".base.ref"], capture_output=True, text=True).stdout.strip()
+            if base:
+                info["base"] = base
         self.data[key] = {"at": now, "info": info}
         return info
     def save(self):

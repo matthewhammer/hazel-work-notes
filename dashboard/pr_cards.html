@@ -9,29 +9,37 @@
   .pr-card .pr-meta { color: var(--muted, GrayText); font-size: 12px; }
   .pr-card .pr-note { color: var(--muted, GrayText); font-size: 11px; margin-top: 5px; font-style: italic; }
   .pr-state { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; margin-left: 6px; vertical-align: 1px; }
+  .pr-base { display: inline-block; padding: 0 6px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-left: 6px; vertical-align: 1px; }
+  .pr-base.dev { background: #dafbe1; color: #116329; } .pr-base.other { background: #fff1c2; color: #7a4b00; }
+  @media (prefers-color-scheme: dark) { .pr-base.dev { background: #12361f; color: #6fdd8b; } .pr-base.other { background: #3d2e00; color: #f2cc60; } }
   .pr-state.open { background: #1f883d; } .pr-state.merged { background: #8250df; } .pr-state.closed { background: #cf222e; } .pr-state.draft { background: #6e7781; }
 </style>
 <script>
 /* A card for each link to a GitHub PR or issue, on hover or focus: its
-   title, state, author, dates and comments, asked of GitHub live, once per
+   title, state, the branch a PR targets (dev or not: the distinction that
+   matters, ^ticket(478)), author, dates and comments, asked of GitHub live, once per
    number per page load; if GitHub does not answer, what it said when the
    page was built (tools/link_prs.py writes this block). */
 (() => {
   const CACHED = __CACHED__, BUILT = "__BUILT__";
-  const RX = /^https:\/\/github\.com\/([^/]+\/[^/]+)\/(?:pull|issues)\/(\d+)$/;
+  const RX = /^https:\/\/github\.com\/([^/]+\/[^/]+)\/(pull|issues)\/(\d+)$/;
   const asked = new Map();
-  const ask = key => {
+  /* a PR from the pulls endpoint, which has its base branch; an issue from the issues one */
+  const ask = (key, kind) => {
     if (!asked.has(key)) {
-      const [repo, n] = key.split("#");
-      asked.set(key, fetch(`https://api.github.com/repos/${repo}/issues/${n}`)
+      const [repo, n] = key.split("#"), pull = kind === "pull";
+      asked.set(key, fetch(`https://api.github.com/repos/${repo}/${pull ? "pulls" : "issues"}/${n}`)
         .then(r => r.ok ? r.json() : Promise.reject(r.status))
         .then(j => ({ title: j.title, author: j.user && j.user.login, created: j.created_at, updated: j.updated_at,
-                      comments: j.comments, kind: j.pull_request ? "pull" : "issues",
-                      state: j.pull_request && j.pull_request.merged_at ? "merged" : j.draft ? "draft" : j.state }))
+                      comments: j.comments, kind: pull || j.pull_request ? "pull" : "issues", base: j.base && j.base.ref,
+                      state: j.merged_at || (j.pull_request && j.pull_request.merged_at) ? "merged" : j.draft ? "draft" : j.state }))
         .catch(() => null));
     }
     return asked.get(key);
   };
+  const baseChip = d => !d.base ? "" : d.base === "dev"
+    ? `<span class="pr-base dev" title="this PR merges into dev">into dev</span>`
+    : `<span class="pr-base other" title="this PR merges into ${esc(d.base)}, not dev">into ${esc(d.base)}, not dev</span>`;
   const day = iso => new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
   const ago = iso => {
     const s = (Date.now() - new Date(iso)) / 1000;
@@ -42,7 +50,7 @@
   const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   const fill = (key, d, note) => {
     const [repo, n] = key.split("#"), what = d.kind === "pull" ? "Pull request" : "Issue";
-    return `<div class="pr-head">${esc(repo)} #${n} · ${what}<span class="pr-state ${esc(d.state)}">${esc(d.state)}</span></div>` +
+    return `<div class="pr-head">${esc(repo)} #${n} · ${what}<span class="pr-state ${esc(d.state)}">${esc(d.state)}</span>${baseChip(d)}</div>` +
       `<div class="pr-title">${esc(d.title)}</div>` +
       `<div class="pr-meta">by ${esc(d.author)} · opened ${day(d.created)} · updated ${ago(d.updated)} · ${d.comments} comment${d.comments === 1 ? "" : "s"}</div>` +
       (note ? `<div class="pr-note">${note}</div>` : "");
@@ -59,14 +67,14 @@
   const show = a => {
     const m = RX.exec(a.href);
     if (!m) return;
-    const key = m[1] + "#" + m[2];
+    const key = m[1] + "#" + m[3];
     over = a; clearTimeout(timer);
     timer = setTimeout(async () => {
       if (!card) { card = document.createElement("div"); card.className = "pr-card"; card.setAttribute("role", "tooltip"); document.body.append(card); }
       const cached = CACHED[key];
       card.innerHTML = cached ? fill(key, cached, "asking GitHub…") : `<div class="pr-head">${esc(key)}</div><div class="pr-note">asking GitHub…</div>`;
       card.hidden = false; place(a);
-      const d = await ask(key);
+      const d = await ask(key, m[2]);
       if (over !== a) return;
       card.innerHTML = d ? fill(key, d, "")
         : cached ? fill(key, cached, `GitHub didn't answer just now (its limit is 60 lookups an hour per network): as of ${BUILT}`)
