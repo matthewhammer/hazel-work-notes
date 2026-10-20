@@ -3070,7 +3070,7 @@
    "source": "Matthew, 2026-10-20 14:01, in chat, with a screenshot",
    "url": "",
    "text": "<b>In single-column mode the panel's breadcrumb bar is drawn across the game's picture.</b> Matthew: \"mint and enqueue --- fix for breadcrumbs in single column mode (on my desktop at half screen width)\", with a screenshot of 0.0.375 at about 1130 px wide: the picture (the deep sea, A3) sticks at the top with its buttons under it (Surprise me!, Save, Load, Start over), the panel scrolls beneath, and the panel's breadcrumb bar (\"background\") sits over the picture, a full-width band across its top third, under the 🔊 button. The bar belongs with the panel: below the picture and its buttons, or hidden while the picture holds the top. Then: \"MUDU tickets go after the hazel ones we are doing.\"",
-   "progress": "",
+   "progress": "15:54 10-20: FIXED, committed locally (not released yet): in one column (max-width 760 px) the stage sticks at top 0 (z 1) and #crumbs stuck at top 0 too (z 6), so it lay across the picture. Now .crumbs sticks at top: var(--stage-h), the stage's height from a ResizeObserver in 21-size-and-divider.js. Checked in the browser pane at 753x900 on 8133, scrolled: the band's top 408 = the stage's bottom 408 (before: 0). NEXT: ships with the next release (paused for Matthew's throne bug report).",
    "log": [
     {
      "at": "2026-10-20T14:00-06:00",
@@ -3097,11 +3097,33 @@
    "added": "2026-10-20T15:50-06:00",
    "opened": "2026-10-20T15:50-06:00",
    "tags": []
+  },
+  {
+   "id": 493,
+   "area": "dress up, the king's room: sitting on an added throne",
+   "text": "<b>Sitting on a throne that was added to the king's room goes wrong: the friend leaves the castle.</b> Matthew: \"Bug report --- after I added thrones and tried to sit, strange behavior -- leaving castle -- let's repro.\" So: in a castle's 👑 king's room, add thrones (\"👑 how many thrones\", up to 6, ticket 293), then sit on one; reproduce, find why the sit takes the friend out of the castle, fix.",
+   "source": "Matthew, 2026-10-20 15:54, in chat, during the Dress Up sprint (a bug report)",
+   "url": "",
+   "added": "2026-10-20T15:54-06:00",
+   "opened": "2026-10-20T15:54-06:00",
+   "tags": [],
+   "log": [
+    {
+     "at": "2026-10-20T15:38-06:00",
+     "from": "claude",
+     "chars": 1860,
+     "asks": false,
+     "words": 323,
+     "read_s": 81,
+     "listen_s": 121,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
- "next_ticket": 493,
- "current_ticket": 491,
- "current_note": "15:52: 15:52: DRESS UP SPRINT (Matthew, 15:5x: \"let's switch to all dress-up tickets for a sprint -- for at least 3 hours\"; then AFK). Order: 491, 471, 492, 490. Now 491: the single-column layout's breadcrumb drawn over the picture",
+ "next_ticket": 494,
+ "current_ticket": 493,
+ "current_note": "15:54: 15:54: reproducing: thrones added in the king's room, then sit; the friend leaves the castle. (491 fixed and committed locally, ships with the next release)",
  "closed_tickets": [
   {
    "id": 486,
@@ -7559,6 +7581,7 @@
   }
  ],
  "queue": [
+  493,
   491,
   471,
   492,
@@ -7601,7 +7624,7 @@
   460,
   488
  ],
- "current_since": "2026-10-20T15:52-06:00",
+ "current_since": "2026-10-20T15:54-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
@@ -7613,10 +7636,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 4816,
-  "words": 1078550,
+  "replies": 4819,
+  "words": 1078764,
   "read_hours_est": 75.5,
-  "listen_hours_est": 112.3,
+  "listen_hours_est": 112.4,
   "read_s_avg": 56,
   "listen_s_avg": 84,
   "days": {
@@ -7836,9 +7859,9 @@
     "chars": 171153
    },
    "2026-10-20": {
-    "replies": 61,
-    "words": 13758,
-    "chars": 80471
+    "replies": 64,
+    "words": 13972,
+    "chars": 81699
    }
   }
  },
