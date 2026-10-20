@@ -1228,9 +1228,22 @@
    "text": "<b>The closed tickets' stats say \"0 messages from Matthew\" where we talked a lot: investigate and fix.</b> Matthew: \"the dashboard stats in each closed ticket look suspicious; for instance, I worked with you a lot on the horse and the monk/druid outfits (and others too), but it says 'zero messages from matthew' and hints that we didn't talk at all. Can you mint and enqueue a ticket, dashboard, after the hazel work or within it, that investigates and fixes this?\" A first reading: close_ticket.py counts the ticket's own <code>log</code> (each message from Matthew or Claude, with its time), and tonight's tickets were closed with an empty log, his words only quoted in their text and progress. So: find why the logs are empty (what was meant to fill them, and when it stopped), fill them in from the session transcripts for the tickets closed since, recompute the stats, and make the logging part of every message from here on.",
    "progress": "07:40: minted; after the Hazel work (^ticket(462) to ^ticket(465)), or within it.",
    "log": []
+  },
+  {
+   "id": 467,
+   "area": "hazel, the full view of a module type",
+   "added": "2026-10-20T07:44-06:00",
+   "opened": "2026-10-20T07:44-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, 2026-10-20 07:44, in chat (\"mint and enqueue -- hazel work for this morning\"), with a screenshot",
+   "url": "",
+   "text": "<b>A module type in the full view is laid out oddly: its indentation creeps right, and it breaks lines too eagerly.</b> Matthew: \"the formatting of this module type looks a bit strange (left indentation is wrong, and right newlines too aggressive?)\". The screenshot: the livelits documentation's emotion (kids' choice) slide, the cursor on <code>^slider</code>'s pattern (PAT / Variable binding), the full view of its type <code>(String, Int, Int, String) -&gt; ({ type Model = Int; type Action = Int; ... })</code>: the <code>-&gt; (</code> on its own line, the <code>{</code> indented under it, each member further right than the last, and each member broken into three lines (<code>type Model</code> / <code>=</code> / <code>Int;</code>) where one line fits. So: a module type laid out as the editor lays out a module, its members at one indentation, each on one line when it fits. The full view is ^ticket(394) and #2676/#2698's (the long types).",
+   "progress": "07:44: minted; this morning, after the PR updates (^ticket(462) to ^ticket(464)).",
+   "log": []
   }
  ],
- "next_ticket": 467,
+ "next_ticket": 468,
  "current_ticket": 462,
  "current_note": "07:38: ^ticket(462): Fumola out of #2635 into its own PR (into #2635's branch); then ^ticket(463) #2597 and ^ticket(464) #2635 + the Fumola PR up to date with dev, mergeable, green. Now: mapping where Fumola is in #2635. Ports: 8341 #2635, 8311 #2597; Dress Up's 8133 closed.",
  "closed_tickets": [
@@ -5513,6 +5526,7 @@
   462,
   463,
   464,
+  467,
   465,
   466,
   389,
