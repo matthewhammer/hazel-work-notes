@@ -29,7 +29,13 @@ FOLDER = "hazel/dashboard"
 EVERY = 600   # seconds between pushes
 RECORD = os.path.join(HERE, ".site-published.json")
 PENDING = os.path.join(HERE, ".site-pending")
-UPDATED = re.compile(r'<p class="note">Updated [^<]*<code>')
+# (what changes on every publish, left out of a page's digest, as log_notes.py leaves it out of the history: since ^ticket(428),
+# a page goes up only when more than these changed. The hover cards' scripts carry every ticket's and PR's summary, so a page
+# that does not change keeps its cards as of its last change: the closed page's, as of the last closing)
+UPDATED = re.compile(r'<p class="note">Updated [^<]*<code>'
+                     r'|Updated \d{4}-\d\d-\d\d \d\d:\d\d [A-Z]{2,5}'
+                     r'|<meta name="dashboard-version" content="[^"]*">'
+                     r'|<script>\s*/\* A card for each [\s\S]*?</script>')
 
 REPO = "https://github.com/matthewhammer/hazel-work-notes"
 NOTE = ('<p class="note">A copy of the Hazel Work Dashboard that Matthew runs on his laptop, published at most ten minutes '
@@ -88,7 +94,12 @@ def main():
         with tempfile.TemporaryDirectory() as tmp:
             env = dict(os.environ, GIT_INDEX_FILE=os.path.join(tmp, "index"))
             git("read-tree", base, env=env)
+            # (^ticket(428): only the pages that changed; the other keeps the blob it has, so the closed page, 1.1 MB, is not
+            # a new version in the homepage's history every ten minutes; 121 such commits on 2026-10-18 rewrote both pages)
+            have = git("ls-tree", "--name-only", base, FOLDER + "/").split("\n")
             for name, text in copies.items():
+                if name not in changed and f"{FOLDER}/{name}" in have:
+                    continue
                 blob = git("hash-object", "-w", "--stdin", data=text)
                 git("update-index", "--add", "--cacheinfo", f"100644,{blob},{FOLDER}/{name}", env=env)
             tree = git("write-tree", env=env)

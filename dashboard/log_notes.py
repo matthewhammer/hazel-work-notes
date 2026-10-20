@@ -46,7 +46,7 @@ REPO = "https://github.com/matthewhammer/hazel-work-notes"
 VOLATILE = re.compile(r'<p class="note">Updated [^<]*<code>'
                       r'|Updated \d{4}-\d\d-\d\d \d\d:\d\d [A-Z]{2,5}'
                       r'|<meta name="dashboard-version" content="[^"]*">'
-                      r'|<script> /\* A card for each [\s\S]*?</script>')
+                      r'|<script>\s*/\* A card for each [\s\S]*?</script>')
 INDEX_EVERY = 3600   # (seconds: index.html with no change to the data, at most this often)
 VERSIONS_DAYS = 30
 # (the last commit whose tree held the dated snapshot files, before ^ticket(417) took them out)
