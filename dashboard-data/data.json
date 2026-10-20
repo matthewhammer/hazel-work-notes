@@ -1131,7 +1131,7 @@
    "source": "0.0.345's speed run, the frame-rate gate's slow scenes",
    "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39338911817",
    "text": "<b>💭 our imagination's walk 48.3 fps (runs 49, 48.3, 47.9) and drag 47.7 (46.9, 47.7, 48.6) on 0.0.345</b>, its lowest yet: 53.7 and 52.7 on 0.0.335 (^ticket(420), closed as noise), 57.3 and 60 on 0.0.336, passed on 0.0.343. Nothing in 0.0.344 (the far arrows' quick fade-in, ♿ all arrows only) or 0.0.345 (lying hair, only when lying) runs there, but CI's game is at #inspect, every overlay on, all arrows included, so 0.0.344's change does apply in the gate. Draw 3.4 ms, frames every other vsync: the browser's painting.",
-   "progress": "18:59: minted as a 🌙 long run. First: the speed workflow run again by hand on dress-up-0.0.345, to see whether it repeats; then, if it does, TWEAK= the arrows' transition (0.0.344's) and the other overlays one at a time. 19:00: the speed workflow re-run by hand on dress-up-0.0.345 (run 39350917693; a duplicate I sent by mistake, 39350939811, cancelled while it waited). 19:02: the four runs side by side: in the passing ones (0.0.336, 0.0.343) the first walk is as slow (47.3, 46.3), then the game marks the computer choppy and holds the scenery still (the gate's \"scenery held still (choppy)\" line), and the next walks are 56 to 60; in the failing ones (0.0.335, 0.0.345) that line never comes and every walk stays 48 to 53. So pass or fail rides on whether the late-frame trigger (noteMoveFrame: over 25% of frames over 25 ms in 2 windows of 60 frames running) fires during the gate's runs, not on what changed. Next, after the re-run: why the trigger misses (the windows reset between the gate's runs?), and whether to make it surer or the place cheaper. 19:02: a reading, to test on the re-run: the trigger counts a frame late by the game's own gap between frames (over 25 ms); if the cost is the browser's painting (draw 3.4 ms; frames every other vsync on screen), the game's frames can come on time while the screen's drop, and the trigger misses. If so, the place must get cheaper to paint, or the trigger needs a sign of painting it can read. 20:21: the re-run (39350917693) repeats it: walk 48.3, drag 47.2, every walk, and the scenery never held still; the friend drawn in 2.7 ms, rAF gaps 33.4 ms at p95. The \"slow\" tier is not a throttled CPU: it is the slow scenes (empty room, imagination) at 1920x1080 on GitHub's software renderer. Each controller frame calls moved() -> noteMoveFrame, whose gaps should then be 33 ms, so the trigger should fire within 15 frames; it does not. A diagnostic branch, diag-427 (only a probe check: every call to noteMoveFrame recorded through four walks, imagination and the empty room), is running to see why. 20:28: the probe (diag-427, run 39358507293) says: on a FRESH page our imagination runs at 60 fps on GitHub's computer (rAF median 17 ms; the trigger's gaps 16.7), and it slows walk by walk: late frames 8, 16, 38, 36 of ~160 per walk; the trigger fires in the 4th walk, as it should. So the trigger is fine: something grows while walking there, and the gate measures after its warm-up walk and drag, by when it has. Also: Page.navigate to the same URL with #inspect does not reload the page, so in fpsgate each scene starts on the page the last one left (state carried over between cases). Next probe (diag427b, pushed): fresh pages by a query string; per walk the elements in the picture, the running animations, SMIL elements and the heap; an idle page against a walked one; the empty room beside. 20:34: second probe (run 39359064794, fresh pages): our imagination at 60 fps through 7 walks, and 3 more after 12 s idle; nothing grows (910 elements, 17 SMIL animations, no Web Animations, the same every walk). So the game does not accumulate cost there; the first probe's slowdown was one machine's moment (and that probe reused one tab: not the gate's way, which opens a tab per scene). The arithmetic: at 48 fps the share of late frames is (20.8 - 16.7) / 16.7 = 25%, exactly CHOPPY_LATE, so whether the scenery is held still at 48 fps is a coin flip: the pass/fail pattern across versions. The gate's 55 fps is ~9% late frames. Testing CHOPPY_LATE 0.08 (the scenery held still below ~55 fps) against 0.25: the slow tier six times on one runner, alternating (diag-427, 3bb9f41).",
+   "progress": "18:59: minted as a 🌙 long run. First: the speed workflow run again by hand on dress-up-0.0.345, to see whether it repeats; then, if it does, TWEAK= the arrows' transition (0.0.344's) and the other overlays one at a time. 19:00: the speed workflow re-run by hand on dress-up-0.0.345 (run 39350917693; a duplicate I sent by mistake, 39350939811, cancelled while it waited). 19:02: the four runs side by side: in the passing ones (0.0.336, 0.0.343) the first walk is as slow (47.3, 46.3), then the game marks the computer choppy and holds the scenery still (the gate's \"scenery held still (choppy)\" line), and the next walks are 56 to 60; in the failing ones (0.0.335, 0.0.345) that line never comes and every walk stays 48 to 53. So pass or fail rides on whether the late-frame trigger (noteMoveFrame: over 25% of frames over 25 ms in 2 windows of 60 frames running) fires during the gate's runs, not on what changed. Next, after the re-run: why the trigger misses (the windows reset between the gate's runs?), and whether to make it surer or the place cheaper. 19:02: a reading, to test on the re-run: the trigger counts a frame late by the game's own gap between frames (over 25 ms); if the cost is the browser's painting (draw 3.4 ms; frames every other vsync on screen), the game's frames can come on time while the screen's drop, and the trigger misses. If so, the place must get cheaper to paint, or the trigger needs a sign of painting it can read. 20:21: the re-run (39350917693) repeats it: walk 48.3, drag 47.2, every walk, and the scenery never held still; the friend drawn in 2.7 ms, rAF gaps 33.4 ms at p95. The \"slow\" tier is not a throttled CPU: it is the slow scenes (empty room, imagination) at 1920x1080 on GitHub's software renderer. Each controller frame calls moved() -> noteMoveFrame, whose gaps should then be 33 ms, so the trigger should fire within 15 frames; it does not. A diagnostic branch, diag-427 (only a probe check: every call to noteMoveFrame recorded through four walks, imagination and the empty room), is running to see why. 20:28: the probe (diag-427, run 39358507293) says: on a FRESH page our imagination runs at 60 fps on GitHub's computer (rAF median 17 ms; the trigger's gaps 16.7), and it slows walk by walk: late frames 8, 16, 38, 36 of ~160 per walk; the trigger fires in the 4th walk, as it should. So the trigger is fine: something grows while walking there, and the gate measures after its warm-up walk and drag, by when it has. Also: Page.navigate to the same URL with #inspect does not reload the page, so in fpsgate each scene starts on the page the last one left (state carried over between cases). Next probe (diag427b, pushed): fresh pages by a query string; per walk the elements in the picture, the running animations, SMIL elements and the heap; an idle page against a walked one; the empty room beside. 20:34: second probe (run 39359064794, fresh pages): our imagination at 60 fps through 7 walks, and 3 more after 12 s idle; nothing grows (910 elements, 17 SMIL animations, no Web Animations, the same every walk). So the game does not accumulate cost there; the first probe's slowdown was one machine's moment (and that probe reused one tab: not the gate's way, which opens a tab per scene). The arithmetic: at 48 fps the share of late frames is (20.8 - 16.7) / 16.7 = 25%, exactly CHOPPY_LATE, so whether the scenery is held still at 48 fps is a coin flip: the pass/fail pattern across versions. The gate's 55 fps is ~9% late frames. Testing CHOPPY_LATE 0.08 (the scenery held still below ~55 fps) against 0.25: the slow tier six times on one runner, alternating (diag-427, 3bb9f41). 21:41: the A/B on one runner showed no difference (all 60 fps there); waiting for the next speed runs' imagination numbers (0.0.362's is running, 0.0.365's queued) before deciding on CHOPPY_LATE. ^ticket(439) meanwhile.",
    "log": []
   },
   {
@@ -1148,19 +1148,6 @@
    "url": "",
    "text": "<b>The homepage's repository holds the dashboard's whole public history: how to keep it lean?</b> Found in ^ticket(428): GitHub puts matthewhammer/matthewhammer.github.io at 764 MB (most of it the music's mp3s); the dashboard's folder, hazel/dashboard/, held ~111 MB of its packs after four days (121 commits on 10-18 alone, each rewriting both pages). Since 428 a page goes up only when it really changed, and the closed page goes by month, so the growth is much slower. For Matthew to choose: <ul><li>leave it so;</li><li>publish the dashboard from a repository of its own (a project site under matthewhammer.org, so its addresses stay), and the homepage stops growing with it;</li><li>also rewrite the homepage's history without the dashboard's old versions (a force-push to his site: only on his word).</li></ul>",
    "progress": "20:22: minted, blocked on Matthew: his site's repository and history.",
-   "log": []
-  },
-  {
-   "id": 438,
-   "area": "dress up, the friend's horse",
-   "added": "2026-10-19T20:26-06:00",
-   "opened": "2026-10-19T20:26-06:00",
-   "status": "open",
-   "tags": [],
-   "source": "Matthew, 2026-10-19 20:26, in chat (\"mint and enqueue for after dashboard work is done, and any other outstanding work you are doing now\")",
-   "url": "",
-   "text": "<b>A horse for the friend: to ride, or to walk and run beside holding the reins.</b> Matthew: \"horse in all poses we have for people that 'make sense' for using in the game as a way to ride, or walk/run with (holding the horse's reins, and walking/running next to it). The horse need not sit, or crawl, or swim, etc. Just walking and running, and standing still: towards, away and L R poses, just our main character.\" So: standing, walking, running; facing toward us, away, left and right; ridden, or led by the reins; for the friend only. (The castle's stable has horses already, but its horse is only a head over the stall door.) Each view its own drawing routine, not a 2D turn of another (Matthew's rule from ^ticket(412)).",
-   "progress": "20:26: minted and enqueued after the work under way (^ticket(427)), as Matthew asked. 21:35: <b>leading it: live in 0.0.364</b> (dress-up-0.0.364). A 🐴 the horse box in 🐯 Costume: no horse, or led by its rein, with any costume; its coat, mane and face marking from the stable's own lists, its halter and rein's colour, white socks. Three drawings of its own (side, mirrored for the left; facing us, its face the stable's, shared as horseFace and checked byte for byte the same in the stable; from behind), standing, a four-beat walk and a canter on the friend's own stride. Checked by tools/checks/horse438.mjs (all ok). Next: riding it.",
    "log": []
   },
   {
@@ -1234,9 +1221,19 @@
   }
  ],
  "next_ticket": 456,
- "current_ticket": 438,
- "current_note": "21:35: ^ticket(438): leading the horse is live in 0.0.364 (side, front, back; standing, walking, running). Now: riding it.",
+ "current_ticket": 439,
+ "current_note": "21:41: ^ticket(439): people templates and many people, on the multi-world system's model: reading how worlds are listed, saved and switched. ^ticket(438)'s horse is live (0.0.364 leading, 0.0.365 riding); ^ticket(427) waits for tonight's speed runs.",
  "closed_tickets": [
+  {
+   "id": 438,
+   "area": "dress up, the friend's horse",
+   "added": "2026-10-19T20:26-06:00",
+   "text": "A horse for the friend: to ride, or to walk and run beside holding the reins.",
+   "source": "Matthew, 2026-10-19 20:26, in chat (\"mint and enqueue for after dashboard work is done, and any other outstanding work…",
+   "status": "done",
+   "closed": "2026-10-19",
+   "outcome": "Live in 0.0.364 (leading the horse by its rein) and 0.0.365 (riding it): side (mirrored for the left), facing us and from behind, each its own drawing; standing, a four-beat walk…"
+  },
   {
    "id": 453,
    "area": "dress up, the druid: the face in the hood",
@@ -5403,9 +5400,8 @@
   }
  ],
  "queue": [
-  438,
-  427,
   439,
+  427,
   454,
   455,
   446,
@@ -5437,7 +5433,7 @@
   423,
   429
  ],
- "current_since": "2026-10-19T21:26-06:00",
+ "current_since": "2026-10-19T21:41-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
