@@ -1116,7 +1116,7 @@
    "source": "^ticket(417)'s last step",
    "url": "",
    "text": "<b>A weekly <code>git gc</code> of hazel-work-notes, from cron, holding the publish lock</b> (^ticket(417)'s plan: \"a weekly git gc keeps .git packed\"; once by hand on 2026-10-19, .git 40 MB to 16 MB). The line, for Matthew to approve, as it changes his crontab: <code>17 4 * * 0 cd ~/hazel-work-notes &amp;&amp; flock ~/localhost-index/.publish.lock git gc -q</code>.",
-   "progress": "16:33: minted, blocked on Matthew: a crontab change needs his OK.",
+   "progress": "16:33: minted, blocked on Matthew: a crontab change needs his OK. 20:40 (from ^ticket(428)): since 428 the repository takes one commit per publish and the two big files only on real changes, so loose objects pile up far more slowly (the .git had gone 16 -> 39 MB in 3.5 h, mostly loose copies of the 1.1 MB pages). An alternative to the crontab line, for Matthew to weigh: no cron at all, but the repository's own setting `git config gc.auto 300` (git then packs by itself after a commit once ~300 loose objects gather, every few hours here, a few seconds' work); a setting in that one repository, not his crontab. Neither is done: both wait on his word.",
    "log": []
   },
   {
@@ -1153,7 +1153,7 @@
  ],
  "next_ticket": 430,
  "current_ticket": 427,
- "current_note": "20:19: ^ticket(427): 💭 our imagination below 55 fps in the slow tier: the 0.0.345 re-run reproduces it (walk 48.3, drag 47.2; friend drawn in 2.7 ms, every other frame missed: paint, not script). Finding what paints.",
+ "current_note": "20:24: ^ticket(427): 💭 our imagination below 55 fps in the slow tier (re-run repeats it, scenery never held still). A probe on branch diag-427 records every call to the game's late-frame trigger through four walks; its run (39358507293) is on its last steps. Then: make the trigger sure, or the place cheaper to paint. 0.0.346 + 0.0.347 live; 0.0.347's speed run (worlds406, heads392 in it) still running.",
  "closed_tickets": [
   {
    "id": 428,
