@@ -29,6 +29,22 @@
    "branch_note": "(served since 10:22 on 2026-10-20: GitHub's release build of 6fbc8268fc, #2597's head (dev merged in, the full-view test), from the deploy repo (hazelgrove/build, integration/livelits-splicerefs-full), not built on the laptop; in <code>~/hazel-builds/build</code>.)"
   },
   {
+   "name": "Γ's long types by right-click or hover (^ticket(468), to try)",
+   "repo_html": "<a href=\"https://github.com/hazelgrove/hazel/tree/trial/468-gamma-unfold\">hazelgrove/hazel, trial/468-gamma-unfold</a>",
+   "branch": "trial/468-gamma-unfold",
+   "branch_note": "(served since 10:25 on 2026-10-20: GitHub's build of 0113e420d0, #2597 plus Γ's unfold from #2698, its right-click menu, and the Colors slide's choice of how the toggle is drawn; Fast checks green. A fresh port, so the shipped Colors slide, with the choice, is what loads. Not on the PRs until Matthew picks.)",
+   "links": [
+    [
+     "localhost:8312 (#2597 + Γ unfold)",
+     "http://localhost:8312/"
+    ],
+    [
+     "the Colors slide (the always / hover / right-click choice at its top)",
+     "http://localhost:8312/?slide=colors"
+    ]
+   ]
+  },
+  {
    "pr": 2635,
    "repo": "hazelgrove/hazel",
    "branch": "perf/2635-names",
@@ -2360,11 +2376,13 @@
    "added": "2026-10-20T09:19-06:00",
    "opened": "2026-10-20T09:19-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "source": "Matthew, 2026-10-20 08:5x, in chat, after the full view's screenshot (\"latest screenshot looks good\")",
    "url": "",
    "text": "<b>Offer the full view's \"several lines\" layout on each type in &Gamma;, by right-click or on hover, with toggles on the configuration slide to try the designs.</b> Matthew: \"Let's offer this 'expand type into multiple lines' button (better name?) to each type in Gamma --- as a right click option, or a hover-over option? Can we have some toggles to play with that design in the configuration slide?\" &Gamma;'s per-entry unfold is ^ticket(386)'s #2698 (a draft into #2676, toward dev), not on the livelits branches; the configuration slide is the Colors slide (hazel-programs/config/colors.hz), whose ^choice already picks the livelit reveal's glyph (`livelit-reveal`), on #2597 and #2635 only.",
-   "progress": "09:31: on a branch off #2597 (work/468-gamma-unfold; CI on trial/468-gamma-unfold, deployed to hazel.org/build/trial/468-gamma-unfold/ once Pages builds): (1) #2698's per-entry unfold ported onto #2597's Gamma (49d286c793), keeping ^ticket(396)'s size budget: an entry past it shows its outline and has nothing to unfold, decided before the type is printed; (2) every entry gets a right-click menu: \"Show in full\" / \"Show on one line\" for a long one, and \"Go to definition\" (888d2167c5); (3) the Colors slide's new ^unfold choice, beside the livelit reveal's: always (the toggle drawn, as before), hover (drawn while the pointer is on the entry), right-click (not drawn; the menu has it). The choice is the slide value's field gamma-unfold, published as --hazel-gamma-unfold and read back by Gamma to class its box; a slide saved before it gets always. Tests: the slide's three choices publish their names and leave the theme as it was. 10:13: its one failure was the golden colours list (test/goldens/colors.tsv) lacking the new property; added (0113e420d0), CI again on trial/468-gamma-unfold.",
+   "progress": "09:31: on a branch off #2597 (work/468-gamma-unfold; CI on trial/468-gamma-unfold, deployed to hazel.org/build/trial/468-gamma-unfold/ once Pages builds): (1) #2698's per-entry unfold ported onto #2597's Gamma (49d286c793), keeping ^ticket(396)'s size budget: an entry past it shows its outline and has nothing to unfold, decided before the type is printed; (2) every entry gets a right-click menu: \"Show in full\" / \"Show on one line\" for a long one, and \"Go to definition\" (888d2167c5); (3) the Colors slide's new ^unfold choice, beside the livelit reveal's: always (the toggle drawn, as before), hover (drawn while the pointer is on the entry), right-click (not drawn; the menu has it). The choice is the slide value's field gamma-unfold, published as --hazel-gamma-unfold and read back by Gamma to class its box; a slide saved before it gets always. Tests: the slide's three choices publish their names and leave the theme as it was. 10:13: its one failure was the golden colours list (test/goldens/colors.tsv) lacking the new property; added (0113e420d0), CI again on trial/468-gamma-unfold. 10:25: Fast checks GREEN on 0113e420d0. To try it: localhost:8312 serves GitHub's build of it. ✋ For Matthew: right-click an entry of Γ (bottom left) for the menu; on the Colors slide press always, hover or right-click; pick one, or keep the choice. It lands on #2597 and #2635 once picked, so the PRs stay as polished for Cyrus.",
    "log": [
     {
      "at": "2026-10-20T09:17-06:00",
