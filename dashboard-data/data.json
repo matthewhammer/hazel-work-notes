@@ -2163,7 +2163,7 @@
    "source": "split from ^ticket(398), 2026-10-19 13:16 (Matthew's ask there: \"add a new PR to dev that does even more correctness tests ... ditto for our PRs\")",
    "url": "",
    "text": "<b>A tests PR to dev that checks the performance PRs keep types and values the same, plus each PR's own missing tests.</b> The second half of ^ticket(398); ^report(21)'s \"What to add\": <ol><li>turn the incremental-against-fresh property back on for completed results (#2457's stuck ones skipped), fixed seed, with recursive lets in the generator;</li><li>a corpus comparison: every program in hazel-programs analyzed and evaluated with each optimization on and off, incrementally after an edit and from scratch (types, marks, elaborations ignoring ids, values, probes, test results);</li><li>hash checks: equal hash implies equal term, for the type hash (#2661, #2681) and the term hash (#2673), plus a census over the corpus;</li><li>a parser comparison: the load fallback against character-by-character typing at every split offset (finds #2610's case);</li><li>budget tests that also assert results.</li></ol> And on each of our PRs, the tests ^report(21) lists in its section.",
-   "progress": "14:16 10-20: #2610's FULL SWEEP passed here (HAZEL_SPLIT_SWEEP=all): 29 corpus programs under 1,500 bytes x 100 paddings = 2,900 split positions, all the same as the char-by-char parser with holes kept, 13.5 min. Earlier the same day: #2700 ready for review (no reviewer; the agenda asks); #2610 0f14ab555c (nine fallback-shaped inputs as text and terms, a three-program sweep in CI); #2673 541db88885 (census 45,320 subterms no collision; reuse decisions at 67,980 nodes never laxer, stricter at 18); #2661 be8a3a8849 + 09b8af372f (census 92,503 types in 2,260 hashes, none shared; 500 random pairs, the memo equals is_consistent). CI running on the three.",
+   "progress": "15:45 10-20 PARKED for the 10-21 meeting (Cyrus's ordering). DONE and GREEN on GitHub (Fast checks + Full tests): #2700 (incremental vs fresh, ready for review, no reviewer; the agenda asks); #2661 be8a3a8849 + 09b8af372f (type-hash census 92,503 types in 2,260 hashes, none shared; 500 random pairs, the memo equals is_consistent); #2673 541db88885 (term-hash census 45,320 subterms, no collision; reuse never laxer, stricter at 18 of 67,980); #2610 0f14ab555c (nine fallback-only inputs; a split sweep in CI; the full sweep here, 2,900 positions, all agree). 15:45: #2681 got the same type-hash check, cherry-picked as a4fee77a63 (TypHash 13/13 incl. the census, Ascriptions 4/4 here; CI running). NOTE: #2679 has merged to dev, so #2681 can now merge dev, as its description plans (the merge conflicts in Ascriptions.re, since #2681 has #2679's unsquashed commit). LEFT, after the meeting: item 2's per-cache on/off statics comparison (agenda proposal 1); item 5 = the missing tests on #2689 (assert types and no errors; per-program expected types) and #2691 (round-trip, value equals Evaluator.evaluate); and each PR's own missing tests from ^report(21) (e.g. #2678: a read literal edited, fib(10) to fib(11); #2690: edits inside the library).",
    "log": [
     {
      "at": "2026-10-20T12:39-06:00",
@@ -3046,8 +3046,8 @@
   }
  ],
  "next_ticket": 468,
- "current_ticket": 411,
- "current_note": "15:39: 15:38: back after crash 44 (15:03, at idle, nothing lost, servers restarted). CI green on #2661, #2673, #2610 and #2700 (the hash, parser and incremental checks). Next: what is left of 411 (corpus comparison, budget tests, per-PR tests)",
+ "current_ticket": 470,
+ "current_note": "15:45: 15:45: 411 parked for the 10-21 meeting (its checks green; #2681 got the type-hash check). Now 470: charge library time to the nearest Hazel caller in time_slides.mjs, then rerun on GitHub",
  "closed_tickets": [
   {
    "id": 486,
@@ -7505,8 +7505,8 @@
   }
  ],
  "queue": [
-  411,
   470,
+  411,
   462,
   468,
   485,
@@ -7546,7 +7546,7 @@
   460,
   488
  ],
- "current_since": "2026-10-20T13:33-06:00",
+ "current_since": "2026-10-20T15:45-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
@@ -7558,10 +7558,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 4810,
-  "words": 1077561,
+  "replies": 4815,
+  "words": 1078312,
   "read_hours_est": 75.5,
-  "listen_hours_est": 112.2,
+  "listen_hours_est": 112.3,
   "read_s_avg": 56,
   "listen_s_avg": 84,
   "days": {
@@ -7781,9 +7781,9 @@
     "chars": 171153
    },
    "2026-10-20": {
-    "replies": 55,
-    "words": 12769,
-    "chars": 74768
+    "replies": 60,
+    "words": 13520,
+    "chars": 79131
    }
   }
  },
