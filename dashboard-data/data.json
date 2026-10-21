@@ -2631,7 +2631,7 @@
    "source": "Matthew, 2026-10-20 09:3x, in chat",
    "url": "",
    "text": "<b>Time opening every documentation slide on each PR, on GitHub's machines, say what dominates each one's cost, and keep tracking it with the performance PRs applied.</b> Matthew: \"timing on Github (not my machine): * time to open the documentation slides on each PR, including each livelit slide. * for each one, what is the dominate time cost? Or is it heavily mixed? * let's start tracking this (all with our performance PRs applied), and see if we can keep improving things, in terms of loading time.\" So: a CI job (no browser on the laptop) that opens each slide of the documentation and livelit decks on each of our PRs (#2597, #2635, and the #2609 performance PRs, stacked), records the time to a settled view, and splits it by phase (parse, statics, elaboration, evaluation, measure and draw); a series of these runs over time, in the reports series.",
-   "progress": "15:52 10-20 PARKED for the Dress Up sprint (Matthew: \"let's switch to all dress-up tickets for a sprint -- for at least 3 hours\"). DONE: f6e9b1c4a6 on timing/2635 (pushed; its GitHub run is the next data): phases.py --emit-map writes each bundle's phase by line and column before timing; profile.mjs charges time in the runtime, the OCaml libraries, src/util, unmapped code and browser builtins to the nearest Hazel caller; phases.py adds the charged table and the Hazel functions charged with the most library time. Tested here on a synthetic bundle and profile (no browser). FOUND: #2597's run 39482019681 'failed' because time_slides.mjs HUNG, not a slow slide: Full Body and Witch never showed the editor (171 s idle, 7 s JS, 6 DOM changes, no page errors), then the next slide's DevTools call never answered and node exited 13 (unsettled top-level await), losing the slides after Witch (Scenes). NEXT: (1) in time_slides.mjs, give send() a timeout (LIMIT + 60 s) and reject pending calls when the socket closes, record the error per slide and go on; (2) cherry-pick a100d7e41a..f6e9b1c4a6's new commit plus that fix onto timing/2597-local (~/hazel-timing-2597) and push timing/2597; (3) read both runs' charged tables; (4) why #2597's Full Body and Witch never open (a /fresh redirect that never happened? the heap after Mouth's 1 GB?). 18:55 10-20 (Matthew AFK, during the Dress Up builds): STEP 1 DONE, 3577733690 on timing/2635 (pushed): every DevTools call answers or fails (SLIDE_CALL_MS 60 s; while polling, what is left of the limit), a socket that closes or errs fails its calls and its opening at once, the slide's line carries the error (\"stuck\" when the main thread stays busy past the limit), the next slide runs, the script exits when done; summary.py shows such a slide's error and counts them. Tested against a fake DevTools that never answers and one that refuses: 3 slides recorded, exit 0. STEP 2 DONE: f6e9b1c4a6 and 3577733690 cherry-picked onto timing/2597-local (98d240f2d2, 356a9f3771), pushed to timing/2597 (HEAD:refs/heads/timing/2597; its upstream is #2597's own branch, never pushed there). Runs started: timing/2635 slide timing 39524173735, timing/2597 slide timing 39524190956. NEXT: (3) read both runs' charged tables when they finish; (4) why #2597's Full Body and Witch never open.",
+   "progress": "15:52 10-20 PARKED for the Dress Up sprint (Matthew: \"let's switch to all dress-up tickets for a sprint -- for at least 3 hours\"). DONE: f6e9b1c4a6 on timing/2635 (pushed; its GitHub run is the next data): phases.py --emit-map writes each bundle's phase by line and column before timing; profile.mjs charges time in the runtime, the OCaml libraries, src/util, unmapped code and browser builtins to the nearest Hazel caller; phases.py adds the charged table and the Hazel functions charged with the most library time. Tested here on a synthetic bundle and profile (no browser). FOUND: #2597's run 39482019681 'failed' because time_slides.mjs HUNG, not a slow slide: Full Body and Witch never showed the editor (171 s idle, 7 s JS, 6 DOM changes, no page errors), then the next slide's DevTools call never answered and node exited 13 (unsettled top-level await), losing the slides after Witch (Scenes). NEXT: (1) in time_slides.mjs, give send() a timeout (LIMIT + 60 s) and reject pending calls when the socket closes, record the error per slide and go on; (2) cherry-pick a100d7e41a..f6e9b1c4a6's new commit plus that fix onto timing/2597-local (~/hazel-timing-2597) and push timing/2597; (3) read both runs' charged tables; (4) why #2597's Full Body and Witch never open (a /fresh redirect that never happened? the heap after Mouth's 1 GB?). 18:55 10-20 (Matthew AFK, during the Dress Up builds): STEP 1 DONE, 3577733690 on timing/2635 (pushed): every DevTools call answers or fails (SLIDE_CALL_MS 60 s; while polling, what is left of the limit), a socket that closes or errs fails its calls and its opening at once, the slide's line carries the error (\"stuck\" when the main thread stays busy past the limit), the next slide runs, the script exits when done; summary.py shows such a slide's error and counts them. Tested against a fake DevTools that never answers and one that refuses: 3 slides recorded, exit 0. STEP 2 DONE: f6e9b1c4a6 and 3577733690 cherry-picked onto timing/2597-local (98d240f2d2, 356a9f3771), pushed to timing/2597 (HEAD:refs/heads/timing/2597; its upstream is #2597's own branch, never pushed there). Runs started: timing/2635 slide timing 39524173735, timing/2597 slide timing 39524190956. NEXT: (3) read both runs' charged tables when they finish; (4) why #2597's Full Body and Witch never open. 19:15: STEP 3, #2635's half: run 39524173735 (timing/2635 at 3577733690) timed all 58 slides, all settled, 264 s in all; most slides 2.7-3.4 s; the slowest Dynamic Row or Column 12.5, Full Body 12.0, Witch 12.1, Scenes 9.9, Shoes 8.3. Charged to the nearest Hazel caller, over all slides (213 s of script): view 54.8 s, terms 45.1, parse 40.8, statics 23.3, runtime with no Hazel caller 13.9, layout 12.6, evaluation 10.3, browser 6.8, projectors 4.3. Most slides are mixed, view first (30-40%), parse second; Dynamic Row or Column is parse 45% (4.2 s); the playground's figure slides are about half page JS, with the eval worker 3-5 s. The Hazel functions charged with the most library time: TermBase.re 11.1 s (terms), Main.re 6.5 (view), ConstructorMap.re 4.5 (statics), WorkerMetrics.re 4.3 and WorkerServer.re 4.1 + 2.1 (view: the worker's bookkeeping), Exp.re 2.7, Code.re 2.6, Form.re 2.5 + 1.6 (parse). Waiting on #2597's run 39524190956 for the other half.",
    "log": [
     {
      "at": "2026-10-20T09:23-06:00",
@@ -2853,7 +2853,7 @@
    "source": "Matthew, 2026-10-20 11:4x, in chat, after ^ticket(480)",
    "url": "https://github.com/matthewhammer/kids-choice-games/pull/1",
    "text": "<b>A PR to Messed Up Dress Up (kids-choice-games), not hazel: a 🧩 Scripting control panel with an editor per room that needs logic, starting with the castle's dungeon, each a module of one global program with global variables and the $GameUpdate monad, a common editor of sub-routines in scope in all, names unique and enforced.</b> Matthew: \"let's do this MUDU integration as a PR for MUDU, not hazel. On the hazel side, let's draft a PR (and use it) for exposing Hazel as a JS library we can use this way.\" Uses ^ticket(481)'s library. The plan is ^ticket(480)'s (^report(20)'s item 11).",
-   "progress": "12:24 10-20: main (0.0.373-0.0.375) merged into scripting-panel (359cabb): conflicts in index.html (0.0.374 parts plus 25-scripting.js), VERSIONS.md (Unreleased above 0.0.374) and agent-instructions.md (both paragraphs kept); script and load checks pass; pushed. The PR's tests run on it now; the library it loads is live (^ticket(481)). 16:56 10-20: main (0.0.376-0.0.385, today's sprint) merged into scripting-panel again (e46ab4e), for the meeting's demo: conflicts in index.html (main's parts at 0.0.385 plus 25-scripting.js), style.css (both), VERSIONS.md (Unreleased above 0.0.385), agent-instructions.md (main's paragraph, the Scripting sentence kept); script and load checks pass (27 parts); pushed; the PR's tests run on it.",
+   "progress": "12:24 10-20: main (0.0.373-0.0.375) merged into scripting-panel (359cabb): conflicts in index.html (0.0.374 parts plus 25-scripting.js), VERSIONS.md (Unreleased above 0.0.374) and agent-instructions.md (both paragraphs kept); script and load checks pass; pushed. The PR's tests run on it now; the library it loads is live (^ticket(481)). 16:56 10-20: main (0.0.376-0.0.385, today's sprint) merged into scripting-panel again (e46ab4e), for the meeting's demo: conflicts in index.html (main's parts at 0.0.385 plus 25-scripting.js), style.css (both), VERSIONS.md (Unreleased above 0.0.385), agent-instructions.md (main's paragraph, the Scripting sentence kept); script and load checks pass (27 parts); pushed; the PR's tests run on it. 19:15 10-20: main (0.0.386-0.0.392) merged into scripting-panel again (94945c8), for the meeting's demo: conflicts in index.html (main's parts at 0.0.392 plus 25-scripting.js) and VERSIONS.md (Unreleased above 0.0.392); 25-scripting.js given main's two licence lines; script and load checks pass (27 parts); pushed; the PR's tests run on it.",
    "log": [
     {
      "at": "2026-10-20T11:26-06:00",
@@ -3014,7 +3014,7 @@
    "tags": [
     "long run"
    ],
-   "progress": "16:47 10-20: STARTED on GitHub (the day's releases done, 0.0.376-0.0.382): branch archive-494 (fa33bd1, off main f65360d, only the archive workflow + ticket 455's clip audit; never merged), run 39510534461 'Dress Up archive' (pictures and music; with ARCHIVE_TOKEN it adds the runs to dress-up-pictures and dress-up-music itself). A slip on the way: a first push of archive-494 went out at main's commit (a heredoc broke my && chain) and queued a 'Dress Up tests' run (39510472779): cancelled. NEXT: read the archive run (its summary: changed drawings by folder, the clip audit); OBJECTS.md from the speed run's objects180 output (0.0.382's run, after 0.0.376's) with tools/objects_md.py. 17:45: 0.0.376's speed run: broken (crumbs491: my 2-px bound, 3 px measured; occlude261: the cave room's dark vignette counted as covering 13 drawings). Ultracode review workflow (27 agents) over 0.0.376-0.0.385: 11 findings, all confirmed by 2 skeptics, all fixed in 0.0.386 (462cfa2): passage tap/click goes through (was dragged); passages only to enterable places (not sea/deepsea); the cave room's roof inside the ceiling object; placed things keyed on LFO stamps; the sky faces the noon sun (Quito had no sun Oct-Mar); tent windows keyed on time; star rows at night by the clock; whole minutes; World design alert amber; people away keep horses; plus cavethings471's node regex. A second workflow is reviewing the fixes. OBJECTS.md waits for the last release's speed run (its objects180 output). 18:51: still running on GitHub (run 39510534461, step 'The run's pictures', since 16:46): reading it when it ends. 18:53: CANCELLED run 39510534461: stuck 2 h 10 min in 'The run's pictures (archive.mjs)' (started 22:46:52Z, no update since; the earlier archive runs took 45-50 min), most likely the same hang as ^ticket(470)'s slide timing (a DevTools call that never answers). NEXT: give the archive repo's tools/archive.mjs the same call timeouts (time_slides.mjs, 3577733690), then a fresh run at the next release (0.0.392, with the desert, the farm yard, the pasture, the animals, the dragon, the armour), then OBJECTS.md from it. 18:56: DONE the first NEXT: dress-up-pictures b05468f (pushed): archive.mjs's DevTools calls answer or fail (ARCHIVE_CALL_MS 10 min), and a hung batch is named and fails the run in minutes, not hours (tested against a fake DevTools). The fresh run waits for 0.0.392.",
+   "progress": "16:47 10-20: STARTED on GitHub (the day's releases done, 0.0.376-0.0.382): branch archive-494 (fa33bd1, off main f65360d, only the archive workflow + ticket 455's clip audit; never merged), run 39510534461 'Dress Up archive' (pictures and music; with ARCHIVE_TOKEN it adds the runs to dress-up-pictures and dress-up-music itself). A slip on the way: a first push of archive-494 went out at main's commit (a heredoc broke my && chain) and queued a 'Dress Up tests' run (39510472779): cancelled. NEXT: read the archive run (its summary: changed drawings by folder, the clip audit); OBJECTS.md from the speed run's objects180 output (0.0.382's run, after 0.0.376's) with tools/objects_md.py. 17:45: 0.0.376's speed run: broken (crumbs491: my 2-px bound, 3 px measured; occlude261: the cave room's dark vignette counted as covering 13 drawings). Ultracode review workflow (27 agents) over 0.0.376-0.0.385: 11 findings, all confirmed by 2 skeptics, all fixed in 0.0.386 (462cfa2): passage tap/click goes through (was dragged); passages only to enterable places (not sea/deepsea); the cave room's roof inside the ceiling object; placed things keyed on LFO stamps; the sky faces the noon sun (Quito had no sun Oct-Mar); tent windows keyed on time; star rows at night by the clock; whole minutes; World design alert amber; people away keep horses; plus cavethings471's node regex. A second workflow is reviewing the fixes. OBJECTS.md waits for the last release's speed run (its objects180 output). 18:51: still running on GitHub (run 39510534461, step 'The run's pictures', since 16:46): reading it when it ends. 18:53: CANCELLED run 39510534461: stuck 2 h 10 min in 'The run's pictures (archive.mjs)' (started 22:46:52Z, no update since; the earlier archive runs took 45-50 min), most likely the same hang as ^ticket(470)'s slide timing (a DevTools call that never answers). NEXT: give the archive repo's tools/archive.mjs the same call timeouts (time_slides.mjs, 3577733690), then a fresh run at the next release (0.0.392, with the desert, the farm yard, the pasture, the animals, the dragon, the armour), then OBJECTS.md from it. 18:56: DONE the first NEXT: dress-up-pictures b05468f (pushed): archive.mjs's DevTools calls answer or fail (ARCHIVE_CALL_MS 10 min), and a hung batch is named and fails the run in minutes, not hours (tested against a fake DevTools). The fresh run waits for 0.0.392. 19:15: STARTED the fresh run at 0.0.392: branch archive-494b (cc35d9c: main b1900d5 with only the archive workflow and clip_audit.mjs), run 39526191544 (about 50 min); then add_run.sh from the laptop, and OBJECTS.md.",
    "log": [
     {
      "at": "2026-10-20T16:56-06:00",
@@ -3039,168 +3039,6 @@
    ]
   },
   {
-   "id": 498,
-   "area": "dress up, knights: armour and cloth for the horse",
-   "text": "<b>Knight costumes that dress the horse too: a face helmet and more, not just a saddle.</b> Matthew: \"let's start to think of costumes for the knight as having horse pieces (face helmets, look at images from Lego castles and knights) -- not just saddles.\" and \"look at Lego castles and knights for inspiration.\" First step: a design list of pieces (the chanfron over its face, a crest or plume, the caparison cloth in the knight's colours and crest, neck and chest plates), each a chooser in 🐴 the horse, and how a knight costume picks them. His answer, 18:5x: \"chickens dragon and horse -- just release and let the kids decide please.\"",
-   "source": "Matthew, 2026-10-20 17:53, in chat",
-   "url": "",
-   "added": "2026-10-20T17:53-06:00",
-   "tags": [],
-   "log": [
-    {
-     "at": "2026-10-20T17:53-06:00",
-     "from": "matthew",
-     "chars": 160,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T17:53-06:00",
-     "from": "matthew",
-     "chars": 49,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T18:48-06:00",
-     "from": "matthew",
-     "chars": 73,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T18:49-06:00",
-     "from": "claude",
-     "chars": 1254,
-     "asks": false,
-     "words": 239,
-     "read_s": 60,
-     "listen_s": 90,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T18:50-06:00",
-     "from": "matthew",
-     "chars": 36,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T18:51-06:00",
-     "from": "matthew",
-     "chars": 20,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ],
-   "progress": "18:24: mock-up at dress-up/mockups/horse-armour.html (local, not committed): the game's own horse, side on and ridden, in six sets that take the knight's arms (colours, layout, emblem) from Costume: full steel plate (chanfron, crinet, peytral, flanchards, crupper), half caparison, tournament (cloth over head, neck and to the hooves), dragon helm (horns, spikes, teeth; goes with 499), toy helmet (LEGO's horse battle helmet), parade (rosettes, ribbons, plume, tassels). Proposed: one chooser '🛡️ its armour' in Body's horse box. Waiting on Matthew: which sets, and the colours from the knight's arms? Building all six sets, as a chooser, in every view. 18:49: building in parallel (worktrees ~/kcg-wt/498, 499c costume, 499f fire, 506), each reviewed and fixed, then merged, looked at in the pane, released together."
-  },
-  {
-   "id": 499,
-   "area": "dress up, costumes: a dragon",
-   "text": "<b>A new costume: a dragon.</b> Matthew: \"new costume to add -- dragon.\" and \"look at Lego castles and knights for inspiration.\" Then: \"wings, tail and optional dragon breath -- need an action for that, like bubbles -- shooting fire out of our mouth.\" and \"let's get serious about animating fire shooting out of things. Mock up the dragon costume and 6 fire styles.\" First step: a mock-up of the costume (wings, tail, the head) and six fire styles, animated, for him to pick from. Then: \"let's have the dragon fire be the best tool against bubbles -- can you add logic for that -- the heat extend further than the fire.\" and \"dragon tail spikes should be facing upward, not downward :)\" His answer, 18:5x: \"chickens dragon and horse -- just release and let the kids decide please.\"",
-   "source": "Matthew, 2026-10-20 17:53, in chat",
-   "url": "",
-   "added": "2026-10-20T17:53-06:00",
-   "tags": [],
-   "progress": "18:03: mock-up at dress-up/mockups/dragon-fire.html (local only, not committed: the repo is public). The friend in a dragon suit (horns, hood spines and teeth, slit-eyed hood, scales, belly plates, claws, flapping bat wings, a tail with its spikes up and a spade) and six animated fires: roaring flame, fireballs, twisting fire, blue-hot jet, brick fire (from LEGO's flame pieces), fire bubbles. Each fire has a heat that reaches past its flames (a dashed cone: 500 to 660 long, 6 to 16 degrees each side); bubbles drift in and pop when their edge enters it, while the fire is on. Hold-to-breathe, four colour choosers, dusk/day/night. Waiting on Matthew: which fires to build first, and the costume as drawn? Building the costume and the fire action with all six fires. 18:49: building in parallel (worktrees ~/kcg-wt/498, 499c costume, 499f fire, 506), each reviewed and fixed, then merged, looked at in the pane, released together.",
-   "log": [
-    {
-     "at": "2026-10-20T17:53-06:00",
-     "from": "matthew",
-     "chars": 29,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T17:53-06:00",
-     "from": "matthew",
-     "chars": 49,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T17:53-06:00",
-     "from": "matthew",
-     "chars": 114,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T17:54-06:00",
-     "from": "matthew",
-     "chars": 111,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T17:54-06:00",
-     "from": "claude",
-     "chars": 232,
-     "asks": false,
-     "words": 42,
-     "read_s": 11,
-     "listen_s": 16,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T17:58-06:00",
-     "from": "matthew",
-     "chars": 131,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T17:59-06:00",
-     "from": "matthew",
-     "chars": 59,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T18:00-06:00",
-     "from": "claude",
-     "chars": 3367,
-     "asks": false,
-     "words": 566,
-     "read_s": 143,
-     "listen_s": 212,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T18:48-06:00",
-     "from": "matthew",
-     "chars": 73,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T18:49-06:00",
-     "from": "claude",
-     "chars": 1254,
-     "asks": false,
-     "words": 239,
-     "read_s": 60,
-     "listen_s": 90,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T18:50-06:00",
-     "from": "matthew",
-     "chars": 36,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T18:51-06:00",
-     "from": "matthew",
-     "chars": 20,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 505,
    "area": "dress up, speed: 💭 our imagination below 60 frames a second",
    "text": "<b>💭 Our imagination ran at 41 frames a second in 0.0.385's speed run (GitHub's computer), and the greenhouse at 54.</b> 0.0.391 adds three places to the imagination's map (the desert as a column of its own, the pasture and the farm yard in theirs), which can only cost more there; 0.0.391's run will say how much. A 🌙 long run, after the features (Matthew's call, 10-17).",
@@ -3211,55 +3049,42 @@
     "low priority"
    ],
    "progress": "18:48: minted from 0.0.385's speed run (imagination 41.1 fps, greenhouse 53.8 on GitHub's computer); 0.0.391's run will measure the three new places' cost."
-  },
-  {
-   "id": 506,
-   "area": "dress up, the castle's stable: its hens, up to 30 (for M)",
-   "text": "<b>The stable's hens: as many as the kids like, up to 30.</b> Matthew, for M: \"chickens -- already in stable 30 in stable.\" and then \"chickens dragon and horse -- just release and let the kids decide please.\" So a setting for how many hens are in the stable, 0 to 30 (2 to start with, as now), each its own way in. His answer, 18:5x: \"chickens dragon and horse -- just release and let the kids decide please.\"",
-   "source": "Matthew, for M, 2026-10-20 18:49, in chat",
-   "url": "",
-   "added": "2026-10-20T18:49-06:00",
-   "tags": [],
-   "progress": " 18:49: building in parallel (worktrees ~/kcg-wt/498, 499c costume, 499f fire, 506), each reviewed and fixed, then merged, looked at in the pane, released together.",
-   "log": [
-    {
-     "at": "2026-10-20T18:48-06:00",
-     "from": "matthew",
-     "chars": 73,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T18:49-06:00",
-     "from": "claude",
-     "chars": 1254,
-     "asks": false,
-     "words": 239,
-     "read_s": 60,
-     "listen_s": 90,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T18:50-06:00",
-     "from": "matthew",
-     "chars": 36,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T18:51-06:00",
-     "from": "matthew",
-     "chars": 20,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
   }
  ],
  "next_ticket": 507,
- "current_ticket": 470,
- "current_note": "18:55: While the four Dress Up builds run (Matthew AFK): the slide-timing fix pushed to both timing branches; their GitHub runs started (39524173735, 39524190956).",
+ "current_ticket": 494,
+ "current_note": "19:14: 0.0.392 live 19:14 (the dragon, fire, the horse's armour, 30 hens). Next: the fresh archive run at 0.0.392 (ticket 494), then the timing runs (470).",
  "closed_tickets": [
+  {
+   "id": 506,
+   "area": "dress up, the castle's stable: its hens, up to 30 (for M)",
+   "added": "2026-10-20T18:49-06:00",
+   "text": "The stable's hens: as many as the kids like, up to 30.",
+   "source": "Matthew, for M, 2026-10-20 18:49, in chat",
+   "status": "done",
+   "closed": "2026-10-20",
+   "outcome": "Released in 0.0.392: the castle stable's hens, 0 to 30 (2 as before, byte for byte), spread on its floor, each pecking its own way in; a 30-hen stable redraws quickly. Check…"
+  },
+  {
+   "id": 498,
+   "area": "dress up, knights: armour and cloth for the horse",
+   "added": "2026-10-20T17:53-06:00",
+   "text": "Knight costumes that dress the horse too: a face helmet and more, not just a saddle.",
+   "source": "Matthew, 2026-10-20 17:53, in chat",
+   "status": "done",
+   "closed": "2026-10-20",
+   "outcome": "Released in 0.0.392: 🛡️ its armour in 🧍 Body's 🐴 the horse: full plate, half caparison, tournament, dragon helm, toy helmet, parade; side, front and back, led and ridden; a…"
+  },
+  {
+   "id": 499,
+   "area": "dress up, costumes: a dragon",
+   "added": "2026-10-20T17:53-06:00",
+   "text": "A new costume: a dragon.",
+   "source": "Matthew, 2026-10-20 17:53, in chat",
+   "status": "done",
+   "closed": "2026-10-20",
+   "outcome": "Released in 0.0.392 (live 19:14): 🐉 the dragon costume (horns, hood spines and teeth, slit eyes, scales, plated belly, claws, bat wings flapping/open/folded, a tail with its…"
+  },
   {
    "id": 495,
    "area": "dress up, the friend's horse: more colours (for M)",
@@ -7836,11 +7661,8 @@
   }
  ],
  "queue": [
-  470,
-  499,
-  498,
-  506,
   494,
+  470,
   490,
   411,
   462,
@@ -7879,7 +7701,7 @@
   460,
   493
  ],
- "current_since": "2026-10-20T18:55-06:00",
+ "current_since": "2026-10-20T19:14-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
