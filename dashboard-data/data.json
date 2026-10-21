@@ -3306,11 +3306,29 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 512,
+   "area": "hazel, #2635 (livelits x modular editors): merge today's #2469, which now stacks Modules II part 1",
+   "added": "2026-10-21T06:40-06:00",
+   "opened": "2026-10-21T06:40-06:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-10-21"
+   ],
+   "chips": [
+    "hazel",
+    "livelits"
+   ],
+   "source": "Matthew, 2026-10-21 06:4x, back from AFK, before the meeting with Cyrus",
+   "url": "https://github.com/hazelgrove/hazel/pull/2635",
+   "text": "<b>Keep #2635 (livelits x modular editors) up with #2469 (modular editors), which is about to merge into dev.</b> Matthew: \"The priority is our PR about modular editors x livelits --- it seems certain that modular editors are merging into dev soon, based on the team meeting yesterday.\" Andrew pushed #2469 overnight: it now stacks Modules II part 1 (#2493) and sends module values to the worker in pieces; #2635 lacks 200 of its commits, and a trial merge conflicts in 80 files (233 blocks: Statics.re 19, docs/modules.md 17, Test_Statics_Modules 15, DefStatics 14, Typ 12, ...). The merge base is dev's 962a7cb009 (10-19): #2469's history was rewritten since #2635 last merged it, so many conflicts may be the same change under new ids.",
+   "progress": "06:40 10-21: the merge started in a scratch worktree (~/hazel-merge-2635-469, branch merge/2635-with-2469 at 9933091a99, MERGE_HEAD b5eaa33031; nothing pushed); a workflow (eight readers, read-only, then a planner) maps every conflicted block and plans the resolution, for the 9:00 hour with Matthew."
   }
  ],
- "next_ticket": 512,
- "current_ticket": 389,
- "current_note": "06:37: Matthew back 06:36: meeting prep for Cyrus (20 min now, 9-10 together); overnight on Hazel: Andrew pushed #2469 (now stacks Modules II part 1, #2493) and #2687",
+ "next_ticket": 513,
+ "current_ticket": 512,
+ "current_note": "06:40: #2635's merge of today's #2469 (now with Modules II part 1): 80 files, 233 conflict blocks; mapping them (workflow) for the 9:00 hour",
  "closed_tickets": [
   {
    "id": 511,
@@ -7978,6 +7996,7 @@
   }
  ],
  "queue": [
+  512,
   389,
   465,
   481,
@@ -8018,7 +8037,7 @@
   493,
   508
  ],
- "current_since": "2026-10-21T06:37-06:00",
+ "current_since": "2026-10-21T06:40-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
@@ -8030,8 +8049,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 4882,
-  "words": 1093266,
+  "replies": 4883,
+  "words": 1093282,
   "read_hours_est": 76.6,
   "listen_hours_est": 113.9,
   "read_s_avg": 56,
@@ -8258,9 +8277,9 @@
     "chars": 149483
    },
    "2026-10-21": {
-    "replies": 19,
-    "words": 2569,
-    "chars": 14421
+    "replies": 20,
+    "words": 2585,
+    "chars": 14514
    }
   }
  },
