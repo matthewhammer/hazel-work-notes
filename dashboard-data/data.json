@@ -3048,7 +3048,7 @@
    "tags": [
     "low priority"
    ],
-   "progress": "18:48: minted from 0.0.385's speed run (imagination 41.1 fps, greenhouse 53.8 on GitHub's computer); 0.0.391's run will measure the three new places' cost."
+   "progress": "18:48: minted from 0.0.385's speed run (imagination 41.1 fps, greenhouse 53.8 on GitHub's computer); 0.0.391's run will measure the three new places' cost. 19:21: LOOKED (pane, 0.0.392): the imagination's picture is small (616 elements, no animations of its own: moving pictures are off), but its 37 framed pictures are still SVG images (data URIs of 46 to 256 KB each, 2.55 MB in all: pictureSvg's 'still' path, ticket 154). GitHub's Chrome draws without a GPU; 0.0.385's audit there: 41.1 fps with only 3.6 ms of the game's own drawing a frame, so the time is the browser's painting. LIKELY: an SVG image is kept as shapes, not pixels, so each repaint of a tile it lies in (the friend walking past the map) draws its thousands of shapes again. PLAN (a 🌙 run, after the features): turn each still into pixels once (an offscreen canvas at its drawn size times devicePixelRatio, WebP), in the live picture only, so saves, postcards and the archive keep the SVG; measure with a diagnostic speed run on GitHub (imagination, the greenhouse, the house's pictures) before releasing. First, 0.0.392's speed run (pending) says how much the three new places cost."
   }
  ],
  "next_ticket": 507,
