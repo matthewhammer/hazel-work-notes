@@ -3508,7 +3508,7 @@
    "source": "Claude, from ^ticket(512)'s re-timing (run 39629706470), 2026-10-21; Matthew's rule: performance is the highest priority",
    "url": "https://github.com/hazelgrove/hazel/pull/2635",
    "text": "<b>After merging today's #2469 into #2635 (5cb0d88a46), Kids' Choice's eye-size slider releases take 20 to 30% longer on GitHub's machines (median 196-292 ms against 154-262 ms before, slower in all 16 paired runs); find where the time goes and win it back.</b> Candidates the merge's review named: #2635's request-side sharing of the eval request, retired for #2469's per-definition pieces (it had cut a request from 478 KB to 18.5 KB); MakeTerm's memo handoff, replaced by #2469's shared parse seeding; ImpliedHole's ValueHash check, replaced by compare; ScrollWidth's and ProbeStagger's batching, replaced by AfterLayout. Measure on GitHub (CPU profiles of a release, before and after, by Hazel function), never on the laptop.",
-   "progress": "11:07 10-21: Matthew: \"go ahead, find the slowdown\". Two measurements on GitHub, none on the laptop: (1) the probe on the deployed builds (run 39640161622, six runners): per release, the main thread's script, layout and style time, the eval worker's messages (count, size, response time) and long tasks; (2) CPU profiles by Hazel phase and function through source maps: branches timing/2635-prof-before (the timing branch, #2635's code at 9933091a99) and timing/2635-prof-after (5cb0d88a46 with the same five timing commits cherry-picked), each building the release with inline maps and profiling twelve releases twice on three runners (runs 39640459012, 39640464709); only that workflow runs there. 11:21 10-21: the profiles came back, but before and after ran as two workflow runs and drew different runners (before: all six on the slow AMD EPYC 7763; after: 9V45, 9V74 and Xeon 8370C), so their main-thread phases cannot be compared. One reading survives the confound: the eval worker's own JS per release doubled (26 to 55 ms) even on the faster runners, as decoding a ~490 KB request would. The fix (share on top of #2469's pieces, branch perf/2635-share-pieces, not pushed): its test failed only because DefStatics caches the latest analysis and the test analyzed the edited program before posting the first; test reordered, rebuilding (-j 2). Next: push the branch so GitHub deploys it, then time pre-merge, merged and fixed side by side in each of eight jobs.",
+   "progress": "11:07 10-21: Matthew: \"go ahead, find the slowdown\". Two measurements on GitHub, none on the laptop: (1) the probe on the deployed builds (run 39640161622, six runners): per release, the main thread's script, layout and style time, the eval worker's messages (count, size, response time) and long tasks; (2) CPU profiles by Hazel phase and function through source maps: branches timing/2635-prof-before (the timing branch, #2635's code at 9933091a99) and timing/2635-prof-after (5cb0d88a46 with the same five timing commits cherry-picked), each building the release with inline maps and profiling twelve releases twice on three runners (runs 39640459012, 39640464709); only that workflow runs there. 11:21 10-21: the profiles came back, but before and after ran as two workflow runs and drew different runners (before: all six on the slow AMD EPYC 7763; after: 9V45, 9V74 and Xeon 8370C), so their main-thread phases cannot be compared. One reading survives the confound: the eval worker's own JS per release doubled (26 to 55 ms) even on the faster runners, as decoding a ~490 KB request would. The fix (share on top of #2469's pieces, branch perf/2635-share-pieces, not pushed): its test failed only because DefStatics caches the latest analysis and the test analyzed the edited program before posting the first; test reordered, rebuilding (-j 2). Next: push the branch so GitHub deploys it, then time pre-merge, merged and fixed side by side in each of eight jobs. 11:29: with the test fixed it composed correctly but shared nothing (118,863 bytes against 118,865): #2469's pieces are Marshal strings by the time they are posted, identified by the hash of their bytes, so sharing the request around them reaches no values. Redesigned on the branch: a piece is identified by its content's Merkle hash (ValueHash), held as content, and encoded only when posted, shared (ShareCodec, in order, each piece able to refer to the values of those before it); the worker resolves the references and checks the content hash (or, for a content too deep to hash, the bytes'). A piece it can't resolve is missing, so the client posts in full with both tables reset: no Resend loop. The test now also covers a lost worker table. Building (-j 2).",
    "log": [
     {
      "at": "2026-10-21T11:00-06:00",
@@ -3533,7 +3533,33 @@
    "source": "Matthew, 2026-10-21 11:2x, working synchronously with Alexander to review #2651 for merging today",
    "url": "https://github.com/hazelgrove/hazel/pull/2651",
    "text": "<b>A new Hazel report, ^report(24): how Hazel is architected today with respect to #2651 (Statics: a module binding analyzes its definition once, not twice), its major subsystems, the representations they share and the protocols between them, with as many visuals as it takes, and the PR's changes drawn in terms of those subsystems.</b> Matthew: \"I've only been testing functional correctness, and never reviewing code arch, or code arch changes --- please help me get more oriented.\" For: Matthew, Alexander, Cyrus and the rest of the team. \"Please use as many visuals as necessary -- spare no expense.\"",
-   "progress": ""
+   "progress": "",
+   "log": [
+    {
+     "at": "2026-10-21T11:13-06:00",
+     "from": "claude",
+     "chars": 1638,
+     "asks": false,
+     "words": 268,
+     "read_s": 68,
+     "listen_s": 100,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-21T11:14-06:00",
+     "from": "matthew",
+     "chars": 635,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-21T11:15-06:00",
+     "from": "matthew",
+     "chars": 83,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 515,
@@ -8262,7 +8288,7 @@
   },
   "since": "2026-08-27",
   "replies": 4893,
-  "words": 1095701,
+  "words": 1095735,
   "read_hours_est": 76.7,
   "listen_hours_est": 114.1,
   "read_s_avg": 56,
@@ -8490,8 +8516,8 @@
    },
    "2026-10-21": {
     "replies": 30,
-    "words": 5004,
-    "chars": 28801
+    "words": 5038,
+    "chars": 29010
    }
   }
  },
