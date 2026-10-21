@@ -3818,7 +3818,7 @@
      "note": "from the transcripts"
     }
    ],
-   "progress": "14:18: designed (a read-only workflow: the library, Hazel's editor stack, the panel; two designs; a judge). The library has no UI: analyze/run on text, 2.79 MB, haz3lcore only; the editor's model is already in it, its view and input are in `web`. Chosen: STAGED, the frame first: Hazel's own app in an iframe from the hazel.org branch build in a new #embed mode (postMessage), the shared core built once (Mod-root editing, a ModuleProgram stitch like exercise mode, Hazel.runProgram, a DOM-free editor model, an iPad input proxy), Hazel.mountEditor in the page later only if the devices or Matthew call for it. Steps: (1) embed skeleton, read-only tiles of the program under the text boxes; (2) the shared core with node tests; (3) the trap room's editor as tiles, the lever running what they hold; (4) Common in tiles, errors per module; (5) iPad typing. Defaults taken unless Matthew says otherwise: frame first; a PR stacked on #2711; stacked editors (chips past three); load from the live branch build. Asked: those four, and pushing 2d5397d6ad (the tag check) to #2711. 15:38: MILESTONE A done (workflow: core, embed, two reviews, a fixer; 10 of 11 findings fixed, the 11th is the browser check): js-library-embed, 5 commits on #2711's 77059807e9 (61d8bf6f2b Mod root + ModuleProgram; d199727281 analyzeProgram/runProgram; 0ae6120f35 Hazel.build; 4538863089 #embed mode; 0d66c36618 the review's fixes). Tests: ModuleProgram 13, HazelLib 21, Embed 10, Statics.Modules 74, MakeTerm 45, ImpliedHole 17, Introduce 17; runProgram = the page's text join on the panel's four rules. Pushed; DRAFT PR hazelgrove/hazel#2719, stacked on #2711 (base js-library; its description says to retarget to dev before #2711 merges with --delete-branch), bound to this session. Next: its deploy, then #embed checked in the browser pane; then milestone B in the game (a frame under the text boxes; the levers through runProgram). 16:06: milestone B started (workflow, in ~/kcg-scripting on scripting-panel = PR #1): the frame of #embed under the text boxes, the levers through runProgram with the text join as fallback, scripting482 extended; written against #2719's protocol while hazel.org serves its build (Pages run in progress)."
+   "progress": "14:18: designed (a read-only workflow: the library, Hazel's editor stack, the panel; two designs; a judge). The library has no UI: analyze/run on text, 2.79 MB, haz3lcore only; the editor's model is already in it, its view and input are in `web`. Chosen: STAGED, the frame first: Hazel's own app in an iframe from the hazel.org branch build in a new #embed mode (postMessage), the shared core built once (Mod-root editing, a ModuleProgram stitch like exercise mode, Hazel.runProgram, a DOM-free editor model, an iPad input proxy), Hazel.mountEditor in the page later only if the devices or Matthew call for it. Steps: (1) embed skeleton, read-only tiles of the program under the text boxes; (2) the shared core with node tests; (3) the trap room's editor as tiles, the lever running what they hold; (4) Common in tiles, errors per module; (5) iPad typing. Defaults taken unless Matthew says otherwise: frame first; a PR stacked on #2711; stacked editors (chips past three); load from the live branch build. Asked: those four, and pushing 2d5397d6ad (the tag check) to #2711. 15:38: MILESTONE A done (workflow: core, embed, two reviews, a fixer; 10 of 11 findings fixed, the 11th is the browser check): js-library-embed, 5 commits on #2711's 77059807e9 (61d8bf6f2b Mod root + ModuleProgram; d199727281 analyzeProgram/runProgram; 0ae6120f35 Hazel.build; 4538863089 #embed mode; 0d66c36618 the review's fixes). Tests: ModuleProgram 13, HazelLib 21, Embed 10, Statics.Modules 74, MakeTerm 45, ImpliedHole 17, Introduce 17; runProgram = the page's text join on the panel's four rules. Pushed; DRAFT PR hazelgrove/hazel#2719, stacked on #2711 (base js-library; its description says to retarget to dev before #2711 merges with --delete-branch), bound to this session. Next: its deploy, then #embed checked in the browser pane; then milestone B in the game (a frame under the text boxes; the levers through runProgram). 16:06: milestone B started (workflow, in ~/kcg-scripting on scripting-panel = PR #1): the frame of #embed under the text boxes, the levers through runProgram with the text join as fallback, scripting482 extended; written against #2719's protocol while hazel.org serves its build (Pages run in progress). 16:14: hazel.org had not served #2719's build after 30 min (hazelgrove/build's Pages runs keep being cancelled by newer deploys; the folder is on its main). So CHECKED IN THE BROWSER PANE from a local copy of the deployed build (the build mirror reset to origin/main, js-library-embed linked under 8133 at /embed-520/): index.html#embed starts the embed app (Hazel's page replaced by the embed view); a set message with the panel's program (preamble, Common, TrapRoom with Flip(1, Done), tail) draws it as Hazel's own tiles, colours and layout, with red error marks on the 1 and on 1, Done; the frame posts size 50 -> 233 -> 234 and status {ok: false, errors: two, both TrapRoom's, with ids and messages}. Milestone A's 11th finding (the browser check) closed. To trim later: the embed still parses the documentation slides at startup (SLOW PARSE lines). Milestone B (the game side) is being built."
   },
   {
    "id": 521,
@@ -8667,9 +8667,9 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 4954,
-  "words": 1102960,
-  "read_hours_est": 77.2,
+  "replies": 4956,
+  "words": 1103308,
+  "read_hours_est": 77.3,
   "listen_hours_est": 114.9,
   "read_s_avg": 56,
   "listen_s_avg": 83,
@@ -8895,9 +8895,9 @@
     "chars": 149483
    },
    "2026-10-21": {
-    "replies": 91,
-    "words": 12263,
-    "chars": 72297
+    "replies": 93,
+    "words": 12611,
+    "chars": 74328
    }
   }
  },
