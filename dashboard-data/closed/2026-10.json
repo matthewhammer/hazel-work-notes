@@ -1,5 +1,72 @@
 [
  {
+  "id": 511,
+  "area": "dress up, performance: the simple cauldron fumes 11% slower than 0.0.129's on a slow runner (fumes205)",
+  "added": "2026-10-21T03:38-06:00",
+  "opened": "2026-10-21T03:38-06:00",
+  "status": "done",
+  "tags": [
+   "long run"
+  ],
+  "chips": [
+   "dress up",
+   "performance"
+  ],
+  "source": "Claude, from PR #1's run 39567748274 (2026-10-21 03:36): fumes205 failed there, nothing to do with the panel",
+  "text": "<b>fumes205 (ticket 205's check: 15 cauldrons, 0.0.129's simple fumes and today's taking turns on one computer) failed on a slow runner: today's 50.3 to 51.8 fps against 0.0.129's 56.7 to 57.8, an 11% loss where it allows 10.</b> On fast runners both sit at 60, so it shows only on the slower ones. Today's simple fumes slide a 13-stop gradient band up each strand (Matthew's ticket 205: closer to the fancy ones); 0.0.129's were a plain stroke. Measure whether fewer stops (7) keep the look and win the frames back, on eight runners, before and after taking turns.",
+  "progress": "03:40 10-21: fumes205 is sound (the two fumes take turns on one computer, the order turned each round, so the runner cancels out); on fast runners both cap at 60, hiding the gap. Measuring: diag-511 (39578674588), eight runners, fumes205 against main (13 stops) and against 7 stops, twice in turn. 03:45: MEASURED (diag-511, 39578674588, eight runners, 13 and 7 stops twice in turn on each, as fumes205's ratio of today's to 0.0.129's): on the three AMD EPYC 7763s 13 stops ran 5 to 8% behind, 7 stops 0 to 3.5% (6 of 6 pairs better); the faster runners 60 either way (two late 9V74 readings: equal, or 7 a little better). Absolute numbers fell in round 2 everywhere (the long-Chrome effect of ^ticket(510), which also swelled PR #1's 11%). Seven stops look the same to the eye (rendered side by side, enlarged). 0.0.397 RELEASED and LIVE 03:44 (f9a461b, tag dress-up-0.0.397): the band with seven stops. Its speed run 39579220956, the first with the audit in a fresh Chrome (f948378), running. 05:01: 0.0.397's SPEED RUN (39579220956) recorded 'ok': 192 checks (fumes205 60.4 against 0.0.129's 60.3 there, a fast runner), the gates at 55 or more, no leak errors; and the AUDIT, the first in a Chrome of its own (f948378), ran all 56 places, every one at 58 or more.",
+  "log": [
+   {
+    "at": "2026-10-21T03:32-06:00",
+    "from": "claude",
+    "chars": 900,
+    "asks": false,
+    "words": 161,
+    "read_s": 41,
+    "listen_s": 60,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-21T03:41-06:00",
+    "from": "claude",
+    "chars": 365,
+    "asks": false,
+    "words": 71,
+    "read_s": 18,
+    "listen_s": 27,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-21T03:47-06:00",
+    "from": "claude",
+    "chars": 437,
+    "asks": false,
+    "words": 74,
+    "read_s": 19,
+    "listen_s": 28,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-21",
+  "closed_at": "2026-10-21T05:01-06:00",
+  "outcome": "0.0.397: the simple fumes' band with seven stops: 5-8% behind 0.0.129's on slow runners -> 0-3.5%, the same to the eye; 0.0.397's speed run ok, its audit (now in a fresh Chrome) all 56 at 58+",
+  "metrics": {
+   "open_minutes": 83,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 1702,
+   "tokens_est": 425,
+   "sync_minutes_est": 15.0,
+   "replies": 3,
+   "claude_words": 306,
+   "read_minutes_est": 1.3,
+   "listen_minutes_est": 1.9,
+   "read_s_avg": 26,
+   "listen_s_avg": 38,
+   "work_minutes": 25.0
+  }
+ },
+ {
   "id": 510,
   "area": "dress up, performance: 🧚 the fairy forest at 49.5 fps on GitHub, its scenery already held still",
   "added": "2026-10-21T01:49-06:00",
