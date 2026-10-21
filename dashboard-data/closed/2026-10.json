@@ -7064,6 +7064,13 @@
     "read_s": 106,
     "listen_s": 158,
     "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-21T00:26-06:00",
+    "from": "matthew",
+    "chars": 10604,
+    "asks": false,
+    "note": "from the transcripts"
    }
   ],
   "text": "<b>Dress Up: the 🏞️ Background tab open, walking at 60 frames a second, as with every other tab.</b> 0.0.327's speed run's tabs check: every tab 59.5-60 fps while walking, but 🏞️ Background 56 fps, 7% of frames late. Its controls' refresh (4,239 syncs, 6.6 ms in the app's pane after 0.0.323's fix) runs all at once every 250 ms while the friend moves (settle), a late frame each time; on the black laptop, about twice as long. Matthew's rule: 60 fps first.",
@@ -7072,10 +7079,10 @@
   "outcome": "The tabs check (tabs167, GitHub's Chrome, swimming in the duck pond with each tab open): 🏞️ Background 56 fps with 7% of frames late in 0.0.327's run -> 55 fps, 0% late after 0.0.328 -> 59.8 fps, 0% late after 0.0.329 (diag-329), with every other tab. 0.0.328 (7f7bd08): settle runs the round of syncs in 3 ms slices, one a frame, while the friend moves (whole when still). 0.0.329 (1c00de1): a sync writes the page only where a value changed (setPressed/setHidden/setText, the castles' go-to chips, the objects list's friend chip, figPos's picture): one round in Background wrote 3,995 times (3,773 the same value, each a restyle of the panel), now 0 when nothing moved; a 3 s swim 45,589 writes -> a handful. diag-329 also ran knoll375, castle365, crossing185, settings109: all passing. The rule written into agent-instructions.md: compare, then write.",
   "metrics": {
    "open_minutes": 18,
-   "matthew_messages": 0,
+   "matthew_messages": 1,
    "questions_to_matthew": 0,
-   "chars_exchanged": 2344,
-   "tokens_est": 586,
+   "chars_exchanged": 12948,
+   "tokens_est": 3237,
    "sync_minutes_est": 0,
    "work_minutes": 15.0,
    "replies": 1,
@@ -20306,6 +20313,13 @@
     "read_s": 305,
     "listen_s": 453,
     "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-21T00:26-06:00",
+    "from": "matthew",
+    "chars": 10604,
+    "asks": false,
+    "note": "from the transcripts"
    }
   ],
   "progress": "21:25: minted; queued tonight, right after ^ticket(176). | 21:35: read the code (no browser): while moving on a slow-marked computer, showStillPic hides the scene (visibility) and shows the parts' PNG bitmaps (stillPart, 0.0.93). A part is 'ready' on the <image>'s load event, which is not decode: a browser may paint the first frame of a newly shown screen-size PNG before decoding it, and with the scene hidden that frame is the page's white. Parts change as the friend passes an object's depth, so it can recur along a walk. Proposed: decode each picture before it counts as ready (decode(), or a decoded Image of the same URL kept alive), and decoding=\"sync\" on the <image>. To verify on GitHub's Chrome: a check that records a walk and a drag frame by frame (CDP screencast) with the still pictures forced on, counting frames mostly white, main against the branch. Unverified so far. | 21:42: branch flash-177 pushed (81e30ed, kids-choice-games; not released): a part is ready only once decoded (img.decode() where it exists, an Image of the same URL kept beside it, decoding=sync). Its check, tools/checks/flash177.mjs, runs on GitHub's Chrome: still pictures forced on (SPEED_TEST.still), walks and a drag in 5 places, every screencast frame scored for how much of the picture is the colour behind it, this branch against main. | 22:04: GitHub's headless Chrome draws NO blank frame on main either (flash177: 0 of ~1,700 frames, 5 places, walks and a drag, still pictures forced on; the colour behind the picture is the paper, #fffdf7). So the flash is another browser's (Firefox's or Safari's image decoding), not reproducible there. Added a browser-independent second defence (628b3a1): a picture shown for the first time keeps the scene visible under it until two frames on. Branch flash-177 (not released) has both. Waiting on Matthew: which computers and browsers flash, and a try of the branch (or a release) on them. | 22:50: flash-177 (628b3a1) GREEN (run 39001183343): both defences in; headless Chrome shows no blank frame on main either. | 06:32: both defences RELEASED in 0.0.95 (live). Waiting on Matthew: try 0.0.95 on the computers and browsers that flashed (which were they?), walking and dragging. | 09:49: 0.0.116 RELEASED: the still pictures were never ready in Chrome since 0.0.95 (this ticket's flash fix waited for the <image>'s load, which Chrome never fires; stills164 found it on GitHub, run 39046117550). That wait is now at most 250 ms; the gate's still-pictures cases read 99-100% (were 0%). Still waiting on Matthew: try the devices that flashed.",
@@ -20314,10 +20328,10 @@
   "outcome": "Matthew, 2026-10-17: no flashes in any recent version on the four devices he tests with (his phone the fourth). What went out: both defences in Dress Up 0.0.95 (628b3a1, branch flash-177): a still picture counts as ready only once decoded (decode(), an Image of the same URL kept beside it, decoding=sync), and a picture shown for the first time keeps the scene visible under it until two frames on. 0.0.95's wait for the load event, which Chrome never fires, kept the still pictures off in Chrome; fixed in 0.0.97 (decode() waits at most a quarter second, d8e7470) and 0.0.116 (f98b766; stills164 checks it). GitHub's headless Chrome never showed the flash (flash177: 0 of about 1,700 frames on main too), so his devices are the evidence.",
   "metrics": {
    "open_minutes": 969,
-   "matthew_messages": 1,
+   "matthew_messages": 2,
    "questions_to_matthew": 0,
-   "chars_exchanged": 7587,
-   "tokens_est": 1896,
+   "chars_exchanged": 18191,
+   "tokens_est": 4547,
    "sync_minutes_est": 0,
    "replies": 1,
    "claude_words": 1208,
@@ -23813,6 +23827,13 @@
     "read_s": 389,
     "listen_s": 578,
     "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-21T00:26-06:00",
+    "from": "matthew",
+    "chars": 10604,
+    "asks": false,
+    "note": "from the transcripts"
    }
   ],
   "status": "done",
@@ -23826,10 +23847,10 @@
   "outcome": "Dress Up 0.0.93 (eebaa60): on a slow computer the place is still pictures drawn as BITMAPS while the friend moves (and choppy windows of 60 frames). Confirmed by Matthew's 🧪 on 0.0.94 on both kids' devices (2026-10-16 21:05): the duck pond as a still bitmap 60 fps on the iPad (Safari), 57 on the black laptop (Firefox 136), against 22 and 27 drawn live on 0.0.92. The live pond stays slow (26 / 30) and is what a fast computer draws.",
   "metrics": {
    "open_minutes": 356,
-   "matthew_messages": 20,
+   "matthew_messages": 21,
    "questions_to_matthew": 1,
-   "chars_exchanged": 26037,
-   "tokens_est": 6509,
+   "chars_exchanged": 36641,
+   "tokens_est": 9160,
    "sync_minutes_est": 48.0,
    "replies": 15,
    "claude_words": 2234,
