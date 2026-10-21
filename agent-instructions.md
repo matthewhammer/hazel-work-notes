@@ -120,6 +120,11 @@ The dashboard's code has a version number, `VERSION` in `dashboard/update.py`, w
   - Only touch Matthew's own PRs.
   - Work on #2597's branch (`integration/livelits-splicerefs-full`) first, then cherry-pick to #2635 and push both.
   - Turn on auto-fix for a PR when Matthew asks.
+- **GitHub comments** (2026-10-21):
+  - **Anything an agent writes on GitHub starts with 🤖:** a comment on a PR or an issue, a review and its review comments, and a PR or issue description it writes or edits. It is Alexander Bandukwala's preference, passed on by Matthew: "I do have a preference if we use the ai for comments to put a :robot_face: in the comment". Put the character 🤖 itself at the start of the body: `:robot_face:` is Slack's name for it and GitHub does not render it (GitHub's is `:robot:`).
+  - Ask Matthew before posting, and post with `gh ... --body-file` and a quoted heredoc.
+  - Link the published pages under https://matthewhammer.org/hazel/ (the reports, the dashboard, the work notes) freely in a comment (Matthew, 2026-10-21); never a `localhost` address.
+  - Reviewers may answer on the PR itself (Alexander moved his #2651 feedback there, 2026-10-21): read its comments (`gh pr view N --comments`), its reviews (`gh api repos/hazelgrove/hazel/pulls/N/reviews`, whose bodies `--comments` does not show) and its review comments (`.../pulls/N/comments`).
 
 ## `data.json` fields
 
