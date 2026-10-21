@@ -2875,6 +2875,43 @@
      "read_s": 20,
      "listen_s": 30,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T22:11-06:00",
+     "from": "matthew",
+     "chars": 11,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T22:11-06:00",
+     "from": "claude",
+     "chars": 7183,
+     "asks": false,
+     "words": 1233,
+     "read_s": 311,
+     "listen_s": 462,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T22:12-06:00",
+     "from": "claude",
+     "chars": 141,
+     "asks": false,
+     "words": 23,
+     "read_s": 6,
+     "listen_s": 9,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T22:14-06:00",
+     "from": "claude",
+     "chars": 116,
+     "asks": false,
+     "words": 21,
+     "read_s": 5,
+     "listen_s": 8,
+     "note": "from the transcripts"
     }
    ]
   },
@@ -3052,7 +3089,105 @@
    ],
    "source": "Matthew, 2026-10-20 22:13, in chat, after it happened again",
    "text": "<b>A record: this session fails in a funny way, becoming a very useless cloud-based session, then coming back with its desktop abilities. Twice so far.</b> Matthew: \"Log in our records -- you fail in a funny way where you become a very useless \\\"cloud-based\\\" session, and then you come back with desktop abilities. It happened last night.\" \"You're wasting a lot of my time by doing that.\" \"It happened just now.\" (1) 2026-10-19 about 19:10: after a desktop app update, a cloud-only session with none of our local context; the laptop did not crash. (2) 2026-10-20 about 22:10: right after the archive-494c push went through (its shell killed, exit 137), the session ended; back at 22:12 on \"Keep going.\" (special minutes, 2 min), same boot (up since 15:27). Each time the background watchers were lost.",
-   "progress": "22:21 10-20: WHAT THE LOGS SHOW (the app's ~/.config/Claude/logs/main.log and the system journal; read-only). TONIGHT: from 22:07:09 to 22:10:10 the app was launched six more times while it ran (each copy handed over and quit: \"Quit requested before 'ready'\"); 22:10:53 the GNOME search opened, 22:10:54 a GNOME Terminal started; 22:10:59 the app's processes were terminated (its zygote gone, the network service \"killed, exitCode=15\", then 20 GPU process deaths in 49 ms, and the app's crash guard: \"terminal crash loop, action: exit\"); this session's Claude Code process \"exited with code 143\" (SIGTERM), which also killed the archive push's shell (137). 22:11:06 the app started fresh; 22:11:24 this local session was reattached when it was opened (warmed in 145 ms, the same transcript); 22:11:55 his \"Keep going.\" LAST NIGHT: 19:20:20-19:20:25 apt upgraded claude-desktop 2.42304.0 to 2.42304.2 (apt-get install, as matthew); 19:21:02 the same signature (the network service killed, exit 15; 20 GPU deaths in 59 ms, action: relaunch; Claude Code exited 143). So last night's came from the app's update; tonight's had no update (no apt activity), and the logs do not say what terminated the app at 22:10:59. Either way the laptop did not crash (same boot, up since 15:27)."
+   "progress": "22:21 10-20: WHAT THE LOGS SHOW (the app's ~/.config/Claude/logs/main.log and the system journal; read-only). TONIGHT: from 22:07:09 to 22:10:10 the app was launched six more times while it ran (each copy handed over and quit: \"Quit requested before 'ready'\"); 22:10:53 the GNOME search opened, 22:10:54 a GNOME Terminal started; 22:10:59 the app's processes were terminated (its zygote gone, the network service \"killed, exitCode=15\", then 20 GPU process deaths in 49 ms, and the app's crash guard: \"terminal crash loop, action: exit\"); this session's Claude Code process \"exited with code 143\" (SIGTERM), which also killed the archive push's shell (137). 22:11:06 the app started fresh; 22:11:24 this local session was reattached when it was opened (warmed in 145 ms, the same transcript); 22:11:55 his \"Keep going.\" LAST NIGHT: 19:20:20-19:20:25 apt upgraded claude-desktop 2.42304.0 to 2.42304.2 (apt-get install, as matthew); 19:21:02 the same signature (the network service killed, exit 15; 20 GPU deaths in 59 ms, action: relaunch; Claude Code exited 143). So last night's came from the app's update; tonight's had no update (no apt activity), and the logs do not say what terminated the app at 22:10:59. Either way the laptop did not crash (same boot, up since 15:27).",
+   "log": [
+    {
+     "at": "2026-10-20T22:13-06:00",
+     "from": "matthew",
+     "chars": 220,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T22:13-06:00",
+     "from": "matthew",
+     "chars": 21,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T22:13-06:00",
+     "from": "matthew",
+     "chars": 12,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T22:13-06:00",
+     "from": "matthew",
+     "chars": 17,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T22:13-06:00",
+     "from": "claude",
+     "chars": 813,
+     "asks": false,
+     "words": 148,
+     "read_s": 37,
+     "listen_s": 56,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T22:14-06:00",
+     "from": "matthew",
+     "chars": 3,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T22:14-06:00",
+     "from": "matthew",
+     "chars": 90,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T22:14-06:00",
+     "from": "claude",
+     "chars": 764,
+     "asks": false,
+     "words": 133,
+     "read_s": 34,
+     "listen_s": 50,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T22:14-06:00",
+     "from": "claude",
+     "chars": 575,
+     "asks": false,
+     "words": 110,
+     "read_s": 28,
+     "listen_s": 41,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T22:15-06:00",
+     "from": "matthew",
+     "chars": 26,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T22:15-06:00",
+     "from": "matthew",
+     "chars": 60,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-20T22:15-06:00",
+     "from": "claude",
+     "chars": 185,
+     "asks": false,
+     "words": 38,
+     "read_s": 10,
+     "listen_s": 14,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 509,
@@ -7747,10 +7882,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 4854,
-  "words": 1088903,
+  "replies": 4855,
+  "words": 1089431,
   "read_hours_est": 76.3,
-  "listen_hours_est": 113.4,
+  "listen_hours_est": 113.5,
   "read_s_avg": 57,
   "listen_s_avg": 84,
   "days": {
@@ -7970,9 +8105,9 @@
     "chars": 171153
    },
    "2026-10-20": {
-    "replies": 99,
-    "words": 24111,
-    "chars": 139106
+    "replies": 100,
+    "words": 24639,
+    "chars": 142140
    }
   }
  },
