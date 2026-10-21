@@ -2631,7 +2631,7 @@
    "source": "Matthew, 2026-10-20 09:3x, in chat",
    "url": "",
    "text": "<b>Time opening every documentation slide on each PR, on GitHub's machines, say what dominates each one's cost, and keep tracking it with the performance PRs applied.</b> Matthew: \"timing on Github (not my machine): * time to open the documentation slides on each PR, including each livelit slide. * for each one, what is the dominate time cost? Or is it heavily mixed? * let's start tracking this (all with our performance PRs applied), and see if we can keep improving things, in terms of loading time.\" So: a CI job (no browser on the laptop) that opens each slide of the documentation and livelit decks on each of our PRs (#2597, #2635, and the #2609 performance PRs, stacked), records the time to a settled view, and splits it by phase (parse, statics, elaboration, evaluation, measure and draw); a series of these runs over time, in the reports series.",
-   "progress": "15:52 10-20 PARKED for the Dress Up sprint (Matthew: \"let's switch to all dress-up tickets for a sprint -- for at least 3 hours\"). DONE: f6e9b1c4a6 on timing/2635 (pushed; its GitHub run is the next data): phases.py --emit-map writes each bundle's phase by line and column before timing; profile.mjs charges time in the runtime, the OCaml libraries, src/util, unmapped code and browser builtins to the nearest Hazel caller; phases.py adds the charged table and the Hazel functions charged with the most library time. Tested here on a synthetic bundle and profile (no browser). FOUND: #2597's run 39482019681 'failed' because time_slides.mjs HUNG, not a slow slide: Full Body and Witch never showed the editor (171 s idle, 7 s JS, 6 DOM changes, no page errors), then the next slide's DevTools call never answered and node exited 13 (unsettled top-level await), losing the slides after Witch (Scenes). NEXT: (1) in time_slides.mjs, give send() a timeout (LIMIT + 60 s) and reject pending calls when the socket closes, record the error per slide and go on; (2) cherry-pick a100d7e41a..f6e9b1c4a6's new commit plus that fix onto timing/2597-local (~/hazel-timing-2597) and push timing/2597; (3) read both runs' charged tables; (4) why #2597's Full Body and Witch never open (a /fresh redirect that never happened? the heap after Mouth's 1 GB?).",
+   "progress": "15:52 10-20 PARKED for the Dress Up sprint (Matthew: \"let's switch to all dress-up tickets for a sprint -- for at least 3 hours\"). DONE: f6e9b1c4a6 on timing/2635 (pushed; its GitHub run is the next data): phases.py --emit-map writes each bundle's phase by line and column before timing; profile.mjs charges time in the runtime, the OCaml libraries, src/util, unmapped code and browser builtins to the nearest Hazel caller; phases.py adds the charged table and the Hazel functions charged with the most library time. Tested here on a synthetic bundle and profile (no browser). FOUND: #2597's run 39482019681 'failed' because time_slides.mjs HUNG, not a slow slide: Full Body and Witch never showed the editor (171 s idle, 7 s JS, 6 DOM changes, no page errors), then the next slide's DevTools call never answered and node exited 13 (unsettled top-level await), losing the slides after Witch (Scenes). NEXT: (1) in time_slides.mjs, give send() a timeout (LIMIT + 60 s) and reject pending calls when the socket closes, record the error per slide and go on; (2) cherry-pick a100d7e41a..f6e9b1c4a6's new commit plus that fix onto timing/2597-local (~/hazel-timing-2597) and push timing/2597; (3) read both runs' charged tables; (4) why #2597's Full Body and Witch never open (a /fresh redirect that never happened? the heap after Mouth's 1 GB?). 18:55 10-20 (Matthew AFK, during the Dress Up builds): STEP 1 DONE, 3577733690 on timing/2635 (pushed): every DevTools call answers or fails (SLIDE_CALL_MS 60 s; while polling, what is left of the limit), a socket that closes or errs fails its calls and its opening at once, the slide's line carries the error (\"stuck\" when the main thread stays busy past the limit), the next slide runs, the script exits when done; summary.py shows such a slide's error and counts them. Tested against a fake DevTools that never answers and one that refuses: 3 slides recorded, exit 0. STEP 2 DONE: f6e9b1c4a6 and 3577733690 cherry-picked onto timing/2597-local (98d240f2d2, 356a9f3771), pushed to timing/2597 (HEAD:refs/heads/timing/2597; its upstream is #2597's own branch, never pushed there). Runs started: timing/2635 slide timing 39524173735, timing/2597 slide timing 39524190956. NEXT: (3) read both runs' charged tables when they finish; (4) why #2597's Full Body and Witch never open.",
    "log": [
     {
      "at": "2026-10-20T09:23-06:00",
@@ -2994,7 +2994,7 @@
    "tags": [
     "long run"
    ],
-   "progress": "16:47 10-20: STARTED on GitHub (the day's releases done, 0.0.376-0.0.382): branch archive-494 (fa33bd1, off main f65360d, only the archive workflow + ticket 455's clip audit; never merged), run 39510534461 'Dress Up archive' (pictures and music; with ARCHIVE_TOKEN it adds the runs to dress-up-pictures and dress-up-music itself). A slip on the way: a first push of archive-494 went out at main's commit (a heredoc broke my && chain) and queued a 'Dress Up tests' run (39510472779): cancelled. NEXT: read the archive run (its summary: changed drawings by folder, the clip audit); OBJECTS.md from the speed run's objects180 output (0.0.382's run, after 0.0.376's) with tools/objects_md.py. 17:45: 0.0.376's speed run: broken (crumbs491: my 2-px bound, 3 px measured; occlude261: the cave room's dark vignette counted as covering 13 drawings). Ultracode review workflow (27 agents) over 0.0.376-0.0.385: 11 findings, all confirmed by 2 skeptics, all fixed in 0.0.386 (462cfa2): passage tap/click goes through (was dragged); passages only to enterable places (not sea/deepsea); the cave room's roof inside the ceiling object; placed things keyed on LFO stamps; the sky faces the noon sun (Quito had no sun Oct-Mar); tent windows keyed on time; star rows at night by the clock; whole minutes; World design alert amber; people away keep horses; plus cavethings471's node regex. A second workflow is reviewing the fixes. OBJECTS.md waits for the last release's speed run (its objects180 output). 18:51: still running on GitHub (run 39510534461, step 'The run's pictures', since 16:46): reading it when it ends.",
+   "progress": "16:47 10-20: STARTED on GitHub (the day's releases done, 0.0.376-0.0.382): branch archive-494 (fa33bd1, off main f65360d, only the archive workflow + ticket 455's clip audit; never merged), run 39510534461 'Dress Up archive' (pictures and music; with ARCHIVE_TOKEN it adds the runs to dress-up-pictures and dress-up-music itself). A slip on the way: a first push of archive-494 went out at main's commit (a heredoc broke my && chain) and queued a 'Dress Up tests' run (39510472779): cancelled. NEXT: read the archive run (its summary: changed drawings by folder, the clip audit); OBJECTS.md from the speed run's objects180 output (0.0.382's run, after 0.0.376's) with tools/objects_md.py. 17:45: 0.0.376's speed run: broken (crumbs491: my 2-px bound, 3 px measured; occlude261: the cave room's dark vignette counted as covering 13 drawings). Ultracode review workflow (27 agents) over 0.0.376-0.0.385: 11 findings, all confirmed by 2 skeptics, all fixed in 0.0.386 (462cfa2): passage tap/click goes through (was dragged); passages only to enterable places (not sea/deepsea); the cave room's roof inside the ceiling object; placed things keyed on LFO stamps; the sky faces the noon sun (Quito had no sun Oct-Mar); tent windows keyed on time; star rows at night by the clock; whole minutes; World design alert amber; people away keep horses; plus cavethings471's node regex. A second workflow is reviewing the fixes. OBJECTS.md waits for the last release's speed run (its objects180 output). 18:51: still running on GitHub (run 39510534461, step 'The run's pictures', since 16:46): reading it when it ends. 18:58: CANCELLED run 39510534461: stuck 2 h 10 min in 'The run's pictures (archive.mjs)' (started 22:46:52Z, no update since; the earlier archive runs took 45-50 min), most likely the same hang as ^ticket(470)'s slide timing (a DevTools call that never answers). NEXT: give the archive repo's tools/archive.mjs the same call timeouts (time_slides.mjs, 3577733690), then a fresh run at the next release (0.0.392, with the desert, the farm yard, the pasture, the animals, the dragon, the armour), then OBJECTS.md from it.",
    "log": [
     {
      "at": "2026-10-20T16:56-06:00",
@@ -3142,8 +3142,8 @@
   }
  ],
  "next_ticket": 507,
- "current_ticket": 499,
- "current_note": "18:51: AFK protocol (Matthew 18:51: \"keep going, I'm AFK\"): four builds in parallel (the dragon costume, fire breathing, the horse's armour, the stable's hens up to 30); then merge, look, release.",
+ "current_ticket": 470,
+ "current_note": "18:55: While the four Dress Up builds run (Matthew AFK): the slide-timing fix pushed to both timing branches; their GitHub runs started (39524173735, 39524190956).",
  "closed_tickets": [
   {
    "id": 495,
@@ -7721,12 +7721,12 @@
   }
  ],
  "queue": [
+  470,
   499,
   498,
   506,
   494,
   490,
-  470,
   411,
   462,
   468,
@@ -7764,7 +7764,7 @@
   460,
   493
  ],
- "current_since": "2026-10-20T18:49-06:00",
+ "current_since": "2026-10-20T18:55-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
