@@ -86,6 +86,7 @@ Text already inside a link is left alone. Give a ticket a `url` only when it has
 - **Launch entries are named with their PR,** such as `#2635 hazel-livelits-modular` or `fumola#129 fumola-pages-wt`. Rename an entry when its worktree's branch, and so its PR, changes. The app runs at most 5 preview servers per worktree, so stopping one may be needed to start another.
 - **Always tell Matthew the port, and what build it serves,** in chat. Never put local ports in a PR description: there, say "in the browser".
 - **The AFK protocol** (Matthew, 2026-10-19: "keep going and signal with 'blocked on Matthew' for any ticket that needs me. let's be efficient, and asynchronous!"). While Matthew is away, never stop to wait. A ticket that needs his answer is tagged "blocked on Matthew" (with `waiting`), its question goes in its progress, and work moves to the next ticket in the queue (`now.py`). A wait on CI is not a reason to stop either: leave a background watch on it and work on something else until it reports.
+- **Special minutes** (Matthew, 2026-10-20: "everytime I have to remind you to 'keep going' please log in the dashboard as 'special minutes'"). When he has to remind Claude to keep working, log it in the same turn, `python3 ~/localhost-index/special_minutes.py "<his words>" "<what Claude had stopped on>" <idle since HH:MM>`, and get back to the queue. The better rule is to need none: never end a turn while the queue holds work that waits on nothing.
 
 ## Versions
 
@@ -124,6 +125,7 @@ The dashboard's code has a version number, `VERSION` in `dashboard/update.py`, w
 
 - `ports`: rows with `pr`, `repo`, `branch`, optional `base`, and `links` as `[text, url]` pairs. A row without a PR has `name`, `repo_html`, `branch`, an optional `branch_note`, and `links`.
 - `tracking_issue`: 2609.
+- `special_minutes`: `{at, since, idle_minutes, words, stopped_on}`, oldest first: each time Matthew had to remind Claude to keep going.
 - `perf_prs`, `integration_prs`: PR numbers.
 - `other_prs`: `{pr, note}`.
 - `repos`: `{repo, branch, versions, live, note}`. `versions` is `[label, path of a VERSIONS.md]` pairs; `live` is `[text, url]` pairs; `note` may hold HTML. A project's version heading must read `## X.Y.Z (YYYY-MM-DD)`.

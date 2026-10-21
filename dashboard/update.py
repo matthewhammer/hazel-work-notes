@@ -445,6 +445,21 @@ def reading_note():
             f'to hear.{t} Each ticket\'s replies and their times are in its log in data.json.</p>')
 reading_note = reading_note()
 
+# (Matthew, 2026-10-20: "everytime I have to remind you to 'keep going' please log in the dashboard as 'special
+# minutes'") data.json's special_minutes: each time he had to remind Claude to keep working, with his words, what Claude
+# had stopped on, and the minutes it sat idle (from `since` to `at`); logged by ~/localhost-index/special_minutes.py
+SPECIAL = data.get("special_minutes") or []
+special_section = ""
+if SPECIAL:
+    def _hm(s):
+        return datetime.fromisoformat(s).astimezone(LOCAL).strftime("%a %b %-d, %-I:%M %p")
+    _rows = "".join(f'<tr><td>{e(_hm(m["at"]))}</td><td>&ldquo;{e(m.get("words", ""))}&rdquo;</td><td>{linkify(e(m.get("stopped_on", "")))}</td>'
+                    f'<td>{m.get("idle_minutes", 0)} min</td></tr>' for m in reversed(SPECIAL))
+    special_section = (f'<h2 id="special">Special minutes</h2>\n<p class="note">Each time Matthew had to remind Claude to keep going '
+                       f'(his rule, 2026-10-20): {len(SPECIAL)} so far, {sum(m.get("idle_minutes", 0) for m in SPECIAL)} minutes idle in all. '
+                       f'Newest first.</p>\n<table>\n<tr><th>When</th><th>His words</th><th>What Claude had stopped on</th><th>Idle</th></tr>\n'
+                       f'{_rows}\n</table>\n')
+
 queue_section = f"""<h2 id="queue">Work Queue (Active Tickets)</h2>
 <p class="note">What we mean to do next, in order: a few tickets, not the backlog. We push a ticket onto the front or the back, and reorder as we go; a ticket leaves the queue when it closes. Each links to its full row in <a href="#backlog">the backlog</a>.</p>
 """ + (about_filter("queue") + f"""<table class="queue" data-about-table="queue">
@@ -485,7 +500,7 @@ agenda_entry = (f'<li><a href="{series_url(NEXT_MEETING["report"])}" title="{e("
 outline = "\n".join(local_entries +
     ([f'<li><a href="#current">Current ticket: {tk(CURRENT["id"])}' + (f" {HAND}" if WAITING else "") + '</a></li>'] if CURRENT else []) + [
     group("queue", "#queue", e(f"Work Queue ({len(QUEUE)})"), [f'<li><a href="#ticket-{t["id"]}">{i + 1}. {tk(t["id"])} {TAG_ICON(t)}{e(short(t["text"]))}</a></li>' for i, t in enumerate(QUEUE)], True),
-] + [
+] + ([entry("#special", f"Special minutes ({len(SPECIAL)})")] if SPECIAL else []) + [
     entry("#ports", "Localhost ports"),
     entry("#other", "Other PRs we are tracking"),
     entry("#repos", "Repositories we deploy"),
@@ -654,7 +669,7 @@ page = f"""<!doctype html>
 {reading_note}
 {current_section}
 {queue_section}
-<h2 id="ports">Localhost ports</h2>
+{special_section}<h2 id="ports">Localhost ports</h2>
 <table>
 <tr><th>PR # and title</th><th>Repo and branch</th><th>Localhost</th></tr>
 {chr(10).join(rows)}
