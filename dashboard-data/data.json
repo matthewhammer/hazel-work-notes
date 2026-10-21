@@ -3001,22 +3001,22 @@
    ],
    "progress": "16:02 10-20: NOT REPRODUCED YET, so BLOCKED ON MATTHEW for the steps. Tried in the working copy (0.0.375 + 491's fix) on 8133, N's castle, the king's room (room 1; its ways: doors to rooms 2 and 3, and S out to the castle), with 1 to 6 thrones at sizes 40 to 200, with cats and without, and the friend sat on a throne every time and stayed in the room: (1) a click on a throne (with 👆 on: walked there, then sat); (2) the 🪑 throne N button; (3) the controller (the on-screen pad's, driven): walking up onto a throne and stopping sits, then pushing up, down, left or up-right gets up and walks, never out; (4) riding or leading the horse, by click and by button; (5) no point of any throne's seat is under a door or the S arrow (a click there would go through instead), at any size and count. QUESTIONS for Matthew: which castle and room (the king's room?), and how many thrones, what sizes? How did you sit: the controller (walking onto it), a click on the throne, or the 🪑 button? What did 'leaving castle' look like: out through the front (S), the friend flying into another room's door, or the picture changing to the castle seen from outside? Were you riding or leading the horse? In the public game (0.0.375)? A 💾 save of the game in that state would let me load it exactly.",
    "waiting": true
-  },
-  {
-   "id": 507,
-   "area": "dress up, speed checks: farm502 and pasture503's first run",
-   "source": "Claude, 2026-10-20 21:16, from 0.0.392's speed run",
-   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39526121922",
-   "added": "2026-10-20T21:16-06:00",
-   "tags": [],
-   "text": "<b>Two checks failed on their first run (0.0.392): a fence piece dragged with the pointer did not move (farm502), and the friend's led horse came out half the size of the pasture's grazing horses at the same depth (pasture503).</b> Each fixed on its own branch, the game or the check as the evidence says, checked adversarially, then merged and released.",
-   "progress": "21:16: two fixers running in parallel (~/kcg-wt/502b, ~/kcg-wt/503b), each followed by an adversarial verifier. 21:20: MEASURED in the pane myself: (pasture) at the grey horse's depth (feet 6 px apart) the friend's led horse and the grey grazing horse are the same size on the screen (leg spans 86 and 80 px; the friend's a little nearer), so the GAME is right and pasture503's measure (the CTM of two groups that do not carry the same units) is wrong; (farm) a real mouse drag of the last picket piece moved it one tile right (x 261 to 391.5, three tiles of 130.5 from the first), on its row, and its old neighbour lost its rails, so the GAME's drag works and farm502's synthetic drag is what failed. The fixers' answers will be held against this. 21:20: both fixers agree with the pane: the checks were wrong, the game right. farm502 (19a1f1f): it read the dragged piece's 'from' after the drag, from the very object the drag writes, so x > from could never hold; now kept before, and the drag a quarter row down, not 16 screen px. pasture503 (b74e6cf): it measured mountScene's wrapper group (the stage's scale), not the horse's own; with the horse's group and the check's depth, the pane gives exactly 1.000 (0.3987 each). MERGED to main (626dc88, 7eae474) and pushed; they run at the next release tag. Their adversarial verifiers still running."
   }
  ],
  "next_ticket": 508,
- "current_ticket": 507,
- "current_note": "21:16: Fixing farm502 (dragged fence piece) and pasture503 (the led horse's size) in parallel; then merge, look, release.",
+ "current_ticket": 481,
+ "current_note": "21:22: #2711 (Hazel as a JS library, for the meeting): its CI's one failure, HazelLib 013, a value returned as a printed term.",
  "closed_tickets": [
+  {
+   "id": 507,
+   "area": "dress up, speed checks: farm502 and pasture503's first run",
+   "added": "2026-10-20T21:16-06:00",
+   "text": "Two checks failed on their first run (0.0.392): a fence piece dragged with the pointer did not move (farm502), and the friend's led horse came out half the size of the pasture's grazing horses at the same depth (pasture503).",
+   "source": "Claude, 2026-10-20 21:16, from 0.0.392's speed run",
+   "status": "done",
+   "closed": "2026-10-20",
+   "outcome": "Both failures were the checks, not the game (seen in the pane and by both fixers): farm502 read the dragged piece's start after the drag (19a1f1f; then 0e4487a, after its…"
+  },
   {
    "id": 505,
    "area": "dress up, speed: 💭 our imagination below 60 frames a second",
@@ -7643,7 +7643,7 @@
   }
  ],
  "queue": [
-  507,
+  481,
   490,
   470,
   411,
@@ -7652,7 +7652,6 @@
   485,
   484,
   482,
-  481,
   402,
   465,
   389,
@@ -7683,7 +7682,7 @@
   460,
   493
  ],
- "current_since": "2026-10-20T21:16-06:00",
+ "current_since": "2026-10-20T21:22-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",

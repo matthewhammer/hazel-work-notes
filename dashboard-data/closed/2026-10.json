@@ -1,5 +1,28 @@
 [
  {
+  "id": 507,
+  "area": "dress up, speed checks: farm502 and pasture503's first run",
+  "source": "Claude, 2026-10-20 21:16, from 0.0.392's speed run",
+  "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39526121922",
+  "added": "2026-10-20T21:16-06:00",
+  "tags": [],
+  "text": "<b>Two checks failed on their first run (0.0.392): a fence piece dragged with the pointer did not move (farm502), and the friend's led horse came out half the size of the pasture's grazing horses at the same depth (pasture503).</b> Each fixed on its own branch, the game or the check as the evidence says, checked adversarially, then merged and released.",
+  "progress": "21:16: two fixers running in parallel (~/kcg-wt/502b, ~/kcg-wt/503b), each followed by an adversarial verifier. 21:20: MEASURED in the pane myself: (pasture) at the grey horse's depth (feet 6 px apart) the friend's led horse and the grey grazing horse are the same size on the screen (leg spans 86 and 80 px; the friend's a little nearer), so the GAME is right and pasture503's measure (the CTM of two groups that do not carry the same units) is wrong; (farm) a real mouse drag of the last picket piece moved it one tile right (x 261 to 391.5, three tiles of 130.5 from the first), on its row, and its old neighbour lost its rails, so the GAME's drag works and farm502's synthetic drag is what failed. The fixers' answers will be held against this. 21:20: both fixers agree with the pane: the checks were wrong, the game right. farm502 (19a1f1f): it read the dragged piece's 'from' after the drag, from the very object the drag writes, so x > from could never hold; now kept before, and the drag a quarter row down, not 16 screen px. pasture503 (b74e6cf): it measured mountScene's wrapper group (the stage's scale), not the horse's own; with the horse's group and the check's depth, the pane gives exactly 1.000 (0.3987 each). MERGED to main (626dc88, 7eae474) and pushed; they run at the next release tag. Their adversarial verifiers still running. 21:22: VERIFIED: pasture503's fix confirmed (ok); farm502's verifier found the new 'tile by tile' part could not fail (each step rounded to a column, so a slide-then-snap passed too): fixed, each step records its column only when on a tile, else 'off' (0e4487a, pushed). Both checks run for real at the next release tag.",
+  "status": "done",
+  "closed": "2026-10-20",
+  "closed_at": "2026-10-20T21:22-06:00",
+  "outcome": "Both failures were the checks, not the game (seen in the pane and by both fixers): farm502 read the dragged piece's start after the drag (19a1f1f; then 0e4487a, after its verifier, a step off a tile shows as 'off'); pasture503 measured the object's wrapper group, not the horse's (b74e6cf; the pane: both horses 0.3987, ratio 1.000). Pushed to main; they run at the next release tag.",
+  "metrics": {
+   "open_minutes": null,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0,
+   "work_minutes": 25.0
+  }
+ },
+ {
   "id": 505,
   "area": "dress up, speed: 💭 our imagination below 60 frames a second",
   "text": "<b>💭 Our imagination ran at 41 frames a second in 0.0.385's speed run (GitHub's computer), and the greenhouse at 54.</b> 0.0.391 adds three places to the imagination's map (the desert as a column of its own, the pasture and the farm yard in theirs), which can only cost more there; 0.0.391's run will say how much. A 🌙 long run, after the features (Matthew's call, 10-17).",
