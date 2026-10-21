@@ -3320,7 +3320,19 @@
    ],
    "source": "Claude, from 0.0.394's speed run (39541468171), 2026-10-20 23:50; Matthew's rule: the 🌙 perf tickets are the night's work while he is AFK",
    "text": "<b>💭 our imagination walks at about 40 frames a second in some speed runs and 60 in others: find out why, and make it 60 every time.</b> The on-screen controller audit (tools/audit160) has it at 41.1 fps on 0.0.385, 60 on 0.0.390, 58 or more on 0.0.393, and 39.8 on 0.0.394 (p95 33.4 ms, worst 67 ms, its own drawing only 3.8 ms a frame, 'scenery held still (choppy)'); the forest also missed on 0.0.394 (54.4). ^ticket(505) put 0.0.385's down to one slow computer; a second time in five runs says otherwise. First a measurement with power: a diagnostic run repeating imagination and the forest many times; then the cause (paint, not the game's drawing, by the numbers), then a fix, measured the same way.",
-   "progress": "23:52 10-20: a diagnostic on GitHub, branch diag-509 (run 39551957119; never merged): four fresh-Chrome jobs, each auditing imagination, the forest, the empty room and the forest clearing 12 times, with the runner's CPU recorded, and a fifth that runs every check first, as the speed run does before its audit (about 40 minutes in one Chrome), then the same audit. It tells apart the place itself, GitHub's hardware, and a session worn down."
+   "progress": "23:52 10-20: a diagnostic on GitHub, branch diag-509 (run 39551957119; never merged): four fresh-Chrome jobs, each auditing imagination, the forest, the empty room and the forest clearing 12 times, with the runner's CPU recorded, and a fifth that runs every check first, as the speed run does before its audit (about 40 minutes in one Chrome), then the same audit. It tells apart the place itself, GitHub's hardware, and a session worn down.",
+   "log": [
+    {
+     "at": "2026-10-20T23:38-06:00",
+     "from": "claude",
+     "chars": 1470,
+     "asks": false,
+     "words": 252,
+     "read_s": 64,
+     "listen_s": 94,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 510,
@@ -8016,8 +8028,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 4862,
-  "words": 1090620,
+  "replies": 4863,
+  "words": 1090697,
   "read_hours_est": 76.4,
   "listen_hours_est": 113.6,
   "read_s_avg": 57,
@@ -8239,9 +8251,9 @@
     "chars": 171153
    },
    "2026-10-20": {
-    "replies": 107,
-    "words": 25828,
-    "chars": 149037
+    "replies": 108,
+    "words": 25905,
+    "chars": 149483
    }
   }
  },
