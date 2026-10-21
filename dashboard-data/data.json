@@ -3010,7 +3010,7 @@
    "added": "2026-10-20T21:16-06:00",
    "tags": [],
    "text": "<b>Two checks failed on their first run (0.0.392): a fence piece dragged with the pointer did not move (farm502), and the friend's led horse came out half the size of the pasture's grazing horses at the same depth (pasture503).</b> Each fixed on its own branch, the game or the check as the evidence says, checked adversarially, then merged and released.",
-   "progress": "21:16: two fixers running in parallel (~/kcg-wt/502b, ~/kcg-wt/503b), each followed by an adversarial verifier."
+   "progress": "21:16: two fixers running in parallel (~/kcg-wt/502b, ~/kcg-wt/503b), each followed by an adversarial verifier. 21:20: MEASURED in the pane myself: (pasture) at the grey horse's depth (feet 6 px apart) the friend's led horse and the grey grazing horse are the same size on the screen (leg spans 86 and 80 px; the friend's a little nearer), so the GAME is right and pasture503's measure (the CTM of two groups that do not carry the same units) is wrong; (farm) a real mouse drag of the last picket piece moved it one tile right (x 261 to 391.5, three tiles of 130.5 from the first), on its row, and its old neighbour lost its rails, so the GAME's drag works and farm502's synthetic drag is what failed. The fixers' answers will be held against this. 21:20: both fixers agree with the pane: the checks were wrong, the game right. farm502 (19a1f1f): it read the dragged piece's 'from' after the drag, from the very object the drag writes, so x > from could never hold; now kept before, and the drag a quarter row down, not 16 screen px. pasture503 (b74e6cf): it measured mountScene's wrapper group (the stage's scale), not the horse's own; with the horse's group and the check's depth, the pane gives exactly 1.000 (0.3987 each). MERGED to main (626dc88, 7eae474) and pushed; they run at the next release tag. Their adversarial verifiers still running."
   }
  ],
  "next_ticket": 508,
@@ -7695,8 +7695,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 4844,
-  "words": 1086695,
+  "replies": 4846,
+  "words": 1087017,
   "read_hours_est": 76.1,
   "listen_hours_est": 113.2,
   "read_s_avg": 57,
@@ -7918,9 +7918,9 @@
     "chars": 171153
    },
    "2026-10-20": {
-    "replies": 89,
-    "words": 21903,
-    "chars": 126520
+    "replies": 91,
+    "words": 22225,
+    "chars": 128343
    }
   }
  },
