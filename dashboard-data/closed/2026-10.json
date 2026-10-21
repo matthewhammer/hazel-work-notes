@@ -1,5 +1,28 @@
 [
  {
+  "id": 500,
+  "area": "dress up: a licence that encourages reuse, with credit",
+  "text": "<b>Put an open licence on Dress Up: reuse welcome, with credit to the team.</b> Matthew: \"can we apply a good creative commons license to dress up? There's creative input there (esp the drawing algorithms) that I'd appreciate our team getting attribution for, if reused, but otherwise, I want to encourage reuse.\" His answer: \"the two licences, credit \\\"Matthew Hammer and family (M and N)\\\", whole repo.\"",
+  "source": "Matthew, 2026-10-20 17:57, in chat",
+  "url": "",
+  "added": "2026-10-20T17:57-06:00",
+  "tags": [],
+  "progress": "18:15: the review (14 agents) confirmed one real problem, mine: the sun and moon formulas I wrote in 0.0.381 (ticket 490) follow SunCalc (Volodymyr Agafonkin, BSD 2-Clause) without credit. Fixed: credit in 09-backgrounds.js (SPDX Apache-2.0 AND BSD-2-Clause), SunCalc's licence text in NOTICE, sentences in README, VERSIONS, agent instructions; README also now says what the game loads from outside and that words and tunes inside code files go with the code. 10 other findings refuted. A second check (the fix, and a fresh sweep for other borrowed code) runs before the push.",
+  "status": "done",
+  "closed": "2026-10-20",
+  "closed_at": "2026-10-20T18:18-06:00",
+  "outcome": "Released in 0.0.389 (live): the code is Apache 2.0 (LICENSE, NOTICE), everything else CC BY 4.0 (LICENSE-CC-BY-4.0), credit 'Matthew Hammer and family (M and N)', the whole repo; README 'Licences' says which is which and how to credit; a two-line notice in each game file; a sentence in Advanced. GitHub detects Apache-2.0. Two reviews (22 agents): the sun and moon formulas from 0.0.381 follow SunCalc 1.9.0 (Vladimir Agafonkin, BSD 2-Clause), now credited with its own licence in NOTICE; no other borrowed code found.",
+  "metrics": {
+   "open_minutes": null,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0,
+   "work_minutes": 30.0
+  }
+ },
+ {
   "id": 496,
   "area": "dress up, the friend's horse: which side they lead it from",
   "text": "<b>Leading the horse, the friend keeps to one side of it, the player's choice: its left or its right.</b> Matthew: \"move 'horse' options from Costume to Body panel, as a subpanel there instead. Let the user choose between guide on left of horse, or guide on right -- currently it's not realistic because we flip between those options depending on L versus R movement.\" (The first part is done since 0.0.380: 🧍 Body's 🐴 the horse box.) Today, seen side on, the friend is always on the side toward us, so walking right they are at the horse's left and walking left at its right; seen from the front and from behind they are at its left. So: a choice, the horse's left (the usual) or its right; seen side on, on the far side the horse is drawn in front of them; its collision boxes follow.",
