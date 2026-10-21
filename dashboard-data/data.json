@@ -2933,7 +2933,7 @@
    "source": "Matthew, 2026-10-20 11:4x, in chat, after ^ticket(480)",
    "url": "https://github.com/hazelgrove/hazel/pull/2711",
    "text": "<b>A draft PR to hazel exposing Hazel as a JS library, to analyze and run programs and to mount editor panels in other pages, used by Dress Up's Scripting panel (^ticket(482)).</b> Matthew: \"let's do this MUDU integration as a PR for MUDU, not hazel. On the hazel side, let's draft a PR (and use it) for exposing Hazel as a JS library we can use this way.\" First: compile a program once and call its functions from JS with JS values, results back as JS values (rules return command trees the game interprets); then an editor to mount.",
-   "progress": "12:24 10-20: hazel-lib.js LIVE at hazel.org/build/js-library/ (draft PR #2711). Tried from a page in the browser: loads in 0.7 s; Hazel.run(\"1 + 2\") = {errors: [], value: 3}; analyze reports a type error in Hazel's words; records, lists and strings convert; a Hazel function comes back as a JS function (f(4) = 40); the calls took 36 ms. Used by ^ticket(482)'s Scripting panel. Next feature when wanted: mountEditor (an editor panel), per docs/hazel-as-a-js-library.md. 21:22 10-20: #2711's CI is RED on one test of 4,335, HazelLib 013 (a lever rule returns a command tree): a Hazel function whose parameter is ASCRIBED (fun e : Event -> case e | Pull(l) => ...) called from JS with {tag: 'Pull', value: 2} comes back as a printed, stuck Match on Asc(Ap(Constructor('Pull', None), 2)); WITHOUT the ascription it returns the right tree. Confirmed in the browser pane against the live library (hazel.org/build/js-library/). A fixer agent is on it in ~/hazel-lib (js-library), with a verifier; not pushed until verified. 21:23: ROOT CAUSE (read, to check the fixer against): Ascriptions.re's transition resolves Asc(Ap(Constructor(c, Some(Some(Arrow(_, sumt)))), payload), Sum(m)) (line 174) and Asc(Constructor(_, Some(Some(t))), t') (196) only for a constructor that carries its type; the library's of_js makes Constructor(tag, None), so the ascription from 'e : Event' never resolves, and Unboxing treats an Asc as the wrong form (line 194): the match is stuck. Unascribed, Unboxing matches by name and it works. A fix local to the library: type such constructors as unknown (? for a bare one, ? -> ? applied), which the existing rules accept. 21:25: FIXED and PUSHED to js-library: bf61d2e87b (the agent's: a constructor from JS gets the unknown type, ? or ? -> ?, so the ascription goes through as a cast from ? does; two new cases) and a2e93432be (mine: the Scripting panel's shape, an ascribed tuple of arguments). HazelLib 17/17 locally. CI 39538482342 and Deploy 39538482326 running; the demo's levers to be tried on 8482 once the Deploy is live. 21:40: the verifier confirmed the cause and the fix for applied constructors, and found one gap: a constructor from JS with no value ('?') is only consistent with a sum, so a tag the sum lacks gets through the ascription (a case then finds no rule, or a wildcard's); the comment had claimed it was checked: corrected (df0aba7e57, pushed). Possible follow-up for Matthew: check such a tag against the sum (a guard in Ascriptions, or the library typing JS values from the function's parameter). The deployed build (hazelgrove/build 41721fd6) TRIED in the pane: single and tuple ascriptions both return the command tree. hazel.org's Pages build of it was still running at 03:40Z (they take ~20 min and some fail). 21:45: the possible follow-up is BUILT, LOCAL ONLY (not pushed; Matthew's call): branch js-library-tagcheck in ~/hazel-lib, commit 3a62f2f4a6 on top of df0aba7e57. In Ascriptions, a constructor whose type is ? under a sum ascription goes through only when the sum has that tag with no payload; any other stays stuck, as an untyped one did. A new HazelLib case: Tick (in the sum) gives 0, Bogus (not in it) stays a stuck term. HazelLib 18/18, and Ascriptions, Unboxing, PatternMatch, MatchExp, Constructor shadowing, Elaboration (39), Evaluator (492), Statics (338), Abbreviate, TableCore all pass. To take it: git push origin js-library-tagcheck:js-library from ~/hazel-lib. 21:50: hazel.org PUBLISHED the fixed library (hazel-lib.js last-modified 03:49:30Z). Tried in the pane on 8482 after a cache-busting reload, the page loading only hazel.org's copy: the default program compiles with no errors in 136 ms, and TrapRoom called with a Pull of L returns Flip(\"lever_L\", Done). 21:55: MEASURED on the live library what is checked of a constructor from the page, under an annotated parameter: applied ones whole (a wrong tag, {tag: 'Bogus', value: 3}, or a wrong payload, Pull('x') against Pull(Int), stays stuck); one with no value NOT AT ALL ({tag: 'Bogus'} reaches the body, even past an Int annotation, and a wildcard rule takes it). Written into docs/hazel-as-a-js-library.md (77059807e9, pushed; CI 39541159929); #2711's description: 17 cases (was 13). The local js-library-tagcheck rebased onto it (2d5397d6ad: its doc and HazelLibCore comment now say what it checks: a bare tag against a SUM only; under an Int it still gets through); HazelLib 18/18 after the rebase. 22:24: #2711 GREEN on GitHub at 77059807e9 (run 39541159929: Fast checks and Full tests), the first full pass since the library's constructor fix; it had been red on that one test. 23:12: tagged blocked on Matthew: what is left is his call (the tag check) and the meeting's (the editor).",
+   "progress": "12:24 10-20: hazel-lib.js LIVE at hazel.org/build/js-library/ (draft PR #2711). Tried from a page in the browser: loads in 0.7 s; Hazel.run(\"1 + 2\") = {errors: [], value: 3}; analyze reports a type error in Hazel's words; records, lists and strings convert; a Hazel function comes back as a JS function (f(4) = 40); the calls took 36 ms. Used by ^ticket(482)'s Scripting panel. Next feature when wanted: mountEditor (an editor panel), per docs/hazel-as-a-js-library.md. 21:22 10-20: #2711's CI is RED on one test of 4,335, HazelLib 013 (a lever rule returns a command tree): a Hazel function whose parameter is ASCRIBED (fun e : Event -> case e | Pull(l) => ...) called from JS with {tag: 'Pull', value: 2} comes back as a printed, stuck Match on Asc(Ap(Constructor('Pull', None), 2)); WITHOUT the ascription it returns the right tree. Confirmed in the browser pane against the live library (hazel.org/build/js-library/). A fixer agent is on it in ~/hazel-lib (js-library), with a verifier; not pushed until verified. 21:23: ROOT CAUSE (read, to check the fixer against): Ascriptions.re's transition resolves Asc(Ap(Constructor(c, Some(Some(Arrow(_, sumt)))), payload), Sum(m)) (line 174) and Asc(Constructor(_, Some(Some(t))), t') (196) only for a constructor that carries its type; the library's of_js makes Constructor(tag, None), so the ascription from 'e : Event' never resolves, and Unboxing treats an Asc as the wrong form (line 194): the match is stuck. Unascribed, Unboxing matches by name and it works. A fix local to the library: type such constructors as unknown (? for a bare one, ? -> ? applied), which the existing rules accept. 21:25: FIXED and PUSHED to js-library: bf61d2e87b (the agent's: a constructor from JS gets the unknown type, ? or ? -> ?, so the ascription goes through as a cast from ? does; two new cases) and a2e93432be (mine: the Scripting panel's shape, an ascribed tuple of arguments). HazelLib 17/17 locally. CI 39538482342 and Deploy 39538482326 running; the demo's levers to be tried on 8482 once the Deploy is live. 21:40: the verifier confirmed the cause and the fix for applied constructors, and found one gap: a constructor from JS with no value ('?') is only consistent with a sum, so a tag the sum lacks gets through the ascription (a case then finds no rule, or a wildcard's); the comment had claimed it was checked: corrected (df0aba7e57, pushed). Possible follow-up for Matthew: check such a tag against the sum (a guard in Ascriptions, or the library typing JS values from the function's parameter). The deployed build (hazelgrove/build 41721fd6) TRIED in the pane: single and tuple ascriptions both return the command tree. hazel.org's Pages build of it was still running at 03:40Z (they take ~20 min and some fail). 21:45: the possible follow-up is BUILT, LOCAL ONLY (not pushed; Matthew's call): branch js-library-tagcheck in ~/hazel-lib, commit 3a62f2f4a6 on top of df0aba7e57. In Ascriptions, a constructor whose type is ? under a sum ascription goes through only when the sum has that tag with no payload; any other stays stuck, as an untyped one did. A new HazelLib case: Tick (in the sum) gives 0, Bogus (not in it) stays a stuck term. HazelLib 18/18, and Ascriptions, Unboxing, PatternMatch, MatchExp, Constructor shadowing, Elaboration (39), Evaluator (492), Statics (338), Abbreviate, TableCore all pass. To take it: git push origin js-library-tagcheck:js-library from ~/hazel-lib. 21:50: hazel.org PUBLISHED the fixed library (hazel-lib.js last-modified 03:49:30Z). Tried in the pane on 8482 after a cache-busting reload, the page loading only hazel.org's copy: the default program compiles with no errors in 136 ms, and TrapRoom called with a Pull of L returns Flip(\"lever_L\", Done). 21:55: MEASURED on the live library what is checked of a constructor from the page, under an annotated parameter: applied ones whole (a wrong tag, {tag: 'Bogus', value: 3}, or a wrong payload, Pull('x') against Pull(Int), stays stuck); one with no value NOT AT ALL ({tag: 'Bogus'} reaches the body, even past an Int annotation, and a wildcard rule takes it). Written into docs/hazel-as-a-js-library.md (77059807e9, pushed; CI 39541159929); #2711's description: 17 cases (was 13). The local js-library-tagcheck rebased onto it (2d5397d6ad: its doc and HazelLibCore comment now say what it checks: a bare tag against a SUM only; under an Int it still gets through); HazelLib 18/18 after the rebase. 22:24: #2711 GREEN on GitHub at 77059807e9 (run 39541159929: Fast checks and Full tests), the first full pass since the library's constructor fix; it had been red on that one test. 23:12: tagged blocked on Matthew: what is left is his call (the tag check) and the meeting's (the editor). 13:50: Matthew (with a screenshot of the panel): \"we aren't using tiles yet, right? Wasn't that the point of the Hazel-MUDU integration?\": the direction for the mountable editor is given; ^ticket(520) minted for it.",
    "log": [
     {
      "at": "2026-10-20T11:26-06:00",
@@ -3947,6 +3947,40 @@
      "read_s": 11,
      "listen_s": 16,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-21T13:36-06:00",
+     "from": "matthew",
+     "chars": 41,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-21T13:37-06:00",
+     "from": "matthew",
+     "chars": 17,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-21T13:37-06:00",
+     "from": "claude",
+     "chars": 761,
+     "asks": false,
+     "words": 127,
+     "read_s": 32,
+     "listen_s": 48,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-21T13:37-06:00",
+     "from": "claude",
+     "chars": 514,
+     "asks": false,
+     "words": 87,
+     "read_s": 22,
+     "listen_s": 33,
+     "note": "from the transcripts"
     }
    ]
   },
@@ -3992,6 +4026,16 @@
      "from": "matthew",
      "chars": 7,
      "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-21T13:33-06:00",
+     "from": "claude",
+     "chars": 1812,
+     "asks": false,
+     "words": 287,
+     "read_s": 72,
+     "listen_s": 108,
      "note": "from the transcripts"
     }
    ]
@@ -4045,9 +4089,20 @@
    "source": "Matthew, 2026-10-21 13:47, in chat (\"please publish as a du_report.\" and \"include this too -- looks good\")",
    "url": "",
    "text": "<b>Publish the two mock-ups, dress-up/mockups/dragon-fire.html (^ticket(499): the dragon costume and six fires) and horse-armour.html (^ticket(498): the horse's armour and cloth), as a Dress Up report, ^du_report(15).</b> Matthew, on each: \"looks good.\" What each mock-up offered, what went out in 0.0.392, and the kids' choice (\"just release and let the kids decide\"). Made in a worktree from origin/main (~/kcg-report-015, branch report-015), so the push publishes only the report, not the unreleased work on local main."
+  },
+  {
+   "id": 520,
+   "area": "dress up × hazel: the 🧩 Scripting panel's editors as Hazel tiles, not text boxes",
+   "added": "2026-10-21T13:50-06:00",
+   "opened": "2026-10-21T13:50-06:00",
+   "status": "open",
+   "tags": [],
+   "source": "Matthew, 2026-10-21 13:50, in chat, with a screenshot of the panel on 8482 (\"MUDU/hazel ticket --- Great start -- but we aren't using tiles yet, right? Wasn't that the point of the Hazel-MUDU integration?\")",
+   "url": "https://github.com/hazelgrove/hazel/pull/2711",
+   "text": "<b>Tiles in the 🧩 Scripting panel: each room's editor (and 📚 Common) becomes Hazel's own tile editor, mounted in Dress Up's page by Hazel's JS library, instead of a text box whose source the library analyzes and runs.</b> Matthew: \"Great start -- but we aren't using tiles yet, right? Wasn't that the point of the Hazel-MUDU integration?\" This is ^ticket(481)'s second step (\"then an editor to mount\"), held for the meeting's word on the direction (^report(20) item 12), now given. Two PRs move together: hazel #2711 (the library: mount an editor of a module, read its program back, report its errors) and kids-choice-games PR #1 (^ticket(482): the panel uses it)."
   }
  ],
- "next_ticket": 520,
+ "next_ticket": 521,
  "current_ticket": 515,
  "current_note": "13:43: Robot costume, eight styles (Matthew: \"robot costume -- multiple styles -- do 8\"; switched to Dress Up while the Hazel tickets wait on workflows and CI). Scope call: one 🤖 robot costume with a style choice of eight, drawn as its own drawing in every view the friend has (front, profile, away, and the poses), never by transforming another view; colours as other costumes take them; nothing that costs frames (no masks, no blurs). A workflow: read the costume system, two designers and a judge for the eight styles, one builder (pictures checked as PNGs), two reviewers; then release.",
  "closed_tickets": [
@@ -8719,6 +8774,7 @@
  "queue": [
   519,
   515,
+  520,
   516,
   517,
   518,
@@ -8777,8 +8833,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 4927,
-  "words": 1099375,
+  "replies": 4931,
+  "words": 1099651,
   "read_hours_est": 77.0,
   "listen_hours_est": 114.5,
   "read_s_avg": 56,
@@ -9005,9 +9061,9 @@
     "chars": 149483
    },
    "2026-10-21": {
-    "replies": 64,
-    "words": 8678,
-    "chars": 50865
+    "replies": 68,
+    "words": 8954,
+    "chars": 52485
    }
   }
  },
