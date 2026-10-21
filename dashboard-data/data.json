@@ -3306,11 +3306,28 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 511,
+   "area": "dress up, performance: the simple cauldron fumes 11% slower than 0.0.129's on a slow runner (fumes205)",
+   "added": "2026-10-21T03:38-06:00",
+   "opened": "2026-10-21T03:38-06:00",
+   "status": "open",
+   "tags": [
+    "long run"
+   ],
+   "chips": [
+    "dress up",
+    "performance"
+   ],
+   "source": "Claude, from PR #1's run 39567748274 (2026-10-21 03:36): fumes205 failed there, nothing to do with the panel",
+   "text": "<b>fumes205 (ticket 205's check: 15 cauldrons, 0.0.129's simple fumes and today's taking turns on one computer) failed on a slow runner: today's 50.3 to 51.8 fps against 0.0.129's 56.7 to 57.8, an 11% loss where it allows 10.</b> On fast runners both sit at 60, so it shows only on the slower ones. Today's simple fumes slide a 13-stop gradient band up each strand (Matthew's ticket 205: closer to the fancy ones); 0.0.129's were a plain stroke. Measure whether fewer stops (7) keep the look and win the frames back, on eight runners, before and after taking turns.",
+   "progress": ""
   }
  ],
- "next_ticket": 511,
- "current_ticket": null,
- "current_note": "03:31: the night's perf tickets done: 509 (imagination, 0.0.395) and 510 (the fairy forest and the castle, 0.0.396), both at 60 in their speed runs; waiting on PR #1's tests (main 0.0.396 merged)",
+ "next_ticket": 512,
+ "current_ticket": 511,
+ "current_note": "03:38: fumes205 failed on PR #1's run, a slow runner: today's simple fumes 11% slower than 0.0.129's; measuring 7 stops in the band against 13",
  "closed_tickets": [
   {
    "id": 510,
@@ -7968,6 +7985,7 @@
   }
  ],
  "queue": [
+  511,
   465,
   481,
   490,
@@ -8008,7 +8026,7 @@
   493,
   508
  ],
- "current_since": "2026-10-21T03:31-06:00",
+ "current_since": "2026-10-21T03:38-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
