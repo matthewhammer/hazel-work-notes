@@ -109,10 +109,18 @@
     [
      "localhost:8133/du-reports/",
      "http://localhost:8133/du-reports/"
+    ],
+    [
+     "🐉 the dragon and its six fires (mock-up, ^ticket(499))",
+     "http://localhost:8133/dress-up/mockups/dragon-fire.html"
+    ],
+    [
+     "🛡️ the horse's armour, six sets (mock-up, ^ticket(498))",
+     "http://localhost:8133/dress-up/mockups/horse-armour.html"
     ]
    ],
    "links_paused": null,
-   "branch_note": "(served again since 15:50 on 2026-10-20, for the Dress Up sprint: the working copy of main, now 0.0.387)"
+   "branch_note": "(served since 15:50 on 2026-10-20, for the Dress Up sprint: the working copy of main, now 0.0.391 (the desert, the farm yard, the pasture, farm animals); two local mock-ups, not committed)"
   },
   {
    "name": "matthewhammer.org (the homepage's local copy)",
@@ -2986,7 +2994,7 @@
    "tags": [
     "long run"
    ],
-   "progress": "16:47 10-20: STARTED on GitHub (the day's releases done, 0.0.376-0.0.382): branch archive-494 (fa33bd1, off main f65360d, only the archive workflow + ticket 455's clip audit; never merged), run 39510534461 'Dress Up archive' (pictures and music; with ARCHIVE_TOKEN it adds the runs to dress-up-pictures and dress-up-music itself). A slip on the way: a first push of archive-494 went out at main's commit (a heredoc broke my && chain) and queued a 'Dress Up tests' run (39510472779): cancelled. NEXT: read the archive run (its summary: changed drawings by folder, the clip audit); OBJECTS.md from the speed run's objects180 output (0.0.382's run, after 0.0.376's) with tools/objects_md.py. 17:45: 0.0.376's speed run: broken (crumbs491: my 2-px bound, 3 px measured; occlude261: the cave room's dark vignette counted as covering 13 drawings). Ultracode review workflow (27 agents) over 0.0.376-0.0.385: 11 findings, all confirmed by 2 skeptics, all fixed in 0.0.386 (462cfa2): passage tap/click goes through (was dragged); passages only to enterable places (not sea/deepsea); the cave room's roof inside the ceiling object; placed things keyed on LFO stamps; the sky faces the noon sun (Quito had no sun Oct-Mar); tent windows keyed on time; star rows at night by the clock; whole minutes; World design alert amber; people away keep horses; plus cavethings471's node regex. A second workflow is reviewing the fixes. OBJECTS.md waits for the last release's speed run (its objects180 output).",
+   "progress": "16:47 10-20: STARTED on GitHub (the day's releases done, 0.0.376-0.0.382): branch archive-494 (fa33bd1, off main f65360d, only the archive workflow + ticket 455's clip audit; never merged), run 39510534461 'Dress Up archive' (pictures and music; with ARCHIVE_TOKEN it adds the runs to dress-up-pictures and dress-up-music itself). A slip on the way: a first push of archive-494 went out at main's commit (a heredoc broke my && chain) and queued a 'Dress Up tests' run (39510472779): cancelled. NEXT: read the archive run (its summary: changed drawings by folder, the clip audit); OBJECTS.md from the speed run's objects180 output (0.0.382's run, after 0.0.376's) with tools/objects_md.py. 17:45: 0.0.376's speed run: broken (crumbs491: my 2-px bound, 3 px measured; occlude261: the cave room's dark vignette counted as covering 13 drawings). Ultracode review workflow (27 agents) over 0.0.376-0.0.385: 11 findings, all confirmed by 2 skeptics, all fixed in 0.0.386 (462cfa2): passage tap/click goes through (was dragged); passages only to enterable places (not sea/deepsea); the cave room's roof inside the ceiling object; placed things keyed on LFO stamps; the sky faces the noon sun (Quito had no sun Oct-Mar); tent windows keyed on time; star rows at night by the clock; whole minutes; World design alert amber; people away keep horses; plus cavethings471's node regex. A second workflow is reviewing the fixes. OBJECTS.md waits for the last release's speed run (its objects180 output). 18:51: still running on GitHub (run 39510534461, step 'The run's pictures', since 16:46): reading it when it ends.",
    "log": [
     {
      "at": "2026-10-20T16:56-06:00",
@@ -3006,90 +3014,6 @@
      "words": 251,
      "read_s": 63,
      "listen_s": 94,
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
-   "id": 495,
-   "area": "dress up, the friend's horse: more colours (for M)",
-   "text": "<b>More colour choices for the friend's horse, for M, one colour chooser each (minimal UI).</b> Matthew: \"mint and enqueue for M -- even more color choices for horse. Let's use minimal UI -- one color chooser per param: * horse shoe color. * horse path color (on nose/forehead, between eyes in front view and side views). * horse saddle theme -- more than one color?\" So, in 🧍 Body's 🐴 the horse box: its shoes' colour; the colour of the marking on its face (the star, stripe or blaze: on the forehead and down the nose, seen from the side and from the front); and the saddle in more than one colour (the saddle and its blanket, each its own chooser).",
-   "source": "Matthew, 2026-10-20 17:48, in chat (\"mint and enqueue for M\")",
-   "url": "",
-   "added": "2026-10-20T17:48-06:00",
-   "opened": "2026-10-20T17:48-06:00",
-   "tags": [],
-   "progress": "17:49 10-20: DONE, 0.0.387 (cd84874): one colour chooser each in 🧍 Body's 🐴 the horse: 🧲 its horseshoes (off by default; steel, silver, gold, red, blue, pink, green, or any), ⭐ the colour of the mark on its face (seen from the side and from the front; the stable's horses keep white), and, while ridden, 🏇 its saddle and 🟦 its saddle blanket (auto: a lighter shade of the halter, as before). Checked in the browser pane (side and front). Matthew: \"last request is top priority -- new release ASAP please for M to test.\"",
-   "log": [
-    {
-     "at": "2026-10-20T17:48-06:00",
-     "from": "matthew",
-     "chars": 262,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T17:48-06:00",
-     "from": "matthew",
-     "chars": 70,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T17:48-06:00",
-     "from": "claude",
-     "chars": 341,
-     "asks": false,
-     "words": 64,
-     "read_s": 16,
-     "listen_s": 24,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T17:48-06:00",
-     "from": "claude",
-     "chars": 178,
-     "asks": false,
-     "words": 38,
-     "read_s": 10,
-     "listen_s": 14,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T17:49-06:00",
-     "from": "matthew",
-     "chars": 41,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T17:49-06:00",
-     "from": "claude",
-     "chars": 213,
-     "asks": false,
-     "words": 41,
-     "read_s": 10,
-     "listen_s": 15,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T17:49-06:00",
-     "from": "claude",
-     "chars": 188,
-     "asks": false,
-     "words": 35,
-     "read_s": 9,
-     "listen_s": 13,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T17:49-06:00",
-     "from": "claude",
-     "chars": 311,
-     "asks": false,
-     "words": 55,
-     "read_s": 14,
-     "listen_s": 21,
      "note": "from the transcripts"
     }
    ]
@@ -3203,7 +3127,8 @@
    "added": "2026-10-20T18:48-06:00",
    "tags": [
     "low priority"
-   ]
+   ],
+   "progress": "18:48: minted from 0.0.385's speed run (imagination 41.1 fps, greenhouse 53.8 on GitHub's computer); 0.0.391's run will measure the three new places' cost."
   },
   {
    "id": 506,
@@ -3218,8 +3143,18 @@
  ],
  "next_ticket": 507,
  "current_ticket": 499,
- "current_note": "18:49: Building in parallel: the dragon costume, fire breathing with six fires, the horse's armour (all six), the stable's hens up to 30.",
+ "current_note": "18:51: AFK protocol (Matthew 18:51: \"keep going, I'm AFK\"): four builds in parallel (the dragon costume, fire breathing, the horse's armour, the stable's hens up to 30); then merge, look, release.",
  "closed_tickets": [
+  {
+   "id": 495,
+   "area": "dress up, the friend's horse: more colours (for M)",
+   "added": "2026-10-20T17:48-06:00",
+   "text": "More colour choices for the friend's horse, for M, one colour chooser each (minimal UI).",
+   "source": "Matthew, 2026-10-20 17:48, in chat (\"mint and enqueue for M\")",
+   "status": "done",
+   "closed": "2026-10-20",
+   "outcome": "Released in 0.0.387 (17:4x): one colour chooser each in 🧍 Body's 🐴 the horse: its horseshoes, the mark on its face, and, ridden, its saddle and its saddle blanket."
+  },
   {
    "id": 504,
    "area": "dress up, things: cows, pigs and chickens, moving (for M)",
@@ -7789,7 +7724,6 @@
   499,
   498,
   506,
-  495,
   494,
   490,
   470,
