@@ -3003,131 +3003,40 @@
    "waiting": true
   },
   {
-   "id": 494,
-   "area": "dress up, tonight's long run: the galleries after the cave releases",
-   "text": "<b>Bring OBJECTS.md and the picture and music archives up to date with 0.0.376 to 0.0.379</b> (the 🦇 cave room, its floor and ceiling styles, the 🦇 cave things, cave passages, cave mushrooms, the treasure chest's treasure, the waterfall cave's floor). As the agent instructions ask (\"Refresh what shows the game, the same night\"): tools/checks/objects180.mjs on GitHub then tools/objects_md.py, and an archive-NNN branch run (pictures and music), added with each archive's add_run.sh. No browser on the laptop.",
-   "source": "the agent instructions' rule (Matthew, 2026-10-17: \"load these updates as long runs each day we make changes or additions to the objects or backgrounds\"), after ^ticket(471)",
-   "url": "",
-   "added": "2026-10-20T16:26-06:00",
-   "opened": "2026-10-20T16:26-06:00",
-   "tags": [
-    "long run"
-   ],
-   "progress": "16:47 10-20: STARTED on GitHub (the day's releases done, 0.0.376-0.0.382): branch archive-494 (fa33bd1, off main f65360d, only the archive workflow + ticket 455's clip audit; never merged), run 39510534461 'Dress Up archive' (pictures and music; with ARCHIVE_TOKEN it adds the runs to dress-up-pictures and dress-up-music itself). A slip on the way: a first push of archive-494 went out at main's commit (a heredoc broke my && chain) and queued a 'Dress Up tests' run (39510472779): cancelled. NEXT: read the archive run (its summary: changed drawings by folder, the clip audit); OBJECTS.md from the speed run's objects180 output (0.0.382's run, after 0.0.376's) with tools/objects_md.py. 17:45: 0.0.376's speed run: broken (crumbs491: my 2-px bound, 3 px measured; occlude261: the cave room's dark vignette counted as covering 13 drawings). Ultracode review workflow (27 agents) over 0.0.376-0.0.385: 11 findings, all confirmed by 2 skeptics, all fixed in 0.0.386 (462cfa2): passage tap/click goes through (was dragged); passages only to enterable places (not sea/deepsea); the cave room's roof inside the ceiling object; placed things keyed on LFO stamps; the sky faces the noon sun (Quito had no sun Oct-Mar); tent windows keyed on time; star rows at night by the clock; whole minutes; World design alert amber; people away keep horses; plus cavethings471's node regex. A second workflow is reviewing the fixes. OBJECTS.md waits for the last release's speed run (its objects180 output). 18:51: still running on GitHub (run 39510534461, step 'The run's pictures', since 16:46): reading it when it ends. 18:53: CANCELLED run 39510534461: stuck 2 h 10 min in 'The run's pictures (archive.mjs)' (started 22:46:52Z, no update since; the earlier archive runs took 45-50 min), most likely the same hang as ^ticket(470)'s slide timing (a DevTools call that never answers). NEXT: give the archive repo's tools/archive.mjs the same call timeouts (time_slides.mjs, 3577733690), then a fresh run at the next release (0.0.392, with the desert, the farm yard, the pasture, the animals, the dragon, the armour), then OBJECTS.md from it. 18:56: DONE the first NEXT: dress-up-pictures b05468f (pushed): archive.mjs's DevTools calls answer or fail (ARCHIVE_CALL_MS 10 min), and a hung batch is named and fails the run in minutes, not hours (tested against a fake DevTools). The fresh run waits for 0.0.392. 19:15: STARTED the fresh run at 0.0.392: branch archive-494b (cc35d9c: main b1900d5 with only the archive workflow and clip_audit.mjs), run 39526191544 (about 50 min); then add_run.sh from the laptop, and OBJECTS.md. 19:33: the run at 0.0.392 FAILED fast, as it now should, naming the batch: 'HUNG in pictures 541 to 560 of 1156 (the first: background-menus/hatchShape1--triangle)'. FOUND (19:35): not the game hanging but archive.mjs's placeFor: the sky's menus (fallTime 'by the clock', skyWhere's ten places, new in 0.0.381) show nowhere at the defaults, so it tried every place with every other setting (11,255 settings x 39 places), copying all 1,986 of the background's defaults for each try: up to 450 s per menu on the laptop, again for every value; 0.0.371's run had no such menus. FIXED in dress-up-pictures 906d8bf (pushed): one copy per place, each try set and put back, kept per menu for the run: 62 ms for skyWhere. Run 39526191544 RE-RUN at 19:35 (it clones the archive's tools at main). 19:41: the re-run PASSED in 4 min (the pictures step 3.5 min, where every earlier run took about 45: the slow search had been most of every run): 757 distinct drawings, 22 repeats, 291 same as default, 86 only with other settings, 0 page errors. LANDED as run-2026-10-20 (0.0.392) in dress-up-pictures (25c3820, 2260 KiB in git, pushed; 12 runs listed). Its clip audit: 19 of 757 clipped, none in today's new places: the seats at a scene's bottom edge (12, ^ticket(460)), 4 climbs, the sea with the friend, the climb animation, the diver. LEFT: OBJECTS.md from 0.0.392's speed run (objects180), which is queued behind 0.0.390's. 19:59: 0.0.390's speed run passed all but horse438, which had not caught up with 0.0.388's lead side (the horse in front on its far side) and the horse box's eleven rows: fixed (2c5a744, pushed to main; tried in the page). 0.0.392's run, queued, still runs the old check, so expect that one failure there once more.",
-   "log": [
-    {
-     "at": "2026-10-20T16:56-06:00",
-     "from": "claude",
-     "chars": 14123,
-     "asks": false,
-     "words": 2450,
-     "read_s": 618,
-     "listen_s": 919,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T17:32-06:00",
-     "from": "claude",
-     "chars": 1481,
-     "asks": false,
-     "words": 251,
-     "read_s": 63,
-     "listen_s": 94,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T19:21-06:00",
-     "from": "claude",
-     "chars": 4667,
-     "asks": false,
-     "words": 831,
-     "read_s": 209,
-     "listen_s": 312,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T19:35-06:00",
-     "from": "claude",
-     "chars": 1775,
-     "asks": false,
-     "words": 319,
-     "read_s": 80,
-     "listen_s": 120,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T19:41-06:00",
-     "from": "claude",
-     "chars": 1035,
-     "asks": false,
-     "words": 174,
-     "read_s": 44,
-     "listen_s": 65,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T19:59-06:00",
-     "from": "claude",
-     "chars": 979,
-     "asks": false,
-     "words": 181,
-     "read_s": 46,
-     "listen_s": 68,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T20:34-06:00",
-     "from": "matthew",
-     "chars": 25,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T20:35-06:00",
-     "from": "claude",
-     "chars": 676,
-     "asks": false,
-     "words": 123,
-     "read_s": 31,
-     "listen_s": 46,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T20:36-06:00",
-     "from": "matthew",
-     "chars": 185,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T20:40-06:00",
-     "from": "claude",
-     "chars": 2429,
-     "asks": false,
-     "words": 447,
-     "read_s": 113,
-     "listen_s": 168,
-     "note": "from the transcripts"
-    }
-   ]
-  },
+   "id": 507,
+   "area": "dress up, speed checks: farm502 and pasture503's first run",
+   "source": "Claude, 2026-10-20 21:16, from 0.0.392's speed run",
+   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39526121922",
+   "added": "2026-10-20T21:16-06:00",
+   "tags": [],
+   "text": "<b>Two checks failed on their first run (0.0.392): a fence piece dragged with the pointer did not move (farm502), and the friend's led horse came out half the size of the pasture's grazing horses at the same depth (pasture503).</b> Each fixed on its own branch, the game or the check as the evidence says, checked adversarially, then merged and released.",
+   "progress": "21:16: two fixers running in parallel (~/kcg-wt/502b, ~/kcg-wt/503b), each followed by an adversarial verifier."
+  }
+ ],
+ "next_ticket": 508,
+ "current_ticket": 507,
+ "current_note": "21:16: Fixing farm502 (dragged fence piece) and pasture503 (the led horse's size) in parallel; then merge, look, release.",
+ "closed_tickets": [
   {
    "id": 505,
    "area": "dress up, speed: 💭 our imagination below 60 frames a second",
-   "text": "<b>💭 Our imagination ran at 41 frames a second in 0.0.385's speed run (GitHub's computer), and the greenhouse at 54.</b> 0.0.391 adds three places to the imagination's map (the desert as a column of its own, the pasture and the farm yard in theirs), which can only cost more there; 0.0.391's run will say how much. A 🌙 long run, after the features (Matthew's call, 10-17).",
-   "source": "Claude, 2026-10-20 18:48, from 0.0.385's speed run",
-   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39511433790",
    "added": "2026-10-20T18:48-06:00",
-   "tags": [
-    "low priority"
-   ],
-   "progress": "18:48: minted from 0.0.385's speed run (imagination 41.1 fps, greenhouse 53.8 on GitHub's computer); 0.0.391's run will measure the three new places' cost. 19:21: LOOKED (pane, 0.0.392): the imagination's picture is small (616 elements, no animations of its own: moving pictures are off), but its 37 framed pictures are still SVG images (data URIs of 46 to 256 KB each, 2.55 MB in all: pictureSvg's 'still' path, ticket 154). GitHub's Chrome draws without a GPU; 0.0.385's audit there: 41.1 fps with only 3.6 ms of the game's own drawing a frame, so the time is the browser's painting. LIKELY: an SVG image is kept as shapes, not pixels, so each repaint of a tile it lies in (the friend walking past the map) draws its thousands of shapes again. PLAN (a 🌙 run, after the features): turn each still into pixels once (an offscreen canvas at its drawn size times devicePixelRatio, WebP), in the live picture only, so saves, postcards and the archive keep the SVG; measure with a diagnostic speed run on GitHub (imagination, the greenhouse, the house's pictures) before releasing. First, 0.0.392's speed run (pending) says how much the three new places cost. 19:59: 0.0.390's speed run (39520834546, the same kind of GitHub computer): 💭 our imagination 60 fps (p95 16.7 ms, draw 1.9 ms), the greenhouse 60 fps; the only miss in its audit was the treehouse (STUCK). So 0.0.385's 41.1 and 53.8 were one run's slow computer, not the game: one run says little (two runs now disagree). The plan stays written, not started; 0.0.392's run, with the three new places, is the next measure."
-  }
- ],
- "next_ticket": 507,
- "current_ticket": 494,
- "current_note": "20:40: Waiting only on GitHub: 0.0.392's speed run (watched in the background) for OBJECTS.md and the imagination's numbers; the rest of the queue waits on tomorrow's meeting or on Matthew.",
- "closed_tickets": [
+   "text": "💭 Our imagination ran at 41 frames a second in 0.0.385's speed run (GitHub's computer), and the greenhouse at 54.",
+   "source": "Claude, 2026-10-20 18:48, from 0.0.385's speed run",
+   "status": "done",
+   "closed": "2026-10-20",
+   "outcome": "Not the game: 0.0.385's 41.1 fps was one run's slow computer. 0.0.390's speed run: 💭 our imagination 60 fps; 0.0.392's (with the desert, the farm yard and the pasture on its map):…"
+  },
+  {
+   "id": 494,
+   "area": "dress up, tonight's long run: the galleries after the cave releases",
+   "added": "2026-10-20T16:26-06:00",
+   "text": "Bring OBJECTS.md and the picture and music archives up to date with 0.0.376 to 0.0.379",
+   "source": "the agent instructions' rule (Matthew, 2026-10-17: \"load these updates as long runs each day we make changes or…",
+   "status": "done",
+   "closed": "2026-10-20",
+   "outcome": "Done 21:1x: the archive run at 0.0.392 landed (run-2026-10-20, 757 drawings); the archive's DevTools calls now fail a hung batch in minutes (dress-up-pictures b05468f), and the…"
+  },
   {
    "id": 506,
    "area": "dress up, the castle's stable: its hens, up to 30 (for M)",
@@ -7734,7 +7643,7 @@
   }
  ],
  "queue": [
-  494,
+  507,
   490,
   470,
   411,
@@ -7774,7 +7683,7 @@
   460,
   493
  ],
- "current_since": "2026-10-20T20:40-06:00",
+ "current_since": "2026-10-20T21:16-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
