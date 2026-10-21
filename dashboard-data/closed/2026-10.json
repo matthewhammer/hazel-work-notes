@@ -1,5 +1,149 @@
 [
  {
+  "id": 509,
+  "area": "dress up, performance: 💭 our imagination's frame rate on GitHub's computers, now and then about 40",
+  "added": "2026-10-20T23:50-06:00",
+  "opened": "2026-10-20T23:50-06:00",
+  "status": "done",
+  "tags": [
+   "long run"
+  ],
+  "chips": [
+   "dress up",
+   "performance"
+  ],
+  "source": "Claude, from 0.0.394's speed run (39541468171), 2026-10-20 23:50; Matthew's rule: the 🌙 perf tickets are the night's work while he is AFK",
+  "text": "<b>💭 our imagination walks at about 40 frames a second in some speed runs and 60 in others: find out why, and make it 60 every time.</b> The on-screen controller audit (tools/audit160) has it at 41.1 fps on 0.0.385, 60 on 0.0.390, 58 or more on 0.0.393, and 39.8 on 0.0.394 (p95 33.4 ms, worst 67 ms, its own drawing only 3.8 ms a frame, 'scenery held still (choppy)'); the forest also missed on 0.0.394 (54.4). ^ticket(505) put 0.0.385's down to one slow computer; a second time in five runs says otherwise. First a measurement with power: a diagnostic run repeating imagination and the forest many times; then the cause (paint, not the game's drawing, by the numbers), then a fix, measured the same way.",
+  "progress": "23:52 10-20: a diagnostic on GitHub, branch diag-509 (run 39551957119; never merged): four fresh-Chrome jobs, each auditing imagination, the forest, the empty room and the forest clearing 12 times, with the runner's CPU recorded, and a fifth that runs every check first, as the speed run does before its audit (about 40 minutes in one Chrome), then the same audit. It tells apart the place itself, GitHub's hardware, and a session worn down. 23:57: FOUND THE PATTERN (diag-509's three fresh-Chrome jobs that ran: AMD EPYC 9V74 twice, Intel Xeon 6973P once; 12 runs a place). Imagination is not slow at random: on every runner its first 6 or 7 runs walk at 45 to 58 fps (p95 33 ms), then every run after is exactly 60: the game's choppy detector takes about 25 s of walking to switch imagination's scenery to a still picture, and from then on it holds 60. The forest, the clearing and the empty room are steady at 60 all through (the forest's 54.4 in 0.0.394's run did not repeat). The speed run's audit does ONE run a place, always in that first stretch, so it reads 40 or 60 by the runner. So the cost is imagination's live scenery, and not its drawing (2 to 3 ms a frame): the browser's painting. Suspects: the breathing glow (an opacity animation on an ellipse nearly as large as the picture, behind the map board), the dashed lines' moving dashes, and the bobbing ladders, each forcing a repaint over some of the 50 or so framed miniatures. The fourth job (fresh-3, AMD EPYC 9V45) wrote nothing: the audit's first query ran before the game's scripts had loaded (a race in tools/audit160.mjs's start, not the game). The fifth job (every check first) still running. NEXT: a second diagnostic with each suspect switched off in turn, to find which repaint costs the frames. 23:59: the second diagnostic running (branch diag-509b, run 39552688318; never merged): on each of three runners, imagination with its scenery held live (PERF.slowMoving), each suspect off in turn: the breathing glow (1 animation), the moving dashes (8), the bobbing ladders (9; the 18 are all of its live animations, counted in the pane), all three, the 36 framed miniatures hidden; and as references the still picture from the start and the forest; 6 runs each. The audit there gets a PRE hook and waits for the game's scripts before its first query. 00:13 10-21: WHICH PART (diag-509b, 39552688318): on the fast runner (AMD EPYC 9V45) every variant 60; on the two slower ones (Intel Xeon 6973P, Xeon Platinum 8573C) the live scenery about 48, and only three things give a steady 60: every animation off, the 36 framed miniatures hidden, or the still picture (no single animation off does: the glow off about 52, the dashes or the ladders off about 41). So the cost is the miniatures being drawn again (each is an SVG image whose 2,000 to 7,000 shapes the browser replays whenever anything near it moves), and any motion sets it off. THE FIX, as ^ticket(505) planned and as ^ticket(383) chose for the foam (keep the motion, take away the cost): in play only, each still picture drawn once into a canvas and kept as a WebP (RASTERS; the scene option 'raster' redraws the scene once all are made), one at a time when the page is idle; a held picture (the archive) keeps its SVG, so the archive's bytes do not change. Found and fixed on the way: keyed by the picture's text, the bitmaps never settled, as the text holds its animations' begin times, which follow the clock; keyed by the still picture itself (the animations stripped), 36 bitmaps, one redraw, none new when the friend moves. Tried in the pane on 8133: 36 of 36 as WebP (109 by 73 px for 36.5 by 24.3 units, about 4 KB against 84 KB of SVG), held still 36 of 36 SVG, no page errors; the bitmaps sized for this screen shown full screen. Measuring it on GitHub (diag-509c, 39554067547) and a review by another agent, both running; then 0.0.395. 00:17: diag-509c (39554067547) measured the fix, but all three of its jobs drew the fast AMD EPYC 9V45 runners, where imagination was 60 before the fix too: everything 60, which shows nothing broke and nothing more. GitHub picks the runner; about 4 jobs in 10 have been the slower Intel ones. So diag-509d (39554485736): eight jobs, each serving the game before the fix and after it on the same computer, imagination live, 6 runs each, twice in turn. The check raster509 written (tools/checks/raster509.mjs), its page side tried in the pane on 8133: 36 WebP from a fresh load in about a second, none new as the friend moves, held SVG, play again WebP. 0.0.395's edits ready, held until a slow runner confirms. 00:21: THE FIX MEASURED (diag-509d, 39554485736: eight jobs, each the game before and after on the same computer, imagination live, 6 runs each, twice in turn): on 7 of 8 runners (AMD EPYC 7763 x4, Intel Xeon 6973P, Platinum 8370C, Platinum 8573C) BEFORE 40 to 55 fps (medians 40.5 to 59.8), AFTER 60 in every one of their 84 runs; the eighth (AMD EPYC 9V45) 60 both ways. Waiting only on the code review, then 0.0.395. 00:29: REVIEWED (a second agent, read-only): the design held (the cache key, the archive's bytes, no loop); its fixes taken: a save's and a postcard's copy get the SVG pictures back (unrastered, RASTER_SRC; they had embedded the 110 px bitmaps), Safari's PNG taken where it makes no WebP (all work had been thrown away there), the queue kept to the newest 60 and a job skipped once made, the scene redrawn with moved(true) not changed() (no syncs or save), jobs only in idle time with 8 ms to spare, decoding=sync on the bitmaps, a guard for a picture that never loads, two comments put right. All five of raster509's facts pass in the pane on 8133 (and a postcard drawn, 393 KB). 0.0.395 RELEASED and LIVE 00:28 (70adfd9, tag dress-up-0.0.395; version.json's date put right in cffe29a). Its speed run 39555614044 running: its audit should have imagination at 60. 00:53: diag-509's fifth job (every check first, then the audit; AMD EPYC 7763): imagination 43 in its first run, then the choppy fallback, then 60 (the long session only changes how soon the fallback comes). The FOREST there 55 to 58 in every run (p95 33 ms), as on the two Intel runners of diag-509b (56, 58.5) and 0.0.394's audit (54.4): a separate, smaller case, on the edge of the audit's 55; looked at next. 00:58: THE FOREST (diag-509e, 39558271624, six runners, fresh Chrome): 60 on all six, three of them the AMD EPYC 7763 that read 55 to 58 after a long session; no Intel runner came up. So the forest is on the edge only on some computers or late in a long session, with no one part to blame: left as it is. A CAVEAT on my method, for the record: the variants that take out one animation (diag-509b's dashes or ladders alone, 41; here the butterflies alone, 54 to 58) did it with a MutationObserver that searches the page at every change, work on every frame, so those single-part numbers read low. The findings rest on runs without it: every animation off and the pictures hidden by a style (60), and the fix's before and after (the same option on both sides): 40 to 55, then 60. 01:49: 0.0.395's SPEED RUN (39555614044) recorded 'ok': 191 checks, raster509 all ok, the gates at 55 or more, no leak errors; its audit has 💭 imagination at 60 (p95 16.7 ms). Its other misses (the fairy forest 49.5 with its scenery already held still, the forest, the tree house and the castle near 56) are not the pictures' cost: ^ticket(510).",
+  "log": [
+   {
+    "at": "2026-10-20T23:38-06:00",
+    "from": "claude",
+    "chars": 1470,
+    "asks": false,
+    "words": 252,
+    "read_s": 64,
+    "listen_s": 94,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T23:53-06:00",
+    "from": "claude",
+    "chars": 446,
+    "asks": false,
+    "words": 77,
+    "read_s": 19,
+    "listen_s": 29,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-21T00:03-06:00",
+    "from": "claude",
+    "chars": 1096,
+    "asks": false,
+    "words": 192,
+    "read_s": 48,
+    "listen_s": 72,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-21T00:15-06:00",
+    "from": "claude",
+    "chars": 873,
+    "asks": false,
+    "words": 156,
+    "read_s": 39,
+    "listen_s": 58,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-21T00:19-06:00",
+    "from": "claude",
+    "chars": 273,
+    "asks": false,
+    "words": 46,
+    "read_s": 12,
+    "listen_s": 17,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-21T00:21-06:00",
+    "from": "claude",
+    "chars": 214,
+    "asks": false,
+    "words": 39,
+    "read_s": 10,
+    "listen_s": 15,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-21T00:26-06:00",
+    "from": "matthew",
+    "chars": 10604,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-21T00:30-06:00",
+    "from": "claude",
+    "chars": 2780,
+    "asks": false,
+    "words": 494,
+    "read_s": 125,
+    "listen_s": 185,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-21T00:54-06:00",
+    "from": "claude",
+    "chars": 752,
+    "asks": false,
+    "words": 135,
+    "read_s": 34,
+    "listen_s": 51,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-21T00:59-06:00",
+    "from": "claude",
+    "chars": 259,
+    "asks": false,
+    "words": 47,
+    "read_s": 12,
+    "listen_s": 18,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-21T01:23-06:00",
+    "from": "claude",
+    "chars": 357,
+    "asks": false,
+    "words": 62,
+    "read_s": 16,
+    "listen_s": 23,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-21",
+  "closed_at": "2026-10-21T01:49-06:00",
+  "outcome": "0.0.395: imagination's 36 map pictures drawn once as WebP in play (SVG kept for the archive, saves and postcards); 60 fps on GitHub's slower runners where it was 40 to 55 (84 of 84 runs), and 60 in 0.0.395's audit",
+  "metrics": {
+   "open_minutes": 119,
+   "matthew_messages": 1,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 19124,
+   "tokens_est": 4781,
+   "sync_minutes_est": 20.0,
+   "replies": 10,
+   "claude_words": 1500,
+   "read_minutes_est": 6.3,
+   "listen_minutes_est": 9.4,
+   "read_s_avg": 38,
+   "listen_s_avg": 56,
+   "work_minutes": 110.0
+  }
+ },
+ {
   "id": 507,
   "area": "dress up, speed checks: farm502 and pasture503's first run",
   "source": "Claude, 2026-10-20 21:16, from 0.0.392's speed run",
