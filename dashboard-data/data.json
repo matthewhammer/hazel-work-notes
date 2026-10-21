@@ -3509,488 +3509,6 @@
    "waiting": "Matthew: ask Cyrus about Modules II parts 2-3 (carry them in #2635, or wait for them in dev)."
   },
   {
-   "id": 514,
-   "area": "hazel, ^report(24): Hazel's architecture around #2651, for review with Alexander",
-   "added": "2026-10-21T11:16-06:00",
-   "opened": "2026-10-21T11:16-06:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazel",
-    "report"
-   ],
-   "source": "Matthew, 2026-10-21 11:2x, working synchronously with Alexander to review #2651 for merging today",
-   "url": "https://github.com/hazelgrove/hazel/pull/2651",
-   "text": "<b>A new Hazel report, ^report(24): how Hazel is architected today with respect to #2651 (Statics: a module binding analyzes its definition once, not twice), its major subsystems, the representations they share and the protocols between them, with as many visuals as it takes, and the PR's changes drawn in terms of those subsystems.</b> Matthew: \"I've only been testing functional correctness, and never reviewing code arch, or code arch changes --- please help me get more oriented.\" For: Matthew, Alexander, Cyrus and the rest of the team. \"Please use as many visuals as necessary -- spare no expense.\"",
-   "progress": " 11:42 10-21: Matthew: \"please provide a section (and anchor/URL) to share with Alexander with questions for him\". The run was stopped before its writer got far and resumed with the six code readings kept: questions for Alexander drafted from two lenses (Modules II semantics; the code he maintains), merged, and each checked twice (are its premises true at dev 962a7cb009 and the PR head 29c08fd8fa; does it need him, or do the code and the PR's conversation already answer it); then the writer, to the series' agent-instructions.md (sections with ids, What next, method, data embedded and in 024/data/), with the section at #questions-for-alexander, each question its own #q-... anchor and a copy-link button; then a fact-check and a render check of every figure light and dark; then the series' page tools. The link once published: https://matthewhammer.org/hazel/reports/024/#questions-for-alexander. Meanwhile the code-reading review points went to Matthew in chat. 11:48: Matthew: \"please publish as WIP/draft -- whatever tag we've used before, for meeting notes\". Published as work in progress (the agenda's tag): https://matthewhammer.org/hazel/reports/024/ (homepage commit c18f35a, its card in the series index and on the Hazel page), for now a short page in the series' style: what #2651 changes (checked against the diff), the review points from reading the code (one confirmed by the PR's tests, the rest marked not yet fact-checked), and Questions for Alexander at #questions-for-alexander, five drafts, each with its own #q-... anchor and a copy-link button. The full report (the workflow, still drafting) replaces it at the same address, still marked work in progress. Locally: series/024 links to 024-interim/ until then. 11:57: Alexander's answers, relayed by Matthew: question 1 (one-member signature): dev's result is a bug from the auto-labelling, it should evaluate to 1 or be stuck, so #2651's 1 is right; question 2 (recursive modules): not sure, fine for now not to make them recursive by default, recursion has correctness problems, \"probably a cyrus question\". Both on the published page (homepage 8b88655, 75ed622), neither holds up the merge; the full report's writer is told both. Waiting: ask Cyrus whether modules should be recursive. 12:08: Alexander answered question 3 (homepage 1440ab9): no Modules II signal for self-naming; module is a non-recursive let today; his suggestion, an argument on the let analysis so a module binding is never analyzed recursively (no FixF check needed); and two questions for Cyrus: should a module binding of a non-module (module F = fun x -> 1 in F(3)) be a static error, and what should the module keyword add over let. 12:19: ran the CLI at dev 962a7cb009 and #2651 29c08fd8fa on six module programs: (1) `module M : { let x : Int } = 5 in M.x`: dev 5, #2651 `5 .x` stuck, no static errors either way: a regression the question checker traced and the CLI confirms; (2) the extra-member module: dev raw source, #2651 1 (3 static errors both); self-naming, function module, one-member literal: the same on both. Drafted a 🤖 comment for #2651 (the regression and three options, merge order with Modules II parts 2-9 and the one-line conflict where #2494 added ~coercible=true, def_elab_direct on his stack, tests); not posted, waiting for Matthew's OK. 12:20: Alexander (via Matthew): his own agent read the module keyword as making a binding non-recursive and allowing a capitalized name; that matches ours, and #2651 keeps both. Added to the draft comment and to the list of edits for the full report. 12:22: Alexander answered 4 and 5 (via Matthew): the read-back is closer to the original design (the old elaborator read the definition from the statics map); no conflict with Modules II. Checked with git merge-tree: clean with part 1, one textual hunk with each of parts 2-9 (part 2 added ~coercible=true to the direct pass that #2651 moves into its fallback); part 2's let also analyzes def with ~coercible=true (Statics.re:2155-2210 at be90bf4b21), so the read-back is the same analysis: one line to resolve, nothing in substance. All five answered on the published page (homepage d3b72c5); the draft #2651 comment updated. 12:35: Alexander reviewed on #2651 itself: the one-member-signature test is fine (matches labeled tuples; his sealing PR makes y private); asked Andrew Blinn (@disconcision) whether a module defined as a function should be an error; a 🤖 comment asking that #2651's code comments describe the code, not its history (and name the singleton-label exception). Rewrote them, comments only, committed locally on statics-module-def-once as fa3eef62ce (not pushed). Drafts for #2651, waiting on Matthew: a reply on his evaluator-test thread (the stuck `= 5` program and three options), a reply on his comments thread, a PR comment on merge order and tests. #2635 CI green on e4f9cd4192 (run 39640874907). 12:40: Matthew: \"Do this task here: Prototype Alexander's let flag for #2651\". Started as a workflow in ~/hazel-module-let-nonrec (branch module-let-nonrec from fa3eef62ce): two readers (the let analysis; every path that binds a module, DefStatics' incremental one included), one implementer (the argument on the let analysis, names_itself and its fallback removed, the self-naming test pinned to its mark, the ascribed form and F(2) = 3 added; builds -j 2, one group per run; the six CLI programs), two reviewers, a fixer. Local commits only. 12:42: with Matthew's yes: pushed fa3eef62ce to #2651 (CI run 39655086864) and posted three 🤖 items: a reply on Alexander's evaluator-test thread (the stuck `= 5` program and three options, discussion_r4340596357), \"done\" on his comments thread (r4340596675), a PR comment on merge order and tests (issuecomment-6323754242). 12:49: Alexander on #2651 (discussion_r4340660934): option 2, accept the stuck `= 5` program: a bare value under a module signature should be stuck and a static error; Modules II part 1 (signatures as Typ.Sig, no lift) does both with or without #2651; dev's missing error is temporary; the test either pinned as stuck with a note or added on part 1. Nothing open holds #2651 up but its CI on fa3eef62ce (run 39655086864). 12:51: Matthew: \"leave it for part 1\": the stuck-program test goes on Modules II part 1, not #2651. 12:52: Matthew AFK, asked for the full draft published as WIP for him and Alexander to review. Not posted without his word: a reply on Alexander's thread agreeing to option 2 and the test on part 1. 12:53: Alexander on #2651 (discussion_r4340695087, 🤖): names_itself also matches a user-written fix (`module m = fix f -> fun x -> ... f(x - 1) in m(3)` elaborates to Let(_, FixF, _)), so the read-back is skipped and the definition is analyzed twice (results match dev; only the speed-up is lost); the signal belongs in the let analysis, an argument making a module binding non-recursive (the prototype in progress), as a follow-up if preferred; and if a module bound to a function becomes a static error (Cyrus), names_itself can go. To check on the prototype: both fix programs. 12:56: Alexander suggested renaming the one-member-signature evaluator test (discussion_r4340723992) to \"Projecting a declared member of a module wider than its signature\"; applied and committed locally on statics-module-def-once, NOT pushed: a new push to #2651 waits on Matthew's word. 13:00: Matthew: \"yes, push the rename and reply on his threads\" (\"use robot emoji\"). Pushed b5a3e1d90a to #2651; three 🤖 replies: the rename applied (discussion_r4340770782), agreed option 2 with the test on part 1 (r4340771544), agreed the signal belongs in the let analysis, prototype in progress with both fix programs in its tests (r4340772054). 13:01: #2651 CI green on fa3eef62ce (run 39655086864: Fast checks and Full tests); the run on b5a3e1d90a (the test rename) is going. 13:01: Alexander (Slack, via Matthew, FYI): there are a number of module issues unrelated to our finding; he will probably clean some up on the Modules II stack after its first PR merges. 13:09: Alexander on #2651 (issuecomment-6324270079, 🤖): the description's 6 -> 4 Measured warnings are two orphaned duplicate errors the singleton-label lift left at fresh ids when it ran twice (let + direct pass); output otherwise byte-for-byte identical over three runs each; separately, the lift recording error infos at fresh ids with no source position is a dev issue of its own. 13:26: #2651 CI green on its head b5a3e1d90a (run 39657741479, Fast checks and Full tests). The full ^report(24) draft is written and checked; folding in what came after (integration workflow), then publishing it as work in progress. 13:37: Matthew: \"make it a follow-up PR, not part of #2651\". The prototype (9572769e9c on module-let-nonrec; ~check_rec=false from the ModuleExp case, one analysis per module definition, names_itself gone; 19 groups pass; CLI identical to #2651 on ten programs) becomes a draft PR against dev, depending on #2651: after its fixer, rebase onto b5a3e1d90a, add Alexander's two fix programs as tests, rerun the groups, push, open. 13:42: the prototype's fixer confirmed all five review findings and added a7de3de19e (tests that see which F a module definition binds, two cost-bound tests, the conflicts' resolutions in the commit message; a module item inside braces stays a recursive let, pinned, left for Matthew/Alexander/Cyrus); Statics.Modules 83/83, Evaluator.Modules 23/23. Now (workflow): rebase onto b5a3e1d90a, Alexander's two fix programs as tests, groups rerun, the PR description drafted and checked; then push and open the draft PR. Correction: @disconcision is Andrew Blinn (he opened #2469), not Cyrus: Alexander's question on #2651 (should a module defined as a function be an error?) was addressed to Andrew. 13:52: PUBLISHED the full draft as work in progress (homepage df84886), replacing the interim page: https://matthewhammer.org/hazel/reports/024/ (378 KB; 24 figures; the five questions, all answered, none holding up the merge; the six CLI runs; Alexander's review threads linked; For Cyrus; What next). Live and checked over HTTPS: the work-in-progress line, every anchor Alexander linked (q-one-member-signature, q-recursive-modules, q-self-naming-signal, q-moduleexp-elab, q-merge-order, change, review, next, method), the data files and the thumbnail. The reports repo itself is not pushed (41 commits wait there, drafts among them); the page's data links point at the files beside it. 13:57: Matthew: \"drop the WIP label once the follow-up PR is linked\". So: when the let-flag follow-up PR is open, link it in ^report(24) (#next, #guard), drop the work-in-progress label (series line, the note under the subtitle, \"(work in progress)\" in the card on both series indexes and on the Hazel page), republish, check live; then close this ticket. 14:32: the let flag is a DRAFT FOLLOW-UP PR, hazelgrove/hazel#2717 (\"Statics: a module binding is a non-recursive let\", against dev, depending on #2651; module-let-nonrec at ea23dd4930: a0a781effe, e3dc50cc0b, ea23dd4930), bound to this session; its description starts with 🤖. Alexander's two fix programs are tests (6, analyzed once; m unbound at the inner m); twelve nested `module m = fix ...` 0.0 s here, 197 s on #2651's shape; Statics.Modules 86, Evaluator.Modules 24 and six more groups pass. Found on the way: on #2651 the let's own analysis already reports the second fix program's unbound m (a FixF has no function count, so that let is not recursive), and the fallback reports it again. Now (workflow): ^report(24) links #2717 everywhere it said a prototype was in progress, and drops the work-in-progress label, as Matthew said; then republish.",
-   "log": [
-    {
-     "at": "2026-10-21T11:13-06:00",
-     "from": "claude",
-     "chars": 1638,
-     "asks": false,
-     "words": 268,
-     "read_s": 68,
-     "listen_s": 100,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T11:14-06:00",
-     "from": "matthew",
-     "chars": 635,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T11:15-06:00",
-     "from": "matthew",
-     "chars": 83,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T11:35-06:00",
-     "from": "claude",
-     "chars": 4188,
-     "asks": false,
-     "words": 697,
-     "read_s": 176,
-     "listen_s": 261,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T11:38-06:00",
-     "from": "matthew",
-     "chars": 126,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T11:42-06:00",
-     "from": "claude",
-     "chars": 944,
-     "asks": false,
-     "words": 159,
-     "read_s": 40,
-     "listen_s": 60,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T11:45-06:00",
-     "from": "matthew",
-     "chars": 81,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T11:49-06:00",
-     "from": "claude",
-     "chars": 963,
-     "asks": false,
-     "words": 171,
-     "read_s": 43,
-     "listen_s": 64,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T11:51-06:00",
-     "from": "matthew",
-     "chars": 29,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T11:56-06:00",
-     "from": "matthew",
-     "chars": 20,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T11:56-06:00",
-     "from": "matthew",
-     "chars": 188,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T11:56-06:00",
-     "from": "claude",
-     "chars": 636,
-     "asks": false,
-     "words": 102,
-     "read_s": 26,
-     "listen_s": 38,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T11:57-06:00",
-     "from": "matthew",
-     "chars": 255,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T11:57-06:00",
-     "from": "claude",
-     "chars": 180,
-     "asks": false,
-     "words": 28,
-     "read_s": 7,
-     "listen_s": 10,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T11:58-06:00",
-     "from": "claude",
-     "chars": 192,
-     "asks": false,
-     "words": 34,
-     "read_s": 9,
-     "listen_s": 13,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:07-06:00",
-     "from": "matthew",
-     "chars": 738,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:09-06:00",
-     "from": "claude",
-     "chars": 293,
-     "asks": false,
-     "words": 39,
-     "read_s": 10,
-     "listen_s": 15,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:12-06:00",
-     "from": "matthew",
-     "chars": 298,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:12-06:00",
-     "from": "claude",
-     "chars": 160,
-     "asks": false,
-     "words": 25,
-     "read_s": 6,
-     "listen_s": 9,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:13-06:00",
-     "from": "matthew",
-     "chars": 69,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:19-06:00",
-     "from": "matthew",
-     "chars": 119,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:19-06:00",
-     "from": "claude",
-     "chars": 1130,
-     "asks": false,
-     "words": 182,
-     "read_s": 46,
-     "listen_s": 68,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:20-06:00",
-     "from": "claude",
-     "chars": 324,
-     "asks": false,
-     "words": 55,
-     "read_s": 14,
-     "listen_s": 21,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:38-06:00",
-     "from": "matthew",
-     "chars": 61,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:38-06:00",
-     "from": "claude",
-     "chars": 2107,
-     "asks": false,
-     "words": 348,
-     "read_s": 88,
-     "listen_s": 130,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:40-06:00",
-     "from": "claude",
-     "chars": 1068,
-     "asks": false,
-     "words": 171,
-     "read_s": 43,
-     "listen_s": 64,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:41-06:00",
-     "from": "matthew",
-     "chars": 26,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:44-06:00",
-     "from": "claude",
-     "chars": 909,
-     "asks": false,
-     "words": 139,
-     "read_s": 35,
-     "listen_s": 52,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:44-06:00",
-     "from": "claude",
-     "chars": 590,
-     "asks": false,
-     "words": 98,
-     "read_s": 25,
-     "listen_s": 37,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:49-06:00",
-     "from": "claude",
-     "chars": 430,
-     "asks": false,
-     "words": 79,
-     "read_s": 20,
-     "listen_s": 30,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:51-06:00",
-     "from": "matthew",
-     "chars": 19,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:51-06:00",
-     "from": "matthew",
-     "chars": 113,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:51-06:00",
-     "from": "claude",
-     "chars": 338,
-     "asks": false,
-     "words": 65,
-     "read_s": 16,
-     "listen_s": 24,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:53-06:00",
-     "from": "claude",
-     "chars": 1014,
-     "asks": false,
-     "words": 168,
-     "read_s": 42,
-     "listen_s": 63,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:53-06:00",
-     "from": "claude",
-     "chars": 248,
-     "asks": false,
-     "words": 39,
-     "read_s": 10,
-     "listen_s": 15,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:56-06:00",
-     "from": "claude",
-     "chars": 238,
-     "asks": false,
-     "words": 39,
-     "read_s": 10,
-     "listen_s": 15,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:59-06:00",
-     "from": "matthew",
-     "chars": 45,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:59-06:00",
-     "from": "matthew",
-     "chars": 17,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T12:59-06:00",
-     "from": "claude",
-     "chars": 71,
-     "asks": false,
-     "words": 12,
-     "read_s": 3,
-     "listen_s": 4,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T13:00-06:00",
-     "from": "claude",
-     "chars": 297,
-     "asks": false,
-     "words": 46,
-     "read_s": 12,
-     "listen_s": 17,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T13:01-06:00",
-     "from": "matthew",
-     "chars": 214,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T13:01-06:00",
-     "from": "claude",
-     "chars": 329,
-     "asks": false,
-     "words": 54,
-     "read_s": 14,
-     "listen_s": 20,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T13:01-06:00",
-     "from": "claude",
-     "chars": 359,
-     "asks": false,
-     "words": 67,
-     "read_s": 17,
-     "listen_s": 25,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T13:09-06:00",
-     "from": "claude",
-     "chars": 455,
-     "asks": false,
-     "words": 84,
-     "read_s": 21,
-     "listen_s": 32,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T13:14-06:00",
-     "from": "claude",
-     "chars": 167,
-     "asks": false,
-     "words": 28,
-     "read_s": 7,
-     "listen_s": 10,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T13:21-06:00",
-     "from": "claude",
-     "chars": 649,
-     "asks": false,
-     "words": 113,
-     "read_s": 28,
-     "listen_s": 42,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T13:26-06:00",
-     "from": "claude",
-     "chars": 260,
-     "asks": false,
-     "words": 44,
-     "read_s": 11,
-     "listen_s": 16,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T13:36-06:00",
-     "from": "matthew",
-     "chars": 41,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T13:37-06:00",
-     "from": "matthew",
-     "chars": 17,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T13:37-06:00",
-     "from": "claude",
-     "chars": 761,
-     "asks": false,
-     "words": 127,
-     "read_s": 32,
-     "listen_s": 48,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T13:37-06:00",
-     "from": "claude",
-     "chars": 514,
-     "asks": false,
-     "words": 87,
-     "read_s": 22,
-     "listen_s": 33,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T13:57-06:00",
-     "from": "matthew",
-     "chars": 50,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T13:57-06:00",
-     "from": "claude",
-     "chars": 647,
-     "asks": false,
-     "words": 115,
-     "read_s": 29,
-     "listen_s": 43,
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 515,
    "area": "dress up, a robot costume: eight styles",
    "added": "2026-10-21T12:20-06:00",
@@ -4321,6 +3839,16 @@
      "read_s": 31,
      "listen_s": 45,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-21T14:45-06:00",
+     "from": "claude",
+     "chars": 218,
+     "asks": false,
+     "words": 39,
+     "read_s": 10,
+     "listen_s": 15,
+     "note": "from the transcripts"
     }
    ],
    "progress": "14:18: designed (a read-only workflow: the library, Hazel's editor stack, the panel; two designs; a judge). The library has no UI: analyze/run on text, 2.79 MB, haz3lcore only; the editor's model is already in it, its view and input are in `web`. Chosen: STAGED, the frame first: Hazel's own app in an iframe from the hazel.org branch build in a new #embed mode (postMessage), the shared core built once (Mod-root editing, a ModuleProgram stitch like exercise mode, Hazel.runProgram, a DOM-free editor model, an iPad input proxy), Hazel.mountEditor in the page later only if the devices or Matthew call for it. Steps: (1) embed skeleton, read-only tiles of the program under the text boxes; (2) the shared core with node tests; (3) the trap room's editor as tiles, the lever running what they hold; (4) Common in tiles, errors per module; (5) iPad typing. Defaults taken unless Matthew says otherwise: frame first; a PR stacked on #2711; stacked editors (chips past three); load from the live branch build. Asked: those four, and pushing 2d5397d6ad (the tag check) to #2711."
@@ -4362,6 +3890,16 @@
  "current_ticket": 520,
  "current_note": "14:19: Matthew, 14:19: \"yes to the defaults, go ahead with 520\": the frame first, a PR stacked on #2711, stacked editors, the live branch build (2d5397d6ad, the tag check, stays unpushed: not asked). Milestone A, Hazel: the shared core (Mod root, ModuleProgram stitch, Hazel.analyzeProgram/runProgram, node tests) then the #embed skeleton (read-only tiles of a program, postMessage), in ~/hazel-embed-520, branch js-library-embed from origin/js-library; then push, a draft PR stacked on #2711, CI and deploy, a look in the pane; then milestone B in the game.",
  "closed_tickets": [
+  {
+   "id": 514,
+   "area": "hazel, ^report(24): Hazel's architecture around #2651, for review with Alexander",
+   "added": "2026-10-21T11:16-06:00",
+   "text": "A new Hazel report, ^report(24): how Hazel is architected today with respect to #2651 (Statics: a module binding analyzes its definition once, not twice), its major subsystems, the representations they share and the protocols between them, with as many visuals as it takes, and the PR's changes drawn in terms of those subsystems.",
+   "source": "Matthew, 2026-10-21 11:2x, working synchronously with Alexander to review #2651 for merging today",
+   "status": "done",
+   "closed": "2026-10-21",
+   "outcome": "^report(24), \"Hazel's Architecture Around #2651\", finished and published: https://matthewhammer.org/hazel/reports/024/ (homepage e55926b; the work-in-progress label dropped once…"
+  },
   {
    "id": 519,
    "area": "dress up, ^du_report(15): the dragon, its fires and the horse's armour, from their mock-ups",
@@ -9054,7 +8592,6 @@
   517,
   518,
   521,
-  514,
   512,
   389,
   465,
@@ -9108,10 +8645,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 4942,
-  "words": 1101562,
+  "replies": 4943,
+  "words": 1101617,
   "read_hours_est": 77.1,
-  "listen_hours_est": 114.7,
+  "listen_hours_est": 114.8,
   "read_s_avg": 56,
   "listen_s_avg": 84,
   "days": {
@@ -9336,9 +8873,9 @@
     "chars": 149483
    },
    "2026-10-21": {
-    "replies": 79,
-    "words": 10865,
-    "chars": 64012
+    "replies": 80,
+    "words": 10920,
+    "chars": 64350
    }
   }
  },
