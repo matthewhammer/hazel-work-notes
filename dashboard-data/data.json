@@ -5607,10 +5607,10 @@
    "chips": [
     "fumola"
    ],
-   "source": "Found under ^ticket(545), 2026-10-22 14:52; Matthew had asked: \"mint and enqueue tickets if you think of any you want\" (for the library work, ^report(25)).",
-   "url": "https://matthewhammer.org/hazel/reports/029/#fumola-step",
+   "source": "Found under ^ticket(545), 2026-10-22 14:52; Matthew had asked: \"mint and enqueue tickets if you think of any you want\" (for the library work, ^report(25)). Then Matthew, 2026-10-22 16:11: \"Mint a ticket for this step: Hazel reports, ^report(29), What next, step 4: 'Fumola's deep answers'. http://matthewhammer.org/hazel/reports/029/#step-4\" (this ticket is that step: attached here rather than minted twice).",
+   "url": "http://matthewhammer.org/hazel/reports/029/#step-4",
    "text": "<b>A deep answer overflows wasm's stack.</b> fumola_eval_top of build(2000, null) (a list of option pairs) traps with \"memory access out of bounds\" while turning the answer into JSON, which recurses; holding the same list in the instance is fine. Make the answer's serialization iterative (or depth-limited with a clear error), with a test at depth 100,000. For Adapton/fumola; file the issue after Matthew's OK (^report(29) #fumola-step).",
-   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540). 15:26: Matthew asked whether it is the pretty printer. MEASURED (fresh wasm process per probe, 029/drivers/deep_answer.mjs): not for data. An option list answer goes out through translate/nested (structural JSON, mutually recursive per nested value) and crashes at 700 elements (fine at 400); nested arrays at 1,500 (fine at 1,000): about 800-1,500 nested values either way. The printer (format_one_line, for values with no structural translation, e.g. a function holding the list) ALSO overflows, sooner: 400 (fine at 200). Held with answer 0: fine at 10,000. A trap leaves the instance unusable. Fix must cover both paths (or a depth cap with a clear error)."
+   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540). 15:26: Matthew asked whether it is the pretty printer. MEASURED (fresh wasm process per probe, 029/drivers/deep_answer.mjs): not for data. An option list answer goes out through translate/nested (structural JSON, mutually recursive per nested value) and crashes at 700 elements (fine at 400); nested arrays at 1,500 (fine at 1,000): about 800-1,500 nested values either way. The printer (format_one_line, for values with no structural translation, e.g. a function holding the list) ALSO overflows, sooner: 400 (fine at 200). Held with answer 0: fine at 10,000. A trap leaves the instance unusable. Fix must cover both paths (or a depth cap with a clear error). 16:11: Matthew asked for a ticket for ^report(29)'s step 4: this is it; moved up the queue, after ^ticket(558)."
   },
   {
    "id": 550,
@@ -5816,9 +5816,24 @@
    "url": "http://matthewhammer.org/hazel/reports/029/#step-1",
    "text": "<b>^report(29)'s What next, step 1, beyond the trial.</b> ^ticket(547) made and measured it on trial/r25-closures (stacked on the counter build): the library hands JS functions unfinished (Evaluator.evaluate_unfinished in run and in every call), a held list's reference from JS costs 9 passes at any size, and ^ticket(540)'s tree makes the World rule flat; CI green. This ticket turns it into a change the library can keep: (1) a branch off lib-floor (^ticket(539)'s argument binding, the same call path), the two closure commits without the counter build under them; (2) the size test rewritten without the trial-only Evaluator.step_counts: a cheap pass counter the library keeps as a debug hook (^ticket(552)'s idea), or a test on what the call is given (the closure's environment held, not written in); (3) GitHub's CI and the library's tests; (4) h_ref and the held World rule measured again on that build; (5) a PR stacked on lib-floor's, once Matthew says how ^ticket(539)'s lib-floor goes up (its PR on #2719 waits on him). Only Matthew's branches.",
    "progress": "16:10: minted at the front of the queue (\"next\")."
+  },
+  {
+   "id": 559,
+   "area": "hazel evaluator: a fast path for terms already final, skipping the five stages when nothing is probed or reused (^report(29) What next, step 5)",
+   "added": "2026-10-22T16:11-06:00",
+   "opened": "2026-10-22T16:11-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-22 16:11, in chat: \"Mint a ticket for this step: Hazel reports, ^report(29), What next, step 5: 'The per-pass cost of the stages when nothing is probed and nothing reused: a fast path for terms that are already values would skip all five'. http://matthewhammer.org/hazel/reports/029/#step-5\"",
+   "url": "http://matthewhammer.org/hazel/reports/029/#step-5",
+   "text": "<b>Skip the five stages for a term that is already final, when nothing is probed and nothing reused.</b> ^report(29): every term the evaluator visits, values included, goes through eval_5 (state merge), eval_4 (reuse check), eval_3 (probe sample), eval_2/eval_1 (effects, state update, reuse map) before the rule; on a loop the rule is 7% of the time, garbage collection 36%, the stages and their trampolines 37%, and about a third of the passes on a loop are 'no step' visits to finals (5,002 of 14,009 for count(1000)). A fast path in evaluate: when the evaluation has no probe targets and no previous run to reuse (the library's calls, a game's rules: EvalInfo empty, IncrEval empty) and the term is an atom, a constructor, a closure or a list of finals, return it before the stages. Measure passes and ms on ^report(29)'s kernels (count, fib, h_walk, sumbuild) on a trial branch of the counter build; the evaluator's probe and stepper tests must not change. Related: ^ticket(550) (remember finals by identity, so a value is not visited again) and ^ticket(554) (the ideation for Cyrus and Matthew, of which this is the cheapest candidate).",
+   "progress": "16:11: minted and enqueued after ^ticket(549)."
   }
  ],
- "next_ticket": 559,
+ "next_ticket": 560,
  "current_ticket": 545,
  "current_note": "15:10: 15:10: ^report(29) published as work in progress (on his word). Next: measure the trial builds (547 closures, 548 ascriptions, 551 handles) as they land and fill its fixes section.",
  "closed_tickets": [
@@ -10709,6 +10724,8 @@
  ],
  "queue": [
   558,
+  549,
+  559,
   545,
   547,
   540,
@@ -10718,7 +10735,6 @@
   551,
   552,
   548,
-  549,
   542,
   541,
   539,
