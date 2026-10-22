@@ -4185,7 +4185,8 @@
    "opened": "2026-10-21T22:06:00-06:00",
    "status": "open",
    "tags": [
-    "experiment"
+    "experiment",
+    "blocked on Matthew"
    ],
    "source": "Matthew, 2026-10-21 22:06, in chat",
    "url": "https://github.com/matthewhammer/kids-choice-games/pull/2",
@@ -4230,7 +4231,7 @@
      "note": "from the transcripts"
     }
    ],
-   "progress": "Results in PR #2's description. Clean run 39726647106 (8 jobs, every check ok): Hazel adds 0.4-3.2 ms from a pull to its frame (red lever 9.4 -> 12.1 ms on the EPYC 7763; placed lever 6.0 -> 8.6; hatch +0.4), all above the noise and all under a frame; JS mode = main; load ~525 vs ~270 ms, first compile 340-520 ms, heap 67 vs 51 MB. Waiting on Matthew: what next (more logic into Hazel: castle exits, world ways; or stop here). | 00:05: his ask was 'as much game logic as possible', so phase 2 goes ahead: the castle's exits, the world's ways, what a fall does, into Hazel; then measured again."
+   "progress": "Phase 2 done and measured (run 39739104155, every check ok in all 8 jobs; results in PR #2): Castle (FallPit, WayOut) and World (Way) modules; a fall or ladder costs nothing visible (the decision, ~2 ms, hides behind the walk); a world way ~5.6 ms; levers +0.8-3.6 ms; Hazel mode compiles at load (~1.2 s to start). Next options for Matthew: the fixes ^report(25) names (unannotated helpers, pass only the neighbours), or the library-side fixes on #2719."
   },
   {
    "id": 533,
