@@ -4963,7 +4963,54 @@
    "source": "Matthew, 2026-10-22 10:55, in chat",
    "url": "https://matthewhammer.org/hazel/reports/025/",
    "text": "<b>Compare Hazel and Fumola on the game logic ^report(25) measured.</b> Matthew: \"do the same game logic that we've exported to Hazel in report 25, but now do a Hazel (best PRs for performance) against Fumola in Wasm, doing the same logic. Will need to write that Fumola code --- open a PR against dress-up that does the Fumola versions, and then measure and compare. I especially want to compare the map-based version in Fumola (store world data in maps, not lists) --- so there's a chance at O(log N).\" Steps: (1) the room rules of kids-choice-games#2 (^ticket(531): World's Way, the Square's levers, the Castle's ways) written in Fumola, called from the game through Fumola's Wasm build, in a PR against Dress Up (beside ?logic=js and ?logic=hazel, a ?logic=fumola); (2) two Fumola versions of the World rule: lists as in Hazel, and the world held in maps keyed by square (O(log N) lookups); (3) Hazel at its best: the 14 PRs, #2681 with the depth-1 limit, and the library's argument binding (^ticket(539)); (4) the same drivers and sizes as ^report(25) (3x3 to 24x24, plus larger maps for the asymptotics), node and GitHub's browsers; (5) a report: per handler, cost and growth (O(1), O(log N), O(N)) in each system. Fumola's issues go to Adapton/fumola (umbrella #135).",
-   "progress": "10:55: minted and enqueued (after the Hazel tickets in hand)."
+   "progress": "10:55: minted and enqueued (after the Hazel tickets in hand).",
+   "log": [
+    {
+     "at": "2026-10-22T10:54-06:00",
+     "from": "matthew",
+     "chars": 482,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-22T10:55-06:00",
+     "from": "matthew",
+     "chars": 7,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-22T10:55-06:00",
+     "from": "matthew",
+     "chars": 19,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-22T10:55-06:00",
+     "from": "claude",
+     "chars": 938,
+     "asks": false,
+     "words": 163,
+     "read_s": 41,
+     "listen_s": 61,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-22T10:57-06:00",
+     "from": "claude",
+     "chars": 1322,
+     "asks": false,
+     "words": 219,
+     "read_s": 55,
+     "listen_s": 82,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    }
+   ]
   },
   {
    "id": 543,
@@ -9897,7 +9944,7 @@
   },
   "since": "2026-08-27",
   "replies": 5096,
-  "words": 1123199,
+  "words": 1123264,
   "read_hours_est": 78.7,
   "listen_hours_est": 117.0,
   "read_s_avg": 56,
@@ -10130,8 +10177,8 @@
    },
    "2026-10-22": {
     "replies": 74,
-    "words": 10578,
-    "chars": 60807
+    "words": 10643,
+    "chars": 61182
    }
   }
  },
