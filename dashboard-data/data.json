@@ -3663,7 +3663,7 @@
      "note": "from the transcripts"
     }
    ],
-   "progress": "Milestone B's GitHub run (39702744533): the library side all passes (runProgram, the levers, errors per module, the fallback, full screen), and Hazel's frame says ready in 2.1 s in its own process; but the frame never answers a program: no status, no tiles (row 10px, size 24px), and a click in it gives no blur. 4 of the check's asserts fail. Debugging both sides now (code reading first, then a diag-520 branch on GitHub if needed); fixes as local commits."
+   "progress": "Found: the frame was below the fold (top 1011 px of a 1000 px window), and Chrome gives an off-screen cross-origin frame no animation frames, so Hazel's embed (which applies a set in an animation frame and reports after display) never drew. Scrolled into view: tiles, status, size, error marks and focus all work (diag run 39711933408, all 20 ok). The check now scrolls first (63e9460, pushed; run 39712056780). For Matthew: in the game the tiles also wait until scrolled into view; options: move them higher / say 'scroll down', or have the embed apply and report without a display (a Hazel-side change on #2719)."
   },
   {
    "id": 521,
