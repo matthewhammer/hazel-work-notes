@@ -1640,7 +1640,7 @@
    "source": "Matthew, 2026-10-19 10:33, in chat, after the 10:26 crash (the 40th since 08-18)",
    "url": "https://matthewhammer.org/hazel-work-notes/crash-log.html",
    "text": "<b>Fix the work laptop's battery, so it stops crashing.</b> Matthew: \"fix my framework laptop to reconnect the battery, replace it, etc -- so we can avoid these crashes in the future. obviously that's blocked on Matthew.\" The Framework Laptop 13 (13th Gen Intel) has reported <code>ACPI: battery: Slot [BAT1] (battery absent)</code> on every boot since 2026-08-18. It runs on the adapter alone, and the crash log has 40 crashes since then, at idle and under load, none leaving a reason in the journal. The steps are Matthew's, since they need his hands: reseat the battery's connector; if the kernel still sees no battery, replace the battery; and maybe use a stronger USB-C adapter and cable. Then Claude checks: <code>journalctl -b 0 -k -g BAT1</code> shows the battery present, <code>upower -i</code> shows it charging, and the hardware clock keeps time with the adapter out. After that, the crash log's evidence section gets updated, and we watch whether the crashes stop.",
-   "progress": "10:33: minted, blocked on Matthew (hardware). 23:36 10-20 (audit): still absent on all five boots since minting (10-19 ~11:46, 14:42 and 21:58; 10-20 15:04 and 15:26): each logs 'Slot [BAT1] (battery absent)', and only ACAD shows. The ~11:46 10-19 boot's hardware clock came up as 2023-01-01, so it lost time once without power.",
+   "progress": "10:33: minted, blocked on Matthew (hardware). 23:36 10-20 (audit): still absent on all five boots since minting (10-19 ~11:46, 14:42 and 21:58; 10-20 15:04 and 15:26): each logs 'Slot [BAT1] (battery absent)', and only ACAD shows. The ~11:46 10-19 boot's hardware clock came up as 2023-01-01, so it lost time once without power. | 07:01 10-22: the spare laptop from Cyrus (^ticket(534)) is to take over our work while this one is fixed.",
    "log": [
     {
      "at": "2026-10-19T10:32-06:00",
@@ -4315,9 +4315,28 @@
     }
    ],
    "progress": "^report(25) 'What a Call into Hazel Costs' drafted locally (hazel-perf-report c8783e0, work in progress, not published). Cause: (1) the World rule's find is annotated ([Cell], Int, Int), and Hazel re-checks that type over the rest of the list on every recursive call: quadratic, 153 ms at 16x16 (22.6 without the annotation); (2) every call converts the argument to unevaluated syntax with fresh UUIDs and re-evaluates it, ~31 us per cell; (3) ~3 us per evaluator step. Passing only the neighbouring cells: ~0.9 ms at every size. Waiting on Matthew: read it; publish on his word. | 00:49: published as work in progress."
+  },
+  {
+   "id": 534,
+   "area": "operations: move our work to the spare laptop from Cyrus, so this one can be fixed",
+   "added": "2026-10-22T07:01-06:00",
+   "opened": "2026-10-22T07:01-06:00",
+   "status": "open",
+   "tags": [
+    "blocked on Matthew",
+    "blocked on Cyrus"
+   ],
+   "chips": [
+    "operations"
+   ],
+   "source": "Matthew, 2026-10-22 07:01, in chat, after crash 45 (06:20 that morning)",
+   "url": "https://matthewhammer.org/hazel-work-notes/crash-log.html",
+   "waiting": "Cyrus: send the spare laptop (Matthew expects it in about two weeks). Matthew: set it up, then move our work onto it.",
+   "text": "<b>Do our work on a spare laptop from Cyrus, one without power problems, while this one is fixed.</b> Matthew: \"Cyrus will be sending me a spare laptop without any power issues; when that arrives -- maybe a couple of weeks? -- I can fix this one while that one does our work and this protocol.\" And: \"mint and enqueue -- blocked on Cyrus/Matthew -- use replacement laptop for this work\". This laptop has crashed 45 times since 2026-08-18 (the crash log), and its kernel sees no battery (^ticket(397)). The move covers the worktrees and branches in hand, the dashboard (~/localhost-index, its cron publish.py, ~/hazel-work-notes), the local servers on the ports the dashboard links, the reports and Dress Up checkouts, and Claude's memory of this project. Then this laptop's battery repair (^ticket(397)) can go ahead without stopping the work.",
+   "progress": "07:01: minted and enqueued, blocked on Cyrus (sending the laptop) and Matthew (setting it up)."
   }
  ],
- "next_ticket": 527,
+ "next_ticket": 535,
  "current_ticket": null,
  "current_note": "06:57: crash 45 at 06:20 (overnight, back 06:49): no damage; crash log row 0b68e56b; all eight linked ports answer again; the PR comment watch restarted. Every queued ticket now waits on Matthew.",
  "closed_tickets": [
@@ -9198,7 +9217,8 @@
   429,
   460,
   493,
-  508
+  508,
+  534
  ],
  "current_since": "2026-10-21T23:54-06:00",
  "next_meeting": {
