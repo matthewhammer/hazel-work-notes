@@ -3796,11 +3796,39 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 528,
+   "area": "dress up, hands: the hand styles from behind",
+   "added": "2026-10-21T21:22:00-06:00",
+   "opened": "2026-10-21T21:22:00-06:00",
+   "status": "open",
+   "tags": [
+    "for Dress Up time, after Hazel time"
+   ],
+   "source": "Claude, from ^ticket(518)'s audit and review (follow-ups it named)",
+   "url": "",
+   "text": "<b>From behind, the friend's hand styles (the dominant hand's look, a glove, the fist) are drawn on the wrong own-hand.</b> Found by ^ticket(518)'s audit (18-drawing.js: side&lt;0 always gets the right hand's style, but from behind the friend is drawn as if facing us, so their right hand is on our right). 518 fixed this for held items, not for the hands' own styles. A bug in the shipped game.",
+   "log": []
+  },
+  {
+   "id": 529,
+   "area": "dress up, held things while crawling and swimming",
+   "added": "2026-10-21T21:22:00-06:00",
+   "opened": "2026-10-21T21:22:00-06:00",
+   "status": "open",
+   "tags": [
+    "for Dress Up time, after Hazel time"
+   ],
+   "source": "Claude, from ^ticket(518)'s audit and review (follow-ups it named)",
+   "url": "",
+   "text": "<b>Held things (^ticket(518)) get their own drawings flat on the floor while crawling, and in the water while swimming.</b> Phase 2 of 518's plan: today a held item is drawn at the hand as when standing. New angles are their own drawings (the contract).",
+   "log": []
   }
  ],
  "next_ticket": 527,
- "current_ticket": null,
- "current_note": "19:20: Matthew AFK. Released 0.0.400 (524, rooms in World design) and 0.0.401 (522, cowgirl/cowboy); waiting for them live. Building 518 and 525; 516 building; CI on 520 B and 521.",
+ "current_ticket": 521,
+ "current_note": "21:23: Matthew AFK. Building 521's c7 (chip box for long choices and the 5 dropdowns) and c8 (People in boxes); c5/c6 testing and re-measuring on GitHub. Alongside: 528 (hand styles from behind) and 529 (held things while crawling/swimming), 518's follow-ups, in ~/kcg-528. 527 pictures after 23:47.",
  "closed_tickets": [
   {
    "id": 517,
@@ -8631,7 +8659,7 @@
   493,
   508
  ],
- "current_since": "2026-10-21T19:00-06:00",
+ "current_since": "2026-10-21T21:23-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
@@ -8947,6 +8975,13 @@
    "idle_minutes": 0,
    "words": "did you stop? special time?",
    "stopped_on": "ended the turn after pushing 521's c2/c3 while workflows and CI ran, instead of starting the next movable piece (518's prep, 517's furnishings plan, or 526's rename check)"
+  },
+  {
+   "at": "2026-10-21T21:22-06:00",
+   "since": "2026-10-21T20:52-06:00",
+   "idle_minutes": 30,
+   "words": "AFK -- keep going please.",
+   "stopped_on": "ended the turn after re-arming the PR watch while three GitHub runs went, instead of building 521's c7 (the chip box) and c8 (People in boxes)"
   }
  ],
  "closed_tickets_are": "summaries for the hover cards; the full records are in dashboard-data/closed/<YYYY-MM>.json (dashboard/data_whole.py joins them)"
