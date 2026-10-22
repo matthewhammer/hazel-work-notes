@@ -96,6 +96,10 @@
      "http://localhost:8131/025/"
     ],
     [
+     "^report(25)'s review of Hazel's JS library",
+     "http://localhost:8131/025/#library"
+    ],
+    [
      "^report(25)'s code listings",
      "http://localhost:8131/025/#code"
     ],
@@ -4437,14 +4441,17 @@
    "added": "2026-10-22T09:26-06:00",
    "opened": "2026-10-22T09:26-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel"
    ],
    "source": "Matthew, 2026-10-22 09:26, in chat: \"Let's use it to help me really review our JS library for Hazel, and how well it integrates when required or wanted.\" \"Let's push that library forward where needed.\" \"mint and enqueue tickets if you think of any you want.\"",
    "url": "https://matthewhammer.org/hazel/reports/025/",
    "text": "<b>Review Hazel's JS library through ^report(25)</b>: each way the report uses it (Hazel.run in node for the timings; a function back from Hazel called from JS; the embed frame for read-only tiles; the library loaded in a page for the run boxes), what works, what was awkward, what is missing. A section of the report, for Matthew's review of the library, with the integration points named (docs/hazel-as-a-js-library.md).",
-   "progress": "09:26: minted and enqueued (Hazel, before the Dress Up tickets)."
+   "progress": "09:26: minted and enqueued (Hazel, before the Dress Up tickets). | 09:34: DRAFTED in ^report(25) as 'Hazel's JS library, as this report uses it' (localhost:8131/025/#library): the four uses (node timing via Hazel.run; the game's runProgram; the embed frame's tiles; the run boxes), what worked and what was rough, each rough part tied to a ticket (538, 539, 540), and five things the library could add (selectable read-only view; no re-conversion of values; mountEditor; step counts; a version a page can ask for). Waiting on Matthew's read.",
+   "waiting": "Matthew: read the library review (localhost:8131/025/#library)."
   },
   {
    "id": 538,
