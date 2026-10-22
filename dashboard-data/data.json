@@ -4835,11 +4835,66 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 541,
+   "area": "hazel, #2681: is #2661 a real dependency, and should #2681's base be #2661's branch? (Alexander's suggestion)",
+   "added": "2026-10-22T10:19-06:00",
+   "opened": "2026-10-22T10:19-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-22 10:19, in chat, forwarding Alexander: \"Looks like it needs https://github.com/hazelgrove/hazel/pull/2661 as a dependency. Might be worth just changing the parent branch of the pr to that branch\"; Matthew to him: \"It seems like a real dep, but I'll double check -- thanks!\"; to Claude: \"Mint and enqueue that double-check please, and make a report draft to share.\"",
+   "url": "https://github.com/hazelgrove/hazel/pull/2681",
+   "text": "<b>Double-check that #2681 depends on #2661, and whether to retarget #2681's base to #2661's branch (typ-hash-consistent).</b> What in #2681's own commit uses #2661 (TypHash), what retargeting would show reviewers (the diff against #2661's branch: #2679 is in dev now), whether #2661's branch is up to date with dev, and the steps either way. Written as a draft report to share with Alexander.",
+   "progress": "10:19: minted, enqueued and started.",
+   "log": [
+    {
+     "at": "2026-10-22T10:03-06:00",
+     "from": "matthew",
+     "chars": 19,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-22T10:03-06:00",
+     "from": "matthew",
+     "chars": 28,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-22T10:03-06:00",
+     "from": "claude",
+     "chars": 382,
+     "asks": false,
+     "words": 68,
+     "read_s": 17,
+     "listen_s": 26,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-22T10:06-06:00",
+     "from": "claude",
+     "chars": 905,
+     "asks": false,
+     "words": 147,
+     "read_s": 37,
+     "listen_s": 55,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
- "next_ticket": 541,
- "current_ticket": 539,
- "current_note": "09:38: library: binding a call's argument in the environment (branch lib-floor) to cut the floor; ^ticket(538)'s selectable embed building alongside",
+ "next_ticket": 542,
+ "current_ticket": 541,
+ "current_note": "10:19: double-checking #2681's dependency on #2661 (Alexander's suggestion: retarget its base), for a draft report to share",
  "closed_tickets": [
   {
    "id": 535,
@@ -9687,6 +9742,7 @@
   }
  ],
  "queue": [
+  541,
   539,
   537,
   538,
@@ -9736,7 +9792,7 @@
   534,
   536
  ],
- "current_since": "2026-10-22T09:38-06:00",
+ "current_since": "2026-10-22T10:19-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
@@ -9748,8 +9804,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5089,
-  "words": 1122075,
+  "replies": 5091,
+  "words": 1122147,
   "read_hours_est": 78.6,
   "listen_hours_est": 116.9,
   "read_s_avg": 56,
@@ -9981,9 +10037,9 @@
     "chars": 126764
    },
    "2026-10-22": {
-    "replies": 67,
-    "words": 9454,
-    "chars": 54115
+    "replies": 69,
+    "words": 9526,
+    "chars": 54553
    }
   }
  },
