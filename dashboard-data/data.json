@@ -4097,9 +4097,19 @@
      "read_s": 43,
      "listen_s": 63,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-21T19:00-06:00",
+     "from": "claude",
+     "chars": 1494,
+     "asks": false,
+     "words": 260,
+     "read_s": 66,
+     "listen_s": 98,
+     "note": "from the transcripts"
     }
    ],
-   "progress": "19:01: audit and plan done (8 commits c1-c8, smallest first; report 16 'The Space Between the Boxes'). c1, the measuring check knoll521.mjs, is on branch knoll-521 (~/kcg-521); the before numbers (0.0.204, main 0.0.398) are being measured on GitHub on diag-521 (run 39703009678, 3 jobs, ~45 min). Next: the four audit bugs (c2), then no empty columns (c3). c4 changes the default split: pictures for Matthew first."
+   "progress": "19:15: c2 (four bugs) and c3 (no empty columns, the picture filling its card) built, reviewed, fixed: knoll-521 at d296391, pushed; its Dress Up tests run 39704520819 is checking the layout on GitHub. Before numbers still measuring (diag-521). c4's default split waits for Matthew's look at pictures."
   },
   {
    "id": 522,
@@ -9084,8 +9094,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 4976,
-  "words": 1105469,
+  "replies": 4977,
+  "words": 1105659,
   "read_hours_est": 77.4,
   "listen_hours_est": 115.2,
   "read_s_avg": 56,
@@ -9312,9 +9322,9 @@
     "chars": 149483
    },
    "2026-10-21": {
-    "replies": 113,
-    "words": 14772,
-    "chars": 86489
+    "replies": 114,
+    "words": 14962,
+    "chars": 87535
    }
   }
  },
@@ -9381,6 +9391,13 @@
    "idle_minutes": 0,
    "words": "keep going, don't wait on me",
    "stopped_on": "ended the turn with a status report while five workflows ran, instead of starting the next queued ticket (518)"
+  },
+  {
+   "at": "2026-10-21T19:15-06:00",
+   "since": "2026-10-21T19:15-06:00",
+   "idle_minutes": 0,
+   "words": "did you stop? special time?",
+   "stopped_on": "ended the turn after pushing 521's c2/c3 while workflows and CI ran, instead of starting the next movable piece (518's prep, 517's furnishings plan, or 526's rename check)"
   }
  ],
  "closed_tickets_are": "summaries for the hover cards; the full records are in dashboard-data/closed/<YYYY-MM>.json (dashboard/data_whole.py joins them)"
