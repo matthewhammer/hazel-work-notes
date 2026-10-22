@@ -5454,47 +5454,6 @@
    ]
   },
   {
-   "id": 546,
-   "area": "dress up, bug: legs poke through a dress (on the horse, squatting, running)",
-   "added": "2026-10-22T14:32-06:00",
-   "opened": "2026-10-22T14:32-06:00",
-   "status": "open",
-   "tags": [
-    "for Dress Up time, after Hazel time",
-    "blocked on Matthew"
-   ],
-   "chips": [
-    "dress up"
-   ],
-   "source": "Matthew, 2026-10-22 14:32, in chat: \"mint and enqueue -- M notices that wearing a dress on the horse, facing L and R, and forwards and  backwards, the legs stick out of the dress as if it had strange holes it in. Also, squatting (without horse) has the same issue.\" Then: \"M says -- also running.\"",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "text": "<b>Legs poke through a dress.</b> M noticed it: wearing a dress while riding the horse, facing left, right, forwards and backwards, the legs stick out of the dress as if it had strange holes in it. Squatting (no horse) and running do the same. Find which views and poses draw the legs over (or through) the skirt, fix the skirt's shape or the drawing order for each, check every dress style in each of those poses as pictures, then a release.",
-   "progress": "14:32: minted and enqueued for Dress Up time, after the Hazel work in hand. 15:07: started while the Hazel fixes build on GitHub: a background agent investigates in a worktree (~/kcg-546, branch ticket-546-dress-legs off origin/main): cause per pose, fix, before/after pictures via ffmpeg (no headless browser), no push or release. 15:30: FIXED on branch ticket-546-dress-legs (~/kcg-546, afbcc95; not pushed): one cause for every pose: drawNow (18-drawing.js) drew a skirt/dress/robe as the standing trapezoid whatever the legs did; new skirtOver widens the cloth to the hull of the posed legs down to the hem (null when the legs fit, so standing drawings are byte-identical: 96 of 96). Node sweep: 1,008 cases, 432 with leg points outside the cloth before, 0 after. New check tools/checks/dress546.mjs (CDP pattern, runs on GitHub). Pictures reviewed (ride L/R/front/back, crouch, run): legs stay under the cloth. Design call: running in a long dress, the cloth now billows back to the kicked-back foot. Holes show mostly with long legs, skirts, robes or a small horse; the default dress hid them. Also fixes walking, sitting side on, stairs, knees, crawl, hug. Waiting on Matthew: release it?",
-   "log": [
-    {
-     "at": "2026-10-22T14:32-06:00",
-     "from": "matthew",
-     "chars": 228,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T14:32-06:00",
-     "from": "matthew",
-     "chars": 23,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T15:27-06:00",
-     "from": "matthew",
-     "chars": 6955,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 547,
    "area": "hazel js library: keep closures whole across the boundary (a held value costs O(size) per call from JS)",
    "added": "2026-10-22T14:52-06:00",
@@ -5749,6 +5708,16 @@
  "current_ticket": 545,
  "current_note": "15:10: 15:10: ^report(29) published as work in progress (on his word). Next: measure the trial builds (547 closures, 548 ascriptions, 551 handles) as they land and fill its fixes section.",
  "closed_tickets": [
+  {
+   "id": 546,
+   "area": "dress up, bug: legs poke through a dress (on the horse, squatting, running)",
+   "added": "2026-10-22T14:32-06:00",
+   "text": "Legs poke through a dress.",
+   "source": "Matthew, 2026-10-22 14:32, in chat: \"mint and enqueue -- M notices that wearing a dress on the horse, facing L and R,…",
+   "status": "done",
+   "closed": "2026-10-22",
+   "outcome": "Released as Dress Up 0.0.409 on Matthew's word (\"Release the dress-legs fix (546) as the next Dress Up version, and push.\"), live at matthewhammer.org/kids-choice-games/dress-up/…"
+  },
   {
    "id": 556,
    "area": "hazel reports: every report, ticket and PR a link, in every report (as per the series protocol)",
@@ -10676,7 +10645,6 @@
   534,
   536,
   544,
-  546,
   557
  ],
  "current_since": "2026-10-22T15:10-06:00",
