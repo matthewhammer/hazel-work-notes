@@ -4364,7 +4364,7 @@
    "source": "Matthew, 2026-10-22 07:30, in chat, after ^report(25)'s before-and-after update",
    "url": "https://matthewhammer.org/hazel/reports/025/#prs",
    "text": "<b>Find why #2681 makes every library call's floor about 25% slower, and whether it can skip recording values it will never see again.</b> Matthew: \"Yes: find why #2681 raises the floor by about a quarter, and whether it can skip recording values it will never see again.\" ^report(25) measured, in two rounds: a Hazel rule that ignores its argument costs 8.5 ms at 16x16 before #2681 and 10.1-10.6 ms with it (19.3 to 25.3 ms at 24x24), while the annotated rule gets 7-16x faster. The argument is converted afresh by of_js on every call, so #2681's memo records values it can never reuse.",
-   "progress": "07:30: minted and started. | 07:37: COUNTED (WeakMap get/set wrapped in node around GitHub's #2681 build, no rebuild): per 16x16 identity call, #2681 does 4,137 memo lookups (all miss), 2,580 memo writes (1,280 list tails: the cells' and every cell's ways; 1,041 record fields; 258 records) and 6,734 type-hash lookups; the shipped rule's whole win is 137 hits, one per step of find. Switching off only the writes does NOT lower the floor; without them the shipped rule is ~30% slower than before #2681, so the per-check lookups are the cost (plus GC: 2.7 ms of a 10 ms floor before #2681). FIX TRIED: trial/r25-2681-depth (5b79ba5f95): has_type asked and told only at depth 0 and 1 of a pushed value (find's list is a part of its tuple, depth 1). GitHub's Deploy building; then floor.sh times before / #2681 / depth, three rounds with GC time. | 07:47: FOUND AND FIXED ON A TRIAL BRANCH. Why: #2681 asks its memo (and #2661's type-hash cache) at every part of every pushed value, and records every part and every tail; a library call's argument is new each call, so none of it is asked again. Skipping only the writes does not help (identity 9.6-9.9 vs 9.7 ms); GC is not it (2.45 / 2.54 / 2.39 ms per call). Fix: trial/r25-2681-depth (5b79ba5f95), memo asked and told only at depth 0 and 1 (Ascriptions.memo_depth = 1). Per 16x16 identity call: 6 lookups / 3 writes / 8 type-hash lookups (was 4,137 / 2,580 / 6,734); shipped keeps 136 of 137 hits. Timed (report driver, 2 rounds): identity 16x16 8.54 before / 10.1 #2681 / 8.53 depth; 24x24 19.3 / 25.4 / 19.1; shipped 16x16 144 / 20.6 / 18.9; 24x24 678 / 42.8 / 42.2. Floor driver, 3 rounds, agrees at 16x16. Fast checks pass on the branch; Full tests running. ^report(25) has a new section 'Why #2681 raises the floor, and a fix' (republished WIP, homepage fd94763; hazel-reports 5093912 local). Left, Matthew's call: re-measure #2681's woods picture on #2635 with the limit (a browser run on GitHub), then propose the limit on #2681. | 08:00: Matthew: \"Yes: re-measure #2681's woods picture on #2635 with the depth limit, on GitHub's runners, and if it keeps the gain, propose the limit on #2681.\" The 10-13 Firefox driver was lost with a crash's /tmp; its node harness survived (~/.cache/hazel-diag/Test_PicView.timing.re: the Scenes program with and without the picture's view, B - A). Branch trial/2635-memo-depth (0f81f3933b) off #2635's head 2b080af683: the depth limit ported, memo_depth a ref so one build times off / depth 1 / whole, the harness as test/Test_PicView.re, and .github/workflows/picview.yml (builds the test runner, runs PicView alone, 9 interleaved runs). Running on GitHub (run 39791883147). | 08:01: a test for the proposal on trial/r25-2681-depth (f67d6dd1c1, 'only a pushed value and its parts are remembered': a part's tail known, a list inside a part not); mutation check pushed as trial/r25-2681-depth-mut (3f324cdba8, no limit: the test must fail there). Both on GitHub's CI.",
+   "progress": "07:30: minted and started. | 07:37: COUNTED (WeakMap get/set wrapped in node around GitHub's #2681 build, no rebuild): per 16x16 identity call, #2681 does 4,137 memo lookups (all miss), 2,580 memo writes (1,280 list tails: the cells' and every cell's ways; 1,041 record fields; 258 records) and 6,734 type-hash lookups; the shipped rule's whole win is 137 hits, one per step of find. Switching off only the writes does NOT lower the floor; without them the shipped rule is ~30% slower than before #2681, so the per-check lookups are the cost (plus GC: 2.7 ms of a 10 ms floor before #2681). FIX TRIED: trial/r25-2681-depth (5b79ba5f95): has_type asked and told only at depth 0 and 1 of a pushed value (find's list is a part of its tuple, depth 1). GitHub's Deploy building; then floor.sh times before / #2681 / depth, three rounds with GC time. | 07:47: FOUND AND FIXED ON A TRIAL BRANCH. Why: #2681 asks its memo (and #2661's type-hash cache) at every part of every pushed value, and records every part and every tail; a library call's argument is new each call, so none of it is asked again. Skipping only the writes does not help (identity 9.6-9.9 vs 9.7 ms); GC is not it (2.45 / 2.54 / 2.39 ms per call). Fix: trial/r25-2681-depth (5b79ba5f95), memo asked and told only at depth 0 and 1 (Ascriptions.memo_depth = 1). Per 16x16 identity call: 6 lookups / 3 writes / 8 type-hash lookups (was 4,137 / 2,580 / 6,734); shipped keeps 136 of 137 hits. Timed (report driver, 2 rounds): identity 16x16 8.54 before / 10.1 #2681 / 8.53 depth; 24x24 19.3 / 25.4 / 19.1; shipped 16x16 144 / 20.6 / 18.9; 24x24 678 / 42.8 / 42.2. Floor driver, 3 rounds, agrees at 16x16. Fast checks pass on the branch; Full tests running. ^report(25) has a new section 'Why #2681 raises the floor, and a fix' (republished WIP, homepage fd94763; hazel-reports 5093912 local). Left, Matthew's call: re-measure #2681's woods picture on #2635 with the limit (a browser run on GitHub), then propose the limit on #2681. | 08:00: Matthew: \"Yes: re-measure #2681's woods picture on #2635 with the depth limit, on GitHub's runners, and if it keeps the gain, propose the limit on #2681.\" The 10-13 Firefox driver was lost with a crash's /tmp; its node harness survived (~/.cache/hazel-diag/Test_PicView.timing.re: the Scenes program with and without the picture's view, B - A). Branch trial/2635-memo-depth (0f81f3933b) off #2635's head 2b080af683: the depth limit ported, memo_depth a ref so one build times off / depth 1 / whole, the harness as test/Test_PicView.re, and .github/workflows/picview.yml (builds the test runner, runs PicView alone, 9 interleaved runs). Running on GitHub (run 39791883147). | 08:01: a test for the proposal on trial/r25-2681-depth (f67d6dd1c1, 'only a pushed value and its parts are remembered': a part's tail known, a list inside a part not); mutation check pushed as trial/r25-2681-depth-mut (3f324cdba8, no limit: the test must fail there). Both on GitHub's CI. | 08:09: WOODS RESULT 1 (run 39791883147, EPYC 9V45, 9 interleaved runs, medians): Scenes program without the view 1,555 off / 1,582 depth 1 / 1,303 whole; with the view 1,827 / 1,903 / 1,571; the view alone (B - A) 272 / 321 / 268 ms. So depth 1 does NOT keep the gain on #2635: the whole memo saves ~15% of the Scenes program, depth 1 none; and the view itself no longer gains from the memo (10-13: 638 -> 369 in node). Not proposing depth 1 on #2681 (his condition). Second run with depths 2 and 3 added (90c389450c, run 39793131915).",
    "log": [
     {
      "at": "2026-10-22T07:18-06:00",
@@ -4422,13 +4422,20 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-22T07:56-06:00",
+     "from": "matthew",
+     "chars": 143,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ]
   }
  ],
  "next_ticket": 536,
  "current_ticket": 535,
- "current_note": "08:00: re-measuring #2681's woods picture on #2635 with the depth limit, on GitHub's runner (trial/2635-memo-depth, PicView timing run 39791883147)",
+ "current_note": "08:09: woods on #2635: depth 1 loses the Scenes program's ~15% gain (not proposing it on #2681); timing depths 2 and 3 on GitHub to see if one keeps it",
  "closed_tickets": [
   {
    "id": 532,
@@ -9323,9 +9330,9 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5059,
-  "words": 1118756,
-  "read_hours_est": 78.3,
+  "replies": 5060,
+  "words": 1118872,
+  "read_hours_est": 78.4,
   "listen_hours_est": 116.5,
   "read_s_avg": 56,
   "listen_s_avg": 83,
@@ -9556,9 +9563,9 @@
     "chars": 126764
    },
    "2026-10-22": {
-    "replies": 37,
-    "words": 6135,
-    "chars": 34702
+    "replies": 38,
+    "words": 6251,
+    "chars": 35336
    }
   }
  },
