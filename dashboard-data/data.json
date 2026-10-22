@@ -92,7 +92,7 @@
    "branch_note": "(public: a push publishes, so drafts wait. ^report(25) published as work in progress 10-22 09:44 (homepage 35951cb); its local copy is the same. ^report(18), why #2635 fails CI, is a local draft waiting on Matthew)",
    "links": [
     [
-     "localhost:8131/025/ (^report(25) draft: code listings, tiles, run boxes; work in progress)",
+     "^report(25) (published, work in progress; the local copy is the same)",
      "http://localhost:8131/025/"
     ],
     [
@@ -4455,7 +4455,7 @@
    "url": "https://matthewhammer.org/hazel/reports/025/",
    "text": "<b>Review Hazel's JS library through ^report(25)</b>: each way the report uses it (Hazel.run in node for the timings; a function back from Hazel called from JS; the embed frame for read-only tiles; the library loaded in a page for the run boxes), what works, what was awkward, what is missing. A section of the report, for Matthew's review of the library, with the integration points named (docs/hazel-as-a-js-library.md).",
    "progress": "09:26: minted and enqueued (Hazel, before the Dress Up tickets). | 09:34: DRAFTED in ^report(25) as 'Hazel's JS library, as this report uses it' (localhost:8131/025/#library): the four uses (node timing via Hazel.run; the game's runProgram; the embed frame's tiles; the run boxes), what worked and what was rough, each rough part tied to a ticket (538, 539, 540), and five things the library could add (selectable read-only view; no re-conversion of values; mountEditor; step counts; a version a page can ask for). Waiting on Matthew's read.",
-   "waiting": "Matthew: read the library review (localhost:8131/025/#library).",
+   "waiting": "Matthew: read the library review in ^report(25): https://matthewhammer.org/hazel/reports/025/#library",
    "log": [
     {
      "at": "2026-10-22T09:18-06:00",
@@ -4550,7 +4550,9 @@
    "added": "2026-10-22T09:26-06:00",
    "opened": "2026-10-22T09:26-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel"
    ],
@@ -4587,7 +4589,8 @@
      "asks": false,
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": "Matthew: in ^report(25)'s tile boxes (https://matthewhammer.org/hazel/reports/025/#code), click in the tiles, then drag or use the arrows: do the tile shapes show? Then: propose embed-selectable on #2719?"
   },
   {
    "id": 539,
@@ -4595,7 +4598,9 @@
    "added": "2026-10-22T09:26-06:00",
    "opened": "2026-10-22T09:26-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel"
    ],
@@ -4789,7 +4794,8 @@
      "effort": "medium",
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": "Matthew: open lib-floor (the call's argument bound in the environment, floor -40%, CI green) as a PR stacked on #2719?"
   },
   {
    "id": 540,
@@ -5138,38 +5144,6 @@
    "waiting": "Matthew: try the game with ?logic=fumola (PR #4); Float comparisons in Fumola (an Adapton/fumola issue?)"
   },
   {
-   "id": 543,
-   "area": "hazel × fumola: a side-by-side of their syntax, for translating (^report(28), work in progress)",
-   "added": "2026-10-22T11:01-06:00",
-   "opened": "2026-10-22T11:01-06:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazel",
-    "fumola"
-   ],
-   "source": "Matthew, 2026-10-22 11:01, in chat: \"would it be helpful to compare a document comparing the syntax of Hazel vs Fumola, to make translations easier next time?\" then \"please make another WIP report about that\"",
-   "url": "",
-   "text": "<b>Hazel and Fumola, side by side: ^report(28), a work in progress.</b> Each construct the game's rules use (functions, recursion, records, tuples, variants and case/switch, options, lists and loops, text, numbers, maps), written in Hazel and in Fumola, with the traps found translating ^ticket(542)'s rules (Fumola's text != inverted, no text patterns, Int and Nat apart, no escapes in text), and the boundary: how each takes a value from JS and gives one back.",
-   "progress": "11:01: minted; built from ^ticket(542)'s translations. | DRAFTED ^report(28) (localhost:8131/028/): 19 constructs side by side, 5 traps (text != inverted, confirmed by running; no text patterns; Nat/Int apart; no escapes; tuple payloads twice parenthesised), the JS boundary of each, and the World rule in both. Grows with ^ticket(542)'s translations. | ^report(28) PUBLISHED as work in progress (homepage e94d8e4): https://matthewhammer.org/hazel/reports/028/ ; live checked.",
-   "log": [
-    {
-     "at": "2026-10-22T11:00-06:00",
-     "from": "matthew",
-     "chars": 121,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T11:00-06:00",
-     "from": "matthew",
-     "chars": 41,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 544,
    "area": "dress up, costumes: a giraffe (for Matthew's friend Nick)",
    "added": "2026-10-22T12:18-06:00",
@@ -5210,8 +5184,18 @@
  ],
  "next_ticket": 545,
  "current_ticket": null,
- "current_note": "13:02: ^ticket(542): Dress Up PR #4 open (every room in Fumola, checks pass), ^report(27) and (28) republished; waiting on Matthew for a look at ?logic=fumola and two calls",
+ "current_note": "13:47: nothing in hand: ^ticket(542)'s PR #4 pinned to its own Fumola copy (GitHub's checks running on cc16385); 542, 541, 539, 538 and 537 each wait on Matthew (see their questions)",
  "closed_tickets": [
+  {
+   "id": 543,
+   "area": "hazel × fumola: a side-by-side of their syntax, for translating (^report(28), work in progress)",
+   "added": "2026-10-22T11:01-06:00",
+   "text": "Hazel and Fumola, side by side: ^report(28), a work in progress.",
+   "source": "Matthew, 2026-10-22 11:01, in chat: \"would it be helpful to compare a document comparing the syntax of Hazel vs Fumola,…",
+   "status": "done",
+   "closed": "2026-10-22",
+   "outcome": "^report(28), 'Hazel and Fumola, Side by Side', published as work in progress: https://matthewhammer.org/hazel/reports/028/ (19 constructs both ways, 6 traps including Fumola's…"
+  },
   {
    "id": 535,
    "area": "hazel, performance: why #2681 raises a library call's floor by about a quarter (^report(25))",
@@ -10059,7 +10043,6 @@
  ],
  "queue": [
   542,
-  543,
   541,
   539,
   537,
