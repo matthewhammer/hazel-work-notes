@@ -153,6 +153,18 @@
     [
      "localhost:8482/dress-up/ (the 🧩 Scripting panel's PR branch, scripting-panel at ac430bc: 0.0.394 + the panel; ^ticket(482))",
      "http://localhost:8482/dress-up/index.html"
+    ],
+    [
+     "^du_report(17) draft: two costumes at once (for M)",
+     "http://localhost:8133/report-017/reports/017/"
+    ],
+    [
+     "^du_report(17): the cats and the ninja, both ways",
+     "http://localhost:8133/report-017/reports/017/#cats"
+    ],
+    [
+     "^du_report(17): every cat over every cat",
+     "http://localhost:8133/report-017/reports/017/#cat-over-cat"
     ]
    ],
    "links_paused": null,
@@ -5954,7 +5966,8 @@
    "opened": "2026-10-22T17:01-06:00",
    "status": "open",
    "tags": [
-    "for M, tonight (2026-10-22)"
+    "for M, tonight (2026-10-22)",
+    "blocked on Matthew"
    ],
    "chips": [
     "dress up"
@@ -5962,7 +5975,7 @@
    "source": "Matthew, 2026-10-22 17:01, in chat: \"mint and enqueue tonight for M --- experiment with rendering a double-layered costume -- e.g., wearing a cat costume over the ninja  costume, or vice versa (especially interested in cats and ninjas, and all combinations you can try out) -- please prepare a report draft to share with M later tonight, when you are ready, when mockups.  Also, a new mock up of the costume controls where we can have 0, 1 or 2 costumes at once (for now, with an eye to 2+ in the future).\"",
    "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
    "text": "<b>A costume over a costume.</b> An experiment: draw the friend wearing two costumes, one over the other, with the game's own drawing code: a cat costume (🐈‍⬛ black cat, 🐯 tiger, 🦁 lion, 🐆 leopard...) over the 🥷 ninja, and the ninja over a cat, Matthew and M most curious about cats and ninjas; then as many other pairs as we can try. What shows through, what hides, what clashes (two heads, two masks, tails, bands, gems), and which rules make a pair look right. Mock-up pages first, nothing in the game yet. Then a <b>^du_report(17)</b> draft for M with the pictures, to share later tonight on Matthew's word (a draft until then: a push publishes it).",
-   "progress": "17:01: minted, tagged for M tonight; at the front of the active queue (his deadline). 17:26: found the game's drawNow draws the friend in node (catch fresh.innerHTML), so no browser is needed; the lab: draw the friend bare, in costume A and in B, and put B over A where B differs from bare (B's openings show A). Report draft ^du_report(17) in ~/kcg-report-017 (branch report-017).",
+   "progress": "17:01: minted, tagged for M tonight; at the front of the active queue (his deadline). 17:26: found the game's drawNow draws the friend in node (catch fresh.innerHTML), so no browser is needed; the lab: draw the friend bare, in costume A and in B, and put B over A where B differs from bare (B's openings show A). Report draft ^du_report(17) in ~/kcg-report-017 (branch report-017). 17:34: DRAFT READY: ^du_report(17) at localhost:8133/report-017/reports/017/ (branch report-017, cd9cc40, not pushed): 35 costumes, 213 drawings by the game's own drawNow in node, 138 pairs; the cats and the ninja both ways from three sides, every cat over every cat, every costume over and under the ninja; the rule; 10 findings; What next. Waiting on Matthew: share with M, and publish (a push) on his word. ^ticket(563)'s mock-up goes into its Controls section when done.",
    "log": [
     {
      "at": "2026-10-22T16:50-06:00",
@@ -6021,7 +6034,8 @@
      "effort": "xhigh",
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": "read ^du_report(17) (draft), share with M, publish?"
   },
   {
    "id": 563,
@@ -6204,8 +6218,8 @@
   }
  ],
  "next_ticket": 566,
- "current_ticket": 562,
- "current_note": "17:21: 0.0.411 is out (gems with white glimmering cuts, M's bands). Now the double-layered costumes for M: reading how drawNow draws a costume, to put a cat over the ninja and the ninja over a cat",
+ "current_ticket": 563,
+ "current_note": "17:34: a helper agent is building the 0/1/2-costume controls mock-up; ^du_report(17)'s draft is ready (562, waiting on Matthew); a second helper is on 564's re-org and ^du_report(18)",
  "closed_tickets": [
   {
    "id": 561,
@@ -11143,8 +11157,8 @@
   }
  ],
  "queue": [
-  562,
   563,
+  562,
   564,
   558,
   549,
@@ -11208,7 +11222,7 @@
   508,
   534
  ],
- "current_since": "2026-10-22T17:21-06:00",
+ "current_since": "2026-10-22T17:34-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
