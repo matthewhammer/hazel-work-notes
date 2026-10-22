@@ -3802,7 +3802,7 @@
     "blocked on Matthew"
    ],
    "source": "Matthew, 2026-10-21 14:00, in chat (\"mint and enqueue (dress-up)\")",
-   "url": "http://localhost:8133/report-016/reports/016/",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/reports/016/",
    "text": "<b>Knolling the entire panel system of Messed Up Dress Up again (or for the first time where it never was), with a new report comparing it with the last audit, ^du_report(5), and a PR, to be merged, that reduces the whitespace between panels.</b> Matthew: \"re-Knolling (or Knowlling for the first time) -- the entire panel system of MUDU. Please do a new report, comparing the last audit (see report https://matthewhammer.org/kids-choice-games/dress-up/reports/005/) --- and notice how the panels have expanded, and many still lack knowlling, esp non-FS. But even some FS panels could get some help. The prior effort created panels that leave a lot of \\\"whitespace\\\" between them in common zoom levels and screen sizes. Do an audit of that for the new report, and try to reduce that (before vs after) with a PR that we plan to merge with improvements.\" So: audit every panel (full-screen and not) against ^du_report(5)'s; measure the whitespace between panels at common zoom levels and screen sizes, before and after; the improvements as a PR (not a release), the report as ^du_report(16).",
    "log": [
     {
@@ -3990,7 +3990,7 @@
      "note": "from the transcripts"
     }
    ],
-   "progress": "PR #3 (https://github.com/matthewhammer/kids-choice-games/pull/3) open, knoll-521, not merged. Final run (3 jobs agree except the bubble room's moving bubbles): empty between boxes, main -> branch: full screen 1920 62.3% -> 53.3%; side 1920 37.7 -> 27.1; side 1366 27.9 -> 21.9; iPad full screen 30.4 -> 21.2. ^du_report(16) rebuilt with it (164ae95 on report-016, local; preview http://localhost:8133/report-016/reports/016/). Waiting on Matthew: a look at the panels and the report; c4's default split; publishing the report; merging."
+   "progress": "PR #3 (https://github.com/matthewhammer/kids-choice-games/pull/3) open, knoll-521, not merged. Final run (3 jobs agree except the bubble room's moving bubbles): empty between boxes, main -> branch: full screen 1920 62.3% -> 53.3%; side 1920 37.7 -> 27.1; side 1366 27.9 -> 21.9; iPad full screen 30.4 -> 21.2. ^du_report(16) rebuilt with it (164ae95 on report-016, local; preview http://localhost:8133/report-016/reports/016/). Waiting on Matthew: a look at the panels and the report; c4's default split; publishing the report; merging. | ^du_report(16) published as work in progress."
   },
   {
    "id": 531,
@@ -4056,7 +4056,7 @@
     "blocked on Matthew"
    ],
    "source": "Matthew, in chat",
-   "url": "http://localhost:8131/025/",
+   "url": "https://matthewhammer.org/hazel/reports/025/",
    "text": "<b>Why a Hazel rule called from the game costs ~40 ms on a 16x16 world map (2 ms at 3x3, 0.003 ms in JS): analysis, and a new report.</b> Matthew: \"why is Hazel so slow here for 16 x 16 map? do more analysis please, and draft a new report.\"",
    "log": [
     {
@@ -4079,7 +4079,7 @@
      "note": "from the transcripts"
     }
    ],
-   "progress": "^report(25) 'What a Call into Hazel Costs' drafted locally (hazel-perf-report c8783e0, work in progress, not published). Cause: (1) the World rule's find is annotated ([Cell], Int, Int), and Hazel re-checks that type over the rest of the list on every recursive call: quadratic, 153 ms at 16x16 (22.6 without the annotation); (2) every call converts the argument to unevaluated syntax with fresh UUIDs and re-evaluates it, ~31 us per cell; (3) ~3 us per evaluator step. Passing only the neighbouring cells: ~0.9 ms at every size. Waiting on Matthew: read it; publish on his word."
+   "progress": "^report(25) 'What a Call into Hazel Costs' drafted locally (hazel-perf-report c8783e0, work in progress, not published). Cause: (1) the World rule's find is annotated ([Cell], Int, Int), and Hazel re-checks that type over the rest of the list on every recursive call: quadratic, 153 ms at 16x16 (22.6 without the annotation); (2) every call converts the argument to unevaluated syntax with fresh UUIDs and re-evaluates it, ~31 us per cell; (3) ~3 us per evaluator step. Passing only the neighbouring cells: ~0.9 ms at every size. Waiting on Matthew: read it; publish on his word. | 00:49: published as work in progress."
   }
  ],
  "next_ticket": 527,
