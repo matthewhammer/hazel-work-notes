@@ -5544,9 +5544,26 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 553,
+   "area": "hazel: a map for Dress Up's rules, and the World rule timed with it (^report(27) What next, step 2)",
+   "added": "2026-10-22T15:29-06:00",
+   "opened": "2026-10-22T15:29-06:00",
+   "status": "open",
+   "tags": [
+    "long run for tonight (2026-10-22)"
+   ],
+   "chips": [
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-22 15:29, in chat: \"mint and enqueue --- long run for tonight -- Mint a ticket for this step: Hazel reports, ^report(27), What next, step 2: 'A map for Hazel's rules (above), and the World rule timed with it'. http://matthewhammer.org/hazel/reports/027/#step-2\"",
+   "url": "https://matthewhammer.org/hazel/reports/027/#step-2",
+   "text": "<b>A map for Hazel's rules, and the World rule timed with it.</b> ^report(27)'s step 2. What is already in hand: ^ticket(540)'s balanced tree (tree.hz), held in a closure, answers a World move in about 1.2-1.7 ms at every size from 8x8 to 64x64 once ^ticket(547) keeps closures whole (trial/r25-closures; ^report(29) #fixes). This ticket makes it the rules' map and measures it as ^report(27) did: (1) a map module in Common (a balanced tree keyed by (col, row): build from a list, lookup, insert/update), written in the game's Hazel style and knolled; (2) the World rule using it, the world held and rebuilt when its cells change, in a trial of the game's rule texts; (3) the tree's set-up made fast: today it takes seconds at 64x64, from the list re-typing ^ticket(548) fixes, so measure on a branch with 547 + 548 together (and 551's handles for the passed variant); (4) timed 3x3 to 64x64 beside ^report(27)'s lines (Hazel best passed/held/neighbours, Fumola passed/held list/HashMap), one more line in its Figure 1 and in ^report(29)'s fixes; answers checked against the game's. Laptop rules: one niced node process at a time; builds on GitHub.",
+   "progress": "15:29: minted and enqueued as tonight's long run, after the Hazel work in hand (545's republish waits on Matthew; 547/548/551 CI pending)."
   }
  ],
- "next_ticket": 553,
+ "next_ticket": 554,
  "current_ticket": 545,
  "current_note": "15:10: 15:10: ^report(29) published as work in progress (on his word). Next: measure the trial builds (547 closures, 548 ascriptions, 551 handles) as they land and fill its fixes section.",
  "closed_tickets": [
@@ -10409,6 +10426,7 @@
   545,
   547,
   540,
+  553,
   550,
   551,
   552,
