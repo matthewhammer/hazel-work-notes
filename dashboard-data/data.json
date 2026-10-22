@@ -3693,7 +3693,8 @@
    "opened": "2026-10-21T14:00-06:00",
    "status": "open",
    "tags": [
-    "for Dress Up time, after Hazel time"
+    "for Dress Up time, after Hazel time",
+    "blocked on Matthew"
    ],
    "source": "Matthew, 2026-10-21 14:00, in chat (\"mint and enqueue (dress-up)\")",
    "url": "http://localhost:8133/report-016/reports/016/",
@@ -3884,7 +3885,7 @@
      "note": "from the transcripts"
     }
    ],
-   "progress": "Measured on GitHub (3 jobs agree exactly, so no noise floor): empty share between boxes, main -> after c2/c3: full screen 1920x1080 62.6% -> 57.5%, at 125% 55.5 -> 52.5, side 1920 37.6 -> 34.6, iPad full screen 30.3 -> 26.3; 0.0.204 for comparison: full screen 1920 37.8%. knoll-521's tests: knoll521 all ok; the only failure is news200 (the branch's Unreleased card, expected before a release). Now building c5 (pack the boxes, the biggest saving) and c6 (labels beside short chip rows). | 22:24: ^du_report(16) drafted locally (branch report-016, 07e4166, work in progress, from the c2/c3 data): it found c2's Background grid makes its side panel much emptier (living room 2.5% -> 55.6% at 1920) until packing; and the bubble room's full screen differs by up to 2.9 points between jobs (moving bubbles). Final numbers when diag-521's run over c1-c10 lands."
+   "progress": "PR #3 (https://github.com/matthewhammer/kids-choice-games/pull/3) open, knoll-521, not merged. Final run (3 jobs agree except the bubble room's moving bubbles): empty between boxes, main -> branch: full screen 1920 62.3% -> 53.3%; side 1920 37.7 -> 27.1; side 1366 27.9 -> 21.9; iPad full screen 30.4 -> 21.2. ^du_report(16) rebuilt with it (164ae95 on report-016, local; preview http://localhost:8133/report-016/reports/016/). Waiting on Matthew: a look at the panels and the report; c4's default split; publishing the report; merging."
   },
   {
    "id": 527,
@@ -9150,6 +9151,13 @@
    "idle_minutes": 0,
    "words": "AFK -- keep going please.",
    "stopped_on": "had just started 531's workflow and ended the turn; nothing else was startable (521 waiting on GitHub, 527 not before 23:47)"
+  },
+  {
+   "at": "2026-10-21T22:55-06:00",
+   "since": "2026-10-21T22:55-06:00",
+   "idle_minutes": 0,
+   "words": "AFK -- keep going please.",
+   "stopped_on": "ended the turn after re-arming the PR watch; waiting on GitHub (521's final measurement, 531's comparison) with 527 not before 23:47"
   }
  ],
  "closed_tickets_are": "summaries for the hover cards; the full records are in dashboard-data/closed/<YYYY-MM>.json (dashboard/data_whole.py joins them)"
