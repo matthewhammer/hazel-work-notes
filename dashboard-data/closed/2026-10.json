@@ -1,5 +1,41 @@
 [
  {
+  "id": 556,
+  "area": "hazel reports: every report, ticket and PR a link, in every report (as per the series protocol)",
+  "added": "2026-10-22T15:43-06:00",
+  "opened": "2026-10-22T15:43-06:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazel"
+  ],
+  "source": "Matthew, 2026-10-22 15:43, in chat: \"please scan all reports and hyperlink: * reports * tickets * PRs As per our protocol https://matthewhammer.org/hazel/reports/029/ mentions ticket 540 with no such hyperlink.\"",
+  "url": "https://matthewhammer.org/hazel/reports/029/",
+  "text": "<b>Every ^report, ^ticket and PR a link, in every report.</b> Cause: tools/report_refs.py linked only phrases (\"report 013\"), never a chip a generator wrote itself, so every ^ticket chip in the series was bare; and report 19 never closes &lt;head&gt;, so both tools skipped its whole page. Fix: report_refs.py links every chip (a ^ticket to the public dashboard's #ticket-N, which forwards to the closed pages once it closes; a ^report to its page), plain-text ^report(N)/^ticket(N), \"ticket N\", \"Report 27\", \"reports 001 to 014\"; both tools end &lt;head&gt; at &lt;body&gt;; tools/scan_refs.py lists what is left unlinked (none). Run on the reports repo (a51a3ce) and on the homepage's published copies.",
+  "progress": "15:43: reports repo done (a51a3ce, scan clean); homepage copies being linked.",
+  "log": [
+   {
+    "at": "2026-10-22T15:30-06:00",
+    "from": "matthew",
+    "chars": 540,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-22",
+  "closed_at": "2026-10-22T15:48-06:00",
+  "outcome": "Every report's ^report and ^ticket chips and PR numbers are links, in the reports repo (a51a3ce) and live on the homepage (ee7029f): report_refs.py now links chips the generators write (tickets to the dashboard's #ticket-N, which forwards closed ones), plain-text refs, 'ticket N', 'Report 27', 'reports 001 to 014'; both tools end <head> at <body> (019 had been skipped whole); tools/scan_refs.py finds nothing left. Verified live: 029 links ^ticket(540), 019 links #2635 and its tickets.",
+  "metrics": {
+   "open_minutes": 6,
+   "matthew_messages": 1,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 540,
+   "tokens_est": 135,
+   "sync_minutes_est": 0,
+   "work_minutes": 35.0
+  }
+ },
+ {
   "id": 543,
   "area": "hazel × fumola: a side-by-side of their syntax, for translating (^report(28), work in progress)",
   "added": "2026-10-22T11:01-06:00",
