@@ -4023,23 +4023,32 @@
    "progress": "Results in PR #2's description. Clean run 39726647106 (8 jobs, every check ok): Hazel adds 0.4-3.2 ms from a pull to its frame (red lever 9.4 -> 12.1 ms on the EPYC 7763; placed lever 6.0 -> 8.6; hatch +0.4), all above the noise and all under a frame; JS mode = main; load ~525 vs ~270 ms, first compile 340-520 ms, heap 67 vs 51 MB. Waiting on Matthew: what next (more logic into Hazel: castle exits, world ways; or stop here). | 00:05: his ask was 'as much game logic as possible', so phase 2 goes ahead: the castle's exits, the world's ways, what a fall does, into Hazel; then measured again."
   },
   {
-   "id": 532,
-   "area": "dress up, main's browser checks after today's releases (0.0.398-0.0.407)",
-   "added": "2026-10-21T23:00:00-06:00",
-   "opened": "2026-10-21T23:00:00-06:00",
+   "id": 533,
+   "area": "hazel, performance: what a call into Hazel costs (^report(25), from Dress Up's ^ticket(531))",
+   "added": "2026-10-22T00:31:00-06:00",
+   "opened": "2026-10-22T00:31:00-06:00",
    "status": "open",
    "tags": [],
-   "source": "Claude, from the speed run of 0.0.407 (the speed bot calls it 'broken (the checks)')",
-   "url": "https://github.com/matthewhammer/kids-choice-games/actions/runs/39717663414",
-   "text": "<b>Today's releases each cancelled the one before's speed run, so their browser checks first ran together at 0.0.407, and 9 fail on main:</b> knight435 (sword in profile), robin434 (bow facing left), royal436 (scepter from behind), wizard432 (orb facing right): likely 518's held items per own hand; cowboy522 (the lasso while swimming: 529's put-away rule); top516 and furnish517 (the round room and its furnishings); worldrooms524 (an off-grid chip's drop target off screen); sasquatch530 (footprints while jumping). Fixes in worktrees off main, each to be confirmed on a diag branch, then released.",
-   "log": [],
-   "progress": "Released 0.0.408 with all nine fixed: 7 stale checks (held items drawn in #figure-far and with their own side/back drawings since 518; the Sasquatch jump check never really jumped; the round-room checks counted the friend's hair mask; the World design drag needs a scroll mid-drag in the tab) and 2 game fixes (the lasso put away swimming on land; the round room's lever post clear of the hole). Its speed run 39725971668 confirms. Noted for Matthew: in the World design TAB the off-grid rooms sit ~3,400 px below the map, so dragging one onto the map means scrolling mid-drag (full screen is fine)."
+   "source": "Matthew, in chat",
+   "url": "",
+   "text": "<b>Why a Hazel rule called from the game costs ~40 ms on a 16x16 world map (2 ms at 3x3, 0.003 ms in JS): analysis, and a new report.</b> Matthew: \"why is Hazel so slow here for 16 x 16 map? do more analysis please, and draft a new report.\"",
+   "log": []
   }
  ],
  "next_ticket": 527,
  "current_ticket": 512,
  "current_note": "23:54: ^ticket(527) closed (done); ^ticket(512) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 532,
+   "area": "dress up, main's browser checks after today's releases (0.0.398-0.0.407)",
+   "added": "2026-10-21T23:00:00-06:00",
+   "text": "Today's releases each cancelled the one before's speed run, so their browser checks first ran together at 0.0.407, and 9 fail on main:",
+   "source": "Claude, from the speed run of 0.0.407 (the speed bot calls it 'broken (the checks)')",
+   "status": "done",
+   "closed": "2026-10-22",
+   "outcome": "Released 0.0.408; its speed run passes all nine checks that failed at 0.0.407 (7 stale checks updated, 2 game fixes: the lasso while swimming, the round room's lever post). Left:…"
+  },
   {
    "id": 527,
    "area": "dress up, the picture archive: new pictures of the new costumes and backgrounds",
