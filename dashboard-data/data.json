@@ -5603,9 +5603,24 @@
    "url": "https://matthewhammer.org/hazel/reports/029/#hazel-step",
    "text": "<b>Respond to ^report(29)'s finding with ideas, for Cyrus and Matthew to weigh.</b> A Hazel step costs about 15 Fumola steps, and most of it is the editor's machinery around the rule (five stages a term, trampolines, allocation), paid even where nothing is probed or reused. A short write-up of options, each with what it would cost the editor's features (probes, the stepper, results kept across edits), what it would save (estimated from ^report(29)'s profiles, then measured where cheap), and how much code it touches. Candidates to start from: a fast path for terms already final (skip all five stages for a value); an evaluator instance with the stages compiled out when a program has no probes and no previous run to reuse (the library's calls, a game's rules); values as their own type beside expressions, as Fumola's machine has, so a value is never visited again; fewer allocations per pass (the trampoline closure, the state record, a fresh id per result); stage work proportional to what is probed, not to what is evaluated. Ends in an ideation note (a report in the series, work in progress) and a short agenda item for Cyrus.",
    "progress": "15:32: minted and enqueued (ideation; for Cyrus and Matthew)."
+  },
+  {
+   "id": 555,
+   "area": "fumola wasm: take JS values directly, not only as source text (a PR to Adapton/fumola)",
+   "added": "2026-10-22T15:37-06:00",
+   "opened": "2026-10-22T15:37-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "fumola"
+   ],
+   "source": "Matthew, 2026-10-22 15:37, in chat, on ^report(29): \"indicates that there's no way with the Fumola Wasm system to give over JS values other than add them as source text? Maybe open a PR against fumola, for the wasm/JS support, and fix that please?\"",
+   "url": "https://matthewhammer.org/hazel/reports/029/#native",
+   "text": "<b>Values in from JS, as values.</b> Confirmed on main (2ec634b): every fumola_wasm entry that runs code takes source text (fumola_eval, _top, _scratch, _top_limited); fumola_get only reads a store cell. So a passed map is written out and parsed every call (^report(27): 281,427 characters at 64x64, most of its 195,144 steps), and a call costs a parse even when it passes nothing big (^report(29)'s floor, 0.32 ms native). Add an entry that binds a JSON value in the instance by name, converted to Fumola values directly (numbers to Nat/Int/Float, text, bools, null, arrays, objects to records, {tag, value} objects to variants, as Hazel's library reads them), and a call entry that takes its arguments as JSON; tests natively; measured with ^report(27)'s World rule (passed) and ^report(29)'s kernels. A PR to Adapton/fumola, built and tested by GitHub.",
+   "progress": "15:37: minted; next after the report-link pass in hand."
   }
  ],
- "next_ticket": 555,
+ "next_ticket": 556,
  "current_ticket": 545,
  "current_note": "15:10: 15:10: ^report(29) published as work in progress (on his word). Next: measure the trial builds (547 closures, 548 ascriptions, 551 handles) as they land and fill its fixes section.",
  "closed_tickets": [
@@ -10466,6 +10481,7 @@
  ],
  "queue": [
   545,
+  555,
   547,
   540,
   553,
