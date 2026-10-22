@@ -5574,9 +5574,26 @@
    "url": "https://matthewhammer.org/hazel/reports/027/#step-2",
    "text": "<b>A map for Hazel's rules, and the World rule timed with it.</b> ^report(27)'s step 2. What is already in hand: ^ticket(540)'s balanced tree (tree.hz), held in a closure, answers a World move in about 1.2-1.7 ms at every size from 8x8 to 64x64 once ^ticket(547) keeps closures whole (trial/r25-closures; ^report(29) #fixes). This ticket makes it the rules' map and measures it as ^report(27) did: (1) a map module in Common (a balanced tree keyed by (col, row): build from a list, lookup, insert/update), written in the game's Hazel style and knolled; (2) the World rule using it, the world held and rebuilt when its cells change, in a trial of the game's rule texts; (3) the tree's set-up made fast: today it takes seconds at 64x64, from the list re-typing ^ticket(548) fixes, so measure on a branch with 547 + 548 together (and 551's handles for the passed variant); (4) timed 3x3 to 64x64 beside ^report(27)'s lines (Hazel best passed/held/neighbours, Fumola passed/held list/HashMap), one more line in its Figure 1 and in ^report(29)'s fixes; answers checked against the game's. Laptop rules: one niced node process at a time; builds on GitHub.",
    "progress": "15:29: minted and enqueued as tonight's long run, after the Hazel work in hand (545's republish waits on Matthew; 547/548/551 CI pending)."
+  },
+  {
+   "id": 554,
+   "area": "ideation for Cyrus and Matthew: what to do about a Hazel step paying for the editor around it (^report(29))",
+   "added": "2026-10-22T15:32-06:00",
+   "opened": "2026-10-22T15:32-06:00",
+   "status": "open",
+   "tags": [
+    "blocked on Cyrus"
+   ],
+   "chips": [
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-22 15:32, in chat: \"Mint and enqueue -- ideation for Cyrus and Matthew -- respond to this finding: > A Hazel step pays for the editor around it. Every term the evaluator visits, values included, goes through five stages: state merging, a reuse check, probe sampling, recording effects, then the rule itself. On the loop, the rule is 7% of the time; garbage collection is 36%, and the stages and their trampolines 37%. Fumola's machine keeps values apart from syntax and steps a continuation: one match, no stages.\" https://matthewhammer.org/hazel/reports/029/",
+   "url": "https://matthewhammer.org/hazel/reports/029/#hazel-step",
+   "text": "<b>Respond to ^report(29)'s finding with ideas, for Cyrus and Matthew to weigh.</b> A Hazel step costs about 15 Fumola steps, and most of it is the editor's machinery around the rule (five stages a term, trampolines, allocation), paid even where nothing is probed or reused. A short write-up of options, each with what it would cost the editor's features (probes, the stepper, results kept across edits), what it would save (estimated from ^report(29)'s profiles, then measured where cheap), and how much code it touches. Candidates to start from: a fast path for terms already final (skip all five stages for a value); an evaluator instance with the stages compiled out when a program has no probes and no previous run to reuse (the library's calls, a game's rules); values as their own type beside expressions, as Fumola's machine has, so a value is never visited again; fewer allocations per pass (the trampoline closure, the state record, a fresh id per result); stage work proportional to what is probed, not to what is evaluated. Ends in an ideation note (a report in the series, work in progress) and a short agenda item for Cyrus.",
+   "progress": "15:32: minted and enqueued (ideation; for Cyrus and Matthew)."
   }
  ],
- "next_ticket": 554,
+ "next_ticket": 555,
  "current_ticket": 545,
  "current_note": "15:10: 15:10: ^report(29) published as work in progress (on his word). Next: measure the trial builds (547 closures, 548 ascriptions, 551 handles) as they land and fill its fixes section.",
  "closed_tickets": [
@@ -10440,6 +10457,7 @@
   547,
   540,
   553,
+  554,
   550,
   551,
   552,
