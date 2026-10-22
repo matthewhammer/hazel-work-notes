@@ -89,14 +89,14 @@
    "name": "Hazel reports (the report's sources)",
    "repo_html": "<a href=\"https://github.com/matthewhammer/hazel-reports\">matthewhammer/hazel-reports</a>, checked out at <code>~/hazel-perf-report</code>",
    "branch": "main",
-   "branch_note": "(public: a push publishes, so drafts wait. ^report(25) published as work in progress 10-22 09:44 (homepage 35951cb); its local copy is the same. ^report(18), why #2635 fails CI, is a local draft waiting on Matthew. ^report(29) published as work in progress 10-22 15:10 (homepage 6284aa1); its local copy is the same; its fixes section fills in as the trial builds are measured)",
+   "branch_note": "(public: a push publishes, so drafts wait. ^report(25) published as work in progress 10-22 09:44 (homepage 35951cb); its local copy is the same. ^report(18), why #2635 fails CI, is a local draft waiting on Matthew. ^report(29) republished 10-22 15:56 (homepage e9fd165) with its fixes section and the deep-answer correction; its local copy is the same); its local copy is the same; its fixes section fills in as the trial builds are measured)",
    "links": [
     [
-     "^report(29) (published as work in progress; the LOCAL copy is AHEAD: the fixes section and the deep-answer correction, waiting on Matthew's word to republish)",
+     "^report(29) (published, work in progress; the local copy is the same)",
      "http://localhost:8131/029/"
     ],
     [
-     "^report(29) draft: first fixes, on trial branches (547, 548, 551; 540's tree)",
+     "^report(29): first fixes, on trial branches (547, 548, 551; 540's tree; Fumola #148)",
      "http://localhost:8131/029/#fixes"
     ],
     [
@@ -5299,7 +5299,7 @@
    "source": "Matthew, 2026-10-22 14:24, in chat, on ^report(27)'s Figure 1: \"seems to say that Hazel and Fumola are less than 3x apart in this situation. How would you attribute the difference in performance? Is it Wasm vs JS -- or more than that? Both use a small-step evaluation system, for a language with purely-functional, higher order data. Let's draft a report WIP --- looking more into the contrast and how it shows up with actual analysis of each system, while running the same programs.\"",
    "url": "https://matthewhammer.org/hazel/reports/029/",
    "text": "<b>Attribute the Hazel/Fumola gap.</b> For the same programs (^report(27)'s World rule: passed, held, neighbours; plus small kernels), split each system's time into steps taken, cost per step and the call boundary; step counts by kind (Hazel's trial/r25-stats, Fumola's counts), profiles of each, and, where native builds exist, native against wasm and js, to separate the compilation target from the evaluator's design.",
-   "progress": "14:24: minted and started. 14:43: kernels (count, fib, list sum, map, a held list) in both on the laptop: Fumola 2.4-10x faster on loops and calls; Hazel QUADRATIC on list loops (sumbuild 3,000: 4.6 s vs 25 ms) and O(size) per reference to a held value (n+1 evaluator passes, deep). Step counts: Hazel takes ~half Fumola's steps, each ~15x dearer. Profiles: a Hazel step is mostly GC + the evaluator's stages + trampolines; the rule itself ~7%. Fumola finding: an answer over ~1,000 deep crashes the wasm instance. Native vs wasm vs Hazel on one GitHub runner: Adapton/fumola branch bench/545-contrast, run 39850338974. 14:51: traced the held-value cost to the library's finish (substitution) -- in-Hazel references are O(1). Draft ^report(29) at localhost:8131/029/ (on the dashboard). 15:10: Matthew: \"Publish report 29 as work in progress.\" Published: https://matthewhammer.org/hazel/reports/029/ (homepage 6284aa1, series card, reports repo 0d8b811). The fixes it names are on trial branches (547, 548, 551).",
+   "progress": "14:24: minted and started. 14:43: kernels (count, fib, list sum, map, a held list) in both on the laptop: Fumola 2.4-10x faster on loops and calls; Hazel QUADRATIC on list loops (sumbuild 3,000: 4.6 s vs 25 ms) and O(size) per reference to a held value (n+1 evaluator passes, deep). Step counts: Hazel takes ~half Fumola's steps, each ~15x dearer. Profiles: a Hazel step is mostly GC + the evaluator's stages + trampolines; the rule itself ~7%. Fumola finding: an answer over ~1,000 deep crashes the wasm instance. Native vs wasm vs Hazel on one GitHub runner: Adapton/fumola branch bench/545-contrast, run 39850338974. 14:51: traced the held-value cost to the library's finish (substitution) -- in-Hazel references are O(1). Draft ^report(29) at localhost:8131/029/ (on the dashboard). 15:10: Matthew: \"Publish report 29 as work in progress.\" Published: https://matthewhammer.org/hazel/reports/029/ (homepage 6284aa1, series card, reports repo 0d8b811). The fixes it names are on trial branches (547, 548, 551). 15:56: Matthew: \"Republish report 29 with the fixes section and the deep-answer correction.\" Republished (homepage e9fd165, reports repo 4353b72).",
    "log": [
     {
      "at": "2026-10-22T14:23-06:00",
@@ -5672,23 +5672,6 @@
    ]
   },
   {
-   "id": 555,
-   "area": "fumola wasm: take JS values directly, not only as source text (a PR to Adapton/fumola)",
-   "added": "2026-10-22T15:37-06:00",
-   "opened": "2026-10-22T15:37-06:00",
-   "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "chips": [
-    "fumola"
-   ],
-   "source": "Matthew, 2026-10-22 15:37, in chat, on ^report(29): \"indicates that there's no way with the Fumola Wasm system to give over JS values other than add them as source text? Maybe open a PR against fumola, for the wasm/JS support, and fix that please?\"",
-   "url": "https://matthewhammer.org/hazel/reports/029/#native",
-   "text": "<b>Values in from JS, as values.</b> Confirmed on main (2ec634b): every fumola_wasm entry that runs code takes source text (fumola_eval, _top, _scratch, _top_limited); fumola_get only reads a store cell. So a passed map is written out and parsed every call (^report(27): 281,427 characters at 64x64, most of its 195,144 steps), and a call costs a parse even when it passes nothing big (^report(29)'s floor, 0.32 ms native). Add an entry that binds a JSON value in the instance by name, converted to Fumola values directly (numbers to Nat/Int/Float, text, bools, null, arrays, objects to records, {tag, value} objects to variants, as Hazel's library reads them), and a call entry that takes its arguments as JSON; tests natively; measured with ^report(27)'s World rule (passed) and ^report(29)'s kernels. A PR to Adapton/fumola, built and tested by GitHub.",
-   "progress": "15:37: minted; next after the report-link pass in hand. 15:43: PR Adapton/fumola#148 (draft): json_in (JSON read straight into Fumola values: Nat/Int/Float, text, bools, null, arrays, records, {tag, value} variants), fumola_define_json, fumola_eval_top_with (bindings on the copy, dropped if the program fails), README, tests (test_json_values.rs, incl. a 1,000-element array: >1,000 steps as text, <50 as JSON). Not built locally: the PR's CI builds and tests it. Measuring branch bench/555-json: report 27's World rule, map passed as text vs JSON, wasm, 3 rounds. 15:53: CI GREEN on Adapton/fumola#148 (Rust + Fumola Tests, the new tests included); MEASURED (bench/555-json, GitHub runner, wasm in node, 3 rounds): the World rule with the map passed at 64x64: 183 ms as text -> 50 ms as JSON (3.7x, JSON.stringify included); steps 195,144 -> 121,406 (what is left is the rule walking the list); neighbours-only 1.07 -> 0.75 ms; held HashMap 0.61 ms. Results added to the PR, marked ready for review. Waiting on Matthew: review and merge #148."
-  },
-  {
    "id": 557,
    "area": "dress up, costumes: a ninja (for M), with a golden head band and gem",
    "added": "2026-10-22T15:44-06:00",
@@ -5710,6 +5693,16 @@
  "current_ticket": 545,
  "current_note": "15:10: 15:10: ^report(29) published as work in progress (on his word). Next: measure the trial builds (547 closures, 548 ascriptions, 551 handles) as they land and fill its fixes section.",
  "closed_tickets": [
+  {
+   "id": 555,
+   "area": "fumola wasm: take JS values directly, not only as source text (a PR to Adapton/fumola)",
+   "added": "2026-10-22T15:37-06:00",
+   "text": "Values in from JS, as values.",
+   "source": "Matthew, 2026-10-22 15:37, in chat, on ^report(29): \"indicates that there's no way with the Fumola Wasm system to give…",
+   "status": "done",
+   "closed": "2026-10-22",
+   "outcome": "MERGED on Matthew's word (\"merge https://github.com/Adapton/fumola/pull/148\"): Adapton/fumola#148, squash cb2bcf5a1a on main. fumola_wasm takes JS values as values: json_in (JSON…"
+  },
   {
    "id": 546,
    "area": "dress up, bug: legs poke through a dress (on the horse, squatting, running)",
@@ -10587,7 +10580,6 @@
  ],
  "queue": [
   545,
-  555,
   547,
   540,
   553,
