@@ -3798,34 +3798,6 @@
    ]
   },
   {
-   "id": 528,
-   "area": "dress up, hands: the hand styles from behind",
-   "added": "2026-10-21T21:22:00-06:00",
-   "opened": "2026-10-21T21:22:00-06:00",
-   "status": "open",
-   "tags": [
-    "for Dress Up time, after Hazel time"
-   ],
-   "source": "Claude, from ^ticket(518)'s audit and review (follow-ups it named)",
-   "url": "",
-   "text": "<b>From behind, the friend's hand styles (the dominant hand's look, a glove, the fist) are drawn on the wrong own-hand.</b> Found by ^ticket(518)'s audit (18-drawing.js: side&lt;0 always gets the right hand's style, but from behind the friend is drawn as if facing us, so their right hand is on our right). 518 fixed this for held items, not for the hands' own styles. A bug in the shipped game.",
-   "log": []
-  },
-  {
-   "id": 529,
-   "area": "dress up, held things while crawling and swimming",
-   "added": "2026-10-21T21:22:00-06:00",
-   "opened": "2026-10-21T21:22:00-06:00",
-   "status": "open",
-   "tags": [
-    "for Dress Up time, after Hazel time"
-   ],
-   "source": "Claude, from ^ticket(518)'s audit and review (follow-ups it named)",
-   "url": "",
-   "text": "<b>Held things (^ticket(518)) get their own drawings flat on the floor while crawling, and in the water while swimming.</b> Phase 2 of 518's plan: today a held item is drawn at the hand as when standing. New angles are their own drawings (the contract).",
-   "log": []
-  },
-  {
    "id": 530,
    "area": "dress up, costumes: a Sasquatch",
    "added": "2026-10-21T21:25:00-06:00",
@@ -3844,6 +3816,26 @@
  "current_ticket": 521,
  "current_note": "21:23: Matthew AFK. Building 521's c7 (chip box for long choices and the 5 dropdowns) and c8 (People in boxes); c5/c6 testing and re-measuring on GitHub. Alongside: 528 (hand styles from behind) and 529 (held things while crawling/swimming), 518's follow-ups, in ~/kcg-528. 527 pictures after 23:47.",
  "closed_tickets": [
+  {
+   "id": 529,
+   "area": "dress up, held things while crawling and swimming",
+   "added": "2026-10-21T21:22:00-06:00",
+   "text": "Held things (^ticket(518)) get their own drawings flat on the floor while crawling, and in the water while swimming.",
+   "source": "Claude, from ^ticket(518)'s audit and review (follow-ups it named)",
+   "status": "done",
+   "closed": "2026-10-21",
+   "outcome": "Released in Dress Up 0.0.406: crawling toward us, a held thing lies on the floor beside the hand (its own drawing per item); swimming, held things are put away (the strokes would…"
+  },
+  {
+   "id": 528,
+   "area": "dress up, hands: the hand styles from behind",
+   "added": "2026-10-21T21:22:00-06:00",
+   "text": "From behind, the friend's hand styles (the dominant hand's look, a glove, the fist) are drawn on the wrong own-hand.",
+   "source": "Claude, from ^ticket(518)'s audit and review (follow-ups it named)",
+   "status": "done",
+   "closed": "2026-10-21",
+   "outcome": "Released in Dress Up 0.0.406: from behind, each hand keeps its own look (claws, glove, fist) on the friend's own hand; facing us and in profile unchanged (byte-identical)."
+  },
   {
    "id": 517,
    "area": "dress up, a round tree-house room: five furnishings, from objects we have",
