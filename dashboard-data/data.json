@@ -3894,7 +3894,8 @@
    "opened": "2026-10-21T22:06:00-06:00",
    "status": "open",
    "tags": [
-    "experiment"
+    "experiment",
+    "blocked on Matthew"
    ],
    "source": "Matthew, 2026-10-21 22:06, in chat",
    "url": "https://github.com/matthewhammer/kids-choice-games/pull/2",
@@ -3939,7 +3940,7 @@
      "note": "from the transcripts"
     }
    ],
-   "progress": "First browser comparison (diag-531, 8 jobs on 3 CPU kinds; noise = a job's two runs of a mode apart): Hazel adds 0.5-3 ms from a pull to its frame (EPYC 7763: lever 9.1 -> 11.7 ms, placed lever 5.5 -> 8.6; 9V45: 7.1 -> 8.7, 4.6 -> 6.4; the hatch within noise on the fast CPUs); no frames dropped either way to speak of; the page loads 522 vs 270 ms, Hazel's first compile ~290 ms, heap 67 vs 51 MB. The JS mode matches main. But checks fail in every job: 3 of 22 pulls fell back to JS in hazel mode, the flip2 and Say rules in scripting482, and the tiles' focus check (frame above the view): being fixed, then measured again."
+   "progress": "Results in PR #2's description. Clean run 39726647106 (8 jobs, every check ok): Hazel adds 0.4-3.2 ms from a pull to its frame (red lever 9.4 -> 12.1 ms on the EPYC 7763; placed lever 6.0 -> 8.6; hatch +0.4), all above the noise and all under a frame; JS mode = main; load ~525 vs ~270 ms, first compile 340-520 ms, heap 67 vs 51 MB. Waiting on Matthew: what next (more logic into Hazel: castle exits, world ways; or stop here)."
   },
   {
    "id": 532,
