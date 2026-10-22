@@ -5249,9 +5249,25 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 545,
+   "area": "hazel × fumola: why the same rule runs 2.4x to 10x faster in Fumola: steps, cost per step, the boundary, wasm vs js (a report, work in progress)",
+   "added": "2026-10-22T14:24-06:00",
+   "opened": "2026-10-22T14:24-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "fumola"
+   ],
+   "source": "Matthew, 2026-10-22 14:24, in chat, on ^report(27)'s Figure 1: \"seems to say that Hazel and Fumola are less than 3x apart in this situation. How would you attribute the difference in performance? Is it Wasm vs JS -- or more than that? Both use a small-step evaluation system, for a language with purely-functional, higher order data. Let's draft a report WIP --- looking more into the contrast and how it shows up with actual analysis of each system, while running the same programs.\"",
+   "url": "https://matthewhammer.org/hazel/reports/027/",
+   "text": "<b>Attribute the Hazel/Fumola gap.</b> For the same programs (^report(27)'s World rule: passed, held, neighbours; plus small kernels), split each system's time into steps taken, cost per step and the call boundary; step counts by kind (Hazel's trial/r25-stats, Fumola's counts), profiles of each, and, where native builds exist, native against wasm and js, to separate the compilation target from the evaluator's design.",
+   "progress": "14:24: minted and started."
   }
  ],
- "next_ticket": 545,
+ "next_ticket": 546,
  "current_ticket": 540,
  "current_note": "14:07: AFK: found that using a held value costs O(its size) per call in Hazel's evaluator (so no held tree is O(log N) yet); a step-counting build is compiling on GitHub to name the steps",
  "closed_tickets": [
@@ -10111,6 +10127,7 @@
   }
  ],
  "queue": [
+  545,
   540,
   542,
   541,
@@ -10175,8 +10192,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5106,
-  "words": 1125053,
+  "replies": 5107,
+  "words": 1125269,
   "read_hours_est": 78.8,
   "listen_hours_est": 117.2,
   "read_s_avg": 56,
@@ -10408,9 +10425,9 @@
     "chars": 126764
    },
    "2026-10-22": {
-    "replies": 84,
-    "words": 12432,
-    "chars": 71425
+    "replies": 85,
+    "words": 12648,
+    "chars": 72685
    }
   }
  },
