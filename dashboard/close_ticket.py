@@ -24,8 +24,19 @@ m["tokens_est"] = m["chars_exchanged"] // 4
 m["sync_minutes_est"] = round(sum(g for g in gaps if g < 10), 1)
 # (^ticket(489)) Claude's replies on it, and the time to read them or hear them (log_messages.py keeps the rates)
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
-from log_messages import reading_metrics
+from log_messages import reading_metrics, model_label, shares, agent_models
 m.update(reading_metrics(log))
+# (Matthew 2026-10-21: the model and effort used, "some average for each") the replies' share per "model · effort",
+# and the workflow agents' share
+c = {}
+for e in log:
+    if e.get("from") == "claude" and e.get("model"):
+        k = model_label(e["model"], e.get("effort")); c[k] = c.get(k, 0) + 1
+if c:
+    m["models"] = shares(c)
+a = agent_models().get(tid)
+if a:
+    m["agents_models"] = shares(a)
 if work is None and isinstance(t.get("work"), dict): work = t["work"].get("work_minutes")
 if work is not None: m["work_minutes"] = work
 t["metrics"] = m

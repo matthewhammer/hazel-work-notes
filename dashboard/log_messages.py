@@ -127,6 +127,9 @@ def record_events(raw):
         elif origin == "task-notification":
             yield ("turn", t, None)
     elif kind == "assistant":
+        mdl = (o.get("message") or {}).get("model")
+        if mdl and mdl != "<synthetic>":
+            yield ("model", t, (mdl, o.get("perTurnEffort") or o.get("effort")))
         for b in o.get("message", {}).get("content", []) or []:
             if not isinstance(b, dict):
                 continue
@@ -146,26 +149,28 @@ def messages(paths_offsets, since):
         cur = None  # the current turn: [start, chars, asks, last_text_t, opening text, words]
         def close():
             if cur and cur[1] > 0 and cur[3] >= since:
-                turns.append(("claude", cur[3], cur[1], cur[2], cur[4], cur[5]))
+                turns.append(("claude", cur[3], cur[1], cur[2], cur[4], cur[5], cur[6]))
         for kind, t, p in events(path, start):
             if kind == "turn":
                 close()
-                cur = [t, 0, False, t, None, 0]
+                cur = [t, 0, False, t, None, 0, {}]
             elif kind == "matthew":
                 if t >= since:
                     mine.append(("matthew", t, len(p), p))
                 # what Claude writes after it, until his next message, is the reply to it
                 if cur is not None and cur[1] > 0:
                     close()
-                    cur = [t, 0, False, t, p, 0]
+                    cur = [t, 0, False, t, p, 0, {}]
                 elif cur is not None:
                     cur[4] = cur[4] or p
                 else:
-                    cur = [t, 0, False, t, p, 0]
+                    cur = [t, 0, False, t, p, 0, {}]
             elif kind == "text" and cur is not None:
                 cur[1] += p[0]
                 cur[5] += p[1]
                 cur[3] = t
+            elif kind == "model" and cur is not None:
+                cur[6][p] = cur[6].get(p, 0) + 1
             elif kind == "ask" and cur is not None:
                 cur[2] = True
         close()
@@ -319,6 +324,28 @@ def attribute_how(text, t, tickets_by_id, added, hist, live_current):
     return ({cur} if cur in tickets_by_id else set()), "current"
 
 
+# (Matthew 2026-10-21: "can you start to add to our ticket records: what model and effort level was being used?
+# sometimes there's more than one -- some average for each would be enough." e.g. "Opus 5.5 -- Low") Each Claude entry
+# carries the model and effort of the reply (the most used, by the transcript's assistant records); a ticket's metrics
+# give each "model · effort" its share of the replies, and the workflow agents' share separately (agents_models).
+def model_label(mdl, eff):
+    m = re.match(r"claude-([a-z]+)-(\d+)-(\d+)", mdl or "")
+    name = f"{m.group(1).capitalize()} {m.group(2)}.{m.group(3)}" if m else (mdl or "?")
+    return f"{name} · {(eff or '?').capitalize()}"
+
+
+def model_fields(mods):
+    if not mods:
+        return {}
+    (mdl, eff), _ = max(mods.items(), key=lambda kv: kv[1])
+    return {"model": mdl, "effort": eff}
+
+
+def shares(counts):
+    n = sum(counts.values())
+    return {k: round(v / n, 2) for k, v in sorted(counts.items(), key=lambda kv: -kv[1])} if n else {}
+
+
 def recompute_metrics(t):
     m = dict(t.get("metrics") or {})
     log = sorted(t.get("log", []), key=lambda e: e["at"])
@@ -330,6 +357,15 @@ def recompute_metrics(t):
     m["tokens_est"] = m["chars_exchanged"] // 4
     m["sync_minutes_est"] = round(sum(g for g in gaps if g < 10), 1)
     m.update(reading_metrics(log))
+    c = {}
+    for e in log:
+        if e.get("from") == "claude" and e.get("model"):
+            k = model_label(e["model"], e.get("effort")); c[k] = c.get(k, 0) + 1
+    if c:
+        m["models"] = shares(c)
+    a = AGENT_MODELS.get(t["id"]) if isinstance(t.get("id"), int) else None
+    if a:
+        m["agents_models"] = shares(a)
     t["metrics"] = m
 
 
@@ -343,6 +379,42 @@ def reading_metrics(log):
     return {"replies": len(rs), "claude_words": w,
             "read_minutes_est": round(sum(e["read_s"] for e in rs) / 60, 1), "listen_minutes_est": round(sum(e["listen_s"] for e in rs) / 60, 1),
             "read_s_avg": round(sum(e["read_s"] for e in rs) / len(rs)), "listen_s_avg": round(sum(e["listen_s"] for e in rs) / len(rs))}
+
+
+def agent_models():
+    """{ticket: {"Opus 5.5 · Xhigh": assistant records}} from every workflow's agents, a workflow's ticket(s) read from
+    its saved script (meta name and description: ^ticket(N), "ticket N", "-N-")."""
+    out = {}
+    for sess in glob.glob(os.path.join(TRANSCRIPTS, "*", "workflows", "scripts", "*.js")):
+        wf = re.search(r"-(wf_[0-9a-f]+-[0-9a-f]+)\.js$", sess)
+        if not wf:
+            continue
+        head = open(sess, errors="replace").read(1500)
+        meta = " ".join(re.findall(r"(?:name|description):\s*([\"'].*?[\"'])\s*,", head)) + " " + os.path.basename(sess)
+        ids = {int(x) for x in re.findall(r"\^ticket\((\d+)\)|ticket[ -](\d+)", meta) for x in x if x}
+        ids |= {int(x) for x in re.findall(r"-(\d{3})(?=-|\.)", os.path.basename(sess).split("-wf_")[0])}
+        if not ids:
+            continue
+        d = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(sess))), "subagents", "workflows", wf.group(1))
+        c = {}
+        for f in glob.glob(os.path.join(d, "agent-*.jsonl")):
+            for raw in open(f, "rb"):
+                if b'"assistant"' not in raw:
+                    continue
+                try:
+                    o = json.loads(raw)
+                except ValueError:
+                    continue
+                mdl = (o.get("message") or {}).get("model") if o.get("type") == "assistant" else None
+                if mdl and mdl != "<synthetic>":
+                    k = model_label(mdl, o.get("perTurnEffort") or o.get("effort")); c[k] = c.get(k, 0) + 1
+        for i in ids:
+            for k, v in c.items():
+                out.setdefault(i, {})[k] = out.setdefault(i, {}).get(k, 0) + v
+    return out
+
+
+AGENT_MODELS = {}
 
 
 def merge(d, mine, turns, hist, opened_since, dry, since=None):
@@ -400,14 +472,14 @@ def merge(d, mine, turns, hist, opened_since, dry, since=None):
         for tid in ids:
             if in_scope(tid):
                 new.setdefault(tid, []).append({"at": iso_local(t), "from": "matthew", "chars": chars, "asks": False, "note": NOTE})
-    for k, (_, t, chars, asks, opening, words) in enumerate(turns):
+    for k, (_, t, chars, asks, opening, words, mods) in enumerate(turns):
         ids = turn_claims.get(k) or (where.get(" ".join(opening.split())) if opening else None)
         if not ids:
             ids = attribute(None, t, by_id, added, hist, live_current)
         for tid in ids:
             if in_scope(tid):
                 new.setdefault(tid, []).append({"at": iso_local(t), "from": "claude", "chars": chars, "asks": asks,
-                                                "words": words, "read_s": read_s(words), "listen_s": listen_s(words), "note": NOTE})
+                                                "words": words, "read_s": read_s(words), "listen_s": listen_s(words), **model_fields(mods), "note": NOTE})
     touched = set(new)
     for tid, t in by_id.items():
         if not in_scope(tid):
@@ -429,6 +501,8 @@ def main():
     takes seconds, and an edit made meanwhile (now.py, a ticket) must not be
     overwritten. Under publish.py's lock: publish.py holds it already when it
     calls this with --locked; otherwise this takes it."""
+    global AGENT_MODELS
+    AGENT_MODELS = agent_models()
     dry = "--dry-run" in sys.argv
     backfill = "--backfill" in sys.argv
     state = json.load(open(STATE)) if os.path.exists(STATE) else {"through": None}

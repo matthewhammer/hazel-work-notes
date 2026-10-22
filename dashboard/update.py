@@ -937,6 +937,13 @@ def metrics_line(t):
     if m.get("replies"):   # (^ticket(489)) Claude's replies on it: the time to read them, or to hear them
         bits.append(f'\U0001F4D6 ~{m["read_minutes_est"]} min to read, \U0001F3A7 ~{m["listen_minutes_est"]} min to hear '
                     f'({m["replies"]} repl{"y" if m["replies"] == 1 else "ies"}, ~{m["read_s_avg"]} s / ~{m["listen_s_avg"]} s each)')
+    # (Matthew 2026-10-21: what model and effort was used, "some average for each") each one's share of the replies,
+    # and of the workflow agents' work
+    pct = lambda d: ", ".join(f'{k} {round(v * 100)}%' for k, v in d.items())
+    if m.get("models"):
+        bits.append(f'\U0001F9E0 {pct(m["models"])}')
+    if m.get("agents_models"):
+        bits.append(f'\U0001F916 agents: {pct(m["agents_models"])}')
     return '<br><span class="note">\u23f1 ' + " \u00b7 ".join(bits) + "</span>"
 def outcome_cell(t, on):
     out = linkify(t.get("outcome", ""), on=on)
