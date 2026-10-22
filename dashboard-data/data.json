@@ -3853,7 +3853,7 @@
      "note": "from the transcripts"
     }
    ],
-   "progress": "Measured on GitHub (3 jobs agree exactly, so no noise floor): empty share between boxes, main -> after c2/c3: full screen 1920x1080 62.6% -> 57.5%, at 125% 55.5 -> 52.5, side 1920 37.6 -> 34.6, iPad full screen 30.3 -> 26.3; 0.0.204 for comparison: full screen 1920 37.8%. knoll-521's tests: knoll521 all ok; the only failure is news200 (the branch's Unreleased card, expected before a release). Now building c5 (pack the boxes, the biggest saving) and c6 (labels beside short chip rows)."
+   "progress": "Measured on GitHub (3 jobs agree exactly, so no noise floor): empty share between boxes, main -> after c2/c3: full screen 1920x1080 62.6% -> 57.5%, at 125% 55.5 -> 52.5, side 1920 37.6 -> 34.6, iPad full screen 30.3 -> 26.3; 0.0.204 for comparison: full screen 1920 37.8%. knoll-521's tests: knoll521 all ok; the only failure is news200 (the branch's Unreleased card, expected before a release). Now building c5 (pack the boxes, the biggest saving) and c6 (labels beside short chip rows). | 22:24: ^du_report(16) drafted locally (branch report-016, 07e4166, work in progress, from the c2/c3 data): it found c2's Background grid makes its side panel much emptier (living room 2.5% -> 55.6% at 1920) until packing; and the bubble room's full screen differs by up to 2.9 points between jobs (moving bubbles). Final numbers when diag-521's run over c1-c10 lands."
   },
   {
    "id": 527,
@@ -3900,7 +3900,7 @@
     "experiment"
    ],
    "source": "Matthew, 2026-10-21 22:06, in chat",
-   "url": "",
+   "url": "https://github.com/matthewhammer/kids-choice-games/pull/2",
    "text": "<b>An experimental PR to Dress Up that moves as much game logic as possible into the 🧩 Hazel panels, one module per square (room) plus 📚 Common, and the speed runs again, compared with plain JS.</b> Matthew: \"let's do an experimental PR to dress-up where we try to export as much game logic as possible into the Hazel panels for each square (or common logic) --- and do the speedruns again to compare against plain JS\". Builds on ^ticket(520) (the Scripting panel, PR #1: TrapRoom's levers as a Hazel module, runProgram, the tiles frame).",
    "log": [
     {
@@ -3922,7 +3922,8 @@
      "effort": "low",
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "progress": "Draft PR #2 (stacked on #1): TrapRoom (red and blue levers), TreeRoom (hatches) and Square (placed levers) decided in Hazel; Common holds the wiring; ?logic=hazel|js on one build. Node: 2,427 comparisons agree; a decision costs 0.4-2 ms in Hazel vs ~0.001-0.005 in JS, ~85 ms at 40 trap doors. Browser comparison running on GitHub: diag-531, run 39722072605, 8 jobs."
   }
  ],
  "next_ticket": 527,
