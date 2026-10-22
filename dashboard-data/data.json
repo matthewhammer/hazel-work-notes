@@ -5446,7 +5446,7 @@
    "source": "Found under ^ticket(545), 2026-10-22 14:52; Matthew had asked: \"mint and enqueue tickets if you think of any you want\" (for the library work, ^report(25)).",
    "url": "https://matthewhammer.org/hazel/reports/029/#fumola-step",
    "text": "<b>A deep answer overflows wasm's stack.</b> fumola_eval_top of build(2000, null) (a list of option pairs) traps with \"memory access out of bounds\" while turning the answer into JSON, which recurses; holding the same list in the instance is fine. Make the answer's serialization iterative (or depth-limited with a clear error), with a test at depth 100,000. For Adapton/fumola; file the issue after Matthew's OK (^report(29) #fumola-step).",
-   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540)."
+   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540). 15:26: Matthew asked whether it is the pretty printer. MEASURED (fresh wasm process per probe, 029/drivers/deep_answer.mjs): not for data. An option list answer goes out through translate/nested (structural JSON, mutually recursive per nested value) and crashes at 700 elements (fine at 400); nested arrays at 1,500 (fine at 1,000): about 800-1,500 nested values either way. The printer (format_one_line, for values with no structural translation, e.g. a function holding the list) ALSO overflows, sooner: 400 (fine at 200). Held with answer 0: fine at 10,000. A trap leaves the instance unusable. Fix must cover both paths (or a depth cap with a clear error)."
   },
   {
    "id": 550,
