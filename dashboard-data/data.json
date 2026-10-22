@@ -4810,7 +4810,7 @@
    "source": "Matthew, 2026-10-22 09:26, in chat: \"Let's use it to help me really review our JS library for Hazel, and how well it integrates when required or wanted.\" \"Let's push that library forward where needed.\" \"mint and enqueue tickets if you think of any you want.\"",
    "url": "https://matthewhammer.org/hazel/reports/025/",
    "text": "<b>Asymptotic analysis of each event handler in the game's Hazel rules</b> (kids-choice-games#2, ^ticket(531)), for a world (its JSON data) of size N. Matthew: \"Each one should be O(1) or at the worst, O(log N), for a world (json data file) of size N.\" Known: World's Way O(N) (O(1) given the neighbours only), Square's levers O(doors) (quadratic with annotations before #2681), Castle O(rooms); the call boundary O(N) for every handler today (^ticket(539)'s floor). For each: its cost now, a version within the bound, measured.",
-   "progress": "09:26: minted and enqueued (Hazel, before the Dress Up tickets).",
+   "progress": "09:26: minted and enqueued (Hazel, before the Dress Up tickets). | 14:00: A balanced search tree for the World rule in Hazel (029/drivers/tree.hz: built once in O(N), keyed row*cols+col, held in a closure) gives the game's answers, but costs O(N) a call, not O(log N): 3.2, 8.1, 30.4 ms at 8x8, 16x16, 32x32 (best build). The same on the base and #2681 builds, so not the memo. VarLookup is O(1) (Transition.re). Hunting what walks a held value per call: a CPU profile with names next.",
    "log": [
     {
      "at": "2026-10-22T09:16-06:00",
@@ -5184,7 +5184,7 @@
  ],
  "next_ticket": 545,
  "current_ticket": 540,
- "current_note": "13:52: started: a balanced search tree for Hazel's World rule (O(log N) lookups, built once, held), timed 3x3 to 64x64; then every handler's cost in the world's size",
+ "current_note": "13:54: AFK: a Hazel search tree for the World rule answers right but costs O(N) a call: something walks a held value on every call; profiling to find it",
  "closed_tickets": [
   {
    "id": 543,
@@ -10106,8 +10106,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5103,
-  "words": 1124695,
+  "replies": 5104,
+  "words": 1124830,
   "read_hours_est": 78.8,
   "listen_hours_est": 117.2,
   "read_s_avg": 56,
@@ -10339,9 +10339,9 @@
     "chars": 126764
    },
    "2026-10-22": {
-    "replies": 81,
-    "words": 12074,
-    "chars": 69488
+    "replies": 82,
+    "words": 12209,
+    "chars": 70213
    }
   }
  },
