@@ -5342,9 +5342,9 @@
    "chips": [
     "hazel"
    ],
-   "source": "Found under ^ticket(545), 2026-10-22 14:52; Matthew had asked: \"mint and enqueue tickets if you think of any you want\" (for the library work, ^report(25)).",
+   "source": "Found under ^ticket(545), 2026-10-22 14:52; Matthew had asked: \"mint and enqueue tickets if you think of any you want\" (for the library work, ^report(25)). Matthew, 2026-10-22 14:54, in chat, after ^report(29)'s finding: \"mint and enqueue -- your best ideas for what to try next to fix this asymptotic issue with the JS library\" (then AFK).",
    "url": "https://matthewhammer.org/hazel/reports/029/#re-walk",
-   "text": "<b>Hand JS the closure, not its finished form.</b> Evaluator.evaluate finishes every result with Substitution.in_exp(env) |> Exp.replace_all_ids, so a function the library returns has its environment written into its body: a held list becomes a literal, re-evaluated element by element at every call (n+8 passes from JS, 27 from inside Hazel, at n = 100 to 3,000; ^report(29) #re-walk). Return the evaluator's raw final value for functions (to_js's Fun/Closure case), stacked on ^ticket(539)'s argument binding, on a trial branch; measure h_ref and ^report(27)'s held World rule again; they should go flat. Unblocks ^ticket(540)'s tree map.",
+   "text": "<b>Hand JS the closure, not its finished form.</b> Evaluator.evaluate finishes every result with Substitution.in_exp(env) |> Exp.replace_all_ids, so a function the library returns has its environment written into its body: a held list becomes a literal, re-evaluated element by element at every call (n+8 passes from JS, 27 from inside Hazel, at n = 100 to 3,000; ^report(29) #re-walk). Return the evaluator's raw final value for functions (to_js's Fun/Closure case), stacked on ^ticket(539)'s argument binding, on a trial branch; measure h_ref and ^report(27)'s held World rule again; they should go flat. Unblocks ^ticket(540)'s tree map. <b>How, in order of preference:</b> (a) a library-only evaluate that skips <code>finish</code> for values handed back: <code>Evaluator.evaluate</code> gains <code>~finish=false</code> (or an <code>evaluate_raw</code>), and <code>to_js</code> works on the raw final value: data converted as now, a <code>Fun</code>/<code>Closure</code>/<code>FixF</code> kept as the evaluator left it, environment and all, for <code>function_of</code> to apply; (b) if raw values carry forms <code>to_js</code> cannot read, finish only the data and keep closures closed (a <code>finish</code> that stops at <code>Closure</code>). Also drops <code>Exp.replace_all_ids</code>' walk over every returned value. Measure: ^report(29)'s h_ref and variants (passes a call flat in n), ^report(27)'s held World rule, and the library's tests.",
    "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540)."
   },
   {
@@ -5376,9 +5376,54 @@
    "url": "https://matthewhammer.org/hazel/reports/029/#fumola-step",
    "text": "<b>A deep answer overflows wasm's stack.</b> fumola_eval_top of build(2000, null) (a list of option pairs) traps with \"memory access out of bounds\" while turning the answer into JSON, which recurses; holding the same list in the instance is fine. Make the answer's serialization iterative (or depth-limited with a clear error), with a test at depth 100,000. For Adapton/fumola; file the issue after Matthew's OK (^report(29) #fumola-step).",
    "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540)."
+  },
+  {
+   "id": 550,
+   "area": "hazel evaluator: a term already known to be a value evaluates in O(1) (a value memo)",
+   "added": "2026-10-22T14:54-06:00",
+   "opened": "2026-10-22T14:54-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-22 14:54, in chat, after ^report(29)'s finding: \"mint and enqueue -- your best ideas for what to try next to fix this asymptotic issue with the JS library\" (then AFK).",
+   "url": "https://matthewhammer.org/hazel/reports/029/#re-walk",
+   "text": "<b>Make re-evaluating a value free, wherever it comes from.</b> Today a list literal whose elements are all values still costs a pass per element through all five stages (^report(29) #re-walk), and a substituted closure, the stepper's substitution mode and literal-heavy programs all pay it. Remember, by physical identity (Util.IdentityTable, as #2681's has_type memo does), every term the evaluator has found final; on a request to evaluate a term already in the table, return it at once, before the stages. Needs ids left alone on values (replace_all_ids makes new objects; ^ticket(547) drops it on the library path). Measure: h_ref from JS with ^ticket(547) off and on, and the evaluator's tests for probe and stepper samples, which must not change.",
+   "progress": "14:54: minted; enqueued after ^ticket(547)."
+  },
+  {
+   "id": 551,
+   "area": "hazel js library: handles, so a big JS value crosses once (Hazel.value(x) and an identity cache)",
+   "added": "2026-10-22T14:54-06:00",
+   "opened": "2026-10-22T14:54-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-22 14:54, in chat, after ^report(29)'s finding: \"mint and enqueue -- your best ideas for what to try next to fix this asymptotic issue with the JS library\" (then AFK).",
+   "url": "https://matthewhammer.org/hazel/reports/027/#fig-sizes",
+   "text": "<b>Make passing the world O(1) a call, not just holding it.</b> ^report(27)'s passed map costs Hazel 80 ms a call at 64x64 just to convert from JS (of_js), every call, though the map rarely changes. Two layers: (1) <code>Hazel.value(x)</code> converts once and returns an opaque handle; a call given a handle binds the stored Hazel value in its environment by reference (as ^ticket(539) binds arguments), no conversion; (2) an identity cache in of_js (a WeakMap from a frozen JS object or array to its Hazel value), so the game, by freezing its world when it changes, gets the same without new API. Measure: ^report(27)'s passed World rule, 3x3 to 64x64, should drop to the walk alone; with ^ticket(540)'s tree, to O(log N).",
+   "progress": "14:54: minted; enqueued after ^ticket(547)."
+  },
+  {
+   "id": 552,
+   "area": "hazel js library: a complexity test, so a call's cost stays independent of what it holds",
+   "added": "2026-10-22T14:54-06:00",
+   "opened": "2026-10-22T14:54-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-22 14:54, in chat, after ^report(29)'s finding: \"mint and enqueue -- your best ideas for what to try next to fix this asymptotic issue with the JS library\" (then AFK).",
+   "url": "https://matthewhammer.org/hazel/reports/029/#re-walk",
+   "text": "<b>Guard the boundary's asymptotics in CI.</b> A library test that calls a returned function holding a list of 100 and of 10,000 and asserts the evaluator's passes a call are equal (a pass counter in the library, like trial/r25-stats's Hazel.stepCounts, kept as a cheap debug hook), and the same for an argument passed by handle (^ticket(551)). Counts, not times: deterministic on any runner. Lands with ^ticket(547).",
+   "progress": "14:54: minted; enqueued after ^ticket(547)."
   }
  ],
- "next_ticket": 550,
+ "next_ticket": 553,
  "current_ticket": 545,
  "current_note": "14:43: 14:43: ^ticket(545): kernels measured both ways, profiles split; native/wasm/Hazel on one GitHub runner building; writing ^report(29).",
  "closed_tickets": [
@@ -10239,8 +10284,11 @@
  ],
  "queue": [
   545,
-  540,
   547,
+  540,
+  550,
+  551,
+  552,
   548,
   549,
   542,
@@ -10307,8 +10355,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5108,
-  "words": 1125385,
+  "replies": 5109,
+  "words": 1125422,
   "read_hours_est": 78.8,
   "listen_hours_est": 117.2,
   "read_s_avg": 56,
@@ -10540,9 +10588,9 @@
     "chars": 126764
    },
    "2026-10-22": {
-    "replies": 86,
-    "words": 12764,
-    "chars": 73383
+    "replies": 87,
+    "words": 12801,
+    "chars": 73589
    }
   }
  },
