@@ -4052,11 +4052,14 @@
    "added": "2026-10-22T00:31:00-06:00",
    "opened": "2026-10-22T00:31:00-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "source": "Matthew, in chat",
-   "url": "",
+   "url": "http://localhost:8131/025/",
    "text": "<b>Why a Hazel rule called from the game costs ~40 ms on a 16x16 world map (2 ms at 3x3, 0.003 ms in JS): analysis, and a new report.</b> Matthew: \"why is Hazel so slow here for 16 x 16 map? do more analysis please, and draft a new report.\"",
-   "log": []
+   "log": [],
+   "progress": "^report(25) 'What a Call into Hazel Costs' drafted locally (hazel-perf-report c8783e0, work in progress, not published). Cause: (1) the World rule's find is annotated ([Cell], Int, Int), and Hazel re-checks that type over the rest of the list on every recursive call: quadratic, 153 ms at 16x16 (22.6 without the annotation); (2) every call converts the argument to unevaluated syntax with fresh UUIDs and re-evaluates it, ~31 us per cell; (3) ~3 us per evaluator step. Passing only the neighbouring cells: ~0.9 ms at every size. Waiting on Matthew: read it; publish on his word."
   }
  ],
  "next_ticket": 527,
