@@ -4364,7 +4364,7 @@
    "source": "Matthew, 2026-10-22 07:30, in chat, after ^report(25)'s before-and-after update",
    "url": "https://matthewhammer.org/hazel/reports/025/#prs",
    "text": "<b>Find why #2681 makes every library call's floor about 25% slower, and whether it can skip recording values it will never see again.</b> Matthew: \"Yes: find why #2681 raises the floor by about a quarter, and whether it can skip recording values it will never see again.\" ^report(25) measured, in two rounds: a Hazel rule that ignores its argument costs 8.5 ms at 16x16 before #2681 and 10.1-10.6 ms with it (19.3 to 25.3 ms at 24x24), while the annotated rule gets 7-16x faster. The argument is converted afresh by of_js on every call, so #2681's memo records values it can never reuse.",
-   "progress": "07:30: minted and started.",
+   "progress": "07:30: minted and started. | 07:37: COUNTED (WeakMap get/set wrapped in node around GitHub's #2681 build, no rebuild): per 16x16 identity call, #2681 does 4,137 memo lookups (all miss), 2,580 memo writes (1,280 list tails: the cells' and every cell's ways; 1,041 record fields; 258 records) and 6,734 type-hash lookups; the shipped rule's whole win is 137 hits, one per step of find. Switching off only the writes does NOT lower the floor; without them the shipped rule is ~30% slower than before #2681, so the per-check lookups are the cost (plus GC: 2.7 ms of a 10 ms floor before #2681). FIX TRIED: trial/r25-2681-depth (5b79ba5f95): has_type asked and told only at depth 0 and 1 of a pushed value (find's list is a part of its tuple, depth 1). GitHub's Deploy building; then floor.sh times before / #2681 / depth, three rounds with GC time.",
    "log": [
     {
      "at": "2026-10-22T07:18-06:00",
@@ -4395,7 +4395,7 @@
  ],
  "next_ticket": 536,
  "current_ticket": 535,
- "current_note": "07:30: why #2681 raises the library call's floor by about a quarter; reading its memo (Ascriptions.has_type) on trial/r25-2681",
+ "current_note": "07:37: #2681's floor: counted the memo's work per call; a depth-limited memo (trial/r25-2681-depth) is building on GitHub, then timed against before and #2681",
  "closed_tickets": [
   {
    "id": 532,
@@ -9233,6 +9233,7 @@
   }
  ],
  "queue": [
+  535,
   521,
   520,
   512,
