@@ -5343,6 +5343,18 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-22T15:15-06:00",
+     "from": "claude",
+     "chars": 392,
+     "asks": false,
+     "words": 65,
+     "read_s": 16,
+     "listen_s": 24,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ]
   },
@@ -5353,7 +5365,8 @@
    "opened": "2026-10-22T14:32-06:00",
    "status": "open",
    "tags": [
-    "for Dress Up time, after Hazel time"
+    "for Dress Up time, after Hazel time",
+    "blocked on Matthew"
    ],
    "chips": [
     "dress up"
@@ -5361,7 +5374,7 @@
    "source": "Matthew, 2026-10-22 14:32, in chat: \"mint and enqueue -- M notices that wearing a dress on the horse, facing L and R, and forwards and  backwards, the legs stick out of the dress as if it had strange holes it in. Also, squatting (without horse) has the same issue.\" Then: \"M says -- also running.\"",
    "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
    "text": "<b>Legs poke through a dress.</b> M noticed it: wearing a dress while riding the horse, facing left, right, forwards and backwards, the legs stick out of the dress as if it had strange holes in it. Squatting (no horse) and running do the same. Find which views and poses draw the legs over (or through) the skirt, fix the skirt's shape or the drawing order for each, check every dress style in each of those poses as pictures, then a release.",
-   "progress": "14:32: minted and enqueued for Dress Up time, after the Hazel work in hand. 15:07: started while the Hazel fixes build on GitHub: a background agent investigates in a worktree (~/kcg-546, branch ticket-546-dress-legs off origin/main): cause per pose, fix, before/after pictures via ffmpeg (no headless browser), no push or release.",
+   "progress": "14:32: minted and enqueued for Dress Up time, after the Hazel work in hand. 15:07: started while the Hazel fixes build on GitHub: a background agent investigates in a worktree (~/kcg-546, branch ticket-546-dress-legs off origin/main): cause per pose, fix, before/after pictures via ffmpeg (no headless browser), no push or release. 15:30: FIXED on branch ticket-546-dress-legs (~/kcg-546, afbcc95; not pushed): one cause for every pose: drawNow (18-drawing.js) drew a skirt/dress/robe as the standing trapezoid whatever the legs did; new skirtOver widens the cloth to the hull of the posed legs down to the hem (null when the legs fit, so standing drawings are byte-identical: 96 of 96). Node sweep: 1,008 cases, 432 with leg points outside the cloth before, 0 after. New check tools/checks/dress546.mjs (CDP pattern, runs on GitHub). Pictures reviewed (ride L/R/front/back, crouch, run): legs stay under the cloth. Design call: running in a long dress, the cloth now billows back to the kicked-back foot. Holes show mostly with long legs, skirts, robes or a small horse; the default dress hid them. Also fixes walking, sitting side on, stairs, knees, crawl, hug. Waiting on Matthew: release it?",
    "log": [
     {
      "at": "2026-10-22T14:32-06:00",
@@ -5392,7 +5405,7 @@
    "source": "Found under ^ticket(545), 2026-10-22 14:52; Matthew had asked: \"mint and enqueue tickets if you think of any you want\" (for the library work, ^report(25)). Matthew, 2026-10-22 14:54, in chat, after ^report(29)'s finding: \"mint and enqueue -- your best ideas for what to try next to fix this asymptotic issue with the JS library\" (then AFK).",
    "url": "https://matthewhammer.org/hazel/reports/029/#re-walk",
    "text": "<b>Hand JS the closure, not its finished form.</b> Evaluator.evaluate finishes every result with Substitution.in_exp(env) |> Exp.replace_all_ids, so a function the library returns has its environment written into its body: a held list becomes a literal, re-evaluated element by element at every call (n+8 passes from JS, 27 from inside Hazel, at n = 100 to 3,000; ^report(29) #re-walk). Return the evaluator's raw final value for functions (to_js's Fun/Closure case), stacked on ^ticket(539)'s argument binding, on a trial branch; measure h_ref and ^report(27)'s held World rule again; they should go flat. Unblocks ^ticket(540)'s tree map. <b>How, in order of preference:</b> (a) a library-only evaluate that skips <code>finish</code> for values handed back: <code>Evaluator.evaluate</code> gains <code>~finish=false</code> (or an <code>evaluate_raw</code>), and <code>to_js</code> works on the raw final value: data converted as now, a <code>Fun</code>/<code>Closure</code>/<code>FixF</code> kept as the evaluator left it, environment and all, for <code>function_of</code> to apply; (b) if raw values carry forms <code>to_js</code> cannot read, finish only the data and keep closures closed (a <code>finish</code> that stops at <code>Closure</code>). Also drops <code>Exp.replace_all_ids</code>' walk over every returned value. Measure: ^report(29)'s h_ref and variants (passes a call flat in n), ^report(27)'s held World rule, and the library's tests.",
-   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540). 15:02: trial/r25-closures (on trial/r25-stats) pushed: Evaluator.evaluate_unfinished; the library's run AND function_of use it; to_js reads a closure over data as finish would; tests: curried function, function made by a call, passes equal for held lists of 10 and 400 (from run and from a call). d1e355120a + fdaaabfbf3; Deploy 39853475405 and CI 39853475487 running. Measure next: kernels h_*, variants, tree540 (540's tree), handles551. 15:28: MEASURED (laptop, counter build both sides, alternating): from JS a call referring to a held list takes 9 passes at n = 100, 1,000, 3,000 (was n+8); h_ref 3,000: 4.27 -> 0.055 ms (77x). CI on trial/r25-closures: pending.",
+   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540). 15:02: trial/r25-closures (on trial/r25-stats) pushed: Evaluator.evaluate_unfinished; the library's run AND function_of use it; to_js reads a closure over data as finish would; tests: curried function, function made by a call, passes equal for held lists of 10 and 400 (from run and from a call). d1e355120a + fdaaabfbf3; Deploy 39853475405 and CI 39853475487 running. Measure next: kernels h_*, variants, tree540 (540's tree), handles551. 15:28: MEASURED (laptop, counter build both sides, alternating): from JS a call referring to a held list takes 9 passes at n = 100, 1,000, 3,000 (was n+8); h_ref 3,000: 4.27 -> 0.055 ms (77x). CI on trial/r25-closures: pending. 15:30: CI GREEN on trial/r25-closures (run 39853475487: Full tests and Fast checks pass, the new tests included).",
    "log": [
     {
      "at": "2026-10-22T14:52-06:00",
@@ -5435,7 +5448,7 @@
    "source": "Found under ^ticket(545), 2026-10-22 14:52; Matthew had asked: \"mint and enqueue tickets if you think of any you want\" (for the library work, ^report(25)).",
    "url": "https://matthewhammer.org/hazel/reports/029/#re-type",
    "text": "<b>Ascriptions.re's list case wraps every element in a fresh Asc with a fresh id, then throws them all away when nothing changed.</b> An accumulator loop meets [Int] every iteration, so building and summing 3,000 numbers costs 4.6 s (25 ms in Fumola); 60% of the time is inside the push, ids included (^report(29) #re-type). Check before wrapping (an Int that is an Int needs nothing) and mint ids only for parts that change; measure sumbuild and mapinc again on a trial branch: they should become linear.",
-   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540). 15:04: trial/r25-asc (on trial/r25-stats) pushed, 0dba9d43d8: (1) the recursive list push stops at the first tail has_type knows; (2) noted stops remembering at a known tail; (3) Transition's Asc rule does one recursive push and an identity check instead of a throwaway stepwise push (which wrapped every element with a fresh id) first. Tests: accumulator lists of ints and of pairs keep their values. Deploy 39854230835 + CI running; measure sumbuild/mapinc at 100/1,000/3,000: should be linear. 15:21: MEASURED (laptop, counter build both sides, alternating A B A B): sumbuild 3,000 6,135 -> 693 ms (8.9x), mapinc 3,000 6,191 -> 1,133 ms (5.5x); both now linear (3x the list, 3x the time); count unchanged. CI on trial/r25-asc pending (run 39854230841)."
+   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540). 15:04: trial/r25-asc (on trial/r25-stats) pushed, 0dba9d43d8: (1) the recursive list push stops at the first tail has_type knows; (2) noted stops remembering at a known tail; (3) Transition's Asc rule does one recursive push and an identity check instead of a throwaway stepwise push (which wrapped every element with a fresh id) first. Tests: accumulator lists of ints and of pairs keep their values. Deploy 39854230835 + CI running; measure sumbuild/mapinc at 100/1,000/3,000: should be linear. 15:21: MEASURED (laptop, counter build both sides, alternating A B A B): sumbuild 3,000 6,135 -> 693 ms (8.9x), mapinc 3,000 6,191 -> 1,133 ms (5.5x); both now linear (3x the list, 3x the time); count unchanged. CI on trial/r25-asc pending (run 39854230841). 15:30: CI on trial/r25-asc: Fast checks pass; Full tests running (run 39854230841)."
   },
   {
    "id": 549,
@@ -5496,7 +5509,7 @@
    "source": "Matthew, 2026-10-22 14:54, in chat, after ^report(29)'s finding: \"mint and enqueue -- your best ideas for what to try next to fix this asymptotic issue with the JS library\" (then AFK).",
    "url": "https://matthewhammer.org/hazel/reports/027/#fig-sizes",
    "text": "<b>Make passing the world O(1) a call, not just holding it.</b> ^report(27)'s passed map costs Hazel 80 ms a call at 64x64 just to convert from JS (of_js), every call, though the map rarely changes. Two layers: (1) <code>Hazel.value(x)</code> converts once and returns an opaque handle; a call given a handle binds the stored Hazel value in its environment by reference (as ^ticket(539) binds arguments), no conversion; (2) an identity cache in of_js (a WeakMap from a frozen JS object or array to its Hazel value), so the game, by freezing its world when it changes, gets the same without new API. Measure: ^report(27)'s passed World rule, 3x3 to 64x64, should drop to the walk alone; with ^ticket(540)'s tree, to O(log N).",
-   "progress": "14:54: minted; enqueued after ^ticket(547). 15:02: trial/r25-handles (stacked on trial/r25-closures) pushed, 0220562cee: Hazel.value(x) gives {__hazelValue}; of_js returns the carried value as is. The frozen-object cache (layer 2) NOT built: Object.freeze is shallow, so a frozen world with a mutable inner array would go stale silently; explicit handles first. Test: a handle in a call, in an argument tuple, twice. Deploy 39853787248 + CI running; driver 029/drivers/handles551.mjs ready. 15:28: MEASURED: ignore-rule boundary at 64x64: 48.9 ms a call as JS -> 0.025 ms with a handle (any size); Hazel.value once: 47 ms at 64x64; the passed rule still walks (409 -> 311 ms). CI on trial/r25-handles: pending.",
+   "progress": "14:54: minted; enqueued after ^ticket(547). 15:02: trial/r25-handles (stacked on trial/r25-closures) pushed, 0220562cee: Hazel.value(x) gives {__hazelValue}; of_js returns the carried value as is. The frozen-object cache (layer 2) NOT built: Object.freeze is shallow, so a frozen world with a mutable inner array would go stale silently; explicit handles first. Test: a handle in a call, in an argument tuple, twice. Deploy 39853787248 + CI running; driver 029/drivers/handles551.mjs ready. 15:28: MEASURED: ignore-rule boundary at 64x64: 48.9 ms a call as JS -> 0.025 ms with a handle (any size); Hazel.value once: 47 ms at 64x64; the passed rule still walks (409 -> 311 ms). CI on trial/r25-handles: pending. 15:30: CI GREEN on trial/r25-handles (run 39853787376: Full tests and Fast checks pass).",
    "log": [
     {
      "at": "2026-10-22T14:53-06:00",
@@ -10497,9 +10510,9 @@
   },
   "since": "2026-08-27",
   "replies": 5115,
-  "words": 1126467,
+  "words": 1126788,
   "read_hours_est": 78.9,
-  "listen_hours_est": 117.3,
+  "listen_hours_est": 117.4,
   "read_s_avg": 56,
   "listen_s_avg": 83,
   "days": {
@@ -10730,8 +10743,8 @@
    },
    "2026-10-22": {
     "replies": 93,
-    "words": 13846,
-    "chars": 79761
+    "words": 14167,
+    "chars": 81561
    }
   }
  },
