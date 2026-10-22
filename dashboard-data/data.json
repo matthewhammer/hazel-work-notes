@@ -4713,9 +4713,69 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 537,
+   "area": "hazel, JS library (#2711, #2719): a review of it, in ^report(25), as this report uses it",
+   "added": "2026-10-22T09:26-06:00",
+   "opened": "2026-10-22T09:26-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-22 09:26, in chat: \"Let's use it to help me really review our JS library for Hazel, and how well it integrates when required or wanted.\" \"Let's push that library forward where needed.\" \"mint and enqueue tickets if you think of any you want.\"",
+   "url": "https://matthewhammer.org/hazel/reports/025/",
+   "text": "<b>Review Hazel's JS library through ^report(25)</b>: each way the report uses it (Hazel.run in node for the timings; a function back from Hazel called from JS; the embed frame for read-only tiles; the library loaded in a page for the run boxes), what works, what was awkward, what is missing. A section of the report, for Matthew's review of the library, with the integration points named (docs/hazel-as-a-js-library.md).",
+   "progress": "09:26: minted and enqueued (Hazel, before the Dress Up tickets)."
+  },
+  {
+   "id": 538,
+   "area": "hazel, JS library: tiles in a page that show reliably (a read-only mount without a frame, or a frame that draws off screen)",
+   "added": "2026-10-22T09:26-06:00",
+   "opened": "2026-10-22T09:26-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-22 09:26, in chat: \"Let's use it to help me really review our JS library for Hazel, and how well it integrates when required or wanted.\" \"Let's push that library forward where needed.\" \"mint and enqueue tickets if you think of any you want.\"",
+   "url": "https://matthewhammer.org/hazel/reports/025/",
+   "text": "<b>Make the read-only tiles dependable in a page.</b> ^report(25)'s tile boxes use #2719's embed frame (protocol 1): a whole Hazel app per frame, which says ready, but draws, measures and reports status only while it can render (no tiles in a hidden or background tab: height 0, no status). Options: Hazel.mountEditor (the library's planned next feature, #2711) for a read-only view in the page's own DOM; or the frame applying a program and reporting status while off screen (^ticket(520)'s question 1).",
+   "progress": "09:26: minted and enqueued (Hazel, before the Dress Up tickets)."
+  },
+  {
+   "id": 539,
+   "area": "hazel, JS library: the call boundary's floor (of_js to final values, no re-step; a cheaper Id.mk)",
+   "added": "2026-10-22T09:26-06:00",
+   "opened": "2026-10-22T09:26-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-22 09:26, in chat: \"Let's use it to help me really review our JS library for Hazel, and how well it integrates when required or wanted.\" \"Let's push that library forward where needed.\" \"mint and enqueue tickets if you think of any you want.\"",
+   "url": "https://matthewhammer.org/hazel/reports/025/",
+   "text": "<b>Take the call boundary out of N.</b> ^report(25): every call converts the JS argument to unevaluated syntax with a fresh UUID per node, re-steps it into the value it was, and checks it against the parameter's type: about 31 us per cell, the floor every rule pays (8.5 ms at 16x16). Fixes 1 and 3 of the report: of_js producing final values (or binding the argument in the environment), and an Id.mk without Uuidm's byte copy under jsoo. Measure with the report's driver; the depth-limited #2681 memo (^ticket(535)) leaves this floor where it was.",
+   "progress": "09:26: minted and enqueued (Hazel, before the Dress Up tickets)."
+  },
+  {
+   "id": 540,
+   "area": "dress up x hazel: every event handler O(1) or O(log N) in the world's size (^report(25)'s next step)",
+   "added": "2026-10-22T09:26-06:00",
+   "opened": "2026-10-22T09:26-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-22 09:26, in chat: \"Let's use it to help me really review our JS library for Hazel, and how well it integrates when required or wanted.\" \"Let's push that library forward where needed.\" \"mint and enqueue tickets if you think of any you want.\"",
+   "url": "https://matthewhammer.org/hazel/reports/025/",
+   "text": "<b>Asymptotic analysis of each event handler in the game's Hazel rules</b> (kids-choice-games#2, ^ticket(531)), for a world (its JSON data) of size N. Matthew: \"Each one should be O(1) or at the worst, O(log N), for a world (json data file) of size N.\" Known: World's Way O(N) (O(1) given the neighbours only), Square's levers O(doors) (quadratic with annotations before #2681), Castle O(rooms); the call boundary O(N) for every handler today (^ticket(539)'s floor). For each: its cost now, a version within the bound, measured.",
+   "progress": "09:26: minted and enqueued (Hazel, before the Dress Up tickets)."
   }
  ],
- "next_ticket": 537,
+ "next_ticket": 541,
  "current_ticket": 535,
  "current_note": "08:53: woods on #2635: depth 1 keeps 82-96% of #2681's gain (3 runners x 21 runs); timing depths 2 and 3 on the library's floor before proposing",
  "closed_tickets": [
@@ -9556,6 +9616,10 @@
  ],
  "queue": [
   535,
+  537,
+  538,
+  539,
+  540,
   521,
   520,
   512,
