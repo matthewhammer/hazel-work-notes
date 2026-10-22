@@ -3955,7 +3955,7 @@
      "note": "from the transcripts"
     }
    ],
-   "progress": "Draft PR #2 (stacked on #1): TrapRoom (red and blue levers), TreeRoom (hatches) and Square (placed levers) decided in Hazel; Common holds the wiring; ?logic=hazel|js on one build. Node: 2,427 comparisons agree; a decision costs 0.4-2 ms in Hazel vs ~0.001-0.005 in JS, ~85 ms at 40 trap doors. Browser comparison running on GitHub: diag-531, run 39722072605, 8 jobs."
+   "progress": "First browser comparison (diag-531, 8 jobs on 3 CPU kinds; noise = a job's two runs of a mode apart): Hazel adds 0.5-3 ms from a pull to its frame (EPYC 7763: lever 9.1 -> 11.7 ms, placed lever 5.5 -> 8.6; 9V45: 7.1 -> 8.7, 4.6 -> 6.4; the hatch within noise on the fast CPUs); no frames dropped either way to speak of; the page loads 522 vs 270 ms, Hazel's first compile ~290 ms, heap 67 vs 51 MB. The JS mode matches main. But checks fail in every job: 3 of 22 pulls fell back to JS in hazel mode, the flip2 and Say rules in scripting482, and the tiles' focus check (frame above the view): being fixed, then measured again."
   },
   {
    "id": 532,
@@ -8846,9 +8846,9 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5015,
-  "words": 1111577,
-  "read_hours_est": 77.8,
+  "replies": 5017,
+  "words": 1112078,
+  "read_hours_est": 77.9,
   "listen_hours_est": 115.8,
   "read_s_avg": 56,
   "listen_s_avg": 83,
@@ -9074,9 +9074,9 @@
     "chars": 149483
    },
    "2026-10-21": {
-    "replies": 152,
-    "words": 20880,
-    "chars": 121041
+    "replies": 154,
+    "words": 21381,
+    "chars": 123675
    }
   }
  },
