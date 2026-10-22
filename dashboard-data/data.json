@@ -3511,7 +3511,9 @@
    "added": "2026-10-21T13:50-06:00",
    "opened": "2026-10-21T13:50-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "source": "Matthew, 2026-10-21 13:50, in chat, with a screenshot of the panel on 8482 (\"MUDU/hazel ticket --- Great start -- but we aren't using tiles yet, right? Wasn't that the point of the Hazel-MUDU integration?\")",
    "url": "https://github.com/hazelgrove/hazel/pull/2711",
    "text": "<b>Tiles in the 🧩 Scripting panel: each room's editor (and 📚 Common) becomes Hazel's own tile editor, mounted in Dress Up's page by Hazel's JS library, instead of a text box whose source the library analyzes and runs.</b> Matthew: \"Great start -- but we aren't using tiles yet, right? Wasn't that the point of the Hazel-MUDU integration?\" This is ^ticket(481)'s second step (\"then an editor to mount\"), held for the meeting's word on the direction (^report(20) item 12), now given. Two PRs move together: hazel #2711 (the library: mount an editor of a module, read its program back, report its errors) and kids-choice-games PR #1 (^ticket(482): the panel uses it).",
@@ -3682,7 +3684,7 @@
      "note": "from the transcripts"
     }
    ],
-   "progress": "Found: the frame was below the fold (top 1011 px of a 1000 px window), and Chrome gives an off-screen cross-origin frame no animation frames, so Hazel's embed (which applies a set in an animation frame and reports after display) never drew. Scrolled into view: tiles, status, size, error marks and focus all work (diag run 39711933408, all 20 ok). The check now scrolls first (63e9460, pushed; run 39712056780). For Matthew: in the game the tiles also wait until scrolled into view; options: move them higher / say 'scroll down', or have the embed apply and report without a display (a Hazel-side change on #2719)."
+   "progress": "Milestone B GREEN on GitHub (run 39712056780, scripting-panel at 63e9460): the tiles frame from hazel.org's #2719 build shows the program with Hazel's marks, reports status and size, and gives focus back; the levers run through runProgram. Blocked on Matthew for two calls: (1) the tiles wait until scrolled into view (move them up / say 'scroll down', or have the embed apply and report off-screen, a #2719 change); (2) LAN hosts (192.168.x) on the embed's allow-list for iPad testing from the laptop, or test on matthewhammer.org. Then: device check on the black laptop and iPad (his), and milestone C (editable module cells)."
   },
   {
    "id": 521,
