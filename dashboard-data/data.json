@@ -3982,6 +3982,23 @@
      "read_s": 20,
      "listen_s": 29,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-21T18:47-06:00",
+     "from": "matthew",
+     "chars": 8,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-21T18:47-06:00",
+     "from": "claude",
+     "chars": 600,
+     "asks": false,
+     "words": 95,
+     "read_s": 24,
+     "listen_s": 36,
+     "note": "from the transcripts"
     }
    ],
    "progress": "18:56: milestone B built (cf9206c) and reviewed; 7 of 8 findings fixed (b588906: a load or start-over refills the boxes; the tiles' timers wait only while the frame can draw). Pushing to scripting-panel (PR #1) for the browser check on GitHub. Open for Matthew: the embed's allow-list on #2719 has no LAN hosts, so the game served from the laptop to the iPad (192.168.x) gets no tiles — add private-network hosts to #2719, or test on matthewhammer.org behind the off-by-default 🧩 switch."
@@ -4016,7 +4033,8 @@
      "listen_s": 54,
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "progress": "19:01: audit and plan done (8 commits c1-c8, smallest first; report 16 'The Space Between the Boxes'). c1, the measuring check knoll521.mjs, is on branch knoll-521 (~/kcg-521); the before numbers (0.0.204, main 0.0.398) are being measured on GitHub on diag-521 (run 39703009678, 3 jobs, ~45 min). Next: the four audit bugs (c2), then no empty columns (c3). c4 changes the default split: pictures for Matthew first."
   },
   {
    "id": 522,
@@ -4050,36 +4068,6 @@
     }
    ],
    "progress": "16:06: started at once, in its own worktree ~/kcg-522 (branch cowboy-522 from origin/main, 0.0.398) so it cannot collide with the round room building in the main checkout: a workflow (costumes and held things read, two designers and a judge, one builder looking at every drawing as a PNG, two reviewers, a fixer). Then a release."
-  },
-  {
-   "id": 523,
-   "area": "dress up, the 🐉 dragon costume: a 🔥 fire button and a chip for each fire, to try them while dressing up",
-   "added": "2026-10-21T16:10-06:00",
-   "opened": "2026-10-21T16:10-06:00",
-   "status": "open",
-   "tags": [],
-   "source": "Matthew, 2026-10-21 16:10, in chat",
-   "url": "",
-   "text": "<b>In the 🐉 dragon costume's settings, a 🔥 fire button (held, to breathe) and a chip for each of the six fires, so whoever tries on the costume can try every fire without going to 🎮 Controls.</b> Matthew: \"let's also add a 'fire' button within the dragon costume, with chips for testing each type, so the person trying on the costume need not switch to game controls to try\". The chips set the same fire as 🎮 Controls' choice (one setting, two places).",
-   "log": [
-    {
-     "at": "2026-10-21T16:10-06:00",
-     "from": "matthew",
-     "chars": 175,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T16:11-06:00",
-     "from": "claude",
-     "chars": 641,
-     "asks": false,
-     "words": 116,
-     "read_s": 29,
-     "listen_s": 44,
-     "note": "from the transcripts"
-    }
-   ]
   },
   {
    "id": 524,
@@ -4250,9 +4238,19 @@
   }
  ],
  "next_ticket": 527,
- "current_ticket": 520,
- "current_note": "18:57: milestone B pushed to scripting-panel (b588906); the Dress Up tests run 39702744533 is checking the frame of Hazel's tiles on GitHub",
+ "current_ticket": 521,
+ "current_note": "19:00: c1 (the measuring check) pushed; before numbers measuring on GitHub (diag-521, run 39703009678); c2 and c3 being built in ~/kcg-521",
  "closed_tickets": [
+  {
+   "id": 523,
+   "area": "dress up, the 🐉 dragon costume: a 🔥 fire button and a chip for each fire, to try them while dressing up",
+   "added": "2026-10-21T16:10-06:00",
+   "text": "In the 🐉 dragon costume's settings, a 🔥 fire button (held, to breathe) and a chip for each of the six fires, so whoever tries on the costume can try every fire without going to 🎮 Controls.",
+   "source": "Matthew, 2026-10-21 16:10, in chat",
+   "status": "done",
+   "closed": "2026-10-21",
+   "outcome": "Released in Dress Up 0.0.399 (live 19:00): with the dragon worn, Costume -> the dragon ends with a hold-to-breathe 🔥 button over the six fires as chips (the same setting as…"
+  },
   {
    "id": 515,
    "area": "dress up, a robot costume: eight styles",
@@ -8959,13 +8957,12 @@
   }
  ],
  "queue": [
+  521,
   520,
   516,
-  523,
   517,
   522,
   518,
-  521,
   524,
   525,
   512,
@@ -9010,7 +9007,7 @@
   508,
   526
  ],
- "current_since": "2026-10-21T18:57-06:00",
+ "current_since": "2026-10-21T19:00-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
@@ -9022,8 +9019,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 4973,
-  "words": 1104774,
+  "replies": 4974,
+  "words": 1104943,
   "read_hours_est": 77.4,
   "listen_hours_est": 115.1,
   "read_s_avg": 56,
@@ -9250,9 +9247,9 @@
     "chars": 149483
    },
    "2026-10-21": {
-    "replies": 110,
-    "words": 14077,
-    "chars": 82614
+    "replies": 111,
+    "words": 14246,
+    "chars": 83597
    }
   }
  },
