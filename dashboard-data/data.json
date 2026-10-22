@@ -92,6 +92,10 @@
    "branch_note": "(public: a push publishes, so drafts wait. ^report(25) published as work in progress 10-22 09:44 (homepage 35951cb); its local copy is the same. ^report(18), why #2635 fails CI, is a local draft waiting on Matthew)",
    "links": [
     [
+     "localhost:8131/026/ (^report(26) draft: does #2681 need #2661? for Alexander)",
+     "http://localhost:8131/026/"
+    ],
+    [
      "localhost:8131/025/ (^report(25) draft: code listings, tiles, run boxes; work in progress)",
      "http://localhost:8131/025/"
     ],
@@ -4842,14 +4846,16 @@
    "added": "2026-10-22T10:19-06:00",
    "opened": "2026-10-22T10:19-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel"
    ],
    "source": "Matthew, 2026-10-22 10:19, in chat, forwarding Alexander: \"Looks like it needs https://github.com/hazelgrove/hazel/pull/2661 as a dependency. Might be worth just changing the parent branch of the pr to that branch\"; Matthew to him: \"It seems like a real dep, but I'll double check -- thanks!\"; to Claude: \"Mint and enqueue that double-check please, and make a report draft to share.\"",
    "url": "https://github.com/hazelgrove/hazel/pull/2681",
    "text": "<b>Double-check that #2681 depends on #2661, and whether to retarget #2681's base to #2661's branch (typ-hash-consistent).</b> What in #2681's own commit uses #2661 (TypHash), what retargeting would show reviewers (the diff against #2661's branch: #2679 is in dev now), whether #2661's branch is up to date with dev, and the steps either way. Written as a draft report to share with Alexander.",
-   "progress": "10:19: minted, enqueued and started.",
+   "progress": "10:19: minted, enqueued and started. | DRAFTED ^report(26), 'Does #2681 Need #2661?' (localhost:8131/026/): yes, a real dependency (8546bde64e calls TypHash.hash in known_to_have and noted); #2681 carries #2661 as merges and a copy (a4fee77a63 = 09b8af372f by patch-id), 14 behind dev; #2661's branch is up to date with dev; merging #2661's head into #2681 conflicts in Ascriptions.re (the known #2661/#2679 helper clash), #2681's side resolves it, and the diff against typ-hash-consistent is then 4 files +161/-2 = its own commit. Steps: merge, push, set base to typ-hash-consistent. Waiting on Matthew: read it; publish and/or do the retarget.",
    "log": [
     {
      "at": "2026-10-22T10:03-06:00",
@@ -4889,7 +4895,8 @@
      "effort": "medium",
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": "Matthew: read ^report(26) (localhost:8131/026/); publish it to share with Alexander, and/or go ahead with the merge and retarget of #2681?"
   }
  ],
  "next_ticket": 542,
