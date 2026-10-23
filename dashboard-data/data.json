@@ -5536,7 +5536,7 @@
    "source": "Found under ^ticket(545), 2026-10-22 14:52; Matthew had asked: \"mint and enqueue tickets if you think of any you want\" (for the library work, ^report(25)). Then Matthew, 2026-10-22 16:11: \"Mint a ticket for this step: Hazel reports, ^report(29), What next, step 4: 'Fumola's deep answers'. http://matthewhammer.org/hazel/reports/029/#step-4\" (this ticket is that step: attached here rather than minted twice).",
    "url": "http://matthewhammer.org/hazel/reports/029/#step-4",
    "text": "<b>A deep answer overflows wasm's stack.</b> fumola_eval_top of build(2000, null) (a list of option pairs) traps with \"memory access out of bounds\" while turning the answer into JSON, which recurses; holding the same list in the instance is fine. Make the answer's serialization iterative (or depth-limited with a clear error), with a test at depth 100,000. For Adapton/fumola; file the issue after Matthew's OK (^report(29) #fumola-step).",
-   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540). 15:26: Matthew asked whether it is the pretty printer. MEASURED (fresh wasm process per probe, 029/drivers/deep_answer.mjs): not for data. An option list answer goes out through translate/nested (structural JSON, mutually recursive per nested value) and crashes at 700 elements (fine at 400); nested arrays at 1,500 (fine at 1,000): about 800-1,500 nested values either way. The printer (format_one_line, for values with no structural translation, e.g. a function holding the list) ALSO overflows, sooner: 400 (fine at 200). Held with answer 0: fine at 10,000. A trap leaves the instance unusable. Fix must cover both paths (or a depth cap with a clear error). 16:11: Matthew asked for a ticket for ^report(29)'s step 4: this is it; moved up the queue, after ^ticket(558). 19:13: branch deep-answers in ~/fumola-549 (Adapton/fumola, off main cb2bcf5), pushed, no PR (filing waits on Matthew). Reproduced natively: a test at depth 100,000 overflows the stack for an option list, nested arrays and a function holding the list. FOUND a third path: the instance keeps its last answer, and the NEXT program dropped it, by recursion (gdb: 61,000 nested Rc<Value> drops from clear_cont): so a deep answer trapped the instance even once written. ae3b915: Value has a Drop that takes out what it alone holds (option, variant, index, inline array or tuple) and drops it in a loop; records and closures' environments still drop as before (taking a map out would allocate every drop); five matches that moved a field out of a cloned value now match by reference. 08e7e25: the answer's JSON written as text with its own stack (nested_json), byte for byte as before (30 of 32 sample answers identical; 2 functions differ only in their environment's print order, which varies run to run anyway); the printer only for values at most 100 deep (deeper_than), else a short note. All 5 deep tests pass (the instance answers 1 + 1 after each); check-no-panics passes; rustfmt adds nothing beyond main's own. Fumola's CI runs only on main and PRs, so running its steps here: cargo test, fumola-test.sh, fumola-scripts.sh. Then: the drop's cost, release builds of main and the branch.",
+   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540). 15:26: Matthew asked whether it is the pretty printer. MEASURED (fresh wasm process per probe, 029/drivers/deep_answer.mjs): not for data. An option list answer goes out through translate/nested (structural JSON, mutually recursive per nested value) and crashes at 700 elements (fine at 400); nested arrays at 1,500 (fine at 1,000): about 800-1,500 nested values either way. The printer (format_one_line, for values with no structural translation, e.g. a function holding the list) ALSO overflows, sooner: 400 (fine at 200). Held with answer 0: fine at 10,000. A trap leaves the instance unusable. Fix must cover both paths (or a depth cap with a clear error). 16:11: Matthew asked for a ticket for ^report(29)'s step 4: this is it; moved up the queue, after ^ticket(558). 19:13: branch deep-answers in ~/fumola-549 (Adapton/fumola, off main cb2bcf5), pushed, no PR (filing waits on Matthew). Reproduced natively: a test at depth 100,000 overflows the stack for an option list, nested arrays and a function holding the list. FOUND a third path: the instance keeps its last answer, and the NEXT program dropped it, by recursion (gdb: 61,000 nested Rc<Value> drops from clear_cont): so a deep answer trapped the instance even once written. ae3b915: Value has a Drop that takes out what it alone holds (option, variant, index, inline array or tuple) and drops it in a loop; records and closures' environments still drop as before (taking a map out would allocate every drop); five matches that moved a field out of a cloned value now match by reference. 08e7e25: the answer's JSON written as text with its own stack (nested_json), byte for byte as before (30 of 32 sample answers identical; 2 functions differ only in their environment's print order, which varies run to run anyway); the printer only for values at most 100 deep (deeper_than), else a short note. All 5 deep tests pass (the instance answers 1 + 1 after each); check-no-panics passes; rustfmt adds nothing beyond main's own. Fumola's CI runs only on main and PRs, so running its steps here: cargo test, fumola-test.sh, fumola-scripts.sh. Then: the drop's cost, release builds of main and the branch. 19:26: CRASH 46 at 19:16, about 2.5 min into that local cargo test (crash log 46274a0e); its build files from the crash window were 0 bytes, deleted; the branch was already pushed, nothing else lost. So CI's steps and the drop's cost now run on GitHub, not here: branch bench/549-deep (ea2b91f = deep-answers + a measuring-only workflow, .github/workflows/deep549.yml), run 39883896924. Job tests: rust.yml's steps (site assembly, no-panics, build, cargo test, fumola-test.sh, fumola-scripts.sh). Job cost: main cb2bcf5 and the branch built on one runner, do_big_mergesort from each, 4 rounds alternating, step counts must agree, main's own spread as the noise floor (bench/549/summary.py, in the run's summary). Next: read the run; then the issue + PR on Adapton/fumola wait on Matthew's OK.",
    "log": [
     {
      "at": "2026-10-22T16:09-06:00",
@@ -6275,8 +6275,8 @@
   }
  ],
  "next_ticket": 566,
- "current_ticket": 549,
- "current_note": "18:54: 558 waits on Matthew (lib-closures green, h_ref and the World rule flat); now the deep answer crash: branch deep-answers in ~/fumola-549, reproducing with a test at depth 100,000",
+ "current_ticket": 559,
+ "current_note": "19:26: 549's tests and cost run on GitHub (bench/549-deep); meanwhile 559, the evaluator's fast path for finals: finding the stages and the counter build",
  "closed_tickets": [
   {
    "id": 563,
@@ -11224,11 +11224,11 @@
   }
  ],
  "queue": [
+  559,
   549,
   558,
   564,
   562,
-  559,
   545,
   547,
   540,
@@ -11288,7 +11288,7 @@
   508,
   534
  ],
- "current_since": "2026-10-22T18:54-06:00",
+ "current_since": "2026-10-22T19:26-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
