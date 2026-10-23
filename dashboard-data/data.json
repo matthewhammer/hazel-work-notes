@@ -201,6 +201,10 @@
     [
      "^du_report(18): what was re-organised, and the proof",
      "http://localhost:8133/report-018/reports/018/#reorg"
+    ],
+    [
+     "localhost:8566: branch script-boxes-566 (^ticket(566)): the 3-way script boxes, the rules in sums, Fumola's fixed build, main 0.0.411 merged",
+     "http://localhost:8566/"
     ]
    ],
    "links_paused": null,
@@ -6439,14 +6443,16 @@
    "added": "2026-10-23T06:57-06:00",
    "opened": "2026-10-23T06:57-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "dress up",
     "hazel"
    ],
    "source": "Matthew, 2026-10-23 06:57, in chat, after reviewing the two days since the 10-21 meeting with Cyrus (who encouraged \"Hazel as a game script system, starting with MUDU\", a general way to insert Hazel code into a JS/HTML app's behavior): \"Can have a MUDU with game scripts where each script box can be either: baked-in JS, or hazel code boxes, or fumola code boxes (3-way chip per code box). the initial code is equiv, and runs equiv, for the game -- we need unit tests to maintain this as we go. we default to builtin JS, but there's a \\\"master toggle\\\" chip in the game script panel, at the top, that switches the code boxes all to JS/Hazel/Fumola routines. we extend the advanced \\\"measurement\\\" tools with one specifically for measuring the script overhead, in each case ... We start to keep standards for certain speedruns that use different game script boxes, to ensure that each setting meets an FPS minimum for the squares it controls in the game.\" Then: \"in the 3-way script system -- let's have the jS versions show up as JS code, but read only. The hazel and fumola boxes are for editing.\" Then: \"yes, mint and enqueue.\"",
    "text": "<b>One Scripting panel, three engines.</b> Combine PR #2 (hazel-logic-531, the rooms' rules in Hazel) and PR #4 (fumola-logic-542, in Fumola) into one branch where each room's code box (and 📚 Common) has a 3-way chip: <b>JS</b> shows the game's own handler, READ-ONLY, as the source of the function that actually runs (Function.prototype.toString, never a pasted copy that could drift); <b>Hazel</b> and <b>Fumola</b> are editors, starting from texts equivalent to the JS. A <b>master chip</b> at the top of the panel switches every box at once; JS is the default (the game as shipped). Replaces the page-wide ?logic= switch (kept for tests). Open choice: an edited box no longer matches the JS; the speed standards (D) measure only the shipped texts, and an edited box is play. <b>Requirement (Matthew, 2026-10-23):</b> both the Hazel and the Fumola versions use sum types where they now use strings (directions, sides, wirings, room and square kinds, exits, out settings), as Languages of Play (Martens and Hammer, FDG 2017) prescribes: typed constructors, each language's own sums (Hazel's <code>+ N + NE ...</code>, Fumola's variants <code>#N</code>), the game's JS converting its strings at the boundary.",
-   "progress": "06:57: minted and enqueued. 07:10: branch script-boxes-566 (20fe8f4, kids-choice-games, on fumola-logic-542 = PR #4's head; worktree ~/kcg-566), pushed, no PR: each room's box a JS / Hazel / Fumola chip deciding what runs it (scriptEngine: room chip, else master chip state.scripts.all, else the old state.scripts.on; ?logic= overrides); JS shown read-only as the live source of its functions (scriptJsSource/SCRIPT_JS: TrapRoom roomLeverPull/Flip/BoulderPull, TreeRoom hatchLeverPull/hatchSet, Square leverPull/leverPullApply, World worldTarget/worldMeets, Castle the pit lines of castleroomScene + wayOutOf + scriptGo); Hazel and Fumola boxes editable, Fumola texts in state.scripts.fumola compiled per text (old instance dropped); Common's chip a view (commonView); default JS everywhere. New check tools/checks/scriptboxes566.mjs; scripting482 starts on all-Hazel; scripting520 (node) 44 ok; check_script/check_load pass; VERSIONS + agent-instructions. CI: full run 39958922388 (script-boxes-566), quick diag-566 (only the 4 scripting checks) run 39958939641. Not done: Fumola is loaded on first need (first Fumola event falls back to JS until it loads), as Hazel was before 531's preload; the open choice (an edited box is play; speed standards use shipped texts) is for 569. 07:18: GREEN in a browser on GitHub (diag-566, run 39958939641, only the scripting checks): scriptboxes566 all ok (20: JS by default with each room's live source, master chip to Hazel with every room an editor and the pull through Hazel, TrapRoom alone on Fumola with the master chip on none and the pull through Fumola, a broken Fumola text said and back on the JS, master back to JS), scripting482, hazellogic531 and fumola542 all ok. diag-566 deleted. Full run on script-boxes-566 (with 567's rules step) 39959158342 running. 07:24: Matthew: \"when we finish with this set of work to the point that the 3-way chip works well, let's update this report --- it helped us get the state of things and push things forward, and now they have been pushed forward (in progress now). https://matthewhammer.org/hazel/reports/028/\" CLOSING STEP: once 566 (with 571's fixes in the game's Fumola) works well, update ^report(28) with where each trap and fix landed (the local draft at /028/#traps is the start). 07:28: Matthew: \"for both the Hazel and Fumola versions of the game scripts: Notice that in Languages of Play, the examples use sum types with typed constructions where we are using a lot of strings (names of directions and squares/rooms on map) --- Let's try to match the prescription of that paper, and use the sum types that each of these languages has already, as per Languages of Play, 2017. this is a another requirement for the 3-way chip work.\" Added to the ticket's text. 07:29: Matthew: \"The hazel game script will need to predeclare these sum types in the common section, most likely. The fumola script will not.\" TESTED on js-library-embed's hazel-lib.js (~/.cache/fumola-571/hztype.mjs): via runProgram, type Dir = + N + E + S + W declared IN module Common works, rooms use Common.opp(d) and the constructors unqualified (N, not Common.N, which is \"Label not found\"), and a room's annotation fun d : Common.Dir works but menhir fails to parse Common.Dir in a type (SLOW PARSE: the tile parser recovers, no error). Plain Hazel.run of the same does not parse. So: the sums in Common, and the types built on them (Globals, Event, Cmd) moved into Common too, since the preamble comes first; rooms annotate with Common.Globals (each a slow parse until Hazel's fast parser takes a module-qualified type). Design so far: Dir (8), Side (L, R), Wiring (Normal, Reversed, Random), Out (Auto, OutOfCastle, Nowhere, ToRoom(Int)), room kinds from ROOM_KINDS (12), exits (side, long, spiral, trap, ladder, all, hall), square kinds from the game's own list (generated into the text so it cannot drift), GoSquare(Int, Int, Dir, Cmd), Flip(Side, Cmd); uids stay text (names, not kinds); the JS converts at the boundary ({tag} objects), Fumola uses #N etc. undeclared. 07:40: FOUND (~/.cache/fumola-571/hzscope.mjs, js-library-embed): a sum declared in module Common has its constructors in scope ONLY inside Common: a room writing N, E or Waterfall gets 'Constructor is not defined' (and Common.N is 'Label not found'); Common's own helpers work on them, and {tag} values from JS cross fine. Declared in the PREAMBLE, they work in every room. So 'in Common' needs a Hazel change (a module exporting its constructors). DEFAULT TAKEN, Matthew's call to change: the sums in the preamble now. Boundary plan: each compiled handler (Hazel's and Fumola's) wrapped so the game and the tools keep passing strings, converted to constructors and back in one place. 11:29: full run 39959158342: Chrome red: 10 of the 11 failing checks are the base branch's own (fumola-logic-542's run 39837856182: cowboy522 furnish517 hold518 knight435 robin434 royal436 sasquatch530 top516 wizard432 worldrooms524, the base being 31 commits behind main); the NEW one was knoll375 (no dashed borders in panels: the read-only JS box had one): fixed (solid), local commit. Also local, unpushed: f25ef01 WIP sums (Hazel side + boundary). 11:43: SUMS DONE both languages (script-boxes-566 02199a7, pushed): Dir, Side, Wiring, Out (Auto/OutOfCastle/Nowhere/ToRoom(n)), Place (40, from PLACES; none = NoPlace), Room (12, from ROOM_KINDS), Exit (ExitSide ...); Hazel in the preamble (SCRIPT_SUMS_TEXT, the default taken, since Common's constructors are not in scope in rooms), Fumola variants undeclared; scriptTyped wraps both engines' handlers (text to constructors and back), so the acts, checks and tools are unchanged. LOCAL: hazelrules531 on js-library-embed all ok (32,761; compile 1.6 s in node), fumola_rules_check on the new build all ok (20,649), scripting520 44 ok, check_script/check_load ok; scriptboxes566 also checks the node fallback kinds equal PLACES/ROOM_KINDS. GitHub: diag-566b (scripting checks) 39997418981, full 39997399213. 12:03: GREEN in a browser with the sums and Fumola's fixed build (diag-566b run 39998842436, after scripting482's test rule moved to Common.flip2(L, R)): scriptboxes566 (incl. the node kinds = the game's lists), scripting482, hazellogic531, fumola542 all ok; the rules step: Hazel 32,761 and Fumola 20,649 all ok. diag-566b deleted. Next: the full run on script-boxes-566's head. 13:26: FULL RUN 39998835011 on script-boxes-566 (311f279): the failing checks are exactly the base branch's own 10 (cowboy522 furnish517 hold518 knight435 robin434 royal436 sasquatch530 top516 wizard432 worldrooms524: the stack is 31 commits behind main), none new (knoll375 fixed); the rules step all ok (Hazel 32,761, Fumola 20,649). The 3-way boxes, the sums and Fumola's fixed build are done on the branch; left: merging main into the stack (clears the 10), and Matthew's look in the game (localhost or a branch build).",
+   "progress": "06:57: minted and enqueued. 07:10: branch script-boxes-566 (20fe8f4, kids-choice-games, on fumola-logic-542 = PR #4's head; worktree ~/kcg-566), pushed, no PR: each room's box a JS / Hazel / Fumola chip deciding what runs it (scriptEngine: room chip, else master chip state.scripts.all, else the old state.scripts.on; ?logic= overrides); JS shown read-only as the live source of its functions (scriptJsSource/SCRIPT_JS: TrapRoom roomLeverPull/Flip/BoulderPull, TreeRoom hatchLeverPull/hatchSet, Square leverPull/leverPullApply, World worldTarget/worldMeets, Castle the pit lines of castleroomScene + wayOutOf + scriptGo); Hazel and Fumola boxes editable, Fumola texts in state.scripts.fumola compiled per text (old instance dropped); Common's chip a view (commonView); default JS everywhere. New check tools/checks/scriptboxes566.mjs; scripting482 starts on all-Hazel; scripting520 (node) 44 ok; check_script/check_load pass; VERSIONS + agent-instructions. CI: full run 39958922388 (script-boxes-566), quick diag-566 (only the 4 scripting checks) run 39958939641. Not done: Fumola is loaded on first need (first Fumola event falls back to JS until it loads), as Hazel was before 531's preload; the open choice (an edited box is play; speed standards use shipped texts) is for 569. 07:18: GREEN in a browser on GitHub (diag-566, run 39958939641, only the scripting checks): scriptboxes566 all ok (20: JS by default with each room's live source, master chip to Hazel with every room an editor and the pull through Hazel, TrapRoom alone on Fumola with the master chip on none and the pull through Fumola, a broken Fumola text said and back on the JS, master back to JS), scripting482, hazellogic531 and fumola542 all ok. diag-566 deleted. Full run on script-boxes-566 (with 567's rules step) 39959158342 running. 07:24: Matthew: \"when we finish with this set of work to the point that the 3-way chip works well, let's update this report --- it helped us get the state of things and push things forward, and now they have been pushed forward (in progress now). https://matthewhammer.org/hazel/reports/028/\" CLOSING STEP: once 566 (with 571's fixes in the game's Fumola) works well, update ^report(28) with where each trap and fix landed (the local draft at /028/#traps is the start). 07:28: Matthew: \"for both the Hazel and Fumola versions of the game scripts: Notice that in Languages of Play, the examples use sum types with typed constructions where we are using a lot of strings (names of directions and squares/rooms on map) --- Let's try to match the prescription of that paper, and use the sum types that each of these languages has already, as per Languages of Play, 2017. this is a another requirement for the 3-way chip work.\" Added to the ticket's text. 07:29: Matthew: \"The hazel game script will need to predeclare these sum types in the common section, most likely. The fumola script will not.\" TESTED on js-library-embed's hazel-lib.js (~/.cache/fumola-571/hztype.mjs): via runProgram, type Dir = + N + E + S + W declared IN module Common works, rooms use Common.opp(d) and the constructors unqualified (N, not Common.N, which is \"Label not found\"), and a room's annotation fun d : Common.Dir works but menhir fails to parse Common.Dir in a type (SLOW PARSE: the tile parser recovers, no error). Plain Hazel.run of the same does not parse. So: the sums in Common, and the types built on them (Globals, Event, Cmd) moved into Common too, since the preamble comes first; rooms annotate with Common.Globals (each a slow parse until Hazel's fast parser takes a module-qualified type). Design so far: Dir (8), Side (L, R), Wiring (Normal, Reversed, Random), Out (Auto, OutOfCastle, Nowhere, ToRoom(Int)), room kinds from ROOM_KINDS (12), exits (side, long, spiral, trap, ladder, all, hall), square kinds from the game's own list (generated into the text so it cannot drift), GoSquare(Int, Int, Dir, Cmd), Flip(Side, Cmd); uids stay text (names, not kinds); the JS converts at the boundary ({tag} objects), Fumola uses #N etc. undeclared. 07:40: FOUND (~/.cache/fumola-571/hzscope.mjs, js-library-embed): a sum declared in module Common has its constructors in scope ONLY inside Common: a room writing N, E or Waterfall gets 'Constructor is not defined' (and Common.N is 'Label not found'); Common's own helpers work on them, and {tag} values from JS cross fine. Declared in the PREAMBLE, they work in every room. So 'in Common' needs a Hazel change (a module exporting its constructors). DEFAULT TAKEN, Matthew's call to change: the sums in the preamble now. Boundary plan: each compiled handler (Hazel's and Fumola's) wrapped so the game and the tools keep passing strings, converted to constructors and back in one place. 11:29: full run 39959158342: Chrome red: 10 of the 11 failing checks are the base branch's own (fumola-logic-542's run 39837856182: cowboy522 furnish517 hold518 knight435 robin434 royal436 sasquatch530 top516 wizard432 worldrooms524, the base being 31 commits behind main); the NEW one was knoll375 (no dashed borders in panels: the read-only JS box had one): fixed (solid), local commit. Also local, unpushed: f25ef01 WIP sums (Hazel side + boundary). 11:43: SUMS DONE both languages (script-boxes-566 02199a7, pushed): Dir, Side, Wiring, Out (Auto/OutOfCastle/Nowhere/ToRoom(n)), Place (40, from PLACES; none = NoPlace), Room (12, from ROOM_KINDS), Exit (ExitSide ...); Hazel in the preamble (SCRIPT_SUMS_TEXT, the default taken, since Common's constructors are not in scope in rooms), Fumola variants undeclared; scriptTyped wraps both engines' handlers (text to constructors and back), so the acts, checks and tools are unchanged. LOCAL: hazelrules531 on js-library-embed all ok (32,761; compile 1.6 s in node), fumola_rules_check on the new build all ok (20,649), scripting520 44 ok, check_script/check_load ok; scriptboxes566 also checks the node fallback kinds equal PLACES/ROOM_KINDS. GitHub: diag-566b (scripting checks) 39997418981, full 39997399213. 12:03: GREEN in a browser with the sums and Fumola's fixed build (diag-566b run 39998842436, after scripting482's test rule moved to Common.flip2(L, R)): scriptboxes566 (incl. the node kinds = the game's lists), scripting482, hazellogic531, fumola542 all ok; the rules step: Hazel 32,761 and Fumola 20,649 all ok. diag-566b deleted. Next: the full run on script-boxes-566's head. 13:26: FULL RUN 39998835011 on script-boxes-566 (311f279): the failing checks are exactly the base branch's own 10 (cowboy522 furnish517 hold518 knight435 robin434 royal436 sasquatch530 top516 wizard432 worldrooms524: the stack is 31 commits behind main), none new (knoll375 fixed); the rules step all ok (Hazel 32,761, Fumola 20,649). The 3-way boxes, the sums and Fumola's fixed build are done on the branch; left: merging main into the stack (clears the 10), and Matthew's look in the game (localhost or a branch build). 13:59: waiting: Try the three-way script boxes at http://localhost:8566/ (🧩 Scripting tab: the master chip at the top, a chip on each room's box; JS read-only, Hazel and Fumola editable; then pull a lever in the castle's trap room).",
    "log": [
     {
      "at": "2026-10-23T06:53-06:00",
@@ -6653,7 +6659,7 @@
      "note": "from the transcripts"
     }
    ],
-   "waiting": "Hazel sums: preamble (works today) or Common (needs Hazel modules to export constructors)?"
+   "waiting": "Try the three-way script boxes at http://localhost:8566/ (🧩 Scripting tab: the master chip at the top, a chip on each room's box; JS read-only, Hazel and Fumola editable; then pull a lever in the castle's trap room)."
   },
   {
    "id": 567,
@@ -6856,7 +6862,7 @@
    ],
    "source": "Matthew, 2026-10-23 06:57, in chat: \"and mint and enqueue -- a report about the last 2 days -- with an idea of where we our with our goals of game scripts in hazel, for MUDU. i'm going AFK -- do your best.\"",
    "text": "<b>A report on the last two days</b> (since the end of the 10-21 meeting with Cyrus, ~11:00 Wednesday): the goal (Hazel as a game script system, MUDU first, as a general way to put Hazel into a JS/HTML app's behavior), what was built (the Scripting panel, the rules in Hazel, in Fumola), what was found (expressiveness: string_compare, Fumola's floats and deep answers; mostly performance: the call boundary, closures, list re-typing, handles, the fast path, the map), what is measured and where it stands against an FPS budget, what waits on whom, and the plan (the 3-way script boxes, equivalence tests, an overhead tool, speed standards). Draft first, published on Matthew's word.",
-   "progress": "06:57: minted and enqueued. 07:03: DRAFTED ^report(30) 'Game Scripts in Hazel, Two Days In' at localhost:8131/030/ (hazel-perf-report 030/, drivers/gen030.py + build.sh, data/ = 5 GitHub runs' rows + meta.json; not committed or pushed: a push publishes). Short answers: rules run in Hazel and Fumola beside the JS (PRs #1, #2, #4); Fumola fast enough now (HashMap 0.59 ms at 64x64), Hazel on trial branches (map 1.46 ms, same runners; 331 ms passed); the fixes 539/547/548/551/559/552; what is left is Hazel's per-pass cost (set-up 1.5-2.1 s vs Fumola 0.33); next the 3-way boxes 566-569. Status table of the goal; Figure 1 (a World move at 64x64 against a 60 fps frame), Figure 2 (what each fix bought); corrects the string_compare claim. WAITING ON MATTHEW: read, then publish on his word.",
+   "progress": "06:57: minted and enqueued. 07:03: DRAFTED ^report(30) 'Game Scripts in Hazel, Two Days In' at localhost:8131/030/ (hazel-perf-report 030/, drivers/gen030.py + build.sh, data/ = 5 GitHub runs' rows + meta.json; not committed or pushed: a push publishes). Short answers: rules run in Hazel and Fumola beside the JS (PRs #1, #2, #4); Fumola fast enough now (HashMap 0.59 ms at 64x64), Hazel on trial branches (map 1.46 ms, same runners; 331 ms passed); the fixes 539/547/548/551/559/552; what is left is Hazel's per-pass cost (set-up 1.5-2.1 s vs Fumola 0.33); next the 3-way boxes 566-569. Status table of the goal; Figure 1 (a World move at 64x64 against a 60 fps frame), Figure 2 (what each fix bought); corrects the string_compare claim. WAITING ON MATTHEW: read, then publish on his word. 13:59: waiting: Read the ^report(30) draft at http://localhost:8131/030/, then say publish.",
    "log": [
     {
      "at": "2026-10-23T06:57-06:00",
@@ -6872,7 +6878,8 @@
      "asks": false,
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": "Read the ^report(30) draft at http://localhost:8131/030/, then say publish."
   },
   {
    "id": 571,
@@ -6881,6 +6888,7 @@
    "opened": "2026-10-23T07:11-06:00",
    "status": "open",
    "tags": [
+    "blocked on Matthew",
     "today (2026-10-23)"
    ],
    "chips": [
@@ -6889,7 +6897,7 @@
    "source": "Matthew, 2026-10-23 07:11, in chat: \"In looks like scripting the game with Fumola found a bunch of latent semantic issues with the core language --- https://matthewhammer.org/hazel/reports/028/#traps mint and enqueue a ticket, to happen today, refining Fumola semnatics to address each of these points. In some cases, it's a matter of adding cases not supported now (Float compare, text patterns, Nat + Int, as in the report under Traps now) --- in other cases, we need to fix errors, like the semantics of !=, if it's really inverted. As we work on the 3-chip system for JS vs Hazel vs Fumola, fixing these issues will be important. Let's revise report 28 with a new WIP draft, and our proposed fixes.\"",
    "url": "https://matthewhammer.org/hazel/reports/028/#traps",
    "text": "<b>Refine Fumola's semantics where scripting Dress Up tripped on it.</b> ^report(28)'s Traps, each confirmed in Adapton/fumola's source and fixed on a branch with tests: (1) text <code>!=</code> inverted (a bug: fix); (2) no text patterns (<code>case \"E\"</code> never matches: add text literals to patterns); (3) Nat and Int apart (Nat minus a larger Nat is an Int, Int + Nat a type error, only <code>&lt;</code> mixes, Int(4) == Nat(4) false and different map keys: decide and implement a coherent numeric tower); (4) no escapes in text literals (add <code>\\\\\"</code>, <code>\\\\\\\\</code>, <code>\\\\n</code>); (5) no Float comparison (add <, <=, >, >= on Floats); (6) a tuple payload needs double parentheses (<code>#GoSquare((c, r, back, #Done))</code>: decide, document or sugar). Then the game's Fumola rules simplified to match (the draws as Floats, text patterns), the 3-way equivalence (^ticket(567)) kept green. And ^report(28) revised as a new WIP draft with the proposed fixes; published on Matthew's word.",
-   "progress": "07:11: minted, enqueued for today. 07:13: CONFIRMED on the game's pinned build (2ec634b5df) and in Adapton/fumola main cb2bcf5's source (probes ~/.cache/fumola-571/probe.mjs, probe2.mjs): (1) text != inverted: vm_ops.rs relop Neq's Text arm is t1 == t2 (a one-line bug); (2) literal patterns: vm_match.rs matches only Unit, Null and Nat literals, so text, Bool, Int and Float patterns NEVER match (Bool, Int, Float new, beyond the report); (3) Nat/Int: Sub mixes, Add/Mul/Div/Mod do not: Int + Nat returns an UNEVALUATED BinOp silently (try_symbolic_binop), worse than the report's type error; <= > >= between them are nyi; Int(4) == Nat(4) is false (structural); (4) text escapes: the lexer accepts \\\\. but the literal keeps them raw (\"a\\\\\"b\" stays a\\\\\"b); (5) Float < <= > >= nyi (also text <, which a map keyed by text would want); (6) the double-parenthesised payload is NOT a trap on this build: #G(1, 2), #G(1, 2, #D) and case #G(a, b) all work with single parentheses: ^report(28) to be corrected. 07:14: ^report(28) REVISED as a local WIP draft (localhost:8131/028/#traps; gen028.py, not pushed): the traps as a table (trap, kind, what it does with the source location, proposed fix), the tuple-payload trap struck as not a trap, a new #fixes section (the != bug; patterns for every literal; whole numbers canonical: >= 0 a Nat, < 0 an Int, every op and comparison for every pair, symbolic only when an operand is; Float and Text order; escapes); publishing waits on Matthew. Next: the fixes on an Adapton/fumola branch, tested on GitHub. 07:17: FIXES on Adapton/fumola branch semantics-571 (8daafa8, off main cb2bcf5; worktree ~/fumola-571), pushed, no PR: vm_ops values_eq (== and != share it), whole() canonical (>=0 Nat, <0 Int) for + - * / % on every pair and unary minus, Floats mixed with Ints, order() for < <= > >= on numbers of any kind, Text and Symbols (Unit vs Unit still false); vm_match literal_matches (every literal kind and negative literals, by values_eq); value.rs unescape for text literals. Tests crates/fumola_wasm/tests/test_semantics_traps.rs (7 tests: != vs == over 17x17 value pairs, patterns, whole numbers incl. a HashMap key, Float and text order, escapes, tuple payloads). Nothing compiled on the laptop: measuring branch bench/571-semantics run 39959979687 (CI's steps + the wasm build + the trap probes). 07:24: Matthew: \"when we finish with this set of work to the point that the 3-way chip works well, let's update this report --- it helped us get the state of things and push things forward, and now they have been pushed forward (in progress now). https://matthewhammer.org/hazel/reports/028/\" CLOSING STEP: once 566 (with 571's fixes in the game's Fumola) works well, update ^report(28) with where each trap and fix landed (the local draft at /028/#traps is the start). 11:29: CRASH 47 at 07:41 (near idle; logged, 144732e5). Run 39962087561 on bench/571-semantics GREEN: tests (all, incl. test_semantics_traps and test_adapton's symbol_ordering) and the probe on the wasm build: every trap now answers right. The wasm build is the run's artifact fumola-wasm, for the game to pin next. 11:43: PINNED into the game on script-boxes-566 (02199a7): vendor/fumola/877b155851/ (the bench/571-semantics run's wasm artifact; README with hashes), 25-fumola.js loads it; the Fumola rules now use the fixes: draws as Floats (draws[0] < 0.5), steps (c + dx, r + dy) with Ints, t != n, single-parenthesis payloads, variants for kinds. fumola_rules_check all ok, 20,649. The Adapton/fumola PR for semantics-571 still waits on Matthew's word.",
+   "progress": "07:11: minted, enqueued for today. 07:13: CONFIRMED on the game's pinned build (2ec634b5df) and in Adapton/fumola main cb2bcf5's source (probes ~/.cache/fumola-571/probe.mjs, probe2.mjs): (1) text != inverted: vm_ops.rs relop Neq's Text arm is t1 == t2 (a one-line bug); (2) literal patterns: vm_match.rs matches only Unit, Null and Nat literals, so text, Bool, Int and Float patterns NEVER match (Bool, Int, Float new, beyond the report); (3) Nat/Int: Sub mixes, Add/Mul/Div/Mod do not: Int + Nat returns an UNEVALUATED BinOp silently (try_symbolic_binop), worse than the report's type error; <= > >= between them are nyi; Int(4) == Nat(4) is false (structural); (4) text escapes: the lexer accepts \\\\. but the literal keeps them raw (\"a\\\\\"b\" stays a\\\\\"b); (5) Float < <= > >= nyi (also text <, which a map keyed by text would want); (6) the double-parenthesised payload is NOT a trap on this build: #G(1, 2), #G(1, 2, #D) and case #G(a, b) all work with single parentheses: ^report(28) to be corrected. 07:14: ^report(28) REVISED as a local WIP draft (localhost:8131/028/#traps; gen028.py, not pushed): the traps as a table (trap, kind, what it does with the source location, proposed fix), the tuple-payload trap struck as not a trap, a new #fixes section (the != bug; patterns for every literal; whole numbers canonical: >= 0 a Nat, < 0 an Int, every op and comparison for every pair, symbolic only when an operand is; Float and Text order; escapes); publishing waits on Matthew. Next: the fixes on an Adapton/fumola branch, tested on GitHub. 07:17: FIXES on Adapton/fumola branch semantics-571 (8daafa8, off main cb2bcf5; worktree ~/fumola-571), pushed, no PR: vm_ops values_eq (== and != share it), whole() canonical (>=0 Nat, <0 Int) for + - * / % on every pair and unary minus, Floats mixed with Ints, order() for < <= > >= on numbers of any kind, Text and Symbols (Unit vs Unit still false); vm_match literal_matches (every literal kind and negative literals, by values_eq); value.rs unescape for text literals. Tests crates/fumola_wasm/tests/test_semantics_traps.rs (7 tests: != vs == over 17x17 value pairs, patterns, whole numbers incl. a HashMap key, Float and text order, escapes, tuple payloads). Nothing compiled on the laptop: measuring branch bench/571-semantics run 39959979687 (CI's steps + the wasm build + the trap probes). 07:24: Matthew: \"when we finish with this set of work to the point that the 3-way chip works well, let's update this report --- it helped us get the state of things and push things forward, and now they have been pushed forward (in progress now). https://matthewhammer.org/hazel/reports/028/\" CLOSING STEP: once 566 (with 571's fixes in the game's Fumola) works well, update ^report(28) with where each trap and fix landed (the local draft at /028/#traps is the start). 11:29: CRASH 47 at 07:41 (near idle; logged, 144732e5). Run 39962087561 on bench/571-semantics GREEN: tests (all, incl. test_semantics_traps and test_adapton's symbol_ordering) and the probe on the wasm build: every trap now answers right. The wasm build is the run's artifact fumola-wasm, for the game to pin next. 11:43: PINNED into the game on script-boxes-566 (02199a7): vendor/fumola/877b155851/ (the bench/571-semantics run's wasm artifact; README with hashes), 25-fumola.js loads it; the Fumola rules now use the fixes: draws as Floats (draws[0] < 0.5), steps (c + dx, r + dy) with Ints, t != n, single-parenthesis payloads, variants for kinds. fumola_rules_check all ok, 20,649. The Adapton/fumola PR for semantics-571 still waits on Matthew's word. 13:59: waiting: Read the revised ^report(28) draft at http://localhost:8131/028/#traps, then say publish.",
    "log": [
     {
      "at": "2026-10-23T07:11-06:00",
@@ -6977,7 +6985,8 @@
      "effort": "medium",
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": "Read the revised ^report(28) draft at http://localhost:8131/028/#traps, then say publish."
   },
   {
    "id": 572,
@@ -6986,15 +6995,15 @@
    "opened": "2026-10-23T11:29-06:00",
    "status": "open",
    "tags": [
-    "asap (2026-10-23)",
-    "blocked on Matthew"
+    "blocked on Matthew",
+    "asap (2026-10-23)"
    ],
    "chips": [
     "hazel"
    ],
    "source": "Matthew, 2026-10-23 11:29, in chat, during the recovery from crash 47: \"mint and enqueue --- look at our open PRs on hazel, find new reviews we haven't integrated yet. Create a report for each one, or a combined one --- with subsections. As WIP draft for my review, asap after recovery.\"",
    "text": "<b>What reviewers have said on our open hazelgrove/hazel PRs that we have not yet acted on.</b> For each of Matthew's open PRs: every review, review comment and comment (all three places), what each asks, whether a later commit answered it, and what is left to do; as one ^report with a subsection per PR, a local WIP draft for Matthew's review, published on his word.",
-   "progress": "11:29: minted, at the front of the queue (asap after the crash recovery). 11:30: 36 open PRs by Matthew on hazelgrove/hazel; gathering every review, line comment and comment from others (all three places), each judged open / answered / unclear against later commits (committer dates) and replies. Report ^report(31) 'Reviews Still Open' (031/drivers/gen031.py) builds from that data: a subsection per PR with feedback, open items first. 11:36: DRAFTED ^report(31) 'Reviews Still Open' at localhost:8131/031/ (hazel-perf-report 031/, data/pr-reviews.json; not pushed). 36 open PRs; 5 with feedback, all from 7h3kk1d plus disconcision's 'yes' on #2651; 31 none. Open: #2608 5 (changes requested 10-21, no reply or commit since: secondary still in elaborations, ~13.5% of marshaled size, Typ.normalize; a test over every node kind; 4 line comments), #2651 3 (+1 unclear: today 11:34, module-as-function an error: check it in the non-recursive analysis or give modules their own case; names_itself vs draft #2717), #2613 2 (changes requested stands though 28fcabfffc fixed it; the green pill question to disconcision), #2583 1 (+1 unclear: changes requested of 09-23 never re-reviewed though 077a68f9f8 did the rework; 'tutorial sharing?' unanswered), #2681 1 unclear (the cast-calculus remark). WAITING ON MATTHEW: read; publish on his word; and which to answer first.",
+   "progress": "11:29: minted, at the front of the queue (asap after the crash recovery). 11:30: 36 open PRs by Matthew on hazelgrove/hazel; gathering every review, line comment and comment from others (all three places), each judged open / answered / unclear against later commits (committer dates) and replies. Report ^report(31) 'Reviews Still Open' (031/drivers/gen031.py) builds from that data: a subsection per PR with feedback, open items first. 11:36: DRAFTED ^report(31) 'Reviews Still Open' at localhost:8131/031/ (hazel-perf-report 031/, data/pr-reviews.json; not pushed). 36 open PRs; 5 with feedback, all from 7h3kk1d plus disconcision's 'yes' on #2651; 31 none. Open: #2608 5 (changes requested 10-21, no reply or commit since: secondary still in elaborations, ~13.5% of marshaled size, Typ.normalize; a test over every node kind; 4 line comments), #2651 3 (+1 unclear: today 11:34, module-as-function an error: check it in the non-recursive analysis or give modules their own case; names_itself vs draft #2717), #2613 2 (changes requested stands though 28fcabfffc fixed it; the green pill question to disconcision), #2583 1 (+1 unclear: changes requested of 09-23 never re-reviewed though 077a68f9f8 did the rework; 'tutorial sharing?' unanswered), #2681 1 unclear (the cast-calculus remark). WAITING ON MATTHEW: read; publish on his word; and which to answer first. 13:59: waiting: Read the ^report(31) draft at http://localhost:8131/031/ (which reviews to answer first), then say publish.",
    "log": [
     {
      "at": "2026-10-23T11:23-06:00",
@@ -7051,7 +7060,8 @@
      "effort": "medium",
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": "Read the ^report(31) draft at http://localhost:8131/031/ (which reviews to answer first), then say publish."
   },
   {
    "id": 573,
@@ -7067,7 +7077,7 @@
    ],
    "source": "Matthew, 2026-10-23 11:37, in chat, after asking whether reports could be read aloud in the Claude Desktop app's voice (they cannot: that voice is the app's own, not a tool): \"Yes: mint and enqueue a Listen button for the reports, using the browser's own voices.\"",
    "text": "<b>Listen to a report.</b> A 🔊 Listen button on every report in the series (added by a series tool, like add_theme.py, so every report gets it on its next build), read by the browser's own speech (speechSynthesis): play, pause, stop, the voice and speed chosen from what the reader's device has (remembered per site), reading the report's prose in order (headings, short answers, sections; skipping code, tables and the embedded data), the section being read highlighted and kept in view. Nothing sent anywhere, no account. Works on a Mac, an iPad, and in Chrome and Firefox on Linux (whatever voices they have). <b>And</b> (Matthew, 2026-10-23): a slider for the reading speed, and the report's reading time (the series line's \"about N minutes to read\") adjusted to it, as listening time at that speed.",
-   "progress": "11:37: minted and enqueued, after the work in hand. 11:37: Matthew: \"and get a slider for reading speed (if possible), and adjusted reading time.\" Added to the ticket. 11:47: BUILT (local, hazel-perf-report, not pushed: a push publishes): tools/add_listen.py, run on every report (^report(1) and 002-031 but the agenda 020) and added to every NNN/drivers/build.sh after add_theme.py; agent-instructions line. Under the series line: 🔊 Listen / ⏸ Pause / ⏹ Stop, the device's voices, a speed slider 0.5-2x (both remembered per site), and 'about N min to listen at 1.2x' updating with the slider (and 'left' while playing), ~160 wpm at 1x; reads prose block by block, marking the block read. Checked in the browser pane at localhost:8131/031/: the bar shows; report 31 counts 2,112 words, 13 min at 1x, 9 min at 1.5x; the pane has no voices, so speaking itself is untested here. WAITING ON MATTHEW: try it on a device with voices (any draft at localhost:8131, or after publishing), and the word to republish every report with it.",
+   "progress": "11:37: minted and enqueued, after the work in hand. 11:37: Matthew: \"and get a slider for reading speed (if possible), and adjusted reading time.\" Added to the ticket. 11:47: BUILT (local, hazel-perf-report, not pushed: a push publishes): tools/add_listen.py, run on every report (^report(1) and 002-031 but the agenda 020) and added to every NNN/drivers/build.sh after add_theme.py; agent-instructions line. Under the series line: 🔊 Listen / ⏸ Pause / ⏹ Stop, the device's voices, a speed slider 0.5-2x (both remembered per site), and 'about N min to listen at 1.2x' updating with the slider (and 'left' while playing), ~160 wpm at 1x; reads prose block by block, marking the block read. Checked in the browser pane at localhost:8131/031/: the bar shows; report 31 counts 2,112 words, 13 min at 1x, 9 min at 1.5x; the pane has no voices, so speaking itself is untested here. WAITING ON MATTHEW: try it on a device with voices (any draft at localhost:8131, or after publishing), and the word to republish every report with it. 13:59: waiting: Try 🔊 Listen on any report draft, e.g. http://localhost:8131/030/ (a device with voices: Mac, iPad, desktop Chrome), then say republish all.",
    "log": [
     {
      "at": "2026-10-23T11:37-06:00",
@@ -7095,7 +7105,8 @@
      "effort": "medium",
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": "Try 🔊 Listen on any report draft, e.g. http://localhost:8131/030/ (a device with voices: Mac, iPad, desktop Chrome), then say republish all."
   },
   {
    "id": 574,
@@ -7111,7 +7122,7 @@
    ],
    "source": "Matthew, 2026-10-23 11:45, in chat, after ^ticket(566) found a sum declared in module Common has its constructors in scope only inside Common: \"mint and enqueue -- let's open a PR against the modules PR (whatever is appropriate) for exporting a sum type and using it, like we want to do with Common module types in our game scripts. Please use those as examples in the PR description.\"",
    "text": "<b>Export a module's sum types.</b> Today (js-library-embed's Hazel) <code>module Common = { type Dir = + N + E + S + W; ... }</code> keeps <code>N</code> in scope only inside Common: another module's <code>N</code> is \"Constructor is not defined\", <code>Common.N</code> \"Label not found\", and <code>Common.Dir</code> in a type parses only through the slow parser. Make a module's type definitions and their constructors usable from outside it (qualified, <code>Common.N</code> and <code>Common.Dir</code>, and/or as the module's members are), with tests, on the appropriate base (the modules PR, whichever carries module statics now); the PR description uses Dress Up's Common types as the examples (Dir, Side, Wiring, Out, Place, Room, Exit, and a room's rule using them).",
-   "progress": "11:45: minted and enqueued. 11:56: FOUND (read-only search of dev, modules-ii/3-abstract-types #2495 111775a60c, modules-ii/9-stdlib-modules b02ce6dab5): NO ref exports constructors. Constructors enter the ctx only in Statics' TyAlias arm (Ctx.add_ctrs; dev :2580), and a module body is lowered to nested Let/TyAlias, so N is in scope only inside. dev: the module value is a labeled tuple of its let members (ModuleHelpers.value_exports drops ModType); ModuleExp's Let arm (Statics :2124) also injects 'Common' as a TYPE alias to a product of its type members (collect_type_exports), so Common.Dir resolves (ProdProjection) but Common.N is LabelNotFound (Dot is tuple projection). Modules II part 3+: a module has a Sig type (Sig.member = Val | TypeManifest | TypeAbstract, no constructor kind); Common.Dir via Typ.path_sig + sig_project_type_member; Dot on a Sig is values only (ModuleMemberNotFound); dynamics modules are real values, ModType items discarded. PARSER: 'fun d : Common.Dir ->' fails in menhir because funAscElem's ascTyp has no DOT production (all refs); 'fun (d : Common.Dir) ->' parses. Two ways: (a) on dev (and so soon in #2711/#2719, the game's library): at ModuleExp's injection, add the module's sum constructors to the body's ctx (unqualified, ~10 lines + tests), or (b) on #2495: a constructor member kind in Sig, Common.N in Dot (statics + dynamics) and patterns: larger, Alexander's stack. Matthew's call which. 12:00: Matthew, after asking what I recommend (dev: small, reaches the game soonest; qualified Common.N is a design call for Alexander's stack, a note on #2495 on Matthew's word): \"ok. do it on dev.\" 12:03: PR hazelgrove/hazel#2729 opened (head module-exports-ctrs, base dev; worktree ~/hazel-574): in Statics' Let arm, beside the Common alias, each of the module's type definitions enters the body's context by its own name, with a sum's constructors (Ctx.add_ctrs), as if defined where the module is; Common.Dir unchanged. Tests: 6 statics (Test_Statics_Modules: constructors outside, name unqualified, qualified, payload ToRoom(Int), another module, error before the module) + 2 evaluator. @check + fmt pass (38 s); CI 40000060895 running. Description: the game's Common (Dir, Side, Out) as the examples, Languages of Play, and what is not in it (qualified Common.N: Modules II's design; the fun d : Common.Dir menhir gap). Next: the note to Alexander on #2495, on Matthew's word. 13:26: #2729 CI GREEN: Fast checks, Full tests (25 min, the 8 new tests included), Deploy, codecov. WAITING ON MATTHEW: review #2729; the note to Alexander on #2495 (qualified Common.N), on his word.",
+   "progress": "11:45: minted and enqueued. 11:56: FOUND (read-only search of dev, modules-ii/3-abstract-types #2495 111775a60c, modules-ii/9-stdlib-modules b02ce6dab5): NO ref exports constructors. Constructors enter the ctx only in Statics' TyAlias arm (Ctx.add_ctrs; dev :2580), and a module body is lowered to nested Let/TyAlias, so N is in scope only inside. dev: the module value is a labeled tuple of its let members (ModuleHelpers.value_exports drops ModType); ModuleExp's Let arm (Statics :2124) also injects 'Common' as a TYPE alias to a product of its type members (collect_type_exports), so Common.Dir resolves (ProdProjection) but Common.N is LabelNotFound (Dot is tuple projection). Modules II part 3+: a module has a Sig type (Sig.member = Val | TypeManifest | TypeAbstract, no constructor kind); Common.Dir via Typ.path_sig + sig_project_type_member; Dot on a Sig is values only (ModuleMemberNotFound); dynamics modules are real values, ModType items discarded. PARSER: 'fun d : Common.Dir ->' fails in menhir because funAscElem's ascTyp has no DOT production (all refs); 'fun (d : Common.Dir) ->' parses. Two ways: (a) on dev (and so soon in #2711/#2719, the game's library): at ModuleExp's injection, add the module's sum constructors to the body's ctx (unqualified, ~10 lines + tests), or (b) on #2495: a constructor member kind in Sig, Common.N in Dot (statics + dynamics) and patterns: larger, Alexander's stack. Matthew's call which. 12:00: Matthew, after asking what I recommend (dev: small, reaches the game soonest; qualified Common.N is a design call for Alexander's stack, a note on #2495 on Matthew's word): \"ok. do it on dev.\" 12:03: PR hazelgrove/hazel#2729 opened (head module-exports-ctrs, base dev; worktree ~/hazel-574): in Statics' Let arm, beside the Common alias, each of the module's type definitions enters the body's context by its own name, with a sum's constructors (Ctx.add_ctrs), as if defined where the module is; Common.Dir unchanged. Tests: 6 statics (Test_Statics_Modules: constructors outside, name unqualified, qualified, payload ToRoom(Int), another module, error before the module) + 2 evaluator. @check + fmt pass (38 s); CI 40000060895 running. Description: the game's Common (Dir, Side, Out) as the examples, Languages of Play, and what is not in it (qualified Common.N: Modules II's design; the fun d : Common.Dir menhir gap). Next: the note to Alexander on #2495, on Matthew's word. 13:26: #2729 CI GREEN: Fast checks, Full tests (25 min, the 8 new tests included), Deploy, codecov. WAITING ON MATTHEW: review #2729; the note to Alexander on #2495 (qualified Common.N), on his word. 13:59: waiting: Review hazelgrove/hazel#2729 (https://github.com/hazelgrove/hazel/pull/2729); and say whether to post the note to Alexander on #2495.",
    "log": [
     {
      "at": "2026-10-23T11:44-06:00",
@@ -7236,11 +7247,73 @@
      "model": "claude-opus-5-5",
      "effort": "medium",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-23T13:45-06:00",
+     "from": "matthew",
+     "chars": 43,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-23T13:45-06:00",
+     "from": "matthew",
+     "chars": 3372,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-23T13:45-06:00",
+     "from": "claude",
+     "chars": 181,
+     "asks": false,
+     "words": 26,
+     "read_s": 7,
+     "listen_s": 10,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-23T13:45-06:00",
+     "from": "claude",
+     "chars": 202,
+     "asks": false,
+     "words": 35,
+     "read_s": 9,
+     "listen_s": 13,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-23T13:46-06:00",
+     "from": "matthew",
+     "chars": 45,
+     "asks": false,
+     "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": "Review hazelgrove/hazel#2729 (https://github.com/hazelgrove/hazel/pull/2729); and say whether to post the note to Alexander on #2495."
+  },
+  {
+   "id": 575,
+   "area": "dashboard: release 0.0.4 with every unreleased feature (in about an hour)",
+   "added": "2026-10-23T14:00-06:00",
+   "opened": "2026-10-23T14:00-06:00",
+   "status": "open",
+   "tags": [
+    "not before 15:00 (2026-10-23)"
+   ],
+   "chips": [
+    "dashboard"
+   ],
+   "source": "Matthew, 2026-10-23 14:00, in chat: \"please update agent instructions for dashboard. Please release a new dashboard version with all unreleased features --- later, in about an hour.\"",
+   "text": "<b>Dashboard 0.0.4.</b> Bump VERSION in dashboard/update.py from 0.0.3, turn VERSIONS.md's Unreleased list into '## 0.0.4 (2026-10-23)' (checking the code for features done since 0.0.3 that the list misses), commit and push under cron's lock, and check the published dashboard shows 0.0.4 in its History line.",
+   "progress": "14:00: minted; a timer starts it at 15:00, about an hour from now."
   }
  ],
- "next_ticket": 575,
+ "next_ticket": 576,
  "current_ticket": 574,
  "current_note": "12:00: a module's sum constructors in scope after the module: a PR on dev (Matthew's word)",
  "closed_tickets": [
@@ -12201,6 +12274,7 @@
  ],
  "queue": [
   574,
+  575,
   566,
   572,
   571,
@@ -12284,12 +12358,12 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5196,
-  "words": 1143444,
+  "replies": 5200,
+  "words": 1143812,
   "read_hours_est": 80.1,
   "listen_hours_est": 119.1,
   "read_s_avg": 55,
-  "listen_s_avg": 83,
+  "listen_s_avg": 82,
   "days": {
    "2026-08-27": {
     "replies": 7,
@@ -12522,9 +12596,9 @@
     "chars": 141980
    },
    "2026-10-23": {
-    "replies": 32,
-    "words": 6228,
-    "chars": 36878
+    "replies": 36,
+    "words": 6596,
+    "chars": 39034
    }
   }
  },
