@@ -219,6 +219,18 @@ def date(p):
     d = p.get("updatedAt") or ""
     return d[:10]
 
+# (Matthew, 2026-10-23: "these links are too long --- after the localhost:portNumber part, just go back to non-hyperlink mark up";
+# "or use a distinguished CSS for the description after a localhost:PortNum link --- even better") a local URL's link is its
+# localhost:NNNN (and its path) alone; what it serves follows in plain, muted text (.port-desc), or, in the outline, on hover. A link
+# with no localhost:NNNN at its start is kept whole
+# (short=True, the outline's list: the address alone, what it serves on hover)
+def port_link(t, u, short=False):
+    m = re.match(r"(localhost:\d+\S*)\s*(.*)$", t, re.S)
+    if not m: return f'<a href="{e(u)}">{e(t)}</a>'
+    desc = m.group(2).strip()
+    if short: return f'<a href="{e(u)}"' + (f' title="{e(desc)}"' if desc else "") + f'>{e(m.group(1))}</a>'
+    return f'<a href="{e(u)}">{e(m.group(1))}</a>' + (f' <span class="port-desc">{e(desc)}</span>' if desc else "")
+
 rows = []
 for r in data["ports"]:
     if "pr" in r:
@@ -230,7 +242,7 @@ for r in data["ports"]:
         first = "— " + e(r["name"])
         repo = r["repo_html"]
         branch = f'<code>{e(r["branch"])}</code>' + (f' {e(r["branch_note"])}' if r.get("branch_note") else "")
-    links = "<br>".join(f'<a href="{e(u)}">{e(t)}</a>' for t, u in r["links"]) or "not served"
+    links = "<br>".join(port_link(t, u) for t, u in r["links"]) or "not served"
     rows.append(f"<tr><td>{first}</td><td>{repo}<br>{branch}</td><td>{links}</td></tr>")
 
 def status_rows(ns, notes=None):
@@ -489,7 +501,7 @@ def group(name, href, text, kids, open_default):
             f'aria-label="{"Fold" if open_default else "Unfold"} {e(text)}">{"▾" if open_default else "▸"}</button><a href="{href}">{text}</a></div>'
             f'<ul class="kids"{"" if open_default else " hidden"}>' + "".join(kids) + '</ul></li>')
 local_entries = [group("local", "#ports", e(f"Local URLs ({len(LOCAL_URLS)})"),
-                       [f'<li><a href="{e(u)}">{e(t)}</a></li>' for u, t in LOCAL_URLS], True)] if LOCAL_URLS else []
+                       [f'<li>{port_link(t, u, short=True)}</li>' for u, t in LOCAL_URLS], True)] if LOCAL_URLS else []
 
 # (Matthew, 2026-10-19: "put the 'next meeting agenda, WIP' link into the nav bar ... near the top", public, to share with
 # Cyrus) data.json's next_meeting {report, with, date}: the agenda report for the next meeting, first in the outline's links
@@ -536,6 +548,7 @@ page = f"""<!doctype html>
     border-right: 1px solid var(--line); font-size: 0.82rem; line-height: 1.4; z-index: 15; scrollbar-width: thin; }}
   .outline.is-open {{ display: block; width: auto; right: 0; padding: 4rem 1.25rem 3rem; font-size: 0.95rem; }}
   body.outline-open {{ overflow: hidden; }}
+  .port-desc {{ color: var(--muted); font-size: 0.86em; }}
   .outline-label {{ font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.5rem; }}
   .outline ul {{ list-style: none; margin: 0 0 1.4rem; padding: 0; border-left: 1px solid var(--line); }}
   .outline a {{ display: block; padding: 0.18rem 0.6rem; margin-left: -1px; border-left: 2px solid transparent;
