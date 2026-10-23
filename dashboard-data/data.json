@@ -5698,7 +5698,7 @@
    "source": "Matthew, 2026-10-22 14:54, in chat, after ^report(29)'s finding: \"mint and enqueue -- your best ideas for what to try next to fix this asymptotic issue with the JS library\" (then AFK).",
    "url": "https://matthewhammer.org/hazel/reports/029/#re-walk",
    "text": "<b>Guard the boundary's asymptotics in CI.</b> A library test that calls a returned function holding a list of 100 and of 10,000 and asserts the evaluator's passes a call are equal (a pass counter in the library, like trial/r25-stats's Hazel.stepCounts, kept as a cheap debug hook), and the same for an argument passed by handle (^ticket(551)). Counts, not times: deterministic on any runner. Lands with ^ticket(547).",
-   "progress": "14:54: minted; enqueued after ^ticket(547).",
+   "progress": "14:54: minted; enqueued after ^ticket(547). 19:59: branch lib-complexity-552 (9799f24179, on lib-closures 7563919f60, worktree ~/hazel-552), pushed, no PR (it lands with 547's, which waits on Matthew): Evaluator.passes (an incr a pass in eval_1_effects; in Evaluator.rei), Hazel.passes() (read, then 0), and a library test: a call from JS to a function holding 100 vs 10,000 makes the same passes, for a program's function and for one a call returns. @check + fmt pass; CI 39886944567. NEGATIVE CONTROL: trial/552-without-547 (lib-floor + the same counter and test, inline), CI 39887082171: the test should FAIL there. Then delete the trial branch.",
    "log": [
     {
      "at": "2026-10-22T14:53-06:00",
@@ -6100,6 +6100,13 @@
      "listen_s": 87,
      "model": "claude-opus-5-5",
      "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-22T19:43-06:00",
+     "from": "matthew",
+     "chars": 83,
+     "asks": false,
      "note": "from the transcripts"
     }
    ]
@@ -11403,7 +11410,7 @@
   },
   "since": "2026-08-27",
   "replies": 5159,
-  "words": 1136651,
+  "words": 1136752,
   "read_hours_est": 79.6,
   "listen_hours_est": 118.4,
   "read_s_avg": 56,
@@ -11636,8 +11643,8 @@
    },
    "2026-10-22": {
     "replies": 137,
-    "words": 24030,
-    "chars": 138592
+    "words": 24131,
+    "chars": 139168
    }
   }
  },
