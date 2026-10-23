@@ -6713,9 +6713,26 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 571,
+   "area": "fumola semantics: fix the traps scripting the game found (^report(28) #traps): text != inverted, text patterns, Nat and Int, Float comparison, text escapes, tuple payloads",
+   "added": "2026-10-23T07:11-06:00",
+   "opened": "2026-10-23T07:11-06:00",
+   "status": "open",
+   "tags": [
+    "today (2026-10-23)"
+   ],
+   "chips": [
+    "fumola"
+   ],
+   "source": "Matthew, 2026-10-23 07:11, in chat: \"In looks like scripting the game with Fumola found a bunch of latent semantic issues with the core language --- https://matthewhammer.org/hazel/reports/028/#traps mint and enqueue a ticket, to happen today, refining Fumola semnatics to address each of these points. In some cases, it's a matter of adding cases not supported now (Float compare, text patterns, Nat + Int, as in the report under Traps now) --- in other cases, we need to fix errors, like the semantics of !=, if it's really inverted. As we work on the 3-chip system for JS vs Hazel vs Fumola, fixing these issues will be important. Let's revise report 28 with a new WIP draft, and our proposed fixes.\"",
+   "url": "https://matthewhammer.org/hazel/reports/028/#traps",
+   "text": "<b>Refine Fumola's semantics where scripting Dress Up tripped on it.</b> ^report(28)'s Traps, each confirmed in Adapton/fumola's source and fixed on a branch with tests: (1) text <code>!=</code> inverted (a bug: fix); (2) no text patterns (<code>case \"E\"</code> never matches: add text literals to patterns); (3) Nat and Int apart (Nat minus a larger Nat is an Int, Int + Nat a type error, only <code>&lt;</code> mixes, Int(4) == Nat(4) false and different map keys: decide and implement a coherent numeric tower); (4) no escapes in text literals (add <code>\\\\\"</code>, <code>\\\\\\\\</code>, <code>\\\\n</code>); (5) no Float comparison (add <, <=, >, >= on Floats); (6) a tuple payload needs double parentheses (<code>#GoSquare((c, r, back, #Done))</code>: decide, document or sugar). Then the game's Fumola rules simplified to match (the draws as Floats, text patterns), the 3-way equivalence (^ticket(567)) kept green. And ^report(28) revised as a new WIP draft with the proposed fixes; published on Matthew's word.",
+   "progress": "07:11: minted, enqueued for today."
   }
  ],
- "next_ticket": 571,
+ "next_ticket": 572,
  "current_ticket": 566,
  "current_note": "07:03: the 3-way script boxes: reading PRs #2 and #4 to combine them (report 30 drafted, waiting on Matthew)",
  "closed_tickets": [
@@ -11676,6 +11693,7 @@
  ],
  "queue": [
   566,
+  571,
   570,
   567,
   568,
