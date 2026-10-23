@@ -7330,13 +7330,16 @@
    "added": "2026-10-23T14:02-06:00",
    "opened": "2026-10-23T14:02-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel"
    ],
    "source": "Matthew, 2026-10-23 14:02, in chat: \"mint and enqueue --- this URL should be the list of all reports, with thumbnails, not the first report. Same issue on the main reports page, I think. http://localhost:8131/\"",
    "text": "<b>The reports' front door.</b> http://localhost:8131/ (the reports repository's root, ~/hazel-perf-report/index.html) shows ^report(1), which began as a single report there; the series index with every report's card and thumbnail is at /series/. Make the root the series index (^report(1) moved to 001/ with redirects, links and tools updated), and check the published https://matthewhammer.org/hazel/reports/ the same way.",
-   "progress": "14:02: minted and enqueued."
+   "progress": "Root is now the series index (cards + thumbnails); report 1 moved to 001/; series/ redirects. README + agent-instructions updated. Local only, not pushed.",
+   "waiting": "Review http://localhost:8131/ (index) and http://localhost:8131/001/ (report 1)"
   }
  ],
  "next_ticket": 577,
