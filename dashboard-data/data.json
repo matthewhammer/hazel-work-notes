@@ -7557,7 +7557,7 @@
    ],
    "source": "Matthew, 2026-10-23, in chat: \"let's add a 'max size' button for each code splice --- LHS becomes: outline of all code blocks, like a nav bar, with the common block first. RHS becomes: the currently max'd code block --- the others can take its place from the nav bar on LHS. (code uses syntax highlighting and has tile editor for hazel-- still seems missing everywhere BTW)\"",
    "text": "<b>⛶ max size.</b> Each script box gets a max-size button: the left lists every box (📚 Common first) with its language; the right holds the chosen box, editors and all. Syntax colours for Hazel, Fumola and JS in every box. The tile editor is ^ticket(578).",
-   "progress": "Built on script-boxes-566 (kcg-566): ⛶ button per box, outline nav, ✖/Escape back; colours under each editor (transparent text over a highlighted pre) and in the read-only JS. Checked in the browser pane at http://localhost:8566/.",
+   "progress": "Built on script-boxes-566 (kcg-566): ⛶ button per box, outline nav, ✖/Escape back; colours under each editor (transparent text over a highlighted pre) and in the read-only JS. Checked in the browser pane at http://localhost:8566/. Pushed 84cd32b.",
    "waiting": "Try it: http://localhost:8566/ → 🧩 Scripting → ⛶ max size on any box",
    "log": []
   },
@@ -7576,6 +7576,43 @@
    "text": "<b>Tiles you edit.</b> The Hazel boxes are plain text boxes; the only tiles (^ticket(520)) are a read-only frame under them, and on 566 that frame is blank (24 px, no status back after the program is sent). Make Hazel's own tile editor the place a Hazel rule is written: edits in the tiles flow back to the game's state and run. First step: fix the blank frame.",
    "progress": "Queued first, after 577.",
    "waiting": "",
+   "log": []
+  },
+  {
+   "id": 579,
+   "area": "Dress Up 🧩 Scripting: code lines broken to the box's width",
+   "added": "2026-10-23T14:27-06:00",
+   "opened": "2026-10-23T14:27-06:00",
+   "status": "open",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "chips": [
+    "dress-up",
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-23, in chat: \"can we adjust the auto-indentation to take the actual code box width into account?\"",
+   "text": "<b>Lines to the box's width.</b> A line longer than the box (or the wrap setting, ^ticket(580)) is laid out like a pretty-printer: broken at its outermost case arms, then/else, block statements, commas, arrows; each piece indented 2 deeper. Only whitespace changes; strings and comments are never split.",
+   "progress": "Pushed f4f5e36 on script-boxes-566. Hazel's Common, reflowed at 37 and 47 columns, analyzes with no errors. Long comments stay one line.",
+   "waiting": "Try it: http://localhost:8566/ → 🧩 Scripting (resize the window, or ⛶ max size)",
+   "log": []
+  },
+  {
+   "id": 580,
+   "area": "Dress Up 🧩 Scripting: ⚙️ script editor settings (all, size, font, colour, wrap)",
+   "added": "2026-10-23T14:27-06:00",
+   "opened": "2026-10-23T14:27-06:00",
+   "status": "open",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "chips": [
+    "dress-up"
+   ],
+   "source": "Matthew, 2026-10-23, in chat: \"at top of the game script panel, a sub-panel called script editor settings: global toggle for JS/Hazel/Fumola; font size (default is fine); font selection; use syntax highlighting (default is on); max line before auto indentation: as a number, default is 77.\" Then: \"please make the panel minimal; with minimal label length\" and \"always be knowling\"",
+   "text": "<b>⚙️ settings, knolled.</b> One box at the top: names in a column (all, size, font, colour, wrap), chips beside them, no dropdowns; wrap is a number, default 77. Saved with the scripts.",
+   "progress": "Pushed f4f5e36. Checked in the browser pane: size 16 reflows Common to 37 columns; colour off shows plain text.",
+   "waiting": "Try it: http://localhost:8566/ → 🧩 Scripting, the ⚙️ box at the top",
    "log": []
   }
  ],
