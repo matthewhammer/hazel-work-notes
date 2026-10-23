@@ -4,8 +4,17 @@ Each version lists the dashboard's features as of that version. The newest versi
 
 ## Unreleased
 
-Changes since 0.0.3, for the next version, which waits for Matthew's go-ahead.
+Changes since 0.0.4, for the next version.
 
+## 0.0.4 (2026-10-23)
+
+Released at Matthew's word (2026-10-23: "Please release a new dashboard version with all unreleased features --- later, in about an hour"), ^ticket(575).
+
+- **Each closed ticket says which model and effort did its work** (Matthew, 2026-10-21: "what model and effort level was being used? ... some average for each would be enough"): `log_messages.py` reads each reply's model and effort from the session transcripts and `close_ticket.py` keeps their shares; a closed ticket shows them, 🧠 for Claude's replies and 🤖 for workflow agents' work.
+- **A PR's hover card names the branch it targets** (^ticket(478)): `dev`, or another branch, said plainly.
+- **A filter for the next meeting's tickets:** a "meeting <date>" chip in both filter bars, for the tickets tagged for the meeting in `data.json`'s `next_meeting`.
+- Fixed (^ticket(487), Matthew: "the 'blocked on Matthew' list seems inaccurate -- it has tickets with no such tag"): the queue's categories sort to its end, so 🪷 Blocked on Matthew lists only the tickets tagged so.
+- **The work notes as a gallery** (^ticket(182)): matthewhammer.org/hazel/work-notes/, a card per note, newest first, with its summary, next steps and a picture drawn for it (`notes_gallery.py`, `gallery_art.py`).
 - **Short port links** (Matthew, 2026-10-23: "these links are too long"): in Localhost ports and the outline's Local URLs, only `localhost:NNNN` is a link; what it serves follows in plain, muted text.
 - **Special minutes** (Matthew, 2026-10-20: "everytime I have to remind you to 'keep going' please log in the dashboard as 'special minutes'"): a section under the Work Queue, and its line in the outline, lists each time he had to remind Claude to keep working: when, his words, what Claude had stopped on, and the minutes it sat idle, with the count and the total. `data.json`'s `special_minutes` holds them; `~/localhost-index/special_minutes.py` logs one.
 - **How long Claude's replies take to read, or to hear** (Matthew, 2026-10-20, ^ticket(489): "log how long the average reading time is for each thing you print, and assume that I am reading or listening to it"; "I want that in the dashboard data, for all time"): each reply in a ticket's log has its words and the seconds to read it (238 words a minute) or hear it (160); a closed ticket's metrics add the total and the average per reply; and data.json's `reading` tallies every reply in every session transcript, by day, as far back as the transcripts go (2026-08-27), shown under the page's opening notes with today's figures.

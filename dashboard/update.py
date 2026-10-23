@@ -21,7 +21,7 @@ from zoneinfo import ZoneInfo
 LOCAL = ZoneInfo("America/Denver")
 
 # The dashboard's version: what each version adds is in VERSIONS.md, next to this file's folder.
-VERSION = "0.0.3"
+VERSION = "0.0.4"
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 data = json.load(open(os.path.join(HERE, "data.json")))
