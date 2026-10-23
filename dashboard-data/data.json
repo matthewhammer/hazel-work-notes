@@ -9356,6 +9356,23 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 591,
+   "area": "hazel #2711 (Hazel as a JS library): unit tests seeded from the game's real scripts and their JS equivalence",
+   "added": "2026-10-23T17:12-06:00",
+   "opened": "2026-10-23T17:12-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "dress-up"
+   ],
+   "source": "Matthew, 2026-10-23 17:3x, in chat: \"mint and enqueue -- use our actual game scripts that we want to be equiv to seed more unit tests here, please https://github.com/hazelgrove/hazel/pull/2711\"",
+   "text": "<b>The game's rules as the library's tests.</b> Messed Up Dress Up's Hazel rules (the preamble's sums, Common, and the five rooms: trap room, tree room, placed levers, the world's ways, the castle) are checked against the game's own JS in CI (rules three ways: 32,761 cases for Hazel). Seed hazelgrove/hazel#2711's tests with them: the shipped program run through the library (runProgram / analyzeProgram), and, for a chosen set of events and globals per room (from the game's check, the cases that cover each rule's branches), each room's on_event answer compared with the commands the game's JS gives, held as expected values in the test. Also: the program at 8x Common hits Stack_overflow in the library's build (^report(32)): a test for a long module, marked as expected to fail until fixed, if that is how the suite records known failures.",
+   "progress": "Minted; queued after 587/586.",
+   "waiting": "",
+   "log": []
   }
  ],
  "next_ticket": 577,
@@ -14331,6 +14348,7 @@
   588,
   587,
   586,
+  591,
   589,
   574,
   576,
