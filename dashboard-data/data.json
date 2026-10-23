@@ -7500,55 +7500,6 @@
    "waiting": "Review hazelgrove/hazel#2729 (https://github.com/hazelgrove/hazel/pull/2729); and say whether to post the note to Alexander on #2495."
   },
   {
-   "id": 575,
-   "area": "dashboard: release 0.0.4 with every unreleased feature (in about an hour)",
-   "added": "2026-10-23T14:00-06:00",
-   "opened": "2026-10-23T14:00-06:00",
-   "status": "open",
-   "tags": [
-    "not before 15:00 (2026-10-23)"
-   ],
-   "chips": [
-    "dashboard"
-   ],
-   "source": "Matthew, 2026-10-23 14:00, in chat: \"please update agent instructions for dashboard. Please release a new dashboard version with all unreleased features --- later, in about an hour.\"",
-   "text": "<b>Dashboard 0.0.4.</b> Bump VERSION in dashboard/update.py from 0.0.3, turn VERSIONS.md's Unreleased list into '## 0.0.4 (2026-10-23)' (checking the code for features done since 0.0.3 that the list misses), commit and push under cron's lock, and check the published dashboard shows 0.0.4 in its History line.",
-   "progress": "14:00: minted; a timer starts it at 15:00, about an hour from now.",
-   "log": [
-    {
-     "at": "2026-10-23T13:59-06:00",
-     "from": "matthew",
-     "chars": 145,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-23T13:59-06:00",
-     "from": "claude",
-     "chars": 70,
-     "asks": false,
-     "words": 12,
-     "read_s": 3,
-     "listen_s": 4,
-     "model": "claude-opus-5-5",
-     "effort": "medium",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-23T14:02-06:00",
-     "from": "claude",
-     "chars": 2194,
-     "asks": false,
-     "words": 346,
-     "read_s": 87,
-     "listen_s": 130,
-     "model": "claude-opus-5-5",
-     "effort": "medium",
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 576,
    "area": "hazel reports: the site's root is the list of every report with thumbnails, not ^report(1) (locally and published)",
    "added": "2026-10-23T14:02-06:00",
@@ -7605,15 +7556,17 @@
    "added": "2026-10-23T14:18-06:00",
    "opened": "2026-10-23T14:18-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "dress-up",
     "hazel"
    ],
    "source": "Matthew, 2026-10-23, in chat: \"we are still missing actual tile editing in our hazel js work -- I have yet to see evidence that we actually have tiles\" and \"a real tile editing experience is top priority now, after the max-size button for game scripts\"",
    "text": "<b>Tiles you edit.</b> The Hazel boxes are plain text boxes; the only tiles (^ticket(520)) are a read-only frame under them, and on 566 that frame is blank (24 px, no status back after the program is sent). Make Hazel's own tile editor the place a Hazel rule is written: edits in the tiles flow back to the game's state and run. First step: fix the blank frame.",
-   "progress": "Found: the 'blank' tiles frame was my test browser (hidden, no animation frames), not the game: in a shown tab the frame renders. Built embed-editable on hazelgrove/hazel (7411284d85, off embed-selectable): {type:'editable', on:true} makes the cell CodeEditable; after each edit the frame posts {type:'edit', text}. Game f849f43: asks for it, splits the text into modules, refills the Hazel boxes, never posts it back. Type-checked locally (dune @src/web/check); Deploy running on GitHub.",
-   "waiting": "",
+   "progress": "Found: the 'blank' tiles frame was my test browser (hidden, no animation frames), not the game: in a shown tab the frame renders. Built embed-editable on hazelgrove/hazel (7411284d85, off embed-selectable): {type:'editable', on:true} makes the cell CodeEditable; after each edit the frame posts {type:'edit', text}. Game f849f43: asks for it, splits the text into modules, refills the Hazel boxes, never posts it back. Type-checked locally (dune @src/web/check); Deploy running on GitHub. 15:11: hazel.org/build/embed-editable/ live. Not typed into by me: the browser pane is hidden, so it runs no animation frames, and the frame draws only on one.",
+   "waiting": "Try typing in the tiles: http://localhost:8566/ → 🧩 Scripting → 🧩 the Hazel program, in Hazel's tiles (⛶ max size); each edit should reach the Hazel boxes",
    "log": [
     {
      "at": "2026-10-23T14:13-06:00",
@@ -8076,6 +8029,16 @@
  "current_ticket": 578,
  "current_note": "14:46: Hazel tiles that take edits: embed-editable pushed (7411284d85), its Deploy running; the game (f849f43) asks the frame for an editable cell and writes each edit back to the Hazel boxes. Next: try it at http://localhost:8566/ once the build is up.",
  "closed_tickets": [
+  {
+   "id": 575,
+   "area": "dashboard: release 0.0.4 with every unreleased feature (in about an hour)",
+   "added": "2026-10-23T14:00-06:00",
+   "text": "Dashboard 0.0.4.",
+   "source": "Matthew, 2026-10-23 14:00, in chat: \"please update agent instructions for dashboard. Please release a new dashboard…",
+   "status": "done",
+   "closed": "2026-10-23",
+   "outcome": "Dashboard 0.0.4 released at 15:00 and live at matthewhammer.org/hazel/dashboard/ (checked over HTTPS); VERSIONS.md lists every change since 0.0.3, five more found in the commits."
+  },
   {
    "id": 565,
    "area": "dress up, the picture archive: bring the dress-up-pictures repo up to date with today's versions (a long run, after midnight)",
@@ -13033,7 +12996,6 @@
  ],
  "queue": [
   574,
-  575,
   576,
   566,
   572,
@@ -13118,8 +13080,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5227,
-  "words": 1148027,
+  "replies": 5229,
+  "words": 1148094,
   "read_hours_est": 80.4,
   "listen_hours_est": 119.6,
   "read_s_avg": 55,
@@ -13356,9 +13318,9 @@
     "chars": 141980
    },
    "2026-10-23": {
-    "replies": 63,
-    "words": 10811,
-    "chars": 63548
+    "replies": 65,
+    "words": 10878,
+    "chars": 63987
    }
   }
  },
@@ -13476,5 +13438,6 @@
    "stopped_on": "ended the turn on a question (Auto-fix for Adapton/fumola#150, which he then turned on) while 559's counter-build timing run and the no-counter build's Deploy ran in the background"
   }
  ],
+ "current_waiting": "try typing in the tiles at http://localhost:8566/",
  "closed_tickets_are": "summaries for the hover cards; the full records are in dashboard-data/closed/<YYYY-MM>.json (dashboard/data_whole.py joins them)"
 }
