@@ -48,7 +48,7 @@
 <ul>
 <li><b>552:</b> CI green on <code>lib-complexity-552</code>; the negative control (<code>lib-floor</code> + the test) failed on exactly that test, so it guards 547; the control branch is deleted.</li>
 <li><b>553:</b> against Fumola on the same runners, Hazel's map is 1.3x to 3.5x its HashMap (2.5x at 64x64), both flat; set-up 6.5x Fumola's. The set-up is three walks at Hazel's per-pass cost (annotations make no difference); <code>hazel-map-553</code> 6de982a folds the count into the order check: 12 to 19% less set-up at 32x32 and 64x64.</li>
-<li><b>540:</b> Square's map by uid is blocked: Hazel has no string ordering (no &lt; on strings, no compare builtin). Matthew's pick: a <code>string_compare</code> builtin, or the game sending uids as Ints.</li>
+<li><b>540:</b> <s>Square's map by uid is blocked: Hazel has no string ordering.</s> <b>Wrong (corrected 10-23 07:05):</b> Hazel has had <code>string_compare</code> since May (<code>Atom.compare_builtins</code>, returning <code>Ord</code>: Lt, Eq, Gt); I had searched one list of builtins only. A duplicate I added on 10-23 was reverted.</li>
 <li><b>565:</b> done after midnight: the picture archive's run-2026-10-23 (0.0.411, 864 drawings, 26 new, 0 page errors), landed as dress-up-pictures f9e90d2.</li>
 <li>Every open Hazel ticket in the queue now waits on Matthew (tagged so on the dashboard).</li>
 </ul>
