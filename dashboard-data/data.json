@@ -6704,7 +6704,7 @@
    ],
    "source": "Matthew, 2026-10-23 06:57, in chat, after reviewing the two days since the 10-21 meeting with Cyrus (who encouraged \"Hazel as a game script system, starting with MUDU\", a general way to insert Hazel code into a JS/HTML app's behavior): \"Can have a MUDU with game scripts where each script box can be either: baked-in JS, or hazel code boxes, or fumola code boxes (3-way chip per code box). the initial code is equiv, and runs equiv, for the game -- we need unit tests to maintain this as we go. we default to builtin JS, but there's a \\\"master toggle\\\" chip in the game script panel, at the top, that switches the code boxes all to JS/Hazel/Fumola routines. we extend the advanced \\\"measurement\\\" tools with one specifically for measuring the script overhead, in each case ... We start to keep standards for certain speedruns that use different game script boxes, to ensure that each setting meets an FPS minimum for the squares it controls in the game.\" Then: \"in the 3-way script system -- let's have the jS versions show up as JS code, but read only. The hazel and fumola boxes are for editing.\" Then: \"yes, mint and enqueue.\"",
    "text": "<b>Measure what a script costs.</b> An advanced measurement tool (with the 🔬 inspection tools) that shows, for each room's handler and each engine (Hazel, Fumola), the time a call takes against the JS handler doing the same: median and worst over the calls made while playing, the compile or set-up time, and the share of the frame; live in the game, and readable by the speed runs.",
-   "progress": "06:57: minted and enqueued.",
+   "progress": "06:57: minted and enqueued. 2026-10-23 15:45, Matthew: next after the tiles work and he confirms.",
    "log": [
     {
      "at": "2026-10-23T06:55-06:00",
@@ -7556,17 +7556,15 @@
    "added": "2026-10-23T14:18-06:00",
    "opened": "2026-10-23T14:18-06:00",
    "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
+   "tags": [],
    "chips": [
     "dress-up",
     "hazel"
    ],
    "source": "Matthew, 2026-10-23, in chat: \"we are still missing actual tile editing in our hazel js work -- I have yet to see evidence that we actually have tiles\" and \"a real tile editing experience is top priority now, after the max-size button for game scripts\"",
    "text": "<b>Tiles you edit.</b> The Hazel boxes are plain text boxes; the only tiles (^ticket(520)) are a read-only frame under them, and on 566 that frame is blank (24 px, no status back after the program is sent). Make Hazel's own tile editor the place a Hazel rule is written: edits in the tiles flow back to the game's state and run. First step: fix the blank frame.",
-   "progress": "Found: the 'blank' tiles frame was my test browser (hidden, no animation frames), not the game: in a shown tab the frame renders. Built embed-editable on hazelgrove/hazel (7411284d85, off embed-selectable): {type:'editable', on:true} makes the cell CodeEditable; after each edit the frame posts {type:'edit', text}. Game f849f43: asks for it, splits the text into modules, refills the Hazel boxes, never posts it back. Type-checked locally (dune @src/web/check); Deploy running on GitHub. 15:11: hazel.org/build/embed-editable/ live. Not typed into by me: the browser pane is hidden, so it runs no animation frames, and the frame draws only on one. 15:30: VERIFIED in the game with the pane shown: a click on a tile + real keys edit the tiles; the edit reached 📚 Common within 2 s and Hazel marked its error; Backspace restored it. Matthew had maxed Common's TEXT box: the tiles box is now first in the ⛶ outline (5e3a1f2). Known: the first click right after a program arrives sometimes doesn't take (a second does); a click past a line's end doesn't place the caret; moving the tiles into ⛶ reloads the frame (~5 s).",
-   "waiting": "Try it: http://localhost:8566/ → 🧩 Scripting → ⛶ on any box → '🧩 the Hazel program, in Hazel's tiles' at the top of the outline → click ON a tile, then type",
+   "progress": "Found: the 'blank' tiles frame was my test browser (hidden, no animation frames), not the game: in a shown tab the frame renders. Built embed-editable on hazelgrove/hazel (7411284d85, off embed-selectable): {type:'editable', on:true} makes the cell CodeEditable; after each edit the frame posts {type:'edit', text}. Game f849f43: asks for it, splits the text into modules, refills the Hazel boxes, never posts it back. Type-checked locally (dune @src/web/check); Deploy running on GitHub. 15:11: hazel.org/build/embed-editable/ live. Not typed into by me: the browser pane is hidden, so it runs no animation frames, and the frame draws only on one. 15:30: VERIFIED in the game with the pane shown: a click on a tile + real keys edit the tiles; the edit reached 📚 Common within 2 s and Hazel marked its error; Backspace restored it. Matthew had maxed Common's TEXT box: the tiles box is now first in the ⛶ outline (5e3a1f2). Known: the first click right after a program arrives sometimes doesn't take (a second does); a click past a line's end doesn't place the caret; moving the tiles into ⛶ reloads the frame (~5 s). 15:50: per Matthew's yes, each Hazel box (Common, each room) now shows its OWN module in tiles (embed-editable 9ac9204f5c: {type:'focus', module}, the body read in its program's context), with a 🧩 tiles / ✏️ text chip; tiles take the page's theme, dark + high contrast when the page is dark (c6a86f78d6: Hazel's Colors slide with dark_mode/high_contrast on). Game a881257. Type-checked; Hazel deploy running; verify with the pane shown before asking Matthew.",
+   "waiting": "",
    "log": [
     {
      "at": "2026-10-23T14:13-06:00",
@@ -13517,6 +13515,6 @@
    "stopped_on": "ended the turn on a question (Auto-fix for Adapton/fumola#150, which he then turned on) while 559's counter-build timing run and the no-counter build's Deploy ran in the background"
   }
  ],
- "current_waiting": "try the tiles at http://localhost:8566/ (⛶, then the 🧩 tiles item at the outline's top)",
+ "current_waiting": false,
  "closed_tickets_are": "summaries for the hover cards; the full records are in dashboard-data/closed/<YYYY-MM>.json (dashboard/data_whole.py joins them)"
 }
