@@ -6076,7 +6076,7 @@
    "source": "Matthew, 2026-10-22 17:13, in chat: \"mint and enqueue tonight---  recover from so many feature extensions to MUDU --- refactor code and make a report about other ways to improve --- E.g., maybe we want to draw gems in the kings crown in the future --- are the routines we have for ninja gems going to be ready to re-mix with other code down the line? ^ Please consider 17 different scenarios like this, of your choosing, and propose and perform any code re-org that you choose --- just report it as a report, so I can review later and we can discuss later.\" Then, 17:13: \"Gems for treasure chests, etc.\" Then, 17:13: \"Gems to decorate very fancy swords and sheilds, and the kinds thrown and thrown room, etc.\" (the king's throne and the throne room)",
    "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
    "text": "<b>Recover from so many features.</b> Messed Up Dress Up grew one costume, room and control at a time (31,700 lines in 26 parts; drawNow alone ~1,460 lines, the costumes woven through it by kind). Choose 17 scenarios of future re-mixing, like Matthew's: <i>the ninja's gems in the king's crown</i> (are ninjaGemSvg and its cuts ready to be used by other code?), and 16 more (e.g. Matthew's second: <i>gems for treasure chests, etc.</i>; his third: <i>gems on very fancy swords and shields, the king's throne and the throne room</i>; two costumes at once, ^ticket(562); a costume's pieces on the people; new animals from the suit parts; held things; scenery reusing body drawings). For each: what the code makes easy or hard today, and the re-org that would make it easy. Then PERFORM the re-org we choose (behaviour unchanged: the same pictures, checked), on a branch, and write it up as <b>^du_report(18)</b>, a draft for Matthew to review and discuss later (a push publishes it: on his word).",
-   "progress": "17:13: minted for tonight; after ^ticket(563) in the queue (his deadline: tonight). 17:13: + Matthew's second scenario: gems for treasure chests, etc. 17:13: + his third: gems on fancy swords and shields, the king's throne and throne room. 17:26: a helper agent is on it in ~/kcg-564 (branch ticket-564-reorg off 0.0.411): 17 scenarios, a behaviour-unchanged re-org (gems first) proven by drawing many friends in node before and after and comparing the SVG byte for byte, and the ^du_report(18) draft. 18:13: DONE on branch ticket-564-reorg in ~/kcg-564 (not pushed, not merged): 5a260ad one namer for content ids (shapeId/shapeClip) + tools/same_friend.mjs, the proof; 97b00eb the ninja's gem is any drawing's gem (gemSvg, gemSideSvg, GEMSTONES, GEMSTONE_SHAPES, GOLD, in js/02-helpers.js; the ninja's settings keys unchanged); 8184fb3 COSTUME_CLOTHES, drawNow's fourteen shirt-and-pants ifs as one table (a first step to two costumes at once); 7e8d5c7 the ^du_report(18) draft, 'Ready to Re-mix': 17 scenarios, 5 ready, 8 small changes, 4 re-orgs; demonstrations (not the game) of gems in a crown, a chest, a sword and shield, a throne. Proof: 12,570 drawings per run identical byte for byte to 0.0.411, each commit. Waiting on Matthew: review and discuss, then merge or not.",
+   "progress": "17:13: minted for tonight; after ^ticket(563) in the queue (his deadline: tonight). 17:13: + Matthew's second scenario: gems for treasure chests, etc. 17:13: + his third: gems on fancy swords and shields, the king's throne and throne room. 17:26: a helper agent is on it in ~/kcg-564 (branch ticket-564-reorg off 0.0.411): 17 scenarios, a behaviour-unchanged re-org (gems first) proven by drawing many friends in node before and after and comparing the SVG byte for byte, and the ^du_report(18) draft. 18:13: DONE on branch ticket-564-reorg in ~/kcg-564 (not pushed, not merged): 5a260ad one namer for content ids (shapeId/shapeClip) + tools/same_friend.mjs, the proof; 97b00eb the ninja's gem is any drawing's gem (gemSvg, gemSideSvg, GEMSTONES, GEMSTONE_SHAPES, GOLD, in js/02-helpers.js; the ninja's settings keys unchanged); 8184fb3 COSTUME_CLOTHES, drawNow's fourteen shirt-and-pants ifs as one table (a first step to two costumes at once); 7e8d5c7 the ^du_report(18) draft, 'Ready to Re-mix': 17 scenarios, 5 ready, 8 small changes, 4 re-orgs; demonstrations (not the game) of gems in a crown, a chest, a sword and shield, a throne. Proof: 12,570 drawings per run identical byte for byte to 0.0.411, each commit. Waiting on Matthew: review and discuss, then merge or not. 18:20: RE-CHECKED by the main session: same_friend.mjs, 0.0.411 (main, 538a69f) against the branch head: 12,570 cases, 12,570 identical, structure identical, 146.5 MB in 500 s; check_script and check_load pass; the report's 7 pictures load.",
    "log": [
     {
      "at": "2026-10-22T16:59-06:00",
@@ -6210,8 +6210,8 @@
   }
  ],
  "next_ticket": 566,
- "current_ticket": 564,
- "current_note": "17:37: a helper agent is on the re-org in ~/kcg-564: 17 scenarios (the gems in the king's crown, on treasure chests, swords, shields and the throne room, and 14 more), a behaviour-unchanged re-org proven by drawing before and after, and ^du_report(18)'s draft",
+ "current_ticket": 558,
+ "current_note": "18:20: 562 and 564 wait on Matthew (both report drafts on 8133); now ^report(29)'s step 1: a branch off lib-floor with the two closure commits, without the counter build",
  "closed_tickets": [
   {
    "id": 563,
@@ -11159,9 +11159,9 @@
   }
  ],
  "queue": [
+  558,
   564,
   562,
-  558,
   549,
   559,
   545,
@@ -11223,7 +11223,7 @@
   508,
   534
  ],
- "current_since": "2026-10-22T17:37-06:00",
+ "current_since": "2026-10-22T18:20-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
