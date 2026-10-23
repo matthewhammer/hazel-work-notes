@@ -6877,6 +6877,20 @@
      "chars": 30,
      "asks": false,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-23T14:02-06:00",
+     "from": "matthew",
+     "chars": 174,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-23T14:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ],
    "waiting": "Read the ^report(30) draft at http://localhost:8131/030/ : the code boxes at http://localhost:8131/030/#rules and the Languages of Play section at http://localhost:8131/030/#lop; then say publish."
@@ -7123,6 +7137,20 @@
      "model": "claude-opus-5-5",
      "effort": "medium",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-23T14:02-06:00",
+     "from": "matthew",
+     "chars": 174,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-23T14:02-06:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ],
    "waiting": "Try 🔊 Listen on any report draft, e.g. http://localhost:8131/030/ (a device with voices: Mac, iPad, desktop Chrome), then say republish all."
@@ -7323,6 +7351,25 @@
      "model": "claude-opus-5-5",
      "effort": "medium",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-23T13:58-06:00",
+     "from": "matthew",
+     "chars": 307,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-23T13:59-06:00",
+     "from": "claude",
+     "chars": 326,
+     "asks": false,
+     "words": 60,
+     "read_s": 15,
+     "listen_s": 22,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
     }
    ],
    "waiting": "Review hazelgrove/hazel#2729 (https://github.com/hazelgrove/hazel/pull/2729); and say whether to post the note to Alexander on #2495."
@@ -7341,7 +7388,40 @@
    ],
    "source": "Matthew, 2026-10-23 14:00, in chat: \"please update agent instructions for dashboard. Please release a new dashboard version with all unreleased features --- later, in about an hour.\"",
    "text": "<b>Dashboard 0.0.4.</b> Bump VERSION in dashboard/update.py from 0.0.3, turn VERSIONS.md's Unreleased list into '## 0.0.4 (2026-10-23)' (checking the code for features done since 0.0.3 that the list misses), commit and push under cron's lock, and check the published dashboard shows 0.0.4 in its History line.",
-   "progress": "14:00: minted; a timer starts it at 15:00, about an hour from now."
+   "progress": "14:00: minted; a timer starts it at 15:00, about an hour from now.",
+   "log": [
+    {
+     "at": "2026-10-23T13:59-06:00",
+     "from": "matthew",
+     "chars": 145,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-23T13:59-06:00",
+     "from": "claude",
+     "chars": 70,
+     "asks": false,
+     "words": 12,
+     "read_s": 3,
+     "listen_s": 4,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-23T14:02-06:00",
+     "from": "claude",
+     "chars": 2194,
+     "asks": false,
+     "words": 346,
+     "read_s": 87,
+     "listen_s": 130,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    }
+   ]
   },
   {
    "id": 576,
@@ -7358,7 +7438,16 @@
    "source": "Matthew, 2026-10-23 14:02, in chat: \"mint and enqueue --- this URL should be the list of all reports, with thumbnails, not the first report. Same issue on the main reports page, I think. http://localhost:8131/\"",
    "text": "<b>The reports' front door.</b> http://localhost:8131/ (the reports repository's root, ~/hazel-perf-report/index.html) shows ^report(1), which began as a single report there; the series index with every report's card and thumbnail is at /series/. Make the root the series index (^report(1) moved to 001/ with redirects, links and tools updated), and check the published https://matthewhammer.org/hazel/reports/ the same way.",
    "progress": "Root is now the series index (cards + thumbnails); report 1 moved to 001/; series/ redirects. README + agent-instructions updated. Local only, not pushed. Drafts now listed too: tools/draft_cards.py adds a \"draft, not published\" card with thumbnail for each unpublished report (030, 031 now), shown on localhost only; in agent-instructions for going forward.",
-   "waiting": "Review http://localhost:8131/ (index) and http://localhost:8131/001/ (report 1)"
+   "waiting": "Review http://localhost:8131/ (index) and http://localhost:8131/001/ (report 1)",
+   "log": [
+    {
+     "at": "2026-10-23T14:02-06:00",
+     "from": "matthew",
+     "chars": 174,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 577,
@@ -12407,10 +12496,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5203,
-  "words": 1144585,
+  "replies": 5207,
+  "words": 1145162,
   "read_hours_est": 80.2,
-  "listen_hours_est": 119.2,
+  "listen_hours_est": 119.3,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -12645,9 +12734,9 @@
     "chars": 141980
    },
    "2026-10-23": {
-    "replies": 39,
-    "words": 7369,
-    "chars": 43820
+    "replies": 43,
+    "words": 7946,
+    "chars": 47230
    }
   }
  },
