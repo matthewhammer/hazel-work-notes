@@ -92,60 +92,28 @@
    "branch_note": "(public: a push publishes, so drafts wait. ^report(25) published as work in progress 10-22 09:44 (homepage 35951cb); its local copy is the same. ^report(18), why #2635 fails CI, is a local draft waiting on Matthew. ^report(29) republished 10-22 15:56 (homepage e9fd165) with its fixes section and the deep-answer correction; its local copy is the same); its local copy is the same; its fixes section fills in as the trial builds are measured)",
    "links": [
     [
-     "^report(29) (published, work in progress; the local copy is the same)",
-     "http://localhost:8131/029/"
+     "localhost:8131 (the front page: every report, drafts marked)",
+     "http://localhost:8131/"
     ],
     [
-     "^report(29): first fixes, on trial branches (547, 548, 551; 540's tree; Fumola #148)",
-     "http://localhost:8131/029/#fixes"
-    ],
-    [
-     "^report(29): why lists cost more in Hazel",
-     "http://localhost:8131/029/#lists"
-    ],
-    [
-     "^report(29): wasm against native",
-     "http://localhost:8131/029/#native"
-    ],
-    [
-     "^report(25) (published, work in progress; the local copy is the same)",
-     "http://localhost:8131/025/"
-    ],
-    [
-     "^report(25)'s review of Hazel's JS library",
-     "http://localhost:8131/025/#library"
-    ],
-    [
-     "^report(25)'s related work (Languages of Play, the adventure engines, Scratch)",
-     "http://localhost:8131/025/#related"
-    ],
-    [
-     "^report(25)'s code listings",
-     "http://localhost:8131/025/#code"
-    ],
-    [
-     "localhost:8131/series/",
-     "http://localhost:8131/series/"
-    ],
-    [
-     "DRAFT (not published): ^report(29)'s second fixes, 559's fast path and 553's map",
-     "http://localhost:8131/029/#fixes-2"
-    ],
-    [
-     "DRAFT (not published): ^report(30), Game Scripts in Hazel, Two Days In",
-     "http://localhost:8131/030/"
-    ],
-    [
-     "DRAFT (not published): ^report(28) revised: the traps confirmed, and proposed fixes",
-     "http://localhost:8131/028/#traps"
-    ],
-    [
-     "DRAFT (not published): ^report(31), Reviews Still Open",
+     "localhost:8131/031/ (^report(31), Reviews Still Open)",
      "http://localhost:8131/031/"
     ],
     [
-     "DRAFT (not published): the 🔊 Listen bar on every report (try e.g. ^report(30))",
+     "localhost:8131/030/ (^report(30), Game Scripts in Hazel; its Hazel and Fumola rules, Languages of Play)",
      "http://localhost:8131/030/"
+    ],
+    [
+     "localhost:8131/029/ (^report(29), Where the Gap Comes From; second fixes)",
+     "http://localhost:8131/029/#fixes-2"
+    ],
+    [
+     "localhost:8131/028/ (^report(28), the traps and proposed fixes)",
+     "http://localhost:8131/028/#traps"
+    ],
+    [
+     "localhost:8131/025/ (^report(25), Hazel's JS library)",
+     "http://localhost:8131/025/"
     ]
    ]
   },
@@ -203,7 +171,7 @@
      "http://localhost:8133/report-018/reports/018/#reorg"
     ],
     [
-     "localhost:8566: branch script-boxes-566 (^ticket(566)): the 3-way script boxes, the rules in sums, Fumola's fixed build, main 0.0.411 merged",
+     "localhost:8566 (script-boxes-566: ⚙️ settings, ⛶ max size with its outline, colours, line numbers; Hazel tiles that take edits, ^ticket(578))",
      "http://localhost:8566/"
     ]
    ],
@@ -7644,7 +7612,7 @@
    ],
    "source": "Matthew, 2026-10-23, in chat: \"we are still missing actual tile editing in our hazel js work -- I have yet to see evidence that we actually have tiles\" and \"a real tile editing experience is top priority now, after the max-size button for game scripts\"",
    "text": "<b>Tiles you edit.</b> The Hazel boxes are plain text boxes; the only tiles (^ticket(520)) are a read-only frame under them, and on 566 that frame is blank (24 px, no status back after the program is sent). Make Hazel's own tile editor the place a Hazel rule is written: edits in the tiles flow back to the game's state and run. First step: fix the blank frame.",
-   "progress": "Queued first, after 577.",
+   "progress": "Found: the 'blank' tiles frame was my test browser (hidden, no animation frames), not the game: in a shown tab the frame renders. Built embed-editable on hazelgrove/hazel (7411284d85, off embed-selectable): {type:'editable', on:true} makes the cell CodeEditable; after each edit the frame posts {type:'edit', text}. Game f849f43: asks for it, splits the text into modules, refills the Hazel boxes, never posts it back. Type-checked locally (dune @src/web/check); Deploy running on GitHub.",
    "waiting": "",
    "log": [
     {
@@ -7843,7 +7811,7 @@
    ],
    "source": "Matthew, 2026-10-23, in chat: \"let's have more of an 'outline' structure on LHS of max-size script design panel. separate Hazel type defs from other Common defs that follow, as separate outline items. each function for each code listing as an up-to-date way to scroll to that function in the nav outline, on LHS.\"",
    "text": "<b>The outline.</b> Under each box in the ⛶ view's left column: each type (Hazel's types in Common), then each function (Hazel let, Fumola func, JS function), read from the code as it is now; a click opens the box and scrolls that line into view.",
-   "progress": "Pushed on script-boxes-566. Browser pane: Common lists 12 types then 13 functions; opp puts the caret on 'let opp'; type Cmd scrolls to line 67. Refreshes 300 ms after typing.",
+   "progress": "Pushed on script-boxes-566. Browser pane: Common lists 12 types then 13 functions; opp puts the caret on 'let opp'; type Cmd scrolls to line 67. Refreshes 300 ms after typing. 10-23 later: jumps scroll the view to a line out of sight (f849f43); functions say N lines, 🪄 for one that takes nothing and only acts.",
    "waiting": "Try it: http://localhost:8566/ → 🧩 Scripting → ⛶ max size",
    "log": [
     {
@@ -7944,8 +7912,8 @@
   }
  ],
  "next_ticket": 577,
- "current_ticket": 574,
- "current_note": "12:00: a module's sum constructors in scope after the module: a PR on dev (Matthew's word)",
+ "current_ticket": 578,
+ "current_note": "14:46: Hazel tiles that take edits: embed-editable pushed (7411284d85), its Deploy running; the game (f849f43) asks the frame for an editable cell and writes each edit back to the Hazel boxes. Next: try it at http://localhost:8566/ once the build is up.",
  "closed_tickets": [
   {
    "id": 565,
@@ -12977,7 +12945,7 @@
   508,
   534
  ],
- "current_since": "2026-10-23T11:54-06:00",
+ "current_since": "2026-10-23T14:46-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
