@@ -138,6 +138,10 @@
     [
      "DRAFT (not published): ^report(28) revised: the traps confirmed, and proposed fixes",
      "http://localhost:8131/028/#traps"
+    ],
+    [
+     "DRAFT (not published): ^report(31), Reviews Still Open",
+     "http://localhost:8131/031/"
     ]
    ]
   },
@@ -6909,17 +6913,32 @@
    "opened": "2026-10-23T11:29-06:00",
    "status": "open",
    "tags": [
-    "asap (2026-10-23)"
+    "asap (2026-10-23)",
+    "blocked on Matthew"
    ],
    "chips": [
     "hazel"
    ],
    "source": "Matthew, 2026-10-23 11:29, in chat, during the recovery from crash 47: \"mint and enqueue --- look at our open PRs on hazel, find new reviews we haven't integrated yet. Create a report for each one, or a combined one --- with subsections. As WIP draft for my review, asap after recovery.\"",
    "text": "<b>What reviewers have said on our open hazelgrove/hazel PRs that we have not yet acted on.</b> For each of Matthew's open PRs: every review, review comment and comment (all three places), what each asks, whether a later commit answered it, and what is left to do; as one ^report with a subsection per PR, a local WIP draft for Matthew's review, published on his word.",
-   "progress": "11:29: minted, at the front of the queue (asap after the crash recovery). 11:30: 36 open PRs by Matthew on hazelgrove/hazel; gathering every review, line comment and comment from others (all three places), each judged open / answered / unclear against later commits (committer dates) and replies. Report ^report(31) 'Reviews Still Open' (031/drivers/gen031.py) builds from that data: a subsection per PR with feedback, open items first."
+   "progress": "11:29: minted, at the front of the queue (asap after the crash recovery). 11:30: 36 open PRs by Matthew on hazelgrove/hazel; gathering every review, line comment and comment from others (all three places), each judged open / answered / unclear against later commits (committer dates) and replies. Report ^report(31) 'Reviews Still Open' (031/drivers/gen031.py) builds from that data: a subsection per PR with feedback, open items first. 11:36: DRAFTED ^report(31) 'Reviews Still Open' at localhost:8131/031/ (hazel-perf-report 031/, data/pr-reviews.json; not pushed). 36 open PRs; 5 with feedback, all from 7h3kk1d plus disconcision's 'yes' on #2651; 31 none. Open: #2608 5 (changes requested 10-21, no reply or commit since: secondary still in elaborations, ~13.5% of marshaled size, Typ.normalize; a test over every node kind; 4 line comments), #2651 3 (+1 unclear: today 11:34, module-as-function an error: check it in the non-recursive analysis or give modules their own case; names_itself vs draft #2717), #2613 2 (changes requested stands though 28fcabfffc fixed it; the green pill question to disconcision), #2583 1 (+1 unclear: changes requested of 09-23 never re-reviewed though 077a68f9f8 did the rework; 'tutorial sharing?' unanswered), #2681 1 unclear (the cast-calculus remark). WAITING ON MATTHEW: read; publish on his word; and which to answer first."
+  },
+  {
+   "id": 573,
+   "area": "hazel reports: a 🔊 Listen button on every report, read by the reader's own browser voice",
+   "added": "2026-10-23T11:37-06:00",
+   "opened": "2026-10-23T11:37-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-23 11:37, in chat, after asking whether reports could be read aloud in the Claude Desktop app's voice (they cannot: that voice is the app's own, not a tool): \"Yes: mint and enqueue a Listen button for the reports, using the browser's own voices.\"",
+   "text": "<b>Listen to a report.</b> A 🔊 Listen button on every report in the series (added by a series tool, like add_theme.py, so every report gets it on its next build), read by the browser's own speech (speechSynthesis): play, pause, stop, the voice and speed chosen from what the reader's device has (remembered per site), reading the report's prose in order (headings, short answers, sections; skipping code, tables and the embedded data), the section being read highlighted and kept in view. Nothing sent anywhere, no account. Works on a Mac, an iPad, and in Chrome and Firefox on Linux (whatever voices they have).",
+   "progress": "11:37: minted and enqueued, after the work in hand."
   }
  ],
- "next_ticket": 573,
+ "next_ticket": 574,
  "current_ticket": 572,
  "current_note": "11:29: after crash 47 (recovered: logged, notes repo refetched, all 8 ports up): the reviews on our open hazel PRs, for a WIP report",
  "closed_tickets": [
@@ -11881,6 +11900,7 @@
  "queue": [
   572,
   571,
+  573,
   566,
   570,
   567,
