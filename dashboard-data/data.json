@@ -142,6 +142,10 @@
     [
      "DRAFT (not published): ^report(31), Reviews Still Open",
      "http://localhost:8131/031/"
+    ],
+    [
+     "DRAFT (not published): the 🔊 Listen bar on every report (try e.g. ^report(30))",
+     "http://localhost:8131/030/"
     ]
    ]
   },
@@ -6986,13 +6990,15 @@
    "added": "2026-10-23T11:37-06:00",
    "opened": "2026-10-23T11:37-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel"
    ],
    "source": "Matthew, 2026-10-23 11:37, in chat, after asking whether reports could be read aloud in the Claude Desktop app's voice (they cannot: that voice is the app's own, not a tool): \"Yes: mint and enqueue a Listen button for the reports, using the browser's own voices.\"",
    "text": "<b>Listen to a report.</b> A 🔊 Listen button on every report in the series (added by a series tool, like add_theme.py, so every report gets it on its next build), read by the browser's own speech (speechSynthesis): play, pause, stop, the voice and speed chosen from what the reader's device has (remembered per site), reading the report's prose in order (headings, short answers, sections; skipping code, tables and the embedded data), the section being read highlighted and kept in view. Nothing sent anywhere, no account. Works on a Mac, an iPad, and in Chrome and Firefox on Linux (whatever voices they have). <b>And</b> (Matthew, 2026-10-23): a slider for the reading speed, and the report's reading time (the series line's \"about N minutes to read\") adjusted to it, as listening time at that speed.",
-   "progress": "11:37: minted and enqueued, after the work in hand. 11:37: Matthew: \"and get a slider for reading speed (if possible), and adjusted reading time.\" Added to the ticket."
+   "progress": "11:37: minted and enqueued, after the work in hand. 11:37: Matthew: \"and get a slider for reading speed (if possible), and adjusted reading time.\" Added to the ticket. 11:47: BUILT (local, hazel-perf-report, not pushed: a push publishes): tools/add_listen.py, run on every report (^report(1) and 002-031 but the agenda 020) and added to every NNN/drivers/build.sh after add_theme.py; agent-instructions line. Under the series line: 🔊 Listen / ⏸ Pause / ⏹ Stop, the device's voices, a speed slider 0.5-2x (both remembered per site), and 'about N min to listen at 1.2x' updating with the slider (and 'left' while playing), ~160 wpm at 1x; reads prose block by block, marking the block read. Checked in the browser pane at localhost:8131/031/: the bar shows; report 31 counts 2,112 words, 13 min at 1x, 9 min at 1.5x; the pane has no voices, so speaking itself is untested here. WAITING ON MATTHEW: try it on a device with voices (any draft at localhost:8131, or after publishing), and the word to republish every report with it."
   },
   {
    "id": 574,
