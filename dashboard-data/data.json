@@ -7103,13 +7103,16 @@
    "added": "2026-10-23T11:45-06:00",
    "opened": "2026-10-23T11:45-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel"
    ],
    "source": "Matthew, 2026-10-23 11:45, in chat, after ^ticket(566) found a sum declared in module Common has its constructors in scope only inside Common: \"mint and enqueue -- let's open a PR against the modules PR (whatever is appropriate) for exporting a sum type and using it, like we want to do with Common module types in our game scripts. Please use those as examples in the PR description.\"",
    "text": "<b>Export a module's sum types.</b> Today (js-library-embed's Hazel) <code>module Common = { type Dir = + N + E + S + W; ... }</code> keeps <code>N</code> in scope only inside Common: another module's <code>N</code> is \"Constructor is not defined\", <code>Common.N</code> \"Label not found\", and <code>Common.Dir</code> in a type parses only through the slow parser. Make a module's type definitions and their constructors usable from outside it (qualified, <code>Common.N</code> and <code>Common.Dir</code>, and/or as the module's members are), with tests, on the appropriate base (the modules PR, whichever carries module statics now); the PR description uses Dress Up's Common types as the examples (Dir, Side, Wiring, Out, Place, Room, Exit, and a room's rule using them).",
-   "progress": "11:45: minted and enqueued."
+   "progress": "11:45: minted and enqueued. 11:56: FOUND (read-only search of dev, modules-ii/3-abstract-types #2495 111775a60c, modules-ii/9-stdlib-modules b02ce6dab5): NO ref exports constructors. Constructors enter the ctx only in Statics' TyAlias arm (Ctx.add_ctrs; dev :2580), and a module body is lowered to nested Let/TyAlias, so N is in scope only inside. dev: the module value is a labeled tuple of its let members (ModuleHelpers.value_exports drops ModType); ModuleExp's Let arm (Statics :2124) also injects 'Common' as a TYPE alias to a product of its type members (collect_type_exports), so Common.Dir resolves (ProdProjection) but Common.N is LabelNotFound (Dot is tuple projection). Modules II part 3+: a module has a Sig type (Sig.member = Val | TypeManifest | TypeAbstract, no constructor kind); Common.Dir via Typ.path_sig + sig_project_type_member; Dot on a Sig is values only (ModuleMemberNotFound); dynamics modules are real values, ModType items discarded. PARSER: 'fun d : Common.Dir ->' fails in menhir because funAscElem's ascTyp has no DOT production (all refs); 'fun (d : Common.Dir) ->' parses. Two ways: (a) on dev (and so soon in #2711/#2719, the game's library): at ModuleExp's injection, add the module's sum constructors to the body's ctx (unqualified, ~10 lines + tests), or (b) on #2495: a constructor member kind in Sig, Common.N in Dot (statics + dynamics) and patterns: larger, Alexander's stack. Matthew's call which.",
+   "waiting": "574: export a module's constructors on dev (small; reaches the game's library soon; unqualified N after the module) or on Modules II #2495 (qualified Common.N; larger; Alexander's stack)?"
   }
  ],
  "next_ticket": 575,
