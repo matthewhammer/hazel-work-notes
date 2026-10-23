@@ -5221,7 +5221,9 @@
    "added": "2026-10-22T14:24-06:00",
    "opened": "2026-10-22T14:24-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel",
     "fumola"
@@ -5229,7 +5231,7 @@
    "source": "Matthew, 2026-10-22 14:24, in chat, on ^report(27)'s Figure 1: \"seems to say that Hazel and Fumola are less than 3x apart in this situation. How would you attribute the difference in performance? Is it Wasm vs JS -- or more than that? Both use a small-step evaluation system, for a language with purely-functional, higher order data. Let's draft a report WIP --- looking more into the contrast and how it shows up with actual analysis of each system, while running the same programs.\"",
    "url": "https://matthewhammer.org/hazel/reports/029/",
    "text": "<b>Attribute the Hazel/Fumola gap.</b> For the same programs (^report(27)'s World rule: passed, held, neighbours; plus small kernels), split each system's time into steps taken, cost per step and the call boundary; step counts by kind (Hazel's trial/r25-stats, Fumola's counts), profiles of each, and, where native builds exist, native against wasm and js, to separate the compilation target from the evaluator's design.",
-   "progress": "14:24: minted and started. 14:43: kernels (count, fib, list sum, map, a held list) in both on the laptop: Fumola 2.4-10x faster on loops and calls; Hazel QUADRATIC on list loops (sumbuild 3,000: 4.6 s vs 25 ms) and O(size) per reference to a held value (n+1 evaluator passes, deep). Step counts: Hazel takes ~half Fumola's steps, each ~15x dearer. Profiles: a Hazel step is mostly GC + the evaluator's stages + trampolines; the rule itself ~7%. Fumola finding: an answer over ~1,000 deep crashes the wasm instance. Native vs wasm vs Hazel on one GitHub runner: Adapton/fumola branch bench/545-contrast, run 39850338974. 14:51: traced the held-value cost to the library's finish (substitution) -- in-Hazel references are O(1). Draft ^report(29) at localhost:8131/029/ (on the dashboard). 15:10: Matthew: \"Publish report 29 as work in progress.\" Published: https://matthewhammer.org/hazel/reports/029/ (homepage 6284aa1, series card, reports repo 0d8b811). The fixes it names are on trial branches (547, 548, 551). 15:56: Matthew: \"Republish report 29 with the fixes section and the deep-answer correction.\" Republished (homepage e9fd165, reports repo 4353b72).",
+   "progress": "14:24: minted and started. 14:43: kernels (count, fib, list sum, map, a held list) in both on the laptop: Fumola 2.4-10x faster on loops and calls; Hazel QUADRATIC on list loops (sumbuild 3,000: 4.6 s vs 25 ms) and O(size) per reference to a held value (n+1 evaluator passes, deep). Step counts: Hazel takes ~half Fumola's steps, each ~15x dearer. Profiles: a Hazel step is mostly GC + the evaluator's stages + trampolines; the rule itself ~7%. Fumola finding: an answer over ~1,000 deep crashes the wasm instance. Native vs wasm vs Hazel on one GitHub runner: Adapton/fumola branch bench/545-contrast, run 39850338974. 14:51: traced the held-value cost to the library's finish (substitution) -- in-Hazel references are O(1). Draft ^report(29) at localhost:8131/029/ (on the dashboard). 15:10: Matthew: \"Publish report 29 as work in progress.\" Published: https://matthewhammer.org/hazel/reports/029/ (homepage 6284aa1, series card, reports repo 0d8b811). The fixes it names are on trial branches (547, 548, 551). 15:56: Matthew: \"Republish report 29 with the fixes section and the deep-answer correction.\" Republished (homepage e9fd165, reports repo 4353b72). 00:16: WAITING ON MATTHEW: republishing ^report(29) with its second fixes (559's fast path, 553's map), drafted locally at localhost:8131/029/#fixes-2.",
    "log": [
     {
      "at": "2026-10-22T14:23-06:00",
@@ -5475,14 +5477,16 @@
    "added": "2026-10-22T14:52-06:00",
    "opened": "2026-10-22T14:52-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel"
    ],
    "source": "Found under ^ticket(545), 2026-10-22 14:52; Matthew had asked: \"mint and enqueue tickets if you think of any you want\" (for the library work, ^report(25)). Matthew, 2026-10-22 14:54, in chat, after ^report(29)'s finding: \"mint and enqueue -- your best ideas for what to try next to fix this asymptotic issue with the JS library\" (then AFK).",
    "url": "https://matthewhammer.org/hazel/reports/029/#re-walk",
    "text": "<b>Hand JS the closure, not its finished form.</b> Evaluator.evaluate finishes every result with Substitution.in_exp(env) |> Exp.replace_all_ids, so a function the library returns has its environment written into its body: a held list becomes a literal, re-evaluated element by element at every call (n+8 passes from JS, 27 from inside Hazel, at n = 100 to 3,000; ^report(29) #re-walk). Return the evaluator's raw final value for functions (to_js's Fun/Closure case), stacked on ^ticket(539)'s argument binding, on a trial branch; measure h_ref and ^report(27)'s held World rule again; they should go flat. Unblocks ^ticket(540)'s tree map. <b>How, in order of preference:</b> (a) a library-only evaluate that skips <code>finish</code> for values handed back: <code>Evaluator.evaluate</code> gains <code>~finish=false</code> (or an <code>evaluate_raw</code>), and <code>to_js</code> works on the raw final value: data converted as now, a <code>Fun</code>/<code>Closure</code>/<code>FixF</code> kept as the evaluator left it, environment and all, for <code>function_of</code> to apply; (b) if raw values carry forms <code>to_js</code> cannot read, finish only the data and keep closures closed (a <code>finish</code> that stops at <code>Closure</code>). Also drops <code>Exp.replace_all_ids</code>' walk over every returned value. Measure: ^report(29)'s h_ref and variants (passes a call flat in n), ^report(27)'s held World rule, and the library's tests.",
-   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540). 15:02: trial/r25-closures (on trial/r25-stats) pushed: Evaluator.evaluate_unfinished; the library's run AND function_of use it; to_js reads a closure over data as finish would; tests: curried function, function made by a call, passes equal for held lists of 10 and 400 (from run and from a call). d1e355120a + fdaaabfbf3; Deploy 39853475405 and CI 39853475487 running. Measure next: kernels h_*, variants, tree540 (540's tree), handles551. 15:28: MEASURED (laptop, counter build both sides, alternating): from JS a call referring to a held list takes 9 passes at n = 100, 1,000, 3,000 (was n+8); h_ref 3,000: 4.27 -> 0.055 ms (77x). CI on trial/r25-closures: pending. 15:30: CI GREEN on trial/r25-closures (run 39853475487: Full tests and Fast checks pass, the new tests included).",
+   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540). 15:02: trial/r25-closures (on trial/r25-stats) pushed: Evaluator.evaluate_unfinished; the library's run AND function_of use it; to_js reads a closure over data as finish would; tests: curried function, function made by a call, passes equal for held lists of 10 and 400 (from run and from a call). d1e355120a + fdaaabfbf3; Deploy 39853475405 and CI 39853475487 running. Measure next: kernels h_*, variants, tree540 (540's tree), handles551. 15:28: MEASURED (laptop, counter build both sides, alternating): from JS a call referring to a held list takes 9 passes at n = 100, 1,000, 3,000 (was n+8); h_ref 3,000: 4.27 -> 0.055 ms (77x). CI on trial/r25-closures: pending. 15:30: CI GREEN on trial/r25-closures (run 39853475487: Full tests and Fast checks pass, the new tests included). 00:16: trial done and measured, CI green; WAITING ON MATTHEW: its PR is ^ticket(558)'s (lib-closures), which waits on his lib-floor call; ^ticket(552)'s test guards it.",
    "log": [
     {
      "at": "2026-10-22T14:52-06:00",
@@ -5518,14 +5522,16 @@
    "added": "2026-10-22T14:52-06:00",
    "opened": "2026-10-22T14:52-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel"
    ],
    "source": "Found under ^ticket(545), 2026-10-22 14:52; Matthew had asked: \"mint and enqueue tickets if you think of any you want\" (for the library work, ^report(25)).",
    "url": "https://matthewhammer.org/hazel/reports/029/#re-type",
    "text": "<b>Ascriptions.re's list case wraps every element in a fresh Asc with a fresh id, then throws them all away when nothing changed.</b> An accumulator loop meets [Int] every iteration, so building and summing 3,000 numbers costs 4.6 s (25 ms in Fumola); 60% of the time is inside the push, ids included (^report(29) #re-type). Check before wrapping (an Int that is an Int needs nothing) and mint ids only for parts that change; measure sumbuild and mapinc again on a trial branch: they should become linear.",
-   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540). 15:04: trial/r25-asc (on trial/r25-stats) pushed, 0dba9d43d8: (1) the recursive list push stops at the first tail has_type knows; (2) noted stops remembering at a known tail; (3) Transition's Asc rule does one recursive push and an identity check instead of a throwaway stepwise push (which wrapped every element with a fresh id) first. Tests: accumulator lists of ints and of pairs keep their values. Deploy 39854230835 + CI running; measure sumbuild/mapinc at 100/1,000/3,000: should be linear. 15:21: MEASURED (laptop, counter build both sides, alternating A B A B): sumbuild 3,000 6,135 -> 693 ms (8.9x), mapinc 3,000 6,191 -> 1,133 ms (5.5x); both now linear (3x the list, 3x the time); count unchanged. CI on trial/r25-asc pending (run 39854230841). 15:30: CI on trial/r25-asc: Fast checks pass; Full tests running (run 39854230841). 19:55: CI GREEN on trial/r25-asc (run 39854230841: Fast checks and Full tests pass). Also stacked with 547 and 551 on the timing build trial/r25-553 for ^ticket(553)'s map set-up."
+   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540). 15:04: trial/r25-asc (on trial/r25-stats) pushed, 0dba9d43d8: (1) the recursive list push stops at the first tail has_type knows; (2) noted stops remembering at a known tail; (3) Transition's Asc rule does one recursive push and an identity check instead of a throwaway stepwise push (which wrapped every element with a fresh id) first. Tests: accumulator lists of ints and of pairs keep their values. Deploy 39854230835 + CI running; measure sumbuild/mapinc at 100/1,000/3,000: should be linear. 15:21: MEASURED (laptop, counter build both sides, alternating A B A B): sumbuild 3,000 6,135 -> 693 ms (8.9x), mapinc 3,000 6,191 -> 1,133 ms (5.5x); both now linear (3x the list, 3x the time); count unchanged. CI on trial/r25-asc pending (run 39854230841). 15:30: CI on trial/r25-asc: Fast checks pass; Full tests running (run 39854230841). 19:55: CI GREEN on trial/r25-asc (run 39854230841: Fast checks and Full tests pass). Also stacked with 547 and 551 on the timing build trial/r25-553 for ^ticket(553)'s map set-up. 00:16: trial done and measured, CI green; WAITING ON MATTHEW: whether it becomes a PR, and on which base."
   },
   {
    "id": 549,
@@ -5533,14 +5539,16 @@
    "added": "2026-10-22T14:52-06:00",
    "opened": "2026-10-22T14:52-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "fumola"
    ],
    "source": "Found under ^ticket(545), 2026-10-22 14:52; Matthew had asked: \"mint and enqueue tickets if you think of any you want\" (for the library work, ^report(25)). Then Matthew, 2026-10-22 16:11: \"Mint a ticket for this step: Hazel reports, ^report(29), What next, step 4: 'Fumola's deep answers'. http://matthewhammer.org/hazel/reports/029/#step-4\" (this ticket is that step: attached here rather than minted twice).",
    "url": "http://matthewhammer.org/hazel/reports/029/#step-4",
    "text": "<b>A deep answer overflows wasm's stack.</b> fumola_eval_top of build(2000, null) (a list of option pairs) traps with \"memory access out of bounds\" while turning the answer into JSON, which recurses; holding the same list in the instance is fine. Make the answer's serialization iterative (or depth-limited with a clear error), with a test at depth 100,000. For Adapton/fumola; file the issue after Matthew's OK (^report(29) #fumola-step).",
-   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540). 15:26: Matthew asked whether it is the pretty printer. MEASURED (fresh wasm process per probe, 029/drivers/deep_answer.mjs): not for data. An option list answer goes out through translate/nested (structural JSON, mutually recursive per nested value) and crashes at 700 elements (fine at 400); nested arrays at 1,500 (fine at 1,000): about 800-1,500 nested values either way. The printer (format_one_line, for values with no structural translation, e.g. a function holding the list) ALSO overflows, sooner: 400 (fine at 200). Held with answer 0: fine at 10,000. A trap leaves the instance unusable. Fix must cover both paths (or a depth cap with a clear error). 16:11: Matthew asked for a ticket for ^report(29)'s step 4: this is it; moved up the queue, after ^ticket(558). 19:13: branch deep-answers in ~/fumola-549 (Adapton/fumola, off main cb2bcf5), pushed, no PR (filing waits on Matthew). Reproduced natively: a test at depth 100,000 overflows the stack for an option list, nested arrays and a function holding the list. FOUND a third path: the instance keeps its last answer, and the NEXT program dropped it, by recursion (gdb: 61,000 nested Rc<Value> drops from clear_cont): so a deep answer trapped the instance even once written. ae3b915: Value has a Drop that takes out what it alone holds (option, variant, index, inline array or tuple) and drops it in a loop; records and closures' environments still drop as before (taking a map out would allocate every drop); five matches that moved a field out of a cloned value now match by reference. 08e7e25: the answer's JSON written as text with its own stack (nested_json), byte for byte as before (30 of 32 sample answers identical; 2 functions differ only in their environment's print order, which varies run to run anyway); the printer only for values at most 100 deep (deeper_than), else a short note. All 5 deep tests pass (the instance answers 1 + 1 after each); check-no-panics passes; rustfmt adds nothing beyond main's own. Fumola's CI runs only on main and PRs, so running its steps here: cargo test, fumola-test.sh, fumola-scripts.sh. Then: the drop's cost, release builds of main and the branch. 19:26: CRASH 46 at 19:16, about 2.5 min into that local cargo test (crash log 46274a0e); its build files from the crash window were 0 bytes, deleted; the branch was already pushed, nothing else lost. So CI's steps and the drop's cost now run on GitHub, not here: branch bench/549-deep (ea2b91f = deep-answers + a measuring-only workflow, .github/workflows/deep549.yml), run 39883896924. Job tests: rust.yml's steps (site assembly, no-panics, build, cargo test, fumola-test.sh, fumola-scripts.sh). Job cost: main cb2bcf5 and the branch built on one runner, do_big_mergesort from each, 4 rounds alternating, step counts must agree, main's own spread as the noise floor (bench/549/summary.py, in the run's summary). Next: read the run; then the issue + PR on Adapton/fumola wait on Matthew's OK. 19:34: run 39883896924 GREEN, both jobs. tests: rust.yml's steps on the branch all pass (site assembly, no-panics, build, cargo test, fumola-test.sh, fumola-scripts.sh). cost (one runner, AMD EPYC 9V74; main cb2bcf5 against deep-answers 08e7e25; do_big_mergesort from each, 4 rounds alternating; best round): step counts identical at every size (329,125 to 2,462,583). do small, branch/main: 0.984 (size 8), 0.977 (16), 0.973 (23), 0.975 (44); main's own spread over its rounds 1.9%, 1.7%, 0.6%, 0.8%. do big: 0.995, 0.983, 0.988, 0.986 (spread 0.6-0.9%). So the drop costs nothing measurable; the branch reads 2-3% faster at sizes 16 to 44, above main's spread, and within it at size 8 (cause not isolated: the matches by reference save clones, a guess). WAITING ON MATTHEW: his OK to file the issue and open the PR on Adapton/fumola (deep-answers, 2 commits; bench/549-deep is measuring only, to delete after). 19:35: Matthew: \"Yes: file the 549 issue and open the deep-answers PR on Adapton/fumola.\" Filing now. 19:37: FILED Adapton/fumola#149 (a deep answer traps the wasm instance: its JSON, the printer and the drop all recurse) and opened PR Adapton/fumola#150 (deep answers written as JSON and dropped in a loop; head deep-answers, base main cb2bcf5; closes #149; the cost table in its description). bench/549-deep stays (the PR cites it). Next: #150's CI, then Matthew's review and merge.",
+   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540). 15:26: Matthew asked whether it is the pretty printer. MEASURED (fresh wasm process per probe, 029/drivers/deep_answer.mjs): not for data. An option list answer goes out through translate/nested (structural JSON, mutually recursive per nested value) and crashes at 700 elements (fine at 400); nested arrays at 1,500 (fine at 1,000): about 800-1,500 nested values either way. The printer (format_one_line, for values with no structural translation, e.g. a function holding the list) ALSO overflows, sooner: 400 (fine at 200). Held with answer 0: fine at 10,000. A trap leaves the instance unusable. Fix must cover both paths (or a depth cap with a clear error). 16:11: Matthew asked for a ticket for ^report(29)'s step 4: this is it; moved up the queue, after ^ticket(558). 19:13: branch deep-answers in ~/fumola-549 (Adapton/fumola, off main cb2bcf5), pushed, no PR (filing waits on Matthew). Reproduced natively: a test at depth 100,000 overflows the stack for an option list, nested arrays and a function holding the list. FOUND a third path: the instance keeps its last answer, and the NEXT program dropped it, by recursion (gdb: 61,000 nested Rc<Value> drops from clear_cont): so a deep answer trapped the instance even once written. ae3b915: Value has a Drop that takes out what it alone holds (option, variant, index, inline array or tuple) and drops it in a loop; records and closures' environments still drop as before (taking a map out would allocate every drop); five matches that moved a field out of a cloned value now match by reference. 08e7e25: the answer's JSON written as text with its own stack (nested_json), byte for byte as before (30 of 32 sample answers identical; 2 functions differ only in their environment's print order, which varies run to run anyway); the printer only for values at most 100 deep (deeper_than), else a short note. All 5 deep tests pass (the instance answers 1 + 1 after each); check-no-panics passes; rustfmt adds nothing beyond main's own. Fumola's CI runs only on main and PRs, so running its steps here: cargo test, fumola-test.sh, fumola-scripts.sh. Then: the drop's cost, release builds of main and the branch. 19:26: CRASH 46 at 19:16, about 2.5 min into that local cargo test (crash log 46274a0e); its build files from the crash window were 0 bytes, deleted; the branch was already pushed, nothing else lost. So CI's steps and the drop's cost now run on GitHub, not here: branch bench/549-deep (ea2b91f = deep-answers + a measuring-only workflow, .github/workflows/deep549.yml), run 39883896924. Job tests: rust.yml's steps (site assembly, no-panics, build, cargo test, fumola-test.sh, fumola-scripts.sh). Job cost: main cb2bcf5 and the branch built on one runner, do_big_mergesort from each, 4 rounds alternating, step counts must agree, main's own spread as the noise floor (bench/549/summary.py, in the run's summary). Next: read the run; then the issue + PR on Adapton/fumola wait on Matthew's OK. 19:34: run 39883896924 GREEN, both jobs. tests: rust.yml's steps on the branch all pass (site assembly, no-panics, build, cargo test, fumola-test.sh, fumola-scripts.sh). cost (one runner, AMD EPYC 9V74; main cb2bcf5 against deep-answers 08e7e25; do_big_mergesort from each, 4 rounds alternating; best round): step counts identical at every size (329,125 to 2,462,583). do small, branch/main: 0.984 (size 8), 0.977 (16), 0.973 (23), 0.975 (44); main's own spread over its rounds 1.9%, 1.7%, 0.6%, 0.8%. do big: 0.995, 0.983, 0.988, 0.986 (spread 0.6-0.9%). So the drop costs nothing measurable; the branch reads 2-3% faster at sizes 16 to 44, above main's spread, and within it at size 8 (cause not isolated: the matches by reference save clones, a guess). WAITING ON MATTHEW: his OK to file the issue and open the PR on Adapton/fumola (deep-answers, 2 commits; bench/549-deep is measuring only, to delete after). 19:35: Matthew: \"Yes: file the 549 issue and open the deep-answers PR on Adapton/fumola.\" Filing now. 19:37: FILED Adapton/fumola#149 (a deep answer traps the wasm instance: its JSON, the printer and the drop all recurse) and opened PR Adapton/fumola#150 (deep answers written as JSON and dropped in a loop; head deep-answers, base main cb2bcf5; closes #149; the cost table in its description). bench/549-deep stays (the PR cites it). Next: #150's CI, then Matthew's review and merge. 00:16: WAITING ON MATTHEW: review and merge of Adapton/fumola#150 (Auto-fix watches its CI).",
    "log": [
     {
      "at": "2026-10-22T16:09-06:00",
@@ -5664,14 +5672,16 @@
    "added": "2026-10-22T14:54-06:00",
    "opened": "2026-10-22T14:54-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel"
    ],
    "source": "Matthew, 2026-10-22 14:54, in chat, after ^report(29)'s finding: \"mint and enqueue -- your best ideas for what to try next to fix this asymptotic issue with the JS library\" (then AFK).",
    "url": "https://matthewhammer.org/hazel/reports/027/#fig-sizes",
    "text": "<b>Make passing the world O(1) a call, not just holding it.</b> ^report(27)'s passed map costs Hazel 80 ms a call at 64x64 just to convert from JS (of_js), every call, though the map rarely changes. Two layers: (1) <code>Hazel.value(x)</code> converts once and returns an opaque handle; a call given a handle binds the stored Hazel value in its environment by reference (as ^ticket(539) binds arguments), no conversion; (2) an identity cache in of_js (a WeakMap from a frozen JS object or array to its Hazel value), so the game, by freezing its world when it changes, gets the same without new API. Measure: ^report(27)'s passed World rule, 3x3 to 64x64, should drop to the walk alone; with ^ticket(540)'s tree, to O(log N).",
-   "progress": "14:54: minted; enqueued after ^ticket(547). 15:02: trial/r25-handles (stacked on trial/r25-closures) pushed, 0220562cee: Hazel.value(x) gives {__hazelValue}; of_js returns the carried value as is. The frozen-object cache (layer 2) NOT built: Object.freeze is shallow, so a frozen world with a mutable inner array would go stale silently; explicit handles first. Test: a handle in a call, in an argument tuple, twice. Deploy 39853787248 + CI running; driver 029/drivers/handles551.mjs ready. 15:28: MEASURED: ignore-rule boundary at 64x64: 48.9 ms a call as JS -> 0.025 ms with a handle (any size); Hazel.value once: 47 ms at 64x64; the passed rule still walks (409 -> 311 ms). CI on trial/r25-handles: pending. 15:30: CI GREEN on trial/r25-handles (run 39853787376: Full tests and Fast checks pass).",
+   "progress": "14:54: minted; enqueued after ^ticket(547). 15:02: trial/r25-handles (stacked on trial/r25-closures) pushed, 0220562cee: Hazel.value(x) gives {__hazelValue}; of_js returns the carried value as is. The frozen-object cache (layer 2) NOT built: Object.freeze is shallow, so a frozen world with a mutable inner array would go stale silently; explicit handles first. Test: a handle in a call, in an argument tuple, twice. Deploy 39853787248 + CI running; driver 029/drivers/handles551.mjs ready. 15:28: MEASURED: ignore-rule boundary at 64x64: 48.9 ms a call as JS -> 0.025 ms with a handle (any size); Hazel.value once: 47 ms at 64x64; the passed rule still walks (409 -> 311 ms). CI on trial/r25-handles: pending. 15:30: CI GREEN on trial/r25-handles (run 39853787376: Full tests and Fast checks pass). 00:16: trial done and measured, CI green; WAITING ON MATTHEW: whether it becomes a PR (it is stacked on 547's trial).",
    "log": [
     {
      "at": "2026-10-22T14:53-06:00",
@@ -6399,39 +6409,22 @@
     }
    ],
    "waiting": "review ^du_report(18) (draft) and the re-org branch; discuss"
-  },
+  }
+ ],
+ "next_ticket": 566,
+ "current_ticket": null,
+ "current_note": "00:13: Matthew AFK till ~6am; 565 done (pictures run-2026-10-23 landed); 559, 553, 552 measured and waiting on him; drafts at localhost:8131/029/#fixes-2",
+ "closed_tickets": [
   {
    "id": 565,
    "area": "dress up, the picture archive: bring the dress-up-pictures repo up to date with today's versions (a long run, after midnight)",
    "added": "2026-10-22T17:15-06:00",
-   "opened": "2026-10-22T17:15-06:00",
-   "status": "open",
-   "tags": [
-    "long run",
-    "after midnight (2026-10-23)"
-   ],
-   "chips": [
-    "dress up"
-   ],
-   "source": "Matthew, 2026-10-22 17:15, in chat: \"mint and enqueue for long run tonight, after midnight -- update dress-up-pictures repo.\"",
-   "url": "https://github.com/matthewhammer/dress-up-pictures",
-   "text": "<b>Update the picture archive.</b> A picture run for the dress-up-pictures repo (matthewhammer/dress-up-pictures; ~/dress-up-pictures) over what has come out since its last run (the ninja, moth and giraffe of 0.0.410, and 0.0.411 if released), done as the archive runs are: on GitHub's computers, not the laptop (no headless browser here), one folder per run, each run a git tag. After midnight, as a long run.",
-   "progress": "17:15: minted; a long run for after midnight, at the end of the queue's long runs. 20:44: branch archive-565 READY, not pushed (bd0f02e off main 74e3993 = 0.0.411; worktree ~/kcg-565; like archive-527: only dress-up-archive.yml + tools/clip_audit.mjs, checks and test/speed workflows removed). A timer pushes it at 00:05 (after midnight, as tagged); then land the pictures artifact with ~/dress-up-pictures/tools/add_run.sh (ARCHIVE_TOKEN is not set). 00:05: pushed archive-565 (main still 74e3993); run 39909418532 started (~50 min). Laptop load 0.04.",
-   "log": [
-    {
-     "at": "2026-10-22T17:15-06:00",
-     "from": "matthew",
-     "chars": 89,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  }
- ],
- "next_ticket": 566,
- "current_ticket": 565,
- "current_note": "00:05: the picture archive run on GitHub (archive-565, run 39909418532); land it with add_run.sh when done",
- "closed_tickets": [
+   "text": "Update the picture archive.",
+   "source": "Matthew, 2026-10-22 17:15, in chat: \"mint and enqueue for long run tonight, after midnight -- update dress-up-pictures…",
+   "status": "done",
+   "closed": "2026-10-23",
+   "outcome": "The picture archive brought up to date: run-2026-10-23 (0.0.411), 864 drawings, 26 new, 0 page errors, landed in dress-up-pictures f9e90d2 from GitHub run 39909418532."
+  },
   {
    "id": 563,
    "area": "dress up, the costume controls for 0, 1 or 2 costumes at once (with an eye to 2+), a mock-up",
@@ -11378,7 +11371,6 @@
   }
  ],
  "queue": [
-  565,
   553,
   559,
   549,
