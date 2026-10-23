@@ -130,6 +130,10 @@
     [
      "DRAFT (not published): ^report(29)'s second fixes, 559's fast path and 553's map",
      "http://localhost:8131/029/#fixes-2"
+    ],
+    [
+     "DRAFT (not published): ^report(30), Game Scripts in Hazel, Two Days In",
+     "http://localhost:8131/030/"
     ]
    ]
   },
@@ -6476,19 +6480,21 @@
    "added": "2026-10-23T06:57-06:00",
    "opened": "2026-10-23T06:57-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "dress up",
     "hazel"
    ],
    "source": "Matthew, 2026-10-23 06:57, in chat: \"and mint and enqueue -- a report about the last 2 days -- with an idea of where we our with our goals of game scripts in hazel, for MUDU. i'm going AFK -- do your best.\"",
    "text": "<b>A report on the last two days</b> (since the end of the 10-21 meeting with Cyrus, ~11:00 Wednesday): the goal (Hazel as a game script system, MUDU first, as a general way to put Hazel into a JS/HTML app's behavior), what was built (the Scripting panel, the rules in Hazel, in Fumola), what was found (expressiveness: string_compare, Fumola's floats and deep answers; mostly performance: the call boundary, closures, list re-typing, handles, the fast path, the map), what is measured and where it stands against an FPS budget, what waits on whom, and the plan (the 3-way script boxes, equivalence tests, an overhead tool, speed standards). Draft first, published on Matthew's word.",
-   "progress": "06:57: minted and enqueued."
+   "progress": "06:57: minted and enqueued. 07:03: DRAFTED ^report(30) 'Game Scripts in Hazel, Two Days In' at localhost:8131/030/ (hazel-perf-report 030/, drivers/gen030.py + build.sh, data/ = 5 GitHub runs' rows + meta.json; not committed or pushed: a push publishes). Short answers: rules run in Hazel and Fumola beside the JS (PRs #1, #2, #4); Fumola fast enough now (HashMap 0.59 ms at 64x64), Hazel on trial branches (map 1.46 ms, same runners; 331 ms passed); the fixes 539/547/548/551/559/552; what is left is Hazel's per-pass cost (set-up 1.5-2.1 s vs Fumola 0.33); next the 3-way boxes 566-569. Status table of the goal; Figure 1 (a World move at 64x64 against a 60 fps frame), Figure 2 (what each fix bought); corrects the string_compare claim. WAITING ON MATTHEW: read, then publish on his word."
   }
  ],
  "next_ticket": 571,
- "current_ticket": 570,
- "current_note": "06:57: Matthew AFK (\"do your best\"): drafting the report on two days of game scripts in Hazel; then ticket 566, the 3-way script boxes",
+ "current_ticket": 566,
+ "current_note": "07:03: the 3-way script boxes: reading PRs #2 and #4 to combine them (report 30 drafted, waiting on Matthew)",
  "closed_tickets": [
   {
    "id": 565,
@@ -11446,8 +11452,8 @@
   }
  ],
  "queue": [
-  570,
   566,
+  570,
   567,
   568,
   569,
@@ -11514,7 +11520,7 @@
   508,
   534
  ],
- "current_since": "2026-10-23T06:57-06:00",
+ "current_since": "2026-10-23T07:03-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
