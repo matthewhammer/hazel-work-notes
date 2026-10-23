@@ -6958,6 +6958,25 @@
      "model": "claude-opus-5-5",
      "effort": "medium",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-23T11:28-06:00",
+     "from": "matthew",
+     "chars": 218,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-23T11:30-06:00",
+     "from": "claude",
+     "chars": 2077,
+     "asks": false,
+     "words": 363,
+     "read_s": 92,
+     "listen_s": 136,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
     }
    ]
   },
@@ -6974,9 +6993,23 @@
    "source": "Matthew, 2026-10-23 11:37, in chat, after asking whether reports could be read aloud in the Claude Desktop app's voice (they cannot: that voice is the app's own, not a tool): \"Yes: mint and enqueue a Listen button for the reports, using the browser's own voices.\"",
    "text": "<b>Listen to a report.</b> A 🔊 Listen button on every report in the series (added by a series tool, like add_theme.py, so every report gets it on its next build), read by the browser's own speech (speechSynthesis): play, pause, stop, the voice and speed chosen from what the reader's device has (remembered per site), reading the report's prose in order (headings, short answers, sections; skipping code, tables and the embedded data), the section being read highlighted and kept in view. Nothing sent anywhere, no account. Works on a Mac, an iPad, and in Chrome and Firefox on Linux (whatever voices they have). <b>And</b> (Matthew, 2026-10-23): a slider for the reading speed, and the report's reading time (the series line's \"about N minutes to read\") adjusted to it, as listening time at that speed.",
    "progress": "11:37: minted and enqueued, after the work in hand. 11:37: Matthew: \"and get a slider for reading speed (if possible), and adjusted reading time.\" Added to the ticket."
+  },
+  {
+   "id": 574,
+   "area": "hazel modules: a module exports its sum types' constructors, so other modules can use them (a PR against the modules PR), the game's Common types as the examples",
+   "added": "2026-10-23T11:45-06:00",
+   "opened": "2026-10-23T11:45-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-23 11:45, in chat, after ^ticket(566) found a sum declared in module Common has its constructors in scope only inside Common: \"mint and enqueue -- let's open a PR against the modules PR (whatever is appropriate) for exporting a sum type and using it, like we want to do with Common module types in our game scripts. Please use those as examples in the PR description.\"",
+   "text": "<b>Export a module's sum types.</b> Today (js-library-embed's Hazel) <code>module Common = { type Dir = + N + E + S + W; ... }</code> keeps <code>N</code> in scope only inside Common: another module's <code>N</code> is \"Constructor is not defined\", <code>Common.N</code> \"Label not found\", and <code>Common.Dir</code> in a type parses only through the slow parser. Make a module's type definitions and their constructors usable from outside it (qualified, <code>Common.N</code> and <code>Common.Dir</code>, and/or as the module's members are), with tests, on the appropriate base (the modules PR, whichever carries module statics now); the PR description uses Dress Up's Common types as the examples (Dir, Side, Wiring, Out, Place, Room, Exit, and a room's rule using them).",
+   "progress": "11:45: minted and enqueued."
   }
  ],
- "next_ticket": 574,
+ "next_ticket": 575,
  "current_ticket": 566,
  "current_note": "11:43: the rules in sums (Languages of Play) in both languages and Fumola's fixed build pinned: equivalence all ok locally; scripting checks on GitHub (diag-566b)",
  "closed_tickets": [
@@ -11940,6 +11973,7 @@
   572,
   571,
   573,
+  574,
   570,
   567,
   568,
@@ -12020,10 +12054,10 @@
   },
   "since": "2026-08-27",
   "replies": 5186,
-  "words": 1141690,
+  "words": 1141983,
   "read_hours_est": 80.0,
-  "listen_hours_est": 118.9,
-  "read_s_avg": 55,
+  "listen_hours_est": 119.0,
+  "read_s_avg": 56,
   "listen_s_avg": 83,
   "days": {
    "2026-08-27": {
@@ -12258,8 +12292,8 @@
    },
    "2026-10-23": {
     "replies": 22,
-    "words": 4474,
-    "chars": 26671
+    "words": 4767,
+    "chars": 28383
    }
   }
  },
