@@ -4794,7 +4794,7 @@
    "source": "Matthew, 2026-10-22 09:26, in chat: \"Let's use it to help me really review our JS library for Hazel, and how well it integrates when required or wanted.\" \"Let's push that library forward where needed.\" \"mint and enqueue tickets if you think of any you want.\"",
    "url": "https://matthewhammer.org/hazel/reports/025/",
    "text": "<b>Asymptotic analysis of each event handler in the game's Hazel rules</b> (kids-choice-games#2, ^ticket(531)), for a world (its JSON data) of size N. Matthew: \"Each one should be O(1) or at the worst, O(log N), for a world (json data file) of size N.\" Known: World's Way O(N) (O(1) given the neighbours only), Square's levers O(doors) (quadratic with annotations before #2681), Castle O(rooms); the call boundary O(N) for every handler today (^ticket(539)'s floor). For each: its cost now, a version within the bound, measured.",
-   "progress": "09:26: minted and enqueued (Hazel, before the Dress Up tickets). | 14:00: A balanced search tree for the World rule in Hazel (029/drivers/tree.hz: built once in O(N), keyed row*cols+col, held in a closure) gives the game's answers, but costs O(N) a call, not O(log N): 3.2, 8.1, 30.4 ms at 8x8, 16x16, 32x32 (best build). The same on the base and #2681 builds, so not the memo. VarLookup is O(1) (Transition.re). Hunting what walks a held value per call: a CPU profile with names next. | 14:06 FINDING: in Hazel, USING a value held in a closure costs O(its node count) on every call: let u = t in Done with a held tree of 32x32 cells is ~29 ms, a closure that ignores t ~0.02 ms; a held list of 1,024 ints ~1.3 ms (about 1-2 us a node either way). Not the ascription memo (no WeakMap traffic during the call; the same on base, #2681 and best builds), not VarLookup (fast_copy is shallow). A profile shows the evaluator stepping many nodes per call. Next: trial/r25-stats (Hazel.stepCounts(): steps by kind) to name the steps; then the fix in the evaluator. Until then no held structure (list or tree) can be O(log N) in Hazel. 14:51 (found under ^ticket(545)): the O(size) per use of a held value is the JS LIBRARY's, not the evaluator's. Evaluator.evaluate finishes results with Substitution.in_exp(env), so a function returned to JS has its captured values written into its body as literals, re-evaluated element by element at every call (n+8 passes). Called from inside Hazel the same function costs 27 passes at n = 100, 1,000, 3,000. Fix: hand JS the unfinished closure (stack with ^ticket(539)); then the tree map can pay off. ^report(29) draft, #re-walk. 15:06: per-handler analysis written (hazel-perf-report 540-work/handlers.md): Trap and Tree O(1); Square PullThing O(T*W) -> O(W log T) with things held in maps; World Way O(N) -> O(log N) with the tree held (needs ^ticket(547)); Castle O(R) on every event (index_of before the case) -> O(1) with indices held. Next: tree540 on 547's library (running when it lands). 15:28: WITH ^ticket(547) (trial/r25-closures): the World rule with the world held as a balanced tree is FLAT: 1.72, 1.22, 1.41, 1.19 ms a move at 8x8, 16x16, 32x32, 64x64 (before 547: 4.7 -> 129 ms); neighbours-only is 1.3-2.2 ms. O(log N) a move: the goal. Left: the tree's set-up is slow (5 s at 64x64, once a world: the list re-typing ^ticket(548) fixes; not measured together yet), and the other rooms (540-work/handlers.md). 20:35: World DONE under ^ticket(553): the game's own texts (hazel-map-553: Common.squares/square/set_square, World.with_squares) give ~1 ms a move at every size to 64x64 on 547+548+551 (runs 39886598556, 39887272978). SQUARE BLOCKER FOUND: Hazel has no string ordering: op_bin_string is only Concat, poly ops only == and !=, and no string_compare among the string builtins (capitalize, escaped, join, length, lowercase, match, replace, search, split, sub, trim, ...). So a map keyed by a thing's uid (String) cannot be a search tree; Square's O(W log T) needs either a string_compare builtin in Hazel or the game sending uids as Ints (it has them as strings now). A map by at (Int) is possible like Squares. Castle: R is a dozen at most; holding its two dungeon indices is easy but shows only the principle. Not started tonight; next step is Matthew's pick between the two for Square. 06:53: Matthew: \"add string_compare\". Branch string-compare off dev (hazelgrove/hazel, worktree ~/hazel-strcmp), pushed, no PR: BuiltinsBase string_fns gains string_compare((a, b)) -> -1/0/1 by bytes (= UTF-8 code point order; \"B\" before \"a\"); tests in Test_Builtins_String (cases, prefix, empty, emoji, antisymmetry over 8 words) and Test_Evaluator_Builtins (a call from source). @check + fmt pass; CI 39956608362. Cherry-picked onto trial/r25-553 (bd3894e2bc), pushed, so Square's map by uid can be built and timed there. Next: Square's held rule (things by at and by uid) in hazel-map-553's texts, checked against the shipped rule, timed on GitHub.",
+   "progress": "09:26: minted and enqueued (Hazel, before the Dress Up tickets). | 14:00: A balanced search tree for the World rule in Hazel (029/drivers/tree.hz: built once in O(N), keyed row*cols+col, held in a closure) gives the game's answers, but costs O(N) a call, not O(log N): 3.2, 8.1, 30.4 ms at 8x8, 16x16, 32x32 (best build). The same on the base and #2681 builds, so not the memo. VarLookup is O(1) (Transition.re). Hunting what walks a held value per call: a CPU profile with names next. | 14:06 FINDING: in Hazel, USING a value held in a closure costs O(its node count) on every call: let u = t in Done with a held tree of 32x32 cells is ~29 ms, a closure that ignores t ~0.02 ms; a held list of 1,024 ints ~1.3 ms (about 1-2 us a node either way). Not the ascription memo (no WeakMap traffic during the call; the same on base, #2681 and best builds), not VarLookup (fast_copy is shallow). A profile shows the evaluator stepping many nodes per call. Next: trial/r25-stats (Hazel.stepCounts(): steps by kind) to name the steps; then the fix in the evaluator. Until then no held structure (list or tree) can be O(log N) in Hazel. 14:51 (found under ^ticket(545)): the O(size) per use of a held value is the JS LIBRARY's, not the evaluator's. Evaluator.evaluate finishes results with Substitution.in_exp(env), so a function returned to JS has its captured values written into its body as literals, re-evaluated element by element at every call (n+8 passes). Called from inside Hazel the same function costs 27 passes at n = 100, 1,000, 3,000. Fix: hand JS the unfinished closure (stack with ^ticket(539)); then the tree map can pay off. ^report(29) draft, #re-walk. 15:06: per-handler analysis written (hazel-perf-report 540-work/handlers.md): Trap and Tree O(1); Square PullThing O(T*W) -> O(W log T) with things held in maps; World Way O(N) -> O(log N) with the tree held (needs ^ticket(547)); Castle O(R) on every event (index_of before the case) -> O(1) with indices held. Next: tree540 on 547's library (running when it lands). 15:28: WITH ^ticket(547) (trial/r25-closures): the World rule with the world held as a balanced tree is FLAT: 1.72, 1.22, 1.41, 1.19 ms a move at 8x8, 16x16, 32x32, 64x64 (before 547: 4.7 -> 129 ms); neighbours-only is 1.3-2.2 ms. O(log N) a move: the goal. Left: the tree's set-up is slow (5 s at 64x64, once a world: the list re-typing ^ticket(548) fixes; not measured together yet), and the other rooms (540-work/handlers.md). 20:35: World DONE under ^ticket(553): the game's own texts (hazel-map-553: Common.squares/square/set_square, World.with_squares) give ~1 ms a move at every size to 64x64 on 547+548+551 (runs 39886598556, 39887272978). SQUARE BLOCKER FOUND: Hazel has no string ordering: op_bin_string is only Concat, poly ops only == and !=, and no string_compare among the string builtins (capitalize, escaped, join, length, lowercase, match, replace, search, split, sub, trim, ...). So a map keyed by a thing's uid (String) cannot be a search tree; Square's O(W log T) needs either a string_compare builtin in Hazel or the game sending uids as Ints (it has them as strings now). A map by at (Int) is possible like Squares. Castle: R is a dozen at most; holding its two dungeon indices is easy but shows only the principle. Not started tonight; next step is Matthew's pick between the two for Square. 06:53: Matthew: \"add string_compare\". Branch string-compare off dev (hazelgrove/hazel, worktree ~/hazel-strcmp), pushed, no PR: BuiltinsBase string_fns gains string_compare((a, b)) -> -1/0/1 by bytes (= UTF-8 code point order; \"B\" before \"a\"); tests in Test_Builtins_String (cases, prefix, empty, emoji, antisymmetry over 8 words) and Test_Evaluator_Builtins (a call from source). @check + fmt pass; CI 39956608362. Cherry-picked onto trial/r25-553 (bd3894e2bc), pushed, so Square's map by uid can be built and timed there. Next: Square's held rule (things by at and by uid) in hazel-map-553's texts, checked against the shipped rule, timed on GitHub. 07:00: CI on string-compare: see run 39956608362 (recorded below).",
    "log": [
     {
      "at": "2026-10-22T09:16-06:00",
@@ -6409,11 +6409,86 @@
     }
    ],
    "waiting": "review ^du_report(18) (draft) and the re-org branch; discuss"
+  },
+  {
+   "id": 566,
+   "area": "dress up × hazel × fumola: the 3-way script boxes: each room's code box a JS / Hazel / Fumola chip, and a master chip",
+   "added": "2026-10-23T06:57-06:00",
+   "opened": "2026-10-23T06:57-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-23 06:57, in chat, after reviewing the two days since the 10-21 meeting with Cyrus (who encouraged \"Hazel as a game script system, starting with MUDU\", a general way to insert Hazel code into a JS/HTML app's behavior): \"Can have a MUDU with game scripts where each script box can be either: baked-in JS, or hazel code boxes, or fumola code boxes (3-way chip per code box). the initial code is equiv, and runs equiv, for the game -- we need unit tests to maintain this as we go. we default to builtin JS, but there's a \\\"master toggle\\\" chip in the game script panel, at the top, that switches the code boxes all to JS/Hazel/Fumola routines. we extend the advanced \\\"measurement\\\" tools with one specifically for measuring the script overhead, in each case ... We start to keep standards for certain speedruns that use different game script boxes, to ensure that each setting meets an FPS minimum for the squares it controls in the game.\" Then: \"in the 3-way script system -- let's have the jS versions show up as JS code, but read only. The hazel and fumola boxes are for editing.\" Then: \"yes, mint and enqueue.\"",
+   "text": "<b>One Scripting panel, three engines.</b> Combine PR #2 (hazel-logic-531, the rooms' rules in Hazel) and PR #4 (fumola-logic-542, in Fumola) into one branch where each room's code box (and 📚 Common) has a 3-way chip: <b>JS</b> shows the game's own handler, READ-ONLY, as the source of the function that actually runs (Function.prototype.toString, never a pasted copy that could drift); <b>Hazel</b> and <b>Fumola</b> are editors, starting from texts equivalent to the JS. A <b>master chip</b> at the top of the panel switches every box at once; JS is the default (the game as shipped). Replaces the page-wide ?logic= switch (kept for tests). Open choice: an edited box no longer matches the JS; the speed standards (D) measure only the shipped texts, and an edited box is play.",
+   "progress": "06:57: minted and enqueued."
+  },
+  {
+   "id": 567,
+   "area": "dress up × hazel × fumola: the 3-way equivalence tests: JS = Hazel = Fumola for every handler, in CI",
+   "added": "2026-10-23T06:57-06:00",
+   "opened": "2026-10-23T06:57-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-23 06:57, in chat, after reviewing the two days since the 10-21 meeting with Cyrus (who encouraged \"Hazel as a game script system, starting with MUDU\", a general way to insert Hazel code into a JS/HTML app's behavior): \"Can have a MUDU with game scripts where each script box can be either: baked-in JS, or hazel code boxes, or fumola code boxes (3-way chip per code box). the initial code is equiv, and runs equiv, for the game -- we need unit tests to maintain this as we go. we default to builtin JS, but there's a \\\"master toggle\\\" chip in the game script panel, at the top, that switches the code boxes all to JS/Hazel/Fumola routines. we extend the advanced \\\"measurement\\\" tools with one specifically for measuring the script overhead, in each case ... We start to keep standards for certain speedruns that use different game script boxes, to ensure that each setting meets an FPS minimum for the squares it controls in the game.\" Then: \"in the 3-way script system -- let's have the jS versions show up as JS code, but read only. The hazel and fumola boxes are for editing.\" Then: \"yes, mint and enqueue.\"",
+   "text": "<b>Keep the three equivalent as we go.</b> A check in the game's CI that, for every room's handler (TrapRoom, TreeRoom, Square, World, Castle) and every event it takes, the shipped Hazel text and the shipped Fumola text answer exactly as the JS does, on generated inputs (worlds of random kinds and ways, shuffled cells; levers, things, castles), as the node checks of ^ticket(531) (Hazel vs JS) and ^ticket(542) (Fumola vs Hazel, 20,653 cases) already do in pieces; any shipped text that drifts fails CI.",
+   "progress": "06:57: minted and enqueued."
+  },
+  {
+   "id": 568,
+   "area": "dress up: a 🔬 tool for the scripts' overhead: per handler and per engine, ms over JS",
+   "added": "2026-10-23T06:57-06:00",
+   "opened": "2026-10-23T06:57-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-23 06:57, in chat, after reviewing the two days since the 10-21 meeting with Cyrus (who encouraged \"Hazel as a game script system, starting with MUDU\", a general way to insert Hazel code into a JS/HTML app's behavior): \"Can have a MUDU with game scripts where each script box can be either: baked-in JS, or hazel code boxes, or fumola code boxes (3-way chip per code box). the initial code is equiv, and runs equiv, for the game -- we need unit tests to maintain this as we go. we default to builtin JS, but there's a \\\"master toggle\\\" chip in the game script panel, at the top, that switches the code boxes all to JS/Hazel/Fumola routines. we extend the advanced \\\"measurement\\\" tools with one specifically for measuring the script overhead, in each case ... We start to keep standards for certain speedruns that use different game script boxes, to ensure that each setting meets an FPS minimum for the squares it controls in the game.\" Then: \"in the 3-way script system -- let's have the jS versions show up as JS code, but read only. The hazel and fumola boxes are for editing.\" Then: \"yes, mint and enqueue.\"",
+   "text": "<b>Measure what a script costs.</b> An advanced measurement tool (with the 🔬 inspection tools) that shows, for each room's handler and each engine (Hazel, Fumola), the time a call takes against the JS handler doing the same: median and worst over the calls made while playing, the compile or set-up time, and the share of the frame; live in the game, and readable by the speed runs.",
+   "progress": "06:57: minted and enqueued."
+  },
+  {
+   "id": 569,
+   "area": "dress up: speed-run standards per script setting: a minimum FPS for the squares each setting controls",
+   "added": "2026-10-23T06:57-06:00",
+   "opened": "2026-10-23T06:57-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-23 06:57, in chat, after reviewing the two days since the 10-21 meeting with Cyrus (who encouraged \"Hazel as a game script system, starting with MUDU\", a general way to insert Hazel code into a JS/HTML app's behavior): \"Can have a MUDU with game scripts where each script box can be either: baked-in JS, or hazel code boxes, or fumola code boxes (3-way chip per code box). the initial code is equiv, and runs equiv, for the game -- we need unit tests to maintain this as we go. we default to builtin JS, but there's a \\\"master toggle\\\" chip in the game script panel, at the top, that switches the code boxes all to JS/Hazel/Fumola routines. we extend the advanced \\\"measurement\\\" tools with one specifically for measuring the script overhead, in each case ... We start to keep standards for certain speedruns that use different game script boxes, to ensure that each setting meets an FPS minimum for the squares it controls in the game.\" Then: \"in the 3-way script system -- let's have the jS versions show up as JS code, but read only. The hazel and fumola boxes are for editing.\" Then: \"yes, mint and enqueue.\"",
+   "text": "<b>Hold each engine to a frame rate.</b> Speed runs on GitHub for each master-chip setting (JS, Hazel, Fumola) that play the squares and rooms those scripts control (the trap room's levers, the tree rooms, placed levers, the world's ways, the castle's pits and ladders) and require a minimum FPS there, as the game's other gates do; the shipped texts only. Note: the game loads Hazel from the js-library-embed build, which has none of this week's performance fixes (547, 548, 551, 559), so Hazel's World rule will miss a strict minimum on big maps until ^ticket(558) lands; record that, do not lower the bar.",
+   "progress": "06:57: minted and enqueued."
+  },
+  {
+   "id": 570,
+   "area": "hazel reports: two days of game scripts in Hazel for MUDU, since the 10-21 meeting: where we are against the goal",
+   "added": "2026-10-23T06:57-06:00",
+   "opened": "2026-10-23T06:57-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-23 06:57, in chat: \"and mint and enqueue -- a report about the last 2 days -- with an idea of where we our with our goals of game scripts in hazel, for MUDU. i'm going AFK -- do your best.\"",
+   "text": "<b>A report on the last two days</b> (since the end of the 10-21 meeting with Cyrus, ~11:00 Wednesday): the goal (Hazel as a game script system, MUDU first, as a general way to put Hazel into a JS/HTML app's behavior), what was built (the Scripting panel, the rules in Hazel, in Fumola), what was found (expressiveness: string_compare, Fumola's floats and deep answers; mostly performance: the call boundary, closures, list re-typing, handles, the fast path, the map), what is measured and where it stands against an FPS budget, what waits on whom, and the plan (the 3-way script boxes, equivalence tests, an overhead tool, speed standards). Draft first, published on Matthew's word.",
+   "progress": "06:57: minted and enqueued."
   }
  ],
- "next_ticket": 566,
- "current_ticket": 540,
- "current_note": "06:53: string_compare added (Matthew's pick); branch string-compare off dev, CI running; also on trial/r25-553 for Square's map",
+ "next_ticket": 571,
+ "current_ticket": 570,
+ "current_note": "06:57: Matthew AFK (\"do your best\"): drafting the report on two days of game scripts in Hazel; then ticket 566, the 3-way script boxes",
  "closed_tickets": [
   {
    "id": 565,
@@ -11371,6 +11446,11 @@
   }
  ],
  "queue": [
+  570,
+  566,
+  567,
+  568,
+  569,
   540,
   553,
   559,
@@ -11434,7 +11514,7 @@
   508,
   534
  ],
- "current_since": "2026-10-23T06:53-06:00",
+ "current_since": "2026-10-23T06:57-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
