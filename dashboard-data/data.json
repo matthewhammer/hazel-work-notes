@@ -7747,6 +7747,43 @@
    "progress": "Pushed on script-boxes-566; checked in the browser pane.",
    "waiting": "Try it: http://localhost:8566/ → 🧩 Scripting → ? in ⚙️",
    "log": []
+  },
+  {
+   "id": 584,
+   "area": "Dress Up 🧩 Scripting: band behind the chosen definition; line wrap for big text and small screens",
+   "added": "2026-10-23T14:37-06:00",
+   "opened": "2026-10-23T14:37-06:00",
+   "status": "open",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "chips": [
+    "dress-up"
+   ],
+   "source": "Matthew, 2026-10-23, in chat: \"when we select something, have a subtle bg highlight for those lines on RHS\" and \"line wrap is not adjusting to big text and small screen.\"",
+   "text": "<b>Band and wrap.</b> Choosing a definition in the ⛶ outline bands its lines (to the next definition, less the comments leading into it). Read-only code (JS, types) is laid out to its box's width too; a comment after code moves to its own line, a long comment is shared out over several; a box is laid out again when it moves into or out of the ⛶ view.",
+   "progress": "Pushed ef3e725. Browser pane: wire bands lines 12-26; at size 18 the trap room's JS flows to 56 columns, comments on their own lines.",
+   "waiting": "Try it: http://localhost:8566/ → 🧩 Scripting → ⛶ max size, size 18",
+   "log": []
+  },
+  {
+   "id": 585,
+   "area": "Dress Up 🧩 Scripting: the outline's types (kind emoji, case counts) and Hazel functions' inferred types",
+   "added": "2026-10-23T14:37-06:00",
+   "opened": "2026-10-23T14:37-06:00",
+   "status": "open",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "chips": [
+    "dress-up",
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-23, in chat: \"nav LHS --- for each sum type being defined, it says the number of 'cases'\", \"right justified. each type has an emoji, right justified, that says: sum type, product type, etc\", \"Hazel functions give their type sigs in LHS\"",
+   "text": "<b>Types in the outline.</b> Each type: ➕ sum (with its case count), 📦 product, 📜 list, ➡️ function, 🔗 alias, right-justified. Each Hazel function: its type as Hazel infers it (one analysis with a () probe per function), sums folded back to their names, tuples bracketed.",
+   "progress": "Pushed ef3e725. Common: 9 sums with counts, Thing/Cell/Globals 📦; 21 functions typed, e.g. wire : (Wiring, [Float]) -> (Side, Side). Option prints as 'None + Some()' (Hazel's printing).",
+   "waiting": "Try it: http://localhost:8566/ → 🧩 Scripting → ⛶ max size",
+   "log": []
   }
  ],
  "next_ticket": 577,
