@@ -1,5 +1,66 @@
 [
  {
+  "id": 603,
+  "area": "dress up, the script boxes' line wrap: a nested if's then and else each take a line (the castle's way_out at wrap 77)",
+  "added": "2026-10-24T11:22-06:00",
+  "opened": "2026-10-24T11:22-06:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "dress-up"
+  ],
+  "source": "Matthew, 2026-10-24 ~11:20, in chat, with a screenshot of module Castle in Hazel tiles at wrap 77: \"I don't understand why the nested if then else uses so many lines, given 77 as the line limit, and plenty of space\"",
+  "text": "<b>A nested if keeps its own line when it fits.</b> Why it happens: scriptFlow (^ticket(579)'s pretty-printer, 25-scripting.js) breaks a too-long line at its best places at the lowest bracket depth, all of them at once. In <code>if a then t else if n == 1 then 0 else 1</code> there is no bracket around the inner if, so its then and else are at the same depth as the outer ones, and all four get a line. The fix: an if's then and else belong to that if, so a nested if's count one level deeper and the else piece keeps the inner if whole when it fits (<code>else if n == 1 then 0 else 1)</code>). Only spaces and line breaks change.",
+  "progress": "11:2x: prototyped in a scratch copy (not in the game): over all six shipped scripts at widths 30 to 120, no change to anything but spaces and breaks, no line longer than before, 24 fewer lines; at 77 exactly two places change, the Castle's Auto arm and the Trap's one (else if lift then LiftBoulder(i, k) else DropBoulder(i, k) in). At narrow widths the inner then/else go 2 deeper than the outer ones (a staircase), which is the nesting. Waiting on Matthew's go to make it a release. | 11:34: Matthew: \"Yes: put the nested-if wrap fix into the game and release it (ticket 603).\" RELEASED 0.0.425 (f305d2c, tag dress-up-0.0.425; main and tag confirmed by ls-remote; Pages run green; the live version.json, index.html (29 ?v=0.0.425), 25-scripting.js and VERSIONS.md checked over HTTPS). In the game on localhost:8133 (0.0.425), scriptFlow lays the Castle's Auto out as | Auto => / (let t = ... !(t == n) / then t / else if n == 1 then 0 else 1), and Fumola's as else if (n == 1) { 0 } else { 1 } };. A second rule beside the first: an else if too long for one line goes on as a chain, level with the outer then/else (without it, Fumola's braces staircased at narrow widths). Compared with main over the six Hazel and six Fumola scripts and every line of the game's JS, widths 30 to 120: only spaces and breaks change, no line longer, no real JS line laid out differently. tools/checks/flownest603.mjs (fails on main's code, passes on the new) runs in the speed run on the tag (in progress). ALSO, Matthew mid-release: \"i think we are missing some reports? http://localhost:8133/report-016/reports/\": that link is ~/kcg-report-016, a worktree frozen 10-21 (reports 001-010, 015, 016); and ~/kids-choice-games, which 8133's game and /du-reports/ serve, was 148 commits behind (0.0.411, no 017 or 018). Fast-forwarded to f305d2c: /du-reports/ lists 001-018, the game is 0.0.425. His uncommitted report-005 edits (10-22, 3 files; main had changed 005's index.html since) are kept whole in git stash@{0} there.",
+  "log": [
+   {
+    "at": "2026-10-24T11:11-06:00",
+    "from": "claude",
+    "chars": 2689,
+    "asks": true,
+    "words": 455,
+    "read_s": 115,
+    "listen_s": 171,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T11:14-06:00",
+    "from": "claude",
+    "chars": 737,
+    "asks": false,
+    "words": 107,
+    "read_s": 27,
+    "listen_s": 40,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-24",
+  "closed_at": "2026-10-24T11:34-06:00",
+  "outcome": "Released in 0.0.425: a nested if that fits stays whole on its else's line (else if n == 1 then 0 else 1); a long else if goes on as a flat chain; only spaces and breaks change; checked live and in the game",
+  "metrics": {
+   "open_minutes": 12,
+   "matthew_messages": 0,
+   "questions_to_matthew": 1,
+   "chars_exchanged": 3426,
+   "tokens_est": 856,
+   "sync_minutes_est": 3.0,
+   "replies": 2,
+   "claude_words": 562,
+   "read_minutes_est": 2.4,
+   "listen_minutes_est": 3.5,
+   "read_s_avg": 71,
+   "listen_s_avg": 106,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   },
+   "work_minutes": 16.0
+  }
+ },
+ {
   "id": 601,
   "area": "dress up, public pages: MUDU is no longer plain JS: a hybrid, Hazel experimented with as the scripting language for game logic (fix every description)",
   "added": "2026-10-24T09:33-06:00",

@@ -7657,52 +7657,22 @@
      "note": "from the transcripts"
     }
    ]
-  },
+  }
+ ],
+ "next_ticket": 604,
+ "current_ticket": null,
+ "current_note": "11:34: 603 released in 0.0.425; nothing in hand",
+ "closed_tickets": [
   {
    "id": 603,
    "area": "dress up, the script boxes' line wrap: a nested if's then and else each take a line (the castle's way_out at wrap 77)",
    "added": "2026-10-24T11:22-06:00",
-   "opened": "2026-10-24T11:22-06:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "dress-up"
-   ],
-   "source": "Matthew, 2026-10-24 ~11:20, in chat, with a screenshot of module Castle in Hazel tiles at wrap 77: \"I don't understand why the nested if then else uses so many lines, given 77 as the line limit, and plenty of space\"",
-   "text": "<b>A nested if keeps its own line when it fits.</b> Why it happens: scriptFlow (^ticket(579)'s pretty-printer, 25-scripting.js) breaks a too-long line at its best places at the lowest bracket depth, all of them at once. In <code>if a then t else if n == 1 then 0 else 1</code> there is no bracket around the inner if, so its then and else are at the same depth as the outer ones, and all four get a line. The fix: an if's then and else belong to that if, so a nested if's count one level deeper and the else piece keeps the inner if whole when it fits (<code>else if n == 1 then 0 else 1)</code>). Only spaces and line breaks change.",
-   "progress": "11:2x: prototyped in a scratch copy (not in the game): over all six shipped scripts at widths 30 to 120, no change to anything but spaces and breaks, no line longer than before, 24 fewer lines; at 77 exactly two places change, the Castle's Auto arm and the Trap's one (else if lift then LiftBoulder(i, k) else DropBoulder(i, k) in). At narrow widths the inner then/else go 2 deeper than the outer ones (a staircase), which is the nesting. Waiting on Matthew's go to make it a release.",
-   "log": [
-    {
-     "at": "2026-10-24T11:11-06:00",
-     "from": "claude",
-     "chars": 2689,
-     "asks": true,
-     "words": 455,
-     "read_s": 115,
-     "listen_s": 171,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-24T11:14-06:00",
-     "from": "claude",
-     "chars": 737,
-     "asks": false,
-     "words": 107,
-     "read_s": 27,
-     "listen_s": 40,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
-  }
- ],
- "next_ticket": 604,
- "current_ticket": 603,
- "current_note": "11:22: explained why a nested if takes four lines at wrap 77; a fix prototyped, waiting on Matthew's go",
- "closed_tickets": [
+   "text": "A nested if keeps its own line when it fits.",
+   "source": "Matthew, 2026-10-24 ~11:20, in chat, with a screenshot of module Castle in Hazel tiles at wrap 77: \"I don't understand…",
+   "status": "done",
+   "closed": "2026-10-24",
+   "outcome": "Released in 0.0.425: a nested if that fits stays whole on its else's line (else if n == 1 then 0 else 1); a long else if goes on as a flat chain; only spaces and breaks change;…"
+  },
   {
    "id": 601,
    "area": "dress up, public pages: MUDU is no longer plain JS: a hybrid, Hazel experimented with as the scripting language for game logic (fix every description)",
@@ -13039,7 +13009,6 @@
   }
  ],
  "queue": [
-  603,
   602,
   550,
   587,
@@ -13103,7 +13072,7 @@
   534,
   590
  ],
- "current_since": "2026-10-24T11:22-06:00",
+ "current_since": "2026-10-24T11:34-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
