@@ -175,6 +175,16 @@ def page(cards, count):
 
 entries = {e["path"]: e for e in json.load(open(os.path.join(NOTES, "work-notes", "gallery.json"), encoding="utf-8"))}
 paths = notes()
+# (Matthew, 2026-10-24: "these links don't connect to anything?", then a screenshot of a note showing only the nav) the notes of
+# 10-22 and 10-23 were written with <style> never closed, so a browser read the whole note as CSS and showed an empty page. A note
+# whose style, script or title is left open is refused here, before its card is published
+for p in paths:
+    low = open(os.path.join(NOTES, p), encoding="utf-8").read().lower()
+    for tag in ("style", "script", "title"):
+        for m in re.finditer(rf"<{tag}\b[^>]*>", low):
+            end = low.find(f"</{tag}", m.end())
+            if end < 0 or (tag != "script" and "<body" in low[m.end():end]):
+                sys.exit(f"{p}: <{tag}> on line {low.count(chr(10), 0, m.start()) + 1} is never closed, so the note would show as an empty page")
 missing = [p for p in paths if p not in entries]
 out = page("\n".join(card(p, entries.get(p, {})) for p in paths), len(paths))
 out = refcards.process(prlinks.process(out, CACHE))
