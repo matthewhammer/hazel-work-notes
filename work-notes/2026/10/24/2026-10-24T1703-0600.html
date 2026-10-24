@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 2026-10-24</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9em; } th, td { border-bottom: 1px solid var(--line); padding: 5px 6px; text-align: left; } td.n { font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-10-24, the app's hang, two script-wrap releases, and the speed runs mended</h1>
+<p class="sub">Claude, one session with Matthew from 10:48 MDT (after a reboot) to about 17:15, written before a compaction he asked for, and before a pass over every unmerged branch.</p>
+
+<h2>Where things are</h2>
+<ul>
+<li><b>Dress Up 0.0.427 is live</b> (kids-choice-games 51c6bbb, tag dress-up-0.0.427). Its speed run, <a href="https://github.com/matthewhammer/kids-choice-games/actions/runs/40140668796">40140668796</a>, was running at 17:00 (about 90 minutes): the first since 0.0.405 that should record <b>ok</b>. If it does, ^ticket(605) closes; if not, read every <code>checks/*.txt</code>.</li>
+<li><b>Servers</b> (the app runs five at most): 8000 the dashboard, 8131 the reports' sources (8 open tickets wait on its drafts), 8133 Dress Up at main (<code>~/kids-choice-games</code>, fast-forwarded to 0.0.427), 8311 #2597 and 8341 #2635 (GitHub's builds, from new launch entries). 8312 (^ticket(468)'s trial build) is stopped, Matthew's choice; its launch entry brings it back.</li>
+<li><b>Worktrees made today</b>: <code>~/kcg-603</code> (0.0.425), <code>~/kcg-604</code> (0.0.426, then branch <code>speed-runs-605</code>, released as 0.0.427), <code>~/kcg-onepage</code>: all merged to main. <code>diag-605</code> was pushed to GitHub only to run six checks, and can go. In <code>~/kids-choice-games</code>, Matthew's uncommitted report-005 edits of 10-22 are in <code>git stash@{0}</code>.</li>
+<li><b>hazel-work-notes</b> has an uncommitted change to <code>dashboard/update.py</code> (+41 lines) from another session, left alone.</li>
+</ul>
+
+<h2>Done</h2>
+<ul>
+<li><b>^ticket(602)</b>, the desktop app would not start: not the GPU cache. Its window hung at 10:14 and the main process lived on, so every launch handed over to it and quit ("Persistent cache error: 1" is printed by such a launch). Reinstalling did not stop it; the reboot did. Next time: <code>pkill -x claude-desktop</code>.</li>
+<li><b>^ticket(603)</b>, 0.0.425: a nested if keeps to one line in the script boxes' wrap. <b>^ticket(604)</b>, 0.0.426: the tiles' width measured (a character is 0.60 of the size, not the guessed 0.71), and a Hazel line cut after a let's <code>in</code> (a fun's <code>-&gt;</code>, an arm's <code>=&gt;</code>) before anything in its body.</li>
+<li><b>The dashboard's ports list</b> trimmed to the current work, every link tested, every label true (Matthew: "complete, and accurate ... at all times").</li>
+<li><b>Dress Up tickets</b>, on his answers: 322, 493, 473, 562, 402, 422 and 344 closed; 259 amended to wait for more script support; 564 to be redone on current main with a new report number.</li>
+<li><b>^ticket(605)</b>, the red speed runs: six failing checks diagnosed by five parallel agents and fixed (three in the game: the giraffe's jump frame, the tiles' 4000 px cap, the ninja gem's ✨ glimmer now off at first; three in the checks), proved on diag-605, released as 0.0.427; the controller audit now runs as its own job.</li>
+<li><b>^ticket(606)</b>: the story words on one page for M and N, a picture for each, <a href="https://matthewhammer.org/kids-choice-games/dress-up/manuals/story-words-one-page.pdf">PDF</a>, under 13 of ^du_report(18).</li>
+<li><b>The work-notes gallery's notes of 10-22 and 10-23</b> showed as empty pages: their <code>&lt;style&gt;</code> was never closed. Fixed (c721a913), every other page on the three sites checked, and the gallery now refuses such a note.</li>
+</ul>
+
+<h2>Waiting on Matthew</h2>
+<ul>
+<li>^ticket(521): "yes, much better now": close it, or redo the knolling PR on current main?</li>
+<li>The ninja gem's ✨ glimmer off at first (his 10-16 rule that a costly effect starts off): say if M wants it on at first again, the check given an exception.</li>
+</ul>
+
+<h2>Next</h2>
+<ul>
+<li>Read 0.0.427's speed run; close ^ticket(605) when green.</li>
+<li>^ticket(160) tonight: the in-game 🧪 suite has no forest pass and no on-screen-arrows mode; add them before his runs on the iPad and laptop.</li>
+<li>^ticket(564): redo the re-org on current main (the old branch is 152 behind) with a fresh report number.</li>
+<li>A pass over every unmerged branch (Hazel, Fumola, the game, the reports, the homepage), tying up loose ends.</li>
+</ul>
+</main>
+</body>
+</html>
