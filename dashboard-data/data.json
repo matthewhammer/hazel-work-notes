@@ -10957,7 +10957,137 @@
    ],
    "source": "Matthew, 2026-10-24, in chat: \"is there any chance that the log will 'miss' the final global updates by the game engine, for some very long-running animation?\" then \"yes -- we need to address this for our event system to work well and be loggable\"",
    "text": "<b>Event contexts with holds.</b> Each call into a script opens an event context; every swing (swingOn: levers, lids, boulders), walk or flight through a doorway (walkInto, flyInto, held until arrive() has run) and script Wait started while it is going takes a hold. Snapshot 3 is taken when its first moment has passed and every hold is given back, however long; a 15 s safety limit marks a possibly-early snapshot; an event overlapped by the next call is marked. Replaces the 250 ms polling (10 s cap) and the next-call truncation.",
-   "progress": "07:38: built on script-boxes-566 and checked in the pane: red lever over at 1.46 s (lever arm + lid held), blue lever covered[0] at 2.16 s, a Way E walk over at 5.8 s (at_col 0→1 in step 2→3), two quick pulls marked as overlapped. Next: commit, release with the manual and report 17 (his ask). 07:41: RELEASED in Dress Up 0.0.414 (10fd163, tag dress-up-0.0.414), live and loading. Report 17's text revised (the tip 'when is an event over? the game says', log lines with both steps); pictures retaken at 0.0.414 on GitHub (diag-593 run 40099158031), then report 17 + the zine rebuilt and pushed."
+   "progress": "07:38: built on script-boxes-566 and checked in the pane: red lever over at 1.46 s (lever arm + lid held), blue lever covered[0] at 2.16 s, a Way E walk over at 5.8 s (at_col 0→1 in step 2→3), two quick pulls marked as overlapped. Next: commit, release with the manual and report 17 (his ask). 07:41: RELEASED in Dress Up 0.0.414 (10fd163, tag dress-up-0.0.414), live and loading. Report 17's text revised (the tip 'when is an event over? the game says', log lines with both steps); pictures retaken at 0.0.414 on GitHub (diag-593 run 40099158031), then report 17 + the zine rebuilt and pushed.",
+   "log": [
+    {
+     "at": "2026-10-24T07:24-06:00",
+     "from": "matthew",
+     "chars": 43,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T07:25-06:00",
+     "from": "matthew",
+     "chars": 145,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T07:25-06:00",
+     "from": "matthew",
+     "chars": 68,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T07:25-06:00",
+     "from": "claude",
+     "chars": 298,
+     "asks": false,
+     "words": 52,
+     "read_s": 13,
+     "listen_s": 20,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T07:26-06:00",
+     "from": "matthew",
+     "chars": 217,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T07:26-06:00",
+     "from": "claude",
+     "chars": 1450,
+     "asks": true,
+     "words": 269,
+     "read_s": 68,
+     "listen_s": 101,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T07:26-06:00",
+     "from": "claude",
+     "chars": 855,
+     "asks": false,
+     "words": 146,
+     "read_s": 37,
+     "listen_s": 55,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T07:27-06:00",
+     "from": "matthew",
+     "chars": 256,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T07:27-06:00",
+     "from": "claude",
+     "chars": 35,
+     "asks": false,
+     "words": 4,
+     "read_s": 1,
+     "listen_s": 2,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T07:28-06:00",
+     "from": "claude",
+     "chars": 922,
+     "asks": false,
+     "words": 163,
+     "read_s": 41,
+     "listen_s": 61,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T07:29-06:00",
+     "from": "matthew",
+     "chars": 231,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T07:30-06:00",
+     "from": "matthew",
+     "chars": 127,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T07:30-06:00",
+     "from": "matthew",
+     "chars": 80,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T07:30-06:00",
+     "from": "claude",
+     "chars": 1827,
+     "asks": false,
+     "words": 328,
+     "read_s": 83,
+     "listen_s": 123,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 598,
@@ -16026,10 +16156,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5365,
-  "words": 1170160,
-  "read_hours_est": 81.9,
-  "listen_hours_est": 121.9,
+  "replies": 5366,
+  "words": 1170817,
+  "read_hours_est": 82.0,
+  "listen_hours_est": 122.0,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -16269,9 +16399,9 @@
     "chars": 152999
    },
    "2026-10-24": {
-    "replies": 45,
-    "words": 6509,
-    "chars": 36838
+    "replies": 46,
+    "words": 7166,
+    "chars": 40422
    }
   }
  },
