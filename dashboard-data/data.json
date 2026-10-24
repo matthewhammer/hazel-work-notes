@@ -4943,14 +4943,16 @@
    "added": "2026-10-22T14:54-06:00",
    "opened": "2026-10-22T14:54-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel"
    ],
    "source": "Matthew, 2026-10-22 14:54, in chat, after ^report(29)'s finding: \"mint and enqueue -- your best ideas for what to try next to fix this asymptotic issue with the JS library\" (then AFK).",
    "url": "https://matthewhammer.org/hazel/reports/029/#re-walk",
    "text": "<b>Make re-evaluating a value free, wherever it comes from.</b> Today a list literal whose elements are all values still costs a pass per element through all five stages (^report(29) #re-walk), and a substituted closure, the stepper's substitution mode and literal-heavy programs all pay it. Remember, by physical identity (Util.IdentityTable, as #2681's has_type memo does), every term the evaluator has found final; on a request to evaluate a term already in the table, return it at once, before the stages. Needs ids left alone on values (replace_all_ids makes new objects; ^ticket(547) drops it on the library path). Measure: h_ref from JS with ^ticket(547) off and on, and the evaluator's tests for probe and stepper samples, which must not change.",
-   "progress": "14:54: minted; enqueued after ^ticket(547). 20:06: ^ticket(559)'s fast path covers this ticket's main case without a memo: on trial/r25-best (547 off), h_ref takes 7 passes at every size (was n+8), 34x faster at 3,000 (run 39885788957). A memo by identity would add a hash per pass; left open for terms 559 does not cover (values produced by evaluation that are not literal finals), to be weighed after 559 lands.",
+   "progress": "14:54: minted; enqueued after ^ticket(547). 20:06: ^ticket(559)'s fast path covers this ticket's main case without a memo: on trial/r25-best (547 off), h_ref takes 7 passes at every size (was n+8), 34x faster at 3,000 (run 39885788957). A memo by identity would add a hash per pass; left open for terms 559 does not cover (values produced by evaluation that are not literal finals), to be weighed after 559 lands. | 08:43: MEASURED what ^ticket(559)'s fast path leaves: deep values. Square.held (^ticket(540)) on trial/r25-fastpath (559, 547 off), laptop, one niced run: a pull 3.7 ms at 8 things, 4.3 at 32, then 36 at 128 and 212 at 512, O(T): the held maps are trees deeper than final_depth (16), so the substituted closure is re-walked again. With ^ticket(547) (trial/r25-553) the same pull is 1.9-4.1 ms to 1,024. So for the game (the library path) 547 covers it and a memo adds nothing; the memo's remaining case is the editor's path (probes, reuse tracking), which 559 skips entirely. Next, if wanted: an identity memo for the editor path, weighed after 559 and 547 land (Matthew's calls).",
    "log": [
     {
      "at": "2026-10-22T14:53-06:00",
@@ -7530,8 +7532,8 @@
   }
  ],
  "next_ticket": 600,
- "current_ticket": 550,
- "current_note": "08:43: measuring what 559's fast path still misses (deep values, like the held maps)",
+ "current_ticket": 599,
+ "current_note": "08:43: next without Matthew: the other people's looping paths (rest of 440)",
  "closed_tickets": [
   {
    "id": 440,
