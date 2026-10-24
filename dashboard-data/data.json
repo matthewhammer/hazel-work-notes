@@ -7563,11 +7563,25 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 604,
+   "area": "dress up, the script boxes' line wrap in Hazel's tiles: the width it uses, and a let's in before its body's if",
+   "added": "2026-10-24T12:05-06:00",
+   "opened": "2026-10-24T12:05-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress-up"
+   ],
+   "source": "Matthew, 2026-10-24 ~11:55, in chat, with two screenshots of module Castle in tiles at wrap 116: \"still think that the wrap for Hazel if then else needs work. See screenshot. limit is huge, and actual screen viewport is huge too.\" Then: \"it would look better to have the line break, if there needs to be one, after the in (following let), not within the if-then-else stuff after the in.\"",
+   "text": "<b>Two fixes.</b> (1) The tiles were laid out at 100 columns with 116 set and room for more: scriptTileCols guessed a character as 0.71 of the font size (one measurement at 18 px), but in the sys font at 12.5 it is about 0.61. Measure it instead, in the font and size sent to the tiles. (2) A line cut inside an if after a let's in: in Hazel a let, a fun and a case are open the way an if is, so a line cuts first after the let's in (or the fun's ->, or before the case's |), and the if goes whole on the next line when it fits.",
+   "progress": ""
   }
  ],
- "next_ticket": 604,
- "current_ticket": null,
- "current_note": "11:34: 603 released in 0.0.425; nothing in hand",
+ "next_ticket": 605,
+ "current_ticket": 604,
+ "current_note": "12:05: the tiles' wrap: measuring the width, and cutting after a let's in first",
  "closed_tickets": [
   {
    "id": 603,
@@ -12915,6 +12929,7 @@
   }
  ],
  "queue": [
+  604,
   602,
   550,
   587,
@@ -12978,7 +12993,7 @@
   534,
   590
  ],
- "current_since": "2026-10-24T11:34-06:00",
+ "current_since": "2026-10-24T12:05-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
