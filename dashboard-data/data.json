@@ -6731,7 +6731,7 @@
    ],
    "source": "Matthew, 2026-10-23 06:57, in chat, after reviewing the two days since the 10-21 meeting with Cyrus (who encouraged \"Hazel as a game script system, starting with MUDU\", a general way to insert Hazel code into a JS/HTML app's behavior): \"Can have a MUDU with game scripts where each script box can be either: baked-in JS, or hazel code boxes, or fumola code boxes (3-way chip per code box). the initial code is equiv, and runs equiv, for the game -- we need unit tests to maintain this as we go. we default to builtin JS, but there's a \\\"master toggle\\\" chip in the game script panel, at the top, that switches the code boxes all to JS/Hazel/Fumola routines. we extend the advanced \\\"measurement\\\" tools with one specifically for measuring the script overhead, in each case ... We start to keep standards for certain speedruns that use different game script boxes, to ensure that each setting meets an FPS minimum for the squares it controls in the game.\" Then: \"in the 3-way script system -- let's have the jS versions show up as JS code, but read only. The hazel and fumola boxes are for editing.\" Then: \"yes, mint and enqueue.\"",
    "text": "<b>Keep the three equivalent as we go.</b> A check in the game's CI that, for every room's handler (TrapRoom, TreeRoom, Square, World, Castle) and every event it takes, the shipped Hazel text and the shipped Fumola text answer exactly as the JS does, on generated inputs (worlds of random kinds and ways, shuffled cells; levers, things, castles), as the node checks of ^ticket(531) (Hazel vs JS) and ^ticket(542) (Fumola vs Hazel, 20,653 cases) already do in pieces; any shipped text that drifts fails CI.",
-   "progress": "06:57: minted and enqueued. 07:18: on script-boxes-566 (5af8605): a no-browser step in Dress Up tests, 'The rules three ways, JS = Hazel = Fumola': tools/hazelrules531.mjs with the Hazel library the game loads (SCRIPT_BUILD) and tools/fumola_rules_check.mjs (pinned build), each against the game's own JS; fails the run at the end, as the branch checks do. Fumola half locally: all ok, 20,653 comparisons. Full run 39959158342 running. 11:29: full run 39959158342: the rules step ALL OK: Hazel 32,761 comparisons, Fumola 20,653.",
+   "progress": "06:57: minted and enqueued. 07:18: on script-boxes-566 (5af8605): a no-browser step in Dress Up tests, 'The rules three ways, JS = Hazel = Fumola': tools/hazelrules531.mjs with the Hazel library the game loads (SCRIPT_BUILD) and tools/fumola_rules_check.mjs (pinned build), each against the game's own JS; fails the run at the end, as the branch checks do. Fumola half locally: all ok, 20,653 comparisons. Full run 39959158342 running. 11:29: full run 39959158342: the rules step ALL OK: Hazel 32,761 comparisons, Fumola 20,653. 20:57 status: the step 'The rules three ways, JS = Hazel = Fumola' runs on every push (.github/workflows/dress-up-tests.yml) and fails the run on a difference after everything else ran; at 370f532 it passed on GitHub (run 40053184542) and both checks print all ok in node (Hazel 32,761 comparisons, Fumola 20,649). Written up in ^report(32)'s new section #correct. The same cases now seed Hazel's library tests (^ticket(591)). Ready to close on Matthew's word.",
    "log": [
     {
      "at": "2026-10-23T06:55-06:00",
@@ -6778,7 +6778,8 @@
      "effort": "medium",
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": "Close? The CI step is in place and green."
   },
   {
    "id": 568,
@@ -9843,7 +9844,7 @@
    ],
    "source": "Matthew, 2026-10-23 16:5x, in chat: \"mint and enqueue a ticket for Fumola to expose the 'vm_defs' data of the Core state --- it has the kind of definition outline we need, but in its own format -- it could expose it to the Wasm API\" Then: \"that API could give very precise parse information\"",
    "text": "<b>Fumola's own outline, for the game.</b> Fumola's Core keeps every definition in its <code>Defs</code> (crates/fumola_semantics/src/lib/vm_types.rs): a forest of contexts (<code>Ctx</code>: parent, fields by name), each <code>Field</code> a <code>Def</code> (Module, Actor, Func, Var, StaticValue) with its visibility and its <code>source</code> (where it is written). Expose it through the wasm API (crates/fumola_wasm: e.g. <code>fumola_defs(id) -> JSON</code>): per module, its members with kind, visibility, source range and, for a function, its parameters and their annotations (the Motoko-style types the game's rules now carry). The game's ⛶ outline then reads Fumola's definitions from Fumola, as ^ticket(587) has it read Hazel's from Hazel, instead of matching the text. Note: a <code>type</code> declaration is not kept in Defs (vm_def.rs treats it as nothing to run), so the outline's types need either a Def for them or the parse's own list. Repo: Adapton/fumola; the game pins a Fumola build (vendor/fumola/...). <b>Precise parse information:</b> each field's <code>source</code> is the parser's own position, so the API can give exact ranges (line and column, start and end) for every definition and its parts, not just a line found by matching: the game can select exactly the definition's text, and later the same ranges can feed error marks and goto definition in the Fumola boxes.",
-   "progress": "Minted; queued after 587 (Hazel's outline from Hazel) and 586. 21:05 API DONE on branch wasm-defs-589 (Adapton/fumola, dc8f3a9, pushed, no PR; stacked on 590's defs-parse-590): fumola_defs(id) gives per context (top level, each module or actor) its types (name, type parameters, the type on one line, visibility, source, the name's source) and members (kind, visibility, source; a function's name source, type parameters, parameters and result as written with sources; a let's name source and annotation), in source order, sources as {line, col, end_line, end_col, start, end}. Tests crates/fumola_wasm/tests/test_defs.rs (a source's offsets select exactly 'Side' and 'flip2'); the wasm suite 106 passed, 0 failed. The game's outline does not use it yet: the game pins a Fumola build (vendor/fumola/877b155851), so it needs these merged to Fumola's main (Pages builds the wasm from main) or a build from the branch.",
+   "progress": "Minted; queued after 587 (Hazel's outline from Hazel) and 586. 20:51 API DONE on branch wasm-defs-589 (Adapton/fumola, dc8f3a9, pushed, no PR; stacked on 590's defs-parse-590): fumola_defs(id) gives per context (top level, each module or actor) its types (name, type parameters, the type on one line, visibility, source, the name's source) and members (kind, visibility, source; a function's name source, type parameters, parameters and result as written with sources; a let's name source and annotation), in source order, sources as {line, col, end_line, end_col, start, end}. Tests crates/fumola_wasm/tests/test_defs.rs (a source's offsets select exactly 'Side' and 'flip2'); the wasm suite 106 passed, 0 failed. The game's outline does not use it yet: the game pins a Fumola build (vendor/fumola/877b155851), so it needs these merged to Fumola's main (Pages builds the wasm from main) or a build from the branch.",
    "waiting": "Say whether to open PRs for defs-parse-590 and wasm-defs-589 on Adapton/fumola (then the game pins the new build and its outline reads Fumola's defs).",
    "log": [
     {
@@ -9877,7 +9878,7 @@
    ],
    "source": "Matthew, 2026-10-23 17:0x, in chat: \"if Fumola doesn't store enough parse info for any AST forms (types, etc) -- mint and enqueue as a long-run tonight to fix.\"",
    "text": "<b>Every definition with its parse.</b> Fumola's <code>Defs</code> (vm_types.rs) keeps Module, Actor, Func, Var and StaticValue fields, each with a <code>source</code>; a <code>type</code> declaration is kept nowhere (vm_def.rs, vm_step.rs and vm_big.rs treat <code>Dec::Type</code> as nothing to do). Survey every AST form a definition can take (type, let and var patterns, func and its parameters and result annotations, module, object and class members, use and import) for what parse information reaches the Core, and fill the gaps: a <code>Def</code> for a type (its name, its type, its source), and source ranges kept for parameters, annotations and patterns where the parser has them but drops them. Tests in fumola's own suite; the wasm API itself is ^ticket(589). Repo: Adapton/fumola; heavy builds on GitHub (bench/* branches), not the laptop.",
-   "progress": "Minted; 🌙 long run for tonight. 20:50 DONE on branch defs-parse-590 (Adapton/fumola, 13d1b2a, pushed, no PR): the Core's Defs keep type declarations (Ctx.types, a namespace of their own, with name, type parameters, type, visibility and source), a let's binder (Field.pat: its annotation, the name's own source), and type parameters, which the parser had read and dropped (TypeParamsOpt => None, \"to do -- produce AST\"); a function's printed form now shows them. 5 new tests in crates/fumola/tests/test_defs_outline.rs; the whole suite 280 passed, 0 failed (laptop, niced, -j 2). Fumola's CI runs only on main and PRs.",
+   "progress": "Minted; 🌙 long run for tonight. 20:42 DONE on branch defs-parse-590 (Adapton/fumola, 13d1b2a, pushed, no PR): the Core's Defs keep type declarations (Ctx.types, a namespace of their own, with name, type parameters, type, visibility and source), a let's binder (Field.pat: its annotation, the name's own source), and type parameters, which the parser had read and dropped (TypeParamsOpt => None, \"to do -- produce AST\"); a function's printed form now shows them. 5 new tests in crates/fumola/tests/test_defs_outline.rs; the whole suite 280 passed, 0 failed (laptop, niced, -j 2). Fumola's CI runs only on main and PRs.",
    "waiting": "Say whether to open a PR for defs-parse-590 on Adapton/fumola.",
    "log": [
     {
@@ -9921,8 +9922,8 @@
    ],
    "source": "Matthew, 2026-10-23 17:3x, in chat: \"mint and enqueue -- use our actual game scripts that we want to be equiv to seed more unit tests here, please https://github.com/hazelgrove/hazel/pull/2711\"",
    "text": "<b>The game's rules as the library's tests.</b> Messed Up Dress Up's Hazel rules (the preamble's sums, Common, and the five rooms: trap room, tree room, placed levers, the world's ways, the castle) are checked against the game's own JS in CI (rules three ways: 32,761 cases for Hazel). Seed hazelgrove/hazel#2711's tests with them: the shipped program run through the library (runProgram / analyzeProgram), and, for a chosen set of events and globals per room (from the game's check, the cases that cover each rule's branches), each room's on_event answer compared with the commands the game's JS gives, held as expected values in the test. Also: the program at 8x Common hits Stack_overflow in the library's build (^report(32)): a test for a long module, marked as expected to fail until fixed, if that is how the suite records known failures.",
-   "progress": "Minted; queued after 587/586.",
-   "waiting": "",
+   "progress": "Minted; queued after 587/586. 20:56 tests written, on branch js-library-591 (hazelgrove/hazel, 9900d80ae8, off #2711's js-library; #2711 itself untouched): test/Test_HazelLibGame.re, the game's shipped program run through HazelLibCore.run and 144 cases (trap room 42, tree room 4, placed levers 7, castle 43, world 48), each room's on_event called with JS globals and event, compared with the commands the game's own JS gives. Generated by the game's tools/hazel_cases591.mjs (kids-choice-games 2e76bcf, script-boxes-566); all 144 checked in node against the library build the game loads. CI running (run 40056257139). The 8x stack overflow is NOT a test here: Alcotest has no expected-failure mark.",
+   "waiting": "Say whether to merge js-library-591 into #2711 (js-library).",
    "log": [
     {
      "at": "2026-10-23T17:08-06:00",
@@ -9966,8 +9967,8 @@
   }
  ],
  "next_ticket": 577,
- "current_ticket": 589,
- "current_note": "20:45: Starting: fumola_defs in the wasm API, on top of 590's defs-parse-590 (types, binders, type parameters with sources)",
+ "current_ticket": 587,
+ "current_note": "20:57: Hazel's outline from Hazel: OutlineTree (from #2469) in the library, an outline message in embed mode, on a branch of its own",
  "closed_tickets": [
   {
    "id": 575,
@@ -14935,9 +14936,9 @@
   }
  ],
  "queue": [
+  587,
   589,
   588,
-  587,
   586,
   591,
   574,
@@ -15014,7 +15015,7 @@
   534,
   590
  ],
- "current_since": "2026-10-23T20:45-06:00",
+ "current_since": "2026-10-23T20:57-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
