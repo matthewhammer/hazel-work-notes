@@ -7650,11 +7650,25 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 603,
+   "area": "dress up, the script boxes' line wrap: a nested if's then and else each take a line (the castle's way_out at wrap 77)",
+   "added": "2026-10-24T11:22-06:00",
+   "opened": "2026-10-24T11:22-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress-up"
+   ],
+   "source": "Matthew, 2026-10-24 ~11:20, in chat, with a screenshot of module Castle in Hazel tiles at wrap 77: \"I don't understand why the nested if then else uses so many lines, given 77 as the line limit, and plenty of space\"",
+   "text": "<b>A nested if keeps its own line when it fits.</b> Why it happens: scriptFlow (^ticket(579)'s pretty-printer, 25-scripting.js) breaks a too-long line at its best places at the lowest bracket depth, all of them at once. In <code>if a then t else if n == 1 then 0 else 1</code> there is no bracket around the inner if, so its then and else are at the same depth as the outer ones, and all four get a line. The fix: an if's then and else belong to that if, so a nested if's count one level deeper and the else piece keeps the inner if whole when it fits (<code>else if n == 1 then 0 else 1)</code>). Only spaces and line breaks change.",
+   "progress": "11:2x: prototyped in a scratch copy (not in the game): over all six shipped scripts at widths 30 to 120, no change to anything but spaces and breaks, no line longer than before, 24 fewer lines; at 77 exactly two places change, the Castle's Auto arm and the Trap's one (else if lift then LiftBoulder(i, k) else DropBoulder(i, k) in). At narrow widths the inner then/else go 2 deeper than the outer ones (a staircase), which is the nesting. Waiting on Matthew's go to make it a release."
   }
  ],
- "next_ticket": 603,
- "current_ticket": 602,
- "current_note": "10:55: minted from Matthew's report; leads written; the pkill step is the next-time fix to try",
+ "next_ticket": 604,
+ "current_ticket": 603,
+ "current_note": "11:22: explained why a nested if takes four lines at wrap 77; a fix prototyped, waiting on Matthew's go",
  "closed_tickets": [
   {
    "id": 601,
@@ -12992,6 +13006,7 @@
   }
  ],
  "queue": [
+  603,
   602,
   550,
   587,
@@ -13055,7 +13070,7 @@
   534,
   590
  ],
- "current_since": "2026-10-24T10:55-06:00",
+ "current_since": "2026-10-24T11:22-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
