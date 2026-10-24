@@ -6875,7 +6875,7 @@
    ],
    "source": "Matthew, 2026-10-23 06:57, in chat, after reviewing the two days since the 10-21 meeting with Cyrus (who encouraged \"Hazel as a game script system, starting with MUDU\", a general way to insert Hazel code into a JS/HTML app's behavior): \"Can have a MUDU with game scripts where each script box can be either: baked-in JS, or hazel code boxes, or fumola code boxes (3-way chip per code box). the initial code is equiv, and runs equiv, for the game -- we need unit tests to maintain this as we go. we default to builtin JS, but there's a \\\"master toggle\\\" chip in the game script panel, at the top, that switches the code boxes all to JS/Hazel/Fumola routines. we extend the advanced \\\"measurement\\\" tools with one specifically for measuring the script overhead, in each case ... We start to keep standards for certain speedruns that use different game script boxes, to ensure that each setting meets an FPS minimum for the squares it controls in the game.\" Then: \"in the 3-way script system -- let's have the jS versions show up as JS code, but read only. The hazel and fumola boxes are for editing.\" Then: \"yes, mint and enqueue.\"",
    "text": "<b>Hold each engine to a frame rate.</b> Speed runs on GitHub for each master-chip setting (JS, Hazel, Fumola) that play the squares and rooms those scripts control (the trap room's levers, the tree rooms, placed levers, the world's ways, the castle's pits and ladders) and require a minimum FPS there, as the game's other gates do; the shipped texts only. Note: the game loads Hazel from the js-library-embed build, which has none of this week's performance fixes (547, 548, 551, 559), so Hazel's World rule will miss a strict minimum on big maps until ^ticket(558) lands; record that, do not lower the bar.",
-   "progress": "06:57: minted and enqueued.",
+   "progress": "06:57: minted and enqueued. 21:17: tools/checks/scriptfps569.mjs on the game branch (script-boxes-566): under ?logic=js/hazel/fumola, the trap room's levers, a tree house's trap door, placed levers, the castle's ways and the world's ways played while frames are counted, median of 3 >= 55 (the game's gate), one retry. diag-569 run 40057131149: ALL OK, every case ~63 fps in every engine, longest pause 16.8 ms (one frame); the script a call: Hazel 1.2-5.9 ms (World the most), Fumola 0.9-1.5 ms. Caveat: the game's default world is small, so Hazel's O(N) World rule is not stressed; a big map belongs to ^ticket(540). GitHub's frame rates are a runner's, compared among themselves (the workflow's own note).",
    "log": [
     {
      "at": "2026-10-23T06:55-06:00",
@@ -6922,7 +6922,8 @@
      "effort": "medium",
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": "Close, or ask for a big-map case?"
   },
   {
    "id": 570,
