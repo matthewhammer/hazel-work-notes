@@ -6,7 +6,7 @@
    "branch": "integration/livelits-modular-editors",
    "links": [
     [
-     "localhost:8341 (#2635 at 9933091a99, its head: GitHub's build, the same code as a6eca82049)",
+     "localhost:8341 (#2635 at 2b080af683, its head: GitHub's build, deployed 10-21 18:42)",
      "http://localhost:8341/"
     ],
     [
@@ -14,7 +14,7 @@
      "http://localhost:8341/?slide=livelit-playground-scenes"
     ]
    ],
-   "branch_note": "(served again since 11:07 on 2026-10-24, after the reboot, from a launch entry of its own: the same build) (served since 11:47 on 2026-10-20: GitHub's release build of #2635's head (pulled again at 23:12 10-20: 9933091a99, whose merge changed no code, so the same build as a6eca82049) (dev and the new #2597 merged in; ^ticket(469)'s and ^ticket(472)'s fixes), from the deploy repo (hazelgrove/build, integration/livelits-modular-editors), not built on the laptop; in <code>~/hazel-builds/build</code>.)",
+   "branch_note": "(served again since 11:07 on 2026-10-24, after the reboot, from a launch entry of its own: the same build) (GitHub's release build of #2635's head, 2b080af683, deployed 10-21 18:42 and pulled 10-24 06:24 (dev and the new #2597 merged in; ^ticket(469)'s and ^ticket(472)'s fixes), from the deploy repo (hazelgrove/build, integration/livelits-modular-editors), not built on the laptop; in <code>~/hazel-builds/build</code>.)",
    "group": "cyrus"
   },
   {
@@ -27,7 +27,7 @@
      "http://localhost:8311/"
     ]
    ],
-   "branch_note": "(served again since 11:07 on 2026-10-24, after the reboot, from a launch entry of its own: the same build) (served since 11:47 on 2026-10-20: GitHub's release build of 3a9b3cec53, #2597's head (dev merged in; ^ticket(469)'s and ^ticket(472)'s fixes), from the deploy repo (hazelgrove/build, integration/livelits-splicerefs-full), not built on the laptop; in <code>~/hazel-builds/build</code>.)",
+   "branch_note": "(served again since 11:07 on 2026-10-24, after the reboot, from a launch entry of its own: the same build) (GitHub's release build of 2cd7b96f24, #2597's head, deployed 10-20 18:50 (dev merged in; ^ticket(469)'s and ^ticket(472)'s fixes), from the deploy repo (hazelgrove/build, integration/livelits-splicerefs-full), not built on the laptop; in <code>~/hazel-builds/build</code>.)",
    "group": "cyrus"
   },
   {
@@ -44,43 +44,6 @@
    "group": "cyrus"
   },
   {
-   "name": "Hazel reports (the report's sources)",
-   "repo_html": "<a href=\"https://github.com/matthewhammer/hazel-reports\">matthewhammer/hazel-reports</a>, checked out at <code>~/hazel-perf-report</code>",
-   "branch": "main",
-   "branch_note": "<b>Down since 11:13 on 2026-10-24</b>: stopped by Matthew's choice to make room for 8312 (the app runs at most five servers per worktree; ^ticket(602)). (public: a push publishes, so drafts wait. ^report(25) published as work in progress 10-22 09:44 (homepage 35951cb); its local copy is the same. ^report(18), why #2635 fails CI, is a local draft waiting on Matthew. ^report(29) republished 10-22 15:56 (homepage e9fd165) with its fixes section and the deep-answer correction; its local copy is the same); its local copy is the same; its fixes section fills in as the trial builds are measured)",
-   "links": [
-    [
-     "localhost:8131 (the front page: every report, drafts marked)",
-     "http://localhost:8131/"
-    ],
-    [
-     "localhost:8131/032/ (^report(32) draft: Scripting, Three Ways, Timed)",
-     "http://localhost:8131/032/"
-    ],
-    [
-     "localhost:8131/031/ (^report(31), Reviews Still Open)",
-     "http://localhost:8131/031/"
-    ],
-    [
-     "localhost:8131/030/ (^report(30), Game Scripts in Hazel; its Hazel and Fumola rules, Languages of Play)",
-     "http://localhost:8131/030/"
-    ],
-    [
-     "localhost:8131/029/ (^report(29), Where the Gap Comes From; second fixes)",
-     "http://localhost:8131/029/#fixes-2"
-    ],
-    [
-     "localhost:8131/028/ (^report(28), the traps and proposed fixes)",
-     "http://localhost:8131/028/#traps"
-    ],
-    [
-     "localhost:8131/025/ (^report(25), Hazel's JS library)",
-     "http://localhost:8131/025/"
-    ]
-   ],
-   "group": "other"
-  },
-  {
    "name": "Messed Up Dress Up (the game)",
    "repo_html": "<a href=\"https://github.com/matthewhammer/kids-choice-games\">matthewhammer/kids-choice-games</a>, folder <code>dress-up/</code>, public with its history from 2026-10-09<br>Its own Pages site deploys every push to <code>main</code>. Edit <code>~/kids-choice-games</code>: <code>~/hazel/experiments/polygons-plain/dress-up.html</code> is a symlink to it.",
    "branch": "main",
@@ -94,15 +57,15 @@
      "http://localhost:8133/du-reports/"
     ],
     [
-     "^du_report(18) draft: Ready to Re-mix (the 17 scenarios, ^ticket(564))",
+     "Ready to Re-mix, a draft numbered 018 (^du_report(18) is now the Story Scripts Guide) (the 17 scenarios, ^ticket(564))",
      "http://localhost:8133/report-018/reports/018/"
     ],
     [
-     "^du_report(18): the 17 scenarios",
+     "Ready to Re-mix: the 17 scenarios",
      "http://localhost:8133/report-018/reports/018/#scenarios"
     ],
     [
-     "^du_report(18): what was re-organised, and the proof",
+     "Ready to Re-mix: what was re-organised, and the proof",
      "http://localhost:8133/report-018/reports/018/#reorg"
     ]
    ],
@@ -13329,8 +13292,8 @@
  "ports_groups": [
   {
    "key": "cyrus",
-   "title": "For the next meeting with Cyrus",
-   "note": "The two livelits PRs (#2635, #2597) and the type-syntax expansion features."
+   "title": "Livelits and Γ's types",
+   "note": "The two livelits PRs (#2635, #2597) and Γ's long types to try (^ticket(468)); on the agenda of the 10-21 meeting with Cyrus."
   },
   {
    "key": "other",
