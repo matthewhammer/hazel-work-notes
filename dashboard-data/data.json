@@ -793,7 +793,7 @@
    "tags": [
     "blocked on Matthew"
    ],
-   "progress": "17:02: the audit's first full run (42 cases x 3, headless Chromium, begun 16:47:00) crashed the laptop at once (journal ends 16:47:01; the <a href=\"http://matthewhammer.org/hazel-work-notes/crash-log.html\">crash log</a> has it). Tool: ~/du-shots/tools/audit160.mjs (its 2-place trial ran fine). Not rerun: a 15-20 min headless-Chrome run is the kind of job both of today's afternoon crashes came during. Next: Matthew's call whether, and how small (1 run a case, or a few places at a time). | 17:27: Matthew: \"audit tonight, last in long run queue\". Plan (his OK to pinned Chrome, 17:05): headless Chromium under taskset -c 0-3 nice -n 10, node under taskset -c 0-3, RUNS=1, batches of 6 cases with 20 s between (only=...): the 24 places; castleroom:king..cats; treeroom:1-6; then check the batches' case counts add up to the page's 42. OUT=~/du-shots/audit160/0.0.87-bN.json. | 20:58: NOT a long run on this laptop tonight. NO headless browser (Chromium or Firefox) on this laptop tonight, pinned or not: all four of the evening's freezes (16:33, 16:47, 20:47, 20:53) came during one. Its 42-case audit waits for daytime with Matthew there, or GitHub's runners (^ticket(165)). | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: run the audit on GitHub's runners (^ticket(165)); frame rates there are relative only. 🌙 long run; no headless browser on the laptop. | 21:48: the AUDIT RAN on GitHub's Chrome 155 (ci run 38998791340, 1920x1080, 1 run a case, the on-screen controller): 40 of 42 at 60 fps; 💭 our imagination 52.5 and 🌲 forest 51.3 fail (p95 33 ms: every other frame). The gate there agrees: all 60 but the imagination, walk 51.3 and drag 50.6. A GitHub computer's numbers, relative only: these two are the costliest places to draw. Raw per-case lines in the run's summary and its chrome artifact. | 22:55: what costs (branch cost-160, Chrome on GitHub, 1920x1080). Object by object (run 39000272605): with the fake game controller the forest and our imagination walk at 60, every object in place, so no object is the cost. Four ways (touch160, run 39004162691): forest 60 with the game controller, 55.1 holding the on-screen arrows, 55.4 with the on-screen controller only SHOWING while the game controller walks, 50.3 held with the pressed style off: the half-see-through on-screen controller drawn over the forest costs ~5 fps on a computer without a graphics card; pressing and its filter do not. Our imagination 60 all four ways (its 52.5 in the audit: noise). Next: the controller over the forest without its shadows, or on a layer of its own (will-change), measured the same way; and on a kid's computer, the forest with the controller showing. | 00:23: CORRECTION to 22:55: touch160's \"showing\" way never showed the on-screen controller (a connected game controller hides it, by design: touchShow(!real && want)), and one run per way sat inside the noise: the forest walked by the game controller, controller hidden, measured 60 then 56.3 (layer160, run 39009423261). So \"the see-through controller costs ~5 fps\" is not supported; neither is any cost of holding the arrows yet (55.1 vs 60, one run each). Measuring again properly: layer160 walks by holding the on-screen arrows (as on the iPad) under CSS variants (as is, no shadows, own layer, both, no see-through) against the game controller with it hidden, three rounds in rotating order, the spread reported (run 39009741994). | 00:30: MEASURED (layer160, run 39009741994, GitHub's Chrome 1920x1080, three rounds each, mean and spread): forest by the game controller, on-screen one hidden: 60, 57.9, 54.3 (mean 57.4, spread 5.7); holding the on-screen arrows as is: mean 55.7 (spread 4.1); no shadows 56.8; own layer 55.6; both 56.0; no see-through 56.3. Our imagination: 60 every way. So the on-screen controller has no cost we can see here: every way sits inside the baseline's own spread, and nothing in its CSS is worth changing for this. On GitHub's computers the forest walks a little under 60 whatever moves the friend. Left: the kids' devices, the only measurements that decide (55 is the release bar there): on the iPad and the Ubuntu laptop, the forest walked holding the on-screen arrows against walked by keys or a controller (🧪 or by eye). Waiting on Matthew.",
+   "progress": "17:02: the audit's first full run (42 cases x 3, headless Chromium, begun 16:47:00) crashed the laptop at once (journal ends 16:47:01; the <a href=\"http://matthewhammer.org/hazel-work-notes/crash-log.html\">crash log</a> has it). Tool: ~/du-shots/tools/audit160.mjs (its 2-place trial ran fine). Not rerun: a 15-20 min headless-Chrome run is the kind of job both of today's afternoon crashes came during. Next: Matthew's call whether, and how small (1 run a case, or a few places at a time). | 17:27: Matthew: \"audit tonight, last in long run queue\". Plan (his OK to pinned Chrome, 17:05): headless Chromium under taskset -c 0-3 nice -n 10, node under taskset -c 0-3, RUNS=1, batches of 6 cases with 20 s between (only=...): the 24 places; castleroom:king..cats; treeroom:1-6; then check the batches' case counts add up to the page's 42. OUT=~/du-shots/audit160/0.0.87-bN.json. | 20:58: NOT a long run on this laptop tonight. NO headless browser (Chromium or Firefox) on this laptop tonight, pinned or not: all four of the evening's freezes (16:33, 16:47, 20:47, 20:53) came during one. Its 42-case audit waits for daytime with Matthew there, or GitHub's runners (^ticket(165)). | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: run the audit on GitHub's runners (^ticket(165)); frame rates there are relative only. 🌙 long run; no headless browser on the laptop. | 21:48: the AUDIT RAN on GitHub's Chrome 155 (ci run 38998791340, 1920x1080, 1 run a case, the on-screen controller): 40 of 42 at 60 fps; 💭 our imagination 52.5 and 🌲 forest 51.3 fail (p95 33 ms: every other frame). The gate there agrees: all 60 but the imagination, walk 51.3 and drag 50.6. A GitHub computer's numbers, relative only: these two are the costliest places to draw. Raw per-case lines in the run's summary and its chrome artifact. | 22:55: what costs (branch cost-160, Chrome on GitHub, 1920x1080). Object by object (run 39000272605): with the fake game controller the forest and our imagination walk at 60, every object in place, so no object is the cost. Four ways (touch160, run 39004162691): forest 60 with the game controller, 55.1 holding the on-screen arrows, 55.4 with the on-screen controller only SHOWING while the game controller walks, 50.3 held with the pressed style off: the half-see-through on-screen controller drawn over the forest costs ~5 fps on a computer without a graphics card; pressing and its filter do not. Our imagination 60 all four ways (its 52.5 in the audit: noise). Next: the controller over the forest without its shadows, or on a layer of its own (will-change), measured the same way; and on a kid's computer, the forest with the controller showing. | 00:23: CORRECTION to 22:55: touch160's \"showing\" way never showed the on-screen controller (a connected game controller hides it, by design: touchShow(!real && want)), and one run per way sat inside the noise: the forest walked by the game controller, controller hidden, measured 60 then 56.3 (layer160, run 39009423261). So \"the see-through controller costs ~5 fps\" is not supported; neither is any cost of holding the arrows yet (55.1 vs 60, one run each). Measuring again properly: layer160 walks by holding the on-screen arrows (as on the iPad) under CSS variants (as is, no shadows, own layer, both, no see-through) against the game controller with it hidden, three rounds in rotating order, the spread reported (run 39009741994). | 00:30: MEASURED (layer160, run 39009741994, GitHub's Chrome 1920x1080, three rounds each, mean and spread): forest by the game controller, on-screen one hidden: 60, 57.9, 54.3 (mean 57.4, spread 5.7); holding the on-screen arrows as is: mean 55.7 (spread 4.1); no shadows 56.8; own layer 55.6; both 56.0; no see-through 56.3. Our imagination: 60 every way. So the on-screen controller has no cost we can see here: every way sits inside the baseline's own spread, and nothing in its CSS is worth changing for this. On GitHub's computers the forest walks a little under 60 whatever moves the friend. Left: the kids' devices, the only measurements that decide (55 is the release bar there): on the iPad and the Ubuntu laptop, the forest walked holding the on-screen arrows against walked by keys or a controller (🧪 or by eye). Waiting on Matthew. | 16:30 10-24: Matthew: \"160 -- can do tonight.  is the measurement tool up to date with latest features?\"",
    "waiting": true
   },
   {
@@ -954,9 +954,9 @@
    "source": "Matthew, 2026-10-17, in chat (building on ^ticket(258))",
    "url": "",
    "tags": [
-    "blocked on Matthew"
+    "later: after more script support"
    ],
-   "text": "<b>Dress Up: a component designer, along the lines of the world designer, for the objects baked into each place: adjust each one's default position and every setting of how it is drawn that its place in the scene doesn't fix (scale, layering, and so on).</b> Matthew: \"we want to think about a feature built on this -- for adjusting the default position and settings of each of those objects, including every rendering param that isn't fixed by its position alone in the scene (for scale, or layering, etc).\" \"that would be another feature along the lines of the existing world designer interface, but geared towards designing re-usable components -- let's mint a ticket and put 'blocked on matthew' on it.\" Builds on ^ticket(258) (🔬 🧩: each place's objects boxed and named, its plants by the procedure that drew them). Blocked on Matthew: his design of it first.",
+   "text": "<b>Dress Up: a component designer, along the lines of the world designer, for the objects baked into each place: adjust each one's default position and every setting of how it is drawn that its place in the scene doesn't fix (scale, layering, and so on).</b> Matthew: \"we want to think about a feature built on this -- for adjusting the default position and settings of each of those objects, including every rendering param that isn't fixed by its position alone in the scene (for scale, or layering, etc).\" \"that would be another feature along the lines of the existing world designer interface, but geared towards designing re-usable components -- let's mint a ticket and put 'blocked on matthew' on it.\" Builds on ^ticket(258) (🔬 🧩: each place's objects boxed and named, its plants by the procedure that drew them). Blocked on Matthew: his design of it first. <b>Amended 16:30 10-24, Matthew:</b> \"we want to still do this, but not yet. more script support (especially connecting the new, super-high level language for stories with the ones for game engine customization)\". So it waits on, and should be built with: the 🎬 story scripts (^ticket(440)) and 🚶 paths (^ticket(599)), the director's guide ^du_report(18); the three-way script boxes, JS / Hazel / Fumola (^ticket(566)), with ⚙️ script editor settings (^ticket(580)) and the 🪵 event log (^ticket(592)); ^du_report(17); and ^report(30) on game scripts in Hazel. The designer's settings for a placed thing would then be one more thing a script can set.",
    "progress": null,
    "log": [
     {
@@ -1069,110 +1069,6 @@
    ],
    "progress": "15:22: CAUSE: fumola.org's page had dark colours only (CSS variables from the Fumola VS Code theme, no light set, nothing answering data-theme), so the nav bar's light did nothing. PR Adapton/fumola#147 (branch pages-light-theme, worktree ~/fumola-light): a light palette answering :root[data-theme=light] and, on auto, a light system; theme-support meta for nav.js; five written-out colours made palette entries; dark stays the default. WAITING ON MATTHEW: his OK to merge #147 (then the Pages workflow_dispatch deploys main). Not done: the other pages under pages/ (alignment, web-play, web-repl). 23:36 10-20 (audit): rechecked: #147 unchanged since 10-18 (no reviews); main's pages still at #146 (2ec634b); live fumola.org still dark-only.",
    "waiting": "Matthew: OK to merge Adapton/fumola#147 (fumola.org's light theme)? Open, mergeable, build-and-test green (10-18 21:31Z), head 96f267f; merging to main deploys it (Publish wasm to Pages runs on push to main)."
-  },
-  {
-   "id": 322,
-   "area": "dress up, the pits' and trap doors' lids",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T15:02-06:00",
-   "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "text": "<b>Dress Up: a trap door's lid swings only the first time; after that it changes at once.</b> Matthew, on 0.0.226: \"the trap door animations happen the first time, and then it reverts to non animation (immediate change)\". A regression in ^ticket(307)'s lidSwing (0.0.222).",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T14:54-06:00",
-     "from": "matthew",
-     "chars": 103,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-18T15:13-06:00",
-     "from": "matthew",
-     "chars": 72,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-18T15:15-06:00",
-     "from": "matthew",
-     "chars": 112,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-18T15:27-06:00",
-     "from": "matthew",
-     "chars": 69,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-18T15:28-06:00",
-     "from": "claude",
-     "chars": 181,
-     "asks": false,
-     "words": 28,
-     "read_s": 7,
-     "listen_s": 10,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-18T15:44-06:00",
-     "from": "matthew",
-     "chars": 85,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-18T15:46-06:00",
-     "from": "claude",
-     "chars": 128,
-     "asks": false,
-     "words": 23,
-     "read_s": 6,
-     "listen_s": 9,
-     "note": "from the transcripts"
-    }
-   ],
-   "progress": "15:08: RELEASED 0.0.228 (b7f83cc, live 15:08:25), NOT proven to fix it: not reproduced here. In the app's hidden browser pane on 8133, a MutationObserver on the lid saw the whole swing (13-14 steps) on each of four pulls in a row, for the trap room's pits and for a placed lever and trap door, with and without 🔬 Inspection's overlays (all arrows, path, made of); the lid was never replaced mid-swing; a click on a room lever goes through the same roomLeverPull and starts no walk (walkableAt refuses the wall). Fix made on the likeliest cause that fits 'first time only' on Firefox: lidSwing and turnArm took t0 at the pull, before the redraw; the trap room since 0.0.226 has 271 moss shapes; a slow repaint could use up the 520 ms before the first frame. Both now start their clocks at their first frame. WAITING ON MATTHEW: does the swing play every time on 0.0.228? If not: which lever, where the friend stands, Firefox or not. 15:15: Matthew: \"I'm using 228 and I see no animations of the pits at all, or the levers.\" (worse than 0.0.227's first-time-only). Investigating. 15:2x: a real-click check (tools/checks/lidswing322.mjs: music on, #inspect overlays, real mouse clicks, every frame's lid fold and the room's rebuilds) is running on GitHub, branch lid-322 (only that check). Meanwhile ^ticket(324). 15:26: GitHub's Chrome (run 39167354761, branch lid-322, tools/checks/lidswing322.mjs): real mouse clicks, music playing, #inspect overlays, 0.0.228: all four pulls swing in full (the lid mid-swing on 26 frames each, the handle on 33), one rebuild of the room per pull. So the swing works in Chrome. Likeliest Firefox cause (ff198.py's finding: Firefox's music clock can stand still): picGapNow re-measures the gap every 0.25 s of drift, the scene's LFO begins change, the room is rebuilt, and the swinging lid and handle are replaced by their end state. Fix: each swing finds its lid and handle again by selector every frame, so a rebuild mid-swing carries on in the new drawing. 15:30: RELEASED 0.0.230 (0c08619): swingOn re-finds the lid and handle by selector every frame; mountScene redraws a swing in progress in the room it just built. Checked in the app's pane: two forced rebuilds mid-swing, no end-state frame. Matthew asked 'did you fix it? put 323 ahead if so, and close 322': not closed, as not confirmed on his Firefox; PARKED, waiting on Matthew to try 0.0.230 (blocked on Matthew). ^ticket(323) taken next, as he asked. 15:51: Matthew on 0.0.232: \"i turned down the speed and they still seem immediate to me, on my reliable computer.\" GitHub's headless Firefox 157 (run 39169277890, branch lid-322ff, tools/checks/lidff322.py): the page moves the boulder, handle and lid frame by frame (232 / 211 / 159 mid frames at speed 25), and the SCREENSHOTS show the boulder falling (top at 1.5 s, mid-wall at 3 s, in the pit at 4.5 s): ~/du-shots/ticket-322-firefox-boulder-fall.png. So Firefox paints it; something on his laptop differs (real GPU/WebRender, his saved state, the hover glow's filter on the lever under the pointer, how he pulls). Asked him. 23:36 10-20 (audit): from the record: At 18:25-18:27 on 10-18, on 0.0.251 in the trap room (^ticket(349)), Matthew reported \"one gitchy frame, where the boulder is still there after the being lifted back up (lever reset)\" and a \"similar glitch for the trap door itself, on the upper lever\". He described a stale frame and did not say the change was immediate. 0.0.252 (59a83e6, 18:31 10-18) fixed that frame. swingOn marks the still pictures out of date as a swing starts and ends, and no still picture is used while a swing runs. On a slow or choppy machine, a still picture also stands in for the room while the friend moves, which could have hidden a whole swing. The swing code itself did not change from 0.0.232 to 0.0.251 (only 59a83e6 touches swingOn, lidSwing or SWINGS). Still blocked on Matthew, with a narrower question: on the current version, on his reliable computer, does each lid swing every time? If yes, close."
-  },
-  {
-   "id": 344,
-   "area": "dress up, 🧪 tests (advanced tab)",
-   "added": "2026-10-18",
-   "opened": "2026-10-18T17:19-06:00",
-   "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "text": "<b>Dress Up: the bubble room in ⚙️ Advanced's 🧪 test suite, ready for tonight's runs on the black laptop and the iPad.</b> Matthew: \"let's add bubble room to the suite of tests that we automate with the advanced tab. I want to record some tests on the black laptop and ipad tonight, and have you analyze the results. Please prepare now, as we work on other tickets.\" PLAN: the bubble room as test cases in the 🧪 suite (as the other places are): standing, walking across with the controller, and walking through the stuck-out bubbles (popping them), each with 0, 1, 4 and 16 bubble makers; the foam still and moving; frame times recorded as the suite records them, so his runs come back in the same form; a note on the dashboard of how to run it on each device; then, when his results arrive, the analysis (with ^ticket(340)'s numbers from the runners beside them).",
-   "source": "Matthew, 2026-10-18, in chat",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-10-18T17:19-06:00",
-     "from": "matthew",
-     "chars": 234,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-18T17:26-06:00",
-     "from": "claude",
-     "chars": 2687,
-     "asks": false,
-     "words": 471,
-     "read_s": 119,
-     "listen_s": 177,
-     "note": "from the transcripts"
-    }
-   ],
-   "progress": "17:24: 0.0.242 LIVE (17:26): ⚙️ Advanced's \"🧪 this computer's speed\" is now 20 passes, 15-20 the bubble room as it starts: standing; walking across near us through the stuck-out bubbles (popping them, counted); its foam still; with 1, 4 and 16 bubble makers along the floor (their live bubbles counted); and its scene's shape count. The line it gives (copy, or 📝 the pad) carries them in DATA.bubble. HOW TO RUN TONIGHT, on each device (the black laptop, the iPad): open matthewhammer.org/kids-choice-games/dress-up/ fresh (0.0.242 or later in the title), ⚙️ Advanced, \"🧪 this computer's speed\", touch nothing for about a minute (a notice counts it), then \"📋 copy\" and paste the line to me (or the 📝 pad). Two runs a device are better than one (the first warms the browser). Plugged in, other tabs closed. I compare them with GitHub's runners (^ticket(340)) and write it up. Dry run in the app's pane: 20 passes, no error, DATA.bubble filled (its numbers mean nothing there: no real frames). WAITING on Matthew's runs tonight; then the analysis. 23:59 (ticket 340): since 0.0.306 the bubble room's foam starts still; the 🧪 suite's passes 15 and 16 now set the foam moving (88, the old default) so they measure what they did, 17 still, and the makers' passes (18 to 20) run with the foam still (what the makers cost alone). His runs on the black laptop and iPad, when he makes them, use 0.0.307 or later."
   },
   {
    "id": 388,
@@ -1712,108 +1608,6 @@
    "waiting": "Matthew, on your own machine (not 8341: this laptop's worker times out on Scenes at the fixed 20 s eval_timeout_ms, still 20000 on 9933091a99): open the Scenes slide on #2635's public build, hazel.org/build/integration/livelits-modular-editors/ (the same code as 9933091a99), click the full-screen button at the top right of the drawn picture, and press Esc to leave."
   },
   {
-   "id": 402,
-   "area": "dress up -> hazel, the port: a plan, and a report on drawing, music and menus",
-   "added": "2026-10-19T11:14-06:00",
-   "opened": "2026-10-19T11:14-06:00",
-   "status": "open",
-   "tags": [
-    "blocked on Matthew",
-    "high curiosity (Matthew)",
-    "low priority",
-    "meeting 2026-10-21"
-   ],
-   "chips": [
-    "hazel"
-   ],
-   "source": "Matthew, 2026-10-19 11:14, in chat",
-   "url": "",
-   "text": "<b>Plan the port of Messed Up Dress Up to Hazel, and a report today on its three hardest questions.</b> Matthew: \"a ticket that plans a port of Messed Up Dress Up to Hazel\" and \"I'm especially interested in a report today answering the following questions:\"<ul><li>\"what parts of Messed Up Dress Up drawing would be most challenging for Hazel?\"</li><li>\"can we do music in Hazel?\"</li><li>\"how would we offer the complex menu system while still doing 'Always be Knowlling'? -- even tho we can hide the program and show only livelits, they do not follow our protocol in Messed Up Dress UP for menu design.\"</li></ul>Builds on: ^du_report(8), Piece by piece (^ticket(359), published this morning: the port, feature by feature, in two months or three); ^report(15) (Dress Up and its livelits side by side, measured); ^du_report(5)'s menu guidance, Always Be Knolling (^ticket(375)). The report likely goes in the Dress Up series as the next ^du_report, with what it measures or tries in Hazel (a drawing, a sound) shown, not only argued. Not blocked on Matthew: the earlier ask, ^ticket(359), is done. <b>11:14, Matthew, a subsection:</b> \"Let's have a subsection that summarizes 'advanced' features of MUDU (world design, animated click to walk, click to sit, etc.) --- and stages them as challenges for Hazel.\" So the report also lists the game's advanced features (the world designer, click to walk with its animation, click to sit, and the rest) and puts them in stages, easiest first, each as a challenge for Hazel: what it would take there, and what stands in the way. <b>Expanded, 2026-10-20:</b> Matthew: \"But let's expand the story: Drawing pictures with Hazel code (to create Html.T instances) is not fast enough for doing MUDU via Hazel, yet. But MUDU could be scripted with Hazel, for game logic --- let's examine this claim with data. Things like: * when we pull a lever (an event in the MVC system), we do a monadic command to change the trapdoor it links with, under some table we project from. * the table has all lever-thing connections. Trapdoors for now.\" So: test the claim with data. Hazel is not yet fast enough to draw Dress Up's pictures (Html.T), but may be fast enough for its game logic, for example: a lever pulled (an event in the MVU loop) runs a monadic command that changes the trapdoor the lever is linked to, found in a table of lever-to-thing connections (trapdoors for now), a projected table. Measure what such a rule costs to evaluate, against the game's frame budget. Related: ^ticket(473), the agenda's item 11. Matthew: \"^ Related. https://arxiv.org/html/1703.05410v1\": the lever rule in the paper's terms is a player intent (pull) whose mechanics rule, a step from state and intent to state and response, reads the connections table; the comparison is ^report(20)'s item 11. Matthew, next: \"the main wrinkle for Hazel matching the script shape we want --- we need global variables for simple games --- most scripts use them. So we need to be monadic.\" So the rules read and write the game's globals through commands (a state monad), and the measurement includes that.",
-   "progress": "11:14: minted and enqueued; Matthew asked whether it already existed or was blocked on him: ^ticket(359) was the earlier ask, done this morning as ^du_report(8). Report due today. 11:14: + the subsection on advanced features, staged as challenges. 13:02: groundwork started (due EOD): ^du_report(8) already says JS stays the engine (Hazel lacks a clock, a sound binding, picture measuring). Three read-only research passes running: the drawing's hardest parts for Hazel; music (pure score vs WebAudio, Hazel's options); menus vs Always Be Knolling (Hazel's livelit layout). Next: try something in Hazel (a drawing, a score) so the report shows, not only argues. 13:03: Matthew reordered the queue: Dress Up tickets after the Hazel ones, so this follows them although it was due at the end of today. Its three research passes were already running and will be kept for it. Unless Matthew says otherwise, it follows the Hazel tickets, and the deadline may slip to tomorrow. 14:06: DRAFTED ^du_report(13) at http://localhost:8133/du-reports/013/ (local commit in ~/kids-choice-games, NOT pushed: a push deploys the game). Answers: (1) the drawing's hard part is its runtime, not its SVG: motion every frame (no clock in livelits), measuring the picture (~104 calls), size (greenhouse 1,906 elements vs Hazel's largest 570 shapes), DOM post-processing, byte-exact numbers (TRIED: to_fixed vs the game's f1 differ on 5 of 7 values); (2) music: computable today (TRIED: a 1,216-event score in ~0.2 s, 12,160 in ~1.2 s, CLI on #2635), playing needs a JS player or builtin; livelits have no sound, MVU apps a sine beep (corrects du_report(8)); (3) menus: Hazel meets ~2 of 9 ABK rules; plan: settings as modules + a knolled UX layout + big livelits for designers; speed is the gap; (4) advanced features in 6 stages. WAITING ON MATTHEW: read; publish on his word (its card in the series index goes in then; the index has another session's uncommitted edits). 14:07: the draft lives on branch report-013 in ~/kids-choice-games (main is back at origin/main, so a game release cannot carry it); the files stay in the working tree for the preview. 11:06: expanded by Matthew (game logic in Hazel, measured: levers and trapdoors through a table); off \"blocked on Matthew\", since that part is Claude's; the report draft (report-013 branch) still waits on his reading. 11:21: MEASURED (probe trial/402-levers on #2635's code; the test build under node on a GitHub runner): statics+elab once 8 to 70 ms; per pull (1 pull against 100) 0.70 ms with 10 links (monadic and run in Hazel 0.95), 5.7 ms with 100, 65 ms with 1,000 (monadic 68): linear in the table, a list scanned per pull; commands as data cost little more. So a trap room's logic, a few links, costs ~1/20 of a 16.7 ms frame: the claim holds (game logic yes, drawing not yet). Written into ^report(20)'s item 11. Next: ^ticket(479), the $GameUpdate monad. The report draft (report-013) still waits on Matthew's reading. 23:36 10-20 (audit): ^ticket(479) closed done at 11:24 10-20 (the $GameUpdate sketch), followed by ^ticket(480), ^ticket(481) (#2711) and ^ticket(482) (PR #1, live 21:50). The lever measurement now sits in ^report(20)'s item 12 ('play'); a8c8600 at 19:18 inserted 'timing' as item 11. Only ^du_report(13)'s reading is left, and that is Matthew's (branch report-013, 186fa6e, not pushed). | 07:17 10-22: Matthew: update ^du_report(13) too once ^report(25) has new numbers. Its Hazel (#2635 at 90ed4505bf) already carries all 14 performance PRs (ten as in the PR, four in #2635's own form), and ^report(15)'s build had the main ones, so its numbers are already after them; the score re-timed through the library on the three builds is unchanged (1,216 events 140/132/138 ms). Pushed to the game's main as 565a74a (report only).",
-   "log": [
-    {
-     "at": "2026-10-19T11:10-06:00",
-     "from": "matthew",
-     "chars": 176,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-19T11:10-06:00",
-     "from": "claude",
-     "chars": 104,
-     "asks": false,
-     "words": 20,
-     "read_s": 5,
-     "listen_s": 8,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-19T11:13-06:00",
-     "from": "matthew",
-     "chars": 574,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-19T11:14-06:00",
-     "from": "matthew",
-     "chars": 217,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-19T11:18-06:00",
-     "from": "claude",
-     "chars": 1521,
-     "asks": false,
-     "words": 245,
-     "read_s": 62,
-     "listen_s": 92,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T11:04-06:00",
-     "from": "matthew",
-     "chars": 121,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T11:06-06:00",
-     "from": "matthew",
-     "chars": 466,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T11:06-06:00",
-     "from": "matthew",
-     "chars": 46,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T11:12-06:00",
-     "from": "matthew",
-     "chars": 160,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T11:16-06:00",
-     "from": "claude",
-     "chars": 525,
-     "asks": false,
-     "words": 96,
-     "read_s": 24,
-     "listen_s": 36,
-     "note": "from the transcripts"
-    }
-   ],
-   "waiting": "Matthew: read ^du_report(13) (localhost:8133/du-reports/013/); publish on your word."
-  },
-  {
    "id": 408,
    "area": "hazel, Hazel Weekly: how its agent credits the team",
    "added": "2026-10-19T12:04-06:00",
@@ -2004,53 +1798,6 @@
     }
    ],
    "waiting": "Matthew: the Cyrus meeting's word: which of the 19 PRs get their own tests first, and who reviews #2700?"
-  },
-  {
-   "id": 422,
-   "area": "dress up, ^du_report(14): posing the body",
-   "added": "2026-10-19T15:42-06:00",
-   "opened": "2026-10-19T15:42-06:00",
-   "status": "open",
-   "tags": [
-    "parked: docs frozen"
-   ],
-   "source": "Matthew, during ^ticket(412)",
-   "url": "",
-   "text": "<b>A report on posing the friend's body, logged as we go: how each pose is built, layering by depth, and notes for poses to come.</b> Matthew: \"we need the back leg to obscure the front leg; the torso obscures the back arm, etc\"; \"start to log details for a report about posing our body --- we want notes for further poses, if possible.\" The log: kids-choice-games/dress-up/reports/014/data/pose-notes.json (findings, rules, next steps; each with its ticket). A draft report from it later, pushed only on his word.",
-   "progress": "15:42: log started with 8 entries from ^ticket(412) (the turn that read as a roll, the skew that reads face up, the layering rule, how layering works today, the poses so far, three next poses). Add an entry whenever a pose ticket finds something. 15:46: + 4 entries (the skew 'too flat', the direction: new angles as drawing routines of their own, the angles today and where they branch in the code, three angles to draw); 12 in all. 15:58: + 3 entries (his pick of the first angle, the lying-along routine, its first fixes); 15 in all. 16:01: + the hair's layering on the lying head; 16 entries. 16:06: + the face-up rule; 17 entries. 16:26: DRAFT of ^du_report(14), 'Posing the Body', made from the log: kids-choice-games/dress-up/reports/014/ (data/report.json, data/pose-notes.json, drivers/build.py, pictures/: the friend lying on the red bag, and four elbow and knee settings, the game's own drawings). Preview: localhost:8133/du-reports/014/. Sections: the views we have (and where the code branches on them), the lying-along view's eight tries with Matthew's words, elbows and knees in three dimensions, layering by depth, every animation's bends, the log, What next (7 steps). Local only, not committed: WAITING ON MATTHEW to read it before it is published (a push publishes). The log goes on with each pose ticket. 23:36 10-20 (audit): Correction. The draft (dress-up/reports/014/) is untracked and not on main, but the first 15 entries of its log, data/pose-notes.json, are already public on GitHub. They are in WIP commits 2dd96e6 (15:45 10-19) and adabab8 (15:55), on branch lie-along-412 of the public kids-choice-games repo (ls-remote: adabab8). That branch is not on main, because 412 shipped as 0.0.338 (2184d41). Whether to delete it is Matthew's call. The log now has 23 entries: 4 from ^ticket(414) at 16:20, the last from ^ticket(425) at 17:01. The report itself still waits on Matthew. | 08:57: stale branch lie-along-412 (adabab8) DELETED with 151 others (his OK to delete stale branches; backup ~/kcg-branches-backup-2026-10-24.bundle). The report stays parked: reports are frozen for now (his call 10-24).",
-   "log": [
-    {
-     "at": "2026-10-19T15:39-06:00",
-     "from": "matthew",
-     "chars": 82,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-19T15:40-06:00",
-     "from": "matthew",
-     "chars": 105,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-19T15:42-06:00",
-     "from": "matthew",
-     "chars": 54,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-19T15:42-06:00",
-     "from": "claude",
-     "chars": 332,
-     "asks": false,
-     "words": 50,
-     "read_s": 13,
-     "listen_s": 19,
-     "note": "from the transcripts"
-    }
-   ]
   },
   {
    "id": 423,
@@ -2497,68 +2244,6 @@
    "waiting": "Matthew: the Cyrus meeting's word: keep the slide-timing job running per PR and on dev?"
   },
   {
-   "id": 473,
-   "area": "dress up × hazel: Hazel tiles for the game's logic (ideation)",
-   "added": "2026-10-20T09:56-06:00",
-   "opened": "2026-10-20T09:56-06:00",
-   "status": "open",
-   "tags": [
-    "blocked on Matthew",
-    "meeting 2026-10-21"
-   ],
-   "source": "Matthew, 2026-10-20 10:0x, in chat (\"after the cave ticket\")",
-   "url": "https://arxiv.org/abs/1703.05410",
-   "text": "<b>Ideation: Hazel as the editor of a Scratch-like game-building environment, with Messed Up Dress Up as its world, people and objects; partly blocked on Matthew.</b> Matthew: \"Ideation, partly blocked on Matthew, about Hazel as the editor for a Scratch-like game-building environment, based on Messed Up Dress Up as the world/people/object system. Livelits show that hazel can express a lot, but not yet with adequate performance to play the role of the \"game engine\" and the \"drawing logic\". But the \"game logic\", especially simple event-based declarations: When this action in game happens, this other action is queued to happen (perhaps immediately). If we can expose Hazel tiles within Messed Up Dress Up to customize behavior, we'll have a synergistic configuration to drive more play and research, and their combination.\" So: Dress Up keeps its engine and its drawing (JavaScript, at 60 fps); Hazel tiles, inside Dress Up, declare the game logic, as events and the actions they queue (\"when this happens, then that\"), small enough for Hazel's evaluator today. Ideas first: the event and action vocabulary, where the tiles appear in Dress Up, how a declaration runs (when, and how fast), what is Matthew's to decide. Matthew, next: \"Your part of this ticket, to do before blocking, is to compare the ideas of Hazel + Messed Up Dress Up (in the vein of Scratch) to ideas in this paper, which go further, and include Hazel concepts like \"type systems\", \"proofs\", \"logic\" (deductive inference rules), etc. https://arxiv.org/abs/1703.05410\" So Claude's part, before the ticket blocks on Matthew: read <a href=\"https://arxiv.org/abs/1703.05410\">arXiv:1703.05410</a> and compare its ideas with Hazel + Dress Up in Scratch's vein, where it goes further (type systems, proofs, logic as deductive inference rules).",
-   "progress": "10:57: CLAUDE'S PART DONE: read the paper (Martens and Hammer, 2017) and compared, in ^report(20)'s item 11 (\"Hazel tiles for a game's logic\"), published. Where they meet: event rules are the paper's skills-as-programs made reactive. Where it goes further and Hazel could follow: typed intents, the context as types (a rule that cannot apply is a type error), mechanics as inference rules with \"never stuck\" checked, traces as queryable values. What Hazel adds: rules meaningful while half-written, livelits inside rules, proof beside program. Steps, smallest first, listed there. ✋ For Matthew: which events and actions first, where the tiles sit in Dress Up, who writes rules; and whether to show it to Cyrus. 23:36 10-20 (audit): Matthew answered two of the 10:57 questions on 10-20: events first are lever pulls flipping trapdoors (11:06, in ^ticket(402)), and the tiles sit in a 🧩 Scripting panel, one editor per room, starting with the castle dungeon (11:25, ^ticket(480)). Both are built: ^ticket(482)'s kids-choice-games PR #1 (ac430bc, open, mergeable), live in the demo since 21:50. The comparison is now ^report(20)'s item 12 ('play'); items were renumbered at a8c8600, 19:18. Still for Matthew: who writes the rules. Still for Matthew: who writes the rules.",
-   "log": [
-    {
-     "at": "2026-10-20T09:55-06:00",
-     "from": "matthew",
-     "chars": 711,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T09:56-06:00",
-     "from": "claude",
-     "chars": 122,
-     "asks": false,
-     "words": 22,
-     "read_s": 6,
-     "listen_s": 8,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T09:57-06:00",
-     "from": "matthew",
-     "chars": 303,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T09:57-06:00",
-     "from": "claude",
-     "chars": 171,
-     "asks": false,
-     "words": 28,
-     "read_s": 7,
-     "listen_s": 10,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T09:57-06:00",
-     "from": "claude",
-     "chars": 628,
-     "asks": false,
-     "words": 97,
-     "read_s": 24,
-     "listen_s": 36,
-     "note": "from the transcripts"
-    }
-   ],
-   "waiting": "Matthew: who writes the rules (players, M and N, or a designer)?"
-  },
-  {
    "id": 481,
    "area": "hazel, a draft PR: Hazel as a JS library",
    "added": "2026-10-20T11:28-06:00",
@@ -2752,66 +2437,6 @@
    "progress": "12:52 10-20: DONE on our side. #2583 at 077a68f9f8: Fast checks, Full tests and codecov GREEN, MERGEABLE (dev merged in, 03f1abbd45). Tried in the browser on its deploy: ?slide=tuples&panel=probes&caret=3,5 opened Documentation on Tuples with the Probes panel; Copy URL on that slide gave ?slide=tuples&panel=probes&caret=5%2C13 and loading it put the caret back on labeled_tuple; a share link (?name=Demo&share=...&caret=1,14) opened Scratch on a new Demo with the caret on x; Copy URL there gave a share link carrying the text, panel and caret, which loaded back the same; switching to Documentation and back left one Demo (dev added one each time). Left, Matthew's: re-request review from 7h3kk1d (it notifies him); and two choices to reverse if he likes: Copy URL in every mode (a snapshot outside the deck), and selection-or-caret instead of the enclosing term.",
    "log": [],
    "waiting": "Matthew: re-request review from 7h3kk1d on #2583 (green, mergeable, 0 behind dev at 077a68f9f8; his 12 threads still unresolved); optionally reverse Copy URL in every mode, or selection-or-caret."
-  },
-  {
-   "id": 493,
-   "area": "dress up, the king's room: sitting on an added throne",
-   "text": "<b>Sitting on a throne that was added to the king's room goes wrong: the friend leaves the castle.</b> Matthew: \"Bug report --- after I added thrones and tried to sit, strange behavior -- leaving castle -- let's repro.\" So: in a castle's 👑 king's room, add thrones (\"👑 how many thrones\", up to 6, ticket 293), then sit on one; reproduce, find why the sit takes the friend out of the castle, fix.",
-   "source": "Matthew, 2026-10-20 15:54, in chat, during the Dress Up sprint (a bug report)",
-   "url": "",
-   "added": "2026-10-20T15:54-06:00",
-   "opened": "2026-10-20T15:54-06:00",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "log": [
-    {
-     "at": "2026-10-20T15:38-06:00",
-     "from": "claude",
-     "chars": 1860,
-     "asks": false,
-     "words": 323,
-     "read_s": 81,
-     "listen_s": 121,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T15:47-06:00",
-     "from": "matthew",
-     "chars": 19,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T15:47-06:00",
-     "from": "claude",
-     "chars": 284,
-     "asks": false,
-     "words": 45,
-     "read_s": 11,
-     "listen_s": 17,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T15:53-06:00",
-     "from": "matthew",
-     "chars": 105,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-20T15:53-06:00",
-     "from": "claude",
-     "chars": 174,
-     "asks": false,
-     "words": 28,
-     "read_s": 7,
-     "listen_s": 10,
-     "note": "from the transcripts"
-    }
-   ],
-   "progress": "16:02 10-20: NOT REPRODUCED YET, so BLOCKED ON MATTHEW for the steps. Tried in the working copy (0.0.375 + 491's fix) on 8133, N's castle, the king's room (room 1; its ways: doors to rooms 2 and 3, and S out to the castle), with 1 to 6 thrones at sizes 40 to 200, with cats and without, and the friend sat on a throne every time and stayed in the room: (1) a click on a throne (with 👆 on: walked there, then sat); (2) the 🪑 throne N button; (3) the controller (the on-screen pad's, driven): walking up onto a throne and stopping sits, then pushing up, down, left or up-right gets up and walks, never out; (4) riding or leading the horse, by click and by button; (5) no point of any throne's seat is under a door or the S arrow (a click there would go through instead), at any size and count. QUESTIONS for Matthew: which castle and room (the king's room?), and how many thrones, what sizes? How did you sit: the controller (walking onto it), a click on the throne, or the 🪑 button? What did 'leaving castle' look like: out through the front (S), the friend flying into another room's door, or the picture changing to the castle seen from outside? Were you riding or leading the horse? In the public game (0.0.375)? A 💾 save of the game in that state would let me load it exactly. 23:22 10-20: TRIED FURTHER, still not reproduced (0.0.394 on 8482, not 8133, so the kids' saved game is untouched). (1) M's castle too, whose king's room is its room 2 (16:02 had tried only N's): 1 to 6 thrones at sizes 40, 100, 200, sitting on each throne in turn (63 sits) and standing up again: the friend stayed in the room every time. (2) A suspect in the click handler: before a click looks for a seat, it goes through any passage 'under the pointer' (hoverPass: within 44 screen px of a nav arrow, or within 10 units of a door's box), and thrones, unlike the friend and placed things, are not excluded. So a click on a throne's back or crown, not its seat, could take a doorway. Probed every point of every throne's drawing in both castles' king's rooms, all counts and sizes (8,304 points, the passage list fresh each time): no passage under any of them; the nearest any throne comes to a nav arrow (S) is 110 px with the picture 523 px wide, so it would take a picture under about 210 px wide. So the steps are still needed (the questions above); the likeliest left: a throne clicked while the S arrow's 44 px reach covered it on a small picture (an iPad held upright, or the picture made small), or a drag of the friend.",
-   "waiting": true
   },
   {
    "id": 508,
@@ -3610,7 +3235,7 @@
      "note": "from the transcripts"
     }
    ],
-   "progress": "PR #3 (https://github.com/matthewhammer/kids-choice-games/pull/3) open, knoll-521, not merged. Final run (3 jobs agree except the bubble room's moving bubbles): empty between boxes, main -> branch: full screen 1920 62.3% -> 53.3%; side 1920 37.7 -> 27.1; side 1366 27.9 -> 21.9; iPad full screen 30.4 -> 21.2. ^du_report(16) rebuilt with it (164ae95 on report-016, local; preview http://localhost:8133/report-016/reports/016/). Waiting on Matthew: a look at the panels and the report; c4's default split; publishing the report; merging. | ^du_report(16) published as work in progress. | 06:57 10-22: pushed 590755f to knoll-521 (PR #3): crumbs491's check given room to scroll past the band, since 521's packed boxes made the first tab short; a check change only, committed by the 05:01 fix workflow and left unpushed. CI runs on GitHub."
+   "progress": "PR #3 (https://github.com/matthewhammer/kids-choice-games/pull/3) open, knoll-521, not merged. Final run (3 jobs agree except the bubble room's moving bubbles): empty between boxes, main -> branch: full screen 1920 62.3% -> 53.3%; side 1920 37.7 -> 27.1; side 1366 27.9 -> 21.9; iPad full screen 30.4 -> 21.2. ^du_report(16) rebuilt with it (164ae95 on report-016, local; preview http://localhost:8133/report-016/reports/016/). Waiting on Matthew: a look at the panels and the report; c4's default split; publishing the report; merging. | ^du_report(16) published as work in progress. | 06:57 10-22: pushed 590755f to knoll-521 (PR #3): crumbs491's check given room to scroll past the band, since 521's packed boxes made the first tab short; a check change only, committed by the 05:01 fix workflow and left unpushed. CI runs on GitHub. | 16:30 10-24: Matthew: \"521 -- yes, much better now.\""
   },
   {
    "id": 533,
@@ -5103,126 +4728,19 @@
    ]
   },
   {
-   "id": 562,
-   "area": "dress up, two costumes at once: one worn over the other (a cat over the ninja, the ninja over a cat, and every pair we can try), drawn, with a ^du_report(17) draft for M",
-   "added": "2026-10-22T17:01-06:00",
-   "opened": "2026-10-22T17:01-06:00",
-   "status": "open",
-   "tags": [
-    "for M, tonight (2026-10-22)",
-    "blocked on Matthew"
-   ],
-   "chips": [
-    "dress up"
-   ],
-   "source": "Matthew, 2026-10-22 17:01, in chat: \"mint and enqueue tonight for M --- experiment with rendering a double-layered costume -- e.g., wearing a cat costume over the ninja  costume, or vice versa (especially interested in cats and ninjas, and all combinations you can try out) -- please prepare a report draft to share with M later tonight, when you are ready, when mockups.  Also, a new mock up of the costume controls where we can have 0, 1 or 2 costumes at once (for now, with an eye to 2+ in the future).\"",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "text": "<b>A costume over a costume.</b> An experiment: draw the friend wearing two costumes, one over the other, with the game's own drawing code: a cat costume (🐈‍⬛ black cat, 🐯 tiger, 🦁 lion, 🐆 leopard...) over the 🥷 ninja, and the ninja over a cat, Matthew and M most curious about cats and ninjas; then as many other pairs as we can try. What shows through, what hides, what clashes (two heads, two masks, tails, bands, gems), and which rules make a pair look right. Mock-up pages first, nothing in the game yet. Then a <b>^du_report(17)</b> draft for M with the pictures, to share later tonight on Matthew's word (a draft until then: a push publishes it).",
-   "progress": "17:01: minted, tagged for M tonight; at the front of the active queue (his deadline). 17:26: found the game's drawNow draws the friend in node (catch fresh.innerHTML), so no browser is needed; the lab: draw the friend bare, in costume A and in B, and put B over A where B differs from bare (B's openings show A). Report draft ^du_report(17) in ~/kcg-report-017 (branch report-017). 17:34: DRAFT READY: ^du_report(17) at localhost:8133/report-017/reports/017/ (branch report-017, cd9cc40, not pushed): 35 costumes, 213 drawings by the game's own drawNow in node, 138 pairs; the cats and the ninja both ways from three sides, every cat over every cat, every costume over and under the ninja; the rule; 10 findings; What next. Waiting on Matthew: share with M, and publish (a push) on his word. ^ticket(563)'s mock-up goes into its Controls section when done.",
-   "log": [
-    {
-     "at": "2026-10-22T16:50-06:00",
-     "from": "matthew",
-     "chars": 56,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T16:59-06:00",
-     "from": "matthew",
-     "chars": 468,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T17:02-06:00",
-     "from": "claude",
-     "chars": 144,
-     "asks": false,
-     "words": 28,
-     "read_s": 7,
-     "listen_s": 10,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T17:11-06:00",
-     "from": "claude",
-     "chars": 660,
-     "asks": false,
-     "words": 128,
-     "read_s": 32,
-     "listen_s": 48,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T17:12-06:00",
-     "from": "matthew",
-     "chars": 521,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T17:12-06:00",
-     "from": "claude",
-     "chars": 120,
-     "asks": false,
-     "words": 25,
-     "read_s": 6,
-     "listen_s": 9,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T17:36-06:00",
-     "from": "matthew",
-     "chars": 4374,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T18:12-06:00",
-     "from": "matthew",
-     "chars": 6452,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T18:15-06:00",
-     "from": "claude",
-     "chars": 3091,
-     "asks": false,
-     "words": 540,
-     "read_s": 136,
-     "listen_s": 202,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ],
-   "waiting": "read ^du_report(17) (draft), share with M, publish?"
-  },
-  {
    "id": 564,
    "area": "dress up, the code after so many features: 17 re-mix scenarios (the ninja's gems in the king's crown, and 16 more of our choosing), a re-org performed, and a ^du_report(18) draft on it and on other ways to improve",
    "added": "2026-10-22T17:13-06:00",
    "opened": "2026-10-22T17:13-06:00",
    "status": "open",
-   "tags": [
-    "tonight (2026-10-22)",
-    "blocked on Matthew"
-   ],
+   "tags": [],
    "chips": [
     "dress up"
    ],
    "source": "Matthew, 2026-10-22 17:13, in chat: \"mint and enqueue tonight---  recover from so many feature extensions to MUDU --- refactor code and make a report about other ways to improve --- E.g., maybe we want to draw gems in the kings crown in the future --- are the routines we have for ninja gems going to be ready to re-mix with other code down the line? ^ Please consider 17 different scenarios like this, of your choosing, and propose and perform any code re-org that you choose --- just report it as a report, so I can review later and we can discuss later.\" Then, 17:13: \"Gems for treasure chests, etc.\" Then, 17:13: \"Gems to decorate very fancy swords and sheilds, and the kinds thrown and thrown room, etc.\" (the king's throne and the throne room)",
    "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
    "text": "<b>Recover from so many features.</b> Messed Up Dress Up grew one costume, room and control at a time (31,700 lines in 26 parts; drawNow alone ~1,460 lines, the costumes woven through it by kind). Choose 17 scenarios of future re-mixing, like Matthew's: <i>the ninja's gems in the king's crown</i> (are ninjaGemSvg and its cuts ready to be used by other code?), and 16 more (e.g. Matthew's second: <i>gems for treasure chests, etc.</i>; his third: <i>gems on very fancy swords and shields, the king's throne and the throne room</i>; two costumes at once, ^ticket(562); a costume's pieces on the people; new animals from the suit parts; held things; scenery reusing body drawings). For each: what the code makes easy or hard today, and the re-org that would make it easy. Then PERFORM the re-org we choose (behaviour unchanged: the same pictures, checked), on a branch, and write it up as <b>^du_report(18)</b>, a draft for Matthew to review and discuss later (a push publishes it: on his word).",
-   "progress": "17:13: minted for tonight; after ^ticket(563) in the queue (his deadline: tonight). 17:13: + Matthew's second scenario: gems for treasure chests, etc. 17:13: + his third: gems on fancy swords and shields, the king's throne and throne room. 17:26: a helper agent is on it in ~/kcg-564 (branch ticket-564-reorg off 0.0.411): 17 scenarios, a behaviour-unchanged re-org (gems first) proven by drawing many friends in node before and after and comparing the SVG byte for byte, and the ^du_report(18) draft. 18:13: DONE on branch ticket-564-reorg in ~/kcg-564 (not pushed, not merged): 5a260ad one namer for content ids (shapeId/shapeClip) + tools/same_friend.mjs, the proof; 97b00eb the ninja's gem is any drawing's gem (gemSvg, gemSideSvg, GEMSTONES, GEMSTONE_SHAPES, GOLD, in js/02-helpers.js; the ninja's settings keys unchanged); 8184fb3 COSTUME_CLOTHES, drawNow's fourteen shirt-and-pants ifs as one table (a first step to two costumes at once); 7e8d5c7 the ^du_report(18) draft, 'Ready to Re-mix': 17 scenarios, 5 ready, 8 small changes, 4 re-orgs; demonstrations (not the game) of gems in a crown, a chest, a sword and shield, a throne. Proof: 12,570 drawings per run identical byte for byte to 0.0.411, each commit. Waiting on Matthew: review and discuss, then merge or not. 18:20: RE-CHECKED by the main session: same_friend.mjs, 0.0.411 (main, 538a69f) against the branch head: 12,570 cases, 12,570 identical, structure identical, 146.5 MB in 500 s; check_script and check_load pass; the report's 7 pictures load.",
+   "progress": "17:13: minted for tonight; after ^ticket(563) in the queue (his deadline: tonight). 17:13: + Matthew's second scenario: gems for treasure chests, etc. 17:13: + his third: gems on fancy swords and shields, the king's throne and throne room. 17:26: a helper agent is on it in ~/kcg-564 (branch ticket-564-reorg off 0.0.411): 17 scenarios, a behaviour-unchanged re-org (gems first) proven by drawing many friends in node before and after and comparing the SVG byte for byte, and the ^du_report(18) draft. 18:13: DONE on branch ticket-564-reorg in ~/kcg-564 (not pushed, not merged): 5a260ad one namer for content ids (shapeId/shapeClip) + tools/same_friend.mjs, the proof; 97b00eb the ninja's gem is any drawing's gem (gemSvg, gemSideSvg, GEMSTONES, GEMSTONE_SHAPES, GOLD, in js/02-helpers.js; the ninja's settings keys unchanged); 8184fb3 COSTUME_CLOTHES, drawNow's fourteen shirt-and-pants ifs as one table (a first step to two costumes at once); 7e8d5c7 the ^du_report(18) draft, 'Ready to Re-mix': 17 scenarios, 5 ready, 8 small changes, 4 re-orgs; demonstrations (not the game) of gems in a crown, a chest, a sword and shield, a throne. Proof: 12,570 drawings per run identical byte for byte to 0.0.411, each commit. Waiting on Matthew: review and discuss, then merge or not. 18:20: RE-CHECKED by the main session: same_friend.mjs, 0.0.411 (main, 538a69f) against the branch head: 12,570 cases, 12,570 identical, structure identical, 146.5 MB in 500 s; check_script and check_load pass; the report's 7 pictures load. | 16:30 10-24: Matthew: \"564 --- yes, redo the remix preparation/reorg -- and file a fresh report with a fresh number.\" Plan: redo the re-org on current main (0.0.426; the old branch ticket-564-reorg is 152 behind), the 17 scenarios again, and a new report with a new number (^du_report(18) is now the Story Scripts Guide), after the speed runs (^ticket(605)).",
    "log": [
     {
      "at": "2026-10-22T16:59-06:00",
@@ -5344,7 +4862,7 @@
      "note": "from the transcripts"
     }
    ],
-   "waiting": "review ^du_report(18) (draft) and the re-org branch; discuss"
+   "waiting": null
   },
   {
    "id": 570,
@@ -7176,7 +6694,7 @@
    ],
    "source": "Matthew, 2026-10-24 ~09:05, in chat: \"For 0.0.423 (2026-10-24) Let's do a new Zine and manual report --- for the kids to understand the story-script language, with examples, and more coloring pages. BTW -- last coloring pages look good, but why is the friend have stick arms? Seems like a bug? No need to fix that initial one, but fix going forward.\"",
    "text": "<b>A director's guide for M and N.</b> The 🎬 story box (^ticket(440)) and the 🚶 paths (^ticket(599)) explained in the style of ^du_report(17), with pictures from a run on GitHub, story ideas to try, a quick-reference card, and eight coloring pages; the zine in dress-up/manuals/. Stick arms: limbs were 1.1-wide lines in lines only; fixed in 0.0.424 (outlined limbs), and the coloring pages' own line-art copy keeps limb widths too.",
-   "progress": "09:02: minted; stick-arm fix RELEASED in 0.0.424 (b65edd2). Pictures will be at 0.0.424 (the fix), not 0.0.423. | 09:42: PUBLISHED as work in progress (game 6a0b38a, homepage 1c3e7e6): https://matthewhammer.org/kids-choice-games/dress-up/reports/018/ , the zine dress-up/manuals/story-scripts-guide-0.0.424-zine.pdf (7 Letter sheets, 8 coloring pages, outlined arms), its card on matthewhammer.org/hazel/dress-up/reports/. Pictures from run 40107362158 at 0.0.424. Also: reports 11-17 no longer work in progress (his word). WAITING: M and N's read and feedback, then the work-in-progress mark comes off. | 10:15: Matthew printed the zine flipped on the long edge (\"most people do that too\"): half the pages upside down. Now each zine is two copies named for how to print it (his words: \"make each one say how to print it in the file name -- to avoid other people wasting paper\"): story-scripts-guide-0.0.424-zine-print-2-sided-flip-long-edge.pdf, the one the report links, and ...-flip-short-edge.pdf (the old layout, the report's little link); the same for the game scripts guide at 0.0.419. Pushed to kids-choice-games main (1bc9eee, 4339c9a), live and checked. His short-edge reprint came out right; the long-edge copy is untested on paper.",
+   "progress": "09:02: minted; stick-arm fix RELEASED in 0.0.424 (b65edd2). Pictures will be at 0.0.424 (the fix), not 0.0.423. | 09:42: PUBLISHED as work in progress (game 6a0b38a, homepage 1c3e7e6): https://matthewhammer.org/kids-choice-games/dress-up/reports/018/ , the zine dress-up/manuals/story-scripts-guide-0.0.424-zine.pdf (7 Letter sheets, 8 coloring pages, outlined arms), its card on matthewhammer.org/hazel/dress-up/reports/. Pictures from run 40107362158 at 0.0.424. Also: reports 11-17 no longer work in progress (his word). WAITING: M and N's read and feedback, then the work-in-progress mark comes off. | 10:15: Matthew printed the zine flipped on the long edge (\"most people do that too\"): half the pages upside down. Now each zine is two copies named for how to print it (his words: \"make each one say how to print it in the file name -- to avoid other people wasting paper\"): story-scripts-guide-0.0.424-zine-print-2-sided-flip-long-edge.pdf, the one the report links, and ...-flip-short-edge.pdf (the old layout, the report's little link); the same for the game scripts guide at 0.0.419. Pushed to kids-choice-games main (1bc9eee, 4339c9a), live and checked. His short-edge reprint came out right; the long-edge copy is untested on paper. | 16:30 10-24: Matthew: \"600 --- maybe by tomorrow --- they are not playing with the game right now.\"",
    "log": [
     {
      "at": "2026-10-24T08:49-06:00",
@@ -7454,7 +6972,7 @@
      "note": "from the transcripts"
     }
    ],
-   "waiting": "M and N: read ^du_report(18) (https://matthewhammer.org/kids-choice-games/dress-up/reports/018/) and the zine, color a page; their feedback, then the work-in-progress mark comes off."
+   "waiting": "M and N: read ^du_report(18) and the zine, color a page; their feedback, then the work-in-progress mark comes off. Matthew 10-24: maybe by tomorrow; they are not playing with the game right now."
   },
   {
    "id": 602,
@@ -7563,12 +7081,98 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 605,
+   "area": "dress up, the speed runs: every release since 0.0.420 marked broken (a timeout in the controller audit, and checks that really fail)",
+   "added": "2026-10-24T16:30-06:00",
+   "opened": "2026-10-24T16:30-06:00",
+   "status": "open",
+   "tags": [
+    "today (2026-10-24)"
+   ],
+   "chips": [
+    "dress-up"
+   ],
+   "source": "Matthew, 2026-10-24, in chat: \"yes -- fix the red speed runs today.\"",
+   "text": "<b>Make the speed run mean something again.</b> Since 0.0.420 every release's speed.json entry says broken (the checks). Two causes: the Chrome job reaches its 90-minute limit in its last step, the on-screen controller audit (recorded, not a verdict), and checks that really fail: scripting482 (the tiles frame shows no tokens in CI), giraffe544 (written before the ninja: its mask, 99 shapes against 92, the head outside the frame jumping), scriptboxes566 (expectations from before later script work), hazellogic531 (an intermittent page error: the world rules' globals read W.at when the world has no square, 25-scripting.js:669), and one check that stops (out.views[out.k].push is not a function). Also: the forest read 54.9 fps on 0.0.426 against 60 on 0.0.424; compare on the same runner before calling it anything.",
+   "progress": ""
   }
  ],
- "next_ticket": 605,
- "current_ticket": null,
- "current_note": "12:18: 604 released in 0.0.426; nothing in hand",
+ "next_ticket": 606,
+ "current_ticket": 605,
+ "current_note": "16:30: finding why each speed-run check fails",
  "closed_tickets": [
+  {
+   "id": 344,
+   "area": "dress up, 🧪 tests (advanced tab)",
+   "added": "2026-10-18",
+   "text": "Dress Up: the bubble room in ⚙️ Advanced's 🧪 test suite, ready for tonight's runs on the black laptop and the iPad.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "status": "done",
+   "closed": "2026-10-24",
+   "outcome": "Built in 0.0.307; only Matthew's optional device runs were left"
+  },
+  {
+   "id": 422,
+   "area": "dress up, ^du_report(14): posing the body",
+   "added": "2026-10-19T15:42-06:00",
+   "text": "A report on posing the friend's body, logged as we go: how each pose is built, layering by depth, and notes for poses to come.",
+   "source": "Matthew, during ^ticket(412)",
+   "status": "done",
+   "closed": "2026-10-24",
+   "outcome": "Its report, ^du_report(14), published; reports frozen since 10-24"
+  },
+  {
+   "id": 402,
+   "area": "dress up -> hazel, the port: a plan, and a report on drawing, music and menus",
+   "added": "2026-10-19T11:14-06:00",
+   "text": "Plan the port of Messed Up Dress Up to Hazel, and a report today on its three hardest questions.",
+   "source": "Matthew, 2026-10-19 11:14, in chat",
+   "status": "done",
+   "closed": "2026-10-24",
+   "outcome": "Its report, ^du_report(13), published"
+  },
+  {
+   "id": 562,
+   "area": "dress up, two costumes at once: one worn over the other (a cat over the ninja, the ninja over a cat, and every pair we can try), drawn, with a ^du_report(17) draft for M",
+   "added": "2026-10-22T17:01-06:00",
+   "text": "A costume over a costume.",
+   "source": "Matthew, 2026-10-22 17:01, in chat: \"mint and enqueue tonight for M --- experiment with rendering a double-layered…",
+   "status": "done",
+   "closed": "2026-10-24",
+   "outcome": "Its report, ^du_report(17), published; putting two costumes in the game would be a new ticket"
+  },
+  {
+   "id": 473,
+   "area": "dress up × hazel: Hazel tiles for the game's logic (ideation)",
+   "added": "2026-10-20T09:56-06:00",
+   "text": "Ideation: Hazel as the editor of a Scratch-like game-building environment, with Messed Up Dress Up as its world, people and objects; partly blocked on Matthew.",
+   "source": "Matthew, 2026-10-20 10:0x, in chat (\"after the cave ticket\")",
+   "status": "superseded",
+   "closed": "2026-10-24",
+   "outcome": "Closed on Matthew's word, 10-24 (\"close\"); overtaken by the game's scripting work (the three-way script boxes, story scripts)"
+  },
+  {
+   "id": 493,
+   "area": "dress up, the king's room: sitting on an added throne",
+   "added": "2026-10-20T15:54-06:00",
+   "text": "Sitting on a throne that was added to the king's room goes wrong: the friend leaves the castle.",
+   "source": "Matthew, 2026-10-20 15:54, in chat, during the Dress Up sprint (a bug report)",
+   "status": "done",
+   "closed": "2026-10-24",
+   "outcome": "Seems fixed: Matthew, 10-24: \"seems fixed now.\""
+  },
+  {
+   "id": 322,
+   "area": "dress up, the pits' and trap doors' lids",
+   "added": "2026-10-18",
+   "text": "Dress Up: a trap door's lid swings only the first time; after that it changes at once.",
+   "source": "Matthew, 2026-10-18, in chat",
+   "status": "done",
+   "closed": "2026-10-24",
+   "outcome": "Fixed: Matthew, 10-24: \"yes. fixed.\" (each lid swings every time)"
+  },
   {
    "id": 604,
    "area": "dress up, the script boxes' line wrap in Hazel's tiles: the width it uses, and a let's in before its body's if",
@@ -12925,6 +12529,8 @@
   }
  ],
  "queue": [
+  605,
+  564,
   602,
   550,
   587,
@@ -12940,8 +12546,6 @@
   559,
   549,
   558,
-  564,
-  562,
   545,
   547,
   554,
@@ -12963,8 +12567,6 @@
   468,
   485,
   484,
-  402,
-  473,
   408,
   401,
   388,
@@ -12978,17 +12580,13 @@
   160,
   166,
   259,
-  322,
-  344,
-  422,
   423,
   429,
-  493,
   508,
   534,
   590
  ],
- "current_since": "2026-10-24T12:18-06:00",
+ "current_since": "2026-10-24T16:30-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
