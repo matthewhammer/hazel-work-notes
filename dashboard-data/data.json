@@ -6787,14 +6787,16 @@
    "added": "2026-10-23T06:57-06:00",
    "opened": "2026-10-23T06:57-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "dress up",
     "hazel"
    ],
    "source": "Matthew, 2026-10-23 06:57, in chat, after reviewing the two days since the 10-21 meeting with Cyrus (who encouraged \"Hazel as a game script system, starting with MUDU\", a general way to insert Hazel code into a JS/HTML app's behavior): \"Can have a MUDU with game scripts where each script box can be either: baked-in JS, or hazel code boxes, or fumola code boxes (3-way chip per code box). the initial code is equiv, and runs equiv, for the game -- we need unit tests to maintain this as we go. we default to builtin JS, but there's a \\\"master toggle\\\" chip in the game script panel, at the top, that switches the code boxes all to JS/Hazel/Fumola routines. we extend the advanced \\\"measurement\\\" tools with one specifically for measuring the script overhead, in each case ... We start to keep standards for certain speedruns that use different game script boxes, to ensure that each setting meets an FPS minimum for the squares it controls in the game.\" Then: \"in the 3-way script system -- let's have the jS versions show up as JS code, but read only. The hazel and fumola boxes are for editing.\" Then: \"yes, mint and enqueue.\"",
    "text": "<b>Measure what a script costs.</b> An advanced measurement tool (with the 🔬 inspection tools) that shows, for each room's handler and each engine (Hazel, Fumola), the time a call takes against the JS handler doing the same: median and worst over the calls made while playing, the compile or set-up time, and the share of the frame; live in the game, and readable by the speed runs.",
-   "progress": "06:57: minted and enqueued. 2026-10-23 15:45, Matthew: next after the tiles work and he confirms.",
+   "progress": "06:57: minted and enqueued. 2026-10-23 15:45, Matthew: next after the tiles work and he confirms. 10-24 05:59: BUILT (game 9298738, script-boxes-566; preview updated): 🔬 the scripts' cost in ⚙️ Advanced > 🧪 tests and timing: per event the scripts answer (Pull, PullBoulder, PullHatch, PullThing, FallPit, WayOut, Way, with its room), the whole event's median / worst ms under JS, Hazel and Fumola with the ratio to JS, Hazel's and Fumola's rule alone, each engine's set-up, refreshed each second, 🧹 to start again; scriptCost() gives the same as JSON for the speed runs. Seen in the pane: a trap-room pull under Hazel 19 ms the whole event (over a 16.7 ms frame), 6.7 ms the rule; Hazel set-up 581 ms. Built before Matthew confirmed the tiles (he asked for it after that), since he was away.",
    "log": [
     {
      "at": "2026-10-23T06:55-06:00",
@@ -6860,7 +6862,8 @@
      "effort": "medium",
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": "Try ⚙️ Advanced > 🔬 the scripts' cost at http://localhost:8566/ after pulling levers with each engine."
   },
   {
    "id": 569,
@@ -7862,7 +7865,7 @@
    ],
    "source": "Matthew, 2026-10-23, in chat: \"we are still missing actual tile editing in our hazel js work -- I have yet to see evidence that we actually have tiles\" and \"a real tile editing experience is top priority now, after the max-size button for game scripts\"",
    "text": "<b>Tiles you edit.</b> The Hazel boxes are plain text boxes; the only tiles (^ticket(520)) are a read-only frame under them, and on 566 that frame is blank (24 px, no status back after the program is sent). Make Hazel's own tile editor the place a Hazel rule is written: edits in the tiles flow back to the game's state and run. First step: fix the blank frame.",
-   "progress": "Found: the 'blank' tiles frame was my test browser (hidden, no animation frames), not the game: in a shown tab the frame renders. Built embed-editable on hazelgrove/hazel (7411284d85, off embed-selectable): {type:'editable', on:true} makes the cell CodeEditable; after each edit the frame posts {type:'edit', text}. Game f849f43: asks for it, splits the text into modules, refills the Hazel boxes, never posts it back. Type-checked locally (dune @src/web/check); Deploy running on GitHub. 15:11: hazel.org/build/embed-editable/ live. Not typed into by me: the browser pane is hidden, so it runs no animation frames, and the frame draws only on one. 15:30: VERIFIED in the game with the pane shown: a click on a tile + real keys edit the tiles; the edit reached 📚 Common within 2 s and Hazel marked its error; Backspace restored it. Matthew had maxed Common's TEXT box: the tiles box is now first in the ⛶ outline (5e3a1f2). Known: the first click right after a program arrives sometimes doesn't take (a second does); a click past a line's end doesn't place the caret; moving the tiles into ⛶ reloads the frame (~5 s). 15:50: per Matthew's yes, each Hazel box (Common, each room) now shows its OWN module in tiles (embed-editable 9ac9204f5c: {type:'focus', module}, the body read in its program's context), with a 🧩 tiles / ✏️ text chip; tiles take the page's theme, dark + high contrast when the page is dark (c6a86f78d6: Hazel's Colors slide with dark_mode/high_contrast on). Game a881257. Type-checked; Hazel deploy running; verify with the pane shown before asking Matthew. 15:55: c6a86f78d6 live: each Hazel box shows its own module in tiles, dark + high contrast (Matthew's screenshot). But every preamble type/constructor read as unbound ('lots of errors'): the body's context was looked up by ids the program's term does not give it. Fix b029bbd1de (context at the module's definition in the program's own term) pushed, deploying (~25 min); verify in the pane before asking. Also today: ⚙️ hazel tiles/text row, draggable divider, Hazel as a pointed tile, 📜 for scripts, Fumola typed (Motoko notation), outline fixes. 20:41 LIVE (Hazel 0da790fb20): line numbers drawn (the view needed ~lines), indentation written again after a read (Hazel writes it as spaces now), the theme's background below the code, a module body's members at its own level (Matthew: \"on_event should not be indented this much\"), the right-click menu opening down with the frame grown to it. Seen in the pane: indentation and line numbers right; the menu NOT yet seen (the pane stopped painting). Outline test, every item clicked: tiles 40/40, text 40/40, JS 18/18, Fumola 47/47. Game 370f532: Fumola sums one case a line at one depth, the whole program's tiles start on a timer too.",
+   "progress": "Found: the 'blank' tiles frame was my test browser (hidden, no animation frames), not the game: in a shown tab the frame renders. Built embed-editable on hazelgrove/hazel (7411284d85, off embed-selectable): {type:'editable', on:true} makes the cell CodeEditable; after each edit the frame posts {type:'edit', text}. Game f849f43: asks for it, splits the text into modules, refills the Hazel boxes, never posts it back. Type-checked locally (dune @src/web/check); Deploy running on GitHub. 15:11: hazel.org/build/embed-editable/ live. Not typed into by me: the browser pane is hidden, so it runs no animation frames, and the frame draws only on one. 15:30: VERIFIED in the game with the pane shown: a click on a tile + real keys edit the tiles; the edit reached 📚 Common within 2 s and Hazel marked its error; Backspace restored it. Matthew had maxed Common's TEXT box: the tiles box is now first in the ⛶ outline (5e3a1f2). Known: the first click right after a program arrives sometimes doesn't take (a second does); a click past a line's end doesn't place the caret; moving the tiles into ⛶ reloads the frame (~5 s). 15:50: per Matthew's yes, each Hazel box (Common, each room) now shows its OWN module in tiles (embed-editable 9ac9204f5c: {type:'focus', module}, the body read in its program's context), with a 🧩 tiles / ✏️ text chip; tiles take the page's theme, dark + high contrast when the page is dark (c6a86f78d6: Hazel's Colors slide with dark_mode/high_contrast on). Game a881257. Type-checked; Hazel deploy running; verify with the pane shown before asking Matthew. 15:55: c6a86f78d6 live: each Hazel box shows its own module in tiles, dark + high contrast (Matthew's screenshot). But every preamble type/constructor read as unbound ('lots of errors'): the body's context was looked up by ids the program's term does not give it. Fix b029bbd1de (context at the module's definition in the program's own term) pushed, deploying (~25 min); verify in the pane before asking. Also today: ⚙️ hazel tiles/text row, draggable divider, Hazel as a pointed tile, 📜 for scripts, Fumola typed (Motoko notation), outline fixes. 20:41 LIVE (Hazel 0da790fb20): line numbers drawn (the view needed ~lines), indentation written again after a read (Hazel writes it as spaces now), the theme's background below the code, a module body's members at its own level (Matthew: \"on_event should not be indented this much\"), the right-click menu opening down with the frame grown to it. Seen in the pane: indentation and line numbers right; the menu NOT yet seen (the pane stopped painting). Outline test, every item clicked: tiles 40/40, text 40/40, JS 18/18, Fumola 47/47. Game 370f532: Fumola sums one case a line at one depth, the whole program's tiles start on a timer too. 10-24 05:59: Matthew: the tiles did not follow the wrap or the window. Now each frame gets its module broken at min(wrap, the box's width in Hazel's characters), a copy (the stored text stays as written), sent again on a ⚙️ change, a window resize or the ⛶ divider (game 9298738). Checked by function in the pane (frames do not paint there): wrap 30 gives 30-41 col lines (a few lines break only inside brackets or at a let's =), wrap 50 fits everywhere, a 500 px box gives 32 cols.",
    "waiting": "Try the tiles at http://localhost:8566/ (📜 Scripting, ⛶): line numbers, indentation, a right-click near a box's last line (the menu should open down), F12 on a type such as Thing.",
    "log": [
     {
@@ -10030,8 +10033,8 @@
   }
  ],
  "next_ticket": 577,
- "current_ticket": 569,
- "current_note": "21:09: Diagnostic run diag-569 on GitHub: tools/checks/scriptfps569.mjs, each engine's frame rate in the rooms its scripts control, against 55",
+ "current_ticket": 540,
+ "current_note": "05:59: Next while Matthew reviews: World's Way under Hazel on big maps (16x16, 32x32), the O(N) cost the frame-rate check (569) did not stress",
  "closed_tickets": [
   {
    "id": 575,
@@ -14999,6 +15002,7 @@
   }
  ],
  "queue": [
+  540,
   569,
   587,
   589,
@@ -15014,7 +15018,6 @@
   570,
   567,
   568,
-  540,
   553,
   559,
   549,
@@ -15078,7 +15081,7 @@
   534,
   590
  ],
- "current_since": "2026-10-23T21:09-06:00",
+ "current_since": "2026-10-24T05:59-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
@@ -15090,10 +15093,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5321,
-  "words": 1163679,
+  "replies": 5322,
+  "words": 1164346,
   "read_hours_est": 81.5,
-  "listen_hours_est": 121.2,
+  "listen_hours_est": 121.3,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -15333,9 +15336,9 @@
     "chars": 152999
    },
    "2026-10-24": {
-    "replies": 1,
-    "words": 28,
-    "chars": 155
+    "replies": 2,
+    "words": 695,
+    "chars": 3821
    }
   }
  },
