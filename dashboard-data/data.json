@@ -10582,9 +10582,27 @@
    "progress": "Minted; for later today, not asap.",
    "waiting": "",
    "log": []
+  },
+  {
+   "id": 596,
+   "area": "dress up × scripting: the ⛶ game viewport is empty after the outline column scrolls (a bug, for the next version)",
+   "added": "2026-10-24T07:03-06:00",
+   "opened": "2026-10-24T07:03-06:00",
+   "status": "open",
+   "tags": [
+    "after the manual (2026-10-24)"
+   ],
+   "chips": [
+    "dress-up"
+   ],
+   "source": "Matthew, 2026-10-24 07:02, in chat: \"for after the manual and report --- a bug report to fix in next dress-up version. after we click on LHS nav for some Hazel def, and the RHS scrolls there, when we scroll LHS nav bar back to in-game view, it's empty/missing.\"",
+   "text": "<b>The viewport follows its spot.</b> In ⛶ with 🎮 show game viewport on, the game's picture is pinned (position: fixed) over a spot at the top of the outline column, placed by scriptMaxGamePlace on a resize or a divider drag only. Scrolling the column (as a click in the outline can) moves the spot and not the picture, so the spot shows empty. Likely fix: place it again on the column's scroll (and when the outline is redrawn), or pin it to the column's top instead of a spot that scrolls. Check in the pane; release in the next version.",
+   "progress": "Minted; after the manual (^ticket(593)) and the report.",
+   "waiting": "",
+   "log": []
   }
  ],
- "next_ticket": 596,
+ "next_ticket": 597,
  "current_ticket": 593,
  "current_note": "06:25: The manual: screenshots on GitHub (diag), then the 1980s-90s-style du_report draft with broken scripts and their fixes, and the feature list",
  "closed_tickets": [
@@ -15556,6 +15574,7 @@
  "queue": [
   593,
   594,
+  596,
   540,
   595,
   592,
