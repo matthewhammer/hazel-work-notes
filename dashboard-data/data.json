@@ -10955,9 +10955,9 @@
    "chips": [
     "dress-up"
    ],
-   "source": "Matthew, 2026-10-24, in chat: \"is there any chance that the log will 'miss' the final global updates by the game engine, for some very long-running animation?\" then \"yes -- we need to address this for our event system to work well and be loggable\"",
+   "source": "Matthew, 2026-10-24, in chat: \"is there any chance that the log will 'miss' the final global updates by the game engine, for some very long-running animation?\" then \"yes -- we need to address this for our event system to work well and be loggable\" | 07:45: \"the result gives a Cmd --- which specifies some diff for the engine to do on the rule's behalf --- we should do it, and then show that as the diff(1,2). Then diff(2,3) are all of the effects not specified by the rule\"; \"once that works, bump and release, and update everything to say that this is how the log works. We also need a section of the manual, and the report, that explains the shape of Cmd\"; 07:49 nit: the viewport's FS button should go back to the game, full screen",
    "text": "<b>Event contexts with holds.</b> Each call into a script opens an event context; every swing (swingOn: levers, lids, boulders), walk or flight through a doorway (walkInto, flyInto, held until arrive() has run) and script Wait started while it is going takes a hold. Snapshot 3 is taken when its first moment has passed and every hold is given back, however long; a 15 s safety limit marks a possibly-early snapshot; an event overlapped by the next call is marked. Replaces the 250 ms polling (10 s cap) and the next-call truncation.",
-   "progress": "07:38: built on script-boxes-566 and checked in the pane: red lever over at 1.46 s (lever arm + lid held), blue lever covered[0] at 2.16 s, a Way E walk over at 5.8 s (at_col 0→1 in step 2→3), two quick pulls marked as overlapped. Next: commit, release with the manual and report 17 (his ask). 07:41: RELEASED in Dress Up 0.0.414 (10fd163, tag dress-up-0.0.414), live and loading. Report 17's text revised (the tip 'when is an event over? the game says', log lines with both steps); pictures retaken at 0.0.414 on GitHub (diag-593 run 40099158031), then report 17 + the zine rebuilt and pushed.",
+   "progress": "07:38: built on script-boxes-566 and checked in the pane: red lever over at 1.46 s (lever arm + lid held), blue lever covered[0] at 2.16 s, a Way E walk over at 5.8 s (at_col 0→1 in step 2→3), two quick pulls marked as overlapped. Next: commit, release with the manual and report 17 (his ask). 07:41: RELEASED in Dress Up 0.0.414 (10fd163, tag dress-up-0.0.414), live and loading. Report 17's text revised (the tip 'when is an event over? the game says', log lines with both steps); pictures retaken at 0.0.414 on GitHub (diag-593 run 40099158031), then report 17 + the zine rebuilt and pushed. 07:51: RELEASED 0.0.415 (b1d3632, tag dress-up-0.0.415): snapshot 2 = globals with the rule's Cmd applied (scriptCmdApply; checked for every command), answer right after the event, ⤢ in the ⛶ viewport goes to the game full screen (checked in the browser). Report 17: new ch. 5 'What a rule says: the shape of Cmd' (later chapters renumbered), log chapter rewritten. Pictures retaking at 0.0.415 on diag-593; then finish.sh, push report + zine.",
    "log": [
     {
      "at": "2026-10-24T07:24-06:00",
@@ -11092,7 +11092,7 @@
  ],
  "next_ticket": 598,
  "current_ticket": 597,
- "current_note": "07:38: event completion built + committed (d0af235); next: release 0.0.414, manual pictures, report 17, zine",
+ "current_note": "07:51: 0.0.415 released; retaking the guide's pictures at it, then report 17 + zine",
  "closed_tickets": [
   {
    "id": 575,
