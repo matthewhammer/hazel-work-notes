@@ -10944,11 +10944,25 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 597,
+   "area": "dress up × scripting: the 🪵 event log knows when an event is over (the game says so), so a long animation is never missed",
+   "added": "2026-10-24T07:38-06:00",
+   "opened": "2026-10-24T07:38-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress-up"
+   ],
+   "source": "Matthew, 2026-10-24, in chat: \"is there any chance that the log will 'miss' the final global updates by the game engine, for some very long-running animation?\" then \"yes -- we need to address this for our event system to work well and be loggable\"",
+   "text": "<b>Event contexts with holds.</b> Each call into a script opens an event context; every swing (swingOn: levers, lids, boulders), walk or flight through a doorway (walkInto, flyInto, held until arrive() has run) and script Wait started while it is going takes a hold. Snapshot 3 is taken when its first moment has passed and every hold is given back, however long; a 15 s safety limit marks a possibly-early snapshot; an event overlapped by the next call is marked. Replaces the 250 ms polling (10 s cap) and the next-call truncation.",
+   "progress": "07:38: built on script-boxes-566 and checked in the pane: red lever over at 1.46 s (lever arm + lid held), blue lever covered[0] at 2.16 s, a Way E walk over at 5.8 s (at_col 0→1 in step 2→3), two quick pulls marked as overlapped. Next: commit, release with the manual and report 17 (his ask)."
   }
  ],
- "next_ticket": 597,
- "current_ticket": 596,
- "current_note": "07:17: The ⛶ game viewport empty after the outline column scrolls: re-placed on the column's scroll",
+ "next_ticket": 598,
+ "current_ticket": 597,
+ "current_note": "07:38: event completion built + committed (d0af235); next: release 0.0.414, manual pictures, report 17, zine",
  "closed_tickets": [
   {
    "id": 575,
@@ -16000,7 +16014,7 @@
   534,
   590
  ],
- "current_since": "2026-10-24T07:17-06:00",
+ "current_since": "2026-10-24T07:38-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
