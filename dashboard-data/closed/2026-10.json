@@ -1,5 +1,380 @@
 [
  {
+  "id": 399,
+  "area": "dress up, its repository: the name and the layout",
+  "added": "2026-10-19T10:58-06:00",
+  "opened": "2026-10-19T10:58-06:00",
+  "status": "done",
+  "tags": [
+   "low priority",
+   "blocked on Matthew"
+  ],
+  "source": "Matthew, 2026-10-19 10:58, in chat",
+  "url": "https://github.com/matthewhammer/kids-choice-games",
+  "text": "<b>Messed Up Dress Up gets a repository of its own: rename it, and lay it out as the only project in it.</b> Matthew: \"let's embrace that the dress-up game is becoming all-encompassing, not some small step leading to more complex things. It is becoming that more complex thing, day by day.\" <ul><li>Rename the GitHub repository matthewhammer/kids-choice-games to <b>messed-up-dress-up</b>.</li><li>Move <code>dress-up/</code>'s contents to the root, \"the form we'd expect if it were the only project in the repo\": with them go <code>tools/</code>, the workflows (<code>dress-up-speed.yml</code>, <code>dress-up-tests.yml</code>, whose paths change), <code>agent-instructions.md</code> and the README.</li></ul>To plan for: GitHub redirects the repository's git and web addresses after a rename, but <b>not its Pages address</b>. /kids-choice-games/dress-up/... becomes /messed-up-dress-up/..., so the old game links need redirect pages (the homepage repository can serve /kids-choice-games/). Also update everything that names the repository or its paths: the homepage's Dress Up pages (hazel/dress-up/ and its pictures, music and reports pages, and hazel/index.html), the dashboard's <code>repos</code> entry and its VERSIONS.md path, the release, load and check scripts, the speed-run workflow, the picture and music archive repositories' links, the local clone and its 27 <code>kids-choice-games-*</code> worktrees, the <code>dress-up</code> launch entry, and the agent instructions and memory. Version tags (<code>dress-up-0.0.N</code>) can keep their names. <b>10:59, Matthew, the address too:</b> \"fix this URL too, to be: messed-up-dress-up, with no \\\"kids choice games\\\" anywhere anymore.\" So the game moves from https://matthewhammer.org/kids-choice-games/dress-up/ to https://matthewhammer.org/messed-up-dress-up/ (the repository's Pages address once it is renamed and the game sits at its root), and the name goes from every page, link, script, local folder (~/kids-choice-games and its worktrees) and instruction. To decide when we do it: whether the old address should redirect (a redirect page would keep a /kids-choice-games/ path alive in the homepage repository) or simply stop working.",
+  "progress": "10:58: minted and enqueued (low priority). 10:59: + the URL: matthewhammer.org/messed-up-dress-up/, no \"kids choice games\" anywhere. 14:07: PLANNED, not started (AFK protocol): the rename changes a repository setting and the live game's address, so it waits for Matthew to say go, and for a quiet repo: ~/kids-choice-games has another session's uncommitted work (reports 005, 011, 012, the series index, tools/checks/bgfs279-panel.js). Plan: (1) commit or park that work; (2) git mv dress-up/* to the root, with tools/, the two workflows (paths fixed), agent-instructions.md, README; (3) rename the repo on GitHub (git and web addresses redirect; the Pages address does not); (4) in the homepage repo, /kids-choice-games/dress-up/... forwarding pages (as for /hazel/performance-analysis/); (5) update the homepage's Dress Up pages, the dashboard's repos entry, VERSIONS, the archive tools, the speed run's paths; (6) check live. 23:36 10-20 (audit): the uncommitted work in ~/kids-choice-games is Claude's own local drafts, not someone else's. Each waits on Matthew's word in its own ticket. They are: 005's step-8 speed note (^ticket(289)); 011 'A cast of friends' (^ticket(357)); 012 'The foam, not the makers' (^ticket(340)), plus both their cards in reports/index.html; 013 (^ticket(402), also on the local-only branch report-013 at 186fa6e); and 014 'Posing the Body' (^ticket(422), the 10-19 16:26 draft, of which only the pose-notes log is committed, on the pushed branch lie-along-412 at adabab8). Also uncommitted: dress-up/mockups/ (dragon-fire.html and horse-armour.html, from ^ticket(499) and ^ticket(498), both released in 0.0.392) and 8 old untracked check scripts in tools/checks (bgfs279-panel.js, bgfs279.mjs, crawlarrow225, gatelake, stable184, stablepad184, stuck184, surprise225). GitHub's main has reports 001-010 only. Plan step (1), commit or park, now covers all of these. The repo is still named kids-choice-games.",
+  "log": [
+   {
+    "at": "2026-10-19T10:58-06:00",
+    "from": "matthew",
+    "chars": 436,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-19T10:59-06:00",
+    "from": "matthew",
+    "chars": 175,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-19T10:59-06:00",
+    "from": "claude",
+    "chars": 287,
+    "asks": false,
+    "words": 46,
+    "read_s": 12,
+    "listen_s": 17,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-19T10:59-06:00",
+    "from": "claude",
+    "chars": 167,
+    "asks": false,
+    "words": 27,
+    "read_s": 7,
+    "listen_s": 10,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-19T11:00-06:00",
+    "from": "claude",
+    "chars": 439,
+    "asks": true,
+    "words": 73,
+    "read_s": 18,
+    "listen_s": 27,
+    "note": "from the transcripts"
+   }
+  ],
+  "waiting": "Matthew: go ahead with the rename to messed-up-dress-up now (it changes the live game's address; old links will forward)?",
+  "closed": "2026-10-24",
+  "closed_at": "2026-10-24T08:57-06:00",
+  "outcome": "DEFAULT CHOSEN: the repository keeps its name (kids-choice-games) and layout; 152 stale branches deleted today (13 left), backed up in ~/kcg-branches-backup-2026-10-24.bundle. Matthew, 2026-10-24 ~08:55: \"make the quick calls yourself where there's a sensible default (seats, reggae pick, seasons, deleting stale branches), release, and tell me what you chose.\"",
+  "metrics": {
+   "open_minutes": 7080,
+   "matthew_messages": 2,
+   "questions_to_matthew": 1,
+   "chars_exchanged": 1504,
+   "tokens_est": 376,
+   "sync_minutes_est": 2.0,
+   "replies": 3,
+   "claude_words": 146,
+   "read_minutes_est": 0.6,
+   "listen_minutes_est": 0.9,
+   "read_s_avg": 12,
+   "listen_s_avg": 18
+  }
+ },
+ {
+  "id": 326,
+  "area": "matthewhammer.org, the Dress Up picture archives",
+  "added": "2026-10-18",
+  "opened": "2026-10-18T15:18-06:00",
+  "status": "done",
+  "tags": [
+   "blocked on Matthew"
+  ],
+  "text": "<b>The Dress Up picture archives on matthewhammer.org: the live one follows the theme (auto, light, dark), and the archived one follows today's conventions.</b> Matthew: \"I reached this page from my homepage and it doesnt follow the new convetions https://matthewhammer.org/dress-up-pictures-2026-10-18/ maybe because it's too old now, and archived. likewise, and more serious https://matthewhammer.org/dress-up-pictures/ Does not follow the light/dark/auto setting from its source, --- i got there and it was light mode, and I use dark mode in my system.\" So: the live archive (matthewhammer/dress-up-pictures) takes the nav bar's and the system's theme (auto means the system's; dark for him); the archived 2026-10-18 copy gets the nav bar and the theme too, or says plainly that it is an archive.",
+  "source": "Matthew, 2026-10-18, in chat (\"enqueue and do long-run\")",
+  "url": "https://matthewhammer.org/dress-up-pictures/",
+  "log": [
+   {
+    "at": "2026-10-18T12:27-06:00",
+    "from": "matthew",
+    "chars": 97,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-18T12:40-06:00",
+    "from": "claude",
+    "chars": 4303,
+    "asks": false,
+    "words": 725,
+    "read_s": 183,
+    "listen_s": 272,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-18T15:17-06:00",
+    "from": "matthew",
+    "chars": 414,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-18T15:17-06:00",
+    "from": "claude",
+    "chars": 124,
+    "asks": false,
+    "words": 23,
+    "read_s": 6,
+    "listen_s": 9,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-18T15:18-06:00",
+    "from": "matthew",
+    "chars": 87,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-18T15:19-06:00",
+    "from": "matthew",
+    "chars": 1,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-18T15:19-06:00",
+    "from": "claude",
+    "chars": 185,
+    "asks": false,
+    "words": 33,
+    "read_s": 8,
+    "listen_s": 12,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-18T15:21-06:00",
+    "from": "claude",
+    "chars": 390,
+    "asks": false,
+    "words": 55,
+    "read_s": 14,
+    "listen_s": 21,
+    "note": "from the transcripts"
+   }
+  ],
+  "progress": "21:55: checked live with a dark system (the pane's dark emulation): matthewhammer.org/dress-up-pictures/ follows it now (body #16181d, the nav bar's dark style, since the nav bar came to it in 296's b702da8). The archived 2026-10-18 copy is matthewhammer/dress-up-pictures-2026-10-18, ARCHIVED on GitHub (read-only): no nav bar, light, no archive notice. Changing it means unarchiving the repository, a setting that is Matthew's, and his 12:27 call (296) was to leave it as it is. ✋ Waiting on Matthew: unarchive it so it can get the nav bar and an 'archived' line, or leave it. 13:00: tagged blocked on Matthew (AFK protocol), no longer a long run: only his call is left.",
+  "waiting": "Matthew: unarchive dress-up-pictures-2026-10-18 so it can get the nav bar and an 'archived' line, or leave it as it is.",
+  "closed": "2026-10-24",
+  "closed_at": "2026-10-24T08:57-06:00",
+  "outcome": "DEFAULT CHOSEN, leave it archived (his own 12:27 call on ^ticket(296)): no nav bar or archived line on that repository. Matthew, 2026-10-24 ~08:55: \"make the quick calls yourself where there's a sensible default (seats, reggae pick, seasons, deleting stale branches), release, and tell me what you chose.\"",
+  "metrics": {
+   "open_minutes": 8260,
+   "matthew_messages": 4,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 5601,
+   "tokens_est": 1400,
+   "sync_minutes_est": 4.0,
+   "replies": 4,
+   "claude_words": 836,
+   "read_minutes_est": 3.5,
+   "listen_minutes_est": 5.2,
+   "read_s_avg": 53,
+   "listen_s_avg": 78
+  }
+ },
+ {
+  "id": 490,
+  "area": "dress up, the sky: the moon and the sun as they are, at a place on Earth and the game's date",
+  "added": "2026-10-20T13:31-06:00",
+  "opened": "2026-10-20T13:31-06:00",
+  "status": "done",
+  "tags": [
+   "low priority",
+   "for the weekend (2026-10-24)",
+   "blocked on Matthew"
+  ],
+  "source": "Matthew, 2026-10-20 13:31, in chat (\"low priority for the day, but important this weekend\")",
+  "url": "",
+  "text": "<b>The moon and the sun as they really are: pick a place on Earth (a GPS coordinate) and see the sky there on the game's date, mapped to real-world dates.</b> Matthew: \"mint and enqueue for MUDU, low priority for the day, but important this weekend: * moon cycles. Seeing the moon accurately, during  the cycle.  Selecting a GPS coordinate and seeing the moon in the sky accurately at that GPS coordinate during the game's idea of its date (mapped to real world dates). * sun cycles (winter, spring, summer, winter).  Same idea.\" Today the game has no date and no place: a few places have their own time-of-day choice (fallTime, campTime, fairyTime: day, sunrise, sunset, night), and the moon is drawn the same way every time. To do: the game's date and time (mapped to real dates); a place, picked with the chip box (a few named places, or a latitude and longitude); the moon's phase, its height and its direction, and the sun's height and direction, worked out on the device (no network, so it works in airplane mode); the moon drawn lit as its phase is, where it stands in the scene's sky; the seasons from the sun (day length, the sun's height at noon); each place's time-of-day choice following the clock, or kept as it is. Then: \"some backgrounds support multiple times of day -- -we'd want the length of day, and placement of the sun and moon to roughly indicate something real about those cycles, given our GPS coordinate that we choose, in the game (not from any real data in the device).\" So: the place is chosen in the game, never read from the device (no location, no device clock); the backgrounds with times of day (the campsite, the fall woods, the fairy forest, ...) take their day length and their sun's and moon's places from that place and the game's date, roughly right rather than exact.",
+  "progress": "16:39 10-20: PART 1 LIVE in 0.0.381 (329eee6): 🌍 the sky: where and when (in 🏞️ Background, shown where the time of day is by the clock): skyWhere (Denver, New York, London, Tokyo, Sydney, Quito, Reykjavík, Tromsø, Ushuaia, or 📍 my own latitude/longitude), skyYear/Month/Day/Hour (the sun's own time there). skyNow computes the sun's and moon's altitude/azimuth and the moon's phase on the device (checked: Denver noon sun 73.7° June / 26.8° December; Sydney June 32.7° to the north; new moon 2026-10-10, full 2026-10-26; Tromsø polar night and midnight sun). A '🕰️ by the clock' choice in the waterfall/cave, camp site/tent and fairy forest times of day: the time of day follows the sun; the camp site and fairy forest draw the sun and the moon (in its phase) where they are, facing the equator. Check: tools/checks/sky490.mjs. MY CALLS: the game's place and date are settings, defaulting to Denver, 2026-10-20, 20:00 (fixed: the settings decide the picture); the hour is local solar time, not a time zone. NEXT (for the weekend): the other places' moons (the witch's woods, the hut's and castle windows) in the date's phase; a line saying where the sun and moon are and how lit; seasons in the colours (snow, leaves) if Matthew wants that. 16:50: 0.0.384 (64b94dd): the sky in words, a line at the end of 🌍 (skySays): the sun's height and direction, the day's length (Denver: 14 h 59 min at the June solstice, 9 h 21 min in December; Tromsø: 'the sun does not rise today'), the moon's phase, how lit, where. 16:54: 0.0.385 (b220a2b): the waterfall and the cave by the clock draw the real moon too (the waterfall's hidden behind its cliff and jungle unless high or far to the side; the cave's through its mouth when up). Every place with a time of day now follows the clock fully. 20:40 10-20: PART 2's first step LIVE in 0.0.393 (9b891f6): the moons always out, the witch's woods' (was always full) and the crescents in the windows of the witch's hut, the hut's bedroom and the cat room, are the date's moon in its phase, the right way round for the place (moonOfDateSvg, moonOfDateKey in their parts' keys); seen in the pane on four dates (phase 0.33, 0.54, 0.8, 0.03); sky490 checks it. LEFT (for the weekend, Matthew's call): seasons in the colours (snow, leaves), if he wants them; the dungeon's moonlight could follow the phase. 22:08 10-20: 0.0.394 LIVE (12ac471, tag dress-up-0.0.394): the dungeons' moonlight, the one piece of LEFT that needed no word from Matthew: the moon in the barred window of the dungeon and the deep dungeon (always full before) is the date's, in its phase, and the beam across the floor is as bright as the moon is lit (opacity 0.02 + 0.08 x lit: 0.020 new on 10-10, 0.079 on 10-20, 0.099 full on 10-26; 0.10 before). Seen in the pane (the two functions swapped into the 8482 page) and rasterized on the three dates; the castle room's part key takes moonOfDateKey for both dungeons, so a date change draws them again (the same date draws the same). sky490 covers both dungeons; its speed run waits behind 0.0.393's. LEFT for Matthew: seasons in the colours (snow, leaves). 22:17: ARCHIVED: the night's second picture run (branch archive-494c, run 39542605482, 4 min on GitHub) at 0.0.394, landed as run-2026-10-20-22-11 in dress-up-pictures (b2047f0, 1078 KiB in git, pushed; 13 runs): 757 drawings, 68 changed (the moons: backgrounds and their menus, the dungeon moves), 0 page errors; its clip audit the same 19 known as 0.0.392's run, nothing new. 22:30: 0.0.393's SPEED RUN (39534246743) passed: 190 checks, sky490 among them ok; only farm502 and pasture503 failed, both fixed after the 0.0.393 tag (19a1f1f, 0e4487a, b74e6cf are in 0.0.394, not 0.0.393), so 0.0.394's run, queued, is the one that tests them; the gate all 14 at 55 fps or more, the controller audit all 56 at 58 or more, no leak errors; objects180: 54 places, 932 objects. 23:12: 0.0.394's speed run (39541468171) running; the first to run farm502's and pasture503's fixed checks, and sky490 on the dungeons. 23:52: 0.0.394's SPEED RUN (39541468171) passed, recorded 'ok' in speed.json, the first 'ok' since 0.0.375: all 190 checks (sky490 with the dungeons, farm502 and pasture503 with their fixes), the gates at 55 fps or more, no leak errors; objects180 54 places, 932 objects. Its controller audit missed two places, 💭 imagination 39.8 and the forest 54.4: ^ticket(509). Left: seasons in the colours, Matthew's call.",
+  "log": [
+   {
+    "at": "2026-10-20T13:31-06:00",
+    "from": "matthew",
+    "chars": 360,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T13:31-06:00",
+    "from": "claude",
+    "chars": 200,
+    "asks": true,
+    "words": 38,
+    "read_s": 10,
+    "listen_s": 14,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-20T13:32-06:00",
+    "from": "matthew",
+    "chars": 261,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "waiting": "Matthew: seasons in the colours (snow in winter, autumn leaves, spring blossom), following the sky's date: wanted, and which places first?",
+  "closed": "2026-10-24",
+  "closed_at": "2026-10-24T08:57-06:00",
+  "outcome": "DEFAULT CHOSEN, no seasonal colours: the sky keeps its time-of-day colours; the moon and sun by date and place (0.0.394) stay as built. Matthew, 2026-10-24 ~08:55: \"make the quick calls yourself where there's a sensible default (seats, reggae pick, seasons, deleting stale branches), release, and tell me what you chose.\"",
+  "metrics": {
+   "open_minutes": 5487,
+   "matthew_messages": 2,
+   "questions_to_matthew": 1,
+   "chars_exchanged": 821,
+   "tokens_est": 205,
+   "sync_minutes_est": 1.0,
+   "replies": 1,
+   "claude_words": 38,
+   "read_minutes_est": 0.2,
+   "listen_minutes_est": 0.2,
+   "read_s_avg": 10,
+   "listen_s_avg": 14
+  }
+ },
+ {
+  "id": 460,
+  "area": "dress up, seats at a scene's bottom edge",
+  "added": "2026-10-19T22:14-06:00",
+  "opened": "2026-10-19T22:14-06:00",
+  "status": "done",
+  "tags": [
+   "blocked on Matthew"
+  ],
+  "source": "from ^ticket(454)'s audit, 2026-10-19 22:14",
+  "url": "",
+  "text": "<b>Seats drawn at a scene's bottom edge cut a sitter's feet off: move them, or leave them?</b> ^ticket(454)'s audit of the picture archive (0.0.347) found 12 pictures of the friend on a place's own seats with their feet below the stage's bottom (3 to 16 units; the stage is 601 tall): the campsite's logs (2), the castle's bench by the cart and another (2), the healer's room stools (2), the hut's logs by the fire (2), the mountains' rock (1, and another rock at the right edge, 1), the wood path's logs (2). The seats themselves are drawn at the edge. A fix would move those objects up a little in 7 places (their collisions and walking with them), which changes the places' layouts: Matthew's call.",
+  "progress": "22:14: minted from ^ticket(454), blocked on Matthew's call.",
+  "log": [],
+  "closed": "2026-10-24",
+  "closed_at": "2026-10-24T08:57-06:00",
+  "outcome": "DEFAULT CHOSEN, leave them: the 7 places keep their layouts; a sitter's feet below the bottom edge (3-16 units of 601) stays as it is. Matthew, 2026-10-24 ~08:55: \"make the quick calls yourself where there's a sensible default (seats, reggae pick, seasons, deleting stale branches), release, and tell me what you chose.\"",
+  "metrics": {
+   "open_minutes": 6404,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
+  "id": 421,
+  "area": "dress up, seats: the doubtful ones (SEATS.md, For Matthew)",
+  "added": "2026-10-19T15:34-06:00",
+  "opened": "2026-10-19T15:34-06:00",
+  "status": "done",
+  "tags": [
+   "blocked on Matthew"
+  ],
+  "source": "^ticket(413)'s audit",
+  "url": "https://github.com/matthewhammer/kids-choice-games/blob/main/dress-up/SEATS.md#for-matthew",
+  "text": "<b>Seven seat questions from ^ticket(413)'s audit, each a possible seat with a reason to ask first</b> (SEATS.md, For Matthew): (1) tables: do we sit on them (the healer's tea table is a seat's height)? (2) the well and the fountain: a seat on the rim (each needs a rim seat of its own), or none, since a well is somewhere to fall into? (3) the grass hut's woodpile, stacked and uneven? (4) the king's chest of gold, open and full of coins? (5) the stump by the bed (0.49 of the friend's height) and the hay cart (0.66): raise the highest seat from 0.42? (6) the smithy's anvil and coal heap? (7) sitting on the floor: rugs, straw, moss?",
+  "progress": "15:34: minted from ^ticket(413), blocked on Matthew: each answer is a line in SIT_TOPS (or a rim seat), then a release.",
+  "log": [],
+  "closed": "2026-10-24",
+  "closed_at": "2026-10-24T08:57-06:00",
+  "outcome": "DEFAULT CHOSEN, no change: none of the seven become seats (tables; the well and fountain rims, somewhere to fall into; the woodpile; the chest of gold; the stump and hay cart, the highest seat stays 0.42 of the friend's height; the anvil and coal heap; the floor). Any one can still be added on his word, a line each. Matthew, 2026-10-24 ~08:55: \"make the quick calls yourself where there's a sensible default (seats, reggae pick, seasons, deleting stale branches), release, and tell me what you chose.\"",
+  "metrics": {
+   "open_minutes": 6804,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
+  "id": 374,
+  "area": "dress up, 🎵 music (🌴 reggae)",
+  "added": "2026-10-19T00:23-06:00",
+  "opened": "2026-10-19T00:24-06:00",
+  "status": "done",
+  "tags": [
+   "blocked on Matthew"
+  ],
+  "source": "Matthew, in chat, 00:23",
+  "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+  "progress": "00:24 Matthew: \"just add them as D-1, D-2, etc. And I'll review tommorrow -- I am AFK.\" So: added beside D (D kept, to compare), named D-1 to D-4; released; he picks tomorrow. 00:25: RELEASED 0.0.308 (ff1f5be, tag pushed, live checked): in 🌴 reggae right after D, D-1 steppers, four on the floor (D minor, 136); D-2 rub-a-dub, lilting (D major, 96, swung); D-3 the drum break made plain (E minor triads, straight fills, 92); D-4 heartbeat, hand drums (A minor, 76). My diagnosis of D: ninth chords (5-note stabs muddy, chord-tone tunes landing on 7ths and 9ths) and fills racing in fives and sevens; none of the four has either. Keys agree with their notes (0.91, 0.92, 0.71, 0.79). Check music374.mjs; tune263 allows steppersD1. ✋ Waiting on Matthew's pick tomorrow; then the pick becomes D (and D and the others go). 07:47 Matthew: \"http://localhost:8000/#ticket-374 is done?\" Answered: not yet, the four candidates are live, his pick is what is left. 13:00: tagged blocked on Matthew (AFK protocol): only his pick is left.",
+  "log": [
+   {
+    "at": "2026-10-19T00:23-06:00",
+    "from": "matthew",
+    "chars": 112,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-19T00:23-06:00",
+    "from": "matthew",
+    "chars": 70,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-19T00:23-06:00",
+    "from": "claude",
+    "chars": 312,
+    "asks": false,
+    "words": 62,
+    "read_s": 16,
+    "listen_s": 23,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-19T00:25-06:00",
+    "from": "claude",
+    "chars": 1228,
+    "asks": false,
+    "words": 229,
+    "read_s": 58,
+    "listen_s": 86,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-19T07:46-06:00",
+    "from": "matthew",
+    "chars": 42,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-19T07:47-06:00",
+    "from": "matthew",
+    "chars": 20,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "text": "<b>Dress Up: replacement candidates for 🐢 turtle steppers dub D.</b> Matthew: \"turtle stepper's dub D is awlful -- the others -- A, B, C are great. Let's make several replacement candidates.\" D (ticket 301) is \"a drum break\": 92 beats a minute, E9 A9 B7 chords (stabs of ninths on the chop), a break whose snare and rim race in fives, sixes and sevens. A (triplet shuffle, 150, A minor), B (one-drop, 84, G major) and C (rockers, three against four, 88, F major) work: plain chords, idiomatic drums. Make several candidates in their spirit, each its own drums and chords, beside A to C in 🌴 reggae, for him to pick one to become D.",
+  "waiting": "Matthew: pick among D-1 to D-4 (🌴 reggae, after D, in 0.0.308); the pick becomes D.",
+  "closed": "2026-10-24",
+  "closed_at": "2026-10-24T08:57-06:00",
+  "outcome": "KEEP ALL: D and D-1 to D-4 all stay in 🌴 reggae, nothing replaced or cut (Matthew 08:58: \"keep all music tracks. do not cut any of them yet.\"; \"my kids like that there are many music options -- so do I.\"). Matthew, 2026-10-24 ~08:55: \"make the quick calls yourself where there's a sensible default (seats, reggae pick, seasons, deleting stale branches), release, and tell me what you chose.\"",
+  "metrics": {
+   "open_minutes": 7714,
+   "matthew_messages": 4,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 1784,
+   "tokens_est": 446,
+   "sync_minutes_est": 3.0,
+   "replies": 2,
+   "claude_words": 291,
+   "read_minutes_est": 1.2,
+   "listen_minutes_est": 1.8,
+   "read_s_avg": 37,
+   "listen_s_avg": 54
+  }
+ },
+ {
   "id": 599,
   "area": "dress up, story: the other people walk their own looping paths in a place, with pauses and poses (the rest of ^ticket(440))",
   "added": "2026-10-24T08:42-06:00",
