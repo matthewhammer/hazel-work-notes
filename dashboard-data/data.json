@@ -7791,15 +7791,17 @@
    "added": "2026-10-23T14:18-06:00",
    "opened": "2026-10-23T14:18-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "dress-up",
     "hazel"
    ],
    "source": "Matthew, 2026-10-23, in chat: \"we are still missing actual tile editing in our hazel js work -- I have yet to see evidence that we actually have tiles\" and \"a real tile editing experience is top priority now, after the max-size button for game scripts\"",
    "text": "<b>Tiles you edit.</b> The Hazel boxes are plain text boxes; the only tiles (^ticket(520)) are a read-only frame under them, and on 566 that frame is blank (24 px, no status back after the program is sent). Make Hazel's own tile editor the place a Hazel rule is written: edits in the tiles flow back to the game's state and run. First step: fix the blank frame.",
-   "progress": "Found: the 'blank' tiles frame was my test browser (hidden, no animation frames), not the game: in a shown tab the frame renders. Built embed-editable on hazelgrove/hazel (7411284d85, off embed-selectable): {type:'editable', on:true} makes the cell CodeEditable; after each edit the frame posts {type:'edit', text}. Game f849f43: asks for it, splits the text into modules, refills the Hazel boxes, never posts it back. Type-checked locally (dune @src/web/check); Deploy running on GitHub. 15:11: hazel.org/build/embed-editable/ live. Not typed into by me: the browser pane is hidden, so it runs no animation frames, and the frame draws only on one. 15:30: VERIFIED in the game with the pane shown: a click on a tile + real keys edit the tiles; the edit reached 📚 Common within 2 s and Hazel marked its error; Backspace restored it. Matthew had maxed Common's TEXT box: the tiles box is now first in the ⛶ outline (5e3a1f2). Known: the first click right after a program arrives sometimes doesn't take (a second does); a click past a line's end doesn't place the caret; moving the tiles into ⛶ reloads the frame (~5 s). 15:50: per Matthew's yes, each Hazel box (Common, each room) now shows its OWN module in tiles (embed-editable 9ac9204f5c: {type:'focus', module}, the body read in its program's context), with a 🧩 tiles / ✏️ text chip; tiles take the page's theme, dark + high contrast when the page is dark (c6a86f78d6: Hazel's Colors slide with dark_mode/high_contrast on). Game a881257. Type-checked; Hazel deploy running; verify with the pane shown before asking Matthew. 15:55: c6a86f78d6 live: each Hazel box shows its own module in tiles, dark + high contrast (Matthew's screenshot). But every preamble type/constructor read as unbound ('lots of errors'): the body's context was looked up by ids the program's term does not give it. Fix b029bbd1de (context at the module's definition in the program's own term) pushed, deploying (~25 min); verify in the pane before asking. Also today: ⚙️ hazel tiles/text row, draggable divider, Hazel as a pointed tile, 📜 for scripts, Fumola typed (Motoko notation), outline fixes.",
-   "waiting": "",
+   "progress": "Found: the 'blank' tiles frame was my test browser (hidden, no animation frames), not the game: in a shown tab the frame renders. Built embed-editable on hazelgrove/hazel (7411284d85, off embed-selectable): {type:'editable', on:true} makes the cell CodeEditable; after each edit the frame posts {type:'edit', text}. Game f849f43: asks for it, splits the text into modules, refills the Hazel boxes, never posts it back. Type-checked locally (dune @src/web/check); Deploy running on GitHub. 15:11: hazel.org/build/embed-editable/ live. Not typed into by me: the browser pane is hidden, so it runs no animation frames, and the frame draws only on one. 15:30: VERIFIED in the game with the pane shown: a click on a tile + real keys edit the tiles; the edit reached 📚 Common within 2 s and Hazel marked its error; Backspace restored it. Matthew had maxed Common's TEXT box: the tiles box is now first in the ⛶ outline (5e3a1f2). Known: the first click right after a program arrives sometimes doesn't take (a second does); a click past a line's end doesn't place the caret; moving the tiles into ⛶ reloads the frame (~5 s). 15:50: per Matthew's yes, each Hazel box (Common, each room) now shows its OWN module in tiles (embed-editable 9ac9204f5c: {type:'focus', module}, the body read in its program's context), with a 🧩 tiles / ✏️ text chip; tiles take the page's theme, dark + high contrast when the page is dark (c6a86f78d6: Hazel's Colors slide with dark_mode/high_contrast on). Game a881257. Type-checked; Hazel deploy running; verify with the pane shown before asking Matthew. 15:55: c6a86f78d6 live: each Hazel box shows its own module in tiles, dark + high contrast (Matthew's screenshot). But every preamble type/constructor read as unbound ('lots of errors'): the body's context was looked up by ids the program's term does not give it. Fix b029bbd1de (context at the module's definition in the program's own term) pushed, deploying (~25 min); verify in the pane before asking. Also today: ⚙️ hazel tiles/text row, draggable divider, Hazel as a pointed tile, 📜 for scripts, Fumola typed (Motoko notation), outline fixes. 20:41 LIVE (Hazel 0da790fb20): line numbers drawn (the view needed ~lines), indentation written again after a read (Hazel writes it as spaces now), the theme's background below the code, a module body's members at its own level (Matthew: \"on_event should not be indented this much\"), the right-click menu opening down with the frame grown to it. Seen in the pane: indentation and line numbers right; the menu NOT yet seen (the pane stopped painting). Outline test, every item clicked: tiles 40/40, text 40/40, JS 18/18, Fumola 47/47. Game 370f532: Fumola sums one case a line at one depth, the whole program's tiles start on a timer too.",
+   "waiting": "Try the tiles at http://localhost:8566/ (📜 Scripting, ⛶): line numbers, indentation, a right-click near a box's last line (the menu should open down), F12 on a type such as Thing.",
    "log": [
     {
      "at": "2026-10-23T14:13-06:00",
@@ -8807,7 +8809,7 @@
    ],
    "source": "Matthew, 2026-10-23 15:45, in chat (a screenshot of the tiles' menu on ToRoom): \"Mint and enqueue asap -- need the 'goto def' to work in this JS plugin system.\" Then: \"it did nothing.\"",
    "text": "<b>Goto definition in the game's tiles.</b> In the tiles frame, the context menu's Goto definition (F12) did nothing. Make it work: within a module's tiles, and across them (Common.wire from a room's tiles; a type or constructor from the program's start) — the frame tells the page where the definition is, the page opens that box's tiles (or the types) and the frame there puts the caret on it.",
-   "progress": "Queued ASAP: right after 578 (the tiles), ahead of 568. 17:15 VERIFIED: in a module's tiles, F12 or the menu's Goto definition on Side posts {type:'goto', name:'Side'}; on flip2 (Common.flip2) posts 'flip2'; the game routes: Place -> the whole program's tiles at its row; Flip (a constructor) -> its type Cmd selected; flip2 -> Common's tiles.",
+   "progress": "Queued ASAP: right after 578 (the tiles), ahead of 568. 17:15 VERIFIED: in a module's tiles, F12 or the menu's Goto definition on Side posts {type:'goto', name:'Side'}; on flip2 (Common.flip2) posts 'flip2'; the game routes: Place -> the whole program's tiles at its row; Flip (a constructor) -> its type Cmd selected; flip2 -> Common's tiles. 19:40-20:41: a goto answered inside a frame now tells the page where the caret went, so the page scrolls to it (Matthew: \"goto Thing didn't work here\"); a goto to a type opens the whole program's tiles at it, waiting for that frame's program if it is still starting (verified in the pane for Globals).",
    "waiting": "",
    "log": [
     {
@@ -9782,8 +9784,8 @@
    ],
    "source": "Matthew, 2026-10-23 16:3x, in chat: \"please do a report about loading the game with fumola as default, scrolling to check each script as a speed run; hazel, same speed run. WIP draft, for hazel report series.\" Then: \"Oh, and JS as default too.\"",
    "text": "<b>The Scripting tab, timed.</b> For JS, Fumola and Hazel as every room's default: from a fresh load, the tab opened, the engine ready, each box's tiles ready (Hazel), then each script scrolled into view and each visited at max size; frame times and long tasks throughout; three rounds each, on GitHub (no test browsers on the laptop). Written up as ^report(32), a work-in-progress draft at http://localhost:8131/032/.",
-   "progress": "Check tools/checks/scriptspeed588.mjs; running on GitHub as diag-588 (run 40034216062). 17:05: draft built from run 40034928882 (3 rounds x 3 modes, with events): http://localhost:8131/032/ ; committed locally, not pushed.",
-   "waiting": "Review the draft: http://localhost:8131/032/ (short answers; #events: the game calling into a script)",
+   "progress": "Check tools/checks/scriptspeed588.mjs; running on GitHub as diag-588 (run 40034216062). 17:05: draft built from run 40034928882 (3 rounds x 3 modes, with events): http://localhost:8131/032/ ; committed locally, not pushed. 20:20-20:40: the rules' code coloured as the game colours it (Matthew: \"syntax highlighting for each please\"); a new section #correct, The same answers, three ways (Matthew: \"what can we say about our CI tests for 3-way functional correctness in this doc?\"): Hazel 32,761 and Fumola 20,649 comparisons against the game's JS on every push, all ok at 370f532 on GitHub and in node. Committed locally ace00d0; not pushed.",
+   "waiting": "Review the draft and say publish: http://localhost:8131/032/ (#room for the colours, #correct for the CI section).",
    "log": [
     {
      "at": "2026-10-23T16:30-06:00",
@@ -9865,6 +9867,7 @@
    "opened": "2026-10-23T16:54-06:00",
    "status": "open",
    "tags": [
+    "blocked on Matthew",
     "long run"
    ],
    "chips": [
@@ -9872,8 +9875,8 @@
    ],
    "source": "Matthew, 2026-10-23 17:0x, in chat: \"if Fumola doesn't store enough parse info for any AST forms (types, etc) -- mint and enqueue as a long-run tonight to fix.\"",
    "text": "<b>Every definition with its parse.</b> Fumola's <code>Defs</code> (vm_types.rs) keeps Module, Actor, Func, Var and StaticValue fields, each with a <code>source</code>; a <code>type</code> declaration is kept nowhere (vm_def.rs, vm_step.rs and vm_big.rs treat <code>Dec::Type</code> as nothing to do). Survey every AST form a definition can take (type, let and var patterns, func and its parameters and result annotations, module, object and class members, use and import) for what parse information reaches the Core, and fill the gaps: a <code>Def</code> for a type (its name, its type, its source), and source ranges kept for parameters, annotations and patterns where the parser has them but drops them. Tests in fumola's own suite; the wasm API itself is ^ticket(589). Repo: Adapton/fumola; heavy builds on GitHub (bench/* branches), not the laptop.",
-   "progress": "Minted; 🌙 long run for tonight.",
-   "waiting": "",
+   "progress": "Minted; 🌙 long run for tonight. 20:50 DONE on branch defs-parse-590 (Adapton/fumola, 13d1b2a, pushed, no PR): the Core's Defs keep type declarations (Ctx.types, a namespace of their own, with name, type parameters, type, visibility and source), a let's binder (Field.pat: its annotation, the name's own source), and type parameters, which the parser had read and dropped (TypeParamsOpt => None, \"to do -- produce AST\"); a function's printed form now shows them. 5 new tests in crates/fumola/tests/test_defs_outline.rs; the whole suite 280 passed, 0 failed (laptop, niced, -j 2). Fumola's CI runs only on main and PRs.",
+   "waiting": "Say whether to open a PR for defs-parse-590 on Adapton/fumola.",
    "log": [
     {
      "at": "2026-10-23T16:51-06:00",
@@ -9961,8 +9964,8 @@
   }
  ],
  "next_ticket": 577,
- "current_ticket": 587,
- "current_note": "16:28: Building reveal + goto (Hazel f9ea853f1d, deploying, live ~17:05); game 7c827a7 (tiles one at a time, visible first) and the reveal/goto wiring pushed. Next: verify in the pane, screenshots.",
+ "current_ticket": 589,
+ "current_note": "20:45: Starting: fumola_defs in the wasm API, on top of 590's defs-parse-590 (types, binders, type parameters with sources)",
  "closed_tickets": [
   {
    "id": 575,
@@ -14930,11 +14933,11 @@
   }
  ],
  "queue": [
+  589,
   588,
   587,
   586,
   591,
-  589,
   574,
   576,
   566,
@@ -15009,7 +15012,7 @@
   534,
   590
  ],
- "current_since": "2026-10-23T16:28-06:00",
+ "current_since": "2026-10-23T20:45-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
