@@ -9835,14 +9835,16 @@
    "added": "2026-10-23T16:51-06:00",
    "opened": "2026-10-23T16:51-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "dress-up"
    ],
    "source": "Matthew, 2026-10-23 16:5x, in chat: \"mint and enqueue a ticket for Fumola to expose the 'vm_defs' data of the Core state --- it has the kind of definition outline we need, but in its own format -- it could expose it to the Wasm API\" Then: \"that API could give very precise parse information\"",
    "text": "<b>Fumola's own outline, for the game.</b> Fumola's Core keeps every definition in its <code>Defs</code> (crates/fumola_semantics/src/lib/vm_types.rs): a forest of contexts (<code>Ctx</code>: parent, fields by name), each <code>Field</code> a <code>Def</code> (Module, Actor, Func, Var, StaticValue) with its visibility and its <code>source</code> (where it is written). Expose it through the wasm API (crates/fumola_wasm: e.g. <code>fumola_defs(id) -> JSON</code>): per module, its members with kind, visibility, source range and, for a function, its parameters and their annotations (the Motoko-style types the game's rules now carry). The game's ⛶ outline then reads Fumola's definitions from Fumola, as ^ticket(587) has it read Hazel's from Hazel, instead of matching the text. Note: a <code>type</code> declaration is not kept in Defs (vm_def.rs treats it as nothing to run), so the outline's types need either a Def for them or the parse's own list. Repo: Adapton/fumola; the game pins a Fumola build (vendor/fumola/...). <b>Precise parse information:</b> each field's <code>source</code> is the parser's own position, so the API can give exact ranges (line and column, start and end) for every definition and its parts, not just a line found by matching: the game can select exactly the definition's text, and later the same ranges can feed error marks and goto definition in the Fumola boxes.",
-   "progress": "Minted; queued after 587 (Hazel's outline from Hazel) and 586.",
-   "waiting": "",
+   "progress": "Minted; queued after 587 (Hazel's outline from Hazel) and 586. 21:05 API DONE on branch wasm-defs-589 (Adapton/fumola, dc8f3a9, pushed, no PR; stacked on 590's defs-parse-590): fumola_defs(id) gives per context (top level, each module or actor) its types (name, type parameters, the type on one line, visibility, source, the name's source) and members (kind, visibility, source; a function's name source, type parameters, parameters and result as written with sources; a let's name source and annotation), in source order, sources as {line, col, end_line, end_col, start, end}. Tests crates/fumola_wasm/tests/test_defs.rs (a source's offsets select exactly 'Side' and 'flip2'); the wasm suite 106 passed, 0 failed. The game's outline does not use it yet: the game pins a Fumola build (vendor/fumola/877b155851), so it needs these merged to Fumola's main (Pages builds the wasm from main) or a build from the branch.",
+   "waiting": "Say whether to open PRs for defs-parse-590 and wasm-defs-589 on Adapton/fumola (then the game pins the new build and its outline reads Fumola's defs).",
    "log": [
     {
      "at": "2026-10-23T16:51-06:00",
