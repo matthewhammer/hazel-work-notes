@@ -1,5 +1,68 @@
 [
  {
+  "id": 604,
+  "area": "dress up, the script boxes' line wrap in Hazel's tiles: the width it uses, and a let's in before its body's if",
+  "added": "2026-10-24T12:05-06:00",
+  "opened": "2026-10-24T12:05-06:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "dress-up"
+  ],
+  "source": "Matthew, 2026-10-24 ~11:55, in chat, with two screenshots of module Castle in tiles at wrap 116: \"still think that the wrap for Hazel if then else needs work. See screenshot. limit is huge, and actual screen viewport is huge too.\" Then: \"it would look better to have the line break, if there needs to be one, after the in (following let), not within the if-then-else stuff after the in.\"",
+  "text": "<b>Two fixes.</b> (1) The tiles were laid out at 100 columns with 116 set and room for more: scriptTileCols guessed a character as 0.71 of the font size (one measurement at 18 px), but in the sys font at 12.5 it is about 0.61. Measure it instead, in the font and size sent to the tiles. (2) A line cut inside an if after a let's in: in Hazel a let, a fun and a case are open the way an if is, so a line cuts first after the let's in (or the fun's ->, or before the case's |), and the if goes whole on the next line when it fits.",
+  "progress": "12:18: RELEASED 0.0.426 (c93b63e, tag dress-up-0.0.426; main and tag confirmed; Pages green; live version.json, index.html (29 ?v=0.0.426), 25-scripting.js and VERSIONS.md checked over HTTPS). (1) Width: measured in the browser here, every font in the menu is 0.60 of its size (the old guess 0.71); the tiles' columns now come from that measurement. (2) Layout: in Hazel a let, fun, case and each case arm are open the way an if is (in, ->, |, => their parts), so a line cuts after the let's in before the if in its body; a piece an if begins keeps then/else level with it, a piece a case begins its arms. Compared with 0.0.425 over every script and every line of the game's JS at widths 30 to 120: Fumola and JS laid out exactly as before; Hazel 13 lines fewer overall, none longer, only spaces and breaks changed. In the game on localhost:8133 (0.0.426) at 1600x1000, Castle in Hazel's tiles: at wrap 116 the Auto arm is | Auto => / (let ... else 1) on one line, 28 lines; at wrap 100: | Auto => / (let t = Common.room_at(rooms, Trap) in / if ladder ... else 1). Checks: tools/checks/flowlet604.mjs (new) and flownest603.mjs (restated to what it guards); both run in the speed run on the tag.",
+  "log": [
+   {
+    "at": "2026-10-24T12:00-06:00",
+    "from": "matthew",
+    "chars": 133,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T12:01-06:00",
+    "from": "claude",
+    "chars": 545,
+    "asks": false,
+    "words": 102,
+    "read_s": 26,
+    "listen_s": 38,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T12:02-06:00",
+    "from": "matthew",
+    "chars": 148,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-24",
+  "closed_at": "2026-10-24T12:18-06:00",
+  "outcome": "Released in 0.0.426: the tiles' columns measured (0.60 of the size, not 0.71); Hazel lines cut after a let's in, a fun's ->, an arm's => before inside the body; Fumola/JS unchanged; checked live and in the game's tiles",
+  "metrics": {
+   "open_minutes": 13,
+   "matthew_messages": 2,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 826,
+   "tokens_est": 206,
+   "sync_minutes_est": 2.0,
+   "replies": 1,
+   "claude_words": 102,
+   "read_minutes_est": 0.4,
+   "listen_minutes_est": 0.6,
+   "read_s_avg": 26,
+   "listen_s_avg": 38,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   },
+   "work_minutes": 40.0
+  }
+ },
+ {
   "id": 603,
   "area": "dress up, the script boxes' line wrap: a nested if's then and else each take a line (the castle's way_out at wrap 77)",
   "added": "2026-10-24T11:22-06:00",
