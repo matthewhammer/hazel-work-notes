@@ -7561,11 +7561,25 @@
     }
    ],
    "waiting": "M and N: read ^du_report(18) (https://matthewhammer.org/kids-choice-games/dress-up/reports/018/) and the zine, color a page; their feedback, then the work-in-progress mark comes off."
+  },
+  {
+   "id": 602,
+   "area": "operations, the Claude desktop app: after its window hung it stayed gone until a reboot (2026-10-24); reinstalling did not help",
+   "added": "2026-10-24T10:54-06:00",
+   "opened": "2026-10-24T10:54-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "operations"
+   ],
+   "source": "Matthew, 2026-10-24 ~10:48, in chat: \"whoa -- had a lot of GPU related issues, or GPU cache, within claude-desktop. reinstall did not fix. reboot did.\" Then the error: \"Persistent cache error: 1\", and: \"let's file a ticket to figure this out -- or track it, or both.\"",
+   "text": "<b>Both: find out why the app would not come back without a reboot, and track it so next time a quicker fix gets tried first.</b> 2026-10-24: about 09:45 the laptop went down hard (no shutdown logged, the clock came back unset); 09:59 the app started; 10:14:34 its window hung (the app's log: \"Main webview is unresponsive, will kill and reload\"; the journal: \"Crashing because hung\"), 13 s after preview servers were started. The window never came back, but the app's main process kept running and logging (session hooks, plugin sync, \"Window focused\" at 10:22). Matthew launched it 11 times from a terminal, 10:22 to 10:44: each printed \"Persistent cache error: 1\" and quit at once (log: \"Quit requested before 'ready'; not creating the main window\"), since a copy that is still running takes over every new launch. Reinstalling (apt remove 10:36, install 10:38, the same 3.6556.2) did not stop that copy, so it changed nothing; the reboot at 10:46 did, and the first launch after it worked.",
+   "progress": "10:54: LEADS (read-only: the app's ~/.config/Claude/logs/main.log, the journal, his screenshots at 10:23, 10:24 and 10:44). (1) The cache error is a symptom, not the cause: the journal has it only when a second copy is launched while one runs: 10-20 22:07:10, :20, :36 are ^ticket(508)'s second incident to the minute; also 10-15, 10-17, 10-19 and today; none since the reboot. (2) Hardware acceleration has been off since 10-22 16:49, turned off by the app itself (isHardwareAccelerationAutoDisabled), so its GPU process renders in software. NEXT TIME, before rebooting: in a terminal, pgrep -a -x claude-desktop lists the stuck copy; pkill -x claude-desktop, wait until pgrep lists nothing, then launch (this also ends the Claude Code sessions inside the app). OPEN: why the window hung at 10:14 and the app's own kill-and-reload did not bring it back; whether the 09:45 hard crash left something behind. TRACKING: on a repeat, try the pkill first and record whether it is enough."
   }
  ],
- "next_ticket": 602,
- "current_ticket": null,
- "current_note": "10:15: back from the 09:52 power cut: servers 8000, 8131, 8341, 8311, 8361 restarted; every queued ticket waits on Matthew",
+ "next_ticket": 603,
+ "current_ticket": 602,
+ "current_note": "10:55: minted from Matthew's report; leads written; the pkill step is the next-time fix to try",
  "closed_tickets": [
   {
    "id": 601,
@@ -12903,6 +12917,7 @@
   }
  ],
  "queue": [
+  602,
   550,
   587,
   589,
@@ -12965,7 +12980,7 @@
   534,
   590
  ],
- "current_since": "2026-10-24T09:02-06:00",
+ "current_since": "2026-10-24T10:55-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
@@ -12978,7 +12993,7 @@
   },
   "since": "2026-08-27",
   "replies": 5408,
-  "words": 1178338,
+  "words": 1178371,
   "read_hours_est": 82.5,
   "listen_hours_est": 122.7,
   "read_s_avg": 55,
@@ -13221,8 +13236,8 @@
    },
    "2026-10-24": {
     "replies": 88,
-    "words": 14687,
-    "chars": 82065
+    "words": 14720,
+    "chars": 82282
    }
   }
  },
