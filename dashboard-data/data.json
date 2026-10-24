@@ -7110,7 +7110,7 @@
    ],
    "source": "Matthew, 2026-10-24, in chat: \"yes -- fix the red speed runs today.\"",
    "text": "<b>Make the speed run mean something again.</b> Since 0.0.420 every release's speed.json entry says broken (the checks). Two causes: the Chrome job reaches its 90-minute limit in its last step, the on-screen controller audit (recorded, not a verdict), and checks that really fail: scripting482 (the tiles frame shows no tokens in CI), giraffe544 (written before the ninja: its mask, 99 shapes against 92, the head outside the frame jumping), scriptboxes566 (expectations from before later script work), hazellogic531 (an intermittent page error: the world rules' globals read W.at when the world has no square, 25-scripting.js:669), and one check that stops (out.views[out.k].push is not a function). Also: the forest read 54.9 fps on 0.0.426 against 60 on 0.0.424; compare on the same runner before calling it anything.",
-   "progress": "",
+   "progress": " | 16:54: on branch speed-runs-605 (~/kcg-604, not pushed to main): (1) the speed workflow: the controller audit and the Chrome leak a job of their own on their own computer, the checks job 150 minutes (its checks took 78 of 90); (2) hazellogic531: the 🪵 event log's late snapshot of a room's globals guarded (the world replaced by then: W.at of a world with no square); (3) scriptboxes566, the check: line numbers (581), code laid out to its width (579, 585), the note's word \"mixed\" (580); (4) giraffe544, the game: the frame's top follows a jump's lift (red since 0.0.410); (5) ninja557, the game: the gem's ✨ glimmer off at first (SMIL, 99 shapes against 92), as ⭐ and 🌟 are, his rule that a costly effect starts off; the ✨ row turns it on; (6) scripting482: the game's whole-program frame cap 4000 -> 40000 (the program is ~4400 px, Castle's end was cut off), and the check (embed-editable's URL, the program's frame by its frame id, per-box errors, the keys since 578); (7) hold518, the check: each case named before it is drawn, crawling put on before facing us. Diagnosed by five agents, each read and applied here; check_script and check_load pass. Run 40140064140 on diag-605 (only the six checks) in progress; then a release, and the speed run on its tag.",
    "log": [
     {
      "at": "2026-10-24T16:18-06:00",
@@ -7153,7 +7153,7 @@
    ]
   }
  ],
- "next_ticket": 606,
+ "next_ticket": 607,
  "current_ticket": 605,
  "current_note": "16:30: finding why each speed-run check fails",
  "closed_tickets": [
@@ -12580,6 +12580,16 @@
    "status": "done",
    "closed": "2026-10-16T15:51-06:00",
    "outcome": "Dress Up 0.0.81 (c8af960: a step of movement only draws; on a slow computer at most 30 drawings a second while moving; showObjects writes only changes) to 0.0.83 (858f369):…"
+  },
+  {
+   "id": 606,
+   "area": "dress up reports: the story words on one page, a picture for each, for M and N (ages 5-8), under ^du_report(18)'s 13",
+   "added": "2026-10-24T16:54-06:00",
+   "text": "Story words, one page.",
+   "source": "Matthew, 2026-10-24, in chat: \"let's make a 1 pager for this content…",
+   "status": "done",
+   "closed": "2026-10-24",
+   "outcome": "Published under ^du_report(18)'s 13 and sent to Matthew to print"
   }
  ],
  "queue": [
