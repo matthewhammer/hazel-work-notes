@@ -7576,7 +7576,35 @@
    ],
    "source": "Matthew, 2026-10-24 ~11:55, in chat, with two screenshots of module Castle in tiles at wrap 116: \"still think that the wrap for Hazel if then else needs work. See screenshot. limit is huge, and actual screen viewport is huge too.\" Then: \"it would look better to have the line break, if there needs to be one, after the in (following let), not within the if-then-else stuff after the in.\"",
    "text": "<b>Two fixes.</b> (1) The tiles were laid out at 100 columns with 116 set and room for more: scriptTileCols guessed a character as 0.71 of the font size (one measurement at 18 px), but in the sys font at 12.5 it is about 0.61. Measure it instead, in the font and size sent to the tiles. (2) A line cut inside an if after a let's in: in Hazel a let, a fun and a case are open the way an if is, so a line cuts first after the let's in (or the fun's ->, or before the case's |), and the if goes whole on the next line when it fits.",
-   "progress": ""
+   "progress": "",
+   "log": [
+    {
+     "at": "2026-10-24T12:00-06:00",
+     "from": "matthew",
+     "chars": 133,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T12:01-06:00",
+     "from": "claude",
+     "chars": 545,
+     "asks": false,
+     "words": 102,
+     "read_s": 26,
+     "listen_s": 38,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T12:02-06:00",
+     "from": "matthew",
+     "chars": 148,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 605,
@@ -13006,7 +13034,7 @@
   },
   "since": "2026-08-27",
   "replies": 5420,
-  "words": 1181468,
+  "words": 1181592,
   "read_hours_est": 82.7,
   "listen_hours_est": 123.1,
   "read_s_avg": 55,
@@ -13249,8 +13277,8 @@
    },
    "2026-10-24": {
     "replies": 100,
-    "words": 17817,
-    "chars": 100048
+    "words": 17941,
+    "chars": 100738
    }
   }
  },
