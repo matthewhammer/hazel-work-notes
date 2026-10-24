@@ -10814,8 +10814,8 @@
    ],
    "source": "Matthew, 2026-10-24 07:02, in chat: \"for after the manual and report --- a bug report to fix in next dress-up version. after we click on LHS nav for some Hazel def, and the RHS scrolls there, when we scroll LHS nav bar back to in-game view, it's empty/missing.\"",
    "text": "<b>The viewport follows its spot.</b> In ⛶ with 🎮 show game viewport on, the game's picture is pinned (position: fixed) over a spot at the top of the outline column, placed by scriptMaxGamePlace on a resize or a divider drag only. Scrolling the column (as a click in the outline can) moves the spot and not the picture, so the spot shows empty. Likely fix: place it again on the column's scroll (and when the outline is redrawn), or pin it to the column's top instead of a spot that scrolls. Check in the pane; release in the next version.",
-   "progress": "07:20: FIXED on script-boxes-566 (not released): placed again on the outline column's scroll and redraw, clipped to the column. Checked in the pane by calling the placement after scrolls (80 px: picture and spot at -70, clipped; 600 px: hidden; back: at 10).",
-   "waiting": "Say release 0.0.413 (this fix alone), or hold it for more.",
+   "progress": "07:20: FIXED on script-boxes-566 (not released): placed again on the outline column's scroll and redraw, clipped to the column. Checked in the pane by calling the placement after scrolls (80 px: picture and spot at -70, clipped; 600 px: hidden; back: at 10). 07:25: RELEASED in Dress Up 0.0.413 (22e90e6, tag dress-up-0.0.413), live.",
+   "waiting": "Try it in the browser: ⛶, 🎮 show game viewport, click an outline line, scroll the outline back up.",
    "log": [
     {
      "at": "2026-10-24T07:03-06:00",
