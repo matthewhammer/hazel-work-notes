@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Overnight Notes</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9em; } th, td { border-bottom: 1px solid var(--line); padding: 5px 6px; text-align: left; } td.n { font-variant-numeric: tabular-nums; }
+  svg.chart { width: 100%; height: auto; font: 12px system-ui, sans-serif; } svg .g { stroke: var(--line); } svg .t { fill: var(--muted); }
+  svg .raw { fill: none; stroke: var(--warn); stroke-width: 2.5; } svg .gh { fill: none; stroke: var(--ok); stroke-width: 2.5; } svg .dash { stroke-dasharray: 6 4; }
+  svg .ghp { fill: var(--ok); } svg .lim { stroke: var(--muted); stroke-dasharray: 2 3; } svg .lt { fill: var(--muted); font-size: 11px; }
+  svg .rl { fill: var(--warn); } svg .gl { fill: var(--ok); }
+<body>
+<main>
+<h1>Working notes: 2026-10-23, the Scripting panel's tiles</h1>
+<p class="sub">Claude, one session all day with Matthew, and from 20:20 MDT on its own ("bedtime -- AFK-- do your best"). Every browser test of the game ran in the app's own pane or on GitHub; the laptop ran typechecks and seconds-long node checks only.</p>
+<h2>Where things are</h2>
+<ul>
+<li><b>Servers:</b> 8000 (dashboard, 0.0.4 since 15:00), 8131 (reports' sources, with ^report(32)'s DRAFT at <code>/032/</code>, committed locally as ace00d0, not pushed), 8566 (the game's <code>script-boxes-566</code>).</li>
+<li><b>The game, <code>script-boxes-566</code></b> (kids-choice-games, worktree <code>~/kcg-566</code>, head 370f532), also playable at <code>matthewhammer.org/hazel/mudu-preview/script-boxes-566/</code>. Today it gained: ⛶ max size (the outline of every box at the left, types then functions in each box's own order, Hazel's inferred types, case counts and kinds), syntax colours, ⚙️ settings (size, font, colours, tiles or text, line numbers, wrap 77), line breaking to the box, a draggable divider, 📜 for scripts everywhere, Hazel's name as a tile, and Fumola rules with Motoko-style type annotations from Hazel's types.</li>
+<li><b>^ticket(578), Hazel's tiles in each box:</b> Hazel's branch <code>embed-editable</code> (worktree <code>~/hazel-embed-selectable</code>), built at hazel.org/build/embed-editable/. Each box shows its own module in tiles, preloaded one at a time, with the page's theme (dark and high contrast when the page is dark), font, size and line numbers, and edits going back to the boxes. Pushed tonight: line numbers drawn (the view needed <code>~lines</code>), indentation written (a read text loses its leading spaces), the theme's background below the code, a goto's caret told to the page, a module body's members at its own level, and the right-click menu opening down with the frame grown to it (0da790fb20, publishing at 20:26).</li>
+<li><b>^ticket(586), goto definition across boxes:</b> done for names, dotted names, types and constructors; a type opens the whole program's tiles at it.</li>
+<li><b>^report(32), a draft:</b> the Scripting tab's speed run with JS, Fumola and Hazel as the default; the game calling into a script; as the code grows (Hazel overflows its stack at 8x Common, Fumola stays flat at about 125 ms an edit); the pit room's rule three ways, now coloured; and a new section, <i>The same answers, three ways</i>: the CI's checks hold Hazel (32,761 comparisons) and Fumola (20,649) to the game's own JS on every push.</li>
+<li><b>hazelgrove/hazel#2711:</b> a 🤖 comment on taking modular editors' outline as a dependency (copy <code>OutlineTree.re</code> now, ^ticket(587)).</li>
+</ul>
+<h2>Found</h2>
+<ul>
+<li><b>Every outline item does what it should,</b> clicked one by one in the pane: Hazel in tiles 40/40, Hazel as text 40/40, JS 18/18, Fumola 47/47. The first run failed four types because the whole program's tiles started only on a first paint; they now start on a timer too.</li>
+<li><b>Hazel writes indentation as spaces now,</b> not at layout, so a frame that drops leading spaces must write them again (<code>Perform.reindent_zipper</code>); and its rule after a module member's <code>;</code> assumes braces, which a body shown alone does not have.</li>
+<li><b>A pane that is not painting</b> has no animation frames, and Hazel's frames then report nothing: a test there must check for frames first.</li>
+</ul>
+<h2>Waiting on Matthew</h2>
+<ul>
+<li>Confirming the tiles work for him (^ticket(578)); then ^ticket(568), the overhead tool.</li>
+<li>Publishing ^report(32) (a draft at localhost:8131/032/).</li>
+<li>Whether the 🧪 speed test gets a scripting line (his 🧪 run at 20:1x measures drawing only).</li>
+<li>A PR for <code>script-boxes-566</code>.</li>
+</ul>
+<h2>Queued for the night</h2>
+<ul>
+<li>Check tonight's frame fixes once hazel.org has them.</li>
+<li>^ticket(590) 🌙: Fumola's parse information for every form (for ^ticket(589)'s <code>vm_defs</code> through the wasm API).</li>
+</ul>
+</main>
+</body>
+</html>
