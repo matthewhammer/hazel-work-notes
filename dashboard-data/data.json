@@ -10177,14 +10177,16 @@
    "added": "2026-10-24T06:21-06:00",
    "opened": "2026-10-24T06:21-06:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "dress-up"
    ],
    "source": "Matthew, 2026-10-24 06:2x, in chat: \"Still missing: * type errors from hazel get reported somewhere, before running the script * the log entry for hazel with type errors still runs (maybe only partially), and we see the results in the log entry details, somewhere.\" And: \"if there are dynamic script errors, we should put them in here.\"",
    "text": "<b>Errors, where you look.</b> Each Hazel box shows its module's errors, the ⛶ outline marks the module with a ⚠️ count, and 🪵 the event log gets a check entry when the program's errors change. A rule with type errors still runs: its answer (Hazel runs a program with errors, up to them) goes in its log entry with the errors; the game's own JS acts, so the game keeps working. A rule that stops, or gives commands the room does not know, says so in its entry.",
-   "progress": "Minted; first, before the manual.",
-   "waiting": "",
+   "progress": "06:25: BUILT (game ae53071; preview updated), checked in the pane with three broken scripts: a type error in TrapRoom (Flip(3, ...)) shows in its box and a check entry ('3: a Side is wanted here, but this is an Int'), the pull still runs Hazel's rule (its answer with ‹not a value›) and the JS moves the lever; an unknown command (TrapRoom answering GoSquare) shows '⚠️ 1 command the room does not know'; a Fumola rule reading [1, 2][5] shows '⛔ stopped: Fumola: an index past the end'. Also: settled changes (a boulder: covered[0] false -> true, read 2 s later) and one scroll for before/after (Matthew's 06:22 and 06:23 asks).",
+   "waiting": "Try a broken rule at http://localhost:8566/ and look at its box, the ⛶ outline and 🪵.",
    "log": []
   },
   {
@@ -10205,8 +10207,8 @@
   }
  ],
  "next_ticket": 595,
- "current_ticket": 594,
- "current_note": "06:21: Errors where you look: per-box Hazel errors, ⚠️ in the outline, a check entry in the log; a rule with type errors still run, its answer logged; dynamic errors in entries",
+ "current_ticket": 593,
+ "current_note": "06:25: The manual: screenshots on GitHub (diag), then the 1980s-90s-style du_report draft with broken scripts and their fixes, and the feature list",
  "closed_tickets": [
   {
    "id": 575,
@@ -15174,8 +15176,8 @@
   }
  ],
  "queue": [
-  594,
   593,
+  594,
   540,
   592,
   569,
@@ -15256,7 +15258,7 @@
   534,
   590
  ],
- "current_since": "2026-10-24T06:21-06:00",
+ "current_since": "2026-10-24T06:25-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
