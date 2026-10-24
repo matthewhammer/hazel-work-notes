@@ -10094,11 +10094,43 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 594,
+   "area": "dress up × scripting: Hazel's type errors shown before running, a rule with errors still run (its answer in the log), dynamic errors in the log",
+   "added": "2026-10-24T06:21-06:00",
+   "opened": "2026-10-24T06:21-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress-up"
+   ],
+   "source": "Matthew, 2026-10-24 06:2x, in chat: \"Still missing: * type errors from hazel get reported somewhere, before running the script * the log entry for hazel with type errors still runs (maybe only partially), and we see the results in the log entry details, somewhere.\" And: \"if there are dynamic script errors, we should put them in here.\"",
+   "text": "<b>Errors, where you look.</b> Each Hazel box shows its module's errors, the ⛶ outline marks the module with a ⚠️ count, and 🪵 the event log gets a check entry when the program's errors change. A rule with type errors still runs: its answer (Hazel runs a program with errors, up to them) goes in its log entry with the errors; the game's own JS acts, so the game keeps working. A rule that stops, or gives commands the room does not know, says so in its entry.",
+   "progress": "Minted; first, before the manual.",
+   "waiting": "",
+   "log": []
+  },
+  {
+   "id": 593,
+   "area": "dress up reports: ^du_report(17), 📜 game scripts, a manual in the style of a 1980s-90s game's: the panel, the pit room, the event log, debugging, broken scripts and their fixes, the feature list",
+   "added": "2026-10-24T06:21-06:00",
+   "opened": "2026-10-24T06:21-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress-up"
+   ],
+   "source": "Matthew, 2026-10-24 06:2x, in chat: \"let's prepare a report draft du_report series, explaining the new game script feature, in the spirit of a 1980s or 1990s game manual, with screenshots (of script panels, of in-game correspondance (pit room)), etc. we want to show what log events look like, and how to use them to 'debug' the game script. BTW -- if there are dynamic script errors, we should put them in here. And before we finish this report, let's finish a few more features for the script panel, and use this report to list the full feature set, to track it.\" Then: \"the report/manual for game scripts should show examples of erroneous scripts, and how to check the errors and fix them\".",
+   "text": "<b>The manual.</b> A ^du_report in the style of a 1980s-90s game manual: what game scripts are, the panel (JS, Hazel, Fumola chips; ⚙️; ⛶ and its outline; tiles), the pit room and its rule side by side with the game, 🪵 the event log and how to debug with it, erroneous scripts (a type error, a hole, a rule that stops, a command the room does not know) with what each shows and how to fix it, and the full feature list, to track. Screenshots from GitHub's computers.",
+   "progress": "Minted; after the error features (next ticket).",
+   "waiting": "",
+   "log": []
   }
  ],
- "next_ticket": 593,
- "current_ticket": 540,
- "current_note": "06:11: World's Way under Hazel on big maps (16x16, 32x32): the O(N) cost the frame-rate check did not stress",
+ "next_ticket": 595,
+ "current_ticket": 594,
+ "current_note": "06:21: Errors where you look: per-box Hazel errors, ⚠️ in the outline, a check entry in the log; a rule with type errors still run, its answer logged; dynamic errors in entries",
  "closed_tickets": [
   {
    "id": 575,
@@ -15066,6 +15098,8 @@
   }
  ],
  "queue": [
+  594,
+  593,
   540,
   592,
   569,
@@ -15146,7 +15180,7 @@
   534,
   590
  ],
- "current_since": "2026-10-24T06:11-06:00",
+ "current_since": "2026-10-24T06:21-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
