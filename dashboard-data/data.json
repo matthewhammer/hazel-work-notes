@@ -10219,10 +10219,10 @@
    "chips": [
     "dress-up"
    ],
-   "source": "Matthew, 2026-10-24 06:2x, in chat: \"let's prepare a report draft du_report series, explaining the new game script feature, in the spirit of a 1980s or 1990s game manual, with screenshots (of script panels, of in-game correspondance (pit room)), etc. we want to show what log events look like, and how to use them to 'debug' the game script. BTW -- if there are dynamic script errors, we should put them in here. And before we finish this report, let's finish a few more features for the script panel, and use this report to list the full feature set, to track it.\" Then: \"the report/manual for game scripts should show examples of erroneous scripts, and how to check the errors and fix them\".",
+   "source": "Matthew, 2026-10-24 06:2x, in chat: \"let's prepare a report draft du_report series, explaining the new game script feature, in the spirit of a 1980s or 1990s game manual, with screenshots (of script panels, of in-game correspondance (pit room)), etc. we want to show what log events look like, and how to use them to 'debug' the game script. BTW -- if there are dynamic script errors, we should put them in here. And before we finish this report, let's finish a few more features for the script panel, and use this report to list the full feature set, to track it.\" Then: \"the report/manual for game scripts should show examples of erroneous scripts, and how to check the errors and fix them\". Then: \"sub section about each real game event ... vs game script event now\"; \"the actual global state in JS for the game, versus what we have so far in Globals\"; \"manual should talk about the event log ... and include screenshots like this one\"; \"the box around the door isn't important and shouldn't be part of it\".",
    "text": "<b>The manual.</b> A ^du_report in the style of a 1980s-90s game manual: what game scripts are, the panel (JS, Hazel, Fumola chips; ⚙️; ⛶ and its outline; tiles), the pit room and its rule side by side with the game, 🪵 the event log and how to debug with it, erroneous scripts (a type error, a hole, a rule that stops, a command the room does not know) with what each shows and how to fix it, and the full feature list, to track. Screenshots from GitHub's computers.",
-   "progress": "Minted; after the error features (next ticket).",
-   "waiting": "",
+   "progress": "06:39: DRAFT at http://localhost:8566/reports/017/ (game branch f5b3ded, not on main, so not published): 12 chapters in a 1980s-90s manual style; the pit room; the event log and debugging with it; four broken scripts (type error, hole, unknown command, a Fumola rule that stops) with what each shows and the fix; game events vs script events (4 of 16 kinds of moving and 4 of 9 kinds of doing go through a script); the game's state (23 parts, ~83 KB, background 1,994 keys) vs Globals (17 fields); the feature list (33 rows: 19 done, 8 to check, 3 on branches, 3 not yet). Pictures from tools/checks/manual593.mjs on GitHub; retaking at the newest code (diag-593), log pictures framed like Matthew's screenshot, the friend away from the door.",
+   "waiting": "Read the draft at http://localhost:8566/reports/017/ ; say publish (it goes out with the game branch to main) when ready.",
    "log": [
     {
      "at": "2026-10-24T06:17-06:00",
@@ -10298,6 +10298,46 @@
      "listen_s": 26,
      "model": "claude-opus-5-5",
      "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T06:23-06:00",
+     "from": "matthew",
+     "chars": 151,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T06:24-06:00",
+     "from": "matthew",
+     "chars": 139,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T06:24-06:00",
+     "from": "claude",
+     "chars": 248,
+     "asks": false,
+     "words": 41,
+     "read_s": 10,
+     "listen_s": 15,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T06:25-06:00",
+     "from": "matthew",
+     "chars": 148,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T06:26-06:00",
+     "from": "matthew",
+     "chars": 69,
+     "asks": false,
      "note": "from the transcripts"
     }
    ]
@@ -15367,8 +15407,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5335,
-  "words": 1166106,
+  "replies": 5338,
+  "words": 1166649,
   "read_hours_est": 81.7,
   "listen_hours_est": 121.5,
   "read_s_avg": 55,
@@ -15610,9 +15650,9 @@
     "chars": 152999
    },
    "2026-10-24": {
-    "replies": 15,
-    "words": 2455,
-    "chars": 13858
+    "replies": 18,
+    "words": 2998,
+    "chars": 16926
    }
   }
  },
