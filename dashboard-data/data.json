@@ -44,55 +44,6 @@
    "group": "cyrus"
   },
   {
-   "pr": 2635,
-   "repo": "hazelgrove/hazel",
-   "branch": "perf/2635-names",
-   "base": "integration/livelits-modular-editors",
-   "branch_note": "(served since 11:47 on 2026-10-20: GitHub's release build of #2635's head (pulled again at 23:12 10-20: 9933091a99, whose merge changed no code, so the same build as a6eca82049) (dev and the new #2597 merged in; ^ticket(469)'s and ^ticket(472)'s fixes), from the deploy repo (hazelgrove/build, integration/livelits-modular-editors), not built on the laptop; in <code>~/hazel-builds/build</code>.)",
-   "links": [
-    [
-     "localhost:8341 (#2635 at 9933091a99, its head: GitHub's build, the same code as a6eca82049)",
-     "http://localhost:8341/"
-    ],
-    [
-     "#2635's Scenes slide",
-     "http://localhost:8341/?slide=livelit-playground-scenes"
-    ]
-   ],
-   "group": "cyrus"
-  },
-  {
-   "pr": 2675,
-   "repo": "hazelgrove/hazel",
-   "branch": "recursive-let-reuse",
-   "base": "dev",
-   "links": [],
-   "group": "other"
-  },
-  {
-   "pr": 2676,
-   "repo": "hazelgrove/hazel",
-   "branch": "cursor-inspector-full-types",
-   "base": "dev",
-   "links": [],
-   "branch_note": "(no local build: #2698 below is stacked on it and contains it)",
-   "group": "cyrus"
-  },
-  {
-   "pr": 2698,
-   "repo": "hazelgrove/hazel",
-   "branch": "context-inspector-long-types",
-   "base": "cursor-inspector-full-types",
-   "links": [
-    [
-     "localhost:8361 (#2698 + ^ticket(394), 4c9cc34d3b)",
-     "http://localhost:8361/"
-    ]
-   ],
-   "branch_note": "<b>Down since the reboot at 10:46 on 2026-10-24</b> (the app runs at most five servers per worktree; ^ticket(602)). (^ticket(386), draft PR stacked on #2676: Gamma's long types. Served again since 19:32 on 2026-10-19, after the desktop app's restart: a build of 4c9cc34d3b (pushed), worktree <code>~/hazel-dev-inspector</code>, with ^ticket(394)'s commits merged in from #2676's branch. Open &Gamma; at the bottom bar's left and click an entry's &#9656;)",
-   "group": "cyrus"
-  },
-  {
    "name": "Hazel reports (the report's sources)",
    "repo_html": "<a href=\"https://github.com/matthewhammer/hazel-reports\">matthewhammer/hazel-reports</a>, checked out at <code>~/hazel-perf-report</code>",
    "branch": "main",
@@ -135,40 +86,12 @@
    "branch": "main",
    "links": [
     [
-     "localhost:8133/dress-up.html (0.0.411, main)",
+     "localhost:8133/dress-up.html (0.0.425, main)",
      "http://localhost:8133/dress-up.html"
     ],
     [
      "localhost:8133/du-reports/",
      "http://localhost:8133/du-reports/"
-    ],
-    [
-     "🐉 the dragon and its six fires (mock-up, ^ticket(499))",
-     "http://localhost:8133/dress-up/mockups/dragon-fire.html"
-    ],
-    [
-     "🛡️ the horse's armour, six sets (mock-up, ^ticket(498))",
-     "http://localhost:8133/dress-up/mockups/horse-armour.html"
-    ],
-    [
-     "localhost:8482/dress-up/ (the 🧩 Scripting panel's PR branch, scripting-panel at ac430bc: 0.0.394 + the panel; ^ticket(482))",
-     "http://localhost:8482/dress-up/index.html"
-    ],
-    [
-     "^du_report(17) draft: two costumes at once (for M)",
-     "http://localhost:8133/report-017/reports/017/"
-    ],
-    [
-     "^du_report(17): the cats and the ninja, both ways",
-     "http://localhost:8133/report-017/reports/017/#cats"
-    ],
-    [
-     "^du_report(17): every cat over every cat",
-     "http://localhost:8133/report-017/reports/017/#cat-over-cat"
-    ],
-    [
-     "🎭 the costume controls for 0, 1 or 2 costumes (mock-up, ^ticket(563))",
-     "http://localhost:8133/report-017/reports/017/mockup/two-costumes-controls.html"
     ],
     [
      "^du_report(18) draft: Ready to Re-mix (the 17 scenarios, ^ticket(564))",
@@ -181,58 +104,10 @@
     [
      "^du_report(18): what was re-organised, and the proof",
      "http://localhost:8133/report-018/reports/018/#reorg"
-    ],
-    [
-     "localhost:8566 (script-boxes-566: ⚙️ settings, ⛶ max size with its outline, colours, line numbers; Hazel tiles that take edits, ^ticket(578))",
-     "http://localhost:8566/"
     ]
    ],
    "links_paused": null,
-   "branch_note": "<b>8482 and 8566 down since the reboot at 10:46 on 2026-10-24</b> (the app runs at most five servers per worktree; ^ticket(602)); 8133 is back. (served since 15:50 on 2026-10-20: the working copy of main, now 0.0.394 (the date's moon in the witch's woods, three windows and the dungeons); two local mock-ups, not committed; checked 23:12)",
-   "group": "other"
-  },
-  {
-   "name": "matthewhammer.org (the homepage's local copy)",
-   "repo_html": "<a href=\"https://github.com/matthewhammer/matthewhammer.github.io\">matthewhammer/matthewhammer.github.io</a>, checked out at <code>~/matthewhammer.github.io</code>, with the project sites linked in beside it as on the real domain (<code>dress-up-pictures</code>, <code>dress-up-music</code>, <code>dress-up-pictures-2026-10-18</code>, <code>kids-choice-games</code>, <code>hazel-work-notes</code>: symlinks to their clones, in <code>.git/info/exclude</code>), so the Dress Up pictures and music pages read their archives here too<br>Every reachable page here loads the nav bar from matthewhammer.org (^ticket(296)).",
-   "branch": "master",
-   "links": [],
-   "links_paused": [
-    [
-     "localhost:8136/",
-     "http://localhost:8136/"
-    ],
-    [
-     "localhost:8136/hazel/",
-     "http://localhost:8136/hazel/"
-    ],
-    [
-     "localhost:8136/hazel/dress-up/",
-     "http://localhost:8136/hazel/dress-up/"
-    ],
-    [
-     "localhost:8136/hazel/dress-up/pictures.html",
-     "http://localhost:8136/hazel/dress-up/pictures.html"
-    ],
-    [
-     "localhost:8136/hazel/dress-up/music.html",
-     "http://localhost:8136/hazel/dress-up/music.html"
-    ]
-   ],
-   "branch_note": "(<b>not served</b> since 10:09 on 2026-10-19: stopped to stay within the app's 5 preview servers; back on request)",
-   "group": "other"
-  },
-  {
-   "name": "adapton.org (its local copy)",
-   "repo_html": "<a href=\"https://github.com/Adapton/adapton-homepage\">Adapton/adapton-homepage</a>, branch <code>gh-pages</code> (the site itself), checked out at <code>~/adapton-homepage</code>",
-   "branch": "gh-pages",
-   "links": [],
-   "links_paused": [
-    [
-     "localhost:8765/",
-     "http://localhost:8765/"
-    ]
-   ],
-   "branch_note": "(<b>not served</b> since 10:09 on 2026-10-19: stopped to stay within the app's 5 preview servers; back on request)",
+   "branch_note": "(served since 15:50 on 2026-10-20: the working copy of main, now 0.0.394 (the date's moon in the witch's woods, three windows and the dungeons); two local mock-ups, not committed; checked 23:12)",
    "group": "other"
   },
   {
@@ -286,6 +161,10 @@
   {
    "pr": 2676,
    "note": "The type-expansion panel (issue #2674). Its fix for module signatures' parentheses is only on #2635: dev prints a signature as a labeled tuple."
+  },
+  {
+   "pr": 2698,
+   "note": "Draft, stacked on #2676 (^ticket(386)): Gamma's long types. Not served on its own since the 10-24 reboot; its unfold is in the build on localhost:8312 (^ticket(468))."
   },
   {
    "pr": 2583,
