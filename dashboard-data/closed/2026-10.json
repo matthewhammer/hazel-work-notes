@@ -1,5 +1,105 @@
 [
  {
+  "id": 599,
+  "area": "dress up, story: the other people walk their own looping paths in a place, with pauses and poses (the rest of ^ticket(440))",
+  "added": "2026-10-24T08:42-06:00",
+  "opened": "2026-10-24T08:42-06:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "dress-up"
+  ],
+  "source": "Matthew, 2026-10-19 20:26 (^ticket(440)): \"we can create walking paths on each screen for characters to loop, with pauses, and pose instructions while not walking\"",
+  "text": "<b>The part of 440 not in 0.0.422.</b> 0.0.422's 🎬 story moves the friend only. The other people (state.peopleAway, drawn standing by peopleShow) need: a path per person per place (points, a pause and a pose at each), looped; their figure drawn at a moving spot each frame with a walk cycle. Watch the 60 fps rule (several figures redrawn per frame); maybe draw each person once and move it by transform, redrawing only on pose changes.",
+  "progress": "08:42: minted when 440 closed.",
+  "log": [
+   {
+    "at": "2026-10-24T08:28-06:00",
+    "from": "matthew",
+    "chars": 53,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T08:29-06:00",
+    "from": "matthew",
+    "chars": 107,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T08:29-06:00",
+    "from": "matthew",
+    "chars": 50,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T08:29-06:00",
+    "from": "claude",
+    "chars": 76,
+    "asks": false,
+    "words": 15,
+    "read_s": 4,
+    "listen_s": 6,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T08:29-06:00",
+    "from": "claude",
+    "chars": 138,
+    "asks": false,
+    "words": 22,
+    "read_s": 6,
+    "listen_s": 8,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T08:30-06:00",
+    "from": "claude",
+    "chars": 1236,
+    "asks": true,
+    "words": 227,
+    "read_s": 57,
+    "listen_s": 85,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T08:31-06:00",
+    "from": "matthew",
+    "chars": 72,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-24",
+  "closed_at": "2026-10-24T08:53-06:00",
+  "outcome": "RELEASED in Dress Up 0.0.423 (cdaac04): 👥 People: a 🚶 path box per placed person (walk X Z, wait, pose, face, loop; storyParse), looped; figures drawn once per variant (standing, two walking steps each way, poses, turns) and kept, each frame only a transform and which variant shows; depth among the scene's objects put right each second while walking. Checked in the browser: a second person (the friend left standing, a ninja made to dress) walked left in profile with alternating steps, faced front on the wait, walked right, and the loop started over. Not measured on the kids' devices.",
+  "metrics": {
+   "open_minutes": 11,
+   "matthew_messages": 4,
+   "questions_to_matthew": 1,
+   "chars_exchanged": 1732,
+   "tokens_est": 433,
+   "sync_minutes_est": 3.0,
+   "replies": 3,
+   "claude_words": 264,
+   "read_minutes_est": 1.1,
+   "listen_minutes_est": 1.6,
+   "read_s_avg": 22,
+   "listen_s_avg": 33,
+   "models": {
+    "Opus 5.5 · Medium": 1.0
+   }
+  }
+ },
+ {
   "id": 440,
   "area": "dress up, story: animation scripts",
   "added": "2026-10-19T20:26-06:00",
