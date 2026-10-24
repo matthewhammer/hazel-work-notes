@@ -4910,6 +4910,20 @@
      "chars": 18,
      "asks": false,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T05:51-06:00",
+     "from": "matthew",
+     "chars": 189,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-24T05:52-06:00",
+     "from": "matthew",
+     "chars": 148,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ]
   },
@@ -10030,9 +10044,25 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 577,
+   "area": "dress up × scripting: 🪵 an event log of every on_event the game runs, with globals before and after, shared in memory",
+   "added": "2026-10-24T06:04-06:00",
+   "opened": "2026-10-24T06:04-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress-up"
+   ],
+   "source": "Matthew, 2026-10-24 06:0x, in chat: \"new feature, after we finish these nits about the editor line wrapping --- game script panel: new sub-panel and nav node on LHS, after editor settings: event log (picture of a log?) for each on_event() that we run, up to the most recent 100, but not beyond that (100 is a new editor setting -- checkbox, by default off, for unlimited log --- default is limited to 100 -- log is on by default; toggle for disabling it) ... each log entry is: record of the kind of on_event that ran -- JS or Hazel or Fumola; time of when the on_event() ran; globals before event; event data; globals after event; (derived when shown on screen: globals diff due to event). If it's possible to use a representation of Globals that permits many copies with lots of internal sharing of common components --- let's do that now on the JS side, so our log table is not expensive, in terms of space.\" Then: \"oh another log entry field: total duration of running the on_event() handler.\"",
+   "text": "<b>🪵 event log.</b> A sub-panel of 📜 Scripting, and a node in the ⛶ outline, after the editor settings. Each on_event the game runs (JS, Hazel or Fumola): the engine, when it ran, how long the handler took in all, the globals before, the event, the globals after; the diff shown on screen. The most recent 100 by default (⚙️: keep all instead, off by default); on by default, with a switch to turn it off. Globals kept hash-consed (equal parts one shared, frozen object), so many copies cost little.",
+   "progress": "Minted; next after the wrap nits.",
+   "waiting": "",
+   "log": []
   }
  ],
- "next_ticket": 577,
+ "next_ticket": 578,
  "current_ticket": 540,
  "current_note": "05:59: Next while Matthew reviews: World's Way under Hazel on big maps (16x16, 32x32), the O(N) cost the frame-rate check (569) did not stress",
  "closed_tickets": [
@@ -15002,6 +15032,7 @@
   }
  ],
  "queue": [
+  577,
   540,
   569,
   587,
@@ -15093,8 +15124,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5322,
-  "words": 1164346,
+  "replies": 5323,
+  "words": 1164378,
   "read_hours_est": 81.5,
   "listen_hours_est": 121.3,
   "read_s_avg": 55,
@@ -15336,9 +15367,9 @@
     "chars": 152999
    },
    "2026-10-24": {
-    "replies": 2,
-    "words": 695,
-    "chars": 3821
+    "replies": 3,
+    "words": 727,
+    "chars": 4002
    }
   }
  },
