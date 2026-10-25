@@ -1,5 +1,40 @@
 [
  {
+  "id": 607,
+  "area": "dress up, the music page: a volume slider, small, next to the time slider",
+  "added": "2026-10-24T17:19-06:00",
+  "opened": "2026-10-24T17:19-06:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "dress up"
+  ],
+  "source": "Matthew, 2026-10-24 17:19, in chat: \"Going forward, would be great to have volume control here, as a smaller slider next to time slider. https://matthewhammer.org/hazel/dress-up/music.html Do after other things you are doing now.  as a mint and enqueue.\"",
+  "url": "https://matthewhammer.org/hazel/dress-up/music.html",
+  "text": "<b>A volume slider on Dress Up's music page.</b> The page plays each tune in the browser's own player (<code>&lt;audio controls&gt;</code>, matthewhammer.github.io hazel/dress-up/music.html line 83), whose volume is a mute button with a pop-up, or nothing at all on an iPad. Add a smaller slider of our own beside the time slider, setting audio.volume, kept while the list plays on to the next tune (and remembered between visits, if cheap). Check it in the browser at the page's width on the laptop and on a phone-sized one; a push to matthewhammer.github.io publishes it.",
+  "progress": "17:19: minted; queued after ^ticket(605) and the branch survey he asked for at ~17:00. 18:04: DONE and live (matthewhammer.github.io ffa74c0): a 🔊 slider beside the player, about 8rem, on the player's row on a laptop (wraps under it on a phone); sets the volume, kept between tunes and visits (localStorage dress-up-music-volume), follows the player's own mute and volume (🔇 🔉 🔊); hidden on an iPad, whose browser lets only its buttons set the volume. Tried in the pane against the archive's 41 tunes; checked live at https://matthewhammer.org/hazel/dress-up/music.html.",
+  "log": [
+   {
+    "at": "2026-10-24T17:19-06:00",
+    "from": "matthew",
+    "chars": 218,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-24",
+  "closed_at": "2026-10-24T18:04-06:00",
+  "outcome": "A volume slider beside the music page's player (matthewhammer.github.io ffa74c0, live): kept between tunes and visits, follows the player's own mute; hidden on an iPad, where only its buttons set the volume.",
+  "metrics": {
+   "open_minutes": 45,
+   "matthew_messages": 1,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 218,
+   "tokens_est": 54,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 608,
   "area": "dress up, a new top-level 🎙️ Recordings chip: record from the microphone, replay, label with emoji, remove (from N and M)",
   "added": "2026-10-24T17:48-06:00",
@@ -22,6 +57,20 @@
     "chars": 824,
     "asks": false,
     "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T17:48-06:00",
+    "from": "matthew",
+    "chars": 196,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T17:48-06:00",
+    "from": "matthew",
+    "chars": 13,
+    "asks": false,
+    "note": "from the transcripts"
    }
   ],
   "closed": "2026-10-24",
@@ -29,11 +78,11 @@
   "outcome": "🎙️ Recordings released in 0.0.428 (c4e8824): record until stop, a button per recording with its wave, length, time, an emoji name (754 in nine kinds), a colour (24), ✖ twice to remove; kept in that browser only (IndexedDB), nothing sent, the microphone let go at stop. Privacy double check written in the progress: his assertion holds, with two notes (the origin's shared storage and microphone permission; native formats, not MP3).",
   "metrics": {
    "open_minutes": 13,
-   "matthew_messages": 1,
+   "matthew_messages": 3,
    "questions_to_matthew": 0,
-   "chars_exchanged": 824,
-   "tokens_est": 206,
-   "sync_minutes_est": 0,
+   "chars_exchanged": 1033,
+   "tokens_est": 258,
+   "sync_minutes_est": 1.0,
    "work_minutes": 13.0
   }
  },
