@@ -3039,6 +3039,18 @@
      "chars": 6,
      "asks": false,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T07:24-06:00",
+     "from": "claude",
+     "chars": 3114,
+     "asks": false,
+     "words": 493,
+     "read_s": 124,
+     "listen_s": 185,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ],
    "waiting": null
@@ -7143,11 +7155,27 @@
     }
    ],
    "waiting": "Only if you want Anthropic to know: report that the desktop app's own kill-and-reload never brought its window back (in the app's Help menu, or an issue on github.com/anthropics/claude-code); this ticket has the times and log lines. Otherwise close it."
+  },
+  {
+   "id": 609,
+   "area": "hazel reports: writing MUDU's game scripts: Globals as it is (a per-rule view), RoomState, a full Globals as a Hazel type, and one address for every place",
+   "added": "2026-10-25T07:40-06:00",
+   "opened": "2026-10-25T07:40-06:00",
+   "status": "open",
+   "tags": [
+    "today (2026-10-25)"
+   ],
+   "chips": [
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-25 07:40, in chat: \"Thanks for clarifying how it works --- the game engine is running the handler in a special context where that one hatch flag is disambiguated -- I think we should draft and create a Hazel report explaining: * how to author these game scripts, and in particular, the current structure of Globals, and how it's not as global as it sounds --- it's really a subset of all globals, tailored for that rule. * so why doesn't each room define its own version, call it \"RoomState\" (or something like that, and drop the word \"Globals\", in that context at least). * there probably _should_ be a structure called Globals, and for debugging/diagnostic purposes, or even advanced game mechanics, it maybe useful for every room to also be able to peek at that full set of Globals, if needbe.  In either case, we should define it (as a Hazel type, not just as JS code or JSON structure), and document it in our report on writing these game scripts. * related --- we developed this game in waves that never re-factored the way we represented or termed things in the past --- we have \"backgrounds\", which became the basis for \"world squares\" --- the code talks about \"Places\" but that's not in the UI anywhere. * We should consider ways of consildating the number of distinct notions, and make a simpler system for the current game mechanics, and future games we create within the system.  Having a unified notion of \"place\", perhaps as a kind of path (which top-level world, which square, which place/room/sub-room within that square?) --- let's map how such a unified address system for \"place\" would work, given the variety of random walks we can do today (assuming all trap doors and passageways are activated as passable).\"",
+   "text": "<b>A Hazel report on writing Messed Up Dress Up's game scripts</b>, a draft for Matthew: (1) how a rule is written today, and what Globals is: not global, a per-rule view the game builds for each room's handler (the tree room's one hatch flag, disambiguated by the house it is in); (2) RoomState: each room's own type in place of the shared Globals; (3) a real Globals, the whole game state the rules may read (debugging, diagnostics, advanced mechanics), defined as a Hazel type and documented; (4) the game's notions as they grew in waves: backgrounds became world squares, places in the code and not in the UI, rooms, sub-rooms, trap doors, passages; (5) a consolidation: one notion of place, as an address (world, square, place, room, sub-room), mapped against every walk possible today with every trap door and passage passable.",
+   "progress": "07:40: minted; started at once (his request); ^report(33) in hazel-perf-report, a local draft until he says publish."
   }
  ],
- "next_ticket": 609,
- "current_ticket": 512,
- "current_note": "07:38: #2635 merged with #2469's 124 new commits (4cd7ab722f), pushed; its CI running.",
+ "next_ticket": 610,
+ "current_ticket": 609,
+ "current_note": "07:40: Drafting ^report(33): writing the game scripts, Globals as a per-rule view, RoomState, a full Globals type, one address for every place. ^ticket(512): #2635's CI running, Auto-fix on.",
  "closed_tickets": [
   {
    "id": 605,
@@ -12615,6 +12643,7 @@
   }
  ],
  "queue": [
+  609,
   512,
   564,
   602,
@@ -12671,7 +12700,7 @@
   534,
   590
  ],
- "current_since": "2026-10-25T07:24-06:00",
+ "current_since": "2026-10-25T07:40-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
@@ -12683,9 +12712,9 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5441,
-  "words": 1188564,
-  "read_hours_est": 83.2,
+  "replies": 5442,
+  "words": 1188884,
+  "read_hours_est": 83.3,
   "listen_hours_est": 123.8,
   "read_s_avg": 55,
   "listen_s_avg": 82,
@@ -12931,9 +12960,9 @@
     "chars": 135457
    },
    "2026-10-25": {
-    "replies": 4,
-    "words": 1033,
-    "chars": 6379
+    "replies": 5,
+    "words": 1353,
+    "chars": 8407
    }
   }
  },
