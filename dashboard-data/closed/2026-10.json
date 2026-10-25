@@ -1,5 +1,207 @@
 [
  {
+  "id": 605,
+  "area": "dress up, the speed runs: every release since 0.0.420 marked broken (a timeout in the controller audit, and checks that really fail)",
+  "added": "2026-10-24T16:30-06:00",
+  "opened": "2026-10-24T16:30-06:00",
+  "status": "done",
+  "tags": [
+   "today (2026-10-24)"
+  ],
+  "chips": [
+   "dress-up"
+  ],
+  "source": "Matthew, 2026-10-24, in chat: \"yes -- fix the red speed runs today.\"",
+  "text": "<b>Make the speed run mean something again.</b> Since 0.0.420 every release's speed.json entry says broken (the checks). Two causes: the Chrome job reaches its 90-minute limit in its last step, the on-screen controller audit (recorded, not a verdict), and checks that really fail: scripting482 (the tiles frame shows no tokens in CI), giraffe544 (written before the ninja: its mask, 99 shapes against 92, the head outside the frame jumping), scriptboxes566 (expectations from before later script work), hazellogic531 (an intermittent page error: the world rules' globals read W.at when the world has no square, 25-scripting.js:669), and one check that stops (out.views[out.k].push is not a function). Also: the forest read 54.9 fps on 0.0.426 against 60 on 0.0.424; compare on the same runner before calling it anything.",
+  "progress": " | 16:54: on branch speed-runs-605 (~/kcg-604, not pushed to main): (1) the speed workflow: the controller audit and the Chrome leak a job of their own on their own computer, the checks job 150 minutes (its checks took 78 of 90); (2) hazellogic531: the 🪵 event log's late snapshot of a room's globals guarded (the world replaced by then: W.at of a world with no square); (3) scriptboxes566, the check: line numbers (581), code laid out to its width (579, 585), the note's word \"mixed\" (580); (4) giraffe544, the game: the frame's top follows a jump's lift (red since 0.0.410); (5) ninja557, the game: the gem's ✨ glimmer off at first (SMIL, 99 shapes against 92), as ⭐ and 🌟 are, his rule that a costly effect starts off; the ✨ row turns it on; (6) scripting482: the game's whole-program frame cap 4000 -> 40000 (the program is ~4400 px, Castle's end was cut off), and the check (embed-editable's URL, the program's frame by its frame id, per-box errors, the keys since 578); (7) hold518, the check: each case named before it is drawn, crawling put on before facing us. Diagnosed by five agents, each read and applied here; check_script and check_load pass. Run 40140064140 on diag-605 (only the six checks) in progress; then a release, and the speed run on its tag. | 16:57: diag-605 run 40140064140 GREEN: giraffe544, hazellogic531, hold518, ninja557, scriptboxes566, scripting482 all ok (and the branch's safety net). RELEASED 0.0.427 (51c6bbb, tag dress-up-0.0.427; main and tag confirmed; Pages green; live version.json, index.html and the three game fixes checked over HTTPS; 8133 fast-forwarded). The speed run on the tag: 40140668796, in progress (about 90 minutes); green there closes this ticket. 18:24: 0.0.427's run (40140668796) finished: all four jobs green, speed.json 'broken: the checks', now from ONE check of 216 (was six): scriptscale588 (^ticket(588)'s measurement), hazel x8: Hazel.analyzeProgram ran out of stack (an OCaml Stack_overflow) and the check's own direct call didn't catch it. A check bug, not the game's: the game's calls into Hazel catch it (scriptCompile, scriptEventRun's try/catch); it is ^report(32)'s known 8x limit. FIXED on main fad0545 (recorded as that size's analysis result, as 16x's 'not ready at first' already is). 0.0.428's run checks out its tag, so it still has the old check and will likely read broken the same way; the next release's run carries the fix. Proving it now on branch diag-605b (that check and recordings608 only): run 40146546117. 18:31: diag-605b's run (40146546117) all ok on GitHub: scriptscale588 with its fix records Hazel's 8x overflow as data (this time at an edit: 'not ready after an edit', Stack_overflow) and 16x's, Fumola flat to 16x, no failure; recordings608 all ok too (13 checks, including nothing sent but GETs of the game's own files).",
+  "log": [
+   {
+    "at": "2026-10-24T16:18-06:00",
+    "from": "matthew",
+    "chars": 163,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T16:22-06:00",
+    "from": "claude",
+    "chars": 3790,
+    "asks": true,
+    "words": 631,
+    "read_s": 159,
+    "listen_s": 237,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T16:29-06:00",
+    "from": "matthew",
+    "chars": 36,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T16:37-06:00",
+    "from": "claude",
+    "chars": 3647,
+    "asks": false,
+    "words": 618,
+    "read_s": 156,
+    "listen_s": 232,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T16:52-06:00",
+    "from": "claude",
+    "chars": 640,
+    "asks": false,
+    "words": 112,
+    "read_s": 28,
+    "listen_s": 42,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T16:56-06:00",
+    "from": "claude",
+    "chars": 767,
+    "asks": false,
+    "words": 123,
+    "read_s": 31,
+    "listen_s": 46,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T16:57-06:00",
+    "from": "matthew",
+    "chars": 362,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T16:58-06:00",
+    "from": "matthew",
+    "chars": 66,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T16:59-06:00",
+    "from": "matthew",
+    "chars": 24,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T16:59-06:00",
+    "from": "claude",
+    "chars": 203,
+    "asks": false,
+    "words": 34,
+    "read_s": 9,
+    "listen_s": 13,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T17:00-06:00",
+    "from": "matthew",
+    "chars": 65,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T17:06-06:00",
+    "from": "matthew",
+    "chars": 8,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T17:06-06:00",
+    "from": "claude",
+    "chars": 2733,
+    "asks": false,
+    "words": 474,
+    "read_s": 119,
+    "listen_s": 178,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T17:17-06:00",
+    "from": "matthew",
+    "chars": 9,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T17:18-06:00",
+    "from": "claude",
+    "chars": 173,
+    "asks": false,
+    "words": 33,
+    "read_s": 8,
+    "listen_s": 12,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T17:28-06:00",
+    "from": "claude",
+    "chars": 4364,
+    "asks": true,
+    "words": 706,
+    "read_s": 178,
+    "listen_s": 265,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-24T18:04-06:00",
+    "from": "claude",
+    "chars": 4962,
+    "asks": true,
+    "words": 875,
+    "read_s": 221,
+    "listen_s": 328,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-24",
+  "closed_at": "2026-10-24T18:31-06:00",
+  "outcome": "The speed runs mean something again: 0.0.427's run failed 1 check of 216 (was 6; every job green, the controller audit in its own job), and that one, scriptscale588, was the check's own bug (Hazel's known 8x stack overflow not caught by its direct call), fixed on main fad0545 and proven on diag-605b (all ok). 0.0.428's run still carries the old check (a run checks out its tag), so expect it to read broken for that one reason; the next release's run should read ok.",
+  "metrics": {
+   "open_minutes": 121,
+   "matthew_messages": 8,
+   "questions_to_matthew": 3,
+   "chars_exchanged": 22012,
+   "tokens_est": 5503,
+   "sync_minutes_est": 34.0,
+   "replies": 9,
+   "claude_words": 3606,
+   "read_minutes_est": 15.2,
+   "listen_minutes_est": 22.6,
+   "read_s_avg": 101,
+   "listen_s_avg": 150,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 607,
   "area": "dress up, the music page: a volume slider, small, next to the time slider",
   "added": "2026-10-24T17:19-06:00",
