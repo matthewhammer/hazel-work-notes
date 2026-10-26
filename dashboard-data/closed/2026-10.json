@@ -1,5 +1,114 @@
 [
  {
+  "id": 610,
+  "area": "dress up: the cave is slow on M's old iPad, red dotted warnings very early; find the costs she can't reach, ask if game scripts regressed it, and give Matthew cave/caveroom test variations with 0, 1, 2, ... placed things",
+  "added": "2026-10-25T10:12-06:00",
+  "opened": "2026-10-25T10:12-06:00",
+  "status": "closed",
+  "tags": [
+   "today (2026-10-25)",
+   "kids"
+  ],
+  "chips": [
+   "dress-up"
+  ],
+  "source": "Matthew, 2026-10-25, in chat: \"M is using the latest MUDU release, and she's trying to modify the cave room background with more objects (like a single pot over a fire, as in the campfire scene I think). Perhaps we've done things, like the game script support, to regress her experience? She's not using game scripts, so maybe we should have an advanced feature that globally disables the game script system, if that's really the slow down. Or it's coming from something in that cave room that's especially challenging -- she's tried turning off everything under her control in the panels --- are there more things not reachable there that are expensive to animate on an older ipad? I can do a performance test and rely the results; please prepare cave room variations (both behind the water fall, and the cave room without a water fall, with various amounts of placed objects (none, one, two, ...)). She gets the red dotted warnings for \\\"too expensive\\\" very early in all cases.\"",
+  "log": [
+   {
+    "at": "2026-10-25T10:02-06:00",
+    "from": "matthew",
+    "chars": 7,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-25T10:02-06:00",
+    "from": "claude",
+    "chars": 982,
+    "asks": false,
+    "words": 160,
+    "read_s": 40,
+    "listen_s": 60,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-25T10:09-06:00",
+    "from": "matthew",
+    "chars": 952,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-25T10:10-06:00",
+    "from": "claude",
+    "chars": 625,
+    "asks": false,
+    "words": 117,
+    "read_s": 29,
+    "listen_s": 44,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-25T11:05-06:00",
+    "from": "matthew",
+    "chars": 57,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-25T11:05-06:00",
+    "from": "claude",
+    "chars": 972,
+    "asks": false,
+    "words": 185,
+    "read_s": 47,
+    "listen_s": 69,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-25T11:05-06:00",
+    "from": "claude",
+    "chars": 972,
+    "asks": false,
+    "words": 185,
+    "read_s": 47,
+    "listen_s": 69,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   }
+  ],
+  "progress": "0.0.431 + 0.0.432 live. Cause: cave 61 / cave room 82 always-running scenery animations; the guard measures the whole picture's fps but marks only placed things, so on a slow iPad the first pot over a fire (38 moving parts) latches it. Game scripts: no per-frame work, only run on lever/hatch/way events, so not the cause. Added Advanced floor slider (48 -> down to 20; 1000-part cap holds) and ?try=cave-N / ?try=caveroom-N test visits (nothing saved). 0.0.432 also: lines-only <use> trees fixed. WAITING on Matthew: iPad runs of the try links. | 10:38: M's iPad 🧪 on 0.0.433 is on the pad (Safari, 810x1080 at 2x). REGRESSION vs the iPad's 0.0.96 run: empty room walking 60 -> 33 fps, pond 28 -> 14, pond held still 36 -> 15, still bitmap 59 -> 45, room after pond 60 -> 45; standing 60 -> 59. The black laptop is unchanged over the same span. found slow:false, so the iPad never gets its scenery held still. Matthew: 'you never tested the cave rooms!' -> 🧪 now has 10 cave passes (33 in all), committed a4725aa, releasing with 564 as 0.0.434. | 10:55: 0.0.436 LIVE: ⚙️ Advanced '🌀 the places' moving scenery': 📏 as measured / 🧊 always hold still / 🌀 always move (replaces the slowMoving switch; old 'on' migrates to always move). Checked in the pane: always hold still takes the cave room's 26 animations to 0. Why the iPad was never measured slow: tracked as ^ticket(613). | 11:04: Matthew's two 🧪 runs on M's iPad, 0.0.436 (measured; then 🧊 always hold still, which 🧪 overrides by design): empty room 57/60, forest 49-50, pond 21-23 (bitmap 60), CAVE standing 60, walking with 0/1/2/4 pots 49-51/47-49/45-48/44-45; CAVE ROOM standing 60, walking 53-54/50-52/48-50/39-46; bubble room 8-10 (foam still too). CORRECTION: M's 0.0.433 run (room 33, forest 28, pond 14) looks capped near 30 fps (Low Power Mode or heat?), not a regression: today's runs match the iPad's 0.0.96 run except the pond (28 -> 21-23). The red dashes: walking in the cave with 1-2 pots is 45-49 fps, right at THING_FPS_MIN 48, so a pot or two latches the guard; lowering the floor in Advanced (e.g. 40) should let her place more. | 11:05: Matthew, in chat: \"Yes, it was probably in Low Power Mode or low on battery.\" So no regression: M's slow run was the iPad capped near 30 fps. Her cave warnings: 45-49 fps with 1-2 pots against the 48 floor; on Low Power Mode, everything is under 48 at once.",
+  "waiting": "Matthew: on M's iPad, ⚙️ Advanced > 🐢 a place is full below > 40 (and 🧊 always hold still) for her cave",
+  "text": "dress up: the cave is slow on M&#x27;s old iPad, red dotted warnings very early; find the costs she can&#x27;t reach, ask if game scripts regressed it, and give Matthew cave/caveroom test variations with 0, 1, 2, ... placed things",
+  "closed": "2026-10-26",
+  "closed_at": "2026-10-26T12:47-06:00",
+  "outcome": "Done: the cause found and answered. Not a regression: M's slow run was the iPad capped near 30 fps (Low Power Mode or low battery, Matthew 11:05). The cave's red warnings were walking with 1-2 pots at 45-49 fps against the 48 floor; 0.0.434 let ⚙️ Advanced lower that floor (to 20), and the 🌀 switch became measured / always hold still / always move (0.0.435). The why-not-caught question is ^ticket(613).",
+  "metrics": {
+   "open_minutes": 1595,
+   "matthew_messages": 3,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 4567,
+   "tokens_est": 1141,
+   "sync_minutes_est": 8.0,
+   "replies": 4,
+   "claude_words": 647,
+   "read_minutes_est": 2.7,
+   "listen_minutes_est": 4.0,
+   "read_s_avg": 41,
+   "listen_s_avg": 60,
+   "models": {
+    "Opus 5.5 · Medium": 1.0
+   }
+  }
+ },
+ {
   "id": 632,
   "area": "dress up: a backpack: a new top-level tab (🎒 Backpack) listing a panel for each thing the friend carries (what a chest gives, first); no uses yet; and a drawing option, the backpack drawn on the friend",
   "text": "<b>🎒 The backpack.</b> A new tab of its own among the top-level chips: a panel for each thing in the friend's backpack (what chests give, ^ticket(631)), with a place for its uses later (none for now). And a drawing option: the backpack drawn on the friend, or not.",
