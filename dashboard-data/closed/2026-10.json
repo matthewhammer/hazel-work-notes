@@ -1,5 +1,201 @@
 [
  {
+  "id": 616,
+  "area": "hazel livelits: Cyrus's reveal design, the last open item: the GUI works while the syntax is revealed, on EVERY deck slide (44 slides, both decks), checked in Firefox on GitHub",
+  "added": "2026-10-25T12:16-06:00",
+  "opened": "2026-10-25T12:16-06:00",
+  "status": "done",
+  "tags": [
+   "livelits",
+   "critical path",
+   "blocked on Matthew"
+  ],
+  "chips": [
+   "hazel"
+  ],
+  "source": "Matthew, 2026-10-25, in chat: \"both\" (livelits first), then \"Yes, push deck/eye-sweep to hazelgrove/hazel so the deck workflow runs; report what it finds.\"",
+  "progress": "12:16: deck/eye-sweep pushed (1c65824665 on #2635's head): deck_regress case 'eye: on every slide...' + .github/workflows/deck.yml. Run 40220403418 in progress. Known: KIDS_FRESH points at livelits-emotion-kids-choice, now livelit-playground-emotion-kids-choice. | 13:12: run 1 (40220403418): the sweep reached all 127 uses but found no control in 125 (my bug: the toggle is in the overlay layer, the GUI in the base layer); 4 old eye cases failed on Kids' Choice's old address; screenshots lost (a colon in the names). REAL FINDING: on Editable Parameters the eye of a ^between NESTED in another ^between's cell opens no pane (reproduced by hand on #2635's GitHub build, port 8341). Fixes pushed; run 2 = 40224910033. | 14:00: run 2 (40224910033): all 11 targeted eye cases PASS; sweep 43 follows, 31 STUCK, 51 no-op, 2 ERROR (the nested ^between). STUCK looked like measurement (hover/focus restyling, 4 s too short on GitHub); by hand ^flag followed once, not once. Sweep sharpened (GUI state = what it shows; 12 s; IGNORED = no change revealed but the same input changes it with the eye shut); run 3 = 40228694578. | 14:54: run 3 (40228694578): 11/11 targeted eye cases pass. Sweep: 45 follows, 27 STUCK, 14 IGNORED, 41 no-op, 2 ERROR. STUCK set nearly identical to run 2 even with 12 s -> likely real. IGNORED (input works with the eye shut, does nothing revealed): Kids' Choice #2, Tree Care #3, Arms #3 #6, Hands #3 #6, Eyes #4-7, Full Body #3, Scenes #3 #6 #7. ERROR: Editable Parameters #0 #1 (nested ^between). Next: confirm a STUCK and an IGNORED by hand, then fix. | 15:06: CAUSES. (1) harness: toggles of uses one to a line stack 10 px apart, so 'nearest use' drove another use's GUI; now matched by the projector's box (dbf86ea570; run 4 = 40233138547). (2) REAL, FIXED: the nested eye's ToggleSyntax came through PerformConfined and SubEditor.confine_pre dropped it (not in names_its_target). Fix + Test_SubEditor case: #2635 d9ee59f370, #2597 ac3c56b8fe, pushed; checked by hand on a local build. Run 5 (fix + match) = 40233852000. | 15:50: run 5 (40233852000, fix + box matching): 101 follows (incl. Editable Parameters #0 #1), 0 IGNORED, 0 ERROR, 3 STUCK = Hair #3, Shoes #4, Arms #7, each a ^picture showing ^ticket(620)'s view error. 11/11 targeted eye cases pass. What remains is ^ticket(620). 10-26 13:50: #2597's deck run 40369198184 failed 11/12 at Full Body: every eye-open waited out the harness's 15 s (#2635 opens it in ~20 s per use all told; #2597 takes 100-150 s per use, no #2469 perf), then min(n, 8) got a driver error dict on Witch. A longer wait alone won't fit the 150-min limit. Waiting on Matthew: fewer uses per slide on #2597, or bring #2469's perf over first.",
+  "waiting": "Matthew: keep going on ^ticket(620) (the ^picture view error, in the eval worker)?",
+  "text": "hazel livelits: Cyrus&#x27;s reveal design, the last open item: the GUI works while the syntax is revealed, on EVERY deck slide (44 slides, both decks), checked in Firefox on GitHub",
+  "log": [
+   {
+    "at": "2026-10-25T12:15-06:00",
+    "from": "matthew",
+    "chars": 93,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-25T12:16-06:00",
+    "from": "claude",
+    "chars": 1160,
+    "asks": false,
+    "words": 179,
+    "read_s": 45,
+    "listen_s": 67,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-25T12:16-06:00",
+    "from": "claude",
+    "chars": 1160,
+    "asks": false,
+    "words": 179,
+    "read_s": 45,
+    "listen_s": 67,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-26T10:11-06:00",
+    "from": "claude",
+    "chars": 8406,
+    "asks": false,
+    "words": 1512,
+    "read_s": 381,
+    "listen_s": 567,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-26T10:23-06:00",
+    "from": "matthew",
+    "chars": 80,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-26T10:25-06:00",
+    "from": "claude",
+    "chars": 2779,
+    "asks": true,
+    "words": 481,
+    "read_s": 121,
+    "listen_s": 180,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-26T12:17-06:00",
+    "from": "claude",
+    "chars": 5938,
+    "asks": true,
+    "words": 1068,
+    "read_s": 269,
+    "listen_s": 400,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-26T12:26-06:00",
+    "from": "claude",
+    "chars": 146,
+    "asks": false,
+    "words": 23,
+    "read_s": 6,
+    "listen_s": 9,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-26T12:46-06:00",
+    "from": "matthew",
+    "chars": 10,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-26T12:56-06:00",
+    "from": "claude",
+    "chars": 1789,
+    "asks": false,
+    "words": 335,
+    "read_s": 84,
+    "listen_s": 126,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-26T13:21-06:00",
+    "from": "matthew",
+    "chars": 2,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-26T13:24-06:00",
+    "from": "matthew",
+    "chars": 79,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-26T13:24-06:00",
+    "from": "claude",
+    "chars": 1165,
+    "asks": true,
+    "words": 204,
+    "read_s": 51,
+    "listen_s": 76,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-26T13:24-06:00",
+    "from": "claude",
+    "chars": 485,
+    "asks": false,
+    "words": 54,
+    "read_s": 14,
+    "listen_s": 20,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-26T13:54-06:00",
+    "from": "claude",
+    "chars": 1931,
+    "asks": true,
+    "words": 344,
+    "read_s": 87,
+    "listen_s": 129,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-26",
+  "closed_at": "2026-10-26T14:27-06:00",
+  "outcome": "Checked on #2635: deck run 40369192617 passed 12/12, every slide's livelit GUI works while revealed (Full Body included). #2597's run 40369198184 failed 11/12 at Full Body from speed (no #2469 perf; the perf commits don't port without #2469 itself); Matthew's call 10-26: no merge, #2597 keeps its slow deck.",
+  "metrics": {
+   "open_minutes": 1571,
+   "matthew_messages": 5,
+   "questions_to_matthew": 4,
+   "chars_exchanged": 25223,
+   "tokens_est": 6305,
+   "sync_minutes_est": 15.0,
+   "replies": 10,
+   "claude_words": 4379,
+   "read_minutes_est": 18.4,
+   "listen_minutes_est": 27.4,
+   "read_s_avg": 110,
+   "listen_s_avg": 164,
+   "models": {
+    "Opus 5.5 · Medium": 1.0
+   }
+  }
+ },
+ {
   "id": 625,
   "area": "dress up: dungeon floors joined both ways: stairs up to the floor above (a way out of a room below a hole), and a hop down off a ledge's edge",
   "text": "<b>Stairs up, and hopping down.</b> 0.0.444's holes drop the friend a floor, and only ⬅️ back brings them up: stairs in a room, leading to the world whose floor below this is, would join the floors both ways. And A Link to the Past's hop down off a ledge's edge (0.0.445's ledge is climbed and left by its stairs only).",
