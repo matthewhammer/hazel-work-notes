@@ -87,24 +87,12 @@
    "branch": "main",
    "links": [
     [
-     "localhost:8133/dress-up.html (0.0.429, main)",
+     "localhost:8133/dress-up.html (0.0.442, main)",
      "http://localhost:8133/dress-up.html"
     ],
     [
      "localhost:8133/du-reports/",
      "http://localhost:8133/du-reports/"
-    ],
-    [
-     "Ready to Re-mix, ^du_report(19), a draft: redone on 0.0.428 (^ticket(564), on ticket-564-redo; the proof re-running)",
-     "http://localhost:8133/report-019/reports/019/"
-    ],
-    [
-     "Ready to Re-mix: the 17 scenarios",
-     "http://localhost:8133/report-019/reports/019/#scenarios"
-    ],
-    [
-     "Ready to Re-mix: what was re-organised, and the proof",
-     "http://localhost:8133/report-019/reports/019/#reorg"
     ]
    ],
    "links_paused": null,
@@ -793,7 +781,7 @@
    "tags": [
     "blocked on Matthew"
    ],
-   "progress": "17:02: the audit's first full run (42 cases x 3, headless Chromium, begun 16:47:00) crashed the laptop at once (journal ends 16:47:01; the <a href=\"http://matthewhammer.org/hazel-work-notes/crash-log.html\">crash log</a> has it). Tool: ~/du-shots/tools/audit160.mjs (its 2-place trial ran fine). Not rerun: a 15-20 min headless-Chrome run is the kind of job both of today's afternoon crashes came during. Next: Matthew's call whether, and how small (1 run a case, or a few places at a time). | 17:27: Matthew: \"audit tonight, last in long run queue\". Plan (his OK to pinned Chrome, 17:05): headless Chromium under taskset -c 0-3 nice -n 10, node under taskset -c 0-3, RUNS=1, batches of 6 cases with 20 s between (only=...): the 24 places; castleroom:king..cats; treeroom:1-6; then check the batches' case counts add up to the page's 42. OUT=~/du-shots/audit160/0.0.87-bN.json. | 20:58: NOT a long run on this laptop tonight. NO headless browser (Chromium or Firefox) on this laptop tonight, pinned or not: all four of the evening's freezes (16:33, 16:47, 20:47, 20:53) came during one. Its 42-case audit waits for daytime with Matthew there, or GitHub's runners (^ticket(165)). | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: run the audit on GitHub's runners (^ticket(165)); frame rates there are relative only. 🌙 long run; no headless browser on the laptop. | 21:48: the AUDIT RAN on GitHub's Chrome 155 (ci run 38998791340, 1920x1080, 1 run a case, the on-screen controller): 40 of 42 at 60 fps; 💭 our imagination 52.5 and 🌲 forest 51.3 fail (p95 33 ms: every other frame). The gate there agrees: all 60 but the imagination, walk 51.3 and drag 50.6. A GitHub computer's numbers, relative only: these two are the costliest places to draw. Raw per-case lines in the run's summary and its chrome artifact. | 22:55: what costs (branch cost-160, Chrome on GitHub, 1920x1080). Object by object (run 39000272605): with the fake game controller the forest and our imagination walk at 60, every object in place, so no object is the cost. Four ways (touch160, run 39004162691): forest 60 with the game controller, 55.1 holding the on-screen arrows, 55.4 with the on-screen controller only SHOWING while the game controller walks, 50.3 held with the pressed style off: the half-see-through on-screen controller drawn over the forest costs ~5 fps on a computer without a graphics card; pressing and its filter do not. Our imagination 60 all four ways (its 52.5 in the audit: noise). Next: the controller over the forest without its shadows, or on a layer of its own (will-change), measured the same way; and on a kid's computer, the forest with the controller showing. | 00:23: CORRECTION to 22:55: touch160's \"showing\" way never showed the on-screen controller (a connected game controller hides it, by design: touchShow(!real && want)), and one run per way sat inside the noise: the forest walked by the game controller, controller hidden, measured 60 then 56.3 (layer160, run 39009423261). So \"the see-through controller costs ~5 fps\" is not supported; neither is any cost of holding the arrows yet (55.1 vs 60, one run each). Measuring again properly: layer160 walks by holding the on-screen arrows (as on the iPad) under CSS variants (as is, no shadows, own layer, both, no see-through) against the game controller with it hidden, three rounds in rotating order, the spread reported (run 39009741994). | 00:30: MEASURED (layer160, run 39009741994, GitHub's Chrome 1920x1080, three rounds each, mean and spread): forest by the game controller, on-screen one hidden: 60, 57.9, 54.3 (mean 57.4, spread 5.7); holding the on-screen arrows as is: mean 55.7 (spread 4.1); no shadows 56.8; own layer 55.6; both 56.0; no see-through 56.3. Our imagination: 60 every way. So the on-screen controller has no cost we can see here: every way sits inside the baseline's own spread, and nothing in its CSS is worth changing for this. On GitHub's computers the forest walks a little under 60 whatever moves the friend. Left: the kids' devices, the only measurements that decide (55 is the release bar there): on the iPad and the Ubuntu laptop, the forest walked holding the on-screen arrows against walked by keys or a controller (🧪 or by eye). Waiting on Matthew. | 16:30 10-24: Matthew: \"160 -- can do tonight.  is the measurement tool up to date with latest features?\" | 16:32 10-24, answer to his question: NOT up to date for this. ⚙️ Advanced's 🧪 suite was last extended 10-18 (0.0.242, ^ticket(344)): 20 passes in the empty room, the duck pond and the bubble room, walked by simulated steps; no forest pass and no on-screen-arrows mode, which is what this ticket asks of his devices. The GitHub audit (tools/audit160.mjs) reads every place from the game as it runs, so it is current, but only on GitHub's computers (and it is the step that times out, ^ticket(605)). To bring the 🧪 suite up to date before his runs tonight: a forest pass walked by the on-screen arrows and by keys, side by side. | 19:30 10-24: the 🧪 suite brought up to date for tonight: RELEASED 0.0.429 (eee9446, live): passes 21 to 23 walk the forest by steps, by a stand-in game controller with the on-screen one hidden, and holding the on-screen arrows through the controller's own pointer handling, right then left, how far the friend went kept; 23 passes, about 76 s; the on-screen controller setting put back after. In the pane (Chrome on the Ubuntu laptop, tab in front): 60, 60 and 59 fps (a first run with the tab behind read 49, 56, 25: the pane's own throttling, not the game). The game has no walking by keys, so 'by keys' is the controller pass.",
+   "progress": "17:02: the audit's first full run (42 cases x 3, headless Chromium, begun 16:47:00) crashed the laptop at once (journal ends 16:47:01; the <a href=\"http://matthewhammer.org/hazel-work-notes/crash-log.html\">crash log</a> has it). Tool: ~/du-shots/tools/audit160.mjs (its 2-place trial ran fine). Not rerun: a 15-20 min headless-Chrome run is the kind of job both of today's afternoon crashes came during. Next: Matthew's call whether, and how small (1 run a case, or a few places at a time). | 17:27: Matthew: \"audit tonight, last in long run queue\". Plan (his OK to pinned Chrome, 17:05): headless Chromium under taskset -c 0-3 nice -n 10, node under taskset -c 0-3, RUNS=1, batches of 6 cases with 20 s between (only=...): the 24 places; castleroom:king..cats; treeroom:1-6; then check the batches' case counts add up to the page's 42. OUT=~/du-shots/audit160/0.0.87-bN.json. | 20:58: NOT a long run on this laptop tonight. NO headless browser (Chromium or Firefox) on this laptop tonight, pinned or not: all four of the evening's freezes (16:33, 16:47, 20:47, 20:53) came during one. Its 42-case audit waits for daytime with Matthew there, or GitHub's runners (^ticket(165)). | 21:02: Matthew: \"Go with your defaults for all of them: tag them long run and start. No browsers on the laptop.\" Default taken: run the audit on GitHub's runners (^ticket(165)); frame rates there are relative only. 🌙 long run; no headless browser on the laptop. | 21:48: the AUDIT RAN on GitHub's Chrome 155 (ci run 38998791340, 1920x1080, 1 run a case, the on-screen controller): 40 of 42 at 60 fps; 💭 our imagination 52.5 and 🌲 forest 51.3 fail (p95 33 ms: every other frame). The gate there agrees: all 60 but the imagination, walk 51.3 and drag 50.6. A GitHub computer's numbers, relative only: these two are the costliest places to draw. Raw per-case lines in the run's summary and its chrome artifact. | 22:55: what costs (branch cost-160, Chrome on GitHub, 1920x1080). Object by object (run 39000272605): with the fake game controller the forest and our imagination walk at 60, every object in place, so no object is the cost. Four ways (touch160, run 39004162691): forest 60 with the game controller, 55.1 holding the on-screen arrows, 55.4 with the on-screen controller only SHOWING while the game controller walks, 50.3 held with the pressed style off: the half-see-through on-screen controller drawn over the forest costs ~5 fps on a computer without a graphics card; pressing and its filter do not. Our imagination 60 all four ways (its 52.5 in the audit: noise). Next: the controller over the forest without its shadows, or on a layer of its own (will-change), measured the same way; and on a kid's computer, the forest with the controller showing. | 00:23: CORRECTION to 22:55: touch160's \"showing\" way never showed the on-screen controller (a connected game controller hides it, by design: touchShow(!real && want)), and one run per way sat inside the noise: the forest walked by the game controller, controller hidden, measured 60 then 56.3 (layer160, run 39009423261). So \"the see-through controller costs ~5 fps\" is not supported; neither is any cost of holding the arrows yet (55.1 vs 60, one run each). Measuring again properly: layer160 walks by holding the on-screen arrows (as on the iPad) under CSS variants (as is, no shadows, own layer, both, no see-through) against the game controller with it hidden, three rounds in rotating order, the spread reported (run 39009741994). | 00:30: MEASURED (layer160, run 39009741994, GitHub's Chrome 1920x1080, three rounds each, mean and spread): forest by the game controller, on-screen one hidden: 60, 57.9, 54.3 (mean 57.4, spread 5.7); holding the on-screen arrows as is: mean 55.7 (spread 4.1); no shadows 56.8; own layer 55.6; both 56.0; no see-through 56.3. Our imagination: 60 every way. So the on-screen controller has no cost we can see here: every way sits inside the baseline's own spread, and nothing in its CSS is worth changing for this. On GitHub's computers the forest walks a little under 60 whatever moves the friend. Left: the kids' devices, the only measurements that decide (55 is the release bar there): on the iPad and the Ubuntu laptop, the forest walked holding the on-screen arrows against walked by keys or a controller (🧪 or by eye). Waiting on Matthew. | 16:30 10-24: Matthew: \"160 -- can do tonight.  is the measurement tool up to date with latest features?\" | 16:32 10-24, answer to his question: NOT up to date for this. ⚙️ Advanced's 🧪 suite was last extended 10-18 (0.0.242, ^ticket(344)): 20 passes in the empty room, the duck pond and the bubble room, walked by simulated steps; no forest pass and no on-screen-arrows mode, which is what this ticket asks of his devices. The GitHub audit (tools/audit160.mjs) reads every place from the game as it runs, so it is current, but only on GitHub's computers (and it is the step that times out, ^ticket(605)). To bring the 🧪 suite up to date before his runs tonight: a forest pass walked by the on-screen arrows and by keys, side by side. | 19:30 10-24: the 🧪 suite brought up to date for tonight: RELEASED 0.0.429 (eee9446, live): passes 21 to 23 walk the forest by steps, by a stand-in game controller with the on-screen one hidden, and holding the on-screen arrows through the controller's own pointer handling, right then left, how far the friend went kept; 23 passes, about 76 s; the on-screen controller setting put back after. In the pane (Chrome on the Ubuntu laptop, tab in front): 60, 60 and 59 fps (a first run with the tab behind read 49, 56, 25: the pane's own throttling, not the game). The game has no walking by keys, so 'by keys' is the controller pass. | 2026-10-25 10:30: pad checked: N's black laptop run on 0.0.432 IS there (Firefox 136, Linux, 4 cores: empty room 59 fps, forest walking 30-32, duck pond 25 (57 held still), bubble room 17 standing, 59 with its foam still). M's iPad run on 0.0.43x is NOT on the pad yet; the only iPad-like (MacIntel) entries are from 0.0.9x.",
    "waiting": "Tonight, on the iPad and the Ubuntu laptop: open https://matthewhammer.org/kids-choice-games/dress-up/ (0.0.429), ⚙️ Advanced, 🧪 this computer's speed (about 76 s, hands off), then 📋 copy the line and paste it here. Its 🌲 part puts the forest by a controller and by holding the on-screen arrows side by side."
   },
   {
@@ -2585,497 +2573,6 @@
    ]
   },
   {
-   "id": 512,
-   "area": "hazel, #2635 (livelits x modular editors): merge today's #2469, which now stacks Modules II part 1",
-   "added": "2026-10-21T06:40-06:00",
-   "opened": "2026-10-21T06:40-06:00",
-   "status": "open",
-   "tags": [
-    "meeting 2026-10-21"
-   ],
-   "chips": [
-    "hazel",
-    "livelits"
-   ],
-   "source": "Matthew, 2026-10-21 06:4x, back from AFK, before the meeting with Cyrus Then, 2026-10-25 ~07:15, his answer in the app: \"Merge #2469's new commits into #2635 now and resolve the 12 conflicts.\"",
-   "url": "https://github.com/hazelgrove/hazel/pull/2635",
-   "text": "<b>Keep #2635 (livelits x modular editors) up with #2469 (modular editors), which is about to merge into dev.</b> Matthew: \"The priority is our PR about modular editors x livelits --- it seems certain that modular editors are merging into dev soon, based on the team meeting yesterday.\" Andrew pushed #2469 overnight: it now stacks Modules II part 1 (#2493) and sends module values to the worker in pieces; #2635 lacks 200 of its commits, and a trial merge conflicts in 80 files (233 blocks: Statics.re 19, docs/modules.md 17, Test_Statics_Modules 15, DefStatics 14, Typ 12, ...). The merge base is dev's 962a7cb009 (10-19): #2469's history was rewritten since #2635 last merged it, so many conflicts may be the same change under new ids.",
-   "progress": "06:40 10-21: the merge started in a scratch worktree (~/hazel-merge-2635-469, branch merge/2635-with-2469 at 9933091a99, MERGE_HEAD b5eaa33031; nothing pushed); a workflow (eight readers, read-only, then a planner) maps every conflicted block and plans the resolution, for the 9:00 hour with Matthew. 07:04: MAPPED (workflow: eight readers and a planner, read-only; 80 of 80 files): by kind 3 the same change, 12 take #2469's, 22 keep #2635's, 43 combine, 1 judgment. KEY FINDING: most conflicts are #2635's 09-14 copy of Modules II parts 1-3 against #2469's rebased part 1; Alexander's current parts 2-3 (#2494/#2495, rebased 10-20) match #2635's copy almost line for line, so re-merging the Modules II files over the old part-3 tip (fb4dcf689d) with '#2469 plus current parts 2-3' as the other side resolves 27 files with no conflicts at all (tried in the scratchpad, not the worktree). The real work: Statics.re (19 blocks over a re-indent; three hand ports), the editor's measurement and view code (Measured, Code, CachedSyntax, Arms, Segment: #2469's token chunks against #2635's splices), the eval-worker protocol (#2469's per-definition pieces replace #2635's request sharing), and ~20 breaks outside the markers the compiler will find. ESTIMATE: about a working day (6 to 9 h), mostly Claude's. DECISIONS: Matthew: adopt 376dd4a076 (a capitalized name in dot position follows dev's newest-binding rule; reverses 11fbc4480d's List case), plus seven smaller ones with recommended defaults (UserLivelit's two Typ.subst sites, TypAp's normalized argument, the cell-view redraw's scope, DefStatics' stage 6 over #2635's spine memo, the worker's pieces over request sharing, keep EvalInfo's projection for now). Cyrus: should #2635 carry Modules II parts 2-3 (needed for livelit signatures' abstract type members) or wait for #2494/#2495 to reach dev? Andrew: are the 10-20 part 2-3 heads the text to align with. 07:07: Matthew: \"yes to 1 and the defaults, go\". STARTED: a workflow resolves the merge layer by layer in the scratch worktree (Modules II by the reference re-merge, Statics, dynamics, haz3lcore, web, tests, docs), one build at a time after each layer, then fmt, @check and the targeted test groups, then a read-only review (nothing of livelits or of #2469 lost). Nothing committed or pushed by it; Claude commits and pushes once it builds and the groups pass. 09:36: RESOLVED and PUSHED: 5cb0d88a46 on #2635 (parents 9933091a99 and #2469's b5eaa33031; nothing else had moved). The workflow (9 agents, 2 h 27 min) resolved all 80 files layer by layer; release @check and the ci-check grep clean; targeted groups pass one per run (Statics.Modules 208, Typ 64, DefStaticsParity 58, DefStaticsDelta, EvalInfoProjection, EvalPieces 23, ModRoot, MeasuredChunks 55, ChunkProbe, HeadlessRows, WorkerServer, every Editing group 857, Substitution, Evaluator.Incremental 49, UserLivelits 60, ColorConfiguration, and more). A read-only review: nothing of either side lost, the decisions applied; its duplicate test and three stale comments fixed before the commit. FOR MATTHEW'S SIGN-OFF (in neither branch, each with a passing test): DefStatics records a module's livelits from the member chain (EvalPieces 22 had run out of memory; #2635 alone may have this bug too); calc_plain_item reads a recursive member's names as #2635's 4b964e6660 does (Andrew should know); CompletionQuery's padding skips a concave grout right of the caret (or change the loader?); FocusOracle carries #2635's do/hint fixes. To re-time: Kids' Choice first release and slider release (three #2635 speedups replaced by #2469's designs). CI 39627106924 running. 09:51: Matthew: \"yes to all four, re-time Kids' Choice now\": the four merge-made changes signed off. Re-timing Kids' Choice's first release and slider release next. 09:53: RE-TIMING Kids' Choice on GitHub, not the laptop (Matthew: \"do not overload my computer please\"): orphan branch timing/2635-release on hazelgrove/hazel (only its workflow runs: no CI, no deploy), run 39629706470: eight jobs, each serving #2635's deployed builds BEFORE (9933091a99, hazelgrove/build 0b8ca9bbcf) and AFTER the merge (5cb0d88a46, ff51d2ff44), twelve eye-size slider releases on each, twice in turn, in a fresh Chrome each time (scripts/release_timing.mjs, a port of the Firefox release_timing.py); the first release after load kept apart. 09:58: RE-TIMED (run 39629706470, eight runners: AMD EPYC 9V45 x3, 9V74, 7763 x3, Intel Xeon 6973P; before and after twice in turn, a fresh Chrome each): slider releases after the first, median per run, BEFORE 154 to 262 ms, AFTER 196 to 292 ms: after slower in all 16 pairs, by about 40 to 55 ms on the fast runners and 20 to 40 on the 7763s (about 20 to 30%); the first release after load mixed, no clear change; the slide's load 0.3 to 0.7 s slower on most. A regression from the merge: ^ticket(513) finds where. 11:07: CI on 5cb0d88a46 (39627106924) FAILED on ONE test in both jobs: SettingsPanel 1, #2469's 'modular-editors' settings get a row each': the Outline arrows toggle was in the panel twice, an older merge leftover on #2635. Fixed as #2469 has it (e4f9cd4192: NutMenu.re now equals #2469's; SettingsPanel passes here), pushed; CI 39640874907 running. 10-24 19:22: #2635 (head 2b080af683, 10-21, CI green) lacks 17 commits #2469 gained 10-21 to 10-23 (head f3808e79a8: deterministic module lowering, sealed modules keep member granularity, segment and piece maps keep unchanged pieces, Cmd tracking, selectable drawer text, a sub-module's signature items reach every map_term callback; and #2715, Modules II part 1, stays stacked). A trial merge on the laptop (scratch worktree, aborted, nothing pushed): 12 files conflict: DefStatics.re, Segment.re, Zipper.re, ZipperBase.re, ModuleHelpers.re, Statics.re, Page.re, OutlineSidebar.re, ScratchFocus.re, FocusOracle.re, Test_MakeTerm.re, Test_PageKeys.re (16 files merge cleanly, +546/-52). Not done unattended: the statics and zipper conflicts need care and a full CI round on a shared PR, and #2469 is expected in dev soon, when one merge of dev would do. | 10-25 07:24: HIS CALL: merge now. #2469 had moved on overnight (head ab9afe57db, 02:31): 124 commits since #2635's last merge (b5eaa33031, 10-21), all Andrew's: the agent view and trajectory, 'editing in the large' (one kernel for definition-level edits: EntryEdit, EntryPath, Outline from source), statics for sealed modules, deterministic module lowering. 25 files conflicted (51 hunks). RESOLVED on branch merge/2635-2469-1025 in ~/hazel-livelits-modular: agent and composition files and ItemEdit/ScratchFocus taken from #2469 (#2635's few lines there were Splice cases, segment-shaped projector syntax, and livelit wording #2469's new prompt already covers; html projector and read_docs pointers re-added); GeneralTreeUtils, HighLevelNodeMap, revalidate_projectors, restore_deep/restore_identity removed as #2469 removed them; Statics and ZipperBase kept as #2635's (#2469's ~stable lowering applied; both had made the same identity-keeping maps, #2635's also through projectors and splices); ModuleHelpers merged by hand (#2469's one-pass ana_value_types with #2635's Modules II abstract-member rule; names_meet kept with the abstract case, extra_members dropped as #2635 had); DefStatics (#2469's unmet-type-member fallback around #2635's livelit tracking); Workspace, ScratchPersist and SlideView onto #2469's outline model; Page (#2469's Cmd listener plus #2635's input guard). Building now (dune build @check, niced, -j 4); then dune fmt, the affected test groups, push, CI. 07:28: BUILDS (dune build @check, 10 rounds): #2469's new kernel needed #2635's shapes: Splice cases and segment-shaped projector syntax in Segment.map_deep, SpineNav (ScratchFocus's logic moved), EntryLayout (ItemEdit's), Outline, OutlineTree, ScratchFocus's refusals, ItemEdit's ancestor match; Piece.is_convex restored (#2469 dropped it as unused, #2635's ProjectorPerform uses it); the agent's update merge carries #2635's save; named_outline replaced by #2469's statics_ready; AgentLensView reads main_splice.measured; tests: string_of_marks's new ~info_map in 5 of #2635's tests. dune fmt applied. Full test suite running. 07:38: TESTS (local, ./run_tests): 6086 run, 3 failed: AgentView 8 (#2469's golden expects `^pct` to be an invalid token; on #2635 it is a livelit binder, and the error is its missing members: golden updated), ToolJsonDefinitions (34 tools with read_docs: updated), MemberLivelitReprint (a relative path ./run_tests' working folder misses; passed on #2635's CI before the merge). Both re-runs 0 failures. PUSHED to #2635: merge commit 4cd7ab722f (2b080af683 + #2469's ab9afe57db), a fast-forward. CI running: https://github.com/hazelgrove/hazel/pull/2635 10-25 09:01: #2635 CI on 4cd7ab722f: Fast checks green; Full tests 1 failure of 6,676: HeadlessRows 1 (#2469's corpus test): 'emotion-kids.hz: no term for with_drag fn': the test's term walk stopped at a curried function's first lambda, the outline (from source) lists the nested let. Fixed in the test (a8eb70f697), HeadlessRows passes locally; pushed, CI running (Auto-fix on).",
-   "log": [
-    {
-     "at": "2026-10-21T06:38-06:00",
-     "from": "matthew",
-     "chars": 161,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T06:41-06:00",
-     "from": "claude",
-     "chars": 2350,
-     "asks": false,
-     "words": 401,
-     "read_s": 101,
-     "listen_s": 150,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T07:05-06:00",
-     "from": "matthew",
-     "chars": 29,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T07:05-06:00",
-     "from": "claude",
-     "chars": 3013,
-     "asks": false,
-     "words": 515,
-     "read_s": 130,
-     "listen_s": 193,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T07:09-06:00",
-     "from": "claude",
-     "chars": 852,
-     "asks": false,
-     "words": 149,
-     "read_s": 38,
-     "listen_s": 56,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T09:38-06:00",
-     "from": "claude",
-     "chars": 2213,
-     "asks": false,
-     "words": 380,
-     "read_s": 96,
-     "listen_s": 142,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T09:50-06:00",
-     "from": "matthew",
-     "chars": 41,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T09:50-06:00",
-     "from": "claude",
-     "chars": 120,
-     "asks": false,
-     "words": 19,
-     "read_s": 5,
-     "listen_s": 7,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T09:51-06:00",
-     "from": "matthew",
-     "chars": 35,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T09:54-06:00",
-     "from": "claude",
-     "chars": 1223,
-     "asks": false,
-     "words": 206,
-     "read_s": 52,
-     "listen_s": 77,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T10:00-06:00",
-     "from": "claude",
-     "chars": 922,
-     "asks": false,
-     "words": 162,
-     "read_s": 41,
-     "listen_s": 61,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T23:48-06:00",
-     "from": "claude",
-     "chars": 467,
-     "asks": false,
-     "words": 77,
-     "read_s": 19,
-     "listen_s": 29,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T23:51-06:00",
-     "from": "matthew",
-     "chars": 25,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T23:51-06:00",
-     "from": "claude",
-     "chars": 990,
-     "asks": false,
-     "words": 180,
-     "read_s": 45,
-     "listen_s": 68,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-21T23:54-06:00",
-     "from": "claude",
-     "chars": 721,
-     "asks": false,
-     "words": 120,
-     "read_s": 30,
-     "listen_s": 45,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:03-06:00",
-     "from": "claude",
-     "chars": 1481,
-     "asks": false,
-     "words": 267,
-     "read_s": 67,
-     "listen_s": 100,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:05-06:00",
-     "from": "matthew",
-     "chars": 25,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:05-06:00",
-     "from": "matthew",
-     "chars": 22,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:05-06:00",
-     "from": "claude",
-     "chars": 838,
-     "asks": false,
-     "words": 153,
-     "read_s": 39,
-     "listen_s": 57,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:18-06:00",
-     "from": "claude",
-     "chars": 177,
-     "asks": false,
-     "words": 31,
-     "read_s": 8,
-     "listen_s": 12,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:19-06:00",
-     "from": "claude",
-     "chars": 1313,
-     "asks": false,
-     "words": 258,
-     "read_s": 65,
-     "listen_s": 97,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:41-06:00",
-     "from": "claude",
-     "chars": 2434,
-     "asks": false,
-     "words": 427,
-     "read_s": 108,
-     "listen_s": 160,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:42-06:00",
-     "from": "matthew",
-     "chars": 24,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:42-06:00",
-     "from": "matthew",
-     "chars": 55,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:42-06:00",
-     "from": "claude",
-     "chars": 50,
-     "asks": false,
-     "words": 9,
-     "read_s": 2,
-     "listen_s": 3,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:43-06:00",
-     "from": "claude",
-     "chars": 1019,
-     "asks": false,
-     "words": 205,
-     "read_s": 52,
-     "listen_s": 77,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:48-06:00",
-     "from": "matthew",
-     "chars": 4478,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:48-06:00",
-     "from": "claude",
-     "chars": 242,
-     "asks": false,
-     "words": 43,
-     "read_s": 11,
-     "listen_s": 16,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:49-06:00",
-     "from": "claude",
-     "chars": 2021,
-     "asks": false,
-     "words": 264,
-     "read_s": 67,
-     "listen_s": 99,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:52-06:00",
-     "from": "matthew",
-     "chars": 60,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:53-06:00",
-     "from": "claude",
-     "chars": 119,
-     "asks": false,
-     "words": 19,
-     "read_s": 5,
-     "listen_s": 7,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:54-06:00",
-     "from": "matthew",
-     "chars": 4,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:54-06:00",
-     "from": "claude",
-     "chars": 641,
-     "asks": false,
-     "words": 112,
-     "read_s": 28,
-     "listen_s": 42,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:55-06:00",
-     "from": "matthew",
-     "chars": 64,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:55-06:00",
-     "from": "claude",
-     "chars": 244,
-     "asks": false,
-     "words": 36,
-     "read_s": 9,
-     "listen_s": 14,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T00:56-06:00",
-     "from": "claude",
-     "chars": 765,
-     "asks": false,
-     "words": 135,
-     "read_s": 34,
-     "listen_s": 51,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T01:10-06:00",
-     "from": "claude",
-     "chars": 1201,
-     "asks": false,
-     "words": 239,
-     "read_s": 60,
-     "listen_s": 90,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T01:18-06:00",
-     "from": "claude",
-     "chars": 161,
-     "asks": false,
-     "words": 29,
-     "read_s": 7,
-     "listen_s": 11,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T01:48-06:00",
-     "from": "claude",
-     "chars": 144,
-     "asks": false,
-     "words": 27,
-     "read_s": 7,
-     "listen_s": 10,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T02:10-06:00",
-     "from": "claude",
-     "chars": 1354,
-     "asks": false,
-     "words": 261,
-     "read_s": 66,
-     "listen_s": 98,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T02:18-06:00",
-     "from": "claude",
-     "chars": 144,
-     "asks": false,
-     "words": 25,
-     "read_s": 6,
-     "listen_s": 9,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T02:49-06:00",
-     "from": "claude",
-     "chars": 119,
-     "asks": false,
-     "words": 23,
-     "read_s": 6,
-     "listen_s": 9,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T03:19-06:00",
-     "from": "claude",
-     "chars": 281,
-     "asks": false,
-     "words": 53,
-     "read_s": 13,
-     "listen_s": 20,
-     "model": "claude-opus-5-5",
-     "effort": "low",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-25T07:16-06:00",
-     "from": "matthew",
-     "chars": 6,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-25T07:24-06:00",
-     "from": "claude",
-     "chars": 3114,
-     "asks": false,
-     "words": 493,
-     "read_s": 124,
-     "listen_s": 185,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ],
-   "waiting": null
-  },
-  {
    "id": 521,
    "area": "dress up, panels: knolling the whole panel system again; ^du_report(16) against ^du_report(5), the whitespace before and after, a PR",
    "added": "2026-10-21T14:00-06:00",
@@ -4772,181 +4269,6 @@
      "note": "from the transcripts"
     }
    ]
-  },
-  {
-   "id": 564,
-   "area": "dress up, the code after so many features: 17 re-mix scenarios (the ninja's gems in the king's crown, and 16 more of our choosing), a re-org performed, and a ^du_report(18) draft on it and on other ways to improve",
-   "added": "2026-10-22T17:13-06:00",
-   "opened": "2026-10-22T17:13-06:00",
-   "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "chips": [
-    "dress up"
-   ],
-   "source": "Matthew, 2026-10-22 17:13, in chat: \"mint and enqueue tonight---  recover from so many feature extensions to MUDU --- refactor code and make a report about other ways to improve --- E.g., maybe we want to draw gems in the kings crown in the future --- are the routines we have for ninja gems going to be ready to re-mix with other code down the line? ^ Please consider 17 different scenarios like this, of your choosing, and propose and perform any code re-org that you choose --- just report it as a report, so I can review later and we can discuss later.\" Then, 17:13: \"Gems for treasure chests, etc.\" Then, 17:13: \"Gems to decorate very fancy swords and sheilds, and the kinds thrown and thrown room, etc.\" (the king's throne and the throne room)",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "text": "<b>Recover from so many features.</b> Messed Up Dress Up grew one costume, room and control at a time (31,700 lines in 26 parts; drawNow alone ~1,460 lines, the costumes woven through it by kind). Choose 17 scenarios of future re-mixing, like Matthew's: <i>the ninja's gems in the king's crown</i> (are ninjaGemSvg and its cuts ready to be used by other code?), and 16 more (e.g. Matthew's second: <i>gems for treasure chests, etc.</i>; his third: <i>gems on very fancy swords and shields, the king's throne and the throne room</i>; two costumes at once, ^ticket(562); a costume's pieces on the people; new animals from the suit parts; held things; scenery reusing body drawings). For each: what the code makes easy or hard today, and the re-org that would make it easy. Then PERFORM the re-org we choose (behaviour unchanged: the same pictures, checked), on a branch, and write it up as <b>^du_report(18)</b>, a draft for Matthew to review and discuss later (a push publishes it: on his word).",
-   "progress": "17:13: minted for tonight; after ^ticket(563) in the queue (his deadline: tonight). 17:13: + Matthew's second scenario: gems for treasure chests, etc. 17:13: + his third: gems on fancy swords and shields, the king's throne and throne room. 17:26: a helper agent is on it in ~/kcg-564 (branch ticket-564-reorg off 0.0.411): 17 scenarios, a behaviour-unchanged re-org (gems first) proven by drawing many friends in node before and after and comparing the SVG byte for byte, and the ^du_report(18) draft. 18:13: DONE on branch ticket-564-reorg in ~/kcg-564 (not pushed, not merged): 5a260ad one namer for content ids (shapeId/shapeClip) + tools/same_friend.mjs, the proof; 97b00eb the ninja's gem is any drawing's gem (gemSvg, gemSideSvg, GEMSTONES, GEMSTONE_SHAPES, GOLD, in js/02-helpers.js; the ninja's settings keys unchanged); 8184fb3 COSTUME_CLOTHES, drawNow's fourteen shirt-and-pants ifs as one table (a first step to two costumes at once); 7e8d5c7 the ^du_report(18) draft, 'Ready to Re-mix': 17 scenarios, 5 ready, 8 small changes, 4 re-orgs; demonstrations (not the game) of gems in a crown, a chest, a sword and shield, a throne. Proof: 12,570 drawings per run identical byte for byte to 0.0.411, each commit. Waiting on Matthew: review and discuss, then merge or not. 18:20: RE-CHECKED by the main session: same_friend.mjs, 0.0.411 (main, 538a69f) against the branch head: 12,570 cases, 12,570 identical, structure identical, 146.5 MB in 500 s; check_script and check_load pass; the report's 7 pictures load. | 16:30 10-24: Matthew: \"564 --- yes, redo the remix preparation/reorg -- and file a fresh report with a fresh number.\" Plan: redo the re-org on current main (0.0.426; the old branch ticket-564-reorg is 152 behind), the 17 scenarios again, and a new report with a new number (^du_report(18) is now the Story Scripts Guide), after the speed runs (^ticket(605)). 10-24 18:44: REDONE on 0.0.428: branch ticket-564-redo (~/kcg-564b) off main fad0545, the three 10-22 commits replayed (a9b0f33 one namer for ids, 93bedf4 the gem as gemSvg/gemSideSvg with 0.0.427's glimmer-off kept, aff2b9d COSTUME_CLOTHES; conflicts only in agent-instructions.md and the gem's moved lines); check_script and check_load ok. PROOF (tools/same_friend.mjs, node, the laptop): 0.0.428 against the whole branch, 12,570 drawings, 12,570 identical byte for byte, structure identical (640 s). The report renumbered ^du_report(19) (18 is the Story Scripts Guide), brought up to date, its pictures redrawn (the demos identical; the ninja's two differ only by 0.0.427's glimmer-off), its card in the reports index; draft at http://localhost:8133/report-019/reports/019/. Running now: each commit, the noise floor, the two sensitivity runs; then the page rebuilt from them. Not pushed: published on his word. 19:21: the proof complete on 0.0.428, each run on the laptop under nice, about 10.6 min each: commit 1, commit 2 and the whole branch each 12,570 of 12,570 identical; the noise floor (0.0.428 twice) 0; sensitivity: the ruby one digit redder changed 722 of 867 ruby drawings (the 145 others all views from behind, where the gem isn't drawn: checked case by case), Robin's hose one digit browner all 167. Page rebuilt from it (data/runs, gather.py, build.py), 'after ^du_report(18)' in its series line; committed on ticket-564-redo (74c4cdd), NOT pushed. WAITING ON MATTHEW: read ^du_report(19) and decide the three commits (merge, keep or drop; no picture changes, so they need no version of their own), and say publish.",
-   "log": [
-    {
-     "at": "2026-10-22T16:59-06:00",
-     "from": "matthew",
-     "chars": 468,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T17:02-06:00",
-     "from": "claude",
-     "chars": 144,
-     "asks": false,
-     "words": 28,
-     "read_s": 7,
-     "listen_s": 10,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T17:12-06:00",
-     "from": "matthew",
-     "chars": 521,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T17:12-06:00",
-     "from": "claude",
-     "chars": 120,
-     "asks": false,
-     "words": 25,
-     "read_s": 6,
-     "listen_s": 9,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T17:13-06:00",
-     "from": "matthew",
-     "chars": 30,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T17:13-06:00",
-     "from": "matthew",
-     "chars": 90,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T17:13-06:00",
-     "from": "claude",
-     "chars": 190,
-     "asks": false,
-     "words": 34,
-     "read_s": 9,
-     "listen_s": 13,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T17:13-06:00",
-     "from": "claude",
-     "chars": 131,
-     "asks": false,
-     "words": 26,
-     "read_s": 7,
-     "listen_s": 10,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T17:36-06:00",
-     "from": "claude",
-     "chars": 5640,
-     "asks": false,
-     "words": 1006,
-     "read_s": 254,
-     "listen_s": 377,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T17:38-06:00",
-     "from": "claude",
-     "chars": 2838,
-     "asks": false,
-     "words": 501,
-     "read_s": 126,
-     "listen_s": 188,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T18:12-06:00",
-     "from": "matthew",
-     "chars": 6452,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-22T18:15-06:00",
-     "from": "claude",
-     "chars": 3091,
-     "asks": false,
-     "words": 540,
-     "read_s": 136,
-     "listen_s": 202,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-24T18:24-06:00",
-     "from": "claude",
-     "chars": 1154,
-     "asks": false,
-     "words": 201,
-     "read_s": 51,
-     "listen_s": 75,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-24T18:38-06:00",
-     "from": "claude",
-     "chars": 3060,
-     "asks": false,
-     "words": 508,
-     "read_s": 128,
-     "listen_s": 190,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-24T18:44-06:00",
-     "from": "claude",
-     "chars": 346,
-     "asks": false,
-     "words": 57,
-     "read_s": 14,
-     "listen_s": 21,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ],
-   "waiting": "Read ^du_report(19), Ready to Re-mix, at http://localhost:8133/report-019/reports/019/ (the 17 scenarios at #scenarios, the re-org and its proof at #reorg); decide the three commits on ticket-564-redo (merge, keep or drop), and say publish."
   },
   {
    "id": 570,
@@ -8102,12 +7424,457 @@
     }
    ],
    "waiting": "Read on in ^report(33), Game Scripts in Hazel, a Case Study (work in progress): https://matthewhammer.org/hazel/reports/033/ , and send the next notes."
+  },
+  {
+   "id": 610,
+   "area": "dress up: the cave is slow on M's old iPad, red dotted warnings very early; find the costs she can't reach, ask if game scripts regressed it, and give Matthew cave/caveroom test variations with 0, 1, 2, ... placed things",
+   "added": "2026-10-25T10:12-06:00",
+   "opened": "2026-10-25T10:12-06:00",
+   "status": "open",
+   "tags": [
+    "today (2026-10-25)",
+    "kids"
+   ],
+   "chips": [
+    "dress-up"
+   ],
+   "source": "Matthew, 2026-10-25, in chat: \"M is using the latest MUDU release, and she's trying to modify the cave room background with more objects (like a single pot over a fire, as in the campfire scene I think). Perhaps we've done things, like the game script support, to regress her experience? She's not using game scripts, so maybe we should have an advanced feature that globally disables the game script system, if that's really the slow down. Or it's coming from something in that cave room that's especially challenging -- she's tried turning off everything under her control in the panels --- are there more things not reachable there that are expensive to animate on an older ipad? I can do a performance test and rely the results; please prepare cave room variations (both behind the water fall, and the cave room without a water fall, with various amounts of placed objects (none, one, two, ...)). She gets the red dotted warnings for \\\"too expensive\\\" very early in all cases.\"",
+   "log": [
+    {
+     "at": "2026-10-25T10:02-06:00",
+     "from": "matthew",
+     "chars": 7,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:02-06:00",
+     "from": "claude",
+     "chars": 982,
+     "asks": false,
+     "words": 160,
+     "read_s": 40,
+     "listen_s": 60,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:09-06:00",
+     "from": "matthew",
+     "chars": 952,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:10-06:00",
+     "from": "claude",
+     "chars": 625,
+     "asks": false,
+     "words": 117,
+     "read_s": 29,
+     "listen_s": 44,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    }
+   ],
+   "progress": "0.0.431 + 0.0.432 live. Cause: cave 61 / cave room 82 always-running scenery animations; the guard measures the whole picture's fps but marks only placed things, so on a slow iPad the first pot over a fire (38 moving parts) latches it. Game scripts: no per-frame work, only run on lever/hatch/way events, so not the cause. Added Advanced floor slider (48 -> down to 20; 1000-part cap holds) and ?try=cave-N / ?try=caveroom-N test visits (nothing saved). 0.0.432 also: lines-only <use> trees fixed. WAITING on Matthew: iPad runs of the try links. | 10:38: M's iPad 🧪 on 0.0.433 is on the pad (Safari, 810x1080 at 2x). REGRESSION vs the iPad's 0.0.96 run: empty room walking 60 -> 33 fps, pond 28 -> 14, pond held still 36 -> 15, still bitmap 59 -> 45, room after pond 60 -> 45; standing 60 -> 59. The black laptop is unchanged over the same span. found slow:false, so the iPad never gets its scenery held still. Matthew: 'you never tested the cave rooms!' -> 🧪 now has 10 cave passes (33 in all), committed a4725aa, releasing with 564 as 0.0.434. | 10:55: 0.0.436 LIVE: ⚙️ Advanced '🌀 the places' moving scenery': 📏 as measured / 🧊 always hold still / 🌀 always move (replaces the slowMoving switch; old 'on' migrates to always move). Checked in the pane: always hold still takes the cave room's 26 animations to 0. Why the iPad was never measured slow: tracked as ^ticket(613). | 11:04: Matthew's two 🧪 runs on M's iPad, 0.0.436 (measured; then 🧊 always hold still, which 🧪 overrides by design): empty room 57/60, forest 49-50, pond 21-23 (bitmap 60), CAVE standing 60, walking with 0/1/2/4 pots 49-51/47-49/45-48/44-45; CAVE ROOM standing 60, walking 53-54/50-52/48-50/39-46; bubble room 8-10 (foam still too). CORRECTION: M's 0.0.433 run (room 33, forest 28, pond 14) looks capped near 30 fps (Low Power Mode or heat?), not a regression: today's runs match the iPad's 0.0.96 run except the pond (28 -> 21-23). The red dashes: walking in the cave with 1-2 pots is 45-49 fps, right at THING_FPS_MIN 48, so a pot or two latches the guard; lowering the floor in Advanced (e.g. 40) should let her place more. | 11:05: Matthew, in chat: \"Yes, it was probably in Low Power Mode or low on battery.\" So no regression: M's slow run was the iPad capped near 30 fps. Her cave warnings: 45-49 fps with 1-2 pots against the 48 floor; on Low Power Mode, everything is under 48 at once.",
+   "waiting": "Matthew: on M's iPad, ⚙️ Advanced > 🐢 a place is full below > 40 (and 🧊 always hold still) for her cave",
+   "text": "dress up: the cave is slow on M&#x27;s old iPad, red dotted warnings very early; find the costs she can&#x27;t reach, ask if game scripts regressed it, and give Matthew cave/caveroom test variations with 0, 1, 2, ... placed things"
+  },
+  {
+   "id": 611,
+   "area": "dress up: a 🌍 Start World button beside Start over: the start world's start square, the friend put there, and a pop-up saying what the game is now (a WIP world: stuff and people, but no interactive people (they are background animations, not quite NPCs) and no puzzles yet; scripting next; feedback welcome); a pointing hand 👉 floating on the button, as an in-game tutorial would; and a WIP ^du_report on the new-player experience, R's phone visit its backstory",
+   "added": "2026-10-25T10:20-06:00",
+   "status": "open",
+   "tags": [
+    "low priority"
+   ],
+   "chips": [
+    "dress-up"
+   ],
+   "source": "Matthew, 2026-10-25, in chat: \"mint and enqueue --- low priority --- Better \\\"first time user\\\" experience --- Next to \\\"Start Over\\\" button, offer \\\"Start World\\\" button that: * selects the \\\"start\\\" square from the \\\"start\\\" world, if any -- the current default world has one. * places the friend into that square, as if they selected it from the world design grid. * presents a pop-up explaining: * Messed Up Dress Up is a WIP, evolving from an activity into a full game world, gradually. * Currently, the game world has stuff in it, but no people or puzzles.  It's a place to explore, and evolve into something more dynamic.  Current work is focusing on ways for end-users to script their own adventure world system.  One baby step at a time.  Feedback welcome!\" Then: \"when we say that the world has \\\"no people\\\" -- perhaps instead we should say \\\"no interactive people\\\" -- -they are not quite NPCs, more like background animations still.\" Then: \"okay, and as we refine this \\\"new user experience\\\", let's have a WIP du_report about it, and this first step of it. The backstory is my friend (let's call him \\\"R\\\"), tried the game on his mobile phone and got confused about how to enter the world and do stuff.   It's not obvious at all at the moment. So another thing could be to emphasize that \\\"enter world\\\" button, with something overing over it (like a \\\"hand pointing\\\") emoji,  floating on it.   Like an in-game tutorial might have.\"",
+   "opened": "2026-10-25T10:23-06:00",
+   "log": [
+    {
+     "at": "2026-10-25T10:12-06:00",
+     "from": "claude",
+     "chars": 988,
+     "asks": false,
+     "words": 169,
+     "read_s": 43,
+     "listen_s": 63,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:13-06:00",
+     "from": "matthew",
+     "chars": 306,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:14-06:00",
+     "from": "matthew",
+     "chars": 163,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:14-06:00",
+     "from": "claude",
+     "chars": 340,
+     "asks": false,
+     "words": 58,
+     "read_s": 15,
+     "listen_s": 22,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:18-06:00",
+     "from": "claude",
+     "chars": 2681,
+     "asks": true,
+     "words": 482,
+     "read_s": 122,
+     "listen_s": 181,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:20-06:00",
+     "from": "matthew",
+     "chars": 728,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:20-06:00",
+     "from": "claude",
+     "chars": 835,
+     "asks": false,
+     "words": 158,
+     "read_s": 40,
+     "listen_s": 59,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:21-06:00",
+     "from": "matthew",
+     "chars": 167,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:21-06:00",
+     "from": "claude",
+     "chars": 312,
+     "asks": false,
+     "words": 53,
+     "read_s": 13,
+     "listen_s": 20,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:22-06:00",
+     "from": "matthew",
+     "chars": 486,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:27-06:00",
+     "from": "claude",
+     "chars": 3018,
+     "asks": true,
+     "words": 540,
+     "read_s": 136,
+     "listen_s": 202,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:28-06:00",
+     "from": "matthew",
+     "chars": 50,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:28-06:00",
+     "from": "matthew",
+     "chars": 115,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:28-06:00",
+     "from": "claude",
+     "chars": 112,
+     "asks": false,
+     "words": 21,
+     "read_s": 5,
+     "listen_s": 8,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:29-06:00",
+     "from": "matthew",
+     "chars": 125,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:29-06:00",
+     "from": "matthew",
+     "chars": 160,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:29-06:00",
+     "from": "claude",
+     "chars": 98,
+     "asks": false,
+     "words": 18,
+     "read_s": 5,
+     "listen_s": 7,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:30-06:00",
+     "from": "matthew",
+     "chars": 3141,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:30-06:00",
+     "from": "claude",
+     "chars": 392,
+     "asks": false,
+     "words": 75,
+     "read_s": 19,
+     "listen_s": 28,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:30-06:00",
+     "from": "claude",
+     "chars": 113,
+     "asks": false,
+     "words": 19,
+     "read_s": 5,
+     "listen_s": 7,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-25T10:33-06:00",
+     "from": "claude",
+     "chars": 1515,
+     "asks": true,
+     "words": 272,
+     "read_s": 69,
+     "listen_s": 102,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    }
+   ],
+   "progress": "0.0.433 LIVE: 🌍 Start World beside Start over (start world's start square), 👉 bobbing on it until first pressed, welcome card with his words + how to get about; phone buttons wrap. ^du_report(20) 'A Way In' drafted on branch report-020 (~/kcg-report-020), NOT pushed: push = publish, waits on Matthew.",
+   "waiting": "R: try 🌍 Start World on his phone (0.0.433+); his feedback goes into ^du_report(20), then its WIP mark comes off",
+   "text": "dress up: a 🌍 Start World button beside Start over: the start world&#x27;s start square, the friend put there, and a pop-up saying what the game is now (a WIP world: stuff and people, but no interactive people (they are background animations, not quite NPCs) and no puzzles yet; scripting next; feedback welcome); a pointing hand 👉 floating on the button, as an in-game tutorial would; and a WIP ^du_report on the new-player experience, R&#x27;s phone visit its backstory"
+  },
+  {
+   "id": 613,
+   "area": "dress up (tracking, no action yet): why didn't the game catch that M's iPad was slow, and why must the scenery's stillness be set by hand? (its friend drawing takes 1.5 ms, under the 6 ms test, and its late frames did not trip the choppy test, yet its pond ran at 14 fps); the cave measurements in 🧪 may answer it later",
+   "added": "2026-10-25T10:53-06:00",
+   "status": "open",
+   "tags": [
+    "tracking"
+   ],
+   "chips": [
+    "dress-up"
+   ],
+   "source": "Matthew, 2026-10-25, in chat: \"and mint a ticket (for tracking, not new actions): why didn't we catch that the ipad was slow before? why must we set this manually? maybe the cave measurements will help answer, later or in the future.\"",
+   "progress": "2026-10-25 11:04: a clue: M's 0.0.433 run ran everything near 30 fps (as iOS Low Power Mode caps it), yet neither test tripped: drawing 1.5 ms (< 6 ms) and the choppy test did not fire. Matthew's 0.0.436 runs on the same iPad: about 60 where the laptop gets 60. | 11:05: Matthew, in chat: \"Yes, it was probably in Low Power Mode or low on battery.\" So the iPad's speed changes with its power state, and neither test (drawing over 6 ms; late frames while walking) notices a 30 fps cap. A possible answer later: compare the screen's idle frame rate with what the place gets, rather than a fixed 48.",
+   "text": "dress up (tracking, no action yet): why didn&#x27;t the game catch that M&#x27;s iPad was slow, and why must the scenery&#x27;s stillness be set by hand? (its friend drawing takes 1.5 ms, under the 6 ms test, and its late frames did not trip the choppy test, yet its pond ran at 14 fps); the cave measurements in 🧪 may answer it later"
+  },
+  {
+   "id": 616,
+   "area": "hazel livelits: Cyrus's reveal design, the last open item: the GUI works while the syntax is revealed, on EVERY deck slide (44 slides, both decks), checked in Firefox on GitHub",
+   "added": "2026-10-25T12:16-06:00",
+   "opened": "2026-10-25T12:16-06:00",
+   "status": "open",
+   "tags": [
+    "livelits",
+    "critical path"
+   ],
+   "chips": [
+    "hazel"
+   ],
+   "source": "Matthew, 2026-10-25, in chat: \"both\" (livelits first), then \"Yes, push deck/eye-sweep to hazelgrove/hazel so the deck workflow runs; report what it finds.\"",
+   "progress": "12:16: deck/eye-sweep pushed (1c65824665 on #2635's head): deck_regress case 'eye: on every slide...' + .github/workflows/deck.yml. Run 40220403418 in progress. Known: KIDS_FRESH points at livelits-emotion-kids-choice, now livelit-playground-emotion-kids-choice. | 13:12: run 1 (40220403418): the sweep reached all 127 uses but found no control in 125 (my bug: the toggle is in the overlay layer, the GUI in the base layer); 4 old eye cases failed on Kids' Choice's old address; screenshots lost (a colon in the names). REAL FINDING: on Editable Parameters the eye of a ^between NESTED in another ^between's cell opens no pane (reproduced by hand on #2635's GitHub build, port 8341). Fixes pushed; run 2 = 40224910033. | 14:00: run 2 (40224910033): all 11 targeted eye cases PASS; sweep 43 follows, 31 STUCK, 51 no-op, 2 ERROR (the nested ^between). STUCK looked like measurement (hover/focus restyling, 4 s too short on GitHub); by hand ^flag followed once, not once. Sweep sharpened (GUI state = what it shows; 12 s; IGNORED = no change revealed but the same input changes it with the eye shut); run 3 = 40228694578. | 14:54: run 3 (40228694578): 11/11 targeted eye cases pass. Sweep: 45 follows, 27 STUCK, 14 IGNORED, 41 no-op, 2 ERROR. STUCK set nearly identical to run 2 even with 12 s -> likely real. IGNORED (input works with the eye shut, does nothing revealed): Kids' Choice #2, Tree Care #3, Arms #3 #6, Hands #3 #6, Eyes #4-7, Full Body #3, Scenes #3 #6 #7. ERROR: Editable Parameters #0 #1 (nested ^between). Next: confirm a STUCK and an IGNORED by hand, then fix. | 15:06: CAUSES. (1) harness: toggles of uses one to a line stack 10 px apart, so 'nearest use' drove another use's GUI; now matched by the projector's box (dbf86ea570; run 4 = 40233138547). (2) REAL, FIXED: the nested eye's ToggleSyntax came through PerformConfined and SubEditor.confine_pre dropped it (not in names_its_target). Fix + Test_SubEditor case: #2635 d9ee59f370, #2597 ac3c56b8fe, pushed; checked by hand on a local build. Run 5 (fix + match) = 40233852000. | 15:50: run 5 (40233852000, fix + box matching): 101 follows (incl. Editable Parameters #0 #1), 0 IGNORED, 0 ERROR, 3 STUCK = Hair #3, Shoes #4, Arms #7, each a ^picture showing ^ticket(620)'s view error. 11/11 targeted eye cases pass. What remains is ^ticket(620).",
+   "waiting": "Matthew: keep going on ^ticket(620) (the ^picture view error, in the eval worker)?",
+   "text": "hazel livelits: Cyrus&#x27;s reveal design, the last open item: the GUI works while the syntax is revealed, on EVERY deck slide (44 slides, both decks), checked in Firefox on GitHub"
+  },
+  {
+   "id": 621,
+   "area": "dress up: Link to the Past dungeon rooms, part 1: a top-down cave room kind (8 ways, every subset natural), a three-way choice per way in World design (no way / nav arrow / smooth scroll), a top-down standing pose, and a smooth-scroll measurement on the 🧪 page",
+   "added": "2026-10-26T09:45-06:00",
+   "opened": "2026-10-26T09:45-06:00",
+   "status": "open",
+   "tags": [
+    "feature",
+    "zelda"
+   ],
+   "chips": [
+    "dress-up"
+   ],
+   "source": "Matthew, 2026-10-26, in chat: \"the main spaces to create this way are going to be cave rooms that look like Link to the Past dungeons with: * two levels per room, and even holes that drop the friend to the next floor below (another world grid, structured that way). * all of the rooms for this smooth scroll can be cave themed, but we need a way to have a 8-way kind of crossing room that looks natural for each setting (each subset of passages), and we need to scroll it smooth and we run around.\" Then: \"build it.\" \"mint and enqueue tickets as you go.\"",
+   "progress": "started",
+   "text": "<b>Link to the Past dungeon rooms, part 1</b>: a top-down cave room kind whose eight ways each open or shut naturally, a three-way choice per way in 🗺️ World design (no way, nav arrow, smooth scroll), a top-down standing pose, and a smooth-scroll measurement on the 🧪 page so M's iPad can say whether it holds 60 fps."
+  },
+  {
+   "id": 622,
+   "area": "dress up: Link to the Past dungeon rooms, part 2: holes in a room's floor that drop the friend to the floor below (another world grid, same square); World design names a world's floor below",
+   "added": "2026-10-26T09:45-06:00",
+   "opened": "2026-10-26T09:45-06:00",
+   "status": "open",
+   "tags": [
+    "feature",
+    "zelda"
+   ],
+   "chips": [
+    "dress-up"
+   ],
+   "source": "Matthew, 2026-10-26, in chat: \"the main spaces to create this way are going to be cave rooms that look like Link to the Past dungeons with: * two levels per room, and even holes that drop the friend to the next floor below (another world grid, structured that way). * all of the rooms for this smooth scroll can be cave themed, but we need a way to have a 8-way kind of crossing room that looks natural for each setting (each subset of passages), and we need to scroll it smooth and we run around.\" Then: \"build it.\" \"mint and enqueue tickets as you go.\"",
+   "progress": "",
+   "text": "<b>Link to the Past dungeon rooms, part 2</b>: holes in a room's floor that drop the friend to the floor below, another world grid, at the same square; 🗺️ World design names a world's floor below."
+  },
+  {
+   "id": 623,
+   "area": "dress up: Link to the Past dungeon rooms, part 3: two levels in a room (a raised ledge, stairs, the drop-off edge): two walkable areas joined by the stairs, the friend drawn behind or in front of the ledge",
+   "added": "2026-10-26T09:45-06:00",
+   "opened": "2026-10-26T09:45-06:00",
+   "status": "open",
+   "tags": [
+    "feature",
+    "zelda"
+   ],
+   "chips": [
+    "dress-up"
+   ],
+   "source": "Matthew, 2026-10-26, in chat: \"the main spaces to create this way are going to be cave rooms that look like Link to the Past dungeons with: * two levels per room, and even holes that drop the friend to the next floor below (another world grid, structured that way). * all of the rooms for this smooth scroll can be cave themed, but we need a way to have a 8-way kind of crossing room that looks natural for each setting (each subset of passages), and we need to scroll it smooth and we run around.\" Then: \"build it.\" \"mint and enqueue tickets as you go.\"",
+   "progress": "",
+   "text": "<b>Link to the Past dungeon rooms, part 3</b>: two levels in a room, a raised ledge with stairs and a drop-off edge, walkable as two areas joined by the stairs, the friend drawn behind or in front of the ledge."
   }
  ],
- "next_ticket": 610,
- "current_ticket": 609,
+ "next_ticket": 624,
+ "current_ticket": 621,
  "current_note": "07:40: Drafting ^report(33): writing the game scripts, Globals as a per-rule view, RoomState, a full Globals type, one address for every place. ^ticket(512): #2635's CI running, Auto-fix on.",
  "closed_tickets": [
+  {
+   "id": 612,
+   "area": "dress up: in the forest clearing a strip of the path is drawn over the friend's legs (the path below them drawn above them)",
+   "added": "2026-10-25T10:47-06:00",
+   "text": "dress up: in the forest clearing a strip of the path is drawn over the friend's legs (the path below them drawn above them)",
+   "source": "Matthew, 2026-10-25, in chat, with a screenshot of the clearing: \"bug report --- layering issue with path?\" then \"(See…",
+   "status": "closed",
+   "closed": "2026-10-25T10:50-06:00"
+  },
+  {
+   "id": 564,
+   "area": "dress up, the code after so many features: 17 re-mix scenarios (the ninja's gems in the king's crown, and 16 more of our choosing), a re-org performed, and a ^du_report(18) draft on it and on other ways to improve",
+   "added": "2026-10-22T17:13-06:00",
+   "text": "Recover from so many features.",
+   "source": "Matthew, 2026-10-22 17:13, in chat: \"mint and enqueue tonight--- recover from so many feature extensions to MUDU ---…",
+   "status": "closed",
+   "closed": "2026-10-25T10:50-06:00"
+  },
+  {
+   "id": 512,
+   "area": "hazel, #2635 (livelits x modular editors): merge today's #2469, which now stacks Modules II part 1",
+   "added": "2026-10-21T06:40-06:00",
+   "text": "Keep #2635 (livelits x modular editors) up with #2469 (modular editors), which is about to merge into dev.",
+   "source": "Matthew, 2026-10-21 06:4x, back from AFK, before the meeting with Cyrus Then, 2026-10-25 ~07:15, his answer in the app:…",
+   "status": "closed",
+   "closed": "2026-10-25T11:34-06:00"
+  },
+  {
+   "id": 614,
+   "area": "dress up: drop-down menus on M's iPad looked broken (Safari's own small white menus in the dark look); FIXED in 0.0.437. Her iPad, in airplane mode, ran its offline copy, older than 🌍 Start World",
+   "added": "2026-10-25T11:54-06:00",
+   "text": "dress up: drop-down menus on M's iPad looked broken (Safari's own small white menus in the dark look); FIXED in 0.0.437. Her iPad, in airplane mode, ran its offline copy, older than 🌍 Start World",
+   "source": "Matthew, 2026-10-25, with a photo of M's iPad: \"bug report for M --- from the ipad -- something about the UI doesn't…",
+   "status": "closed",
+   "closed": "2026-10-25T11:54-06:00"
+  },
+  {
+   "id": 615,
+   "area": "dress up: 💾 saved friends kept inside the browser (IndexedDB, as 🎙️ Recordings are): Save adds one to a gallery with its picture, Load picks from it; files stay for backups",
+   "added": "2026-10-25T12:01-06:00",
+   "text": "dress up: 💾 saved friends kept inside the browser (IndexedDB, as 🎙️ Recordings are): Save adds one to a gallery with its picture, Load picks from it; files stay for backups",
+   "source": "Matthew, 2026-10-25, in chat: \"M can no longer easily save files on the ipad --- I don't know what happened, but it's…",
+   "status": "closed",
+   "closed": "2026-10-25T12:12-06:00"
+  },
+  {
+   "id": 617,
+   "area": "dress up pictures: the per-tab chips (count 1) showed the friend, not the tab's panel; archive each tab's PANEL as that build shows it",
+   "added": "13:12",
+   "text": "dress up pictures: the per-tab chips (count 1) showed the friend, not the tab's panel; archive each tab's PANEL as that build shows it",
+   "source": "Matthew, 2026-10-25, with a screenshot of matthewhammer.org/hazel/dress-up/pictures.html: \"for dress-up-pictures ---…",
+   "status": "closed",
+   "closed": "2026-10-25T13:17-06:00"
+  },
+  {
+   "id": 618,
+   "area": "dress up: in the forest clearing a click on a far building walks the friend AWAY from it (check each: castle, tree house, house, witch hut, healer hut)",
+   "added": "2026-10-25T13:33-06:00",
+   "text": "dress up: in the forest clearing a click on a far building walks the friend AWAY from it (check each: castle, tree house, house, witch hut, healer hut)",
+   "source": "Matthew, 2026-10-25, in chat: \"the forest clearing scene has the player walking away from the target of most clicks…",
+   "status": "closed",
+   "closed": "2026-10-25T13:35-06:00"
+  },
+  {
+   "id": 619,
+   "area": "dress up: Zelda study (NES one screen at a time vs A Link to the Past's smooth scrolling) -> the cave crossing (8 ways, 4 looks, stones shutting dead ends) and a smooth-scroll way option in World design",
+   "added": "2026-10-25T14:41-06:00",
+   "text": "dress up: Zelda study (NES one screen at a time vs A Link to the Past's smooth scrolling) -> the cave crossing (8 ways, 4 looks, stones shutting dead ends) and a smooth-scroll way option in World…",
+   "source": "Matthew, 2026-10-25, in chat: \"I want to start a new set of features for MUDU. First. * Study original NES Legend of…",
+   "status": "closed",
+   "closed": "2026-10-25T14:41-06:00"
+  },
+  {
+   "id": 620,
+   "area": "hazel livelits: Drawing.^picture's view errors on every Playground slide that draws one ('eval_splice: expected a SpliceRef'), on #2635 AND #2597 (pre-existing): its model reaches the view with the splice's code (Asc(Closure(Var outfit), SpliceRef)), not SpliceRef((id, value))",
+   "added": "2026-10-25T15:49-06:00",
+   "text": "hazel livelits: Drawing.^picture's view errors on every Playground slide that draws one ('eval_splice: expected a SpliceRef'), on #2635 AND #2597 (pre-existing): its model reaches the view with the…",
+   "source": "Found 2026-10-25 while confirming the deck sweep's last STUCK (Livelit Playground / Hair #3), on Matthew's go: \"confirm…",
+   "status": "closed",
+   "closed": "2026-10-26",
+   "outcome": "Fixed: a livelit whose spliced model has not run yet shows pending, not a view error (#2635 3fd7288e1d, #2597 5aab038ff5); the STUCK verdicts were the sweep using the GUI before…"
+  },
   {
    "id": 605,
    "area": "dress up, the speed runs: every release since 0.0.420 marked broken (a timeout in the controller audit, and checks that really fail)",
@@ -13574,10 +13341,11 @@
   }
  ],
  "queue": [
+  616,
+  610,
+  611,
   276,
   609,
-  512,
-  564,
   602,
   550,
   587,
@@ -13629,9 +13397,12 @@
   429,
   508,
   534,
-  590
+  590,
+  613,
+  622,
+  623
  ],
- "current_since": "2026-10-25T07:40-06:00",
+ "current_since": "2026-10-26T09:45-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
@@ -13643,10 +13414,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5484,
-  "words": 1193272,
-  "read_hours_est": 83.6,
-  "listen_hours_est": 124.3,
+  "replies": 5526,
+  "words": 1201544,
+  "read_hours_est": 84.1,
+  "listen_hours_est": 125.2,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -13886,14 +13657,14 @@
     "chars": 152999
    },
    "2026-10-24": {
-    "replies": 117,
-    "words": 23880,
-    "chars": 135457
+    "replies": 138,
+    "words": 29571,
+    "chars": 168272
    },
    "2026-10-25": {
-    "replies": 47,
-    "words": 5741,
-    "chars": 34736
+    "replies": 68,
+    "words": 8322,
+    "chars": 49091
    }
   }
  },
