@@ -1,5 +1,60 @@
 [
  {
+  "id": 636,
+  "area": "dress up: a CI check for the dungeon room",
+  "text": "<b>Dress Up: a CI check for the dungeon room</b> (tools/checks/dungeon625.mjs): every look drawn (3 shades, 5 mosses, 5 mushrooms, 2 ledges, 3 holes); 🪜 stairs up and 🕳️ hole down between two worlds; the ledge hop; a pot lifted and thrown; a 💰 chest's gift into the 🎒 backpack. Until now these were tested only by hand in the browser pane. AFK work, no decision needed.",
+  "added": "2026-10-26T14:33-06:00",
+  "opened": "2026-10-26T14:33-06:00",
+  "status": "done",
+  "tags": [
+   "AFK"
+  ],
+  "chips": [],
+  "source": "Claude, AFK protocol (2026-10-26)",
+  "progress": "14:34: passes in the pane (animations finished by hand there); diag-625 pushed with the check alone and .only, run pending.",
+  "log": [
+   {
+    "at": "2026-10-26T14:25-06:00",
+    "from": "matthew",
+    "chars": 84,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-26T14:25-06:00",
+    "from": "claude",
+    "chars": 1387,
+    "asks": true,
+    "words": 222,
+    "read_s": 56,
+    "listen_s": 83,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-26",
+  "closed_at": "2026-10-26T14:40-06:00",
+  "outcome": "tools/checks/dungeon625.mjs on main (e1588d4), green on GitHub alone (run 40396665224): every look, stairs up, hole down, the ledge hop, a pot lifted and thrown, a chest's gift into the backpack. That run also found tools/hazelrules531.mjs broken since the dungeon room (isCross missing from its sandbox, every world-way case threw); fixed in the same commit, 2,296 world-way cases pass again (run locally in node).",
+  "metrics": {
+   "open_minutes": 7,
+   "matthew_messages": 1,
+   "questions_to_matthew": 1,
+   "chars_exchanged": 1471,
+   "tokens_est": 367,
+   "sync_minutes_est": 0.0,
+   "replies": 1,
+   "claude_words": 222,
+   "read_minutes_est": 0.9,
+   "listen_minutes_est": 1.4,
+   "read_s_avg": 56,
+   "listen_s_avg": 83,
+   "models": {
+    "Opus 5.5 · Medium": 1.0
+   }
+  }
+ },
+ {
   "id": 616,
   "area": "hazel livelits: Cyrus's reveal design, the last open item: the GUI works while the syntax is revealed, on EVERY deck slide (44 slides, both decks), checked in Firefox on GitHub",
   "added": "2026-10-25T12:16-06:00",
@@ -172,6 +227,20 @@
     "model": "claude-opus-5-5",
     "effort": "medium",
     "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-26T14:27-06:00",
+    "from": "matthew",
+    "chars": 99,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-26T14:27-06:00",
+    "from": "matthew",
+    "chars": 36,
+    "asks": false,
+    "note": "from the transcripts"
    }
   ],
   "closed": "2026-10-26",
@@ -179,10 +248,10 @@
   "outcome": "Checked on #2635: deck run 40369192617 passed 12/12, every slide's livelit GUI works while revealed (Full Body included). #2597's run 40369198184 failed 11/12 at Full Body from speed (no #2469 perf; the perf commits don't port without #2469 itself); Matthew's call 10-26: no merge, #2597 keeps its slow deck.",
   "metrics": {
    "open_minutes": 1571,
-   "matthew_messages": 5,
+   "matthew_messages": 7,
    "questions_to_matthew": 4,
-   "chars_exchanged": 25223,
-   "tokens_est": 6305,
+   "chars_exchanged": 25358,
+   "tokens_est": 6339,
    "sync_minutes_est": 15.0,
    "replies": 10,
    "claude_words": 4379,
