@@ -4035,7 +4035,7 @@
    "source": "Matthew, 2026-10-22 15:32, in chat: \"Mint and enqueue -- ideation for Cyrus and Matthew -- respond to this finding: > A Hazel step pays for the editor around it. Every term the evaluator visits, values included, goes through five stages: state merging, a reuse check, probe sampling, recording effects, then the rule itself. On the loop, the rule is 7% of the time; garbage collection is 36%, and the stages and their trampolines 37%. Fumola's machine keeps values apart from syntax and steps a continuation: one match, no stages.\" https://matthewhammer.org/hazel/reports/029/",
    "url": "https://matthewhammer.org/hazel/reports/029/#hazel-step",
    "text": "<b>Respond to ^report(29)'s finding with ideas, for Cyrus and Matthew to weigh.</b> A Hazel step costs about 15 Fumola steps, and most of it is the editor's machinery around the rule (five stages a term, trampolines, allocation), paid even where nothing is probed or reused. A short write-up of options, each with what it would cost the editor's features (probes, the stepper, results kept across edits), what it would save (estimated from ^report(29)'s profiles, then measured where cheap), and how much code it touches. Candidates to start from: a fast path for terms already final (skip all five stages for a value); an evaluator instance with the stages compiled out when a program has no probes and no previous run to reuse (the library's calls, a game's rules); values as their own type beside expressions, as Fumola's machine has, so a value is never visited again; fewer allocations per pass (the trampoline closure, the state record, a fresh id per result); stage work proportional to what is probed, not to what is evaluated. Ends in an ideation note (a report in the series, work in progress) and a short agenda item for Cyrus.",
-   "progress": "15:32: minted and enqueued (ideation; for Cyrus and Matthew).",
+   "progress": "15:32: minted and enqueued (ideation; for Cyrus and Matthew). | 18:12 (10-26): DRAFTED ^report(35), 'Paying Only for What Is Watched' at http://localhost:8131/035/ (hazel-perf-report 30fb8eb, local, NOT pushed). Eight ideas, each with what it removes, its saving (measured: only the fast path, 559; the rest marked as estimates, upper bounds from report 29's profile shares), its cost to probes/stepper/reuse, and the code it touches (read at baa35eab57). New finding from reading Evaluator.re: every pass that STEPS re-enters all five stages (eval_2 calls evaluate on the result), so 'step in place' (idea 2, ~30 lines, same conditions as 559) is the next cheapest trial. Suggested order: land 559, try idea 2, re-profile, then choose a plain driver (3) vs pay-per-watched-term (6): that choice is the agenda item for Cyrus.",
    "log": [
     {
      "at": "2026-10-22T15:30-06:00",
@@ -4044,7 +4044,8 @@
      "asks": false,
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": "Matthew: read the ^report(35) draft (http://localhost:8131/035/), say publish; and whether its question for Cyrus (a second plain driver for the library, or one driver that pays per watched term) goes on the next agenda. Meanwhile I can trial idea 2 (step in place) on GitHub: say go."
   },
   {
    "id": 558,
