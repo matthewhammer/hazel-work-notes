@@ -1,5 +1,77 @@
 [
  {
+  "id": 637,
+  "area": "dress up: a full test run of today's releases",
+  "text": "<b>Dress Up: the whole test suite on today's main</b> (0.0.443 to 0.0.459, the dungeon work). Pushes to main deploy and skip the tests, and ^ticket(636)'s run found one tool broken by them; branch verify-main-1026 runs everything on GitHub (run 40397801927). Fix whatever it finds. AFK work, no decision needed.",
+  "added": "2026-10-26T14:41-06:00",
+  "opened": "2026-10-26T14:41-06:00",
+  "status": "done",
+  "tags": [
+   "AFK"
+  ],
+  "chips": [],
+  "source": "Claude, AFK protocol (2026-10-26)",
+  "progress": "16:27: full run 40397801927 found 5 failing checks. FIXED locally: (1) saveload: 🎒 backpack came back {} from 📂 Load AND every reload's autosave (top-level settings spread as objects) — savedOver() in 01-state.js; (2) key363: the 8 chest flourishes had no key — keys added; (3) layers335: dungeon side wall south of a way sorted outside its box — sorted at its own top; (4) edges214: the top-down dungeon exempt from the sky rule (TOP_DOWN_KINDS); (5) measure179: waited a fixed 90 s, the suite now ~106 s — waits for the game's estimate + 60 s. Diagnostic run 40412539118 (branch diag-637) checking the five; then release 0.0.460.",
+  "log": [
+   {
+    "at": "2026-10-26T14:34-06:00",
+    "from": "claude",
+    "chars": 2419,
+    "asks": false,
+    "words": 434,
+    "read_s": 109,
+    "listen_s": 163,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-26T14:41-06:00",
+    "from": "claude",
+    "chars": 1389,
+    "asks": false,
+    "words": 247,
+    "read_s": 62,
+    "listen_s": 93,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-26T16:47-06:00",
+    "from": "claude",
+    "chars": 4564,
+    "asks": false,
+    "words": 797,
+    "read_s": 201,
+    "listen_s": 299,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-26",
+  "closed_at": "2026-10-26T18:03-06:00",
+  "outcome": "0.0.460 released: backpack kept through Load and reload (real bug), 4 checks and 2 tools brought up to date; speed run for 0.0.460 ok, first green since 0.0.442",
+  "metrics": {
+   "open_minutes": 202,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 8372,
+   "tokens_est": 2093,
+   "sync_minutes_est": 7.0,
+   "replies": 3,
+   "claude_words": 1478,
+   "read_minutes_est": 6.2,
+   "listen_minutes_est": 9.2,
+   "read_s_avg": 124,
+   "listen_s_avg": 185,
+   "models": {
+    "Opus 5.5 · Medium": 1.0
+   }
+  }
+ },
+ {
   "id": 636,
   "area": "dress up: a CI check for the dungeon room",
   "text": "<b>Dress Up: a CI check for the dungeon room</b> (tools/checks/dungeon625.mjs): every look drawn (3 shades, 5 mosses, 5 mushrooms, 2 ledges, 3 holes); 🪜 stairs up and 🕳️ hole down between two worlds; the ledge hop; a pot lifted and thrown; a 💰 chest's gift into the 🎒 backpack. Until now these were tested only by hand in the browser pane. AFK work, no decision needed.",

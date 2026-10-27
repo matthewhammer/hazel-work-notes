@@ -8200,64 +8200,22 @@
      "note": "from the transcripts"
     }
    ]
-  },
-  {
-   "id": 637,
-   "area": "dress up: a full test run of today's releases",
-   "text": "<b>Dress Up: the whole test suite on today's main</b> (0.0.443 to 0.0.459, the dungeon work). Pushes to main deploy and skip the tests, and ^ticket(636)'s run found one tool broken by them; branch verify-main-1026 runs everything on GitHub (run 40397801927). Fix whatever it finds. AFK work, no decision needed.",
-   "added": "2026-10-26T14:41-06:00",
-   "opened": "2026-10-26T14:41-06:00",
-   "status": "open",
-   "tags": [
-    "AFK"
-   ],
-   "chips": [],
-   "source": "Claude, AFK protocol (2026-10-26)",
-   "progress": "16:27: full run 40397801927 found 5 failing checks. FIXED locally: (1) saveload: 🎒 backpack came back {} from 📂 Load AND every reload's autosave (top-level settings spread as objects) — savedOver() in 01-state.js; (2) key363: the 8 chest flourishes had no key — keys added; (3) layers335: dungeon side wall south of a way sorted outside its box — sorted at its own top; (4) edges214: the top-down dungeon exempt from the sky rule (TOP_DOWN_KINDS); (5) measure179: waited a fixed 90 s, the suite now ~106 s — waits for the game's estimate + 60 s. Diagnostic run 40412539118 (branch diag-637) checking the five; then release 0.0.460.",
-   "log": [
-    {
-     "at": "2026-10-26T14:34-06:00",
-     "from": "claude",
-     "chars": 2419,
-     "asks": false,
-     "words": 434,
-     "read_s": 109,
-     "listen_s": 163,
-     "model": "claude-opus-5-5",
-     "effort": "medium",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-26T14:41-06:00",
-     "from": "claude",
-     "chars": 1389,
-     "asks": false,
-     "words": 247,
-     "read_s": 62,
-     "listen_s": 93,
-     "model": "claude-opus-5-5",
-     "effort": "medium",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-26T16:47-06:00",
-     "from": "claude",
-     "chars": 4564,
-     "asks": false,
-     "words": 797,
-     "read_s": 201,
-     "listen_s": 299,
-     "model": "claude-opus-5-5",
-     "effort": "medium",
-     "note": "from the transcripts"
-    }
-   ]
   }
  ],
  "next_ticket": 636,
- "current_ticket": 637,
- "current_note": "14:40: ^ticket(636) closed (done); ^ticket(554) is next in the queue",
+ "current_ticket": 554,
+ "current_note": "18:03: ^ticket(637) closed (done); ^ticket(554) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 637,
+   "area": "dress up: a full test run of today's releases",
+   "added": "2026-10-26T14:41-06:00",
+   "text": "Dress Up: the whole test suite on today's main",
+   "source": "Claude, AFK protocol (2026-10-26)",
+   "status": "done",
+   "closed": "2026-10-26",
+   "outcome": "0.0.460 released: backpack kept through Load and reload (real bug), 4 checks and 2 tools brought up to date; speed run for 0.0.460 ok, first green since 0.0.442"
+  },
   {
    "id": 636,
    "area": "dress up: a CI check for the dungeon room",
@@ -14016,7 +13974,7 @@
   634,
   635
  ],
- "current_since": "2026-10-26T14:40-06:00",
+ "current_since": "2026-10-26T18:03-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
@@ -14406,6 +14364,13 @@
    "idle_minutes": 25,
    "words": "go",
    "stopped_on": "0.0.459 released; every open ticket but 616 blocked on Matthew, 616 waiting on #2597's deck run"
+  },
+  {
+   "at": "2026-10-26T18:05-06:00",
+   "since": "2026-10-26T18:03-06:00",
+   "idle_minutes": 2,
+   "words": "keep going",
+   "stopped_on": "^ticket(637): sent mid-turn, while closing it (0.0.460 speed run green 18:03)"
   }
  ],
  "ports_groups": [
