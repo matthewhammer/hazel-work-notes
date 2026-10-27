@@ -1,5 +1,86 @@
 [
  {
+  "id": 638,
+  "area": "hazel: #2635 catches up with #2469 (23 commits, m41-m44, through af81c60054), then its deck reruns in Firefox",
+  "text": "<b>#2635 catches up with #2469.</b> Merge #2469's 23 new commits (Cyrus's m41-m44: parse-error hints, whole-part replaces, and the trim that drops the branch-internal oracles, the outline's test-only edit API and unused code) into #2635, resolve conflicts with the livelit changes, build and test, push, and read the deck's Firefox run.",
+  "added": "2026-10-27T10:37-06:00",
+  "opened": "2026-10-27T10:37-06:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazel"
+  ],
+  "source": "Matthew, 2026-10-27, in chat: \"Merge #2469's 23 new commits (through af81c60054) into #2635 and rerun its deck.\" then \"mint and enqueue --- dashboard\"",
+  "progress": "10:53: merge pushed to #2635 as 547b9cfa8b (5 conflicts: Cyrus's deletion of FocusOracle, ItemEditOracle, Test_CellsParity and of the pre-:side key reader taken; our 🏗️/🖼️ mode fields join his no_side). Build clean, fmt clean, 18/19 touched test groups pass locally (MemberLivelitReprint only fails outside dune's sandbox: a relative path). CI running; the deck dispatched in Firefox, every case: run 40545336723.",
+  "log": [
+   {
+    "at": "2026-10-27T10:37-06:00",
+    "from": "matthew",
+    "chars": 80,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-27T10:37-06:00",
+    "from": "matthew",
+    "chars": 30,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-27T10:55-06:00",
+    "from": "claude",
+    "chars": 3636,
+    "asks": false,
+    "words": 616,
+    "read_s": 155,
+    "listen_s": 231,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-27T10:59-06:00",
+    "from": "matthew",
+    "chars": 45,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-27T11:00-06:00",
+    "from": "claude",
+    "chars": 2011,
+    "asks": false,
+    "words": 357,
+    "read_s": 90,
+    "listen_s": 134,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-27",
+  "closed_at": "2026-10-27T12:17-06:00",
+  "outcome": "#2635 caught up with #2469's 23 commits as 547b9cfa8b (5 conflicts, Cyrus's deletions taken). CI green (Fast checks, Full tests incl. MemberLivelitReprint); the deck in Firefox 12/12 (run 40545336723, 44 min).",
+  "metrics": {
+   "open_minutes": 100,
+   "matthew_messages": 3,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 5802,
+   "tokens_est": 1450,
+   "sync_minutes_est": 5.0,
+   "replies": 2,
+   "claude_words": 973,
+   "read_minutes_est": 4.1,
+   "listen_minutes_est": 6.1,
+   "read_s_avg": 122,
+   "listen_s_avg": 182,
+   "models": {
+    "Opus 5.5 · Medium": 1.0
+   }
+  }
+ },
+ {
   "id": 637,
   "area": "dress up: a full test run of today's releases",
   "text": "<b>Dress Up: the whole test suite on today's main</b> (0.0.443 to 0.0.459, the dungeon work). Pushes to main deploy and skip the tests, and ^ticket(636)'s run found one tool broken by them; branch verify-main-1026 runs everything on GitHub (run 40397801927). Fix whatever it finds. AFK work, no decision needed.",
