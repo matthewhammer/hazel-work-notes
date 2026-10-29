@@ -8953,10 +8953,29 @@
    "source": "Matthew, 2026-10-29 13:0x, in chat: \"let's look at what's current here https://github.com/hazelgrove/hazel/pull/2718\" then \"can we help in some way?\"; parked by \"new agenda: let's look at #2672\".",
    "progress": "NOTES (parked 13:06): Review: 9 inline comments. Main asks: (1) the invalid-pattern Theorem arm discards e1's info, so the statement's uses never reach co_ctx; (2) don't exempt theorem names by adding them to co_ctx as fake uses (TyDiCtx.free_variables reads it); put a ~warn_unused=false argument on upat_to_info_map, next to Warning.var_is_unused's _-prefix rule. Smaller: ~ana=p'.ty in the Theorem second pass (hover shows t : ?), drop the redundant ~ana in forall, use check_unused instead of a custom collector, drop the long list-theorem test, and three comment nits. CHECKED on the PR head 2fc400c979 (scratch ~/hazel-dev-962, CLI `hazel analyze -W`): (1) is real: `let x = 1 in theorem (a, b) = x == x in 0` warns 'unused variable: x' (alongside the expected BadTheorem error). Working: `theorem t = forall y -> true in 0` warns y; `forall y -> y == y` doesn't; `theorem t = true in t` no warnings; Var-pattern statement uses OK. Warning sites: Statics.re:2863 (upat_to_info_map Var) and StaticsBase.re:370 both call Warning.var_is_unused(co_ctx, name). Next if resumed: prototype ~warn_unused there and test; ask Matthew before posting anything to Negabinary's PR.",
    "log": []
+  },
+  {
+   "id": 651,
+   "area": "hazel: #2672 (measuring the font no longer scrolls to the caret): answer 7h3kk1d's two-regressions comment and suggestion",
+   "text": "7h3kk1d (16:22Z) says dropping the scroll from SetFontMetrics causes two regressions, read from the code only: (1) caret can load off-screen, (2) zoom no longer keeps the caret in view. He suggests a three-way scroll request (Never | Always | IfCaretVisible), checked in Main.apply before the render.",
+   "added": "2026-10-29T13:08-06:00",
+   "opened": "2026-10-29T13:08-06:00",
+   "status": "open",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "chips": [
+    "hazel",
+    "merge day",
+    "review"
+   ],
+   "source": "Matthew, 2026-10-29 13:0x, in chat: \"new agenda: let's look at #2672 --- get got a comment to repsond to\" then \"I'm interested in the claim that it causes two regressions -- how so? there's also a suggestion\".",
+   "progress": "NOTES: Checked against the code on font-metrics-keep-scroll (b060e7da08). (1) REAL, narrow: FontMetrics.init is 10x10; the caret's top is row * row_height (DecUtil.pos_str); the specimen SizeObserver's first SetFontMetrics comes after the first display, whose after_display already spent Main.scroll_to_caret (starts true). So a caret far down at load is revealed at its 10px-row spot, then moves when real metrics land; before #2672 SetFontMetrics re-revealed it. Needs a caret below the first screenful at load. (2) EFFECT REAL, MECHANISM DIFFERENT: on zoom, CSS-px rows barely change (Main.re's own comment: only device-pixel rounding, which is why on_dpr_change exists); what changes is the viewport, which shrinks in CSS px on zoom-in. A caret near the bottom falls out; before, on_dpr_change -> SetFontMetrics re-revealed it as a side effect. Most pages don't do this on zoom, so it's a smaller loss. SUGGESTION is sound and covers all three cases (startup, zoom, #2609). Startup works because the first reveal (at 10px rows) leaves the caret on screen in the old layout, so IfCaretVisible fires again. Main.apply runs before the render, so the DOM check sees the old layout. Proposed: implement it in #2672, ~30 lines (Updated.t scroll field + JsUtil.caret_in_view using find_scroll_container); verify in a browser off the laptop (build.hazel.org branch preview), since no headless browser here.",
+   "log": []
   }
  ],
- "next_ticket": 651,
- "current_ticket": 640,
+ "next_ticket": 652,
+ "current_ticket": 651,
  "current_note": "12:14: ^ticket(641) closed (done); ^ticket(640) is next in the queue",
  "closed_tickets": [
   {
