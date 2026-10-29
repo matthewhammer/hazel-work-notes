@@ -14,17 +14,46 @@
   ],
   "source": "Matthew, 2026-10-29 14:1x, in chat: \"#2756 Can we review this quick please?\"",
   "progress": "NOTES: Verdict LGTM. What it is: .github/workflows/perf-report.yml runs on ready PRs into dev (drafts skipped): head vs merge base, built with the head's harness copied into the base (bench/perf-compare.sh), evaluator step counts on 73 hazel-programs + bench/eval-bench.hz (significant at >=1% and >=20 steps, or a program that stops finishing) and 26 timing rows (let100/let500 x cold/warm/move/edit x statics/syntax/total, + eval plain/incremental; 5 alternating rounds x 5 reps; significant at >10% median AND disjoint min-max ranges). One sticky comment only when significant, edited to Resolved later. ~7 min per push. CHECKED: security is right (pull_request, not pull_request_target; report job contents:read + persist-credentials false; comment job has pull-requests:write but never checks out code, only posts the artifact; forks skipped; github-actions[bot] marker match). End-to-end tested by Cyrus on throwaway #2757 (comment, then resolved). CI all green; mergeable. Bench dir exists on dev (eval-bench.hz), so the cp into base/bench works. TO MENTION (none blocking): (1) speedups get the same '⚠️ Significant change' headline and ⚠️ rows as slowdowns; several of today's perf PRs would get a warning for being faster; suggest marking direction. (2) False alarms: by chance alone, 5-vs-5 ranges are disjoint 2/252 = 0.8% per row, so ~13-19% of no-change runs have >=1 disjoint row among 26 (fewer independent, since total tracks statics+syntax); the >10% rule does most of the filtering; 5 clean runs can't show the rate is low (a 20% rate passes 5 runs a third of the time). Fine for advisory; watch it. (3) Runner load: +~7 runner-minutes per push per ready PR; today 30+ runs queued at 13:22. Optional paths-ignore for docs-only changes.",
-  "log": [],
+  "log": [
+   {
+    "at": "2026-10-29T14:39-06:00",
+    "from": "matthew",
+    "chars": 39,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T14:42-06:00",
+    "from": "claude",
+    "chars": 2547,
+    "asks": false,
+    "words": 456,
+    "read_s": 115,
+    "listen_s": 171,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
   "closed": "2026-10-29",
   "closed_at": "2026-10-29T14:40-06:00",
   "outcome": "LGTM on #2756; three non-blocking notes: speedups flagged as warnings, false-alarm rate untested by 5 runs, ~7 runner-minutes per push.",
   "metrics": {
    "open_minutes": 20,
-   "matthew_messages": 0,
+   "matthew_messages": 1,
    "questions_to_matthew": 0,
-   "chars_exchanged": 0,
-   "tokens_est": 0,
-   "sync_minutes_est": 0
+   "chars_exchanged": 2586,
+   "tokens_est": 646,
+   "sync_minutes_est": 3.0,
+   "replies": 1,
+   "claude_words": 456,
+   "read_minutes_est": 1.9,
+   "listen_minutes_est": 2.9,
+   "read_s_avg": 115,
+   "listen_s_avg": 171,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
   }
  },
  {
