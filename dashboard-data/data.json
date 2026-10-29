@@ -8841,222 +8841,6 @@
    ]
   },
   {
-   "id": 641,
-   "area": "hazel: bring #2635 up to date (#2597's 12 deck commits + dev's #2730), CI green again",
-   "text": "Merge integration/livelits-splicerefs-full (12 commits: two livelit fixes, the Firefox deck sweep) and dev (#2730 dependency update) into #2635, rerun CI and the deck.",
-   "added": "2026-10-29T09:04-06:00",
-   "opened": "2026-10-29T09:04-06:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazel",
-    "merge day"
-   ],
-   "source": "Matthew, 2026-10-29 09:0x, in chat: \"today is a special work day, where we as a team are trying to coordinate more tightly, and merge PRs that are ready, in some order. ... let's look at our PR for livelits and modular editors, and decide how ready it is. People will want to know\"; then \"please update dashboard with our new tasks and focus for today\".",
-   "progress": "09:10: merged #2597 (9457565d70; content already in #2635 by cherry-picks, so the tree is unchanged) and dev (2c9708a890, #2730). @check + @fmt clean. Pushed; CI 40898112846 and deck 40898110273 running.",
-   "log": [
-    {
-     "at": "2026-10-29T09:03-06:00",
-     "from": "matthew",
-     "chars": 377,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T09:03-06:00",
-     "from": "matthew",
-     "chars": 62,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T09:05-06:00",
-     "from": "matthew",
-     "chars": 90,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T09:05-06:00",
-     "from": "claude",
-     "chars": 2139,
-     "asks": true,
-     "words": 308,
-     "read_s": 78,
-     "listen_s": 116,
-     "model": "claude-opus-5-5",
-     "effort": "medium",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T09:05-06:00",
-     "from": "claude",
-     "chars": 91,
-     "asks": false,
-     "words": 16,
-     "read_s": 4,
-     "listen_s": 6,
-     "model": "claude-opus-5-5",
-     "effort": "medium",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T09:11-06:00",
-     "from": "claude",
-     "chars": 3421,
-     "asks": true,
-     "words": 491,
-     "read_s": 124,
-     "listen_s": 184,
-     "model": "claude-opus-5-5",
-     "effort": "medium",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T09:14-06:00",
-     "from": "matthew",
-     "chars": 56,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T09:15-06:00",
-     "from": "claude",
-     "chars": 318,
-     "asks": false,
-     "words": 46,
-     "read_s": 12,
-     "listen_s": 17,
-     "model": "claude-opus-5-5",
-     "effort": "medium",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T09:51-06:00",
-     "from": "matthew",
-     "chars": 83,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T09:51-06:00",
-     "from": "claude",
-     "chars": 2111,
-     "asks": false,
-     "words": 306,
-     "read_s": 77,
-     "listen_s": 115,
-     "model": "claude-opus-5-5",
-     "effort": "medium",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T09:53-06:00",
-     "from": "matthew",
-     "chars": 195,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T09:54-06:00",
-     "from": "matthew",
-     "chars": 153,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T09:55-06:00",
-     "from": "claude",
-     "chars": 4497,
-     "asks": true,
-     "words": 631,
-     "read_s": 159,
-     "listen_s": 237,
-     "model": "claude-opus-5-5",
-     "effort": "medium",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T09:57-06:00",
-     "from": "matthew",
-     "chars": 150,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T09:57-06:00",
-     "from": "matthew",
-     "chars": 76,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T09:57-06:00",
-     "from": "matthew",
-     "chars": 39,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T09:57-06:00",
-     "from": "matthew",
-     "chars": 24,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T09:58-06:00",
-     "from": "claude",
-     "chars": 3664,
-     "asks": false,
-     "words": 488,
-     "read_s": 123,
-     "listen_s": 183,
-     "model": "claude-opus-5-5",
-     "effort": "medium",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T10:31-06:00",
-     "from": "matthew",
-     "chars": 208,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T10:31-06:00",
-     "from": "claude",
-     "chars": 2054,
-     "asks": false,
-     "words": 342,
-     "read_s": 86,
-     "listen_s": 128,
-     "model": "claude-opus-5-5",
-     "effort": "medium",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T10:35-06:00",
-     "from": "matthew",
-     "chars": 82,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T10:38-06:00",
-     "from": "claude",
-     "chars": 2120,
-     "asks": false,
-     "words": 337,
-     "read_s": 85,
-     "listen_s": 126,
-     "model": "claude-opus-5-5",
-     "effort": "medium",
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 642,
    "area": "hazel: the landing order for livelits — #2469 to dev first, then retarget #2635 to dev",
    "text": "#2635 targets #2597's branch, which targets the stale integration/livelits-splicerefs (no open PR). Plan with the team: #2469 (Andrew's, not ours to merge) lands on dev; then #2635 is retargeted to dev, showing only the livelit diff (~70k lines, 442 files); #2597 closes into it. Out of draft once the description says what reviewers should read.",
@@ -9103,9 +8887,19 @@
   }
  ],
  "next_ticket": 647,
- "current_ticket": 641,
- "current_note": "review of #2721 done (^ticket(646)); back to ^ticket(641), waiting on #2635 CI and deck; next review when Matthew sends one",
+ "current_ticket": 640,
+ "current_note": "12:14: ^ticket(641) closed (done); ^ticket(640) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 641,
+   "area": "hazel: bring #2635 up to date (#2597's 12 deck commits + dev's #2730), CI green again",
+   "added": "2026-10-29T09:04-06:00",
+   "text": "Merge integration/livelits-splicerefs-full (12 commits: two livelit fixes, the Firefox deck sweep) and dev (#2730 dependency update) into #2635, rerun CI and the deck.",
+   "source": "Matthew, 2026-10-29 09:0x, in chat: \"today is a special work day, where we as a team are trying to coordinate more…",
+   "status": "done",
+   "closed": "2026-10-29",
+   "outcome": "#2635 is up to date with #2597 and dev (9457565d70, 2c9708a890). CI run 40898112846: Fast checks and Full tests pass; Livelit deck in Firefox (40898110273) passes."
+  },
   {
    "id": 646,
    "area": "hazel review: #2721, coverage from manual browser sessions (7h3kk1d)",
@@ -14927,7 +14721,7 @@
   634,
   635
  ],
- "current_since": "2026-10-29T10:37-06:00",
+ "current_since": "2026-10-29T12:14-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
@@ -14939,9 +14733,9 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5811,
-  "words": 1261593,
-  "read_hours_est": 88.3,
+  "replies": 5812,
+  "words": 1261674,
+  "read_hours_est": 88.4,
   "listen_hours_est": 131.4,
   "read_s_avg": 55,
   "listen_s_avg": 81,
@@ -15207,9 +15001,9 @@
     "chars": 1781
    },
    "2026-10-29": {
-    "replies": 32,
-    "words": 5962,
-    "chars": 37398
+    "replies": 33,
+    "words": 6043,
+    "chars": 37865
    }
   }
  },
