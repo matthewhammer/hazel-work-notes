@@ -4035,7 +4035,7 @@
    "source": "Matthew, 2026-10-22 15:32, in chat: \"Mint and enqueue -- ideation for Cyrus and Matthew -- respond to this finding: > A Hazel step pays for the editor around it. Every term the evaluator visits, values included, goes through five stages: state merging, a reuse check, probe sampling, recording effects, then the rule itself. On the loop, the rule is 7% of the time; garbage collection is 36%, and the stages and their trampolines 37%. Fumola's machine keeps values apart from syntax and steps a continuation: one match, no stages.\" https://matthewhammer.org/hazel/reports/029/",
    "url": "https://matthewhammer.org/hazel/reports/029/#hazel-step",
    "text": "<b>Respond to ^report(29)'s finding with ideas, for Cyrus and Matthew to weigh.</b> A Hazel step costs about 15 Fumola steps, and most of it is the editor's machinery around the rule (five stages a term, trampolines, allocation), paid even where nothing is probed or reused. A short write-up of options, each with what it would cost the editor's features (probes, the stepper, results kept across edits), what it would save (estimated from ^report(29)'s profiles, then measured where cheap), and how much code it touches. Candidates to start from: a fast path for terms already final (skip all five stages for a value); an evaluator instance with the stages compiled out when a program has no probes and no previous run to reuse (the library's calls, a game's rules); values as their own type beside expressions, as Fumola's machine has, so a value is never visited again; fewer allocations per pass (the trampoline closure, the state record, a fresh id per result); stage work proportional to what is probed, not to what is evaluated. Ends in an ideation note (a report in the series, work in progress) and a short agenda item for Cyrus.",
-   "progress": "10-28 07:09: ^report(35) published as work in progress on his word (\"publish draft of report 35 -- wip\"): https://matthewhammer.org/hazel/reports/035/ (series index, nav, link preview; site 3b4f6a8). Still his: whether its question for Cyrus goes on the agenda, and a go for a trial of idea 2 (step in place).",
+   "progress": "10-28 07:09: ^report(35) published as work in progress on his word (\"publish draft of report 35 -- wip\"): https://matthewhammer.org/hazel/reports/035/ (series index, nav, link preview; site 3b4f6a8). Still his: whether its question for Cyrus goes on the agenda, and a go for a trial of idea 2 (step in place). 10-29 05:54: the step-in-place trial deferred on his word (\"maybe later\"); not started.",
    "log": [
     {
      "at": "2026-10-22T15:30-06:00",
@@ -4133,7 +4133,7 @@
      "note": "from the transcripts"
     }
    ],
-   "waiting": "Whether ^report(35)'s question for Cyrus goes on the agenda; a go for trying idea 2 (step in place) on GitHub."
+   "waiting": "Whether ^report(35)'s question for Cyrus goes on the agenda. The step-in-place trial: deferred (\"maybe later\"), his to restart."
   },
   {
    "id": 558,
@@ -8289,10 +8289,26 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 639,
+   "area": "dress up: ^du_report(23), a young player's guide to the 🎒 backpack (retro, as 17 and 18), with what it needs built: put a thing down in the world, pick it back up, more gifts, a small puzzle",
+   "text": "<b>^du_report(23): the 🎒 Backpack Guide.</b> For M and N to read and play today (school's off): make the backpack visible, put things in, take one out and put it down in the world. What's missing gets built as it is documented: a put-down button on each card, picking a thing back up with the action press, a few more gifts, and a small puzzle (a stone plate that wants the right thing on it). Published as work in progress from the start.",
+   "added": "2026-10-29T05:57-06:00",
+   "opened": "2026-10-29T05:57-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "report"
+   ],
+   "source": "Matthew, 2026-10-29, in chat: \"create a du_report in the form of another young player's guide (with that retro style we used for two others) --- this one explains: how to use the backpack: make visible, place item inside, take item out and place into world. If some of these features are missing, let's also work that as we document them.\" Then: \"M and N are off school today ... something to practice reading (the manual) and playing around with during screen time (the backpack, and maybe some extra items or even a small puzzle to solve)\"; \"let's publish the report publicy as WIP\".",
+   "progress": "05:57: minted. Today: visible = 🎒 tab's chip (works); in = chests only; out = missing.",
+   "log": []
   }
  ],
- "next_ticket": 639,
- "current_ticket": 554,
+ "next_ticket": 640,
+ "current_ticket": 639,
  "current_note": "12:17: ^ticket(638) closed (done); ^ticket(554) is next in the queue",
  "closed_tickets": [
   {
@@ -14073,7 +14089,7 @@
   634,
   635
  ],
- "current_since": "2026-10-27T12:17-06:00",
+ "current_since": "2026-10-29T05:57-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
