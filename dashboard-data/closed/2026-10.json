@@ -13,16 +13,24 @@
   ],
   "source": "Matthew, 2026-10-29, in chat: \"help me review this one next please https://github.com/hazelgrove/hazel/pull/2721\"; \"let's do tickets as we do these reviews too, with notes that I can read later\".",
   "progress": "10:36: reviewed the code (14 files, +278/-4); verdict in chat. NOTES: verdict LGTM, with two things to mention. How it works: CoverageHook.enabled/disabled.re picked by dune rules on HAZEL_WEB_COVERAGE=1 (src/web/util/dune); snapshot = Some(Bisect.Runtime.get_coverage_data) only in coverage builds, so ordinary/release bundles never link bisect. Worker posts ServerMessage.Coverage after each batch Result; WorkerClient keeps live + retired (restarted) workers' snapshots; CoverageExport.install defines window.hazelCoverage {download, files}; sidebar rail button only in coverage builds; one .coverage file per JS context, bisect-ppx-report sums them. Checked: fast checks pass, full tests were still pending at review; 7h3kk1d's own records-not-tuples comment is addressed (7ffdf93cf8). MENTION 1: trial merge conflicts with #2469 (modular-editors) in src/web/dune, WorkerClient.re, WorkerServer.re: whichever lands second resolves; small. Clean with our #2652. MENTION 2 (minor, coverage builds only): a worker killed mid-evaluation loses counts since its last Result, and every Result re-serializes all counters; fine for a dev tool. Codecov's 6.5% patch coverage is expected (browser-only code).",
-  "log": [],
+  "log": [
+   {
+    "at": "2026-10-29T10:36-06:00",
+    "from": "matthew",
+    "chars": 118,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
   "closed": "2026-10-29",
   "closed_at": "2026-10-29T10:37-06:00",
   "outcome": "LGTM given to Matthew for #2721 (browser-session coverage): ordinary builds untouched; conflicts with #2469 in the worker files to note; coverage-build-only caveats minor.",
   "metrics": {
    "open_minutes": 2,
-   "matthew_messages": 0,
+   "matthew_messages": 1,
    "questions_to_matthew": 0,
-   "chars_exchanged": 0,
-   "tokens_est": 0,
+   "chars_exchanged": 118,
+   "tokens_est": 29,
    "sync_minutes_est": 0
   }
  },
