@@ -8952,7 +8952,15 @@
    ],
    "source": "Matthew, 2026-10-29 13:0x, in chat: \"let's look at what's current here https://github.com/hazelgrove/hazel/pull/2718\" then \"can we help in some way?\"; parked by \"new agenda: let's look at #2672\".",
    "progress": "NOTES (parked 13:06): Review: 9 inline comments. Main asks: (1) the invalid-pattern Theorem arm discards e1's info, so the statement's uses never reach co_ctx; (2) don't exempt theorem names by adding them to co_ctx as fake uses (TyDiCtx.free_variables reads it); put a ~warn_unused=false argument on upat_to_info_map, next to Warning.var_is_unused's _-prefix rule. Smaller: ~ana=p'.ty in the Theorem second pass (hover shows t : ?), drop the redundant ~ana in forall, use check_unused instead of a custom collector, drop the long list-theorem test, and three comment nits. CHECKED on the PR head 2fc400c979 (scratch ~/hazel-dev-962, CLI `hazel analyze -W`): (1) is real: `let x = 1 in theorem (a, b) = x == x in 0` warns 'unused variable: x' (alongside the expected BadTheorem error). Working: `theorem t = forall y -> true in 0` warns y; `forall y -> y == y` doesn't; `theorem t = true in t` no warnings; Var-pattern statement uses OK. Warning sites: Statics.re:2863 (upat_to_info_map Var) and StaticsBase.re:370 both call Warning.var_is_unused(co_ctx, name). Next if resumed: prototype ~warn_unused there and test; ask Matthew before posting anything to Negabinary's PR.",
-   "log": []
+   "log": [
+    {
+     "at": "2026-10-29T13:03-06:00",
+     "from": "matthew",
+     "chars": 24,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   },
   {
    "id": 651,
@@ -8971,7 +8979,60 @@
    ],
    "source": "Matthew, 2026-10-29 13:0x, in chat: \"new agenda: let's look at #2672 --- get got a comment to repsond to\" then \"I'm interested in the claim that it causes two regressions -- how so? there's also a suggestion\".",
    "progress": "NOTES: Checked against the code on font-metrics-keep-scroll (b060e7da08). (1) REAL, narrow: FontMetrics.init is 10x10; the caret's top is row * row_height (DecUtil.pos_str); the specimen SizeObserver's first SetFontMetrics comes after the first display, whose after_display already spent Main.scroll_to_caret (starts true). So a caret far down at load is revealed at its 10px-row spot, then moves when real metrics land; before #2672 SetFontMetrics re-revealed it. Needs a caret below the first screenful at load. (2) EFFECT REAL, MECHANISM DIFFERENT: on zoom, CSS-px rows barely change (Main.re's own comment: only device-pixel rounding, which is why on_dpr_change exists); what changes is the viewport, which shrinks in CSS px on zoom-in. A caret near the bottom falls out; before, on_dpr_change -> SetFontMetrics re-revealed it as a side effect. Most pages don't do this on zoom, so it's a smaller loss. SUGGESTION is sound and covers all three cases (startup, zoom, #2609). Startup works because the first reveal (at 10px rows) leaves the caret on screen in the old layout, so IfCaretVisible fires again. Main.apply runs before the render, so the DOM check sees the old layout. Proposed: implement it in #2672, ~30 lines (Updated.t scroll field + JsUtil.caret_in_view using find_scroll_container); verify in a browser off the laptop (build.hazel.org branch preview), since no headless browser here.",
-   "log": []
+   "log": [
+    {
+     "at": "2026-10-29T13:03-06:00",
+     "from": "matthew",
+     "chars": 80,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-29T13:03-06:00",
+     "from": "claude",
+     "chars": 124,
+     "asks": false,
+     "words": 23,
+     "read_s": 6,
+     "listen_s": 9,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-29T13:04-06:00",
+     "from": "matthew",
+     "chars": 67,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-29T13:05-06:00",
+     "from": "matthew",
+     "chars": 69,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-29T13:05-06:00",
+     "from": "claude",
+     "chars": 104,
+     "asks": false,
+     "words": 21,
+     "read_s": 5,
+     "listen_s": 8,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-29T13:06-06:00",
+     "from": "matthew",
+     "chars": 25,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 652,
