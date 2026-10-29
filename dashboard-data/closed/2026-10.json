@@ -1,5 +1,33 @@
 [
  {
+  "id": 648,
+  "area": "hazel: #2749, follow-on tests for #2729 (a module's sums at the edges)",
+  "text": "Write tests for #2729's three untested edge cases (signature-annotated module, a name already in scope, nested modules) on a new branch off module-exports-ctrs, as a follow-on PR.",
+  "added": "2026-10-29T12:18-06:00",
+  "opened": "2026-10-29T12:18-06:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazel",
+   "merge day",
+   "tests"
+  ],
+  "source": "Matthew, 2026-10-29 12:1x, in chat: \"Write the follow-on tests for #2729's three edge cases now, on a new branch off module-exports-ctrs.\"",
+  "progress": "NOTES: PR #2749 (branch module-exports-ctrs-edge-tests, a69bba9afa, worktree ~/hazel-574), stacked on #2729's branch; tests only. Probed the branch's CLI first (12 s build), so the tests pin what it actually does. 7 statics tests + 1 evaluator test. (1) Signature: dev's signatures hide nothing (an extra value is an ERROR, per test_limitation_extra_member_multi; types are not compared), so a sum the signature leaves out still comes out, and M.Dir already did before #2729. Should flip if Modules II sealing lands. (2) Shadowing: a module's Dir shadows an outer type Dir (statics + evaluator). Two modules' N: the later one's is in scope unannotated (f(n) errors), but an expected type picks the earlier (f(N) fine). (3) Nesting: Inner's constructors do not come out of Outer; the name Inner does (Inner.Dir works unqualified after Outer, new with #2729), as does Outer.Inner.Dir. KNOWN BUG, skipped via skip_known_bug: with an outer type Dir = + A + B shadowed by a module's Dir = + N + E, f(A) typechecks and the match gets stuck at run time. NOT caused by #2729: plain `type Dir = ... in type Dir = ...` does the same; Typ.get_sum_constructors' comment assumes aliases are never shadowed. Local: Statics.Modules 86 OK + 1 skip (87, was 80), Evaluator.Modules 20 OK; @check release and dune fmt clean. CI was pending at open.",
+  "log": [],
+  "closed": "2026-10-29",
+  "closed_at": "2026-10-29T12:25-06:00",
+  "outcome": "#2749 opened (stacked on #2729): 7 statics tests + 1 evaluator test for signatures, shadowing and nesting, plus a known-bug skip for shadowed sum names. Passing locally; CI pending.",
+  "metrics": {
+   "open_minutes": 7,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 647,
   "area": "hazel: #2729 (a module's sum types are usable after it), does it need more tests?",
   "text": "Review the tests on our #2729 and decide whether to add more before review, or in a follow-on PR.",
