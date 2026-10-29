@@ -15,16 +15,24 @@
   ],
   "source": "Matthew, 2026-10-29 15:0x, in chat: \"Yes: review #2626 now (ticket + notes), and draft the end-of-day Slack message while I approve #2756.\"",
   "progress": "NOTES: Verdict LGTM. What it does: Cmd+A, Cmd+Home/End, collapsing a char selection, and selecting a term by id build the resulting zipper in one rebuild instead of walking the caret token by token (Cmd+A on 400 lines: ~4 s -> immediate; select-term-by-id 1.6-3.1 s -> 1-5 ms). How: #2602's direct jump (Move.relatives_beside_id) moves verbatim into Zipper.unzip_to_piece (takes a predicate) / unzip_to_id; Move.to_start/to_end = Zipper.caret_to_start/caret_to_end (unzip of unselect_and_zip); Select.all builds the whole-buffer selection directly; Move.jump_to_shard places the caret directly when the shard is its own piece, re-checks generalized_neighbors, else walks; Select.shard_range takes the sibling run l..r directly, else walks (also now finds l right of the caret: a fix). Every direct path falls back to the walk inside projectors or for other shapes. Tests: differential tests against the walk (Editing.Selection 'P8: structural extremes match the walk (large buffer)'; Move.JumpToId on every reference slide, with a control that the direct path ran). CI: green on 4cca538556 (same code); latest head 9406973567 is only a dev merge (#2759, #2760), its CI queued. Conflicts with #2469: none of its own (trial merge conflicts in exactly the same 7 files as dev alone; Zipper/Move/Select auto-merge). Nits, optional: the P8 test eprintfs walk-vs-structural timings on every run; direct_ranges is another global test counter beside direct_jumps.",
-  "log": [],
+  "log": [
+   {
+    "at": "2026-10-29T15:06-06:00",
+    "from": "matthew",
+    "chars": 101,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
   "closed": "2026-10-29",
   "closed_at": "2026-10-29T15:07-06:00",
   "outcome": "LGTM on #2626; two optional nits (timing eprintfs in a test, another global test counter).",
   "metrics": {
    "open_minutes": 5,
-   "matthew_messages": 0,
+   "matthew_messages": 1,
    "questions_to_matthew": 0,
-   "chars_exchanged": 0,
-   "tokens_est": 0,
+   "chars_exchanged": 101,
+   "tokens_est": 25,
    "sync_minutes_est": 0
   }
  },
