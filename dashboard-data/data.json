@@ -8888,11 +8888,47 @@
    "source": "Matthew, 2026-10-29 14:5x, in chat: \"what should I do next, with my limited human attention. I'd like to sign off in 30min or less\"; then \"Yes: review #2626 now (ticket + notes), and draft the end-of-day Slack message while I approve #2756.\"",
    "progress": "NOTES: as of 15:08 neither #2756 nor #2626 showed his approval on GitHub. The Slack draft claims both approved, so post it after.",
    "log": []
+  },
+  {
+   "id": 655,
+   "area": "hazel: where things stand after merge day (2026-10-29), to keep track",
+   "text": "Matthew's tracking ticket for the state of things at the end of merge day: what landed, what waits on whom, and what to pick up next. Update as the threads move; close when they are all settled.",
+   "added": "2026-10-29T15:40-06:00",
+   "opened": "2026-10-29T15:40-06:00",
+   "status": "open",
+   "tags": [
+    "tracking"
+   ],
+   "chips": [
+    "hazel",
+    "merge day"
+   ],
+   "source": "Matthew, 2026-10-29 15:4x, in chat: \"let's make a hazel ticket for me to keep track of the state of things from today.\"",
+   "progress": "STATE at 15:40, 2026-10-29. LANDED on dev today (ours): #2678 (CI evaluation budgets), #2700 (incremental vs from-scratch test). Reviewed by Matthew and merged: #2647 (tutorial solutions), #2721 (browser coverage). WAITING ON MATTHEW (^ticket(654)): approve #2756 (Cyrus, perf report; notes ^ticket(652)) and #2626 (disconcision, faster editing commands; notes ^ticket(653)), then post ~/hazel/experiments/slack-end-of-day-2026-10-29.txt, which asks Cyrus about the landing order (^ticket(642)). WAITING ON HAZEL-CORE REVIEW (ours, all green, independent of livelits): #2672 (font re-measure scrolls only if the caret was in view; reworked for 7h3kk1d's suggestion, reply posted, waits on his re-review; ^ticket(651)), #2652 (Firefox eval worker), #2661 then #2681 (Merkle-hashed types; value not re-walked), #2675 (reuse around a recursive let), #2651 (module binding analyzed once), #2676 (long types in the cursor inspector), #2729 (module sum types) with #2749 stacked (edge-case tests; ^ticket(648)). Also open, not requested today: #2610, #2673, #2608 (changes requested), held until #2469: #2614, #2603, #2671, #2606. ISSUE FILED: #2751 (an old sum's constructor passes as a new sum of the same name): #2732 fixes the plain case; whoever merges #2729/#2732 second must use Typ.extend_alias in #2729's fold (^ticket(649)). LIVELITS: #2635 up to date with #2597 and dev as of the morning, CI + Firefox deck green (^ticket(641)); landing order (#2469 to dev, then retarget #2635) is the open question (^ticket(642)); #2651's follow-up (self-naming module is an error again) still to port into #2635. PARKED: #2718 (Negabinary's theorem warnings): 7h3kk1d's main bug confirmed, no fix started (^ticket(650)). DEV NOW HAS: a merge queue (1 code-owner review, Fast checks required, groups of up to 5), CODEOWNERS = hazel-core, branch previews at build.hazel.org/<branch>/, and soon (#2756) an advisory per-PR perf report.",
+   "log": []
+  },
+  {
+   "id": 656,
+   "area": "dress up: the sword cuts vines, trees and other plants in the world; the cut bits vanish (for now)",
+   "text": "M's request, high priority: the sword can cut through vines, trees and other vegetation in the world, and the chopped-up bits vanish, for now.",
+   "added": "2026-10-29T15:42-06:00",
+   "opened": "2026-10-29T15:42-06:00",
+   "status": "open",
+   "tags": [
+    "high priority"
+   ],
+   "chips": [
+    "dress up",
+    "feature"
+   ],
+   "source": "Matthew, 2026-10-29 15:4x, in chat: \"switch to dress-up for a few hours. request from M: high priority --- sword can cut through vines and trees and other vegetation in the world, and the copped up bits -- vanish, for now\"",
+   "progress": "",
+   "log": []
   }
  ],
- "next_ticket": 655,
- "current_ticket": null,
- "current_note": "15:30: Merge day wrapped up. Waiting on you: approve #2756 and #2626, then post the Slack message (^ticket(654)). The rest waits on others' reviews.",
+ "next_ticket": 657,
+ "current_ticket": 656,
+ "current_note": "15:46: Reading how the sword and the world's plants work, to make the sword cut vines, trees and other plants.",
  "closed_tickets": [
   {
    "id": 640,
@@ -14732,7 +14768,9 @@
   }
  ],
  "queue": [
+  656,
   654,
+  655,
   642,
   639,
   611,
@@ -14795,7 +14833,7 @@
   634,
   635
  ],
- "current_since": "2026-10-29T15:30-06:00",
+ "current_since": "2026-10-29T15:46-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
