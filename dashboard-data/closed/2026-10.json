@@ -1,5 +1,32 @@
 [
  {
+  "id": 643,
+  "area": "hazel merge day: why #2635 keeps its perf fixes (#2661, #2681, #2673, #2675, #2671, #2672, #2652, #2603, #2651, #2614, #2610, #2608)",
+  "text": "<b>Justify to the team</b> why the performance PRs ported into #2635 stay in it rather than being removed: found on its programs, what each saves there, and the order to land them (dev PRs first, so #2635's diff shrinks). Draft: ~/hazel/experiments/2635-perf-prs-justification.md, for a comment on #2635.",
+  "added": "2026-10-29T09:10-06:00",
+  "opened": "2026-10-29T09:10-06:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazel",
+   "merge day"
+  ],
+  "source": "Matthew, 2026-10-29, in chat: \"after our PRs are up to date --- let's look through performance PRs that are relevant for our livelits x modular editors PR, and justify to the team why we'd prefer to include them (not remove from our PR).\"",
+  "progress": "09:10: draft written; 12 perf PRs are in #2635 (ported, adapted), #2606 is not (replaced by #2469's resident cache), #2651's follow-up 29c08fd8fa not ported. Waiting on Matthew: post as a #2635 comment? 09:14: posted on Matthew's go: https://github.com/hazelgrove/hazel/pull/2635#issuecomment-6500577673",
+  "log": [],
+  "closed": "2026-10-29",
+  "closed_at": "2026-10-29T09:14-06:00",
+  "outcome": "Posted the case for keeping #2635's 12 ported perf fixes (with #2606 and #2651's follow-up as stated exceptions) as a #2635 comment: https://github.com/hazelgrove/hazel/pull/2635#issuecomment-6500577673",
+  "metrics": {
+   "open_minutes": 5,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 638,
   "area": "hazel: #2635 catches up with #2469 (23 commits, m41-m44, through af81c60054), then its deck reruns in Firefox",
   "text": "<b>#2635 catches up with #2469.</b> Merge #2469's 23 new commits (Cyrus's m41-m44: parse-error hints, whole-part replaces, and the trim that drops the branch-internal oracles, the outline's test-only edit API and unused code) into #2635, resolve conflicts with the livelit changes, build and test, push, and read the deck's Firefox run.",
