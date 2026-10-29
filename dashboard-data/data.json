@@ -8978,7 +8978,7 @@
     "review"
    ],
    "source": "Matthew, 2026-10-29 13:0x, in chat: \"new agenda: let's look at #2672 --- get got a comment to repsond to\" then \"I'm interested in the claim that it causes two regressions -- how so? there's also a suggestion\".",
-   "progress": "NOTES: Checked against the code on font-metrics-keep-scroll (b060e7da08). (1) REAL, narrow: FontMetrics.init is 10x10; the caret's top is row * row_height (DecUtil.pos_str); the specimen SizeObserver's first SetFontMetrics comes after the first display, whose after_display already spent Main.scroll_to_caret (starts true). So a caret far down at load is revealed at its 10px-row spot, then moves when real metrics land; before #2672 SetFontMetrics re-revealed it. Needs a caret below the first screenful at load. (2) EFFECT REAL, MECHANISM DIFFERENT: on zoom, CSS-px rows barely change (Main.re's own comment: only device-pixel rounding, which is why on_dpr_change exists); what changes is the viewport, which shrinks in CSS px on zoom-in. A caret near the bottom falls out; before, on_dpr_change -> SetFontMetrics re-revealed it as a side effect. Most pages don't do this on zoom, so it's a smaller loss. SUGGESTION is sound and covers all three cases (startup, zoom, #2609). Startup works because the first reveal (at 10px rows) leaves the caret on screen in the old layout, so IfCaretVisible fires again. Main.apply runs before the render, so the DOM check sees the old layout. Proposed: implement it in #2672, ~30 lines (Updated.t scroll field + JsUtil.caret_in_view using find_scroll_container); verify in a browser off the laptop (build.hazel.org branch preview), since no headless browser here.",
+   "progress": "NOTES: Checked against the code on font-metrics-keep-scroll (b060e7da08). (1) REAL, narrow: FontMetrics.init is 10x10; the caret's top is row * row_height (DecUtil.pos_str); the specimen SizeObserver's first SetFontMetrics comes after the first display, whose after_display already spent Main.scroll_to_caret (starts true). So a caret far down at load is revealed at its 10px-row spot, then moves when real metrics land; before #2672 SetFontMetrics re-revealed it. Needs a caret below the first screenful at load. (2) EFFECT REAL, MECHANISM DIFFERENT: on zoom, CSS-px rows barely change (Main.re's own comment: only device-pixel rounding, which is why on_dpr_change exists); what changes is the viewport, which shrinks in CSS px on zoom-in. A caret near the bottom falls out; before, on_dpr_change -> SetFontMetrics re-revealed it as a side effect. Most pages don't do this on zoom, so it's a smaller loss. SUGGESTION is sound and covers all three cases (startup, zoom, #2609). Startup works because the first reveal (at 10px rows) leaves the caret on screen in the old layout, so IfCaretVisible fires again. Main.apply runs before the render, so the DOM check sees the old layout. Proposed: implement it in #2672, ~30 lines (Updated.t scroll field + JsUtil.caret_in_view using find_scroll_container); verify in a browser off the laptop (build.hazel.org branch preview), since no headless browser here. UPDATE 13:23: Implemented in e8125d9933 on font-metrics-keep-scroll (pushed; 8 files +69/-25): Updated.scroll = Never | Always | IfCaretVisible with merge_scroll; SetFontMetrics -> IfCaretVisible; Main.apply switch before the re-render; JsUtil.caret_in_view (+ .rei). Release @check, dune fmt clean; quick suite 4352 pass. FINDING: the suggestion does NOT cover zoom: the browser shrinks the CSS-px viewport before on_dpr_change runs, so a caret pushed out already reads as not visible. Remembering visibility at after_display would go stale on a plain scroll (= #2609), so left as is. Reply draft: ~/hazel/experiments/2672-reply-7h3kk1d.md, waiting on Matthew to read; not posted. Browser check pending: preview deploy run 40937967197 and CI 40937967294 queued behind a ~30-run backlog at 13:22; PR description still says SetFontMetrics never scrolls (needs updating with the reply).",
    "log": [
     {
      "at": "2026-10-29T13:03-06:00",
@@ -9029,6 +9029,25 @@
      "at": "2026-10-29T13:06-06:00",
      "from": "matthew",
      "chars": 25,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-29T13:08-06:00",
+     "from": "claude",
+     "chars": 3142,
+     "asks": true,
+     "words": 570,
+     "read_s": 144,
+     "listen_s": 214,
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-10-29T13:09-06:00",
+     "from": "matthew",
+     "chars": 134,
      "asks": false,
      "note": "from the transcripts"
     }
@@ -14913,7 +14932,7 @@
   },
   "since": "2026-08-27",
   "replies": 5819,
-  "words": 1263919,
+  "words": 1264297,
   "read_hours_est": 88.5,
   "listen_hours_est": 131.7,
   "read_s_avg": 55,
@@ -15181,8 +15200,8 @@
    },
    "2026-10-29": {
     "replies": 40,
-    "words": 8288,
-    "chars": 50822
+    "words": 8666,
+    "chars": 53063
    }
   }
  },
