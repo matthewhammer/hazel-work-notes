@@ -8794,11 +8794,61 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 640,
+   "area": "hazel merge day (10-29): what landed on dev, and how ready #2635 (livelits × modular editors) is",
+   "text": "<b>Team merge day.</b> Survey dev since 10-10, then judge #2635's readiness for the team: CI, reviews, what it still lacks, and the order it can land in.",
+   "added": "2026-10-29T09:04-06:00",
+   "opened": "2026-10-29T09:04-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "merge day"
+   ],
+   "source": "Matthew, 2026-10-29 09:0x, in chat: \"today is a special work day, where we as a team are trying to coordinate more tightly, and merge PRs that are ready, in some order. ... let's look at our PR for livelits and modular editors, and decide how ready it is. People will want to know\"; then \"please update dashboard with our new tasks and focus for today\".",
+   "progress": "09:04: dev since 10-10 is only #2630, #2649, #2679 (ours), #2730 deps. #2635: draft, CI all green at 547b9cfa8b incl. the deck; has all of #2469; lacks #2597's 12 deck commits (10-25/26) and dev's #2730; no reviews yet. 09:05: verdict given in chat; Matthew said go on ^ticket(641).",
+   "log": []
+  },
+  {
+   "id": 641,
+   "area": "hazel: bring #2635 up to date (#2597's 12 deck commits + dev's #2730), CI green again",
+   "text": "Merge integration/livelits-splicerefs-full (12 commits: two livelit fixes, the Firefox deck sweep) and dev (#2730 dependency update) into #2635, rerun CI and the deck.",
+   "added": "2026-10-29T09:04-06:00",
+   "opened": "2026-10-29T09:04-06:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "merge day"
+   ],
+   "source": "Matthew, 2026-10-29 09:0x, in chat: \"today is a special work day, where we as a team are trying to coordinate more tightly, and merge PRs that are ready, in some order. ... let's look at our PR for livelits and modular editors, and decide how ready it is. People will want to know\"; then \"please update dashboard with our new tasks and focus for today\".",
+   "progress": "",
+   "log": []
+  },
+  {
+   "id": 642,
+   "area": "hazel: the landing order for livelits — #2469 to dev first, then retarget #2635 to dev",
+   "text": "#2635 targets #2597's branch, which targets the stale integration/livelits-splicerefs (no open PR). Plan with the team: #2469 (Andrew's, not ours to merge) lands on dev; then #2635 is retargeted to dev, showing only the livelit diff (~70k lines, 442 files); #2597 closes into it. Out of draft once the description says what reviewers should read.",
+   "added": "2026-10-29T09:04-06:00",
+   "opened": "2026-10-29T09:04-06:00",
+   "status": "open",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "chips": [
+    "hazel",
+    "merge day"
+   ],
+   "source": "Matthew, 2026-10-29 09:0x, in chat: \"today is a special work day, where we as a team are trying to coordinate more tightly, and merge PRs that are ready, in some order. ... let's look at our PR for livelits and modular editors, and decide how ready it is. People will want to know\"; then \"please update dashboard with our new tasks and focus for today\".",
+   "progress": "",
+   "log": []
   }
  ],
- "next_ticket": 640,
- "current_ticket": 639,
- "current_note": "12:17: ^ticket(638) closed (done); ^ticket(554) is next in the queue",
+ "next_ticket": 643,
+ "current_ticket": 641,
+ "current_note": "09:05: ^ticket(641) current — merging #2597's 12 commits and dev into #2635; ^ticket(640) answered (not ready: draft, stacked, behind #2597)",
  "closed_tickets": [
   {
    "id": 638,
@@ -14518,6 +14568,9 @@
   }
  ],
  "queue": [
+  640,
+  642,
+  639,
   611,
   276,
   609,
@@ -14578,7 +14631,7 @@
   634,
   635
  ],
- "current_since": "2026-10-29T05:57-06:00",
+ "current_since": "2026-10-29T09:05-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
@@ -14590,8 +14643,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5801,
-  "words": 1258287,
+  "replies": 5802,
+  "words": 1258301,
   "read_hours_est": 88.1,
   "listen_hours_est": 131.1,
   "read_s_avg": 55,
@@ -14858,9 +14911,9 @@
     "chars": 1781
    },
    "2026-10-29": {
-    "replies": 22,
-    "words": 2656,
-    "chars": 14981
+    "replies": 23,
+    "words": 2670,
+    "chars": 15063
    }
   }
  },
