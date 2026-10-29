@@ -8934,9 +8934,28 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 650,
+   "area": "hazel: #2718 (Negabinary: unused warnings for theorems and forall binders): can we help with 7h3kk1d's requested changes?",
+   "text": "7h3kk1d requested changes on #2718 at 18:54Z. Not our branch: help by checking his claims and prototyping his suggested ~warn_unused fix to hand to Negabinary (as a comment or a PR into fix/theorem-unused-warnings, with Matthew's OK).",
+   "added": "2026-10-29T13:01-06:00",
+   "opened": "2026-10-29T13:01-06:00",
+   "status": "open",
+   "tags": [
+    "parked"
+   ],
+   "chips": [
+    "hazel",
+    "merge day",
+    "review"
+   ],
+   "source": "Matthew, 2026-10-29 13:0x, in chat: \"let's look at what's current here https://github.com/hazelgrove/hazel/pull/2718\" then \"can we help in some way?\"; parked by \"new agenda: let's look at #2672\".",
+   "progress": "NOTES (parked 13:06): Review: 9 inline comments. Main asks: (1) the invalid-pattern Theorem arm discards e1's info, so the statement's uses never reach co_ctx; (2) don't exempt theorem names by adding them to co_ctx as fake uses (TyDiCtx.free_variables reads it); put a ~warn_unused=false argument on upat_to_info_map, next to Warning.var_is_unused's _-prefix rule. Smaller: ~ana=p'.ty in the Theorem second pass (hover shows t : ?), drop the redundant ~ana in forall, use check_unused instead of a custom collector, drop the long list-theorem test, and three comment nits. CHECKED on the PR head 2fc400c979 (scratch ~/hazel-dev-962, CLI `hazel analyze -W`): (1) is real: `let x = 1 in theorem (a, b) = x == x in 0` warns 'unused variable: x' (alongside the expected BadTheorem error). Working: `theorem t = forall y -> true in 0` warns y; `forall y -> y == y` doesn't; `theorem t = true in t` no warnings; Var-pattern statement uses OK. Warning sites: Statics.re:2863 (upat_to_info_map Var) and StaticsBase.re:370 both call Warning.var_is_unused(co_ctx, name). Next if resumed: prototype ~warn_unused there and test; ask Matthew before posting anything to Negabinary's PR.",
+   "log": []
   }
  ],
- "next_ticket": 650,
+ "next_ticket": 651,
  "current_ticket": 640,
  "current_note": "12:14: ^ticket(641) closed (done); ^ticket(640) is next in the queue",
  "closed_tickets": [
@@ -14813,8 +14832,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5815,
-  "words": 1263175,
+  "replies": 5816,
+  "words": 1263198,
   "read_hours_est": 88.5,
   "listen_hours_est": 131.6,
   "read_s_avg": 55,
@@ -15081,9 +15100,9 @@
     "chars": 1781
    },
    "2026-10-29": {
-    "replies": 36,
-    "words": 7544,
-    "chars": 46687
+    "replies": 37,
+    "words": 7567,
+    "chars": 46811
    }
   }
  },
