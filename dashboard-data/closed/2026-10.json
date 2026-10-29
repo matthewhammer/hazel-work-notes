@@ -1,5 +1,33 @@
 [
  {
+  "id": 649,
+  "area": "hazel: issue #2751, an old sum's constructor passes as a new sum of the same name",
+  "text": "Open a GitHub issue for the shadowed-type-name bug found while writing #2749's tests, linking #2749's skipped test.",
+  "added": "2026-10-29T12:33-06:00",
+  "opened": "2026-10-29T12:33-06:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazel",
+   "merge day",
+   "issue"
+  ],
+  "source": "Matthew, 2026-10-29 12:3x, in chat: \"Open a GitHub issue for the shadowed-type-name bug (an old constructor passes as the new type of the same name), linking #2749's skipped test.\"",
+  "progress": "NOTES: Issue #2751. Confirmed on current dev (1014553334, scratch ~/hazel-dev-962 moved from 962a7cb to origin/dev; left detached at dev): `type Dir = + A + B in type Dir = + N + E in ... f(A)` has no static errors and runs to a stuck `case A | N => 1 | E => 2 end`. Same root cause as #2478 (disconcision: type names don't resolve lexically). Related open PRs, probed with each branch's CLI: #2686 (disconcision, keep type-alias resolution lexical) alone does NOT fix it; #2732 (7h3kk1d, stacked on #2686) DOES: \"Expecting type Dir' but got inconsistent type Dir\" (Typ.extend_tvar renames the older type in older vars and constructors). #2729 x #2732 CONFLICT in Statics.re's module-binding arm (#2732 swaps Ctx.extend_alias for Typ.extend_alias). Scratch merge: with Typ.extend_alias in #2729's fold too, the module form f(A) is an error and f(N) still runs to 1; keeping Ctx.extend_alias there leaves it accepted. Said so in the issue. Linked from #2749: test comment names Issue #2751 (3abddbf787, pushed) and a PR comment (issuecomment-6505154993). Did not comment on #2732 itself; the issue's mention shows on its timeline.",
+  "log": [],
+  "closed": "2026-10-29",
+  "closed_at": "2026-10-29T12:34-06:00",
+  "outcome": "Opened #2751 and linked it from #2749 (test comment + PR comment). #2732 fixes the plain form; the module form needs Typ.extend_alias when #2729 and #2732 meet.",
+  "metrics": {
+   "open_minutes": 1,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 648,
   "area": "hazel: #2749, follow-on tests for #2729 (a module's sums at the edges)",
   "text": "Write tests for #2729's three untested edge cases (signature-annotated module, a name already in scope, nested modules) on a new branch off module-exports-ctrs, as a follow-on PR.",
