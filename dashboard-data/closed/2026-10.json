@@ -42,17 +42,32 @@
   ],
   "source": "Matthew, 2026-10-29 12:1x, in chat: \"https://github.com/hazelgrove/hazel/pull/2729 should we add more tests?\"; then \"maybe as a follow-on PR?\" and \"it looks like there already are tests.\"",
   "progress": "NOTES: Verdict: no more tests before merging; a follow-on is fine. #2729 already has 8 tests: 6 statics (built and matched outside the module, the type's name unqualified and qualified, a payload constructor, use in another module, not in scope before the module) and 2 evaluator (one through a second module). Codecov: every changed line covered. Change: in Statics.re's module-binding Let arm, each type the module exports also enters the body's context by its own name, with a sum's constructors. Recursive sums are fine: get_sum_constructors unrolls Rec. Untested edge cases, for a follow-on: (1) a module with a signature annotation whose signature leaves out the type: the constructors still come out, since the exports come from the items and not the signature. Check whether that should be hidden. (2) a name already in scope (an outer `type Dir`, or two modules both exporting N): the later one wins. (3) a nested module: the inner module's name now also comes out unqualified; its sums' constructors do not. Branch is 82 commits behind dev; CI was green when it ran. Waiting on 7h3kk1d's review.",
-  "log": [],
+  "log": [
+   {
+    "at": "2026-10-29T12:16-06:00",
+    "from": "matthew",
+    "chars": 24,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T12:17-06:00",
+    "from": "matthew",
+    "chars": 38,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
   "closed": "2026-10-29",
   "closed_at": "2026-10-29T12:17-06:00",
   "outcome": "Answered: #2729's 8 tests cover the change; three edge cases (signature-annotated module, a name already in scope, a nested module) can go in a follow-on PR.",
   "metrics": {
    "open_minutes": 3,
-   "matthew_messages": 0,
+   "matthew_messages": 2,
    "questions_to_matthew": 0,
-   "chars_exchanged": 0,
-   "tokens_est": 0,
-   "sync_minutes_est": 0
+   "chars_exchanged": 62,
+   "tokens_est": 15,
+   "sync_minutes_est": 1.0
   }
  },
  {
