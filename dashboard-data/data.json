@@ -8810,7 +8810,7 @@
     "merge day"
    ],
    "source": "Matthew, 2026-10-29 09:0x, in chat: \"today is a special work day, where we as a team are trying to coordinate more tightly, and merge PRs that are ready, in some order. ... let's look at our PR for livelits and modular editors, and decide how ready it is. People will want to know\"; then \"please update dashboard with our new tasks and focus for today\".",
-   "progress": "09:04: dev since 10-10 is only #2630, #2649, #2679 (ours), #2730 deps. #2635: draft, CI all green at 547b9cfa8b incl. the deck; has all of #2469; lacks #2597's 12 deck commits (10-25/26) and dev's #2730; no reviews yet. 09:05: verdict given in chat; Matthew said go on ^ticket(641).",
+   "progress": "09:04: dev since 10-10 is only #2630, #2649, #2679 (ours), #2730 deps. #2635: draft, CI all green at 547b9cfa8b incl. the deck; has all of #2469; lacks #2597's 12 deck commits (10-25/26) and dev's #2730; no reviews yet. 09:05: verdict given in chat; Matthew said go on ^ticket(641). CORRECTION: #2597's 12 commits were already in #2635 as cherry-picks (10-26); only ancestry was missing.",
    "log": []
   },
   {
@@ -8826,7 +8826,7 @@
     "merge day"
    ],
    "source": "Matthew, 2026-10-29 09:0x, in chat: \"today is a special work day, where we as a team are trying to coordinate more tightly, and merge PRs that are ready, in some order. ... let's look at our PR for livelits and modular editors, and decide how ready it is. People will want to know\"; then \"please update dashboard with our new tasks and focus for today\".",
-   "progress": "",
+   "progress": "09:10: merged #2597 (9457565d70; content already in #2635 by cherry-picks, so the tree is unchanged) and dev (2c9708a890, #2730). @check + @fmt clean. Pushed; CI 40898112846 and deck 40898110273 running.",
    "log": []
   },
   {
@@ -8846,9 +8846,27 @@
    "source": "Matthew, 2026-10-29 09:0x, in chat: \"today is a special work day, where we as a team are trying to coordinate more tightly, and merge PRs that are ready, in some order. ... let's look at our PR for livelits and modular editors, and decide how ready it is. People will want to know\"; then \"please update dashboard with our new tasks and focus for today\".",
    "progress": "",
    "log": []
+  },
+  {
+   "id": 643,
+   "area": "hazel merge day: why #2635 keeps its perf fixes (#2661, #2681, #2673, #2675, #2671, #2672, #2652, #2603, #2651, #2614, #2610, #2608)",
+   "text": "<b>Justify to the team</b> why the performance PRs ported into #2635 stay in it rather than being removed: found on its programs, what each saves there, and the order to land them (dev PRs first, so #2635's diff shrinks). Draft: ~/hazel/experiments/2635-perf-prs-justification.md, for a comment on #2635.",
+   "added": "2026-10-29T09:10-06:00",
+   "opened": "2026-10-29T09:10-06:00",
+   "status": "open",
+   "tags": [
+    "waiting on Matthew"
+   ],
+   "chips": [
+    "hazel",
+    "merge day"
+   ],
+   "source": "Matthew, 2026-10-29, in chat: \"after our PRs are up to date --- let's look through performance PRs that are relevant for our livelits x modular editors PR, and justify to the team why we'd prefer to include them (not remove from our PR).\"",
+   "progress": "09:10: draft written; 12 perf PRs are in #2635 (ported, adapted), #2606 is not (replaced by #2469's resident cache), #2651's follow-up 29c08fd8fa not ported. Waiting on Matthew: post as a #2635 comment?",
+   "log": []
   }
  ],
- "next_ticket": 643,
+ "next_ticket": 644,
  "current_ticket": 641,
  "current_note": "09:05: ^ticket(641) current — merging #2597's 12 commits and dev into #2635; ^ticket(640) answered (not ready: draft, stacked, behind #2597)",
  "closed_tickets": [
@@ -14570,6 +14588,7 @@
   }
  ],
  "queue": [
+  643,
   640,
   642,
   639,
@@ -14645,8 +14664,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5802,
-  "words": 1258301,
+  "replies": 5804,
+  "words": 1258662,
   "read_hours_est": 88.1,
   "listen_hours_est": 131.1,
   "read_s_avg": 55,
@@ -14913,9 +14932,9 @@
     "chars": 1781
    },
    "2026-10-29": {
-    "replies": 23,
-    "words": 2670,
-    "chars": 15063
+    "replies": 25,
+    "words": 3031,
+    "chars": 17477
    }
   }
  },
