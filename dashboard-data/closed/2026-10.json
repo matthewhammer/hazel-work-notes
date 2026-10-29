@@ -1,5 +1,188 @@
 [
  {
+  "id": 640,
+  "area": "hazel merge day (10-29): what landed on dev, and how ready #2635 (livelits × modular editors) is",
+  "text": "<b>Team merge day.</b> Survey dev since 10-10, then judge #2635's readiness for the team: CI, reviews, what it still lacks, and the order it can land in.",
+  "added": "2026-10-29T09:04-06:00",
+  "opened": "2026-10-29T09:04-06:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazel",
+   "merge day"
+  ],
+  "source": "Matthew, 2026-10-29 09:0x, in chat: \"today is a special work day, where we as a team are trying to coordinate more tightly, and merge PRs that are ready, in some order. ... let's look at our PR for livelits and modular editors, and decide how ready it is. People will want to know\"; then \"please update dashboard with our new tasks and focus for today\".",
+  "progress": "09:04: dev since 10-10 is only #2630, #2649, #2679 (ours), #2730 deps. #2635: draft, CI all green at 547b9cfa8b incl. the deck; has all of #2469; lacks #2597's 12 deck commits (10-25/26) and dev's #2730; no reviews yet. 09:05: verdict given in chat; Matthew said go on ^ticket(641). CORRECTION: #2597's 12 commits were already in #2635 as cherry-picks (10-26); only ancestry was missing.",
+  "log": [
+   {
+    "at": "2026-10-29T09:03-06:00",
+    "from": "matthew",
+    "chars": 377,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T09:03-06:00",
+    "from": "matthew",
+    "chars": 62,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T09:05-06:00",
+    "from": "claude",
+    "chars": 2139,
+    "asks": true,
+    "words": 308,
+    "read_s": 78,
+    "listen_s": 116,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T12:13-06:00",
+    "from": "matthew",
+    "chars": 74,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T12:15-06:00",
+    "from": "claude",
+    "chars": 2469,
+    "asks": true,
+    "words": 408,
+    "read_s": 103,
+    "listen_s": 153,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T12:16-06:00",
+    "from": "matthew",
+    "chars": 72,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T12:19-06:00",
+    "from": "claude",
+    "chars": 1541,
+    "asks": true,
+    "words": 268,
+    "read_s": 68,
+    "listen_s": 100,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T12:36-06:00",
+    "from": "claude",
+    "chars": 2327,
+    "asks": false,
+    "words": 382,
+    "read_s": 96,
+    "listen_s": 143,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T14:06-06:00",
+    "from": "matthew",
+    "chars": 7,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T14:06-06:00",
+    "from": "claude",
+    "chars": 1353,
+    "asks": true,
+    "words": 211,
+    "read_s": 53,
+    "listen_s": 79,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T14:07-06:00",
+    "from": "matthew",
+    "chars": 99,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T14:08-06:00",
+    "from": "claude",
+    "chars": 956,
+    "asks": false,
+    "words": 151,
+    "read_s": 38,
+    "listen_s": 57,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T14:58-06:00",
+    "from": "matthew",
+    "chars": 94,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T14:59-06:00",
+    "from": "claude",
+    "chars": 1265,
+    "asks": true,
+    "words": 208,
+    "read_s": 52,
+    "listen_s": 78,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T15:08-06:00",
+    "from": "claude",
+    "chars": 2592,
+    "asks": false,
+    "words": 436,
+    "read_s": 110,
+    "listen_s": 164,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-29",
+  "closed_at": "2026-10-29T15:30-06:00",
+  "outcome": "Merge day 10-29: #2635 judged (up to date with #2597 and dev; CI + Firefox deck green), perf-PR justification posted, merge queue found, 8 standalone PRs put up for hazel-core review (2 of ours landed: #2678, #2700), and reviews for Matthew of #2647, #2721, #2729, #2756, #2626 (^ticket(645)-^ticket(653)).",
+  "metrics": {
+   "open_minutes": 387,
+   "matthew_messages": 7,
+   "questions_to_matthew": 5,
+   "chars_exchanged": 15427,
+   "tokens_est": 3856,
+   "sync_minutes_est": 20.0,
+   "replies": 8,
+   "claude_words": 2372,
+   "read_minutes_est": 10.0,
+   "listen_minutes_est": 14.8,
+   "read_s_avg": 75,
+   "listen_s_avg": 111,
+   "models": {
+    "Opus 5.5 · Medium": 0.5,
+    "Opus 5.5 · Xhigh": 0.5
+   }
+  }
+ },
+ {
   "id": 653,
   "area": "hazel: review #2626 (disconcision: faster editing commands, build the zipper instead of walking the caret)",
   "text": "Review #2626, which requests Matthew by name, for his LGTM and approval before signing off.",
