@@ -1,5 +1,141 @@
 [
  {
+  "id": 651,
+  "area": "hazel: #2672 (measuring the font no longer scrolls to the caret): answer 7h3kk1d's two-regressions comment and suggestion",
+  "text": "7h3kk1d (16:22Z) says dropping the scroll from SetFontMetrics causes two regressions, read from the code only: (1) caret can load off-screen, (2) zoom no longer keeps the caret in view. He suggests a three-way scroll request (Never | Always | IfCaretVisible), checked in Main.apply before the render.",
+  "added": "2026-10-29T13:08-06:00",
+  "opened": "2026-10-29T13:08-06:00",
+  "status": "done",
+  "tags": [
+   "blocked on Matthew"
+  ],
+  "chips": [
+   "hazel",
+   "merge day",
+   "review"
+  ],
+  "source": "Matthew, 2026-10-29 13:0x, in chat: \"new agenda: let's look at #2672 --- get got a comment to repsond to\" then \"I'm interested in the claim that it causes two regressions -- how so? there's also a suggestion\".",
+  "progress": "NOTES: Checked against the code on font-metrics-keep-scroll (b060e7da08). (1) REAL, narrow: FontMetrics.init is 10x10; the caret's top is row * row_height (DecUtil.pos_str); the specimen SizeObserver's first SetFontMetrics comes after the first display, whose after_display already spent Main.scroll_to_caret (starts true). So a caret far down at load is revealed at its 10px-row spot, then moves when real metrics land; before #2672 SetFontMetrics re-revealed it. Needs a caret below the first screenful at load. (2) EFFECT REAL, MECHANISM DIFFERENT: on zoom, CSS-px rows barely change (Main.re's own comment: only device-pixel rounding, which is why on_dpr_change exists); what changes is the viewport, which shrinks in CSS px on zoom-in. A caret near the bottom falls out; before, on_dpr_change -> SetFontMetrics re-revealed it as a side effect. Most pages don't do this on zoom, so it's a smaller loss. SUGGESTION is sound and covers all three cases (startup, zoom, #2609). Startup works because the first reveal (at 10px rows) leaves the caret on screen in the old layout, so IfCaretVisible fires again. Main.apply runs before the render, so the DOM check sees the old layout. Proposed: implement it in #2672, ~30 lines (Updated.t scroll field + JsUtil.caret_in_view using find_scroll_container); verify in a browser off the laptop (build.hazel.org branch preview), since no headless browser here. UPDATE 13:23: Implemented in e8125d9933 on font-metrics-keep-scroll (pushed; 8 files +69/-25): Updated.scroll = Never | Always | IfCaretVisible with merge_scroll; SetFontMetrics -> IfCaretVisible; Main.apply switch before the re-render; JsUtil.caret_in_view (+ .rei). Release @check, dune fmt clean; quick suite 4352 pass. FINDING: the suggestion does NOT cover zoom: the browser shrinks the CSS-px viewport before on_dpr_change runs, so a caret pushed out already reads as not visible. Remembering visibility at after_display would go stale on a plain scroll (= #2609), so left as is. Reply draft: ~/hazel/experiments/2672-reply-7h3kk1d.md, waiting on Matthew to read; not posted. Browser check pending: preview deploy run 40937967197 and CI 40937967294 queued behind a ~30-run backlog at 13:22; PR description still says SetFontMetrics never scrolls (needs updating with the reply). BROWSER CHECK 13:50 (pane shown, 60 fps; 1000x420, tutorial basics slide, caret row 2; temporary `.code { font-size: 30px }`, rows 25.1 -> 43.5; two runs each): e8125d9 preview: caret visible 4px above bottom -> scrolls 148->235, stays in view; caret scrolled away below view -> stays at 78. dev@1014553 control: visible -> 148->235; scrolled away -> JUMPS 78->235 (#2609). First attempt resized #font-specimen alone: false failure (caret hangs below .code-container, find_scroll_container picks it); also the hidden pane ran 1 rAF/s. Zoom not testable in the pane. Draft reply updated with the table; still not posted, waiting on Matthew.",
+  "log": [
+   {
+    "at": "2026-10-29T13:03-06:00",
+    "from": "matthew",
+    "chars": 80,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T13:03-06:00",
+    "from": "claude",
+    "chars": 124,
+    "asks": false,
+    "words": 23,
+    "read_s": 6,
+    "listen_s": 9,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T13:04-06:00",
+    "from": "matthew",
+    "chars": 67,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T13:05-06:00",
+    "from": "matthew",
+    "chars": 69,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T13:05-06:00",
+    "from": "claude",
+    "chars": 104,
+    "asks": false,
+    "words": 21,
+    "read_s": 5,
+    "listen_s": 8,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T13:06-06:00",
+    "from": "matthew",
+    "chars": 25,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T13:08-06:00",
+    "from": "claude",
+    "chars": 3142,
+    "asks": true,
+    "words": 570,
+    "read_s": 144,
+    "listen_s": 214,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T13:09-06:00",
+    "from": "matthew",
+    "chars": 134,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T13:24-06:00",
+    "from": "claude",
+    "chars": 3006,
+    "asks": true,
+    "words": 508,
+    "read_s": 128,
+    "listen_s": 190,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T13:33-06:00",
+    "from": "claude",
+    "chars": 3630,
+    "asks": false,
+    "words": 653,
+    "read_s": 165,
+    "listen_s": 245,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-29",
+  "closed_at": "2026-10-29T14:07-06:00",
+  "outcome": "Implemented 7h3kk1d's IfCaretVisible suggestion on #2672 (e8125d9933), browser-checked against dev, CI green; retitled to 'Measuring the font scrolls to the caret only if it was in view', description rewritten, reply posted (issuecomment-6507134502). Zoom not covered, said so.",
+  "metrics": {
+   "open_minutes": 60,
+   "matthew_messages": 5,
+   "questions_to_matthew": 2,
+   "chars_exchanged": 10381,
+   "tokens_est": 2595,
+   "sync_minutes_est": 15.0,
+   "replies": 5,
+   "claude_words": 1775,
+   "read_minutes_est": 7.5,
+   "listen_minutes_est": 11.1,
+   "read_s_avg": 90,
+   "listen_s_avg": 133,
+   "models": {
+    "Opus 5.5 · Medium": 0.6,
+    "Opus 5.5 · Xhigh": 0.4
+   }
+  }
+ },
+ {
   "id": 649,
   "area": "hazel: issue #2751, an old sum's constructor passes as a new sum of the same name",
   "text": "Open a GitHub issue for the shadowed-type-name bug found while writing #2749's tests, linking #2749's skipped test.",
