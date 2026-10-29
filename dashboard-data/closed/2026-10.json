@@ -40,17 +40,46 @@
   ],
   "source": "Matthew, 2026-10-29, in chat: \"can we review this one please? https://github.com/hazelgrove/hazel/pull/2647 If it looks okay, tell me LGTM and I'll add that and approve. Main question --- are there major tutorial steps with no solution?\"; then \"can you also explain how the solutions are checked in CI\".",
   "progress": "NOTES: verdict LGTM. 49 lessons with @test all get @solution; 7 without (intro, tasks-ahead: reading pages; adding-and-removing-probes, auto-probe, bonus-sample-colors, print-statements, stepping-into-calls: editor-action exercises whose code is already complete), so nothing a solution could check. Six debug/write tasks diffed @code vs @solution: only the task changes (planting-bug j==row->j==col plus un-ignored col; watering-timer > to >=; dew-ledger halving moved; running-sum and log-cleaner holes filled). Three text fixes correct. Solutions are loaded but not rendered anywhere in the web app. CI: test/Test_Tutorial.re 'Tutorial lesson solutions' puts the solution in your_impl, stitches with the lesson's tests via Tutorial.stitch_term (the app's own grading path), Statics.mk + Evaluator.evaluate, requires total>0 and all passing; TextRoundtrip covers solution text. GAP (suggest, not blocking): nothing checks that the starting @code FAILS a test, so a no-op task would pass unnoticed.",
-  "log": [],
+  "log": [
+   {
+    "at": "2026-10-29T10:31-06:00",
+    "from": "matthew",
+    "chars": 92,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T10:32-06:00",
+    "from": "claude",
+    "chars": 2002,
+    "asks": false,
+    "words": 341,
+    "read_s": 86,
+    "listen_s": 128,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   }
+  ],
   "closed": "2026-10-29",
   "closed_at": "2026-10-29T10:36-06:00",
   "outcome": "LGTM given to Matthew for #2647: no major lesson lacks a solution; CI's check runs each solution through the app's own grading; one non-blocking gap (starting code isn't checked to fail).",
   "metrics": {
    "open_minutes": 1,
-   "matthew_messages": 0,
+   "matthew_messages": 1,
    "questions_to_matthew": 0,
-   "chars_exchanged": 0,
-   "tokens_est": 0,
-   "sync_minutes_est": 0
+   "chars_exchanged": 2094,
+   "tokens_est": 523,
+   "sync_minutes_est": 1.0,
+   "replies": 1,
+   "claude_words": 341,
+   "read_minutes_est": 1.4,
+   "listen_minutes_est": 2.1,
+   "read_s_avg": 86,
+   "listen_s_avg": 128,
+   "models": {
+    "Opus 5.5 · Medium": 1.0
+   }
   }
  },
  {
