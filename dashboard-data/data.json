@@ -8922,7 +8922,7 @@
     "feature"
    ],
    "source": "Matthew, 2026-10-29 15:4x, in chat: \"switch to dress-up for a few hours. request from M: high priority --- sword can cut through vines and trees and other vegetation in the world, and the copped up bits -- vanish, for now\"",
-   "progress": "",
+   "progress": "15:54: RELEASED 0.0.465 (defb9986, tag dress-up-0.0.465), live at https://matthewhammer.org/kids-choice-games/dress-up/ (version.json + swordCut checked over HTTPS). WHAT: the 🗡️ sword is a tool (TOOLS.sword): held from the 🎒 (✋ hold it) or already in the hand (knight, Time Wanderer, or chosen to hold: toolInHand); 'use tool' (U / 🥅) swings it; swordCut cuts the NEAREST plant ahead within 190, one a swing, with a leaf puff and 'chop!'. A placed plant (PLANT_KINDS: bush, tree, pine, moss, lichen, deadtree, kelp, seagrass, sealettuce, cacti, agave, joshuatree, ocotillo) leaves B.things; a scene's own plant (PLANT_OBJ by name, from a runtime census of all 34 places' objects) goes on B.cut[place], read by objectsOff (hidden, not solid); world squares keep their own cuts (cellKeys + 'cut'); 👁️ list shows it 🙈, tap grows it back. MY CALLS (say if you want them otherwise): one plant per swing; rows of flowers/grass/lily pads wider than the reach are NOT cut (a few swings emptied a meadow); never cut tree houses, tree trunks, far backdrops, anything with a doorway, or things to carry (toadstool, cave mushroom); a knight's sword in hand takes the controller's tool button even when it is crouch's too. CHECKED: script + load checks; in the browser pane on 8639 (shown, 60 fps): cuts nearest tree then the next, nothing behind, bush and saguaro removed, backpack sword drawn and cutting, per-square world cuts (two temp clearings), screenshot of before/after; the new check tools/checks/sword656.mjs's in-page script run there (all its values pass). Dev save on 8639 restored after. WAITING: the speed run 40961621093 (started 21:54Z) to read speed.json; 0.0.464 was already 'broken (the checks)' (^ticket(639)'s five).",
    "log": [
     {
      "at": "2026-10-29T15:35-06:00",
@@ -8941,7 +8941,7 @@
  ],
  "next_ticket": 657,
  "current_ticket": 656,
- "current_note": "15:46: Reading how the sword and the world's plants work, to make the sword cut vines, trees and other plants.",
+ "current_note": "15:55: 0.0.465 is live: the sword cuts plants. Waiting on its speed run on GitHub to read the checks before closing.",
  "closed_tickets": [
   {
    "id": 640,
@@ -14859,7 +14859,7 @@
   },
   "since": "2026-08-27",
   "replies": 5827,
-  "words": 1266905,
+  "words": 1267154,
   "read_hours_est": 88.7,
   "listen_hours_est": 132.0,
   "read_s_avg": 55,
@@ -15127,8 +15127,8 @@
    },
    "2026-10-29": {
     "replies": 48,
-    "words": 11274,
-    "chars": 68342
+    "words": 11523,
+    "chars": 69727
    }
   }
  },
