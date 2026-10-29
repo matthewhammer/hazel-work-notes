@@ -1,5 +1,86 @@
 [
  {
+  "id": 646,
+  "area": "hazel review: #2721, coverage from manual browser sessions (7h3kk1d)",
+  "text": "<b>Review #2721</b>: bisect_ppx coverage of a manual browser session, main thread + eval worker, downloaded from a coverage-build-only sidebar button.",
+  "added": "2026-10-29T10:36-06:00",
+  "opened": "2026-10-29T10:36-06:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazel",
+   "merge day"
+  ],
+  "source": "Matthew, 2026-10-29, in chat: \"help me review this one next please https://github.com/hazelgrove/hazel/pull/2721\"; \"let's do tickets as we do these reviews too, with notes that I can read later\".",
+  "progress": "10:36: reviewed the code (14 files, +278/-4); verdict in chat. NOTES: verdict LGTM, with two things to mention. How it works: CoverageHook.enabled/disabled.re picked by dune rules on HAZEL_WEB_COVERAGE=1 (src/web/util/dune); snapshot = Some(Bisect.Runtime.get_coverage_data) only in coverage builds, so ordinary/release bundles never link bisect. Worker posts ServerMessage.Coverage after each batch Result; WorkerClient keeps live + retired (restarted) workers' snapshots; CoverageExport.install defines window.hazelCoverage {download, files}; sidebar rail button only in coverage builds; one .coverage file per JS context, bisect-ppx-report sums them. Checked: fast checks pass, full tests were still pending at review; 7h3kk1d's own records-not-tuples comment is addressed (7ffdf93cf8). MENTION 1: trial merge conflicts with #2469 (modular-editors) in src/web/dune, WorkerClient.re, WorkerServer.re: whichever lands second resolves; small. Clean with our #2652. MENTION 2 (minor, coverage builds only): a worker killed mid-evaluation loses counts since its last Result, and every Result re-serializes all counters; fine for a dev tool. Codecov's 6.5% patch coverage is expected (browser-only code).",
+  "log": [],
+  "closed": "2026-10-29",
+  "closed_at": "2026-10-29T10:37-06:00",
+  "outcome": "LGTM given to Matthew for #2721 (browser-session coverage): ordinary builds untouched; conflicts with #2469 in the worker files to note; coverage-build-only caveats minor.",
+  "metrics": {
+   "open_minutes": 2,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
+  "id": 645,
+  "area": "hazel review: #2647, tutorial solutions for every lesson (7h3kk1d)",
+  "text": "<b>Review #2647</b> for Matthew's LGTM: are any major tutorial steps left without a solution, and how does CI make the solutions real?",
+  "added": "2026-10-29T10:36-06:00",
+  "opened": "2026-10-29T10:36-06:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazel",
+   "merge day"
+  ],
+  "source": "Matthew, 2026-10-29, in chat: \"can we review this one please? https://github.com/hazelgrove/hazel/pull/2647 If it looks okay, tell me LGTM and I'll add that and approve. Main question --- are there major tutorial steps with no solution?\"; then \"can you also explain how the solutions are checked in CI\".",
+  "progress": "NOTES: verdict LGTM. 49 lessons with @test all get @solution; 7 without (intro, tasks-ahead: reading pages; adding-and-removing-probes, auto-probe, bonus-sample-colors, print-statements, stepping-into-calls: editor-action exercises whose code is already complete), so nothing a solution could check. Six debug/write tasks diffed @code vs @solution: only the task changes (planting-bug j==row->j==col plus un-ignored col; watering-timer > to >=; dew-ledger halving moved; running-sum and log-cleaner holes filled). Three text fixes correct. Solutions are loaded but not rendered anywhere in the web app. CI: test/Test_Tutorial.re 'Tutorial lesson solutions' puts the solution in your_impl, stitches with the lesson's tests via Tutorial.stitch_term (the app's own grading path), Statics.mk + Evaluator.evaluate, requires total>0 and all passing; TextRoundtrip covers solution text. GAP (suggest, not blocking): nothing checks that the starting @code FAILS a test, so a no-op task would pass unnoticed.",
+  "log": [],
+  "closed": "2026-10-29",
+  "closed_at": "2026-10-29T10:36-06:00",
+  "outcome": "LGTM given to Matthew for #2647: no major lesson lacks a solution; CI's check runs each solution through the app's own grading; one non-blocking gap (starting code isn't checked to fail).",
+  "metrics": {
+   "open_minutes": 1,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
+  "id": 644,
+  "area": "hazel merge day: find dev's new merge queue; which of our PRs stand alone; request reviews on the first batch; Slack post",
+  "text": "<b>The dev merge queue</b> (Cyrus, 10-29 09:06) and which of Matthew's dev PRs can go into it today.",
+  "added": "2026-10-29T10:36-06:00",
+  "opened": "2026-10-29T10:36-06:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazel",
+   "merge day"
+  ],
+  "source": "Matthew, 2026-10-29, in chat: \"can you find the 'merge queue' that's been set up?\"; \"what PRs do we have that are independent of the main livelits PR ... Could we consider any for the queue today?\"; \"Request hazel-core reviews on the first batch ...\"; \"please create a Slack post for that same set, and the full list above\".",
+  "progress": "NOTES: Queue = ruleset 'dev: reviewed PRs via merge queue' (created 09:06, edited 09:22) + Cyrus's 2a08348dbf CODEOWNERS (* @hazelgrove/hazel-core). Rules: 1 approving code-owner review (own approval doesn't count), 'checks / Fast checks' required (Full not), merge commits, groups of up to 5 built together (ALLGREEN), 60 min check timeout; admins can bypass. URL https://github.com/hazelgrove/hazel/queue/dev . ci.yml has had merge_group since 08-26. Of 30 open PRs into dev only #2741 (7h3kk1d) was approved. All of Matthew's ~19 standalone PRs had green fast+full CI. Trial merges against #2469 (modular-editors): CLEAN #2672 #2652 #2661 #2681 #2675 #2651 #2678; test-list-only conflict #2610 #2673 #2608; REAL conflicts (hold until #2469 lands) #2614 #2603 #2671 #2606 (#2606 replaced by #2469's cache: likely close). #2676 (long types in cursor inspector) conflicts with #2469 in Statics/Settings/CursorInspector, nearby edits. DONE: hazel-core team requested + a 🤖 'what it gives dev' comment on #2672 #2652 #2661 #2681 #2675 #2651 #2678 #2676. Slack post (copy-paste text): ~/hazel/experiments/slack-merge-day-2026-10-29.txt.",
+  "log": [],
+  "closed": "2026-10-29",
+  "closed_at": "2026-10-29T10:36-06:00",
+  "outcome": "Merge queue found and explained; first batch of 8 standalone PRs has hazel-core review requested with per-PR notes; Slack post written (experiments/slack-merge-day-2026-10-29.txt).",
+  "metrics": {
+   "open_minutes": 1,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 643,
   "area": "hazel merge day: why #2635 keeps its perf fixes (#2661, #2681, #2673, #2675, #2671, #2672, #2652, #2603, #2651, #2614, #2610, #2608)",
   "text": "<b>Justify to the team</b> why the performance PRs ported into #2635 stay in it rather than being removed: found on its programs, what each saves there, and the order to land them (dev PRs first, so #2635's diff shrinks). Draft: ~/hazel/experiments/2635-perf-prs-justification.md, for a comment on #2635.",
