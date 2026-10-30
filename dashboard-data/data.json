@@ -8305,7 +8305,7 @@
     "report"
    ],
    "source": "Matthew, 2026-10-29, in chat: \"create a du_report in the form of another young player's guide (with that retro style we used for two others) --- this one explains: how to use the backpack: make visible, place item inside, take item out and place into world. If some of these features are missing, let's also work that as we document them.\" Then: \"M and N are off school today ... something to practice reading (the manual) and playing around with during screen time (the backpack, and maybe some extra items or even a small puzzle to solve)\"; \"let's publish the report publicy as WIP\".",
-   "progress": "06:52: ^du_report(23) 'Doing Things in Messed Up Dress Up' LIVE with all 26 pictures at 0.0.464 (run 40875679688), the dungeon's map, the spoilers' walk-through; retitled on the series index, landing page and nav (all three checked live). 0.0.461-0.0.464 live. Open until 0.0.464's speed run (40875638462) is read. Not mine, left alone: uncommitted edits to ^du_report(5) in ~/kids-choice-games, and a stash 'autostash'. 09:08: 0.0.464's speed run (40875638462) reads BROKEN; checks failing: cavedoors525 (takes both away), still274 (witchroom differs between loads), saveload (hidden dungeon floorhole passage not round-tripped), seats413 (click on rock doesn't sit), hazellogic531 (treeroom things: JS mode has the seeded net+chocolate, Hazel mode none). All look like fallout of room-carry seeding, rock-as-carry and hidden passages. Parked behind today's Hazel merge work.",
+   "progress": "06:52: ^du_report(23) 'Doing Things in Messed Up Dress Up' LIVE with all 26 pictures at 0.0.464 (run 40875679688), the dungeon's map, the spoilers' walk-through; retitled on the series index, landing page and nav (all three checked live). 0.0.461-0.0.464 live. Open until 0.0.464's speed run (40875638462) is read. Not mine, left alone: uncommitted edits to ^du_report(5) in ~/kids-choice-games, and a stash 'autostash'. 09:08: 0.0.464's speed run (40875638462) reads BROKEN; checks failing: cavedoors525 (takes both away), still274 (witchroom differs between loads), saveload (hidden dungeon floorhole passage not round-tripped), seats413 (click on rock doesn't sit), hazellogic531 (treeroom things: JS mode has the seeded net+chocolate, Hazel mode none). All look like fallout of room-carry seeding, rock-as-carry and hidden passages. Parked behind today's Hazel merge work. 21:40: CORRECTION to the 09:08 note: 0.0.464's run failed EIGHT checks, not five: also cavethings471 (a cave passage's doorway), fumola542 (12, the same treeroom state as hazellogic531) and worlds406 (13). 0.0.465, 0.0.466 and 0.0.467 fail the same eight with identical lines (scripting482 failed in 0.0.465-0.0.466 for another cause, ^ticket(658), fixed in 0.0.467). Taking this ticket next.",
    "log": [
     {
      "at": "2026-10-29T05:54-06:00",
@@ -8914,68 +8914,22 @@
      "note": "from the transcripts"
     }
    ]
-  },
-  {
-   "id": 658,
-   "area": "dress up: the 📜 Scripting tab's Hazel tiles stuck at \"loading\" (hazel.org/build now redirects to build.hazel.org)",
-   "text": "Found reading 0.0.465's speed run: scripting482 newly fails (it passed in 0.0.464's run). hazel.org/build/* now answers 301 to build.hazel.org/*, so the 📜 frames load from build.hazel.org, a different origin than SCRIPT_HAZEL_ORIGIN (https://hazel.org): the frame's ready message is dropped and the game's posts to it are dropped too. Every tiles frame stays at 'loading' on the live game. The library (hazel-lib.js, a script tag) follows the redirect and still works.",
-   "source": "Claude, 2026-10-29 18:05, reading the speed run 40961621093 (0.0.465): scripting482 'Hazel's frame says ready: loading'; reproduced in the browser pane on 8639 (0.0.466, 7 frames at 'loading' after 45 s); urllib with no redirects: hazel.org/build/embed-editable/index.html -> 301 build.hazel.org/embed-editable/index.html.",
-   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
-   "added": "2026-10-29T18:05-06:00",
-   "opened": "2026-10-29T18:05-06:00",
-   "status": "open",
-   "tags": [
-    "high priority"
-   ],
-   "chips": [
-    "dress up",
-    "bug"
-   ],
-   "progress": "18:05: cause found (above). Fix: SCRIPT_BUILD and SCRIPT_FRAME_URL to https://build.hazel.org/..., so SCRIPT_HAZEL_ORIGIN follows; the checks scripting482 and scripting520 to match. Then release 0.0.467. 18:07: RELEASED 0.0.467 (178f997e, tag dress-up-0.0.467), live (version.json 0.0.467, and the served 25-scripting.js names build.hazel.org). CHECKED in the browser pane on 8639: before the fix, 7 frames at 'loading' after 45 s; after it, the whole program's frame ready in 2.8 s (build 0da790fb20, embed-editable's tip), all 6 module boxes ready, status ok, no 'did not start' note, TrapRoom's tiles drawn (screenshot). Dev save restored after. check_script + check_load ok. tools/scripting520.mjs was already stopping on its fake page (no documentElement) before this change; left as it was. WAITING: the speed run 40977595380 on the tag, for scripting482.",
-   "log": [
-    {
-     "at": "2026-10-29T18:08-06:00",
-     "from": "claude",
-     "chars": 3899,
-     "asks": false,
-     "words": 634,
-     "read_s": 160,
-     "listen_s": 238,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T20:10-06:00",
-     "from": "claude",
-     "chars": 730,
-     "asks": false,
-     "words": 116,
-     "read_s": 29,
-     "listen_s": 44,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T20:36-06:00",
-     "from": "claude",
-     "chars": 425,
-     "asks": false,
-     "words": 68,
-     "read_s": 17,
-     "listen_s": 26,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
   }
  ],
  "next_ticket": 659,
- "current_ticket": 658,
- "current_note": "20:10: Waiting on 0.0.467's speed run (40977595380) to read scripting482: the 📜 Hazel tiles from build.hazel.org.",
+ "current_ticket": 639,
+ "current_note": "21:39: The speed run's eight failing checks (since 0.0.461): reading each in the browser pane on 8639, starting with the single-failure ones.",
  "closed_tickets": [
+  {
+   "id": 658,
+   "area": "dress up: the 📜 Scripting tab's Hazel tiles stuck at \"loading\" (hazel.org/build now redirects to build.hazel.org)",
+   "added": "2026-10-29T18:05-06:00",
+   "text": "Found reading 0.0.465's speed run: scripting482 newly fails (it passed in 0.0.464's run). hazel.org/build/* now answers 301 to build.hazel.org/*, so the 📜 frames load from build.hazel.org, a…",
+   "source": "Claude, 2026-10-29 18:05, reading the speed run 40961621093 (0.0.465): scripting482 'Hazel's frame says ready:…",
+   "status": "done",
+   "closed": "2026-10-29",
+   "outcome": "Dress Up 0.0.467 (178f997e): the 📜 Hazel tiles from build.hazel.org (hazel.org/build now 301s there, and the frames' messages were dropped by the origin check). scripting482 all…"
+  },
   {
    "id": 657,
    "area": "dress up: night and day (an ⚙️ Advanced toggle, off by default): at night, find a place to sleep; lying down at night brings the morning; count the nights slept",
@@ -14834,10 +14788,10 @@
   }
  ],
  "queue": [
+  639,
   654,
   655,
   642,
-  639,
   611,
   276,
   609,
@@ -14898,7 +14852,7 @@
   634,
   635
  ],
- "current_since": "2026-10-29T18:08-06:00",
+ "current_since": "2026-10-29T21:39-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
@@ -14910,8 +14864,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5832,
-  "words": 1269208,
+  "replies": 5833,
+  "words": 1269247,
   "read_hours_est": 88.9,
   "listen_hours_est": 132.2,
   "read_s_avg": 55,
@@ -15178,9 +15132,9 @@
     "chars": 1781
    },
    "2026-10-29": {
-    "replies": 53,
-    "words": 13577,
-    "chars": 81605
+    "replies": 54,
+    "words": 13616,
+    "chars": 81857
    }
   }
  },

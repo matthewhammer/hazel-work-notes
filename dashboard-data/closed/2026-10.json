@@ -1,5 +1,81 @@
 [
  {
+  "id": 658,
+  "area": "dress up: the 📜 Scripting tab's Hazel tiles stuck at \"loading\" (hazel.org/build now redirects to build.hazel.org)",
+  "text": "Found reading 0.0.465's speed run: scripting482 newly fails (it passed in 0.0.464's run). hazel.org/build/* now answers 301 to build.hazel.org/*, so the 📜 frames load from build.hazel.org, a different origin than SCRIPT_HAZEL_ORIGIN (https://hazel.org): the frame's ready message is dropped and the game's posts to it are dropped too. Every tiles frame stays at 'loading' on the live game. The library (hazel-lib.js, a script tag) follows the redirect and still works.",
+  "source": "Claude, 2026-10-29 18:05, reading the speed run 40961621093 (0.0.465): scripting482 'Hazel's frame says ready: loading'; reproduced in the browser pane on 8639 (0.0.466, 7 frames at 'loading' after 45 s); urllib with no redirects: hazel.org/build/embed-editable/index.html -> 301 build.hazel.org/embed-editable/index.html.",
+  "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+  "added": "2026-10-29T18:05-06:00",
+  "opened": "2026-10-29T18:05-06:00",
+  "status": "done",
+  "tags": [
+   "high priority"
+  ],
+  "chips": [
+   "dress up",
+   "bug"
+  ],
+  "progress": "18:05: cause found (above). Fix: SCRIPT_BUILD and SCRIPT_FRAME_URL to https://build.hazel.org/..., so SCRIPT_HAZEL_ORIGIN follows; the checks scripting482 and scripting520 to match. Then release 0.0.467. 18:07: RELEASED 0.0.467 (178f997e, tag dress-up-0.0.467), live (version.json 0.0.467, and the served 25-scripting.js names build.hazel.org). CHECKED in the browser pane on 8639: before the fix, 7 frames at 'loading' after 45 s; after it, the whole program's frame ready in 2.8 s (build 0da790fb20, embed-editable's tip), all 6 module boxes ready, status ok, no 'did not start' note, TrapRoom's tiles drawn (screenshot). Dev save restored after. check_script + check_load ok. tools/scripting520.mjs was already stopping on its fake page (no documentElement) before this change; left as it was. WAITING: the speed run 40977595380 on the tag, for scripting482. 21:39: the speed run 40977595380 finished: speed.json's 0.0.467 entry reads broken (the checks). scripting482: all ok (the frame ready in 1879 ms, build 0da790fb20); night657 and sword656 all ok. Left failing, same lines as 0.0.466's run: ^ticket(639)'s eight.",
+  "log": [
+   {
+    "at": "2026-10-29T18:08-06:00",
+    "from": "claude",
+    "chars": 3899,
+    "asks": false,
+    "words": 634,
+    "read_s": 160,
+    "listen_s": 238,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T20:10-06:00",
+    "from": "claude",
+    "chars": 730,
+    "asks": false,
+    "words": 116,
+    "read_s": 29,
+    "listen_s": 44,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T20:36-06:00",
+    "from": "claude",
+    "chars": 425,
+    "asks": false,
+    "words": 68,
+    "read_s": 17,
+    "listen_s": 26,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-29",
+  "closed_at": "2026-10-29T21:39-06:00",
+  "outcome": "Dress Up 0.0.467 (178f997e): the 📜 Hazel tiles from build.hazel.org (hazel.org/build now 301s there, and the frames' messages were dropped by the origin check). scripting482 all ok in the speed run 40977595380.",
+  "metrics": {
+   "open_minutes": 215,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 5054,
+   "tokens_est": 1263,
+   "sync_minutes_est": 0,
+   "replies": 3,
+   "claude_words": 818,
+   "read_minutes_est": 3.4,
+   "listen_minutes_est": 5.1,
+   "read_s_avg": 69,
+   "listen_s_avg": 103,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 657,
   "area": "dress up: night and day (an ⚙️ Advanced toggle, off by default): at night, find a place to sleep; lying down at night brings the morning; count the nights slept",
   "text": "M's next highest excitement: night vs day, and 'the need to sleep at night'. Matthew: an advanced toggle for night vs day, default off; when on, we need to find a place to sleep at night, and when we choose to lie down at night (as in Harvest Moon, which M has played) we advance into the day. A benefit to sleeping is not clear yet: for now, record the number of nights slept.",
