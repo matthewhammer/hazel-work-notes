@@ -1,5 +1,617 @@
 [
  {
+  "id": 639,
+  "area": "dress up: ^du_report(23), Doing Things in Messed Up Dress Up (retro young player's guide), and what it needed built: carrying, tools, floor switches, the 🗝️ dungeon world",
+  "text": "<b>^du_report(23): the 🎒 Backpack Guide.</b> For M and N to read and play today (school's off): make the backpack visible, put things in, take one out and put it down in the world. What's missing gets built as it is documented: a put-down button on each card, picking a thing back up with the action press, a few more gifts, and a small puzzle (a stone plate that wants the right thing on it). Published as work in progress from the start.",
+  "added": "2026-10-29T05:57-06:00",
+  "opened": "2026-10-29T05:57-06:00",
+  "status": "done",
+  "tags": [
+   "broken checks"
+  ],
+  "chips": [
+   "dress up",
+   "report"
+  ],
+  "source": "Matthew, 2026-10-29, in chat: \"create a du_report in the form of another young player's guide (with that retro style we used for two others) --- this one explains: how to use the backpack: make visible, place item inside, take item out and place into world. If some of these features are missing, let's also work that as we document them.\" Then: \"M and N are off school today ... something to practice reading (the manual) and playing around with during screen time (the backpack, and maybe some extra items or even a small puzzle to solve)\"; \"let's publish the report publicy as WIP\".",
+  "progress": "06:52: ^du_report(23) 'Doing Things in Messed Up Dress Up' LIVE with all 26 pictures at 0.0.464 (run 40875679688), the dungeon's map, the spoilers' walk-through; retitled on the series index, landing page and nav (all three checked live). 0.0.461-0.0.464 live. Open until 0.0.464's speed run (40875638462) is read. Not mine, left alone: uncommitted edits to ^du_report(5) in ~/kids-choice-games, and a stash 'autostash'. 09:08: 0.0.464's speed run (40875638462) reads BROKEN; checks failing: cavedoors525 (takes both away), still274 (witchroom differs between loads), saveload (hidden dungeon floorhole passage not round-tripped), seats413 (click on rock doesn't sit), hazellogic531 (treeroom things: JS mode has the seeded net+chocolate, Hazel mode none). All look like fallout of room-carry seeding, rock-as-carry and hidden passages. Parked behind today's Hazel merge work. 21:40: CORRECTION to the 09:08 note: 0.0.464's run failed EIGHT checks, not five: also cavethings471 (a cave passage's doorway), fumola542 (12, the same treeroom state as hazellogic531) and worlds406 (13). 0.0.465, 0.0.466 and 0.0.467 fail the same eight with identical lines (scripting482 failed in 0.0.465-0.0.466 for another cause, ^ticket(658), fixed in 0.0.467). Taking this ticket next. 21:48: DIAGNOSED all eight. TWO REAL BUGS from 0.0.463: (1) the dungeon world was made again on every reload and every 📂 Load (dungeonMade was not a DEFAULTS setting, so no save kept it): the dev save on 8639 had 13 dungeon worlds and 26 holes stacked in the start world's cemetery and castle, the save 407 KB. Fix: state.dungeon {made} in DEFAULTS; upgradeDungeonMade reads the old mark; dungeonDedupe (at load and in loadSaved) keeps one: the one the friend is in, else the one played most (rooms unlike a new one's; the maze is seeded), else the first; only dungeonWorldEnsure's holes (⚫ floorhole in the start world, seed 4000 + its number), so a template dungeon linked by hand is kept. Dev save: 1 dungeon, 91 KB. (2) roomCarrySeed's mark B.carrySeeded was one for every place: after the witch's room the tree room never got its net (the bug-catching puzzle stuck). Fix: per room, W.carrySeeded[worldHome]; a 0.0.463-0.0.467 save whose room has its things already is not given them again. STALE CHECKS: cavethings471 (a 4th passage style, the ladder), cavedoors525 (the castle square has the dungeon's hidden hole: count the twin only), worlds406 (world 2 is the dungeon: taken away first by worldDrop), seats413 (a rock is a thing to carry since 639, so a click takes it: sit tested on the barrel, and a new assertion that a click on the rock takes it; MY CALL: carrying wins over sitting for a rock), hazellogic531 + fumola542 (each mode from a new game: they share the autosave), still274 (its reset keeps the dungeon made, else a new hole name each place). Running the ten on diag-639b (run 40999355250) before releasing. 22:03: diag-639b (run 40999355250): 9 of the 10 all ok (cavedoors525, cavethings471, dungeon625, fumola542, hazellogic531, packguide639, saveload, seats413, worlds406); still274 still says the witch room differs between its two loads. RELEASED 0.0.468 (b7701324, tag dress-up-0.0.468), live (version.json, and dungeonDedupe + the per-room seeding served): M's game sheds its extra dungeons on its next load. still274: diag-639c (run 41000754578) prints the witch room's markup from both loads. Speed run 41000653685. 22:18: still274 FOUND (diag-639c, run 41001288827): the witch room's two loads differ only by style=\"\" on the glowing cave mushroom's .fumes glow. standingHere's measuring hid .fumes by .style.display and gave it back with \"\" (or, tried first, removed the attribute): Chrome writes a .style change back to the attribute lazily, so an empty style=\"\" was left, and only where measuring had run before the picture was taken. Fix (16-objects-and-solids.js): hidden and shown by the style attribute itself, each given back its own or none; checked in the pane (null after measuring; a cauldron's box still without its fumes, h 67). Running still274 + things201, walk251, furnish517 on diag-639d (run 41002092465); then 0.0.469. 22:25: diag-639d (run 41002092465): still274 all ok (the witch room the same in both loads), things201, walk251, furnish517 all ok. RELEASED 0.0.469 (2fe79193, tag dress-up-0.0.469), live (version.json, and the attribute fix served). WAITING: the speed runs 41000653685 (0.0.468) and 41002771433 (0.0.469); the ticket closes when 0.0.469's checks are all ok in speed.json. 23:33: 0.0.468's speed run (41000653685): still274 failed as expected (fixed in 0.0.469); NEW: places114 failed, a stale check. It expected the healer's hut to start empty, and since 0.0.468 the hut has its own things to carry (potion, potion, bottle, chocolate, glowcap), as ticket 639 meant. The check now asks that the hut's things are its own (seeds from 301), not the clearing's potion. Running it on diag-639e (run 41009075738). 0.0.469's speed run will fail places114 too, so the clean speed run needs the next release. 23:39: diag-639e (run 41009075738): places114 all ok. Committed on main (a683fe0f), a check only, no release. WAITING: 0.0.469's speed run (41002771433); expected to fail places114 only (it runs the release's checks). Then the next release's speed run should be clean, and the ticket closes.",
+  "log": [
+   {
+    "at": "2026-10-29T05:54-06:00",
+    "from": "matthew",
+    "chars": 12,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T05:55-06:00",
+    "from": "matthew",
+    "chars": 342,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T05:56-06:00",
+    "from": "matthew",
+    "chars": 254,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T05:56-06:00",
+    "from": "matthew",
+    "chars": 41,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T05:56-06:00",
+    "from": "claude",
+    "chars": 182,
+    "asks": false,
+    "words": 29,
+    "read_s": 7,
+    "listen_s": 11,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T05:56-06:00",
+    "from": "claude",
+    "chars": 175,
+    "asks": false,
+    "words": 28,
+    "read_s": 7,
+    "listen_s": 10,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T05:58-06:00",
+    "from": "claude",
+    "chars": 347,
+    "asks": false,
+    "words": 57,
+    "read_s": 14,
+    "listen_s": 21,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T05:59-06:00",
+    "from": "matthew",
+    "chars": 345,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:00-06:00",
+    "from": "matthew",
+    "chars": 231,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:00-06:00",
+    "from": "claude",
+    "chars": 420,
+    "asks": false,
+    "words": 77,
+    "read_s": 19,
+    "listen_s": 29,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:00-06:00",
+    "from": "claude",
+    "chars": 34,
+    "asks": false,
+    "words": 5,
+    "read_s": 1,
+    "listen_s": 2,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:01-06:00",
+    "from": "claude",
+    "chars": 208,
+    "asks": false,
+    "words": 38,
+    "read_s": 10,
+    "listen_s": 14,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:02-06:00",
+    "from": "matthew",
+    "chars": 110,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:02-06:00",
+    "from": "matthew",
+    "chars": 55,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:03-06:00",
+    "from": "matthew",
+    "chars": 149,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:03-06:00",
+    "from": "claude",
+    "chars": 155,
+    "asks": false,
+    "words": 27,
+    "read_s": 7,
+    "listen_s": 10,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:04-06:00",
+    "from": "matthew",
+    "chars": 122,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:04-06:00",
+    "from": "matthew",
+    "chars": 61,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:04-06:00",
+    "from": "claude",
+    "chars": 179,
+    "asks": false,
+    "words": 35,
+    "read_s": 9,
+    "listen_s": 13,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:05-06:00",
+    "from": "claude",
+    "chars": 99,
+    "asks": false,
+    "words": 18,
+    "read_s": 5,
+    "listen_s": 7,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:06-06:00",
+    "from": "matthew",
+    "chars": 292,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:06-06:00",
+    "from": "matthew",
+    "chars": 150,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:07-06:00",
+    "from": "matthew",
+    "chars": 173,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:08-06:00",
+    "from": "matthew",
+    "chars": 86,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:08-06:00",
+    "from": "claude",
+    "chars": 853,
+    "asks": false,
+    "words": 161,
+    "read_s": 41,
+    "listen_s": 60,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:08-06:00",
+    "from": "claude",
+    "chars": 116,
+    "asks": false,
+    "words": 23,
+    "read_s": 6,
+    "listen_s": 9,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:15-06:00",
+    "from": "claude",
+    "chars": 2214,
+    "asks": false,
+    "words": 403,
+    "read_s": 102,
+    "listen_s": 151,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:16-06:00",
+    "from": "matthew",
+    "chars": 360,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:17-06:00",
+    "from": "matthew",
+    "chars": 48,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:17-06:00",
+    "from": "claude",
+    "chars": 43,
+    "asks": false,
+    "words": 7,
+    "read_s": 2,
+    "listen_s": 3,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:18-06:00",
+    "from": "matthew",
+    "chars": 102,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:18-06:00",
+    "from": "matthew",
+    "chars": 73,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:19-06:00",
+    "from": "matthew",
+    "chars": 21,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:19-06:00",
+    "from": "matthew",
+    "chars": 85,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:19-06:00",
+    "from": "matthew",
+    "chars": 20,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:19-06:00",
+    "from": "matthew",
+    "chars": 138,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:19-06:00",
+    "from": "claude",
+    "chars": 131,
+    "asks": false,
+    "words": 27,
+    "read_s": 7,
+    "listen_s": 10,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:20-06:00",
+    "from": "matthew",
+    "chars": 108,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:20-06:00",
+    "from": "matthew",
+    "chars": 111,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:20-06:00",
+    "from": "claude",
+    "chars": 189,
+    "asks": false,
+    "words": 36,
+    "read_s": 9,
+    "listen_s": 14,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:20-06:00",
+    "from": "claude",
+    "chars": 146,
+    "asks": false,
+    "words": 30,
+    "read_s": 8,
+    "listen_s": 11,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:21-06:00",
+    "from": "claude",
+    "chars": 274,
+    "asks": false,
+    "words": 48,
+    "read_s": 12,
+    "listen_s": 18,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:22-06:00",
+    "from": "matthew",
+    "chars": 293,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:22-06:00",
+    "from": "matthew",
+    "chars": 143,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:31-06:00",
+    "from": "claude",
+    "chars": 1851,
+    "asks": false,
+    "words": 313,
+    "read_s": 79,
+    "listen_s": 117,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:32-06:00",
+    "from": "matthew",
+    "chars": 325,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:33-06:00",
+    "from": "matthew",
+    "chars": 53,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:35-06:00",
+    "from": "claude",
+    "chars": 111,
+    "asks": false,
+    "words": 19,
+    "read_s": 5,
+    "listen_s": 7,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:36-06:00",
+    "from": "matthew",
+    "chars": 87,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:53-06:00",
+    "from": "claude",
+    "chars": 4240,
+    "asks": false,
+    "words": 747,
+    "read_s": 188,
+    "listen_s": 280,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:55-06:00",
+    "from": "matthew",
+    "chars": 47,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:56-06:00",
+    "from": "claude",
+    "chars": 2203,
+    "asks": true,
+    "words": 377,
+    "read_s": 95,
+    "listen_s": 141,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:57-06:00",
+    "from": "matthew",
+    "chars": 10,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T06:58-06:00",
+    "from": "claude",
+    "chars": 811,
+    "asks": false,
+    "words": 151,
+    "read_s": 38,
+    "listen_s": 57,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T21:50-06:00",
+    "from": "claude",
+    "chars": 6586,
+    "asks": false,
+    "words": 1212,
+    "read_s": 306,
+    "listen_s": 454,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T22:04-06:00",
+    "from": "claude",
+    "chars": 1300,
+    "asks": false,
+    "words": 210,
+    "read_s": 53,
+    "listen_s": 79,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T22:09-06:00",
+    "from": "claude",
+    "chars": 445,
+    "asks": false,
+    "words": 81,
+    "read_s": 20,
+    "listen_s": 30,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T22:18-06:00",
+    "from": "claude",
+    "chars": 2223,
+    "asks": false,
+    "words": 376,
+    "read_s": 95,
+    "listen_s": 141,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T22:26-06:00",
+    "from": "claude",
+    "chars": 1153,
+    "asks": false,
+    "words": 186,
+    "read_s": 47,
+    "listen_s": 70,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T23:34-06:00",
+    "from": "claude",
+    "chars": 955,
+    "asks": false,
+    "words": 161,
+    "read_s": 41,
+    "listen_s": 60,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T23:40-06:00",
+    "from": "claude",
+    "chars": 561,
+    "asks": false,
+    "words": 95,
+    "read_s": 24,
+    "listen_s": 36,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-30",
+  "closed_at": "2026-10-30T01:02-06:00",
+  "outcome": "^du_report(23) Doing Things in Messed Up Dress Up, live with all 26 pictures (0.0.461-0.0.464: carrying, tools, floor switches, the 🗝️ dungeon world). Then the eight checks red since 0.0.464, fixed: two real bugs in 0.0.468 (b7701324: a new dungeon world on every load; rooms after the first never given their things), a drawing quirk in 0.0.469 (2fe79193: measuring left an empty style=\"\" behind), five stale checks updated, and places114 (stale since 0.0.468) on main (a683fe0f). 0.0.469's speed run (41002771433): every check ok but places114, which is all ok against the same code on diag-639e (41009075738); speed.json says broken until the next release carries the updated check. For Matthew to look at: a click on a rock now takes it, not sits on it.",
+  "metrics": {
+   "open_minutes": 1145,
+   "matthew_messages": 32,
+   "questions_to_matthew": 1,
+   "chars_exchanged": 32651,
+   "tokens_est": 8162,
+   "sync_minutes_est": 75.0,
+   "replies": 29,
+   "claude_words": 4977,
+   "read_minutes_est": 20.9,
+   "listen_minutes_est": 31.1,
+   "read_s_avg": 43,
+   "listen_s_avg": 64,
+   "models": {
+    "Opus 5.5 · Medium": 0.76,
+    "Opus 5.5 · Xhigh": 0.24
+   }
+  }
+ },
+ {
   "id": 658,
   "area": "dress up: the 📜 Scripting tab's Hazel tiles stuck at \"loading\" (hazel.org/build now redirects to build.hazel.org)",
   "text": "Found reading 0.0.465's speed run: scripting482 newly fails (it passed in 0.0.464's run). hazel.org/build/* now answers 301 to build.hazel.org/*, so the 📜 frames load from build.hazel.org, a different origin than SCRIPT_HAZEL_ORIGIN (https://hazel.org): the frame's ready message is dropped and the game's posts to it are dropped too. Every tiles frame stays at 'loading' on the live game. The library (hazel-lib.js, a script tag) follows the redirect and still works.",
