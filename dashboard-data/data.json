@@ -8916,56 +8916,6 @@
    ]
   },
   {
-   "id": 656,
-   "area": "dress up: the sword cuts vines, trees and other plants in the world; the cut bits vanish (for now)",
-   "text": "M's request, high priority: the sword can cut through vines, trees and other vegetation in the world, and the chopped-up bits vanish, for now.",
-   "added": "2026-10-29T15:42-06:00",
-   "opened": "2026-10-29T15:42-06:00",
-   "status": "open",
-   "tags": [
-    "high priority"
-   ],
-   "chips": [
-    "dress up",
-    "feature"
-   ],
-   "source": "Matthew, 2026-10-29 15:4x, in chat: \"switch to dress-up for a few hours. request from M: high priority --- sword can cut through vines and trees and other vegetation in the world, and the copped up bits -- vanish, for now\"",
-   "progress": "15:54: RELEASED 0.0.465 (defb9986, tag dress-up-0.0.465), live at https://matthewhammer.org/kids-choice-games/dress-up/ (version.json + swordCut checked over HTTPS). WHAT: the 🗡️ sword is a tool (TOOLS.sword): held from the 🎒 (✋ hold it) or already in the hand (knight, Time Wanderer, or chosen to hold: toolInHand); 'use tool' (U / 🥅) swings it; swordCut cuts the NEAREST plant ahead within 190, one a swing, with a leaf puff and 'chop!'. A placed plant (PLANT_KINDS: bush, tree, pine, moss, lichen, deadtree, kelp, seagrass, sealettuce, cacti, agave, joshuatree, ocotillo) leaves B.things; a scene's own plant (PLANT_OBJ by name, from a runtime census of all 34 places' objects) goes on B.cut[place], read by objectsOff (hidden, not solid); world squares keep their own cuts (cellKeys + 'cut'); 👁️ list shows it 🙈, tap grows it back. MY CALLS (say if you want them otherwise): one plant per swing; rows of flowers/grass/lily pads wider than the reach are NOT cut (a few swings emptied a meadow); never cut tree houses, tree trunks, far backdrops, anything with a doorway, or things to carry (toadstool, cave mushroom); a knight's sword in hand takes the controller's tool button even when it is crouch's too. CHECKED: script + load checks; in the browser pane on 8639 (shown, 60 fps): cuts nearest tree then the next, nothing behind, bush and saguaro removed, backpack sword drawn and cutting, per-square world cuts (two temp clearings), screenshot of before/after; the new check tools/checks/sword656.mjs's in-page script run there (all its values pass). Dev save on 8639 restored after. WAITING: the speed run 40961621093 (started 21:54Z) to read speed.json; 0.0.464 was already 'broken (the checks)' (^ticket(639)'s five).",
-   "log": [
-    {
-     "at": "2026-10-29T15:35-06:00",
-     "from": "claude",
-     "chars": 1694,
-     "asks": false,
-     "words": 277,
-     "read_s": 70,
-     "listen_s": 104,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T15:46-06:00",
-     "from": "matthew",
-     "chars": 269,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T15:58-06:00",
-     "from": "claude",
-     "chars": 5014,
-     "asks": false,
-     "words": 886,
-     "read_s": 223,
-     "listen_s": 332,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 657,
    "area": "dress up: night and day (an ⚙️ Advanced toggle, off by default): at night, find a place to sleep; lying down at night brings the morning; count the nights slept",
    "text": "M's next highest excitement: night vs day, and 'the need to sleep at night'. Matthew: an advanced toggle for night vs day, default off; when on, we need to find a place to sleep at night, and when we choose to lie down at night (as in Harvest Moon, which M has played) we advance into the day. A benefit to sleeping is not clear yet: for now, record the number of nights slept.",
@@ -9038,14 +8988,24 @@
     "dress up",
     "bug"
    ],
-   "progress": "18:05: cause found (above). Fix: SCRIPT_BUILD and SCRIPT_FRAME_URL to https://build.hazel.org/..., so SCRIPT_HAZEL_ORIGIN follows; the checks scripting482 and scripting520 to match. Then release 0.0.467.",
+   "progress": "18:05: cause found (above). Fix: SCRIPT_BUILD and SCRIPT_FRAME_URL to https://build.hazel.org/..., so SCRIPT_HAZEL_ORIGIN follows; the checks scripting482 and scripting520 to match. Then release 0.0.467. 18:07: RELEASED 0.0.467 (178f997e, tag dress-up-0.0.467), live (version.json 0.0.467, and the served 25-scripting.js names build.hazel.org). CHECKED in the browser pane on 8639: before the fix, 7 frames at 'loading' after 45 s; after it, the whole program's frame ready in 2.8 s (build 0da790fb20, embed-editable's tip), all 6 module boxes ready, status ok, no 'did not start' note, TrapRoom's tiles drawn (screenshot). Dev save restored after. check_script + check_load ok. tools/scripting520.mjs was already stopping on its fake page (no documentElement) before this change; left as it was. WAITING: the speed run 40977595380 on the tag, for scripting482.",
    "log": []
   }
  ],
  "next_ticket": 659,
- "current_ticket": 657,
- "current_note": "16:30: 0.0.466 is live: night and day, sleeping till morning, nights counted. Waiting on the speed runs (0.0.465's, then 0.0.466's) to read the checks.",
+ "current_ticket": 658,
+ "current_note": "18:08: 0.0.467 live: the 📜 Hazel tiles load from build.hazel.org again (hazel.org/build now redirects there). Waiting on the speed runs for 0.0.466 (night and day) and 0.0.467 to read scripting482 and night657.",
  "closed_tickets": [
+  {
+   "id": 656,
+   "area": "dress up: the sword cuts vines, trees and other plants in the world; the cut bits vanish (for now)",
+   "added": "2026-10-29T15:42-06:00",
+   "text": "M's request, high priority: the sword can cut through vines, trees and other vegetation in the world, and the chopped-up bits vanish, for now.",
+   "source": "Matthew, 2026-10-29 15:4x, in chat: \"switch to dress-up for a few hours. request from M: high priority --- sword can…",
+   "status": "done",
+   "closed": "2026-10-29",
+   "outcome": "Dress Up 0.0.465 (defb9986): the 🗡️ sword as a tool cuts the nearest plant ahead, one a swing; placed plants removed, a scene's own hidden per place and per world square, 👁️ grows…"
+  },
   {
    "id": 640,
    "area": "hazel merge day (10-29): what landed on dev, and how ready #2635 (livelits × modular editors) is",
@@ -14885,7 +14845,6 @@
  ],
  "queue": [
   657,
-  656,
   654,
   655,
   642,
@@ -14950,7 +14909,7 @@
   634,
   635
  ],
- "current_since": "2026-10-29T16:23-06:00",
+ "current_since": "2026-10-29T18:08-06:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",

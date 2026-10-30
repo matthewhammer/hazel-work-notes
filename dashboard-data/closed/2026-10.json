@@ -1,5 +1,75 @@
 [
  {
+  "id": 656,
+  "area": "dress up: the sword cuts vines, trees and other plants in the world; the cut bits vanish (for now)",
+  "text": "M's request, high priority: the sword can cut through vines, trees and other vegetation in the world, and the chopped-up bits vanish, for now.",
+  "added": "2026-10-29T15:42-06:00",
+  "opened": "2026-10-29T15:42-06:00",
+  "status": "done",
+  "tags": [
+   "high priority"
+  ],
+  "chips": [
+   "dress up",
+   "feature"
+  ],
+  "source": "Matthew, 2026-10-29 15:4x, in chat: \"switch to dress-up for a few hours. request from M: high priority --- sword can cut through vines and trees and other vegetation in the world, and the copped up bits -- vanish, for now\"",
+  "progress": "15:54: RELEASED 0.0.465 (defb9986, tag dress-up-0.0.465), live at https://matthewhammer.org/kids-choice-games/dress-up/ (version.json + swordCut checked over HTTPS). WHAT: the 🗡️ sword is a tool (TOOLS.sword): held from the 🎒 (✋ hold it) or already in the hand (knight, Time Wanderer, or chosen to hold: toolInHand); 'use tool' (U / 🥅) swings it; swordCut cuts the NEAREST plant ahead within 190, one a swing, with a leaf puff and 'chop!'. A placed plant (PLANT_KINDS: bush, tree, pine, moss, lichen, deadtree, kelp, seagrass, sealettuce, cacti, agave, joshuatree, ocotillo) leaves B.things; a scene's own plant (PLANT_OBJ by name, from a runtime census of all 34 places' objects) goes on B.cut[place], read by objectsOff (hidden, not solid); world squares keep their own cuts (cellKeys + 'cut'); 👁️ list shows it 🙈, tap grows it back. MY CALLS (say if you want them otherwise): one plant per swing; rows of flowers/grass/lily pads wider than the reach are NOT cut (a few swings emptied a meadow); never cut tree houses, tree trunks, far backdrops, anything with a doorway, or things to carry (toadstool, cave mushroom); a knight's sword in hand takes the controller's tool button even when it is crouch's too. CHECKED: script + load checks; in the browser pane on 8639 (shown, 60 fps): cuts nearest tree then the next, nothing behind, bush and saguaro removed, backpack sword drawn and cutting, per-square world cuts (two temp clearings), screenshot of before/after; the new check tools/checks/sword656.mjs's in-page script run there (all its values pass). Dev save on 8639 restored after. WAITING: the speed run 40961621093 (started 21:54Z) to read speed.json; 0.0.464 was already 'broken (the checks)' (^ticket(639)'s five). 18:01: the speed run 40961621093 finished: speed.json's 0.0.465 entry reads broken (the checks), as 0.0.464's did. sword656: all ok. The other failing checks fail exactly as in 0.0.464's run (identical FAIL lines): cavedoors525, cavethings471, fumola542, hazellogic531, saveload, seats413, still274, worlds406 (^ticket(639)'s; its note named five of these eight). One new: scripting482, the 📜 Hazel frames stuck at 'loading', not the sword: hazel.org/build now redirects to build.hazel.org, ^ticket(658), fixed in 0.0.467.",
+  "log": [
+   {
+    "at": "2026-10-29T15:35-06:00",
+    "from": "claude",
+    "chars": 1694,
+    "asks": false,
+    "words": 277,
+    "read_s": 70,
+    "listen_s": 104,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T15:46-06:00",
+    "from": "matthew",
+    "chars": 269,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-29T15:58-06:00",
+    "from": "claude",
+    "chars": 5014,
+    "asks": false,
+    "words": 886,
+    "read_s": 223,
+    "listen_s": 332,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-10-29",
+  "closed_at": "2026-10-29T18:07-06:00",
+  "outcome": "Dress Up 0.0.465 (defb9986): the 🗡️ sword as a tool cuts the nearest plant ahead, one a swing; placed plants removed, a scene's own hidden per place and per world square, 👁️ grows them back. sword656 all ok in the speed run 40961621093 (0.0.465: broken (the checks), the same failures as 0.0.464 plus scripting482, which is ^ticket(658)).",
+  "metrics": {
+   "open_minutes": 145,
+   "matthew_messages": 1,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 6977,
+   "tokens_est": 1744,
+   "sync_minutes_est": 0,
+   "replies": 2,
+   "claude_words": 1163,
+   "read_minutes_est": 4.9,
+   "listen_minutes_est": 7.3,
+   "read_s_avg": 146,
+   "listen_s_avg": 218,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 640,
   "area": "hazel merge day (10-29): what landed on dev, and how ready #2635 (livelits × modular editors) is",
   "text": "<b>Team merge day.</b> Survey dev since 10-10, then judge #2635's readiness for the team: CI, reviews, what it still lacks, and the order it can land in.",
