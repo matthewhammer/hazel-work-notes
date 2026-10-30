@@ -8916,63 +8916,6 @@
    ]
   },
   {
-   "id": 657,
-   "area": "dress up: night and day (an ⚙️ Advanced toggle, off by default): at night, find a place to sleep; lying down at night brings the morning; count the nights slept",
-   "text": "M's next highest excitement: night vs day, and 'the need to sleep at night'. Matthew: an advanced toggle for night vs day, default off; when on, we need to find a place to sleep at night, and when we choose to lie down at night (as in Harvest Moon, which M has played) we advance into the day. A benefit to sleeping is not clear yet: for now, record the number of nights slept.",
-   "added": "2026-10-29T16:05-06:00",
-   "opened": "2026-10-29T16:05-06:00",
-   "status": "open",
-   "tags": [
-    "high priority"
-   ],
-   "chips": [
-    "dress up",
-    "feature"
-   ],
-   "source": "Matthew, 2026-10-29 16:0x, in chat: \"M's next highest excitement is night vs day, and the 'need to sleep at night'. I don't know what that means yet, and maybe M doesn't either. Let's have: an advanced toggle for night vs day; the default is off; when on, we need to find a place to sleep at night, and when we choose to lay down at night (as in Harvest Moon, a game M has played), we advance into the day cycle and ... Maybe there's a benefit to sleeping? Still not clear. Maybe for now just record the number of nights we've slept when it's nighttime.\"",
-   "progress": "16:30: RELEASED 0.0.466 (935dc071, tag dress-up-0.0.466), live (version.json + sleepTillMorning over HTTPS). WHAT: ⚙️ Advanced row '🌗 night and day: night falls, and you sleep in a bed till morning' (state.days {on:false, dayMinutes:12, nights:0}; off to start; old saves load it from DEFAULTS), plus '⏱️ a whole day takes N minutes' (4-60) and '🛌 nights slept: N'. The clock IS the game's existing 🌍 where-and-when hour and date (background.skyHour/skyDay/skyMonth/skyYear, ticket 490's real sun and moon): it runs each second (paused while the page is hidden or asleep), written a quarter hour at a time (a drawing + save). The 5 places with their own time of day (waterfall, cave, campsite, tent, fairy forest) follow the clock while on (timeSet, 01-state.js; 6 call sites + nightBy/clockHere), showing their own night, moon and stars; every other place gets a navy tint from the sun's height (6° up: none; 12° down: 0.55 outside, 0.3 inside; none in the imagination/bubbles). The hour + nights badge at the top of the picture (pic-over). Night falling: 'Find somewhere to sleep: a bed, a bunk, a sleeping bag or a blanket.' SLEEPING = lying down (lieOn: any lie seat: hut beds, tree house bunk beds, the tent's sleeping bags, beach blankets) after sunset: fade to dark (timer-driven, so a hidden page can't hang it), 7:00 next morning (before midnight: tomorrow; after: same day), nights+1, 'Good morning! Nights slept: N.'; the friend wakes still lying. By day: 'It's still daytime. Come back to bed when it's dark.' Up all night: morning comes, not counted. MY CALLS (open to change): day length 12 min; wake at 7; tint strengths; sleep counts only after sunset; no benefit to sleeping yet (just the count, as asked). CHECKED: script + load checks; browser pane on 8639 (shown): noon/9pm/campsite/inside tints, night message, bed by day, sleep at 10pm/11:30pm/2am, controls on/off, 4-min day running, screenshots at 8pm and 5:10pm; tools/checks/night657.mjs's in-page script run there, all its conditions hold (incl. New Year's Eve -> 2027-01-01). Dev save restored (cycle off, clock defaults). WAITING: speed run 40966296721 (pending behind 0.0.465's 40961621093). IDEAS for later (not built): a benefit to sleeping (M to say), a yawn when it's late, script events for night/morning, stars/moon in more places.",
-   "log": [
-    {
-     "at": "2026-10-29T16:21-06:00",
-     "from": "matthew",
-     "chars": 74,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T16:21-06:00",
-     "from": "claude",
-     "chars": 437,
-     "asks": false,
-     "words": 87,
-     "read_s": 22,
-     "listen_s": 33,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T16:23-06:00",
-     "from": "matthew",
-     "chars": 529,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-29T16:33-06:00",
-     "from": "claude",
-     "chars": 4000,
-     "asks": false,
-     "words": 728,
-     "read_s": 184,
-     "listen_s": 273,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 658,
    "area": "dress up: the 📜 Scripting tab's Hazel tiles stuck at \"loading\" (hazel.org/build now redirects to build.hazel.org)",
    "text": "Found reading 0.0.465's speed run: scripting482 newly fails (it passed in 0.0.464's run). hazel.org/build/* now answers 301 to build.hazel.org/*, so the 📜 frames load from build.hazel.org, a different origin than SCRIPT_HAZEL_ORIGIN (https://hazel.org): the frame's ready message is dropped and the game's posts to it are dropped too. Every tiles frame stays at 'loading' on the live game. The library (hazel-lib.js, a script tag) follows the redirect and still works.",
@@ -9007,8 +8950,18 @@
  ],
  "next_ticket": 659,
  "current_ticket": 658,
- "current_note": "18:08: 0.0.467 live: the 📜 Hazel tiles load from build.hazel.org again (hazel.org/build now redirects there). Waiting on the speed runs for 0.0.466 (night and day) and 0.0.467 to read scripting482 and night657.",
+ "current_note": "20:10: Waiting on 0.0.467's speed run (40977595380) to read scripting482: the 📜 Hazel tiles from build.hazel.org.",
  "closed_tickets": [
+  {
+   "id": 657,
+   "area": "dress up: night and day (an ⚙️ Advanced toggle, off by default): at night, find a place to sleep; lying down at night brings the morning; count the nights slept",
+   "added": "2026-10-29T16:05-06:00",
+   "text": "M's next highest excitement: night vs day, and 'the need to sleep at night'. Matthew: an advanced toggle for night vs day, default off; when on, we need to find a place to sleep at night, and when we…",
+   "source": "Matthew, 2026-10-29 16:0x, in chat: \"M's next highest excitement is night vs day, and the 'need to sleep at night'. I…",
+   "status": "done",
+   "closed": "2026-10-29",
+   "outcome": "Dress Up 0.0.466 (935dc071): 🌗 night and day in ⚙️ Advanced, off to start: the game's own hour runs (a day in 12 minutes, 4-60), dark after sunset (lighter inside), the hour and…"
+  },
   {
    "id": 656,
    "area": "dress up: the sword cuts vines, trees and other plants in the world; the cut bits vanish (for now)",
@@ -14857,7 +14810,6 @@
   }
  ],
  "queue": [
-  657,
   654,
   655,
   642,
