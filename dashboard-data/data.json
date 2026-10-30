@@ -9021,9 +9021,28 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 658,
+   "area": "dress up: the 📜 Scripting tab's Hazel tiles stuck at \"loading\" (hazel.org/build now redirects to build.hazel.org)",
+   "text": "Found reading 0.0.465's speed run: scripting482 newly fails (it passed in 0.0.464's run). hazel.org/build/* now answers 301 to build.hazel.org/*, so the 📜 frames load from build.hazel.org, a different origin than SCRIPT_HAZEL_ORIGIN (https://hazel.org): the frame's ready message is dropped and the game's posts to it are dropped too. Every tiles frame stays at 'loading' on the live game. The library (hazel-lib.js, a script tag) follows the redirect and still works.",
+   "source": "Claude, 2026-10-29 18:05, reading the speed run 40961621093 (0.0.465): scripting482 'Hazel's frame says ready: loading'; reproduced in the browser pane on 8639 (0.0.466, 7 frames at 'loading' after 45 s); urllib with no redirects: hazel.org/build/embed-editable/index.html -> 301 build.hazel.org/embed-editable/index.html.",
+   "url": "https://matthewhammer.org/kids-choice-games/dress-up/",
+   "added": "2026-10-29T18:05-06:00",
+   "opened": "2026-10-29T18:05-06:00",
+   "status": "open",
+   "tags": [
+    "high priority"
+   ],
+   "chips": [
+    "dress up",
+    "bug"
+   ],
+   "progress": "18:05: cause found (above). Fix: SCRIPT_BUILD and SCRIPT_FRAME_URL to https://build.hazel.org/..., so SCRIPT_HAZEL_ORIGIN follows; the checks scripting482 and scripting520 to match. Then release 0.0.467.",
+   "log": []
   }
  ],
- "next_ticket": 658,
+ "next_ticket": 659,
  "current_ticket": 657,
  "current_note": "16:30: 0.0.466 is live: night and day, sleeping till morning, nights counted. Waiting on the speed runs (0.0.465's, then 0.0.466's) to read the checks.",
  "closed_tickets": [
@@ -14943,8 +14962,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5829,
-  "words": 1268390,
+  "replies": 5830,
+  "words": 1268485,
   "read_hours_est": 88.8,
   "listen_hours_est": 132.1,
   "read_s_avg": 55,
@@ -15211,9 +15230,9 @@
     "chars": 1781
    },
    "2026-10-29": {
-    "replies": 50,
-    "words": 12759,
-    "chars": 76551
+    "replies": 51,
+    "words": 12854,
+    "chars": 77096
    }
   }
  },
