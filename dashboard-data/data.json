@@ -8421,80 +8421,6 @@
    ]
   },
   {
-   "id": 659,
-   "area": "dress up: plants the 🗡️ sword cuts grow back (🌱 in ⚙️ Advanced, under 🌗 night and day)",
-   "text": "<b>M wants the cut plants to regrow.</b> A 🌱 cut plants grow back setting in ⚙️ Advanced, under 🌗 night and day, on to start: a cut plant comes back by itself about 2 minutes after it was cut (a slider for how long), even while you are somewhere else; with 🌗 night and day on, by the next morning, so sleeping in a bed grows back everything you cut. Plants put in a place (a bush, a cactus) are kept as cut, not deleted, so they can grow back too. Later, maybe: a 🌱 sprout where a plant was cut.",
-   "added": "2026-10-30T07:37-06:00",
-   "opened": "2026-10-30T07:37-06:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "dress up",
-    "feature"
-   ],
-   "source": "Matthew, 2026-10-30 07:3x, in chat: \"M wants a way for the plants that are cut to regrow --- What do you think? Where should we control that?\" Then, to the plan (on to start, ~2 minutes; by the next morning with night and day on; in ⚙️ Advanced): \"build it. good plan.\"",
-   "progress": "07:37: minted; building. 10-30 07:51: built; every case tried in the pane (scene trees, a placed bush, setting off, night and day, a square left and come back, cuts from 0.0.465-0.0.469); tools/checks/regrow659.mjs written; diag-659 run green (Chrome + Firefox). The laptop went down before the commit. 11-01 08:48: after the reboot, release date moved to 11-01, pulled 0.0.469's speed commit, both checks ok, committed dfb3bb61 + tag dress-up-0.0.470, not pushed (✋ his word). 0.0.469's speed run said broken: one check, places114's healer's-hut potion, already corrected on main in a683fe0f after the tag, so 0.0.470's run should be clean.",
-   "log": [
-    {
-     "at": "2026-10-30T07:37-06:00",
-     "from": "matthew",
-     "chars": 105,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-30T07:37-06:00",
-     "from": "matthew",
-     "chars": 21,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-30T07:37-06:00",
-     "from": "claude",
-     "chars": 1606,
-     "asks": true,
-     "words": 320,
-     "read_s": 81,
-     "listen_s": 120,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-30T07:43-06:00",
-     "from": "claude",
-     "chars": 977,
-     "asks": false,
-     "words": 177,
-     "read_s": 45,
-     "listen_s": 66,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-30T07:49-06:00",
-     "from": "matthew",
-     "chars": 31178,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-10-30T07:50-06:00",
-     "from": "claude",
-     "chars": 465,
-     "asks": false,
-     "words": 87,
-     "read_s": 22,
-     "listen_s": 33,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 660,
    "area": "dress up: a 🌻 garden: Colorado flower beds and US vegetables to plant, a 💧 watering can from the tree house, a spring, and plants that grow as they are watered",
    "text": "<b>A garden to grow.</b> New placeable things: flower beds of 8 Colorado flowers, and 8 vegetables grown in the United States. A new 🌻 garden place to put them in, and a new spring place (like the pond, but land on every side). The 💧 watering can is found in the tree house: fill it at the spring, the pond, the castle moat or other water, then water the plants. Each plant has a water level you can see while on its screen, and grows as it is watered.",
@@ -8544,9 +8470,19 @@
   }
  ],
  "next_ticket": 661,
- "current_ticket": 659,
- "current_note": "11-01 08:48: built and checked on 10-30 (pane scenarios, diag-659 green); 0.0.470 committed and tagged locally today (dfb3bb61, both pre-push checks ok), NOT pushed: waits on Matthew's word. Try it first at http://localhost:8133/dress-up.html (⚙️ Advanced, 🌱 cut plants grow back). Then ^ticket(660), the garden.",
+ "current_ticket": 660,
+ "current_note": "08:57: Starting the garden in three releases: first the 🌻 garden and the spring as places; then the 8 Colorado flowers and 8 vegetables to put down, each with a water level; then the 💧 watering can from the tree house that fills at water and makes them grow.",
  "closed_tickets": [
+  {
+   "id": 659,
+   "area": "dress up: plants the 🗡️ sword cuts grow back (🌱 in ⚙️ Advanced, under 🌗 night and day)",
+   "added": "2026-10-30T07:37-06:00",
+   "text": "M wants the cut plants to regrow.",
+   "source": "Matthew, 2026-10-30 07:3x, in chat: \"M wants a way for the plants that are cut to regrow --- What do you think? Where…",
+   "status": "done",
+   "closed": "2026-11-01",
+   "outcome": "Released in 0.0.470 (dfb3bb61, live 2026-11-01 over https and http): 🌱 cut plants grow back, in ⚙️ Advanced under 🌗 night and day, on to start; after 1 to 30 minutes (2 to start),…"
+  },
   {
    "id": 639,
    "area": "dress up: ^du_report(23), Doing Things in Messed Up Dress Up (retro young player's guide), and what it needed built: carrying, tools, floor switches, the 🗝️ dungeon world",
@@ -14489,7 +14425,7 @@
   634,
   635
  ],
- "current_since": "2026-10-30T07:38-06:00",
+ "current_since": "2026-11-01T08:57-07:00",
  "next_meeting": {
   "report": 20,
   "with": "Cyrus",
@@ -14988,6 +14924,5 @@
   429,
   512
  ],
- "current_waiting": "push 0.0.470 (🌱 cut plants grow back)? try it at http://localhost:8133/dress-up.html",
  "closed_tickets_are": "summaries for the hover cards; the full records are in dashboard-data/closed/<YYYY-MM>.json (dashboard/data_whole.py joins them)"
 }
