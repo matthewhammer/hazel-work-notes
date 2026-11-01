@@ -6,7 +6,7 @@
    "branch": "integration/livelits-modular-editors",
    "links": [
     [
-     "localhost:8341 (#2635 at 2b080af683, its head: GitHub's build, deployed 10-21 18:42)",
+     "localhost:8341 (#2635 at 547b9cfa8b: GitHub's build deployed 10-27; the head is 2c9708a890)",
      "http://localhost:8341/"
     ],
     [
@@ -14,7 +14,7 @@
      "http://localhost:8341/?slide=livelit-playground-scenes"
     ]
    ],
-   "branch_note": "(served again since 11:07 on 2026-10-24, after the reboot, from a launch entry of its own: the same build) (GitHub's release build of #2635's head, 2b080af683, deployed 10-21 18:42 and pulled 10-24 06:24 (dev and the new #2597 merged in; ^ticket(469)'s and ^ticket(472)'s fixes), from the deploy repo (hazelgrove/build, integration/livelits-modular-editors), not built on the laptop; in <code>~/hazel-builds/build</code>.)",
+   "branch_note": "(served again since 08:5x on 2026-11-01, after the reboot, from its launch entry. ~/hazel-builds/build pulled the same morning: its newest #2635 build is 547b9cfa8b's (Deploy 10-27 16:50Z). The head's Deploy (2c9708a890, 10-29 15:06Z) left no commit in hazelgrove/build, likely since builds moved to build.hazel.org on 10-29, so the head is not served here yet.)",
    "group": "cyrus"
   },
   {
@@ -23,11 +23,11 @@
    "branch": "integration/livelits-splicerefs-full",
    "links": [
     [
-     "localhost:8311 (#2597 at 2cd7b96f24, its head: dev in, the Html and member-livelit fixes, Γ's unfold)",
+     "localhost:8311 (#2597 at 5aab038ff5: GitHub's build deployed 10-25; the head is c7f9249802)",
      "http://localhost:8311/"
     ]
    ],
-   "branch_note": "(served again since 11:07 on 2026-10-24, after the reboot, from a launch entry of its own: the same build) (GitHub's release build of 2cd7b96f24, #2597's head, deployed 10-20 18:50 (dev merged in; ^ticket(469)'s and ^ticket(472)'s fixes), from the deploy repo (hazelgrove/build, integration/livelits-splicerefs-full), not built on the laptop; in <code>~/hazel-builds/build</code>.)",
+   "branch_note": "(served again since 08:5x on 2026-11-01, after the reboot, from its launch entry. ~/hazel-builds/build pulled the same morning: its newest #2597 build is 5aab038ff5's (Deploy 10-25 23:23Z). The four Deploys of 10-26 (up to the head, c7f9249802) left no commit in hazelgrove/build, so the head is not served here yet.)",
    "group": "cyrus"
   },
   {
@@ -87,7 +87,7 @@
    "branch": "main",
    "links": [
     [
-     "localhost:8133/dress-up.html (0.0.442, main)",
+     "localhost:8133/dress-up.html (0.0.470, main, committed + tagged locally, not pushed; live is 0.0.469)",
      "http://localhost:8133/dress-up.html"
     ],
     [
@@ -96,7 +96,7 @@
     ]
    ],
    "links_paused": null,
-   "branch_note": "(the working copy of main, ~/kids-choice-games: fast-forwarded at 11:33 on 2026-10-24 from 0.0.411, to 0.0.426, and to 0.0.427 at 16:5x; 0.0.426 at 12:18, after Matthew found reports 017 and 018 missing on 8133; his uncommitted report-005 edits from 10-22 are kept whole in git stash@{0} there. ^du_report(18)'s draft links serve ^ticket(564)'s worktree, ~/kcg-564.)",
+   "branch_note": "(the working copy of main, ~/kids-choice-games, served again since 08:5x on 2026-11-01 after the reboot. Matthew's uncommitted ^du_report(5) edits are in the working tree, left as they are (his call, 10-29); an old autostash sits in git stash@{0}.)",
    "group": "other"
   },
   {
@@ -8433,7 +8433,7 @@
     "feature"
    ],
    "source": "Matthew, 2026-10-30 07:3x, in chat: \"M wants a way for the plants that are cut to regrow --- What do you think? Where should we control that?\" Then, to the plan (on to start, ~2 minutes; by the next morning with night and day on; in ⚙️ Advanced): \"build it. good plan.\"",
-   "progress": "07:37: minted; building.",
+   "progress": "07:37: minted; building. 10-30 07:51: built; every case tried in the pane (scene trees, a placed bush, setting off, night and day, a square left and come back, cuts from 0.0.465-0.0.469); tools/checks/regrow659.mjs written; diag-659 run green (Chrome + Firefox). The laptop went down before the commit. 11-01 08:48: after the reboot, release date moved to 11-01, pulled 0.0.469's speed commit, both checks ok, committed dfb3bb61 + tag dress-up-0.0.470, not pushed (✋ his word). 0.0.469's speed run said broken: one check, places114's healer's-hut potion, already corrected on main in a683fe0f after the tag, so 0.0.470's run should be clean.",
    "log": [
     {
      "at": "2026-10-30T07:37-06:00",
@@ -8545,7 +8545,7 @@
  ],
  "next_ticket": 661,
  "current_ticket": 659,
- "current_note": "07:38: building 🌱 cut plants grow back (M's ask): a setting in ⚙️ Advanced, on to start; by the next morning with 🌗 night and day on.",
+ "current_note": "11-01 08:48: built and checked on 10-30 (pane scenarios, diag-659 green); 0.0.470 committed and tagged locally today (dfb3bb61, both pre-push checks ok), NOT pushed: waits on Matthew's word. Try it first at http://localhost:8133/dress-up.html (⚙️ Advanced, 🌱 cut plants grow back). Then ^ticket(660), the garden.",
  "closed_tickets": [
   {
    "id": 639,
@@ -14988,5 +14988,6 @@
   429,
   512
  ],
+ "current_waiting": "push 0.0.470 (🌱 cut plants grow back)? try it at http://localhost:8133/dress-up.html",
  "closed_tickets_are": "summaries for the hover cards; the full records are in dashboard-data/closed/<YYYY-MM>.json (dashboard/data_whole.py joins them)"
 }
