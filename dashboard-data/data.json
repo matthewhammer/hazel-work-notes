@@ -87,7 +87,7 @@
    "branch": "main",
    "links": [
     [
-     "localhost:8133/dress-up.html (0.0.471, main: committed + tagged locally, not pushed; live is 0.0.470)",
+     "localhost:8133/dress-up.html (0.0.472, main: committed + tagged locally, not pushed; live is 0.0.471)",
      "http://localhost:8133/dress-up.html"
     ],
     [
@@ -8433,7 +8433,7 @@
     "feature"
    ],
    "source": "Matthew, 2026-10-30 07:4x, in chat: \"let's mint some new placeable items, and a new background: garden area. flower beds. Chose 8 actual types, from Colorado. vegetables. Choose 8 types that grow in the United States. Watering can is in the tree house. Add a spring background (like pond, but contained so that land is on all sides of the screen). We can fill up the watering can at the spring or the pond, or castle moat, etc --- and then water plants. Each plant has a watering level, and a way to get the watering level when we are on the same screen. Plants grow based on how much they are watered.\"",
-   "progress": "07:43: minted; next after ^ticket(659) (🌱 regrowth) is released, in this session (same files). 11-01 10:30: split into three releases. Part 1, 0.0.471 (f8008e22, tagged, not pushed): the garden (home group: fence + rose arbor, shed, rain barrel, apple tree, bench, wheelbarrow, bees, 🟫 0-6 beds of soil, stepping stones) and the spring (water group: pool with land all round, woods, edge stones, reeds, lily pads, 🐸 0-3 frogs, 🫧 bubbles, rock, log; wadeable via WATER.spring). My calls: garden in 🏠 home, spring in 💧 water; tunes 'a peaceful garden' and 'sunny reggae'; the pool placed so no way into a square lands in it. tools/checks/garden660.mjs written; its body run in the pane (127.0.0.1:8133): every assertion held. Part 2: the plants. Part 3: the 💧 watering can.",
+   "progress": "07:43: minted; next after ^ticket(659) (🌱 regrowth) is released, in this session (same files). 11-01 10:30: split into three releases. Part 1, 0.0.471 (f8008e22, tagged, not pushed): the garden (home group: fence + rose arbor, shed, rain barrel, apple tree, bench, wheelbarrow, bees, 🟫 0-6 beds of soil, stepping stones) and the spring (water group: pool with land all round, woods, edge stones, reeds, lily pads, 🐸 0-3 frogs, 🫧 bubbles, rock, log; wadeable via WATER.spring). My calls: garden in 🏠 home, spring in 💧 water; tunes 'a peaceful garden' and 'sunny reggae'; the pool placed so no way into a square lands in it. tools/checks/garden660.mjs written; its body run in the pane (127.0.0.1:8133): every assertion held. Part 2: the plants. Part 3: the 💧 watering can. 11-01 ~11:10: 0.0.471 LIVE (https + http). 11:13: part 2, 0.0.472 (f898efa8, tagged, NOT pushed): a 🌻 garden group of things to put, 🌷 flower bed (8 Colorado wildflowers: columbine, paintbrush, penstemon, blanket flower, sunflower, silvery lupine, prairie coneflower, wild blue flax) and 🥕 vegetable patch (tomatoes, corn, carrots, pumpkins, lettuce, peas, bell peppers, broccoli); 🌱 how grown (range 0-100) draws four stages. My calls: walked through (none in STANDING); the 🗡️ sword does not cut them (not in PLANT_KINDS); defaults fully grown so new ones look finished until the can comes. Found while drawing: a thing's seeded(seed) takes ONE number (the scene's c.R takes two); seeded2 added. tools/checks/plants660.mjs written; its body run in the pane (127.0.0.1:8133): all held. Follow-up, not this ticket: the Background tab's object pictures (dress-up/objects/garden|spring/*.webp) do not exist yet, so the garden and spring log 404s for each (quietly dropped; regenerate with the objects run). Part 3 next: the 💧 watering can in the tree room (its own seeding mark: visited tree rooms already have theirs), filled at water (WATER incl. spring, lake, moat; the water barrel), a water level per plant with meters in #pic-over, growth from water.",
    "log": [
     {
      "at": "2026-10-30T07:43-06:00",
@@ -8523,7 +8523,8 @@
      "effort": "xhigh",
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": "push 0.0.472 (flower beds + vegetable patches)? try at http://localhost:8133/dress-up.html (🏞️ Background → things to put → 🌻 garden → + 🌷 flower bed / + 🥕 vegetable patch; 🌱 how grown on each card)"
   },
   {
    "id": 661,
@@ -8538,13 +8539,13 @@
     "report"
    ],
    "source": "Matthew, 2026-11-01 ~11:05, in chat, while he and M tried the garden: \"We'd like a new du_report in the style of du_report 23, now explaining all new features between that report and the current release.\"",
-   "progress": "11:09: minted; started in its own worktree (~/kcg-report-024, branch report-024). The plants (^ticket(660) part 2) go on in a second session meanwhile.",
+   "progress": "11:09: minted; started in its own worktree (~/kcg-report-024, branch report-024). The plants (^ticket(660) part 2) go on in a second session meanwhile. 11:13: draft written (12 chapters: what's new, the sword, cut stays cut, night and day, bed, regrowth, garden, spring, coming soon, fixed, a story, quick card), previewable at http://localhost:8133/report-024/reports/024/; its 19 pictures are being taken on GitHub (diag-661, drivers/shots024.mjs, run 41335293960).",
    "log": []
   }
  ],
  "next_ticket": 662,
  "current_ticket": 660,
- "current_note": "11-01 11:03: Matthew said push; pushing 0.0.471 (the garden and the spring), then part 2: the 8 Colorado flowers and 8 vegetables to plant.",
+ "current_note": "11-01 11:13: part 2 done: 0.0.472, 🌷 flower beds and 🥕 vegetable patches, committed and tagged locally (f898efa8), NOT pushed: waits on Matthew's word. Try at http://localhost:8133/dress-up.html (🏞️ Background → things to put → 🌻 garden → + 🌷 flower bed / + 🥕 vegetable patch; 🌱 how grown on each card). Part 3 next: the 💧 watering can.",
  "closed_tickets": [
   {
    "id": 659,
@@ -14998,5 +14999,6 @@
   429,
   512
  ],
+ "current_waiting": "push 0.0.472 (flower beds + vegetable patches)? try at http://localhost:8133/dress-up.html",
  "closed_tickets_are": "summaries for the hover cards; the full records are in dashboard-data/closed/<YYYY-MM>.json (dashboard/data_whole.py joins them)"
 }
