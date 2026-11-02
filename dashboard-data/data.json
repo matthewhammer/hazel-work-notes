@@ -359,7 +359,8 @@
    "added": "2026-10-12",
    "tags": [
     "blocked on Matthew",
-    "meeting 2026-10-21"
+    "meeting 2026-10-21",
+    "meeting 2026-11-04"
    ],
    "log": [
     {
@@ -3634,7 +3635,8 @@
    "opened": "2026-10-22T14:52-06:00",
    "status": "open",
    "tags": [
-    "blocked on Matthew"
+    "blocked on Matthew",
+    "meeting 2026-11-04"
    ],
    "chips": [
     "hazel"
@@ -4031,7 +4033,8 @@
    "opened": "2026-10-22T15:32-06:00",
    "status": "open",
    "tags": [
-    "blocked on Cyrus"
+    "blocked on Cyrus",
+    "meeting 2026-11-04"
    ],
    "chips": [
     "hazel"
@@ -4242,7 +4245,8 @@
    "opened": "2026-10-22T16:11-06:00",
    "status": "open",
    "tags": [
-    "blocked on Matthew"
+    "blocked on Matthew",
+    "meeting 2026-11-04"
    ],
    "chips": [
     "hazel"
@@ -8302,7 +8306,8 @@
    "opened": "2026-10-29T09:04-06:00",
    "status": "open",
    "tags": [
-    "blocked on Matthew"
+    "blocked on Matthew",
+    "meeting 2026-11-04"
    ],
    "chips": [
     "hazel",
@@ -8505,7 +8510,7 @@
     "#2635"
    ],
    "source": "Matthew, 2026-11-02 07:05, in chat: \"let's stick to hazel tickets. In particular, let's start by getting livelits x modular editors up to date with whatever has happened with modular editors recently\"; 07:08, his pick: \"Merge dev (Recommended)\"",
-   "progress": "07:09: surveyed. modular-editors af81c60054 (10-26) is in #2635 (547b9cfa8b); #2597 c7f9249802 is in it too. Not in it: dev 90d1005c9e (149 commits; a trial merge conflicts in 20 files); Andrew's open PRs into modular-editors, #2687 stdlib (158 commits, 42 conflicted files; it has the per-member DefStatics fix for the 8 red tests) and #2480 W2 worker residency (10-22, 137 behind modular-editors, 7 conflicted files). His call: dev only. Merging now in ~/hazel-livelits-modular (port 8341). 07:30: merged and committed locally, 2cab658ef1 (NOT pushed yet). 20 conflicted files resolved (FunctionSugar: dev's curried definitions with our signature-ascribed member names; WorkerClient/Server: our shared messages with dev's Coverage; Page: dev's IfCaretVisible; the rest in the commit). Dev's 26 new .rei files matched to our implementations (values we dropped removed; values our code calls declared; ContextMenu and CursorInspector signatures follow ours). dune build @check --profile release: clean; dune fmt: clean. Quick suite: 3 failures of 6,159. PerfBudgets 0 and 1: this branch takes 96,438 steps where dev's budget is 227,000 (edit: 270 vs 420), more than a quarter under, so both budgets lowered as the test asks (why half the steps: not yet known). MemberLivelitReprint 1: ENOENT, it reads ../../../hazel-programs/..., which resolves only from dune's test folder; neither it nor its file changed in the merge (CI will say). Next: a smoke test on port 8341, then push.",
+   "progress": "07:09: surveyed. modular-editors af81c60054 (10-26) is in #2635 (547b9cfa8b); #2597 c7f9249802 is in it too. Not in it: dev 90d1005c9e (149 commits; a trial merge conflicts in 20 files); Andrew's open PRs into modular-editors, #2687 stdlib (158 commits, 42 conflicted files; it has the per-member DefStatics fix for the 8 red tests) and #2480 W2 worker residency (10-22, 137 behind modular-editors, 7 conflicted files). His call: dev only. Merging now in ~/hazel-livelits-modular (port 8341). 07:30: merged and committed locally, 2cab658ef1 (NOT pushed yet). 20 conflicted files resolved (FunctionSugar: dev's curried definitions with our signature-ascribed member names; WorkerClient/Server: our shared messages with dev's Coverage; Page: dev's IfCaretVisible; the rest in the commit). Dev's 26 new .rei files matched to our implementations (values we dropped removed; values our code calls declared; ContextMenu and CursorInspector signatures follow ours). dune build @check --profile release: clean; dune fmt: clean. Quick suite: 3 failures of 6,159. PerfBudgets 0 and 1: this branch takes 96,438 steps where dev's budget is 227,000 (edit: 270 vs 420), more than a quarter under, so both budgets lowered as the test asks (why half the steps: not yet known). MemberLivelitReprint 1: ENOENT, it reads ../../../hazel-programs/..., which resolves only from dune's test folder; neither it nor its file changed in the merge (CI will say). Next: a smoke test on port 8341, then push. 07:33: PUSHED, #2635 at 2cab658ef1 (fast-forward from 2c9708a890). CI running on it (Fast checks, Full tests, the build at build.hazel.org); not read yet. The browser smoke test waits for that build (port 8341 serves #2635's GitHub build). Note: the quick suite here showed none of the 8 long-known failures (DefStaticsParity, LabelBench, ModRoot, TypeDeps, TableDecorations); dev's #2714 may have moved them out of the quick set, so the Full tests run will say whether they are gone. Found here: ^ticket(667).",
    "log": [
     {
      "at": "2026-11-02T07:05-07:00",
@@ -8532,7 +8537,7 @@
     "performance"
    ],
    "source": "Matthew, 2026-11-02 07:06, in chat: \"after we do this chore, I also want to find/create a list of specific tickets to grind on together for meeting Cyrus this Wed. * investigate the cost of undo, and potential ways to do it in O(log n) time per edit and per undo, not O(N) time, which seems to be the way it was working. * related to undo --- how much are we loosing sharing as we pass data to and from the worker thread?\"",
-   "progress": "07:09: minted; after ^ticket(663) (the #2635 dev merge). 07:22: minted ^ticket(665) (undo in O(log n)) and ^ticket(666) (sharing across the worker boundary), both tagged meeting 2026-11-04.",
+   "progress": "07:09: minted; after ^ticket(663) (the #2635 dev merge). 07:22: minted ^ticket(665) (undo in O(log n)) and ^ticket(666) (sharing across the worker boundary), both tagged meeting 2026-11-04. 07:32: THE LIST (draft, for Matthew to cut or reorder), each tagged meeting 2026-11-04: (1) ^ticket(665) undo in O(log n): measure an edit and an undo against program size, then the design; (2) ^ticket(666) sharing across the worker boundary: bytes, share hit rate, identity lost on the main thread; (3) ^ticket(667) (new today) why #2635's evaluator takes half dev's steps on PerfBudgets: a gain to take to dev, or a counter that misses steps; (4) ^ticket(642) the landing order for livelits, #2469 to dev then #2635 retargeted, now that #2635 has dev's merge day; (5) ^ticket(559) and ^ticket(548), evaluator trials with green CI (the fast path for final terms; lists without an id per element): PRs to dev or not; (6) ^ticket(554) a Hazel step paying for the editor around it (^report(35)'s question for Cyrus); (7) ^ticket(18) livelit views evaluated in the worker, which ^ticket(666) bears on.",
    "log": [
     {
      "at": "2026-11-02T07:06-07:00",
@@ -8578,9 +8583,27 @@
    ],
    "source": "Matthew, 2026-11-02 07:06, in chat (from ^ticket(664)): \"related to undo --- how much are we loosing sharing as we pass data to and from the worker thread?\"",
    "progress": "Minted from ^ticket(664). Earlier numbers (10-09, before ShareCodec): Kids release request 478 KB, responses up to 383 KB; encode ~60 ms, decode ~12 ms a release (the 10-09 profiles of a Kids' Choice release and a Polygons click); ^ticket(7)/issue 013: after keyed EvalInfo, the request's cost scales with the items above the edit."
+  },
+  {
+   "id": 667,
+   "area": "hazel, performance: why #2635's evaluator takes half dev's steps on the PerfBudgets program",
+   "text": "<b>Half the steps.</b> Dev's new PerfBudgets test (#2678, Cyrus) counts the evaluator's trampoline steps on a fixed program: 206,834 on dev (10-12), budget 227,000. On #2635 after ^ticket(663)'s merge it is 96,438, and the edit re-run 270 against dev's 378. Find which change does it: #2469's evaluator work, ours (evaluate_open, the ascription hash, the spine memo), or a difference in what is counted (a fast path that does not go through the counted trampoline). If it is real, it is an improvement to take to dev; if it is the counter, PerfBudgets should count it.",
+   "added": "2026-11-02T07:32-07:00",
+   "opened": "2026-11-02T07:32-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-04"
+   ],
+   "chips": [
+    "hazel",
+    "performance",
+    "evaluator"
+   ],
+   "source": "Found 2026-11-02 merging dev into #2635 (^ticket(663)): PerfBudgets 0 and 1 failed for being more than a quarter under budget; the budgets were lowered on #2635, as the test asks.",
+   "progress": "Minted from ^ticket(663). First step: run PerfBudgets at #2635's earlier merges and at #2469's head (bisect on the step count), and compare the count on dev with the same program."
   }
  ],
- "next_ticket": 667,
+ "next_ticket": 668,
  "current_ticket": 655,
  "current_note": "20:33: ^ticket(660) closed (done); ^ticket(655) is next in the queue",
  "closed_tickets": [
