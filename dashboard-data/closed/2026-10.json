@@ -17698,6 +17698,13 @@
     "read_s": 75,
     "listen_s": 112,
     "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-02T10:10-07:00",
+    "from": "matthew",
+    "chars": 115,
+    "asks": false,
+    "note": "from the transcripts"
    }
   ],
   "closed": "2026-10-20",
@@ -17705,10 +17712,10 @@
   "outcome": "Answered and fixed (^report(20)'s item 5). <b>Why:</b> Html is a module, not a type; the HTML type is Html.T, where the old global alias HTML lives now, and the way to ask the full view what Html is, <code>type X = Html in</code>, names Html as a type: \"Html not found\". <b>Reproduced</b> on GitHub (a probe): Html and HTML as types each mark a free type variable; Html.T and Html.App are fine. <b>Fixed</b> on #2597 (2cf1b59c37) and #2635 (3d7d5baca0): \"Html is a module, not a type; its types: Html.T, Html.App\", and for an old alias \"HTML not found: it is Html.T now\"; the full view of <code>type X = Html.T in</code> shows what Html.T is. Tests: FreeTypeHint (4). Fast checks green on both PRs' heads.",
   "metrics": {
    "open_minutes": 145,
-   "matthew_messages": 3,
+   "matthew_messages": 4,
    "questions_to_matthew": 0,
-   "chars_exchanged": 2307,
-   "tokens_est": 576,
+   "chars_exchanged": 2422,
+   "tokens_est": 605,
    "sync_minutes_est": 10.0,
    "work_minutes": 45.0,
    "replies": 2,
