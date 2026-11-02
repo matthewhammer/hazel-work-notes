@@ -8619,7 +8619,7 @@
     "performance"
    ],
    "source": "Matthew, 2026-11-02 07:06, in chat: \"after we do this chore, I also want to find/create a list of specific tickets to grind on together for meeting Cyrus this Wed. * investigate the cost of undo, and potential ways to do it in O(log n) time per edit and per undo, not O(N) time, which seems to be the way it was working. * related to undo --- how much are we loosing sharing as we pass data to and from the worker thread?\"",
-   "progress": "07:09: minted; after ^ticket(663) (the #2635 dev merge). 07:22: minted ^ticket(665) (undo in O(log n)) and ^ticket(666) (sharing across the worker boundary), both tagged meeting 2026-11-04. 07:32: THE LIST (draft, for Matthew to cut or reorder), each tagged meeting 2026-11-04: (1) ^ticket(665) undo in O(log n): measure an edit and an undo against program size, then the design; (2) ^ticket(666) sharing across the worker boundary: bytes, share hit rate, identity lost on the main thread; (3) ^ticket(667) (new today) why #2635's evaluator takes half dev's steps on PerfBudgets: a gain to take to dev, or a counter that misses steps; (4) ^ticket(642) the landing order for livelits, #2469 to dev then #2635 retargeted, now that #2635 has dev's merge day; (5) ^ticket(559) and ^ticket(548), evaluator trials with green CI (the fast path for final terms; lists without an id per element): PRs to dev or not; (6) ^ticket(554) a Hazel step paying for the editor around it (^report(35)'s question for Cyrus); (7) ^ticket(18) livelit views evaluated in the worker, which ^ticket(666) bears on.",
+   "progress": "07:09: minted; after ^ticket(663) (the #2635 dev merge). 07:22: minted ^ticket(665) (undo in O(log n)) and ^ticket(666) (sharing across the worker boundary), both tagged meeting 2026-11-04. 07:32: THE LIST (draft, for Matthew to cut or reorder), each tagged meeting 2026-11-04: (1) ^ticket(665) undo in O(log n): measure an edit and an undo against program size, then the design; (2) ^ticket(666) sharing across the worker boundary: bytes, share hit rate, identity lost on the main thread; (3) ^ticket(667) (new today) why #2635's evaluator takes half dev's steps on PerfBudgets: a gain to take to dev, or a counter that misses steps; (4) ^ticket(642) the landing order for livelits, #2469 to dev then #2635 retargeted, now that #2635 has dev's merge day; (5) ^ticket(559) and ^ticket(548), evaluator trials with green CI (the fast path for final terms; lists without an id per element): PRs to dev or not; (6) ^ticket(554) a Hazel step paying for the editor around it (^report(35)'s question for Cyrus); (7) ^ticket(18) livelit views evaluated in the worker, which ^ticket(666) bears on. 10:22: the agenda is ^report(37) (Matthew's ask: a report, work in progress, published), in three sections he named: performance (undo, ^ticket(665)), the JS library for embedded Hazel (\"Hazlet\", his word) with a demo of Dress Up's scripts, and DSL tile editors as a kind of livelit. Under Hazlet, a task for Claude: a prototype npm package, ^ticket(668) and its tasks 669 to 674.",
    "log": [
     {
      "at": "2026-11-02T07:06-07:00",
@@ -8699,9 +8699,143 @@
    ],
    "source": "Found 2026-11-02 merging dev into #2635 (^ticket(663)): PerfBudgets 0 and 1 failed for being more than a quarter under budget; the budgets were lowered on #2635, as the test asks.",
    "progress": "Minted from ^ticket(663). First step: run PerfBudgets at #2635's earlier merges and at #2469's head (bisect on the step count), and compare the count on dev with the same program."
+  },
+  {
+   "id": 668,
+   "area": "hazel, Hazlet, npm: a prototype npm package of Hazel as a JS library, installable and documented the npm way",
+   "text": "<b>Hazlet on npm.</b> What does it take to publish a prototype npm package that other people can install (<code>npm install hazlet</code>) and use, documented the way npm packages are? A <b>Hazlet</b> (Matthew's word, 2026-11-02) is Hazel embedded as a library in a JS program's event-handler system; Messed Up Dress Up is the first and only one so far, through the draft library hazel-lib.js (#2711, with #2719 stacked on it; ^report(34)). The discrete tasks, each its own ticket: (1) ^ticket(669) the package's build: the release bundle of #2719 wrapped for node (require and import) and the browser (a script tag, from a CDN that serves npm); (2) ^ticket(670) TypeScript declarations for the API and its value mapping; (3) ^ticket(671) the README, the npm way (install, quick start, API, values, limits, license), and a CHANGELOG; (4) ^ticket(672) examples and a check that installs the packed tarball into fresh node, browser and TypeScript projects (on GitHub: no headless browser here); (5) ^ticket(673) the name, the license, the version scheme and who publishes (an npm account is Matthew's: Claude cannot log in); (6) ^ticket(674) Dress Up loads its Hazel from the published package instead of a branch build. Order: 669 first; 670 and 671 on its API; 672 checks all three; 673 decides before the first publish; 674 after it. Open question for the meeting: is the package the library alone (<code>Hazel.run</code> and friends), or also the Hazlet pattern itself, a helper that turns a program of modules into JS event handlers as Dress Up uses it?",
+   "added": "2026-11-02T10:22-07:00",
+   "opened": "2026-11-02T10:22-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-04"
+   ],
+   "chips": [
+    "hazel",
+    "hazlet",
+    "npm"
+   ],
+   "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
+   "progress": "10:22: minted with its six task tickets (669 to 674). Name check, 10:17: <code>hazlet</code> is free on npm (so are hazlets, hazel-lib, hazel-lang, hazeljs; @hazelgrove/hazel has no package). npm here is not logged in. Matthew wants to try registering it today: a 0.0.1 built from #2719's head (0d66c36618, worktree ~/hazel-embed-520), packed here, published after he logs in.",
+   "log": []
+  },
+  {
+   "id": 669,
+   "area": "hazel, Hazlet, npm: the package's build (hazel-lib.js for node and the browser)",
+   "text": "<b>Hazlet package: the build.</b> Part of ^ticket(668). A folder with package.json and the release bundle of hazel-lib.js from #2719 (one js_of_ocaml script that defines <code>Hazel</code> on the global object; about 2.7 MB unpacked, 643 KB gzipped, ^report(34)), plus thin entry points: <code>require(\"hazlet\")</code> and <code>import Hazel from \"hazlet\"</code> in node give the Hazel object, and the same file works as a plain <code>&lt;script&gt;</code> from unpkg or jsDelivr. package.json the npm way: name, version, description, keywords, license, repository, homepage, bugs, <code>main</code>, <code>exports</code> (require, import, types), <code>files</code>, <code>engines</code>. Check: <code>npm pack</code> gives a tarball whose contents are only those files; node runs the README's quick start from it. Feeds ^ticket(670) (types), ^ticket(671) (README) and ^ticket(672) (install check). Where its source lives (a folder on #2711's branch, built by dune, or a repository of its own) is part of ^ticket(673).",
+   "added": "2026-11-02T10:22-07:00",
+   "opened": "2026-11-02T10:22-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-04"
+   ],
+   "chips": [
+    "hazel",
+    "hazlet",
+    "npm"
+   ],
+   "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
+   "progress": "Not started.",
+   "log": []
+  },
+  {
+   "id": 670,
+   "area": "hazel, Hazlet, npm: TypeScript declarations for the API and the value mapping",
+   "text": "<b>Hazlet package: types.</b> Part of ^ticket(668). An <code>index.d.ts</code> for what ^ticket(669) exports: <code>version</code>, <code>build</code>, <code>analyze</code>, <code>run</code>, <code>analyzeProgram</code>, <code>runProgram</code>, the program spec (preamble, modules, tail) and its result (ok, errors with their module, holes, incomplete, ms), and the values Hazel gives back (number, boolean, string, arrays, null for (), objects for labeled tuples, <code>{tag, value}</code> constructors, functions, <code>{hazel}</code> for anything else). Read from docs/hazel-as-a-js-library.md and src/web/HazelLibCore.re on #2719. Checked by <code>tsc --noEmit</code> on ^ticket(672)'s TypeScript example; documented in ^ticket(671)'s README.",
+   "added": "2026-11-02T10:22-07:00",
+   "opened": "2026-11-02T10:22-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-04"
+   ],
+   "chips": [
+    "hazel",
+    "hazlet",
+    "npm"
+   ],
+   "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
+   "progress": "Not started.",
+   "log": []
+  },
+  {
+   "id": 671,
+   "area": "hazel, Hazlet, npm: the README the npm way, and a CHANGELOG",
+   "text": "<b>Hazlet package: docs.</b> Part of ^ticket(668). The README that npmjs.com shows on the package's page: what a Hazlet is, in a paragraph; install; a quick start for node and for the browser (a CDN script tag); the API, call by call, with ^ticket(670)'s types; the values table; programs of modules; that errors do not stop a run; speed (^report(34)'s measured calls); limits (experimental, no stability promise yet, runs on the page's own thread); what a Hazel program can and cannot reach on the page; license; links to Hazel, the source and the issue tracker. A CHANGELOG.md with 0.0.1. Written from docs/hazel-as-a-js-library.md (#2719). Its examples are ^ticket(672)'s, so the check runs every snippet.",
+   "added": "2026-11-02T10:22-07:00",
+   "opened": "2026-11-02T10:22-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-04"
+   ],
+   "chips": [
+    "hazel",
+    "hazlet",
+    "npm"
+   ],
+   "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
+   "progress": "Not started.",
+   "log": []
+  },
+  {
+   "id": 672,
+   "area": "hazel, Hazlet, npm: examples, and a check that installs the packed package into fresh projects",
+   "text": "<b>Hazlet package: the install check.</b> Part of ^ticket(668). <code>examples/</code>: node with require, node with import, a plain HTML page, and TypeScript (^ticket(670)'s types under <code>tsc --noEmit</code>). A GitHub workflow packs ^ticket(669)'s package, installs the tarball into each example as a user would, and runs it, the page in headless Firefox as the deck workflow does (the laptop cannot run a headless browser). So the README's snippets (^ticket(671)) are tested as users will get them. Before each publish (^ticket(673)).",
+   "added": "2026-11-02T10:22-07:00",
+   "opened": "2026-11-02T10:22-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-04"
+   ],
+   "chips": [
+    "hazel",
+    "hazlet",
+    "npm"
+   ],
+   "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
+   "progress": "Not started.",
+   "log": []
+  },
+  {
+   "id": 673,
+   "area": "hazel, Hazlet, npm: the name, license, versions and who publishes",
+   "text": "<b>Hazlet package: name and publishing.</b> Part of ^ticket(668); decisions for Matthew, some for the meeting with Cyrus. (1) The name: unscoped <code>hazlet</code> (free as of 2026-11-02 10:17), under Matthew's npm account, or a scope such as <code>@hazelgrove/hazlet</code> (needs an npm organization; @hazelgrove has no package now). (2) The license: MIT, as Hazel's package.json has. (3) Versions: 0.0.x while experimental, each naming the Hazel commit it was built from (<code>Hazel.build</code> and the CHANGELOG); dist-tags. (4) Who publishes: the account, its two-factor login, other maintainers; later a GitHub workflow with an npm token (a secret Matthew sets) and provenance. Claude cannot create the account or log in; Matthew runs <code>npm login</code>, then <code>npm publish</code> or says to. (5) Where the source lives (^ticket(669)). The first publish waits on ^ticket(669), ^ticket(671) and ^ticket(672); ^ticket(674) waits on it.",
+   "added": "2026-11-02T10:22-07:00",
+   "opened": "2026-11-02T10:22-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-04"
+   ],
+   "chips": [
+    "hazel",
+    "hazlet",
+    "npm"
+   ],
+   "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
+   "progress": "Not started.",
+   "log": []
+  },
+  {
+   "id": 674,
+   "area": "hazel, Hazlet, npm, Dress Up: the game loads its Hazel from the published package",
+   "text": "<b>Dress Up on the package.</b> Part of ^ticket(668). Messed Up Dress Up, the first Hazlet, loads hazel-lib.js from a branch build of #2719. Once ^ticket(673)'s first publish is out, load it from the package instead (unpkg or jsDelivr, pinned to a version), so the game is the package's first real user. A Dress Up release as usual; the Scripting tab's speed run is the check (^report(32)).",
+   "added": "2026-11-02T10:22-07:00",
+   "opened": "2026-11-02T10:22-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-04"
+   ],
+   "chips": [
+    "hazel",
+    "hazlet",
+    "npm",
+    "dress up"
+   ],
+   "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
+   "progress": "Not started.",
+   "log": []
   }
  ],
- "next_ticket": 668,
+ "next_ticket": 675,
  "current_ticket": 655,
  "current_note": "20:33: ^ticket(660) closed (done); ^ticket(655) is next in the queue",
  "closed_tickets": [
@@ -14688,9 +14822,9 @@
  ],
  "current_since": "2026-11-01T20:33-07:00",
  "next_meeting": {
-  "report": 20,
+  "report": 37,
   "with": "Cyrus",
-  "date": "2026-10-21"
+  "date": "2026-11-04"
  },
  "reading": {
   "rates": {
