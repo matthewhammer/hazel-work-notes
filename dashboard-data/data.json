@@ -8528,30 +8528,6 @@
    ]
   },
   {
-   "id": 662,
-   "area": "dress up: the 💧 watering can waters the plant the friend faces; and no stray comma on 🎒 cards (0.0.474)",
-   "text": "<b>Water the plant in front.</b> Where two beds meet (one in front of the friend, one behind), the can counted both as equally near and could water the one behind, whichever was put first. When plants are equally near, prefer the one on the side the friend faces. Also: the 🎒 backpack cards show a stray comma before the date (\", Nov 2, 2:12 AM\"). Found while taking ^du_report(24)'s pouring picture (^ticket(661)).",
-   "added": "2026-11-02T05:28-07:00",
-   "opened": "2026-11-02T05:28-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "dress up",
-    "fix"
-   ],
-   "source": "Matthew, 2026-11-02 05:28, in chat: \"Fix it\" (the box's ask: \"Fix the watering can's aim as 0.0.474?\"; my note offered the 🎒 cards' stray comma in the same release)",
-   "progress": "05:28: minted; working on it in this session. Not to be pushed until Matthew says so. 05:38: 0.0.474 (4d8384b6, tagged dress-up-0.0.474, NOT pushed). plantNear ranks the plants the can may water by how near they are to the can in the friend's hand (0.22 of their height in front of them), then by how near each one's middle is; a plant tapped (walked to, then the tool used) is the one watered (toolUse(want) → canUse(want) → plantNear(aim, want)). Which plants are in reach is unchanged (measured from their feet, as before). The 🎒 card joins \"from a 💰 chest\" and the date with a comma only when both are there. tools/checks/can660.mjs gained two checks: two beds meeting, in either order, facing either way, one tapped; and the card's text. Its body run in the pane (127.0.0.1:8133, animation frames stood in for by timers, the pane being hidden): every check held. The old plantNear, on the same four set-ups, watered the wrong bed in three. check_script + check_load ok. Waiting on Matthew's word to push. 06:59: Matthew: \"Push it\". 07:00: 0.0.474 LIVE (https + http), 4d8384b6; main had not moved, main pushed then the tag. Speed run on the tag: running (run 41457849486).",
-   "log": [
-    {
-     "at": "2026-11-02T05:28-07:00",
-     "from": "matthew",
-     "chars": 6,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 663,
    "area": "hazel, livelits, #2635: livelits × modular editors brought up to date: dev's 10-29 merge day merged in",
    "text": "<b>#2635 up to date.</b> Andrew's modular-editors (#2469) has not moved since 10-26 (af81c60054), and #2635 already has it. What moved is dev: 149 commits (98 not merges) since #2635's last dev merge (183bd76716), merge day 10-29 among them. Merge dev into integration/livelits-modular-editors, resolve, build, run the local CI gate (dune build @check --profile release; dune fmt; the touched test groups), push.",
@@ -8662,6 +8638,16 @@
  "current_ticket": 655,
  "current_note": "20:33: ^ticket(660) closed (done); ^ticket(655) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 662,
+   "area": "dress up: the 💧 watering can waters the plant the friend faces; and no stray comma on 🎒 cards (0.0.474)",
+   "added": "2026-11-02T05:28-07:00",
+   "text": "Water the plant in front.",
+   "source": "Matthew, 2026-11-02 05:28, in chat: \"Fix it\" (the box's ask: \"Fix the watering can's aim as 0.0.474?\"; my note offered…",
+   "status": "done",
+   "closed": "2026-11-02",
+   "outcome": "0.0.474, live with an ok speed run: the 💧 watering can waters the plant nearest the can in the friend's hand (in front of them), and a tapped plant is the one watered; where two…"
+  },
   {
    "id": 660,
    "area": "dress up: a 🌻 garden: Colorado flower beds and US vegetables to plant, a 💧 watering can from the tree house, a spring, and plants that grow as they are watered",

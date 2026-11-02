@@ -1,5 +1,40 @@
 [
  {
+  "id": 662,
+  "area": "dress up: the 💧 watering can waters the plant the friend faces; and no stray comma on 🎒 cards (0.0.474)",
+  "text": "<b>Water the plant in front.</b> Where two beds meet (one in front of the friend, one behind), the can counted both as equally near and could water the one behind, whichever was put first. When plants are equally near, prefer the one on the side the friend faces. Also: the 🎒 backpack cards show a stray comma before the date (\", Nov 2, 2:12 AM\"). Found while taking ^du_report(24)'s pouring picture (^ticket(661)).",
+  "added": "2026-11-02T05:28-07:00",
+  "opened": "2026-11-02T05:28-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "dress up",
+   "fix"
+  ],
+  "source": "Matthew, 2026-11-02 05:28, in chat: \"Fix it\" (the box's ask: \"Fix the watering can's aim as 0.0.474?\"; my note offered the 🎒 cards' stray comma in the same release)",
+  "progress": "05:28: minted; working on it in this session. Not to be pushed until Matthew says so. 05:38: 0.0.474 (4d8384b6, tagged dress-up-0.0.474, NOT pushed). plantNear ranks the plants the can may water by how near they are to the can in the friend's hand (0.22 of their height in front of them), then by how near each one's middle is; a plant tapped (walked to, then the tool used) is the one watered (toolUse(want) → canUse(want) → plantNear(aim, want)). Which plants are in reach is unchanged (measured from their feet, as before). The 🎒 card joins \"from a 💰 chest\" and the date with a comma only when both are there. tools/checks/can660.mjs gained two checks: two beds meeting, in either order, facing either way, one tapped; and the card's text. Its body run in the pane (127.0.0.1:8133, animation frames stood in for by timers, the pane being hidden): every check held. The old plantNear, on the same four set-ups, watered the wrong bed in three. check_script + check_load ok. Waiting on Matthew's word to push. 06:59: Matthew: \"Push it\". 07:00: 0.0.474 LIVE (https + http), 4d8384b6; main had not moved, main pushed then the tag. Speed run on the tag: running (run 41457849486). 08:31: speed run on the 0.0.474 tag: ok, no check failed (run 41457849486; can660 with the new cases among the checks).",
+  "log": [
+   {
+    "at": "2026-11-02T05:28-07:00",
+    "from": "matthew",
+    "chars": 6,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-02",
+  "closed_at": "2026-11-02T08:31-07:00",
+  "outcome": "0.0.474, live with an ok speed run: the 💧 watering can waters the plant nearest the can in the friend's hand (in front of them), and a tapped plant is the one watered; where two beds meet it no longer waters the one behind. The 🎒 card of a thing picked up off the floor no longer starts with a comma. can660.mjs checks both.",
+  "metrics": {
+   "open_minutes": 183,
+   "matthew_messages": 1,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 6,
+   "tokens_est": 1,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 660,
   "area": "dress up: a 🌻 garden: Colorado flower beds and US vegetables to plant, a 💧 watering can from the tree house, a spring, and plants that grow as they are watered",
   "text": "<b>A garden to grow.</b> New placeable things: flower beds of 8 Colorado flowers, and 8 vegetables grown in the United States. A new 🌻 garden place to put them in, and a new spring place (like the pond, but land on every side). The 💧 watering can is found in the tree house: fill it at the spring, the pond, the castle moat or other water, then water the plants. Each plant has a water level you can see while on its screen, and grows as it is watered.",
