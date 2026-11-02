@@ -8471,9 +8471,43 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 663,
+   "area": "hazel, livelits, #2635: livelits × modular editors brought up to date: dev's 10-29 merge day merged in",
+   "text": "<b>#2635 up to date.</b> Andrew's modular-editors (#2469) has not moved since 10-26 (af81c60054), and #2635 already has it. What moved is dev: 149 commits (98 not merges) since #2635's last dev merge (183bd76716), merge day 10-29 among them. Merge dev into integration/livelits-modular-editors, resolve, build, run the local CI gate (dune build @check --profile release; dune fmt; the touched test groups), push.",
+   "added": "2026-11-02T07:09-07:00",
+   "opened": "2026-11-02T07:09-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "livelits",
+    "#2635"
+   ],
+   "source": "Matthew, 2026-11-02 07:05, in chat: \"let's stick to hazel tickets. In particular, let's start by getting livelits x modular editors up to date with whatever has happened with modular editors recently\"; 07:08, his pick: \"Merge dev (Recommended)\"",
+   "progress": "07:09: surveyed. modular-editors af81c60054 (10-26) is in #2635 (547b9cfa8b); #2597 c7f9249802 is in it too. Not in it: dev 90d1005c9e (149 commits; a trial merge conflicts in 20 files); Andrew's open PRs into modular-editors, #2687 stdlib (158 commits, 42 conflicted files; it has the per-member DefStatics fix for the 8 red tests) and #2480 W2 worker residency (10-22, 137 behind modular-editors, 7 conflicted files). His call: dev only. Merging now in ~/hazel-livelits-modular (port 8341)."
+  },
+  {
+   "id": 664,
+   "area": "hazel, the meeting with Cyrus on Wed 2026-11-04: a list of specific tickets to grind on together",
+   "text": "<b>Tickets for Wednesday.</b> Find or create a list of specific tickets to work through with Cyrus. Two to start: (1) the cost of undo, and ways to make it O(log n) per edit and per undo rather than O(N), as it seems to be now; (2) related: how much sharing is lost as data passes to and from the worker thread.",
+   "added": "2026-11-02T07:09-07:00",
+   "opened": "2026-11-02T07:09-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-04"
+   ],
+   "chips": [
+    "hazel",
+    "meeting",
+    "performance"
+   ],
+   "source": "Matthew, 2026-11-02 07:06, in chat: \"after we do this chore, I also want to find/create a list of specific tickets to grind on together for meeting Cyrus this Wed. * investigate the cost of undo, and potential ways to do it in O(log n) time per edit and per undo, not O(N) time, which seems to be the way it was working. * related to undo --- how much are we loosing sharing as we pass data to and from the worker thread?\"",
+   "progress": "07:09: minted; after ^ticket(663) (the #2635 dev merge)."
   }
  ],
- "next_ticket": 663,
+ "next_ticket": 665,
  "current_ticket": 655,
  "current_note": "20:33: ^ticket(660) closed (done); ^ticket(655) is next in the queue",
  "closed_tickets": [
