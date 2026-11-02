@@ -8936,7 +8936,7 @@
     "undo"
    ],
    "source": "Matthew, 2026-11-02 07:06, in chat (from ^ticket(664)): \"investigate the cost of undo, and potential ways to do it in O(log n) time per edit and per undo, not O(N) time, which seems to be the way it was working.\"",
-   "progress": "Minted from ^ticket(664). First step: time an edit, an undo and a redo against program size (the 2000-let bench at several sizes, and Full Body) on #2635 after ^ticket(663), counting what each one rebuilds (items analyzed, pieces measured, evaluation steps). Background: ^ticket(58) (#2597's uncapped stack, 10-14; on #2635, Andrew's compaction 6010128b7d and keep-newest 032fe3aca6). 07:42: FIRST MEASUREMENT (node, #2635 at 2cab658ef1 + probe 1d98b3aed7 on local branch probe/undo-scaling: test UndoScaling, UNDO_SIZES=...). A chain of n lets, an edit in the middle one; each step through the app's loop, then the statics refresh; evaluation off (dynamics=false). Per step, edit / undo / redo (the step, then statics): n=100 9+6 / 11+6 / 8+5 ms; n=400 18+13 / 25+12 / 18+12; n=1600 75+50 / 93+50 / 71+51; n=3200 ~200+130 / ~240+130 / ~190+130. LINEAR in n, about 0.1 ms a let at 3200; undo about 1.2x an edit; an older (compacted) undo costs the same as the latest. Each step re-parses 1-2 items, re-measures 1-2 chunks and compares 2 item heads, so the incremental caches work: the O(n) is in whole-program passes around them, not in the undo stack. Profile at n=3200 (12 steps, 4.2 s): MakeTerm.go_incr's top-level pass 31% (parse_level 11%, record_top_frame/sim 10%); DefStatics.calc 16% (calc_chain's walk over every item 11%, the edited item 7%); AutoProbePerform.program_root_id 11% (Segment.skel of the whole top level on every frame: its memo is keyed on the segment's identity, which every edit changes; then tail_id walks the let chain); Zipper.remold_regrout on insert 8%; TyDi.suggest via set_tydi_buffer 7%; Measured.of_segment's walk 4%; GC ~15%. TRAP FOUND: the test runner installs DefStaticsCheck (monolithic statics + a lexeme trace of every info's elaboration, after every calc, up to 3000 infos), which made the first numbers quadratic (n=400: 1.6 s a refresh) and then cheap past 3000 infos; the probe turns it off. NOT YET MEASURED: evaluation (the worker request, ^ticket(666)) and the view. Toward O(log n): the cheap ones first (program_root_id from the syntax's own term, O(1); TyDi's suggestions only when asked; remold only the edited item), then the structural ones: the top level as a balanced tree of items (a finger tree with per-subtree summaries: skeleton pieces, exports, dirty names) so MakeTerm's top-level pass, the skeleton and DefStatics' chain walk touch O(log n) nodes per edit. 08:54: Matthew: \"Cheap fixes first\". PROBE CORRECTED first (167247e61d): each frame's calculate now told whether it was an edit, as Main does (the undo tests' helper said yes for every frame, which redid syntax and completions on the statics refresh), and the runner's second check, NormalizeCheck (a global remold after every edit), turned off too. TRUE BASELINE, step medians of 12 (statics refresh 9-42 ms beside): n=800 edit 28 / undo 58 / redo 39 ms; 1600: 48 / 109 / 89; 3200: 92 / 208 / 173. So undo is ~2x an edit. Re-molding (8% before) was the runner's check. TWO FIXES, local branch perf/665-cheap (off #2635 + the probe): 459b029f68 program_root_id reads MakeTerm.Incr's cached top-level skeleton (c_skel) when it is this segment's (its memo was keyed on the segment, which every edit changes); d06473240f no completion suggestions after a numeral (none can start with a digit; they scanned the context and completed the segment first). AFTER: 800: 16 / 39 / 22 ms; 1600: 26 / 67 / 46; 3200: 68 / 156 / 106. 25-45% off each step; still linear. Tests: TyDi, Autoprobe, TailProbe, completion, probe groups: 828 pass; quick suite running. WHAT IS LEFT, all structural (profile at 3200 after the fixes): MakeTerm.go_incr 38% (record_top_frame/sim 17%, ItemSpans' top-level spans 10%), DefStatics 20% (step_chain 11%, calc_chain 9%), Outline rebuilt when an undo or redo realizes the view 15% (its memo of the last 4 programs misses on the restored program: the likely reason undo costs 2x), Measured's walk 6%. NOT PUSHED: where these go (#2635, and a dev PR for the TyDi one) is Matthew's call. 09:01: quick suite with both fixes: 1 failure of 6,159, MemberLivelitReprint 1 (the cwd-relative path, as on #2635 itself). Waiting on Matthew: whether to cherry-pick the two fixes (not the probe) onto #2635 and push; the numeral fix would also suit a dev PR (dev has the same TyDi code), the root-id fix is #2635/#2469-only (dev has no c_skel). 10:10: PUSHED to #2635 on Matthew's word (\"Push to #2635\"): the two fixes, cherry-picked as 394552d5d0 and bfa36a6ede (not the probe); #2635 now at bfa36a6ede. Before pushing: dune build @check and dune fmt clean, the targeted groups 828 pass. Next, his ask: ^report(36), a report with figures on what an edit, an undo and a redo cost (drafting in ~/hazel-perf-report/036/), to be published as work in progress.",
+   "progress": "Minted from ^ticket(664). First step: time an edit, an undo and a redo against program size (the 2000-let bench at several sizes, and Full Body) on #2635 after ^ticket(663), counting what each one rebuilds (items analyzed, pieces measured, evaluation steps). Background: ^ticket(58) (#2597's uncapped stack, 10-14; on #2635, Andrew's compaction 6010128b7d and keep-newest 032fe3aca6). 07:42: FIRST MEASUREMENT (node, #2635 at 2cab658ef1 + probe 1d98b3aed7 on local branch probe/undo-scaling: test UndoScaling, UNDO_SIZES=...). A chain of n lets, an edit in the middle one; each step through the app's loop, then the statics refresh; evaluation off (dynamics=false). Per step, edit / undo / redo (the step, then statics): n=100 9+6 / 11+6 / 8+5 ms; n=400 18+13 / 25+12 / 18+12; n=1600 75+50 / 93+50 / 71+51; n=3200 ~200+130 / ~240+130 / ~190+130. LINEAR in n, about 0.1 ms a let at 3200; undo about 1.2x an edit; an older (compacted) undo costs the same as the latest. Each step re-parses 1-2 items, re-measures 1-2 chunks and compares 2 item heads, so the incremental caches work: the O(n) is in whole-program passes around them, not in the undo stack. Profile at n=3200 (12 steps, 4.2 s): MakeTerm.go_incr's top-level pass 31% (parse_level 11%, record_top_frame/sim 10%); DefStatics.calc 16% (calc_chain's walk over every item 11%, the edited item 7%); AutoProbePerform.program_root_id 11% (Segment.skel of the whole top level on every frame: its memo is keyed on the segment's identity, which every edit changes; then tail_id walks the let chain); Zipper.remold_regrout on insert 8%; TyDi.suggest via set_tydi_buffer 7%; Measured.of_segment's walk 4%; GC ~15%. TRAP FOUND: the test runner installs DefStaticsCheck (monolithic statics + a lexeme trace of every info's elaboration, after every calc, up to 3000 infos), which made the first numbers quadratic (n=400: 1.6 s a refresh) and then cheap past 3000 infos; the probe turns it off. NOT YET MEASURED: evaluation (the worker request, ^ticket(666)) and the view. Toward O(log n): the cheap ones first (program_root_id from the syntax's own term, O(1); TyDi's suggestions only when asked; remold only the edited item), then the structural ones: the top level as a balanced tree of items (a finger tree with per-subtree summaries: skeleton pieces, exports, dirty names) so MakeTerm's top-level pass, the skeleton and DefStatics' chain walk touch O(log n) nodes per edit. 08:54: Matthew: \"Cheap fixes first\". PROBE CORRECTED first (167247e61d): each frame's calculate now told whether it was an edit, as Main does (the undo tests' helper said yes for every frame, which redid syntax and completions on the statics refresh), and the runner's second check, NormalizeCheck (a global remold after every edit), turned off too. TRUE BASELINE, step medians of 12 (statics refresh 9-42 ms beside): n=800 edit 28 / undo 58 / redo 39 ms; 1600: 48 / 109 / 89; 3200: 92 / 208 / 173. So undo is ~2x an edit. Re-molding (8% before) was the runner's check. TWO FIXES, local branch perf/665-cheap (off #2635 + the probe): 459b029f68 program_root_id reads MakeTerm.Incr's cached top-level skeleton (c_skel) when it is this segment's (its memo was keyed on the segment, which every edit changes); d06473240f no completion suggestions after a numeral (none can start with a digit; they scanned the context and completed the segment first). AFTER: 800: 16 / 39 / 22 ms; 1600: 26 / 67 / 46; 3200: 68 / 156 / 106. 25-45% off each step; still linear. Tests: TyDi, Autoprobe, TailProbe, completion, probe groups: 828 pass; quick suite running. WHAT IS LEFT, all structural (profile at 3200 after the fixes): MakeTerm.go_incr 38% (record_top_frame/sim 17%, ItemSpans' top-level spans 10%), DefStatics 20% (step_chain 11%, calc_chain 9%), Outline rebuilt when an undo or redo realizes the view 15% (its memo of the last 4 programs misses on the restored program: the likely reason undo costs 2x), Measured's walk 6%. NOT PUSHED: where these go (#2635, and a dev PR for the TyDi one) is Matthew's call. 09:01: quick suite with both fixes: 1 failure of 6,159, MemberLivelitReprint 1 (the cwd-relative path, as on #2635 itself). Waiting on Matthew: whether to cherry-pick the two fixes (not the probe) onto #2635 and push; the numeral fix would also suit a dev PR (dev has the same TyDi code), the root-id fix is #2635/#2469-only (dev has no c_skel). 10:10: PUSHED to #2635 on Matthew's word (\"Push to #2635\"): the two fixes, cherry-picked as 394552d5d0 and bfa36a6ede (not the probe); #2635 now at bfa36a6ede. Before pushing: dune build @check and dune fmt clean, the targeted groups 828 pass. Next, his ask: ^report(36), a report with figures on what an edit, an undo and a redo cost (drafting in ~/hazel-perf-report/036/), to be published as work in progress. 10:46: ^report(36) \"What an Undo Costs\" PUBLISHED as work in progress (Matthew's ask: \"write a hazel report draft, and publish it, with graphs\"): https://matthewhammer.org/hazel/reports/036/ (homepage 451502d; series repo cc69e37, not pushed: drafts wait there). New data for it: 5 sizes (400 to 6,400), 3 runs per build, Node with a 64 MB stack (the 8 MB default segfaulted in 4 of 6 runs at 6,400). After the fixes at 6,400: edit 106 / undo 292 / redo 184 ms + statics ~78; slope 1.10 to 1.16 on log-log; an undo 2.7 to 3.0 edits, a redo 1.6 to 2.0; fixes 31-46% off at 3,200 and 6,400. This morning's runs of the same builds were 20-70% slower at every size (session spread), so compare within a session.",
    "log": [
     {
      "at": "2026-11-02T08:43-07:00",
@@ -9007,7 +9007,7 @@
     "npm"
    ],
    "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
-   "progress": "10:22: minted with its six task tickets (669 to 674). Name check, 10:17: <code>hazlet</code> is free on npm (so are hazlets, hazel-lib, hazel-lang, hazeljs; @hazelgrove/hazel has no package). npm here is not logged in. Matthew wants to try registering it today: a 0.0.1 built from #2719's head (0d66c36618, worktree ~/hazel-embed-520), packed here, published after he logs in. 10:36: A FIRST VERSION, ready to publish. Matthew is logged in to npm (user matthewhammer) and picked the name <b>hazeljs</b> (\"Hazlet\" stays the pattern's name). Local repo ~/hazeljs (c76daf4, not pushed anywhere): hazel-lib.js built from #2719 at 0d66c36618 with GITHUB_SHA set, so Hazel.build names the commit; 648-649 kB packed, 2.8 MB unpacked, 9 files. Installed from its tarball into a fresh project: require and import both work, every README example runs. Waiting on Matthew: publish hazeljs@0.0.1. 10:44: PUBLISH REFUSED, twice (here at 10:43, then in Matthew's terminal tab): npm E403, \"Two-factor authentication or granular access token with bypass 2fa enabled is required to publish packages\". It asked for no code, so 2FA is off on the account. Nothing published; the name is still free. Matthew's step: turn on 2FA on npmjs.com, npm login again, then npm publish in ~/hazeljs (it will ask for the code). Matthew's next ask (same time): once hazeljs and a MUDU package are on npm, can ^report(34) show the trap room live and let a reader edit its Hazel rule in tiles?",
+   "progress": "10:22: minted with its six task tickets (669 to 674). Name check, 10:17: <code>hazlet</code> is free on npm (so are hazlets, hazel-lib, hazel-lang, hazeljs; @hazelgrove/hazel has no package). npm here is not logged in. Matthew wants to try registering it today: a 0.0.1 built from #2719's head (0d66c36618, worktree ~/hazel-embed-520), packed here, published after he logs in. 10:36: A FIRST VERSION, ready to publish. Matthew is logged in to npm (user matthewhammer) and picked the name <b>hazeljs</b> (\"Hazlet\" stays the pattern's name). Local repo ~/hazeljs (c76daf4, not pushed anywhere): hazel-lib.js built from #2719 at 0d66c36618 with GITHUB_SHA set, so Hazel.build names the commit; 648-649 kB packed, 2.8 MB unpacked, 9 files. Installed from its tarball into a fresh project: require and import both work, every README example runs. Waiting on Matthew: publish hazeljs@0.0.1. 10:44: PUBLISH REFUSED, twice (here at 10:43, then in Matthew's terminal tab): npm E403, \"Two-factor authentication or granular access token with bypass 2fa enabled is required to publish packages\". It asked for no code, so 2FA is off on the account. Nothing published; the name is still free. Matthew's step: turn on 2FA on npmjs.com, npm login again, then npm publish in ~/hazeljs (it will ask for the code). Matthew's next ask (same time): once hazeljs and a MUDU package are on npm, can ^report(34) show the trap room live and let a reader edit its Hazel rule in tiles? 10:49: ^report(34) now has a dated section for Hazel's core team on what the release carries beyond dev (published, homepage fe4cce1). Matthew's next ask, a live trap room in that report: ^ticket(675) with 676 to 678.",
    "log": [],
    "waiting": "Matthew: turn on 2FA at npmjs.com, npm login, then run npm publish in ~/hazeljs (npm requires 2FA to publish)"
   },
@@ -9133,9 +9133,89 @@
    "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
    "progress": "Not started.",
    "log": []
+  },
+  {
+   "id": 675,
+   "area": "hazel, Hazlet, report 34: a live trap room in the report, its Hazel rule editable in tiles",
+   "text": "<b>A live trap room in ^report(34).</b> The reader plays Messed Up Dress Up's trap room on the report's page and edits the room's Hazel rule in Hazel's tiles, the room answering the edited rule at once. Three pieces, each its own ticket: (1) ^ticket(676) the trap room on a page that is not the game's; (2) ^ticket(677) Hazel's tile editor on that page; (3) ^ticket(678) the report's page wiring them to <code>hazeljs</code> (^ticket(668)): the editor's text, <code>Hazel.runProgram</code>, the rule handed to the room. Today the game does all three inside itself (its Scripting panel), so a first version can be an iframe of the game opened at the trap room; the package version is the Hazlet pattern shown working in a page we write.",
+   "added": "2026-11-02T10:49-07:00",
+   "opened": "2026-11-02T10:49-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-04"
+   ],
+   "chips": [
+    "hazel",
+    "hazlet",
+    "npm",
+    "report 34"
+   ],
+   "source": "Matthew, 2026-11-02, in chat: \"Once we publish hazeljs and mudu as npm packages, can we use those here? So the reader can: * see the trap room and * edit the hazel script, with tiles, etc? https://matthewhammer.org/hazel/reports/034/\"",
+   "progress": "Not started.",
+   "log": []
+  },
+  {
+   "id": 676,
+   "area": "hazel, Hazlet, Dress Up: the trap room on another page (a deep link, then a messed-up-dress-up package)",
+   "text": "<b>The trap room outside the game.</b> Part of ^ticket(675). First step, small: a link that opens the game at the trap room with its Scripting panel showing and Hazel chosen (the game reads <code>?try=cave-N</code> and <code>?logic=hazel</code> today, but has no way in to the trap room), so a report can frame it. Then, for the package route: the game as an npm package, <code>messed-up-dress-up</code> (free on npm on 2026-11-02; <code>mudu</code> is someone else's), exporting the trap room (its drawing, its events, the commands it runs) for a host page to mount and to hand a rule. That needs the room pulled out of the game's shared global state (about 30 script files), so it is the larger step. A Dress Up release each, the speed run as the check.",
+   "added": "2026-11-02T10:49-07:00",
+   "opened": "2026-11-02T10:49-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-04"
+   ],
+   "chips": [
+    "hazel",
+    "hazlet",
+    "npm",
+    "report 34"
+   ],
+   "source": "Matthew, 2026-11-02, in chat: \"Once we publish hazeljs and mudu as npm packages, can we use those here? So the reader can: * see the trap room and * edit the hazel script, with tiles, etc? https://matthewhammer.org/hazel/reports/034/\"",
+   "progress": "Not started.",
+   "log": []
+  },
+  {
+   "id": 677,
+   "area": "hazel, Hazlet, embed: Hazel's tile editor in another page (embed-editable as a PR, and served for a report)",
+   "text": "<b>Tiles in a page.</b> Part of ^ticket(675). Embed mode (#2719) shows a posted program in Hazel's tiles, read-only; the <code>embed-editable</code> branch (12 commits, no PR yet) makes it selectable and editable. Open its PR, stacked on #2719 (^report(34)'s step 2). Then serve it where a report's page can frame it: a branch build URL, a copy of the app's files beside the report, or a package of its own. To check: whether a CDN that serves npm packages serves the app's index.html as a page at all. The library package (^ticket(668)) does not include the app: hazel-lib.js has no editor.",
+   "added": "2026-11-02T10:49-07:00",
+   "opened": "2026-11-02T10:49-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-04"
+   ],
+   "chips": [
+    "hazel",
+    "hazlet",
+    "npm",
+    "report 34"
+   ],
+   "source": "Matthew, 2026-11-02, in chat: \"Once we publish hazeljs and mudu as npm packages, can we use those here? So the reader can: * see the trap room and * edit the hazel script, with tiles, etc? https://matthewhammer.org/hazel/reports/034/\"",
+   "progress": "Not started.",
+   "log": []
+  },
+  {
+   "id": 678,
+   "area": "hazel, Hazlet, report 34: the report's page wires the room, the tiles and hazeljs",
+   "text": "<b>The wiring.</b> Part of ^ticket(675), after ^ticket(676) and ^ticket(677). The report's page posts the trap room's module text (and Common's) to the tile editor, takes each edit back by postMessage, runs the program with <code>hazeljs</code>'s <code>Hazel.runProgram</code> (^ticket(668)), and hands the new <code>on_event</code> to the room; errors, holes and unfinished brackets shown beside it, and the rule kept while it is not <code>ok</code>, as the game's panel does. A dated update in ^report(34) shows it.",
+   "added": "2026-11-02T10:49-07:00",
+   "opened": "2026-11-02T10:49-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-04"
+   ],
+   "chips": [
+    "hazel",
+    "hazlet",
+    "npm",
+    "report 34"
+   ],
+   "source": "Matthew, 2026-11-02, in chat: \"Once we publish hazeljs and mudu as npm packages, can we use those here? So the reader can: * see the trap room and * edit the hazel script, with tiles, etc? https://matthewhammer.org/hazel/reports/034/\"",
+   "progress": "Not started.",
+   "log": []
   }
  ],
- "next_ticket": 675,
+ "next_ticket": 679,
  "current_ticket": 655,
  "current_note": "20:33: ^ticket(660) closed (done); ^ticket(655) is next in the queue",
  "closed_tickets": [
