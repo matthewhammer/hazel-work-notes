@@ -1,5 +1,440 @@
 [
  {
+  "id": 660,
+  "area": "dress up: a 🌻 garden: Colorado flower beds and US vegetables to plant, a 💧 watering can from the tree house, a spring, and plants that grow as they are watered",
+  "text": "<b>A garden to grow.</b> New placeable things: flower beds of 8 Colorado flowers, and 8 vegetables grown in the United States. A new 🌻 garden place to put them in, and a new spring place (like the pond, but land on every side). The 💧 watering can is found in the tree house: fill it at the spring, the pond, the castle moat or other water, then water the plants. Each plant has a water level you can see while on its screen, and grows as it is watered.",
+  "added": "2026-10-30T07:43-06:00",
+  "opened": "2026-10-30T07:43-06:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "dress up",
+   "feature"
+  ],
+  "source": "Matthew, 2026-10-30 07:4x, in chat: \"let's mint some new placeable items, and a new background: garden area. flower beds. Chose 8 actual types, from Colorado. vegetables. Choose 8 types that grow in the United States. Watering can is in the tree house. Add a spring background (like pond, but contained so that land is on all sides of the screen). We can fill up the watering can at the spring or the pond, or castle moat, etc --- and then water plants. Each plant has a watering level, and a way to get the watering level when we are on the same screen. Plants grow based on how much they are watered.\"",
+  "progress": "07:43: minted; next after ^ticket(659) (🌱 regrowth) is released, in this session (same files). 11-01 10:30: split into three releases. Part 1, 0.0.471 (f8008e22, tagged, not pushed): the garden (home group: fence + rose arbor, shed, rain barrel, apple tree, bench, wheelbarrow, bees, 🟫 0-6 beds of soil, stepping stones) and the spring (water group: pool with land all round, woods, edge stones, reeds, lily pads, 🐸 0-3 frogs, 🫧 bubbles, rock, log; wadeable via WATER.spring). My calls: garden in 🏠 home, spring in 💧 water; tunes 'a peaceful garden' and 'sunny reggae'; the pool placed so no way into a square lands in it. tools/checks/garden660.mjs written; its body run in the pane (127.0.0.1:8133): every assertion held. Part 2: the plants. Part 3: the 💧 watering can. 11-01 ~11:10: 0.0.471 LIVE (https + http). 11:13: part 2, 0.0.472 (f898efa8, tagged, NOT pushed): a 🌻 garden group of things to put, 🌷 flower bed (8 Colorado wildflowers: columbine, paintbrush, penstemon, blanket flower, sunflower, silvery lupine, prairie coneflower, wild blue flax) and 🥕 vegetable patch (tomatoes, corn, carrots, pumpkins, lettuce, peas, bell peppers, broccoli); 🌱 how grown (range 0-100) draws four stages. My calls: walked through (none in STANDING); the 🗡️ sword does not cut them (not in PLANT_KINDS); defaults fully grown so new ones look finished until the can comes. Found while drawing: a thing's seeded(seed) takes ONE number (the scene's c.R takes two); seeded2 added. tools/checks/plants660.mjs written; its body run in the pane (127.0.0.1:8133): all held. Follow-up, not this ticket: the Background tab's object pictures (dress-up/objects/garden|spring/*.webp) do not exist yet, so the garden and spring log 404s for each (quietly dropped; regenerate with the objects run). Part 3 next: the 💧 watering can in the tree room (its own seeding mark: visited tree rooms already have theirs), filled at water (WATER incl. spring, lake, moat; the water barrel), a water level per plant with meters in #pic-over, growth from water. 14:58: Matthew: \"push 0.0.472\". 14:59: 0.0.472 LIVE (https + http), d5b67117: rebased onto main (the speed run's commit and ^du_report(24) had landed), re-tagged locally before the push, check_script + check_load ok, main pushed then the tag. Speed run on the tag: ok, no check failed (run 41354755259, plants660 among them). Part 3 (the 💧 watering can) next. 18:27: Matthew: \"Build it now and update the report please.\" 18:30: part 3 (the 💧 watering can, 0.0.473) handed to the Garden part 2 session to build, check, commit and tag; not pushed until Matthew says so. Then ^du_report(24) gets a chapter for the can, with pictures from GitHub. 18:49: part 3, 0.0.473 (db7d3596, tagged dress-up-0.0.473, NOT pushed): the 💧 watering can on the tree room's floor (ROOM_CARRY_LATER, its own mark; seen-before tree rooms get it next visit), held as soon as it is picked up; use tool (U / 🥅 / tap a plant) pours one 💧 into a plant with room in its 3-💧 meter, or fills to 6 pours by water (WATER: spring, lake, moat, stream, sea; underwater; a well, water barrel, trough, fountain; within 150). A plant drinks a 💧 per 15 s (wall clock, also while away) and grows a stage per 💧; meters over plants still growing while the can is held; no wilting. New flower beds / vegetable patches start as sprouts (grown 0). tools/checks/can660.mjs written; its body run in the pane (127.0.0.1:8133): all held; plants660 updated (grown: 100) and re-run: all held. check_script + check_load ok. 19:03: Matthew: \"Push it\". 19:04: 0.0.473 LIVE (https + http), db7d3596; check_script + check_load ok, main pushed then the tag. Speed run on the tag: running. Next: the can's chapter in ^du_report(24). 20:33: speed run on the 0.0.473 tag: ok, no check failed (run 41375647956). The can has chapter 10 in ^du_report(24), live. All three parts released.",
+  "log": [
+   {
+    "at": "2026-10-30T07:43-06:00",
+    "from": "matthew",
+    "chars": 573,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-30T07:43-06:00",
+    "from": "claude",
+    "chars": 109,
+    "asks": false,
+    "words": 19,
+    "read_s": 5,
+    "listen_s": 7,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-10-30T07:45-06:00",
+    "from": "claude",
+    "chars": 2044,
+    "asks": false,
+    "words": 372,
+    "read_s": 94,
+    "listen_s": 140,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T08:44-07:00",
+    "from": "matthew",
+    "chars": 109,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T08:44-07:00",
+    "from": "matthew",
+    "chars": 59,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T08:49-07:00",
+    "from": "claude",
+    "chars": 2428,
+    "asks": true,
+    "words": 408,
+    "read_s": 103,
+    "listen_s": 153,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T09:04-07:00",
+    "from": "claude",
+    "chars": 688,
+    "asks": false,
+    "words": 115,
+    "read_s": 29,
+    "listen_s": 43,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T10:18-07:00",
+    "from": "matthew",
+    "chars": 9,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T10:31-07:00",
+    "from": "claude",
+    "chars": 4150,
+    "asks": true,
+    "words": 729,
+    "read_s": 184,
+    "listen_s": 273,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T11:03-07:00",
+    "from": "matthew",
+    "chars": 17,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T11:03-07:00",
+    "from": "claude",
+    "chars": 42,
+    "asks": false,
+    "words": 6,
+    "read_s": 2,
+    "listen_s": 2,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T11:03-07:00",
+    "from": "claude",
+    "chars": 42,
+    "asks": false,
+    "words": 6,
+    "read_s": 2,
+    "listen_s": 2,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T11:14-07:00",
+    "from": "claude",
+    "chars": 4471,
+    "asks": true,
+    "words": 776,
+    "read_s": 196,
+    "listen_s": 291,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T11:14-07:00",
+    "from": "claude",
+    "chars": 3577,
+    "asks": false,
+    "words": 607,
+    "read_s": 153,
+    "listen_s": 228,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T11:19-07:00",
+    "from": "claude",
+    "chars": 968,
+    "asks": false,
+    "words": 172,
+    "read_s": 43,
+    "listen_s": 64,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T11:26-07:00",
+    "from": "claude",
+    "chars": 1155,
+    "asks": false,
+    "words": 218,
+    "read_s": 55,
+    "listen_s": 82,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T11:33-07:00",
+    "from": "claude",
+    "chars": 2212,
+    "asks": true,
+    "words": 393,
+    "read_s": 99,
+    "listen_s": 147,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T14:44-07:00",
+    "from": "claude",
+    "chars": 1758,
+    "asks": false,
+    "words": 268,
+    "read_s": 68,
+    "listen_s": 100,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T14:58-07:00",
+    "from": "matthew",
+    "chars": 14,
+    "asks": false,
+    "note": "\"push 0.0.472\", in the ^du_report(24) session"
+   },
+   {
+    "at": "2026-11-01T14:58-07:00",
+    "from": "matthew",
+    "chars": 12,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T15:01-07:00",
+    "from": "matthew",
+    "chars": 839,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T15:04-07:00",
+    "from": "claude",
+    "chars": 671,
+    "asks": false,
+    "words": 109,
+    "read_s": 27,
+    "listen_s": 41,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T15:04-07:00",
+    "from": "claude",
+    "chars": 696,
+    "asks": false,
+    "words": 124,
+    "read_s": 31,
+    "listen_s": 46,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T16:32-07:00",
+    "from": "claude",
+    "chars": 994,
+    "asks": true,
+    "words": 142,
+    "read_s": 36,
+    "listen_s": 53,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T17:37-07:00",
+    "from": "matthew",
+    "chars": 15,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T17:43-07:00",
+    "from": "claude",
+    "chars": 2039,
+    "asks": false,
+    "words": 373,
+    "read_s": 94,
+    "listen_s": 140,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T17:52-07:00",
+    "from": "claude",
+    "chars": 2613,
+    "asks": false,
+    "words": 475,
+    "read_s": 120,
+    "listen_s": 178,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T18:11-07:00",
+    "from": "matthew",
+    "chars": 40,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T18:11-07:00",
+    "from": "claude",
+    "chars": 1034,
+    "asks": true,
+    "words": 183,
+    "read_s": 46,
+    "listen_s": 69,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T18:27-07:00",
+    "from": "matthew",
+    "chars": 12,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T18:27-07:00",
+    "from": "matthew",
+    "chars": 29,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T18:28-07:00",
+    "from": "matthew",
+    "chars": 2412,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T18:29-07:00",
+    "from": "claude",
+    "chars": 799,
+    "asks": false,
+    "words": 147,
+    "read_s": 37,
+    "listen_s": 55,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T18:51-07:00",
+    "from": "claude",
+    "chars": 5147,
+    "asks": true,
+    "words": 920,
+    "read_s": 232,
+    "listen_s": 345,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T18:52-07:00",
+    "from": "claude",
+    "chars": 2948,
+    "asks": true,
+    "words": 534,
+    "read_s": 135,
+    "listen_s": 200,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T19:03-07:00",
+    "from": "matthew",
+    "chars": 7,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T19:08-07:00",
+    "from": "claude",
+    "chars": 1849,
+    "asks": false,
+    "words": 345,
+    "read_s": 87,
+    "listen_s": 129,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T19:16-07:00",
+    "from": "claude",
+    "chars": 366,
+    "asks": false,
+    "words": 70,
+    "read_s": 18,
+    "listen_s": 26,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-01T19:26-07:00",
+    "from": "claude",
+    "chars": 608,
+    "asks": false,
+    "words": 104,
+    "read_s": 26,
+    "listen_s": 39,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-01",
+  "closed_at": "2026-11-01T20:33-07:00",
+  "outcome": "Released in three parts, all live with ok speed runs: 0.0.471 the 🌻 garden and the 💧 spring; 0.0.472 🌷 flower beds (8 Colorado wildflowers) and 🥕 vegetable patches (8 US vegetables), with 🌱 how grown; 0.0.473 the 💧 watering can from the tree room, filled at any water, a 3-💧 meter per plant, and growth from water. Shown in ^du_report(24) chapters 7-10. Found while taking its pictures, not fixed: where two beds meet, the can can water the bed behind the friend.",
+  "metrics": {
+   "open_minutes": 3711,
+   "matthew_messages": 14,
+   "questions_to_matthew": 8,
+   "chars_exchanged": 47555,
+   "tokens_est": 11888,
+   "sync_minutes_est": 63.0,
+   "replies": 25,
+   "claude_words": 7615,
+   "read_minutes_est": 32.0,
+   "listen_minutes_est": 47.5,
+   "read_s_avg": 77,
+   "listen_s_avg": 114,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 661,
   "area": "dress up, reports: ^du_report(24), a young player's guide to what is new since ^du_report(23) (0.0.465 to 0.0.471: the sword cuts plants, night and day and sleeping, plants grow back, the garden and the spring)",
   "text": "<b>A new Dress Up report, in the style of ^du_report(23)</b> (the retro young player's guide), explaining every new feature between that report (0.0.464) and the current release: the 🗡️ sword cutting plants, 🌗 night and day and sleeping, 🌱 cut plants growing back, the 🌻 garden and the 💧 spring, and the fixes (one dungeon kept, every room its things, the 📜 Hazel tiles). Pictures from a run on GitHub, as 023's were.",
