@@ -8672,6 +8672,89 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-02T10:18-07:00",
+     "from": "matthew",
+     "chars": 637,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-02T10:18-07:00",
+     "from": "claude",
+     "chars": 180,
+     "asks": false,
+     "words": 31,
+     "read_s": 8,
+     "listen_s": 12,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-02T10:18-07:00",
+     "from": "claude",
+     "chars": 180,
+     "asks": false,
+     "words": 31,
+     "read_s": 8,
+     "listen_s": 12,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-02T10:19-07:00",
+     "from": "matthew",
+     "chars": 255,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-02T10:20-07:00",
+     "from": "matthew",
+     "chars": 206,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-02T10:20-07:00",
+     "from": "matthew",
+     "chars": 77,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-02T10:21-07:00",
+     "from": "matthew",
+     "chars": 84,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-02T10:21-07:00",
+     "from": "claude",
+     "chars": 189,
+     "asks": false,
+     "words": 34,
+     "read_s": 9,
+     "listen_s": 13,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-02T10:21-07:00",
+     "from": "claude",
+     "chars": 189,
+     "asks": false,
+     "words": 34,
+     "read_s": 9,
+     "listen_s": 13,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ]
   },
@@ -8808,6 +8891,7 @@
    "opened": "2026-11-02T10:22-07:00",
    "status": "open",
    "tags": [
+    "blocked on Matthew",
     "meeting 2026-11-04"
    ],
    "chips": [
@@ -8816,8 +8900,9 @@
     "npm"
    ],
    "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
-   "progress": "10:22: minted with its six task tickets (669 to 674). Name check, 10:17: <code>hazlet</code> is free on npm (so are hazlets, hazel-lib, hazel-lang, hazeljs; @hazelgrove/hazel has no package). npm here is not logged in. Matthew wants to try registering it today: a 0.0.1 built from #2719's head (0d66c36618, worktree ~/hazel-embed-520), packed here, published after he logs in.",
-   "log": []
+   "progress": "10:22: minted with its six task tickets (669 to 674). Name check, 10:17: <code>hazlet</code> is free on npm (so are hazlets, hazel-lib, hazel-lang, hazeljs; @hazelgrove/hazel has no package). npm here is not logged in. Matthew wants to try registering it today: a 0.0.1 built from #2719's head (0d66c36618, worktree ~/hazel-embed-520), packed here, published after he logs in. 10:36: A FIRST VERSION, ready to publish. Matthew is logged in to npm (user matthewhammer) and picked the name <b>hazeljs</b> (\"Hazlet\" stays the pattern's name). Local repo ~/hazeljs (c76daf4, not pushed anywhere): hazel-lib.js built from #2719 at 0d66c36618 with GITHUB_SHA set, so Hazel.build names the commit; 648-649 kB packed, 2.8 MB unpacked, 9 files. Installed from its tarball into a fresh project: require and import both work, every README example runs. Waiting on Matthew: publish hazeljs@0.0.1.",
+   "log": [],
+   "waiting": "Matthew: publish hazeljs@0.0.1 (~/hazeljs, packed and tested)?"
   },
   {
    "id": 669,
@@ -8835,7 +8920,7 @@
     "npm"
    ],
    "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
-   "progress": "Not started.",
+   "progress": " 10:36: done for 0.0.1 in ~/hazeljs: package.json (exports for require, import and types; unpkg/jsdelivr fields; files; engines node>=18; \"hazel\" field naming the commit), index.js (CJS), index.mjs (ESM default and named), hazel-lib.js. Not yet: a build script that makes it from a Hazel checkout, and where its source lives (^ticket(673)).",
    "log": []
   },
   {
@@ -8854,7 +8939,7 @@
     "npm"
    ],
    "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
-   "progress": "Not started.",
+   "progress": " 10:36: index.d.ts written for 0.0.1 (HazelValue, Analysis, Result, ProgramSpec, ProgramAnalysis, ProgramResult, HazelLib), from HazelLibCore.re's fields. Not yet checked by tsc (^ticket(672)).",
    "log": []
   },
   {
@@ -8873,7 +8958,7 @@
     "npm"
    ],
    "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
-   "progress": "Not started.",
+   "progress": " 10:36: README.md and CHANGELOG.md written for 0.0.1: install, CDN tag, usage, API table, values, programs of modules, a Prototype use case (Messed Up Dress Up, two pictures from ^du_report(17), at Matthew's ask), size and speed (measured: require ~170 ms, a small run ~30 ms, a 100-member module ~110 ms, 400 ~2.3 s), limits, About Hazel (sends readers to hazel.org and the GitHub contributors, at Matthew's ask), license. Hazel's hazelnut at the top (src/web/www/img/hazelnut.svg, white on the app's accent, shipped as hazelnut.svg, shown through jsDelivr). Found and documented: a module of about 150 members overflows Node's default stack; the ms field always reads 0 under Node (a bug in HazelLibCore's timing, not yet traced).",
    "log": []
   },
   {
@@ -8892,7 +8977,7 @@
     "npm"
    ],
    "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
-   "progress": "Not started.",
+   "progress": " 10:36: by hand only: the packed tarball installed into a fresh project in the scratchpad, CJS and ESM run, README examples run in node. Still to do: the browser and TypeScript examples, and the GitHub workflow.",
    "log": []
   },
   {
@@ -8911,7 +8996,7 @@
     "npm"
    ],
    "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
-   "progress": "Not started.",
+   "progress": " 10:36: decided by Matthew: name hazeljs, unscoped, under his npm account (matthewhammer); license MIT; author field \"The Hazel contributors (https://hazel.org)\". Open: an @hazelgrove org later; versions after 0.0.1; where the source lives.",
    "log": [
     {
      "at": "2026-11-02T10:10-07:00",
@@ -14940,8 +15025,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5927,
-  "words": 1293702,
+  "replies": 5929,
+  "words": 1293866,
   "read_hours_est": 90.6,
   "listen_hours_est": 134.8,
   "read_s_avg": 55,
@@ -15223,9 +15308,9 @@
     "chars": 80945
    },
    "2026-11-02": {
-    "replies": 37,
-    "words": 6747,
-    "chars": 38934
+    "replies": 39,
+    "words": 6911,
+    "chars": 39851
    }
   }
  },
