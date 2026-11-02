@@ -8532,7 +8532,7 @@
     "performance"
    ],
    "source": "Matthew, 2026-11-02 07:06, in chat: \"after we do this chore, I also want to find/create a list of specific tickets to grind on together for meeting Cyrus this Wed. * investigate the cost of undo, and potential ways to do it in O(log n) time per edit and per undo, not O(N) time, which seems to be the way it was working. * related to undo --- how much are we loosing sharing as we pass data to and from the worker thread?\"",
-   "progress": "07:09: minted; after ^ticket(663) (the #2635 dev merge).",
+   "progress": "07:09: minted; after ^ticket(663) (the #2635 dev merge). 07:22: minted ^ticket(665) (undo in O(log n)) and ^ticket(666) (sharing across the worker boundary), both tagged meeting 2026-11-04.",
    "log": [
     {
      "at": "2026-11-02T07:06-07:00",
@@ -8542,9 +8542,45 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 665,
+   "area": "hazel, performance: the cost of undo, and O(log n) per edit and per undo instead of O(N)",
+   "text": "<b>Undo in O(log n).</b> Measure what an edit and an undo cost as the program grows, and design undo so each costs O(log n), not O(N). Today, on #2635 (src/web/app/History.re): the undo and redo stacks hold whole Page models, capped at 250. Pushing compacts the previous head: it drops the derived caches (syntax, statics, evaluation) and keeps the zippers. The newest entry stays whole (032fe3aca6), so only the latest undo restores without rebuilding. Any other undo rebuilds syntax from the zipper (incrementally, through the live editors' caches), re-analyzes from CachedStatics.empty and re-evaluates; on Full Body that was about an edit's time (10-15). Where the O(N) is, to measure: the restore's re-measure and re-parse walk, whole-program statics from empty (per-item DefStatics cannot reuse anything), full re-evaluation; per push, compact_head (per cell), the cap's List.filteri over 250, the result's persist/unpersist. Directions: undo as an inverse edit applied to the live state, so derived state updates as it does for a keystroke; or snapshots that keep their derived state and share structure with the live one (per-item statics keyed by item), so a restore recomputes only the items that differ.",
+   "added": "2026-11-02T07:22-07:00",
+   "opened": "2026-11-02T07:22-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-04"
+   ],
+   "chips": [
+    "hazel",
+    "performance",
+    "undo"
+   ],
+   "source": "Matthew, 2026-11-02 07:06, in chat (from ^ticket(664)): \"investigate the cost of undo, and potential ways to do it in O(log n) time per edit and per undo, not O(N) time, which seems to be the way it was working.\"",
+   "progress": "Minted from ^ticket(664). First step: time an edit, an undo and a redo against program size (the 2000-let bench at several sizes, and Full Body) on #2635 after ^ticket(663), counting what each one rebuilds (items analyzed, pieces measured, evaluation steps). Background: ^ticket(58) (#2597's uncapped stack, 10-14; on #2635, Andrew's compaction 6010128b7d and keep-newest 032fe3aca6)."
+  },
+  {
+   "id": 666,
+   "area": "hazel, performance: how much sharing is lost passing data to and from the eval worker",
+   "text": "<b>Sharing across the worker boundary.</b> How much structure sharing and identity is lost as data goes to the worker and back, and what that costs. Today, on #2635: within one message, Marshal keeps the message's own sharing. Across messages, ShareCodec (993e3d5f91, 2b080af683; ^ticket(513)) keeps a table on both sides, keyed by Merkle hash: a value already sent goes as a reference, so the worker's request shares unchanged values with the last one. Responses can be shared the same way (ServerMessage.Shared). What is still lost, to measure: values under ShareCodec's min_size (16), first sends, and everything after a table reset; and on the main thread, every value decoded from a response is a new object, so identity-keyed memos (TypHash's and ValueHash's WeakMaps, the view memo, MapPiece identity) miss on it and hash it again. Measure per request and response: bytes with and without sharing, the share hit rate, encode, decode and hash time, and the identity misses on the main thread caused by decoded values, for a Kids' Choice release, a Full Body edit and an undo (an undo's old values: are they still in the worker's table?). Related to ^ticket(665).",
+   "added": "2026-11-02T07:22-07:00",
+   "opened": "2026-11-02T07:22-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-04"
+   ],
+   "chips": [
+    "hazel",
+    "performance",
+    "worker"
+   ],
+   "source": "Matthew, 2026-11-02 07:06, in chat (from ^ticket(664)): \"related to undo --- how much are we loosing sharing as we pass data to and from the worker thread?\"",
+   "progress": "Minted from ^ticket(664). Earlier numbers (10-09, before ShareCodec): Kids release request 478 KB, responses up to 383 KB; encode ~60 ms, decode ~12 ms a release (the 10-09 profiles of a Kids' Choice release and a Polygons click); ^ticket(7)/issue 013: after keyed EvalInfo, the request's cost scales with the items above the edit."
   }
  ],
- "next_ticket": 665,
+ "next_ticket": 667,
  "current_ticket": 655,
  "current_note": "20:33: ^ticket(660) closed (done); ^ticket(655) is next in the queue",
  "closed_tickets": [
