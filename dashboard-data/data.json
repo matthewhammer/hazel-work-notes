@@ -9274,7 +9274,8 @@
    "opened": "2026-11-02T07:32-07:00",
    "status": "open",
    "tags": [
-    "meeting 2026-11-04"
+    "meeting 2026-11-04",
+    "blocked on Matthew"
    ],
    "chips": [
     "hazel",
@@ -9282,7 +9283,8 @@
     "evaluator"
    ],
    "source": "Found 2026-11-02 merging dev into #2635 (^ticket(663)): PerfBudgets 0 and 1 failed for being more than a quarter under budget; the budgets were lowered on #2635, as the test asks.",
-   "progress": "Minted from ^ticket(663). First step: run PerfBudgets at #2635's earlier merges and at #2469's head (bisect on the step count), and compare the count on dev with the same program. 11-03 08:11: LIKELY ANSWER: a counting effect of our own d0c56fb090 (10-13, on #2635, not on dev), \"Binding a value that is already done calls its continuation directly\": Trampoline.bind(Done(x), f) is f(x), no Bind node and no trampoline step, so the same work counts fewer steps (its message says so). EVIDENCE: a test-only probe (Test_StepProbe, 16 small programs, Test_PerfBudgets.work) built on dev (~/hazel-dev-fontscroll at e8125d9933, then removed) and on #2635's code: every form takes 1.8 to 2.35 times dev's steps on #2635 (fib(10) 37,922 against 17,722, sum of 10 2,235 against 1,035, map 3,765 against 1,771), and a bare literal 1 takes 12 steps on dev and 0 on #2635. Uniform, so not one form's reduction. PerfBudgets here: dev 206,834 / 378, #2635 96,438 / 270. CONFIRMING NOW: #2635's code with bind reverted, rebuilt (dev profile), its counts should come back to dev's. Time: d0c56fb090's own measure was allocation -4% on the woods, time inside the noise; so the halved count is not a halved time. For the agenda's half-steps question: not a gain in steps to bring to dev as such, though the change itself (fewer Bind nodes) could go to dev on its own."
+   "progress": "Minted from ^ticket(663). First step: run PerfBudgets at #2635's earlier merges and at #2469's head (bisect on the step count), and compare the count on dev with the same program. 11-03 08:11: LIKELY ANSWER: a counting effect of our own d0c56fb090 (10-13, on #2635, not on dev), \"Binding a value that is already done calls its continuation directly\": Trampoline.bind(Done(x), f) is f(x), no Bind node and no trampoline step, so the same work counts fewer steps (its message says so). EVIDENCE: a test-only probe (Test_StepProbe, 16 small programs, Test_PerfBudgets.work) built on dev (~/hazel-dev-fontscroll at e8125d9933, then removed) and on #2635's code: every form takes 1.8 to 2.35 times dev's steps on #2635 (fib(10) 37,922 against 17,722, sum of 10 2,235 against 1,035, map 3,765 against 1,771), and a bare literal 1 takes 12 steps on dev and 0 on #2635. Uniform, so not one form's reduction. PerfBudgets here: dev 206,834 / 378, #2635 96,438 / 270. CONFIRMING NOW: #2635's code with bind reverted, rebuilt (dev profile), its counts should come back to dev's. Time: d0c56fb090's own measure was allocation -4% on the woods, time inside the noise; so the halved count is not a halved time. For the agenda's half-steps question: not a gain in steps to bring to dev as such, though the change itself (fewer Bind nodes) could go to dev on its own. 08:13: CONFIRMED, half of it: #2635's code with d0c56fb090 reverted (rebuilt in 36 s, the worktree restored after) counts 152,746 cold and 340 after the edit, against #2635's 96,438 / 270 and dev's 206,834 / 378; the small programs move the same way (fib(10) 17,722 -> 28,016, dev 37,922). The other quarter: by its own message 602498d7aa (10-10, \"The evaluator skips binds that only pass a value through\": bind(t, return) is t, a trampoline step saved at nearly every node; measured then -16% min / -25% median on a call-heavy program). Not verified by a revert: it conflicts with later commits. Both are ours, on #2597's line and so on #2635, not on dev. ANSWER for the agenda: the halved count is fewer trampoline bounces for the same reductions; part of it is real time (602498d7aa), part only counting (d0c56fb090: allocation -4%, time in the noise). Both could go to dev as a small PR of their own.",
+   "waiting": "Matthew: open a small dev PR with d0c56fb090 and 602498d7aa (fewer trampoline bounces; dev's PerfBudgets count would drop about by half, and its budget with it)? MY RECOMMENDATION: ask Cyrus at the meeting (the agenda's half-steps item now says what they are); I can prepare the PR either way."
   },
   {
    "id": 668,
@@ -9602,8 +9604,8 @@
   }
  ],
  "next_ticket": 681,
- "current_ticket": 665,
- "current_note": "07:46: Matthew AFK (AFK protocol); ^ticket(663)'s fix runs on GitHub (deck 41656799833). ^report(38)'s next step 2: profiling undo apart from redo, to find what an undo still costs beyond a redo once the outline is set aside",
+ "current_ticket": 663,
+ "current_note": "08:13: AFK protocol. Waiting on GitHub: the deck runs that test ^ticket(663)'s fix (about 08:35) and CI for the undo fix (about 09:05). Questions for Matthew are on their tickets, first in 'Blocked on Matthew's decision': ^ticket(665) push the undo fix, ^ticket(679) republish ^report(38), ^ticket(672) a GitHub home for hazeljs, ^ticket(667) a dev PR for the two trampoline commits, ^ticket(680) report 39's title, ^ticket(668) the npm placeholder.",
  "closed_tickets": [
   {
    "id": 662,
@@ -15588,7 +15590,7 @@
   679,
   680
  ],
- "current_since": "2026-11-03T07:46-07:00",
+ "current_since": "2026-11-03T08:13-07:00",
  "next_meeting": {
   "report": 37,
   "with": "Cyrus",
@@ -16038,6 +16040,7 @@
   665,
   680,
   672,
+  667,
   679,
   661,
   600,
