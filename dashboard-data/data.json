@@ -10083,7 +10083,7 @@
     "npm"
    ],
    "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
-   "progress": " 10:36: done for 0.0.1 in ~/hazeljs: package.json (exports for require, import and types; unpkg/jsdelivr fields; files; engines node>=18; \"hazel\" field naming the commit), index.js (CJS), index.mjs (ESM default and named), hazel-lib.js. Not yet: a build script that makes it from a Hazel checkout, and where its source lives (^ticket(673)).",
+   "progress": " 10:36: done for 0.0.1 in ~/hazeljs: package.json (exports for require, import and types; unpkg/jsdelivr fields; files; engines node>=18; \"hazel\" field naming the commit), index.js (CJS), index.mjs (ESM default and named), hazel-lib.js. Not yet: a build script that makes it from a Hazel checkout, and where its source lives (^ticket(673)). 11-03 11:22: started. scripts/build.sh (HAZEL_CHECKOUT COMMIT [BRANCH] [PR]) builds hazel-lib.js from a commit as Hazel's Deploy does and records the commit in package.json; the Build hazel-lib.js workflow runs it on GitHub's machines and pushes a branch build/<commit> (hazeljs a0fe485). First run: #2719's new head a260518eb9 (the ms fix, ^ticket(671)), run 41692648692.",
    "log": []
   },
   {
@@ -10242,7 +10242,7 @@
     "report 34"
    ],
    "source": "Matthew, 2026-11-03, in chat: \"let's also enqueue a ticket to work on. Mint a ticket for this step: Hazel reports, ^report(34), What next, step 4: \\\"Convert JS values directly\\\". http://matthewhammer.org/hazel/reports/034/#step-4a and write a report measuring the savings in time and space, if possible\"",
-   "progress": "11-03 09:23: minted. Not started. First: read ^ticket(539)'s lib-floor trial and its measurements, and what #2681 changes at the boundary.",
+   "progress": "11-03 09:23: minted. Not started. First: read ^ticket(539)'s lib-floor trial and its measurements, and what #2681 changes at the boundary. 11-03 11:22: started. Time was measured before (^ticket(539) lib-floor: -38 to -43% a call on the identity floor; ^ticket(558) lib-closures: a held list flat, ~160x at 3,000; ^ticket(551) handles: 48.9 -> 0.025 ms at 64x64), each on the laptop, not side by side. New: bench/boundary.mjs in hazeljs (typed, untyped and held calls, ms and bytes allocated a call, bytes a held function keeps) and the Boundary benchmark workflow, which runs the npm package's build, lib-floor, lib-closures and the handles trial interleaved on GitHub (run 41693072228). A smoke run here: a typed call with 16 cells allocates about 1.36 MB. The report comes from these numbers.",
    "log": [
     {
      "at": "2026-11-03T09:22-07:00",
@@ -10312,7 +10312,7 @@
     "hazeljs"
    ],
    "source": "Matthew, 2026-11-03, in chat: \"potential benefits of hazel edit boxes over JS ones: * can we provide better type-directed menus for editing? (dot completion based on types?) * can we provide better error messages when the hazel snippet does not work as expected?\"",
-   "progress": "11-03 10:22: minted. From the code (embed-editable): TyDi.suggest offers dot_labels after a dot and context variables of the expected type first; embed mode is 'one read-only cell of tiles with statics on and Hazel's own error marks' (EmbedMain.re), made editable by embed-editable.",
+   "progress": "11-03 10:22: minted. From the code (embed-editable): TyDi.suggest offers dot_labels after a dot and context variables of the expected type first; embed mode is 'one read-only cell of tiles with statics on and Hazel's own error marks' (EmbedMain.re), made editable by embed-editable. 11-03 11:23: WHAT EMBED MODE SHOWS, from embed-editable's code (src/web/embed/EmbedModel.re): statics on, so Hazel's own error marks in the tiles; dynamics and probes off; quiver (the completion arrows) off, its comment from the read-only days ('they offer edits, and the cell takes none'), out of date now the cell takes edits; and the view is the cell editor alone (CodeEditable.View), with no cursor inspector, so no in-frame text for an error, only the marks; the page gets the errors in the status message, which the game lists under the box. TyDi's suggestions are made when typing fills the buffer (Buffer.re: TyDi.set_buffer, in Perform), not gated by quiver, so the ghost-text completions, dot labels included, may already show in an editable frame: not checked in a browser. Next, small: quiver on when the page asks for an editable cell; the error at the caret posted to the page (a Caret message exists, with its position only), or a one-line inspector under the cell. Both want a browser check, on GitHub or in daytime.",
    "log": [
     {
      "at": "2026-11-03T10:21-07:00",
