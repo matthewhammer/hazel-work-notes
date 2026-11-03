@@ -1,5 +1,69 @@
 [
  {
+  "id": 682,
+  "area": "dress-up, scripting, hazeljs: undo and redo of a script, on the usual keys",
+  "text": "<b>Undo and redo in the Scripting panel, on the usual keys.</b> Ctrl+Z to undo and Ctrl+Shift+Z or Ctrl+Y to redo (⌘ on a Mac), for the script being edited, in text and in tiles alike. hazeljs has no undo of its own (it holds no editor: the page holds the text, its README says so since 11-03), so the game keeps each script's history: the texts it has had, one step per edit or per tiles edit message. A text box's own browser undo does not cover it: the page writes the tiles' edits into the boxes, which breaks the box's native history. Questions: whether Hazel's tiles frame (embed-editable) takes Ctrl+Z itself, and if so whose history wins; how a step is grouped (a word, a pause, a tiles edit). <b>Also (Matthew, 11-03): console lines with timings</b>, in ms: the cost of each edit, each undo and each redo.",
+  "added": "2026-11-03T10:16-07:00",
+  "opened": "2026-11-03T10:16-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "dress-up",
+   "scripting",
+   "hazeljs"
+  ],
+  "source": "Matthew, 2026-11-03, in chat, on hazeljs having no undo or redo: \"in MUDU, it would be nice to bind them to the usual key combinations, for instance\" Then: \"in MUDU, i'd also like console messages that give timing information: * cost per edit * cost per undo * cost per redo -- in ms\"",
+  "progress": "11-03 10:16: minted. Not started. The panel's two ways to edit: textarea.script-editor, and the embed-editable frame (25-scripting.js, tickets 520 and 578), whose edit messages the page writes into the boxes. 11-03 11:37: started. In 25-scripting.js: a history per box (by language and module), a step a burst of typing (a pause of 800 ms ends it) or one tiles edit; Ctrl/Cmd+Z undo, Ctrl/Cmd+Shift+Z or Ctrl+Y redo, in the box, and, with no box focused, in the box changed last; console lines '[scripts] edit / undo / redo: N ms (Hazel's analysis and run M ms of it)', the work timed, not the 600 ms pause. A browser check, tools/checks/undo682.mjs, on GitHub (diagnostic branch diag-682): the first run failed, rightly: my logger's name, scriptCost, was already the 🔬 panel's (renamed scriptStepCost), and Ctrl+Z did not reach the box; second run 41695281037. check_script and check_load pass here. Released once the check is green. 11-03 11:42: second check run: undo, redo and the console lines work ('[scripts] edit: 12.1 ms | undo: 18.9 ms | redo: 23.3 ms'), and Ctrl+Z with no box focused undoes in the box changed last. Its failures were the check's: the Hazel boxes show tiles by default, so the text box it typed into was hidden and could not take focus, and its edit (a trailing newline) is tidied away when the box is redrawn. Third run (text boxes shown, a comment line typed): 41696271092. 11-03 11:50: CHECK GREEN on GitHub (diag-682, run 41696271092): 13 of 13: a typed change logs its cost, Ctrl+Z gives the text back, Ctrl+Shift+Z and Ctrl+Y put it back, nothing left to undo leaves it, and with no box focused Ctrl+Z undoes in the box changed last. The costs on GitHub's headless Chrome: edit 591 ms (Hazel's analysis and run 580 of it), undo 404 (398), redo 392 (387): nearly all of a step is Hazel analyzing and running the whole program again. RELEASED as Dress Up 0.0.477 (5b6b2809, tag dress-up-0.0.477; with tools/checks/undo682.mjs in the suite). Left: the speed run's result; undo for keys typed inside the tiles' frame (they stay the frame's; embed mode has no history of its own). 11-03 13:21: 0.0.477's speed run passed (run 41697506441: the gate, the leak in Chrome and Firefox, the controller audit). LEFT, to finish 'in text and in tiles alike': Ctrl+Z typed inside the tiles' frame. Its edits are steps of the page's history already, undone with the keys once a click puts the keys back on the page; inside the frame the keys are the frame's, and embed mode keeps no history. Next: embed-editable forwards Ctrl+Z / Ctrl+Shift+Z / Ctrl+Y to the page ({type: 'key', ...}), and the page undoes in that box. 11-03 13:24: THE TILES' PART, started: embed-editable 68142486cf posts {type: 'history', redo} for Ctrl+Z / Ctrl+Shift+Z / Ctrl+Y typed in an editable cell (taken before the cell sees them; CI run 41712090283; a page that does not know the message ignores it, so the live game is safe). The game: each edit in a box's tiles now a step of that box's history (they bypassed scriptTilesEdit), and the history message undone in that box, or for the whole program's tiles in the box changed last. Check run 41712259948 (the message handed to the page as a frame would). Released as 0.0.478 once green. 11-03 13:46: FOUND: since builds moved to build.hazel.org (10-29), every Deploy of js-library-embed (#2719) and embed-editable failed (their old deploy.yml checks out hazelgrove/build with a token that is gone): build.hazel.org still served #2719 at 0d66c36618 and embed-editable at 0da790fb20 (10-24). Fixed on both (dev's deploy.yml, with opam exec for their older toolchain action): js-library-embed 1ba138ef28 (Deploy 41715556155), embed-editable 8e0dcac982 (Deploy 41715564071). So the live tiles frame had no key forwarding yet: 0.0.478's Ctrl+Z inside the tiles works once embed-editable's deploy lands.",
+  "log": [
+   {
+    "at": "2026-11-03T10:16-07:00",
+    "from": "matthew",
+    "chars": 82,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-03T10:16-07:00",
+    "from": "matthew",
+    "chars": 126,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-03T10:16-07:00",
+    "from": "claude",
+    "chars": 167,
+    "asks": false,
+    "words": 32,
+    "read_s": 8,
+    "listen_s": 12,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-03",
+  "closed_at": "2026-11-03T15:03-07:00",
+  "outcome": "Undo and redo in Messed Up Dress Up's Scripting tab on the usual keys, in text and in tiles alike, with each step's cost in the console. Dress Up 0.0.477 (the boxes' history: Ctrl/Cmd+Z, Ctrl/Cmd+Shift+Z, Ctrl+Y; with no box focused, the box changed last; '[scripts] edit / undo / redo: N ms (Hazel's analysis and run M ms of it)') and 0.0.478 (tiles edits as steps, and the frame's history message), both speed runs green; embed-editable 68142486cf forwards the keys from an editable cell, live at build.hazel.org/embed-editable since its deploy was fixed (8e0dcac982, CI green). Check: tools/checks/undo682.mjs, 14 of 14 on GitHub.",
+  "metrics": {
+   "open_minutes": 288,
+   "matthew_messages": 2,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 375,
+   "tokens_est": 93,
+   "sync_minutes_est": 0.0,
+   "replies": 1,
+   "claude_words": 32,
+   "read_minutes_est": 0.1,
+   "listen_minutes_est": 0.2,
+   "read_s_avg": 8,
+   "listen_s_avg": 12,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 671,
   "area": "hazel, Hazlet, npm: the README the npm way, and a CHANGELOG",
   "text": "<b>Hazlet package: docs.</b> Part of ^ticket(668). The README that npmjs.com shows on the package's page: what a Hazlet is, in a paragraph; install; a quick start for node and for the browser (a CDN script tag); the API, call by call, with ^ticket(670)'s types; the values table; programs of modules; that errors do not stop a run; speed (^report(34)'s measured calls); limits (experimental, no stability promise yet, runs on the page's own thread); what a Hazel program can and cannot reach on the page; license; links to Hazel, the source and the issue tracker. A CHANGELOG.md with 0.0.1. Written from docs/hazel-as-a-js-library.md (#2719). Its examples are ^ticket(672)'s, so the check runs every snippet.",
