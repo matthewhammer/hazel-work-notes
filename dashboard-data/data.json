@@ -9292,7 +9292,8 @@
    "opened": "2026-11-02T10:22-07:00",
    "status": "open",
    "tags": [
-    "meeting 2026-11-04"
+    "meeting 2026-11-04",
+    "blocked on Matthew"
    ],
    "chips": [
     "hazel",
@@ -9300,7 +9301,7 @@
     "npm"
    ],
    "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
-   "progress": "10:22: minted with its six task tickets (669 to 674). Name check, 10:17: <code>hazlet</code> is free on npm (so are hazlets, hazel-lib, hazel-lang, hazeljs; @hazelgrove/hazel has no package). npm here is not logged in. Matthew wants to try registering it today: a 0.0.1 built from #2719's head (0d66c36618, worktree ~/hazel-embed-520), packed here, published after he logs in. 10:36: A FIRST VERSION, ready to publish. Matthew is logged in to npm (user matthewhammer) and picked the name <b>hazeljs</b> (\"Hazlet\" stays the pattern's name). Local repo ~/hazeljs (c76daf4, not pushed anywhere): hazel-lib.js built from #2719 at 0d66c36618 with GITHUB_SHA set, so Hazel.build names the commit; 648-649 kB packed, 2.8 MB unpacked, 9 files. Installed from its tarball into a fresh project: require and import both work, every README example runs. Waiting on Matthew: publish hazeljs@0.0.1. 10:44: PUBLISH REFUSED, twice (here at 10:43, then in Matthew's terminal tab): npm E403, \"Two-factor authentication or granular access token with bypass 2fa enabled is required to publish packages\". It asked for no code, so 2FA is off on the account. Nothing published; the name is still free. Matthew's step: turn on 2FA on npmjs.com, npm login again, then npm publish in ~/hazeljs (it will ask for the code). Matthew's next ask (same time): once hazeljs and a MUDU package are on npm, can ^report(34) show the trap room live and let a reader edit its Hazel rule in tiles? 10:49: ^report(34) now has a dated section for Hazel's core team on what the release carries beyond dev (published, homepage fe4cce1). Matthew's next ask, a live trap room in that report: ^ticket(675) with 676 to 678. 11-03 07:14: waiting reworded: the publish is done (0.0.1, 11-02 11:03, ^ticket(673)); what waits on Matthew is the placeholder's deprecation. ^report(37)'s npm item updated to match (homepage). 11-03 08:19: ^ticket(674) done: Dress Up 0.0.476 loads its Hazel from hazeljs 0.0.1 on jsDelivr. 11-03 08:57: Matthew answered, in chat: yes: deprecate the 0.0.0-stage placeholder (his two-factor code).",
+   "progress": "10:22: minted with its six task tickets (669 to 674). Name check, 10:17: <code>hazlet</code> is free on npm (so are hazlets, hazel-lib, hazel-lang, hazeljs; @hazelgrove/hazel has no package). npm here is not logged in. Matthew wants to try registering it today: a 0.0.1 built from #2719's head (0d66c36618, worktree ~/hazel-embed-520), packed here, published after he logs in. 10:36: A FIRST VERSION, ready to publish. Matthew is logged in to npm (user matthewhammer) and picked the name <b>hazeljs</b> (\"Hazlet\" stays the pattern's name). Local repo ~/hazeljs (c76daf4, not pushed anywhere): hazel-lib.js built from #2719 at 0d66c36618 with GITHUB_SHA set, so Hazel.build names the commit; 648-649 kB packed, 2.8 MB unpacked, 9 files. Installed from its tarball into a fresh project: require and import both work, every README example runs. Waiting on Matthew: publish hazeljs@0.0.1. 10:44: PUBLISH REFUSED, twice (here at 10:43, then in Matthew's terminal tab): npm E403, \"Two-factor authentication or granular access token with bypass 2fa enabled is required to publish packages\". It asked for no code, so 2FA is off on the account. Nothing published; the name is still free. Matthew's step: turn on 2FA on npmjs.com, npm login again, then npm publish in ~/hazeljs (it will ask for the code). Matthew's next ask (same time): once hazeljs and a MUDU package are on npm, can ^report(34) show the trap room live and let a reader edit its Hazel rule in tiles? 10:49: ^report(34) now has a dated section for Hazel's core team on what the release carries beyond dev (published, homepage fe4cce1). Matthew's next ask, a live trap room in that report: ^ticket(675) with 676 to 678. 11-03 07:14: waiting reworded: the publish is done (0.0.1, 11-02 11:03, ^ticket(673)); what waits on Matthew is the placeholder's deprecation. ^report(37)'s npm item updated to match (homepage). 11-03 08:19: ^ticket(674) done: Dress Up 0.0.476 loads its Hazel from hazeljs 0.0.1 on jsDelivr. 11-03 08:57: Matthew answered, in chat: yes: deprecate the 0.0.0-stage placeholder (his two-factor code). 11-03 09:01: the placeholder's deprecation: npm here had lost its login (whoami 401, the saved token expired); started npm login && npm deprecate hazeljs@0.0.0-stage in the terminal tab c2, waiting for Matthew to sign in and type his code.",
    "log": [
     {
      "at": "2026-11-02T10:50-07:00",
@@ -9322,7 +9323,7 @@
      "note": "from the transcripts"
     }
    ],
-   "waiting": null
+   "waiting": "Matthew: in the Terminal panel's tab \"npm login, then deprecate (yours)\": press Enter, sign in to npm in the browser, then type your two-factor code when npm deprecate asks."
   },
   {
    "id": 669,
@@ -9382,26 +9383,6 @@
    "log": []
   },
   {
-   "id": 672,
-   "area": "hazel, Hazlet, npm: examples, and a check that installs the packed package into fresh projects",
-   "text": "<b>Hazlet package: the install check.</b> Part of ^ticket(668). <code>examples/</code>: node with require, node with import, a plain HTML page, and TypeScript (^ticket(670)'s types under <code>tsc --noEmit</code>). A GitHub workflow packs ^ticket(669)'s package, installs the tarball into each example as a user would, and runs it, the page in headless Firefox as the deck workflow does (the laptop cannot run a headless browser). So the README's snippets (^ticket(671)) are tested as users will get them. Before each publish (^ticket(673)).",
-   "added": "2026-11-02T10:22-07:00",
-   "opened": "2026-11-02T10:22-07:00",
-   "status": "open",
-   "tags": [
-    "meeting 2026-11-04"
-   ],
-   "chips": [
-    "hazel",
-    "hazlet",
-    "npm"
-   ],
-   "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
-   "progress": " 13:23: checked from the registry, not the tarball: a fresh project installs hazeljs@0.0.1 and runs the README examples through require and import; jsDelivr and unpkg both serve hazel-lib.js. Still to do: the browser and TypeScript examples, and the GitHub workflow. Earlier: 10:36: by hand only: the packed tarball installed into a fresh project in the scratchpad, CJS and ESM run, README examples run in node. Still to do: the browser and TypeScript examples, and the GitHub workflow. 11-03 08:08: DONE LOCALLY (~/hazeljs 2bb97e8, no remote): examples/ (node-require, node-import, typescript strict under tsc --noEmit, a plain browser page that sets its title to ok/FAIL); scripts/check-examples.sh packs the package, installs the tarball (offline) into a copy of each example and runs them; scripts/check-browser.py drives headless Firefox through geckodriver's WebDriver API, no dependencies; .github/workflows/check.yml runs both on Node 18, 20, 22. RUN HERE: all pass (node-require, node-import, typescript with tsc 5.9.3 from ~/fumola/vscode/node_modules; a negative control with two type errors fails as it should); the browser page passed in the app's browser pane, served from localhost:8131 for the check and then removed (not headless). The published package is unchanged: still 9 files. 11-03 08:57: Matthew answered, in chat: yes: a repo for hazeljs, \"under hazelgrove org for now, if possible -- hazeljs\".",
-   "log": [],
-   "waiting": null
-  },
-  {
    "id": 673,
    "area": "hazel, Hazlet, npm: the name, license, versions and who publishes",
    "text": "<b>Hazlet package: name and publishing.</b> Part of ^ticket(668); decisions for Matthew, some for the meeting with Cyrus. (1) The name: unscoped <code>hazlet</code> (free as of 2026-11-02 10:17), under Matthew's npm account, or a scope such as <code>@hazelgrove/hazlet</code> (needs an npm organization; @hazelgrove has no package now). (2) The license: MIT, as Hazel's package.json has. (3) Versions: 0.0.x while experimental, each naming the Hazel commit it was built from (<code>Hazel.build</code> and the CHANGELOG); dist-tags. (4) Who publishes: the account, its two-factor login, other maintainers; later a GitHub workflow with an npm token (a secret Matthew sets) and provenance. Claude cannot create the account or log in; Matthew runs <code>npm login</code>, then <code>npm publish</code> or says to. (5) Where the source lives (^ticket(669)). The first publish waits on ^ticket(669), ^ticket(671) and ^ticket(672); ^ticket(674) waits on it.",
@@ -9417,7 +9398,7 @@
     "npm"
    ],
    "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
-   "progress": " 13:23: published. hazeljs 0.0.1 is live on npm under tag latest (published 11:03). npm first made a placeholder version, 0.0.0-stage, which is still listed. Open: deprecating that placeholder (needs Matthew's two-factor code). Earlier: 10:36: decided by Matthew: name hazeljs, unscoped, under his npm account (matthewhammer); license MIT; author field \"The Hazel contributors (https://hazel.org)\". Open: an @hazelgrove org later; versions after 0.0.1; where the source lives.",
+   "progress": " 13:23: published. hazeljs 0.0.1 is live on npm under tag latest (published 11:03). npm first made a placeholder version, 0.0.0-stage, which is still listed. Open: deprecating that placeholder (needs Matthew's two-factor code). Earlier: 10:36: decided by Matthew: name hazeljs, unscoped, under his npm account (matthewhammer); license MIT; author field \"The Hazel contributors (https://hazel.org)\". Open: an @hazelgrove org later; versions after 0.0.1; where the source lives. 11-03 09:01: WHERE THE SOURCE LIVES: https://github.com/hazelgrove/hazeljs (public; Matthew: \"under hazelgrove org for now, if possible -- hazeljs\"), main at d6442b2 plus the workflow fix; package.json's repository and bugs point there now (in the next release on npm, not 0.0.1's page).",
    "log": [
     {
      "at": "2026-11-02T10:10-07:00",
@@ -9554,6 +9535,16 @@
  "current_ticket": null,
  "current_note": "08:57: Matthew is back and answered all eight questions yes. Doing them in order: republish ^report(38) and ^report(34), a hazelgrove/hazeljs repo, npm's placeholder deprecated (his code), the dev PR for the trampoline commits, then both fixes pushed to #2635 once the undo fix's Full tests are green.",
  "closed_tickets": [
+  {
+   "id": 672,
+   "area": "hazel, Hazlet, npm: examples, and a check that installs the packed package into fresh projects",
+   "added": "2026-11-02T10:22-07:00",
+   "text": "Hazlet package: the install check.",
+   "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it…",
+   "status": "done",
+   "closed": "2026-11-03",
+   "outcome": "Examples (Node require and import, TypeScript strict, a plain page) and an install check that packs the package and runs them; the source's home is…"
+  },
   {
    "id": 679,
    "area": "hazel, performance: undo in time and space (a report)",
