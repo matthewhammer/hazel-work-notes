@@ -1,5 +1,75 @@
 [
  {
+  "id": 679,
+  "area": "hazel, performance: undo in time and space (a report)",
+  "added": "2026-11-03",
+  "opened": "2026-11-03T07:31-07:00",
+  "status": "done",
+  "tags": [
+   "meeting 2026-11-04"
+  ],
+  "source": "Matthew, 2026-11-03 07:16, in chat: \"one part of agenda claims a big savings in the undo cost, in terms of space, without summarizing the improvement, and how we found it. Let's draft a new wip report all about undo cost, in time and space, to detail this ongoing investigation, and next steps. Put the details there and link with agenda report.\" Then: \"for undo/redo, let's have a part of the report that separates out the outline-rebuilding cost (specific to modular editors) from the rest of the costs.\"",
+  "url": "http://localhost:8131/038/",
+  "text": "<b>^report(38), Undo, in Time and Space.</b> One report on what undo costs: the space story (^report(14)'s update: the uncapped history of whole page models, 1,048 MB after 12 edits on #2597, 159 with Andrew Blinn's compaction, how it was found in five steps after a cap that never ran), the time story (^report(36)), and a new measurement: the modular editors' outline rebuild separated from the rest of each undo and redo. Linked from ^report(37)'s undo item.",
+  "progress": "07:31: DRAFTED, committed locally in ~/hazel-perf-report (8cf949e), not pushed or published. New today: the probe at d06473240f rebuilt in the dev profile (dune cache, under a minute) and profiled at 400 to 6,400 definitions, 2 runs each: the outline (Outline.of_source) is 24 to 30% of every undo and redo, about 27 ms at 3,200 and 58 at 6,400; without it a redo is 1.2 to 1.3 edits (the outline is 64 to 76% of a redo's extra) and an undo still 2.1 to 2.2 (only 31 to 37% of its extra). Found on the way: dev at f042cced44 still has the uncapped history (cap_undo_stack off by default). The agenda's local copy links it; its public copy waits, since the chip would 404 until 38 is published. 11-03 07:37: Matthew: \"Publish all three\" (38, 39 and the agenda): publishing as work in progress. 07:39: PUBLISHED as work in progress: https://matthewhammer.org/hazel/reports/038/ (homepage e5570d2; series card; series repo 4654056, not pushed: drafts wait there). The agenda links it (homepage 5202746). 07:41: question for Matthew (he is AFK until about 08:45) put on this ticket. 07:54: corrected and republished: its first version spread the outline evenly over undos and redos (wrong); a dated correction note under its short answers. Republishing a correction to an approved WIP was my call while Matthew is AFK. 07:58: new local section #sidebar (every edit pays for the outline when the sidebar shows it); committed in ~/hazel-perf-report, not published. 08:06: local sections #twice (the double syntax pass and its fix) and #sidebar; committed in ~/hazel-perf-report, not published. 11-03 08:57: Matthew answered, in chat: yes: republish ^report(38) with its two new sections.",
+  "waiting": null,
+  "log": [
+   {
+    "at": "2026-11-03T07:37-07:00",
+    "from": "matthew",
+    "chars": 17,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-03",
+  "closed_at": "2026-11-03T08:58-07:00",
+  "outcome": "^report(38), Undo, in Time and Space: published 07:38, corrected 07:52 (the outline is in the undos), and republished 08:58 with the double syntax pass and its fix and the sidebar's outline on every edit (homepage ffa2fad). https://matthewhammer.org/hazel/reports/038/",
+  "metrics": {
+   "open_minutes": 88,
+   "matthew_messages": 1,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 17,
+   "tokens_est": 4,
+   "sync_minutes_est": 0
+  }
+ },
+ {
+  "id": 680,
+  "area": "hazel, Hazlet: where the Hazlet work stands (a report)",
+  "added": "2026-11-03",
+  "opened": "2026-11-03T07:31-07:00",
+  "status": "done",
+  "tags": [
+   "meeting 2026-11-04"
+  ],
+  "source": "Matthew, 2026-11-03 07:18, in chat: \"likewise, if we don't have a standalone report for Hazlets, and I think we already maybe have a draft, let's create one there, with our progress thus far with current status, and next steps.\"",
+  "url": "http://localhost:8131/039/",
+  "text": "<b>^report(39), Hazlets, So Far.</b> No standalone Hazlet report existed (the nearest are ^report(33) and ^report(34)). What a Hazlet is, with a figure of one event and one edit in the game; progress since 10-20, dated; each piece's state as of 11-03 (#2711 and #2719 draft, #2711 conflicting with dev; embed-editable with no PR; hazeljs 0.0.1 on npm); speed; the package; next steps (^ticket(672) to ^ticket(678)); the meeting's questions. Linked from ^report(37)'s Hazlet section.",
+  "progress": "07:31: DRAFTED (by a helper agent, checked here against GitHub), committed locally in ~/hazel-perf-report (6545538), not pushed or published. Its open questions for Matthew: the title; and whether, when it goes out, its citations of ^report(32) (still a draft) stay as unlinked chips. 11-03 07:37: Matthew: \"Publish all three\" (38, 39 and the agenda): publishing as work in progress. 07:39: PUBLISHED as work in progress: https://matthewhammer.org/hazel/reports/039/ (homepage e5570d2). Its four citations of ^report(32), still a draft, are unlinked chips in the public copy (they would 404); the local copy keeps the links. Title kept as drafted, \"Hazlets, So Far\" (Matthew said publish; rename on his word). 07:41: question for Matthew (he is AFK until about 08:45) put on this ticket. 11-03 08:57: Matthew answered, in chat: yes: keep the title \"Hazlets, So Far\".",
+  "waiting": null,
+  "log": [
+   {
+    "at": "2026-11-03T07:37-07:00",
+    "from": "matthew",
+    "chars": 17,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-03",
+  "closed_at": "2026-11-03T08:58-07:00",
+  "outcome": "^report(39), Hazlets, So Far, published as work in progress 2026-11-03 (homepage e5570d2); Matthew kept the title. https://matthewhammer.org/hazel/reports/039/",
+  "metrics": {
+   "open_minutes": 88,
+   "matthew_messages": 1,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 17,
+   "tokens_est": 4,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 662,
   "area": "dress up: the 💧 watering can waters the plant the friend faces; and no stray comma on 🎒 cards (0.0.474)",
   "text": "<b>Water the plant in front.</b> Where two beds meet (one in front of the friend, one behind), the can counted both as equally near and could water the one behind, whichever was put first. When plants are equally near, prefer the one on the side the friend faces. Also: the 🎒 backpack cards show a stray comma before the date (\", Nov 2, 2:12 AM\"). Found while taking ^du_report(24)'s pouring picture (^ticket(661)).",
