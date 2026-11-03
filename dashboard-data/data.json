@@ -60,8 +60,16 @@
      "http://localhost:8131/037/"
     ],
     [
-     "localhost:8131/038/ (^report(38), Undo, in Time and Space; work in progress, published 11-03)",
+     "localhost:8131/038/ (^report(38), Undo, in Time and Space: published, corrected 07:52; the local copy is ahead, with #twice and #sidebar, waiting on Matthew)",
      "http://localhost:8131/038/"
+    ],
+    [
+     "localhost:8131/038/#twice (^report(38), local: an undo rebuilt the syntax twice, and the fix)",
+     "http://localhost:8131/038/#twice"
+    ],
+    [
+     "localhost:8131/038/#sidebar (^report(38), local: with the sidebar shown, every edit pays for the outline)",
+     "http://localhost:8131/038/#sidebar"
     ],
     [
      "localhost:8131/039/ (^report(39), Hazlets, So Far; work in progress, published 11-03)",
@@ -9274,7 +9282,7 @@
     "evaluator"
    ],
    "source": "Found 2026-11-02 merging dev into #2635 (^ticket(663)): PerfBudgets 0 and 1 failed for being more than a quarter under budget; the budgets were lowered on #2635, as the test asks.",
-   "progress": "Minted from ^ticket(663). First step: run PerfBudgets at #2635's earlier merges and at #2469's head (bisect on the step count), and compare the count on dev with the same program."
+   "progress": "Minted from ^ticket(663). First step: run PerfBudgets at #2635's earlier merges and at #2469's head (bisect on the step count), and compare the count on dev with the same program. 11-03 08:11: LIKELY ANSWER: a counting effect of our own d0c56fb090 (10-13, on #2635, not on dev), \"Binding a value that is already done calls its continuation directly\": Trampoline.bind(Done(x), f) is f(x), no Bind node and no trampoline step, so the same work counts fewer steps (its message says so). EVIDENCE: a test-only probe (Test_StepProbe, 16 small programs, Test_PerfBudgets.work) built on dev (~/hazel-dev-fontscroll at e8125d9933, then removed) and on #2635's code: every form takes 1.8 to 2.35 times dev's steps on #2635 (fib(10) 37,922 against 17,722, sum of 10 2,235 against 1,035, map 3,765 against 1,771), and a bare literal 1 takes 12 steps on dev and 0 on #2635. Uniform, so not one form's reduction. PerfBudgets here: dev 206,834 / 378, #2635 96,438 / 270. CONFIRMING NOW: #2635's code with bind reverted, rebuilt (dev profile), its counts should come back to dev's. Time: d0c56fb090's own measure was allocation -4% on the woods, time inside the noise; so the halved count is not a halved time. For the agenda's half-steps question: not a gain in steps to bring to dev as such, though the change itself (fewer Bind nodes) could go to dev on its own."
   },
   {
    "id": 668,
