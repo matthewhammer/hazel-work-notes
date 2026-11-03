@@ -6,7 +6,7 @@
    "branch": "integration/livelits-modular-editors",
    "links": [
     [
-     "localhost:8341 (#2635 at 547b9cfa8b: GitHub's build deployed 10-27; the head is 2c9708a890)",
+     "localhost:8341 (#2635 at 547b9cfa8b: GitHub's build deployed 10-27; the head is 1d17541aaf)",
      "http://localhost:8341/"
     ],
     [
@@ -14,7 +14,7 @@
      "http://localhost:8341/?slide=livelit-playground-scenes"
     ]
    ],
-   "branch_note": "(served again since 08:45 on 2026-11-01, after the reboot, from its launch entry. ~/hazel-builds/build pulled the same morning: its newest #2635 build is 547b9cfa8b's (Deploy 10-27 16:50Z). The head's Deploy (2c9708a890, 10-29 15:06Z) left no commit in hazelgrove/build, likely since builds moved to build.hazel.org on 10-29, so the head is not served here yet.)",
+   "branch_note": "(served again since 07:12 on 2026-11-03, after the reboot, from its launch entry. ~/hazel-builds/build is up to date with hazelgrove/build, whose last commit is 10-29 17:59Z: builds moved to build.hazel.org that day, so 547b9cfa8b's (Deploy 10-27) is the newest #2635 build here. The head, 1d17541aaf (pushed 11-02 16:29), deployed to build.hazel.org, not served here yet.)",
    "group": "cyrus"
   },
   {
@@ -48,12 +48,20 @@
    "name": "Hazel reports (the report's sources)",
    "repo_html": "<a href=\"https://github.com/matthewhammer/hazel-reports\">matthewhammer/hazel-reports</a>, checked out at <code>~/hazel-perf-report</code>",
    "branch": "main",
-   "branch_note": "(served again since 11:50 on 2026-10-24, in place of 8312, Matthew's call; every link here and in the open tickets checked, anchors too. Open tickets waiting on its drafts: ^ticket(398), ^ticket(408), ^ticket(533), ^ticket(570), ^ticket(571), ^ticket(572), ^ticket(573), ^ticket(588).) Its sources are 6 commits ahead of the published copy. (public: a push publishes, so drafts wait. ^report(25) published as work in progress 10-22 09:44 (homepage 35951cb); its local copy is the same. ^report(18), why #2635 fails CI, is a local draft waiting on Matthew. ^report(29) republished 10-22 15:56 (homepage e9fd165) with its fixes section and the deep-answer correction; its local copy is the same); its local copy is the same; its fixes section fills in as the trial builds are measured)",
+   "branch_note": "(served again since 07:12 on 2026-11-03, after the reboot; first served 2026-10-24 in place of 8312, Matthew's call; every link here and in the open tickets checked, anchors too. Open tickets waiting on its drafts: ^ticket(398), ^ticket(408), ^ticket(533), ^ticket(570), ^ticket(571), ^ticket(572), ^ticket(573), ^ticket(588).) Its sources are 31 commits ahead of origin (drafts wait there); ^report(37), the agenda, and ^report(36) go out by the homepage. (public: a push publishes, so drafts wait. ^report(25) published as work in progress 10-22 09:44 (homepage 35951cb); its local copy is the same. ^report(18), why #2635 fails CI, is a local draft waiting on Matthew. ^report(29) republished 10-22 15:56 (homepage e9fd165) with its fixes section and the deep-answer correction; its local copy is the same); its local copy is the same; its fixes section fills in as the trial builds are measured)",
    "group": "other",
    "links": [
     [
      "localhost:8131 (the front page: every report, drafts marked)",
      "http://localhost:8131/"
+    ],
+    [
+     "localhost:8131/037/ (^report(37), the agenda for Wednesday 11-04 with Cyrus; work in progress, updated 11-03 07:15, published)",
+     "http://localhost:8131/037/"
+    ],
+    [
+     "localhost:8131/036/ (^report(36), What an Undo Costs; work in progress, published)",
+     "http://localhost:8131/036/"
     ],
     [
      "localhost:8131/032/ (^report(32) draft: Scripting, Three Ways, Timed)",
@@ -9045,16 +9053,14 @@
    "added": "2026-11-02T07:09-07:00",
    "opened": "2026-11-02T07:09-07:00",
    "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
+   "tags": [],
    "chips": [
     "hazel",
     "livelits",
     "#2635"
    ],
    "source": "Matthew, 2026-11-02 07:05, in chat: \"let's stick to hazel tickets. In particular, let's start by getting livelits x modular editors up to date with whatever has happened with modular editors recently\"; 07:08, his pick: \"Merge dev (Recommended)\"",
-   "progress": "07:09: surveyed. modular-editors af81c60054 (10-26) is in #2635 (547b9cfa8b); #2597 c7f9249802 is in it too. Not in it: dev 90d1005c9e (149 commits; a trial merge conflicts in 20 files); Andrew's open PRs into modular-editors, #2687 stdlib (158 commits, 42 conflicted files; it has the per-member DefStatics fix for the 8 red tests) and #2480 W2 worker residency (10-22, 137 behind modular-editors, 7 conflicted files). His call: dev only. Merging now in ~/hazel-livelits-modular (port 8341). 07:30: merged and committed locally, 2cab658ef1 (NOT pushed yet). 20 conflicted files resolved (FunctionSugar: dev's curried definitions with our signature-ascribed member names; WorkerClient/Server: our shared messages with dev's Coverage; Page: dev's IfCaretVisible; the rest in the commit). Dev's 26 new .rei files matched to our implementations (values we dropped removed; values our code calls declared; ContextMenu and CursorInspector signatures follow ours). dune build @check --profile release: clean; dune fmt: clean. Quick suite: 3 failures of 6,159. PerfBudgets 0 and 1: this branch takes 96,438 steps where dev's budget is 227,000 (edit: 270 vs 420), more than a quarter under, so both budgets lowered as the test asks (why half the steps: not yet known). MemberLivelitReprint 1: ENOENT, it reads ../../../hazel-programs/..., which resolves only from dune's test folder; neither it nor its file changed in the merge (CI will say). Next: a smoke test on port 8341, then push. 07:33: PUSHED, #2635 at 2cab658ef1 (fast-forward from 2c9708a890). CI running on it (Fast checks, Full tests, the build at build.hazel.org); not read yet. The browser smoke test waits for that build (port 8341 serves #2635's GitHub build). Note: the quick suite here showed none of the 8 long-known failures (DefStaticsParity, LabelBench, ModRoot, TypeDeps, TableDecorations); dev's #2714 may have moved them out of the quick set, so the Full tests run will say whether they are gone. Found here: ^ticket(667). 10:12: CI on 2cab658ef1 read once. CI passed (Fast checks, Full tests, Static checks), so the 8 long-known failures are gone from Full tests too; Deploy passed. Livelit deck in Firefox FAILED at its Build Release step: deck.yml still runs `opam exec -- dune build`, and dev's toolchain action (merged here) leaves opam off PATH on its cached path. My miss in the merge. Fix 1d17541aaf (dune directly) committed on the branch locally, NOT pushed: waiting on Matthew. bfa36a6ede (^ticket(665)'s fixes) is on top of 2cab658ef1; it touches no deck path, so no deck run. 16:29: Matthew said push: the deck workflow's fix, 1d17541aaf (its build runs dune directly, since dev's toolchain step leaves opam off the path), is on #2635. Its deck run, 41545720854, started 16:28 and takes about 40 minutes. Close this ticket when that run passes. 16:31: the deck run is past the toolchain setup and into its Build Release step, the step that failed before the fix; the cases come after it.",
+   "progress": "07:09: surveyed. modular-editors af81c60054 (10-26) is in #2635 (547b9cfa8b); #2597 c7f9249802 is in it too. Not in it: dev 90d1005c9e (149 commits; a trial merge conflicts in 20 files); Andrew's open PRs into modular-editors, #2687 stdlib (158 commits, 42 conflicted files; it has the per-member DefStatics fix for the 8 red tests) and #2480 W2 worker residency (10-22, 137 behind modular-editors, 7 conflicted files). His call: dev only. Merging now in ~/hazel-livelits-modular (port 8341). 07:30: merged and committed locally, 2cab658ef1 (NOT pushed yet). 20 conflicted files resolved (FunctionSugar: dev's curried definitions with our signature-ascribed member names; WorkerClient/Server: our shared messages with dev's Coverage; Page: dev's IfCaretVisible; the rest in the commit). Dev's 26 new .rei files matched to our implementations (values we dropped removed; values our code calls declared; ContextMenu and CursorInspector signatures follow ours). dune build @check --profile release: clean; dune fmt: clean. Quick suite: 3 failures of 6,159. PerfBudgets 0 and 1: this branch takes 96,438 steps where dev's budget is 227,000 (edit: 270 vs 420), more than a quarter under, so both budgets lowered as the test asks (why half the steps: not yet known). MemberLivelitReprint 1: ENOENT, it reads ../../../hazel-programs/..., which resolves only from dune's test folder; neither it nor its file changed in the merge (CI will say). Next: a smoke test on port 8341, then push. 07:33: PUSHED, #2635 at 2cab658ef1 (fast-forward from 2c9708a890). CI running on it (Fast checks, Full tests, the build at build.hazel.org); not read yet. The browser smoke test waits for that build (port 8341 serves #2635's GitHub build). Note: the quick suite here showed none of the 8 long-known failures (DefStaticsParity, LabelBench, ModRoot, TypeDeps, TableDecorations); dev's #2714 may have moved them out of the quick set, so the Full tests run will say whether they are gone. Found here: ^ticket(667). 10:12: CI on 2cab658ef1 read once. CI passed (Fast checks, Full tests, Static checks), so the 8 long-known failures are gone from Full tests too; Deploy passed. Livelit deck in Firefox FAILED at its Build Release step: deck.yml still runs `opam exec -- dune build`, and dev's toolchain action (merged here) leaves opam off PATH on its cached path. My miss in the merge. Fix 1d17541aaf (dune directly) committed on the branch locally, NOT pushed: waiting on Matthew. bfa36a6ede (^ticket(665)'s fixes) is on top of 2cab658ef1; it touches no deck path, so no deck run. 16:29: Matthew said push: the deck workflow's fix, 1d17541aaf (its build runs dune directly, since dev's toolchain step leaves opam off the path), is on #2635. Its deck run, 41545720854, started 16:28 and takes about 40 minutes. Close this ticket when that run passes. 16:31: the deck run is past the toolchain setup and into its Build Release step, the step that failed before the fix; the cases come after it. 11-03 07:14: THE DECK RUN on 1d17541aaf (41545720854) FINISHED RED, 9/12: the fix worked (the Build Release step passed; the cases ran), but 3 eye cases fail: \"Kids' Choice's params line edits live and keeps the face's cells\", \"the toggle stays visible while the mouse is in the livelit\", and \"on every slide, each livelit's GUI works while revealed and its model follows\" (5 of 126 uses: Livelits / Overview #0 the pane closed, #1 the GUI changed and the revealed model did not; Emotion #0, Color (Figure 3) #3 the pane closed; Playground / Emotion: Kids' Choice #3 the eye opened no pane). Fast checks, Full tests, Static checks pass. Not yet known: whether dev's merge broke these or they are flaky (the last green deck was before the merge, ^ticket(641)). Next: read the failures against the merge's diff. On ^report(37)'s agenda (item dev-merge).",
    "log": [
     {
      "at": "2026-11-02T07:05-07:00",
@@ -9064,7 +9070,7 @@
      "note": "from the transcripts"
     }
    ],
-   "waiting": "Matthew: push 1d17541aaf to #2635 (the deck workflow's build step, broken by the dev merge)?"
+   "waiting": null
   },
   {
    "id": 664,
@@ -9199,7 +9205,7 @@
     "npm"
    ],
    "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
-   "progress": "10:22: minted with its six task tickets (669 to 674). Name check, 10:17: <code>hazlet</code> is free on npm (so are hazlets, hazel-lib, hazel-lang, hazeljs; @hazelgrove/hazel has no package). npm here is not logged in. Matthew wants to try registering it today: a 0.0.1 built from #2719's head (0d66c36618, worktree ~/hazel-embed-520), packed here, published after he logs in. 10:36: A FIRST VERSION, ready to publish. Matthew is logged in to npm (user matthewhammer) and picked the name <b>hazeljs</b> (\"Hazlet\" stays the pattern's name). Local repo ~/hazeljs (c76daf4, not pushed anywhere): hazel-lib.js built from #2719 at 0d66c36618 with GITHUB_SHA set, so Hazel.build names the commit; 648-649 kB packed, 2.8 MB unpacked, 9 files. Installed from its tarball into a fresh project: require and import both work, every README example runs. Waiting on Matthew: publish hazeljs@0.0.1. 10:44: PUBLISH REFUSED, twice (here at 10:43, then in Matthew's terminal tab): npm E403, \"Two-factor authentication or granular access token with bypass 2fa enabled is required to publish packages\". It asked for no code, so 2FA is off on the account. Nothing published; the name is still free. Matthew's step: turn on 2FA on npmjs.com, npm login again, then npm publish in ~/hazeljs (it will ask for the code). Matthew's next ask (same time): once hazeljs and a MUDU package are on npm, can ^report(34) show the trap room live and let a reader edit its Hazel rule in tiles? 10:49: ^report(34) now has a dated section for Hazel's core team on what the release carries beyond dev (published, homepage fe4cce1). Matthew's next ask, a live trap room in that report: ^ticket(675) with 676 to 678.",
+   "progress": "10:22: minted with its six task tickets (669 to 674). Name check, 10:17: <code>hazlet</code> is free on npm (so are hazlets, hazel-lib, hazel-lang, hazeljs; @hazelgrove/hazel has no package). npm here is not logged in. Matthew wants to try registering it today: a 0.0.1 built from #2719's head (0d66c36618, worktree ~/hazel-embed-520), packed here, published after he logs in. 10:36: A FIRST VERSION, ready to publish. Matthew is logged in to npm (user matthewhammer) and picked the name <b>hazeljs</b> (\"Hazlet\" stays the pattern's name). Local repo ~/hazeljs (c76daf4, not pushed anywhere): hazel-lib.js built from #2719 at 0d66c36618 with GITHUB_SHA set, so Hazel.build names the commit; 648-649 kB packed, 2.8 MB unpacked, 9 files. Installed from its tarball into a fresh project: require and import both work, every README example runs. Waiting on Matthew: publish hazeljs@0.0.1. 10:44: PUBLISH REFUSED, twice (here at 10:43, then in Matthew's terminal tab): npm E403, \"Two-factor authentication or granular access token with bypass 2fa enabled is required to publish packages\". It asked for no code, so 2FA is off on the account. Nothing published; the name is still free. Matthew's step: turn on 2FA on npmjs.com, npm login again, then npm publish in ~/hazeljs (it will ask for the code). Matthew's next ask (same time): once hazeljs and a MUDU package are on npm, can ^report(34) show the trap room live and let a reader edit its Hazel rule in tiles? 10:49: ^report(34) now has a dated section for Hazel's core team on what the release carries beyond dev (published, homepage fe4cce1). Matthew's next ask, a live trap room in that report: ^ticket(675) with 676 to 678. 11-03 07:14: waiting reworded: the publish is done (0.0.1, 11-02 11:03, ^ticket(673)); what waits on Matthew is the placeholder's deprecation. ^report(37)'s npm item updated to match (homepage).",
    "log": [
     {
      "at": "2026-11-02T10:50-07:00",
@@ -9221,7 +9227,7 @@
      "note": "from the transcripts"
     }
    ],
-   "waiting": "Matthew: turn on 2FA at npmjs.com, npm login, then run npm publish in ~/hazeljs (npm requires 2FA to publish)"
+   "waiting": "Matthew: deprecate the placeholder npm made first: in ~/hazeljs, npm deprecate hazeljs@0.0.0-stage \"placeholder; use 0.0.1\" (asks for your two-factor code). hazeljs 0.0.1 itself is live since 2026-11-02 11:03."
   },
   {
    "id": 669,
@@ -9448,8 +9454,8 @@
   }
  ],
  "next_ticket": 679,
- "current_ticket": 655,
- "current_note": "20:33: ^ticket(660) closed (done); ^ticket(655) is next in the queue",
+ "current_ticket": 664,
+ "current_note": "07:13: after the restart: servers back up; bringing ^report(37), the agenda for Wednesday's meeting, up to date (hazeljs is live on npm; #2635's Firefox deck now builds, 3 of its 12 cases fail), then Matthew's answers to its questions",
  "closed_tickets": [
   {
    "id": 662,
@@ -15432,7 +15438,7 @@
   634,
   635
  ],
- "current_since": "2026-11-01T20:33-07:00",
+ "current_since": "2026-11-03T07:13-07:00",
  "next_meeting": {
   "report": 37,
   "with": "Cyrus",
