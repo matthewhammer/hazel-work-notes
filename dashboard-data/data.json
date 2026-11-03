@@ -48,7 +48,7 @@
    "name": "Hazel reports (the report's sources)",
    "repo_html": "<a href=\"https://github.com/matthewhammer/hazel-reports\">matthewhammer/hazel-reports</a>, checked out at <code>~/hazel-perf-report</code>",
    "branch": "main",
-   "branch_note": "(served again since 07:12 on 2026-11-03, after the reboot; first served 2026-10-24 in place of 8312, Matthew's call; every link here and in the open tickets checked, anchors too. Open tickets waiting on its drafts: ^ticket(398), ^ticket(408), ^ticket(533), ^ticket(570), ^ticket(571), ^ticket(572), ^ticket(573), ^ticket(588).) Its sources are 31 commits ahead of origin (drafts wait there); ^report(37), the agenda, and ^report(36) go out by the homepage. (public: a push publishes, so drafts wait. ^report(25) published as work in progress 10-22 09:44 (homepage 35951cb); its local copy is the same. ^report(18), why #2635 fails CI, is a local draft waiting on Matthew. ^report(29) republished 10-22 15:56 (homepage e9fd165) with its fixes section and the deep-answer correction; its local copy is the same); its local copy is the same; its fixes section fills in as the trial builds are measured)",
+   "branch_note": "(served again since 07:12 on 2026-11-03, after the reboot; first served 2026-10-24 in place of 8312, Matthew's call; every link here and in the open tickets checked, anchors too. Open tickets waiting on its drafts: ^ticket(398), ^ticket(408), ^ticket(533), ^ticket(570), ^ticket(571), ^ticket(572), ^ticket(573), ^ticket(588).) Its sources are 33 commits ahead of origin (drafts wait there); ^report(37), the agenda, and ^report(36) go out by the homepage. (public: a push publishes, so drafts wait. ^report(25) published as work in progress 10-22 09:44 (homepage 35951cb); its local copy is the same. ^report(18), why #2635 fails CI, is a local draft waiting on Matthew. ^report(29) republished 10-22 15:56 (homepage e9fd165) with its fixes section and the deep-answer correction; its local copy is the same); its local copy is the same; its fixes section fills in as the trial builds are measured)",
    "group": "other",
    "links": [
     [
@@ -56,8 +56,16 @@
      "http://localhost:8131/"
     ],
     [
-     "localhost:8131/037/ (^report(37), the agenda for Wednesday 11-04 with Cyrus; work in progress, updated 11-03 07:15, published)",
+     "localhost:8131/037/ (^report(37), the agenda for 11-04: local copy updated 07:30 with links to 38 and 39; the public copy is 07:15's)",
      "http://localhost:8131/037/"
+    ],
+    [
+     "localhost:8131/038/ (^report(38) draft: Undo, in Time and Space; the outline's part at #outline)",
+     "http://localhost:8131/038/"
+    ],
+    [
+     "localhost:8131/039/ (^report(39) draft: Hazlets, So Far)",
+     "http://localhost:8131/039/"
     ],
     [
      "localhost:8131/036/ (^report(36), What an Undo Costs; work in progress, published)",
@@ -9088,7 +9096,7 @@
     "performance"
    ],
    "source": "Matthew, 2026-11-02 07:06, in chat: \"after we do this chore, I also want to find/create a list of specific tickets to grind on together for meeting Cyrus this Wed. * investigate the cost of undo, and potential ways to do it in O(log n) time per edit and per undo, not O(N) time, which seems to be the way it was working. * related to undo --- how much are we loosing sharing as we pass data to and from the worker thread?\"",
-   "progress": "07:09: minted; after ^ticket(663) (the #2635 dev merge). 07:22: minted ^ticket(665) (undo in O(log n)) and ^ticket(666) (sharing across the worker boundary), both tagged meeting 2026-11-04. 07:32: THE LIST (draft, for Matthew to cut or reorder), each tagged meeting 2026-11-04: (1) ^ticket(665) undo in O(log n): measure an edit and an undo against program size, then the design; (2) ^ticket(666) sharing across the worker boundary: bytes, share hit rate, identity lost on the main thread; (3) ^ticket(667) (new today) why #2635's evaluator takes half dev's steps on PerfBudgets: a gain to take to dev, or a counter that misses steps; (4) ^ticket(642) the landing order for livelits, #2469 to dev then #2635 retargeted, now that #2635 has dev's merge day; (5) ^ticket(559) and ^ticket(548), evaluator trials with green CI (the fast path for final terms; lists without an id per element): PRs to dev or not; (6) ^ticket(554) a Hazel step paying for the editor around it (^report(35)'s question for Cyrus); (7) ^ticket(18) livelit views evaluated in the worker, which ^ticket(666) bears on. 10:22: the agenda is ^report(37) (Matthew's ask: a report, work in progress, published), in three sections he named: performance (undo, ^ticket(665)), the JS library for embedded Hazel (\"Hazlet\", his word) with a demo of Dress Up's scripts, and DSL tile editors as a kind of livelit. Under Hazlet, a task for Claude: a prototype npm package, ^ticket(668) and its tasks 669 to 674.",
+   "progress": "07:09: minted; after ^ticket(663) (the #2635 dev merge). 07:22: minted ^ticket(665) (undo in O(log n)) and ^ticket(666) (sharing across the worker boundary), both tagged meeting 2026-11-04. 07:32: THE LIST (draft, for Matthew to cut or reorder), each tagged meeting 2026-11-04: (1) ^ticket(665) undo in O(log n): measure an edit and an undo against program size, then the design; (2) ^ticket(666) sharing across the worker boundary: bytes, share hit rate, identity lost on the main thread; (3) ^ticket(667) (new today) why #2635's evaluator takes half dev's steps on PerfBudgets: a gain to take to dev, or a counter that misses steps; (4) ^ticket(642) the landing order for livelits, #2469 to dev then #2635 retargeted, now that #2635 has dev's merge day; (5) ^ticket(559) and ^ticket(548), evaluator trials with green CI (the fast path for final terms; lists without an id per element): PRs to dev or not; (6) ^ticket(554) a Hazel step paying for the editor around it (^report(35)'s question for Cyrus); (7) ^ticket(18) livelit views evaluated in the worker, which ^ticket(666) bears on. 10:22: the agenda is ^report(37) (Matthew's ask: a report, work in progress, published), in three sections he named: performance (undo, ^ticket(665)), the JS library for embedded Hazel (\"Hazlet\", his word) with a demo of Dress Up's scripts, and DSL tile editors as a kind of livelit. Under Hazlet, a task for Claude: a prototype npm package, ^ticket(668) and its tasks 669 to 674. 11-03 07:15: ^report(37) republished: hazeljs 0.0.1 is on npm (11-02 11:03); #2635's Firefox deck builds now, 3 of 12 cases fail (^ticket(663)). 07:31: two drafts for the meeting, both local: ^report(38) undo in time and space (^ticket(679)), ^report(39) Hazlets (^ticket(680)); the agenda links both and says what the compaction saved, in its local copy only (http://localhost:8131/037/), until they are published.",
    "log": [
     {
      "at": "2026-11-02T07:06-07:00",
@@ -9101,6 +9109,39 @@
      "at": "2026-11-03T07:10-07:00",
      "from": "matthew",
      "chars": 180,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-03T07:14-07:00",
+     "from": "claude",
+     "chars": 692,
+     "asks": false,
+     "words": 115,
+     "read_s": 29,
+     "listen_s": 43,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-03T07:15-07:00",
+     "from": "matthew",
+     "chars": 310,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-03T07:16-07:00",
+     "from": "matthew",
+     "chars": 190,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-03T07:16-07:00",
+     "from": "matthew",
+     "chars": 151,
      "asks": false,
      "note": "from the transcripts"
     }
@@ -9122,7 +9163,7 @@
     "undo"
    ],
    "source": "Matthew, 2026-11-02 07:06, in chat (from ^ticket(664)): \"investigate the cost of undo, and potential ways to do it in O(log n) time per edit and per undo, not O(N) time, which seems to be the way it was working.\"",
-   "progress": "Minted from ^ticket(664). First step: time an edit, an undo and a redo against program size (the 2000-let bench at several sizes, and Full Body) on #2635 after ^ticket(663), counting what each one rebuilds (items analyzed, pieces measured, evaluation steps). Background: ^ticket(58) (#2597's uncapped stack, 10-14; on #2635, Andrew's compaction 6010128b7d and keep-newest 032fe3aca6). 07:42: FIRST MEASUREMENT (node, #2635 at 2cab658ef1 + probe 1d98b3aed7 on local branch probe/undo-scaling: test UndoScaling, UNDO_SIZES=...). A chain of n lets, an edit in the middle one; each step through the app's loop, then the statics refresh; evaluation off (dynamics=false). Per step, edit / undo / redo (the step, then statics): n=100 9+6 / 11+6 / 8+5 ms; n=400 18+13 / 25+12 / 18+12; n=1600 75+50 / 93+50 / 71+51; n=3200 ~200+130 / ~240+130 / ~190+130. LINEAR in n, about 0.1 ms a let at 3200; undo about 1.2x an edit; an older (compacted) undo costs the same as the latest. Each step re-parses 1-2 items, re-measures 1-2 chunks and compares 2 item heads, so the incremental caches work: the O(n) is in whole-program passes around them, not in the undo stack. Profile at n=3200 (12 steps, 4.2 s): MakeTerm.go_incr's top-level pass 31% (parse_level 11%, record_top_frame/sim 10%); DefStatics.calc 16% (calc_chain's walk over every item 11%, the edited item 7%); AutoProbePerform.program_root_id 11% (Segment.skel of the whole top level on every frame: its memo is keyed on the segment's identity, which every edit changes; then tail_id walks the let chain); Zipper.remold_regrout on insert 8%; TyDi.suggest via set_tydi_buffer 7%; Measured.of_segment's walk 4%; GC ~15%. TRAP FOUND: the test runner installs DefStaticsCheck (monolithic statics + a lexeme trace of every info's elaboration, after every calc, up to 3000 infos), which made the first numbers quadratic (n=400: 1.6 s a refresh) and then cheap past 3000 infos; the probe turns it off. NOT YET MEASURED: evaluation (the worker request, ^ticket(666)) and the view. Toward O(log n): the cheap ones first (program_root_id from the syntax's own term, O(1); TyDi's suggestions only when asked; remold only the edited item), then the structural ones: the top level as a balanced tree of items (a finger tree with per-subtree summaries: skeleton pieces, exports, dirty names) so MakeTerm's top-level pass, the skeleton and DefStatics' chain walk touch O(log n) nodes per edit. 08:54: Matthew: \"Cheap fixes first\". PROBE CORRECTED first (167247e61d): each frame's calculate now told whether it was an edit, as Main does (the undo tests' helper said yes for every frame, which redid syntax and completions on the statics refresh), and the runner's second check, NormalizeCheck (a global remold after every edit), turned off too. TRUE BASELINE, step medians of 12 (statics refresh 9-42 ms beside): n=800 edit 28 / undo 58 / redo 39 ms; 1600: 48 / 109 / 89; 3200: 92 / 208 / 173. So undo is ~2x an edit. Re-molding (8% before) was the runner's check. TWO FIXES, local branch perf/665-cheap (off #2635 + the probe): 459b029f68 program_root_id reads MakeTerm.Incr's cached top-level skeleton (c_skel) when it is this segment's (its memo was keyed on the segment, which every edit changes); d06473240f no completion suggestions after a numeral (none can start with a digit; they scanned the context and completed the segment first). AFTER: 800: 16 / 39 / 22 ms; 1600: 26 / 67 / 46; 3200: 68 / 156 / 106. 25-45% off each step; still linear. Tests: TyDi, Autoprobe, TailProbe, completion, probe groups: 828 pass; quick suite running. WHAT IS LEFT, all structural (profile at 3200 after the fixes): MakeTerm.go_incr 38% (record_top_frame/sim 17%, ItemSpans' top-level spans 10%), DefStatics 20% (step_chain 11%, calc_chain 9%), Outline rebuilt when an undo or redo realizes the view 15% (its memo of the last 4 programs misses on the restored program: the likely reason undo costs 2x), Measured's walk 6%. NOT PUSHED: where these go (#2635, and a dev PR for the TyDi one) is Matthew's call. 09:01: quick suite with both fixes: 1 failure of 6,159, MemberLivelitReprint 1 (the cwd-relative path, as on #2635 itself). Waiting on Matthew: whether to cherry-pick the two fixes (not the probe) onto #2635 and push; the numeral fix would also suit a dev PR (dev has the same TyDi code), the root-id fix is #2635/#2469-only (dev has no c_skel). 10:10: PUSHED to #2635 on Matthew's word (\"Push to #2635\"): the two fixes, cherry-picked as 394552d5d0 and bfa36a6ede (not the probe); #2635 now at bfa36a6ede. Before pushing: dune build @check and dune fmt clean, the targeted groups 828 pass. Next, his ask: ^report(36), a report with figures on what an edit, an undo and a redo cost (drafting in ~/hazel-perf-report/036/), to be published as work in progress. 10:46: ^report(36) \"What an Undo Costs\" PUBLISHED as work in progress (Matthew's ask: \"write a hazel report draft, and publish it, with graphs\"): https://matthewhammer.org/hazel/reports/036/ (homepage 451502d; series repo cc69e37, not pushed: drafts wait there). New data for it: 5 sizes (400 to 6,400), 3 runs per build, Node with a 64 MB stack (the 8 MB default segfaulted in 4 of 6 runs at 6,400). After the fixes at 6,400: edit 106 / undo 292 / redo 184 ms + statics ~78; slope 1.10 to 1.16 on log-log; an undo 2.7 to 3.0 edits, a redo 1.6 to 2.0; fixes 31-46% off at 3,200 and 6,400. This morning's runs of the same builds were 20-70% slower at every size (session spread), so compare within a session.",
+   "progress": "Minted from ^ticket(664). First step: time an edit, an undo and a redo against program size (the 2000-let bench at several sizes, and Full Body) on #2635 after ^ticket(663), counting what each one rebuilds (items analyzed, pieces measured, evaluation steps). Background: ^ticket(58) (#2597's uncapped stack, 10-14; on #2635, Andrew's compaction 6010128b7d and keep-newest 032fe3aca6). 07:42: FIRST MEASUREMENT (node, #2635 at 2cab658ef1 + probe 1d98b3aed7 on local branch probe/undo-scaling: test UndoScaling, UNDO_SIZES=...). A chain of n lets, an edit in the middle one; each step through the app's loop, then the statics refresh; evaluation off (dynamics=false). Per step, edit / undo / redo (the step, then statics): n=100 9+6 / 11+6 / 8+5 ms; n=400 18+13 / 25+12 / 18+12; n=1600 75+50 / 93+50 / 71+51; n=3200 ~200+130 / ~240+130 / ~190+130. LINEAR in n, about 0.1 ms a let at 3200; undo about 1.2x an edit; an older (compacted) undo costs the same as the latest. Each step re-parses 1-2 items, re-measures 1-2 chunks and compares 2 item heads, so the incremental caches work: the O(n) is in whole-program passes around them, not in the undo stack. Profile at n=3200 (12 steps, 4.2 s): MakeTerm.go_incr's top-level pass 31% (parse_level 11%, record_top_frame/sim 10%); DefStatics.calc 16% (calc_chain's walk over every item 11%, the edited item 7%); AutoProbePerform.program_root_id 11% (Segment.skel of the whole top level on every frame: its memo is keyed on the segment's identity, which every edit changes; then tail_id walks the let chain); Zipper.remold_regrout on insert 8%; TyDi.suggest via set_tydi_buffer 7%; Measured.of_segment's walk 4%; GC ~15%. TRAP FOUND: the test runner installs DefStaticsCheck (monolithic statics + a lexeme trace of every info's elaboration, after every calc, up to 3000 infos), which made the first numbers quadratic (n=400: 1.6 s a refresh) and then cheap past 3000 infos; the probe turns it off. NOT YET MEASURED: evaluation (the worker request, ^ticket(666)) and the view. Toward O(log n): the cheap ones first (program_root_id from the syntax's own term, O(1); TyDi's suggestions only when asked; remold only the edited item), then the structural ones: the top level as a balanced tree of items (a finger tree with per-subtree summaries: skeleton pieces, exports, dirty names) so MakeTerm's top-level pass, the skeleton and DefStatics' chain walk touch O(log n) nodes per edit. 08:54: Matthew: \"Cheap fixes first\". PROBE CORRECTED first (167247e61d): each frame's calculate now told whether it was an edit, as Main does (the undo tests' helper said yes for every frame, which redid syntax and completions on the statics refresh), and the runner's second check, NormalizeCheck (a global remold after every edit), turned off too. TRUE BASELINE, step medians of 12 (statics refresh 9-42 ms beside): n=800 edit 28 / undo 58 / redo 39 ms; 1600: 48 / 109 / 89; 3200: 92 / 208 / 173. So undo is ~2x an edit. Re-molding (8% before) was the runner's check. TWO FIXES, local branch perf/665-cheap (off #2635 + the probe): 459b029f68 program_root_id reads MakeTerm.Incr's cached top-level skeleton (c_skel) when it is this segment's (its memo was keyed on the segment, which every edit changes); d06473240f no completion suggestions after a numeral (none can start with a digit; they scanned the context and completed the segment first). AFTER: 800: 16 / 39 / 22 ms; 1600: 26 / 67 / 46; 3200: 68 / 156 / 106. 25-45% off each step; still linear. Tests: TyDi, Autoprobe, TailProbe, completion, probe groups: 828 pass; quick suite running. WHAT IS LEFT, all structural (profile at 3200 after the fixes): MakeTerm.go_incr 38% (record_top_frame/sim 17%, ItemSpans' top-level spans 10%), DefStatics 20% (step_chain 11%, calc_chain 9%), Outline rebuilt when an undo or redo realizes the view 15% (its memo of the last 4 programs misses on the restored program: the likely reason undo costs 2x), Measured's walk 6%. NOT PUSHED: where these go (#2635, and a dev PR for the TyDi one) is Matthew's call. 09:01: quick suite with both fixes: 1 failure of 6,159, MemberLivelitReprint 1 (the cwd-relative path, as on #2635 itself). Waiting on Matthew: whether to cherry-pick the two fixes (not the probe) onto #2635 and push; the numeral fix would also suit a dev PR (dev has the same TyDi code), the root-id fix is #2635/#2469-only (dev has no c_skel). 10:10: PUSHED to #2635 on Matthew's word (\"Push to #2635\"): the two fixes, cherry-picked as 394552d5d0 and bfa36a6ede (not the probe); #2635 now at bfa36a6ede. Before pushing: dune build @check and dune fmt clean, the targeted groups 828 pass. Next, his ask: ^report(36), a report with figures on what an edit, an undo and a redo cost (drafting in ~/hazel-perf-report/036/), to be published as work in progress. 10:46: ^report(36) \"What an Undo Costs\" PUBLISHED as work in progress (Matthew's ask: \"write a hazel report draft, and publish it, with graphs\"): https://matthewhammer.org/hazel/reports/036/ (homepage 451502d; series repo cc69e37, not pushed: drafts wait there). New data for it: 5 sizes (400 to 6,400), 3 runs per build, Node with a 64 MB stack (the 8 MB default segfaulted in 4 of 6 runs at 6,400). After the fixes at 6,400: edit 106 / undo 292 / redo 184 ms + statics ~78; slope 1.10 to 1.16 on log-log; an undo 2.7 to 3.0 edits, a redo 1.6 to 2.0; fixes 31-46% off at 3,200 and 6,400. This morning's runs of the same builds were 20-70% slower at every size (session spread), so compare within a session. 11-03 07:31: the outline's part separated at every size (2 profiled runs per size of d06473240f in the dev profile): 24 to 30% of each undo and redo; written up with the space story in ^report(38) (^ticket(679)).",
    "log": [
     {
      "at": "2026-11-02T08:43-07:00",
@@ -9456,13 +9497,45 @@
     "report 34"
    ],
    "source": "Matthew, 2026-11-02, in chat: \"Once we publish hazeljs and mudu as npm packages, can we use those here? So the reader can: * see the trap room and * edit the hazel script, with tiles, etc? https://matthewhammer.org/hazel/reports/034/\"",
-   "progress": "Not started.",
+   "progress": "Not started. 11-03 07:31: CORRECTION found while drafting ^report(39): this ticket's text says the room keeps its rule \"while it is not ok, as the game's panel does\"; the game's code (scriptEventRun) shows the room runs its own JS instead, and the Hazel rule only runs dry for the event log.",
    "log": []
+  },
+  {
+   "id": 679,
+   "area": "hazel, performance: undo in time and space (a report)",
+   "added": "2026-11-03",
+   "opened": "2026-11-03T07:31-07:00",
+   "status": "open",
+   "tags": [
+    "blocked on Matthew",
+    "meeting 2026-11-04"
+   ],
+   "source": "Matthew, 2026-11-03 07:16, in chat: \"one part of agenda claims a big savings in the undo cost, in terms of space, without summarizing the improvement, and how we found it. Let's draft a new wip report all about undo cost, in time and space, to detail this ongoing investigation, and next steps. Put the details there and link with agenda report.\" Then: \"for undo/redo, let's have a part of the report that separates out the outline-rebuilding cost (specific to modular editors) from the rest of the costs.\"",
+   "url": "http://localhost:8131/038/",
+   "text": "<b>^report(38), Undo, in Time and Space.</b> One report on what undo costs: the space story (^report(14)'s update: the uncapped history of whole page models, 1,048 MB after 12 edits on #2597, 159 with Andrew Blinn's compaction, how it was found in five steps after a cap that never ran), the time story (^report(36)), and a new measurement: the modular editors' outline rebuild separated from the rest of each undo and redo. Linked from ^report(37)'s undo item.",
+   "progress": "07:31: DRAFTED, committed locally in ~/hazel-perf-report (8cf949e), not pushed or published. New today: the probe at d06473240f rebuilt in the dev profile (dune cache, under a minute) and profiled at 400 to 6,400 definitions, 2 runs each: the outline (Outline.of_source) is 24 to 30% of every undo and redo, about 27 ms at 3,200 and 58 at 6,400; without it a redo is 1.2 to 1.3 edits (the outline is 64 to 76% of a redo's extra) and an undo still 2.1 to 2.2 (only 31 to 37% of its extra). Found on the way: dev at f042cced44 still has the uncapped history (cap_undo_stack off by default). The agenda's local copy links it; its public copy waits, since the chip would 404 until 38 is published.",
+   "waiting": "Matthew: read ^report(38) at http://localhost:8131/038/ (the outline's part: http://localhost:8131/038/#outline; the space story: http://localhost:8131/038/#space). Publish it as work in progress?"
+  },
+  {
+   "id": 680,
+   "area": "hazel, Hazlet: where the Hazlet work stands (a report)",
+   "added": "2026-11-03",
+   "opened": "2026-11-03T07:31-07:00",
+   "status": "open",
+   "tags": [
+    "blocked on Matthew",
+    "meeting 2026-11-04"
+   ],
+   "source": "Matthew, 2026-11-03 07:18, in chat: \"likewise, if we don't have a standalone report for Hazlets, and I think we already maybe have a draft, let's create one there, with our progress thus far with current status, and next steps.\"",
+   "url": "http://localhost:8131/039/",
+   "text": "<b>^report(39), Hazlets, So Far.</b> No standalone Hazlet report existed (the nearest are ^report(33) and ^report(34)). What a Hazlet is, with a figure of one event and one edit in the game; progress since 10-20, dated; each piece's state as of 11-03 (#2711 and #2719 draft, #2711 conflicting with dev; embed-editable with no PR; hazeljs 0.0.1 on npm); speed; the package; next steps (^ticket(672) to ^ticket(678)); the meeting's questions. Linked from ^report(37)'s Hazlet section.",
+   "progress": "07:31: DRAFTED (by a helper agent, checked here against GitHub), committed locally in ~/hazel-perf-report (6545538), not pushed or published. Its open questions for Matthew: the title; and whether, when it goes out, its citations of ^report(32) (still a draft) stay as unlinked chips.",
+   "waiting": "Matthew: read ^report(39) at http://localhost:8131/039/ (status: http://localhost:8131/039/#status; next: http://localhost:8131/039/#next). Publish it as work in progress? Its title, \"Hazlets, So Far\", is a guess."
   }
  ],
- "next_ticket": 679,
+ "next_ticket": 681,
  "current_ticket": 664,
- "current_note": "07:13: after the restart: servers back up; bringing ^report(37), the agenda for Wednesday's meeting, up to date (hazeljs is live on npm; #2635's Firefox deck now builds, 3 of its 12 cases fail), then Matthew's answers to its questions",
+ "current_note": "07:31: two drafts for Wednesday are ready to read: ^report(38) undo in time and space, the outline's part separated (http://localhost:8131/038/), and ^report(39) Hazlets (http://localhost:8131/039/); the agenda's local copy links both (http://localhost:8131/037/). Waiting on Matthew: publish the two as work in progress (then the agenda goes out with them), and his answers to the agenda's questions.",
  "closed_tickets": [
   {
    "id": 662,
@@ -15443,7 +15516,9 @@
   613,
   633,
   634,
-  635
+  635,
+  679,
+  680
  ],
  "current_since": "2026-11-03T07:13-07:00",
  "next_meeting": {
@@ -15458,7 +15533,7 @@
   },
   "since": "2026-08-27",
   "replies": 5942,
-  "words": 1297069,
+  "words": 1297131,
   "read_hours_est": 90.8,
   "listen_hours_est": 135.1,
   "read_s_avg": 55,
@@ -15746,8 +15821,8 @@
    },
    "2026-11-03": {
     "replies": 2,
-    "words": 229,
-    "chars": 1351
+    "words": 291,
+    "chars": 1739
    }
   }
  },
@@ -15892,6 +15967,8 @@
   }
  ],
  "review_order": [
+  679,
+  680,
   661,
   600,
   389,
@@ -15955,5 +16032,6 @@
   429,
   512
  ],
+ "current_waiting": "publish ^report(38) and ^report(39) as work in progress? and your answers to the agenda's questions",
  "closed_tickets_are": "summaries for the hover cards; the full records are in dashboard-data/closed/<YYYY-MM>.json (dashboard/data_whole.py joins them)"
 }
