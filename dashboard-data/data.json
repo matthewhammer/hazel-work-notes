@@ -10244,7 +10244,7 @@
     "report 34"
    ],
    "source": "Matthew, 2026-11-02, in chat: \"Once we publish hazeljs and mudu as npm packages, can we use those here? So the reader can: * see the trap room and * edit the hazel script, with tiles, etc? https://matthewhammer.org/hazel/reports/034/\"",
-   "progress": "Not started. 11-03 08:21: NOT YET A PR: embed-editable's head 0da790fb20 (12 commits on js-library-embed; Deploy green) has a red CI from 2026-10-24 (run on the branch): Fast checks fail at \"Check warnings\" and Full tests at \"Run tests\"; js-library-embed (#2719) itself is green. Next: find the warning and the failing test (the log's menhir warnings are the usual ones), fix on the branch, then the PR stacked on #2719. ^report(34)'s live trap room (^ticket(675)) needs none of it: its first version frames the game.",
+   "progress": "Not started. 11-03 08:21: NOT YET A PR: embed-editable's head 0da790fb20 (12 commits on js-library-embed; Deploy green) has a red CI from 2026-10-24 (run on the branch): Fast checks fail at \"Check warnings\" and Full tests at \"Run tests\"; js-library-embed (#2719) itself is green. Next: find the warning and the failing test (the log's menhir warnings are the usual ones), fix on the branch, then the PR stacked on #2719. ^report(34)'s live trap room (^ticket(675)) needs none of it: its first version frames the game. 11-03 11:16: started on Matthew's \"begin all tickets still enqueued\". The red CI (run 40053093106, from 10-24) was one cause: test/Test_Embed.re's switch over the frame's outbox named four messages, and embed-editable added Caret, Goto and Edited (warning 8, an error in both the warnings check and the test build). Fixed: 99239a446e on embed-editable (a test-only change; the redeployed frame runs the same code). CI: run 41692093368. Next, when green: the PR stacked on #2719, which waits on Matthew's call on folding #2719 into #2711.",
    "log": []
   },
   {
@@ -10391,8 +10391,8 @@
   }
  ],
  "next_ticket": 684,
- "current_ticket": 666,
- "current_note": "09:55: ^ticket(666): the sharing probe's numbers are in (sharing collapses an edit's request; but Full Body re-cuts all 188 pieces on every request, ~200 ms). Next step is Matthew's pick. Waiting on GitHub: #2635's CI (^ticket(663)) and the trampoline branch's CI with lowered budgets (^ticket(667)).",
+ "current_ticket": 677,
+ "current_note": "11:16: begin all tickets still enqueued (Matthew, 11:13): 677, embed-editable's red CI fixed (99239a446e, CI running); in flight on GitHub too: ^ticket(666)'s fix and its test, #2635's deck check (^ticket(663)), Dress Up 0.0.476's speed run (^ticket(674), ^ticket(676)).",
  "closed_tickets": [
   {
    "id": 670,
@@ -16352,12 +16352,12 @@
   }
  ],
  "queue": [
+  677,
   666,
   665,
   663,
   667,
   681,
-  677,
   671,
   669,
   674,
@@ -16369,7 +16369,7 @@
   655,
   664
  ],
- "current_since": "2026-11-03T09:23-07:00",
+ "current_since": "2026-11-03T11:16-07:00",
  "next_meeting": {
   "report": 37,
   "with": "Cyrus",
