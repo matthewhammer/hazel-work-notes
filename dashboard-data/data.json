@@ -68,6 +68,10 @@
      "http://localhost:8131/038/#twice"
     ],
     [
+     "localhost:8131/034/#try (^report(34), local: the trap room live on the page, waiting on Matthew)",
+     "http://localhost:8131/034/#try"
+    ],
+    [
      "localhost:8131/038/#sidebar (^report(38), local: with the sidebar shown, every edit pays for the outline)",
      "http://localhost:8131/038/#sidebar"
     ],
@@ -9484,7 +9488,8 @@
    "opened": "2026-11-02T10:49-07:00",
    "status": "open",
    "tags": [
-    "meeting 2026-11-04"
+    "meeting 2026-11-04",
+    "blocked on Matthew"
    ],
    "chips": [
     "hazel",
@@ -9493,8 +9498,9 @@
     "report 34"
    ],
    "source": "Matthew, 2026-11-02, in chat: \"Once we publish hazeljs and mudu as npm packages, can we use those here? So the reader can: * see the trap room and * edit the hazel script, with tiles, etc? https://matthewhammer.org/hazel/reports/034/\"",
-   "progress": "Not started.",
-   "log": []
+   "progress": "08:20: FIRST VERSION, local: ^report(34) has a new section, #try, \"Try it: the trap room, on this page\": an iframe of the live game at ?try=trap (Dress Up 0.0.475+, its Hazel from hazeljs since 0.0.476); a reader pulls a lever or edits TrapRoom's rule in the Scripting tab, and nothing is saved (scripts live in the game's state, which a ?try= visit never persists). Checked in the app's browser pane: the frame loads the trap room, 735x638. Committed in ~/hazel-perf-report (fcddc31), NOT republished: waits on Matthew. Next versions: the tiles and the room side by side, wired through hazeljs (^ticket(677), ^ticket(678)).",
+   "log": [],
+   "waiting": "Matthew: republish ^report(34) with its new section, the trap room live on the page (http://localhost:8131/034/#try)? MY RECOMMENDATION: yes; the game's own link is already public (https://matthewhammer.org/kids-choice-games/dress-up/?try=trap)."
   },
   {
    "id": 676,
@@ -15607,7 +15613,7 @@
   },
   "since": "2026-08-27",
   "replies": 5944,
-  "words": 1298043,
+  "words": 1298173,
   "read_hours_est": 90.9,
   "listen_hours_est": 135.2,
   "read_s_avg": 55,
@@ -15895,8 +15901,8 @@
    },
    "2026-11-03": {
     "replies": 4,
-    "words": 1203,
-    "chars": 7273
+    "words": 1333,
+    "chars": 8062
    }
   }
  },
@@ -16045,6 +16051,7 @@
   679,
   667,
   672,
+  675,
   680,
   668,
   661,
