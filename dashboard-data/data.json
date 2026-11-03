@@ -10147,46 +10147,6 @@
    ]
   },
   {
-   "id": 674,
-   "area": "hazel, Hazlet, npm, Dress Up: the game loads its Hazel from the published package",
-   "text": "<b>Dress Up on the package.</b> Part of ^ticket(668). Messed Up Dress Up, the first Hazlet, loads hazel-lib.js from a branch build of #2719. Once ^ticket(673)'s first publish is out, load it from the package instead (unpkg or jsDelivr, pinned to a version), so the game is the package's first real user. A Dress Up release as usual; the Scripting tab's speed run is the check (^report(32)).",
-   "added": "2026-11-02T10:22-07:00",
-   "opened": "2026-11-02T10:22-07:00",
-   "status": "open",
-   "tags": [
-    "meeting 2026-11-04"
-   ],
-   "chips": [
-    "hazel",
-    "hazlet",
-    "npm",
-    "dress up"
-   ],
-   "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
-   "progress": "08:19: RELEASED, Dress Up 0.0.476 (52fad2db, tag dress-up-0.0.476; main pushed before the tag): the 📜 Scripting tab's library is https://cdn.jsdelivr.net/npm/hazeljs@0.0.1/hazel-lib.js (SCRIPT_LIB_URL), the same commit as before (#2719 at 0d66c36618) but pinned. Kept on build.hazel.org: SCRIPT_BUILD, the tiles' frame (embed-editable) and the frame's message origin, which SCRIPT_BUILD sets. Unchanged by it: the offline copy (it keeps only same-origin files, so the library was never in it) and the tiles-versus-levers build check (npm's Hazel.build names the same full commit). Checked in the app's browser pane on 8133: the script tag's src is jsDelivr's, Hazel.build 0d66c36618ee..., Hazel.run gives 42, the panel says the program is fine (analyzed and run in 812 ms); check_script and check_load before and after the rebase. Left: the speed run's result for 0.0.476.",
-   "log": [
-    {
-     "at": "2026-11-02T10:50-07:00",
-     "from": "matthew",
-     "chars": 1201,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-02T10:50-07:00",
-     "from": "claude",
-     "chars": 195,
-     "asks": false,
-     "words": 33,
-     "read_s": 8,
-     "listen_s": 12,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 675,
    "area": "hazel, Hazlet, report 34: a live trap room in the report, its Hazel rule editable in tiles",
    "text": "<b>A live trap room in ^report(34).</b> The reader plays Messed Up Dress Up's trap room on the report's page and edits the room's Hazel rule in Hazel's tiles, the room answering the edited rule at once. Three pieces, each its own ticket: (1) ^ticket(676) the trap room on a page that is not the game's; (2) ^ticket(677) Hazel's tile editor on that page; (3) ^ticket(678) the report's page wiring them to <code>hazeljs</code> (^ticket(668)): the editor's text, <code>Hazel.runProgram</code>, the rule handed to the room. Today the game does all three inside itself (its Scripting panel), so a first version can be an iframe of the game opened at the trap room; the package version is the Hazlet pattern shown working in a page we write.",
@@ -10224,7 +10184,7 @@
     "report 34"
    ],
    "source": "Matthew, 2026-11-02, in chat: \"Once we publish hazeljs and mudu as npm packages, can we use those here? So the reader can: * see the trap room and * edit the hazel script, with tiles, etc? https://matthewhammer.org/hazel/reports/034/\"",
-   "progress": "08:17: FIRST STEP RELEASED, Dress Up 0.0.475 (8c27cd56, tag dress-up-0.0.475; main pushed before the tag): ?try=trap opens the game in the trap room of N's castle (whichever of its rooms is the trap room; room 3 by default) with the 📜 Scripting tab open, a test note, nothing saved (TRY's persist guard); with &logic=hazel every room runs its Hazel rule. Checked: check_script and check_load before and after the rebase; in the app's browser pane on 8133: castleroom, N, room 3, the scripting panel, logic hazel, no console errors. The link for a report: https://matthewhammer.org/kids-choice-games/dress-up/?try=trap&logic=hazel . Left: the speed run's result (the tag's workflow), and the package route (messed-up-dress-up on npm, the room pulled out of the game's global state), the larger step.",
+   "progress": "08:17: FIRST STEP RELEASED, Dress Up 0.0.475 (8c27cd56, tag dress-up-0.0.475; main pushed before the tag): ?try=trap opens the game in the trap room of N's castle (whichever of its rooms is the trap room; room 3 by default) with the 📜 Scripting tab open, a test note, nothing saved (TRY's persist guard); with &logic=hazel every room runs its Hazel rule. Checked: check_script and check_load before and after the rebase; in the app's browser pane on 8133: castleroom, N, room 3, the scripting panel, logic hazel, no console errors. The link for a report: https://matthewhammer.org/kids-choice-games/dress-up/?try=trap&logic=hazel . Left: the speed run's result (the tag's workflow), and the package route (messed-up-dress-up on npm, the room pulled out of the game's global state), the larger step. 11-03 11:19: the speed run for 0.0.476 passed (run 41662562115). Left: the package route (messed-up-dress-up on npm, the room pulled out of the game's global state), the larger step.",
    "log": []
   },
   {
@@ -10394,6 +10354,16 @@
  "current_ticket": 677,
  "current_note": "11:16: begin all tickets still enqueued (Matthew, 11:13): 677, embed-editable's red CI fixed (99239a446e, CI running); in flight on GitHub too: ^ticket(666)'s fix and its test, #2635's deck check (^ticket(663)), Dress Up 0.0.476's speed run (^ticket(674), ^ticket(676)).",
  "closed_tickets": [
+  {
+   "id": 674,
+   "area": "hazel, Hazlet, npm, Dress Up: the game loads its Hazel from the published package",
+   "added": "2026-11-02T10:22-07:00",
+   "text": "Dress Up on the package.",
+   "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it…",
+   "status": "done",
+   "closed": "2026-11-03",
+   "outcome": "Messed Up Dress Up loads its Hazel from the npm package, hazeljs 0.0.1 on jsDelivr, since 0.0.476; its speed run passed on GitHub (run 41662562115: the gate, the leak in Chrome…"
+  },
   {
    "id": 670,
    "area": "hazel, Hazlet, npm: TypeScript declarations for the API and the value mapping",
@@ -16360,7 +16330,6 @@
   681,
   671,
   669,
-  674,
   676,
   678,
   673,
@@ -16382,7 +16351,7 @@
   },
   "since": "2026-08-27",
   "replies": 5994,
-  "words": 1308301,
+  "words": 1308355,
   "read_hours_est": 91.6,
   "listen_hours_est": 136.3,
   "read_s_avg": 55,
@@ -16670,8 +16639,8 @@
    },
    "2026-11-03": {
     "replies": 54,
-    "words": 11461,
-    "chars": 67298
+    "words": 11515,
+    "chars": 67596
    }
   }
  },

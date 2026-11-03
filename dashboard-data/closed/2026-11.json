@@ -1,5 +1,65 @@
 [
  {
+  "id": 674,
+  "area": "hazel, Hazlet, npm, Dress Up: the game loads its Hazel from the published package",
+  "text": "<b>Dress Up on the package.</b> Part of ^ticket(668). Messed Up Dress Up, the first Hazlet, loads hazel-lib.js from a branch build of #2719. Once ^ticket(673)'s first publish is out, load it from the package instead (unpkg or jsDelivr, pinned to a version), so the game is the package's first real user. A Dress Up release as usual; the Scripting tab's speed run is the check (^report(32)).",
+  "added": "2026-11-02T10:22-07:00",
+  "opened": "2026-11-02T10:22-07:00",
+  "status": "done",
+  "tags": [
+   "meeting 2026-11-04"
+  ],
+  "chips": [
+   "hazel",
+   "hazlet",
+   "npm",
+   "dress up"
+  ],
+  "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
+  "progress": "08:19: RELEASED, Dress Up 0.0.476 (52fad2db, tag dress-up-0.0.476; main pushed before the tag): the 📜 Scripting tab's library is https://cdn.jsdelivr.net/npm/hazeljs@0.0.1/hazel-lib.js (SCRIPT_LIB_URL), the same commit as before (#2719 at 0d66c36618) but pinned. Kept on build.hazel.org: SCRIPT_BUILD, the tiles' frame (embed-editable) and the frame's message origin, which SCRIPT_BUILD sets. Unchanged by it: the offline copy (it keeps only same-origin files, so the library was never in it) and the tiles-versus-levers build check (npm's Hazel.build names the same full commit). Checked in the app's browser pane on 8133: the script tag's src is jsDelivr's, Hazel.build 0d66c36618ee..., Hazel.run gives 42, the panel says the program is fine (analyzed and run in 812 ms); check_script and check_load before and after the rebase. Left: the speed run's result for 0.0.476.",
+  "log": [
+   {
+    "at": "2026-11-02T10:50-07:00",
+    "from": "matthew",
+    "chars": 1201,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-02T10:50-07:00",
+    "from": "claude",
+    "chars": 195,
+    "asks": false,
+    "words": 33,
+    "read_s": 8,
+    "listen_s": 12,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-03",
+  "closed_at": "2026-11-03T11:19-07:00",
+  "outcome": "Messed Up Dress Up loads its Hazel from the npm package, hazeljs 0.0.1 on jsDelivr, since 0.0.476; its speed run passed on GitHub (run 41662562115: the gate, the leak in Chrome and Firefox, the on-screen controller audit; recorded in dress-up/speed.json).",
+  "metrics": {
+   "open_minutes": 1497,
+   "matthew_messages": 1,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 1396,
+   "tokens_est": 349,
+   "sync_minutes_est": 0.0,
+   "replies": 1,
+   "claude_words": 33,
+   "read_minutes_est": 0.1,
+   "listen_minutes_est": 0.2,
+   "read_s_avg": 8,
+   "listen_s_avg": 12,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 670,
   "area": "hazel, Hazlet, npm: TypeScript declarations for the API and the value mapping",
   "text": "<b>Hazlet package: types.</b> Part of ^ticket(668). An <code>index.d.ts</code> for what ^ticket(669) exports: <code>version</code>, <code>build</code>, <code>analyze</code>, <code>run</code>, <code>analyzeProgram</code>, <code>runProgram</code>, the program spec (preamble, modules, tail) and its result (ok, errors with their module, holes, incomplete, ms), and the values Hazel gives back (number, boolean, string, arrays, null for (), objects for labeled tuples, <code>{tag, value}</code> constructors, functions, <code>{hazel}</code> for anything else). Read from docs/hazel-as-a-js-library.md and src/web/HazelLibCore.re on #2719. Checked by <code>tsc --noEmit</code> on ^ticket(672)'s TypeScript example; documented in ^ticket(671)'s README.",
