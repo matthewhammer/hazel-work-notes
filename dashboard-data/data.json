@@ -9889,9 +9889,26 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 682,
+   "area": "dress-up, scripting, hazeljs: undo and redo of a script, on the usual keys",
+   "text": "<b>Undo and redo in the Scripting panel, on the usual keys.</b> Ctrl+Z to undo and Ctrl+Shift+Z or Ctrl+Y to redo (⌘ on a Mac), for the script being edited, in text and in tiles alike. hazeljs has no undo of its own (it holds no editor: the page holds the text, its README says so since 11-03), so the game keeps each script's history: the texts it has had, one step per edit or per tiles edit message. A text box's own browser undo does not cover it: the page writes the tiles' edits into the boxes, which breaks the box's native history. Questions: whether Hazel's tiles frame (embed-editable) takes Ctrl+Z itself, and if so whose history wins; how a step is grouped (a word, a pause, a tiles edit).",
+   "added": "2026-11-03T10:16-07:00",
+   "opened": "2026-11-03T10:16-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress-up",
+    "scripting",
+    "hazeljs"
+   ],
+   "source": "Matthew, 2026-11-03, in chat, on hazeljs having no undo or redo: \"in MUDU, it would be nice to bind them to the usual key combinations, for instance\"",
+   "progress": "11-03 10:16: minted. Not started. The panel's two ways to edit: textarea.script-editor, and the embed-editable frame (25-scripting.js, tickets 520 and 578), whose edit messages the page writes into the boxes.",
+   "log": []
   }
  ],
- "next_ticket": 682,
+ "next_ticket": 683,
  "current_ticket": 666,
  "current_note": "09:55: ^ticket(666): the sharing probe's numbers are in (sharing collapses an edit's request; but Full Body re-cuts all 188 pieces on every request, ~200 ms). Next step is Matthew's pick. Waiting on GitHub: #2635's CI (^ticket(663)) and the trampoline branch's CI with lowered budgets (^ticket(667)).",
  "closed_tickets": [
@@ -15865,6 +15882,7 @@
   676,
   678,
   673,
+  682,
   655,
   664
  ],
