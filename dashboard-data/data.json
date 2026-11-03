@@ -9272,7 +9272,7 @@
     "worker"
    ],
    "source": "Matthew, 2026-11-02 07:06, in chat (from ^ticket(664)): \"related to undo --- how much are we loosing sharing as we pass data to and from the worker thread?\"",
-   "progress": "Minted from ^ticket(664). Earlier numbers (10-09, before ShareCodec): Kids release request 478 KB, responses up to 383 KB; encode ~60 ms, decode ~12 ms a release (the 10-09 profiles of a Kids' Choice release and a Polygons click); ^ticket(7)/issue 013: after keyed EvalInfo, the request's cost scales with the items above the edit. 11-03 08:24: A PLAN, from the code (not started): Node can measure most of it without a browser. test/Test_ShareCodec.re already has send(v): Marshal.to_string(Util.ShareCodec.Client.encode(v)) and back through Worker.decode, both tables in one runtime, as on the real boundary (src/util/ShareCodec.re: min_size 16, max_entries 200,000). A probe test: elaborate a real slide's program (Full Body, Kids' Choice), then per request: wire bytes with ShareCodec against Marshal of the raw value; the same after an edit to one literal, and after an undo (the earlier value again); encode and decode ms; and whether decoded values are physically the same objects as last time (=== on subterms), which is what the page's identity-keyed memos need. Then the responses the same way. A test-only change, so a cheap rebuild; the slider release and the browser numbers stay for a daytime browser run."
+   "progress": "Minted from ^ticket(664). Earlier numbers (10-09, before ShareCodec): Kids release request 478 KB, responses up to 383 KB; encode ~60 ms, decode ~12 ms a release (the 10-09 profiles of a Kids' Choice release and a Polygons click); ^ticket(7)/issue 013: after keyed EvalInfo, the request's cost scales with the items above the edit. 11-03 08:24: A PLAN, from the code (not started): Node can measure most of it without a browser. test/Test_ShareCodec.re already has send(v): Marshal.to_string(Util.ShareCodec.Client.encode(v)) and back through Worker.decode, both tables in one runtime, as on the real boundary (src/util/ShareCodec.re: min_size 16, max_entries 200,000). A probe test: elaborate a real slide's program (Full Body, Kids' Choice), then per request: wire bytes with ShareCodec against Marshal of the raw value; the same after an edit to one literal, and after an undo (the earlier value again); encode and decode ms; and whether decoded values are physically the same objects as last time (=== on subterms), which is what the page's identity-keyed memos need. Then the responses the same way. A test-only change, so a cheap rebuild; the slider release and the browser numbers stay for a daytime browser run. 08:26: FIRST NUMBERS (probe 95a1cff9fa, local branch probe/665-undo-vs-redo: test/Test_SharingProbe.re on Test_ShareCodec's program of n definitions, dev profile, one run): a FIRST send shares nothing, raw size (n=50: 33,049 B 29 ms; 200: 132,557 B 61 ms; 800: 547,593 B 178 ms, encode + Marshal + decode); the SAME value again is a 48 to 52 B reference, about 1 ms, and decodes to the very same object (identity kept); AFTER AN EDIT to one literal (ids kept), 10% of the raw size goes (3,648 / 13,668 / 53,991 B; 3 / 7 / 18 ms): still O(n), since the program is a chain of nested lets and every let around the edit gets a new hash, the same shape as undo's (^report(38)'s balanced tree would make it O(log n)). Not yet: responses, a real slide (Full Body), and the identity of unchanged subterms after an edit."
   },
   {
    "id": 667,
@@ -9614,8 +9614,8 @@
   }
  ],
  "next_ticket": 681,
- "current_ticket": 674,
- "current_note": "08:17: AFK protocol: the game loads its Hazel library from the published package (hazeljs 0.0.1 on jsDelivr) instead of #2719's branch build; same commit, 0d66c36618",
+ "current_ticket": 663,
+ "current_note": "08:26: AFK protocol. Waiting on GitHub: the decks that test ^ticket(663)'s fix (cases running, about 08:40) and CI for the undo fix (about 09:05); when they land, the agenda's dev-merge item and the push questions. Done since 07:41: ^report(38) corrected and extended locally, the undo double-rebuild fix (trial), ^ticket(667) explained, ^ticket(672) examples, Dress Up 0.0.475 and 0.0.476, ^report(34)'s live trap room (local). Questions for Matthew: 'Blocked on Matthew's decision', first six.",
  "closed_tickets": [
   {
    "id": 662,
@@ -15600,7 +15600,7 @@
   679,
   680
  ],
- "current_since": "2026-11-03T08:17-07:00",
+ "current_since": "2026-11-03T08:26-07:00",
  "next_meeting": {
   "report": 37,
   "with": "Cyrus",
