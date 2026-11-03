@@ -9292,8 +9292,7 @@
    "opened": "2026-11-02T10:22-07:00",
    "status": "open",
    "tags": [
-    "meeting 2026-11-04",
-    "blocked on Matthew"
+    "meeting 2026-11-04"
    ],
    "chips": [
     "hazel",
@@ -9301,7 +9300,7 @@
     "npm"
    ],
    "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
-   "progress": "10:22: minted with its six task tickets (669 to 674). Name check, 10:17: <code>hazlet</code> is free on npm (so are hazlets, hazel-lib, hazel-lang, hazeljs; @hazelgrove/hazel has no package). npm here is not logged in. Matthew wants to try registering it today: a 0.0.1 built from #2719's head (0d66c36618, worktree ~/hazel-embed-520), packed here, published after he logs in. 10:36: A FIRST VERSION, ready to publish. Matthew is logged in to npm (user matthewhammer) and picked the name <b>hazeljs</b> (\"Hazlet\" stays the pattern's name). Local repo ~/hazeljs (c76daf4, not pushed anywhere): hazel-lib.js built from #2719 at 0d66c36618 with GITHUB_SHA set, so Hazel.build names the commit; 648-649 kB packed, 2.8 MB unpacked, 9 files. Installed from its tarball into a fresh project: require and import both work, every README example runs. Waiting on Matthew: publish hazeljs@0.0.1. 10:44: PUBLISH REFUSED, twice (here at 10:43, then in Matthew's terminal tab): npm E403, \"Two-factor authentication or granular access token with bypass 2fa enabled is required to publish packages\". It asked for no code, so 2FA is off on the account. Nothing published; the name is still free. Matthew's step: turn on 2FA on npmjs.com, npm login again, then npm publish in ~/hazeljs (it will ask for the code). Matthew's next ask (same time): once hazeljs and a MUDU package are on npm, can ^report(34) show the trap room live and let a reader edit its Hazel rule in tiles? 10:49: ^report(34) now has a dated section for Hazel's core team on what the release carries beyond dev (published, homepage fe4cce1). Matthew's next ask, a live trap room in that report: ^ticket(675) with 676 to 678. 11-03 07:14: waiting reworded: the publish is done (0.0.1, 11-02 11:03, ^ticket(673)); what waits on Matthew is the placeholder's deprecation. ^report(37)'s npm item updated to match (homepage). 11-03 08:19: ^ticket(674) done: Dress Up 0.0.476 loads its Hazel from hazeljs 0.0.1 on jsDelivr. 11-03 08:57: Matthew answered, in chat: yes: deprecate the 0.0.0-stage placeholder (his two-factor code). 11-03 09:01: the placeholder's deprecation: npm here had lost its login (whoami 401, the saved token expired); started npm login && npm deprecate hazeljs@0.0.0-stage in the terminal tab c2, waiting for Matthew to sign in and type his code.",
+   "progress": "10:22: minted with its six task tickets (669 to 674). Name check, 10:17: <code>hazlet</code> is free on npm (so are hazlets, hazel-lib, hazel-lang, hazeljs; @hazelgrove/hazel has no package). npm here is not logged in. Matthew wants to try registering it today: a 0.0.1 built from #2719's head (0d66c36618, worktree ~/hazel-embed-520), packed here, published after he logs in. 10:36: A FIRST VERSION, ready to publish. Matthew is logged in to npm (user matthewhammer) and picked the name <b>hazeljs</b> (\"Hazlet\" stays the pattern's name). Local repo ~/hazeljs (c76daf4, not pushed anywhere): hazel-lib.js built from #2719 at 0d66c36618 with GITHUB_SHA set, so Hazel.build names the commit; 648-649 kB packed, 2.8 MB unpacked, 9 files. Installed from its tarball into a fresh project: require and import both work, every README example runs. Waiting on Matthew: publish hazeljs@0.0.1. 10:44: PUBLISH REFUSED, twice (here at 10:43, then in Matthew's terminal tab): npm E403, \"Two-factor authentication or granular access token with bypass 2fa enabled is required to publish packages\". It asked for no code, so 2FA is off on the account. Nothing published; the name is still free. Matthew's step: turn on 2FA on npmjs.com, npm login again, then npm publish in ~/hazeljs (it will ask for the code). Matthew's next ask (same time): once hazeljs and a MUDU package are on npm, can ^report(34) show the trap room live and let a reader edit its Hazel rule in tiles? 10:49: ^report(34) now has a dated section for Hazel's core team on what the release carries beyond dev (published, homepage fe4cce1). Matthew's next ask, a live trap room in that report: ^ticket(675) with 676 to 678. 11-03 07:14: waiting reworded: the publish is done (0.0.1, 11-02 11:03, ^ticket(673)); what waits on Matthew is the placeholder's deprecation. ^report(37)'s npm item updated to match (homepage). 11-03 08:19: ^ticket(674) done: Dress Up 0.0.476 loads its Hazel from hazeljs 0.0.1 on jsDelivr. 11-03 08:57: Matthew answered, in chat: yes: deprecate the 0.0.0-stage placeholder (his two-factor code). 11-03 09:01: the placeholder's deprecation: npm here had lost its login (whoami 401, the saved token expired); started npm login && npm deprecate hazeljs@0.0.0-stage in the terminal tab c2, waiting for Matthew to sign in and type his code. 11-03 09:13: done. Matthew signed in to npm and ran the deprecation himself (after the 09:04 crash closed tab c2); npm view hazeljs@0.0.0-stage now shows it deprecated, pointing to 0.0.1, and latest is still 0.0.1.",
    "log": [
     {
      "at": "2026-11-02T10:50-07:00",
@@ -9322,8 +9321,7 @@
      "effort": "xhigh",
      "note": "from the transcripts"
     }
-   ],
-   "waiting": "Matthew: in the Terminal panel's tab \"npm login, then deprecate (yours)\": press Enter, sign in to npm in the browser, then type your two-factor code when npm deprecate asks."
+   ]
   },
   {
    "id": 669,
@@ -9540,7 +9538,7 @@
  ],
  "next_ticket": 681,
  "current_ticket": null,
- "current_note": "08:57: Matthew is back and answered all eight questions yes. Doing them in order: republish ^report(38) and ^report(34), a hazelgrove/hazeljs repo, npm's placeholder deprecated (his code), the dev PR for the trampoline commits, then both fixes pushed to #2635 once the undo fix's Full tests are green.",
+ "current_note": "09:13: the laptop crashed at about 09:04 (crash 48: a local test run right after a build, stacked with a cherry-pick). The cherry-pick's damage is repaired and the crash is in the crash log. Resuming Matthew's eight yeses one at a time, with tests on GitHub, not here: npm's placeholder is deprecated (he did it); the trampoline branch perf/fewer-trampoline-bounces is pushed and its CI is running; the #2635 push of the undo and deck fixes waits on the undo fix's Full tests.",
  "closed_tickets": [
   {
    "id": 672,
