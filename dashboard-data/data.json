@@ -9291,7 +9291,66 @@
     "worker"
    ],
    "source": "Matthew, 2026-11-02 07:06, in chat (from ^ticket(664)): \"related to undo --- how much are we loosing sharing as we pass data to and from the worker thread?\"",
-   "progress": "Minted from ^ticket(664). Earlier numbers (10-09, before ShareCodec): Kids release request 478 KB, responses up to 383 KB; encode ~60 ms, decode ~12 ms a release (the 10-09 profiles of a Kids' Choice release and a Polygons click); ^ticket(7)/issue 013: after keyed EvalInfo, the request's cost scales with the items above the edit. 11-03 08:24: A PLAN, from the code (not started): Node can measure most of it without a browser. test/Test_ShareCodec.re already has send(v): Marshal.to_string(Util.ShareCodec.Client.encode(v)) and back through Worker.decode, both tables in one runtime, as on the real boundary (src/util/ShareCodec.re: min_size 16, max_entries 200,000). A probe test: elaborate a real slide's program (Full Body, Kids' Choice), then per request: wire bytes with ShareCodec against Marshal of the raw value; the same after an edit to one literal, and after an undo (the earlier value again); encode and decode ms; and whether decoded values are physically the same objects as last time (=== on subterms), which is what the page's identity-keyed memos need. Then the responses the same way. A test-only change, so a cheap rebuild; the slider release and the browser numbers stay for a daytime browser run. 08:26: FIRST NUMBERS (probe 95a1cff9fa, local branch probe/665-undo-vs-redo: test/Test_SharingProbe.re on Test_ShareCodec's program of n definitions, dev profile, one run): a FIRST send shares nothing, raw size (n=50: 33,049 B 29 ms; 200: 132,557 B 61 ms; 800: 547,593 B 178 ms, encode + Marshal + decode); the SAME value again is a 48 to 52 B reference, about 1 ms, and decodes to the very same object (identity kept); AFTER AN EDIT to one literal (ids kept), 10% of the raw size goes (3,648 / 13,668 / 53,991 B; 3 / 7 / 18 ms): still O(n), since the program is a chain of nested lets and every let around the edit gets a new hash, the same shape as undo's (^report(38)'s balanced tree would make it O(log n)). Not yet: responses, a real slide (Full Body), and the identity of unchanged subterms after an edit. 08:38: REAL SLIDES (probe 6389cf5bab; the slide's file elaborated as Test_ShareCodec does, its value by Test_PerfBudgets.work; one run, dev profile): EMOTION request 25,305 B raw, again 56 B, after a one-literal edit 514 B (2%); reply (its value) 60 B. FULL BODY request 1,225,570 B raw, first send 499 ms, again 52 B, after the edit 9,719 B (0.8%) BUT 254 ms: the bytes shrink, the time does not, so the time is in hashing the edited value, not in sending it. Caveat: the probe's edit rebuilds every node (map_term), a worst case for hashing; an edit in the app keeps whatever the elaboration keeps, not measured. Full Body's reply: 869 B raw, 520 B after the edit, small because its value is. Next: hashing's share of the 254 ms (a profile), and an edit through the app's own path (OpenMember / UndoCaches harness) instead of map_term."
+   "progress": "Minted from ^ticket(664). Earlier numbers (10-09, before ShareCodec): Kids release request 478 KB, responses up to 383 KB; encode ~60 ms, decode ~12 ms a release (the 10-09 profiles of a Kids' Choice release and a Polygons click); ^ticket(7)/issue 013: after keyed EvalInfo, the request's cost scales with the items above the edit. 11-03 08:24: A PLAN, from the code (not started): Node can measure most of it without a browser. test/Test_ShareCodec.re already has send(v): Marshal.to_string(Util.ShareCodec.Client.encode(v)) and back through Worker.decode, both tables in one runtime, as on the real boundary (src/util/ShareCodec.re: min_size 16, max_entries 200,000). A probe test: elaborate a real slide's program (Full Body, Kids' Choice), then per request: wire bytes with ShareCodec against Marshal of the raw value; the same after an edit to one literal, and after an undo (the earlier value again); encode and decode ms; and whether decoded values are physically the same objects as last time (=== on subterms), which is what the page's identity-keyed memos need. Then the responses the same way. A test-only change, so a cheap rebuild; the slider release and the browser numbers stay for a daytime browser run. 08:26: FIRST NUMBERS (probe 95a1cff9fa, local branch probe/665-undo-vs-redo: test/Test_SharingProbe.re on Test_ShareCodec's program of n definitions, dev profile, one run): a FIRST send shares nothing, raw size (n=50: 33,049 B 29 ms; 200: 132,557 B 61 ms; 800: 547,593 B 178 ms, encode + Marshal + decode); the SAME value again is a 48 to 52 B reference, about 1 ms, and decodes to the very same object (identity kept); AFTER AN EDIT to one literal (ids kept), 10% of the raw size goes (3,648 / 13,668 / 53,991 B; 3 / 7 / 18 ms): still O(n), since the program is a chain of nested lets and every let around the edit gets a new hash, the same shape as undo's (^report(38)'s balanced tree would make it O(log n)). Not yet: responses, a real slide (Full Body), and the identity of unchanged subterms after an edit. 08:38: REAL SLIDES (probe 6389cf5bab; the slide's file elaborated as Test_ShareCodec does, its value by Test_PerfBudgets.work; one run, dev profile): EMOTION request 25,305 B raw, again 56 B, after a one-literal edit 514 B (2%); reply (its value) 60 B. FULL BODY request 1,225,570 B raw, first send 499 ms, again 52 B, after the edit 9,719 B (0.8%) BUT 254 ms: the bytes shrink, the time does not, so the time is in hashing the edited value, not in sending it. Caveat: the probe's edit rebuilds every node (map_term), a worst case for hashing; an edit in the app keeps whatever the elaboration keeps, not measured. Full Body's reply: 869 B raw, 520 B after the edit, small because its value is. Next: hashing's share of the 254 ms (a profile), and an edit through the app's own path (OpenMember / UndoCaches harness) instead of map_term.",
+   "log": [
+    {
+     "at": "2026-11-03T09:10-07:00",
+     "from": "claude",
+     "chars": 2742,
+     "asks": true,
+     "words": 474,
+     "read_s": 119,
+     "listen_s": 178,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-03T09:11-07:00",
+     "from": "matthew",
+     "chars": 18,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-03T09:12-07:00",
+     "from": "matthew",
+     "chars": 43,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-03T09:13-07:00",
+     "from": "matthew",
+     "chars": 476,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-03T09:13-07:00",
+     "from": "claude",
+     "chars": 1419,
+     "asks": false,
+     "words": 244,
+     "read_s": 62,
+     "listen_s": 92,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-03T09:13-07:00",
+     "from": "claude",
+     "chars": 262,
+     "asks": false,
+     "words": 48,
+     "read_s": 12,
+     "listen_s": 18,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    }
+   ]
   },
   {
    "id": 667,
@@ -9345,6 +9404,51 @@
      "words": 33,
      "read_s": 8,
      "listen_s": 12,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-03T09:13-07:00",
+     "from": "matthew",
+     "chars": 313,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-03T09:14-07:00",
+     "from": "matthew",
+     "chars": 60,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-03T09:14-07:00",
+     "from": "matthew",
+     "chars": 61,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-03T09:14-07:00",
+     "from": "claude",
+     "chars": 214,
+     "asks": false,
+     "words": 37,
+     "read_s": 9,
+     "listen_s": 14,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-03T09:17-07:00",
+     "from": "claude",
+     "chars": 1596,
+     "asks": true,
+     "words": 263,
+     "read_s": 66,
+     "listen_s": 99,
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
@@ -15552,10 +15656,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 5952,
-  "words": 1300684,
-  "read_hours_est": 91.1,
-  "listen_hours_est": 135.5,
+  "replies": 5956,
+  "words": 1301711,
+  "read_hours_est": 91.2,
+  "listen_hours_est": 135.6,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -15840,9 +15944,9 @@
     "chars": 57878
    },
    "2026-11-03": {
-    "replies": 12,
-    "words": 3844,
-    "chars": 22881
+    "replies": 16,
+    "words": 4871,
+    "chars": 28679
    }
   }
  },
