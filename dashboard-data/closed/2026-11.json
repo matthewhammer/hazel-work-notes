@@ -1,5 +1,35 @@
 [
  {
+  "id": 670,
+  "area": "hazel, Hazlet, npm: TypeScript declarations for the API and the value mapping",
+  "text": "<b>Hazlet package: types.</b> Part of ^ticket(668). An <code>index.d.ts</code> for what ^ticket(669) exports: <code>version</code>, <code>build</code>, <code>analyze</code>, <code>run</code>, <code>analyzeProgram</code>, <code>runProgram</code>, the program spec (preamble, modules, tail) and its result (ok, errors with their module, holes, incomplete, ms), and the values Hazel gives back (number, boolean, string, arrays, null for (), objects for labeled tuples, <code>{tag, value}</code> constructors, functions, <code>{hazel}</code> for anything else). Read from docs/hazel-as-a-js-library.md and src/web/HazelLibCore.re on #2719. Checked by <code>tsc --noEmit</code> on ^ticket(672)'s TypeScript example; documented in ^ticket(671)'s README.",
+  "added": "2026-11-02T10:22-07:00",
+  "opened": "2026-11-02T10:22-07:00",
+  "status": "done",
+  "tags": [
+   "meeting 2026-11-04"
+  ],
+  "chips": [
+   "hazel",
+   "hazlet",
+   "npm"
+  ],
+  "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
+  "progress": " 10:36: index.d.ts written for 0.0.1 (HazelValue, Analysis, Result, ProgramSpec, ProgramAnalysis, ProgramResult, HazelLib), from HazelLibCore.re's fields. Not yet checked by tsc (^ticket(672)).",
+  "log": [],
+  "closed": "2026-11-03",
+  "closed_at": "2026-11-03T09:16-07:00",
+  "outcome": "index.d.ts for hazeljs 0.0.1 (HazelValue, Analysis, Result, ProgramSpec, ProgramAnalysis, ProgramResult, HazelLib); checked by tsc in strict mode by the install check of ^ticket(672), green on Node 18, 20 and 22: https://github.com/hazelgrove/hazeljs/actions/runs/41669572023",
+  "metrics": {
+   "open_minutes": 1374,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 672,
   "area": "hazel, Hazlet, npm: examples, and a check that installs the packed package into fresh projects",
   "text": "<b>Hazlet package: the install check.</b> Part of ^ticket(668). <code>examples/</code>: node with require, node with import, a plain HTML page, and TypeScript (^ticket(670)'s types under <code>tsc --noEmit</code>). A GitHub workflow packs ^ticket(669)'s package, installs the tarball into each example as a user would, and runs it, the page in headless Firefox as the deck workflow does (the laptop cannot run a headless browser). So the README's snippets (^ticket(671)) are tested as users will get them. Before each publish (^ticket(673)).",
