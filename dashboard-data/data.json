@@ -9918,9 +9918,27 @@
    "source": "Matthew, 2026-11-03, in chat, on hazeljs having no undo or redo: \"in MUDU, it would be nice to bind them to the usual key combinations, for instance\" Then: \"in MUDU, i'd also like console messages that give timing information: * cost per edit * cost per undo * cost per redo -- in ms\"",
    "progress": "11-03 10:16: minted. Not started. The panel's two ways to edit: textarea.script-editor, and the embed-editable frame (25-scripting.js, tickets 520 and 578), whose edit messages the page writes into the boxes.",
    "log": []
+  },
+  {
+   "id": 683,
+   "area": "hazel, Hazlet, dress-up: what a Hazel edit box gives over a JS one: typed completion and errors in place",
+   "text": "<b>Hazel edit boxes over JS ones.</b> Two advantages to make real in Messed Up Dress Up's tiles, and to say in hazeljs's README: (1) <b>type-directed menus</b>: Hazel's editor already suggests from types (TyDi, src/haz3lcore/TyDi): after a dot, the labels of the value's type (dot_labels); where the expected type is known, the variables of that type first; then forms and operators. (2) <b>better errors</b>: each error marked at its term with what was expected and what was found, ExplainThis for every form, and the program still running around the error, so the game keeps going; for a rule that runs but answers wrongly, probes (each expression's value as it ran) and the event log. To find out first: what embed mode (embed-editable) shows of these: it is a pared-down view, and whether it draws the suggestions, the cursor inspector and probes has not been checked.",
+   "added": "2026-11-03T10:22-07:00",
+   "opened": "2026-11-03T10:22-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazlet",
+    "dress-up",
+    "hazeljs"
+   ],
+   "source": "Matthew, 2026-11-03, in chat: \"potential benefits of hazel edit boxes over JS ones: * can we provide better type-directed menus for editing? (dot completion based on types?) * can we provide better error messages when the hazel snippet does not work as expected?\"",
+   "progress": "11-03 10:22: minted. From the code (embed-editable): TyDi.suggest offers dot_labels after a dot and context variables of the expected type first; embed mode is 'one read-only cell of tiles with statics on and Hazel's own error marks' (EmbedMain.re), made editable by embed-editable.",
+   "log": []
   }
  ],
- "next_ticket": 683,
+ "next_ticket": 684,
  "current_ticket": 666,
  "current_note": "09:55: ^ticket(666): the sharing probe's numbers are in (sharing collapses an edit's request; but Full Body re-cuts all 188 pieces on every request, ~200 ms). Next step is Matthew's pick. Waiting on GitHub: #2635's CI (^ticket(663)) and the trampoline branch's CI with lowered budgets (^ticket(667)).",
  "closed_tickets": [
@@ -15895,6 +15913,7 @@
   678,
   673,
   682,
+  683,
   655,
   664
  ],
