@@ -16,17 +16,25 @@
   ],
   "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
   "progress": " 13:23: checked from the registry, not the tarball: a fresh project installs hazeljs@0.0.1 and runs the README examples through require and import; jsDelivr and unpkg both serve hazel-lib.js. Still to do: the browser and TypeScript examples, and the GitHub workflow. Earlier: 10:36: by hand only: the packed tarball installed into a fresh project in the scratchpad, CJS and ESM run, README examples run in node. Still to do: the browser and TypeScript examples, and the GitHub workflow. 11-03 08:08: DONE LOCALLY (~/hazeljs 2bb97e8, no remote): examples/ (node-require, node-import, typescript strict under tsc --noEmit, a plain browser page that sets its title to ok/FAIL); scripts/check-examples.sh packs the package, installs the tarball (offline) into a copy of each example and runs them; scripts/check-browser.py drives headless Firefox through geckodriver's WebDriver API, no dependencies; .github/workflows/check.yml runs both on Node 18, 20, 22. RUN HERE: all pass (node-require, node-import, typescript with tsc 5.9.3 from ~/fumola/vscode/node_modules; a negative control with two type errors fails as it should); the browser page passed in the app's browser pane, served from localhost:8131 for the check and then removed (not headless). The published package is unchanged: still 9 files. 11-03 08:57: Matthew answered, in chat: yes: a repo for hazeljs, \"under hazelgrove org for now, if possible -- hazeljs\".",
-  "log": [],
+  "log": [
+   {
+    "at": "2026-11-03T08:56-07:00",
+    "from": "matthew",
+    "chars": 114,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
   "waiting": null,
   "closed": "2026-11-03",
   "closed_at": "2026-11-03T09:01-07:00",
   "outcome": "Examples (Node require and import, TypeScript strict, a plain page) and an install check that packs the package and runs them; the source's home is https://github.com/hazelgrove/hazeljs (public, created on Matthew's word), whose Install check passes on Node 18, 20 and 22, the page in headless Firefox: https://github.com/hazelgrove/hazeljs/actions/runs/41669572023",
   "metrics": {
    "open_minutes": 1359,
-   "matthew_messages": 0,
+   "matthew_messages": 1,
    "questions_to_matthew": 0,
-   "chars_exchanged": 0,
-   "tokens_est": 0,
+   "chars_exchanged": 114,
+   "tokens_est": 28,
    "sync_minutes_est": 0
   }
  },
