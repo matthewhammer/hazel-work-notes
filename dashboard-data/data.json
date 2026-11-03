@@ -9382,7 +9382,8 @@
    "opened": "2026-11-02T10:22-07:00",
    "status": "open",
    "tags": [
-    "meeting 2026-11-04"
+    "meeting 2026-11-04",
+    "blocked on Matthew"
    ],
    "chips": [
     "hazel",
@@ -9390,8 +9391,9 @@
     "npm"
    ],
    "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
-   "progress": " 13:23: checked from the registry, not the tarball: a fresh project installs hazeljs@0.0.1 and runs the README examples through require and import; jsDelivr and unpkg both serve hazel-lib.js. Still to do: the browser and TypeScript examples, and the GitHub workflow. Earlier: 10:36: by hand only: the packed tarball installed into a fresh project in the scratchpad, CJS and ESM run, README examples run in node. Still to do: the browser and TypeScript examples, and the GitHub workflow.",
-   "log": []
+   "progress": " 13:23: checked from the registry, not the tarball: a fresh project installs hazeljs@0.0.1 and runs the README examples through require and import; jsDelivr and unpkg both serve hazel-lib.js. Still to do: the browser and TypeScript examples, and the GitHub workflow. Earlier: 10:36: by hand only: the packed tarball installed into a fresh project in the scratchpad, CJS and ESM run, README examples run in node. Still to do: the browser and TypeScript examples, and the GitHub workflow. 11-03 08:08: DONE LOCALLY (~/hazeljs 2bb97e8, no remote): examples/ (node-require, node-import, typescript strict under tsc --noEmit, a plain browser page that sets its title to ok/FAIL); scripts/check-examples.sh packs the package, installs the tarball (offline) into a copy of each example and runs them; scripts/check-browser.py drives headless Firefox through geckodriver's WebDriver API, no dependencies; .github/workflows/check.yml runs both on Node 18, 20, 22. RUN HERE: all pass (node-require, node-import, typescript with tsc 5.9.3 from ~/fumola/vscode/node_modules; a negative control with two type errors fails as it should); the browser page passed in the app's browser pane, served from localhost:8131 for the check and then removed (not headless). The published package is unchanged: still 9 files.",
+   "log": [],
+   "waiting": "Matthew: give ~/hazeljs a home on GitHub so its install check runs (the workflow is written: .github/workflows/check.yml)? MY RECOMMENDATION: a public repo under your account, matthewhammer/hazeljs, until the @hazelgrove question (^ticket(673)) is settled; I push once it exists."
   },
   {
    "id": 673,
@@ -16027,6 +16029,7 @@
  "review_order": [
   665,
   680,
+  672,
   679,
   661,
   600,
