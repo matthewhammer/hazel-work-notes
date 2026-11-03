@@ -9933,6 +9933,13 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-03T11:22-07:00",
+     "from": "matthew",
+     "chars": 761,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ],
    "url": "https://matthewhammer.org/hazel/reports/037/#worker-sharing"
@@ -10205,6 +10212,18 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-03T11:22-07:00",
+     "from": "claude",
+     "chars": 1680,
+     "asks": false,
+     "words": 267,
+     "read_s": 67,
+     "listen_s": 100,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ]
   },
@@ -10243,7 +10262,7 @@
     "report 34"
    ],
    "source": "Matthew, 2026-11-03, in chat: \"let's also enqueue a ticket to work on. Mint a ticket for this step: Hazel reports, ^report(34), What next, step 4: \\\"Convert JS values directly\\\". http://matthewhammer.org/hazel/reports/034/#step-4a and write a report measuring the savings in time and space, if possible\"",
-   "progress": "11-03 09:23: minted. Not started. First: read ^ticket(539)'s lib-floor trial and its measurements, and what #2681 changes at the boundary. 11-03 11:22: started. Time was measured before (^ticket(539) lib-floor: -38 to -43% a call on the identity floor; ^ticket(558) lib-closures: a held list flat, ~160x at 3,000; ^ticket(551) handles: 48.9 -> 0.025 ms at 64x64), each on the laptop, not side by side. New: bench/boundary.mjs in hazeljs (typed, untyped and held calls, ms and bytes allocated a call, bytes a held function keeps) and the Boundary benchmark workflow, which runs the npm package's build, lib-floor, lib-closures and the handles trial interleaved on GitHub (run 41693072228). A smoke run here: a typed call with 16 cells allocates about 1.36 MB. The report comes from these numbers. 11-03 11:30: NUMBERS (GitHub, node 22, two interleaved rounds; run 41693072228, held fixed in run 41693524506). Base = hazeljs 0.0.3's build, floor = lib-floor, closures = lib-closures. Typed call (an annotated [Cell] of n*n cells): 32x32 32 -> 11.8 ms (-63%), 64x64 129 -> 54 ms (-58%); untyped 64x64 104 -> 20 ms (-80%); allocated a call, untyped 32x32, 71 MB -> 11 MB (-85%) (64x64 allocations unreliable: a collection ran during the call). Held (a function holding n*n numbers, reading them): base and floor grow with what is held, 5.2-6.0 ms and 29 MB a call at 64x64; closures flat, 0.025 ms and 93 KB a call at every size (~210x, ~310x less allocated). A handle (handles trial): a typed call 0.027 ms at every size, against 62 ms at 64x64 without. Next: the report.",
+   "progress": "11-03 09:23: minted. Not started. First: read ^ticket(539)'s lib-floor trial and its measurements, and what #2681 changes at the boundary. 11-03 11:22: started. Time was measured before (^ticket(539) lib-floor: -38 to -43% a call on the identity floor; ^ticket(558) lib-closures: a held list flat, ~160x at 3,000; ^ticket(551) handles: 48.9 -> 0.025 ms at 64x64), each on the laptop, not side by side. New: bench/boundary.mjs in hazeljs (typed, untyped and held calls, ms and bytes allocated a call, bytes a held function keeps) and the Boundary benchmark workflow, which runs the npm package's build, lib-floor, lib-closures and the handles trial interleaved on GitHub (run 41693072228). A smoke run here: a typed call with 16 cells allocates about 1.36 MB. The report comes from these numbers. 11-03 11:30: NUMBERS (GitHub, node 22, two interleaved rounds; run 41693072228, held fixed in run 41693524506). Base = hazeljs 0.0.3's build, floor = lib-floor, closures = lib-closures. Typed call (an annotated [Cell] of n*n cells): 32x32 32 -> 11.8 ms (-63%), 64x64 129 -> 54 ms (-58%); untyped 64x64 104 -> 20 ms (-80%); allocated a call, untyped 32x32, 71 MB -> 11 MB (-85%) (64x64 allocations unreliable: a collection ran during the call). Held (a function holding n*n numbers, reading them): base and floor grow with what is held, 5.2-6.0 ms and 29 MB a call at 64x64; closures flat, 0.025 ms and 93 KB a call at every size (~210x, ~310x less allocated). A handle (handles trial): a typed call 0.027 ms at every size, against 62 ms at 64x64 without. Next: the report. 11-03 11:34: THE REPORT, a local draft: ^report(40), Converting JS Values Directly (~/hazel-perf-report/040, ac03ea5; http://localhost:8131/040/ when 8131 runs), from run 41693524506's numbers: short answers (time -60 to -85%, allocation -75 to -85%, a held value flat ~215x, a handle 0.024 ms), the step and the three trials, time (Figure 1 and a table), space, holding a value, handles, what it does not show, method. Waits on Matthew's read before it goes out.",
    "log": [
     {
      "at": "2026-11-03T09:22-07:00",
@@ -16361,7 +16380,7 @@
   },
   "since": "2026-08-27",
   "replies": 5995,
-  "words": 1308484,
+  "words": 1308517,
   "read_hours_est": 91.6,
   "listen_hours_est": 136.3,
   "read_s_avg": 55,
@@ -16649,8 +16668,8 @@
    },
    "2026-11-03": {
     "replies": 55,
-    "words": 11644,
-    "chars": 68410
+    "words": 11677,
+    "chars": 68593
    }
   }
  },
