@@ -111,8 +111,12 @@
    "branch": "main",
    "links": [
     [
-     "localhost:8133/dress-up.html (0.0.473, main: committed + tagged locally, not pushed; live is 0.0.472)",
+     "localhost:8133/dress-up.html (0.0.475, main: pushed and tagged; ?try=trap&logic=hazel opens the trap room)",
      "http://localhost:8133/dress-up.html"
+    ],
+    [
+     "localhost:8133/dress-up/?try=trap&logic=hazel (0.0.475: the trap room by link, ^ticket(676))",
+     "http://localhost:8133/dress-up/?try=trap&logic=hazel"
     ],
     [
      "localhost:8133/report-024/reports/024/ (^du_report(24) draft: Night, Day and the Garden)",
@@ -9509,7 +9513,7 @@
     "report 34"
    ],
    "source": "Matthew, 2026-11-02, in chat: \"Once we publish hazeljs and mudu as npm packages, can we use those here? So the reader can: * see the trap room and * edit the hazel script, with tiles, etc? https://matthewhammer.org/hazel/reports/034/\"",
-   "progress": "Not started.",
+   "progress": "08:17: FIRST STEP RELEASED, Dress Up 0.0.475 (8c27cd56, tag dress-up-0.0.475; main pushed before the tag): ?try=trap opens the game in the trap room of N's castle (whichever of its rooms is the trap room; room 3 by default) with the 📜 Scripting tab open, a test note, nothing saved (TRY's persist guard); with &logic=hazel every room runs its Hazel rule. Checked: check_script and check_load before and after the rebase; in the app's browser pane on 8133: castleroom, N, room 3, the scripting panel, logic hazel, no console errors. The link for a report: https://matthewhammer.org/kids-choice-games/dress-up/?try=trap&logic=hazel . Left: the speed run's result (the tag's workflow), and the package route (messed-up-dress-up on npm, the room pulled out of the game's global state), the larger step.",
    "log": []
   },
   {
@@ -9604,8 +9608,8 @@
   }
  ],
  "next_ticket": 681,
- "current_ticket": 676,
- "current_note": "08:15: AFK protocol, while GitHub runs ^ticket(663)'s decks and ^ticket(665)'s CI: the trap room by link, ?try=trap (with ?logic=hazel), so a report can frame it; then a Dress Up release",
+ "current_ticket": 674,
+ "current_note": "08:17: AFK protocol: the game loads its Hazel library from the published package (hazeljs 0.0.1 on jsDelivr) instead of #2719's branch build; same commit, 0d66c36618",
  "closed_tickets": [
   {
    "id": 662,
@@ -15590,7 +15594,7 @@
   679,
   680
  ],
- "current_since": "2026-11-03T08:15-07:00",
+ "current_since": "2026-11-03T08:17-07:00",
  "next_meeting": {
   "report": 37,
   "with": "Cyrus",
