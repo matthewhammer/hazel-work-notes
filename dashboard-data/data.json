@@ -10791,11 +10791,28 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 684,
+   "area": "hazel, livelits, #2635: a DSL livelit: the IMP grammar as production rules (a prototype, a draft PR into #2635's branch, and a WIP report)",
+   "text": "<b>A grammar livelit.</b> ^report(37)'s <a href=\"https://matthewhammer.org/hazel/reports/037/#dsl-livelit\">DSL livelit</a>, prototyped on #2635 (livelits &times; modular editors). The livelit's model is a production rule system: productions, in a certain order. Start with IMP's: <code>Var ::= &lt;ids&gt;</code>; <code>Cmd ::= Cmd1 ; Cmd2 | Var := Exp | while Exp do { Cmd } | if Exp then Cmd1 else Cmd2</code>; <code>Exp ::= Var | Var + Var | Var &lt; Var</code>. Steps: read how #2635's playground livelits are written; write the slide on branch <code>livelit-dsl-grammar</code> (worktree ~/hazel-dsl-livelit, off integration/livelits-modular-editors); push and open a draft PR into #2635's branch; start a WIP report with the idea; add screenshots from the branch's GitHub build as they come.",
+   "added": "2026-11-04T09:44-07:00",
+   "opened": "2026-11-04T09:44-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "livelits",
+    "#2635",
+    "report 37"
+   ],
+   "source": "Matthew, 2026-11-04 09:05, in chat: \"let's start a prototype and a branch/PR for https://matthewhammer.org/hazel/reports/037/#dsl-livelit based on our livelits x modular editors PR. the model for the livelit is a production rule system (production rules, in a certain order). let's focus on the productions for IMP\"; 09:06: \"start a WIP report with the idea, and let's add screenshots as we get them\".",
+   "progress": "11-04 09:11: worktree ~/hazel-dsl-livelit made on branch livelit-dsl-grammar (off c079fa2e24, #2635's tip); then the laptop crashed nine times, 09:12 to 09:28 (crash log rows 49-57). Nothing lost. 09:44: minted after the crash, picking up at step 3 (how the playground livelits are written)."
   }
  ],
- "next_ticket": 684,
- "current_ticket": 677,
- "current_note": "11:16: begin all tickets still enqueued (Matthew, 11:13): 677, embed-editable's red CI fixed (99239a446e, CI running); in flight on GitHub too: ^ticket(666)'s fix and its test, #2635's deck check (^ticket(663)), Dress Up 0.0.476's speed run (^ticket(674), ^ticket(676)).",
+ "next_ticket": 685,
+ "current_ticket": 684,
+ "current_note": "09:44: the IMP grammar livelit (^report(37) #dsl-livelit): picking up after the crash loop, reading how #2635's playground livelits are written",
  "closed_tickets": [
   {
    "id": 682,
@@ -16808,7 +16825,7 @@
   655,
   664
  ],
- "current_since": "2026-11-03T11:16-07:00",
+ "current_since": "2026-11-04T09:44-07:00",
  "next_meeting": {
   "report": 37,
   "with": "Cyrus",
@@ -16820,10 +16837,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6027,
-  "words": 1312764,
-  "read_hours_est": 91.9,
-  "listen_hours_est": 136.7,
+  "replies": 6029,
+  "words": 1313254,
+  "read_hours_est": 92.0,
+  "listen_hours_est": 136.8,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -17113,9 +17130,9 @@
     "chars": 84952
    },
    "2026-11-04": {
-    "replies": 10,
-    "words": 1445,
-    "chars": 8438
+    "replies": 12,
+    "words": 1935,
+    "chars": 11144
    }
   }
  },
