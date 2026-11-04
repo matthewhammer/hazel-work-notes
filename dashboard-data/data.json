@@ -227,6 +227,18 @@
   {
    "pr": 2806,
    "note": "Draft: a grammar livelit, IMP's production rules in order (^ticket(684), ^report(37) idea 8). Into #2635's branch."
+  },
+  {
+   "pr": 2807,
+   "note": "lib-floor: a JS call's argument bound in the environment, not stepped again (^ticket(539)). Into #2719's branch."
+  },
+  {
+   "pr": 2808,
+   "note": "the closures kept whole, with the complexity test (^ticket(558), ^ticket(547), ^ticket(552)). Into #2807's branch."
+  },
+  {
+   "pr": 2809,
+   "note": "handles, Hazel.value (^ticket(551)). Into #2808's branch."
   }
  ],
  "repos": [
@@ -3063,16 +3075,14 @@
    "added": "2026-10-22T09:26-06:00",
    "opened": "2026-10-22T09:26-06:00",
    "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
+   "tags": [],
    "chips": [
     "hazel"
    ],
    "source": "Matthew, 2026-10-22 09:26, in chat: \"Let's use it to help me really review our JS library for Hazel, and how well it integrates when required or wanted.\" \"Let's push that library forward where needed.\" \"mint and enqueue tickets if you think of any you want.\"",
    "url": "https://matthewhammer.org/hazel/reports/025/",
    "text": "<b>Take the call boundary out of N.</b> ^report(25): every call converts the JS argument to unevaluated syntax with a fresh UUID per node, re-steps it into the value it was, and checks it against the parameter's type: about 31 us per cell, the floor every rule pays (8.5 ms at 16x16). Fixes 1 and 3 of the report: of_js producing final values (or binding the argument in the environment), and an Id.mk without Uuidm's byte copy under jsoo. Measure with the report's driver; the depth-limited #2681 memo (^ticket(535)) leaves this floor where it was.",
-   "progress": "09:26: minted and enqueued (Hazel, before the Dress Up tickets). | 09:38: TRYING fix 1's second form on branch lib-floor (409e8f2116, off js-library-embed): function_of binds the converted argument in the environment and applies f to its name, so the evaluator does not step it back into the value. GitHub building; then timed against the measured build (floor driver, 3 rounds) and the run boxes' answers re-checked. | 09:44: MEASURED lib-floor (409e8f2116; Deploy 39806644983) against the measured build, floor driver, 3 interleaved rounds (noisy session): identity floor 16x16 10.8 -> 6.7 ms (-38%), 24x24 22.1 -> 12.6 (-43%); unannotated 24x24 44.7 -> 34.2 (-24%); shipped unchanged (the annotation's re-check dominates; #2681's job). Run boxes' answers identical on all six listings. Fast checks/Full tests running. Next: the same on top of the depth-limited #2681, then propose (a PR stacked on #2719, Matthew's call). | CI 39806644991 on lib-floor (409e8f2116): Fast checks and Full tests pass.",
+   "progress": "09:26: minted and enqueued (Hazel, before the Dress Up tickets). | 09:38: TRYING fix 1's second form on branch lib-floor (409e8f2116, off js-library-embed): function_of binds the converted argument in the environment and applies f to its name, so the evaluator does not step it back into the value. GitHub building; then timed against the measured build (floor driver, 3 rounds) and the run boxes' answers re-checked. | 09:44: MEASURED lib-floor (409e8f2116; Deploy 39806644983) against the measured build, floor driver, 3 interleaved rounds (noisy session): identity floor 16x16 10.8 -> 6.7 ms (-38%), 24x24 22.1 -> 12.6 (-43%); unannotated 24x24 44.7 -> 34.2 (-24%); shipped unchanged (the annotation's re-check dominates; #2681's job). Run boxes' answers identical on all six listings. Fast checks/Full tests running. Next: the same on top of the depth-limited #2681, then propose (a PR stacked on #2719, Matthew's call). | CI 39806644991 on lib-floor (409e8f2116): Fast checks and Full tests pass. | 10:12 11-04: PR #2807 (lib-floor into js-library-embed, #2719), opened on Matthew's word (11-04: \"Yes, open them\"); CI green at 409e8f2116 from before.",
    "log": [
     {
      "at": "2026-10-22T09:22-06:00",
@@ -3259,8 +3269,7 @@
      "effort": "medium",
      "note": "from the transcripts"
     }
-   ],
-   "waiting": "Matthew: open lib-floor (the call's argument bound in the environment, floor -40%, CI green) as a PR stacked on #2719?"
+   ]
   },
   {
    "id": 541,
@@ -3632,16 +3641,14 @@
    "added": "2026-10-22T14:52-06:00",
    "opened": "2026-10-22T14:52-06:00",
    "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
+   "tags": [],
    "chips": [
     "hazel"
    ],
    "source": "Found under ^ticket(545), 2026-10-22 14:52; Matthew had asked: \"mint and enqueue tickets if you think of any you want\" (for the library work, ^report(25)). Matthew, 2026-10-22 14:54, in chat, after ^report(29)'s finding: \"mint and enqueue -- your best ideas for what to try next to fix this asymptotic issue with the JS library\" (then AFK).",
    "url": "https://matthewhammer.org/hazel/reports/029/#re-walk",
    "text": "<b>Hand JS the closure, not its finished form.</b> Evaluator.evaluate finishes every result with Substitution.in_exp(env) |> Exp.replace_all_ids, so a function the library returns has its environment written into its body: a held list becomes a literal, re-evaluated element by element at every call (n+8 passes from JS, 27 from inside Hazel, at n = 100 to 3,000; ^report(29) #re-walk). Return the evaluator's raw final value for functions (to_js's Fun/Closure case), stacked on ^ticket(539)'s argument binding, on a trial branch; measure h_ref and ^report(27)'s held World rule again; they should go flat. Unblocks ^ticket(540)'s tree map. <b>How, in order of preference:</b> (a) a library-only evaluate that skips <code>finish</code> for values handed back: <code>Evaluator.evaluate</code> gains <code>~finish=false</code> (or an <code>evaluate_raw</code>), and <code>to_js</code> works on the raw final value: data converted as now, a <code>Fun</code>/<code>Closure</code>/<code>FixF</code> kept as the evaluator left it, environment and all, for <code>function_of</code> to apply; (b) if raw values carry forms <code>to_js</code> cannot read, finish only the data and keep closures closed (a <code>finish</code> that stops at <code>Closure</code>). Also drops <code>Exp.replace_all_ids</code>' walk over every returned value. Measure: ^report(29)'s h_ref and variants (passes a call flat in n), ^report(27)'s held World rule, and the library's tests.",
-   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540). 15:02: trial/r25-closures (on trial/r25-stats) pushed: Evaluator.evaluate_unfinished; the library's run AND function_of use it; to_js reads a closure over data as finish would; tests: curried function, function made by a call, passes equal for held lists of 10 and 400 (from run and from a call). d1e355120a + fdaaabfbf3; Deploy 39853475405 and CI 39853475487 running. Measure next: kernels h_*, variants, tree540 (540's tree), handles551. 15:28: MEASURED (laptop, counter build both sides, alternating): from JS a call referring to a held list takes 9 passes at n = 100, 1,000, 3,000 (was n+8); h_ref 3,000: 4.27 -> 0.055 ms (77x). CI on trial/r25-closures: pending. 15:30: CI GREEN on trial/r25-closures (run 39853475487: Full tests and Fast checks pass, the new tests included). 00:16: trial done and measured, CI green; WAITING ON MATTHEW: its PR is ^ticket(558)'s (lib-closures), which waits on his lib-floor call; ^ticket(552)'s test guards it.",
+   "progress": "14:52: minted from ^report(29)'s findings; enqueued after ^ticket(540). 15:02: trial/r25-closures (on trial/r25-stats) pushed: Evaluator.evaluate_unfinished; the library's run AND function_of use it; to_js reads a closure over data as finish would; tests: curried function, function made by a call, passes equal for held lists of 10 and 400 (from run and from a call). d1e355120a + fdaaabfbf3; Deploy 39853475405 and CI 39853475487 running. Measure next: kernels h_*, variants, tree540 (540's tree), handles551. 15:28: MEASURED (laptop, counter build both sides, alternating): from JS a call referring to a held list takes 9 passes at n = 100, 1,000, 3,000 (was n+8); h_ref 3,000: 4.27 -> 0.055 ms (77x). CI on trial/r25-closures: pending. 15:30: CI GREEN on trial/r25-closures (run 39853475487: Full tests and Fast checks pass, the new tests included). 00:16: trial done and measured, CI green; WAITING ON MATTHEW: its PR is ^ticket(558)'s (lib-closures), which waits on his lib-floor call; ^ticket(552)'s test guards it. | 10:12 11-04: its PR is #2808 (with ^ticket(558) and ^ticket(552)'s test), on Matthew's word.",
    "log": [
     {
      "at": "2026-10-22T14:52-06:00",
@@ -3830,16 +3837,14 @@
    "added": "2026-10-22T14:54-06:00",
    "opened": "2026-10-22T14:54-06:00",
    "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
+   "tags": [],
    "chips": [
     "hazel"
    ],
    "source": "Matthew, 2026-10-22 14:54, in chat, after ^report(29)'s finding: \"mint and enqueue -- your best ideas for what to try next to fix this asymptotic issue with the JS library\" (then AFK).",
    "url": "https://matthewhammer.org/hazel/reports/027/#fig-sizes",
    "text": "<b>Make passing the world O(1) a call, not just holding it.</b> ^report(27)'s passed map costs Hazel 80 ms a call at 64x64 just to convert from JS (of_js), every call, though the map rarely changes. Two layers: (1) <code>Hazel.value(x)</code> converts once and returns an opaque handle; a call given a handle binds the stored Hazel value in its environment by reference (as ^ticket(539) binds arguments), no conversion; (2) an identity cache in of_js (a WeakMap from a frozen JS object or array to its Hazel value), so the game, by freezing its world when it changes, gets the same without new API. Measure: ^report(27)'s passed World rule, 3x3 to 64x64, should drop to the walk alone; with ^ticket(540)'s tree, to O(log N).",
-   "progress": "14:54: minted; enqueued after ^ticket(547). 15:02: trial/r25-handles (stacked on trial/r25-closures) pushed, 0220562cee: Hazel.value(x) gives {__hazelValue}; of_js returns the carried value as is. The frozen-object cache (layer 2) NOT built: Object.freeze is shallow, so a frozen world with a mutable inner array would go stale silently; explicit handles first. Test: a handle in a call, in an argument tuple, twice. Deploy 39853787248 + CI running; driver 029/drivers/handles551.mjs ready. 15:28: MEASURED: ignore-rule boundary at 64x64: 48.9 ms a call as JS -> 0.025 ms with a handle (any size); Hazel.value once: 47 ms at 64x64; the passed rule still walks (409 -> 311 ms). CI on trial/r25-handles: pending. 15:30: CI GREEN on trial/r25-handles (run 39853787376: Full tests and Fast checks pass). 00:16: trial done and measured, CI green; WAITING ON MATTHEW: whether it becomes a PR (it is stacked on 547's trial).",
+   "progress": "14:54: minted; enqueued after ^ticket(547). 15:02: trial/r25-handles (stacked on trial/r25-closures) pushed, 0220562cee: Hazel.value(x) gives {__hazelValue}; of_js returns the carried value as is. The frozen-object cache (layer 2) NOT built: Object.freeze is shallow, so a frozen world with a mutable inner array would go stale silently; explicit handles first. Test: a handle in a call, in an argument tuple, twice. Deploy 39853787248 + CI running; driver 029/drivers/handles551.mjs ready. 15:28: MEASURED: ignore-rule boundary at 64x64: 48.9 ms a call as JS -> 0.025 ms with a handle (any size); Hazel.value once: 47 ms at 64x64; the passed rule still walks (409 -> 311 ms). CI on trial/r25-handles: pending. 15:30: CI GREEN on trial/r25-handles (run 39853787376: Full tests and Fast checks pass). 00:16: trial done and measured, CI green; WAITING ON MATTHEW: whether it becomes a PR (it is stacked on 547's trial). | 10:12 11-04: PR #2809: the handles commit moved from trial/r25-handles onto lib-complexity-552 as branch lib-handles (5311165b20; two neighbor-only conflicts resolved, refmt clean, not built locally), into lib-complexity-552; CI starts with the PR.",
    "log": [
     {
      "at": "2026-10-22T14:53-06:00",
@@ -3863,16 +3868,14 @@
    "added": "2026-10-22T14:54-06:00",
    "opened": "2026-10-22T14:54-06:00",
    "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
+   "tags": [],
    "chips": [
     "hazel"
    ],
    "source": "Matthew, 2026-10-22 14:54, in chat, after ^report(29)'s finding: \"mint and enqueue -- your best ideas for what to try next to fix this asymptotic issue with the JS library\" (then AFK).",
    "url": "https://matthewhammer.org/hazel/reports/029/#re-walk",
    "text": "<b>Guard the boundary's asymptotics in CI.</b> A library test that calls a returned function holding a list of 100 and of 10,000 and asserts the evaluator's passes a call are equal (a pass counter in the library, like trial/r25-stats's Hazel.stepCounts, kept as a cheap debug hook), and the same for an argument passed by handle (^ticket(551)). Counts, not times: deterministic on any runner. Lands with ^ticket(547).",
-   "progress": "14:54: minted; enqueued after ^ticket(547). 19:59: branch lib-complexity-552 (9799f24179, on lib-closures 7563919f60, worktree ~/hazel-552), pushed, no PR (it lands with 547's, which waits on Matthew): Evaluator.passes (an incr a pass in eval_1_effects; in Evaluator.rei), Hazel.passes() (read, then 0), and a library test: a call from JS to a function holding 100 vs 10,000 makes the same passes, for a program's function and for one a call returns. @check + fmt pass; CI 39886944567. NEGATIVE CONTROL: trial/552-without-547 (lib-floor + the same counter and test, inline), CI 39887082171: the test should FAIL there. Then delete the trial branch. 20:35: CI GREEN on lib-complexity-552 (run 39886944567: Fast checks and Full tests). NEGATIVE CONTROL FAILED AS IT SHOULD (run 39887082171 on trial/552-without-547 = lib-floor + the test): the one [FAIL] is HazelLib 11, \"a call's passes are the same whatever its function holds\". So the test guards 547. Trial branch deleted (remote and worktree). WAITING ON MATTHEW: lands with 547's PR (558); lib-complexity-552 is stacked on lib-closures, no PR opened.",
+   "progress": "14:54: minted; enqueued after ^ticket(547). 19:59: branch lib-complexity-552 (9799f24179, on lib-closures 7563919f60, worktree ~/hazel-552), pushed, no PR (it lands with 547's, which waits on Matthew): Evaluator.passes (an incr a pass in eval_1_effects; in Evaluator.rei), Hazel.passes() (read, then 0), and a library test: a call from JS to a function holding 100 vs 10,000 makes the same passes, for a program's function and for one a call returns. @check + fmt pass; CI 39886944567. NEGATIVE CONTROL: trial/552-without-547 (lib-floor + the same counter and test, inline), CI 39887082171: the test should FAIL there. Then delete the trial branch. 20:35: CI GREEN on lib-complexity-552 (run 39886944567: Fast checks and Full tests). NEGATIVE CONTROL FAILED AS IT SHOULD (run 39887082171 on trial/552-without-547 = lib-floor + the test): the one [FAIL] is HazelLib 11, \"a call's passes are the same whatever its function holds\". So the test guards 547. Trial branch deleted (remote and worktree). WAITING ON MATTHEW: lands with 547's PR (558); lib-complexity-552 is stacked on lib-closures, no PR opened. | 10:12 11-04: lands in PR #2808 with the closures it guards, on Matthew's word.",
    "log": [
     {
      "at": "2026-10-22T14:53-06:00",
@@ -4191,16 +4194,14 @@
    "added": "2026-10-22T16:10-06:00",
    "opened": "2026-10-22T16:10-06:00",
    "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
+   "tags": [],
    "chips": [
     "hazel"
    ],
    "source": "Matthew, 2026-10-22 16:10, in chat: \"mint and enqueue next -- Mint a ticket for this step: Hazel reports, ^report(29), What next, step 1: 'Keep closures whole across the library'. http://matthewhammer.org/hazel/reports/029/#step-1\"",
    "url": "http://matthewhammer.org/hazel/reports/029/#step-1",
    "text": "<b>^report(29)'s What next, step 1, beyond the trial.</b> ^ticket(547) made and measured it on trial/r25-closures (stacked on the counter build): the library hands JS functions unfinished (Evaluator.evaluate_unfinished in run and in every call), a held list's reference from JS costs 9 passes at any size, and ^ticket(540)'s tree makes the World rule flat; CI green. This ticket turns it into a change the library can keep: (1) a branch off lib-floor (^ticket(539)'s argument binding, the same call path), the two closure commits without the counter build under them; (2) the size test rewritten without the trial-only Evaluator.step_counts: a cheap pass counter the library keeps as a debug hook (^ticket(552)'s idea), or a test on what the call is given (the closure's environment held, not written in); (3) GitHub's CI and the library's tests; (4) h_ref and the held World rule measured again on that build; (5) a PR stacked on lib-floor's, once Matthew says how ^ticket(539)'s lib-floor goes up (its PR on #2719 waits on him). Only Matthew's branches.",
-   "progress": "16:10: minted at the front of the queue (\"next\"). 18:23: (1) branch lib-closures off lib-floor (409e8f2116), in ~/hazel-558: c31a7b4b65 and 7563919f60, ^ticket(547)'s two closure commits without the counter build. (2) the size test rewritten without Evaluator.step_counts: what the call is given, as the ticket offered: the value JS gets is a closure whose environment holds the list, the same term (printed, the environment left out) for a list of 10 and of 400, and called from JS; for a function a call returns, through HazelLibCore.apply, function_of's application pulled out so a test can see it. dune fmt; dune build @check passes (32 s). (3) pushed: CI 39877841758, Deploy 39877841931. 18:51: CI GREEN on lib-closures (run 39877841758: Fast checks and Full tests, the two new tests included); Deploy done (hazelgrove/build lib-closures/, build stamp 7563919f60). Measuring h_ref and the World rule, lib-floor (409e8f2116) against lib-closures, alternating twice. 18:53: (4) MEASURED, Ubuntu laptop (Intel i7), node 22.23.2, GitHub's builds of lib-floor (409e8f2116) and lib-closures (7563919f60), no counter in either, alternating floor/closures twice, median ms a call: h_ref (a call referring to a held list) at 100 / 1,000 / 3,000: floor 0.138 / 1.22, 1.13 / 3.68, 3.73; closures 0.023 / 0.022 / 0.023 (one round at 3,000 read 0.20): FLAT, ~160x at 3,000. h_id unchanged (0.02-0.05); h_walk (walks the list, O(n) by nature) 1.1x. ^ticket(540)'s World rule, the map held as a balanced tree, ms a move at 8x8 / 16x16 / 32x32 / 64x64: floor 2.9, 2.7 / 7.5, 8.3 / 23.2, 24.7 / 90.3, 99.5; closures 0.84, 0.90 / 0.68, 0.67 / 0.68, 0.68 / 0.76, 0.75: FLAT, ~125x at 64x64 (the trial's counter build read 1.2-1.7). The held list rule 1.5x (still O(N): it walks the list); its set-up 377 -> 40 ms at 64x64; the tree's set-up unchanged (7.8 s at 64x64: ^ticket(548)'s job). Rounds agree within ~10%. (5) the PR waits on Matthew: stacked on lib-floor's, once he says how ^ticket(539)'s lib-floor goes up.",
+   "progress": "16:10: minted at the front of the queue (\"next\"). 18:23: (1) branch lib-closures off lib-floor (409e8f2116), in ~/hazel-558: c31a7b4b65 and 7563919f60, ^ticket(547)'s two closure commits without the counter build. (2) the size test rewritten without Evaluator.step_counts: what the call is given, as the ticket offered: the value JS gets is a closure whose environment holds the list, the same term (printed, the environment left out) for a list of 10 and of 400, and called from JS; for a function a call returns, through HazelLibCore.apply, function_of's application pulled out so a test can see it. dune fmt; dune build @check passes (32 s). (3) pushed: CI 39877841758, Deploy 39877841931. 18:51: CI GREEN on lib-closures (run 39877841758: Fast checks and Full tests, the two new tests included); Deploy done (hazelgrove/build lib-closures/, build stamp 7563919f60). Measuring h_ref and the World rule, lib-floor (409e8f2116) against lib-closures, alternating twice. 18:53: (4) MEASURED, Ubuntu laptop (Intel i7), node 22.23.2, GitHub's builds of lib-floor (409e8f2116) and lib-closures (7563919f60), no counter in either, alternating floor/closures twice, median ms a call: h_ref (a call referring to a held list) at 100 / 1,000 / 3,000: floor 0.138 / 1.22, 1.13 / 3.68, 3.73; closures 0.023 / 0.022 / 0.023 (one round at 3,000 read 0.20): FLAT, ~160x at 3,000. h_id unchanged (0.02-0.05); h_walk (walks the list, O(n) by nature) 1.1x. ^ticket(540)'s World rule, the map held as a balanced tree, ms a move at 8x8 / 16x16 / 32x32 / 64x64: floor 2.9, 2.7 / 7.5, 8.3 / 23.2, 24.7 / 90.3, 99.5; closures 0.84, 0.90 / 0.68, 0.67 / 0.68, 0.68 / 0.76, 0.75: FLAT, ~125x at 64x64 (the trial's counter build read 1.2-1.7). The held list rule 1.5x (still O(N): it walks the list); its set-up 377 -> 40 ms at 64x64; the tree's set-up unchanged (7.8 s at 64x64: ^ticket(548)'s job). Rounds agree within ~10%. (5) the PR waits on Matthew: stacked on lib-floor's, once he says how ^ticket(539)'s lib-floor goes up. | 10:12 11-04: PR #2808 (lib-complexity-552 into lib-floor: the two closures commits plus ^ticket(552)'s test), on Matthew's word; CI green at 9799f24179 from before.",
    "log": [
     {
      "at": "2026-10-22T16:09-06:00",
@@ -4278,8 +4279,7 @@
      "effort": "xhigh",
      "note": "from the transcripts"
     }
-   ],
-   "waiting": "after ^ticket(539) (lib-floor as a PR on #2719?): open lib-closures as a PR stacked on it?"
+   ]
   },
   {
    "id": 559,
@@ -10901,7 +10901,7 @@
  ],
  "next_ticket": 685,
  "current_ticket": 684,
- "current_note": "09:53: the IMP grammar livelit: slide on draft #2806, WIP ^report(41) drafted locally; the pictures wait on GitHub's build of the branch (CI running)",
+ "current_note": "10:12: the IMP grammar livelit waits on #2806's build for pictures; meanwhile, on Matthew's word, the JS library stack went up as PRs: #2807 (lib-floor), #2808 (closures + test), #2809 (handles)",
  "closed_tickets": [
   {
    "id": 682,
