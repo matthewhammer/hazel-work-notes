@@ -11219,7 +11219,7 @@
   {
    "id": 687,
    "area": "Dress Up: an inventory screen, its items the abilities on special buttons today (🫧 bubbles, 🔥 fire, the tools), two of them active at a time",
-   "text": "<b>An inventory screen, and items that give abilities.</b> A screen over the game, as in a classic adventure game's item menu: the player sees their inventory and picks the active items, up to two at a time (no item is assumed, not even the sword), each on an action button. A button toggles between the game and this screen, which covers the game with a black background, a white one, or a dimmed one (the game mostly, not entirely, hidden). The special buttons of today become items, so what a button does is chosen in the game by choosing an item: 🫧 blowing bubbles (B, controller 🫧), 🔥 breathing fire (F, controller 🔥), and the tools held from the 🎒 backpack (🥅 the bug net, 🗡️ the sword, 💧 the watering can: U, controller 🥅). Contextual actions (🫳 open or pick up, 🏺 throw a pot) stay on their own buttons. <b>The design (his, 16:4x):</b> two actions, 🅰️ use item A and 🅱️ use item B, replace today's fixed 🫧, 🔥 and 🥅 use-tool buttons; each slot holds a tool or an ability.",
+   "text": "<b>An inventory screen, and items that give abilities.</b> A screen over the game, as in a classic adventure game's item menu: the player sees their inventory and picks the active items, up to two at a time (no item is assumed, not even the sword), each on an action button. A button toggles between the game and this screen, which covers the game with a black background, a white one, or a dimmed one (the game mostly, not entirely, hidden). The special buttons of today become items, so what a button does is chosen in the game by choosing an item: 🫧 blowing bubbles (B, controller 🫧), 🔥 breathing fire (F, controller 🔥), and the tools held from the 🎒 backpack (🥅 the bug net, 🗡️ the sword, 💧 the watering can: U, controller 🥅). Contextual actions (🫳 open or pick up, 🏺 throw a pot) stay on their own buttons. <b>The design (his, 11-04):</b> two actions, 🅰️ use item A and 🅱️ use item B, replace today's fixed 🫧, 🔥 and 🥅 use-tool buttons; each slot holds a tool or an ability.",
    "added": "2026-11-04T16:32-07:00",
    "opened": "2026-11-04T16:32-07:00",
    "status": "open",
@@ -11229,7 +11229,7 @@
     "inventory"
    ],
    "source": "Matthew, 2026-11-04 in chat: \"in-game 'inventory' screen --- it's like in Legend of Zelda, Link to the Past, when the player sees: their inventory; selects the active item (let's choose up to 2 at a time? not assume sword is always one of them). Let's have a button for toggling back and forth from this inventory screen, which covers the game with either a black background, a white background, or a dimmed background (dimming what's on screen to mostly, but not entirely, hide it).\"; then: \"please make a ticket. within this inventory system, let's have 'items' for: creating bubbles, creating fire, other things we have special buttons for ATM?\"; \"so that these special buttons become something that can be changed from within the game, like selecting an item that gives that ability\". Then: \"yeah, so going forward, we'll have use item A, use item B, and those can be tools, or abilities\".",
-   "progress": "16:32 11-04: minted, current on his ask. Read the code: today's special buttons are PAD_ACTIONS bubbles, fire, tool, throw, act (26-drags-and-start.js), keys B, F, U, T, Enter; tools in TOOLS (14-outdoors.js), one held at a time (state.pack.tool) from the 🎒 Backpack tab (20-controls.js).",
+   "progress": "16:32 11-04: minted, current on his ask. Read the code: today's special buttons are PAD_ACTIONS bubbles, fire, tool, throw, act (26-drags-and-start.js), keys B, F, U, T, Enter; tools in TOOLS (14-outdoors.js), one held at a time (state.pack.tool) from the 🎒 Backpack tab (20-controls.js).\n16:49 11-04: RELEASED 0.0.479 (d3fb55d5, tag dress-up-0.0.479): js/25-inventory.js (ITEMS: 🫧 bubbles, 🔥 fire, 🥅 net, 🗡️ sword, 💧 can; slots state.pack.a/.b, backdrop state.pack.screen dim/black/white); PAD_ACTIONS useA/useB (triggers 6 and 7, where 🫧 and 🔥 were; 🫧 and 🔥 in them to start) and items (no button yet), replacing bubbles, fire and tool; keys Z, X, I (B, F, U kept); old saves and kept pad layouts give 🫧's and 🔥's buttons to 🅰️ and 🅱️ (itemButtons, upgradeItems). Checked in the browser pane at 1280x800 full screen and beside the panels (rAF stalled in the hidden pane: the ticks driven by hand). Checks: blow221 and fire499 updated, items687 new. Speed run pending. OPEN QUESTION for Matthew: which controller button opens 🎒 your items (start, select and the rest are taken; none set by default).\n0.0.479 LIVE (checked over HTTPS: version.json, js/25-inventory.js, the 🎒 button and its script tag). Speed run 41936662184 under way.",
    "log": [
     {
      "at": "2026-11-04T16:24-07:00",
@@ -11313,13 +11313,20 @@
      "chars": 94,
      "asks": false,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-04T16:33-07:00",
+     "from": "matthew",
+     "chars": 94,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ]
   }
  ],
  "next_ticket": 688,
  "current_ticket": 687,
- "current_note": "16:32: started on Matthew's ask; ^ticket(666) parked, its probe runs on GitHub.",
+ "current_note": "16:49: 0.0.479 released; waiting on the live check and the speed run. Asked Matthew which controller button opens 🎒.",
  "closed_tickets": [
   {
    "id": 686,
@@ -17357,9 +17364,9 @@
   },
   "since": "2026-08-27",
   "replies": 6059,
-  "words": 1321209,
+  "words": 1321463,
   "read_hours_est": 92.5,
-  "listen_hours_est": 137.6,
+  "listen_hours_est": 137.7,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -17650,8 +17657,8 @@
    },
    "2026-11-04": {
     "replies": 42,
-    "words": 9890,
-    "chars": 58362
+    "words": 10144,
+    "chars": 59758
    }
   }
  },
