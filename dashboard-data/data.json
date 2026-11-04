@@ -11151,11 +11151,43 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 685,
+   "area": "hazel, livelits, DSL: programs in the grammar's language, as tiles (^report(41) What next, step 2)",
+   "text": "<b>Programs in the language, as tiles.</b> ^report(41)'s What next, step 2: a second livelit whose literal is a program in the grammar's language (IMP first, from ^ticket(684)'s grammar livelit). Its view would be tiles shaped by the grammar's rules, and its expansion the parse tree as a Hazel value. Hazel cannot make a new datatype at run time, so the tree would be generic, perhaps <code>+ Node(String, Int, [Tree]) + Leaf(String)</code>: a rule's name, which alternative, and the children. Needs step 1 (a parser at run time) or a hand-built tree to start.",
+   "added": "2026-11-04T12:17-07:00",
+   "opened": "2026-11-04T12:17-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "livelits",
+    "#2635",
+    "report 41"
+   ],
+   "source": "Matthew, 2026-11-04, in chat: \"Mint a ticket for this step: Hazel reports, ^report(41), What next, step 2: 'Programs in the language, as tiles'. http://matthewhammer.org/hazel/reports/041/#step-2\"",
+   "progress": "12:17 11-04: minted, from ^report(41)'s What next, step 2."
+  },
+  {
+   "id": 686,
+   "area": "matthewhammer.org: a fungi border in the right margin, dark and high contrast (after Cyrus Omar's flora)",
+   "text": "<b>Strange fungi in the margin.</b> A procedural border for the right-hand margin of matthewhammer.org on wide windows, after Cyrus Omar's flora (github.com/cyrus-/webpage, site/flora.ml): our own generator, <code>tools/fungi.py</code> in the homepage repo, a pure function of a seed, drawing a 340 x 1000 SVG bright on black: mycelium threads, a stalk with bracket fungi, lamp mushrooms with gills, jellyfish caps adrift, coral, an octopus stinkhorn, morels, puffballs with eyes, spores. Palettes: neon, phosphor, ember.",
+   "added": "2026-11-04T12:17-07:00",
+   "opened": "2026-11-04T12:17-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "matthewhammer.org",
+    "fungi"
+   ],
+   "source": "Matthew, 2026-11-04, in chat: \"Could we create a version for our page --- different (dark, high contrast) color theme. And maybe plants that are more ... extremely strange? Esp mushrooms over plants, maybe?\"; then, asked where first: \"matthewhammer.org margin\".",
+   "progress": "12:17 11-04: minted. tools/fungi.py drawn and shown (three palettes); next: the homepage's right margin."
   }
  ],
- "next_ticket": 685,
- "current_ticket": 684,
- "current_note": "11:38: the explainer crash fix is up for #2635 as PR #2810; the grammar livelit works in #2806's build",
+ "next_ticket": 687,
+ "current_ticket": 686,
+ "current_note": "12:17: the fungi margin on matthewhammer.org's homepage: placing tools/fungi.py's SVG in the right margin",
  "closed_tickets": [
   {
    "id": 682,
@@ -17166,9 +17198,10 @@
   673,
   683,
   655,
-  664
+  664,
+  685
  ],
- "current_since": "2026-11-04T09:44-07:00",
+ "current_since": "2026-11-04T12:17-07:00",
  "next_meeting": {
   "report": 37,
   "with": "Cyrus",
