@@ -10811,7 +10811,7 @@
     "report 37"
    ],
    "source": "Matthew, 2026-11-04 09:05, in chat: \"let's start a prototype and a branch/PR for https://matthewhammer.org/hazel/reports/037/#dsl-livelit based on our livelits x modular editors PR. the model for the livelit is a production rule system (production rules, in a certain order). let's focus on the productions for IMP\"; 09:06: \"start a WIP report with the idea, and let's add screenshots as we get them\".",
-   "progress": "11-04 09:11: worktree ~/hazel-dsl-livelit made on branch livelit-dsl-grammar (off c079fa2e24, #2635's tip); then the laptop crashed nine times, 09:12 to 09:28 (crash log rows 49-57). Nothing lost. 09:44: minted after the crash, picking up at step 3 (how the playground livelits are written). 09:50: the slide, Livelit Playground / Grammar: IMP (playground/grammar-imp.hz), checked with the CLI (no static errors; run gives the four Cmd examples), committed 58076619f2 and pushed; draft PR #2806 into integration/livelits-modular-editors. Next: the WIP report, and a screenshot once GitHub's branch build is up. 09:52: WIP ^report(41), A Grammar Livelit, drafted and committed locally in ~/hazel-perf-report/041/ (not pushed, so not public; not served, since 8131 stays off by Matthew's 11-03 09:20 call). Next: pictures from GitHub's build of #2806.",
+   "progress": "11-04 09:11: worktree ~/hazel-dsl-livelit made on branch livelit-dsl-grammar (off c079fa2e24, #2635's tip); then the laptop crashed nine times, 09:12 to 09:28 (crash log rows 49-57). Nothing lost. 09:44: minted after the crash, picking up at step 3 (how the playground livelits are written). 09:50: the slide, Livelit Playground / Grammar: IMP (playground/grammar-imp.hz), checked with the CLI (no static errors; run gives the four Cmd examples), committed 58076619f2 and pushed; draft PR #2806 into integration/livelits-modular-editors. Next: the WIP report, and a screenshot once GitHub's branch build is up. 09:52: WIP ^report(41), A Grammar Livelit, drafted and committed locally in ~/hazel-perf-report/041/ (not pushed, so not public; not served, since 8131 stays off by Matthew's 11-03 09:20 call). Next: pictures from GitHub's build of #2806. 10:16: TRIED in #2806's GitHub build (5807661): the livelit draws as designed (chips by rule, numbered repeats, buttons); clicking up on Var + Var applied the reorder, then the app crashed in the editor's selection highlight, Failure(\"find_shards: sel_of_tile\") (src/web/app/editors/decoration/Highlight.re), a #2635 redraw bug after a livelit rewrites its use, not the livelit's code; revert kept the new model, but the result still showed the old examples (stale, or the expansion did not update: not yet known). Console: 'HazelDOM: unrecognized attribute: Value' x10. Pictures and the finding in ^report(41) (local, a4969d8). Next: find the crash (needs a build: on GitHub, or one niced local build on his word).",
    "log": [
     {
      "at": "2026-11-04T09:37-07:00",
@@ -10908,7 +10908,7 @@
  ],
  "next_ticket": 685,
  "current_ticket": 684,
- "current_note": "10:12: the IMP grammar livelit waits on #2806's build for pictures; meanwhile, on Matthew's word, the JS library stack went up as PRs: #2807 (lib-floor), #2808 (closures + test), #2809 (handles)",
+ "current_note": "10:16: the IMP grammar livelit draws in #2806's build; a reorder crashes the editor's highlight (find_shards: sel_of_tile), recorded in ^report(41) (local); the JS library stack is up as #2807-#2809",
  "closed_tickets": [
   {
    "id": 682,
