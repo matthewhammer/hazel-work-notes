@@ -1,5 +1,31 @@
 [
  {
+  "id": 693,
+  "area": "Dress Up: 0.0.489's speed run broken: hold518's knight riding, scripting482's Hazel frame",
+  "text": "<b>0.0.489's speed run, three checks.</b> (https://github.com/matthewhammer/kids-choice-games/actions/runs/41976412760) hold518: \"riding, full hands let go of the reins\" saw 2 reins on a knight: since ticket 687 a costume's own things go to 🔹 and 🔸, and ticket 690 put every slot's item away while riding, the knight's sword and shield too. Fix: riding, only the abilities (🫧, 🔥) give way to the reins; a thing really held stays, and lets go of its rein (ticket 518). scripting482: Hazel's frame said ready but showed no tiles, 24 px tall; embed-editable's build last deployed 2026-11-03, before 0.0.484's run passed it, and nothing since touches the scripting panel: watch the next run.",
+  "added": "2026-11-05T00:30-07:00",
+  "opened": "2026-11-05T00:30-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "dress up",
+   "speed run"
+  ],
+  "source": "The speed run after 0.0.489 (tickets 690, 691), read 2026-11-05 00:28.",
+  "progress": "00:30 11-05: minted. hold518's cause found and fixed in the pane: default 🫧🔥 riding 2 reins, a knight 0 (sword and shield kept), gold and 🔥 1 (gold kept), empty 2. Releasing 0.0.490.\n00:30 11-05: RELEASED 0.0.490 (8dd9db78): riding, only the abilities give way to the reins. Its speed run is watched in the background (it decides hold518 and whether scripting482 was a flake).\n02:04 11-05: 0.0.490's speed run (41987674939): hold518 PASSES (the knight keeps sword and shield). scripting482 failed again, the same two (Hazel's frame says ready, but 24 px tall and no tiles): two runs in a row, so not a flake. embed-editable's build is from 11-03 (before 0.0.484's run passed). To tell the game from what is outside it: diag-693, scripting482 alone on 0.0.484 (552c95cb), run 41999288633.\n02:17 11-05: BISECTED on GitHub, scripting482 alone: 0.0.484 passes (diag-693, run 41999288633), 0.0.485 passes (diag-693b, 42000113999), 0.0.486 FAILS (diag-693c, 42000120009): the flying release breaks the Hazel frame's tiles (it says ready, shows nothing, 24 px), with no page error. Split runs on 0.0.486: its stylesheet as 0.0.485 (diag-693d, 42001115358), and without the #fly-hud element (diag-693e, 42001127028).\n02:32 11-05: NOT A CLEAN BISECT: the split runs passed (0.0.486 with 0.0.485's stylesheet, diag-693d; without #fly-hud, diag-693e), but 693e's rerun FAILED, and 693c (0.0.486) failed twice. Tally, scripting482's tiles: before 0.0.486 4 of 4 passed (the 0.0.483 and 0.0.484 speed runs, diag-693, diag-693b); since, 2 of 7 (Fisher's p about 0.045: suggestive, not settled). The frame's timing (DATA lines) is the same in passing and failing runs: own process, ready in 2.8-3.4 s, same frame rates: not load. The check polls 20 s for tokens; in a failure the frame never draws the program. Next data: diag-693f (0.0.486 without js/25-flight.js), and reruns of diag-693b (0.0.485) and diag-693d.\n02:45 11-05: MORE DATA: 0.0.486 without js/25-flight.js passed (diag-693f), 0.0.485 passed again, 0.0.486 with 0.0.485's stylesheet passed again: no mechanism, so a diagnostic run (diag-693h, main, run 42004022946): with no tiles, the game HAD posted the program (9,531 chars) and the program's frame said ready and one size, then nothing: no status; its page shows only 'X'. And it was OUT OF VIEW (inView false; its top at 2,169 px in a 1,000 px window): the check scrolls it in once, then the six module boxes above it grow for seconds (their size messages, 5.6 to 13.6 s) and push it back below the fold, where Chrome gives a cross-origin frame no animation frame, and the embed takes its program on one. A race in the check, not the game's (a player's scroll to the frame gives it frames); 0.0.486's heavier page moved the timing. FIX in the check: scrolled into view again every second of the wait (diag-693h, run 42004931431, twice).\n02:56 11-05: FIXED in the check: the frame scrolled into view again every second of the wait; passed twice on 0.0.490 (diag-693h, run 42004931431 and its rerun). On main: aa64b374 (tools/checks/scripting482.mjs only; no game release). hold518 passed in 0.0.490's run. Close when the next release's speed run passes both.\n03:03 11-05: 0.0.491 released (ticket 691); its speed run is the first with scripting482's fix (aa64b374): watched.",
+  "closed": "2026-11-05",
+  "closed_at": "2026-11-05T04:37-07:00",
+  "outcome": "0.0.491's speed run (42007453471): hold518 and scripting482 both pass. hold518: riding, only 🫧 and 🔥 give way to the reins (0.0.490). scripting482: a race in the check, not the game: the program's frame was pushed below the fold by the module boxes growing above it, and got no animation frame to take its program on; the check keeps it in view (aa64b374). That run's one other stop was flight691's own regex (ticket 691, fixed in its check).",
+  "metrics": {
+   "open_minutes": 247,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 689,
   "area": "Dress Up archives: a new run of dress-up-pictures (and dress-up-music) at the newest version, tonight",
   "text": "<b>Tonight: archive the new Dress Up.</b> The pictures archive (github.com/matthewhammer/dress-up-pictures) last ran 2026-10-25 (run-2026-10-25-13-08, 0.0.439); since then 0.0.440 to 0.0.483 (🎒 your items, the items in the hands, the costumes' things, the castles, the scripting tabs...). Make one run at the newest version: a branch archive-NNN off main, as archive-609 (its workflow dress-up-archive.yml; all checks and the test/speed workflows removed), about 50 minutes on GitHub; then, as there is no ARCHIVE_TOKEN secret yet (^ticket(276)), download the artifacts and add the run with each archive's tools/add_run.sh. Check the viewers (matthewhammer.org/hazel/dress-up/pictures.html, music.html) show the new run, and see that the new things (the hands, the inventory screen) are in the pictures; mint tickets for what the archive does not cover yet.",
