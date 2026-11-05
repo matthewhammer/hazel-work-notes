@@ -11600,21 +11600,6 @@
    ]
   },
   {
-   "id": 688,
-   "area": "Dress Up: 0.0.479's speed run broken: glow342, a placed thing under the 🎒 button",
-   "text": "<b>The 🎒 your items button covered a placed thing.</b> 0.0.479's speed run (https://github.com/matthewhammer/kids-choice-games/actions/runs/41936662184) recorded broken: one check failed, glow342's \"each glows under the pointer, and only it\". In its default 800 x 600 window the bubble maker's hover point is under the new 🎒 button at the picture's bottom right (right: 66px), so the maker never saw the pointer. A real fault, not the check's: a thing in that corner could not be hovered or tapped. Fix: 🎒 at the top right beside ⤢ outside full screen.",
-   "added": "2026-11-04T18:58-07:00",
-   "opened": "2026-11-04T18:58-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "dress up",
-    "speed run"
-   ],
-   "source": "The speed run after 0.0.479 (ticket 687), read 2026-11-04 evening.",
-   "progress": "18:58 11-04: minted; reproduced in the pane at 800x600 (document.elementFromPoint at the maker's point is #items-btn). Fixing in 0.0.482.\n18:59 11-04: RELEASED 0.0.482 (b8f0c042, live checked): 🎒 at the top right beside ⤢ outside full screen. Checked in the pane at 800x600: glow342's three things each under the pointer. Close when 0.0.482's speed run passes glow342."
-  },
-  {
    "id": 689,
    "area": "Dress Up archives: a new run of dress-up-pictures (and dress-up-music) at the newest version, tonight",
    "text": "<b>Tonight: archive the new Dress Up.</b> The pictures archive (github.com/matthewhammer/dress-up-pictures) last ran 2026-10-25 (run-2026-10-25-13-08, 0.0.439); since then 0.0.440 to 0.0.483 (🎒 your items, the items in the hands, the costumes' things, the castles, the scripting tabs...). Make one run at the newest version: a branch archive-NNN off main, as archive-609 (its workflow dress-up-archive.yml; all checks and the test/speed workflows removed), about 50 minutes on GitHub; then, as there is no ARCHIVE_TOKEN secret yet (^ticket(276)), download the artifacts and add the run with each archive's tools/add_run.sh. Check the viewers (matthewhammer.org/hazel/dress-up/pictures.html, music.html) show the new run, and see that the new things (the hands, the inventory screen) are in the pictures; mint tickets for what the archive does not cover yet.",
@@ -11640,21 +11625,6 @@
      "note": "from the transcripts"
     }
    ]
-  },
-  {
-   "id": 690,
-   "area": "Dress Up: 0.0.483's speed run broken: the reins, the monk's hood, the space bot's flames",
-   "text": "<b>Items in the hands broke five checks.</b> 0.0.483's speed run (https://github.com/matthewhammer/kids-choice-games/actions/runs/41954611402) recorded broken on horse438 (two), monk433 (two) and robot515 (one). With 🫧 in 🔹 and 🔥 in 🔸 by default: riding, each hand holding an item let go of its rein (ticket 518's rule), so a rider had no reins, and the simmering's phase, read from the picture's clock, made each drawing of the friend differ from the last, so \"the friend's own drawing stays as it is\" and the monk's \"the hair shows when its style changes the drawing\" saw a change that was not there; the held 🔥's orange was taken for the space bot's flames. Fix: riding, the reins win over 🔹 and 🔸 (as a carried pot does); the monk and robot checks start with the slots empty, as moth536, ninja557 and sasquatch530 do.",
-   "added": "2026-11-04T21:25-07:00",
-   "opened": "2026-11-04T21:25-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "dress up",
-    "speed run"
-   ],
-   "source": "The speed run after 0.0.483 (ticket 687), read 2026-11-04 21:23.",
-   "progress": "21:25 11-04: minted; causes found in the three checks' code. Fixing in 0.0.485.\n21:28 11-04: RELEASED 0.0.485 (dda63240): riding, the items in 🔹 and 🔸 are put away (as for a carried pot), so the reins are back. Checked in the pane: 2 reins facing us, 1 in profile, 0 from behind, no item in a hand; the items back off the horse. monk433 and robot515 start with the slots empty: in the pane, both failed with 🫧 and 🔥 held and passed empty. items687 gains a riding test. Close when 0.0.485's speed run passes horse438, monk433 and robot515.\n21:29 11-04: 0.0.485 live checked (version.json 0.0.485; the served 18-drawing.js has the riding filter). Its speed run 41968055871 is queued behind 0.0.484's (41960839974); watching both.\n22:10 11-04: 0.0.485's speed run (41968055871) was cancelled while queued, by 0.0.486's (41972211451, the workflow's concurrency): 0.0.486 carries the fix, so its run decides. Watching it.\n22:56 11-04: 0.0.484's speed run (41960839974) recorded broken on the same five checks only (horse438 x2, monk433 x2, robot515), as expected: the fix came in 0.0.485. No new failure from the 🎒 things held; the frame-rate gate passed. 0.0.489's run (41976412760) starts now and carries the fix; close on its pass."
   },
   {
    "id": 691,
@@ -11953,12 +11923,47 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 693,
+   "area": "Dress Up: 0.0.489's speed run broken: hold518's knight riding, scripting482's Hazel frame",
+   "text": "<b>0.0.489's speed run, three checks.</b> (https://github.com/matthewhammer/kids-choice-games/actions/runs/41976412760) hold518: \"riding, full hands let go of the reins\" saw 2 reins on a knight: since ticket 687 a costume's own things go to 🔹 and 🔸, and ticket 690 put every slot's item away while riding, the knight's sword and shield too. Fix: riding, only the abilities (🫧, 🔥) give way to the reins; a thing really held stays, and lets go of its rein (ticket 518). scripting482: Hazel's frame said ready but showed no tiles, 24 px tall; embed-editable's build last deployed 2026-11-03, before 0.0.484's run passed it, and nothing since touches the scripting panel: watch the next run.",
+   "added": "2026-11-05T00:30-07:00",
+   "opened": "2026-11-05T00:30-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "speed run"
+   ],
+   "source": "The speed run after 0.0.489 (tickets 690, 691), read 2026-11-05 00:28.",
+   "progress": "00:30 11-05: minted. hold518's cause found and fixed in the pane: default 🫧🔥 riding 2 reins, a knight 0 (sword and shield kept), gold and 🔥 1 (gold kept), empty 2. Releasing 0.0.490.\n00:30 11-05: RELEASED 0.0.490 (8dd9db78): riding, only the abilities give way to the reins. Its speed run is watched in the background (it decides hold518 and whether scripting482 was a flake)."
   }
  ],
- "next_ticket": 693,
+ "next_ticket": 694,
  "current_ticket": 692,
  "current_note": "Dress Up: ^du_report(25), the overview map",
  "closed_tickets": [
+  {
+   "id": 688,
+   "area": "Dress Up: 0.0.479's speed run broken: glow342, a placed thing under the 🎒 button",
+   "added": "2026-11-04T18:58-07:00",
+   "text": "The 🎒 your items button covered a placed thing.",
+   "source": "The speed run after 0.0.479 (ticket 687), read 2026-11-04 evening.",
+   "status": "done",
+   "closed": "2026-11-05",
+   "outcome": "glow342 passed in 0.0.484's and 0.0.489's speed runs (41960839974, 41976412760): the 🎒 button at the top right (0.0.482) covers no placed thing."
+  },
+  {
+   "id": 690,
+   "area": "Dress Up: 0.0.483's speed run broken: the reins, the monk's hood, the space bot's flames",
+   "added": "2026-11-04T21:25-07:00",
+   "text": "Items in the hands broke five checks.",
+   "source": "The speed run after 0.0.483 (ticket 687), read 2026-11-04 21:23.",
+   "status": "done",
+   "closed": "2026-11-05",
+   "outcome": "0.0.489's speed run (41976412760) passed horse438, monk433 and robot515: the reins, the monk's hood and the space bot's flames (fixed in 0.0.485). The knight's riding (hold518) is…"
+  },
   {
    "id": 686,
    "area": "matthewhammer.org: a fungi border in the right margin, dark and high contrast (after Cyrus Omar's flora)",
@@ -17967,7 +17972,6 @@
   }
  ],
  "queue": [
-  688,
   677,
   666,
   665,
@@ -17996,8 +18000,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6090,
-  "words": 1328917,
+  "replies": 6091,
+  "words": 1328936,
   "read_hours_est": 93.1,
   "listen_hours_est": 138.4,
   "read_s_avg": 55,
@@ -18292,6 +18296,11 @@
     "replies": 73,
     "words": 17598,
     "chars": 101230
+   },
+   "2026-11-05": {
+    "replies": 1,
+    "words": 19,
+    "chars": 111
    }
   }
  },

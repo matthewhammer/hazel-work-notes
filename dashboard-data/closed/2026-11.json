@@ -1,5 +1,57 @@
 [
  {
+  "id": 688,
+  "area": "Dress Up: 0.0.479's speed run broken: glow342, a placed thing under the 🎒 button",
+  "text": "<b>The 🎒 your items button covered a placed thing.</b> 0.0.479's speed run (https://github.com/matthewhammer/kids-choice-games/actions/runs/41936662184) recorded broken: one check failed, glow342's \"each glows under the pointer, and only it\". In its default 800 x 600 window the bubble maker's hover point is under the new 🎒 button at the picture's bottom right (right: 66px), so the maker never saw the pointer. A real fault, not the check's: a thing in that corner could not be hovered or tapped. Fix: 🎒 at the top right beside ⤢ outside full screen.",
+  "added": "2026-11-04T18:58-07:00",
+  "opened": "2026-11-04T18:58-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "dress up",
+   "speed run"
+  ],
+  "source": "The speed run after 0.0.479 (ticket 687), read 2026-11-04 evening.",
+  "progress": "18:58 11-04: minted; reproduced in the pane at 800x600 (document.elementFromPoint at the maker's point is #items-btn). Fixing in 0.0.482.\n18:59 11-04: RELEASED 0.0.482 (b8f0c042, live checked): 🎒 at the top right beside ⤢ outside full screen. Checked in the pane at 800x600: glow342's three things each under the pointer. Close when 0.0.482's speed run passes glow342.",
+  "closed": "2026-11-05",
+  "closed_at": "2026-11-05T00:30-07:00",
+  "outcome": "glow342 passed in 0.0.484's and 0.0.489's speed runs (41960839974, 41976412760): the 🎒 button at the top right (0.0.482) covers no placed thing.",
+  "metrics": {
+   "open_minutes": 332,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
+  "id": 690,
+  "area": "Dress Up: 0.0.483's speed run broken: the reins, the monk's hood, the space bot's flames",
+  "text": "<b>Items in the hands broke five checks.</b> 0.0.483's speed run (https://github.com/matthewhammer/kids-choice-games/actions/runs/41954611402) recorded broken on horse438 (two), monk433 (two) and robot515 (one). With 🫧 in 🔹 and 🔥 in 🔸 by default: riding, each hand holding an item let go of its rein (ticket 518's rule), so a rider had no reins, and the simmering's phase, read from the picture's clock, made each drawing of the friend differ from the last, so \"the friend's own drawing stays as it is\" and the monk's \"the hair shows when its style changes the drawing\" saw a change that was not there; the held 🔥's orange was taken for the space bot's flames. Fix: riding, the reins win over 🔹 and 🔸 (as a carried pot does); the monk and robot checks start with the slots empty, as moth536, ninja557 and sasquatch530 do.",
+  "added": "2026-11-04T21:25-07:00",
+  "opened": "2026-11-04T21:25-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "dress up",
+   "speed run"
+  ],
+  "source": "The speed run after 0.0.483 (ticket 687), read 2026-11-04 21:23.",
+  "progress": "21:25 11-04: minted; causes found in the three checks' code. Fixing in 0.0.485.\n21:28 11-04: RELEASED 0.0.485 (dda63240): riding, the items in 🔹 and 🔸 are put away (as for a carried pot), so the reins are back. Checked in the pane: 2 reins facing us, 1 in profile, 0 from behind, no item in a hand; the items back off the horse. monk433 and robot515 start with the slots empty: in the pane, both failed with 🫧 and 🔥 held and passed empty. items687 gains a riding test. Close when 0.0.485's speed run passes horse438, monk433 and robot515.\n21:29 11-04: 0.0.485 live checked (version.json 0.0.485; the served 18-drawing.js has the riding filter). Its speed run 41968055871 is queued behind 0.0.484's (41960839974); watching both.\n22:10 11-04: 0.0.485's speed run (41968055871) was cancelled while queued, by 0.0.486's (41972211451, the workflow's concurrency): 0.0.486 carries the fix, so its run decides. Watching it.\n22:56 11-04: 0.0.484's speed run (41960839974) recorded broken on the same five checks only (horse438 x2, monk433 x2, robot515), as expected: the fix came in 0.0.485. No new failure from the 🎒 things held; the frame-rate gate passed. 0.0.489's run (41976412760) starts now and carries the fix; close on its pass.",
+  "closed": "2026-11-05",
+  "closed_at": "2026-11-05T00:30-07:00",
+  "outcome": "0.0.489's speed run (41976412760) passed horse438, monk433 and robot515: the reins, the monk's hood and the space bot's flames (fixed in 0.0.485). The knight's riding (hold518) is ticket 693.",
+  "metrics": {
+   "open_minutes": 185,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 686,
   "area": "matthewhammer.org: a fungi border in the right margin, dark and high contrast (after Cyrus Omar's flora)",
   "text": "<b>Strange fungi in the margin.</b> A procedural border for the right-hand margin of matthewhammer.org on wide windows, after Cyrus Omar's flora (github.com/cyrus-/webpage, site/flora.ml): our own generator, <code>tools/fungi.py</code> in the homepage repo, a pure function of a seed, drawing a 340 x 1000 SVG bright on black: mycelium threads, a stalk with bracket fungi, lamp mushrooms with gills, jellyfish caps adrift, coral, an octopus stinkhorn, morels, puffballs with eyes, spores. Palettes: neon, phosphor, ember.",
