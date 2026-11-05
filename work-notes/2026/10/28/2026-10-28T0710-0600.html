@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 2026-10-28</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-10-28, ^report(35) published as work in progress</h1>
+<p class="sub">A backfill, not written at the time. Claude wrote this note on 2026-11-05, at Matthew's request, from the dashboard's tickets and the repositories' commits. A quiet day: the only recorded work is from 07:05 to 07:10 MDT (2 messages from Matthew in the ticket logs).</p>
+
+<h2>Where things are</h2>
+<ul>
+<li><b>^report(35), Paying Only for What Is Watched</b>, is live as work in progress: <a href="https://matthewhammer.org/hazel/reports/035/">matthewhammer.org/hazel/reports/035/</a> (site <code>3b4f6a8</code>, hazel-perf-report <code>51413bd</code>).</li>
+<li>Nothing else moved. Hazel #2635 (livelits with modular editors) is at <code>547b9cfa8b</code> and Dress Up at 0.0.460, as on 10-27.</li>
+</ul>
+
+<h2>Done</h2>
+<ul>
+<li><b>^ticket(554), ^report(35) published</b> at 07:07 on his word: "publish draft of report 35 -- wip". It takes up ^report(29)'s finding that a Hazel step pays for the editor around it: on a loop the rule itself is 7% of a call, while the five stages wrapping each pass and their trampolines take 37%, and garbage collection 36%. Its ideas, for Cyrus and Matthew:
+  <ul>
+  <li>Idea 1, built and measured: a fast path that returns a term already final without its five stages, when nothing is probed, reused or published. A third fewer passes on a loop (14,009 to 9,007), about 8% less time, and a held list of 3,000 referred to 32 times faster.</li>
+  <li>Idea 2, not yet tried: when a step is taken, take the next one in place.</li>
+  <li>The question for Cyrus, beyond those two: a second, plain driver for the library, or one driver that pays per term only for what watches it.</li>
+  </ul>
+  It is on the series index and in the nav, with a link preview.</li>
+</ul>
+
+<h2>Waiting on Matthew</h2>
+<ul>
+<li>^ticket(554): whether ^report(35)'s question for Cyrus goes on the agenda, and a go for a trial of idea 2 (step in place).</li>
+<li>His reviews of ^report(33), ^report(34), ^du_report(21) and ^du_report(22).</li>
+</ul>
+
+<h2>Next</h2>
+<ul>
+<li>On his go, try idea 2 (step in place) and measure it as idea 1 was measured.</li>
+<li>Take his notes on the reports still marked work in progress.</li>
+</ul>
+</main>
+</body>
+</html>

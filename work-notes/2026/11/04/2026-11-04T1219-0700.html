@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 2026-11-04 morning</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-11-04 morning, a grammar livelit, the crash it found, and reports published by default</h1>
+<p class="sub">A backfill: written by Claude on 2026-11-05, at Matthew's request, from the dashboard's tickets and the repositories' commits, not at the time. It covers the morning only, 07:11 to 12:19 MST, when a session was stopped. The rest of the day, from the afternoon into the night, is in <a href="../05/2026-11-05T0310-0700.html">the notes of 11-04 evening to 11-05 night</a>.</p>
+
+<h2>Where things are</h2>
+<ul>
+<li><b>#2635</b> (livelits × modular editors) is at <code>c079fa2e24</code>, unchanged this morning. Two PRs into its branch: <b>#2806</b>, a draft, the grammar livelit (<code>livelit-dsl-grammar</code> at <code>903578653c</code>, worktree <code>~/hazel-dsl-livelit</code>), and <b>#2810</b>, its crash fix on its own (<code>e83f85b53a</code>).</li>
+<li><b>The JS library's three trials are PRs</b>, each stacked on the one before and the first on #2719: #2807, #2808, #2809.</li>
+<li><b>Hazel reports are published as work in progress by default</b> (Matthew's rule of 11:40). <a href="https://matthewhammer.org/hazel/reports/037/">^report(37)</a>, the agenda, is for Thursday 2026-11-05 at 10:00 MST.</li>
+<li><b>Dress Up</b> is still at 0.0.478.</li>
+<li><b>The laptop</b> runs the balanced power profile since 09:34.</li>
+<li><b>^ticket(686)</b>: <code>tools/fungi.py</code> drawn and shown in three palettes; not on the homepage yet when the session stopped.</li>
+</ul>
+
+<h2>Done</h2>
+<ul>
+<li><b>^report(37), the agenda</b>, brought up to date from 07:49 to 09:10: item 6 asks where a program's outline comes from, with and without modular editors; item 2 has #2635's sharing fix, green; items 1, 3, 4 and 7 have the third undo fix, #2793 (fewer trampoline bounces), the deck fix and hazeljs 0.0.4; section 4 has the type expansion PRs, #2676 (a long type whole in the cursor inspector) and #2698 (the same in Gamma). Before noon Matthew moved the meeting to Thursday 2026-11-05 at 10:00 MST; by 11:59 the agenda said so in its title, sub line, card and thumbnail, and its In short followed the items table, one sentence a section (his rule).</li>
+<li><b>Nine crashes, 09:12 to 09:28</b> (crash log rows 49 to 57; hazel-work-notes <code>8cbb6d9b</code>). No Claude session ran in any of them. Matthew found the laptop had come back up in the performance power profile and set it to balanced at 09:34:36. Nothing was lost: no empty git objects in any repository, and the new worktree clean.</li>
+<li><b>^ticket(684), a grammar livelit</b> (Matthew, 09:05: "the model for the livelit is a production rule system"): IMP's productions, in order, edited as the livelit's model, on a playground slide, Livelit Playground / Grammar: IMP (<code>playground/grammar-imp.hz</code>, <code>58076619f2</code>; no static errors in the CLI, and its run gives the four Cmd examples). Draft PR #2806 into #2635's branch at 09:50, and <a href="https://matthewhammer.org/hazel/reports/041/">^report(41)</a>, A Grammar Livelit, for its pictures.</li>
+<li><b>The crash it found</b>: in #2806's GitHub build the livelit draws as designed, but the view failed with <code>find_shards: sel_of_tile</code>. A diagnostic build (<code>trial/2806-highlight</code>, since deleted) named the caller: the explainer's highlighting colors a livelit's name and model when the caret is on it, and both sit under the projector with no layout. Any livelit, highlighting on; an earlier guess (the let, the auto-probe) was wrong. Fix <code>903578653c</code>: <code>Highlight.color</code> colors a term only when its tiles are laid out. Checked in GitHub's build at 11:35: no crash, and moving <code>Var + Var</code> up reorders Exp and the examples follow. On Matthew's word, the fix's own PR into #2635's branch: #2810 (11:38). Dev has the same lookup, likely the same bug: not checked. Unexplained: ten console lines, <code>HazelDOM: unrecognized attribute: Value</code>.</li>
+<li><b>The library trials</b>, as PRs on Matthew's yes at 10:12: #2807 (library calls bind their argument, so it is not stepped again; ^ticket(539)), #2808 (a function the library hands back keeps its closure, and a test holds a call's cost to what it does; ^ticket(558), ^ticket(547), ^ticket(552)), and #2809 (<code>Hazel.value</code>, a JS value converted once as a handle; ^ticket(551), <code>5311165b20</code>, not built locally). ^report(40) says so.</li>
+<li><b>Reports published by default</b> (Matthew, 11:40). At 11:48 (homepage <code>065355e</code>): ^report(32), Scripting, Three Ways, Timed; ^report(40), Converting JS Values Directly; ^report(41); ^report(38) and ^report(39) brought up to date; link previews for 36 to 41. The agent instructions say so (<code>76c3209</code>), and the asks of six tickets that waited on a publish word were rewritten (398, 408, 570, 571, 573, 588). ^report(41)'s code is now in the series' high-contrast Hazel colours, IMP's rules coloured as a grammar (12:09): terminals one colour, nonterminals another.</li>
+<li><b>Two tickets at 12:17</b>: ^ticket(685), programs in the grammar's language as tiles (^report(41)'s What next, step 2), and ^ticket(686), strange fungi for the homepage's right margin, after Cyrus Omar's flora (Matthew: "dark, high contrast"; "mushrooms over plants"): <code>tools/fungi.py</code>, a pure function of a seed, drawn in neon, phosphor and ember.</li>
+</ul>
+
+<h2>Waiting on Matthew</h2>
+<ul>
+<li>^ticket(684): whether the explainer fix goes to dev as well.</li>
+<li>^ticket(677): whether #2719 folds into #2711, which decides the base of embed-editable's PR.</li>
+<li>^ticket(664): his answers to the agenda's questions, for Thursday.</li>
+</ul>
+
+<h2>Next</h2>
+<ul>
+<li>^ticket(686): the fungi in the homepage's right margin.</li>
+<li>^ticket(685): programs in IMP as tiles, which needs a parser at run time or a hand-built tree to start.</li>
+<li>The meeting with Cyrus, Thursday 10:00 MST (^report(37)).</li>
+</ul>
+</main>
+</body>
+</html>

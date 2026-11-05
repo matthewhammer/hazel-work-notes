@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 2026-11-02</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-11-02, #2635 brought up to date, undo measured, and Hazel on npm</h1>
+<p class="sub">A backfill: written by Claude on 2026-11-05, at Matthew's request, from the dashboard's tickets and the repositories' commits, not at the time. It covers the day's recorded work, 05:28 to 16:31 MST.</p>
+
+<h2>Where things are</h2>
+<ul>
+<li><b>#2635</b> (livelits × modular editors, <code>integration/livelits-modular-editors</code>) is at <code>1d17541aaf</code>, pushed 16:29: dev's merge day (<code>2cab658ef1</code>), two undo fixes (<code>394552d5d0</code>, <code>bfa36a6ede</code>) and the deck's build fix. CI passed on the merge (Fast checks, Full tests, Static checks). The Firefox deck run on the fix, 41545720854, started at 16:28; it takes about 40 minutes.</li>
+<li><b>hazeljs 0.0.1</b> is on npm under <code>latest</code> (published 11:03), with a placeholder version, 0.0.0-stage, still listed beside it. Its source is only the local repository <code>~/hazeljs</code> (<code>bd3957f</code>), not pushed anywhere.</li>
+<li><b>Dress Up 0.0.474 is live</b> (kids-choice-games <code>4d8384b6</code>, tag <code>dress-up-0.0.474</code>); its speed run passed (41457849486).</li>
+<li><b>Reports</b> published as work in progress: <a href="https://matthewhammer.org/hazel/reports/036/">^report(36)</a>, What an Undo Costs, and <a href="https://matthewhammer.org/hazel/reports/037/">^report(37)</a>, the agenda for the meeting with Cyrus (then Wednesday 11-04). ^report(34) has a dated update.</li>
+<li><b>Local branches</b>: <code>probe/undo-scaling</code> (<code>1d98b3aed7</code>, the timing probe) and <code>perf/665-cheap</code> (the two undo fixes on top of the probe, before their cherry-picks to #2635).</li>
+</ul>
+
+<h2>Done</h2>
+<ul>
+<li><b>^ticket(662), Dress Up 0.0.474</b>: where two beds met, the 💧 watering can could water the plant behind the friend. <code>plantNear</code> now ranks plants by how near they are to the can in the friend's hand, a tapped plant is the one watered, and a 🎒 card no longer starts with a stray comma. <code>tools/checks/can660.mjs</code> checks both; the old <code>plantNear</code> watered the wrong bed in three of its four set-ups. Pushed on Matthew's word at 07:00; speed run ok at 08:31.</li>
+<li><b>^ticket(663), #2635 up to date</b> (Matthew, 07:05: "let's stick to hazel tickets"). Andrew's #2469 (modular editors) had not moved since 10-26 and #2635 already had it, so only dev was merged: <code>90d1005c9e</code>, 149 commits with the 10-29 merge day, 20 conflicted files, dev's 26 new <code>.rei</code> files matched to our implementations (<code>2cab658ef1</code>, pushed 07:33). The 8 long-known Full-test failures are gone. Dev's PerfBudgets test (#2678) found #2635 more than a quarter under budget (96,438 steps against 227,000), so its budgets were lowered on #2635, as the test asks. The Firefox deck failed at its build step: <code>deck.yml</code> ran dune through <code>opam exec</code>, which dev's toolchain action leaves off the path. Fix <code>1d17541aaf</code>, pushed on Matthew's word at 16:29.</li>
+<li><b>^ticket(664), the meeting's list</b>: Matthew's two asks became ^ticket(665) (the cost of undo, "in O(log n) time per edit and per undo, not O(N) time") and ^ticket(666) (how much sharing is lost passing data to and from the worker), and a list of seven tickets for him to cut or reorder (665, 666, 667, 642, 559 with 548, 554, 18). At 10:27 it went out as ^report(37), the agenda (homepage <code>6dc6057</code>), in his three sections: performance (undo), the JS library for embedded Hazel ("Hazlet", his word) with a demo of Dress Up's scripts, and DSL tile editors as a kind of livelit.</li>
+<li><b>^ticket(665), undo against program size</b>, in node: a chain of <i>n</i> lets, an edit in the middle one, each step through the app's loop. Every step is linear in <i>n</i>. The test runner's own checks were the first trap: DefStaticsCheck (whole-program statics after every calculation) made the first numbers quadratic, and NormalizeCheck (a global remold after every edit) added to them; the probe turns both off (<code>1d98b3aed7</code>, then <code>167247e61d</code>). The true baseline at 3,200 definitions: an edit 92 ms, an undo 208, a redo 173 (medians of 12). On Matthew's word, cheap fixes first: the auto-probe's program root reads MakeTerm.Incr's cached top-level skeleton (<code>459b029f68</code>; its memo was keyed on the segment, which every edit changes), and no completion suggestions after a numeral (<code>d06473240f</code>). After: 68, 156 and 106 ms, 25 to 45% off each step, still linear. On #2635 at 10:10.</li>
+<li><b>^report(36), What an Undo Costs</b>, with figures (10:46, homepage <code>451502d</code>): five sizes, 400 to 6,400 definitions, three runs a build. At 6,400, after the fixes, an edit takes 106 ms, an undo 292 and a redo 184, each followed by about 78 ms of statics. Node's default 8 MB stack segfaulted in 4 of 6 runs at that size, so it ran with 64 MB.</li>
+<li><b>^ticket(667), half the steps</b>, found in the merge: #2635's evaluator takes 96,438 trampoline steps on the PerfBudgets program, dev 206,834. Minted for the agenda.</li>
+<li><b>hazeljs, Hazel's JS library on npm</b> (^ticket(668), Matthew's ask, with its tasks 669 to 674): <code>hazel-lib.js</code> built from #2719 (Hazel in another page's frame, stacked on the JS library #2711) at <code>0d66c36618</code>, with <code>require</code> and <code>import</code> entry points (^ticket(669)), TypeScript declarations (^ticket(670)), and a README and CHANGELOG (^ticket(671)): 9 files, 648 kB packed. Matthew chose the name hazeljs ("Hazlet" stays the pattern's name), unscoped, MIT. npm refused the first publish at 10:43 (two-factor authentication required); 0.0.1 was published at 11:03 on Matthew's account. At 13:23 a fresh project installed it from the registry and ran the README's examples through <code>require</code> and <code>import</code>; jsDelivr and unpkg both serve it (^ticket(672)). Found on the way: a module of about 150 members overflows Node's default stack, and the <code>ms</code> field always reads 0 under Node.</li>
+<li><b>^report(34), An Official Hazel JS Library?</b>, has a dated section for Hazel's core team on what the release carries beyond dev (homepage <code>fe4cce1</code>). Matthew's next ask, the trap room live in that report with its Hazel rule editable in tiles, is ^ticket(675) with 676 to 678.</li>
+</ul>
+
+<h2>Waiting on Matthew</h2>
+<ul>
+<li>^ticket(673): deprecating the 0.0.0-stage placeholder npm listed beside 0.0.1 (his two-factor code).</li>
+<li>^ticket(664): the meeting's list, drafted for him to cut or reorder.</li>
+</ul>
+
+<h2>Next</h2>
+<ul>
+<li>Read the deck run 41545720854 on <code>1d17541aaf</code>; close ^ticket(663) when it passes.</li>
+<li>^ticket(667): run PerfBudgets at #2635's earlier merges and at #2469's head, to find what halves the count.</li>
+<li>^ticket(666): measure what is lost at the worker boundary (bytes, the share hit rate, identity on the main thread).</li>
+<li>^ticket(672): the browser and TypeScript examples, and the install check as a GitHub workflow. ^ticket(676): a link that opens the game at the trap room.</li>
+</ul>
+</main>
+</body>
+</html>

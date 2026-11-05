@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 2026-10-30</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-10-30, the red checks closed, and cut plants that grow back</h1>
+<p class="sub">A backfill: Claude wrote this on 2026-11-05, at Matthew's request, from the dashboard's tickets and the repositories' commits. It was not written at the time. The day has two short stretches. The first, 01:01 to 01:06 MDT, is the end of 10-29's evening. The second, 07:37 to 07:51, ended when the laptop went down before the morning's work was committed. The ticket logs have 7 messages from Matthew.</p>
+
+<h2>Where things are</h2>
+<ul>
+<li><b>Dress Up 0.0.469 is live</b> (kids-choice-games <code>2fe79193</code>). Main is at <code>28cca51b</code>, its speed run's commit.</li>
+<li><b>^ticket(659), cut plants grow back</b>, is built and checked but not committed: the laptop went down first. Its diagnostic branch, diag-659 (<code>0025853a</code>, 07:43, pushed), ran its checks green in Chrome and Firefox.</li>
+<li><b>^ticket(660), the garden</b>, was minted at 07:43. It comes after ^ticket(659) is released, in the same session, since it touches the same files.</li>
+<li><b>Hazel at 01:03</b> (^ticket(655)): #2672 (measuring the font scrolls to the caret only if it was in view) is merged to dev, at 17:10 on 10-29. Since 15:40, dev has also taken others' #2758 (opam setup skipped when the cached switch matches), #2487 (proof-step menus), #2403 (curried definitions) and #2391 (folded constructor heads). #2756 and #2626 still need a code-owner review, which is Matthew's. Our other green PRs have no new reviews, and issue #2751 is open.</li>
+</ul>
+
+<h2>Done</h2>
+<ul>
+<li><b>^ticket(639) closed at 01:02.</b> 0.0.469's speed run (41002771433, recorded in <code>28cca51b</code> at 01:01) passed every check but places114. places114 passed against the same code on diag-639e (41009075738). speed.json reads broken until a release carries the updated check. Over the day, 0.0.461 to 0.0.469 gave ^du_report(23) its carrying, tools, floor switches and the 🗝️ dungeon, and then the fixes for one dungeon per game and every room's own things.</li>
+<li><b>^ticket(655)</b> was brought up to date at 01:03 with dev's state after merge day.</li>
+<li><b>^ticket(659)</b>, 07:37 to 07:51. M wanted the plants the sword cuts to grow back. Matthew, to the plan: "build it. good plan."
+<ul>
+<li>The setting: 🌱 cut plants grow back, in ⚙️ Advanced under 🌗 night and day, on to start.</li>
+<li>A cut plant comes back after about 2 minutes, set with a slider, even while you are somewhere else. With night and day on, it comes back by the next morning.</li>
+<li>Plants put in a place are kept as cut, not deleted, so they can grow back too.</li>
+<li>Tried in the pane: scene trees, a placed bush, the setting off, night and day, a square left and come back to, and cuts saved by 0.0.465 to 0.0.469.</li>
+<li><code>tools/checks/regrow659.mjs</code> written.</li>
+</ul></li>
+</ul>
+
+<h2>Waiting on Matthew</h2>
+<ul>
+<li>^ticket(639)'s closing note: a click on a rock now takes it instead of sitting on it.</li>
+<li>From merge day: approve #2756 and #2626, then post the end-of-day Slack message (^ticket(654)), which asks Cyrus about the landing order (^ticket(642)).</li>
+</ul>
+
+<h2>Next</h2>
+<ul>
+<li>After the laptop is back: commit and release ^ticket(659).</li>
+<li>^ticket(660): a 🌻 garden with 8 Colorado flowers and 8 vegetables grown in the United States, a 💧 spring, and a watering can from the tree house that makes plants grow.</li>
+</ul>
+</main>
+</body>
+</html>

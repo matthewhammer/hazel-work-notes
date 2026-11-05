@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 2026-10-27</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-10-27, #2635 catches up with #2469 again</h1>
+<p class="sub">A backfill, not written at the time. Claude wrote this note on 2026-11-05, at Matthew's request, from the dashboard's tickets and the repositories' commits. A quiet day: the recorded work runs from 09:27 to 12:18 MDT (4 messages from Matthew in the ticket logs), and there were no Dress Up releases.</p>
+
+<h2>Where things are</h2>
+<ul>
+<li><b>Hazel, <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a></b> (livelits with modular editors) is at <code>547b9cfa8b</code>, with all of #2469 (modular editors) through <code>af81c60054</code>. Its CI and its deck are green.</li>
+<li><b>Dress Up</b> is still 0.0.460, as on 10-26.</li>
+<li><b>Reports</b>: ^report(33), ^report(34), ^du_report(20), ^du_report(21) and ^du_report(22) are live as work in progress. ^report(35) is still a draft only.</li>
+</ul>
+
+<h2>Done</h2>
+<ul>
+<li><b>^ticket(638), #2635 caught up with #2469's 23 new commits</b> (Matthew: "Merge #2469's 23 new commits (through af81c60054) into #2635 and rerun its deck."). Those commits are Cyrus's m41 to m44: parse errors say where, whole-part replaces, reply-level refusals, and a trim that drops the branch-internal oracles, the outline's test-only edit API and unused code. The merge <code>547b9cfa8b</code> (10:50) had 5 conflicts:
+  <ul>
+  <li><code>FocusOracle</code>, <code>ItemEditOracle</code> and <code>Test_CellsParity</code> were deleted, as #2469 deletes them.</li>
+  <li>ScratchPersist's reader for the keys that <code>:side</code> replaced was dropped, and the outline's mode fields joined #2469's <code>no_side</code> default.</li>
+  </ul>
+  Locally 18 of the 19 touched test groups passed; MemberLivelitReprint fails only outside dune's sandbox, on a relative path. On GitHub, CI was green (Fast checks; Full tests, MemberLivelitReprint included), and the deck in Firefox passed 12 of 12 (run <a href="https://github.com/hazelgrove/hazel/actions/runs/40545336723">40545336723</a>, 44 min). Closed at 12:17.</li>
+</ul>
+
+<h2>Waiting on Matthew</h2>
+<ul>
+<li>His reviews of ^report(33), ^report(34), ^du_report(21) and ^du_report(22), and his word to publish ^report(35). (^du_report(20) waits on R's feedback.)</li>
+</ul>
+
+<h2>Next</h2>
+<ul>
+<li>Publish ^report(35) when he says.</li>
+<li>Keep #2635 up with #2469 as it moves.</li>
+</ul>
+</main>
+</body>
+</html>

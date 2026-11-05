@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 2026-10-25</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-10-25, #2635 caught up, the eye swept on every slide, and Dress Up 0.0.430 to 0.0.442</h1>
+<p class="sub">A backfill, not written at the time. Claude wrote this note on 2026-11-05, at Matthew's request, from the dashboard's tickets and the repositories' commits. The day's recorded work runs from 07:16 to 20:44 MDT (131 messages from Matthew in the ticket logs).</p>
+
+<h2>Where things are</h2>
+<ul>
+<li><b>Dress Up 0.0.442 is live</b> (kids-choice-games <code>3e153952</code>), the last of 13 releases today. The speed runs after each release: 0.0.430 and 0.0.432 <b>ok</b>; 0.0.436, 0.0.439, 0.0.441 and 0.0.442 "broken (the checks)" (the last, <code>d9003e09</code>, at 17:23).</li>
+<li><b>Hazel, <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a></b> (livelits with modular editors) has #2469 (modular editors) merged in, and its CI was green at <code>a8eb70f697</code>. Two livelit fixes went on top of it this afternoon, and onto #2597 (the full livelits branch).</li>
+<li><b>The deck's every-slide sweep</b> lives on the branch <code>deck/eye-sweep</code> on hazelgrove/hazel (last commit <code>36e5e7b276</code>, 18:06). Its seventh run, <a href="https://github.com/hazelgrove/hazel/actions/runs/40247749173">40247749173</a>, passed by 18:57. It is not on #2635 or #2597 yet.</li>
+<li><b>Reports</b>: ^report(33) is live as work in progress; ^du_report(19) is published; ^du_report(20) is live as work in progress until R's feedback. The kids-choice-games branch <code>archive-609</code> (pushed, "never merged") exists only to run the pictures archive for ^report(33).</li>
+<li><b>Not checked on M's iPad itself</b>: 0.0.437's drop-downs (^ticket(614)) and 0.0.439's saved friends (^ticket(615)). Both were checked in the browser pane only.</li>
+</ul>
+
+<h2>Done</h2>
+<ul>
+<li><b>^ticket(512), #2635 caught up with #2469</b>, on Matthew's call at about 07:15 ("Merge #2469's new commits into #2635 now and resolve the 12 conflicts"). #2469 had moved on overnight: 124 commits since 10-21, and 25 files conflicting (51 hunks). Resolved and pushed as the merge <code>4cd7ab722f</code> (07:38). Locally 6,086 tests ran and 3 failed: two expectations were updated (AgentView's golden, where <code>^pct</code> is now a livelit binder, and the tools list), and the third was only a relative path. On CI one test of 6,676 failed, HeadlessRows 1, because its term walk stopped at a curried function's first lambda. That was fixed in the test (<code>a8eb70f697</code>, 09:01). Then green: Fast checks, Full tests (1 h 13 min), deploy, codecov.</li>
+<li><b>^ticket(616), the eye on every slide</b> (Cyrus's reveal design: the GUI must still work while the syntax is shown). A new deck_regress case and <code>.github/workflows/deck.yml</code> (<code>1c65824665</code>, 12:09) open every livelit's eye on every slide and use its GUI once, in Firefox on GitHub. There were five runs, from 40220403418 to 40233852000. Most of their findings were the sweep's own bugs, each fixed:
+  <ul>
+  <li>The sweep looked for each GUI in the toggle's layer (the overlay), but the GUI is in the base layer, so it found no control in 125 of 127 uses.</li>
+  <li>The toggles of uses on one line sit 10 px apart, so "the nearest use" drove another use's GUI. Uses are now matched by the projector's box (<code>dbf86ea570</code>).</li>
+  </ul>
+  One finding was real. On Editable Parameters, the eye of a ^between nested in another ^between's splice did nothing. Its press came in through the host's sub-editor as <code>PerformConfined</code>, and <code>SubEditor.confine_pre</code> did not count <code>ToggleSyntax</code> among the actions that name their projector, so the press was dropped. Fixed with a Test_SubEditor case, on #2635 (<code>d9ee59f370</code>) and #2597 (<code>ac3c56b8fe</code>). After run 5: 101 GUIs followed, and 3 were stuck (Hair #3, Shoes #4, Arms #7), each a ^picture.</li>
+<li><b>^ticket(620), ^picture's view error</b> ("eval_splice: expected a SpliceRef") on every Playground slide that draws one, on both branches. In the syntax a splice is only its code; the run turns it into the SpliceRef that the view reads. So until a big slide's run landed, the view failed. Now such a view shows as pending: the last good view dimmed, or nothing yet (<code>LivelitProj.re</code>; #2635 <code>3fd7288e1d</code>, #2597 <code>5aab038ff5</code>, 17:22). The three stuck verdicts came from the sweep using a GUI before the run landed. The sweep now waits until no run has been in flight for 1.5 s, read from <code>#dynamics.running</code> (<code>1b2934c69b</code>, <code>36e5e7b276</code>).</li>
+<li><b>^ticket(609), ^report(33)</b>, on how to write Messed Up Dress Up's game scripts, for Matthew, then Cyrus and the Hazel team. It explains that Globals is not global: the game builds a per-rule view for each room's handler. It proposes RoomState, a full Globals as a Hazel type, and one address for every place. Minted at 07:40 and published as work in progress at 08:06 (<a href="https://matthewhammer.org/hazel/reports/033/">033</a>, site <code>22ee2f8</code>), with 8 SVG figures and an appendix of 227 addresses. Revised on his notes until 08:37:
+  <ul>
+  <li>retitled "Game Scripts in Hazel, a Case Study";</li>
+  <li>one Symbol (text, a number, or S1(S2), Fumola's call) for every address, with <code>parse_sym</code> and <code>print_sym</code>;</li>
+  <li>an abstract in his wording (<code>a780ff8</code>).</li>
+  </ul>
+  Matthew: "nice." For its appendix, the pictures archive got a things folder: each of 50 kinds of thing alone (dress-up-pictures <code>805f21d6</code>, then <code>c0f2263a</code> for things-alone).</li>
+<li><b>^ticket(610), M's cave on her iPad</b>: red dashes ("too expensive") almost at once. Game scripts were not the cause: they run only on lever, hatch and way events. The cave (61) and the cave room (82) have always-running scenery animations, and a guard marks placed things against a 48 fps floor.
+  <ul>
+  <li>0.0.431: ⚙️ Advanced can lower that floor (down to 20), and new <code>?try=cave-N</code> and <code>?try=caveroom-N</code> visits test the caves.</li>
+  <li>0.0.434: 🧪 got 10 cave passes (<code>a4725aa0</code>), after Matthew's "you never tested the cave rooms!"</li>
+  <li>0.0.436: the moving scenery can be as measured, always held still, or always moving.</li>
+  </ul>
+  On 0.0.436, Matthew's runs on M's iPad matched its 0.0.96 run, except at the pond. Walking in the cave with 1 or 2 pots ran at 45 to 49 fps, right at the floor. M's earlier run had been capped near 30 fps. Matthew: "Yes, it was probably in Low Power Mode or low on battery." Why the game did not notice is tracked as ^ticket(613).</li>
+<li><b>^ticket(564), ready to re-mix</b>: the re-org of 10-24 was merged and released in 0.0.434, with 12,570 friends drawn identical byte for byte. ^du_report(19), Ready to Re-mix, was published (kids-choice-games <code>d0a0d823</code>, site <code>d86164f</code>).</li>
+<li><b>^ticket(611), a way in</b>, from R's confused visit on his phone. 0.0.433 added a 🌍 Start World button beside Start over. It puts the friend on the start world's start square, shows a 👉 bobbing until it is first pressed, and opens a welcome card in Matthew's words. ^du_report(20), A Way In, is live as work in progress (site <code>3c80615</code>).</li>
+<li><b>Bugs Matthew reported</b>, one of them from a photo of M's iPad, each closed the same day:
+  <ul>
+  <li>^ticket(612), 0.0.435: the clearing drew its path twice, and the second copy painted over the friend's legs.</li>
+  <li>^ticket(614), 0.0.437: drop-downs are now drawn as the game's buttons, not as Safari's small white menus.</li>
+  <li>^ticket(618), 0.0.440: a tap on a building in the clearing walked the friend away from it. For the castle and the two huts, the goal had been the corner of an undrawn shape; it is now the foot of the building's drawing.</li>
+  </ul></li>
+<li><b>^ticket(615), saving on the iPad</b>: 0.0.438 made 💾 Save one tap. Then 0.0.439 keeps saved friends in the browser (IndexedDB, with a 160 px picture each), and 📂 Load lists them. Where IndexedDB fails, the .json file is used.</li>
+<li><b>^ticket(617), the pictures archive</b>: the per-tab chips had shown the friend, not the tab's panel. <code>archive.mjs</code> now shoots each tab's panel (<code>2ad835be</code>), and run 2026-10-25-13-08 (0.0.439, 22 tabs) is live.</li>
+<li><b>^ticket(619), a Zelda study</b>, comparing the NES game's one screen at a time with A Link to the Past's smooth scrolling. It became 0.0.442: a cave crossing with eight ways and four looks, boulders shutting the dead ends, and smooth scrolling between squares, set per way in World design. The scroll was checked by numbers in the pane, not watched on a real screen.</li>
+<li><b>Smaller changes</b>:
+  <ul>
+  <li>0.0.430 and 0.0.432: "lines only" draws every room again, and trees as lines.</li>
+  <li>0.0.441: the what's-new list drops an empty Unreleased heading.</li>
+  <li>^report(30)'s rules are shown in colour (<code>0f14f32</code>).</li>
+  <li>Every Hazel and Dress Up report got a link preview picture and Open Graph tags (<code>e6b1893</code>, <code>ae176642</code>).</li>
+  <li>^du_report(17) links to the story words PDF.</li>
+  <li>The Hazel page's Press section lists Week in Hazel issue 007.</li>
+  </ul></li>
+</ul>
+
+<h2>Waiting on Matthew</h2>
+<ul>
+<li>^ticket(609): his further notes on ^report(33).</li>
+<li>^ticket(610): on M's iPad, set ⚙️ Advanced's floor to 40 (and 🧊 always hold still) for her cave.</li>
+<li>^ticket(611): R's try of 🌍 Start World on his phone. His feedback goes into ^du_report(20), and then its work-in-progress mark comes off.</li>
+</ul>
+
+<h2>Next</h2>
+<ul>
+<li>Put the sweep and ^ticket(620)'s fix onto #2635 and #2597, and run the deck in Firefox on each (^ticket(616)).</li>
+<li>Dress Up: M's cave with the lower floor; ^ticket(613) stays open for tracking.</li>
+</ul>
+</main>
+</body>
+</html>

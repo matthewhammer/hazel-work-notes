@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 2026-10-26</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-10-26, dungeon rooms in Dress Up (0.0.443 to 0.0.460), the deck green on #2635, and two new reports</h1>
+<p class="sub">A backfill, not written at the time. Claude wrote this note on 2026-11-05, at Matthew's request, from the dashboard's tickets and the repositories' commits. The day's recorded work runs from 06:00 to 18:13 MDT (70 messages from Matthew in the ticket logs).</p>
+
+<h2>Where things are</h2>
+<ul>
+<li><b>Dress Up 0.0.460 is live</b> (kids-choice-games <code>65bccf45</code>), the last of 18 releases today. Its speed run is <b>ok</b> (<code>f37ef4cf</code>, 18:03), the first ok since 0.0.432. The runs for 0.0.443, 0.0.452, 0.0.458 and 0.0.459 were "broken (the checks)".</li>
+<li><b>Hazel, <a href="https://github.com/hazelgrove/hazel/pull/2635">#2635</a></b> (livelits with modular editors) now carries the every-slide sweep and runs the deck in Firefox. Its deck is green: <a href="https://github.com/hazelgrove/hazel/actions/runs/40369192617">40369192617</a>, 12 of 12. #2597 (the full livelits branch) carries the same commits, but its deck fails at Full Body on speed, and Matthew chose to leave it so.</li>
+<li><b>Reports waiting for his review</b>, all live as work in progress: ^report(33), ^report(34), ^du_report(20), ^du_report(21) and ^du_report(22). ^report(35) is a draft in hazel-perf-report only (<code>30fb8eb</code>, 18:12), not published.</li>
+<li><b>agent-instructions.md</b> in kids-choice-games is now a 45-line checklist that points into ^du_report(22).</li>
+</ul>
+
+<h2>Done</h2>
+<ul>
+<li><b>^ticket(616), the eye on every slide, closed.</b> At 06:09 the sweep and the two fixes of 10-25 went onto #2635 and #2597. They came with a workflow that runs the deck in Firefox whenever a push touches the livelits (<code>19f6e76a46</code>, <code>b1cf020d8c</code>). Later fixes to the sweep:
+  <ul>
+  <li>it reads the page without zero-width spaces (07:44);</li>
+  <li>its time limits fit #2597, whose sweep takes about two hours (09:23);</li>
+  <li>a toggle's place that comes back as a script error is tried again (11:29).</li>
+  </ul>
+  #2635's deck passed four times, the last run from 11:30 to 12:23. Every slide's livelit GUI works with its syntax shown, Full Body included. #2597's four runs failed; the last, <a href="https://github.com/hazelgrove/hazel/actions/runs/40369198184">40369198184</a>, ended 11 of 12 at Full Body. There each eye took longer to open than the harness's 15 s: #2597 takes 100 to 150 s a use, because it lacks #2469's speed work, and those commits do not port without #2469 itself. Matthew's call at 14:27: no merge, and #2597 keeps its slow deck. ^ticket(620) had closed at 09:45.</li>
+<li><b>^ticket(621) to ^ticket(623), dungeon rooms like A Link to the Past's</b> (Matthew: "build it." "mint and enqueue tickets as you go."):
+  <ul>
+  <li>0.0.443 (<code>ea02e01c</code>, 09:59): the 🗝️ dungeon room, a cave room seen from above. It has eight ways, each a gap or a corner tunnel, and a shut way is walled with a carved stone or pots. It has four looks. The friend is drawn from above. World design gives each way three chips (🚫 no way, 🚪 nav arrow, 🎞️ smooth scroll), and 🧪 got passes 34 and 35 for the scroll.</li>
+  <li>0.0.444: a 🕳️ hole drops the friend into the world named as this one's ⬇️ floor below, at the same square and spot.</li>
+  <li>0.0.445: a 🧱 ledge across the room's back, with stairs.</li>
+  <li>0.0.446 to 0.0.450: dungeons became a kind of place of their own; there is no wall between dungeon rooms; the pots are round from above; a smooth scroll ends its script event when the slide ends.</li>
+  </ul></li>
+<li><b>^ticket(626) and ^ticket(627), every setting in the new postures.</b> Matthew asked: "how many params (costumes included) translate into this new drawing perspective?"
+  <ul>
+  <li>Seen from above (0.0.451): before, it drew 9 of about 125 appearance settings and no costume. Now it draws all 36 costumes and most settings (hand and foot styles, limbs, head and eyes, all 7 hair styles, beards), checked on a sheet of 108 drawings. Still missing: the face's finer settings, undies, and the horse.</li>
+  <li>Asleep in the tent (0.0.452): before, it drew about 20 settings and no costume. Now it draws all 36 costumes.</li>
+  </ul></li>
+<li><b>^ticket(633), ^du_report(21), Dungeons, From Above</b>, live as work in progress at 11:31 (site <code>f792dd3</code>), on his ask: "these new views of each costume are great. please do a du_report with a way to see all of this design work."</li>
+<li><b>^ticket(634), ^du_report(22), How Dress Up Is Made.</b> agent-instructions.md was 380 KB, "not human digestable" (his words). It was cut to 10 KB (<code>dde55a56</code>), then to a 45-line checklist of 4 KB (<code>61430a41</code>). The explanation moved into a public report that people and agents can both read (site <code>c4047fe</code>).</li>
+<li><b>More dungeon features, one release each</b>:
+  <ul>
+  <li>^ticket(628), 0.0.453: the 🗡️ Time Wanderer costume, his name for it rather than the game hero's.</li>
+  <li>^ticket(629), 0.0.454: the action press lifts a pot overhead; doors still work while carrying it; a throw of its own (A while holding, or T) shatters it.</li>
+  <li>^ticket(630), 0.0.455: the stone's shade; moss and mushrooms, each with an amount and five kinds; and each room's own floor wear, from a seed kept with its square.</li>
+  <li>^ticket(631), 0.0.456: treasure chests. A gift (one of 12 of the game's own things) rises over the friend's head while one of 8 new chest-opening tunes and a chosen 🎙️ recording play.</li>
+  <li>^ticket(632), 0.0.457: a 🎒 Backpack tab with a card for each thing carried, and a pack drawn on the friend in all seven views.</li>
+  <li>^ticket(624), 0.0.458: every pose from above.</li>
+  <li>^ticket(625), 0.0.459: stairs up to the floor above, and a hop down off a ledge.</li>
+  </ul></li>
+<li><b>While Matthew was away</b>:
+  <ul>
+  <li>^ticket(636): a CI check for the dungeon room, <code>tools/checks/dungeon625.mjs</code> (<code>e1588d4f</code>), green on GitHub (run 40396665224). Until then the dungeon had been tested only by hand in the browser pane. The run also found <code>tools/hazelrules531.mjs</code> broken since the dungeon room (<code>isCross</code> was missing from its sandbox); fixed, and its 2,296 world-way cases pass again.</li>
+  <li>^ticket(637): the whole suite run on today's main, since pushes to main deploy without running the tests (run <a href="https://github.com/matthewhammer/kids-choice-games/actions/runs/40397801927">40397801927</a>). Five checks failed. One was a real bug: the 🎒 backpack came back empty from 📂 Load and from every reload's autosave (fixed in <code>savedOver()</code>, <code>01-state.js</code>). The other four checks were brought up to date. After a diagnostic run (40412539118), this was released as 0.0.460 at 16:36.</li>
+  </ul></li>
+<li><b>^ticket(635), ^report(34), An Official Hazel JS Library?</b>, on the pros and cons of making the draft library official (hazel-lib.js, #2711 with #2719 stacked on it). Published as work in progress at 12:24 on his word (<a href="https://matthewhammer.org/hazel/reports/034/">034</a>, site <code>d46d243</code>). Its suggestion has two steps: merge the library as experimental, then promise stability only for a small core once a second user besides the game has used it.</li>
+<li><b>^report(35), Paying Only for What Is Watched</b>, drafted for ^ticket(554), which asks what to do about a Hazel step paying for the editor around it (^report(29)). Not published.</li>
+<li>^ticket(610) closed at 12:47. The report indexes got link preview pictures (<code>6831c2a1</code>, <code>b2c858d</code>).</li>
+</ul>
+
+<h2>Waiting on Matthew</h2>
+<ul>
+<li>His reviews of ^report(33) (^ticket(609)), ^report(34) (^ticket(635)), ^du_report(21) (^ticket(633)) and ^du_report(22) (^ticket(634)).</li>
+<li>^report(35): publish it, on his word.</li>
+<li>^ticket(621): a 🧪 run on M's iPad, to see whether the smooth scroll holds its frame rate there.</li>
+<li>^ticket(611): R's feedback on 🌍 Start World.</li>
+</ul>
+
+<h2>Next</h2>
+<ul>
+<li>^du_report(21): its "Not done yet" still lists ^ticket(624), ^ticket(625) and ^ticket(628), all released since. Update it along with his notes.</li>
+<li>Publish ^report(35) when he says.</li>
+</ul>
+</main>
+</body>
+</html>

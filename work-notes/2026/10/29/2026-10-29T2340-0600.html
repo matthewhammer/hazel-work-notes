@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 2026-10-29</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-10-29, Hazel's merge day, and Dress Up's guide, sword and nightfall</h1>
+<p class="sub">A backfill: Claude wrote this on 2026-11-05, at Matthew's request, from the dashboard's tickets and the repositories' commits. It was not written at the time. It covers Claude's work with Matthew from 05:54 to 23:40 MDT (74 messages from him in the ticket logs). Dev took many PRs from others on merge day; they reached #2635 later, with dev's other new commits (^ticket(663)), and are not listed here.</p>
+
+<h2>Where things are</h2>
+<ul>
+<li><b>Dress Up 0.0.469 is live</b> (kids-choice-games <code>2fe79193</code>, tag <code>dress-up-0.0.469</code>). Main is at <code>a683fe0f</code>, a check fix since then (places114) with no release. 0.0.469's speed run, 41002771433, was still running at 23:40. It was expected to fail places114 only, because a release's run uses that release's checks.</li>
+<li><b>^du_report(23), Doing Things in Messed Up Dress Up</b>, is live as work in progress, with all 26 pictures taken at 0.0.464. It is on the series index, the landing page and the nav.</li>
+<li><b>#2635</b> (livelits × modular editors, a draft) is up to date with #2597 (the full livelits branch) and with dev (<code>9457565d70</code>, <code>2c9708a890</code>). Its CI run 40898112846 and its Firefox livelit deck 40898110273 are green. The landing order is still open (^ticket(642)): #2469 (Andrew's modular editors, not ours to merge) goes into dev first, then #2635 is retargeted to dev, showing only the livelit diff (about 70k lines, 442 files).</li>
+<li><b>Our PRs into dev that wait on a hazel-core review</b>, all green: #2652 (the eval worker in Firefox), #2661 then #2681 (Merkle-hashed types), #2675 (reuse around a recursive let), #2651 (a module binding analyzed once), #2676 (long types in the cursor inspector), and #2729 (a module's sum types usable after it) with #2749 stacked on it.</li>
+<li><b>dev now has a merge queue</b> (Cyrus's ruleset, made at 09:06): one approving code-owner review, Fast checks required, groups of up to 5. CODEOWNERS is hazel-core, and branch previews are served at <code>build.hazel.org/&lt;branch&gt;/</code>. <code>hazel.org/build/*</code> now answers 301 to build.hazel.org.</li>
+<li><b>Drafts</b>, untracked in <code>~/hazel/experiments/</code>: <code>slack-merge-day-2026-10-29.txt</code>, and <code>slack-end-of-day-2026-10-29.txt</code>, which has not been posted (^ticket(654)).</li>
+<li><b>Scratch</b>: <code>~/hazel-dev-962</code> is left detached at dev (<code>1014553334</code>), and <code>~/hazel-574</code> holds #2749's branch. kids-choice-games has the diag-639 and diag-639b to diag-639e branches pushed for diagnostic runs. In <code>~/kids-choice-games</code> there are uncommitted ^du_report(5) edits and a stash named autostash. Neither is this work's, and both were left alone.</li>
+</ul>
+
+<h2>Done</h2>
+<ul>
+<li><b>^ticket(640), merge day.</b> Matthew: "today is a special work day, where we as a team are trying to coordinate more tightly, and merge PRs that are ready". #2635 was judged at 09:04. It was a draft with no reviews, its CI green at <code>547b9cfa8b</code> (deck included), and all of #2469 was in it. It lacked only dev's #2730 and #2597's ancestry, since #2597's 12 deck commits were already in as cherry-picks. <b>^ticket(641)</b>: both were merged in at 09:05; the first left the tree unchanged. CI and the deck passed by 12:14.</li>
+<li><b>^ticket(643)</b>: the case for keeping #2635's 12 ported performance fixes in it was <a href="https://github.com/hazelgrove/hazel/pull/2635#issuecomment-6500577673">posted on #2635</a> at 09:14. It states two exceptions: #2606, which #2469's resident cache replaces, and #2651's follow-up <code>29c08fd8fa</code>, which is not ported yet.</li>
+<li><b>^ticket(644), the merge queue.</b> The queue was found and explained. Trial merges against #2469 sorted Matthew's standalone PRs (about 19). Seven were clean. Three conflicted only in test lists (#2610, #2673, #2608). Four had real conflicts and are held until #2469 lands (#2614, #2603, #2671, #2606). #2676 conflicted in nearby edits. A hazel-core review was requested on 8 of them, each with a 🤖 comment on what it gives dev: #2672, #2652, #2661, #2681, #2675, #2651, #2678 and #2676. A Slack post was written. Cyrus merged two that morning: #2700 (incremental evaluation agrees with evaluation from scratch) and #2678 (CI fails when an evaluation does more work than its budget).</li>
+<li><b>Reviews for Matthew</b>, each with notes on its ticket:
+<ul>
+<li>^ticket(645), #2647 (7h3kk1d: solutions for every tutorial lesson): LGTM. All 49 lessons with tests have solutions, and CI grades each one through the app's own <code>Tutorial.stitch_term</code>. One gap: nothing checks that a lesson's starting code fails. Matthew merged it at 10:41, and 7h3kk1d's #2741 (warnings can be turned off) at 10:21.</li>
+<li>^ticket(646), #2721 (coverage from manual browser sessions): LGTM. It conflicts with #2469 in the worker files.</li>
+<li>^ticket(652), #2756 (Cyrus: an advisory per-PR performance report): LGTM, with three notes. A speedup gets the same ⚠️ as a slowdown. By chance alone, about 13 to 19% of runs with no change would have a row whose 5-against-5 ranges do not overlap (0.8% a row, over 26 rows); its &gt;10% rule does most of the filtering. And it costs about 7 runner-minutes a push.</li>
+<li>^ticket(653), #2626 (disconcision: editing commands build the zipper instead of walking the caret; Cmd+A on 400 lines goes from about 4 s to immediate): LGTM, with two optional nits.</li>
+</ul></li>
+<li><b>#2729, a module's sum types after it.</b> Its 8 tests are enough (^ticket(647)). <b>#2749</b> is stacked on it (<code>a69bba9afa</code>, ^ticket(648)): 7 statics tests and 1 evaluator test for signatures, shadowing and nesting, and one known bug, skipped. That bug is now <b>issue #2751</b> (^ticket(649)): an old sum's constructor passes as a new sum of the same name. #2749's skipped test names it (<code>3abddbf787</code>). #2732 (7h3kk1d) fixes the plain form. Whoever merges the second of #2729 and #2732 must use <code>Typ.extend_alias</code> in #2729's fold.</li>
+<li><b>^ticket(651), #2672</b> (measuring the font scrolls to the caret only if it was in view). 7h3kk1d's two regressions were checked against the code. The first is real but narrow: a caret far down at load. The second is real, but its mechanism is different: zoom shrinks the viewport in CSS px. 7h3kk1d's <code>IfCaretVisible</code> suggestion was built (<code>e8125d9933</code>, 8 files) and checked in the browser against dev. It does not cover zoom, and <a href="https://github.com/hazelgrove/hazel/pull/2672#issuecomment-6507134502">the reply</a> says so. Cyrus merged it at 17:10 in the merge queue.</li>
+<li><b>^ticket(650), #2718</b> (Negabinary: unused warnings for theorems and forall binders): 7h3kk1d's main point was confirmed on its head <code>2fc400c979</code>. <code>let x = 1 in theorem (a, b) = x == x in 0</code> warns that x is unused. Parked at 13:06, with no fix started.</li>
+<li><b>^ticket(655)</b>: at Matthew's ask, a tracking ticket of where things stood at 15:40.</li>
+<li><b>Dress Up, morning, ^ticket(639).</b> ^du_report(23) was written as a retro young player's guide for M and N, who were off school, and what it needed was built along the way. 0.0.461: picking things up and putting them down, tools, a bee in a bottle, a plate puzzle. 0.0.462: floor switches, rocks and a statue to carry, empty chests. 0.0.463: the 🗝️ dungeon, an 8 by 8 maze world with gates that floor switches open. 0.0.464: the net's swing and the backpack's flying things, now seen. The guide was live with its pictures at 06:52 (run 40875679688).</li>
+<li><b>^ticket(656), 0.0.465</b> (<code>defb9986</code>, 15:54), M's high-priority ask: the 🗡️ sword cuts the nearest plant ahead, one plant a swing. A scene's own plants stay cut, per place and per world square, and 👁️ grows them back.</li>
+<li><b>^ticket(657), 0.0.466</b> (<code>935dc071</code>, 16:30): 🌗 night and day, in ⚙️ Advanced and off to start. The game's own clock runs (a day takes 12 minutes) and it is dark after sunset. Lying in a bed after sunset sleeps until 7 and counts the night. This was M's next wish; sleeping works as in Harvest Moon, a game M has played.</li>
+<li><b>^ticket(658), 0.0.467</b> (<code>178f997e</code>, 18:07). The 📜 Scripting tab's Hazel tiles were stuck at "loading" on the live game. hazel.org/build now redirects to build.hazel.org, a different origin, so the origin check dropped the frames' messages. The frames now load from build.hazel.org, and scripting482 was all ok in run 40977595380.</li>
+<li><b>^ticket(639), evening, the eight red checks</b> (cavedoors525, cavethings471, fumola542, hazellogic531, saveload, seats413, still274, worlds406). Two real bugs from 0.0.463 were fixed in 0.0.468 (<code>b7701324</code>, 22:02):
+<ul>
+<li>The dungeon world was made again on every load: a dev save had 13 of them and weighed 407 KB; after the fix it has 1 and weighs 91 KB.</li>
+<li>One seeding mark served every room, so the tree room never got its net.</li>
+</ul>
+A diagnostic run found still274's cause: measuring left an empty <code>style=""</code> on the glowing mushroom's fumes. That was fixed in 0.0.469 (<code>2fe79193</code>, 22:24). The checks that had gone stale were brought up to date. places114 was updated too, on main (<code>a683fe0f</code>), after 0.0.468's run 41000653685.</li>
+<li><b>Speed runs</b>: 0.0.461's (40871339838) and 0.0.464's to 0.0.468's all read "broken (the checks)". The day's new checks passed in their own releases' runs: sword656 (0.0.465), night657 (0.0.466) and scripting482 (0.0.467).</li>
+</ul>
+
+<h2>Waiting on Matthew</h2>
+<ul>
+<li>^ticket(654): approve #2756 and #2626 (notes on ^ticket(652) and ^ticket(653)). At 15:08 neither showed Matthew's approval. Then post <code>slack-end-of-day-2026-10-29.txt</code>, which says both are approved and asks Cyrus about the landing order (^ticket(642)).</li>
+<li>Dress Up calls made without him, open to change:
+<ul>
+<li>The sword cuts one plant a swing, and rows wider than its reach are not cut (^ticket(656)).</li>
+<li>A day takes 12 minutes, the friend wakes at 7, and sleeping has no benefit yet; M is to say what it should be (^ticket(657)).</li>
+<li>A click on a rock takes it instead of sitting on it (^ticket(639)).</li>
+</ul></li>
+</ul>
+
+<h2>Next</h2>
+<ul>
+<li>Read 0.0.469's speed run (41002771433). A clean run needs the next release; then ^ticket(639) closes.</li>
+<li>Port #2651's follow-up into #2635 (a module that names itself is an error again).</li>
+<li>^ticket(650), if it is taken up: prototype 7h3kk1d's <code>~warn_unused</code>, and ask Matthew before posting anything to Negabinary's PR.</li>
+</ul>
+</main>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 2026-11-01</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-11-01, plants that grow back, a garden in three releases, and a guide to it</h1>
+<p class="sub">A backfill: Claude wrote this on 2026-11-05, at Matthew's request, from the dashboard's tickets and the repositories' commits. It was not written at the time. Nothing was recorded on 10-31. This covers 11-01 from 08:44 to 20:34 MST (daylight saving time ended that morning). The work began after a reboot, and for the afternoon it ran in two sessions, one for the plants and one for ^du_report(24). The ticket logs have 18 messages from Matthew.</p>
+
+<h2>Where things are</h2>
+<ul>
+<li><b>Dress Up 0.0.473 is live</b> (kids-choice-games <code>db7d3596</code>, tag <code>dress-up-0.0.473</code>). Main is at <code>16018c47</code>, its speed run's commit: ok, no check failed (run 41375647956). There were four releases today, and every one's speed run was ok.</li>
+<li><b>^du_report(24), Night, Day and the Garden</b>, is <a href="https://matthewhammer.org/kids-choice-games/dress-up/reports/024/">live as work in progress</a>. It has 13 chapters, every picture taken at 0.0.473 (diag-661, run 41376804317). It is on the series index, the landing page and the nav (matthewhammer.github.io <code>27462be</code>).</li>
+<li><b>Branches</b>: diag-659 and diag-661 are pushed, for the checks and the pictures. report-024, in <code>~/kcg-report-024</code>, is where the report was written; the report itself is on main.</li>
+<li><b>Known, not fixed</b>:
+<ul>
+<li>Where two beds meet, the can waters the one put first, even if it is behind the friend (<code>plantNear</code>'s tie).</li>
+<li>The Background tab's pictures of the garden's and the spring's objects do not exist yet, so each one is a quiet 404.</li>
+</ul></li>
+</ul>
+
+<h2>Done</h2>
+<ul>
+<li><b>^ticket(659), 0.0.470</b> (<code>dfb3bb61</code>, 08:47): cut plants grow back. It was committed after the reboot, live by 08:57 when the ticket closed, and its speed run was ok (<code>35bdcde9</code>, 10:26).</li>
+<li><b>^ticket(660), the garden, in three releases</b>, from Matthew's ask of 10-30:
+<ul>
+<li>0.0.471 (<code>f8008e22</code>, live 11:10): a 🌻 garden place (a fence and rose arbor, a shed, a rain barrel, an apple tree, a bench, a wheelbarrow, bees, up to 6 beds of soil) and a 💧 spring (a pool with land all round, reeds, lily pads, up to 3 frogs, wadeable).</li>
+<li>0.0.472 (<code>d5b67117</code>, live 14:59 on "push 0.0.472"): 🌷 flower beds of 8 Colorado wildflowers (columbine, paintbrush, penstemon, blanket flower, sunflower, silvery lupine, prairie coneflower, wild blue flax) and 🥕 vegetable patches of 8 (tomatoes, corn, carrots, pumpkins, lettuce, peas, bell peppers, broccoli). 🌱 how grown draws each in four stages. Speed run 41354755259 ok.</li>
+<li>0.0.473 (<code>db7d3596</code>, built in the second session from 18:30 to 18:49, live 19:04 on "Push it"): the 💧 watering can lies on the tree room's floor. It fills for 6 pours at any water within reach: the spring, a lake, the moat, a stream, the sea, a well, a barrel, a trough or a fountain. Each pour puts one 💧 into a plant's 3-💧 meter. A plant drinks a 💧 every 15 s, also while you are away, and grows a stage per 💧. New plants start as sprouts, and none wilt.</li>
+<li>Its checks, garden660, plants660 and can660, were each run in the pane before release. The ticket closed at 20:33, after the last speed run.</li>
+</ul></li>
+<li><b>^ticket(661), ^du_report(24).</b> At about 11:05, while Matthew and M tried the garden, he asked for "a new du_report in the style of du_report 23". The report was written in its own worktree while the plants went on in the other session.
+<ul>
+<li>11:32: the draft, with 20 pictures taken on GitHub (run 41336613420).</li>
+<li>14:41: published as work in progress, on "publish as a WIP draft" (main <code>491e871c</code>, site <code>2716832</code>).</li>
+<li>17:50: chapter 9, PLANT A GARDEN, on "Add the chapter" (<code>d46a39e6</code>).</li>
+<li>19:25: chapter 10, THE WATERING CAN, in place of COMING SOON (<code>c2bf024d</code>).</li>
+<li>After each release, every picture was taken again.</li>
+</ul></li>
+<li>Found while drawing the plants: a thing's <code>seeded(seed)</code> takes one number, where a scene's <code>c.R</code> takes two. <code>seeded2</code> was added.</li>
+</ul>
+
+<h2>Waiting on Matthew</h2>
+<ul>
+<li>From merge day, still open: approve #2756 (Cyrus's advisory performance report) and #2626 (disconcision's faster editing commands), then post the end-of-day Slack message (^ticket(654)). The message asks Cyrus about the landing order for #2635 (^ticket(642)).</li>
+</ul>
+
+<h2>Next</h2>
+<ul>
+<li>The can's tie where two beds meet.</li>
+<li>The garden's and the spring's object pictures, with the next objects run.</li>
+<li>Hazel: the merge-day threads on ^ticket(655).</li>
+</ul>
+</main>
+</body>
+</html>

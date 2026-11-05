@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 2026-11-03</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-11-03, the deck mended, two slides sent in pieces, hazeljs 0.0.4, and undo in Dress Up's scripts</h1>
+<p class="sub">A backfill: written by Claude on 2026-11-05, at Matthew's request, from the dashboard's tickets and the repositories' commits, not at the time. It covers 07:10 to 15:04 MST. The laptop crashed once, at 09:04 (crash 48: a node test run 20 s after a dune build, with a cherry-pick in a third worktree); the unpushed cherry-pick was redone.</p>
+
+<h2>Where things are</h2>
+<ul>
+<li><b>#2635</b> (livelits × modular editors) is at <code>c079fa2e24</code> and green: CI 41706598270 (Fast checks, Static checks, Full tests) and the Firefox deck, run by hand, 41706657345. Pushed today: the undo fix <code>9df1b2601e</code> and the deck's reset fix <code>243874eecd</code> (09:23), then the signature-ids fix <code>c079fa2e24</code> (12:48).</li>
+<li><b>#2793</b> (fewer trampoline bounces, to dev) is open and ready for review, CI green (41676923879).</li>
+<li><b>hazeljs 0.0.4</b> is npm's latest (14:49); its source is <a href="https://github.com/hazelgrove/hazeljs">github.com/hazelgrove/hazeljs</a>, main at <code>645327c</code>. Dress Up still pins 0.0.1.</li>
+<li><b>Dress Up 0.0.478 is live</b> (kids-choice-games <code>26779199</code>); all four of today's releases, 0.0.475 to 0.0.478, have ok speed runs.</li>
+<li><b>#2719</b> (<code>js-library-embed</code>, at <code>1ba138ef28</code>) and <code>embed-editable</code> (at <code>8e0dcac982</code>) deploy to build.hazel.org again. embed-editable has no PR yet.</li>
+<li><b>Reports</b>: ^report(38) and ^report(39) are published as work in progress. Local only: ^report(38)'s two newest sections (how the compaction works, <code>c9e9829</code>; what an entry costs as the program grows, <code>68f34db</code>) and the draft ^report(40) (<code>ac03ea5</code>). Port 8131, which serves the drafts, stays off (Matthew, 09:20).</li>
+<li><b>Pushed trial branches</b>: hazel <code>deck/663-merge-only</code>, <code>deck/663-fresh-fix</code>, <code>trial/665-realize-not-edit</code>, <code>trial/665-space</code>, <code>trial/666-before</code>, <code>trial/666-sharing</code>, <code>trial/666-sig-ids</code>; kids-choice-games <code>diag-682</code> (not for merging).</li>
+</ul>
+
+<h2>Done</h2>
+<ul>
+<li><b>^ticket(663), closed</b> (11:31). Yesterday's deck run on <code>1d17541aaf</code> built, then failed 3 of 12 eye cases. Cause: dev's <code>c206b02c25</code> names the browser's database after the git branch (<code>hazel:&lt;branch&gt;</code>), and the deck's reset (<code>dev_serve.py</code>'s <code>/fresh</code>) cleared only <code>hazel</code>, so each case met the previous case's edits. Two controls agreed: a rerun failed a different set (8 of 12), and the merge alone failed the same three. Fix <code>8ee77cecbe</code>: 12 of 12 (run 41656799833). On #2635 at 09:23 on Matthew's yes, redone as <code>243874eecd</code> after the crash.</li>
+<li><b>^ticket(665), undo</b>. The outline (the modular editors' sidebar) is rebuilt by every undo, and, with the sidebar shown, by every edit (probes <code>58dae0b427</code>, <code>5544ca12a3</code>). And a restore ran the whole syntax pass twice: the frame <code>History.restore</code> schedules (RealizeView) returned with <code>is_edit</code> true. Fix <code>ed4d484671</code> (for #2635, <code>9df1b2601e</code>): at 3,200 definitions an undo 141 to 84.5 ms (-40%), a redo 96 to 41 (-57%). On #2635 at 09:23, after Full tests passed (41660069728). Space, measured on GitHub (probe <code>7b2ba7a5e9</code>, run 41695584813): an undo entry as #2635 keeps it adds about 0.01 MB or less at any size; kept whole, 0.55 to 6.9 MB, about 1.1 KB a definition.</li>
+<li><b>^report(38), Undo, in Time and Space, and ^report(39), Hazlets, So Far</b>, from Matthew's asks at 07:16 and 07:18; published as work in progress at 07:39 on his word (homepage <code>e5570d2</code>). ^report(38) was corrected at 07:52 (its first version spread the outline evenly over undos and redos) and republished at 08:58 with the double syntax pass and the sidebar's cost (homepage <code>ffa2fad</code>).</li>
+<li><b>^ticket(667), half the steps</b>: two of our own October commits, on #2597's line and so on #2635 but not on dev. <code>d0c56fb090</code> (binding a value already done calls its continuation directly) changes only the count (allocation -4%, time in the noise); reverting it took #2635's 96,438 back to 152,746. <code>602498d7aa</code> (binds that only pass a value through are skipped) saves real time. On Matthew's yes, both went to dev as <b>#2793</b>, Fewer trampoline bounces (<code>afc45ee279</code>, <code>8270e96df1</code>): on dev they give exactly #2635's 96,438, so they are the whole halving, and PerfBudgets' budgets were lowered to 106,000 and 300 (<code>ba17c53036</code>). Opened at 10:10, CI green.</li>
+<li><b>^ticket(666), sharing across the worker boundary</b>, probed in node and then on GitHub. The app posts a program in pieces, one a definition, but Full Body and Kids' Choice went as one whole piece on every request, about 200 ms to encode: EvalSplit's last check found more keys in the pieces than in the statics. The extra keys were a sum type's constructors inside each livelit definition: <code>ModuleHelpers.modlet_pat</code> ascribed every member with the Livelit signature's own term, ids and all. Fix: <code>rekey_typ</code> gives the copy ids derived from the old ones (<code>fba61386c9</code>, <code>fdcb59e42a</code>), with a test that fails without it (<code>24396f10aa</code>, run 41689382519). After (run 41691635742): Full Body's same program again cuts nothing, 1.8 ms (it was 197 to 207); an edit cuts 3 pieces in 35 ms and posts 305 KB plain (was 1.95 MB), 12 KB shared. On #2635 at 12:48. What is left: the worker composes the program from its pieces on every request, 47 ms for Full Body even unchanged.</li>
+<li><b>hazeljs</b> (^ticket(668) to ^ticket(674)). Its source went to <code>hazelgrove/hazeljs</code> (public, on Matthew's word), with examples and an install check on Node 18, 20 and 22 and a plain page in headless Firefox (^ticket(672), run 41669572023). Matthew deprecated the placeholder (09:13), published 0.0.2 (09:43, its repository field fixed) and 0.0.4 (14:49). A Verify workflow rebuilt #2719 from a fresh clone and matched the package's <code>hazel-lib.js</code> byte for byte but the build line (run 41682118643). Why <code>ms</code> read 0: HazelLibCore read the clock with an inlined JS expression that js_of_ocaml took for pure and moved after the call; now a method call (<code>a260518eb9</code> on #2719, with a test). #2719's and embed-editable's deploys had failed since builds moved to build.hazel.org on 10-29 (their old <code>deploy.yml</code> used a token that is gone): fixed (<code>1ba138ef28</code>, <code>8e0dcac982</code>). 0.0.4 was built from <code>1ba138ef28</code> on GitHub by the new Build workflow (^ticket(669)).</li>
+<li><b>Dress Up</b>: 0.0.475 (<code>8c27cd56</code>), <code>?try=trap</code> opens the trap room with its Scripting tab, nothing saved (^ticket(676)); 0.0.476 (<code>52fad2db</code>) loads its Hazel from hazeljs 0.0.1 on jsDelivr (^ticket(674)). ^report(34) frames the live trap room in a new section, <a href="https://matthewhammer.org/hazel/reports/034/#try">#try</a> (republished 08:58 on Matthew's word, homepage <code>97d5462</code>). <b>^ticket(682)</b>, undo and redo on the usual keys in the Scripting tab (Matthew's ask, with each step's cost in the console): 0.0.477 (<code>5b6b2809</code>) in the text boxes; 0.0.478 (<code>26779199</code>) in the tiles too, embed-editable passing the keys to the page (<code>68142486cf</code>). On GitHub's headless Chrome an edit costs 591 ms, 580 of it Hazel analyzing and running the whole program again.</li>
+<li><b>^ticket(677)</b>: embed-editable's CI green (<code>fa67663fa0</code>, run 41696619478), the first since 10-24. Test_Embed's switch did not name the frame's three new messages (<code>99239a446e</code>), and two tests now compare the stitched program without indentation.</li>
+<li><b>New, on Matthew's asks</b>: ^ticket(681), JS values converted directly at the call boundary, and a report. ^report(40), Converting JS Values Directly, a local draft from runs interleaved on GitHub (41693524506): time -60 to -85%, allocation -75 to -85%, a held value flat (about 215x), a handle 0.024 ms a call. ^ticket(683), what a Hazel edit box gives over a JS one: from embed-editable's code, embed mode has statics and error marks on, probes and the completion arrows off, and no cursor inspector.</li>
+<li><b>Also</b>: ^report(37), the agenda, kept up to date all morning (the half-steps item, the deck, the DSL item credited to Cyrus, item 2's sharing finding). The Hazel page's Press section has Week in Hazel issue 008 (homepage <code>a8a3a7c</code>), and the site's nav lists the Hazel reports and the Dress Up reports as one entry each (<code>175b600</code>).</li>
+</ul>
+
+<h2>Waiting on Matthew</h2>
+<ul>
+<li>^ticket(677): whether #2719 folds into #2711 (Hazel as a JS library), which decides the base of embed-editable's PR.</li>
+<li>^report(40): his read before it goes out (^ticket(681)). ^report(38)'s two newest sections are not yet republished.</li>
+<li>^ticket(539): whether the lib-floor trial (CI green) becomes a PR.</li>
+<li>^ticket(664): his answers to the agenda's questions.</li>
+</ul>
+
+<h2>Next</h2>
+<ul>
+<li>^ticket(666): keep the composed program in the worker while its pieces stand (Full Body 47 ms a request, unchanged); then the real reply, with its probe samples.</li>
+<li>^ticket(683): the completion arrows on for an editable cell, and the error at the caret posted to the page; both want a browser check.</li>
+<li>^ticket(665): the O(log n) design, for the meeting. ^ticket(676): the package route for the trap room.</li>
+</ul>
+</main>
+</body>
+</html>
