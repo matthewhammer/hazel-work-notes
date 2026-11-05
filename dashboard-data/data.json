@@ -11654,7 +11654,7 @@
     "speed run"
    ],
    "source": "The speed run after 0.0.483 (ticket 687), read 2026-11-04 21:23.",
-   "progress": "21:25 11-04: minted; causes found in the three checks' code. Fixing in 0.0.485.\n21:28 11-04: RELEASED 0.0.485 (dda63240): riding, the items in 🔹 and 🔸 are put away (as for a carried pot), so the reins are back. Checked in the pane: 2 reins facing us, 1 in profile, 0 from behind, no item in a hand; the items back off the horse. monk433 and robot515 start with the slots empty: in the pane, both failed with 🫧 and 🔥 held and passed empty. items687 gains a riding test. Close when 0.0.485's speed run passes horse438, monk433 and robot515.\n21:29 11-04: 0.0.485 live checked (version.json 0.0.485; the served 18-drawing.js has the riding filter). Its speed run 41968055871 is queued behind 0.0.484's (41960839974); watching both."
+   "progress": "21:25 11-04: minted; causes found in the three checks' code. Fixing in 0.0.485.\n21:28 11-04: RELEASED 0.0.485 (dda63240): riding, the items in 🔹 and 🔸 are put away (as for a carried pot), so the reins are back. Checked in the pane: 2 reins facing us, 1 in profile, 0 from behind, no item in a hand; the items back off the horse. monk433 and robot515 start with the slots empty: in the pane, both failed with 🫧 and 🔥 held and passed empty. items687 gains a riding test. Close when 0.0.485's speed run passes horse438, monk433 and robot515.\n21:29 11-04: 0.0.485 live checked (version.json 0.0.485; the served 18-drawing.js has the riding filter). Its speed run 41968055871 is queued behind 0.0.484's (41960839974); watching both.\n22:10 11-04: 0.0.485's speed run (41968055871) was cancelled while queued, by 0.0.486's (41972211451, the workflow's concurrency): 0.0.486 carries the fix, so its run decides. Watching it."
   },
   {
    "id": 691,
@@ -11669,7 +11669,16 @@
     "feature"
    ],
    "source": "Matthew in the Code session, 2026-11-04 evening.",
-   "progress": "21:55 11-04: minted. The world is already a grid (state.world.cells, \"col,row\": kind, ways, things at x and depth), so the quilt comes from it; topDownSvg (ticket 621) draws the friend from above, for the rider. Building slice 1."
+   "progress": "21:55 11-04: minted. The world is already a grid (state.world.cells, \"col,row\": kind, ways, things at x and depth), so the quilt comes from it; topDownSvg (ticket 621) draws the friend from above, for the rider. Building slice 1.\n22:09 11-04: RELEASED 0.0.486 (138a68a3), slice 1: 🎈 and 🫧 crafts in 🎒 (🛫 fly on their tiles, or from a slot); js/25-flight.js draws the world's grid from above (FLY_LOOKS: each of the 45 places, at most 41 shapes with all 8 paths; flyThingSvg: every thing kind; the paths under landmarks, seams stitched, wild land round it); height zooms 0.95 to the whole world (10.5 squares across the default 6x7), clouds once up, things hidden high; arrows/tap/controller fly, ⬆️⬇️ and Page Up/Down climb and sink, landing enters the square (worldEnter); none off the grid; game keys rest up there. Default world: 1025 shapes, 12 squares shown low. Checked in the pane (all of flight691's page code passes); flight691 runs on GitHub. Next slices: the things and places drawn better one by one, a craft's own sounds, the scene's own things (a forest's trees) in its tile.\n22:10 11-04: 0.0.486 live checked (version.json 0.0.486; the served page has js/25-flight.js?v=0.0.486 and #fly-hud; the served part has flightStart). Speed run 41972211451 queued; it runs flight691.",
+   "log": [
+    {
+     "at": "2026-11-04T21:53-07:00",
+     "from": "matthew",
+     "chars": 760,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 692,
@@ -17714,9 +17723,9 @@
   },
   "since": "2026-08-27",
   "replies": 6075,
-  "words": 1326073,
+  "words": 1326251,
   "read_hours_est": 92.9,
-  "listen_hours_est": 138.1,
+  "listen_hours_est": 138.2,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -18007,8 +18016,8 @@
    },
    "2026-11-04": {
     "replies": 58,
-    "words": 14754,
-    "chars": 85424
+    "words": 14932,
+    "chars": 86442
    }
   }
  },
