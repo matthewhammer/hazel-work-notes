@@ -11655,11 +11655,26 @@
    ],
    "source": "The speed run after 0.0.483 (ticket 687), read 2026-11-04 21:23.",
    "progress": "21:25 11-04: minted; causes found in the three checks' code. Fixing in 0.0.485.\n21:28 11-04: RELEASED 0.0.485 (dda63240): riding, the items in 🔹 and 🔸 are put away (as for a carried pot), so the reins are back. Checked in the pane: 2 reins facing us, 1 in profile, 0 from behind, no item in a hand; the items back off the horse. monk433 and robot515 start with the slots empty: in the pane, both failed with 🫧 and 🔥 held and passed empty. items687 gains a riding test. Close when 0.0.485's speed run passes horse438, monk433 and robot515.\n21:29 11-04: 0.0.485 live checked (version.json 0.0.485; the served 18-drawing.js has the riding filter). Its speed run 41968055871 is queued behind 0.0.484's (41960839974); watching both."
+  },
+  {
+   "id": 691,
+   "area": "Dress Up: flying over the world, seen from above, its squares a quilt",
+   "text": "<b>Fly over the world, seen from above.</b> Matthew: \"flight in an air balloon, or on bubbles, or another craft. we see the current world from above; each background is a square in a quilt and we see them woven together at some scale dep on our 'height', not one at a time. In this 'top down' view for each background, we may need to reconsider each object (trees, rocks, buildings) as having a top down view too. This is a big under-taking, but conceptually simple. It seems like it will have a big pay off.\" Plan: (1) a craft is an item (🎈 a hot-air balloon, 🫧 a bubble ride): used, the friend takes off from the square they are in; (2) the world's grid drawn from above, each square a tile: its place's ground and landmarks (water, sand, a castle's walls and towers, a house's roof, a forest's canopy...), its ways as paths joining the neighbours', its things from above (a tree's crown, a rock, a chest...); (3) height zooms: low, one square fills the view; high, the whole world; the craft's shadow on the ground below; (4) the arrows, the stick or the pad move the craft, ⬆️/⬇️ climb and sink; sunk to the ground over a square, they land there in its usual view. 60 fps first: the quilt built once, only its transform moving; squares out of view hidden; things left out when high.",
+   "added": "2026-11-04T21:55-07:00",
+   "opened": "2026-11-04T21:55-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "feature"
+   ],
+   "source": "Matthew in the Code session, 2026-11-04 evening.",
+   "progress": "21:55 11-04: minted. The world is already a grid (state.world.cells, \"col,row\": kind, ways, things at x and depth), so the quilt comes from it; topDownSvg (ticket 621) draws the friend from above, for the rider. Building slice 1."
   }
  ],
- "next_ticket": 691,
- "current_ticket": 687,
- "current_note": "20:19: 0.0.484 live (every 🎒 thing an item, held in the hands); speed runs pending; ^ticket(689) tonight.",
+ "next_ticket": 692,
+ "current_ticket": 691,
+ "current_note": "Dress Up: flying over the world from above (slice 1)",
  "closed_tickets": [
   {
    "id": 686,
@@ -17685,7 +17700,7 @@
   685,
   689
  ],
- "current_since": "2026-11-04T16:32-07:00",
+ "current_since": "2026-11-04T21:55-07:00",
  "next_meeting": {
   "report": 37,
   "with": "Cyrus",
