@@ -11229,7 +11229,7 @@
     "inventory"
    ],
    "source": "Matthew, 2026-11-04 in chat: \"in-game 'inventory' screen --- it's like in Legend of Zelda, Link to the Past, when the player sees: their inventory; selects the active item (let's choose up to 2 at a time? not assume sword is always one of them). Let's have a button for toggling back and forth from this inventory screen, which covers the game with either a black background, a white background, or a dimmed background (dimming what's on screen to mostly, but not entirely, hide it).\"; then: \"please make a ticket. within this inventory system, let's have 'items' for: creating bubbles, creating fire, other things we have special buttons for ATM?\"; \"so that these special buttons become something that can be changed from within the game, like selecting an item that gives that ability\". Then: \"yeah, so going forward, we'll have use item A, use item B, and those can be tools, or abilities\". Then, asked which controller button opens it: \"Start (move 🚪 off it)\". Then: \"A and B is already in use on our game pad\"; \"two other symbols that are not letters, or numbers, or related to other game objects or events yet\" (picked 🔹 and 🔸); \"let's have the L and R hands depict the two selected items. currently, there's some old logic about watering cans being shown near the hand, even when not selected.\"; \"if the selected items are bubbles or fire, can we render a cheap animation there on the hand for a 'simmering' ability that's just waiting, and idling a bit\".",
-   "progress": "16:32 11-04: minted, current on his ask. Read the code: today's special buttons are PAD_ACTIONS bubbles, fire, tool, throw, act (26-drags-and-start.js), keys B, F, U, T, Enter; tools in TOOLS (14-outdoors.js), one held at a time (state.pack.tool) from the 🎒 Backpack tab (20-controls.js).\n16:49 11-04: RELEASED 0.0.479 (d3fb55d5, tag dress-up-0.0.479): js/25-inventory.js (ITEMS: 🫧 bubbles, 🔥 fire, 🥅 net, 🗡️ sword, 💧 can; slots state.pack.a/.b, backdrop state.pack.screen dim/black/white); PAD_ACTIONS useA/useB (triggers 6 and 7, where 🫧 and 🔥 were; 🫧 and 🔥 in them to start) and items (no button yet), replacing bubbles, fire and tool; keys Z, X, I (B, F, U kept); old saves and kept pad layouts give 🫧's and 🔥's buttons to 🅰️ and 🅱️ (itemButtons, upgradeItems). Checked in the browser pane at 1280x800 full screen and beside the panels (rAF stalled in the hidden pane: the ticks driven by hand). Checks: blow221 and fire499 updated, items687 new. Speed run pending. (Asked which controller button opens 🎒: answered, start.)\n0.0.479 LIVE (checked over HTTPS: version.json, js/25-inventory.js, the 🎒 button and its script tag). Speed run 41936662184 under way.\n17:06 11-04: RELEASED 0.0.480 (a9770613, tag dress-up-0.0.480) on his pick: start opens and shuts 🎒 your items (DEFAULTS and TOUCH_CONTROLS items 9, door -1; a taught pad's start is items'); a layout from before gives 🎒 🚪's button (itemButtons). Checked in the pane: new, 0.0.479 and older saves, a kept layout, a taught pad, and start on the on-screen controller opening and shutting the screen. items687 extended. Waiting on the live check and both speed runs (0.0.479: 41936662184).\n17:25 11-04: RELEASED 0.0.481 (bd15f709, live checked): slots marked 🔹 and 🔸 (his pick, drawn bigger); the hands hold the two items (HOLDABLES net/can/bubbles/fire slot:true, itemHeldSvg; heldWithItems: 🔹 own left hand, 🔸 own right, only where the costume leaves a hand free; not on people or the statue); 🫧 a wand with 3 SMIL bubbles rising, 🔥 a flickering flame and one ember; ticket 639's held-tool overlay removed (toolHeld = a tool in a slot; toolUse(want, use); itemFound: a found tool into an empty slot or in place of an ability, 🔸 first; the 🎒 tab's ✋ hold it is now 🔹/🔸 chips). Checks: items687 hands step, sword656 and can660 look in both hands. 0.0.480's speed run was cancelled by 0.0.481's (41941060490, pending); 0.0.479's (41936662184) still running. Asked Matthew: should the items replace what a costume holds (today a costume's props win)?",
+   "progress": "16:32 11-04: minted, current on his ask. Read the code: today's special buttons are PAD_ACTIONS bubbles, fire, tool, throw, act (26-drags-and-start.js), keys B, F, U, T, Enter; tools in TOOLS (14-outdoors.js), one held at a time (state.pack.tool) from the 🎒 Backpack tab (20-controls.js).\n16:49 11-04: RELEASED 0.0.479 (d3fb55d5, tag dress-up-0.0.479): js/25-inventory.js (ITEMS: 🫧 bubbles, 🔥 fire, 🥅 net, 🗡️ sword, 💧 can; slots state.pack.a/.b, backdrop state.pack.screen dim/black/white); PAD_ACTIONS useA/useB (triggers 6 and 7, where 🫧 and 🔥 were; 🫧 and 🔥 in them to start) and items (no button yet), replacing bubbles, fire and tool; keys Z, X, I (B, F, U kept); old saves and kept pad layouts give 🫧's and 🔥's buttons to 🅰️ and 🅱️ (itemButtons, upgradeItems). Checked in the browser pane at 1280x800 full screen and beside the panels (rAF stalled in the hidden pane: the ticks driven by hand). Checks: blow221 and fire499 updated, items687 new. Speed run pending. (Asked which controller button opens 🎒: answered, start.)\n0.0.479 LIVE (checked over HTTPS: version.json, js/25-inventory.js, the 🎒 button and its script tag). Speed run 41936662184 under way.\n17:06 11-04: RELEASED 0.0.480 (a9770613, tag dress-up-0.0.480) on his pick: start opens and shuts 🎒 your items (DEFAULTS and TOUCH_CONTROLS items 9, door -1; a taught pad's start is items'); a layout from before gives 🎒 🚪's button (itemButtons). Checked in the pane: new, 0.0.479 and older saves, a kept layout, a taught pad, and start on the on-screen controller opening and shutting the screen. items687 extended. Waiting on the live check and both speed runs (0.0.479: 41936662184).\n17:25 11-04: RELEASED 0.0.481 (bd15f709, live checked): slots marked 🔹 and 🔸 (his pick, drawn bigger); the hands hold the two items (HOLDABLES net/can/bubbles/fire slot:true, itemHeldSvg; heldWithItems: 🔹 own left hand, 🔸 own right, only where the costume leaves a hand free; not on people or the statue); 🫧 a wand with 3 SMIL bubbles rising, 🔥 a flickering flame and one ember; ticket 639's held-tool overlay removed (toolHeld = a tool in a slot; toolUse(want, use); itemFound: a found tool into an empty slot or in place of an ability, 🔸 first; the 🎒 tab's ✋ hold it is now 🔹/🔸 chips). Checks: items687 hands step, sword656 and can660 look in both hands. 0.0.480's speed run was cancelled by 0.0.481's (41941060490, pending); 0.0.479's (41936662184) still running. Asked Matthew: should the items replace what a costume holds (today a costume's props win)?\n18:59 11-04: 0.0.479's speed run broken (glow342: the 🎒 button over a placed thing): ^ticket(688), fixed in 0.0.482.",
    "log": [
     {
      "at": "2026-11-04T16:24-07:00",
@@ -11467,11 +11467,26 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 688,
+   "area": "Dress Up: 0.0.479's speed run broken: glow342, a placed thing under the 🎒 button",
+   "text": "<b>The 🎒 your items button covered a placed thing.</b> 0.0.479's speed run (https://github.com/matthewhammer/kids-choice-games/actions/runs/41936662184) recorded broken: one check failed, glow342's \"each glows under the pointer, and only it\". In its default 800 x 600 window the bubble maker's hover point is under the new 🎒 button at the picture's bottom right (right: 66px), so the maker never saw the pointer. A real fault, not the check's: a thing in that corner could not be hovered or tapped. Fix: 🎒 at the top right beside ⤢ outside full screen.",
+   "added": "2026-11-04T18:58-07:00",
+   "opened": "2026-11-04T18:58-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "speed run"
+   ],
+   "source": "The speed run after 0.0.479 (ticket 687), read 2026-11-04 evening.",
+   "progress": "18:58 11-04: minted; reproduced in the pane at 800x600 (document.elementFromPoint at the maker's point is #items-btn). Fixing in 0.0.482.\n18:59 11-04: RELEASED 0.0.482 (b8f0c042, live checked): 🎒 at the top right beside ⤢ outside full screen. Checked in the pane at 800x600: glow342's three things each under the pointer. Close when 0.0.482's speed run passes glow342."
   }
  ],
- "next_ticket": 688,
+ "next_ticket": 689,
  "current_ticket": 687,
- "current_note": "17:25: 0.0.481 live (🔹🔸, items in the hands, simmering 🫧 and 🔥); speed runs pending; asked whether items should replace a costume's props.",
+ "current_note": "18:59: 0.0.482 live (🎒 moved to the top right, ^ticket(688)); its speed run pending; asked Matthew whether items should replace a costume's props.",
  "closed_tickets": [
   {
    "id": 686,
@@ -17481,6 +17496,7 @@
   }
  ],
  "queue": [
+  688,
   677,
   666,
   665,
