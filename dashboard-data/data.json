@@ -9151,6 +9151,13 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-05T06:59-07:00",
+     "from": "matthew",
+     "chars": 5635,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ]
   },
@@ -9293,6 +9300,13 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-05T06:59-07:00",
+     "from": "matthew",
+     "chars": 5635,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ],
    "waiting": "Your answers to the agenda's questions for Wednesday's meeting with Cyrus (you said this morning you had some)."
@@ -9402,6 +9416,13 @@
      "at": "2026-11-03T09:05-07:00",
      "from": "matthew",
      "chars": 16,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-05T06:59-07:00",
+     "from": "matthew",
+     "chars": 5635,
      "asks": false,
      "note": "from the transcripts"
     }
@@ -10380,6 +10401,13 @@
      "chars": 29,
      "asks": false,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-05T06:59-07:00",
+     "from": "matthew",
+     "chars": 5635,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ],
    "url": "https://matthewhammer.org/hazel/reports/037/#worker-sharing"
@@ -10403,7 +10431,16 @@
    "source": "Found 2026-11-02 merging dev into #2635 (^ticket(663)): PerfBudgets 0 and 1 failed for being more than a quarter under budget; the budgets were lowered on #2635, as the test asks.",
    "progress": "Minted from ^ticket(663). First step: run PerfBudgets at #2635's earlier merges and at #2469's head (bisect on the step count), and compare the count on dev with the same program. 11-03 08:11: LIKELY ANSWER: a counting effect of our own d0c56fb090 (10-13, on #2635, not on dev), \"Binding a value that is already done calls its continuation directly\": Trampoline.bind(Done(x), f) is f(x), no Bind node and no trampoline step, so the same work counts fewer steps (its message says so). EVIDENCE: a test-only probe (Test_StepProbe, 16 small programs, Test_PerfBudgets.work) built on dev (~/hazel-dev-fontscroll at e8125d9933, then removed) and on #2635's code: every form takes 1.8 to 2.35 times dev's steps on #2635 (fib(10) 37,922 against 17,722, sum of 10 2,235 against 1,035, map 3,765 against 1,771), and a bare literal 1 takes 12 steps on dev and 0 on #2635. Uniform, so not one form's reduction. PerfBudgets here: dev 206,834 / 378, #2635 96,438 / 270. CONFIRMING NOW: #2635's code with bind reverted, rebuilt (dev profile), its counts should come back to dev's. Time: d0c56fb090's own measure was allocation -4% on the woods, time inside the noise; so the halved count is not a halved time. For the agenda's half-steps question: not a gain in steps to bring to dev as such, though the change itself (fewer Bind nodes) could go to dev on its own. 08:13: CONFIRMED, half of it: #2635's code with d0c56fb090 reverted (rebuilt in 36 s, the worktree restored after) counts 152,746 cold and 340 after the edit, against #2635's 96,438 / 270 and dev's 206,834 / 378; the small programs move the same way (fib(10) 17,722 -> 28,016, dev 37,922). The other quarter: by its own message 602498d7aa (10-10, \"The evaluator skips binds that only pass a value through\": bind(t, return) is t, a trampoline step saved at nearly every node; measured then -16% min / -25% median on a call-heavy program). Not verified by a revert: it conflicts with later commits. Both are ours, on #2597's line and so on #2635, not on dev. ANSWER for the agenda: the halved count is fewer trampoline bounces for the same reductions; part of it is real time (602498d7aa), part only counting (d0c56fb090: allocation -4%, time in the noise). Both could go to dev as a small PR of their own. 11-03 08:57: Matthew answered, in chat: yes: open the small dev PR with d0c56fb090 and 602498d7aa. 11-03 09:15: the dev PR in progress: branch perf/fewer-trampoline-bounces off dev (0d871db844): afc45ee279 (d0c56fb090, cherry-picked) and 8270e96df1 (602498d7aa, ported onto dev's Evaluator: dev's two stages differ, so its two ideas were applied to dev's versions; both checked equivalent by reading). Pushed; CI run 41671700946 on GitHub (no local test run, after crash 48). The PR opens when it is green. 11-03 09:42: CI run 41671700946 failed only PerfBudgets, by doing better than its budgets: on dev with the two commits the cold run is 96,438 steps (exactly #2635's count, so these two commits are the whole halving) and the re-run after an edit 270, both more than a quarter under budget, which the test calls stale. ba17c53036 lowers them (106,000 and 300, about a tenth over, as the first ones were); CI again: run 41676923879. The PR opens when it is green. 11-03 10:10: CI green with the lowered budgets (run 41676923879: Fast checks, Static checks, Full tests). OPENED on Matthew's 08:57 yes: https://github.com/hazelgrove/hazel/pull/2793 (Fewer trampoline bounces: half the evaluator's steps on the PerfBudgets program), base dev, ready for review, 4 checks green.\n02:27 11-05: #2793 has a review (Negabinary, 11-03 14:47 MST, COMMENTED): \"4% memory improvement, 15% speed improvement, slight readability loss bc we've got more special-casing going on. Tradeoff make me ambivalent as to whether this goes in.\" CI green, mergeable, REVIEW_REQUIRED. Into the agenda (^report(37) item 3) as the meeting's question: whole, only the speed commit (602498d7aa), or closed. No reply posted (Matthew's call).",
    "waiting": null,
-   "url": "https://github.com/hazelgrove/hazel/pull/2793"
+   "url": "https://github.com/hazelgrove/hazel/pull/2793",
+   "log": [
+    {
+     "at": "2026-11-05T06:59-07:00",
+     "from": "matthew",
+     "chars": 5635,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   },
   {
    "id": 668,
@@ -10486,6 +10523,13 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-05T06:59-07:00",
+     "from": "matthew",
+     "chars": 5635,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ]
   },
@@ -10546,6 +10590,13 @@
      "chars": 281,
      "asks": false,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-05T06:59-07:00",
+     "from": "matthew",
+     "chars": 5635,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ]
   },
@@ -10567,7 +10618,15 @@
    ],
    "source": "Matthew, 2026-11-02, in chat: \"Once we publish hazeljs and mudu as npm packages, can we use those here? So the reader can: * see the trap room and * edit the hazel script, with tiles, etc? https://matthewhammer.org/hazel/reports/034/\"",
    "progress": "08:20: FIRST VERSION, local: ^report(34) has a new section, #try, \"Try it: the trap room, on this page\": an iframe of the live game at ?try=trap (Dress Up 0.0.475+, its Hazel from hazeljs since 0.0.476); a reader pulls a lever or edits TrapRoom's rule in the Scripting tab, and nothing is saved (scripts live in the game's state, which a ?try= visit never persists). Checked in the app's browser pane: the frame loads the trap room, 735x638. Committed in ~/hazel-perf-report (fcddc31), NOT republished: waits on Matthew. Next versions: the tiles and the room side by side, wired through hazeljs (^ticket(677), ^ticket(678)). 11-03 08:57: Matthew answered, in chat: yes: republish ^report(34) with the live trap room. 08:58: REPUBLISHED on Matthew's word: ^report(34) with #try, the trap room live on the page (homepage 97d5462): https://matthewhammer.org/hazel/reports/034/#try . The ticket stays open for its next versions (^ticket(677), ^ticket(678)).",
-   "log": [],
+   "log": [
+    {
+     "at": "2026-11-05T06:59-07:00",
+     "from": "matthew",
+     "chars": 5635,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ],
    "waiting": null
   },
   {
@@ -10588,7 +10647,15 @@
    ],
    "source": "Matthew, 2026-11-02, in chat: \"Once we publish hazeljs and mudu as npm packages, can we use those here? So the reader can: * see the trap room and * edit the hazel script, with tiles, etc? https://matthewhammer.org/hazel/reports/034/\"",
    "progress": "08:17: FIRST STEP RELEASED, Dress Up 0.0.475 (8c27cd56, tag dress-up-0.0.475; main pushed before the tag): ?try=trap opens the game in the trap room of N's castle (whichever of its rooms is the trap room; room 3 by default) with the 📜 Scripting tab open, a test note, nothing saved (TRY's persist guard); with &logic=hazel every room runs its Hazel rule. Checked: check_script and check_load before and after the rebase; in the app's browser pane on 8133: castleroom, N, room 3, the scripting panel, logic hazel, no console errors. The link for a report: https://matthewhammer.org/kids-choice-games/dress-up/?try=trap&logic=hazel . Left: the speed run's result (the tag's workflow), and the package route (messed-up-dress-up on npm, the room pulled out of the game's global state), the larger step. 11-03 11:19: the speed run for 0.0.476 passed (run 41662562115). Left: the package route (messed-up-dress-up on npm, the room pulled out of the game's global state), the larger step.",
-   "log": []
+   "log": [
+    {
+     "at": "2026-11-05T06:59-07:00",
+     "from": "matthew",
+     "chars": 5635,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   },
   {
    "id": 677,
@@ -11131,6 +11198,13 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-05T06:59-07:00",
+     "from": "matthew",
+     "chars": 5635,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ],
    "waiting": "Your call on folding #2719 into #2711 (one PR for hazeljs), which decides the base of embed-editable's PR."
@@ -11176,6 +11250,13 @@
      "at": "2026-11-03T09:22-07:00",
      "from": "matthew",
      "chars": 268,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-05T06:59-07:00",
+     "from": "matthew",
+     "chars": 5635,
      "asks": false,
      "note": "from the transcripts"
     }
@@ -11575,6 +11656,13 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-05T06:59-07:00",
+     "from": "matthew",
+     "chars": 5635,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ]
   },
@@ -11599,6 +11687,13 @@
      "at": "2026-11-04T12:16-07:00",
      "from": "matthew",
      "chars": 164,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-05T06:59-07:00",
+     "from": "matthew",
+     "chars": 5635,
      "asks": false,
      "note": "from the transcripts"
     }
