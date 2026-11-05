@@ -1,5 +1,43 @@
 [
  {
+  "id": 689,
+  "area": "Dress Up archives: a new run of dress-up-pictures (and dress-up-music) at the newest version, tonight",
+  "text": "<b>Tonight: archive the new Dress Up.</b> The pictures archive (github.com/matthewhammer/dress-up-pictures) last ran 2026-10-25 (run-2026-10-25-13-08, 0.0.439); since then 0.0.440 to 0.0.483 (🎒 your items, the items in the hands, the costumes' things, the castles, the scripting tabs...). Make one run at the newest version: a branch archive-NNN off main, as archive-609 (its workflow dress-up-archive.yml; all checks and the test/speed workflows removed), about 50 minutes on GitHub; then, as there is no ARCHIVE_TOKEN secret yet (^ticket(276)), download the artifacts and add the run with each archive's tools/add_run.sh. Check the viewers (matthewhammer.org/hazel/dress-up/pictures.html, music.html) show the new run, and see that the new things (the hands, the inventory screen) are in the pictures; mint tickets for what the archive does not cover yet.",
+  "added": "2026-11-04T20:15-07:00",
+  "opened": "2026-11-04T20:15-07:00",
+  "status": "done",
+  "tags": [
+   "long run",
+   "tonight (2026-11-04)"
+  ],
+  "chips": [
+   "dress up",
+   "archives"
+  ],
+  "source": "Matthew, 2026-11-04 evening, in chat: \"let's plan to update the dress-up-pictures repo tonight. it seems like there's a lot of new stuff to capture there and archive.\"",
+  "progress": "20:15 11-04: minted, a 🌙 long run for tonight. The last runs: pictures run-2026-10-25-13-08 (0.0.439); the newest archive branch origin/archive-609; no ARCHIVE_TOKEN secret on kids-choice-games (gh secret list empty), so the laptop adds the run (add_run.sh).\n00:31 11-05: Matthew went to the Hazel tickets, then AFK (~6 h); tonight's Dress Up features are done (0.0.490), so the archive run started: branch archive-689 (off main, its own workflow only, as archive-609), run 41987799077 on GitHub. Next: download its pictures and music, add each run with its archive's tools/add_run.sh, check the viewers.\n00:35 11-05: run 41987799077 stopped after 20 of 1454 pictures: dress-up-pictures' tools/archive.mjs reset the friend as tools/sweep.mjs did (ticket 692), its 🎒 backpack's entries deleted one by one, leaving holes the items read as undefined. Fixed in dress-up-pictures (cd484b6, all three resets); rerun 41988208703 (workflow_dispatch on archive-689).",
+  "log": [
+   {
+    "at": "2026-11-04T20:15-07:00",
+    "from": "matthew",
+    "chars": 128,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-05",
+  "closed_at": "2026-11-05T00:43-07:00",
+  "outcome": "Archived: dress-up-pictures run-2026-11-05 (252aac00), Messed Up Dress Up 0.0.490, from archive-689's run 41988208703 on GitHub: 1,022 distinct drawings (59 new, 909 changed since run-2026-10-25-13-08 at 0.0.439), 0 page errors, 14.5 MB in git; runs.json lists it first, which matthewhammer.org/hazel/dress-up/pictures.html reads. On the way, dress-up-pictures' tools/archive.mjs had the backpack-holes reset (cd484b6). The music archive was not rerun: this workflow makes pictures only, and no tune changed tonight.",
+  "metrics": {
+   "open_minutes": 268,
+   "matthew_messages": 1,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 128,
+   "tokens_est": 32,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 688,
   "area": "Dress Up: 0.0.479's speed run broken: glow342, a placed thing under the 🎒 button",
   "text": "<b>The 🎒 your items button covered a placed thing.</b> 0.0.479's speed run (https://github.com/matthewhammer/kids-choice-games/actions/runs/41936662184) recorded broken: one check failed, glow342's \"each glows under the pointer, and only it\". In its default 800 x 600 window the bubble maker's hover point is under the new 🎒 button at the picture's bottom right (right: 66px), so the maker never saw the pointer. A real fault, not the check's: a thing in that corner could not be hovered or tapped. Fix: 🎒 at the top right beside ⤢ outside full screen.",
