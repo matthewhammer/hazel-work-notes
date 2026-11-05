@@ -10311,7 +10311,7 @@
   {
    "id": 667,
    "area": "hazel, performance: why #2635's evaluator takes half dev's steps on the PerfBudgets program",
-   "text": "<b>Half the steps.</b> Dev's new PerfBudgets test (#2678, Cyrus) counts the evaluator's trampoline steps on a fixed program: 206,834 on dev (10-12), budget 227,000. On #2635 after ^ticket(663)'s merge it is 96,438, and the edit re-run 270 against dev's 378. Find which change does it: #2469's evaluator work, ours (evaluate_open, the ascription hash, the spine memo), or a difference in what is counted (a fast path that does not go through the counted trampoline). If it is real, it is an improvement to take to dev; if it is the counter, PerfBudgets should count it.",
+   "text": "<b>Half the steps.</b> Dev's new PerfBudgets test (#2678: Matthew's, with two commits of Cyrus's, who merged it) counts the evaluator's trampoline steps on a fixed program: 206,834 on dev (10-12), budget 227,000. On #2635 after ^ticket(663)'s merge it is 96,438, and the edit re-run 270 against dev's 378. Find which change does it: #2469's evaluator work, ours (evaluate_open, the ascription hash, the spine memo), or a difference in what is counted (a fast path that does not go through the counted trampoline). If it is real, it is an improvement to take to dev; if it is the counter, PerfBudgets should count it.",
    "added": "2026-11-02T07:32-07:00",
    "opened": "2026-11-02T07:32-07:00",
    "status": "open",
@@ -12562,7 +12562,7 @@
    "source": "Claude, AFK protocol (2026-10-26)",
    "status": "done",
    "closed": "2026-10-26",
-   "outcome": "0.0.460 released: backpack kept through Load and reload (real bug), 4 checks and 2 tools brought up to date; speed run for 0.0.460 ok, first green since 0.0.442"
+   "outcome": "0.0.460 released: backpack kept through Load and reload (real bug), 4 checks and 2 tools brought up to date; speed run for 0.0.460 ok, first ok since 0.0.432"
   },
   {
    "id": 636,
