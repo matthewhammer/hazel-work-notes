@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 2026-11-05</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-11-04 evening to 2026-11-05 night, Dress Up flies, and Hazel's undo finds the worker's program</h1>
+<p class="sub">Claude, one session with Matthew from the afternoon of 11-04 (after an access-disabled stop at 12:19) to about 00:35 on 11-05, then working the queue while he was away (about six hours, his word), up to 03:10 MST. No work notes were written from 10-25 to 11-04; this one covers only this session.</p>
+
+<h2>Where things are</h2>
+<ul>
+<li><b>Dress Up 0.0.490 is live</b> (kids-choice-games <code>8dd9db78</code>, tag <code>dress-up-0.0.490</code>); main is at <code>aa64b374</code>, a check fix since (no release). Its speed run (41987674939) failed only scripting482, now fixed in the check (^ticket(693)); the next release's run should pass everything.</li>
+<li><b>The pictures archive</b> has run-2026-11-05 (0.0.490, 1,022 drawings; dress-up-pictures <code>252aac00</code>), after a fix to its own <code>tools/archive.mjs</code> (<code>cd484b6</code>).</li>
+<li><b>^du_report(25), The World From Above</b>, is published as work in progress (kids-choice-games <code>78022995</code>): 105 pictures from diag-692.</li>
+<li><b>Hazel, ^ticket(666)</b>, in <code>~/hazel-666-compose</code>: <code>trial/666-compose</code> (the worker keeps what it composed), <code>trial/666-undo-diff</code> (the two id fixes, with probes), <code>trial/666-ids</code> (the clean branch for #2635: the memo and the fixes; its CI, 42002615041, was running at 03:10). Nothing is on #2635.</li>
+<li><b>Pushed branches left for a tidy</b>: kids-choice-games <code>diag-692</code>, <code>diag-693</code>, <code>diag-693b</code> to <code>diag-693h</code>, <code>archive-689</code>; their worktrees are in the session's scratchpad, which goes with the session.</li>
+<li><b>^report(37)</b>, the agenda for 10:00 today, republished three times tonight: items 2 and 3.</li>
+</ul>
+
+<h2>Done</h2>
+<ul>
+<li><b>^ticket(687), 🎒 your items</b>: every backpack thing holdable (0.0.484). <b>^ticket(690)</b>: riding, the 🫧 and 🔥 made the friend drop the reins (0.0.485); <b>^ticket(693)</b>: and then a knight its sword (0.0.490). Tickets 688, 689 and 690 closed.</li>
+<li><b>^ticket(691), flying over the world from above</b> (Matthew's ask; M's wish before): 🎈 and 🫧 crafts, the world's grid as a quilt, height as zoom, landing, 60 frames a second low and high on GitHub's computer. 0.0.486 to 0.0.489: the castle's moat and towers, the tree house's houses, then every place redrawn from a survey of its scene, and the 🎒 tile's buttons.</li>
+<li><b>^ticket(692), ^du_report(25)</b>: every place from the side and from above, placed things, the cost. On the way, <code>tools/sweep.mjs</code> and the archive's <code>archive.mjs</code> reset the backpack entry by entry, leaving holes once a costume had put its props in: fixed in both.</li>
+<li><b>^ticket(693), the Hazel frame check</b>: since 0.0.486 its tiles never came, intermittently (bisected over 11 runs). Cause, by a diagnostic run: the module boxes above the frame grow after the check scrolls it into view, push it below the fold, and Chrome gives a cross-origin frame no animation frames there. The check now keeps it in view (passed twice).</li>
+<li><b>^ticket(666), Hazel</b>: why an undo missed the worker's memo. Two causes found and fixed on trial branches: DefStatics minted each item's holes fresh (<code>Exp.fresh(EmptyHole)</code>), and a livelit use's expansion was built with fresh ids on every analysis. Now Full Body's undo and redo take 0.7 and 0.6 ms in the worker (40 to 55 before). On the livelit slides one piece still changes: a livelit definition's run-time value, re-id'd by the evaluator as it pushes ascriptions (<code>dynamics/transition/Ascriptions.re</code>).</li>
+<li><b>^ticket(667)</b>: #2793's review (Negabinary, ambivalent) put into the agenda as the meeting's question.</li>
+</ul>
+
+<h2>Waiting on Matthew</h2>
+<ul>
+<li>^ticket(666): push <code>trial/666-ids</code>'s two commits to #2635 (once its CI is green); and the design question in ^report(37) item 2 (keep a livelit definition's run by its source, recommended).</li>
+<li>^ticket(667): #2793, take whole, only the speed commit, or close.</li>
+<li>Dress Up: whether the 🫧 bubble craft gets a symbol of its own; ^du_report(25) read, to take off its work-in-progress mark.</li>
+<li>The work notes' gap, 10-25 to 11-04: backfill from the tickets, or leave it.</li>
+</ul>
+
+<h2>Next</h2>
+<ul>
+<li>The meeting with Cyrus at 10:00 (^report(37)).</li>
+<li>^ticket(666): the livelit definitions' last piece, on the meeting's answer.</li>
+<li>Dress Up: the 16 kinds still a plain dot from above; insides off the grid (^ticket(691)).</li>
+</ul>
+</main>
+</body>
+</html>
