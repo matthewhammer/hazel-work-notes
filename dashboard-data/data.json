@@ -12700,6 +12700,18 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T11:09-07:00",
+     "from": "claude",
+     "chars": 355,
+     "asks": false,
+     "words": 58,
+     "read_s": 15,
+     "listen_s": 22,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ],
    "waiting": "Matthew's read of ^report(43)"
@@ -12801,7 +12813,47 @@
    ],
    "source": "Matthew, 2026-11-06 ~11:30, in chat: \"let's enqueue tickets for these limitations of hazeljs, and try to address them before we share this report 43\" (quoting ^report(43)'s Limits today: \"No editor in the package. It analyzes and runs text. Hazel's own tile editor in a frame, as the game uses it, comes from a branch build of Hazel.\")",
    "text": "<b>An editor in hazeljs.</b> Today the package analyzes and runs text; Hazel's own tile editor, as Messed Up Dress Up and ^report(43) use it, is Hazel's app in a frame from a branch build (build.hazel.org/embed-editable, 12 commits on #2719's branch, no PR), which a page must find and frame itself. And the frame takes messages only from an allowlist of origins (matthewhammer.org, localhost: site_origins in src/web/embed/EmbedProtocol.re), so no other site can use it. The options: (1) the embed build published with the package (its files on npm, so a page frames it from jsDelivr, at the package's version, matched to hazel-lib.js), with an API that makes and wires a frame (<code>Hazel.editor(element, {program, module, editable, onEdit})</code>) over the protocol; (2) an editor mounted in the page itself, no frame (<code>Hazel.mountEditor</code>, the embed doc's 'later'); and in either, the origin policy decided (any origin for a frame that only shows and posts back the program's own text?). Also: go to definition starts only in an editable cell today (CodeSelectable has no ctrl-click or F12), so read-only listings cannot start one.",
-   "progress": "11:10 11-06: minted on Matthew's word, to address before ^report(43) is shared (^ticket(700))."
+   "progress": "11:10 11-06: minted on Matthew's word, to address before ^report(43) is shared (^ticket(700)).",
+   "log": [
+    {
+     "at": "2026-11-06T11:10-07:00",
+     "from": "matthew",
+     "chars": 327,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T11:10-07:00",
+     "from": "claude",
+     "chars": 24,
+     "asks": false,
+     "words": 4,
+     "read_s": 1,
+     "listen_s": 2,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T11:11-07:00",
+     "from": "claude",
+     "chars": 283,
+     "asks": false,
+     "words": 52,
+     "read_s": 13,
+     "listen_s": 20,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T11:12-07:00",
+     "from": "matthew",
+     "chars": 53,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   },
   {
    "id": 702,
@@ -12820,10 +12872,66 @@
    ],
    "source": "Matthew, 2026-11-06 ~11:30, in chat: \"let's enqueue tickets for these limitations of hazeljs, and try to address them before we share this report 43\" (quoting ^report(43)'s Limits today: \"No undo, and no history, in the library: the app keeps its own.\")",
    "text": "<b>Undo and history in hazeljs's editor.</b> Today the library keeps no history: the embed frame posts {type: \"history\", redo} for Ctrl+Z and Ctrl+Shift+Z or Ctrl+Y (68142486cf, ^ticket(682)) and each page keeps its own undo stack per module and sets the text back (the game does; ^report(43)'s live.js does too, unchecked in the test browser). Options: the editor keeps its own undo and redo (Hazel's app already has History.re, with the compaction of ^report(38)), so a page gets it for free, with a message to clear or read it; or a small history helper in the package for pages that keep their own. Check it in a real browser on GitHub's machines, since the local test browser did not deliver Ctrl+Z to the frame.",
-   "progress": "11:10 11-06: minted on Matthew's word, to address before ^report(43) is shared (^ticket(700))."
+   "progress": "11:10 11-06: minted on Matthew's word, to address before ^report(43) is shared (^ticket(700)).",
+   "log": [
+    {
+     "at": "2026-11-06T11:10-07:00",
+     "from": "matthew",
+     "chars": 327,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T11:10-07:00",
+     "from": "claude",
+     "chars": 24,
+     "asks": false,
+     "words": 4,
+     "read_s": 1,
+     "listen_s": 2,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T11:11-07:00",
+     "from": "claude",
+     "chars": 283,
+     "asks": false,
+     "words": 52,
+     "read_s": 13,
+     "listen_s": 20,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T11:12-07:00",
+     "from": "matthew",
+     "chars": 53,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
+  },
+  {
+   "id": 703,
+   "area": "hazel, hazeljs: a JS object's keys in another order than the labeled tuple's fields gets stuck when a field is a list",
+   "added": "2026-11-06T11:24-07:00",
+   "opened": "2026-11-06T11:24-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazeljs",
+    "bug"
+   ],
+   "source": "Found by Claude, 2026-11-06 11:24, building matthewhammer/hazeljs-petri-example (Matthew's ask, the same day): its Node example passed the net's view as {transitions, marking, draw} and every answer came back {hazel: ...}.",
+   "text": "<b>Bug in hazeljs 0.0.4 (#2719's library): key order matters for a labeled tuple with a list field.</b> <code>Hazel.run(\"fun (p : (x = Int, y = [Int])) -> p.x\").value</code> gives 5 for <code>{x: 5, y: [1]}</code> but <code>{hazel: \"...(Asc ...\"}</code> for <code>{y: [1], x: 5}</code>: stuck at the parameter's annotation. With only Int fields (<code>{y: 3, x: 10}</code>) the order does not matter. A JS object's keys have no order a JS developer thinks about, so the boundary should convert by the type's field order (or by label), not the object's. Where: the library's value conversion in (JS object to labeled tuple), and the cast it meets; check whether #2681 (no cast re-checked at run time) or ^ticket(681) (converting JS values directly) changes it. Until fixed: hazeljs-petri-example's node/petri.mjs builds its view in Net's field order and says why.",
+   "progress": "11:24 11-06: minted; repro in the text (node, hazeljs 0.0.4). Workaround in hazeljs-petri-example."
   }
  ],
- "next_ticket": 703,
+ "next_ticket": 704,
  "current_ticket": 697,
  "current_note": "^report(43) drafted and published (WIP) for ^ticket(697); waiting on Matthew's read; ^report(42) item 5 says so",
  "closed_tickets": [
@@ -18894,6 +19002,7 @@
   699,
   701,
   702,
+  703,
   700
  ],
  "current_since": "2026-11-06T09:29-07:00",
@@ -18910,9 +19019,9 @@
   },
   "since": "2026-08-27",
   "replies": 6140,
-  "words": 1335682,
+  "words": 1335884,
   "read_hours_est": 93.5,
-  "listen_hours_est": 139.1,
+  "listen_hours_est": 139.2,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -19213,8 +19322,8 @@
    },
    "2026-11-06": {
     "replies": 17,
-    "words": 2713,
-    "chars": 16205
+    "words": 2915,
+    "chars": 17322
    }
   }
  },
