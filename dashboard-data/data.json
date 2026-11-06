@@ -42,6 +42,10 @@
  ],
  "other_prs": [
   {
+   "pr": 2812,
+   "note": "README PR to dev (^ticket(696)), opened 2026-11-06: a short section linking the experimental hazeljs npm package, saying it is a 0.0.x prototype that will track dev but does not yet (built from #2711 and #2719). Branch docs/readme-hazeljs, worktree ~/hazel-696-readme. Needs a reviewer."
+  },
+  {
    "pr": 2700,
    "note": "Tests PR to dev, ready for review since 13:33 10-20, no reviewer requested (the agenda asks) (^ticket(411), from ^report(21)): incremental evaluation agrees with evaluation from scratch: the property back on for values, recursive-let templates, and the slide corpus (150 edits). Mutation-checked."
   },
@@ -12427,7 +12431,7 @@
    ],
    "source": "Matthew, 2026-11-06 ~09:10, in chat: \"I've had some time to reflect on meeting Cyrus yesterday. Let's draft an agenda for next meeting, carrying over work that continues\"; then: \"Next meeting with Cyrus should be at the \\\"usual time\\\" --- Wed, 10am Mountain time\"",
    "text": "<b>Meeting with Cyrus, Wednesday 2026-11-11 at 10:00 Mountain: the agenda.</b> ^report(42), public and kept up to date until the meeting (042/data/agenda.json; republished with tools/publish_agenda.py 42). Carries over the work that continues from 11-05 (^report(37)): (1) undo in O(log n), space and time, and why we are not there yet (^ticket(665)); (2) hazel-jit, livelit views compiled to JS, best case first (^ticket(694)), with BuckleScript and ReScript to know and compare (^ticket(698)); (3) a PR to dev linking the experimental hazeljs package (^ticket(696)); (4) a report for JS developers on how MUDU uses hazeljs (^ticket(697)).",
-   "progress": "09:14 11-06: minted; drafting ^report(42) from ^report(37)'s generator."
+   "progress": "09:14 11-06: minted; drafting ^report(42) from ^report(37)'s generator. | 09:22 11-06: ^report(42) PUBLISHED as work in progress (https://matthewhammer.org/hazel/reports/042/; homepage 28c7bfa, series 5a7b130), 5 items in two sections: 1 undo in O(log n), space and time, and why not yet (^ticket(665)); 2 hazel-jit (^ticket(694)); 3 BuckleScript, ReScript, Melange (^ticket(698)); 4 the README PR, now #2812 (^ticket(696)); 5 the report for JS developers (^ticket(697)). Republished with #2812. Dashboard's next_meeting points to it."
   },
   {
    "id": 696,
@@ -12445,7 +12449,8 @@
    ],
    "source": "Matthew, 2026-11-06 ~09:10, in chat: \"Small task to do asap -- open a PR against dev for Hazel that links to the experimental npm package, with some minimal description, and a note that the plan is for it to track `dev`, but it does not do that, quite yet.\"",
    "text": "<b>A PR to dev that links to hazeljs.</b> Hazel's README (on dev) gets a short section on the experimental npm package (npmjs.com/package/hazeljs, source hazelgrove/hazeljs): what it is, in a sentence or two, and a note that the plan is for it to track dev, but it does not yet (it is built from the draft library, #2711 and #2719). Why now: Cyrus knows people in Cambridge who simulate Petri nets with homemade JS tools; Matthew would like to see whether they could move some of their JS logic into Hazel through hazeljs.",
-   "progress": "09:14 11-06: minted; doing it this morning, after the agenda's first draft."
+   "progress": "09:14 11-06: minted; doing it this morning, after the agenda's first draft. | 09:22 11-06: OPENED #2812 (https://github.com/hazelgrove/hazel/pull/2812) against dev: branch docs/readme-hazeljs (c99572b870, from dev at 782249bbd0; worktree ~/hazel-696-readme), README only, a section 'Hazel in JavaScript: hazeljs (experimental)' after the CLI's. CI running; review required. ^report(42) item 4 says so. Left: a reviewer (the agenda asks who), then merge on Matthew's word.",
+   "waiting": "a review of #2812 (who reviews it is on ^report(42)'s list for the meeting)"
   },
   {
    "id": 697,
@@ -12488,7 +12493,7 @@
  ],
  "next_ticket": 699,
  "current_ticket": 695,
- "current_note": "09:14: drafting ^report(42), the agenda for Wed 2026-11-11 10:00 MST, from ^report(37)'s generator; next: the README PR to dev (^ticket(696))",
+ "current_note": "^report(42) published (work in progress); #2812 opened for ^ticket(696); next: ^ticket(697), the report for JS developers, on Matthew's word",
  "closed_tickets": [
   {
    "id": 693,
