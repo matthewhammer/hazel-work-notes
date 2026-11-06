@@ -1,133 +1,6 @@
 {
  "ports": [
   {
-   "pr": 2635,
-   "repo": "hazelgrove/hazel",
-   "branch": "integration/livelits-modular-editors",
-   "links": [
-    [
-     "localhost:8341 (#2635 at 547b9cfa8b: GitHub's build deployed 10-27; the head is 1d17541aaf)",
-     "http://localhost:8341/"
-    ],
-    [
-     "#2635's Scenes slide",
-     "http://localhost:8341/?slide=livelit-playground-scenes"
-    ]
-   ],
-   "branch_note": "NOT SERVED since the crash at about 09:04 on 2026-11-03 (crash 48); Matthew, 09:20: no need to restart local builds for now. (from its launch entry. ~/hazel-builds/build is up to date with hazelgrove/build, whose last commit is 10-29 17:59Z: builds moved to build.hazel.org that day, so 547b9cfa8b's (Deploy 10-27) is the newest #2635 build here. The head, 1d17541aaf (pushed 11-02 16:29), deployed to build.hazel.org, not served here yet.)",
-   "group": "cyrus"
-  },
-  {
-   "pr": 2597,
-   "repo": "hazelgrove/hazel",
-   "branch": "integration/livelits-splicerefs-full",
-   "links": [
-    [
-     "localhost:8311 (#2597 at 5aab038ff5: GitHub's build deployed 10-25; the head is c7f9249802)",
-     "http://localhost:8311/"
-    ]
-   ],
-   "branch_note": "NOT SERVED since the crash at about 09:04 on 2026-11-03 (crash 48); Matthew, 09:20: no need to restart local builds for now. (from its launch entry. ~/hazel-builds/build pulled the same morning: its newest #2597 build is 5aab038ff5's (Deploy 10-25 23:23Z). The four Deploys of 10-26 (up to the head, c7f9249802) left no commit in hazelgrove/build, so the head is not served here yet.)",
-   "group": "cyrus"
-  },
-  {
-   "name": "Γ's long types by right-click or hover (^ticket(468), to try)",
-   "repo_html": "<a href=\"https://github.com/hazelgrove/hazel/tree/trial/468-gamma-unfold\">hazelgrove/hazel, trial/468-gamma-unfold</a>",
-   "branch": "trial/468-gamma-unfold",
-   "branch_note": "NOT SERVED since 11:50 on 2026-10-24: stopped for 8131 (Matthew's call; the app runs at most five servers per worktree). Its launch entry \"#2597 + #2698 GitHub build (trial/468-gamma-unfold)\" brings it back. ^ticket(468) waits on it. (served since 10:25 on 2026-10-20: GitHub's build of 0113e420d0, #2597 plus Γ's unfold from #2698, its right-click menu, and the Colors slide's choice of how the toggle is drawn; Fast checks green. A fresh port, so the shipped Colors slide (Configuration, in the top bar's mode menu; the always / hover / right-click choice at its top) is what loads. The setting has been on both PRs since 12:51 10-20; Matthew's pick of the default is left.)",
-   "links": [],
-   "group": "cyrus",
-   "links_paused": [
-    [
-     "localhost:8312 (#2597 + Γ unfold)",
-     "http://localhost:8312/"
-    ]
-   ]
-  },
-  {
-   "name": "Hazel reports (the report's sources)",
-   "repo_html": "<a href=\"https://github.com/matthewhammer/hazel-reports\">matthewhammer/hazel-reports</a>, checked out at <code>~/hazel-perf-report</code>",
-   "branch": "main",
-   "branch_note": "Drafts no longer wait here: since 2026-11-04 (Matthew: \"by default, publish all reports that are WIP\") every report goes up as work in progress at https://matthewhammer.org/hazel/reports/ as soon as it has a first version, and each revision is republished. Local server 8131 still NOT SERVED (Matthew's 11-03 call). NOT SERVED since the crash at about 09:04 on 2026-11-03 (crash 48); Matthew, 09:20: no need to restart local builds for now. (first served 2026-10-24 in place of 8312, Matthew's call; every link here and in the open tickets checked, anchors too. Open tickets waiting on its drafts: ^ticket(398), ^ticket(408), ^ticket(533), ^ticket(570), ^ticket(571), ^ticket(572), ^ticket(573), ^ticket(588).) Its sources are 36 commits ahead of origin (drafts wait there); ^report(37), the agenda, and ^report(36) go out by the homepage. (public: a push publishes, so drafts wait. ^report(25) published as work in progress 10-22 09:44 (homepage 35951cb); its local copy is the same. ^report(18), why #2635 fails CI, is a local draft waiting on Matthew. ^report(29) republished 10-22 15:56 (homepage e9fd165) with its fixes section and the deep-answer correction; its local copy is the same); its local copy is the same; its fixes section fills in as the trial builds are measured)",
-   "group": "other",
-   "links": [
-    [
-     "localhost:8131 (the front page: every report, drafts marked)",
-     "http://localhost:8131/"
-    ],
-    [
-     "localhost:8131/037/ (^report(37), the agenda for 11-04; published 07:38 with links to 38 and 39; local and public the same)",
-     "http://localhost:8131/037/"
-    ],
-    [
-     "localhost:8131/038/ (^report(38), Undo, in Time and Space: published; local and public the same)",
-     "http://localhost:8131/038/"
-    ],
-    [
-     "localhost:8131/034/#try (^report(34): the trap room live on the page, published)",
-     "http://localhost:8131/034/#try"
-    ],
-    [
-     "localhost:8131/039/ (^report(39), Hazlets, So Far; work in progress, published 11-03)",
-     "http://localhost:8131/039/"
-    ],
-    [
-     "localhost:8131/036/ (^report(36), What an Undo Costs; work in progress, published)",
-     "http://localhost:8131/036/"
-    ],
-    [
-     "localhost:8131/032/ (^report(32) draft: Scripting, Three Ways, Timed)",
-     "http://localhost:8131/032/"
-    ],
-    [
-     "localhost:8131/031/ (^report(31), Reviews Still Open)",
-     "http://localhost:8131/031/"
-    ],
-    [
-     "localhost:8131/030/ (^report(30), Game Scripts in Hazel; its Hazel and Fumola rules, Languages of Play)",
-     "http://localhost:8131/030/"
-    ],
-    [
-     "localhost:8131/029/ (^report(29), Where the Gap Comes From; second fixes)",
-     "http://localhost:8131/029/#fixes-2"
-    ],
-    [
-     "localhost:8131/028/ (^report(28), the traps and proposed fixes)",
-     "http://localhost:8131/028/#traps"
-    ],
-    [
-     "localhost:8131/025/ (^report(25), Hazel's JS library)",
-     "http://localhost:8131/025/"
-    ]
-   ]
-  },
-  {
-   "name": "Messed Up Dress Up (the game)",
-   "repo_html": "<a href=\"https://github.com/matthewhammer/kids-choice-games\">matthewhammer/kids-choice-games</a>, folder <code>dress-up/</code>, public with its history from 2026-10-09<br>Its own Pages site deploys every push to <code>main</code>. Edit <code>~/kids-choice-games</code>: <code>~/hazel/experiments/polygons-plain/dress-up.html</code> is a symlink to it.",
-   "branch": "main",
-   "links": [
-    [
-     "localhost:8133/dress-up.html (0.0.475, main: pushed and tagged; ?try=trap&logic=hazel opens the trap room)",
-     "http://localhost:8133/dress-up.html"
-    ],
-    [
-     "localhost:8133/dress-up/?try=trap&logic=hazel (0.0.475: the trap room by link, ^ticket(676))",
-     "http://localhost:8133/dress-up/?try=trap&logic=hazel"
-    ],
-    [
-     "localhost:8133/report-024/reports/024/ (^du_report(24) draft: Night, Day and the Garden)",
-     "http://localhost:8133/report-024/reports/024/"
-    ],
-    [
-     "localhost:8133/du-reports/",
-     "http://localhost:8133/du-reports/"
-    ]
-   ],
-   "links_paused": null,
-   "branch_note": "NOT SERVED since the crash at about 09:04 on 2026-11-03 (crash 48); Matthew, 09:20: no need to restart local builds for now. (the working copy of main, ~/kids-choice-games, served again since 08:45 on 2026-11-01 after the reboot. Matthew's uncommitted ^du_report(5) edits are in the working tree, left as they are (his call, 10-29); an old autostash sits in git stash@{0}.)",
-   "group": "other"
-  },
-  {
    "name": "this dashboard",
    "repo_html": "<code>~/localhost-index</code> (data.json, update.py)",
    "branch": "local",
@@ -9177,7 +9050,7 @@
     "performance"
    ],
    "source": "Matthew, 2026-11-02 07:06, in chat: \"after we do this chore, I also want to find/create a list of specific tickets to grind on together for meeting Cyrus this Wed. * investigate the cost of undo, and potential ways to do it in O(log n) time per edit and per undo, not O(N) time, which seems to be the way it was working. * related to undo --- how much are we loosing sharing as we pass data to and from the worker thread?\"",
-   "progress": "07:09: minted; after ^ticket(663) (the #2635 dev merge). 07:22: minted ^ticket(665) (undo in O(log n)) and ^ticket(666) (sharing across the worker boundary), both tagged meeting 2026-11-04. 07:32: THE LIST (draft, for Matthew to cut or reorder), each tagged meeting 2026-11-04: (1) ^ticket(665) undo in O(log n): measure an edit and an undo against program size, then the design; (2) ^ticket(666) sharing across the worker boundary: bytes, share hit rate, identity lost on the main thread; (3) ^ticket(667) (new today) why #2635's evaluator takes half dev's steps on PerfBudgets: a gain to take to dev, or a counter that misses steps; (4) ^ticket(642) the landing order for livelits, #2469 to dev then #2635 retargeted, now that #2635 has dev's merge day; (5) ^ticket(559) and ^ticket(548), evaluator trials with green CI (the fast path for final terms; lists without an id per element): PRs to dev or not; (6) ^ticket(554) a Hazel step paying for the editor around it (^report(35)'s question for Cyrus); (7) ^ticket(18) livelit views evaluated in the worker, which ^ticket(666) bears on. 10:22: the agenda is ^report(37) (Matthew's ask: a report, work in progress, published), in three sections he named: performance (undo, ^ticket(665)), the JS library for embedded Hazel (\"Hazlet\", his word) with a demo of Dress Up's scripts, and DSL tile editors as a kind of livelit. Under Hazlet, a task for Claude: a prototype npm package, ^ticket(668) and its tasks 669 to 674. 11-03 07:15: ^report(37) republished: hazeljs 0.0.1 is on npm (11-02 11:03); #2635's Firefox deck builds now, 3 of 12 cases fail (^ticket(663)). 07:31: two drafts for the meeting, both local: ^report(38) undo in time and space (^ticket(679)), ^report(39) Hazlets (^ticket(680)); the agenda links both and says what the compaction saved, in its local copy only (http://localhost:8131/037/), until they are published. 07:39: Matthew: \"Publish all three\". ^report(38) and ^report(39) published as work in progress (homepage e5570d2), and ^report(37) republished with its links to them and the space summary (homepage 5202746). Still to come: Matthew's answers to the agenda's questions. 11-03 09:15: waiting on Matthew: his answers to the agenda's questions (he said at 07:10 he had some). | 11:59 11-04: Matthew: the meeting moved to Thursday 2026-11-05 at 10:00 Mountain. ^report(37) says so (title, sub, card, thumbnail), and its In short now sits after the items table, one sentence a section (his rule). | 12:11 11-05: THE MEETING HAPPENED (10:00, on ^report(37)). Matthew's takeaways so far: (1) ^ticket(642): livelits go into dev, settled; one PR or several is TBD. (2) ^ticket(668): hazeljs to follow dev, perhaps after #2469 lands there; not urgent. No answers recorded yet for ^ticket(666) (livelit definitions, a/b/c), ^ticket(667) (#2793) or ^ticket(665) (O(log n) undo).",
+   "progress": "07:09: minted; after ^ticket(663) (the #2635 dev merge). 07:22: minted ^ticket(665) (undo in O(log n)) and ^ticket(666) (sharing across the worker boundary), both tagged meeting 2026-11-04. 07:32: THE LIST (draft, for Matthew to cut or reorder), each tagged meeting 2026-11-04: (1) ^ticket(665) undo in O(log n): measure an edit and an undo against program size, then the design; (2) ^ticket(666) sharing across the worker boundary: bytes, share hit rate, identity lost on the main thread; (3) ^ticket(667) (new today) why #2635's evaluator takes half dev's steps on PerfBudgets: a gain to take to dev, or a counter that misses steps; (4) ^ticket(642) the landing order for livelits, #2469 to dev then #2635 retargeted, now that #2635 has dev's merge day; (5) ^ticket(559) and ^ticket(548), evaluator trials with green CI (the fast path for final terms; lists without an id per element): PRs to dev or not; (6) ^ticket(554) a Hazel step paying for the editor around it (^report(35)'s question for Cyrus); (7) ^ticket(18) livelit views evaluated in the worker, which ^ticket(666) bears on. 10:22: the agenda is ^report(37) (Matthew's ask: a report, work in progress, published), in three sections he named: performance (undo, ^ticket(665)), the JS library for embedded Hazel (\"Hazlet\", his word) with a demo of Dress Up's scripts, and DSL tile editors as a kind of livelit. Under Hazlet, a task for Claude: a prototype npm package, ^ticket(668) and its tasks 669 to 674. 11-03 07:15: ^report(37) republished: hazeljs 0.0.1 is on npm (11-02 11:03); #2635's Firefox deck builds now, 3 of 12 cases fail (^ticket(663)). 07:31: two drafts for the meeting, both local: ^report(38) undo in time and space (^ticket(679)), ^report(39) Hazlets (^ticket(680)); the agenda links both and says what the compaction saved, in its local copy only (http://localhost:8131/037/), until they are published. 07:39: Matthew: \"Publish all three\". ^report(38) and ^report(39) published as work in progress (homepage e5570d2), and ^report(37) republished with its links to them and the space summary (homepage 5202746). Still to come: Matthew's answers to the agenda's questions. 11-03 09:15: waiting on Matthew: his answers to the agenda's questions (he said at 07:10 he had some). | 11:59 11-04: Matthew: the meeting moved to Thursday 2026-11-05 at 10:00 Mountain. ^report(37) says so (title, sub, card, thumbnail), and its In short now sits after the items table, one sentence a section (his rule). | 12:11 11-05: THE MEETING HAPPENED (10:00, on ^report(37)). Matthew's takeaways so far: (1) ^ticket(642): livelits go into dev, settled; one PR or several is TBD. (2) ^ticket(668): hazeljs to follow dev, perhaps after #2469 lands there; not urgent. No answers recorded yet for ^ticket(666) (livelit definitions, a/b/c), ^ticket(667) (#2793) or ^ticket(665) (O(log n) undo). 12:24 11-05: (3) ^ticket(694): look into JIT-compiling livelits' view functions to JS, with a flag (on by default) for views only, and compare timings.",
    "log": [
     {
      "at": "2026-11-02T07:06-07:00",
@@ -9380,7 +9253,7 @@
    "opened": "2026-11-02T07:22-07:00",
    "status": "open",
    "tags": [
-    "meeting 2026-11-05"
+    "meeting 2026-11-11"
    ],
    "chips": [
     "hazel",
@@ -9388,7 +9261,7 @@
     "undo"
    ],
    "source": "Matthew, 2026-11-02 07:06, in chat (from ^ticket(664)): \"investigate the cost of undo, and potential ways to do it in O(log n) time per edit and per undo, not O(N) time, which seems to be the way it was working.\"",
-   "progress": "Minted from ^ticket(664). First step: time an edit, an undo and a redo against program size (the 2000-let bench at several sizes, and Full Body) on #2635 after ^ticket(663), counting what each one rebuilds (items analyzed, pieces measured, evaluation steps). Background: ^ticket(58) (#2597's uncapped stack, 10-14; on #2635, Andrew's compaction 6010128b7d and keep-newest 032fe3aca6). 07:42: FIRST MEASUREMENT (node, #2635 at 2cab658ef1 + probe 1d98b3aed7 on local branch probe/undo-scaling: test UndoScaling, UNDO_SIZES=...). A chain of n lets, an edit in the middle one; each step through the app's loop, then the statics refresh; evaluation off (dynamics=false). Per step, edit / undo / redo (the step, then statics): n=100 9+6 / 11+6 / 8+5 ms; n=400 18+13 / 25+12 / 18+12; n=1600 75+50 / 93+50 / 71+51; n=3200 ~200+130 / ~240+130 / ~190+130. LINEAR in n, about 0.1 ms a let at 3200; undo about 1.2x an edit; an older (compacted) undo costs the same as the latest. Each step re-parses 1-2 items, re-measures 1-2 chunks and compares 2 item heads, so the incremental caches work: the O(n) is in whole-program passes around them, not in the undo stack. Profile at n=3200 (12 steps, 4.2 s): MakeTerm.go_incr's top-level pass 31% (parse_level 11%, record_top_frame/sim 10%); DefStatics.calc 16% (calc_chain's walk over every item 11%, the edited item 7%); AutoProbePerform.program_root_id 11% (Segment.skel of the whole top level on every frame: its memo is keyed on the segment's identity, which every edit changes; then tail_id walks the let chain); Zipper.remold_regrout on insert 8%; TyDi.suggest via set_tydi_buffer 7%; Measured.of_segment's walk 4%; GC ~15%. TRAP FOUND: the test runner installs DefStaticsCheck (monolithic statics + a lexeme trace of every info's elaboration, after every calc, up to 3000 infos), which made the first numbers quadratic (n=400: 1.6 s a refresh) and then cheap past 3000 infos; the probe turns it off. NOT YET MEASURED: evaluation (the worker request, ^ticket(666)) and the view. Toward O(log n): the cheap ones first (program_root_id from the syntax's own term, O(1); TyDi's suggestions only when asked; remold only the edited item), then the structural ones: the top level as a balanced tree of items (a finger tree with per-subtree summaries: skeleton pieces, exports, dirty names) so MakeTerm's top-level pass, the skeleton and DefStatics' chain walk touch O(log n) nodes per edit. 08:54: Matthew: \"Cheap fixes first\". PROBE CORRECTED first (167247e61d): each frame's calculate now told whether it was an edit, as Main does (the undo tests' helper said yes for every frame, which redid syntax and completions on the statics refresh), and the runner's second check, NormalizeCheck (a global remold after every edit), turned off too. TRUE BASELINE, step medians of 12 (statics refresh 9-42 ms beside): n=800 edit 28 / undo 58 / redo 39 ms; 1600: 48 / 109 / 89; 3200: 92 / 208 / 173. So undo is ~2x an edit. Re-molding (8% before) was the runner's check. TWO FIXES, local branch perf/665-cheap (off #2635 + the probe): 459b029f68 program_root_id reads MakeTerm.Incr's cached top-level skeleton (c_skel) when it is this segment's (its memo was keyed on the segment, which every edit changes); d06473240f no completion suggestions after a numeral (none can start with a digit; they scanned the context and completed the segment first). AFTER: 800: 16 / 39 / 22 ms; 1600: 26 / 67 / 46; 3200: 68 / 156 / 106. 25-45% off each step; still linear. Tests: TyDi, Autoprobe, TailProbe, completion, probe groups: 828 pass; quick suite running. WHAT IS LEFT, all structural (profile at 3200 after the fixes): MakeTerm.go_incr 38% (record_top_frame/sim 17%, ItemSpans' top-level spans 10%), DefStatics 20% (step_chain 11%, calc_chain 9%), Outline rebuilt when an undo or redo realizes the view 15% (its memo of the last 4 programs misses on the restored program: the likely reason undo costs 2x), Measured's walk 6%. NOT PUSHED: where these go (#2635, and a dev PR for the TyDi one) is Matthew's call. 09:01: quick suite with both fixes: 1 failure of 6,159, MemberLivelitReprint 1 (the cwd-relative path, as on #2635 itself). Waiting on Matthew: whether to cherry-pick the two fixes (not the probe) onto #2635 and push; the numeral fix would also suit a dev PR (dev has the same TyDi code), the root-id fix is #2635/#2469-only (dev has no c_skel). 10:10: PUSHED to #2635 on Matthew's word (\"Push to #2635\"): the two fixes, cherry-picked as 394552d5d0 and bfa36a6ede (not the probe); #2635 now at bfa36a6ede. Before pushing: dune build @check and dune fmt clean, the targeted groups 828 pass. Next, his ask: ^report(36), a report with figures on what an edit, an undo and a redo cost (drafting in ~/hazel-perf-report/036/), to be published as work in progress. 10:46: ^report(36) \"What an Undo Costs\" PUBLISHED as work in progress (Matthew's ask: \"write a hazel report draft, and publish it, with graphs\"): https://matthewhammer.org/hazel/reports/036/ (homepage 451502d; series repo cc69e37, not pushed: drafts wait there). New data for it: 5 sizes (400 to 6,400), 3 runs per build, Node with a 64 MB stack (the 8 MB default segfaulted in 4 of 6 runs at 6,400). After the fixes at 6,400: edit 106 / undo 292 / redo 184 ms + statics ~78; slope 1.10 to 1.16 on log-log; an undo 2.7 to 3.0 edits, a redo 1.6 to 2.0; fixes 31-46% off at 3,200 and 6,400. This morning's runs of the same builds were 20-70% slower at every size (session spread), so compare within a session. 11-03 07:31: the outline's part separated at every size (2 profiled runs per size of d06473240f in the dev profile): 24 to 30% of each undo and redo; written up with the space story in ^report(38) (^ticket(679)). 11-03 07:54: UNDO APART FROM REDO (probe 58dae0b427, local branch probe/665-undo-vs-redo: one named sampler per kind; dev profile; 2 profiled runs per size): the outline is in the UNDOS, not spread over undos and redos. An undo rebuilds it every time; a redo finds it in the memo of the last four programs, which the undos filled, except the last redo (the program from after the edits, never outlined in the probe): that is why ^report(36)'s last redo was slow. From ^report(36)'s step times by position: outline = undo minus a redo that finds it: 7.5, 13.5, 23, 39, 116 ms at 400 to 6,400 (32 to 40% of an undo from 1,600 up; the profile reads 28 to 32%). A redo that finds its outline still costs 1.7 to 1.9 edits; the profile puts more of a redo than of an edit in rebuilding syntax (CachedSyntax.mk 1.8x). ^report(38) CORRECTED and republished (homepage 553a462, a8312d9, 09d59d1; correction note dated 07:52) and the agenda's undo item with it. 11-03 07:58: WITH THE SIDEBAR (probe 5544ca12a3, UNDO_VIEW_OUTLINE: the outline asked after each step, as the sidebar's view does; dev profile, 1 run per size): EVERY EDIT pays an outline rebuild, about as much again as the edit (3,200: 44 ms after a 51 ms edit; 6,400: 84 after 113), and then undos 1 to 3 find their outline and cost what a redo does (89 and 90 ms at 3,200). So the outline is a cost of every step that changes the program; making Outline.build incremental at the top level (Outline.level walks every top-level span) would take it off both. Written into ^report(38) locally (~/hazel-perf-report 99e3cca, ^ticket(679)); NOT republished: new material, waits on Matthew. 07:59: LEAD, not confirmed: under CachedSyntax.mk a redo costs 1.8x an edit (3,200: 534 against 296 profile ms; 6,400: 1,088 against 622), and EVERY whole-program pass below it scales the same: MakeTerm.go_incr 1.8x, record_top_frame/sim 1.8x, ItemSpans.top 1.9x, fix_spine 2x, Segment.global_missing_shards_incr 1.9x, TermMap.add_all 2x. As if the restore ran the syntax rebuild twice; the probe's own counts agree (a restore parses 2 definitions in full and measures 2 chunks, an edit 1 and 1). Reading the code: the restore's frame marks the syntax old (History.restore: Page.carry_over, then Editor.calculate with is_edited) and CachedSyntax.calculate's old branch calls mk once; where a second pass comes from is not yet found. Next: count mk calls per step (a counter in CachedSyntax.mk, a src change, so a fuller rebuild). 08:05: CONFIRMED AND FIXED (trial): a restore runs the whole syntax pass TWICE. Probe ab7dfd0188 reads PerfTimer's editor-syntax per frame: an edit is 1 frame, 1 pass (~40 ms at 3,200); an undo or redo is 2 frames, each a full pass (~40 + ~40). Cause: Workspace's RealizeView, the frame History.restore schedules, returns through Updated.return, whose is_edit defaults to true, so its calculate marks the syntax old and rebuilds it. FIX ed4d484671 (local branch trial/665-realize-not-edit, on the probe): is_edit only if realizing changed the program (opened or closed a cell). MEASURED (dev profile, 1 run each, same session): 3,200: undo 141 -> 84.5 ms (-40%), redo 96 -> 41 (-57%, now an edit's 46); 6,400: undo 263 -> 184 (-30%), redo 181.5 -> 96.5 (-47%); 1,600: undo 69 -> 50.5, redo 44.5 -> 22. A restore now parses 1 definition and measures 1 chunk, like an edit; the second frame's syntax is 0. TESTS (local, before and after, both pass): Undo 11, OpenMember 6, UndoCaches 5, UndoStatics 3, ProbePersist 5, OutlineRename 15, OutlineText 47, StackFocus 14. For #2635: 9df1b2601e = 1d17541aaf + the fix alone (refmt-formatted), pushed to trial/665-realize-not-edit for CI (run 41660069728); NOT on #2635: waits on Matthew. 08:38: CI on trial/665-realize-not-edit (run 41660069728): Fast checks and Static checks PASS (so refmt's formatting is right); Full tests running. 11-03 08:57: Matthew answered, in chat: yes: push the undo fix to #2635 once its Full tests are green. 11-03 09:15: after the laptop crash at about 09:04 (crash 48): nothing of this lost. Waiting on Full tests, run 41660069728 on GitHub, then the push to #2635 (a fast-forward from 1d17541aaf: 9df1b2601e, then the deck fix). 11-03 09:23: PUSHED to #2635 on Matthew's 08:57 yes, after Full tests passed (run 41660069728): integration/livelits-modular-editors 1d17541aaf..243874eecd, the undo fix 9df1b2601e then ^ticket(663)'s deck fix. The ticket stays open for the O(log n) design (the meeting). 11-03 11:37: started report 38's 'not yet measured' item: space against program size. Probe test/Test_UndoSpace.re on trial/665-space (#2635's head + the probe, 7b2ba7a5e9): a chain of n lets (400, 1,600, 6,400), a '1' typed again and again in the middle definition through the app's loop, the live heap after two forced collections with 0, 1, 10 and 100 entries; as the history keeps them (compacted but the newest) and with each step's whole page kept too. Run only on GitHub (workflow probe-665.yml, node --expose-gc): run 41695584813. 11-03 11:42: SPACE AGAINST SIZE, MEASURED (run 41695584813, GitHub, dev build, one run): the heap each undo entry adds, from the 10th entry to the 100th. As #2635 keeps them (compacted but the newest): 0.011 MB at 400 definitions, 0.009 at 1,600, about 0 at 6,400: flat, consecutive compacted entries share almost everything. Kept whole: 0.55 MB, 1.9 MB, 6.9 MB an entry: linear, about 1.1 KB a definition an entry. The first 10 entries cost more, as kept (+2.6, +6.8, +26 MB at the three sizes): the newest entry is whole, and caches fill. This answers ^report(38)'s 'not yet measured' first item and the open question's 'how much consecutive entries share'.",
+   "progress": "Minted from ^ticket(664). First step: time an edit, an undo and a redo against program size (the 2000-let bench at several sizes, and Full Body) on #2635 after ^ticket(663), counting what each one rebuilds (items analyzed, pieces measured, evaluation steps). Background: ^ticket(58) (#2597's uncapped stack, 10-14; on #2635, Andrew's compaction 6010128b7d and keep-newest 032fe3aca6). 07:42: FIRST MEASUREMENT (node, #2635 at 2cab658ef1 + probe 1d98b3aed7 on local branch probe/undo-scaling: test UndoScaling, UNDO_SIZES=...). A chain of n lets, an edit in the middle one; each step through the app's loop, then the statics refresh; evaluation off (dynamics=false). Per step, edit / undo / redo (the step, then statics): n=100 9+6 / 11+6 / 8+5 ms; n=400 18+13 / 25+12 / 18+12; n=1600 75+50 / 93+50 / 71+51; n=3200 ~200+130 / ~240+130 / ~190+130. LINEAR in n, about 0.1 ms a let at 3200; undo about 1.2x an edit; an older (compacted) undo costs the same as the latest. Each step re-parses 1-2 items, re-measures 1-2 chunks and compares 2 item heads, so the incremental caches work: the O(n) is in whole-program passes around them, not in the undo stack. Profile at n=3200 (12 steps, 4.2 s): MakeTerm.go_incr's top-level pass 31% (parse_level 11%, record_top_frame/sim 10%); DefStatics.calc 16% (calc_chain's walk over every item 11%, the edited item 7%); AutoProbePerform.program_root_id 11% (Segment.skel of the whole top level on every frame: its memo is keyed on the segment's identity, which every edit changes; then tail_id walks the let chain); Zipper.remold_regrout on insert 8%; TyDi.suggest via set_tydi_buffer 7%; Measured.of_segment's walk 4%; GC ~15%. TRAP FOUND: the test runner installs DefStaticsCheck (monolithic statics + a lexeme trace of every info's elaboration, after every calc, up to 3000 infos), which made the first numbers quadratic (n=400: 1.6 s a refresh) and then cheap past 3000 infos; the probe turns it off. NOT YET MEASURED: evaluation (the worker request, ^ticket(666)) and the view. Toward O(log n): the cheap ones first (program_root_id from the syntax's own term, O(1); TyDi's suggestions only when asked; remold only the edited item), then the structural ones: the top level as a balanced tree of items (a finger tree with per-subtree summaries: skeleton pieces, exports, dirty names) so MakeTerm's top-level pass, the skeleton and DefStatics' chain walk touch O(log n) nodes per edit. 08:54: Matthew: \"Cheap fixes first\". PROBE CORRECTED first (167247e61d): each frame's calculate now told whether it was an edit, as Main does (the undo tests' helper said yes for every frame, which redid syntax and completions on the statics refresh), and the runner's second check, NormalizeCheck (a global remold after every edit), turned off too. TRUE BASELINE, step medians of 12 (statics refresh 9-42 ms beside): n=800 edit 28 / undo 58 / redo 39 ms; 1600: 48 / 109 / 89; 3200: 92 / 208 / 173. So undo is ~2x an edit. Re-molding (8% before) was the runner's check. TWO FIXES, local branch perf/665-cheap (off #2635 + the probe): 459b029f68 program_root_id reads MakeTerm.Incr's cached top-level skeleton (c_skel) when it is this segment's (its memo was keyed on the segment, which every edit changes); d06473240f no completion suggestions after a numeral (none can start with a digit; they scanned the context and completed the segment first). AFTER: 800: 16 / 39 / 22 ms; 1600: 26 / 67 / 46; 3200: 68 / 156 / 106. 25-45% off each step; still linear. Tests: TyDi, Autoprobe, TailProbe, completion, probe groups: 828 pass; quick suite running. WHAT IS LEFT, all structural (profile at 3200 after the fixes): MakeTerm.go_incr 38% (record_top_frame/sim 17%, ItemSpans' top-level spans 10%), DefStatics 20% (step_chain 11%, calc_chain 9%), Outline rebuilt when an undo or redo realizes the view 15% (its memo of the last 4 programs misses on the restored program: the likely reason undo costs 2x), Measured's walk 6%. NOT PUSHED: where these go (#2635, and a dev PR for the TyDi one) is Matthew's call. 09:01: quick suite with both fixes: 1 failure of 6,159, MemberLivelitReprint 1 (the cwd-relative path, as on #2635 itself). Waiting on Matthew: whether to cherry-pick the two fixes (not the probe) onto #2635 and push; the numeral fix would also suit a dev PR (dev has the same TyDi code), the root-id fix is #2635/#2469-only (dev has no c_skel). 10:10: PUSHED to #2635 on Matthew's word (\"Push to #2635\"): the two fixes, cherry-picked as 394552d5d0 and bfa36a6ede (not the probe); #2635 now at bfa36a6ede. Before pushing: dune build @check and dune fmt clean, the targeted groups 828 pass. Next, his ask: ^report(36), a report with figures on what an edit, an undo and a redo cost (drafting in ~/hazel-perf-report/036/), to be published as work in progress. 10:46: ^report(36) \"What an Undo Costs\" PUBLISHED as work in progress (Matthew's ask: \"write a hazel report draft, and publish it, with graphs\"): https://matthewhammer.org/hazel/reports/036/ (homepage 451502d; series repo cc69e37, not pushed: drafts wait there). New data for it: 5 sizes (400 to 6,400), 3 runs per build, Node with a 64 MB stack (the 8 MB default segfaulted in 4 of 6 runs at 6,400). After the fixes at 6,400: edit 106 / undo 292 / redo 184 ms + statics ~78; slope 1.10 to 1.16 on log-log; an undo 2.7 to 3.0 edits, a redo 1.6 to 2.0; fixes 31-46% off at 3,200 and 6,400. This morning's runs of the same builds were 20-70% slower at every size (session spread), so compare within a session. 11-03 07:31: the outline's part separated at every size (2 profiled runs per size of d06473240f in the dev profile): 24 to 30% of each undo and redo; written up with the space story in ^report(38) (^ticket(679)). 11-03 07:54: UNDO APART FROM REDO (probe 58dae0b427, local branch probe/665-undo-vs-redo: one named sampler per kind; dev profile; 2 profiled runs per size): the outline is in the UNDOS, not spread over undos and redos. An undo rebuilds it every time; a redo finds it in the memo of the last four programs, which the undos filled, except the last redo (the program from after the edits, never outlined in the probe): that is why ^report(36)'s last redo was slow. From ^report(36)'s step times by position: outline = undo minus a redo that finds it: 7.5, 13.5, 23, 39, 116 ms at 400 to 6,400 (32 to 40% of an undo from 1,600 up; the profile reads 28 to 32%). A redo that finds its outline still costs 1.7 to 1.9 edits; the profile puts more of a redo than of an edit in rebuilding syntax (CachedSyntax.mk 1.8x). ^report(38) CORRECTED and republished (homepage 553a462, a8312d9, 09d59d1; correction note dated 07:52) and the agenda's undo item with it. 11-03 07:58: WITH THE SIDEBAR (probe 5544ca12a3, UNDO_VIEW_OUTLINE: the outline asked after each step, as the sidebar's view does; dev profile, 1 run per size): EVERY EDIT pays an outline rebuild, about as much again as the edit (3,200: 44 ms after a 51 ms edit; 6,400: 84 after 113), and then undos 1 to 3 find their outline and cost what a redo does (89 and 90 ms at 3,200). So the outline is a cost of every step that changes the program; making Outline.build incremental at the top level (Outline.level walks every top-level span) would take it off both. Written into ^report(38) locally (~/hazel-perf-report 99e3cca, ^ticket(679)); NOT republished: new material, waits on Matthew. 07:59: LEAD, not confirmed: under CachedSyntax.mk a redo costs 1.8x an edit (3,200: 534 against 296 profile ms; 6,400: 1,088 against 622), and EVERY whole-program pass below it scales the same: MakeTerm.go_incr 1.8x, record_top_frame/sim 1.8x, ItemSpans.top 1.9x, fix_spine 2x, Segment.global_missing_shards_incr 1.9x, TermMap.add_all 2x. As if the restore ran the syntax rebuild twice; the probe's own counts agree (a restore parses 2 definitions in full and measures 2 chunks, an edit 1 and 1). Reading the code: the restore's frame marks the syntax old (History.restore: Page.carry_over, then Editor.calculate with is_edited) and CachedSyntax.calculate's old branch calls mk once; where a second pass comes from is not yet found. Next: count mk calls per step (a counter in CachedSyntax.mk, a src change, so a fuller rebuild). 08:05: CONFIRMED AND FIXED (trial): a restore runs the whole syntax pass TWICE. Probe ab7dfd0188 reads PerfTimer's editor-syntax per frame: an edit is 1 frame, 1 pass (~40 ms at 3,200); an undo or redo is 2 frames, each a full pass (~40 + ~40). Cause: Workspace's RealizeView, the frame History.restore schedules, returns through Updated.return, whose is_edit defaults to true, so its calculate marks the syntax old and rebuilds it. FIX ed4d484671 (local branch trial/665-realize-not-edit, on the probe): is_edit only if realizing changed the program (opened or closed a cell). MEASURED (dev profile, 1 run each, same session): 3,200: undo 141 -> 84.5 ms (-40%), redo 96 -> 41 (-57%, now an edit's 46); 6,400: undo 263 -> 184 (-30%), redo 181.5 -> 96.5 (-47%); 1,600: undo 69 -> 50.5, redo 44.5 -> 22. A restore now parses 1 definition and measures 1 chunk, like an edit; the second frame's syntax is 0. TESTS (local, before and after, both pass): Undo 11, OpenMember 6, UndoCaches 5, UndoStatics 3, ProbePersist 5, OutlineRename 15, OutlineText 47, StackFocus 14. For #2635: 9df1b2601e = 1d17541aaf + the fix alone (refmt-formatted), pushed to trial/665-realize-not-edit for CI (run 41660069728); NOT on #2635: waits on Matthew. 08:38: CI on trial/665-realize-not-edit (run 41660069728): Fast checks and Static checks PASS (so refmt's formatting is right); Full tests running. 11-03 08:57: Matthew answered, in chat: yes: push the undo fix to #2635 once its Full tests are green. 11-03 09:15: after the laptop crash at about 09:04 (crash 48): nothing of this lost. Waiting on Full tests, run 41660069728 on GitHub, then the push to #2635 (a fast-forward from 1d17541aaf: 9df1b2601e, then the deck fix). 11-03 09:23: PUSHED to #2635 on Matthew's 08:57 yes, after Full tests passed (run 41660069728): integration/livelits-modular-editors 1d17541aaf..243874eecd, the undo fix 9df1b2601e then ^ticket(663)'s deck fix. The ticket stays open for the O(log n) design (the meeting). 11-03 11:37: started report 38's 'not yet measured' item: space against program size. Probe test/Test_UndoSpace.re on trial/665-space (#2635's head + the probe, 7b2ba7a5e9): a chain of n lets (400, 1,600, 6,400), a '1' typed again and again in the middle definition through the app's loop, the live heap after two forced collections with 0, 1, 10 and 100 entries; as the history keeps them (compacted but the newest) and with each step's whole page kept too. Run only on GitHub (workflow probe-665.yml, node --expose-gc): run 41695584813. 11-03 11:42: SPACE AGAINST SIZE, MEASURED (run 41695584813, GitHub, dev build, one run): the heap each undo entry adds, from the 10th entry to the 100th. As #2635 keeps them (compacted but the newest): 0.011 MB at 400 definitions, 0.009 at 1,600, about 0 at 6,400: flat, consecutive compacted entries share almost everything. Kept whole: 0.55 MB, 1.9 MB, 6.9 MB an entry: linear, about 1.1 KB a definition an entry. The first 10 entries cost more, as kept (+2.6, +6.8, +26 MB at the three sizes): the newest entry is whole, and caches fill. This answers ^report(38)'s 'not yet measured' first item and the open question's 'how much consecutive entries share'. | 09:35 11-06: CARRIED TO THE 11-11 AGENDA (^report(42), item 1), Matthew's two questions: how to get closer to O(log n) for undo and redo, in space and in time, and why we are not there yet, in each.",
    "log": [
     {
      "at": "2026-11-02T08:43-07:00",
@@ -10590,6 +10463,32 @@
      "from": "matthew",
      "chars": 5635,
      "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-05T12:10-07:00",
+     "from": "matthew",
+     "chars": 146,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-05T12:10-07:00",
+     "from": "matthew",
+     "chars": 52,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-05T12:12-07:00",
+     "from": "claude",
+     "chars": 244,
+     "asks": false,
+     "words": 44,
+     "read_s": 11,
+     "listen_s": 16,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
      "note": "from the transcripts"
     }
    ]
@@ -12440,11 +12339,156 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 694,
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-11"
+   ],
+   "text": "<b>A livelit's view, compiled to JS (a JIT).</b> Decided at the meeting with Cyrus, 2026-11-05: look into compiling Hazel to JS just in time for livelits' view functions, and compare timings. The work, in Matthew's words: Reason code to compile Hazel to JS, somehow; and a configuration flag, on by default, that compiles each livelit's view function to JS but not other Hazel functions.",
+   "progress": "12:24 11-05: minted from the meeting (^ticket(664)). Surveying how a livelit's view is evaluated today on #2635, and what the views cost now, to compare against. 12:27 11-05: THE DESIGN (from the code on #2635). TODAY: LivelitProj.eval_view evaluates view(model) with the interpreter (MvuShape.safe_evaluate_open, with a CallMemo shared by every view on the page), on the main thread. The result is a ViewCmd tree; ViewCmdRunner performs it down to Html, and HazelDOM draws that. List builtins are Hazel terms (BuiltinsList, fix/fun/match), Html.div elaborates straight to the Div constructor, and base builtins (string_of_int, ...) are OCaml. PLAN: (1) src/language/dynamics/JsCompile.re turns an elaborated term into JS source text, run with new Function. It covers variables, functions and fixpoints with their closures, application, let and match with patterns, if, tuples and labels, lists (as cons cells, so :: stays O(1)), literals, operators, constructors, and builtins: JS versions of the common ones, and the rest through a bridge to the OCaml builtin. Types, ascriptions and parens are erased. Anything else (holes, tests, filters, quotes, projectors, splices) means the view is not compiled: it runs on the interpreter as today, and the reason is kept. (2) WHAT IS COMPILED: a livelit's view and what it reaches through its closure (helpers, the List functions, Html constructors). Not update, init, expand or the program. (3) THE BOUNDARY: the model goes in as JS, and the command tree comes back as a Hazel value, then goes to ViewCmdRunner as today. A function in the Html (an event handler) comes back as a Hazel closure, so update keeps running on the interpreter. (4) THE SETTING: jit_views, on by default, in the settings menu; off is today's path. (5) LOST WHEN COMPILED: CallMemo's sharing between renders, samples inside the view's body, and the step budget. A JS stack overflow (deep recursion) falls back to the interpreter. (6) TIMINGS: a Node probe on real slides (the defined slider, Kids' Choice, Full Body, Polygons, Scenes woods). For each: interpreter time, compile time, and compiled time including the boundary, as medians with ranges over N runs. Then the browser numbers, on GitHub. SLICES: 1 the compiler core, with agreement tests against the interpreter on small programs; 2 a real view, its Html equal to the interpreter's; 3 the setting and eval_view; 4 timings; 5 a report. Branch trial/694-view-jit off #2635 (ab7273c984), worktree ~/hazel-694-jit. | 09:35 11-06: CARRIED TO THE 11-11 AGENDA (^report(42), item 2), Matthew's framing: the component is called hazel-jit; the goal is the BEST CASE, how much faster JS could make some Hazel subroutines, so number semantics may differ for now (overflow, rounding); start with the slides' livelit views that draw many user-defined polygons. Slice 1 not started in code: ~/hazel-694-jit is still at #2635's ab7273c984. Related: ^ticket(698) (BuckleScript, ReScript, Melange).",
+   "log": [
+    {
+     "at": "2026-11-05T12:09-07:00",
+     "from": "matthew",
+     "chars": 275,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-05T12:10-07:00",
+     "from": "claude",
+     "chars": 147,
+     "asks": false,
+     "words": 24,
+     "read_s": 6,
+     "listen_s": 9,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-05T12:15-07:00",
+     "from": "claude",
+     "chars": 1550,
+     "asks": false,
+     "words": 269,
+     "read_s": 68,
+     "listen_s": 101,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-05T12:23-07:00",
+     "from": "matthew",
+     "chars": 333,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-05T12:27-07:00",
+     "from": "claude",
+     "chars": 335,
+     "asks": false,
+     "words": 56,
+     "read_s": 14,
+     "listen_s": 21,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    }
+   ],
+   "area": "hazel, performance, livelits: hazel-jit, a livelit's view compiled to JS",
+   "added": "2026-11-05T12:24-07:00",
+   "opened": "2026-11-05T12:24-07:00",
+   "chips": [
+    "hazel",
+    "performance",
+    "livelits",
+    "hazel-jit"
+   ],
+   "source": "Matthew, 2026-11-05, after the meeting with Cyrus (^ticket(664)); again 2026-11-06 for the next agenda: \"Can we have some Reason code (hazel-jit let's call this component and code for it) compile some hazel ast into a mostly-equivalent JS code and call that instead?\""
+  },
+  {
+   "id": 695,
+   "area": "hazel, meeting: the agenda for Wednesday 2026-11-11, 10:00 Mountain, with Cyrus",
+   "added": "2026-11-06T09:35-07:00",
+   "opened": "2026-11-06T09:35-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-11"
+   ],
+   "chips": [
+    "hazel",
+    "meeting",
+    "agenda"
+   ],
+   "source": "Matthew, 2026-11-06 ~09:10, in chat: \"I've had some time to reflect on meeting Cyrus yesterday. Let's draft an agenda for next meeting, carrying over work that continues\"; then: \"Next meeting with Cyrus should be at the \\\"usual time\\\" --- Wed, 10am Mountain time\"",
+   "text": "<b>Meeting with Cyrus, Wednesday 2026-11-11 at 10:00 Mountain: the agenda.</b> ^report(42), public and kept up to date until the meeting (042/data/agenda.json; republished with tools/publish_agenda.py 42). Carries over the work that continues from 11-05 (^report(37)): (1) undo in O(log n), space and time, and why we are not there yet (^ticket(665)); (2) hazel-jit, livelit views compiled to JS, best case first (^ticket(694)), with BuckleScript and ReScript to know and compare (^ticket(698)); (3) a PR to dev linking the experimental hazeljs package (^ticket(696)); (4) a report for JS developers on how MUDU uses hazeljs (^ticket(697)).",
+   "progress": "09:35 11-06: minted; drafting ^report(42) from ^report(37)'s generator."
+  },
+  {
+   "id": 696,
+   "area": "hazel, hazeljs: a PR to dev whose README links the experimental npm package",
+   "added": "2026-11-06T09:35-07:00",
+   "opened": "2026-11-06T09:35-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-11"
+   ],
+   "chips": [
+    "hazel",
+    "hazeljs",
+    "hazlet"
+   ],
+   "source": "Matthew, 2026-11-06 ~09:10, in chat: \"Small task to do asap -- open a PR against dev for Hazel that links to the experimental npm package, with some minimal description, and a note that the plan is for it to track `dev`, but it does not do that, quite yet.\"",
+   "text": "<b>A PR to dev that links to hazeljs.</b> Hazel's README (on dev) gets a short section on the experimental npm package (npmjs.com/package/hazeljs, source hazelgrove/hazeljs): what it is, in a sentence or two, and a note that the plan is for it to track dev, but it does not yet (it is built from the draft library, #2711 and #2719). Why now: Cyrus knows people in Cambridge who simulate Petri nets with homemade JS tools; Matthew would like to see whether they could move some of their JS logic into Hazel through hazeljs.",
+   "progress": "09:35 11-06: minted; doing it this morning, after the agenda's first draft."
+  },
+  {
+   "id": 697,
+   "area": "hazel, hazeljs, report: how MUDU uses hazeljs for its scripts, written for another JS developer",
+   "added": "2026-11-06T09:35-07:00",
+   "opened": "2026-11-06T09:35-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-11"
+   ],
+   "chips": [
+    "hazel",
+    "hazeljs",
+    "hazlet",
+    "dress-up",
+    "report"
+   ],
+   "source": "Matthew, 2026-11-06 ~09:10, in chat: \"Related to 3 --- Let's create a Hazel report that looks at how MUDU uses hazeljs for its script support, and describes to another JS developer how they might do something analogous.\"",
+   "text": "<b>A Hazel report: scripting a JS app in Hazel, the way Messed Up Dress Up does.</b> How MUDU uses hazeljs for its script support (the rooms' on_event rules, Globals and Cmd, runProgram over modules, the fallback to JS while a program is unfinished, the tiles), told to a JavaScript developer who wants to do something analogous in their own program: the steps, the code on each side, and what to watch for. First readers in mind: the Cambridge group Cyrus mentioned, who simulate Petri nets with homemade JS tools (^ticket(696)). Builds on ^report(33), ^report(34), ^report(39).",
+   "progress": "09:35 11-06: minted; on the 11-11 agenda (^report(42)), not started."
+  },
+  {
+   "id": 698,
+   "area": "hazel, performance: BuckleScript, ReScript (and Melange), to know and to compare with hazel-jit",
+   "added": "2026-11-06T09:35-07:00",
+   "opened": "2026-11-06T09:35-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-11"
+   ],
+   "chips": [
+    "hazel",
+    "performance",
+    "hazel-jit"
+   ],
+   "source": "Matthew, 2026-11-06 ~09:10, in chat: \"Related to 2 --- Cyrus mentioned \\\"bucklescript\\\" and \\\"rescript\\\" as technologies to know about and perhaps compare with, if not use.\"",
+   "text": "<b>BuckleScript and ReScript, next to hazel-jit.</b> Cyrus named them at the 11-05 meeting as technologies to know about, and perhaps compare with, if not use. Read up and say, in the agenda or a short report: what each is today (BuckleScript, renamed ReScript; Melange, the fork that kept OCaml and dune), how they turn a typed functional language into JS (values, variants, lists, closures and currying), and what that suggests for hazel-jit's output (^ticket(694)); whether any of them could be used, and how Hazel's own build (js_of_ocaml) compares.",
+   "progress": "09:35 11-06: minted; a first note goes in ^report(42)'s item 3."
   }
  ],
- "next_ticket": 694,
- "current_ticket": 664,
- "current_note": "the meeting with Cyrus is done; recording Matthew's takeaways in ^report(37) and the tickets: livelits go into dev (settled; one PR or several TBD, ^ticket(642)); hazeljs to follow dev, perhaps after #2469, not urgent (^ticket(668))",
+ "next_ticket": 699,
+ "current_ticket": 695,
+ "current_note": "09:14: drafting ^report(42), the agenda for Wed 2026-11-11 10:00 MST, from ^report(37)'s generator; next: the README PR to dev (^ticket(696))",
  "closed_tickets": [
   {
    "id": 693,
@@ -18494,6 +18538,9 @@
   }
  ],
  "queue": [
+  696,
+  697,
+  698,
   677,
   666,
   665,
@@ -18508,11 +18555,11 @@
   664,
   685
  ],
- "current_since": "2026-11-05T04:54-07:00",
+ "current_since": "2026-11-06T09:14-07:00",
  "next_meeting": {
-  "report": 37,
+  "report": 42,
   "with": "Cyrus",
-  "date": "2026-11-05",
+  "date": "2026-11-11",
   "time": "10:00 MST"
  },
  "reading": {
@@ -18521,10 +18568,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6122,
-  "words": 1332913,
+  "replies": 6123,
+  "words": 1332969,
   "read_hours_est": 93.3,
-  "listen_hours_est": 138.8,
+  "listen_hours_est": 138.9,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -18819,9 +18866,9 @@
     "chars": 101230
    },
    "2026-11-05": {
-    "replies": 32,
-    "words": 3996,
-    "chars": 22793
+    "replies": 33,
+    "words": 4052,
+    "chars": 23128
    }
   }
  },
@@ -19028,6 +19075,140 @@
   423,
   429,
   512
+ ],
+ "ports_parked": [
+  {
+   "pr": 2635,
+   "repo": "hazelgrove/hazel",
+   "branch": "integration/livelits-modular-editors",
+   "links": [
+    [
+     "localhost:8341 (#2635 at 547b9cfa8b: GitHub's build deployed 10-27; the head is 1d17541aaf)",
+     "http://localhost:8341/"
+    ],
+    [
+     "#2635's Scenes slide",
+     "http://localhost:8341/?slide=livelit-playground-scenes"
+    ]
+   ],
+   "branch_note": "NOT SERVED since the crash at about 09:04 on 2026-11-03 (crash 48); Matthew, 09:20: no need to restart local builds for now. (from its launch entry. ~/hazel-builds/build is up to date with hazelgrove/build, whose last commit is 10-29 17:59Z: builds moved to build.hazel.org that day, so 547b9cfa8b's (Deploy 10-27) is the newest #2635 build here. The head, 1d17541aaf (pushed 11-02 16:29), deployed to build.hazel.org, not served here yet.)",
+   "group": "cyrus",
+   "parked": "2026-11-06 09:35: Matthew: \"no other servers required now. localports is just that for now.\""
+  },
+  {
+   "pr": 2597,
+   "repo": "hazelgrove/hazel",
+   "branch": "integration/livelits-splicerefs-full",
+   "links": [
+    [
+     "localhost:8311 (#2597 at 5aab038ff5: GitHub's build deployed 10-25; the head is c7f9249802)",
+     "http://localhost:8311/"
+    ]
+   ],
+   "branch_note": "NOT SERVED since the crash at about 09:04 on 2026-11-03 (crash 48); Matthew, 09:20: no need to restart local builds for now. (from its launch entry. ~/hazel-builds/build pulled the same morning: its newest #2597 build is 5aab038ff5's (Deploy 10-25 23:23Z). The four Deploys of 10-26 (up to the head, c7f9249802) left no commit in hazelgrove/build, so the head is not served here yet.)",
+   "group": "cyrus",
+   "parked": "2026-11-06 09:35: Matthew: \"no other servers required now. localports is just that for now.\""
+  },
+  {
+   "name": "Γ's long types by right-click or hover (^ticket(468), to try)",
+   "repo_html": "<a href=\"https://github.com/hazelgrove/hazel/tree/trial/468-gamma-unfold\">hazelgrove/hazel, trial/468-gamma-unfold</a>",
+   "branch": "trial/468-gamma-unfold",
+   "branch_note": "NOT SERVED since 11:50 on 2026-10-24: stopped for 8131 (Matthew's call; the app runs at most five servers per worktree). Its launch entry \"#2597 + #2698 GitHub build (trial/468-gamma-unfold)\" brings it back. ^ticket(468) waits on it. (served since 10:25 on 2026-10-20: GitHub's build of 0113e420d0, #2597 plus Γ's unfold from #2698, its right-click menu, and the Colors slide's choice of how the toggle is drawn; Fast checks green. A fresh port, so the shipped Colors slide (Configuration, in the top bar's mode menu; the always / hover / right-click choice at its top) is what loads. The setting has been on both PRs since 12:51 10-20; Matthew's pick of the default is left.)",
+   "links": [],
+   "group": "cyrus",
+   "links_paused": [
+    [
+     "localhost:8312 (#2597 + Γ unfold)",
+     "http://localhost:8312/"
+    ]
+   ],
+   "parked": "2026-11-06 09:35: Matthew: \"no other servers required now. localports is just that for now.\""
+  },
+  {
+   "name": "Hazel reports (the report's sources)",
+   "repo_html": "<a href=\"https://github.com/matthewhammer/hazel-reports\">matthewhammer/hazel-reports</a>, checked out at <code>~/hazel-perf-report</code>",
+   "branch": "main",
+   "branch_note": "Drafts no longer wait here: since 2026-11-04 (Matthew: \"by default, publish all reports that are WIP\") every report goes up as work in progress at https://matthewhammer.org/hazel/reports/ as soon as it has a first version, and each revision is republished. Local server 8131 still NOT SERVED (Matthew's 11-03 call). NOT SERVED since the crash at about 09:04 on 2026-11-03 (crash 48); Matthew, 09:20: no need to restart local builds for now. (first served 2026-10-24 in place of 8312, Matthew's call; every link here and in the open tickets checked, anchors too. Open tickets waiting on its drafts: ^ticket(398), ^ticket(408), ^ticket(533), ^ticket(570), ^ticket(571), ^ticket(572), ^ticket(573), ^ticket(588).) Its sources are 36 commits ahead of origin (drafts wait there); ^report(37), the agenda, and ^report(36) go out by the homepage. (public: a push publishes, so drafts wait. ^report(25) published as work in progress 10-22 09:44 (homepage 35951cb); its local copy is the same. ^report(18), why #2635 fails CI, is a local draft waiting on Matthew. ^report(29) republished 10-22 15:56 (homepage e9fd165) with its fixes section and the deep-answer correction; its local copy is the same); its local copy is the same; its fixes section fills in as the trial builds are measured)",
+   "group": "other",
+   "links": [
+    [
+     "localhost:8131 (the front page: every report, drafts marked)",
+     "http://localhost:8131/"
+    ],
+    [
+     "localhost:8131/037/ (^report(37), the agenda for 11-04; published 07:38 with links to 38 and 39; local and public the same)",
+     "http://localhost:8131/037/"
+    ],
+    [
+     "localhost:8131/038/ (^report(38), Undo, in Time and Space: published; local and public the same)",
+     "http://localhost:8131/038/"
+    ],
+    [
+     "localhost:8131/034/#try (^report(34): the trap room live on the page, published)",
+     "http://localhost:8131/034/#try"
+    ],
+    [
+     "localhost:8131/039/ (^report(39), Hazlets, So Far; work in progress, published 11-03)",
+     "http://localhost:8131/039/"
+    ],
+    [
+     "localhost:8131/036/ (^report(36), What an Undo Costs; work in progress, published)",
+     "http://localhost:8131/036/"
+    ],
+    [
+     "localhost:8131/032/ (^report(32) draft: Scripting, Three Ways, Timed)",
+     "http://localhost:8131/032/"
+    ],
+    [
+     "localhost:8131/031/ (^report(31), Reviews Still Open)",
+     "http://localhost:8131/031/"
+    ],
+    [
+     "localhost:8131/030/ (^report(30), Game Scripts in Hazel; its Hazel and Fumola rules, Languages of Play)",
+     "http://localhost:8131/030/"
+    ],
+    [
+     "localhost:8131/029/ (^report(29), Where the Gap Comes From; second fixes)",
+     "http://localhost:8131/029/#fixes-2"
+    ],
+    [
+     "localhost:8131/028/ (^report(28), the traps and proposed fixes)",
+     "http://localhost:8131/028/#traps"
+    ],
+    [
+     "localhost:8131/025/ (^report(25), Hazel's JS library)",
+     "http://localhost:8131/025/"
+    ]
+   ],
+   "parked": "2026-11-06 09:35: Matthew: \"no other servers required now. localports is just that for now.\""
+  },
+  {
+   "name": "Messed Up Dress Up (the game)",
+   "repo_html": "<a href=\"https://github.com/matthewhammer/kids-choice-games\">matthewhammer/kids-choice-games</a>, folder <code>dress-up/</code>, public with its history from 2026-10-09<br>Its own Pages site deploys every push to <code>main</code>. Edit <code>~/kids-choice-games</code>: <code>~/hazel/experiments/polygons-plain/dress-up.html</code> is a symlink to it.",
+   "branch": "main",
+   "links": [
+    [
+     "localhost:8133/dress-up.html (0.0.475, main: pushed and tagged; ?try=trap&logic=hazel opens the trap room)",
+     "http://localhost:8133/dress-up.html"
+    ],
+    [
+     "localhost:8133/dress-up/?try=trap&logic=hazel (0.0.475: the trap room by link, ^ticket(676))",
+     "http://localhost:8133/dress-up/?try=trap&logic=hazel"
+    ],
+    [
+     "localhost:8133/report-024/reports/024/ (^du_report(24) draft: Night, Day and the Garden)",
+     "http://localhost:8133/report-024/reports/024/"
+    ],
+    [
+     "localhost:8133/du-reports/",
+     "http://localhost:8133/du-reports/"
+    ]
+   ],
+   "links_paused": null,
+   "branch_note": "NOT SERVED since the crash at about 09:04 on 2026-11-03 (crash 48); Matthew, 09:20: no need to restart local builds for now. (the working copy of main, ~/kids-choice-games, served again since 08:45 on 2026-11-01 after the reboot. Matthew's uncommitted ^du_report(5) edits are in the working tree, left as they are (his call, 10-29); an old autostash sits in git stash@{0}.)",
+   "group": "other",
+   "parked": "2026-11-06 09:35: Matthew: \"no other servers required now. localports is just that for now.\""
+  }
  ],
  "closed_tickets_are": "summaries for the hover cards; the full records are in dashboard-data/closed/<YYYY-MM>.json (dashboard/data_whole.py joins them)"
 }
