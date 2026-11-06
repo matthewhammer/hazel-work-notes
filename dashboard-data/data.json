@@ -12509,7 +12509,7 @@
    ],
    "source": "Matthew, 2026-11-06 ~09:10, in chat: \"Related to 3 --- Let's create a Hazel report that looks at how MUDU uses hazeljs for its script support, and describes to another JS developer how they might do something analogous.\"",
    "text": "<b>A Hazel report: scripting a JS app in Hazel, the way Messed Up Dress Up does.</b> How MUDU uses hazeljs for its script support (the rooms' on_event rules, Globals and Cmd, runProgram over modules, the fallback to JS while a program is unfinished, the tiles), told to a JavaScript developer who wants to do something analogous in their own program: the steps, the code on each side, and what to watch for. First readers in mind: the Cambridge group Cyrus mentioned, who simulate Petri nets with homemade JS tools (^ticket(696)). Builds on ^report(33), ^report(34), ^report(39).",
-   "progress": "09:14 11-06: minted; on the 11-11 agenda (^report(42)), not started. | 09:37 11-06: DRAFTED AND PUBLISHED as work in progress: ^report(43) 'Scripting a JavaScript App in Hazel' (https://matthewhammer.org/hazel/reports/043/; series 761c24e, homepage 77459b8). The pattern, MUDU's pieces linked to js/25-scripting.js at 15181ee0, six steps, and a worked Petri net (mutual exclusion: 2 processes, 1 lock; 043/example/petri.mjs) run in Node 22 with hazeljs 0.0.4 from npm, 3 runs: ran as written; 2,000 random steps never both busy; an error reported by module (two messages for one mistake) while the JS handler answers; a hole counted; call median 3.3-3.7 ms vs JS 0.7 us; build 337-438 ms; rebuild 140-171 ms changed or not; tail unannotated no change. ^report(42) item 5 updated. Left: Matthew's read; then Cyrus's; sending it to the Cambridge group is Matthew's call. | 10:04 11-06: LIVE, Matthew's ask ('use the npm package itself on this page, and have real hazel editors'): ^report(43)'s example now runs on the page (043/live.js): hazeljs 0.0.4 from jsDelivr builds each change; Common and Rules each in Hazel's tiles, a frame per module from build.hazel.org/embed-editable (theme, editable, font 13, focus module, set; edits and size back; the game's protocol); the page's JS answers while not ok; click a transition, Step, Step x100, reset. Checked on localhost:8131 (stopped after): both editors start, clicks fire, a type error by text is listed and marked in the tiles, a real key edit in the tiles comes back and rebuilds (~180 ms), Step x100 ~375 ms. NOT checked: Ctrl+Z (the pane does not deliver it). Fixed on the way: IntersectionObserver never fires in a hidden pane (now polled), the 900px height cap hid the end of Common, the live section's window-wide width overflowed beside the nav (now container queries). Modules rewrapped (one let added in Step), Node runs redone (same results). Published: homepage f46472d, series 82a383d. What next step 3 is now Matthew's hazel-jit comparison (^ticket(699)).",
+   "progress": "09:14 11-06: minted; on the 11-11 agenda (^report(42)), not started. | 09:37 11-06: DRAFTED AND PUBLISHED as work in progress: ^report(43) 'Scripting a JavaScript App in Hazel' (https://matthewhammer.org/hazel/reports/043/; series 761c24e, homepage 77459b8). The pattern, MUDU's pieces linked to js/25-scripting.js at 15181ee0, six steps, and a worked Petri net (mutual exclusion: 2 processes, 1 lock; 043/example/petri.mjs) run in Node 22 with hazeljs 0.0.4 from npm, 3 runs: ran as written; 2,000 random steps never both busy; an error reported by module (two messages for one mistake) while the JS handler answers; a hole counted; call median 3.3-3.7 ms vs JS 0.7 us; build 337-438 ms; rebuild 140-171 ms changed or not; tail unannotated no change. ^report(42) item 5 updated. Left: Matthew's read; then Cyrus's; sending it to the Cambridge group is Matthew's call. | 10:04 11-06: LIVE, Matthew's ask ('use the npm package itself on this page, and have real hazel editors'): ^report(43)'s example now runs on the page (043/live.js): hazeljs 0.0.4 from jsDelivr builds each change; Common and Rules each in Hazel's tiles, a frame per module from build.hazel.org/embed-editable (theme, editable, font 13, focus module, set; edits and size back; the game's protocol); the page's JS answers while not ok; click a transition, Step, Step x100, reset. Checked on localhost:8131 (stopped after): both editors start, clicks fire, a type error by text is listed and marked in the tiles, a real key edit in the tiles comes back and rebuilds (~180 ms), Step x100 ~375 ms. NOT checked: Ctrl+Z (the pane does not deliver it). Fixed on the way: IntersectionObserver never fires in a hidden pane (now polled), the 900px height cap hid the end of Common, the live section's window-wide width overflowed beside the nav (now container queries). Modules rewrapped (one let added in Step), Node runs redone (same results). Published: homepage f46472d, series 82a383d. What next step 3 is now Matthew's hazel-jit comparison (^ticket(699)). | 11:10 11-06: Matthew: tickets for two of ^report(43)'s limits, to address before sharing it: ^ticket(701) an editor in the package (and its origin allowlist), ^ticket(702) undo in the editor.",
    "log": [
     {
      "at": "2026-11-06T09:10-07:00",
@@ -12712,9 +12712,47 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 701,
+   "area": "hazel, hazeljs: Hazel's tile editor in the package, not only in a branch build",
+   "added": "2026-11-06T11:10-07:00",
+   "opened": "2026-11-06T11:10-07:00",
+   "status": "open",
+   "tags": [
+    "before sharing ^report(43)"
+   ],
+   "chips": [
+    "hazel",
+    "hazeljs",
+    "hazlet",
+    "report 43"
+   ],
+   "source": "Matthew, 2026-11-06 ~11:30, in chat: \"let's enqueue tickets for these limitations of hazeljs, and try to address them before we share this report 43\" (quoting ^report(43)'s Limits today: \"No editor in the package. It analyzes and runs text. Hazel's own tile editor in a frame, as the game uses it, comes from a branch build of Hazel.\")",
+   "text": "<b>An editor in hazeljs.</b> Today the package analyzes and runs text; Hazel's own tile editor, as Messed Up Dress Up and ^report(43) use it, is Hazel's app in a frame from a branch build (build.hazel.org/embed-editable, 12 commits on #2719's branch, no PR), which a page must find and frame itself. And the frame takes messages only from an allowlist of origins (matthewhammer.org, localhost: site_origins in src/web/embed/EmbedProtocol.re), so no other site can use it. The options: (1) the embed build published with the package (its files on npm, so a page frames it from jsDelivr, at the package's version, matched to hazel-lib.js), with an API that makes and wires a frame (<code>Hazel.editor(element, {program, module, editable, onEdit})</code>) over the protocol; (2) an editor mounted in the page itself, no frame (<code>Hazel.mountEditor</code>, the embed doc's 'later'); and in either, the origin policy decided (any origin for a frame that only shows and posts back the program's own text?). Also: go to definition starts only in an editable cell today (CodeSelectable has no ctrl-click or F12), so read-only listings cannot start one.",
+   "progress": "11:10 11-06: minted on Matthew's word, to address before ^report(43) is shared (^ticket(700))."
+  },
+  {
+   "id": 702,
+   "area": "hazel, hazeljs: undo and redo in the editor, not left to each app",
+   "added": "2026-11-06T11:10-07:00",
+   "opened": "2026-11-06T11:10-07:00",
+   "status": "open",
+   "tags": [
+    "before sharing ^report(43)"
+   ],
+   "chips": [
+    "hazel",
+    "hazeljs",
+    "hazlet",
+    "report 43"
+   ],
+   "source": "Matthew, 2026-11-06 ~11:30, in chat: \"let's enqueue tickets for these limitations of hazeljs, and try to address them before we share this report 43\" (quoting ^report(43)'s Limits today: \"No undo, and no history, in the library: the app keeps its own.\")",
+   "text": "<b>Undo and history in hazeljs's editor.</b> Today the library keeps no history: the embed frame posts {type: \"history\", redo} for Ctrl+Z and Ctrl+Shift+Z or Ctrl+Y (68142486cf, ^ticket(682)) and each page keeps its own undo stack per module and sets the text back (the game does; ^report(43)'s live.js does too, unchecked in the test browser). Options: the editor keeps its own undo and redo (Hazel's app already has History.re, with the compaction of ^report(38)), so a page gets it for free, with a message to clear or read it; or a small history helper in the package for pages that keep their own. Check it in a real browser on GitHub's machines, since the local test browser did not deliver Ctrl+Z to the frame.",
+   "progress": "11:10 11-06: minted on Matthew's word, to address before ^report(43) is shared (^ticket(700))."
   }
  ],
- "next_ticket": 701,
+ "next_ticket": 703,
  "current_ticket": 697,
  "current_note": "^report(43) drafted and published (WIP) for ^ticket(697); waiting on Matthew's read; ^report(42) item 5 says so",
  "closed_tickets": [
@@ -18783,6 +18821,8 @@
   685,
   698,
   699,
+  701,
+  702,
   700
  ],
  "current_since": "2026-11-06T09:29-07:00",
@@ -18798,8 +18838,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6131,
-  "words": 1335218,
+  "replies": 6134,
+  "words": 1335514,
   "read_hours_est": 93.5,
   "listen_hours_est": 139.1,
   "read_s_avg": 55,
@@ -19101,9 +19141,9 @@
     "chars": 23128
    },
    "2026-11-06": {
-    "replies": 8,
-    "words": 2249,
-    "chars": 13357
+    "replies": 11,
+    "words": 2545,
+    "chars": 15181
    }
   }
  },
