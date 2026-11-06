@@ -12509,7 +12509,7 @@
    ],
    "source": "Matthew, 2026-11-06 ~09:10, in chat: \"Related to 3 --- Let's create a Hazel report that looks at how MUDU uses hazeljs for its script support, and describes to another JS developer how they might do something analogous.\"",
    "text": "<b>A Hazel report: scripting a JS app in Hazel, the way Messed Up Dress Up does.</b> How MUDU uses hazeljs for its script support (the rooms' on_event rules, Globals and Cmd, runProgram over modules, the fallback to JS while a program is unfinished, the tiles), told to a JavaScript developer who wants to do something analogous in their own program: the steps, the code on each side, and what to watch for. First readers in mind: the Cambridge group Cyrus mentioned, who simulate Petri nets with homemade JS tools (^ticket(696)). Builds on ^report(33), ^report(34), ^report(39).",
-   "progress": "09:14 11-06: minted; on the 11-11 agenda (^report(42)), not started.",
+   "progress": "09:14 11-06: minted; on the 11-11 agenda (^report(42)), not started. | 09:37 11-06: DRAFTED AND PUBLISHED as work in progress: ^report(43) 'Scripting a JavaScript App in Hazel' (https://matthewhammer.org/hazel/reports/043/; series 761c24e, homepage 77459b8). The pattern, MUDU's pieces linked to js/25-scripting.js at 15181ee0, six steps, and a worked Petri net (mutual exclusion: 2 processes, 1 lock; 043/example/petri.mjs) run in Node 22 with hazeljs 0.0.4 from npm, 3 runs: ran as written; 2,000 random steps never both busy; an error reported by module (two messages for one mistake) while the JS handler answers; a hole counted; call median 3.3-3.7 ms vs JS 0.7 us; build 337-438 ms; rebuild 140-171 ms changed or not; tail unannotated no change. ^report(42) item 5 updated. Left: Matthew's read; then Cyrus's; sending it to the Cambridge group is Matthew's call.",
    "log": [
     {
      "at": "2026-11-06T09:10-07:00",
@@ -12537,7 +12537,8 @@
      "effort": "xhigh",
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": "Matthew's read of ^report(43)"
   },
   {
    "id": 698,
@@ -12560,7 +12561,7 @@
  ],
  "next_ticket": 699,
  "current_ticket": 697,
- "current_note": "09:29: drafting ^report(43): scripting a JS app in Hazel the way MUDU does, for JS developers; reading the game's scripting code and hazeljs's API first",
+ "current_note": "^report(43) drafted and published (WIP) for ^ticket(697); waiting on Matthew's read; ^report(42) item 5 says so",
  "closed_tickets": [
   {
    "id": 693,
