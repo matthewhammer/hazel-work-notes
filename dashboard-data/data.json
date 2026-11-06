@@ -12419,6 +12419,49 @@
      "chars": 3352,
      "asks": false,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T14:14-07:00",
+     "from": "matthew",
+     "chars": 34,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T14:14-07:00",
+     "from": "claude",
+     "chars": 2064,
+     "asks": false,
+     "words": 367,
+     "read_s": 93,
+     "listen_s": 138,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T14:15-07:00",
+     "from": "claude",
+     "chars": 1506,
+     "asks": true,
+     "words": 272,
+     "read_s": 69,
+     "listen_s": 102,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T14:15-07:00",
+     "from": "claude",
+     "chars": 129,
+     "asks": false,
+     "words": 22,
+     "read_s": 6,
+     "listen_s": 8,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ],
    "area": "hazel, performance, livelits: hazel-jit, a livelit's view compiled to JS",
@@ -13025,7 +13068,16 @@
    "source": "Found by Claude, 2026-11-06 11:24, building matthewhammer/hazeljs-petri-example (Matthew's ask, the same day): its Node example passed the net's view as {transitions, marking, draw} and every answer came back {hazel: ...}.",
    "text": "<b>Bug in hazeljs 0.0.4 (#2719's library): key order matters for a labeled tuple with a list field.</b> <code>Hazel.run(\"fun (p : (x = Int, y = [Int])) -> p.x\").value</code> gives 5 for <code>{x: 5, y: [1]}</code> but <code>{hazel: \"...(Asc ...\"}</code> for <code>{y: [1], x: 5}</code>: stuck at the parameter's annotation. With only Int fields (<code>{y: 3, x: 10}</code>) the order does not matter. A JS object's keys have no order a JS developer thinks about, so the boundary should convert by the type's field order (or by label), not the object's. Where: the library's value conversion in (JS object to labeled tuple), and the cast it meets; check whether #2681 (no cast re-checked at run time) or ^ticket(681) (converting JS values directly) changes it. Until fixed: hazeljs-petri-example's node/petri.mjs builds its view in Net's field order and says why.",
    "progress": "11:24 11-06: minted; repro in the text (node, hazeljs 0.0.4). Workaround in hazeljs-petri-example. | 14:27 11-06: FIXED in Hazel's dynamics, not the boundary: Ascriptions.transition paired a tuple's fields with a product type's by position (its own TODO: 'what to do if the labels don't match'); the statics order a program's own tuples, so only a JS object (HazelLibCore.of_js, keys' order) met its type out of order. Now same labels in another order pair by label, in the type's order. js-library-embed 6c283c8a9f (#2719); Test_HazelLib +1 test (fails without the fix), HazelLib 27, Evaluator 492, ModuleProgram 19, Embed 13 pass; the 6-case repro all ok from a local hazel-lib.js. Going into hazeljs 0.0.5 (Matthew: 'it would be best to have that public package reflect what we do, overall, including documentation'): hazel-lib.js building on GitHub (hazeljs run 42296395192); branch release-0.0.5 also adds hazel-listings.js to the package and the README's editor section.",
-   "waiting": "Matthew's npm publish of hazeljs 0.0.5 (this machine is not logged in to npm)"
+   "waiting": "Matthew's npm publish of hazeljs 0.0.5 (this machine is not logged in to npm)",
+   "log": [
+    {
+     "at": "2026-11-06T14:15-07:00",
+     "from": "matthew",
+     "chars": 98,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   },
   {
    "id": 704,
@@ -19188,7 +19240,7 @@
   },
   "since": "2026-08-27",
   "replies": 6176,
-  "words": 1344014,
+  "words": 1344119,
   "read_hours_est": 94.1,
   "listen_hours_est": 140.0,
   "read_s_avg": 55,
@@ -19491,8 +19543,8 @@
    },
    "2026-11-06": {
     "replies": 53,
-    "words": 11045,
-    "chars": 64834
+    "words": 11150,
+    "chars": 65461
    }
   }
  },
