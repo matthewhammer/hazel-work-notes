@@ -13903,7 +13903,16 @@
    "source": "Matthew, 2026-11-06 ~16:3x, in chat, as the Petri example's net moved from net.json into Hazel (its 0.0.10): \"we need to re-generate the net dynamically. The challenge for Hazel (not here, but in a ticket) is to have a livelit be fast enough to do the redraw\".",
    "text": "<b>A livelit that redraws a Petri net, fast enough.</b> In matthewhammer/hazeljs-petri-example the net (places, transitions, arcs, where each is drawn) is Hazel, in a module listing, and the page's JS redraws it after every edit and every step. The challenge for Hazel: the same drawing as a livelit's view, its model the net, redrawn on each change of the definition or the marking without a visible wait. Measure the view's time per redraw on the interpreter, and with hazel-jit (^ticket(694)) compiling it; the page's JS drawing is the yardstick. Related: ^report(45) (the trip in and out is most of a compiled render today), ^report(43).",
    "progress": "16:29 11-06: minted on Matthew's word; not started. The example's own (JS) redraw is being built now, as the yardstick. | 16:35 11-06: THE YARDSTICK IS BUILT: the Petri example 0.0.10 (4c85792, live) has the net in Hazel (rules/Main.hz: places, transitions, marking, positions, on_event) and redraws it in JS from each build (live.js renderNet); a sixth place with a weight-2 arc drew and ran on a temporary edit. Next for this ticket: the same drawing as a livelit's view, and its time per redraw.",
-   "url": "https://matthewhammer.org/hazeljs-petri-example/"
+   "url": "https://matthewhammer.org/hazeljs-petri-example/",
+   "log": [
+    {
+     "at": "2026-11-06T16:28-07:00",
+     "from": "matthew",
+     "chars": 148,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 709,
