@@ -13021,6 +13021,37 @@
      "chars": 51,
      "asks": false,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T16:14-07:00",
+     "from": "claude",
+     "chars": 1607,
+     "asks": false,
+     "words": 275,
+     "read_s": 69,
+     "listen_s": 103,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T16:15-07:00",
+     "from": "matthew",
+     "chars": 89,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T16:15-07:00",
+     "from": "claude",
+     "chars": 103,
+     "asks": false,
+     "words": 18,
+     "read_s": 5,
+     "listen_s": 7,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ],
    "area": "hazel, performance, livelits: hazel-jit, a livelit's view compiled to JS",
@@ -13749,9 +13780,26 @@
    "text": "<b>Listings that re-wrap.</b> A listing keeps the line breaks it was written with, so in a narrow box its long lines are cut off and it scrolls sideways (the Petri example's rules column; worse after dragging the divider). As Messed Up Dress Up does (dress-up/js/25-scripting.js: scriptTileCols, scriptTileSpec, scriptFlow): the box's width in characters, measured in the editor's font; long lines broken like a pretty-printer at the outermost places the code allows, only spaces and line breaks changed; that copy sent to the frame, the page's text kept; sent again when the width changes. Or Hazel's editor wraps its own lines in embed mode (a change to #2814's branch). Done when dragging the divider, resizing and full screen re-break every listing, widening brings long lines back, and typing keeps the caret.",
    "progress": "15:34 11-06: issue posted, hazelgrove/hazeljs#1 (Matthew's 15:12 screenshot not attached: gh cannot; his to drag in).",
    "url": "https://github.com/hazelgrove/hazeljs/issues/1"
+  },
+  {
+   "id": 708,
+   "area": "hazel, livelits, performance: a Petri net livelit that redraws the net from its Hazel definition, fast enough",
+   "added": "2026-11-06T16:29-07:00",
+   "opened": "2026-11-06T16:29-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "livelits",
+    "performance"
+   ],
+   "source": "Matthew, 2026-11-06 ~16:3x, in chat, as the Petri example's net moved from net.json into Hazel (its 0.0.10): \"we need to re-generate the net dynamically. The challenge for Hazel (not here, but in a ticket) is to have a livelit be fast enough to do the redraw\".",
+   "text": "<b>A livelit that redraws a Petri net, fast enough.</b> In matthewhammer/hazeljs-petri-example the net (places, transitions, arcs, where each is drawn) is Hazel, in a module listing, and the page's JS redraws it after every edit and every step. The challenge for Hazel: the same drawing as a livelit's view, its model the net, redrawn on each change of the definition or the marking without a visible wait. Measure the view's time per redraw on the interpreter, and with hazel-jit (^ticket(694)) compiling it; the page's JS drawing is the yardstick. Related: ^report(45) (the trip in and out is most of a compiled render today), ^report(43).",
+   "progress": "16:29 11-06: minted on Matthew's word; not started. The example's own (JS) redraw is being built now, as the yardstick.",
+   "url": "https://matthewhammer.org/hazeljs-petri-example/"
   }
  ],
- "next_ticket": 708,
+ "next_ticket": 709,
  "current_ticket": 694,
  "current_note": "16:18: hazel-jit slice 3 pushed (7a7151443c) and written up as ^report(45), WIP, linked from the 11-11 agenda. Next: a cheaper way back (0.78 of 0.83 ms is the trip in and out), then the app on the polygon slides and browser timings.",
  "closed_tickets": [
@@ -19844,6 +19892,7 @@
   704,
   706,
   707,
+  708,
   700
  ],
  "current_since": "2026-11-06T11:40-07:00",
@@ -19859,8 +19908,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6225,
-  "words": 1351824,
+  "replies": 6228,
+  "words": 1351936,
   "read_hours_est": 94.7,
   "listen_hours_est": 140.8,
   "read_s_avg": 55,
@@ -20162,9 +20211,9 @@
     "chars": 23128
    },
    "2026-11-06": {
-    "replies": 102,
-    "words": 18855,
-    "chars": 110952
+    "replies": 105,
+    "words": 18967,
+    "chars": 111573
    }
   }
  },
