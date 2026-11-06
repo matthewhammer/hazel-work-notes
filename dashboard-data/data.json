@@ -12633,9 +12633,29 @@
    "source": "Matthew, 2026-11-06 ~09:50, in chat: \"once we make progress on the hazel-jit idea --- we should come back to https://matthewhammer.org/hazel/reports/043/ and try to see how close the hazel-jit output matches the native JS we'd write\"",
    "text": "<b>hazel-jit against hand-written JS, on ^report(43)'s Petri net.</b> Once hazel-jit (^ticket(694)) can compile a rule like ^report(43)'s on_event (Rules and Common: lists, case, labeled tuples, constructors, Option, string ++), compile it and put the JS it makes beside the page's own jsHandler (043/live.js; petri.mjs), the JS a person would write: the code side by side, and the time per call (Node, and the live page). ^report(43)'s What next, step 3, says so. The interpreter's number to beat: about 3.4 ms a call; the hand-written JS: about 0.7 us.",
    "progress": "10:04 11-06: minted on Matthew's word; waits on ^ticket(694)'s compiler covering this rule's forms."
+  },
+  {
+   "id": 700,
+   "area": "hazel, hazeljs, report 43: what the Cambridge group's Petri net tools would want from a Hazel rule",
+   "added": "2026-11-06T10:28-07:00",
+   "opened": "2026-11-06T10:28-07:00",
+   "status": "open",
+   "tags": [
+    "blocked on Cyrus"
+   ],
+   "chips": [
+    "hazel",
+    "hazeljs",
+    "hazlet",
+    "report 43"
+   ],
+   "source": "Matthew, 2026-11-06 ~10:15, in chat: \"Mint a ticket for this step: Hazel reports, ^report(43), What next, step 1: \\\"Ask the group in Cambridge, through Cyrus, what their tools would want a Hazel rule to decide, and what their nets look like (sizes, colours, timing), before bu\\\". http://matthewhammer.org/hazel/reports/043/#step-1\"; then: \"I can answer some of this based on Cyrus' telling yesterday: * yes to colors (what they call \\\"types\\\", in their world),\" and \"Not sure about the other questions and next steps, but I will pass on these options to them/Cyrus.\"",
+   "text": "<b>Ask the Cambridge group what their Petri net tools would want from a Hazel rule.</b> ^report(43), What next, step 1 (https://matthewhammer.org/hazel/reports/043/#step-1): through Cyrus, ask what their tools would want a Hazel rule to decide, and what their nets look like (sizes, colours, timing), before building more of the example. <b>Known (Matthew, from Cyrus on 2026-11-05):</b> yes to colours, which they call <i>types</i>: their tokens carry data, so their nets are coloured Petri nets. <b>Still open:</b> what a rule decides (enabling, a guard, a firing's output, a choice among enabled transitions), net sizes, and timing. Matthew passes these options on to Cyrus and the group.",
+   "progress": "10:28 11-06: minted on Matthew's word. Colours: yes ('types' in their world). Matthew is passing the other questions to Cyrus and the group; waiting on their answers. When they come: a coloured version of ^report(43)'s example, its token types as Hazel types (tokens as values in places, a transition's guard and output as Hazel functions), so the types help where theirs do.",
+   "waiting": "answers from Cyrus and the Cambridge group (Matthew passes the questions on)"
   }
  ],
- "next_ticket": 700,
+ "next_ticket": 701,
  "current_ticket": 697,
  "current_note": "^report(43) drafted and published (WIP) for ^ticket(697); waiting on Matthew's read; ^report(42) item 5 says so",
  "closed_tickets": [
@@ -18703,7 +18723,8 @@
   664,
   685,
   698,
-  699
+  699,
+  700
  ],
  "current_since": "2026-11-06T09:29-07:00",
  "next_meeting": {
