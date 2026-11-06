@@ -11899,6 +11899,49 @@
      "chars": 105,
      "asks": false,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T11:35-07:00",
+     "from": "matthew",
+     "chars": 86,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T11:35-07:00",
+     "from": "claude",
+     "chars": 1402,
+     "asks": false,
+     "words": 228,
+     "read_s": 57,
+     "listen_s": 86,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T11:35-07:00",
+     "from": "claude",
+     "chars": 110,
+     "asks": false,
+     "words": 19,
+     "read_s": 5,
+     "listen_s": 7,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T11:36-07:00",
+     "from": "claude",
+     "chars": 334,
+     "asks": false,
+     "words": 54,
+     "read_s": 14,
+     "listen_s": 20,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ],
    "area": "hazel, performance, livelits: hazel-jit, a livelit's view compiled to JS",
@@ -12495,7 +12538,35 @@
    ],
    "source": "Matthew, 2026-11-06 ~11:50, in chat, quoting ^report(44)'s limits (\"Each listing loads Hazel's app in its frame, so a page with many listings takes a while to start them all.\"): \"What can we do in the future about this limitation?\" then \"mint and enqueue a ticket\"",
    "text": "<b>Many listings, one Hazel.</b> Today hazel-lib's listings script (^report(44)) gives each listing its own frame, and each frame starts a whole Hazel app, one after another, so a page's last listing waits for all the others, and each holds its own copy of Hazel in memory. <b>First, measure</b> on GitHub's machines (a page of 1, 5 and 20 listings): time from load to each frame's ready, and memory per frame. <b>Then, the options, cheapest first:</b> (1) start a listing's frame only when it nears the screen, text until then (the script starts them in page order today); (2) static tiles for every listing, drawn by the hazeljs already in the page (a <code>Hazel.render(text)</code> giving the tiles as HTML, no frame), and one live editor frame that moves to the listing being clicked or edited; (3) a lighter frame: an embed entry point built on its own, without the rest of Hazel's app; (4) no frames at all: Hazel's editor mounted in the page by hazel-lib itself (<code>Hazel.mountEditor(element, options)</code>, the embed doc's 'later'), one Hazel for every listing, which also removes the origin allowlist (^ticket(701)) and lets go to definition and undo (^ticket(702)) work across listings without messages. (4) is the real fix; (1) and (2) help now.",
-   "progress": "11:37 11-06: minted on Matthew's word; enqueued. Related: ^ticket(701) (the editor in the package), ^ticket(702) (undo)."
+   "progress": "11:37 11-06: minted on Matthew's word; enqueued. Related: ^ticket(701) (the editor in the package), ^ticket(702) (undo).",
+   "log": [
+    {
+     "at": "2026-11-06T11:36-07:00",
+     "from": "matthew",
+     "chars": 161,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T11:36-07:00",
+     "from": "matthew",
+     "chars": 25,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T11:36-07:00",
+     "from": "claude",
+     "chars": 146,
+     "asks": false,
+     "words": 30,
+     "read_s": 8,
+     "listen_s": 11,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 705,
@@ -18596,7 +18667,7 @@
   },
   "since": "2026-08-27",
   "replies": 6147,
-  "words": 1337075,
+  "words": 1337288,
   "read_hours_est": 93.6,
   "listen_hours_est": 139.3,
   "read_s_avg": 55,
@@ -18899,8 +18970,8 @@
    },
    "2026-11-06": {
     "replies": 24,
-    "words": 4106,
-    "chars": 24615
+    "words": 4319,
+    "chars": 25970
    }
   }
  },
