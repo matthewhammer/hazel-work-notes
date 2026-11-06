@@ -10428,7 +10428,7 @@
     "npm"
    ],
    "source": "Matthew, 2026-11-02, in chat, under the agenda's Hazlet item (^report(37)): \"can we add a task for you: What does it take to create a prototype npm package that other people can download and use via npm, that's documented the way that npm documents things, etc? for each discrete task, please create tickets that inter-link with each other\"; and: \"if it's possible to register our \\\"Hazlet\\\" work today under npm, I'd like to try that\"",
-   "progress": "10:22: minted with its six task tickets (669 to 674). Name check, 10:17: <code>hazlet</code> is free on npm (so are hazlets, hazel-lib, hazel-lang, hazeljs; @hazelgrove/hazel has no package). npm here is not logged in. Matthew wants to try registering it today: a 0.0.1 built from #2719's head (0d66c36618, worktree ~/hazel-embed-520), packed here, published after he logs in. 10:36: A FIRST VERSION, ready to publish. Matthew is logged in to npm (user matthewhammer) and picked the name <b>hazeljs</b> (\"Hazlet\" stays the pattern's name). Local repo ~/hazeljs (c76daf4, not pushed anywhere): hazel-lib.js built from #2719 at 0d66c36618 with GITHUB_SHA set, so Hazel.build names the commit; 648-649 kB packed, 2.8 MB unpacked, 9 files. Installed from its tarball into a fresh project: require and import both work, every README example runs. Waiting on Matthew: publish hazeljs@0.0.1. 10:44: PUBLISH REFUSED, twice (here at 10:43, then in Matthew's terminal tab): npm E403, \"Two-factor authentication or granular access token with bypass 2fa enabled is required to publish packages\". It asked for no code, so 2FA is off on the account. Nothing published; the name is still free. Matthew's step: turn on 2FA on npmjs.com, npm login again, then npm publish in ~/hazeljs (it will ask for the code). Matthew's next ask (same time): once hazeljs and a MUDU package are on npm, can ^report(34) show the trap room live and let a reader edit its Hazel rule in tiles? 10:49: ^report(34) now has a dated section for Hazel's core team on what the release carries beyond dev (published, homepage fe4cce1). Matthew's next ask, a live trap room in that report: ^ticket(675) with 676 to 678. 11-03 07:14: waiting reworded: the publish is done (0.0.1, 11-02 11:03, ^ticket(673)); what waits on Matthew is the placeholder's deprecation. ^report(37)'s npm item updated to match (homepage). 11-03 08:19: ^ticket(674) done: Dress Up 0.0.476 loads its Hazel from hazeljs 0.0.1 on jsDelivr. 11-03 08:57: Matthew answered, in chat: yes: deprecate the 0.0.0-stage placeholder (his two-factor code). 11-03 09:01: the placeholder's deprecation: npm here had lost its login (whoami 401, the saved token expired); started npm login && npm deprecate hazeljs@0.0.0-stage in the terminal tab c2, waiting for Matthew to sign in and type his code. 11-03 09:13: done. Matthew signed in to npm and ran the deprecation himself (after the 09:04 crash closed tab c2); npm view hazeljs@0.0.0-stage now shows it deprecated, pointing to 0.0.1, and latest is still 0.0.1. 12:11 11-05: THE MEETING (Cyrus), Matthew's takeaway: the package should follow dev, perhaps after modular editors (#2469) lands on dev; not urgent now. Until then hazeljs stays on #2719's line (0.0.4), fixed only as MUDU needs. The account question (Matthew's or @hazelgrove) and whether the Hazlet helper joins the package were not settled in these notes.",
+   "progress": "10:22: minted with its six task tickets (669 to 674). Name check, 10:17: <code>hazlet</code> is free on npm (so are hazlets, hazel-lib, hazel-lang, hazeljs; @hazelgrove/hazel has no package). npm here is not logged in. Matthew wants to try registering it today: a 0.0.1 built from #2719's head (0d66c36618, worktree ~/hazel-embed-520), packed here, published after he logs in. 10:36: A FIRST VERSION, ready to publish. Matthew is logged in to npm (user matthewhammer) and picked the name <b>hazeljs</b> (\"Hazlet\" stays the pattern's name). Local repo ~/hazeljs (c76daf4, not pushed anywhere): hazel-lib.js built from #2719 at 0d66c36618 with GITHUB_SHA set, so Hazel.build names the commit; 648-649 kB packed, 2.8 MB unpacked, 9 files. Installed from its tarball into a fresh project: require and import both work, every README example runs. Waiting on Matthew: publish hazeljs@0.0.1. 10:44: PUBLISH REFUSED, twice (here at 10:43, then in Matthew's terminal tab): npm E403, \"Two-factor authentication or granular access token with bypass 2fa enabled is required to publish packages\". It asked for no code, so 2FA is off on the account. Nothing published; the name is still free. Matthew's step: turn on 2FA on npmjs.com, npm login again, then npm publish in ~/hazeljs (it will ask for the code). Matthew's next ask (same time): once hazeljs and a MUDU package are on npm, can ^report(34) show the trap room live and let a reader edit its Hazel rule in tiles? 10:49: ^report(34) now has a dated section for Hazel's core team on what the release carries beyond dev (published, homepage fe4cce1). Matthew's next ask, a live trap room in that report: ^ticket(675) with 676 to 678. 11-03 07:14: waiting reworded: the publish is done (0.0.1, 11-02 11:03, ^ticket(673)); what waits on Matthew is the placeholder's deprecation. ^report(37)'s npm item updated to match (homepage). 11-03 08:19: ^ticket(674) done: Dress Up 0.0.476 loads its Hazel from hazeljs 0.0.1 on jsDelivr. 11-03 08:57: Matthew answered, in chat: yes: deprecate the 0.0.0-stage placeholder (his two-factor code). 11-03 09:01: the placeholder's deprecation: npm here had lost its login (whoami 401, the saved token expired); started npm login && npm deprecate hazeljs@0.0.0-stage in the terminal tab c2, waiting for Matthew to sign in and type his code. 11-03 09:13: done. Matthew signed in to npm and ran the deprecation himself (after the 09:04 crash closed tab c2); npm view hazeljs@0.0.0-stage now shows it deprecated, pointing to 0.0.1, and latest is still 0.0.1. 12:11 11-05: THE MEETING (Cyrus), Matthew's takeaway: the package should follow dev, perhaps after modular editors (#2469) lands on dev; not urgent now. Until then hazeljs stays on #2719's line (0.0.4), fixed only as MUDU needs. The account question (Matthew's or @hazelgrove) and whether the Hazlet helper joins the package were not settled in these notes. 15:34 11-06: hazeljs 0.0.5 PUBLISHED by Matthew (npm latest; key-order fix, hazel-listings.js in the package, README with the Petri example's new pictures and links); hazelgrove/hazeljs main fast-forwarded to it (c487d05). Loose ends: ^ticket(706), ^ticket(707).",
    "log": [
     {
      "at": "2026-11-02T10:50-07:00",
@@ -13334,32 +13334,6 @@
    ]
   },
   {
-   "id": 703,
-   "area": "hazel, hazeljs: a JS object's keys in another order than the labeled tuple's fields gets stuck when a field is a list",
-   "added": "2026-11-06T11:24-07:00",
-   "opened": "2026-11-06T11:24-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazel",
-    "hazeljs",
-    "bug"
-   ],
-   "source": "Found by Claude, 2026-11-06 11:24, building matthewhammer/hazeljs-petri-example (Matthew's ask, the same day): its Node example passed the net's view as {transitions, marking, draw} and every answer came back {hazel: ...}.",
-   "text": "<b>Bug in hazeljs 0.0.4 (#2719's library): key order matters for a labeled tuple with a list field.</b> <code>Hazel.run(\"fun (p : (x = Int, y = [Int])) -> p.x\").value</code> gives 5 for <code>{x: 5, y: [1]}</code> but <code>{hazel: \"...(Asc ...\"}</code> for <code>{y: [1], x: 5}</code>: stuck at the parameter's annotation. With only Int fields (<code>{y: 3, x: 10}</code>) the order does not matter. A JS object's keys have no order a JS developer thinks about, so the boundary should convert by the type's field order (or by label), not the object's. Where: the library's value conversion in (JS object to labeled tuple), and the cast it meets; check whether #2681 (no cast re-checked at run time) or ^ticket(681) (converting JS values directly) changes it. Until fixed: hazeljs-petri-example's node/petri.mjs builds its view in Net's field order and says why.",
-   "progress": "11:24 11-06: minted; repro in the text (node, hazeljs 0.0.4). Workaround in hazeljs-petri-example. | 14:27 11-06: FIXED in Hazel's dynamics, not the boundary: Ascriptions.transition paired a tuple's fields with a product type's by position (its own TODO: 'what to do if the labels don't match'); the statics order a program's own tuples, so only a JS object (HazelLibCore.of_js, keys' order) met its type out of order. Now same labels in another order pair by label, in the type's order. js-library-embed 6c283c8a9f (#2719); Test_HazelLib +1 test (fails without the fix), HazelLib 27, Evaluator 492, ModuleProgram 19, Embed 13 pass; the 6-case repro all ok from a local hazel-lib.js. Going into hazeljs 0.0.5 (Matthew: 'it would be best to have that public package reflect what we do, overall, including documentation'): hazel-lib.js building on GitHub (hazeljs run 42296395192); branch release-0.0.5 also adds hazel-listings.js to the package and the README's editor section.",
-   "waiting": "Matthew's npm publish of hazeljs 0.0.5 (this machine is not logged in to npm)",
-   "log": [
-    {
-     "at": "2026-11-06T14:15-07:00",
-     "from": "matthew",
-     "chars": 98,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 704,
    "area": "hazel, hazeljs, report 44: many Hazel listings on a page without a Hazel app per listing",
    "added": "2026-11-06T11:37-07:00",
@@ -13420,9 +13394,43 @@
    "text": "<b>Goto first use / Goto next use.</b> The context menu offers Goto first use on a definition with uses, and Goto next use on each use before the last. A definition's uses are the terms whose Goto definition leads to it (Info.get_binding_site), in program order (new module Uses), so shadowing and recursion come out right. PR #2815 against dev, branch goto-uses (~/hazel-goto-uses).",
    "progress": "13:44 11-06: PR #2815 opened (8c635783f7): two move goals, Uses, the menu items; Editing.GotoUses 12 tests (3 fail when first-use takes the last use); checked in the app's scratch mode (each menu state and each jump). CI pending.",
    "waiting": "review of #2815"
+  },
+  {
+   "id": 706,
+   "area": "hazel, hazeljs, petri: hazeljs-petri-example on hazeljs 0.0.5, and its listings from the package",
+   "added": "2026-11-06T15:34-07:00",
+   "opened": "2026-11-06T15:34-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazeljs",
+    "petri"
+   ],
+   "source": "Claude, 2026-11-06 15:34, a loose end of publishing hazeljs 0.0.5 (Matthew asked: \"do we have a ticket for all recent 'loose ends'?\").",
+   "text": "<b>The Petri example on hazeljs 0.0.5.</b> matthewhammer/hazeljs-petri-example still loads hazeljs 0.0.4: <code>js/live.js</code>'s LIB address and <code>package.json</code>'s dependency. Move both to 0.0.5. Then: drop the key-order workaround in <code>node/petri.mjs</code> (the view built in Net's field order), since 0.0.5 pairs a JS object's keys by label; and load <code>hazel-listings.js</code> from the package (<code>https://cdn.jsdelivr.net/npm/hazeljs@0.0.5/hazel-listings.js</code>) instead of the page's own copy, which differs (the package's brings default styles). Release as the example's 0.0.8. A question for Matthew: should ^report(43)'s embedded copy of the example (its own live.js) get the divider on the page too, as the app's 0.0.7 did?",
+   "progress": "15:34 11-06: minted. hazeljs 0.0.5 is on npm (latest) and jsDelivr; the example is at 0.0.7.",
+   "url": "https://github.com/matthewhammer/hazeljs-petri-example"
+  },
+  {
+   "id": 707,
+   "area": "hazel, hazeljs, editor: hazel-listings.js breaks long lines to fit each listing, again whenever its width changes",
+   "added": "2026-11-06T15:34-07:00",
+   "opened": "2026-11-06T15:34-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazeljs",
+    "editor"
+   ],
+   "source": "Matthew, 2026-11-06 ~15:12, in chat, with a screenshot of the Petri example in full screen, its listings' lines cut off: \"next, issue for hazeljs: adjust to resize --- like we do in MUDU, to linewrap dynamically on LHS (or any code listing).\" Posted as hazelgrove/hazeljs#1 on his \"Post it\".",
+   "text": "<b>Listings that re-wrap.</b> A listing keeps the line breaks it was written with, so in a narrow box its long lines are cut off and it scrolls sideways (the Petri example's rules column; worse after dragging the divider). As Messed Up Dress Up does (dress-up/js/25-scripting.js: scriptTileCols, scriptTileSpec, scriptFlow): the box's width in characters, measured in the editor's font; long lines broken like a pretty-printer at the outermost places the code allows, only spaces and line breaks changed; that copy sent to the frame, the page's text kept; sent again when the width changes. Or Hazel's editor wraps its own lines in embed mode (a change to #2814's branch). Done when dragging the divider, resizing and full screen re-break every listing, widening brings long lines back, and typing keeps the caret.",
+   "progress": "15:34 11-06: issue posted, hazelgrove/hazeljs#1 (Matthew's 15:12 screenshot not attached: gh cannot; his to drag in).",
+   "url": "https://github.com/hazelgrove/hazeljs/issues/1"
   }
  ],
- "next_ticket": 706,
+ "next_ticket": 708,
  "current_ticket": 694,
  "current_note": "11:40: hazel-jit started on Matthew's word (11-06 'Start hazel-jit'): slice 1, the compiler core and agreement tests, in ~/hazel-694-jit; also launching hazeljs-petri-example's Pages site",
  "closed_tickets": [
@@ -19481,6 +19489,16 @@
    "status": "done",
    "closed": "2026-10-24",
    "outcome": "Published under ^du_report(18)'s 13 and sent to Matthew to print"
+  },
+  {
+   "id": 703,
+   "area": "hazel, hazeljs: a JS object's keys in another order than the labeled tuple's fields gets stuck when a field is a list",
+   "added": "2026-11-06T11:24-07:00",
+   "text": "Bug in hazeljs 0.0.4 (#2719's library): key order matters for a labeled tuple with a list field.",
+   "source": "Found by Claude, 2026-11-06 11:24, building matthewhammer/hazeljs-petri-example (Matthew's ask, the same day): its Node…",
+   "status": "done",
+   "closed": "2026-11-06",
+   "outcome": "Fixed in Hazel's dynamics (Ascriptions.transition pairs by label), #2719 at 6c283c8a9f, and released in hazeljs 0.0.5. The Petri example's workaround goes in ^ticket(706)."
   }
  ],
  "queue": [
@@ -19502,8 +19520,9 @@
   699,
   701,
   702,
-  703,
   704,
+  706,
+  707,
   700
  ],
  "current_since": "2026-11-06T11:40-07:00",

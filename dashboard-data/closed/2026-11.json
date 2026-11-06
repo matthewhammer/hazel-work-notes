@@ -1928,5 +1928,33 @@
     "Opus 5.5 · Xhigh": 1.0
    }
   }
+ },
+ {
+  "id": 703,
+  "area": "hazel, hazeljs: a JS object's keys in another order than the labeled tuple's fields gets stuck when a field is a list",
+  "added": "2026-11-06T11:24-07:00",
+  "opened": "2026-11-06T11:24-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazel",
+   "hazeljs",
+   "bug"
+  ],
+  "source": "Found by Claude, 2026-11-06 11:24, building matthewhammer/hazeljs-petri-example (Matthew's ask, the same day): its Node example passed the net's view as {transitions, marking, draw} and every answer came back {hazel: ...}.",
+  "text": "<b>Bug in hazeljs 0.0.4 (#2719's library): key order matters for a labeled tuple with a list field.</b> <code>Hazel.run(\"fun (p : (x = Int, y = [Int])) -> p.x\").value</code> gives 5 for <code>{x: 5, y: [1]}</code> but <code>{hazel: \"...(Asc ...\"}</code> for <code>{y: [1], x: 5}</code>: stuck at the parameter's annotation. With only Int fields (<code>{y: 3, x: 10}</code>) the order does not matter. A JS object's keys have no order a JS developer thinks about, so the boundary should convert by the type's field order (or by label), not the object's. Where: the library's value conversion in (JS object to labeled tuple), and the cast it meets; check whether #2681 (no cast re-checked at run time) or ^ticket(681) (converting JS values directly) changes it. Until fixed: hazeljs-petri-example's node/petri.mjs builds its view in Net's field order and says why.",
+  "progress": "11:24 11-06: minted; repro in the text (node, hazeljs 0.0.4). Workaround in hazeljs-petri-example. | 14:27 11-06: FIXED in Hazel's dynamics, not the boundary: Ascriptions.transition paired a tuple's fields with a product type's by position (its own TODO: 'what to do if the labels don't match'); the statics order a program's own tuples, so only a JS object (HazelLibCore.of_js, keys' order) met its type out of order. Now same labels in another order pair by label, in the type's order. js-library-embed 6c283c8a9f (#2719); Test_HazelLib +1 test (fails without the fix), HazelLib 27, Evaluator 492, ModuleProgram 19, Embed 13 pass; the 6-case repro all ok from a local hazel-lib.js. Going into hazeljs 0.0.5 (Matthew: 'it would be best to have that public package reflect what we do, overall, including documentation'): hazel-lib.js building on GitHub (hazeljs run 42296395192); branch release-0.0.5 also adds hazel-listings.js to the package and the README's editor section. | 15:34 11-06: RELEASED in hazeljs 0.0.5 (Matthew published it; npm latest = 0.0.5, jsDelivr serves it byte for byte as release-0.0.5 / main c487d05).",
+  "log": [
+   {
+    "at": "2026-11-06T14:15-07:00",
+    "from": "matthew",
+    "chars": 98,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-06",
+  "outcome": "Fixed in Hazel's dynamics (Ascriptions.transition pairs by label), #2719 at 6c283c8a9f, and released in hazeljs 0.0.5. The Petri example's workaround goes in ^ticket(706).",
+  "outcome_url": "https://www.npmjs.com/package/hazeljs/v/0.0.5"
  }
 ]
