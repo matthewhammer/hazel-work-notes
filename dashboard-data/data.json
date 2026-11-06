@@ -1180,6 +1180,13 @@
      "read_s": 53,
      "listen_s": 79,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T09:11-07:00",
+     "from": "matthew",
+     "chars": 83,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ],
    "text": "<b>Meeting with Cyrus, Wednesday 2026-10-21: the tickets to bring.</b> <b>The agenda:</b> ^report(20), public and kept up to date until the meeting (generated from 020/data/agenda.json; republished with tools/publish_agenda.py). Matthew: \"My next meeting with Cyrus is Wed -- let's make a ticket that links to all related tickets for that meeting please. For now, it's just a bulleted list based on what you know now.\"<ul><li>^ticket(385): why CI fails on the livelits x modular editing branch (#2635, into ...full): Cyrus's question on Friday; ANSWERED 10-19 09:31: it is the merge (Modules II on the livelits branch meeting #2469's per-member DefStatics; one table test input), neither branch broken: ^report(18), published 2026-10-19 with a dated update (each cause now has a fix).</li><li>^ticket(386): the type syntax expansion for types in Gamma too, as for the result type (long types on one line): ideas.</li><li>^ticket(387): livelits' model sub-editors as read-only tiles, with tiles' selection UX (right click and the rest); it follows his 10-03 call, the revealed model read-only and selectable.</li><li>^ticket(388): why the right-hand side that explains each syntax form shows no example syntax as read-only tiles (older than Matthew's time on the team).</li><li>^ticket(398): do the performance PRs (against #2609) keep typing and evaluation correct? Cyrus wants more analysis and coverage of functional correctness: an argument for each PR in a report, and more correctness tests (a new PR to dev, and tests on each of our PRs). Deadline: the morning of 2026-10-20 (met: ^report(21) drafted 13:16 10-19; it waits on Matthew's reading).</li><li><a href=\"https://matthewhammer.org/hazel/reports/019/\">^report(19)</a>, published 10-19 (^ticket(393)): the Hazel UI draws syntax as tiles on 22 of 39 surfaces, but only 6 take a caret.</li><li>Open and waiting on Matthew, in case they come up: ^ticket(18) (option B: livelit views evaluated in the worker), ^ticket(102) (the reply to Alexander on #2583), ^ticket(16) (asking the maintainers to require the test jobs for merging into dev).</li></ul>More to come from Matthew.",
@@ -12402,6 +12409,13 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T09:10-07:00",
+     "from": "matthew",
+     "chars": 2017,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ],
    "area": "hazel, performance, livelits: hazel-jit, a livelit's view compiled to JS",
@@ -12431,7 +12445,23 @@
    ],
    "source": "Matthew, 2026-11-06 ~09:10, in chat: \"I've had some time to reflect on meeting Cyrus yesterday. Let's draft an agenda for next meeting, carrying over work that continues\"; then: \"Next meeting with Cyrus should be at the \\\"usual time\\\" --- Wed, 10am Mountain time\"",
    "text": "<b>Meeting with Cyrus, Wednesday 2026-11-11 at 10:00 Mountain: the agenda.</b> ^report(42), public and kept up to date until the meeting (042/data/agenda.json; republished with tools/publish_agenda.py 42). Carries over the work that continues from 11-05 (^report(37)): (1) undo in O(log n), space and time, and why we are not there yet (^ticket(665)); (2) hazel-jit, livelit views compiled to JS, best case first (^ticket(694)), with BuckleScript and ReScript to know and compare (^ticket(698)); (3) a PR to dev linking the experimental hazeljs package (^ticket(696)); (4) a report for JS developers on how MUDU uses hazeljs (^ticket(697)).",
-   "progress": "09:14 11-06: minted; drafting ^report(42) from ^report(37)'s generator. | 09:22 11-06: ^report(42) PUBLISHED as work in progress (https://matthewhammer.org/hazel/reports/042/; homepage 28c7bfa, series 5a7b130), 5 items in two sections: 1 undo in O(log n), space and time, and why not yet (^ticket(665)); 2 hazel-jit (^ticket(694)); 3 BuckleScript, ReScript, Melange (^ticket(698)); 4 the README PR, now #2812 (^ticket(696)); 5 the report for JS developers (^ticket(697)). Republished with #2812. Dashboard's next_meeting points to it."
+   "progress": "09:14 11-06: minted; drafting ^report(42) from ^report(37)'s generator. | 09:22 11-06: ^report(42) PUBLISHED as work in progress (https://matthewhammer.org/hazel/reports/042/; homepage 28c7bfa, series 5a7b130), 5 items in two sections: 1 undo in O(log n), space and time, and why not yet (^ticket(665)); 2 hazel-jit (^ticket(694)); 3 BuckleScript, ReScript, Melange (^ticket(698)); 4 the README PR, now #2812 (^ticket(696)); 5 the report for JS developers (^ticket(697)). Republished with #2812. Dashboard's next_meeting points to it.",
+   "log": [
+    {
+     "at": "2026-11-06T09:10-07:00",
+     "from": "matthew",
+     "chars": 2017,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-06T09:11-07:00",
+     "from": "matthew",
+     "chars": 83,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   },
   {
    "id": 696,
@@ -12450,7 +12480,16 @@
    "source": "Matthew, 2026-11-06 ~09:10, in chat: \"Small task to do asap -- open a PR against dev for Hazel that links to the experimental npm package, with some minimal description, and a note that the plan is for it to track `dev`, but it does not do that, quite yet.\"",
    "text": "<b>A PR to dev that links to hazeljs.</b> Hazel's README (on dev) gets a short section on the experimental npm package (npmjs.com/package/hazeljs, source hazelgrove/hazeljs): what it is, in a sentence or two, and a note that the plan is for it to track dev, but it does not yet (it is built from the draft library, #2711 and #2719). Why now: Cyrus knows people in Cambridge who simulate Petri nets with homemade JS tools; Matthew would like to see whether they could move some of their JS logic into Hazel through hazeljs.",
    "progress": "09:14 11-06: minted; doing it this morning, after the agenda's first draft. | 09:22 11-06: OPENED #2812 (https://github.com/hazelgrove/hazel/pull/2812) against dev: branch docs/readme-hazeljs (c99572b870, from dev at 782249bbd0; worktree ~/hazel-696-readme), README only, a section 'Hazel in JavaScript: hazeljs (experimental)' after the CLI's. CI running; review required. ^report(42) item 4 says so. Left: a reviewer (the agenda asks who), then merge on Matthew's word.",
-   "waiting": "a review of #2812 (who reviews it is on ^report(42)'s list for the meeting)"
+   "waiting": "a review of #2812 (who reviews it is on ^report(42)'s list for the meeting)",
+   "log": [
+    {
+     "at": "2026-11-06T09:10-07:00",
+     "from": "matthew",
+     "chars": 2017,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   },
   {
    "id": 697,
@@ -12470,7 +12509,16 @@
    ],
    "source": "Matthew, 2026-11-06 ~09:10, in chat: \"Related to 3 --- Let's create a Hazel report that looks at how MUDU uses hazeljs for its script support, and describes to another JS developer how they might do something analogous.\"",
    "text": "<b>A Hazel report: scripting a JS app in Hazel, the way Messed Up Dress Up does.</b> How MUDU uses hazeljs for its script support (the rooms' on_event rules, Globals and Cmd, runProgram over modules, the fallback to JS while a program is unfinished, the tiles), told to a JavaScript developer who wants to do something analogous in their own program: the steps, the code on each side, and what to watch for. First readers in mind: the Cambridge group Cyrus mentioned, who simulate Petri nets with homemade JS tools (^ticket(696)). Builds on ^report(33), ^report(34), ^report(39).",
-   "progress": "09:14 11-06: minted; on the 11-11 agenda (^report(42)), not started."
+   "progress": "09:14 11-06: minted; on the 11-11 agenda (^report(42)), not started.",
+   "log": [
+    {
+     "at": "2026-11-06T09:10-07:00",
+     "from": "matthew",
+     "chars": 2017,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   },
   {
    "id": 698,
@@ -18574,8 +18622,8 @@
   },
   "since": "2026-08-27",
   "replies": 6125,
-  "words": 1333033,
-  "read_hours_est": 93.3,
+  "words": 1333079,
+  "read_hours_est": 93.4,
   "listen_hours_est": 138.9,
   "read_s_avg": 55,
   "listen_s_avg": 82,
@@ -18877,8 +18925,8 @@
    },
    "2026-11-06": {
     "replies": 2,
-    "words": 64,
-    "chars": 382
+    "words": 110,
+    "chars": 663
    }
   }
  },
