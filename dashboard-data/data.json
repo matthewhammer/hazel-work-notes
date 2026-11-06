@@ -12991,9 +12991,26 @@
    "source": "Found by Claude, 2026-11-06 11:24, building matthewhammer/hazeljs-petri-example (Matthew's ask, the same day): its Node example passed the net's view as {transitions, marking, draw} and every answer came back {hazel: ...}.",
    "text": "<b>Bug in hazeljs 0.0.4 (#2719's library): key order matters for a labeled tuple with a list field.</b> <code>Hazel.run(\"fun (p : (x = Int, y = [Int])) -> p.x\").value</code> gives 5 for <code>{x: 5, y: [1]}</code> but <code>{hazel: \"...(Asc ...\"}</code> for <code>{y: [1], x: 5}</code>: stuck at the parameter's annotation. With only Int fields (<code>{y: 3, x: 10}</code>) the order does not matter. A JS object's keys have no order a JS developer thinks about, so the boundary should convert by the type's field order (or by label), not the object's. Where: the library's value conversion in (JS object to labeled tuple), and the cast it meets; check whether #2681 (no cast re-checked at run time) or ^ticket(681) (converting JS values directly) changes it. Until fixed: hazeljs-petri-example's node/petri.mjs builds its view in Net's field order and says why.",
    "progress": "11:24 11-06: minted; repro in the text (node, hazeljs 0.0.4). Workaround in hazeljs-petri-example."
+  },
+  {
+   "id": 704,
+   "area": "hazel, hazeljs, report 44: many Hazel listings on a page without a Hazel app per listing",
+   "added": "2026-11-06T11:37-07:00",
+   "opened": "2026-11-06T11:37-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazeljs",
+    "performance",
+    "report 44"
+   ],
+   "source": "Matthew, 2026-11-06 ~11:50, in chat, quoting ^report(44)'s limits (\"Each listing loads Hazel's app in its frame, so a page with many listings takes a while to start them all.\"): \"What can we do in the future about this limitation?\" then \"mint and enqueue a ticket\"",
+   "text": "<b>Many listings, one Hazel.</b> Today hazel-lib's listings script (^report(44)) gives each listing its own frame, and each frame starts a whole Hazel app, one after another, so a page's last listing waits for all the others, and each holds its own copy of Hazel in memory. <b>First, measure</b> on GitHub's machines (a page of 1, 5 and 20 listings): time from load to each frame's ready, and memory per frame. <b>Then, the options, cheapest first:</b> (1) start a listing's frame only when it nears the screen, text until then (the script starts them in page order today); (2) static tiles for every listing, drawn by the hazeljs already in the page (a <code>Hazel.render(text)</code> giving the tiles as HTML, no frame), and one live editor frame that moves to the listing being clicked or edited; (3) a lighter frame: an embed entry point built on its own, without the rest of Hazel's app; (4) no frames at all: Hazel's editor mounted in the page by hazel-lib itself (<code>Hazel.mountEditor(element, options)</code>, the embed doc's 'later'), one Hazel for every listing, which also removes the origin allowlist (^ticket(701)) and lets go to definition and undo (^ticket(702)) work across listings without messages. (4) is the real fix; (1) and (2) help now.",
+   "progress": "11:37 11-06: minted on Matthew's word; enqueued. Related: ^ticket(701) (the editor in the package), ^ticket(702) (undo)."
   }
  ],
- "next_ticket": 704,
+ "next_ticket": 705,
  "current_ticket": 697,
  "current_note": "^report(43) polished and ^report(44) published; hazeljs-petri-example public (Pages not launched); hazeljs README has Examples; next, on Matthew's word: ^ticket(694)",
  "closed_tickets": [
@@ -19065,6 +19082,7 @@
   701,
   702,
   703,
+  704,
   700
  ],
  "current_since": "2026-11-06T09:29-07:00",
