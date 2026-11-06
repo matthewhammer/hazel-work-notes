@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 2026-11-06</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-11-05 morning to 2026-11-06 afternoon, the meeting with Cyrus, hazeljs 0.0.5, and hazel-jit</h1>
+<p class="sub">Claude, from the 11-05 morning (after the night's note at 03:10) to 16:10 MST on 11-06, written for the gallery on Matthew's ask ("update" the work notes). Nothing was written up between: these are from the tickets' progress and the repositories' commits. On 11-06 the work ran in several sessions, one of them restarted midday so Matthew's hardware key could publish to npm; this one, a side session, wrote these notes.</p>
+
+<h2>Where things are</h2>
+<ul>
+<li><b>hazel-jit (^ticket(694))</b>, in <code>~/hazel-694-jit</code> on <code>trial/694-view-jit</code> (off #2635 at <code>ab7273c984</code>): slices 1 to 3 pushed, the newest <code>7a7151443c</code> (its Deploy green, its CI running at 16:10). Not committed: a change to <code>test/Test_HazelJit.re</code> that prints each timing run's readings (for ^report(45)'s data), and an unrelated change to <code>docs/hazel-architecture-july-2024.tldr</code> from 11-05, left alone.</li>
+<li><b>^report(45), hazel-jit's report</b>: started, not published. <code>~/hazel-perf-report/045/gen045.py</code> is written (figures from the timings); <code>body.html</code>, its data and thumbnail are next. The timings are in this session's scratchpad (<code>timings-run2.txt</code>, run at 16:08).</li>
+<li><b>hazeljs 0.0.5 is on npm</b> (latest; published by Matthew at about 15:25 with his key), hazelgrove/hazeljs <code>main</code> = <code>release-0.0.5</code> = <code>c487d05</code>. Its README's Petri section has three new pictures and links. hazelgrove/hazeljs#1 (listings that re-wrap to their width) is the repository's first issue (^ticket(707)).</li>
+<li><b>hazeljs-petri-example 0.0.7</b> is live at matthewhammer.org/hazeljs-petri-example/ (<code>523ba84</code>): the divider between the rules and the net on the page as well as in full screen. It still loads hazeljs 0.0.4 (^ticket(706)).</li>
+<li><b>Open PRs against dev</b>: #2812 (the README links hazeljs; review required, the agenda asks who), #2815 (Goto first use / Goto next use; CI green), and the draft #2814 (the editable embed, stacked on #2719).</li>
+<li><b>The reports</b>: ^report(42), the agenda for Wednesday 2026-11-11 at 10:00 Mountain, and ^report(43) and ^report(44), on using hazeljs from JavaScript (a whole app, an article), all published as work in progress.</li>
+<li><b>Servers</b>: the dashboard on <code>localhost:8000</code>, restarted after the midday restart (Matthew: "localhost:8000 only for now"); the others it links are not running. A preview of the Petri example ran on 8140 in the chat session.</li>
+<li><b>hazel-work-notes</b> has an older uncommitted change to <code>dashboard/update.py</code> (the ports in tables, 10-24); not touched here.</li>
+</ul>
+
+<h2>Done, 11-05</h2>
+<ul>
+<li><b>The meeting with Cyrus</b> (10:00, on ^report(37)). Decided: livelits go into dev, settled (one PR or several still TBD, ^ticket(642)); hazeljs follows dev, perhaps once #2469 lands there, not urgent (^ticket(668)); and new work, livelits' views compiled to JS (^ticket(694), its design written by 12:27). The agenda says so in one place (series <code>8f9b037</code>).</li>
+<li><b>#2635</b> got the two id fixes and the worker's memo of composed programs (^ticket(666), CI green by 04:54).</li>
+<li><b>Dress Up</b>: 0.0.491 (a check's regex), its speed run passing hold518 and scripting482 (^ticket(693)); ^du_report(25)'s pictures retaken of 0.0.491.</li>
+</ul>
+
+<h2>Done, 11-06</h2>
+<ul>
+<li><b>The next agenda</b>, ^report(42), for 11-11 (^ticket(695)): undo in O(log n) (^ticket(665)), hazel-jit, BuckleScript and ReScript (^ticket(698)), the README PR (^ticket(696), #2812), and the report for JS developers (^ticket(697)).</li>
+<li><b>^report(43), Scripting a JavaScript App in Hazel</b>, and <b>^report(44), Hazel Listings in an Article</b>: the Petri net example live on the page with hazeljs from npm and Hazel's editor per module, go to definition between listings (<code>hazel-listings.js</code>), errors under the listing they are in. #2814 opened for the editable embed (^ticket(677), closed).</li>
+<li><b>hazeljs-petri-example</b>: made and put live (0.0.1, 11:25), then 0.0.2 to 0.0.7 on Matthew's asks: full screen, errors under their rule, a divider, the rules on the left and the net on the right, the divider on the page too.</li>
+<li><b>A hazeljs bug</b>, a JS object's keys in another order than its type's fields (^ticket(703)): fixed in Hazel's dynamics (#2719 at <code>6c283c8a9f</code>), released in hazeljs 0.0.5, with <code>hazel-listings.js</code> in the package; ^ticket(703) closed.</li>
+<li><b>#2815</b>: Goto first use and Goto next use in the context menu (^ticket(705)).</li>
+<li><b>hazel-jit</b>: slice 1, the compiler, its results agreeing with the interpreter's; slice 2, modules, and the Polygons slide's view compiled whole; slice 3, the trip in and out (a JS number read by the type where it sits, a handler back as a Hazel closure) and the setting Compiled views in <code>eval_view</code>, falling back to the interpreter when it cannot. 37 tests, mutation-checked. A Polygons render: 13.0 ms on the interpreter, 0.83 ms compiled with the trip in and out, 0.05 ms for the compiled call alone (Node, a dev build, medians of 30).</li>
+<li><b>Tickets</b> minted for the loose ends: 699 to 702, 704, 706, 707.</li>
+</ul>
+
+<h2>Waiting on Matthew</h2>
+<ul>
+<li>A reviewer for #2812 (^report(42) asks).</li>
+<li>^ticket(706)'s question: should ^report(43)'s copy of the example get the divider on the page too?</li>
+<li>His 15:12 screenshot dragged into hazelgrove/hazeljs#1 (the command line cannot attach it).</li>
+<li>^report(45), once it is up: a read, to take off its work-in-progress mark in time.</li>
+</ul>
+
+<h2>Next</h2>
+<ul>
+<li>^report(45), hazel-jit's report, published as work in progress and linked from the agenda's item 2.</li>
+<li>hazel-jit: make the way back cheaper (0.78 of the 0.83 ms is carrying values in and out); check it in the app on the polygon slides; timings in browsers on GitHub.</li>
+<li>^ticket(706): the Petri example on hazeljs 0.0.5.</li>
+<li>The meeting with Cyrus, Wednesday 2026-11-11 at 10:00 Mountain (^report(42)).</li>
+</ul>
+</main>
+</body>
+</html>
