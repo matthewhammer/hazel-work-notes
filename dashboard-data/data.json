@@ -14082,6 +14082,36 @@
    "progress": "07:15 11-07: minted.",
    "url": "https://matthewhammer.org/hazel/reports/045/",
    "log": []
+  },
+  {
+   "id": 710,
+   "area": "hazel, hazel-jit, incremental: diffs applied in time sublinear in a long list (log n), by tree-shaped lists on both sides",
+   "added": "2026-11-07T07:30-07:00",
+   "opened": "2026-11-07T07:30-07:00",
+   "status": "open",
+   "tags": [
+    "emphasis",
+    "talk after ^report(45) is updated"
+   ],
+   "chips": [
+    "hazel",
+    "hazel-jit",
+    "incremental",
+    "performance"
+   ],
+   "source": "Matthew, 2026-11-07 ~07:3x, in chat, on the takeaways for ^report(45) (point 6, \"Sublinear isn't there yet\"): \"Thanks for calling this out. Let's put this into a ticket for ourselves and add an emphasis. I want to talk about this in more detail after we have report 45 updated.\"",
+   "text": "<b>EMPHASIS (Matthew): applying a change to a long list in time sublinear in its length.</b> ^ticket(709)'s diff and patch walk a list from its head to the change: the cost grows with the change's position (each step cheap: about 5-10 ns in the JS diff, about 20 ns in the OCaml patch), not with the list's length, but it is still linear. O(log n) needs long lists to be trees on both sides of the boundary: in compiled JS (instead of cons cells) and in Hazel's values (instead of ListLit's flat OCaml list), e.g. Adapton-style level trees, as in Fumola (probabilistically balanced, so the same list has the same shape however it was built, and a change touches one path). That is a change to how Hazel represents lists. Not started: to talk through with Matthew once ^report(45) is updated.",
+   "progress": "07:30 11-07: minted, with emphasis, on Matthew's word; to talk about after ^report(45) is updated.",
+   "url": "https://matthewhammer.org/hazel/reports/045/",
+   "log": [
+    {
+     "at": "2026-11-07T07:30-07:00",
+     "from": "matthew",
+     "chars": 190,
+     "asks": true,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 709,
