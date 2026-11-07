@@ -1,5 +1,128 @@
 [
  {
+  "id": 715,
+  "area": "hazel, hazel-jit: a livelit update's new model carried back as a diff against the model it was given (^ticket(709)'s diff, used)",
+  "added": "2026-11-07T09:22-07:00",
+  "opened": "2026-11-07T09:22-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazel",
+   "hazel-jit",
+   "performance"
+  ],
+  "source": "Matthew, 2026-11-07 ~09:1x, in chat: \"please enqueue tickets for each of https://matthewhammer.org/hazel/reports/045/#next and do them in that order, to your best ability. but skip over\" step 3 (^ticket(710), the talk).",
+  "text": "<b>^report(45), What next, step 2: an update's model back as a diff.</b> ^ticket(709) made HazelJitValue.diff and patch, tried on lists of points. Use them where an answer must become Hazel: a livelit's update, compiled, carried back as a diff against the model it was given (to_js of that model is at hand), applied to that model's Hazel value.",
+  "progress": "09:22 11-07: minted from ^report(45)'s step 2; queued in the report's order.",
+  "url": "https://matthewhammer.org/hazel/reports/045/#step-2",
+  "log": [
+   {
+    "at": "2026-11-07T09:20-07:00",
+    "from": "matthew",
+    "chars": 380,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-07",
+  "closed_at": "2026-11-07T10:17-07:00",
+  "outcome": "A livelit's update compiled, its new model carried back as a diff against the model given (4c0ed173f1, HazelJitValue.call_update): the Polygons update on twelve actions gives the interpreter's model, untouched shapes shared; an event's update 0.02-0.08 ms against 68-83 ms (the definition evaluated each event, then the update). ^report(45) updated. Browser check: ^ticket(716).",
+  "metrics": {
+   "open_minutes": 55,
+   "matthew_messages": 1,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 380,
+   "tokens_est": 95,
+   "sync_minutes_est": 0
+  },
+  "outcome_url": "https://matthewhammer.org/hazel/reports/045/#ideas"
+ },
+ {
+  "id": 714,
+  "area": "hazel, hazel-jit: a livelit's view drawn straight from its compiled JS in the app (HazelJitDOM in eval_view and the three drawing places), and the rest of HazelDOM's forms",
+  "added": "2026-11-07T09:22-07:00",
+  "opened": "2026-11-07T09:22-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazel",
+   "hazel-jit",
+   "performance"
+  ],
+  "source": "Matthew, 2026-11-07 ~09:1x, in chat: \"please enqueue tickets for each of https://matthewhammer.org/hazel/reports/045/#next and do them in that order, to your best ability. but skip over\" step 3 (^ticket(710), the talk).",
+  "text": "<b>^report(45), What next, step 1: a view's answer drawn straight from its JS, in the app.</b> HazelJitDOM (97ba46706b) makes the same virtual DOM as HazelDOM from a compiled view's JS answer, in about a third of the time, but nothing calls it. Make <code>eval_view</code> hand back the JS answer (with the types to read its messages by), and the three places that draw a livelit's view draw it (the optimistic render after a drag, the live samples, <code>eval_view</code>'s own); cover the rest of HazelDOM's forms, refusing (and drawing through Hazel) what it cannot.",
+  "progress": "09:22 11-07: minted from ^report(45)'s step 1; queued in the report's order.",
+  "url": "https://matthewhammer.org/hazel/reports/045/#step-1",
+  "log": [
+   {
+    "at": "2026-11-07T09:20-07:00",
+    "from": "matthew",
+    "chars": 380,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-07T09:25-07:00",
+    "from": "claude",
+    "chars": 736,
+    "asks": false,
+    "words": 131,
+    "read_s": 33,
+    "listen_s": 49,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-07T09:26-07:00",
+    "from": "matthew",
+    "chars": 62,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-07T09:40-07:00",
+    "from": "claude",
+    "chars": 606,
+    "asks": false,
+    "words": 103,
+    "read_s": 26,
+    "listen_s": 39,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-07T09:43-07:00",
+    "from": "matthew",
+    "chars": 4,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-07",
+  "closed_at": "2026-11-07T10:17-07:00",
+  "outcome": "A livelit's view drawn straight from its compiled JS in the app (889271cfbb): eval_view_answer keeps the JS answer and a lazy Hazel Html; the event-time render and the render before any sample draw from JS (HazelJitDOM), every view command, element, attribute and handler HazelDOM draws; the live samples (the interpreter's) as before. Tests: the Polygons view and a view of many forms, the same virtual DOM both ways. ^report(45) updated. Browser check: ^ticket(716).",
+  "metrics": {
+   "open_minutes": 55,
+   "matthew_messages": 3,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 1788,
+   "tokens_est": 447,
+   "sync_minutes_est": 9.0,
+   "replies": 2,
+   "claude_words": 234,
+   "read_minutes_est": 1.0,
+   "listen_minutes_est": 1.5,
+   "read_s_avg": 30,
+   "listen_s_avg": 44,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  },
+  "outcome_url": "https://matthewhammer.org/hazel/reports/045/#ideas"
+ },
+ {
   "id": 713,
   "area": "dress up, 🌗 night and day: the sun and the moon glide across the sky",
   "added": "2026-11-07T08:07-07:00",

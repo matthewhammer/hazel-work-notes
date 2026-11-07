@@ -14247,96 +14247,6 @@
    ]
   },
   {
-   "id": 714,
-   "area": "hazel, hazel-jit: a livelit's view drawn straight from its compiled JS in the app (HazelJitDOM in eval_view and the three drawing places), and the rest of HazelDOM's forms",
-   "added": "2026-11-07T09:22-07:00",
-   "opened": "2026-11-07T09:22-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazel",
-    "hazel-jit",
-    "performance"
-   ],
-   "source": "Matthew, 2026-11-07 ~09:1x, in chat: \"please enqueue tickets for each of https://matthewhammer.org/hazel/reports/045/#next and do them in that order, to your best ability. but skip over\" step 3 (^ticket(710), the talk).",
-   "text": "<b>^report(45), What next, step 1: a view's answer drawn straight from its JS, in the app.</b> HazelJitDOM (97ba46706b) makes the same virtual DOM as HazelDOM from a compiled view's JS answer, in about a third of the time, but nothing calls it. Make <code>eval_view</code> hand back the JS answer (with the types to read its messages by), and the three places that draw a livelit's view draw it (the optimistic render after a drag, the live samples, <code>eval_view</code>'s own); cover the rest of HazelDOM's forms, refusing (and drawing through Hazel) what it cannot.",
-   "progress": "09:22 11-07: minted from ^report(45)'s step 1; queued in the report's order.",
-   "url": "https://matthewhammer.org/hazel/reports/045/#step-1",
-   "log": [
-    {
-     "at": "2026-11-07T09:20-07:00",
-     "from": "matthew",
-     "chars": 380,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-07T09:25-07:00",
-     "from": "claude",
-     "chars": 736,
-     "asks": false,
-     "words": 131,
-     "read_s": 33,
-     "listen_s": 49,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-07T09:26-07:00",
-     "from": "matthew",
-     "chars": 62,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-07T09:40-07:00",
-     "from": "claude",
-     "chars": 606,
-     "asks": false,
-     "words": 103,
-     "read_s": 26,
-     "listen_s": 39,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-07T09:43-07:00",
-     "from": "matthew",
-     "chars": 4,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
-   "id": 715,
-   "area": "hazel, hazel-jit: a livelit update's new model carried back as a diff against the model it was given (^ticket(709)'s diff, used)",
-   "added": "2026-11-07T09:22-07:00",
-   "opened": "2026-11-07T09:22-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazel",
-    "hazel-jit",
-    "performance"
-   ],
-   "source": "Matthew, 2026-11-07 ~09:1x, in chat: \"please enqueue tickets for each of https://matthewhammer.org/hazel/reports/045/#next and do them in that order, to your best ability. but skip over\" step 3 (^ticket(710), the talk).",
-   "text": "<b>^report(45), What next, step 2: an update's model back as a diff.</b> ^ticket(709) made HazelJitValue.diff and patch, tried on lists of points. Use them where an answer must become Hazel: a livelit's update, compiled, carried back as a diff against the model it was given (to_js of that model is at hand), applied to that model's Hazel value.",
-   "progress": "09:22 11-07: minted from ^report(45)'s step 2; queued in the report's order.",
-   "url": "https://matthewhammer.org/hazel/reports/045/#step-2",
-   "log": [
-    {
-     "at": "2026-11-07T09:20-07:00",
-     "from": "matthew",
-     "chars": 380,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 716,
    "area": "hazel, hazel-jit: try compiled views in the app on the polygon slides, the setting on and off, the drawings compared",
    "added": "2026-11-07T09:22-07:00",
@@ -14390,9 +14300,29 @@
   }
  ],
  "next_ticket": 718,
- "current_ticket": 714,
- "current_note": "09:22: ^report(45)'s next steps queued as 714, 715, 716, 717, 699, 698 (step 3, ^ticket(710), skipped on Matthew's word); starting 714, the direct drawing in the app.",
+ "current_ticket": 716,
+ "current_note": "10:17: 714 and 715 done and in ^report(45) (a view drawn from its JS in the app; an update compiled, its model back as a diff). Now 716: try it in the app on the polygon slides, the setting on and off.",
  "closed_tickets": [
+  {
+   "id": 715,
+   "area": "hazel, hazel-jit: a livelit update's new model carried back as a diff against the model it was given (^ticket(709)'s diff, used)",
+   "added": "2026-11-07T09:22-07:00",
+   "text": "^report(45), What next, step 2: an update's model back as a diff.",
+   "source": "Matthew, 2026-11-07 ~09:1x, in chat: \"please enqueue tickets for each of…",
+   "status": "done",
+   "closed": "2026-11-07",
+   "outcome": "A livelit's update compiled, its new model carried back as a diff against the model given (4c0ed173f1, HazelJitValue.call_update): the Polygons update on twelve actions gives the…"
+  },
+  {
+   "id": 714,
+   "area": "hazel, hazel-jit: a livelit's view drawn straight from its compiled JS in the app (HazelJitDOM in eval_view and the three drawing places), and the rest of HazelDOM's forms",
+   "added": "2026-11-07T09:22-07:00",
+   "text": "^report(45), What next, step 1: a view's answer drawn straight from its JS, in the app.",
+   "source": "Matthew, 2026-11-07 ~09:1x, in chat: \"please enqueue tickets for each of…",
+   "status": "done",
+   "closed": "2026-11-07",
+   "outcome": "A livelit's view drawn straight from its compiled JS in the app (889271cfbb): eval_view_answer keeps the JS answer and a lazy Hazel Html; the event-time render and the render…"
+  },
   {
    "id": 713,
    "area": "dress up, 🌗 night and day: the sun and the moon glide across the sky",
@@ -20501,8 +20431,6 @@
   }
  ],
  "queue": [
-  714,
-  715,
   716,
   717,
   699,
@@ -20528,7 +20456,7 @@
   708,
   700
  ],
- "current_since": "2026-11-07T09:22-07:00",
+ "current_since": "2026-11-07T10:17-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
