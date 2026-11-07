@@ -13871,59 +13871,6 @@
    "waiting": "Matthew's read of ^report(43) and ^report(44)"
   },
   {
-   "id": 698,
-   "area": "hazel, performance: BuckleScript, ReScript (and Melange), to know and to compare with hazel-jit",
-   "added": "2026-11-06T09:14-07:00",
-   "opened": "2026-11-06T09:14-07:00",
-   "status": "open",
-   "tags": [
-    "meeting 2026-11-11"
-   ],
-   "chips": [
-    "hazel",
-    "performance",
-    "hazel-jit"
-   ],
-   "source": "Matthew, 2026-11-06 ~09:10, in chat: \"Related to 2 --- Cyrus mentioned \\\"bucklescript\\\" and \\\"rescript\\\" as technologies to know about and perhaps compare with, if not use.\"",
-   "text": "<b>BuckleScript and ReScript, next to hazel-jit.</b> Cyrus named them at the 11-05 meeting as technologies to know about, and perhaps compare with, if not use. Read up and say, in the agenda or a short report: what each is today (BuckleScript, renamed ReScript; Melange, the fork that kept OCaml and dune), how they turn a typed functional language into JS (values, variants, lists, closures and currying), and what that suggests for hazel-jit's output (^ticket(694)); whether any of them could be used, and how Hazel's own build (js_of_ocaml) compares.",
-   "progress": "09:14 11-06: minted; a first note goes in ^report(42)'s item 3. | 09:22 11-07: queued after 714-717, as ^report(45)'s What next step 7 (Matthew: do them in the report's order).",
-   "log": [
-    {
-     "at": "2026-11-06T18:46-07:00",
-     "from": "matthew",
-     "chars": 13,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-06T18:47-07:00",
-     "from": "matthew",
-     "chars": 15,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
-   "id": 699,
-   "area": "hazel, performance, hazel-jit, report 43: hazel-jit's JS for the Petri rule beside the hand-written JS",
-   "added": "2026-11-06T10:04-07:00",
-   "opened": "2026-11-06T10:04-07:00",
-   "status": "open",
-   "tags": [
-    "later: after ^ticket(694) can compile it"
-   ],
-   "chips": [
-    "hazel",
-    "performance",
-    "hazel-jit",
-    "report 43"
-   ],
-   "source": "Matthew, 2026-11-06 ~09:50, in chat: \"once we make progress on the hazel-jit idea --- we should come back to https://matthewhammer.org/hazel/reports/043/ and try to see how close the hazel-jit output matches the native JS we'd write\"",
-   "text": "<b>hazel-jit against hand-written JS, on ^report(43)'s Petri net.</b> Once hazel-jit (^ticket(694)) can compile a rule like ^report(43)'s on_event (Rules and Common: lists, case, labeled tuples, constructors, Option, string ++), compile it and put the JS it makes beside the page's own jsHandler (043/live.js; petri.mjs), the JS a person would write: the code side by side, and the time per call (Node, and the live page). ^report(43)'s What next, step 3, says so. The interpreter's number to beat: about 3.4 ms a call; the hand-written JS: about 0.7 us.",
-   "progress": "10:04 11-06: minted on Matthew's word; waits on ^ticket(694)'s compiler covering this rule's forms. | 09:22 11-07: queued after 714-717, as ^report(45)'s What next step 6 (Matthew: do them in the report's order)."
-  },
-  {
    "id": 700,
    "area": "hazel, hazeljs, report 43: what the Cambridge group's Petri net tools would want from a Hazel rule",
    "added": "2026-11-06T10:28-07:00",
@@ -14245,64 +14192,52 @@
      "note": "from the transcripts"
     }
    ]
+  }
+ ],
+ "next_ticket": 718,
+ "current_ticket": 694,
+ "current_note": "10:55: ^report(45)'s next steps done (714-717, 699, 698; step 3 is ^ticket(710), the talk); reports 45 and 46 and the agenda published.",
+ "closed_tickets": [
+  {
+   "id": 698,
+   "area": "hazel, performance: BuckleScript, ReScript (and Melange), to know and to compare with hazel-jit",
+   "added": "2026-11-06T09:14-07:00",
+   "text": "BuckleScript and ReScript, next to hazel-jit.",
+   "source": "Matthew, 2026-11-06 ~09:10, in chat: \"Related to 2 --- Cyrus mentioned \\\"bucklescript\\\" and \\\"rescript\\\" as…",
+   "status": "done",
+   "closed": "2026-11-07",
+   "outcome": "^report(46): the Petri rule compiled by ReScript 12.3.1, Melange 5.0.0, js_of_ocaml 5.9.1 and hazel-jit: code side by side, value layouts, 0.55/0.46/0.71/1.59 us a call (by hand…"
   },
   {
-   "id": 716,
-   "area": "hazel, hazel-jit: try compiled views in the app on the polygon slides, the setting on and off, the drawings compared",
-   "added": "2026-11-07T09:22-07:00",
-   "opened": "2026-11-07T09:22-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazel",
-    "hazel-jit",
-    "performance"
-   ],
-   "source": "Matthew, 2026-11-07 ~09:1x, in chat: \"please enqueue tickets for each of https://matthewhammer.org/hazel/reports/045/#next and do them in that order, to your best ability. but skip over\" step 3 (^ticket(710), the talk).",
-   "text": "<b>^report(45), What next, step 4: try it in the app.</b> On the polygon slides (Polygons, Polygon Viewer, Full Body, the Witch, Hands, the woods), with <i>Compiled views</i> on and off: the drawings the same, the fallbacks and what the console says, how it feels.",
-   "progress": "09:22 11-07: minted from ^report(45)'s step 4; queued in the report's order.",
-   "url": "https://matthewhammer.org/hazel/reports/045/#step-4",
-   "log": [
-    {
-     "at": "2026-11-07T09:20-07:00",
-     "from": "matthew",
-     "chars": 380,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
+   "id": 699,
+   "area": "hazel, performance, hazel-jit, report 43: hazel-jit's JS for the Petri rule beside the hand-written JS",
+   "added": "2026-11-06T10:04-07:00",
+   "text": "hazel-jit against hand-written JS, on ^report(43)'s Petri net.",
+   "source": "Matthew, 2026-11-06 ~09:50, in chat: \"once we make progress on the hazel-jit idea --- we should come back to…",
+   "status": "done",
+   "closed": "2026-11-07",
+   "outcome": "Report 043's Petri rule (the example's own files) compiled: 1.59 us a call vs the hand-written jsHandler 0.90 and the interpreter (evaluate_open) 358, same markings over 2,000…"
   },
   {
    "id": 717,
    "area": "hazel, hazel-jit: compiled views timed in browsers on GitHub's machines, a release build, on the polygon slides",
    "added": "2026-11-07T09:22-07:00",
-   "opened": "2026-11-07T09:22-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazel",
-    "hazel-jit",
-    "performance"
-   ],
-   "source": "Matthew, 2026-11-07 ~09:1x, in chat: \"please enqueue tickets for each of https://matthewhammer.org/hazel/reports/045/#next and do them in that order, to your best ability. but skip over\" step 3 (^ticket(710), the talk).",
-   "text": "<b>^report(45), What next, step 5: browser timings.</b> In browsers on GitHub's machines (no headless browser on the laptop), from a release build, on Polygons, Polygon Viewer, Full Body, the Witch, Hands and the woods: a render with compiled views and without.",
-   "progress": "09:22 11-07: minted from ^report(45)'s step 5; queued in the report's order.",
-   "url": "https://matthewhammer.org/hazel/reports/045/#step-5",
-   "log": [
-    {
-     "at": "2026-11-07T09:20-07:00",
-     "from": "matthew",
-     "chars": 380,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  }
- ],
- "next_ticket": 718,
- "current_ticket": 716,
- "current_note": "10:17: 714 and 715 done and in ^report(45) (a view drawn from its JS in the app; an update compiled, its model back as a diff). Now 716: try it in the app on the polygon slides, the setting on and off.",
- "closed_tickets": [
+   "text": "^report(45), What next, step 5: browser timings.",
+   "source": "Matthew, 2026-11-07 ~09:1x, in chat: \"please enqueue tickets for each of…",
+   "status": "done",
+   "closed": "2026-11-07",
+   "outcome": "Firefox, release build, GitHub: a click's change 77 vs 124 ms (Polygons), 319 vs 368 (Full Body), 304 vs 354 (Witch), 168 vs 213 (Hands), 122 vs 147 (Scenes); a drag step 36 vs 62…"
+  },
+  {
+   "id": 716,
+   "area": "hazel, hazel-jit: try compiled views in the app on the polygon slides, the setting on and off, the drawings compared",
+   "added": "2026-11-07T09:22-07:00",
+   "text": "^report(45), What next, step 4: try it in the app.",
+   "source": "Matthew, 2026-11-07 ~09:1x, in chat: \"please enqueue tickets for each of…",
+   "status": "done",
+   "closed": "2026-11-07",
+   "outcome": "In the app in Firefox on GitHub's machines (jit.yml, scripts/jit_slides.py; run 42397562248 at 567c8d9620): the six polygon slides draw the same compiled and not, before and after…"
+  },
   {
    "id": 715,
    "area": "hazel, hazel-jit: a livelit update's new model carried back as a diff against the model it was given (^ticket(709)'s diff, used)",
@@ -20431,10 +20366,6 @@
   }
  ],
  "queue": [
-  716,
-  717,
-  699,
-  698,
   697,
   696,
   666,
@@ -20456,7 +20387,7 @@
   708,
   700
  ],
- "current_since": "2026-11-07T10:17-07:00",
+ "current_since": "2026-11-07T10:55-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
