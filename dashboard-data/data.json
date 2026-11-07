@@ -13941,23 +13941,6 @@
    ]
   },
   {
-   "id": 707,
-   "area": "hazel, hazeljs, editor: hazel-listings.js breaks long lines to fit each listing, again whenever its width changes",
-   "added": "2026-11-06T15:34-07:00",
-   "opened": "2026-11-06T15:34-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazel",
-    "hazeljs",
-    "editor"
-   ],
-   "source": "Matthew, 2026-11-06 ~15:12, in chat, with a screenshot of the Petri example in full screen, its listings' lines cut off: \"next, issue for hazeljs: adjust to resize --- like we do in MUDU, to linewrap dynamically on LHS (or any code listing).\" Posted as hazelgrove/hazeljs#1 on his \"Post it\".",
-   "text": "<b>Listings that re-wrap.</b> A listing keeps the line breaks it was written with, so in a narrow box its long lines are cut off and it scrolls sideways (the Petri example's rules column; worse after dragging the divider). As Messed Up Dress Up does (dress-up/js/25-scripting.js: scriptTileCols, scriptTileSpec, scriptFlow): the box's width in characters, measured in the editor's font; long lines broken like a pretty-printer at the outermost places the code allows, only spaces and line breaks changed; that copy sent to the frame, the page's text kept; sent again when the width changes. Or Hazel's editor wraps its own lines in embed mode (a change to #2814's branch). Done when dragging the divider, resizing and full screen re-break every listing, widening brings long lines back, and typing keeps the caret.",
-   "progress": "15:34 11-06: issue posted, hazelgrove/hazeljs#1 (Matthew's 15:12 screenshot not attached: gh cannot; his to drag in). | 16:35 11-06: DONE IN THE PETRI EXAMPLE, 0.0.9 (b6111d6, live), on Matthew's 'yes, build it': its js/hazel-listings.js takes MUDU's line breaking (js/25-scripting.js at 15181ee0), Hazel's half, plus a break before ++; each frame is sent its listing's text broken at the listing's width in characters (measured in the page's code font, now sent to the frame as the font family; less 3), again 300 ms after any change of width (ResizeObserver and window resize). Checked: the breaker on the example's rules at 30-80 columns (only spaces, line breaks and comment marks change; idempotent; all fit from 50); a stand-in frame got 4/9/13/4 lines at 640/360/250/640 px, an echo ignored, an edit not sent back. Not yet seen in Hazel's own editor (the test pane was hidden). LEFT: the package's copy (a hazeljs 0.0.6, Matthew's key) and ^report(43)/^report(44)'s copy. | 16:59 11-06: IN THE PACKAGE: hazeljs 0.0.6 PUBLISHED by Matthew (npm latest; release-0.0.6 146a5fc, hazelgrove/hazeljs main moved to it): hazel-listings.js breaks long lines to fit, the editor sent the page's code font; README and CHANGELOG say so; hazel-lib.js unchanged. Checked before: the breaker on the Petri rules, a stand-in frame (4/9/4 lines at 640/360/640 px). unpkg and jsDelivr serve it byte for byte (jsDelivr after a purge of a cached 404). LEFT: ^report(43)/^report(44)'s copy (043/hazel-listings.js); hazelgrove/hazeljs#1 still open (closing it is a post, on Matthew's word); not yet seen in Hazel's own editor. | 17:08 11-06: IN THE REPORTS: ^report(43) and ^report(44) load hazeljs 0.0.6's hazel-listings.js (043/hazel-listings.js, ?v=9; series 0246d53, homepage ef1659d, live and checked over HTTPS); 44's limits get a dated note (17:04) and its CDN address is 0.0.6. Checked on localhost:8131: every listing of both reports starts in Hazel's editor with the new script. LEFT: hazelgrove/hazeljs#1 open (closing it is a post, on Matthew's word); not yet seen breaking inside Hazel's own editor (the test pane was hidden).",
-   "url": "https://github.com/hazelgrove/hazeljs/issues/1"
-  },
-  {
    "id": 708,
    "area": "hazel, livelits, performance: a Petri net livelit that redraws the net from its Hazel definition, fast enough",
    "added": "2026-11-06T16:29-07:00",
@@ -13988,6 +13971,16 @@
  "current_ticket": 694,
  "current_note": "16:18: hazel-jit slice 3 pushed (7a7151443c) and written up as ^report(45), WIP, linked from the 11-11 agenda. Next: a cheaper way back (0.78 of 0.83 ms is the trip in and out), then the app on the polygon slides and browser timings.",
  "closed_tickets": [
+  {
+   "id": 707,
+   "area": "hazel, hazeljs, editor: hazel-listings.js breaks long lines to fit each listing, again whenever its width changes",
+   "added": "2026-11-06T15:34-07:00",
+   "text": "Listings that re-wrap.",
+   "source": "Matthew, 2026-11-06 ~15:12, in chat, with a screenshot of the Petri example in full screen, its listings' lines cut…",
+   "status": "done",
+   "closed": "2026-11-06",
+   "outcome": "Long lines in hazel-listings.js break to fit each listing, and again when its width changes, as Messed Up Dress Up does: in the Petri example 0.0.9, in hazeljs 0.0.6 (published by…"
+  },
   {
    "id": 677,
    "area": "hazel, Hazlet, embed: Hazel's tile editor in another page (embed-editable as a PR, and served for a report)",
@@ -20076,7 +20069,6 @@
   702,
   704,
   706,
-  707,
   708,
   700
  ],
