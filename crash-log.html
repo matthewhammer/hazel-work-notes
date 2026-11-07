@@ -29,7 +29,7 @@
 <body>
 <main>
 <h1>Crash log</h1>
-<p class="sub">Matthew’s work laptop (a Framework Laptop 13, 13th Gen Intel Core, BIOS 03.04, 20 CPUs). Started 2026-10-16 after the day’s third crash, from the system journal back to 2026-08-18. Kept by Claude with Matthew; a new crash gets a row at the top. Updated 2026-11-04 09:44 MST.</p>
+<p class="sub">Matthew’s work laptop (a Framework Laptop 13, 13th Gen Intel Core, BIOS 03.04, 20 CPUs). Started 2026-10-16 after the day’s third crash, from the system journal back to 2026-08-18. Kept by Claude with Matthew; a new crash gets a row at the top. Updated 2026-11-07 14:14 MST.</p>
 
 <h2 id="known">What the evidence says</h2>
 <ul>
@@ -53,10 +53,11 @@
 <li>A way for a freeze to leave a record (Matthew’s to do, as it changes system settings): set <code>kernel.softlockup_panic=1</code>, <code>kernel.hardlockup_panic=1</code> and <code>kernel.panic=10</code>, so a hang becomes a panic that reboots after 10 seconds; the panic’s text then lands in <code>/var/lib/systemd/pstore</code> (EFI pstore) for the next boot to read. A power cut would still leave nothing, which tells the two apart.</li>
 </ul>
 
-<h2 id="crashes">Crashes (57 since 2026-08-18)</h2>
+<h2 id="crashes">Crashes (58 since 2026-08-18)</h2>
 <p class="sub">Newest first. <b>Last line</b> is the journal’s last entry (MDT). <b>Up</b> is how long that boot had run. <b>Load</b> is the 1-minute load average from <code>sar</code> at its last sample before the crash, where one survives (10-minute samples; 20 CPUs).</p>
 <div class="scroll"><table>
 <tr><th>Date</th><th>Last line</th><th>Up</th><th>Load</th><th>What was running, and what was lost</th></tr>
+<tr><td>2026-11-07</td><td>13:41:37 MST</td><td>about 22 h 40 min</td><td>1.58 at 13:40</td><td><b>Under load, mine.</b> One Claude session (hazel-jit, ^ticket(694)) was 90 s into a niced release build of <code>trial/694-view-jit</code> (<code>dune build src --profile release -j 2</code>, from 13:40:11), its third release build in about 10 minutes, while the app's browser pane held the Livelit Playground's Witch slide from that same build (localhost:8694), loaded twice and timed in the page (a 60 to 90 ms interpreter view, run about 20 times). Servers 8131 and 8694 were up. <b>Lost: nothing committed or pushed.</b> The build's outputs from 13:40:11 on (692 files, one of them a 0-byte <code>cli.bc.js</code>) deleted to be rebuilt; <code>/tmp</code>'s scratchpad wiped (its data was already in report 046); an uncommitted diagnostic edit, dropped. No empty git objects; the power profile was balanced. <b>Lesson:</b> no heavy page in the browser pane during a build; one heavy job at a time.</td></tr>
 <tr><td>2026-11-04</td><td>09:27:42 MST</td><td>1 min 2 s</td><td>—</td><td>Ninth of the loop. Logged in at 09:26:51; the network was coming up. The next boot (09:28:27) is the one that held. <b>Lost: nothing.</b></td></tr>
 <tr><td>2026-11-04</td><td>09:26:06 MST</td><td>1 min 1 s</td><td>—</td><td>Eighth of the loop. Logged in at 09:25:46, 20 seconds before. <b>Lost: nothing.</b></td></tr>
 <tr><td>2026-11-04</td><td>09:24:17 MST</td><td>31 s</td><td>—</td><td>Seventh of the loop. Logged in at 09:23:55, 22 seconds before; the desktop was still starting (Secure Boot key sync, printing, network). <b>Lost: nothing.</b></td></tr>
