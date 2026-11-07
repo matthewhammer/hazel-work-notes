@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 2026-11-07</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-11-05 morning to 2026-11-06 afternoon, the meeting with Cyrus, hazeljs 0.0.5, and hazel-jit</h1>
+<h1>Working notes: 2026-11-06 afternoon to 2026-11-07 morning, the way back from hazel-jit, a cheaper Id.mk for dev, and night in Dress Up</h1>
+<p class="sub">Claude, from 16:10 MST on 11-06 (the last note) to 08:55 on 11-07, written for the gallery on Matthew's ask ("update" the work notes). One session ran all of it, a side session of the day's chat session, with Matthew asking as it went; these are from its tickets' progress and the repositories' commits.</p>
+
+<h2>Where things are</h2>
+<ul>
+<li><b>hazel-jit (^ticket(694))</b>, in <code>~/hazel-694-jit</code> on <code>trial/694-view-jit</code>, pushed: <code>810df240ea</code> (the two trips timed apart, warmed up), then <code>97ba46706b</code> (cheaper ids; <code>HazelJitDOM</code>, a view's answer drawn straight from its JS; the way back as a diff). <code>Test_HazelJit</code>: 49 tests, all passing; <code>dune build @check --profile release</code> clean. The direct drawing and the diff are prototypes: the app calls neither yet.</li>
+<li><b>^report(45), hazel-jit's report</b>, published as work in progress, with a section answering Matthew's three ideas for the way back (#ideas) and two dated notes (the warm-up, the ids); ^report(42)'s item 2, the agenda for 11-11, updated twice.</li>
+<li><b>#2816, against <code>dev</code></b> (branch <code>perf/id-mk-strings</code>, worktree <code>~/hazel-id-mk</code>): ids minted and compared as strings, one concatenation an id. Review required; CI green at 08:55 (6 checks passing, 1 skipped). #2609 lists it, on Matthew's word.</li>
+<li><b>Two new tickets in hazel-jit</b>: ^ticket(709), the way back as a diff (a prototype, done), and ^ticket(710), applying a change to a long list in time sublinear in its length (tagged emphasis: to talk through first).</li>
+<li><b>hazeljs 0.0.6</b> is on npm (Matthew published it with his key): long lines in <code>hazel-listings.js</code> break to fit; hazelgrove/hazeljs#1 closed with a note; ^report(43) and ^report(44) use it.</li>
+<li><b>hazeljs-petri-example 0.0.10</b> is live: full screen at first, long lines broken to fit, and the net itself in Hazel (<code>rules/Main.hz</code>), drawn again after each edit. ^ticket(708) asks for the same redraw as a livelit, fast enough; ^ticket(706), the example on the newest hazeljs, is now its 0.0.11.</li>
+<li><b>Dress Up 0.0.492</b> is live (tag <code>dress-up-0.0.492</code>, <code>8043cc25</code>).</li>
+<li><b>Servers</b>: the dashboard on <code>localhost:8000</code>; Dress Up's on <code>8133</code>, started from this session; the reports' on <code>8131</code>.</li>
+<li><b>hazel-work-notes</b> still has the older uncommitted change to <code>dashboard/update.py</code> (10-24); not touched.</li>
+</ul>
+
+<h2>Done, 11-06 afternoon and evening</h2>
+<ul>
+<li><b>^report(45)</b> published (16:15), linked both ways with the agenda's item 2.</li>
+<li><b>The Petri example</b>: 0.0.8 opens full screen with no margins; 0.0.9 breaks long lines to fit, Messed Up Dress Up's way; 0.0.10 shows every definition the page had hidden (the net, as <code>rules/Main.hz</code>, and the program's last line).</li>
+<li><b>hazeljs 0.0.6</b>: the line breaking carried into the package; reports 43 and 44 switched to it (a dated note on 44's limits); hazelgrove/hazeljs#1 closed; ^ticket(707) closed.</li>
+<li><b>The two trips timed apart</b> (Matthew: "Yes, measure it"): the trip back is 83% of a compiled render, the trip in 7%. And a correction: the first report's "about 16 times faster" timed the first renders cold, while Node was still optimizing the way back; warm, a render was about 34 times faster.</li>
+</ul>
+
+<h2>Done, 11-07 morning</h2>
+<ul>
+<li><b>Three ideas for the way back</b>, Matthew's, all tried. <i>Cheaper ids</i>: <code>Id.mk</code> built each id from eight string concatenations; now one (906 ids, 0.10 to 0.28 ms before, 0.045 ms after). It was never a random UUID, as yesterday's report said (a dated note corrects it). <i>A view's answer never made Hazel</i>: drawn straight from its JS, the same virtual DOM as HazelDOM's, in 0.27 ms against 0.75 ms through Hazel; model to page, about 40 times faster than the interpreter. <i>The way back as a diff</i>: a small diff language, computed in JS where the old and new answers share objects, applied to the last Hazel value; one changed point of 1,000 in 0.064 ms against 5.6 ms whole. On the way, two costs fixed: whole numbers came back through <code>Printf</code> and big-integer parsing, and labels by raising an exception each.</li>
+<li><b>#2816 to <code>dev</code></b>, on Matthew's ask: the string-built ids (from 10-10, on #2635's line) and the one-concatenation <code>Id.mk</code>. On dev's six heaviest programs, evaluation takes 13% less time (441.5 to 384.2 ms; 15% incremental); nearly all of it the first change's. The quick suite passes (4,463 tests). Its row added to #2609's table.</li>
+<li><b>Dress Up 0.0.492</b>, for Matthew and M: night falls everywhere outdoors (17 places take their sky from the clock: sunset colours, stars and the moon at night, the sun and the moon where the clock says); a whole day can take as little as 10 seconds; and the sun and the moon glide, the clock running every frame (0.05 ms a frame, once copying the place's 2,012 settings each frame was taken out). Tickets 711 to 713, closed.</li>
+</ul>
+
+<h2>Waiting on Matthew</h2>
+<ul>
+<li>The talk about ^ticket(710): lists as trees on both sides of the boundary, for changes applied in log n.</li>
+<li>A reviewer for #2816, and for #2812.</li>
+<li>Dress Up 0.0.492 seen in a real tab: tested here only in a background tab, with the clock driven by hand.</li>
+</ul>
+
+<h2>Next</h2>
+<ul>
+<li>Talk through ^ticket(710).</li>
+<li>hazel-jit: a view's answer drawn straight from its JS in the app (<code>eval_view</code> and the three places that draw a livelit's view), then an update's model carried back as a diff; timings in browsers.</li>
+<li>The meeting with Cyrus, Wednesday 2026-11-11 at 10:00 Mountain (^report(42)).</li>
+</ul>
+</main>
+</body>
+</html>
