@@ -14038,6 +14038,32 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 709,
+   "area": "hazel, hazel-jit, performance: the way back from compiled JS as a diff against the last run (inside ^ticket(694))",
+   "added": "2026-11-07T07:15-07:00",
+   "opened": "2026-11-07T07:15-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazel-jit",
+    "performance"
+   ],
+   "source": "Matthew, 2026-11-07, in chat, after the two trips were timed apart (^report(45)): \"let's open an even deeper experiment within this one about hazel-jit ... how we can do 'the answer back (of_js)' as a diff based on the last time we ran it?\"",
+   "text": "<b>The way back as a diff (a sub-experiment of ^ticket(694)).</b> Instead of carrying a compiled function's whole answer back as Hazel (HazelJitValue.of_js, linear in its size), carry back only what changed since the last run, applied to the last run's Hazel value. Matthew's questions: (1) how often is the answer big enough to warrant it? (2) is there a simple diff language from JS back to Hazel? (3) the common cases (one element of a long list changing, the rest not), and applying them in time sublinear in the whole structure. Written up in ^report(45).",
+   "progress": "07:15 11-07: minted.",
+   "url": "https://matthewhammer.org/hazel/reports/045/",
+   "log": [
+    {
+     "at": "2026-11-07T07:15-07:00",
+     "from": "matthew",
+     "chars": 520,
+     "asks": true,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 709,
