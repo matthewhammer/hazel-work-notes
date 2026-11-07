@@ -14103,15 +14103,7 @@
    "text": "<b>EMPHASIS (Matthew): applying a change to a long list in time sublinear in its length.</b> ^ticket(709)'s diff and patch walk a list from its head to the change: the cost grows with the change's position (each step cheap: about 5-10 ns in the JS diff, about 20 ns in the OCaml patch), not with the list's length, but it is still linear. O(log n) needs long lists to be trees on both sides of the boundary: in compiled JS (instead of cons cells) and in Hazel's values (instead of ListLit's flat OCaml list), e.g. Adapton-style level trees, as in Fumola (probabilistically balanced, so the same list has the same shape however it was built, and a change touches one path). That is a change to how Hazel represents lists. Not started: to talk through with Matthew once ^report(45) is updated.",
    "progress": "07:30 11-07: minted, with emphasis, on Matthew's word; to talk about after ^report(45) is updated.",
    "url": "https://matthewhammer.org/hazel/reports/045/",
-   "log": [
-    {
-     "at": "2026-11-07T07:30-07:00",
-     "from": "matthew",
-     "chars": 190,
-     "asks": true,
-     "note": "from the transcripts"
-    }
-   ]
+   "log": []
   }
  ],
  "next_ticket": 709,
@@ -20232,8 +20224,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6237,
-  "words": 1355406,
+  "replies": 6238,
+  "words": 1355458,
   "read_hours_est": 94.9,
   "listen_hours_est": 141.2,
   "read_s_avg": 55,
@@ -20540,9 +20532,9 @@
     "chars": 126858
    },
    "2026-11-07": {
-    "replies": 3,
-    "words": 808,
-    "chars": 4442
+    "replies": 4,
+    "words": 860,
+    "chars": 4744
    }
   }
  },
