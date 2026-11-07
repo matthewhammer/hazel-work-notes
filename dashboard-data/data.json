@@ -13886,7 +13886,7 @@
    ],
    "source": "Matthew, 2026-11-06 ~09:10, in chat: \"Related to 2 --- Cyrus mentioned \\\"bucklescript\\\" and \\\"rescript\\\" as technologies to know about and perhaps compare with, if not use.\"",
    "text": "<b>BuckleScript and ReScript, next to hazel-jit.</b> Cyrus named them at the 11-05 meeting as technologies to know about, and perhaps compare with, if not use. Read up and say, in the agenda or a short report: what each is today (BuckleScript, renamed ReScript; Melange, the fork that kept OCaml and dune), how they turn a typed functional language into JS (values, variants, lists, closures and currying), and what that suggests for hazel-jit's output (^ticket(694)); whether any of them could be used, and how Hazel's own build (js_of_ocaml) compares.",
-   "progress": "09:14 11-06: minted; a first note goes in ^report(42)'s item 3.",
+   "progress": "09:14 11-06: minted; a first note goes in ^report(42)'s item 3. | 09:22 11-07: queued after 714-717, as ^report(45)'s What next step 7 (Matthew: do them in the report's order).",
    "log": [
     {
      "at": "2026-11-06T18:46-07:00",
@@ -13921,7 +13921,7 @@
    ],
    "source": "Matthew, 2026-11-06 ~09:50, in chat: \"once we make progress on the hazel-jit idea --- we should come back to https://matthewhammer.org/hazel/reports/043/ and try to see how close the hazel-jit output matches the native JS we'd write\"",
    "text": "<b>hazel-jit against hand-written JS, on ^report(43)'s Petri net.</b> Once hazel-jit (^ticket(694)) can compile a rule like ^report(43)'s on_event (Rules and Common: lists, case, labeled tuples, constructors, Option, string ++), compile it and put the JS it makes beside the page's own jsHandler (043/live.js; petri.mjs), the JS a person would write: the code side by side, and the time per call (Node, and the live page). ^report(43)'s What next, step 3, says so. The interpreter's number to beat: about 3.4 ms a call; the hand-written JS: about 0.7 us.",
-   "progress": "10:04 11-06: minted on Matthew's word; waits on ^ticket(694)'s compiler covering this rule's forms."
+   "progress": "10:04 11-06: minted on Matthew's word; waits on ^ticket(694)'s compiler covering this rule's forms. | 09:22 11-07: queued after 714-717, as ^report(45)'s What next step 6 (Matthew: do them in the report's order)."
   },
   {
    "id": 700,
@@ -14245,11 +14245,83 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 714,
+   "area": "hazel, hazel-jit: a livelit's view drawn straight from its compiled JS in the app (HazelJitDOM in eval_view and the three drawing places), and the rest of HazelDOM's forms",
+   "added": "2026-11-07T09:22-07:00",
+   "opened": "2026-11-07T09:22-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazel-jit",
+    "performance"
+   ],
+   "source": "Matthew, 2026-11-07 ~09:1x, in chat: \"please enqueue tickets for each of https://matthewhammer.org/hazel/reports/045/#next and do them in that order, to your best ability. but skip over\" step 3 (^ticket(710), the talk).",
+   "text": "<b>^report(45), What next, step 1: a view's answer drawn straight from its JS, in the app.</b> HazelJitDOM (97ba46706b) makes the same virtual DOM as HazelDOM from a compiled view's JS answer, in about a third of the time, but nothing calls it. Make <code>eval_view</code> hand back the JS answer (with the types to read its messages by), and the three places that draw a livelit's view draw it (the optimistic render after a drag, the live samples, <code>eval_view</code>'s own); cover the rest of HazelDOM's forms, refusing (and drawing through Hazel) what it cannot.",
+   "progress": "09:22 11-07: minted from ^report(45)'s step 1; queued in the report's order.",
+   "url": "https://matthewhammer.org/hazel/reports/045/#step-1",
+   "log": []
+  },
+  {
+   "id": 715,
+   "area": "hazel, hazel-jit: a livelit update's new model carried back as a diff against the model it was given (^ticket(709)'s diff, used)",
+   "added": "2026-11-07T09:22-07:00",
+   "opened": "2026-11-07T09:22-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazel-jit",
+    "performance"
+   ],
+   "source": "Matthew, 2026-11-07 ~09:1x, in chat: \"please enqueue tickets for each of https://matthewhammer.org/hazel/reports/045/#next and do them in that order, to your best ability. but skip over\" step 3 (^ticket(710), the talk).",
+   "text": "<b>^report(45), What next, step 2: an update's model back as a diff.</b> ^ticket(709) made HazelJitValue.diff and patch, tried on lists of points. Use them where an answer must become Hazel: a livelit's update, compiled, carried back as a diff against the model it was given (to_js of that model is at hand), applied to that model's Hazel value.",
+   "progress": "09:22 11-07: minted from ^report(45)'s step 2; queued in the report's order.",
+   "url": "https://matthewhammer.org/hazel/reports/045/#step-2",
+   "log": []
+  },
+  {
+   "id": 716,
+   "area": "hazel, hazel-jit: try compiled views in the app on the polygon slides, the setting on and off, the drawings compared",
+   "added": "2026-11-07T09:22-07:00",
+   "opened": "2026-11-07T09:22-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazel-jit",
+    "performance"
+   ],
+   "source": "Matthew, 2026-11-07 ~09:1x, in chat: \"please enqueue tickets for each of https://matthewhammer.org/hazel/reports/045/#next and do them in that order, to your best ability. but skip over\" step 3 (^ticket(710), the talk).",
+   "text": "<b>^report(45), What next, step 4: try it in the app.</b> On the polygon slides (Polygons, Polygon Viewer, Full Body, the Witch, Hands, the woods), with <i>Compiled views</i> on and off: the drawings the same, the fallbacks and what the console says, how it feels.",
+   "progress": "09:22 11-07: minted from ^report(45)'s step 4; queued in the report's order.",
+   "url": "https://matthewhammer.org/hazel/reports/045/#step-4",
+   "log": []
+  },
+  {
+   "id": 717,
+   "area": "hazel, hazel-jit: compiled views timed in browsers on GitHub's machines, a release build, on the polygon slides",
+   "added": "2026-11-07T09:22-07:00",
+   "opened": "2026-11-07T09:22-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazel-jit",
+    "performance"
+   ],
+   "source": "Matthew, 2026-11-07 ~09:1x, in chat: \"please enqueue tickets for each of https://matthewhammer.org/hazel/reports/045/#next and do them in that order, to your best ability. but skip over\" step 3 (^ticket(710), the talk).",
+   "text": "<b>^report(45), What next, step 5: browser timings.</b> In browsers on GitHub's machines (no headless browser on the laptop), from a release build, on Polygons, Polygon Viewer, Full Body, the Witch, Hands and the woods: a render with compiled views and without.",
+   "progress": "09:22 11-07: minted from ^report(45)'s step 5; queued in the report's order.",
+   "url": "https://matthewhammer.org/hazel/reports/045/#step-5",
+   "log": []
   }
  ],
- "next_ticket": 709,
- "current_ticket": 694,
- "current_note": "16:18: hazel-jit slice 3 pushed (7a7151443c) and written up as ^report(45), WIP, linked from the 11-11 agenda. Next: a cheaper way back (0.78 of 0.83 ms is the trip in and out), then the app on the polygon slides and browser timings.",
+ "next_ticket": 718,
+ "current_ticket": 714,
+ "current_note": "09:22: ^report(45)'s next steps queued as 714, 715, 716, 717, 699, 698 (step 3, ^ticket(710), skipped on Matthew's word); starting 714, the direct drawing in the app.",
  "closed_tickets": [
   {
    "id": 713,
@@ -20359,6 +20431,12 @@
   }
  ],
  "queue": [
+  714,
+  715,
+  716,
+  717,
+  699,
+  698,
   697,
   696,
   666,
@@ -20373,8 +20451,6 @@
   655,
   664,
   685,
-  698,
-  699,
   701,
   702,
   704,
@@ -20382,7 +20458,7 @@
   708,
   700
  ],
- "current_since": "2026-11-06T11:40-07:00",
+ "current_since": "2026-11-07T09:22-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
@@ -20395,8 +20471,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6242,
-  "words": 1357112,
+  "replies": 6243,
+  "words": 1357223,
   "read_hours_est": 95.0,
   "listen_hours_est": 141.4,
   "read_s_avg": 55,
@@ -20703,9 +20779,9 @@
     "chars": 126858
    },
    "2026-11-07": {
-    "replies": 8,
-    "words": 2514,
-    "chars": 14377
+    "replies": 9,
+    "words": 2625,
+    "chars": 14980
    }
   }
  },
