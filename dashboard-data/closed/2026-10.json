@@ -1790,16 +1790,24 @@
   ],
   "source": "Matthew, 2026-10-29, in chat: \"can you find the 'merge queue' that's been set up?\"; \"what PRs do we have that are independent of the main livelits PR ... Could we consider any for the queue today?\"; \"Request hazel-core reviews on the first batch ...\"; \"please create a Slack post for that same set, and the full list above\".",
   "progress": "NOTES: Queue = ruleset 'dev: reviewed PRs via merge queue' (created 09:06, edited 09:22) + Cyrus's 2a08348dbf CODEOWNERS (* @hazelgrove/hazel-core). Rules: 1 approving code-owner review (own approval doesn't count), 'checks / Fast checks' required (Full not), merge commits, groups of up to 5 built together (ALLGREEN), 60 min check timeout; admins can bypass. URL https://github.com/hazelgrove/hazel/queue/dev . ci.yml has had merge_group since 08-26. Of 30 open PRs into dev only #2741 (7h3kk1d) was approved. All of Matthew's ~19 standalone PRs had green fast+full CI. Trial merges against #2469 (modular-editors): CLEAN #2672 #2652 #2661 #2681 #2675 #2651 #2678; test-list-only conflict #2610 #2673 #2608; REAL conflicts (hold until #2469 lands) #2614 #2603 #2671 #2606 (#2606 replaced by #2469's cache: likely close). #2676 (long types in cursor inspector) conflicts with #2469 in Statics/Settings/CursorInspector, nearby edits. DONE: hazel-core team requested + a 🤖 'what it gives dev' comment on #2672 #2652 #2661 #2681 #2675 #2651 #2678 #2676. Slack post (copy-paste text): ~/hazel/experiments/slack-merge-day-2026-10-29.txt.",
-  "log": [],
+  "log": [
+   {
+    "at": "2026-11-08T09:07-07:00",
+    "from": "matthew",
+    "chars": 69,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
   "closed": "2026-10-29",
   "closed_at": "2026-10-29T10:36-06:00",
   "outcome": "Merge queue found and explained; first batch of 8 standalone PRs has hazel-core review requested with per-PR notes; Slack post written (experiments/slack-merge-day-2026-10-29.txt).",
   "metrics": {
    "open_minutes": 1,
-   "matthew_messages": 0,
+   "matthew_messages": 1,
    "questions_to_matthew": 0,
-   "chars_exchanged": 0,
-   "tokens_est": 0,
+   "chars_exchanged": 69,
+   "tokens_est": 17,
    "sync_minutes_est": 0
   }
  },
