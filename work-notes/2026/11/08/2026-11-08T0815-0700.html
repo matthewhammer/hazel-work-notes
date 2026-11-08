@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 2026-11-08</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+  blockquote { margin: 1em 0; padding: 0.6em 1em; border-left: 4px solid var(--accent); background: var(--code); border-radius: 0 6px 6px 0; }
+  blockquote p { margin: 0.5em 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-11-08 morning, the Witch's small edit cut to 1.4 s, and first-order data</h1>
+<p class="sub">Claude, 08:15 MST on 11-08, on Matthew's ask to record his message about treemaps as a quote.</p>
+
+<h2>Matthew, on treemaps and DCGs</h2>
+<p>08:14 MST, while ^report(47) was getting treemaps of a value's bytes, before and after the first-order form:</p>
+<blockquote>
+<p>please credit Ben Schniederman in report 47 ----</p>
+<p>I was a post doc at UMD and they had treemaps artwork in the common hallways of the new wing for classrooms.  I recall thinking:</p>
+<p>Looks nice, but DCGs are even _more_ interesting.</p>
+<p>Everything has its own role, as I am learning.</p>
+</blockquote>
+<p class="sub">Treemaps are Ben Shneiderman's, from the University of Maryland's Human-Computer Interaction Lab (1991), first for showing a disk's space. A DCG is Adapton's demanded computation graph, which Fumola keeps for a run.</p>
+
+<h2>Where things are</h2>
+<ul>
+<li><b>^ticket(718), first-order data for dev</b>, current. Its design note is ^report(47) (work in progress): a <code>Data</code> value form in the core language, with no source ids, holes, closures or sharing; which code made a value kept beside it; Fumola's <code>Value</code> as the comparison. Experiment 1 is running: the Witch's picture sent as terms, as data and as plain JS values (Firefox check, <code>trial/694-view-jit</code>), and as a Fumola value through serde (done on the laptop: 1.04 ms in from JSON, 0.27 ms out). Next: treemaps of the picture's bytes, before and after, from a run that splits each shape's bytes four ways.</li>
+<li><b>^ticket(694), hazel-jit</b>, back at the front of the queue. On the Witch slide a small edit took 5.6 to 6.5 s; with function-holding values kept out of probe samples' environments, the trace cleared and the worker's answers unshared, it takes 1.3 to 1.7 s, the evaluator now most of it (^report(46)). CI's full tests on the trial branch's latest commit are running.</li>
+<li><b>New memory</b>: when a new report is minted, quote its series-card blurb in chat (Matthew's ask, 08:0x).</li>
+</ul>
+</main>
+</body>
+</html>
