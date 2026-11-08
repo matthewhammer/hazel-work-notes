@@ -14079,6 +14079,32 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-08T07:29-07:00",
+     "from": "matthew",
+     "chars": 18,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-08T07:29-07:00",
+     "from": "matthew",
+     "chars": 88,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-08T07:30-07:00",
+     "from": "claude",
+     "chars": 421,
+     "asks": false,
+     "words": 72,
+     "read_s": 18,
+     "listen_s": 27,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ],
    "area": "hazel, performance, livelits: hazel-jit, a livelit's view compiled to JS",
@@ -14846,7 +14872,22 @@
    "source": "Matthew, 2026-11-08 07:3x, in chat, after ^report(46) found the Witch slide's 5.4 MB worker answer to be mostly one probe sample's environment, the Drawing module written out whole, and asked whether the result isn't a closed, first-order value: \"This issue --- paying the cost for holes (arbitrary open terms) when we have first order values --- has come up so much over the weeks we've worked together. Let's try to do something systematic for dev that solves this, at the cost of another representation form for first-order data, and no closures. Mint and enqueue a ticket.\"",
    "text": "<b>A first-order data form for dev: closed values with no holes and no closures, carried as data, not as open terms.</b> Hazel holds every value as a general term (ids on every node, open terms, holes, closures with their environments), and closed first-order data (numbers, strings, booleans, lists, tuples, records, constructors: a picture's shapes, a livelit's model) pays for that generality wherever it goes. It has come up again and again: a probe sample's environment substitutes the environment into each value it keeps (<code>Sample.Env.elide</code>), so a module, a record of functions, goes out whole: 3.8 MB of the Witch slide's 5.4 MB worker answer (^report(46), #witch-answer); the answer's trip to the page, Marshal of terms with ids and a hash of every node to share them, is 70% of a small edit there (#witch-trip); hazel-jit's trip into JS and back, and the ids it makes (^report(45)); livelit samples' environment copies, once ~80% of retained memory (the note in <code>CachedStatics.compute_targets</code>); ^ticket(666) (sharing lost passing data to and from the worker), ^ticket(681) (JS values converted directly at the call boundary), ^ticket(710) (lists as trees), ^ticket(513) (ShareCodec). <b>The idea:</b> another representation, for first-order data only: no ids, no environments, no holes, no closures, immutable, cheap to hash and compare. A value is moved into it when it is closed and first-order (a check that fails on the first function, closure, hole or cast), and back into a term only when something needs a term (the stepper, a substitution into open code). Everything else stays a term, so nothing about holes changes. <b>Where it would pay, in the order to try:</b> (1) probe samples and their environments, an entry either data or opaque, so a module can never be written out; (2) the worker's answers, data instead of terms, with sharing by a structural hash or none; (3) livelit models and samples; (4) hazel-jit, data to and from JS values directly; (5) the evaluator itself, a data value form inside terms, so list and number builtins and pattern matching work on data without making terms. <b>The costs:</b> a second form at every boundary (conversions, equality between the forms, printing, matching), and the same answers both ways, which the tests must check. <b>Done when</b> there is a design note with the type and the boundaries; then slices, each a PR to dev measured before and after (the Witch slide's small edits in the Firefox check, Kids' Choice), starting with (1).",
    "progress": "07:32 11-08: minted on Matthew's word, and enqueued first, behind ^ticket(694) (performance first). Not started.",
-   "log": [],
+   "log": [
+    {
+     "at": "2026-11-08T07:31-07:00",
+     "from": "matthew",
+     "chars": 303,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-08T07:31-07:00",
+     "from": "matthew",
+     "chars": 26,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ],
    "url": ""
   }
  ],
@@ -21057,8 +21098,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6279,
-  "words": 1365713,
+  "replies": 6280,
+  "words": 1365797,
   "read_hours_est": 95.6,
   "listen_hours_est": 142.3,
   "read_s_avg": 55,
@@ -21370,9 +21411,9 @@
     "chars": 51388
    },
    "2026-11-08": {
-    "replies": 8,
-    "words": 2794,
-    "chars": 16861
+    "replies": 9,
+    "words": 2878,
+    "chars": 17316
    }
   }
  },
