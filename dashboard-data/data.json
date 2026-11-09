@@ -15878,7 +15878,7 @@
    ],
    "source": "Matthew, 2026-11-08 16:5x, in chat: \"Should we hazel-jit more of the evaluator?\", then \"Compiled run first\" (over my proposed order: ^ticket(721) syntax gap, ^ticket(720) draw once, then this).",
    "text": "<b>Compile the Witch slide's run with hazel-jit, each livelit use's model a parameter, so a slider step is a call with a new argument.</b> The evaluator is the largest part of a small edit: 0.53 to 1.14 s of a 1.0 to 1.8 s edit on trial/694-view-jit (runs 42535123022, 42535708383). ^report(46)'s speculation (#witch-jit-run): compile the program once, lift each livelit use's model out as a parameter, call each livelit's compiled view on its model's JS value where the run samples view(model) now; at ^report(45)'s smallest measured speedup the run would take tens of ms. First, in the worker: what of the slide's whole program hazel-jit compiles today, what it rejects, and the compiled run's time against the interpreter. Probes, statuses and decorations stay with the interpreter, run after at lower priority. Part of ^ticket(694); makes ^ticket(721) a natural consequence.",
-   "progress": "16:55 11-08: minted on Matthew's word (\"Compiled run first\") and enqueued at the front, ahead of ^ticket(720) and ^ticket(721).",
+   "progress": "16:55 11-08: minted on Matthew's word (\"Compiled run first\") and enqueued at the front, ahead of ^ticket(720) and ^ticket(721). | 17:07 11-08: FIRST RESULT. `hazel jit FILE` (CLI, trial/694-view-jit 0926a80c74) on witch.hz in Node, laptop: hazel-jit compiles everything but 52 holes, one quotation and one `undefined`, none reached; livelit uses and splices compile as what they hold (as the interpreter steps through them); %splice_value got a JS version. The compiled run's value equals the interpreter's (to_js + runtime eq; only the final value compared); 4.8-6.3 ms a run with the JS made anew each time, against the interpreter's 441-605 ms: 76-127 times. Not yet: models as parameters (no recompile per step), the livelits' views at each use, in the app, in Firefox; probes stay with the interpreter.",
    "log": [
     {
      "at": "2026-11-08T16:43-07:00",
@@ -15917,7 +15917,7 @@
  ],
  "next_ticket": 723,
  "current_ticket": 722,
- "current_note": "Compile the Witch slide's run with hazel-jit, livelit models as parameters. First: what of the slide's whole program (hazel-programs/docs/livelits/playground/witch.hz, 2,222 lines, 53 livelit uses) hazel-jit compiles today and what it rejects (projectors, holes, tests, closures with environments...), through a CLI command on trial/694-view-jit; then the compiled run's time against the interpreter.",
+ "current_note": "hazel-jit runs the Witch slide's whole program 76-127x faster in Node (4.8-6.3 ms vs 441-605 ms), same value. Next: check the picture and every livelit's model match, not just the final value; then models as parameters, and the run in the app, measured in Firefox on GitHub.",
  "closed_tickets": [
   {
    "id": 698,
