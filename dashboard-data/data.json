@@ -17070,31 +17070,6 @@
    "url": "https://matthewhammer.org/hazel/reports/046/#witch-jit-run"
   },
   {
-   "id": 723,
-   "area": "Dress Up: weather, with a report for the next day in the 🎒 backpack",
-   "text": "<b>Weather, as in Harvest Moon, with a weather report.</b> M, via Matthew: \"weather, as in other games like Harvest Moon -- rainy, snowy, windy, cloudy, sunny, foggy --- with a weather report. For now, just put the weather report for the next day in the backpack feature. Soon, we will add a TV or a tablet, to further mimic Harvest Moon.\" Plan: each day (the 10-second days of 0.0.492) has a weather, drawn from a seed and the day's number, so the same day always has the same weather and the next day's is known ahead: ☀️ sunny, ⛅ cloudy, 🌧️ rainy, ❄️ snowy, 💨 windy, 🌫️ foggy. Outdoors it shows over the place (rain, snow, wind-blown leaves, clouds, fog), indoors not. 🎒 shows the forecast for the next day. 60 fps first: a light overlay, its moving parts few.",
-   "added": "2026-11-09T16:29-07:00",
-   "opened": "2026-11-09T16:29-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "dress up",
-    "feature",
-    "for M"
-   ],
-   "source": "Matthew in the Code session, 2026-11-09 afternoon (\"dress-up time.\"), M's ask.",
-   "progress": "16:29 11-09: minted; current.",
-   "log": [
-    {
-     "at": "2026-11-09T16:27-07:00",
-     "from": "matthew",
-     "chars": 1074,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 724,
    "area": "Dress Up: the deep ocean, a world of its own under the surface ocean, with diving",
    "text": "<b>A deep ocean world, dived into from the surface ocean.</b> N, via Matthew: \"another world (deep ocean) that is accessible from the surface-style ocean squares, where we swim on the surface. I recommend separating the few deep ocean squares we have onto another world (called deep ocean) --- let's replace the deep ocean with more surface ocean and separate into another world, somehow --- with a vertical way of connecting worlds together between surface ocean and deep ocean, something similar to the 'hole' in the cemetery, except not localized to one spot, and not rendered as an object. Not sure where to place the 'nav' arrow, but it would be nice to actually center it below the person as they swim, to indicate that every spot offers a chance to dive.\" And: \"diving animation, maybe just a variation of swimming?\" Plan: the start world's 🪸 deep sea squares become 🌊 open water; a 🪸 deep ocean world under it, a square under every open-water square (the old deep squares' things kept there); from any open-water square, a ⬇️ arrow centred under the swimmer dives to the square below; from the deep ocean, ⬆️ above them swims up. A dive: the swim, head down, sinking; coming up, the reverse.",
@@ -17118,12 +17093,37 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 725,
+   "area": "Dress Up: 0.0.492's speed run broken: sky490, the waterfall's moon by the clock",
+   "text": "<b>The speed run after 0.0.492 was broken (the checks)</b> (run 42384929501, recorded in dress-up/speed.json by c2a135ea, 2026-11-07): one check failed, sky490: \"the waterfall by the clock: tonight's moon behind its cliff; from the cave, through its mouth, in its phase\". 0.0.492 made night fall everywhere outdoors (ticket 711); the waterfall's moon, or the check's expectation of it, needs putting right.",
+   "added": "2026-11-09T16:41-07:00",
+   "opened": "2026-11-09T16:41-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "bug"
+   ],
+   "source": "Found 2026-11-09 while releasing 0.0.493 (ticket 723): no ticket had been minted for 0.0.492's broken speed run.",
+   "progress": "16:41 11-09: minted; queued after 724. The check's output: checks/sky490.txt in the run's speed-chrome artifact."
   }
  ],
- "next_ticket": 725,
- "current_ticket": 723,
- "current_note": "16:29: Dress Up: weather for M (and next, 724: the deep ocean for N); reading how days, the backpack and the outdoors are drawn",
+ "next_ticket": 726,
+ "current_ticket": 724,
+ "current_note": "16:41: Dress Up: N's deep ocean, a world under the open water, with a dive arrow under the swimmer (0.0.493, M's weather, released; 723 closes once live)",
  "closed_tickets": [
+  {
+   "id": 723,
+   "area": "Dress Up: weather, with a report for the next day in the 🎒 backpack",
+   "added": "2026-11-09T16:29-07:00",
+   "text": "Weather, as in Harvest Moon, with a weather report.",
+   "source": "Matthew in the Code session, 2026-11-09 afternoon (\"dress-up time.\"), M's ask.",
+   "status": "done",
+   "closed": "2026-11-09",
+   "outcome": "Released 0.0.493: 🌦️ weather (sunny, cloudy, rain, snow, windy, fog, one per day by date and season), drawn outside; 📻 the weather report for tomorrow in 🎒. A TV or tablet next,…"
+  },
   {
    "id": 698,
    "area": "hazel, performance: BuckleScript, ReScript (and Melange), to know and to compare with hazel-jit",
@@ -23292,8 +23292,8 @@
   }
  ],
  "queue": [
-  723,
   724,
+  725,
   722,
   718,
   720,
@@ -23321,7 +23321,7 @@
   708,
   700
  ],
- "current_since": "2026-11-09T16:29-07:00",
+ "current_since": "2026-11-09T16:41-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
