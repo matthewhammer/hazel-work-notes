@@ -15814,7 +15814,27 @@
    "source": "Matthew, 2026-11-08 16:5x, in chat: \"Yes, redraws next\", after I laid out where the Witch slide's edit stands against the 60 fps goal (1.0 to 1.8 s on trial/694-view-jit, today's runs 42535123022 and 42535708383) and proposed cutting the page's four redraws per edit after ^report(47).",
    "text": "<b>Draw the Witch slide's view once per edit, not four times.</b> On trial/694-view-jit (238144b4b8), one slider step on the Witch slide, until the picture changes, spends on the page: the whole slide's view 305 to 337 ms in 4 draws, calculate 116 to 134 ms in 4, syntax 59 to 70 ms in 6 (Firefox on GitHub's machines, run 42535123022). About 0.4 to 0.5 s of a 1.0 to 1.8 s edit. The picture itself, compiled, draws in 1.3 ms. Find what triggers each draw (the slider's own update, the worker's partial results, the final result) and draw once for the final answer, or only what changed. Part of ^ticket(694)'s road to a 60 fps floor for small edits.",
    "progress": "16:52 11-08: minted on Matthew's word and enqueued first, behind the current ^ticket(718) (report 47, nearly done).",
-   "log": [],
+   "log": [
+    {
+     "at": "2026-11-08T16:51-07:00",
+     "from": "matthew",
+     "chars": 17,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-08T16:52-07:00",
+     "from": "claude",
+     "chars": 267,
+     "asks": false,
+     "words": 51,
+     "read_s": 13,
+     "listen_s": 19,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    }
+   ],
    "url": ""
   },
   {
@@ -15832,7 +15852,15 @@
    "source": "Matthew, 2026-11-08 16:5x, in chat: \"When only the slider changes, there's no reason to do anything related to syntax. Somehow, we need to fix that gap.\" And: \"Let's keep working on each of these. Should we hazel-jit more of the evaluator?\"",
    "text": "<b>When only a livelit's model changes, skip everything about syntax.</b> On trial/694-view-jit (238144b4b8, run 42535123022), one slider step on the Witch slide runs the editor's syntax recalculation (<code>Editor.Update.calculate</code>, timed as \"syntax\" in <code>CodeWithStatics</code>) 6 times, 59 to 70 ms; statics once, 16 to 20 ms; calculate 4 times, 116 to 134 ms; and the worker composes its request again, 24 to 50 ms. Two of the four updates are the worker's answers, which change no code at all, and still run syntax twice each. Today the slider writes its model back into the program as a literal, so everything downstream treats it as a code edit. The fix: a model-only edit keeps the syntax, statics and elaboration it had and swaps in the new model value, as ^report(46)'s speculation on compiling the run puts it: each livelit use's model a parameter, so an edit to a model is a new argument, not new code. It is also the first step to a compiled run (^ticket(694)), and pairs with ^ticket(720) (draw once).",
    "progress": "16:54 11-08: minted on Matthew's word and enqueued beside ^ticket(720): both are the page's side of a slider step.",
-   "log": [],
+   "log": [
+    {
+     "at": "2026-11-08T16:52-07:00",
+     "from": "matthew",
+     "chars": 514,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ],
    "url": ""
   },
   {
@@ -15869,6 +15897,18 @@
      "from": "matthew",
      "chars": 137,
      "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-08T16:48-07:00",
+     "from": "claude",
+     "chars": 2210,
+     "asks": true,
+     "words": 392,
+     "read_s": 99,
+     "listen_s": 147,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
      "note": "from the transcripts"
     }
    ],
@@ -22088,9 +22128,9 @@
   },
   "since": "2026-08-27",
   "replies": 6326,
-  "words": 1377095,
+  "words": 1377198,
   "read_hours_est": 96.4,
-  "listen_hours_est": 143.4,
+  "listen_hours_est": 143.5,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -22401,8 +22441,8 @@
    },
    "2026-11-08": {
     "replies": 56,
-    "words": 14788,
-    "chars": 86056
+    "words": 14891,
+    "chars": 86661
    }
   }
  },
