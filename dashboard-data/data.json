@@ -15904,7 +15904,7 @@
    ],
    "source": "Matthew, 2026-11-08 16:5x, in chat: \"Should we hazel-jit more of the evaluator?\", then \"Compiled run first\" (over my proposed order: ^ticket(721) syntax gap, ^ticket(720) draw once, then this).",
    "text": "<b>Compile the Witch slide's run with hazel-jit, each livelit use's model a parameter, so a slider step is a call with a new argument.</b> The evaluator is the largest part of a small edit: 0.53 to 1.14 s of a 1.0 to 1.8 s edit on trial/694-view-jit (runs 42535123022, 42535708383). ^report(46)'s speculation (#witch-jit-run): compile the program once, lift each livelit use's model out as a parameter, call each livelit's compiled view on its model's JS value where the run samples view(model) now; at ^report(45)'s smallest measured speedup the run would take tens of ms. First, in the worker: what of the slide's whole program hazel-jit compiles today, what it rejects, and the compiled run's time against the interpreter. Probes, statuses and decorations stay with the interpreter, run after at lower priority. Part of ^ticket(694); makes ^ticket(721) a natural consequence.",
-   "progress": "16:55 11-08: minted on Matthew's word (\"Compiled run first\") and enqueued at the front, ahead of ^ticket(720) and ^ticket(721). | 17:07 11-08: FIRST RESULT. `hazel jit FILE` (CLI, trial/694-view-jit 0926a80c74) on witch.hz in Node, laptop: hazel-jit compiles everything but 52 holes, one quotation and one `undefined`, none reached; livelit uses and splices compile as what they hold (as the interpreter steps through them); %splice_value got a JS version. The compiled run's value equals the interpreter's (to_js + runtime eq; only the final value compared); 4.8-6.3 ms a run with the JS made anew each time, against the interpreter's 441-605 ms: 76-127 times. Not yet: models as parameters (no recompile per step), the livelits' views at each use, in the app, in Firefox; probes stay with the interpreter. | 17:56 11-08: models as parameters (ab4a41e587): with HazelJit.params_on a literal %model compiles as $R.param(id, literal), each view call as $R.sample(projector id, answer). `hazel jit --views --check --step neck`: elaborated as the app does (views in the run), interpreter 653 ms, compiled 7.2 ms; the neck step 28->30: interpreter 684 ms on the changed program, compiled once 2.3-2.5 ms a step, 53 views sampled; all 124 data values the same after the step, which changed exactly neck_length, neck, neck_at, face_at, hair_at, hat, outfit, drawn. In ^report(45) #run. Work notes 2026-11-08T1754 written, gallery carded (d58809e5). Next: the app: on a slider step call the compiled program with the new model, draw changed livelits from $R.samples via HazelJitDOM; time it in Firefox.",
+   "progress": "16:55 11-08: minted on Matthew's word (\"Compiled run first\") and enqueued at the front, ahead of ^ticket(720) and ^ticket(721). | 17:07 11-08: FIRST RESULT. `hazel jit FILE` (CLI, trial/694-view-jit 0926a80c74) on witch.hz in Node, laptop: hazel-jit compiles everything but 52 holes, one quotation and one `undefined`, none reached; livelit uses and splices compile as what they hold (as the interpreter steps through them); %splice_value got a JS version. The compiled run's value equals the interpreter's (to_js + runtime eq; only the final value compared); 4.8-6.3 ms a run with the JS made anew each time, against the interpreter's 441-605 ms: 76-127 times. Not yet: models as parameters (no recompile per step), the livelits' views at each use, in the app, in Firefox; probes stay with the interpreter. | 17:56 11-08: models as parameters (ab4a41e587): with HazelJit.params_on a literal %model compiles as $R.param(id, literal), each view call as $R.sample(projector id, answer). `hazel jit --views --check --step neck`: elaborated as the app does (views in the run), interpreter 653 ms, compiled 7.2 ms; the neck step 28->30: interpreter 684 ms on the changed program, compiled once 2.3-2.5 ms a step, 53 views sampled; all 124 data values the same after the step, which changed exactly neck_length, neck, neck_at, face_at, hair_at, hat, outfit, drawn. In ^report(45) #run. Work notes 2026-11-08T1754 written, gallery carded (d58809e5). Next: the app: on a slider step call the compiled program with the new model, draw changed livelits from $R.samples via HazelJitDOM; time it in Firefox. | 18:18 11-08: CRASH 59 at 18:10:37, 13 s into `dune build -j 2 @check` in ~/hazel-694-jit, the type-check of the app wiring (uncommitted, all whole: new HazelJitRun.re, the compiled run with livelits' models as parameters, called from LivelitProj's event handler, its answers drawn before the worker's run comes back; ProjectorView hands it the elaborated program; HazelJit.param_of_projector). The build's 1,272 outputs deleted. Next: that type-check, then time it in Firefox on GitHub.",
    "log": [
     {
      "at": "2026-11-08T16:43-07:00",
@@ -16021,7 +16021,7 @@
  ],
  "next_ticket": 723,
  "current_ticket": 722,
- "current_note": "The Witch slide's run compiled: a slider step 2.3-2.5 ms in Node (compiled once, model as a parameter) vs 684 ms, same values. Next: wire it into the app (LivelitProj: on a step, call the slide's compiled program, draw changed livelits from its samples), time in Firefox.",
+ "current_note": "Crash 59 interrupted the type-check of the app wiring (HazelJitRun + LivelitProj, uncommitted in ~/hazel-694-jit, whole). Next: type-check it, then time a slider step in Firefox on GitHub.",
  "closed_tickets": [
   {
    "id": 698,
@@ -22231,8 +22231,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6328,
-  "words": 1378325,
+  "replies": 6329,
+  "words": 1378433,
   "read_hours_est": 96.5,
   "listen_hours_est": 143.6,
   "read_s_avg": 55,
@@ -22544,9 +22544,9 @@
     "chars": 47456
    },
    "2026-11-08": {
-    "replies": 58,
-    "words": 16018,
-    "chars": 93368
+    "replies": 59,
+    "words": 16126,
+    "chars": 94078
    }
   }
  },
