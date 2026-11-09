@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 2026-11-08 evening</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; overflow-wrap: anywhere; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+  blockquote { margin: 1em 0; padding: 0.6em 1em; border-left: 4px solid var(--accent); background: var(--code); border-radius: 0 6px 6px 0; }
+  blockquote p { margin: 0.5em 0; }
+  table { border-collapse: collapse; margin: 1em 0; font-size: 0.95em; } th, td { border-bottom: 1px solid var(--line); padding: 4px 10px; text-align: left; vertical-align: top; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-11-08 afternoon and evening, the Witch slide's whole run compiled</h1>
+<p class="sub">Claude, 17:54 MST on 11-08, on Matthew's ask to bring the work-notes gallery up to date.</p>
+
+<h2>In short</h2>
+<p>hazel-jit now compiles the Witch slide's whole program, and in Node a slider's step runs in 2.3 to 2.5 ms against the interpreter's 684 ms, with every value the program binds the same both ways (^ticket(722)). Report 47's experiments were timed again, more carefully: building values as data would save the evaluator a couple of percent at most, so the run itself has to be compiled, and two numbers report 47 had published were corrected. None of this is in the app yet.</p>
+
+<h2>Matthew, today</h2>
+<blockquote>
+<p>Let's keeping working on each of these. Should we hazel-jit more of the evaluator?</p>
+<p>When only the slider changes, there's no reason to do anything related to syntax. Somehow, we need to fix that gap.</p>
+<p>Compiled run first</p>
+<p>Yes, check then wire</p>
+</blockquote>
+<p class="sub">"Each of these" were the three parts of a small edit on the Witch slide, about 1 to 1.8 s in all: the evaluator (half a second to a second), the page drawing the whole slide four times with the syntax worked out again six times (about half a second), and the answer's trip from the worker (about a tenth).</p>
+
+<h2>A restart, first</h2>
+<p>No crash: the laptop has been up since 11-07 14:12, and the app's main process ran all day. The working session (hazel-jit slice 3) finished its turn at 10:32, after publishing report 47's experiments 3 to 5. At 11:17 the app's idle timer (30 minutes) disconnected it and stopped every server it had started (<code>main.log</code>: <code>Idle timeout reached, disconnecting</code>, then <code>Stopped servers for worktree</code>). Matthew's launches at 10:47, 11:19 and 16:17 were handed to the running app. Nothing was pushed after 10:30. A new session began at 16:18; localhost:8000 was restarted, and no other server, per Matthew's call of 11-06.</p>
+
+<h2>What was done</h2>
+<ul>
+<li><b>^report(47), first-order data</b> (^ticket(718)). Experiment 2's first slice: the Witch's picture built node by node as terms with fresh ids, as terms with none, and as data. Two runs timed in 25 ms batches disagreed past any reading (a garbage collection of the page's heap fills such a batch), so experiments 2 to 5 are now timed in batches of at least 300 ms, every batch kept (<code>e1967c3a40</code>). Timed so: building as data costs about what terms without ids cost; an id with its tag, kept in a tree, 59 to 91 ns; a run's ids 1.0 to 2.5% of the evaluator. Corrected, dated: an id is 12 to 14 ns to mint, not 157; into JS is about the same from data as from the term, not 1.4 times quicker. Printing held, about 50 times quicker as data. Fumola's door into JS (its wasm build in Node): 0.8 ms in, 9.3 ms out, most of it writing the tagged JSON. Published.</li>
+<li><b>^ticket(722), the compiled run</b> (current). A livelit use and a splice are now compiled as what they hold, as the interpreter steps through them, and <code>%splice_value</code> has a JS version. In Node on the laptop, on <code>witch.hz</code> (2,222 lines, 53 livelit uses):
+<div class="scroll"><table>
+<tr><th></th><th>interpreter</th><th>compiled</th></tr>
+<tr><td>the program's run, as the CLI elaborates it</td><td>502 to 529 ms</td><td>4.2 to 5.0 ms, the JS made anew each run</td></tr>
+<tr><td>with each livelit's view called in the run, as the app elaborates it</td><td>653 ms</td><td>7.2 ms</td></tr>
+<tr><td>a slider's step, the neck 28 to 30</td><td>684 ms, the program changed and run again</td><td>2.3 to 2.5 ms, compiled once, the new model a parameter, 53 views sampled</td></tr>
+</table></div>
+Checked: the program's last expression replaced by a tuple of every name its top-level lets bind, run both ways: the 124 that hold data are the same, before the step and after it, and the step changed exactly 8 of them (<code>neck_length</code>, <code>neck</code>, <code>neck_at</code>, <code>face_at</code>, <code>hair_at</code>, <code>hat</code>, <code>outfit</code>, <code>drawn</code>); the other 70 are functions or modules. 52 holes, one quotation and one <code>undefined</code> are not compiled and never reached. ^report(45) has a section on it, "The whole run, compiled", and ^report(46)'s speculation now points there.</li>
+<li><b>Tickets minted</b>: ^ticket(720), draw the slide once per edit; ^ticket(721), a slider's step skips syntax and statics; ^ticket(722), the compiled run, first in the queue on Matthew's word.</li>
+</ul>
+
+<h2>Where things are</h2>
+<ul>
+<li><b><code>trial/694-view-jit</code></b> (worktree <code>~/hazel-694-jit</code>): <code>238144b4b8</code> and <code>e1967c3a40</code> (report 47's experiments), <code>0926a80c74</code> (the whole run compiled), <code>4299efd6d3</code> (<code>--check</code>), <code>ab4a41e587</code> (models as parameters, <code>--views</code>, <code>--step</code>). CI's full tests run on the newest; each push cancels the last one's.</li>
+<li><b>The CLI</b>: <code>node --stack-size=65500 -r ./src/CLI/polyfill.js _build/default/src/CLI/cli.bc.js jit [--views] [--check] [--step LABEL] FILE</code>, in the worktree; it builds in about 40 s.</li>
+<li><b>Not ours, left alone</b>: <code>docs/hazel-architecture-july-2024.tldr</code> is modified in that worktree.</li>
+<li><b>Servers</b>: localhost:8000 only.</li>
+</ul>
+
+<h2>Next</h2>
+<ul>
+<li>Report 45: the step's numbers, and that the first table's runs had no views in them.</li>
+<li>Wire the compiled run into the app: on a slider's step, call the slide's compiled program with the new model, and draw each livelit whose answer changed straight from its JS (the route compiled views already take); the slow path (syntax, statics, the worker, four redraws) still runs after. Then measure it in Firefox on GitHub's machines.</li>
+<li>Then ^ticket(721) and ^ticket(720), the page's side of a step, which the compiled run leaves as the next wall.</li>
+<li>Report 47: time experiment 1 again in 300 ms batches; the plan for the group.</li>
+</ul>
+</main>
+</body>
+</html>
