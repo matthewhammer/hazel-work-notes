@@ -1,5 +1,81 @@
 [
  {
+  "id": 724,
+  "area": "Dress Up: the deep ocean, a world of its own under the surface ocean, with diving",
+  "text": "<b>A deep ocean world, dived into from the surface ocean.</b> N, via Matthew: \"another world (deep ocean) that is accessible from the surface-style ocean squares, where we swim on the surface. I recommend separating the few deep ocean squares we have onto another world (called deep ocean) --- let's replace the deep ocean with more surface ocean and separate into another world, somehow --- with a vertical way of connecting worlds together between surface ocean and deep ocean, something similar to the 'hole' in the cemetery, except not localized to one spot, and not rendered as an object. Not sure where to place the 'nav' arrow, but it would be nice to actually center it below the person as they swim, to indicate that every spot offers a chance to dive.\" And: \"diving animation, maybe just a variation of swimming?\" Plan: the start world's 🪸 deep sea squares become 🌊 open water; a 🪸 deep ocean world under it, a square under every open-water square (the old deep squares' things kept there); from any open-water square, a ⬇️ arrow centred under the swimmer dives to the square below; from the deep ocean, ⬆️ above them swims up. A dive: the swim, head down, sinking; coming up, the reverse.",
+  "added": "2026-11-09T16:29-07:00",
+  "opened": "2026-11-09T16:29-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "dress up",
+   "feature",
+   "for N"
+  ],
+  "source": "Matthew in the Code session, 2026-11-09 afternoon (\"dress-up time.\"), N's ask.",
+  "progress": "16:29 11-09: minted; next after 723. | 16:49 11-09: RELEASED 0.0.494 (d0adc612, tag dress-up-0.0.494). The start world's 🪸 deep-sea squares are now 🌊 open water; a \"deep ocean\" world, the start world's floor below (W.below, as the dungeon floors'), has a deep-sea square under each of the 8 open-water squares (the old squares' things moved down; the rest seeded with sea things). ⬇️ dive arrow under the swimmer in open water (always shown, follows them), ⬆️ swim up over the head in the deep ocean; a tap, the controller's X or 🚪, or Enter with nothing near. Dive: tipped head first and sinking, then sinking in from above, righting; up: the reverse. Once per game (state.deepOcean.made); an old save in a deep-sea square opens in the deep ocean there. Checked in the browser pane: the migration (twice, once with the friend in A4), the arrows, a dive and a rise, Enter. NOT seen: the dive's motion itself (the pane was hidden: no animations; a timer finishes it there). Speed run: being watched. | 17:17 11-09: Matthew: \"the ocean diving animation (especially back up?) leaves behind limbs sometimes\". Cause: facing sideways and not wet (the deep ocean's floor), the far leg and arm are drawn apart in #figure-far (ticket 136), and diveMotion wrapped #figure alone. Fixed in 0.0.495 (6d88c9a4, tag dress-up-0.0.495): figureWrap moves #figure and #figure-far together (fallLand too, the same gap). Checked in the pane: in the deep ocean walking right, #figure-far present, the swim-up's wrapper holds both. | 19:50 11-09: 0.0.495 live (20 s after the push). Its speed run (42727135412) broken by two checks written before the deep ocean, not the game: world260 expected the default (0,0) to be deep sea with his things (open water now; a dive finds them below), and worlds406 met the deep ocean as a second world. Both fixed (15f37c0d), each tried in the pane on 0.0.495 first; the speed run dispatched on main (the same game files, the fixed checks): 42745457907.",
+  "log": [
+   {
+    "at": "2026-11-09T16:27-07:00",
+    "from": "matthew",
+    "chars": 1074,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-09T16:51-07:00",
+    "from": "claude",
+    "chars": 6000,
+    "asks": false,
+    "words": 1071,
+    "read_s": 270,
+    "listen_s": 402,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-09T17:14-07:00",
+    "from": "matthew",
+    "chars": 78,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-09T17:17-07:00",
+    "from": "claude",
+    "chars": 1838,
+    "asks": false,
+    "words": 332,
+    "read_s": 84,
+    "listen_s": 124,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-09",
+  "closed_at": "2026-11-09T21:27-07:00",
+  "outcome": "N's deep ocean: a world under the open water, reached by diving anywhere on the surface ocean (0.0.494), with a dive animation from the swim; 0.0.495 moves the far leg and arm in a dive too, so no limbs are left behind. Checks world260 and worlds406 updated for the new world (15f37c0d); the speed run on main is clean (run 42745457907).",
+  "metrics": {
+   "open_minutes": 299,
+   "matthew_messages": 2,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 8990,
+   "tokens_est": 2247,
+   "sync_minutes_est": 3.0,
+   "replies": 2,
+   "claude_words": 1403,
+   "read_minutes_est": 5.9,
+   "listen_minutes_est": 8.8,
+   "read_s_avg": 177,
+   "listen_s_avg": 263,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 725,
   "area": "Dress Up: 0.0.492's speed run broken: sky490, the waterfall's moon by the clock",
   "text": "<b>The speed run after 0.0.492 was broken (the checks)</b> (run 42384929501, recorded in dress-up/speed.json by c2a135ea, 2026-11-07): one check failed, sky490: \"the waterfall by the clock: tonight's moon behind its cliff; from the cave, through its mouth, in its phase\". 0.0.492 made night fall everywhere outdoors (ticket 711); the waterfall's moon, or the check's expectation of it, needs putting right.",
