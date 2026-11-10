@@ -16991,7 +16991,7 @@
     "for M"
    ],
    "source": "Matthew in the Code session, 2026-11-10: \"M is using tablet -- -version 0.0.495 --- why isn't it updating?\", \"where is weather control?\", \"I dont see it there\", then \"Yes, move it up\".",
-   "progress": "15:17 11-10: minted on his \"Yes, move it up\". The live 0.0.495's ⚙️ Advanced: the weather toggle is in ⚙️ more, the last of 8 boxes, at 2,768 px (a 1024x768 window). Moving it to a box of its own, first. | 15:20 11-10: RELEASED 0.0.496 (57371334, tag dress-up-0.0.496), live (version.json 0.0.496 and js/22-full-screen.js over HTTPS). advLayout puts a box 🌦️ days and weather first: 🌗 night and day, 🌦️ weather, 🌱 cut plants grow back (⚙️ more is gone when nothing else is left). Checked on localhost:8133 in the pane: 8 boxes, the new one first, none loose; weather on shows the 🌦️ today row (7 chips) and rain. check_script and check_load ok. Speed run 42913447398 running. M's tablet: a 🆕 0.0.496 chip after the version within a minute; tap it.",
+   "progress": "15:17 11-10: minted on his \"Yes, move it up\". The live 0.0.495's ⚙️ Advanced: the weather toggle is in ⚙️ more, the last of 8 boxes, at 2,768 px (a 1024x768 window). Moving it to a box of its own, first. | 15:20 11-10: RELEASED 0.0.496 (57371334, tag dress-up-0.0.496), live (version.json 0.0.496 and js/22-full-screen.js over HTTPS). advLayout puts a box 🌦️ days and weather first: 🌗 night and day, 🌦️ weather, 🌱 cut plants grow back (⚙️ more is gone when nothing else is left). Checked on localhost:8133 in the pane: 8 boxes, the new one first, none loose; weather on shows the 🌦️ today row (7 chips) and rain. check_script and check_load ok. Speed run 42913447398 running. M's tablet: a 🆕 0.0.496 chip after the version within a minute; tap it. | 16:54 11-10: 0.0.496's speed run (42913447398) BROKEN on two checks, both from the move: knoll375 (⚙️ Advanced 76 px wider than itself) and seealso474 (🏠 this game must be exactly the second box; it is third). Fixed in 0.0.497, ticket 727.",
    "url": "",
    "log": [
     {
@@ -17071,11 +17071,27 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 727,
+   "area": "Dress Up: 0.0.496's checks broken: the scripts' cost table past the panel's edge; See also near the top",
+   "text": "<b>Fix the two checks 0.0.496's speed run broke.</b> knoll375: ⚙️ Advanced 76 px wider than itself; the 🔬 cost table in 🧪 tests and timing is wider than a box (353 px in 321 at 1280x800), and the new first box put it in the right-hand column. seealso474: 🏠 this game must be exactly the second box; it is now third.",
+   "added": "2026-11-10T16:54-07:00",
+   "opened": "2026-11-10T16:54-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up"
+   ],
+   "source": "The after-release speed run for 0.0.496 (run 42913447398), on ticket 726's release; the release rule: slow or broken, mint a ticket.",
+   "progress": "16:54 11-10: minted from the broken speed run. The table used to spill into the next column, unseen. Fix: the table scrolls in its own box (display block, overflow-x auto); the See also check accepts the first three boxes. Checked in the pane at 1280x800 and 1024x768: no tab's panel wider than itself; the table 301 px wide in its box, scrolling 52. | 16:55 11-10: RELEASED 0.0.497 (e8586f99, tag dress-up-0.0.497); check_script and check_load ok. Speed run 42927266986 queued.",
+   "url": "",
+   "log": []
   }
  ],
- "next_ticket": 727,
- "current_ticket": 726,
- "current_note": "15:20: ^ticket(726): Dress Up 0.0.496 is live: 🌦️ days and weather (night and day, weather, regrow) first in ⚙️ Advanced. M's tablet shows a 🆕 0.0.496 chip to tap. Speed run going.",
+ "next_ticket": 728,
+ "current_ticket": 727,
+ "current_note": "16:55: 0.0.497 released; waiting on its speed run",
  "closed_tickets": [
   {
    "id": 724,
@@ -23320,7 +23336,7 @@
   708,
   700
  ],
- "current_since": "2026-11-10T15:17-07:00",
+ "current_since": "2026-11-10T16:55-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
@@ -23333,8 +23349,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6474,
-  "words": 1417914,
+  "replies": 6475,
+  "words": 1418004,
   "read_hours_est": 99.3,
   "listen_hours_est": 147.7,
   "read_s_avg": 55,
@@ -23656,9 +23672,9 @@
     "chars": 95053
    },
    "2026-11-10": {
-    "replies": 59,
-    "words": 15011,
-    "chars": 85145
+    "replies": 60,
+    "words": 15101,
+    "chars": 85609
    }
   }
  },
