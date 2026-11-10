@@ -38,6 +38,12 @@ REPO = "https://github.com/matthewhammer/hazel-work-notes"
 data = json.load(open(DATA))
 OPEN = {t["id"] for t in data["tickets"]}
 CLOSED = {t["id"] for t in data.get("closed_tickets", [])}
+# a ticket closed in an earlier month is on that month's page (^ticket(428)); linked there, not to closed.html, whose
+# script forwards it there only after loading and fetching closed-where.json (Matthew, 2026-11-10: "has broken links")
+try:
+    WHERE = json.load(open(os.path.expanduser("~/matthewhammer.github.io/hazel/dashboard/closed-where.json")))
+except (OSError, ValueError):
+    WHERE = {}
 
 def chip(kind, n):
     return f'<code class="ref"><b>^{kind}(</b>{int(n)}<b>)</b></code>'
@@ -45,7 +51,7 @@ def chip(kind, n):
 def chips(text):
     def ticket(m):
         n = int(m.group(1))
-        href = DASH + f"#ticket-{n}" if n in OPEN else DASH + f"closed.html#ticket-{n}" if n in CLOSED else None
+        href = DASH + f"#ticket-{n}" if n in OPEN else DASH + WHERE.get(str(n), "closed.html") + f"#ticket-{n}" if n in CLOSED else None
         return f'<a href="{href}">{chip("ticket", n)}</a>' if href else chip("ticket", n)
     text = re.sub(r"\^ticket\((\d+)\)", ticket, text)
     text = re.sub(r"\^report\((\d+)\)", lambda m: f'<a href="{SERIES}{int(m.group(1)):03d}/">{chip("report", m.group(1))}</a>', text)
