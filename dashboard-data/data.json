@@ -15803,6 +15803,18 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-09T19:34-07:00",
+     "from": "claude",
+     "chars": 954,
+     "asks": false,
+     "words": 173,
+     "read_s": 44,
+     "listen_s": 65,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ],
    "url": "https://matthewhammer.org/hazel/reports/047/"
@@ -15936,7 +15948,7 @@
     "for N"
    ],
    "source": "Matthew in the Code session, 2026-11-09 afternoon (\"dress-up time.\"), N's ask.",
-   "progress": "16:29 11-09: minted; next after 723. | 16:49 11-09: RELEASED 0.0.494 (d0adc612, tag dress-up-0.0.494). The start world's 🪸 deep-sea squares are now 🌊 open water; a \"deep ocean\" world, the start world's floor below (W.below, as the dungeon floors'), has a deep-sea square under each of the 8 open-water squares (the old squares' things moved down; the rest seeded with sea things). ⬇️ dive arrow under the swimmer in open water (always shown, follows them), ⬆️ swim up over the head in the deep ocean; a tap, the controller's X or 🚪, or Enter with nothing near. Dive: tipped head first and sinking, then sinking in from above, righting; up: the reverse. Once per game (state.deepOcean.made); an old save in a deep-sea square opens in the deep ocean there. Checked in the browser pane: the migration (twice, once with the friend in A4), the arrows, a dive and a rise, Enter. NOT seen: the dive's motion itself (the pane was hidden: no animations; a timer finishes it there). Speed run: being watched. | 17:17 11-09: Matthew: \"the ocean diving animation (especially back up?) leaves behind limbs sometimes\". Cause: facing sideways and not wet (the deep ocean's floor), the far leg and arm are drawn apart in #figure-far (ticket 136), and diveMotion wrapped #figure alone. Fixed in 0.0.495 (6d88c9a4, tag dress-up-0.0.495): figureWrap moves #figure and #figure-far together (fallLand too, the same gap). Checked in the pane: in the deep ocean walking right, #figure-far present, the swim-up's wrapper holds both.",
+   "progress": "16:29 11-09: minted; next after 723. | 16:49 11-09: RELEASED 0.0.494 (d0adc612, tag dress-up-0.0.494). The start world's 🪸 deep-sea squares are now 🌊 open water; a \"deep ocean\" world, the start world's floor below (W.below, as the dungeon floors'), has a deep-sea square under each of the 8 open-water squares (the old squares' things moved down; the rest seeded with sea things). ⬇️ dive arrow under the swimmer in open water (always shown, follows them), ⬆️ swim up over the head in the deep ocean; a tap, the controller's X or 🚪, or Enter with nothing near. Dive: tipped head first and sinking, then sinking in from above, righting; up: the reverse. Once per game (state.deepOcean.made); an old save in a deep-sea square opens in the deep ocean there. Checked in the browser pane: the migration (twice, once with the friend in A4), the arrows, a dive and a rise, Enter. NOT seen: the dive's motion itself (the pane was hidden: no animations; a timer finishes it there). Speed run: being watched. | 17:17 11-09: Matthew: \"the ocean diving animation (especially back up?) leaves behind limbs sometimes\". Cause: facing sideways and not wet (the deep ocean's floor), the far leg and arm are drawn apart in #figure-far (ticket 136), and diveMotion wrapped #figure alone. Fixed in 0.0.495 (6d88c9a4, tag dress-up-0.0.495): figureWrap moves #figure and #figure-far together (fallLand too, the same gap). Checked in the pane: in the deep ocean walking right, #figure-far present, the swim-up's wrapper holds both. | 19:50 11-09: 0.0.495 live (20 s after the push). Its speed run (42727135412) broken by two checks written before the deep ocean, not the game: world260 expected the default (0,0) to be deep sea with his things (open water now; a dive finds them below), and worlds406 met the deep ocean as a second world. Both fixed (15f37c0d), each tried in the pane on 0.0.495 first; the speed run dispatched on main (the same game files, the fixed checks): 42745457907.",
    "log": [
     {
      "at": "2026-11-09T16:27-07:00",
@@ -15977,27 +15989,22 @@
      "note": "from the transcripts"
     }
    ]
-  },
-  {
-   "id": 725,
-   "area": "Dress Up: 0.0.492's speed run broken: sky490, the waterfall's moon by the clock",
-   "text": "<b>The speed run after 0.0.492 was broken (the checks)</b> (run 42384929501, recorded in dress-up/speed.json by c2a135ea, 2026-11-07): one check failed, sky490: \"the waterfall by the clock: tonight's moon behind its cliff; from the cave, through its mouth, in its phase\". 0.0.492 made night fall everywhere outdoors (ticket 711); the waterfall's moon, or the check's expectation of it, needs putting right.",
-   "added": "2026-11-09T16:41-07:00",
-   "opened": "2026-11-09T16:41-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "dress up",
-    "bug"
-   ],
-   "source": "Found 2026-11-09 while releasing 0.0.493 (ticket 723): no ticket had been minted for 0.0.492's broken speed run.",
-   "progress": "16:41 11-09: minted; queued after 724. The check's output: checks/sky490.txt in the run's speed-chrome artifact. | 16:50 11-09: the game is right, the check was out of date: since 0.0.492 a clock sky always holds its moon (skyBodiesSvg/skyBodiesLive), shown or hidden by display; at the waterfall at 21:00 Oct 20 it is display=\"none\" (seen in the pane on 0.0.494: waterfall 1 moon, 0 shown; cave 1 shown). sky490 now counts the moons shown (f593aeea, pushed to main). 0.0.494's speed run (its tag before the fix) will fail it again; the next release's run should pass."
   }
  ],
  "next_ticket": 726,
  "current_ticket": 718,
  "current_note": "19:11: Hazel: a first-order data form for the worker's answer (590 KB, encoded 85-107 ms in the worker, decoded 29 ms on the page); reading where the survey of why values are not data left off",
  "closed_tickets": [
+  {
+   "id": 725,
+   "area": "Dress Up: 0.0.492's speed run broken: sky490, the waterfall's moon by the clock",
+   "added": "2026-11-09T16:41-07:00",
+   "text": "The speed run after 0.0.492 was broken (the checks)",
+   "source": "Found 2026-11-09 while releasing 0.0.493 (ticket 723): no ticket had been minted for 0.0.492's broken speed run.",
+   "status": "done",
+   "closed": "2026-11-09",
+   "outcome": "Fixed: the check, not the game. After 0.0.492's night everywhere outdoors, the waterfall scene keeps a second, hidden moon (display none) for the cave view, and sky490 counted…"
+  },
   {
    "id": 720,
    "area": "hazel, performance: the Witch slide's edit draws the whole slide's view four times; draw it once",
@@ -22199,7 +22206,6 @@
   718,
   721,
   724,
-  725,
   719,
   694,
   697,
@@ -22236,8 +22242,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6401,
-  "words": 1399535,
+  "replies": 6403,
+  "words": 1399640,
   "read_hours_est": 98.0,
   "listen_hours_est": 145.8,
   "read_s_avg": 55,
@@ -22554,9 +22560,9 @@
     "chars": 138947
    },
    "2026-11-09": {
-    "replies": 46,
-    "words": 13492,
-    "chars": 76110
+    "replies": 48,
+    "words": 13597,
+    "chars": 76702
    }
   }
  },

@@ -1,5 +1,31 @@
 [
  {
+  "id": 725,
+  "area": "Dress Up: 0.0.492's speed run broken: sky490, the waterfall's moon by the clock",
+  "text": "<b>The speed run after 0.0.492 was broken (the checks)</b> (run 42384929501, recorded in dress-up/speed.json by c2a135ea, 2026-11-07): one check failed, sky490: \"the waterfall by the clock: tonight's moon behind its cliff; from the cave, through its mouth, in its phase\". 0.0.492 made night fall everywhere outdoors (ticket 711); the waterfall's moon, or the check's expectation of it, needs putting right.",
+  "added": "2026-11-09T16:41-07:00",
+  "opened": "2026-11-09T16:41-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "dress up",
+   "bug"
+  ],
+  "source": "Found 2026-11-09 while releasing 0.0.493 (ticket 723): no ticket had been minted for 0.0.492's broken speed run.",
+  "progress": "16:41 11-09: minted; queued after 724. The check's output: checks/sky490.txt in the run's speed-chrome artifact. | 16:50 11-09: the game is right, the check was out of date: since 0.0.492 a clock sky always holds its moon (skyBodiesSvg/skyBodiesLive), shown or hidden by display; at the waterfall at 21:00 Oct 20 it is display=\"none\" (seen in the pane on 0.0.494: waterfall 1 moon, 0 shown; cave 1 shown). sky490 now counts the moons shown (f593aeea, pushed to main). 0.0.494's speed run (its tag before the fix) will fail it again; the next release's run should pass.",
+  "closed": "2026-11-09",
+  "closed_at": "2026-11-09T19:50-07:00",
+  "outcome": "Fixed: the check, not the game. After 0.0.492's night everywhere outdoors, the waterfall scene keeps a second, hidden moon (display none) for the cave view, and sky490 counted every moon. tools/checks/sky490.mjs now counts only moons not under display none (kids-choice-games f593aeea). It passes in 0.0.495's speed run (run 42727135412: 'ok the waterfall by the clock: tonight's moon behind its cliff; from the cave, through its mouth, in its phase'). That run was still broken by two other checks, which predate the deep ocean (^ticket(724)), fixed in 15f37c0d.",
+  "metrics": {
+   "open_minutes": 190,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 720,
   "area": "hazel, performance: the Witch slide's edit draws the whole slide's view four times; draw it once",
   "added": "2026-11-08T16:52-07:00",
