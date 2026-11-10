@@ -62,7 +62,7 @@ Checked: the program's last expression replaced by a tuple of every name its top
 <li><b>Servers</b>: localhost:8000 only.</li>
 </ul>
 
-<h2>Next</h2>
+<h2 id="next">Next</h2>
 <ul>
 <li>Report 45: the step's numbers, and that the first table's runs had no views in them.</li>
 <li>Wire the compiled run into the app: on a slider's step, call the slide's compiled program with the new model, and draw each livelit whose answer changed straight from its JS (the route compiled views already take); the slow path (syntax, statics, the worker, four redraws) still runs after. Then measure it in Firefox on GitHub's machines.</li>
@@ -70,5 +70,57 @@ Checked: the program's last expression replaced by a tuple of every name its top
 <li>Report 47: time experiment 1 again in 300 ms batches; the plan for the group.</li>
 </ul>
 </main>
+<!-- notes: begin -->
+<style>
+  code.ref { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; white-space: nowrap; }
+  code.ref b { font-weight: 800; }
+  button.mint { margin-left: 4px; font: inherit; font-size: 0.75em; padding: 0 6px; border: 1px solid var(--line, #ccc);
+    border-radius: 4px; background: transparent; color: var(--muted, #666); cursor: pointer; vertical-align: 1px; }
+  button.mint:hover { color: inherit; }
+  button.mint.done { color: var(--good, #15803d); border-color: var(--good, #15803d); }
+  a.step-link { color: var(--muted, #666); text-decoration: none; font-size: 0.85em; margin-left: 4px; }
+  a.step-link:hover { text-decoration: underline; }
+  li:target { background: color-mix(in srgb, var(--good, #15803d) 12%, transparent); border-radius: 6px; }
+</style>
+<script>
+/* Each step under "Next": a link to it, a chip copying that link, and a
+   chip copying a request to mint a ticket for it (to paste to Claude). */
+(() => {
+  const h = document.getElementById("next");
+  if (!h) return;
+  let list = h.nextElementSibling;
+  while (list && !/^(OL|UL)$/.test(list.tagName)) {
+    if (list.tagName === "H2") return;
+    list = list.nextElementSibling;
+  }
+  if (!list) return;
+  const page = location.origin + location.pathname, name = document.title;
+  const copy = async (b, text) => {
+    try { await navigator.clipboard.writeText(text); }
+    catch (_) { const t = document.createElement("textarea"); t.value = text; document.body.append(t); t.select(); document.execCommand("copy"); t.remove(); }
+    const was = b.textContent; b.textContent = "copied"; b.classList.add("done");
+    setTimeout(() => { b.textContent = was; b.classList.remove("done"); }, 1500);
+  };
+  [...list.children].filter(li => li.tagName === "LI").forEach((li, i) => {
+    const n = i + 1;
+    if (!li.id) li.id = "step-" + n;
+    const url = page + "#" + li.id;
+    const b = li.querySelector("b, strong");
+    const title = (b ? b.textContent : li.textContent).replace(/\s+/g, " ").trim().replace(/[:.,;]$/, "").slice(0, 160);
+    const a = document.createElement("a");
+    a.href = "#" + li.id; a.className = "step-link"; a.textContent = "#" + n; a.title = "A link to this step";
+    const link = document.createElement("button");
+    link.type = "button"; link.className = "mint"; link.textContent = "copy link"; link.title = "Copies a link to this step";
+    link.addEventListener("click", () => copy(link, url));
+    const mint = document.createElement("button");
+    mint.type = "button"; mint.className = "mint"; mint.textContent = "copy for a ticket";
+    mint.title = "Copies a request to mint a ticket for this step, to paste to Claude";
+    mint.addEventListener("click", () => copy(mint, "Mint a ticket for this step: " + name + ", Next, step " + n + ': "' + title + '". ' + url));
+    li.append(" ", a, " ", link, " ", mint);
+  });
+  if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
+})();
+</script>
+<!-- notes: end -->
 </body>
 </html>
