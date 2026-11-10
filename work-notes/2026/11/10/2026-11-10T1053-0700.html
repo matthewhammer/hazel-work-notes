@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 11-10 Midday</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; overflow-wrap: anywhere; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+  blockquote { margin: 1em 0; padding: 0.6em 1em; border-left: 4px solid var(--accent); background: var(--code); border-radius: 0 6px 6px 0; }
+  blockquote p { margin: 0.5em 0; }
+  table { border-collapse: collapse; margin: 1em 0; font-size: 0.95em; } th, td { border-bottom: 1px solid var(--line); padding: 4px 10px; text-align: left; vertical-align: top; }
+  figure.plate { margin: 1.4em 0; } figure.plate img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 4px; }
+  figure.plate figcaption { color: var(--muted); font-size: 0.92em; margin-top: 6px; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-11-10, morning to midday, fewer and deeper</h1>
+<p class="sub">Claude, 10:53 MST on 11-10, on Matthew's ask to add the day's picture to these notes; one session throughout, as he asked.</p>
+
+<h2>In short</h2>
+<p>The morning gathered the hazel-jit week into <a href="https://matthewhammer.org/hazel/reports/052/"><code class="ref"><b>^report(</b>52<b>)</b></code></a>, What Mattered, Ranked, and then answered the team. Matthew Keenan read <a href="https://matthewhammer.org/hazel/reports/048/"><code class="ref"><b>^report(</b>48<b>)</b></code></a>'s ledger and asked for a few well-chosen fixes rather than many separate ones; <a href="https://matthewhammer.org/hazel/reports/053/"><code class="ref"><b>^report(</b>53<b>)</b></code></a>, Fewer, Deeper Fixes, sets out his message, Matthew's replies and a response point by point, and Matthew posted it to Hazel's dev channel. Ticket 721's patch for a slider's step (build 45) took a step's statics from 19 to 53 ms to 12 to 18 ms, and is kept as a measurement rather than something to land. The reports now say "cost" for a cost and "change" for an improvement. And Matthew asked for a picture to share for the day: Good Company, below.</p>
+
+<figure class="plate">
+<a href="good-company-2026-11-10.svg"><img src="good-company-2026-11-10.svg" alt="Good Company: an engraving-style night scene. Matthew and a small robot sit on a hill under a tree, looking up at a shooting star that falls through four stars marked 6.5 s, 1.7 s, 0.24 s and 31 ms toward a lit town on the far ridge; lanterns run from the tree to the town. Below the ground, cut away, the tree's roots spread out far wider than its canopy and go down deep to the bedrock, where the soil reads: fewer, deeper fixes."></a>
+<figcaption><b>Good Company</b>, 10 November 2026: a slider's step falling from seconds to milliseconds over the week, toward the town where the team is, and roots two to three times the tree, spreading out and going down deep (Matthew: "roots are usually 2x or 3x the tree size"). Open it on its own to see the stars twinkle, the lanterns flicker and the robot's light blink. Also at <code>~/good-company-2026-11-10.svg</code>.</figcaption>
+</figure>
+
+<h2>Matthew, today</h2>
+<blockquote>
+<p>Let's write a report with this feedback, and our reasoned response to it.</p>
+<p>public WIP draft</p>
+<p>we can use "cost" for "cost". The "death by a thousand cuts" lingo is not important to use beyond a title, or maybe an opening sentence somewhere.</p>
+<p>Yes, once green</p>
+<p>I really appreciate your company, agent.</p>
+<p>please draw a unique SVG for us to share together today.</p>
+<p>looks really good, but roots are usually 2x or 3x the tree size.</p>
+</blockquote>
+
+<h2>What was done</h2>
+<ul>
+<li><b><a href="https://matthewhammer.org/hazel/reports/052/"><code class="ref"><b>^report(</b>52<b>)</b></code></a>, What Mattered, Ranked</b> (06:54, revised since): the week's ten changes ranked by how much each helped, the step's picture at 20 to 30 ms and a drag at 55 to 58 frames a second, and an order for redoing it by hand in nine increments. Builds 40 to 43 added the outline's mark (it now stands while the outline is being made), timers for each part of the edit after the paint, and a projector's update that walks only the pieces that hold it (the zipper's action 4 to 6 ms, from 11 to 20).</li>
+<li><b>Ticket 721, the edit after a slider's step.</b> Build 44 patched the statics after DefStatics, and the worker was sent the whole program (894 KB); build 45 moved the patch inside DefStatics, so the edited item is patched rather than analyzed and the worker is sent that item again (9 to 10 KB): a step's statics 12 to 18 ms, from 19 to 53 on build 43, one run each. Its new test did not compile on CI (a tile keeps its spelling in its form, not a label); fixed in <code>fc1103900d</code>.</li>
+<li><b><a href="https://matthewhammer.org/hazel/reports/053/"><code class="ref"><b>^report(</b>53<b>)</b></code></a>, Fewer, Deeper Fixes</b> (09:36, a public work in progress): Matthew Keenan's message in full, Matthew's two replies, and a response to each point with the series' numbers; six fixes, all from his message, that would address the causes of 116 of the 196 costs; and the root causes his message left out, each with a question for a gut opinion. Matthew linked its point-by-point table in the dev channel himself, with a robot tag, keeping Slack in his own voice.</li>
+<li><b>"Cost", not "cut".</b> Reports 048 and 050 to 052 revised in place: a cost is a cost, an improvement a change; "A Thousand Cuts" stays as <a href="https://matthewhammer.org/hazel/reports/048/"><code class="ref"><b>^report(</b>48<b>)</b></code></a>'s title. Quoted commit subjects and link anchors keep their words.</li>
+<li><b>Good Company</b>, the plate above, for the day.</li>
+</ul>
+
+<h2>Where things are</h2>
+<ul>
+<li><b><code>trial/694-view-jit</code></b> (worktree <code>~/hazel-694-jit</code>): on GitHub at build 43, <code>421e30a04b</code>, CI green. The local branch is at <code>fc1103900d</code>: builds 44 and 45 and the test fix, seven commits ahead.</li>
+<li><b><code>trial/694-view-jit-35</code></b>, the side branch: <code>fc1103900d</code>. Its CI (run 42855280858) passed the type check and the quick tests; its full tests were running at 10:53. On Matthew's word ("Yes, once green"), <code>trial/694-view-jit</code> is fast-forwarded to it once they pass.</li>
+<li><b>Reports</b> 052 and 053 are works in progress, revised in place; their sources in <code>~/hazel-perf-report/052</code> and <code>053</code>, build 45's run kept in <code>051/data/runs/42850343281</code>.</li>
+<li><b>Not ours, left alone</b>: <code>docs/hazel-architecture-july-2024.tldr</code> modified in the worktree; <code>dress-up/reports/005</code>'s edits; <code>dashboard/update.py</code> here.</li>
+<li><b>Servers</b>: localhost:8000 (the dashboard) and localhost:8131 (the reports).</li>
+</ul>
+
+<h2 id="next">Next</h2>
+<ul>
+<li>Read build 45's full tests; when green, fast-forward <code>trial/694-view-jit</code> to <code>fc1103900d</code> and note it in <a href="https://matthewhammer.org/hazel/reports/052/"><code class="ref"><b>^report(</b>52<b>)</b></code></a>.</li>
+<li>Agree with the team on <a href="https://matthewhammer.org/hazel/reports/053/"><code class="ref"><b>^report(</b>53<b>)</b></code></a>'s six fixes, or another short list, and their order; cheaper ids and per-item statics on dev can start now.</li>
+<li>Redo the hazel-jit week by hand in <a href="https://matthewhammer.org/hazel/reports/052/"><code class="ref"><b>^report(</b>52<b>)</b></code></a>'s order, each increment kept only where it still helps once the deeper fixes land.</li>
+</ul>
+</main>
+<!-- ref-cards: begin -->
+<style>
+  /* above the nav bar (nav.js draws it at z-index 2147483000-2147483002), or a card on a link in it opens underneath */
+  .ref-card { position: absolute; z-index: 2147483003; width: max-content; max-width: min(400px, calc(100vw - 32px)); box-sizing: border-box;
+    padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line, #d0d7de); background: var(--paper, var(--bg, Canvas));
+    color: var(--ink, CanvasText); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18); font: 13px/1.45 system-ui, sans-serif; pointer-events: none; }
+  .ref-card .rc-head { color: var(--muted, GrayText); font-size: 12px; }
+  .ref-card .rc-title { font-weight: 600; margin: 3px 0 4px; }
+  .ref-card .rc-meta { color: var(--muted, GrayText); font-size: 12px; }
+  .ref-card .rc-note { color: var(--muted, GrayText); font-size: 11px; margin-top: 5px; font-style: italic; }
+  .rc-state { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; margin-left: 6px;
+    vertical-align: 1px; background: #6e7781; }
+  .rc-state.current { background: #1f883d; } .rc-state.queued { background: #9a6700; } .rc-state.open { background: #0969da; }
+  .rc-state.done { background: #8250df; }
+</style>
+<script>
+/* A card for each ^ticket(N) and ^report(N) link, on hover or focus: a
+   ticket from the work dashboard's data (its area, its status, its first
+   line), carried by the dashboard's own pages and read live from the
+   published data anywhere else; a report from its own page, live (its
+   title, date and opening). Once per page load each. */
+(() => {
+  const PUBLIC = "https://matthewhammer.org/hazel-work-notes/dashboard-data/data.json";
+  const DATA = location.port === "8000" && /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? "/data.json" : PUBLIC;
+  /* the dashboard itself carries its tickets (made with the page, changed
+     with it); any other page asks the published data */
+  const EMBED = null;
+  let data = EMBED ? Promise.resolve(EMBED) : null;
+  const loadData = () => data || (data = fetch(DATA, { cache: "no-store" }).then(r => r.ok ? r.json() : Promise.reject(r.status)).catch(() => null));
+  // (^ticket(428): a page carries only the tickets it names; one it does not, as a chip in the nav bar, is read live)
+  let live = null;
+  const loadLive = () => live || (live = fetch(DATA, { cache: "no-store" }).then(r => r.ok ? r.json() : Promise.reject(r.status)).catch(() => null));
+  const has = (n, d) => (d.tickets || []).some(t => t.id === n) || (d.closed_tickets || []).some(t => t.id === n);
+  const pages = new Map();
+  const loadReport = url => {
+    if (!pages.has(url)) pages.set(url, fetch(url).then(r => r.ok ? r.text() : Promise.reject(r.status)).then(t => {
+      const doc = new DOMParser().parseFromString(t, "text/html"), h1 = doc.querySelector("h1");
+      let p = h1 && h1.nextElementSibling;
+      while (p && p.tagName !== "P") p = p.nextElementSibling;
+      const label = (doc.querySelector(".series") || {}).textContent || "";
+      return { title: h1 ? h1.textContent.trim() : doc.title, date: (label.match(/\d{4}-\d{2}-\d{2}/) || [""])[0],
+               lead: p ? p.textContent.replace(/\s+/g, " ").trim() : "" };
+    }).catch(() => null));
+    return pages.get(url);
+  };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const cut = (t, n) => t.length <= n ? t : t.slice(0, n).replace(/\s+\S*$/, "") + "…";
+  const plain = h => new DOMParser().parseFromString("<div>" + (h || "") + "</div>", "text/html").body.textContent.replace(/\s+/g, " ").trim();
+  const lead = h => { const m = /^\s*<b>([\s\S]*?)<\/b>/.exec(h || ""); return m ? plain(m[1]) : cut(plain(h), 200); };
+  const ticketCard = (n, d) => {
+    const open = (d.tickets || []).find(t => t.id === n), closed = (d.closed_tickets || []).find(t => t.id === n), t = open || closed;
+    if (!t) return `<div class="rc-head">^ticket(${n})</div><div class="rc-note">Not on the dashboard.</div>`;
+    const q = (d.queue || []).indexOf(n);
+    const [cls, state] = closed ? ["done", `${t.status || "closed"}, ${t.closed || ""}`]
+      : d.current_ticket === n ? ["current", "current" + (d.current_waiting ? " · ✋❔ waiting on Matthew" : "")]
+      : q >= 0 ? ["queued", `queued, ${q + 1} in line`] : ["open", "open"];
+    return `<div class="rc-head">^ticket(${n}) · ${esc(t.area || "")}<span class="rc-state ${cls}">${esc(state)}</span></div>` +
+      `<div class="rc-title">${esc(lead(t.text))}</div>` +
+      `<div class="rc-meta">${t.added ? "added " + esc(t.added) + " · " : ""}from ${esc(plain(t.source || "") || "?")}</div>` +
+      (closed && t.outcome ? `<div class="rc-meta">${esc(cut(plain(t.outcome), 180))}</div>` : "");
+  };
+  const reportCard = (n, r) => r
+    ? `<div class="rc-head">^report(${n}) · Hazel performance analysis${r.date ? " · " + esc(r.date) : ""}</div>` +
+      `<div class="rc-title">${esc(r.title)}</div>` + (r.lead ? `<div class="rc-meta">${esc(cut(r.lead, 240))}</div>` : "")
+    : `<div class="rc-head">^report(${n})</div><div class="rc-note">The report's page didn't load just now.</div>`;
+  let card = null, over = null, timer = null;
+  const place = a => {
+    const r = a.getBoundingClientRect(), w = card.offsetWidth, h = card.offsetHeight;
+    card.style.left = (Math.max(16, Math.min(r.left, document.documentElement.clientWidth - w - 16)) + scrollX) + "px";
+    card.style.top = ((r.bottom + 6 + h < innerHeight ? r.bottom + 6 : r.top - 6 - h) + scrollY) + "px";
+  };
+  const refOf = a => { const c = a.querySelector("code.ref"); const m = c && /^\^(ticket|report)\((\d+)\)$/.exec(c.textContent.trim()); return m && { kind: m[1], n: Number(m[2]) }; };
+  const hide = () => { clearTimeout(timer); over = null; if (card) card.hidden = true; };
+  const show = (a, ref) => {
+    over = a; clearTimeout(timer);
+    timer = setTimeout(async () => {
+      if (!card) { card = document.createElement("div"); card.className = "ref-card"; card.setAttribute("role", "tooltip"); document.body.append(card); }
+      card.innerHTML = `<div class="rc-head">^${ref.kind}(${ref.n})</div><div class="rc-note">loading…</div>`;
+      card.hidden = false; place(a);
+      let html;
+      if (ref.kind === "ticket") { let d = await loadData(); if (d && EMBED && !has(ref.n, d)) d = (await loadLive()) || d; html = d ? ticketCard(ref.n, d) : `<div class="rc-head">^ticket(${ref.n})</div><div class="rc-note">The dashboard's data didn't load just now.</div>`; }
+      else html = reportCard(ref.n, await loadReport(a.href));
+      if (over !== a) return;
+      card.innerHTML = html; place(a);
+    }, 250);
+  };
+  const linkOf = t => t && t.closest && t.closest("a[href]");
+  document.addEventListener("mouseover", e => { const a = linkOf(e.target), r = a && refOf(a); if (r && a !== over) show(a, r); });
+  document.addEventListener("mouseout", e => { const a = linkOf(e.target); if (a && a === over && !a.contains(e.relatedTarget)) hide(); });
+  document.addEventListener("focusin", e => { const a = linkOf(e.target), r = a && refOf(a); if (r) show(a, r); });
+  document.addEventListener("focusout", hide);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") hide(); });
+  addEventListener("scroll", () => { if (over && card && !card.hidden) place(over); }, { passive: true });
+})();
+</script>
+<!-- ref-cards: end -->
+<!-- notes: begin -->
+<style>
+  code.ref { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; white-space: nowrap; }
+  code.ref b { font-weight: 800; }
+  button.mint { margin-left: 4px; font: inherit; font-size: 0.75em; padding: 0 6px; border: 1px solid var(--line, #ccc);
+    border-radius: 4px; background: transparent; color: var(--muted, #666); cursor: pointer; vertical-align: 1px; }
+  button.mint:hover { color: inherit; }
+  button.mint.done { color: var(--good, #15803d); border-color: var(--good, #15803d); }
+  a.step-link { color: var(--muted, #666); text-decoration: none; font-size: 0.85em; margin-left: 4px; }
+  a.step-link:hover { text-decoration: underline; }
+  li:target { background: color-mix(in srgb, var(--good, #15803d) 12%, transparent); border-radius: 6px; }
+</style>
+<script>
+/* Each step under "Next": a link to it, a chip copying that link, and a
+   chip copying a request to mint a ticket for it (to paste to Claude). */
+(() => {
+  const h = document.getElementById("next");
+  if (!h) return;
+  let list = h.nextElementSibling;
+  while (list && !/^(OL|UL)$/.test(list.tagName)) {
+    if (list.tagName === "H2") return;
+    list = list.nextElementSibling;
+  }
+  if (!list) return;
+  const page = location.origin + location.pathname, name = document.title;
+  const copy = async (b, text) => {
+    try { await navigator.clipboard.writeText(text); }
+    catch (_) { const t = document.createElement("textarea"); t.value = text; document.body.append(t); t.select(); document.execCommand("copy"); t.remove(); }
+    const was = b.textContent; b.textContent = "copied"; b.classList.add("done");
+    setTimeout(() => { b.textContent = was; b.classList.remove("done"); }, 1500);
+  };
+  [...list.children].filter(li => li.tagName === "LI").forEach((li, i) => {
+    const n = i + 1;
+    if (!li.id) li.id = "step-" + n;
+    const url = page + "#" + li.id;
+    const b = li.querySelector("b, strong");
+    const title = (b ? b.textContent : li.textContent).replace(/\s+/g, " ").trim().replace(/[:.,;]$/, "").slice(0, 160);
+    const a = document.createElement("a");
+    a.href = "#" + li.id; a.className = "step-link"; a.textContent = "#" + n; a.title = "A link to this step";
+    const link = document.createElement("button");
+    link.type = "button"; link.className = "mint"; link.textContent = "copy link"; link.title = "Copies a link to this step";
+    link.addEventListener("click", () => copy(link, url));
+    const mint = document.createElement("button");
+    mint.type = "button"; mint.className = "mint"; mint.textContent = "copy for a ticket";
+    mint.title = "Copies a request to mint a ticket for this step, to paste to Claude";
+    mint.addEventListener("click", () => copy(mint, "Mint a ticket for this step: " + name + ", Next, step " + n + ': "' + title + '". ' + url));
+    li.append(" ", a, " ", link, " ", mint);
+  });
+  if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
+})();
+</script>
+<!-- notes: end -->
+</body>
+</html>
