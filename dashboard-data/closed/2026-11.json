@@ -1,5 +1,63 @@
 [
  {
+  "id": 720,
+  "area": "hazel, performance: the Witch slide's edit draws the whole slide's view four times; draw it once",
+  "added": "2026-11-08T16:52-07:00",
+  "opened": "2026-11-08T16:52-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazel",
+   "performance",
+   "view"
+  ],
+  "source": "Matthew, 2026-11-08 16:5x, in chat: \"Yes, redraws next\", after I laid out where the Witch slide's edit stands against the 60 fps goal (1.0 to 1.8 s on trial/694-view-jit, today's runs 42535123022 and 42535708383) and proposed cutting the page's four redraws per edit after ^report(47).",
+  "text": "<b>Draw the Witch slide's view once per edit, not four times.</b> On trial/694-view-jit (238144b4b8), one slider step on the Witch slide, until the picture changes, spends on the page: the whole slide's view 305 to 337 ms in 4 draws, calculate 116 to 134 ms in 4, syntax 59 to 70 ms in 6 (Firefox on GitHub's machines, run 42535123022). About 0.4 to 0.5 s of a 1.0 to 1.8 s edit. The picture itself, compiled, draws in 1.3 ms. Find what triggers each draw (the slider's own update, the worker's partial results, the final result) and draw once for the final answer, or only what changed. Part of ^ticket(694)'s road to a 60 fps floor for small edits.",
+  "progress": "16:52 11-08: minted on Matthew's word and enqueued first, behind the current ^ticket(718) (report 47, nearly done). | 09:53 11-09: ^report(50) step 4 on trial/694-view-jit (7f5add1519): the compiled run's answers kept when the worker catches up (no retire, 10 on the Witch), the worker's request held 400 ms after a compiled step. The page still draws a whole view per worker message (95-143 ms); that is ^report(50) step 1 (incremental views).",
+  "log": [
+   {
+    "at": "2026-11-08T16:51-07:00",
+    "from": "matthew",
+    "chars": 17,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-08T16:52-07:00",
+    "from": "claude",
+    "chars": 267,
+    "asks": false,
+    "words": 51,
+    "read_s": 13,
+    "listen_s": 19,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "url": "",
+  "closed": "2026-11-09",
+  "closed_at": "2026-11-09T19:11-07:00",
+  "outcome": "Done on trial/694-view-jit across ^report(50) and ^report(51). A step on the Witch drew the whole slide's view 4 times before its picture changed (305-337 ms, run 42535123022). Now the picture comes from the compiled run's repaints before any whole view (build 12 on: 16-30 ms on a fast machine, 26-98 on a slow one), and after it the page draws a whole view twice: once after the edit (46-61 ms on build 19, the model written into the program: ^ticket(721)'s part) and once for the worker's answer (46-50 ms), which since build 19 draws only what changed (4 projectors, not 56; the outline kept, with no redraw for it). Most of the answer's view is the picture probe's new value (row 12-13 ms, value check 9 ms); building every projector's data is 5-7 ms.",
+  "metrics": {
+   "open_minutes": 1579,
+   "matthew_messages": 1,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 284,
+   "tokens_est": 71,
+   "sync_minutes_est": 1.0,
+   "replies": 1,
+   "claude_words": 51,
+   "read_minutes_est": 0.2,
+   "listen_minutes_est": 0.3,
+   "read_s_avg": 13,
+   "listen_s_avg": 19,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 722,
   "area": "hazel, performance, hazel-jit: compile the slide's run, with each livelit's model as a parameter",
   "added": "2026-11-08T16:55-07:00",
