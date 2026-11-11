@@ -16977,147 +16977,32 @@
     }
    ],
    "url": ""
+  }
+ ],
+ "next_ticket": 728,
+ "current_ticket": 721,
+ "current_note": "18:28: ^ticket(727) closed (done); ^ticket(721) is next in the queue",
+ "closed_tickets": [
+  {
+   "id": 727,
+   "area": "Dress Up: 0.0.496's checks broken: the scripts' cost table past the panel's edge; See also near the top",
+   "added": "2026-11-10T16:54-07:00",
+   "text": "Fix the two checks 0.0.496's speed run broke.",
+   "source": "The after-release speed run for 0.0.496 (run 42913447398), on ticket 726's release; the release rule: slow or broken,…",
+   "status": "done",
+   "closed": "2026-11-10",
+   "outcome": "Released in 0.0.497 (e8586f99): the 🔬 cost table scrolls in its own box, and the See also check accepts the first three boxes. Speed run 42927266986 ok (dress-up/speed.json,…"
   },
   {
    "id": 726,
    "area": "Dress Up: 🌗 night and day, 🌦️ weather and 🌱 cut plants grow back, moved to the top of ⚙️ Advanced",
-   "text": "<b>Move the box with 🌦️ weather to the top of ⚙️ Advanced.</b> M's tablet (0.0.495) had weather, but Matthew could not find it: the toggle was in the last box, ⚙️ more, about 2,300 px down, under 📰 what's new. It goes in a box of its own, 🌦️ days and weather, first in the tab.",
    "added": "2026-11-10T15:17-07:00",
-   "opened": "2026-11-10T15:17-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "dress up",
-    "for M"
-   ],
-   "source": "Matthew in the Code session, 2026-11-10: \"M is using tablet -- -version 0.0.495 --- why isn't it updating?\", \"where is weather control?\", \"I dont see it there\", then \"Yes, move it up\".",
-   "progress": "15:17 11-10: minted on his \"Yes, move it up\". The live 0.0.495's ⚙️ Advanced: the weather toggle is in ⚙️ more, the last of 8 boxes, at 2,768 px (a 1024x768 window). Moving it to a box of its own, first. | 15:20 11-10: RELEASED 0.0.496 (57371334, tag dress-up-0.0.496), live (version.json 0.0.496 and js/22-full-screen.js over HTTPS). advLayout puts a box 🌦️ days and weather first: 🌗 night and day, 🌦️ weather, 🌱 cut plants grow back (⚙️ more is gone when nothing else is left). Checked on localhost:8133 in the pane: 8 boxes, the new one first, none loose; weather on shows the 🌦️ today row (7 chips) and rain. check_script and check_load ok. Speed run 42913447398 running. M's tablet: a 🆕 0.0.496 chip after the version within a minute; tap it. | 16:54 11-10: 0.0.496's speed run (42913447398) BROKEN on two checks, both from the move: knoll375 (⚙️ Advanced 76 px wider than itself) and seealso474 (🏠 this game must be exactly the second box; it is third). Fixed in 0.0.497, ticket 727.",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-11-10T15:14-07:00",
-     "from": "matthew",
-     "chars": 64,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-10T15:15-07:00",
-     "from": "matthew",
-     "chars": 25,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-10T15:15-07:00",
-     "from": "claude",
-     "chars": 889,
-     "asks": false,
-     "words": 162,
-     "read_s": 41,
-     "listen_s": 61,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-10T15:15-07:00",
-     "from": "claude",
-     "chars": 830,
-     "asks": false,
-     "words": 155,
-     "read_s": 39,
-     "listen_s": 58,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-10T15:16-07:00",
-     "from": "matthew",
-     "chars": 19,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-10T15:17-07:00",
-     "from": "matthew",
-     "chars": 15,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-10T15:17-07:00",
-     "from": "claude",
-     "chars": 942,
-     "asks": true,
-     "words": 181,
-     "read_s": 46,
-     "listen_s": 68,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-10T15:20-07:00",
-     "from": "claude",
-     "chars": 1585,
-     "asks": false,
-     "words": 295,
-     "read_s": 74,
-     "listen_s": 111,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
+   "text": "Move the box with 🌦️ weather to the top of ⚙️ Advanced.",
+   "source": "Matthew in the Code session, 2026-11-10: \"M is using tablet -- -version 0.0.495 --- why isn't it updating?\", \"where is…",
+   "status": "done",
+   "closed": "2026-11-10",
+   "outcome": "Released in 0.0.496: 🌦️ days and weather (🌗 night and day, 🌦️ weather, 🌱 cut plants grow back) is the first box in ⚙️ Advanced. Its speed run broke two checks, fixed in 0.0.497…"
   },
-  {
-   "id": 727,
-   "area": "Dress Up: 0.0.496's checks broken: the scripts' cost table past the panel's edge; See also near the top",
-   "text": "<b>Fix the two checks 0.0.496's speed run broke.</b> knoll375: ⚙️ Advanced 76 px wider than itself; the 🔬 cost table in 🧪 tests and timing is wider than a box (353 px in 321 at 1280x800), and the new first box put it in the right-hand column. seealso474: 🏠 this game must be exactly the second box; it is now third.",
-   "added": "2026-11-10T16:54-07:00",
-   "opened": "2026-11-10T16:54-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "dress up"
-   ],
-   "source": "The after-release speed run for 0.0.496 (run 42913447398), on ticket 726's release; the release rule: slow or broken, mint a ticket.",
-   "progress": "16:54 11-10: minted from the broken speed run. The table used to spill into the next column, unseen. Fix: the table scrolls in its own box (display block, overflow-x auto); the See also check accepts the first three boxes. Checked in the pane at 1280x800 and 1024x768: no tab's panel wider than itself; the table 301 px wide in its box, scrolling 52. | 16:55 11-10: RELEASED 0.0.497 (e8586f99, tag dress-up-0.0.497); check_script and check_load ok. Speed run 42927266986 queued.",
-   "url": "",
-   "log": [
-    {
-     "at": "2026-11-10T16:56-07:00",
-     "from": "claude",
-     "chars": 1984,
-     "asks": false,
-     "words": 381,
-     "read_s": 96,
-     "listen_s": 143,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-10T16:59-07:00",
-     "from": "claude",
-     "chars": 268,
-     "asks": false,
-     "words": 48,
-     "read_s": 12,
-     "listen_s": 18,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
-  }
- ],
- "next_ticket": 728,
- "current_ticket": 727,
- "current_note": "16:55: 0.0.497 released; waiting on its speed run",
- "closed_tickets": [
   {
    "id": 724,
    "area": "Dress Up: the deep ocean, a world of its own under the surface ocean, with diving",
@@ -23361,7 +23246,7 @@
   708,
   700
  ],
- "current_since": "2026-11-10T16:55-07:00",
+ "current_since": "2026-11-10T18:28-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
