@@ -17705,7 +17705,16 @@
    "text": "<b>Dividing by zero in a modulo builtin crashes the interpreter.</b> BuiltinsBase.re's int_mod, sint_mod, nat_mod and float_mod each answer a zero divisor with <code>dynamic_error_hole(ap(Forward, builtin_fun(\"mod\"), d1), DivideByZero)</code>, but there is no builtin named <code>mod</code>, so evaluating it raises <code>InvalidBuiltin(\"mod\")</code> instead of showing Error: Divide by Zero. On dev too (four places, since at least b4afb24852, 2025-07-02, the builtins' move). Fix: each names itself (<code>builtin_fun(\"int_mod\")</code> and so on), with a test of each by zero.",
    "progress": "16:1x 11-15: fixed on fix/764-mod-by-zero (fde1fbaea4, from dev 782249bbd0, worktree ~/hazel-764): each of int_mod, sint_mod, nat_mod, float_mod names itself in its error hole; a test of all four by zero (Test_Evaluator_Builtins). CI 43761237434 running. Then: a PR to dev, Matthew's call (public). | 17:0x: deeper than the name. Renaming stopped the crash, but CI showed int_mod(7, 0) then evaluated to int_mod(7), the error gone: a builtin's result is stepped again (Transition.re, is_value: false), so the error hole's inside (the builtin on the first argument alone) ran on. An operator's error (7 / 0) is a step with is_value: true, final. Fix (14d3ffeaaf): a builtin's result that is a DynamicErrorHole is final too (only the four mod builtins return one), and each holds the whole call, int_mod(7, 0). This touches the interpreter's transition: a PR to dev for the team to review, Matthew's call. CI running. | 17:3x: CI GREEN on 14d3ffeaaf (43765522237: static, fast, full tests): the four mod builtins by zero show Error: Divide by Zero, holding the whole call; making a builtin's error hole final broke nothing else. READY for a PR to dev, branch fix/764-mod-by-zero (5 commits; squash). | 18:1x: on Matthew's \"Yes, open it\": PR hazelgrove/hazel#2825 to dev (https://github.com/hazelgrove/hazel/pull/2825), 4 commits, all 6 checks passing; review required.",
    "waiting": "a review of hazelgrove/hazel#2825 by the team",
-   "url": "https://github.com/hazelgrove/hazel/pull/2825"
+   "url": "https://github.com/hazelgrove/hazel/pull/2825",
+   "log": [
+    {
+     "at": "2026-11-15T15:37-07:00",
+     "from": "matthew",
+     "chars": 12,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 765,
