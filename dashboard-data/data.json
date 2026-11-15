@@ -17451,12 +17451,54 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 753,
+   "area": "Dress Up, 🥗 eating the salad along a Z-order curve",
+   "source": "Matthew, 2026-11-15 10:3x, in chat: \"I was thinking for the salad, we'd do some kind of https://en.wikipedia.org/wiki/Z-order_curve\"",
+   "text": "<b>The salad is eaten in Z-order:</b> the bowl's salad is a grid of little patches, ordered along a Z-order (Morton) curve from its top-left; each bite eats the next equal run of patches along the curve, so the bites are the same size and the eaten part never has holes.",
+   "added": "2026-11-15T10:37-07:00",
+   "opened": "2026-11-15T10:37-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "feature",
+    "for M"
+   ],
+   "progress": ""
+  },
+  {
+   "id": 754,
+   "area": "Dress Up, 🔊 a crunchy bite sound at each bite",
+   "source": "Matthew, 2026-11-15 10:3x, in chat: \"for the eating steps, can we add a sound effect in MIDI that sounds like a bite? Maybe some combination of white noise and crunch sounds in the MIDI world. somehow?\"",
+   "text": "<b>Each bite crunches:</b> a short burst of white noise in crackly grains with a low chomp under it, played by the game's own synth at every bite, at the table and of the salad.",
+   "added": "2026-11-15T10:37-07:00",
+   "opened": "2026-11-15T10:37-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "feature",
+    "for M"
+   ],
+   "progress": ""
   }
  ],
- "next_ticket": 752,
- "current_ticket": 743,
- "current_note": "10:34: 0.0.506 out (the fork follows the salad's eaten edge); next: the foods as 🎒 items",
+ "next_ticket": 755,
+ "current_ticket": 753,
+ "current_note": "10:39: the salad eaten along a Z-order curve, then the bite crunch (^ticket(754))",
  "closed_tickets": [
+  {
+   "id": 752,
+   "area": "Dress Up, 🍴 bites the same size each time, for the salad and the table's foods",
+   "added": "2026-11-15T10:37-07:00",
+   "text": "Each bite eats the same share of the food.",
+   "source": "Matthew, 2026-11-15 10:3x, in chat: \"the way that the salad goes away seems like we eat it in some exponentially…",
+   "status": "done",
+   "closed": "2026-11-15",
+   "outcome": "Released in Dress Up 0.0.507 (2bb31630): each bite takes the same share of the food, solved by bisection on the circle overlap; the salad eats 1/8 a bite (before 2, 8, 13, 17, 19,…"
+  },
   {
    "id": 751,
    "area": "Dress Up, 🥗 eating the salad: the fork at the eaten edge, sweeping along it and poking in at each bite",
@@ -23865,6 +23907,8 @@
   }
  ],
  "queue": [
+  753,
+  754,
   743,
   730,
   736,
@@ -23897,7 +23941,7 @@
   708,
   700
  ],
- "current_since": "2026-11-15T10:29-07:00",
+ "current_since": "2026-11-15T10:39-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
