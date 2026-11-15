@@ -17420,7 +17420,7 @@
    ],
    "source": "Matthew, 2026-11-15 11:4x, in chat, \"Yes, mint it\", to my question after ^ticket(730): \"Mint a ticket for that run-time type-check cost in Hazel?\"",
    "text": "<b>Hazel code that declares what a function takes but not what it returns runs several times slower.</b> Measured in the hazeljs-oracles Tarot (^ticket(730), Node, hazeljs 0.0.4): a plain recursion step costs about 0.05 ms; a step of <code>take</code> (returning a pair), declared only as <code>fun (cs, k) : ([Card], Int) -&gt;</code>, 0.36 ms, and with its whole type, <code>let take : ([Card], Int) -&gt; (Card, [Card]) = fun (cs, k) -&gt;</code>, 0.07 ms. A list built by such functions (the deck) was slow to walk afterwards too, 0.3 ms a step against 0.05: the cost travels with the values. Declaring every type made the deal 3.7 times faster. Most Hazel code (slides, examples) declares argument types only. <b>To do:</b> confirm the mechanism in Hazel's own code (where the elaborator puts casts for an unknown result type, and what the evaluator does with them on each return and in a list), measure on a current dev build, and choose a remedy: infer a recursive function's result type in the statics, insert no cast where the body's type is known, or make the casts cheap (collapse them, check once). It bears on hazel-jit matching the interpreter, too (^ticket(756)).",
-   "progress": "",
+   "progress": "15:2x 11-15, first findings (hazeljs 0.0.6's interpreter, printing take's elaborated closure by making it stuck; scratchpad casts762*.mjs). Not unknown types: the statics infer a recursive let in passes (Statics.re ~3206-3415: a probe pass, then the body again with the name bound to the probe's type, then a final analysis), and neither form has an Unknown type or a Cast node left. The difference is the ascriptions (Asc, the dynamics' run-time type checks): with only the arguments' types declared, take's body has the parameter's Asc and Ascs on the case arms' result tuples, e.g. (Major(0), []) against (Card, [Card]), in each copy of the body the closure holds (4 in all); with the whole type declared, the parameter's Asc and one Asc around the whole match (2). Next: count the evaluator's ascription transitions per call, typed and untyped (whether ascribing a tuple that holds a list walks the list, which would make each step pay for the deck left, as measured: 0.36 ms a step against 0.07), and then the remedy: put the result's ascription where the typed form has it, once around the body, or make a list's ascription lazy.",
    "log": [
     {
      "at": "2026-11-15T11:42-07:00",
@@ -17520,8 +17520,8 @@
   }
  ],
  "next_ticket": 764,
- "current_ticket": 761,
- "current_note": "13:44: hazel-jit's other limits: a list, from its Unsupported reasons",
+ "current_ticket": 762,
+ "current_note": "13:46: why an undeclared result type costs 5-7x: reading the statics of recursive lets",
  "closed_tickets": [
   {
    "id": 730,
@@ -23991,6 +23991,7 @@
   }
  ],
  "queue": [
+  762,
   761,
   760,
   759,
@@ -23999,7 +24000,6 @@
   756,
   736,
   758,
-  762,
   721,
   694,
   729,
@@ -24029,7 +24029,7 @@
   708,
   700
  ],
- "current_since": "2026-11-15T13:44-07:00",
+ "current_since": "2026-11-15T13:46-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
