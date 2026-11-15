@@ -17389,7 +17389,7 @@
    ],
    "source": "Matthew, 2026-11-15 11:4x, in chat, summarizing his meeting with Cyrus on Friday 11-13 at 10:00 Mountain: \"Let me summarize the meeting with Cyrus on Friday. [...] create tickets for tomorrow morning, or late tonight, after other stuff is done. items (all about hazel-jit): * for the output of hazel-jit, we should continue to avoid translating code with holes, and we should exclude \"stepper functions\" (don't know what that is myself, please explain later).\"",
    "text": "<b>What hazel-jit leaves to the interpreter, kept and written down:</b> code with holes (empty holes, multiholes, dynamic error holes, invalid text: already Unsupported), and the stepper's functions: the filters <code>hide P in e</code>, <code>eval P in e</code>, <code>pause P in e</code> and <code>debug P in e</code>, which tell the stepper which steps to show or skip (already Unsupported, \"a stepper filter\"), and, to check, any run shown in the stepper, which needs every step.",
-   "progress": ""
+   "progress": "15:0x 11-15: holes and the stepper's filters were already Unsupported; the rule is now written in HazelJit.re's header (holes; the stepper's filters and anything the stepper shows; an invalid operation, ^ticket(759); a run past its budget, ^ticket(763): the interpreter's, by design; the rest limits, ^ticket(761)). Checked 'anything the stepper shows': the main stepper (StepperView) evaluates by the interpreter's own steps, hazel-jit runs only for livelits' views and events; but a livelit in a probe drawer's stepper over one of its samples (ProjectorBase.info.stepping) could be drawn from the compiled run's latest answer, and an event there ran compiled code: LivelitProj's user_view and event_inject now take ~stepping, draw_answer draws through Hazel and no compiled run starts. (First read info.stepping as the main stepper's; it is the probe drawer's stepper; comments say so.) Branch trial/760-stepper (11e5e2d424), CI 43759719275 running. Not checked in a browser (no headless browser here): a probe drawer stepping a sample with a livelit in it."
   },
   {
    "id": 761,
@@ -17405,7 +17405,7 @@
    ],
    "source": "Matthew, 2026-11-15 11:4x, in chat, summarizing his meeting with Cyrus on Friday 11-13 at 10:00 Mountain: \"Let me summarize the meeting with Cyrus on Friday. [...] create tickets for tomorrow morning, or late tonight, after other stuff is done. items (all about hazel-jit): * probes, step budgets, and all other limitations we should work to overcome in the coming days.\"",
    "text": "<b>hazel-jit's limits, one at a time.</b> Probes (the values a probe shows, which compiled code would have to record as the interpreter does), and the forms it gives up on (<code>HazelJit.re</code>'s Unsupported: closures with their own environment, partial application, tests, quotations, reverse application, recursion over more than one name, ...). First a list, then one at a time. (The step limit has its own ticket, ^ticket(763), on Cyrus's concern.)",
-   "progress": ""
+   "progress": "15:1x 11-15, the list (from HazelJit.re's Unsupported reasons, on trial/694-view-jit), to be ranked by the sweep's counts (^ticket(756)): (1) probes: compiled code records no probe samples, so the probe UI always shows the worker's interpreter run (correct, never faster); (2) the step budget: done in ^ticket(763); (3) forms not compiled: a closure with its own environment; a partial application; a reverse application (|>); a recursive definition of more than one name (mutual recursion); a test; a quotation; undefined; a tuple label that is not a name (4 places) and a projection by something other than a label; an applied pattern that is not a constructor; a module bound by a pattern that is not a name, and an expression as a module member; 'this kind of term' and 'of pattern' (tuple extension, splices and the like); a free variable that is not a builtin; a builtin the runtime does not have (by name). By rule, not limits (^ticket(760)): holes, the stepper's filters, invalid operations. Next: the sweep's report (CI 43754503317) for how many evaluator programs each reason stops, then the most frequent first."
   },
   {
    "id": 762,
@@ -17520,8 +17520,8 @@
   }
  ],
  "next_ticket": 764,
- "current_ticket": 760,
- "current_note": "13:41: what hazel-jit leaves to the interpreter: holes, the stepper's filters; writing the rule",
+ "current_ticket": 761,
+ "current_note": "13:44: hazel-jit's other limits: a list, from its Unsupported reasons",
  "closed_tickets": [
   {
    "id": 730,
@@ -23991,6 +23991,7 @@
   }
  ],
  "queue": [
+  761,
   760,
   759,
   757,
@@ -23998,7 +23999,6 @@
   756,
   736,
   758,
-  761,
   762,
   721,
   694,
@@ -24029,7 +24029,7 @@
   708,
   700
  ],
- "current_since": "2026-11-15T13:41-07:00",
+ "current_since": "2026-11-15T13:44-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
