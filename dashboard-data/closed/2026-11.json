@@ -1,5 +1,59 @@
 [
  {
+  "id": 754,
+  "area": "Dress Up, 🔊 a crunchy bite sound at each bite",
+  "source": "Matthew, 2026-11-15 10:3x, in chat: \"for the eating steps, can we add a sound effect in MIDI that sounds like a bite? Maybe some combination of white noise and crunch sounds in the MIDI world. somehow?\"",
+  "text": "<b>Each bite crunches:</b> a short burst of white noise in crackly grains with a low chomp under it, played by the game's own synth at every bite, at the table and of the salad.",
+  "added": "2026-11-15T10:37-07:00",
+  "opened": "2026-11-15T10:37-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "dress up",
+   "feature",
+   "for M"
+  ],
+  "progress": "",
+  "closed": "2026-11-15",
+  "closed_at": "2026-11-15T10:47-07:00",
+  "outcome": "Released in Dress Up 0.0.508 (1be0068a): mealCrunch on the game's synth: a low chomp (MIDI 40-42), a breath thud, and 2-8 grains of band-passed white noise by crispness; drinks slurp. Rendered offline: peaks about 0.2, crispness ordered salad 0.47 ... banana 0.07. Not heard on a device yet. Live at https://matthewhammer.org/kids-choice-games/dress-up/",
+  "metrics": {
+   "open_minutes": 10,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
+  "id": 753,
+  "area": "Dress Up, 🥗 eating the salad along a Z-order curve",
+  "source": "Matthew, 2026-11-15 10:3x, in chat: \"I was thinking for the salad, we'd do some kind of https://en.wikipedia.org/wiki/Z-order_curve\"",
+  "text": "<b>The salad is eaten in Z-order:</b> the bowl's salad is a grid of little patches, ordered along a Z-order (Morton) curve from its top-left; each bite eats the next equal run of patches along the curve, so the bites are the same size and the eaten part never has holes.",
+  "added": "2026-11-15T10:37-07:00",
+  "opened": "2026-11-15T10:37-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "dress up",
+   "feature",
+   "for M"
+  ],
+  "progress": "",
+  "closed": "2026-11-15",
+  "closed_at": "2026-11-15T10:47-07:00",
+  "outcome": "Released in Dress Up 0.0.508 (1be0068a): the salad eaten along a Z-order (Morton) curve, 16x16 patches weighted by what each drawn disc takes; each bite 12.5% +- 0.6 as drawn, no holes; the fork traces the next bite's run of the curve. Live at https://matthewhammer.org/kids-choice-games/dress-up/",
+  "metrics": {
+   "open_minutes": 10,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 752,
   "area": "Dress Up, 🍴 bites the same size each time, for the salad and the table's foods",
   "source": "Matthew, 2026-11-15 10:3x, in chat: \"the way that the salad goes away seems like we eat it in some exponentially accelerated way. Can we make the bites more 'same sized' each time?\"",
@@ -46,12 +100,49 @@
   "outcome": "The salad's fork follows the eaten edge (Dress Up 0.0.506)",
   "metrics": {
    "open_minutes": 1,
-   "matthew_messages": 0,
+   "matthew_messages": 2,
    "questions_to_matthew": 0,
-   "chars_exchanged": 0,
-   "tokens_est": 0,
-   "sync_minutes_est": 0
-  }
+   "chars_exchanged": 508,
+   "tokens_est": 127,
+   "sync_minutes_est": 1.0,
+   "replies": 1,
+   "claude_words": 79,
+   "read_minutes_est": 0.3,
+   "listen_minutes_est": 0.5,
+   "read_s_avg": 20,
+   "listen_s_avg": 30,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  },
+  "log": [
+   {
+    "at": "2026-11-15T10:31-07:00",
+    "from": "matthew",
+    "chars": 94,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T10:31-07:00",
+    "from": "matthew",
+    "chars": 9,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T10:32-07:00",
+    "from": "claude",
+    "chars": 405,
+    "asks": false,
+    "words": 79,
+    "read_s": 20,
+    "listen_s": 30,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ]
  },
  {
   "id": 750,
@@ -73,12 +164,49 @@
   "outcome": "A salad chip at the dining table and the way back to its dishes (Dress Up 0.0.505)",
   "metrics": {
    "open_minutes": 2,
-   "matthew_messages": 0,
+   "matthew_messages": 2,
    "questions_to_matthew": 0,
-   "chars_exchanged": 0,
-   "tokens_est": 0,
-   "sync_minutes_est": 0
-  }
+   "chars_exchanged": 1984,
+   "tokens_est": 496,
+   "sync_minutes_est": 3.0,
+   "replies": 1,
+   "claude_words": 342,
+   "read_minutes_est": 1.4,
+   "listen_minutes_est": 2.1,
+   "read_s_avg": 86,
+   "listen_s_avg": 128,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  },
+  "log": [
+   {
+    "at": "2026-11-15T10:26-07:00",
+    "from": "matthew",
+    "chars": 102,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T10:26-07:00",
+    "from": "matthew",
+    "chars": 75,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T10:29-07:00",
+    "from": "claude",
+    "chars": 1807,
+    "asks": false,
+    "words": 342,
+    "read_s": 86,
+    "listen_s": 128,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ]
  },
  {
   "id": 747,
