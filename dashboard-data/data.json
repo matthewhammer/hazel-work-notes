@@ -17167,9 +17167,26 @@
    "source": "Matthew, 2026-11-15 07:5x, in chat: \"let's expand the styles of tarot to this full list:\" One-card draw (daily reflection or a focused question); Three-card spread (past-present-future, situation-challenge-advice, or mind-body-spirit); Celtic Cross (ten cards; exact positions vary); Relationship spread (each person, the dynamic between them, strengths, tensions, ways forward); Choice or crossroads spread (separate groups of cards for the opportunities, difficulties and likely direction of each option); Year-ahead spread (often twelve cards, one per month, sometimes with a card for the overall theme).",
    "text": "<b>Every spread on his list, in Hazel.</b> One card; three cards, in three readings of their places (past, present, future; situation, challenge, advice; mind, body, spirit); the Celtic Cross; a relationship (each person, the bond, its strength, its tension, a way forward); a choice between two or three paths (a group of cards for each path's opportunity, difficulty and direction, built by Hazel for however many paths); the year ahead (a card for each month from this one, with or without a card for the year's theme). Each laid out on the table in its own shape, and kept in 🕰 History.",
    "progress": ""
+  },
+  {
+   "id": 736,
+   "area": "hazel, hazeljs, bug: a constructor whose argument is a plain tuple, passed in from JS, gets stuck",
+   "added": "2026-11-15T07:57-07:00",
+   "opened": "2026-11-15T07:57-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazeljs",
+    "bug",
+    "hazeljs example"
+   ],
+   "source": "Found 2026-11-15 08:0x while writing the Tarot's year-ahead spread for ^ticket(735) (hazeljs-oracles).",
+   "text": "<b>From JS, <code>{tag: \"Two\", value: [3, true]}</code> never matches <code>Two(m, t)</code>.</b> In hazeljs 0.0.4, with <code>type S = + Two(Int, Bool) + Rec((m = Int, t = Bool)) + One(Int)</code> and a function that cases on S: <code>One(3)</code> from JS works, a labeled tuple <code>{tag: \"Rec\", value: {m: 3, t: true}}</code> works, and a pair as a function's own arguments works; but <code>{tag: \"Two\", value: [3, true]}</code> comes back as <code>{hazel: \"...(Match ...\"}</code>, the case stuck, the constructor's type read as an arrow from Unknown. The same command from Hazel to JS (the Petri example's <code>Take(Int, Int, Cmd)</code>) converts fine, so it is only the way in. A cousin of ^ticket(703) (key order). The oracles work around it: <code>YearAhead((start = Int, theme = Bool))</code>, a labeled tuple. Repro in the session scratchpad, ctor-probe.mjs; to go into hazeljs's tests.",
+   "progress": ""
   }
  ],
- "next_ticket": 736,
+ "next_ticket": 737,
  "current_ticket": 735,
  "current_note": "07:56: his list of Tarot spreads: writing them in Hazel (tarot/rules/Spreads.hz)",
  "closed_tickets": [
@@ -23423,6 +23440,7 @@
  "queue": [
   735,
   730,
+  736,
   728,
   721,
   694,
