@@ -17303,7 +17303,7 @@
    ],
    "source": "Matthew, 2026-11-15 11:4x, in chat, summarizing his meeting with Cyrus on Friday 11-13 at 10:00 Mountain: \"Let me summarize the meeting with Cyrus on Friday. [...] create tickets for tomorrow morning, or late tonight, after other stuff is done. items (all about hazel-jit): * we want semantic consistency with Hazel the interpreter, and to ensure that with CI, and our design decisions.\"",
    "text": "<b>What hazel-jit's code computes is what the interpreter computes,</b> for every program it compiles: the same values, the same errors (stuck terms), the same output. Ensured in CI: a check that runs a set of programs (the slides', the test suite's, the oracles') both ways and fails on any difference. And in the design decisions, written down: numbers, errors, what is not compiled. Today <code>HazelJit.re</code> says numbers \"may differ from Hazel's: allowed, for the best case\": no longer.",
-   "progress": "12:2x 11-15, groundwork while #736's CI ran (no code yet): hazel-jit already has an agreement harness, test/Test_HazelJit.re on trial/694-view-jit (agrees: elaborate, run the interpreter, compile, run the JS, compare shape by shape; 24 programs; and not_compiled cases that must say why), run by CI there. What it lacks for 'semantic consistency': (1) numbers compared as floats (Int and Nat by Bigint.to_float, so big integers cannot disagree visibly); exact, once ^ticket(757) gives big integers; (2) errors: an interpreter result that is not a value (a stuck term, DivideByZero) is 'a value hazel-jit's tests do not compare'; it must agree too (the compiled side's stuck term, ^ticket(758), ^ticket(759)); (3) coverage: 24 chosen programs; next, every program of the evaluator's own tests that hazel-jit compiles, run both ways, in CI; and the slides'. Plan: a sweep test over Test_Evaluator's cases; exact number comparison; the errors' comparison; the design decisions written in HazelJit.re's header (numbers, errors, what is not compiled)."
+   "progress": "12:2x 11-15, groundwork while #736's CI ran (no code yet): hazel-jit already has an agreement harness, test/Test_HazelJit.re on trial/694-view-jit (agrees: elaborate, run the interpreter, compile, run the JS, compare shape by shape; 24 programs; and not_compiled cases that must say why), run by CI there. What it lacks for 'semantic consistency': (1) numbers compared as floats (Int and Nat by Bigint.to_float, so big integers cannot disagree visibly); exact, once ^ticket(757) gives big integers; (2) errors: an interpreter result that is not a value (a stuck term, DivideByZero) is 'a value hazel-jit's tests do not compare'; it must agree too (the compiled side's stuck term, ^ticket(758), ^ticket(759)); (3) coverage: 24 chosen programs; next, every program of the evaluator's own tests that hazel-jit compiles, run both ways, in CI; and the slides'. Plan: a sweep test over Test_Evaluator's cases; exact number comparison; the errors' comparison; the design decisions written in HazelJit.re's header (numbers, errors, what is not compiled). | 13:1x: step 1 pushed, branch trial/756-sweep (4b17e3b0ba, from trial/694-view-jit): the comparison moved to test/Test_HazelJit_Agree.re, and Test_Evaluator_Prelude.evaluation_test (all 314 evaluator checks) hands each program to its sweep: compiled or not (why), agreed, differs, threw, or the interpreter's result not a value; a report at the end of the run in CI's log, nothing failing yet. CI 43754503317 running (full tests ~1.5 h). Next: read the report, list the known partings, make a new one fail; then exact numbers (with ^ticket(757))."
   },
   {
    "id": 757,
@@ -23977,8 +23977,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6532,
-  "words": 1428994,
+  "replies": 6533,
+  "words": 1429035,
   "read_hours_est": 100.1,
   "listen_hours_est": 148.9,
   "read_s_avg": 55,
@@ -24305,9 +24305,9 @@
     "chars": 87839
    },
    "2026-11-15": {
-    "replies": 55,
-    "words": 10578,
-    "chars": 59276
+    "replies": 56,
+    "words": 10619,
+    "chars": 59530
    }
   }
  },
