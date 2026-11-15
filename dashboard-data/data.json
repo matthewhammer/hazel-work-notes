@@ -17423,7 +17423,7 @@
    ],
    "source": "Matthew, 2026-11-15 11:5x, in chat: \"another major concern from Cyrus, from meeting on 11-13: We need a way to limit compiled hazel functions that diverge --- we need a step limit. esp if we continue to optimize by including certain jit-compiled hazel functions into the main thread\"",
    "text": "<b>A step limit for hazel-jit's code.</b> The interpreter counts its steps (<code>EvaluatorState.step_count</code>) and stops a run that goes on too long (<code>StepLimitExceeded</code>, <code>ProgramResult.Timeout</code>); compiled code has no limit, so a Hazel function that diverges loops forever. And compiled code already runs on the page's main thread: since ^ticket(722), at a livelit's event the slide's compiled run draws the livelits before the worker's run comes back (behind the Compiled views setting), so a diverging function there would freeze the page. <b>To do:</b> count steps in the compiled code (compiled code has no loops, so a counter at each function entry, and perhaps each match, catches any run that does not end), with a budget as the interpreter's; at the limit, stop as the interpreter does (a stuck term or its step-limit result, as ^ticket(756) decides), and leave the run to the worker. Deep recursion's JS stack overflow (a RangeError) the same. Measure what the counter costs. Required before more compiled functions run on the main thread.",
-   "progress": "",
+   "progress": "13:3x 11-15: measured, then written. The interpreter's guard is a 20 s timer (the worker terminated) and a backstop of 100M trampoline transitions (WorkerServer.total_step_limit, ProgramResult.Timeout). In Node on hazel-jit-style JS: a counter at each function's entry costs 11% (fib 27) to 26% (a 5000-list's length), with a clock read every 16384 calls 20-33%; endless recursion overflows JS's stack in ~1 ms (a RangeError), so the real main-thread risk is a run finite but long (fib(45)): the clock catches that. Branch trial/763-step-limit (b81b39f8d4, from trial/694-view-jit): Runtime fuel/deadline/limit/unlimit/out; every compiled function's body begins with the step; HazelJitRun.with_budget (50 ms or 50M calls) around the event's run, prime, and HazelJitDOM.go (whose JS errors become Unsupported, so a view falls back through Hazel); tests: fib(25) stops at 1000 calls, fib(15) under 100000 is 610, no budget no limit. CI 43754865645 running. Next: CI; then the Witch's step time with the counter, against build 45.",
    "log": [
     {
      "at": "2026-11-15T11:46-07:00",
@@ -17455,8 +17455,8 @@
   }
  ],
  "next_ticket": 764,
- "current_ticket": 756,
- "current_note": "12:46: hazel-jit agrees with the interpreter: the evaluator's own tests as the corpus",
+ "current_ticket": 763,
+ "current_note": "12:53: a step limit for hazel-jit's code: pushed, CI running; the sweep (756) and hazeljs 0.0.7's checks too",
  "closed_tickets": [
   {
    "id": 730,
@@ -23926,9 +23926,9 @@
   }
  ],
  "queue": [
+  763,
   756,
   736,
-  763,
   757,
   758,
   759,
@@ -23964,7 +23964,7 @@
   708,
   700
  ],
- "current_since": "2026-11-15T12:46-07:00",
+ "current_since": "2026-11-15T12:53-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
