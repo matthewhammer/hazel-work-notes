@@ -1815,6 +1815,23 @@
     "model": "claude-opus-5-5",
     "effort": "xhigh",
     "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T08:40-07:00",
+    "from": "matthew",
+    "chars": 16,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T08:40-07:00",
+    "from": "claude",
+    "chars": 22,
+    "asks": false,
+    "words": 3,
+    "read_s": 1,
+    "listen_s": 1,
+    "note": "from the transcripts"
    }
   ],
   "url": "https://matthewhammer.org/hazel/reports/046/#witch-jit-run",
@@ -1823,17 +1840,17 @@
   "outcome": "Done on trial/694-view-jit, ^report(51). The Witch slide's run is compiled with hazel-jit, each livelit use's model a parameter (ab4a41e587, 1d445a24cc...): a slider step is a call with a new argument, 2.3-2.5 ms in Node against the interpreter's 684 ms, and in Firefox the picture comes from the compiled run first (build 12 on: a step shows in 16-30 ms; build 18's first step 92 ms). The compiled program is kept across model-only steps (1 ms comparison, build 17). Then the page's work after a step, builds 13-19: the outline out of the view and built on its own after the paint (13), the picture probe's row without rewriting its value (14), livelits keyed on their own statics (15), the autosave out of the update (16), the comparison by node (17), a run after each compile for the first step (18), and nothing redrawn for nothing after the worker's answer: 4 projectors drawn, not 56, the outline the one before (19). Page work after a step 0.56-0.92 s (build 13) to 0.31-0.40 s (build 19), comparable slow machines; 0.24-0.30 s on a fast one (build 15). Left, as ^ticket(721): the edit's own work after the paint (update, statics, syntax, view, outline: about 180 ms on a slow machine).",
   "metrics": {
    "open_minutes": 1574,
-   "matthew_messages": 41,
+   "matthew_messages": 42,
    "questions_to_matthew": 13,
-   "chars_exchanged": 142469,
-   "tokens_est": 35617,
+   "chars_exchanged": 142507,
+   "tokens_est": 35626,
    "sync_minutes_est": 181.0,
-   "replies": 72,
-   "claude_words": 20989,
+   "replies": 73,
+   "claude_words": 20992,
    "read_minutes_est": 88.2,
    "listen_minutes_est": 131.2,
-   "read_s_avg": 74,
-   "listen_s_avg": 109,
+   "read_s_avg": 73,
+   "listen_s_avg": 108,
    "models": {
     "Opus 5.5 · Xhigh": 1.0
    }
