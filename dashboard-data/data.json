@@ -17046,7 +17046,9 @@
    "added": "2026-11-15T07:32-07:00",
    "opened": "2026-11-15T07:32-07:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel",
     "hazeljs",
@@ -17055,7 +17057,8 @@
    ],
    "source": "Matthew, 2026-11-15 07:1x, in chat: \"we recently used the hazel npm package to create a demo app for petri nets. [...] I'd like to create a new repo with a similar flavor, but this time, the focus is on 'ancient oracles'. I want to formalize two oracles, each as a standalone app like the petri net one. They can share a repo, but they should otherwise be separate apps, on separate pages, etc. They share a common front page, explaining the 'series' of oracles, starting with these two: I Ching, Tarot reading. [...] Ultimately, we want the 'core logic' of these two oracles to be expressed in Hazel, and displayed next to some UI showing the interactive features (the I Ching one can reveal the lines, one by one, in a reading --- the tarot can reveal cards one by one, etc).\" His answers to my four questions (07:2x): the repo is hazeljs-oracles; tarot art is the 1909 scans plus our own SVGs; I Ching casts by coins and by yarrow stalks, with a switch; the procedure is in Hazel, the page supplies random numbers. Then: \"create tickets --- this is related to more exercising of the hazeljs npm package, so they are hazel tickets, technically. But let's have another chip for 'hazeljs example', and another chip for 'ancient-oracle'\".",
    "text": "<b>The repository <code>matthewhammer/hazeljs-oracles</code>, and the series' front page.</b> A third example app for hazeljs, after Messed Up Dress Up and hazeljs-petri-example, in the Petri example's shape: Hazel files for the core logic, a page per app in plain HTML and JS, hazeljs from npm through jsDelivr, and a Node example. Licences as the Petri example's: Apache 2.0 for the code, CC BY 4.0 for the words, and a NOTICE crediting the public-domain sources (Legge's I Ching, 1882; Pamela Colman Smith's cards, 1909). The front page (<code>index.html</code>) introduces the series of ancient oracles, starting with two, each a separate app on its own page: <code>i-ching/</code> and <code>tarot/</code>. Then the Pages site at matthewhammer.org/hazeljs-oracles/ (Hazel's editor frame takes messages only from matthewhammer.org and localhost), the constellation nav bar's OUTLINE entry, and the dashboard's repos list once it has a first commit.",
-   "progress": "07:32 11-15: minted with ^ticket(729) to ^ticket(733), on his word. | 07:40 11-15: the repository in <code>~/hazeljs-oracles</code>, first commit 4295003, LOCAL ONLY (no GitHub remote yet): Apache 2.0 and CC BY 4.0 with a NOTICE, as the Petri example; README, VERSIONS (0.0.1), package.json; the series' front page and a Tarot page saying what is coming. Served at http://localhost:8141/ . Next: the public GitHub repository and its Pages site, which wait on his go-ahead. | 08:01 11-15: his report, \"page layout on main landing site is goofed\": the Tarot's card styles had reached the front page's cards; fixed in 9d31a12 (scoped to the Tarot's table), checked at 1280 wide and phone width."
+   "progress": "07:32 11-15: minted with ^ticket(729) to ^ticket(733), on his word. | 07:40 11-15: the repository in <code>~/hazeljs-oracles</code>, first commit 4295003, LOCAL ONLY (no GitHub remote yet): Apache 2.0 and CC BY 4.0 with a NOTICE, as the Petri example; README, VERSIONS (0.0.1), package.json; the series' front page and a Tarot page saying what is coming. Served at http://localhost:8141/ . Next: the public GitHub repository and its Pages site, which wait on his go-ahead. | 08:01 11-15: his report, \"page layout on main landing site is goofed\": the Tarot's card styles had reached the front page's cards; fixed in 9d31a12 (scoped to the Tarot's table), checked at 1280 wide and phone width. | 08:12 11-15: on his \"Yes, publish it\": PUBLIC at https://github.com/matthewhammer/hazeljs-oracles (0.0.2, defa4b9; commits credited to matthewhammer), Pages built and HTTPS enforced at https://matthewhammer.org/hazeljs-oracles/ . Checked: six files fetched over HTTPS match the local ones byte for byte; in the pane, Hazel casts the I Ching (built in 415 ms) and deals the Tarot's year ahead (13 cards, 256 ms) on the live site, and the editor frames from build.hazel.org answer there. Listed in the dashboard's repos. Left: the nav bar's OUTLINE entry is written in ~/matthewhammer.github.io/nav/nav.js but NOT committed or pushed (a push to the homepage was refused as beyond his go-ahead): it waits on his word.",
+   "waiting": "Push the nav bar entry (\"Ancient oracles (hazeljs)\", with the I Ching and the Tarot, under Hazel after the Petri net example) to the homepage repository? It is written, uncommitted, in ~/matthewhammer.github.io/nav/nav.js. The site it links: https://matthewhammer.org/hazeljs-oracles/"
   },
   {
    "id": 729,
@@ -17241,8 +17244,8 @@
   }
  ],
  "next_ticket": 737,
- "current_ticket": 728,
- "current_note": "08:10: his go-ahead 08:0x (\"Yes, publish it\"): creating the public repository matthewhammer/hazeljs-oracles and its Pages site",
+ "current_ticket": 730,
+ "current_note": "08:12: hazeljs-oracles is public at https://matthewhammer.org/hazeljs-oracles/ (0.0.2); ^ticket(728)'s nav bar entry waits on his word",
  "closed_tickets": [
   {
    "id": 735,
@@ -23502,8 +23505,8 @@
   }
  ],
  "queue": [
-  728,
   730,
+  728,
   736,
   721,
   694,
@@ -23534,7 +23537,7 @@
   708,
   700
  ],
- "current_since": "2026-11-15T08:10-07:00",
+ "current_since": "2026-11-15T08:12-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
@@ -24022,6 +24025,7 @@
   }
  ],
  "review_order": [
+  728,
   661,
   600,
   389,
