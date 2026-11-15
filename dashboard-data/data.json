@@ -34,18 +34,22 @@
    ]
   },
   {
-   "name": "hazeljs-oracles (^ticket(728), ^ticket(729))",
+   "name": "hazeljs-oracles (^ticket(728), ^ticket(729), ^ticket(730))",
    "repo_html": "<code>~/hazeljs-oracles</code> (local only, no remote yet)",
    "branch": "main",
    "group": "other",
    "links": [
     [
-     "localhost:8141/ (the ancient oracles' front page, 0.0.1, 4295003)",
+     "localhost:8141/ (the ancient oracles' front page, 44f2ad7)",
      "http://localhost:8141/"
     ],
     [
      "localhost:8141/i-ching/ (the I Ching, cast in Hazel)",
      "http://localhost:8141/i-ching/"
+    ],
+    [
+     "localhost:8141/tarot/ (the Tarot, dealt in Hazel)",
+     "http://localhost:8141/tarot/"
     ]
    ]
   }
@@ -17025,7 +17029,7 @@
    "source": "Matthew, 2026-11-15 07:1x, in chat: \"we recently used the hazel npm package to create a demo app for petri nets. [...] I'd like to create a new repo with a similar flavor, but this time, the focus is on 'ancient oracles'. I want to formalize two oracles, each as a standalone app like the petri net one. They can share a repo, but they should otherwise be separate apps, on separate pages, etc. They share a common front page, explaining the 'series' of oracles, starting with these two: I Ching, Tarot reading. [...] Ultimately, we want the 'core logic' of these two oracles to be expressed in Hazel, and displayed next to some UI showing the interactive features (the I Ching one can reveal the lines, one by one, in a reading --- the tarot can reveal cards one by one, etc).\" His answers to my four questions (07:2x): the repo is hazeljs-oracles; tarot art is the 1909 scans plus our own SVGs; I Ching casts by coins and by yarrow stalks, with a switch; the procedure is in Hazel, the page supplies random numbers. Then: \"create tickets --- this is related to more exercising of the hazeljs npm package, so they are hazel tickets, technically. But let's have another chip for 'hazeljs example', and another chip for 'ancient-oracle'\".",
    "text": "<b>The repository <code>matthewhammer/hazeljs-oracles</code>, and the series' front page.</b> A third example app for hazeljs, after Messed Up Dress Up and hazeljs-petri-example, in the Petri example's shape: Hazel files for the core logic, a page per app in plain HTML and JS, hazeljs from npm through jsDelivr, and a Node example. Licences as the Petri example's: Apache 2.0 for the code, CC BY 4.0 for the words, and a NOTICE crediting the public-domain sources (Legge's I Ching, 1882; Pamela Colman Smith's cards, 1909). The front page (<code>index.html</code>) introduces the series of ancient oracles, starting with two, each a separate app on its own page: <code>i-ching/</code> and <code>tarot/</code>. Then the Pages site at matthewhammer.org/hazeljs-oracles/ (Hazel's editor frame takes messages only from matthewhammer.org and localhost), the constellation nav bar's OUTLINE entry, and the dashboard's repos list once it has a first commit.",
    "progress": "07:32 11-15: minted with ^ticket(729) to ^ticket(733), on his word. | 07:40 11-15: the repository in <code>~/hazeljs-oracles</code>, first commit 4295003, LOCAL ONLY (no GitHub remote yet): Apache 2.0 and CC BY 4.0 with a NOTICE, as the Petri example; README, VERSIONS (0.0.1), package.json; the series' front page and a Tarot page saying what is coming. Served at http://localhost:8141/ . Next: the public GitHub repository and its Pages site, which wait on his go-ahead.",
-   "waiting": "Create the public GitHub repository matthewhammer/hazeljs-oracles, push 0.0.1 (4295003) and turn on its Pages site at matthewhammer.org/hazeljs-oracles/? Look first at http://localhost:8141/ and http://localhost:8141/i-ching/"
+   "waiting": "Create the public GitHub repository matthewhammer/hazeljs-oracles, push main (its three commits: the front page, the I Ching, the Tarot) and turn on its Pages site at matthewhammer.org/hazeljs-oracles/? Look first at http://localhost:8141/ , http://localhost:8141/i-ching/ and http://localhost:8141/tarot/"
   },
   {
    "id": 729,
@@ -17042,7 +17046,7 @@
    ],
    "source": "Matthew, 2026-11-15 07:1x, in chat: \"we recently used the hazel npm package to create a demo app for petri nets. [...] I'd like to create a new repo with a similar flavor, but this time, the focus is on 'ancient oracles'. I want to formalize two oracles, each as a standalone app like the petri net one. They can share a repo, but they should otherwise be separate apps, on separate pages, etc. They share a common front page, explaining the 'series' of oracles, starting with these two: I Ching, Tarot reading. [...] Ultimately, we want the 'core logic' of these two oracles to be expressed in Hazel, and displayed next to some UI showing the interactive features (the I Ching one can reveal the lines, one by one, in a reading --- the tarot can reveal cards one by one, etc).\" His answers to my four questions (07:2x): the repo is hazeljs-oracles; tarot art is the 1909 scans plus our own SVGs; I Ching casts by coins and by yarrow stalks, with a switch; the procedure is in Hazel, the page supplies random numbers. Then: \"create tickets --- this is related to more exercising of the hazeljs npm package, so they are hazel tickets, technically. But let's have another chip for 'hazeljs example', and another chip for 'ancient-oracle'\".",
    "text": "<b>The I Ching app (<code>i-ching/</code>): a reading cast in Hazel, its six lines revealed one at a time, bottom to top.</b> In Hazel: a line's value (6 old yin, 7 young yang, 8 young yin, 9 old yang); casting a line by three coins (odds 1/8, 3/8, 3/8, 1/8) or by yarrow stalks (1/16, 5/16, 7/16, 3/16; the 49 stalks divided three times), with a switch, the page passing in the random numbers; the hexagram from six lines (its King Wen number, from the two trigrams); and the changing lines, which give the relating hexagram. On the page: cast a line at a time, each drawn as it comes, the coins or stalks shown, then the hexagram, its name, the changing lines and the second hexagram. The Hazel modules beside it in Hazel's editor, as the Petri example has them, and the page's own JS answering while they have an error or a hole.",
-   "progress": "07:40 11-15: first version works at http://localhost:8141/i-ching/ (4295003): Hazel casts each line by coins or yarrow (a switch), lines drawn one at a time from the bottom with how each came, the lower trigram after three, then the hexagram, its changing lines and the relating hexagram; five listings in Hazel's editor beside it, the page's JS casting while the program does not build. Checked in Node (<code>npm run i-ching</code>): all 64 King Wen numbers, 14 hexagrams by their lines, a reading by hand (57 with lines 1, 5, 6 changing becomes 11); coins 0.35 ms a cast, yarrow 1.1 ms, build 0.56 s. Found: the yarrow procedure with a split anywhere along the heap gives 6 about 1 time in 20, not the books' 1 in 16 (README, Things to know). Still to do: the texts (^ticket(733)), the game's look, a question box."
+   "progress": "07:40 11-15: first version works at http://localhost:8141/i-ching/ (4295003): Hazel casts each line by coins or yarrow (a switch), lines drawn one at a time from the bottom with how each came, the lower trigram after three, then the hexagram, its changing lines and the relating hexagram; five listings in Hazel's editor beside it, the page's JS casting while the program does not build. Checked in Node (<code>npm run i-ching</code>): all 64 King Wen numbers, 14 hexagrams by their lines, a reading by hand (57 with lines 1, 5, 6 changing becomes 11); coins 0.35 ms a cast, yarrow 1.1 ms, build 0.56 s. Found: the yarrow procedure with a split anywhere along the heap gives 6 about 1 time in 20, not the books' 1 in 16 (README, Things to know). Still to do: the texts (^ticket(733)), the game's look, a question box. | 07:48 11-15: his idea, done locally: after the sixth line, a link to Cafe au Soul's reading of the same lines (https://www.cafeausoul.com/reading/?lns=887877), labelled as another site, copyrighted, with ads; new tab, no referrer. Checked: their lns is the six values bottom first, as ours (687879 is 53 to 63 on both; 688778 is 45 to 17). At http://localhost:8141/i-ching/ (commit after 44f2ad7)."
   },
   {
    "id": 730,
@@ -17059,7 +17063,7 @@
    ],
    "source": "Matthew, 2026-11-15 07:1x, in chat: \"we recently used the hazel npm package to create a demo app for petri nets. [...] I'd like to create a new repo with a similar flavor, but this time, the focus is on 'ancient oracles'. I want to formalize two oracles, each as a standalone app like the petri net one. They can share a repo, but they should otherwise be separate apps, on separate pages, etc. They share a common front page, explaining the 'series' of oracles, starting with these two: I Ching, Tarot reading. [...] Ultimately, we want the 'core logic' of these two oracles to be expressed in Hazel, and displayed next to some UI showing the interactive features (the I Ching one can reveal the lines, one by one, in a reading --- the tarot can reveal cards one by one, etc).\" His answers to my four questions (07:2x): the repo is hazeljs-oracles; tarot art is the 1909 scans plus our own SVGs; I Ching casts by coins and by yarrow stalks, with a switch; the procedure is in Hazel, the page supplies random numbers. Then: \"create tickets --- this is related to more exercising of the hazeljs npm package, so they are hazel tickets, technically. But let's have another chip for 'hazeljs example', and another chip for 'ancient-oracle'\".",
    "text": "<b>The Tarot app (<code>tarot/</code>): the deck shuffled and dealt in Hazel, the cards turned over one at a time.</b> In Hazel: the 78 cards (22 major arcana; four suits of fourteen); a shuffle from random numbers the page passes in; the spreads (one card, three cards for past, present and future, the Celtic Cross of ten), each position with its meaning; reversals, on or off. On the page: the spread dealt face down, each card turned with a click, its name, position and meaning shown; the Hazel modules beside it in Hazel's editor.",
-   "progress": "",
+   "progress": "07:46 11-15: first version works at http://localhost:8141/tarot/ (44f2ad7): Hazel holds the 78 cards and deals one card, three (past, present, future) or the Celtic Cross from the page's random numbers, upright or reversed; the page lays them face down and turns them one at a time (checked: three cards, two turned, dealt by Hazel in 108 ms in the browser). Node (<code>npm run tarot</code>): 40 Celtic Crosses, no card twice, all 78 came. COST: 20 ms a card in Node (0.18 s a Celtic Cross), after a first draft at 50 ms a card; about 1,000 list steps a deal, so worth a look as a Hazel evaluator cost. Not yet checked in the browser: the Celtic Cross's layout. Simple faces drawn by the page until ^ticket(731) and ^ticket(732).",
    "log": [
     {
      "at": "2026-11-15T07:30-07:00",
@@ -17150,7 +17154,7 @@
  ],
  "next_ticket": 734,
  "current_ticket": 730,
- "current_note": "07:40: the Tarot's core in Hazel (deck, shuffle, spreads), while ^ticket(728)'s public repo waits on his go-ahead",
+ "current_note": "07:48: the Tarot works at http://localhost:8141/tarot/ ; the I Ching links out to Cafe au Soul after six lines (his idea). Next: the Celtic Cross's layout checked in the browser. ^ticket(728)'s public repo waits on his go-ahead",
  "closed_tickets": [
   {
    "id": 727,
