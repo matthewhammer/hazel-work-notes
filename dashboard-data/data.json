@@ -17105,7 +17105,7 @@
    ],
    "source": "Matthew, 2026-11-15 07:1x, in chat: \"we recently used the hazel npm package to create a demo app for petri nets. [...] I'd like to create a new repo with a similar flavor, but this time, the focus is on 'ancient oracles'. I want to formalize two oracles, each as a standalone app like the petri net one. They can share a repo, but they should otherwise be separate apps, on separate pages, etc. They share a common front page, explaining the 'series' of oracles, starting with these two: I Ching, Tarot reading. [...] Ultimately, we want the 'core logic' of these two oracles to be expressed in Hazel, and displayed next to some UI showing the interactive features (the I Ching one can reveal the lines, one by one, in a reading --- the tarot can reveal cards one by one, etc).\" His answers to my four questions (07:2x): the repo is hazeljs-oracles; tarot art is the 1909 scans plus our own SVGs; I Ching casts by coins and by yarrow stalks, with a switch; the procedure is in Hazel, the page supplies random numbers. Then: \"create tickets --- this is related to more exercising of the hazeljs npm package, so they are hazel tickets, technically. But let's have another chip for 'hazeljs example', and another chip for 'ancient-oracle'\".",
    "text": "<b>The Tarot app (<code>tarot/</code>): the deck shuffled and dealt in Hazel, the cards turned over one at a time.</b> In Hazel: the 78 cards (22 major arcana; four suits of fourteen); a shuffle from random numbers the page passes in; the spreads (one card, three cards for past, present and future, the Celtic Cross of ten), each position with its meaning; reversals, on or off. On the page: the spread dealt face down, each card turned with a click, its name, position and meaning shown; the Hazel modules beside it in Hazel's editor.",
-   "progress": "07:46 11-15: first version works at http://localhost:8141/tarot/ (44f2ad7): Hazel holds the 78 cards and deals one card, three (past, present, future) or the Celtic Cross from the page's random numbers, upright or reversed; the page lays them face down and turns them one at a time (checked: three cards, two turned, dealt by Hazel in 108 ms in the browser). Node (<code>npm run tarot</code>): 40 Celtic Crosses, no card twice, all 78 came. COST: 20 ms a card in Node (0.18 s a Celtic Cross), after a first draft at 50 ms a card; about 1,000 list steps a deal, so worth a look as a Hazel evaluator cost. Not yet checked in the browser: the Celtic Cross's layout. Simple faces drawn by the page until ^ticket(731) and ^ticket(732). | 07:54 11-15: the Celtic Cross checked in the browser: the crossing card covered its neighbours; fixed in 4c61c87 (wider columns, the card across the first), and a spread wider than its column scrolls. | 11:2x 11-15, picked up again: everything the ticket lists is in place (Deck.hz, Spreads.hz, Reading.hz: 78 cards, the deal from the page's numbers, every spread's places, reversals). Measured in Node (npm run tarot, hazeljs 0.0.4): built in 594 ms; a deal 14 ms for one card, 43-84 ms for three, 172-195 ms a Celtic Cross, 243-296 ms the year ahead (12-13 cards): about 15-20 ms a card, evaluation per call. Next: find where a card's 15-20 ms goes (take walks at most 78 steps, name at most 22), then close or cut it. Parked 11:2x for Matthew's question about the 11-11 to 11-14 gallery pictures.",
+   "progress": "07:46 11-15: first version works at http://localhost:8141/tarot/ (44f2ad7): Hazel holds the 78 cards and deals one card, three (past, present, future) or the Celtic Cross from the page's random numbers, upright or reversed; the page lays them face down and turns them one at a time (checked: three cards, two turned, dealt by Hazel in 108 ms in the browser). Node (<code>npm run tarot</code>): 40 Celtic Crosses, no card twice, all 78 came. COST: 20 ms a card in Node (0.18 s a Celtic Cross), after a first draft at 50 ms a card; about 1,000 list steps a deal, so worth a look as a Hazel evaluator cost. Not yet checked in the browser: the Celtic Cross's layout. Simple faces drawn by the page until ^ticket(731) and ^ticket(732). | 07:54 11-15: the Celtic Cross checked in the browser: the crossing card covered its neighbours; fixed in 4c61c87 (wider columns, the card across the first), and a spread wider than its column scrolls. | 11:2x 11-15, picked up again: everything the ticket lists is in place (Deck.hz, Spreads.hz, Reading.hz: 78 cards, the deal from the page's numbers, every spread's places, reversals). Measured in Node (npm run tarot, hazeljs 0.0.4): built in 594 ms; a deal 14 ms for one card, 43-84 ms for three, 172-195 ms a Celtic Cross, 243-296 ms the year ahead (12-13 cards): about 15-20 ms a card, evaluation per call. Next: find where a card's 15-20 ms goes (take walks at most 78 steps, name at most 22), then close or cut it. Parked 11:2x for Matthew's question about the 11-11 to 11-14 gallery pictures. | 11:4x: the cost found and cut, uncommitted in ~/hazeljs-oracles: functions with no declared result type were checked at run time on every return (take's step 0.36 ms, typed 0.07; the deck built by untyped cat/majors_from/suit_from was slow to walk, 0.3 ms a step, typed 0.05). Every function in Deck.hz, Spreads.hz and Reading.hz now declares its whole type (let take : ([Card], Int) -> (Card, [Card]) = fun (cs, k) -> ...): a Celtic Cross 173 -> 46 ms in Node, the year ahead 296 -> 86 ms; npm run tarot all ok. Next: check the page, release 0.0.7. Parked for Matthew's meeting summary (hazel-jit tickets).",
    "log": [
     {
      "at": "2026-11-15T07:30-07:00",
@@ -17220,6 +17220,56 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-15T11:20-07:00",
+     "from": "claude",
+     "chars": 3025,
+     "asks": true,
+     "words": 535,
+     "read_s": 135,
+     "listen_s": 201,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-15T11:21-07:00",
+     "from": "matthew",
+     "chars": 23,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-15T11:22-07:00",
+     "from": "matthew",
+     "chars": 148,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-15T11:22-07:00",
+     "from": "claude",
+     "chars": 130,
+     "asks": false,
+     "words": 24,
+     "read_s": 6,
+     "listen_s": 9,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-15T11:22-07:00",
+     "from": "claude",
+     "chars": 1197,
+     "asks": true,
+     "words": 226,
+     "read_s": 57,
+     "listen_s": 85,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ]
   },
@@ -17290,9 +17340,105 @@
    "source": "Found 2026-11-15 08:0x while writing the Tarot's year-ahead spread for ^ticket(735) (hazeljs-oracles).",
    "text": "<b>From JS, <code>{tag: \"Two\", value: [3, true]}</code> never matches <code>Two(m, t)</code>.</b> In hazeljs 0.0.4, with <code>type S = + Two(Int, Bool) + Rec((m = Int, t = Bool)) + One(Int)</code> and a function that cases on S: <code>One(3)</code> from JS works, a labeled tuple <code>{tag: \"Rec\", value: {m: 3, t: true}}</code> works, and a pair as a function's own arguments works; but <code>{tag: \"Two\", value: [3, true]}</code> comes back as <code>{hazel: \"...(Match ...\"}</code>, the case stuck, the constructor's type read as an arrow from Unknown. The same command from Hazel to JS (the Petri example's <code>Take(Int, Int, Cmd)</code>) converts fine, so it is only the way in. A cousin of ^ticket(703) (key order). The oracles work around it: <code>YearAhead((start = Int, theme = Bool))</code>, a labeled tuple. Repro in the session scratchpad, ctor-probe.mjs; to go into hazeljs's tests.",
    "progress": "07:59 11-15: minted; worked around in accedc6."
+  },
+  {
+   "id": 756,
+   "area": "hazel-jit: semantic consistency with the interpreter, checked in CI",
+   "added": "2026-11-15T11:35-07:00",
+   "opened": "2026-11-15T11:35-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "performance",
+    "hazel-jit"
+   ],
+   "source": "Matthew, 2026-11-15 11:4x, in chat, summarizing his meeting with Cyrus on Friday 11-13 at 10:00 Mountain: \"Let me summarize the meeting with Cyrus on Friday. [...] create tickets for tomorrow morning, or late tonight, after other stuff is done. items (all about hazel-jit): * we want semantic consistency with Hazel the interpreter, and to ensure that with CI, and our design decisions.\"",
+   "text": "<b>What hazel-jit's code computes is what the interpreter computes,</b> for every program it compiles: the same values, the same errors (stuck terms), the same output. Ensured in CI: a check that runs a set of programs (the slides', the test suite's, the oracles') both ways and fails on any difference. And in the design decisions, written down: numbers, errors, what is not compiled. Today <code>HazelJit.re</code> says numbers \"may differ from Hazel's: allowed, for the best case\": no longer.",
+   "progress": ""
+  },
+  {
+   "id": 757,
+   "area": "hazel-jit: Int and Nat arbitrary precision in the compiled code (JS BigInt), as the interpreter's Bigint",
+   "added": "2026-11-15T11:35-07:00",
+   "opened": "2026-11-15T11:35-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "performance",
+    "hazel-jit"
+   ],
+   "source": "Matthew, 2026-11-15 11:4x, in chat, summarizing his meeting with Cyrus on Friday 11-13 at 10:00 Mountain: \"Let me summarize the meeting with Cyrus on Friday. [...] create tickets for tomorrow morning, or late tonight, after other stuff is done. items (all about hazel-jit): * arb precision Ints and Nats --- we want to use bignum in the output if we can, or something comparable, not native JS numbers for Ints and Nats.\"",
+   "text": "<b>Int and Nat as big integers in hazel-jit's output.</b> The interpreter's Int and Nat are <code>Bigint.t</code> (<code>Atom.re</code>); hazel-jit makes them JS numbers. Compile them to JS <code>BigInt</code> (or something comparable), with their operations, conversions and printing as the interpreter's. Measure what it costs against JS numbers.",
+   "progress": ""
+  },
+  {
+   "id": 758,
+   "area": "hazel-jit: overflow in a fixed-width number stops at a stuck term with the error, checked at every operation that can overflow",
+   "added": "2026-11-15T11:35-07:00",
+   "opened": "2026-11-15T11:35-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "performance",
+    "hazel-jit"
+   ],
+   "source": "Matthew, 2026-11-15 11:4x, in chat, summarizing his meeting with Cyrus on Friday 11-13 at 10:00 Mountain: \"Let me summarize the meeting with Cyrus on Friday. [...] create tickets for tomorrow morning, or late tonight, after other stuff is done. items (all about hazel-jit): * when we hit an overflow for any times where that is possible -- we should check each time for non-arb precision numbers --- we should create an indet term / stuck term with that error -- look at existing interpreter cases for inspiration.\"",
+   "text": "<b>Overflow, checked.</b> Where a number is not arbitrary precision (SInt, and any other fixed-width kind), check each operation that can overflow (+, -, *, power, conversions), and on overflow stop with an indeterminate (stuck) term carrying the error, as the interpreter's <code>InvalidOperationError</code> cases do (<code>IntegerTooBig</code>, <code>NegativeNat</code>). To check first: what the interpreter does with an SInt overflow today (OCaml's <code>int</code>); the two must agree (the consistency ticket).",
+   "progress": ""
+  },
+  {
+   "id": 759,
+   "area": "hazel-jit: divide by zero stops at a stuck term with the error, as the interpreter's DivideByZero",
+   "added": "2026-11-15T11:35-07:00",
+   "opened": "2026-11-15T11:35-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "performance",
+    "hazel-jit"
+   ],
+   "source": "Matthew, 2026-11-15 11:4x, in chat, summarizing his meeting with Cyrus on Friday 11-13 at 10:00 Mountain: \"Let me summarize the meeting with Cyrus on Friday. [...] create tickets for tomorrow morning, or late tonight, after other stuff is done. items (all about hazel-jit): * similar for divide by zero\"",
+   "text": "<b>Divide by zero, as the interpreter has it.</b> Integer division by zero in the interpreter is <code>InvalidOperationError.DivideByZero</code> (<code>Operators.int_divide</code>, <code>sint_divide</code>), a stuck term saying \"Error: Divide by Zero\"; hazel-jit's <code>Math.trunc(a / b)</code> gives Infinity or NaN. Compile the check, and the same stuck term (Int, SInt and Nat; modulo too).",
+   "progress": ""
+  },
+  {
+   "id": 760,
+   "area": "hazel-jit: still nothing with holes compiled; the stepper's filters excluded",
+   "added": "2026-11-15T11:35-07:00",
+   "opened": "2026-11-15T11:35-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "performance",
+    "hazel-jit"
+   ],
+   "source": "Matthew, 2026-11-15 11:4x, in chat, summarizing his meeting with Cyrus on Friday 11-13 at 10:00 Mountain: \"Let me summarize the meeting with Cyrus on Friday. [...] create tickets for tomorrow morning, or late tonight, after other stuff is done. items (all about hazel-jit): * for the output of hazel-jit, we should continue to avoid translating code with holes, and we should exclude \"stepper functions\" (don't know what that is myself, please explain later).\"",
+   "text": "<b>What hazel-jit leaves to the interpreter, kept and written down:</b> code with holes (empty holes, multiholes, dynamic error holes, invalid text: already Unsupported), and the stepper's functions: the filters <code>hide P in e</code>, <code>eval P in e</code>, <code>pause P in e</code> and <code>debug P in e</code>, which tell the stepper which steps to show or skip (already Unsupported, \"a stepper filter\"), and, to check, any run shown in the stepper, which needs every step.",
+   "progress": ""
+  },
+  {
+   "id": 761,
+   "area": "hazel-jit: probes, step budgets and its other limits, overcome in the coming days",
+   "added": "2026-11-15T11:35-07:00",
+   "opened": "2026-11-15T11:35-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "performance",
+    "hazel-jit"
+   ],
+   "source": "Matthew, 2026-11-15 11:4x, in chat, summarizing his meeting with Cyrus on Friday 11-13 at 10:00 Mountain: \"Let me summarize the meeting with Cyrus on Friday. [...] create tickets for tomorrow morning, or late tonight, after other stuff is done. items (all about hazel-jit): * probes, step budgets, and all other limitations we should work to overcome in the coming days.\"",
+   "text": "<b>hazel-jit's limits, one at a time.</b> Probes (the values a probe shows, which compiled code would have to record as the interpreter does); step budgets (the interpreter stops a long or endless run at its budget; compiled code has none, so a loop would hang); and the forms it gives up on (<code>HazelJit.re</code>'s Unsupported: closures with their own environment, partial application, tests, quotations, reverse application, recursion over more than one name, ...). First a list, then one at a time.",
+   "progress": ""
   }
  ],
- "next_ticket": 756,
+ "next_ticket": 762,
  "current_ticket": 730,
  "current_note": "11:21: reading the Tarot app: what is in Hazel, what is in JS",
  "closed_tickets": [
@@ -23756,6 +23902,12 @@
  "queue": [
   730,
   736,
+  756,
+  757,
+  758,
+  759,
+  760,
+  761,
   721,
   694,
   729,
@@ -23799,7 +23951,7 @@
   },
   "since": "2026-08-27",
   "replies": 6526,
-  "words": 1426937,
+  "words": 1426982,
   "read_hours_est": 99.9,
   "listen_hours_est": 148.6,
   "read_s_avg": 55,
@@ -24127,8 +24279,8 @@
    },
    "2026-11-15": {
     "replies": 49,
-    "words": 8521,
-    "chars": 47405
+    "words": 8566,
+    "chars": 47646
    }
   }
  },
