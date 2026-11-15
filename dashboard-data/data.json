@@ -17147,7 +17147,9 @@
    "added": "2026-11-15T07:57-07:00",
    "opened": "2026-11-15T07:57-07:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel",
     "hazeljs",
@@ -17156,7 +17158,7 @@
    ],
    "source": "Found 2026-11-15 08:0x while writing the Tarot's year-ahead spread for ^ticket(735) (hazeljs-oracles).",
    "text": "<b>From JS, <code>{tag: \"Two\", value: [3, true]}</code> never matches <code>Two(m, t)</code>.</b> In hazeljs 0.0.4, with <code>type S = + Two(Int, Bool) + Rec((m = Int, t = Bool)) + One(Int)</code> and a function that cases on S: <code>One(3)</code> from JS works, a labeled tuple <code>{tag: \"Rec\", value: {m: 3, t: true}}</code> works, and a pair as a function's own arguments works; but <code>{tag: \"Two\", value: [3, true]}</code> comes back as <code>{hazel: \"...(Match ...\"}</code>, the case stuck, the constructor's type read as an arrow from Unknown. The same command from Hazel to JS (the Petri example's <code>Take(Int, Int, Cmd)</code>) converts fine, so it is only the way in. A cousin of ^ticket(703) (key order). The oracles work around it: <code>YearAhead((start = Int, theme = Bool))</code>, a labeled tuple. Repro in the session scratchpad, ctor-probe.mjs; to go into hazeljs's tests.",
-   "progress": "07:59 11-15: minted; worked around in accedc6. | 12:1x 11-15: reproduced in hazeljs 0.0.4 and 0.0.6, and wider: any JS array given where a tuple is expected is stuck (a function of a pair called with one array too); HazelLibCore.of_js made every JS array a list. Fix on #2719's branch js-library-embed, 2ab33ebd90: the function's declared parameter type decides (of_js_at: arrays to tuples or lists, objects to labeled tuples, constructors' values by their types, recursive types, numbers as the type asks); tests in Test_HazelLib. No local type-check: CI 43750481286 running. Next: when green, test the deployed hazel-lib.js with the repro (scratchpad ctor-probe.mjs), then hazeljs 0.0.7. | 12:3x: CI GREEN on 2ab33ebd90 (run 43750481286: fast checks, full tests). The deployed build (https://build.hazel.org/js-library-embed/hazel-lib.js, 2ab33ebd90) passes all 10 of the repro's cases; 0.0.6 fails 5 (the constructor, a pair as one array, a Float given 2 (a second bug, fixed too), and a command tree back in, its type on the parameter or on the let). No regressions: the Tarot and I Ching Node checks, and the Petri example (same 2,000 firings and marking; 3.39 ms a call against 3.27). The game pins hazeljs 0.0.1, so unaffected. hazeljs 0.0.7: the Build hazel-lib.js workflow running (hazelgrove/hazeljs run 43752808750); then merge build/2ab33ebd90, CHANGELOG, README (Values), version, and npm publish, which is Matthew's (no npm login here; he is the package's maintainer).",
+   "progress": "07:59 11-15: minted; worked around in accedc6. | 12:1x 11-15: reproduced in hazeljs 0.0.4 and 0.0.6, and wider: any JS array given where a tuple is expected is stuck (a function of a pair called with one array too); HazelLibCore.of_js made every JS array a list. Fix on #2719's branch js-library-embed, 2ab33ebd90: the function's declared parameter type decides (of_js_at: arrays to tuples or lists, objects to labeled tuples, constructors' values by their types, recursive types, numbers as the type asks); tests in Test_HazelLib. No local type-check: CI 43750481286 running. Next: when green, test the deployed hazel-lib.js with the repro (scratchpad ctor-probe.mjs), then hazeljs 0.0.7. | 12:3x: CI GREEN on 2ab33ebd90 (run 43750481286: fast checks, full tests). The deployed build (https://build.hazel.org/js-library-embed/hazel-lib.js, 2ab33ebd90) passes all 10 of the repro's cases; 0.0.6 fails 5 (the constructor, a pair as one array, a Float given 2 (a second bug, fixed too), and a command tree back in, its type on the parameter or on the let). No regressions: the Tarot and I Ching Node checks, and the Petri example (same 2,000 firings and marking; 3.39 ms a call against 3.27). The game pins hazeljs 0.0.1, so unaffected. hazeljs 0.0.7: the Build hazel-lib.js workflow running (hazelgrove/hazeljs run 43752808750); then merge build/2ab33ebd90, CHANGELOG, README (Values), version, and npm publish, which is Matthew's (no npm login here; he is the package's maintainer). | 12:5x: hazeljs 0.0.7 ready on hazelgrove/hazeljs main (526a3a4): the Build workflow's hazel-lib.js (run 43752808750) is byte for byte Hazel's own deploy of 2ab33ebd90 (SHA-256 14700f34...a4d948); CHANGELOG, README (Values), index.d.ts; the repro all ok on it. Its Install check and Verify running. WAITING ON MATTHEW: npm publish (no npm login here; he is the only maintainer): cd ~/hazeljs && npm publish. Then the oracles can move to 0.0.7.",
    "log": [
     {
      "at": "2026-11-15T11:23-07:00",
@@ -17271,8 +17273,21 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-15T12:31-07:00",
+     "from": "claude",
+     "chars": 2289,
+     "asks": false,
+     "words": 388,
+     "read_s": 98,
+     "listen_s": 146,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": "npm publish of hazeljs 0.0.7 from ~/hazeljs (no npm login on the laptop; Matthew is the package's maintainer)"
   },
   {
    "id": 756,
@@ -17440,8 +17455,8 @@
   }
  ],
  "next_ticket": 764,
- "current_ticket": 736,
- "current_note": "11:58: finding hazeljs's JS-to-Hazel conversion of a constructor's tuple argument",
+ "current_ticket": 756,
+ "current_note": "12:46: hazel-jit agrees with the interpreter: the evaluator's own tests as the corpus",
  "closed_tickets": [
   {
    "id": 730,
@@ -23911,8 +23926,8 @@
   }
  ],
  "queue": [
-  736,
   756,
+  736,
   763,
   757,
   758,
@@ -23949,7 +23964,7 @@
   708,
   700
  ],
- "current_since": "2026-11-15T11:39-07:00",
+ "current_since": "2026-11-15T12:46-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
