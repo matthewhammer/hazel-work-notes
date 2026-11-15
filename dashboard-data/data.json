@@ -17373,7 +17373,7 @@
    ],
    "source": "Matthew, 2026-11-15 11:4x, in chat, summarizing his meeting with Cyrus on Friday 11-13 at 10:00 Mountain: \"Let me summarize the meeting with Cyrus on Friday. [...] create tickets for tomorrow morning, or late tonight, after other stuff is done. items (all about hazel-jit): * similar for divide by zero\"",
    "text": "<b>Divide by zero, as the interpreter has it.</b> Integer division by zero in the interpreter is <code>InvalidOperationError.DivideByZero</code> (<code>Operators.int_divide</code>, <code>sint_divide</code>), a stuck term saying \"Error: Divide by Zero\"; hazel-jit's <code>Math.trunc(a / b)</code> gives Infinity or NaN. Compile the check, and the same stuck term (Int, SInt and Nat; modulo too).",
-   "progress": ""
+   "progress": "14:5x 11-15: the interpreter's stuck term, checked through hazeljs: Int / 0 and SInt / 0 are DynamicErrorHole(the division, DivideByZero). Design: every operation the interpreter stops at throws 'hazel-jit: invalid operation: <error>' in the compiled run (^ticket(757)'s runtime: idiv, ipow, int_of_string, int_mod; here SInt's sdiv, spow, sint_mod), and the run falls back to the interpreter, which makes the stuck term: the same term by construction, and on the main thread the page draws the worker's run (which holds it). (Making the stuck term in JS and evaluating around it, as the interpreter's indet terms do, would be a much larger piece; not needed for consistency.) The harness counts a compiled run stopped at X as agreeing with an interpreter result stuck at X; floats compare equal first (infinity). Branch trial/759-divide-by-zero (997295cd11, on trial/757-bigint), 5 tests; CI 43759464480 running."
   },
   {
    "id": 760,
@@ -17520,8 +17520,8 @@
   }
  ],
  "next_ticket": 764,
- "current_ticket": 759,
- "current_note": "13:40: divide by zero as the interpreter's stuck term: checking what 757 already does",
+ "current_ticket": 760,
+ "current_note": "13:41: what hazel-jit leaves to the interpreter: holes, the stepper's filters; writing the rule",
  "closed_tickets": [
   {
    "id": 730,
@@ -23991,13 +23991,13 @@
   }
  ],
  "queue": [
+  760,
   759,
   757,
   763,
   756,
   736,
   758,
-  760,
   761,
   762,
   721,
@@ -24029,7 +24029,7 @@
   708,
   700
  ],
- "current_since": "2026-11-15T13:40-07:00",
+ "current_since": "2026-11-15T13:41-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
