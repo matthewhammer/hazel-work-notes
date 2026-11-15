@@ -17346,7 +17346,9 @@
    "added": "2026-11-15T11:35-07:00",
    "opened": "2026-11-15T11:35-07:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel",
     "performance",
@@ -17354,7 +17356,8 @@
    ],
    "source": "Matthew, 2026-11-15 11:4x, in chat, summarizing his meeting with Cyrus on Friday 11-13 at 10:00 Mountain: \"Let me summarize the meeting with Cyrus on Friday. [...] create tickets for tomorrow morning, or late tonight, after other stuff is done. items (all about hazel-jit): * when we hit an overflow for any times where that is possible -- we should check each time for non-arb precision numbers --- we should create an indet term / stuck term with that error -- look at existing interpreter cases for inspiration.\"",
    "text": "<b>Overflow, checked.</b> Where a number is not arbitrary precision (SInt, and any other fixed-width kind), check each operation that can overflow (+, -, *, power, conversions), and on overflow stop with an indeterminate (stuck) term carrying the error, as the interpreter's <code>InvalidOperationError</code> cases do (<code>IntegerTooBig</code>, <code>NegativeNat</code>). To check first: what the interpreter does with an SInt overflow today (OCaml's <code>int</code>); the two must agree (the consistency ticket).",
-   "progress": ""
+   "progress": "14:4x 11-15, found (hazeljs 0.0.6, Hazel under js_of_ocaml as in the browser): SInt is written in `use SInt in` mode (a plain + is Int's); the interpreter WRAPS SInt silently at 32 bits: use SInt in 2147483647 + 1 is -2147483648; 65536 * 65536 is 0; 1000000 * 1000000 is -727379968; 2 ** 31 is -2147483648; 0 - 2147483647 - 2 is 2147483647. So three behaviours today: the browser's interpreter (32-bit wrap), a native build's (OCaml's 63-bit int), and hazel-jit's (JS doubles: 2147483647 + 1 is 2147483648). SInt / 0 is already DynamicErrorHole(..., DivideByZero), as Int / 0. To make overflow 'an indet term / stuck term with that error' is a change to the interpreter (Operators.re's SInt ops) as well as hazel-jit, and needs SInt's width settled: RECOMMENDATION: 32 bits everywhere (what the browser has always done), each SInt op checked (in the interpreter: the result against [-2^31, 2^31 - 1], else InvalidOperationError, a new IntegerOverflow or the existing IntegerTooBig; in hazel-jit the same check, then invalid('IntegerOverflow')), and sint_of_int past the range the same error.",
+   "waiting": "SInt's width for the overflow check: 32 bits everywhere (the browser's interpreter wraps at 32 today; a native build would at 63; hazel-jit not at all), and overflow a stuck term with an error in the interpreter too? A language decision, Matthew and Cyrus's. My recommendation: 32 bits, a new InvalidOperationError IntegerOverflow."
   },
   {
    "id": 759,
@@ -17517,8 +17520,8 @@
   }
  ],
  "next_ticket": 764,
- "current_ticket": 757,
- "current_note": "13:37: Int and Nat exact in hazel-jit's code: pushed, CI running (756, 763 too)",
+ "current_ticket": 759,
+ "current_note": "13:40: divide by zero as the interpreter's stuck term: checking what 757 already does",
  "closed_tickets": [
   {
    "id": 730,
@@ -23988,12 +23991,12 @@
   }
  ],
  "queue": [
+  759,
   757,
   763,
   756,
   736,
   758,
-  759,
   760,
   761,
   762,
@@ -24026,7 +24029,7 @@
   708,
   700
  ],
- "current_since": "2026-11-15T13:32-07:00",
+ "current_since": "2026-11-15T13:40-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
@@ -24040,7 +24043,7 @@
   },
   "since": "2026-08-27",
   "replies": 6537,
-  "words": 1429865,
+  "words": 1429912,
   "read_hours_est": 100.1,
   "listen_hours_est": 148.9,
   "read_s_avg": 55,
@@ -24368,8 +24371,8 @@
    },
    "2026-11-15": {
     "replies": 60,
-    "words": 11449,
-    "chars": 64410
+    "words": 11496,
+    "chars": 64709
    }
   }
  },
