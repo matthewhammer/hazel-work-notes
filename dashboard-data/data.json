@@ -40,7 +40,7 @@
    "group": "other",
    "links": [
     [
-     "localhost:8141/ (the ancient oracles' front page, 9d31a12)",
+     "localhost:8141/ (the ancient oracles' front page, 0.0.3, 3c2d9e6)",
      "http://localhost:8141/"
     ],
     [
@@ -17274,29 +17274,22 @@
    "source": "Found 2026-11-15 08:0x while writing the Tarot's year-ahead spread for ^ticket(735) (hazeljs-oracles).",
    "text": "<b>From JS, <code>{tag: \"Two\", value: [3, true]}</code> never matches <code>Two(m, t)</code>.</b> In hazeljs 0.0.4, with <code>type S = + Two(Int, Bool) + Rec((m = Int, t = Bool)) + One(Int)</code> and a function that cases on S: <code>One(3)</code> from JS works, a labeled tuple <code>{tag: \"Rec\", value: {m: 3, t: true}}</code> works, and a pair as a function's own arguments works; but <code>{tag: \"Two\", value: [3, true]}</code> comes back as <code>{hazel: \"...(Match ...\"}</code>, the case stuck, the constructor's type read as an arrow from Unknown. The same command from Hazel to JS (the Petri example's <code>Take(Int, Int, Cmd)</code>) converts fine, so it is only the way in. A cousin of ^ticket(703) (key order). The oracles work around it: <code>YearAhead((start = Int, theme = Bool))</code>, a labeled tuple. Repro in the session scratchpad, ctor-probe.mjs; to go into hazeljs's tests.",
    "progress": "07:59 11-15: minted; worked around in accedc6."
-  },
+  }
+ ],
+ "next_ticket": 738,
+ "current_ticket": 730,
+ "current_note": "08:20: ^ticket(737) done: 0.0.3 pushed (code left, reading right; phones fit); its Pages build is running",
+ "closed_tickets": [
   {
    "id": 737,
    "area": "hazel, hazeljs example, ancient-oracle: the oracles' layout: the code on the left in two columns, the reading first in one; checked on a phone",
    "added": "2026-11-15T08:17-07:00",
-   "opened": "2026-11-15T08:17-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazel",
-    "hazeljs",
-    "hazeljs example",
-    "ancient-oracle"
-   ],
-   "source": "Matthew, 2026-11-15 08:1x, in chat: \"some nits about the layout of the orcale apps: I'd prefer the code on the LHS in double-column mode. In single column mode, it makes sense for the UI to come first, then the hazel code below it.\" And: \"did you test the oracle pages on a typical mobile layout?\" (I had not: only the front page, at 375 wide.)",
-   "text": "<b>The oracles' pages: the Hazel code on the left when there are two columns, the reading first when there is one; and both pages checked at a phone's width.</b>",
-   "progress": ""
-  }
- ],
- "next_ticket": 738,
- "current_ticket": 737,
- "current_note": "08:17: his layout nits: code on the left in two columns, the reading first in one; then both pages at phone width",
- "closed_tickets": [
+   "text": "The oracles' pages: the Hazel code on the left when there are two columns, the reading first when there is one; and both pages checked at a phone's width.",
+   "source": "Matthew, 2026-11-15 08:1x, in chat: \"some nits about the layout of the orcale apps: I'd prefer the code on the LHS in…",
+   "status": "done",
+   "closed": "2026-11-15",
+   "outcome": "The oracles' layout: code on the left in two columns, the reading first in one; every spread fits on a phone (hazeljs-oracles 0.0.3, 3c2d9e6)"
+  },
   {
    "id": 735,
    "area": "hazel, hazeljs example, ancient-oracle: the Tarot's spreads, from one card to the year ahead",
@@ -23555,7 +23548,6 @@
   }
  ],
  "queue": [
-  737,
   730,
   728,
   736,
@@ -23588,7 +23580,7 @@
   708,
   700
  ],
- "current_since": "2026-11-15T08:17-07:00",
+ "current_since": "2026-11-15T08:20-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
@@ -23601,8 +23593,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6484,
-  "words": 1420243,
+  "replies": 6485,
+  "words": 1420314,
   "read_hours_est": 99.5,
   "listen_hours_est": 147.9,
   "read_s_avg": 55,
@@ -23929,9 +23921,9 @@
     "chars": 87839
    },
    "2026-11-15": {
-    "replies": 7,
-    "words": 1827,
-    "chars": 10595
+    "replies": 8,
+    "words": 1898,
+    "chars": 10968
    }
   }
  },
