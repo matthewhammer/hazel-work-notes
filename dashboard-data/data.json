@@ -17221,6 +17221,18 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-15T11:43-07:00",
+     "from": "claude",
+     "chars": 1028,
+     "asks": false,
+     "words": 173,
+     "read_s": 44,
+     "listen_s": 65,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ]
   },
@@ -17358,7 +17370,35 @@
    ],
    "source": "Matthew, 2026-11-15 11:5x, in chat: \"another major concern from Cyrus, from meeting on 11-13: We need a way to limit compiled hazel functions that diverge --- we need a step limit. esp if we continue to optimize by including certain jit-compiled hazel functions into the main thread\"",
    "text": "<b>A step limit for hazel-jit's code.</b> The interpreter counts its steps (<code>EvaluatorState.step_count</code>) and stops a run that goes on too long (<code>StepLimitExceeded</code>, <code>ProgramResult.Timeout</code>); compiled code has no limit, so a Hazel function that diverges loops forever. And compiled code already runs on the page's main thread: since ^ticket(722), at a livelit's event the slide's compiled run draws the livelits before the worker's run comes back (behind the Compiled views setting), so a diverging function there would freeze the page. <b>To do:</b> count steps in the compiled code (compiled code has no loops, so a counter at each function entry, and perhaps each match, catches any run that does not end), with a budget as the interpreter's; at the limit, stop as the interpreter does (a stuck term or its step-limit result, as ^ticket(756) decides), and leave the run to the worker. Deep recursion's JS stack overflow (a RangeError) the same. Measure what the counter costs. Required before more compiled functions run on the main thread.",
-   "progress": ""
+   "progress": "",
+   "log": [
+    {
+     "at": "2026-11-15T11:46-07:00",
+     "from": "matthew",
+     "chars": 247,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-15T11:47-07:00",
+     "from": "matthew",
+     "chars": 31,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-15T11:47-07:00",
+     "from": "claude",
+     "chars": 303,
+     "asks": false,
+     "words": 55,
+     "read_s": 14,
+     "listen_s": 21,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 764,
@@ -23884,8 +23924,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6530,
-  "words": 1428092,
+  "replies": 6531,
+  "words": 1428177,
   "read_hours_est": 100.0,
   "listen_hours_est": 148.8,
   "read_s_avg": 55,
@@ -24212,9 +24252,9 @@
     "chars": 87839
    },
    "2026-11-15": {
-    "replies": 53,
-    "words": 9676,
-    "chars": 54008
+    "replies": 54,
+    "words": 9761,
+    "chars": 54521
    }
   }
  },
