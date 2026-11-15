@@ -17373,7 +17373,7 @@
    ],
    "source": "Matthew, 2026-11-15 11:4x, in chat, summarizing his meeting with Cyrus on Friday 11-13 at 10:00 Mountain: \"Let me summarize the meeting with Cyrus on Friday. [...] create tickets for tomorrow morning, or late tonight, after other stuff is done. items (all about hazel-jit): * similar for divide by zero\"",
    "text": "<b>Divide by zero, as the interpreter has it.</b> Integer division by zero in the interpreter is <code>InvalidOperationError.DivideByZero</code> (<code>Operators.int_divide</code>, <code>sint_divide</code>), a stuck term saying \"Error: Divide by Zero\"; hazel-jit's <code>Math.trunc(a / b)</code> gives Infinity or NaN. Compile the check, and the same stuck term (Int, SInt and Nat; modulo too).",
-   "progress": "14:5x 11-15: the interpreter's stuck term, checked through hazeljs: Int / 0 and SInt / 0 are DynamicErrorHole(the division, DivideByZero). Design: every operation the interpreter stops at throws 'hazel-jit: invalid operation: <error>' in the compiled run (^ticket(757)'s runtime: idiv, ipow, int_of_string, int_mod; here SInt's sdiv, spow, sint_mod), and the run falls back to the interpreter, which makes the stuck term: the same term by construction, and on the main thread the page draws the worker's run (which holds it). (Making the stuck term in JS and evaluating around it, as the interpreter's indet terms do, would be a much larger piece; not needed for consistency.) The harness counts a compiled run stopped at X as agreeing with an interpreter result stuck at X; floats compare equal first (infinity). Branch trial/759-divide-by-zero (997295cd11, on trial/757-bigint), 5 tests; CI 43759464480 running."
+   "progress": "14:5x 11-15: the interpreter's stuck term, checked through hazeljs: Int / 0 and SInt / 0 are DynamicErrorHole(the division, DivideByZero). Design: every operation the interpreter stops at throws 'hazel-jit: invalid operation: <error>' in the compiled run (^ticket(757)'s runtime: idiv, ipow, int_of_string, int_mod; here SInt's sdiv, spow, sint_mod), and the run falls back to the interpreter, which makes the stuck term: the same term by construction, and on the main thread the page draws the worker's run (which holds it). (Making the stuck term in JS and evaluating around it, as the interpreter's indet terms do, would be a much larger piece; not needed for consistency.) The harness counts a compiled run stopped at X as agreeing with an interpreter result stuck at X; floats compare equal first (infinity). Branch trial/759-divide-by-zero (997295cd11, on trial/757-bigint), 5 tests; CI 43759464480 running. | 16:0x: CI on 997295cd11 failed 2 tests, both about the interpreter: int_of_string(\"seven\") is stuck as an unreduced builtin application (not a DynamicErrorHole): the harness accepts either now; int_mod(7, 0) makes the interpreter itself raise InvalidBuiltin(\"mod\") (sint_mod, nat_mod, float_mod too, on dev since at least 2025-07-02): ^ticket(764), that test out until it is fixed. 4b5222feb8 pushed, CI 43761005154. (The quick tests' sweep line there: 313 checks, 234 compiled, 204 agreed, 0 differ, 0 threw, 30 not a value.)"
   },
   {
    "id": 760,
@@ -17531,9 +17531,24 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 764,
+   "area": "hazel, bug: int_mod, sint_mod, nat_mod and float_mod by zero crash the interpreter (InvalidBuiltin \"mod\")",
+   "added": "2026-11-15T13:58-07:00",
+   "opened": "2026-11-15T13:58-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "bug"
+   ],
+   "source": "Found 2026-11-15 16:0x by ^ticket(759)'s agreement test int_mod(7, 0), in CI (run 43759464480): the interpreter raised [exception] (InvalidBuiltin \"mod\").",
+   "text": "<b>Dividing by zero in a modulo builtin crashes the interpreter.</b> BuiltinsBase.re's int_mod, sint_mod, nat_mod and float_mod each answer a zero divisor with <code>dynamic_error_hole(ap(Forward, builtin_fun(\"mod\"), d1), DivideByZero)</code>, but there is no builtin named <code>mod</code>, so evaluating it raises <code>InvalidBuiltin(\"mod\")</code> instead of showing Error: Divide by Zero. On dev too (four places, since at least b4afb24852, 2025-07-02, the builtins' move). Fix: each names itself (<code>builtin_fun(\"int_mod\")</code> and so on), with a test of each by zero.",
+   "progress": ""
   }
  ],
- "next_ticket": 764,
+ "next_ticket": 765,
  "current_ticket": 761,
  "current_note": "13:55: hazel-jit's limits, the cheapest first: eight string builtins in the runtime",
  "closed_tickets": [
@@ -24007,6 +24022,7 @@
  "queue": [
   761,
   762,
+  764,
   760,
   759,
   757,
