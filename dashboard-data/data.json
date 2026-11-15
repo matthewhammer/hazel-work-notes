@@ -17150,11 +17150,28 @@
    "source": "Matthew, 2026-11-15 07:1x, in chat: \"we recently used the hazel npm package to create a demo app for petri nets. [...] I'd like to create a new repo with a similar flavor, but this time, the focus is on 'ancient oracles'. I want to formalize two oracles, each as a standalone app like the petri net one. They can share a repo, but they should otherwise be separate apps, on separate pages, etc. They share a common front page, explaining the 'series' of oracles, starting with these two: I Ching, Tarot reading. [...] Ultimately, we want the 'core logic' of these two oracles to be expressed in Hazel, and displayed next to some UI showing the interactive features (the I Ching one can reveal the lines, one by one, in a reading --- the tarot can reveal cards one by one, etc).\" His answers to my four questions (07:2x): the repo is hazeljs-oracles; tarot art is the 1909 scans plus our own SVGs; I Ching casts by coins and by yarrow stalks, with a switch; the procedure is in Hazel, the page supplies random numbers. Then: \"create tickets --- this is related to more exercising of the hazeljs npm package, so they are hazel tickets, technically. But let's have another chip for 'hazeljs example', and another chip for 'ancient-oracle'\".",
    "text": "<b>The words of each reading, from public-domain books.</b> For the I Ching, James Legge's translation (Sacred Books of the East, vol. XVI, 1882): each hexagram's judgment and its six line texts, taken from a scan of the book (archive.org) rather than a site that sets its own terms. For the Tarot, A. E. Waite's <i>The Pictorial Key to the Tarot</i> (1910): each card's meaning, upright and reversed. Short names and keywords of our own until then.",
    "progress": ""
+  },
+  {
+   "id": 735,
+   "area": "hazel, hazeljs example, ancient-oracle: the Tarot's spreads, from one card to the year ahead",
+   "added": "2026-11-15T07:56-07:00",
+   "opened": "2026-11-15T07:56-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazeljs",
+    "hazeljs example",
+    "ancient-oracle"
+   ],
+   "source": "Matthew, 2026-11-15 07:5x, in chat: \"let's expand the styles of tarot to this full list:\" One-card draw (daily reflection or a focused question); Three-card spread (past-present-future, situation-challenge-advice, or mind-body-spirit); Celtic Cross (ten cards; exact positions vary); Relationship spread (each person, the dynamic between them, strengths, tensions, ways forward); Choice or crossroads spread (separate groups of cards for the opportunities, difficulties and likely direction of each option); Year-ahead spread (often twelve cards, one per month, sometimes with a card for the overall theme).",
+   "text": "<b>Every spread on his list, in Hazel.</b> One card; three cards, in three readings of their places (past, present, future; situation, challenge, advice; mind, body, spirit); the Celtic Cross; a relationship (each person, the bond, its strength, its tension, a way forward); a choice between two or three paths (a group of cards for each path's opportunity, difficulty and direction, built by Hazel for however many paths); the year ahead (a card for each month from this one, with or without a card for the year's theme). Each laid out on the table in its own shape, and kept in 🕰 History.",
+   "progress": ""
   }
  ],
- "next_ticket": 735,
- "current_ticket": 730,
- "current_note": "07:54: ^ticket(734) done (🕰 History on both pages, 4c61c87); the Tarot's Celtic Cross layout fixed. ^ticket(728)'s public repo waits on his go-ahead",
+ "next_ticket": 736,
+ "current_ticket": 735,
+ "current_note": "07:56: his list of Tarot spreads: writing them in Hazel (tarot/rules/Spreads.hz)",
  "closed_tickets": [
   {
    "id": 734,
@@ -23404,6 +23421,7 @@
   }
  ],
  "queue": [
+  735,
   730,
   728,
   721,
@@ -23435,7 +23453,7 @@
   708,
   700
  ],
- "current_since": "2026-11-15T07:54-07:00",
+ "current_since": "2026-11-15T07:56-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
