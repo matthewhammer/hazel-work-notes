@@ -1,5 +1,33 @@
 [
  {
+  "id": 734,
+  "area": "hazel, hazeljs example, ancient-oracle: a history panel for each oracle, its past readings kept in the browser and opened again",
+  "added": "2026-11-15T07:50-07:00",
+  "opened": "2026-11-15T07:50-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazel",
+   "hazeljs",
+   "hazeljs example",
+   "ancient-oracle"
+  ],
+  "source": "Matthew, 2026-11-15 07:5x, in chat: \"for both ancient oracles, I'd like to offer the user a history panel. It's a feature for both oracles, separately. The history panel: retrieves past oracle readings with timestamps and outcomes, with a chance to open it as if it was just read (but with a new heading --- reading from <Date, Time>); stores that data in browser local storage, for now.\"",
+  "text": "<b>A history panel on each oracle's page: past readings with their times and outcomes, each opened again as if just read.</b> Each oracle keeps its own history, in the browser's local storage for now. The panel lists the readings, newest first: when, and what came (the I Ching's hexagram and the one it changes to; the Tarot's spread and its cards). Opening one shows it as the reading just made, under its own heading, \"Reading from &lt;date, time&gt;\"; a new reading takes its place again.",
+  "progress": "07:54 11-15: DONE in 4c61c87, checked in the browser across a reload on both pages: the I Ching keeps a reading once six lines are cast, the Tarot as it is dealt; each in its own local-storage key; the 🕰 History panel lists them newest first with when and what came; opening one shows it under \"Reading from Sun, Nov 15, 2026, 07:52 AM\" with New reading beside it (the Tarot's with every card turned, its spread chosen again); ✕ forgets one, Forget them all asks first. At http://localhost:8141/i-ching/ and http://localhost:8141/tarot/ .",
+  "closed": "2026-11-15",
+  "closed_at": "2026-11-15T07:54-07:00",
+  "outcome": "A 🕰 History panel on each oracle's page, readings kept in local storage and opened again under \"Reading from <date, time>\" (hazeljs-oracles 4c61c87, local)",
+  "metrics": {
+   "open_minutes": 5,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 727,
   "area": "Dress Up: 0.0.496's checks broken: the scripts' cost table past the panel's edge; See also near the top",
   "text": "<b>Fix the two checks 0.0.496's speed run broke.</b> knoll375: ⚙️ Advanced 76 px wider than itself; the 🔬 cost table in 🧪 tests and timing is wider than a box (353 px in 321 at 1280x800), and the new first box put it in the right-hand column. seealso474: 🏠 this game must be exactly the second box; it is now third.",

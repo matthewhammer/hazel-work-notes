@@ -17029,7 +17029,7 @@
    "source": "Matthew, 2026-11-15 07:1x, in chat: \"we recently used the hazel npm package to create a demo app for petri nets. [...] I'd like to create a new repo with a similar flavor, but this time, the focus is on 'ancient oracles'. I want to formalize two oracles, each as a standalone app like the petri net one. They can share a repo, but they should otherwise be separate apps, on separate pages, etc. They share a common front page, explaining the 'series' of oracles, starting with these two: I Ching, Tarot reading. [...] Ultimately, we want the 'core logic' of these two oracles to be expressed in Hazel, and displayed next to some UI showing the interactive features (the I Ching one can reveal the lines, one by one, in a reading --- the tarot can reveal cards one by one, etc).\" His answers to my four questions (07:2x): the repo is hazeljs-oracles; tarot art is the 1909 scans plus our own SVGs; I Ching casts by coins and by yarrow stalks, with a switch; the procedure is in Hazel, the page supplies random numbers. Then: \"create tickets --- this is related to more exercising of the hazeljs npm package, so they are hazel tickets, technically. But let's have another chip for 'hazeljs example', and another chip for 'ancient-oracle'\".",
    "text": "<b>The repository <code>matthewhammer/hazeljs-oracles</code>, and the series' front page.</b> A third example app for hazeljs, after Messed Up Dress Up and hazeljs-petri-example, in the Petri example's shape: Hazel files for the core logic, a page per app in plain HTML and JS, hazeljs from npm through jsDelivr, and a Node example. Licences as the Petri example's: Apache 2.0 for the code, CC BY 4.0 for the words, and a NOTICE crediting the public-domain sources (Legge's I Ching, 1882; Pamela Colman Smith's cards, 1909). The front page (<code>index.html</code>) introduces the series of ancient oracles, starting with two, each a separate app on its own page: <code>i-ching/</code> and <code>tarot/</code>. Then the Pages site at matthewhammer.org/hazeljs-oracles/ (Hazel's editor frame takes messages only from matthewhammer.org and localhost), the constellation nav bar's OUTLINE entry, and the dashboard's repos list once it has a first commit.",
    "progress": "07:32 11-15: minted with ^ticket(729) to ^ticket(733), on his word. | 07:40 11-15: the repository in <code>~/hazeljs-oracles</code>, first commit 4295003, LOCAL ONLY (no GitHub remote yet): Apache 2.0 and CC BY 4.0 with a NOTICE, as the Petri example; README, VERSIONS (0.0.1), package.json; the series' front page and a Tarot page saying what is coming. Served at http://localhost:8141/ . Next: the public GitHub repository and its Pages site, which wait on his go-ahead.",
-   "waiting": "Create the public GitHub repository matthewhammer/hazeljs-oracles, push main (its three commits: the front page, the I Ching, the Tarot) and turn on its Pages site at matthewhammer.org/hazeljs-oracles/? Look first at http://localhost:8141/ , http://localhost:8141/i-ching/ and http://localhost:8141/tarot/"
+   "waiting": "Create the public GitHub repository matthewhammer/hazeljs-oracles, push main (4c61c87: the front page, the I Ching, the Tarot, 🕰 History) and turn on its Pages site at matthewhammer.org/hazeljs-oracles/? Look first at http://localhost:8141/ , http://localhost:8141/i-ching/ and http://localhost:8141/tarot/"
   },
   {
    "id": 729,
@@ -17063,7 +17063,7 @@
    ],
    "source": "Matthew, 2026-11-15 07:1x, in chat: \"we recently used the hazel npm package to create a demo app for petri nets. [...] I'd like to create a new repo with a similar flavor, but this time, the focus is on 'ancient oracles'. I want to formalize two oracles, each as a standalone app like the petri net one. They can share a repo, but they should otherwise be separate apps, on separate pages, etc. They share a common front page, explaining the 'series' of oracles, starting with these two: I Ching, Tarot reading. [...] Ultimately, we want the 'core logic' of these two oracles to be expressed in Hazel, and displayed next to some UI showing the interactive features (the I Ching one can reveal the lines, one by one, in a reading --- the tarot can reveal cards one by one, etc).\" His answers to my four questions (07:2x): the repo is hazeljs-oracles; tarot art is the 1909 scans plus our own SVGs; I Ching casts by coins and by yarrow stalks, with a switch; the procedure is in Hazel, the page supplies random numbers. Then: \"create tickets --- this is related to more exercising of the hazeljs npm package, so they are hazel tickets, technically. But let's have another chip for 'hazeljs example', and another chip for 'ancient-oracle'\".",
    "text": "<b>The Tarot app (<code>tarot/</code>): the deck shuffled and dealt in Hazel, the cards turned over one at a time.</b> In Hazel: the 78 cards (22 major arcana; four suits of fourteen); a shuffle from random numbers the page passes in; the spreads (one card, three cards for past, present and future, the Celtic Cross of ten), each position with its meaning; reversals, on or off. On the page: the spread dealt face down, each card turned with a click, its name, position and meaning shown; the Hazel modules beside it in Hazel's editor.",
-   "progress": "07:46 11-15: first version works at http://localhost:8141/tarot/ (44f2ad7): Hazel holds the 78 cards and deals one card, three (past, present, future) or the Celtic Cross from the page's random numbers, upright or reversed; the page lays them face down and turns them one at a time (checked: three cards, two turned, dealt by Hazel in 108 ms in the browser). Node (<code>npm run tarot</code>): 40 Celtic Crosses, no card twice, all 78 came. COST: 20 ms a card in Node (0.18 s a Celtic Cross), after a first draft at 50 ms a card; about 1,000 list steps a deal, so worth a look as a Hazel evaluator cost. Not yet checked in the browser: the Celtic Cross's layout. Simple faces drawn by the page until ^ticket(731) and ^ticket(732).",
+   "progress": "07:46 11-15: first version works at http://localhost:8141/tarot/ (44f2ad7): Hazel holds the 78 cards and deals one card, three (past, present, future) or the Celtic Cross from the page's random numbers, upright or reversed; the page lays them face down and turns them one at a time (checked: three cards, two turned, dealt by Hazel in 108 ms in the browser). Node (<code>npm run tarot</code>): 40 Celtic Crosses, no card twice, all 78 came. COST: 20 ms a card in Node (0.18 s a Celtic Cross), after a first draft at 50 ms a card; about 1,000 list steps a deal, so worth a look as a Hazel evaluator cost. Not yet checked in the browser: the Celtic Cross's layout. Simple faces drawn by the page until ^ticket(731) and ^ticket(732). | 07:54 11-15: the Celtic Cross checked in the browser: the crossing card covered its neighbours; fixed in 4c61c87 (wider columns, the card across the first), and a spread wider than its column scrolls.",
    "log": [
     {
      "at": "2026-11-15T07:30-07:00",
@@ -17150,29 +17150,22 @@
    "source": "Matthew, 2026-11-15 07:1x, in chat: \"we recently used the hazel npm package to create a demo app for petri nets. [...] I'd like to create a new repo with a similar flavor, but this time, the focus is on 'ancient oracles'. I want to formalize two oracles, each as a standalone app like the petri net one. They can share a repo, but they should otherwise be separate apps, on separate pages, etc. They share a common front page, explaining the 'series' of oracles, starting with these two: I Ching, Tarot reading. [...] Ultimately, we want the 'core logic' of these two oracles to be expressed in Hazel, and displayed next to some UI showing the interactive features (the I Ching one can reveal the lines, one by one, in a reading --- the tarot can reveal cards one by one, etc).\" His answers to my four questions (07:2x): the repo is hazeljs-oracles; tarot art is the 1909 scans plus our own SVGs; I Ching casts by coins and by yarrow stalks, with a switch; the procedure is in Hazel, the page supplies random numbers. Then: \"create tickets --- this is related to more exercising of the hazeljs npm package, so they are hazel tickets, technically. But let's have another chip for 'hazeljs example', and another chip for 'ancient-oracle'\".",
    "text": "<b>The words of each reading, from public-domain books.</b> For the I Ching, James Legge's translation (Sacred Books of the East, vol. XVI, 1882): each hexagram's judgment and its six line texts, taken from a scan of the book (archive.org) rather than a site that sets its own terms. For the Tarot, A. E. Waite's <i>The Pictorial Key to the Tarot</i> (1910): each card's meaning, upright and reversed. Short names and keywords of our own until then.",
    "progress": ""
-  },
+  }
+ ],
+ "next_ticket": 735,
+ "current_ticket": 730,
+ "current_note": "07:54: ^ticket(734) done (🕰 History on both pages, 4c61c87); the Tarot's Celtic Cross layout fixed. ^ticket(728)'s public repo waits on his go-ahead",
+ "closed_tickets": [
   {
    "id": 734,
    "area": "hazel, hazeljs example, ancient-oracle: a history panel for each oracle, its past readings kept in the browser and opened again",
    "added": "2026-11-15T07:50-07:00",
-   "opened": "2026-11-15T07:50-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazel",
-    "hazeljs",
-    "hazeljs example",
-    "ancient-oracle"
-   ],
-   "source": "Matthew, 2026-11-15 07:5x, in chat: \"for both ancient oracles, I'd like to offer the user a history panel. It's a feature for both oracles, separately. The history panel: retrieves past oracle readings with timestamps and outcomes, with a chance to open it as if it was just read (but with a new heading --- reading from <Date, Time>); stores that data in browser local storage, for now.\"",
-   "text": "<b>A history panel on each oracle's page: past readings with their times and outcomes, each opened again as if just read.</b> Each oracle keeps its own history, in the browser's local storage for now. The panel lists the readings, newest first: when, and what came (the I Ching's hexagram and the one it changes to; the Tarot's spread and its cards). Opening one shows it as the reading just made, under its own heading, \"Reading from &lt;date, time&gt;\"; a new reading takes its place again.",
-   "progress": ""
-  }
- ],
- "next_ticket": 735,
- "current_ticket": 734,
- "current_note": "07:50: his request 07:5x: a history panel for each oracle (localStorage); writing shared/history.js",
- "closed_tickets": [
+   "text": "A history panel on each oracle's page: past readings with their times and outcomes, each opened again as if just read.",
+   "source": "Matthew, 2026-11-15 07:5x, in chat: \"for both ancient oracles, I'd like to offer the user a history panel. It's a…",
+   "status": "done",
+   "closed": "2026-11-15",
+   "outcome": "A 🕰 History panel on each oracle's page, readings kept in local storage and opened again under \"Reading from \" (hazeljs-oracles 4c61c87, local)"
+  },
   {
    "id": 727,
    "area": "Dress Up: 0.0.496's checks broken: the scripts' cost table past the panel's edge; See also near the top",
@@ -23411,7 +23404,6 @@
   }
  ],
  "queue": [
-  734,
   730,
   728,
   721,
@@ -23443,7 +23435,7 @@
   708,
   700
  ],
- "current_since": "2026-11-15T07:50-07:00",
+ "current_since": "2026-11-15T07:54-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
