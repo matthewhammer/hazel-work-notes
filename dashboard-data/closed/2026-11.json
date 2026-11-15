@@ -1,5 +1,208 @@
 [
  {
+  "id": 730,
+  "area": "hazel, hazeljs example, ancient-oracle: the Tarot app, its shuffle, deal and spreads in Hazel, its cards turned one by one",
+  "added": "2026-11-15T07:32-07:00",
+  "opened": "2026-11-15T07:32-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazel",
+   "hazeljs",
+   "hazeljs example",
+   "ancient-oracle"
+  ],
+  "source": "Matthew, 2026-11-15 07:1x, in chat: \"we recently used the hazel npm package to create a demo app for petri nets. [...] I'd like to create a new repo with a similar flavor, but this time, the focus is on 'ancient oracles'. I want to formalize two oracles, each as a standalone app like the petri net one. They can share a repo, but they should otherwise be separate apps, on separate pages, etc. They share a common front page, explaining the 'series' of oracles, starting with these two: I Ching, Tarot reading. [...] Ultimately, we want the 'core logic' of these two oracles to be expressed in Hazel, and displayed next to some UI showing the interactive features (the I Ching one can reveal the lines, one by one, in a reading --- the tarot can reveal cards one by one, etc).\" His answers to my four questions (07:2x): the repo is hazeljs-oracles; tarot art is the 1909 scans plus our own SVGs; I Ching casts by coins and by yarrow stalks, with a switch; the procedure is in Hazel, the page supplies random numbers. Then: \"create tickets --- this is related to more exercising of the hazeljs npm package, so they are hazel tickets, technically. But let's have another chip for 'hazeljs example', and another chip for 'ancient-oracle'\".",
+  "text": "<b>The Tarot app (<code>tarot/</code>): the deck shuffled and dealt in Hazel, the cards turned over one at a time.</b> In Hazel: the 78 cards (22 major arcana; four suits of fourteen); a shuffle from random numbers the page passes in; the spreads (one card, three cards for past, present and future, the Celtic Cross of ten), each position with its meaning; reversals, on or off. On the page: the spread dealt face down, each card turned with a click, its name, position and meaning shown; the Hazel modules beside it in Hazel's editor.",
+  "progress": "07:46 11-15: first version works at http://localhost:8141/tarot/ (44f2ad7): Hazel holds the 78 cards and deals one card, three (past, present, future) or the Celtic Cross from the page's random numbers, upright or reversed; the page lays them face down and turns them one at a time (checked: three cards, two turned, dealt by Hazel in 108 ms in the browser). Node (<code>npm run tarot</code>): 40 Celtic Crosses, no card twice, all 78 came. COST: 20 ms a card in Node (0.18 s a Celtic Cross), after a first draft at 50 ms a card; about 1,000 list steps a deal, so worth a look as a Hazel evaluator cost. Not yet checked in the browser: the Celtic Cross's layout. Simple faces drawn by the page until ^ticket(731) and ^ticket(732). | 07:54 11-15: the Celtic Cross checked in the browser: the crossing card covered its neighbours; fixed in 4c61c87 (wider columns, the card across the first), and a spread wider than its column scrolls. | 11:2x 11-15, picked up again: everything the ticket lists is in place (Deck.hz, Spreads.hz, Reading.hz: 78 cards, the deal from the page's numbers, every spread's places, reversals). Measured in Node (npm run tarot, hazeljs 0.0.4): built in 594 ms; a deal 14 ms for one card, 43-84 ms for three, 172-195 ms a Celtic Cross, 243-296 ms the year ahead (12-13 cards): about 15-20 ms a card, evaluation per call. Next: find where a card's 15-20 ms goes (take walks at most 78 steps, name at most 22), then close or cut it. Parked 11:2x for Matthew's question about the 11-11 to 11-14 gallery pictures. | 11:4x: the cost found and cut, uncommitted in ~/hazeljs-oracles: functions with no declared result type were checked at run time on every return (take's step 0.36 ms, typed 0.07; the deck built by untyped cat/majors_from/suit_from was slow to walk, 0.3 ms a step, typed 0.05). Every function in Deck.hz, Spreads.hz and Reading.hz now declares its whole type (let take : ([Card], Int) -> (Card, [Card]) = fun (cs, k) -> ...): a Celtic Cross 173 -> 46 ms in Node, the year ahead 296 -> 86 ms; npm run tarot all ok. Next: check the page, release 0.0.7. Parked for Matthew's meeting summary (hazel-jit tickets).",
+  "log": [
+   {
+    "at": "2026-11-15T07:30-07:00",
+    "from": "matthew",
+    "chars": 1048,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T07:31-07:00",
+    "from": "matthew",
+    "chars": 213,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T07:31-07:00",
+    "from": "matthew",
+    "chars": 63,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T07:31-07:00",
+    "from": "claude",
+    "chars": 162,
+    "asks": true,
+    "words": 33,
+    "read_s": 8,
+    "listen_s": 12,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T07:45-07:00",
+    "from": "claude",
+    "chars": 1254,
+    "asks": false,
+    "words": 232,
+    "read_s": 58,
+    "listen_s": 87,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T07:54-07:00",
+    "from": "claude",
+    "chars": 621,
+    "asks": true,
+    "words": 112,
+    "read_s": 28,
+    "listen_s": 42,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T07:59-07:00",
+    "from": "claude",
+    "chars": 534,
+    "asks": false,
+    "words": 95,
+    "read_s": 24,
+    "listen_s": 36,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T08:28-07:00",
+    "from": "claude",
+    "chars": 1151,
+    "asks": false,
+    "words": 210,
+    "read_s": 53,
+    "listen_s": 79,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:03-07:00",
+    "from": "matthew",
+    "chars": 43,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:04-07:00",
+    "from": "matthew",
+    "chars": 62,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:12-07:00",
+    "from": "matthew",
+    "chars": 94,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:12-07:00",
+    "from": "claude",
+    "chars": 2062,
+    "asks": false,
+    "words": 360,
+    "read_s": 91,
+    "listen_s": 135,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:20-07:00",
+    "from": "claude",
+    "chars": 3025,
+    "asks": true,
+    "words": 535,
+    "read_s": 135,
+    "listen_s": 201,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:21-07:00",
+    "from": "matthew",
+    "chars": 23,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:22-07:00",
+    "from": "matthew",
+    "chars": 148,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:22-07:00",
+    "from": "claude",
+    "chars": 130,
+    "asks": false,
+    "words": 24,
+    "read_s": 6,
+    "listen_s": 9,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:22-07:00",
+    "from": "claude",
+    "chars": 1197,
+    "asks": true,
+    "words": 226,
+    "read_s": 57,
+    "listen_s": 85,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-15",
+  "closed_at": "2026-11-15T11:39-07:00",
+  "outcome": "Done: the Tarot's deck, deal, spreads and reversals in Hazel, turned one card at a time (0.0.1-0.0.6); then 0.0.7 (4e4ae72): every function's whole type declared, as Hazel checks values against an unknown result type at run time: a Celtic Cross 173 -> 46 ms in Node (70 in the browser), the year ahead 296 -> 86 ms. Live at https://matthewhammer.org/hazeljs-oracles/tarot/",
+  "metrics": {
+   "open_minutes": 248,
+   "matthew_messages": 8,
+   "questions_to_matthew": 4,
+   "chars_exchanged": 11830,
+   "tokens_est": 2957,
+   "sync_minutes_est": 34.0,
+   "replies": 9,
+   "claude_words": 1827,
+   "read_minutes_est": 7.7,
+   "listen_minutes_est": 11.4,
+   "read_s_avg": 51,
+   "listen_s_avg": 76,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 743,
   "area": "Dress Up, 🎒 food: bread, a banana, an apple, a juice box, a milk box and a sandwich, to collect into the backpack",
   "added": "2026-11-15T08:57-07:00",
