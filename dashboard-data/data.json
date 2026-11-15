@@ -17046,7 +17046,28 @@
    ],
    "source": "Matthew, 2026-11-15 07:1x, in chat: \"we recently used the hazel npm package to create a demo app for petri nets. [...] I'd like to create a new repo with a similar flavor, but this time, the focus is on 'ancient oracles'. I want to formalize two oracles, each as a standalone app like the petri net one. They can share a repo, but they should otherwise be separate apps, on separate pages, etc. They share a common front page, explaining the 'series' of oracles, starting with these two: I Ching, Tarot reading. [...] Ultimately, we want the 'core logic' of these two oracles to be expressed in Hazel, and displayed next to some UI showing the interactive features (the I Ching one can reveal the lines, one by one, in a reading --- the tarot can reveal cards one by one, etc).\" His answers to my four questions (07:2x): the repo is hazeljs-oracles; tarot art is the 1909 scans plus our own SVGs; I Ching casts by coins and by yarrow stalks, with a switch; the procedure is in Hazel, the page supplies random numbers. Then: \"create tickets --- this is related to more exercising of the hazeljs npm package, so they are hazel tickets, technically. But let's have another chip for 'hazeljs example', and another chip for 'ancient-oracle'\".",
    "text": "<b>The I Ching app (<code>i-ching/</code>): a reading cast in Hazel, its six lines revealed one at a time, bottom to top.</b> In Hazel: a line's value (6 old yin, 7 young yang, 8 young yin, 9 old yang); casting a line by three coins (odds 1/8, 3/8, 3/8, 1/8) or by yarrow stalks (1/16, 5/16, 7/16, 3/16; the 49 stalks divided three times), with a switch, the page passing in the random numbers; the hexagram from six lines (its King Wen number, from the two trigrams); and the changing lines, which give the relating hexagram. On the page: cast a line at a time, each drawn as it comes, the coins or stalks shown, then the hexagram, its name, the changing lines and the second hexagram. The Hazel modules beside it in Hazel's editor, as the Petri example has them, and the page's own JS answering while they have an error or a hole.",
-   "progress": "07:40 11-15: first version works at http://localhost:8141/i-ching/ (4295003): Hazel casts each line by coins or yarrow (a switch), lines drawn one at a time from the bottom with how each came, the lower trigram after three, then the hexagram, its changing lines and the relating hexagram; five listings in Hazel's editor beside it, the page's JS casting while the program does not build. Checked in Node (<code>npm run i-ching</code>): all 64 King Wen numbers, 14 hexagrams by their lines, a reading by hand (57 with lines 1, 5, 6 changing becomes 11); coins 0.35 ms a cast, yarrow 1.1 ms, build 0.56 s. Found: the yarrow procedure with a split anywhere along the heap gives 6 about 1 time in 20, not the books' 1 in 16 (README, Things to know). Still to do: the texts (^ticket(733)), the game's look, a question box. | 07:48 11-15: his idea, done locally: after the sixth line, a link to Cafe au Soul's reading of the same lines (https://www.cafeausoul.com/reading/?lns=887877), labelled as another site, copyrighted, with ads; new tab, no referrer. Checked: their lns is the six values bottom first, as ours (687879 is 53 to 63 on both; 688778 is 45 to 17). At http://localhost:8141/i-ching/ (commit after 44f2ad7)."
+   "progress": "07:40 11-15: first version works at http://localhost:8141/i-ching/ (4295003): Hazel casts each line by coins or yarrow (a switch), lines drawn one at a time from the bottom with how each came, the lower trigram after three, then the hexagram, its changing lines and the relating hexagram; five listings in Hazel's editor beside it, the page's JS casting while the program does not build. Checked in Node (<code>npm run i-ching</code>): all 64 King Wen numbers, 14 hexagrams by their lines, a reading by hand (57 with lines 1, 5, 6 changing becomes 11); coins 0.35 ms a cast, yarrow 1.1 ms, build 0.56 s. Found: the yarrow procedure with a split anywhere along the heap gives 6 about 1 time in 20, not the books' 1 in 16 (README, Things to know). Still to do: the texts (^ticket(733)), the game's look, a question box. | 07:48 11-15: his idea, done locally: after the sixth line, a link to Cafe au Soul's reading of the same lines (https://www.cafeausoul.com/reading/?lns=887877), labelled as another site, copyrighted, with ads; new tab, no referrer. Checked: their lns is the six values bottom first, as ours (687879 is 53 to 63 on both; 688778 is 45 to 17). At http://localhost:8141/i-ching/ (commit after 44f2ad7).",
+   "log": [
+    {
+     "at": "2026-11-15T07:47-07:00",
+     "from": "matthew",
+     "chars": 410,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-15T07:50-07:00",
+     "from": "claude",
+     "chars": 3405,
+     "asks": true,
+     "words": 563,
+     "read_s": 142,
+     "listen_s": 211,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    }
+   ]
   },
   {
    "id": 730,
@@ -17094,6 +17115,18 @@
      "words": 33,
      "read_s": 8,
      "listen_s": 12,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-15T07:45-07:00",
+     "from": "claude",
+     "chars": 1254,
+     "asks": false,
+     "words": 232,
+     "read_s": 58,
+     "listen_s": 87,
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
@@ -23476,10 +23509,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6480,
-  "words": 1418732,
+  "replies": 6483,
+  "words": 1419913,
   "read_hours_est": 99.4,
-  "listen_hours_est": 147.8,
+  "listen_hours_est": 147.9,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -23804,9 +23837,9 @@
     "chars": 87839
    },
    "2026-11-15": {
-    "replies": 3,
-    "words": 316,
-    "chars": 1704
+    "replies": 6,
+    "words": 1497,
+    "chars": 8606
    }
   }
  },
