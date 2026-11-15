@@ -17029,7 +17029,7 @@
    "source": "Matthew, 2026-11-15 07:1x, in chat: \"we recently used the hazel npm package to create a demo app for petri nets. [...] I'd like to create a new repo with a similar flavor, but this time, the focus is on 'ancient oracles'. I want to formalize two oracles, each as a standalone app like the petri net one. They can share a repo, but they should otherwise be separate apps, on separate pages, etc. They share a common front page, explaining the 'series' of oracles, starting with these two: I Ching, Tarot reading. [...] Ultimately, we want the 'core logic' of these two oracles to be expressed in Hazel, and displayed next to some UI showing the interactive features (the I Ching one can reveal the lines, one by one, in a reading --- the tarot can reveal cards one by one, etc).\" His answers to my four questions (07:2x): the repo is hazeljs-oracles; tarot art is the 1909 scans plus our own SVGs; I Ching casts by coins and by yarrow stalks, with a switch; the procedure is in Hazel, the page supplies random numbers. Then: \"create tickets --- this is related to more exercising of the hazeljs npm package, so they are hazel tickets, technically. But let's have another chip for 'hazeljs example', and another chip for 'ancient-oracle'\".",
    "text": "<b>The repository <code>matthewhammer/hazeljs-oracles</code>, and the series' front page.</b> A third example app for hazeljs, after Messed Up Dress Up and hazeljs-petri-example, in the Petri example's shape: Hazel files for the core logic, a page per app in plain HTML and JS, hazeljs from npm through jsDelivr, and a Node example. Licences as the Petri example's: Apache 2.0 for the code, CC BY 4.0 for the words, and a NOTICE crediting the public-domain sources (Legge's I Ching, 1882; Pamela Colman Smith's cards, 1909). The front page (<code>index.html</code>) introduces the series of ancient oracles, starting with two, each a separate app on its own page: <code>i-ching/</code> and <code>tarot/</code>. Then the Pages site at matthewhammer.org/hazeljs-oracles/ (Hazel's editor frame takes messages only from matthewhammer.org and localhost), the constellation nav bar's OUTLINE entry, and the dashboard's repos list once it has a first commit.",
    "progress": "07:32 11-15: minted with ^ticket(729) to ^ticket(733), on his word. | 07:40 11-15: the repository in <code>~/hazeljs-oracles</code>, first commit 4295003, LOCAL ONLY (no GitHub remote yet): Apache 2.0 and CC BY 4.0 with a NOTICE, as the Petri example; README, VERSIONS (0.0.1), package.json; the series' front page and a Tarot page saying what is coming. Served at http://localhost:8141/ . Next: the public GitHub repository and its Pages site, which wait on his go-ahead.",
-   "waiting": "Create the public GitHub repository matthewhammer/hazeljs-oracles, push main (4c61c87: the front page, the I Ching, the Tarot, 🕰 History) and turn on its Pages site at matthewhammer.org/hazeljs-oracles/? Look first at http://localhost:8141/ , http://localhost:8141/i-ching/ and http://localhost:8141/tarot/"
+   "waiting": "Create the public GitHub repository matthewhammer/hazeljs-oracles, push main (accedc6: the front page, the I Ching, the Tarot with every spread, 🕰 History) and turn on its Pages site at matthewhammer.org/hazeljs-oracles/? Look first at http://localhost:8141/ , http://localhost:8141/i-ching/ and http://localhost:8141/tarot/"
   },
   {
    "id": 729,
@@ -17152,23 +17152,6 @@
    "progress": ""
   },
   {
-   "id": 735,
-   "area": "hazel, hazeljs example, ancient-oracle: the Tarot's spreads, from one card to the year ahead",
-   "added": "2026-11-15T07:56-07:00",
-   "opened": "2026-11-15T07:56-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazel",
-    "hazeljs",
-    "hazeljs example",
-    "ancient-oracle"
-   ],
-   "source": "Matthew, 2026-11-15 07:5x, in chat: \"let's expand the styles of tarot to this full list:\" One-card draw (daily reflection or a focused question); Three-card spread (past-present-future, situation-challenge-advice, or mind-body-spirit); Celtic Cross (ten cards; exact positions vary); Relationship spread (each person, the dynamic between them, strengths, tensions, ways forward); Choice or crossroads spread (separate groups of cards for the opportunities, difficulties and likely direction of each option); Year-ahead spread (often twelve cards, one per month, sometimes with a card for the overall theme).",
-   "text": "<b>Every spread on his list, in Hazel.</b> One card; three cards, in three readings of their places (past, present, future; situation, challenge, advice; mind, body, spirit); the Celtic Cross; a relationship (each person, the bond, its strength, its tension, a way forward); a choice between two or three paths (a group of cards for each path's opportunity, difficulty and direction, built by Hazel for however many paths); the year ahead (a card for each month from this one, with or without a card for the year's theme). Each laid out on the table in its own shape, and kept in 🕰 History.",
-   "progress": ""
-  },
-  {
    "id": 736,
    "area": "hazel, hazeljs, bug: a constructor whose argument is a plain tuple, passed in from JS, gets stuck",
    "added": "2026-11-15T07:57-07:00",
@@ -17183,13 +17166,23 @@
    ],
    "source": "Found 2026-11-15 08:0x while writing the Tarot's year-ahead spread for ^ticket(735) (hazeljs-oracles).",
    "text": "<b>From JS, <code>{tag: \"Two\", value: [3, true]}</code> never matches <code>Two(m, t)</code>.</b> In hazeljs 0.0.4, with <code>type S = + Two(Int, Bool) + Rec((m = Int, t = Bool)) + One(Int)</code> and a function that cases on S: <code>One(3)</code> from JS works, a labeled tuple <code>{tag: \"Rec\", value: {m: 3, t: true}}</code> works, and a pair as a function's own arguments works; but <code>{tag: \"Two\", value: [3, true]}</code> comes back as <code>{hazel: \"...(Match ...\"}</code>, the case stuck, the constructor's type read as an arrow from Unknown. The same command from Hazel to JS (the Petri example's <code>Take(Int, Int, Cmd)</code>) converts fine, so it is only the way in. A cousin of ^ticket(703) (key order). The oracles work around it: <code>YearAhead((start = Int, theme = Bool))</code>, a labeled tuple. Repro in the session scratchpad, ctor-probe.mjs; to go into hazeljs's tests.",
-   "progress": ""
+   "progress": "07:59 11-15: minted; worked around in accedc6."
   }
  ],
  "next_ticket": 737,
- "current_ticket": 735,
- "current_note": "07:56: his list of Tarot spreads: writing them in Hazel (tarot/rules/Spreads.hz)",
+ "current_ticket": 730,
+ "current_note": "07:59: ^ticket(735) done (every spread on his list); ^ticket(736) minted (a hazeljs bug found on the way). ^ticket(728)'s public repo waits on his go-ahead",
  "closed_tickets": [
+  {
+   "id": 735,
+   "area": "hazel, hazeljs example, ancient-oracle: the Tarot's spreads, from one card to the year ahead",
+   "added": "2026-11-15T07:56-07:00",
+   "text": "Every spread on his list, in Hazel.",
+   "source": "Matthew, 2026-11-15 07:5x, in chat: \"let's expand the styles of tarot to this full list:\" One-card draw (daily…",
+   "status": "done",
+   "closed": "2026-11-15",
+   "outcome": "Every spread on his list in the Tarot: one card, three (three ways), the Celtic Cross, a relationship, a choice of two or three paths, the year ahead (hazeljs-oracles, local)"
+  },
   {
    "id": 734,
    "area": "hazel, hazeljs example, ancient-oracle: a history panel for each oracle, its past readings kept in the browser and opened again",
@@ -23438,7 +23431,6 @@
   }
  ],
  "queue": [
-  735,
   730,
   736,
   728,
@@ -23471,7 +23463,7 @@
   708,
   700
  ],
- "current_since": "2026-11-15T07:56-07:00",
+ "current_since": "2026-11-15T07:59-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
