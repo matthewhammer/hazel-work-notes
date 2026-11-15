@@ -17150,11 +17150,28 @@
    "source": "Matthew, 2026-11-15 07:1x, in chat: \"we recently used the hazel npm package to create a demo app for petri nets. [...] I'd like to create a new repo with a similar flavor, but this time, the focus is on 'ancient oracles'. I want to formalize two oracles, each as a standalone app like the petri net one. They can share a repo, but they should otherwise be separate apps, on separate pages, etc. They share a common front page, explaining the 'series' of oracles, starting with these two: I Ching, Tarot reading. [...] Ultimately, we want the 'core logic' of these two oracles to be expressed in Hazel, and displayed next to some UI showing the interactive features (the I Ching one can reveal the lines, one by one, in a reading --- the tarot can reveal cards one by one, etc).\" His answers to my four questions (07:2x): the repo is hazeljs-oracles; tarot art is the 1909 scans plus our own SVGs; I Ching casts by coins and by yarrow stalks, with a switch; the procedure is in Hazel, the page supplies random numbers. Then: \"create tickets --- this is related to more exercising of the hazeljs npm package, so they are hazel tickets, technically. But let's have another chip for 'hazeljs example', and another chip for 'ancient-oracle'\".",
    "text": "<b>The words of each reading, from public-domain books.</b> For the I Ching, James Legge's translation (Sacred Books of the East, vol. XVI, 1882): each hexagram's judgment and its six line texts, taken from a scan of the book (archive.org) rather than a site that sets its own terms. For the Tarot, A. E. Waite's <i>The Pictorial Key to the Tarot</i> (1910): each card's meaning, upright and reversed. Short names and keywords of our own until then.",
    "progress": ""
+  },
+  {
+   "id": 734,
+   "area": "hazel, hazeljs example, ancient-oracle: a history panel for each oracle, its past readings kept in the browser and opened again",
+   "added": "2026-11-15T07:50-07:00",
+   "opened": "2026-11-15T07:50-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazeljs",
+    "hazeljs example",
+    "ancient-oracle"
+   ],
+   "source": "Matthew, 2026-11-15 07:5x, in chat: \"for both ancient oracles, I'd like to offer the user a history panel. It's a feature for both oracles, separately. The history panel: retrieves past oracle readings with timestamps and outcomes, with a chance to open it as if it was just read (but with a new heading --- reading from <Date, Time>); stores that data in browser local storage, for now.\"",
+   "text": "<b>A history panel on each oracle's page: past readings with their times and outcomes, each opened again as if just read.</b> Each oracle keeps its own history, in the browser's local storage for now. The panel lists the readings, newest first: when, and what came (the I Ching's hexagram and the one it changes to; the Tarot's spread and its cards). Opening one shows it as the reading just made, under its own heading, \"Reading from &lt;date, time&gt;\"; a new reading takes its place again.",
+   "progress": ""
   }
  ],
- "next_ticket": 734,
- "current_ticket": 730,
- "current_note": "07:48: the Tarot works at http://localhost:8141/tarot/ ; the I Ching links out to Cafe au Soul after six lines (his idea). Next: the Celtic Cross's layout checked in the browser. ^ticket(728)'s public repo waits on his go-ahead",
+ "next_ticket": 735,
+ "current_ticket": 734,
+ "current_note": "07:50: his request 07:5x: a history panel for each oracle (localStorage); writing shared/history.js",
  "closed_tickets": [
   {
    "id": 727,
@@ -23394,6 +23411,7 @@
   }
  ],
  "queue": [
+  734,
   730,
   728,
   721,
@@ -23425,7 +23443,7 @@
   708,
   700
  ],
- "current_since": "2026-11-15T07:40-07:00",
+ "current_since": "2026-11-15T07:50-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
