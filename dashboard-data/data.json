@@ -17271,11 +17271,28 @@
    "source": "Found 2026-11-15 08:0x while writing the Tarot's year-ahead spread for ^ticket(735) (hazeljs-oracles).",
    "text": "<b>From JS, <code>{tag: \"Two\", value: [3, true]}</code> never matches <code>Two(m, t)</code>.</b> In hazeljs 0.0.4, with <code>type S = + Two(Int, Bool) + Rec((m = Int, t = Bool)) + One(Int)</code> and a function that cases on S: <code>One(3)</code> from JS works, a labeled tuple <code>{tag: \"Rec\", value: {m: 3, t: true}}</code> works, and a pair as a function's own arguments works; but <code>{tag: \"Two\", value: [3, true]}</code> comes back as <code>{hazel: \"...(Match ...\"}</code>, the case stuck, the constructor's type read as an arrow from Unknown. The same command from Hazel to JS (the Petri example's <code>Take(Int, Int, Cmd)</code>) converts fine, so it is only the way in. A cousin of ^ticket(703) (key order). The oracles work around it: <code>YearAhead((start = Int, theme = Bool))</code>, a labeled tuple. Repro in the session scratchpad, ctor-probe.mjs; to go into hazeljs's tests.",
    "progress": "07:59 11-15: minted; worked around in accedc6."
+  },
+  {
+   "id": 738,
+   "area": "hazel, hazeljs example, ancient-oracle: each Tarot card links to two modern authors' meanings, Biddy Tarot (Brigit Esselmont) and Labyrinthos (Tina Gong)",
+   "added": "2026-11-15T08:24-07:00",
+   "opened": "2026-11-15T08:24-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazeljs",
+    "hazeljs example",
+    "ancient-oracle"
+   ],
+   "source": "Matthew, 2026-11-15 08:2x, in chat, pasting another agent's research: \"We need links to free, externally hosted interpretations of the cards we selected, preferably using one or two modern authors' published meanings. Ads and promotional content on the destination are acceptable.\" Its recommendation: \"begin with Biddy Tarot and Labyrinthos links for each card. Add WitchcraftDaily if two-card combinations are useful, after testing its parameter handling. Keep source URLs in provider-specific mappings so changes are easy to maintain. Scope this integration to opening the publishers' pages; copying or embedding their interpretation text would require a separate permissions check.\"",
+   "text": "<b>Beside each turned card, a link to its meaning by Brigit Esselmont (Biddy Tarot) and by Tina Gong (Labyrinthos)</b>, each page covering upright and reversed, said plainly to be another site's, with ads. The URLs in one map per site, taken from each site's own index of its 78 card pages, every one checked. WitchcraftDaily's two-card combinations: only after testing its parameters.",
+   "progress": ""
   }
  ],
- "next_ticket": 738,
- "current_ticket": 728,
- "current_note": "08:23: his word 08:2x: the oracles linked from https://matthewhammer.org/hazel/ and the nav bar (819eea7, pushed); checking the live pages once Pages builds",
+ "next_ticket": 739,
+ "current_ticket": 738,
+ "current_note": "08:24: his paste: card-meaning links (Biddy Tarot, Labyrinthos); collecting each site's 78 card URLs from its own index",
  "closed_tickets": [
   {
    "id": 737,
@@ -23545,6 +23562,7 @@
   }
  ],
  "queue": [
+  738,
   728,
   730,
   736,
@@ -23577,7 +23595,7 @@
   708,
   700
  ],
- "current_since": "2026-11-15T08:23-07:00",
+ "current_since": "2026-11-15T08:24-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
