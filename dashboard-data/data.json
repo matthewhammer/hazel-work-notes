@@ -17209,6 +17209,18 @@
      "chars": 1080,
      "asks": false,
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-15T11:41-07:00",
+     "from": "claude",
+     "chars": 3281,
+     "asks": true,
+     "words": 580,
+     "read_s": 146,
+     "listen_s": 218,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ]
   },
@@ -17321,7 +17333,16 @@
    ],
    "source": "Matthew, 2026-11-15 11:4x, in chat, \"Yes, mint it\", to my question after ^ticket(730): \"Mint a ticket for that run-time type-check cost in Hazel?\"",
    "text": "<b>Hazel code that declares what a function takes but not what it returns runs several times slower.</b> Measured in the hazeljs-oracles Tarot (^ticket(730), Node, hazeljs 0.0.4): a plain recursion step costs about 0.05 ms; a step of <code>take</code> (returning a pair), declared only as <code>fun (cs, k) : ([Card], Int) -&gt;</code>, 0.36 ms, and with its whole type, <code>let take : ([Card], Int) -&gt; (Card, [Card]) = fun (cs, k) -&gt;</code>, 0.07 ms. A list built by such functions (the deck) was slow to walk afterwards too, 0.3 ms a step against 0.05: the cost travels with the values. Declaring every type made the deal 3.7 times faster. Most Hazel code (slides, examples) declares argument types only. <b>To do:</b> confirm the mechanism in Hazel's own code (where the elaborator puts casts for an unknown result type, and what the evaluator does with them on each return and in a list), measure on a current dev build, and choose a remedy: infer a recursive function's result type in the statics, insert no cast where the body's type is known, or make the casts cheap (collapse them, check once). It bears on hazel-jit matching the interpreter, too (^ticket(756)).",
-   "progress": ""
+   "progress": "",
+   "log": [
+    {
+     "at": "2026-11-15T11:42-07:00",
+     "from": "matthew",
+     "chars": 12,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   },
   {
    "id": 763,
@@ -23864,9 +23885,9 @@
   },
   "since": "2026-08-27",
   "replies": 6530,
-  "words": 1427828,
+  "words": 1428092,
   "read_hours_est": 100.0,
-  "listen_hours_est": 148.7,
+  "listen_hours_est": 148.8,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -24192,8 +24213,8 @@
    },
    "2026-11-15": {
     "replies": 53,
-    "words": 9412,
-    "chars": 52473
+    "words": 9676,
+    "chars": 54008
    }
   }
  },
