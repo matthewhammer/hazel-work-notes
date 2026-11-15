@@ -17245,11 +17245,91 @@
    "source": "Found 2026-11-15 08:0x while writing the Tarot's year-ahead spread for ^ticket(735) (hazeljs-oracles).",
    "text": "<b>From JS, <code>{tag: \"Two\", value: [3, true]}</code> never matches <code>Two(m, t)</code>.</b> In hazeljs 0.0.4, with <code>type S = + Two(Int, Bool) + Rec((m = Int, t = Bool)) + One(Int)</code> and a function that cases on S: <code>One(3)</code> from JS works, a labeled tuple <code>{tag: \"Rec\", value: {m: 3, t: true}}</code> works, and a pair as a function's own arguments works; but <code>{tag: \"Two\", value: [3, true]}</code> comes back as <code>{hazel: \"...(Match ...\"}</code>, the case stuck, the constructor's type read as an arrow from Unknown. The same command from Hazel to JS (the Petri example's <code>Take(Int, Int, Cmd)</code>) converts fine, so it is only the way in. A cousin of ^ticket(703) (key order). The oracles work around it: <code>YearAhead((start = Int, theme = Bool))</code>, a labeled tuple. Repro in the session scratchpad, ctor-probe.mjs; to go into hazeljs's tests.",
    "progress": "07:59 11-15: minted; worked around in accedc6."
+  },
+  {
+   "id": 740,
+   "area": "Dress Up, house: the 🍽️ dining room and the 🍳 kitchen, through doors from the 🛋️ living room",
+   "added": "2026-11-15T08:57-07:00",
+   "opened": "2026-11-15T08:57-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "feature",
+    "for M"
+   ],
+   "source": "Matthew, 2026-11-15 08:4x, in chat: \"dress-up time. From M: more rooms in the original house. we currently enter into the living room. M wants: bed room, dining room, kitchen, stairway to basement; stairway to upstairs (2nd floor above ground floor); laundry room, furnace room. M also wants: food as items to collect and put into backpack: bread, banana, apple, juice box, milk box, sandwhich. M also wants: a close-up view of a plate of food, where we click on the food (or tap, etc) to eat it, bite by bite. It's a full screen view within the game world where the 'background' is a place setting, viewed from above --- plate, with knife, fork and spoon and napkin, and drinks.\"",
+   "text": "<b>M's rooms, first two: the dining room and the kitchen</b>, on the house's ground floor beside the living room, each through a doorway, as the grass hut's rooms connect. The dining room has a table set for a meal (where ^ticket(744) will open the plate view); the kitchen has a counter, a stove, a fridge and a sink, and food to pick up (^ticket(743)).",
+   "progress": ""
+  },
+  {
+   "id": 741,
+   "area": "Dress Up, house: the stairway up to the 🛏️ bedroom, and the stairway down to the basement",
+   "added": "2026-11-15T08:57-07:00",
+   "opened": "2026-11-15T08:57-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "feature",
+    "for M"
+   ],
+   "source": "Matthew, 2026-11-15 08:4x, in chat: \"dress-up time. From M: more rooms in the original house. we currently enter into the living room. M wants: bed room, dining room, kitchen, stairway to basement; stairway to upstairs (2nd floor above ground floor); laundry room, furnace room. M also wants: food as items to collect and put into backpack: bread, banana, apple, juice box, milk box, sandwhich. M also wants: a close-up view of a plate of food, where we click on the food (or tap, etc) to eat it, bite by bite. It's a full screen view within the game world where the 'background' is a place setting, viewed from above --- plate, with knife, fork and spoon and napkin, and drinks.\"",
+   "text": "<b>M's stairways: one up to the second floor and one down to the basement.</b> A stairway to climb from the living room, to an upstairs landing and the bedroom (a bed to lie on, as the hut's); a stairway down from the kitchen to the basement (^ticket(742)).",
+   "progress": ""
+  },
+  {
+   "id": 742,
+   "area": "Dress Up, house basement: the 🧺 laundry room and the 🔥 furnace room",
+   "added": "2026-11-15T08:57-07:00",
+   "opened": "2026-11-15T08:57-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "feature",
+    "for M"
+   ],
+   "source": "Matthew, 2026-11-15 08:4x, in chat: \"dress-up time. From M: more rooms in the original house. we currently enter into the living room. M wants: bed room, dining room, kitchen, stairway to basement; stairway to upstairs (2nd floor above ground floor); laundry room, furnace room. M also wants: food as items to collect and put into backpack: bread, banana, apple, juice box, milk box, sandwhich. M also wants: a close-up view of a plate of food, where we click on the food (or tap, etc) to eat it, bite by bite. It's a full screen view within the game world where the 'background' is a place setting, viewed from above --- plate, with knife, fork and spoon and napkin, and drinks.\"",
+   "text": "<b>M's basement rooms: the laundry room (a washer, a dryer, a basket of clothes) and the furnace room (the furnace, its pipes and its glow)</b>, reached down the basement stairway.",
+   "progress": ""
+  },
+  {
+   "id": 743,
+   "area": "Dress Up, 🎒 food: bread, a banana, an apple, a juice box, a milk box and a sandwich, to collect into the backpack",
+   "added": "2026-11-15T08:57-07:00",
+   "opened": "2026-11-15T08:57-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "feature",
+    "for M"
+   ],
+   "source": "Matthew, 2026-11-15 08:4x, in chat: \"dress-up time. From M: more rooms in the original house. we currently enter into the living room. M wants: bed room, dining room, kitchen, stairway to basement; stairway to upstairs (2nd floor above ground floor); laundry room, furnace room. M also wants: food as items to collect and put into backpack: bread, banana, apple, juice box, milk box, sandwhich. M also wants: a close-up view of a plate of food, where we click on the food (or tap, etc) to eat it, bite by bite. It's a full screen view within the game world where the 'background' is a place setting, viewed from above --- plate, with knife, fork and spoon and napkin, and drinks.\"",
+   "text": "<b>M's food, as 🎒 items:</b> 🍞 bread, 🍌 a banana, 🍎 an apple, 🧃 a juice box, 🥛 a milk box and 🥪 a sandwich, found in the kitchen (and the dining room), picked up into the backpack, and held in the hand as other items are.",
+   "progress": ""
+  },
+  {
+   "id": 744,
+   "area": "Dress Up, 🍽️ a close-up of a plate of food, from above, eaten bite by bite",
+   "added": "2026-11-15T08:57-07:00",
+   "opened": "2026-11-15T08:57-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "feature",
+    "for M"
+   ],
+   "source": "Matthew, 2026-11-15 08:4x, in chat: \"dress-up time. From M: more rooms in the original house. we currently enter into the living room. M wants: bed room, dining room, kitchen, stairway to basement; stairway to upstairs (2nd floor above ground floor); laundry room, furnace room. M also wants: food as items to collect and put into backpack: bread, banana, apple, juice box, milk box, sandwhich. M also wants: a close-up view of a plate of food, where we click on the food (or tap, etc) to eat it, bite by bite. It's a full screen view within the game world where the 'background' is a place setting, viewed from above --- plate, with knife, fork and spoon and napkin, and drinks.\"",
+   "text": "<b>M's plate view:</b> a full-screen view within the game, from above: a place setting (a plate, a knife, a fork and a spoon, a napkin, and drinks), with food on the plate. Click or tap a food to take a bite, and again, until it is gone. Opened at the dining room's table, or with food from the 🎒 backpack.",
+   "progress": ""
   }
  ],
- "next_ticket": 740,
- "current_ticket": 730,
- "current_note": "08:44: after crash 08:30 (row 941714e2, nothing lost; 8000, 8131, 8141 served again): ^ticket(739) done, the divider in 0.0.5",
+ "next_ticket": 745,
+ "current_ticket": 740,
+ "current_note": "08:57: his switch to Dress Up 08:4x: M's rooms, food and plate view minted as ^ticket(740) to ^ticket(744); starting the dining room and the kitchen",
  "closed_tickets": [
   {
    "id": 739,
@@ -23549,6 +23629,11 @@
   }
  ],
  "queue": [
+  740,
+  741,
+  742,
+  743,
+  744,
   730,
   736,
   721,
@@ -23580,7 +23665,7 @@
   708,
   700
  ],
- "current_since": "2026-11-15T08:44-07:00",
+ "current_since": "2026-11-15T08:57-07:00",
  "next_meeting": {
   "report": 42,
   "with": "Cyrus",
