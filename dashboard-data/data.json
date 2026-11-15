@@ -17288,9 +17288,24 @@
    "source": "Matthew, 2026-11-15 11:4x, in chat, summarizing his meeting with Cyrus on Friday 11-13 at 10:00 Mountain: \"Let me summarize the meeting with Cyrus on Friday. [...] create tickets for tomorrow morning, or late tonight, after other stuff is done. items (all about hazel-jit): * probes, step budgets, and all other limitations we should work to overcome in the coming days.\"",
    "text": "<b>hazel-jit's limits, one at a time.</b> Probes (the values a probe shows, which compiled code would have to record as the interpreter does); step budgets (the interpreter stops a long or endless run at its budget; compiled code has none, so a loop would hang); and the forms it gives up on (<code>HazelJit.re</code>'s Unsupported: closures with their own environment, partial application, tests, quotations, reverse application, recursion over more than one name, ...). First a list, then one at a time.",
    "progress": ""
+  },
+  {
+   "id": 762,
+   "area": "hazel, performance: a function with no declared result type costs 5-7x a step at run time (the casts), measured in the Tarot",
+   "added": "2026-11-15T11:42-07:00",
+   "opened": "2026-11-15T11:42-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "performance"
+   ],
+   "source": "Matthew, 2026-11-15 11:4x, in chat, \"Yes, mint it\", to my question after ^ticket(730): \"Mint a ticket for that run-time type-check cost in Hazel?\"",
+   "text": "<b>Hazel code that declares what a function takes but not what it returns runs several times slower.</b> Measured in the hazeljs-oracles Tarot (^ticket(730), Node, hazeljs 0.0.4): a plain recursion step costs about 0.05 ms; a step of <code>take</code> (returning a pair), declared only as <code>fun (cs, k) : ([Card], Int) -&gt;</code>, 0.36 ms, and with its whole type, <code>let take : ([Card], Int) -&gt; (Card, [Card]) = fun (cs, k) -&gt;</code>, 0.07 ms. A list built by such functions (the deck) was slow to walk afterwards too, 0.3 ms a step against 0.05: the cost travels with the values. Declaring every type made the deal 3.7 times faster. Most Hazel code (slides, examples) declares argument types only. <b>To do:</b> confirm the mechanism in Hazel's own code (where the elaborator puts casts for an unknown result type, and what the evaluator does with them on each return and in a list), measure on a current dev build, and choose a remedy: infer a recursive function's result type in the statics, insert no cast where the body's type is known, or make the casts cheap (collapse them, check once). It bears on hazel-jit matching the interpreter, too (^ticket(756)).",
+   "progress": ""
   }
  ],
- "next_ticket": 762,
+ "next_ticket": 763,
  "current_ticket": 736,
  "current_note": "11:40: the hazeljs bug: a constructor given a plain tuple from JS gets stuck; next in the queue",
  "closed_tickets": [
@@ -23769,6 +23784,7 @@
   759,
   760,
   761,
+  762,
   721,
   694,
   729,
