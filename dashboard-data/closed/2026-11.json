@@ -1,5 +1,192 @@
 [
  {
+  "id": 736,
+  "area": "hazel, hazeljs, bug: a constructor whose argument is a plain tuple, passed in from JS, gets stuck",
+  "added": "2026-11-15T07:57-07:00",
+  "opened": "2026-11-15T07:57-07:00",
+  "status": "done",
+  "tags": [
+   "blocked on Matthew"
+  ],
+  "chips": [
+   "hazel",
+   "hazeljs",
+   "bug",
+   "hazeljs example"
+  ],
+  "source": "Found 2026-11-15 08:0x while writing the Tarot's year-ahead spread for ^ticket(735) (hazeljs-oracles).",
+  "text": "<b>From JS, <code>{tag: \"Two\", value: [3, true]}</code> never matches <code>Two(m, t)</code>.</b> In hazeljs 0.0.4, with <code>type S = + Two(Int, Bool) + Rec((m = Int, t = Bool)) + One(Int)</code> and a function that cases on S: <code>One(3)</code> from JS works, a labeled tuple <code>{tag: \"Rec\", value: {m: 3, t: true}}</code> works, and a pair as a function's own arguments works; but <code>{tag: \"Two\", value: [3, true]}</code> comes back as <code>{hazel: \"...(Match ...\"}</code>, the case stuck, the constructor's type read as an arrow from Unknown. The same command from Hazel to JS (the Petri example's <code>Take(Int, Int, Cmd)</code>) converts fine, so it is only the way in. A cousin of ^ticket(703) (key order). The oracles work around it: <code>YearAhead((start = Int, theme = Bool))</code>, a labeled tuple. Repro in the session scratchpad, ctor-probe.mjs; to go into hazeljs's tests.",
+  "progress": "07:59 11-15: minted; worked around in accedc6. | 12:1x 11-15: reproduced in hazeljs 0.0.4 and 0.0.6, and wider: any JS array given where a tuple is expected is stuck (a function of a pair called with one array too); HazelLibCore.of_js made every JS array a list. Fix on #2719's branch js-library-embed, 2ab33ebd90: the function's declared parameter type decides (of_js_at: arrays to tuples or lists, objects to labeled tuples, constructors' values by their types, recursive types, numbers as the type asks); tests in Test_HazelLib. No local type-check: CI 43750481286 running. Next: when green, test the deployed hazel-lib.js with the repro (scratchpad ctor-probe.mjs), then hazeljs 0.0.7. | 12:3x: CI GREEN on 2ab33ebd90 (run 43750481286: fast checks, full tests). The deployed build (https://build.hazel.org/js-library-embed/hazel-lib.js, 2ab33ebd90) passes all 10 of the repro's cases; 0.0.6 fails 5 (the constructor, a pair as one array, a Float given 2 (a second bug, fixed too), and a command tree back in, its type on the parameter or on the let). No regressions: the Tarot and I Ching Node checks, and the Petri example (same 2,000 firings and marking; 3.39 ms a call against 3.27). The game pins hazeljs 0.0.1, so unaffected. hazeljs 0.0.7: the Build hazel-lib.js workflow running (hazelgrove/hazeljs run 43752808750); then merge build/2ab33ebd90, CHANGELOG, README (Values), version, and npm publish, which is Matthew's (no npm login here; he is the package's maintainer). | 12:5x: hazeljs 0.0.7 ready on hazelgrove/hazeljs main (526a3a4): the Build workflow's hazel-lib.js (run 43752808750) is byte for byte Hazel's own deploy of 2ab33ebd90 (SHA-256 14700f34...a4d948); CHANGELOG, README (Values), index.d.ts; the repro all ok on it. Its Install check and Verify running. WAITING ON MATTHEW: npm publish (no npm login here; he is the only maintainer): cd ~/hazeljs && npm publish. Then the oracles can move to 0.0.7. | 13:4x: hazeljs's checks GREEN on 526a3a4 (Install check 43754238446, Verify hazel-lib.js 43754238428). npm pack --dry-run: hazeljs 0.0.7, 10 files, 667.5 kB. Ready to publish: cd ~/hazeljs && npm publish (Matthew's npm account). | 14:0x: Matthew ran npm publish: E404 (npm's answer to a publish with no login); npm login needs his security key, not at hand: PINNED by him (\"put a pin in this\"). When he has it: npm login, then cd ~/hazeljs && npm publish. | 11-16 11:3x: Matthew has his security key. Checked before publishing (~/hazeljs at 24d2cd3, clean, = origin/main; npm has 0.0.4-0.0.6): npm pack --dry-run is hazeljs@0.0.7, 10 files, 669 kB; hazel-lib.js matches the notes' SHA-256 without its //# buildInfo line (now said so). FOUND: the fix reads a parameter's own annotation, a constructor's tuple and the top level's binding type, but NOT a module member typed only by its binding (one array stays a list, stuck); the README and CHANGELOG now say where it works (24d2cd3). Follow-up: read the binding's type for a module's member too (HazelLibCore, a new hazel-lib build). Also in 0.0.7 since 11-16: hazel-listings.js's on-request mode, README 'On older or slower devices'. WAITS ON MATTHEW: npm login, then npm publish, in ~/hazeljs.",
+  "log": [
+   {
+    "at": "2026-11-15T11:23-07:00",
+    "from": "matthew",
+    "chars": 16,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:24-07:00",
+    "from": "claude",
+    "chars": 217,
+    "asks": false,
+    "words": 37,
+    "read_s": 9,
+    "listen_s": 14,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:26-07:00",
+    "from": "matthew",
+    "chars": 140,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:27-07:00",
+    "from": "matthew",
+    "chars": 57,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:32-07:00",
+    "from": "claude",
+    "chars": 742,
+    "asks": false,
+    "words": 129,
+    "read_s": 33,
+    "listen_s": 48,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:33-07:00",
+    "from": "matthew",
+    "chars": 1080,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:41-07:00",
+    "from": "claude",
+    "chars": 3281,
+    "asks": true,
+    "words": 580,
+    "read_s": 146,
+    "listen_s": 218,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:43-07:00",
+    "from": "claude",
+    "chars": 1028,
+    "asks": false,
+    "words": 173,
+    "read_s": 44,
+    "listen_s": 65,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:51-07:00",
+    "from": "claude",
+    "chars": 1750,
+    "asks": false,
+    "words": 302,
+    "read_s": 76,
+    "listen_s": 113,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:58-07:00",
+    "from": "matthew",
+    "chars": 12,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T11:58-07:00",
+    "from": "matthew",
+    "chars": 10,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T12:07-07:00",
+    "from": "claude",
+    "chars": 2979,
+    "asks": false,
+    "words": 514,
+    "read_s": 130,
+    "listen_s": 193,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T12:31-07:00",
+    "from": "claude",
+    "chars": 2289,
+    "asks": false,
+    "words": 388,
+    "read_s": 98,
+    "listen_s": 146,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T13:04-07:00",
+    "from": "matthew",
+    "chars": 1295,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-15T13:04-07:00",
+    "from": "claude",
+    "chars": 734,
+    "asks": false,
+    "words": 125,
+    "read_s": 32,
+    "listen_s": 47,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "waiting": "Matthew's npm login (security key), then cd ~/hazeljs && npm publish; everything else is ready (checks green)",
+  "closed": "2026-11-16",
+  "closed_at": "2026-11-16T11:35-07:00",
+  "outcome": "Fixed and published: hazeljs 0.0.7 on npm (Matthew published it 2026-11-16 with his security key; npm latest 0.0.7, jsDelivr serving it). A JavaScript value goes into a Hazel function by the type the function declares: an array is a tuple where the type wants a tuple, so a constructor whose argument is a plain tuple, {tag: \"Two\", value: [3, true]}, matches Two(m, t). hazel-lib.js from hazelgrove/hazel 2ab33ebd90, its SHA-256 without the buildInfo line as recorded. Checked before publishing: one case the notes claimed does not hold yet, a module's member typed only by its binding called with one array; the README and CHANGELOG say where it works (hazeljs 24d2cd3), and the fix is a follow-up on ^ticket(765). 0.0.7 also brought hazel-listings.js's on-request mode and the README's 'On older or slower devices'.",
+  "metrics": {
+   "open_minutes": 1659,
+   "matthew_messages": 7,
+   "questions_to_matthew": 1,
+   "chars_exchanged": 15630,
+   "tokens_est": 3907,
+   "sync_minutes_est": 44.0,
+   "replies": 8,
+   "claude_words": 2248,
+   "read_minutes_est": 9.5,
+   "listen_minutes_est": 14.1,
+   "read_s_avg": 71,
+   "listen_s_avg": 106,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 730,
   "area": "hazel, hazeljs example, ancient-oracle: the Tarot app, its shuffle, deal and spreads in Hazel, its cards turned one by one",
   "added": "2026-11-15T07:32-07:00",

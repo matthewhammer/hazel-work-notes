@@ -17149,173 +17149,6 @@
    "progress": ""
   },
   {
-   "id": 736,
-   "area": "hazel, hazeljs, bug: a constructor whose argument is a plain tuple, passed in from JS, gets stuck",
-   "added": "2026-11-15T07:57-07:00",
-   "opened": "2026-11-15T07:57-07:00",
-   "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "chips": [
-    "hazel",
-    "hazeljs",
-    "bug",
-    "hazeljs example"
-   ],
-   "source": "Found 2026-11-15 08:0x while writing the Tarot's year-ahead spread for ^ticket(735) (hazeljs-oracles).",
-   "text": "<b>From JS, <code>{tag: \"Two\", value: [3, true]}</code> never matches <code>Two(m, t)</code>.</b> In hazeljs 0.0.4, with <code>type S = + Two(Int, Bool) + Rec((m = Int, t = Bool)) + One(Int)</code> and a function that cases on S: <code>One(3)</code> from JS works, a labeled tuple <code>{tag: \"Rec\", value: {m: 3, t: true}}</code> works, and a pair as a function's own arguments works; but <code>{tag: \"Two\", value: [3, true]}</code> comes back as <code>{hazel: \"...(Match ...\"}</code>, the case stuck, the constructor's type read as an arrow from Unknown. The same command from Hazel to JS (the Petri example's <code>Take(Int, Int, Cmd)</code>) converts fine, so it is only the way in. A cousin of ^ticket(703) (key order). The oracles work around it: <code>YearAhead((start = Int, theme = Bool))</code>, a labeled tuple. Repro in the session scratchpad, ctor-probe.mjs; to go into hazeljs's tests.",
-   "progress": "07:59 11-15: minted; worked around in accedc6. | 12:1x 11-15: reproduced in hazeljs 0.0.4 and 0.0.6, and wider: any JS array given where a tuple is expected is stuck (a function of a pair called with one array too); HazelLibCore.of_js made every JS array a list. Fix on #2719's branch js-library-embed, 2ab33ebd90: the function's declared parameter type decides (of_js_at: arrays to tuples or lists, objects to labeled tuples, constructors' values by their types, recursive types, numbers as the type asks); tests in Test_HazelLib. No local type-check: CI 43750481286 running. Next: when green, test the deployed hazel-lib.js with the repro (scratchpad ctor-probe.mjs), then hazeljs 0.0.7. | 12:3x: CI GREEN on 2ab33ebd90 (run 43750481286: fast checks, full tests). The deployed build (https://build.hazel.org/js-library-embed/hazel-lib.js, 2ab33ebd90) passes all 10 of the repro's cases; 0.0.6 fails 5 (the constructor, a pair as one array, a Float given 2 (a second bug, fixed too), and a command tree back in, its type on the parameter or on the let). No regressions: the Tarot and I Ching Node checks, and the Petri example (same 2,000 firings and marking; 3.39 ms a call against 3.27). The game pins hazeljs 0.0.1, so unaffected. hazeljs 0.0.7: the Build hazel-lib.js workflow running (hazelgrove/hazeljs run 43752808750); then merge build/2ab33ebd90, CHANGELOG, README (Values), version, and npm publish, which is Matthew's (no npm login here; he is the package's maintainer). | 12:5x: hazeljs 0.0.7 ready on hazelgrove/hazeljs main (526a3a4): the Build workflow's hazel-lib.js (run 43752808750) is byte for byte Hazel's own deploy of 2ab33ebd90 (SHA-256 14700f34...a4d948); CHANGELOG, README (Values), index.d.ts; the repro all ok on it. Its Install check and Verify running. WAITING ON MATTHEW: npm publish (no npm login here; he is the only maintainer): cd ~/hazeljs && npm publish. Then the oracles can move to 0.0.7. | 13:4x: hazeljs's checks GREEN on 526a3a4 (Install check 43754238446, Verify hazel-lib.js 43754238428). npm pack --dry-run: hazeljs 0.0.7, 10 files, 667.5 kB. Ready to publish: cd ~/hazeljs && npm publish (Matthew's npm account). | 14:0x: Matthew ran npm publish: E404 (npm's answer to a publish with no login); npm login needs his security key, not at hand: PINNED by him (\"put a pin in this\"). When he has it: npm login, then cd ~/hazeljs && npm publish. | 11-16 11:3x: Matthew has his security key. Checked before publishing (~/hazeljs at 24d2cd3, clean, = origin/main; npm has 0.0.4-0.0.6): npm pack --dry-run is hazeljs@0.0.7, 10 files, 669 kB; hazel-lib.js matches the notes' SHA-256 without its //# buildInfo line (now said so). FOUND: the fix reads a parameter's own annotation, a constructor's tuple and the top level's binding type, but NOT a module member typed only by its binding (one array stays a list, stuck); the README and CHANGELOG now say where it works (24d2cd3). Follow-up: read the binding's type for a module's member too (HazelLibCore, a new hazel-lib build). Also in 0.0.7 since 11-16: hazel-listings.js's on-request mode, README 'On older or slower devices'. WAITS ON MATTHEW: npm login, then npm publish, in ~/hazeljs.",
-   "log": [
-    {
-     "at": "2026-11-15T11:23-07:00",
-     "from": "matthew",
-     "chars": 16,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-15T11:24-07:00",
-     "from": "claude",
-     "chars": 217,
-     "asks": false,
-     "words": 37,
-     "read_s": 9,
-     "listen_s": 14,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-15T11:26-07:00",
-     "from": "matthew",
-     "chars": 140,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-15T11:27-07:00",
-     "from": "matthew",
-     "chars": 57,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-15T11:32-07:00",
-     "from": "claude",
-     "chars": 742,
-     "asks": false,
-     "words": 129,
-     "read_s": 33,
-     "listen_s": 48,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-15T11:33-07:00",
-     "from": "matthew",
-     "chars": 1080,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-15T11:41-07:00",
-     "from": "claude",
-     "chars": 3281,
-     "asks": true,
-     "words": 580,
-     "read_s": 146,
-     "listen_s": 218,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-15T11:43-07:00",
-     "from": "claude",
-     "chars": 1028,
-     "asks": false,
-     "words": 173,
-     "read_s": 44,
-     "listen_s": 65,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-15T11:51-07:00",
-     "from": "claude",
-     "chars": 1750,
-     "asks": false,
-     "words": 302,
-     "read_s": 76,
-     "listen_s": 113,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-15T11:58-07:00",
-     "from": "matthew",
-     "chars": 12,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-15T11:58-07:00",
-     "from": "matthew",
-     "chars": 10,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-15T12:07-07:00",
-     "from": "claude",
-     "chars": 2979,
-     "asks": false,
-     "words": 514,
-     "read_s": 130,
-     "listen_s": 193,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-15T12:31-07:00",
-     "from": "claude",
-     "chars": 2289,
-     "asks": false,
-     "words": 388,
-     "read_s": 98,
-     "listen_s": 146,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-15T13:04-07:00",
-     "from": "matthew",
-     "chars": 1295,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-15T13:04-07:00",
-     "from": "claude",
-     "chars": 734,
-     "asks": false,
-     "words": 125,
-     "read_s": 32,
-     "listen_s": 47,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ],
-   "waiting": "Matthew's npm login (security key), then cd ~/hazeljs && npm publish; everything else is ready (checks green)"
-  },
-  {
    "id": 756,
    "area": "hazel-jit: semantic consistency with the interpreter, checked in CI",
    "added": "2026-11-15T11:35-07:00",
@@ -17865,6 +17698,13 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-16T11:21-07:00",
+     "from": "matthew",
+     "chars": 9,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ]
   },
@@ -18033,7 +17873,7 @@
    ],
    "source": "Matthew, 2026-11-16 ~10:40, in chat: \"I tested our oracle apps on my old Android phone, in Firefox. It was painfully slow. To draw each card, or line. But especially so for each key press when I was trying to edit the question in I ching oracle. Is there anything we can do to help legacy hardware run this code faster? Would Jit help, somehow?\" Then: \"If there are lessons for other users of hazeljs, we should document those for legacy hardware.\" \"Maybe one thing to try: only reveal the Hazel edit boxes when asked to; only run the pre-compiled JS code for the Hazel code (running hazel jit for it during the packaging step for the HTML/JS, for a short load?)\" \"it seems like something is happening each time I edit (insert one char), for the I ching oracle\" \"for MUDU, we had a way to record a 'speedrun' that we wrote back into a public etherpad instance --- can we add that feature to each app, plz?\" \"under advanced for each app, also please list versions, a la MUDU\" \"Let's add the idea of precompiled jit to report 54, whether or not it works.\"",
    "text": "<b>The oracles on older phones.</b> Measured on the laptop: hazel-lib.js 2.8 MB (174 ms to load in Node); the program's build 621 ms (I Ching) and 499 ms (Tarot) in Node; a cast 0.4-1.2 ms, a deal 7-105 ms; and Hazel's editor in each listing, a whole Hazel app, 7.2 MB of JavaScript and 49 MB, five on the I Ching's page and four on the Tarot's. A key press in the question does only the heading's text on the page (checked at desktop and phone widths: no frame resized, nothing sent to the frames); on the phone the five editors' load and memory, which Firefox on Android may run on the page's own thread, are the likely cause. Two changes, Matthew's: the editors on request (done), and the Hazel compiled ahead of time with hazel-jit (planned, ^report(54) #ahead).",
-   "progress": "11-16 11:1x: oracles 0.0.8 LIVE (4c5a561): the editors only on request (hazel-listings.js on-request mode); the I Ching's page with Hazel ready holds 28 MB on the laptop. 0.0.9 LIVE (4508cee): ⚙️ Advanced at each oracle's foot: the version, VERSIONS.md as cards, and 🧪 a speed run (the page's load, the calls into Hazel with a fixed stream of draws, drawing, key presses in the question, 2 s idle; a line with DATA JSON to paste into Dress Up's Riseup pad). hazeljs a280f81: the package's hazel-listings.js gets the on-request mode, and README 'On older or slower devices' (the lessons), in 0.0.7's notes (npm publish still pinned, ^ticket(736)). ^report(54) #ahead: compiling ahead of time for older phones. WAITS ON MATTHEW: a speed run on the old phone (⚙️ Advanced, 🧪, then paste the line in the pad), to compare with the laptop and to measure the precompiled version against. | 11-16 11:2x: THE PHONE'S FIRST LINE (I Ching 0.0.9, Firefox 160, Android, 8 cores, pasted in the pad 18:20Z): Hazel ready at 3.7 s (library ran at 0.8 s, build 2873 ms); a cast 3 ms by coins, 9 by yarrow; a reading 113 ms; drawing the reading 149 ms to the next frame (draw() asked Hazel for the reading each time); a key press 17 ms (one frame: fixed by 0.0.8's closed editors); idle 60 fps. Laptop, same work in Node: build 600, casts 0.6/1.5, reading 20: the phone about 5x slower. 0.0.10 LIVE (7ecae34): the I Ching's whole types declared (reading 20 -> 13 ms, build 600 -> 480 in Node; node checks pass) and the reading asked once per set of lines. Matthew asks next: hazel-jit within hazeljs.",
+   "progress": "11-16 11:1x: oracles 0.0.8 LIVE (4c5a561): the editors only on request (hazel-listings.js on-request mode); the I Ching's page with Hazel ready holds 28 MB on the laptop. 0.0.9 LIVE (4508cee): ⚙️ Advanced at each oracle's foot: the version, VERSIONS.md as cards, and 🧪 a speed run (the page's load, the calls into Hazel with a fixed stream of draws, drawing, key presses in the question, 2 s idle; a line with DATA JSON to paste into Dress Up's Riseup pad). hazeljs a280f81: the package's hazel-listings.js gets the on-request mode, and README 'On older or slower devices' (the lessons), in 0.0.7's notes (npm publish still pinned, ^ticket(736)). ^report(54) #ahead: compiling ahead of time for older phones. WAITS ON MATTHEW: a speed run on the old phone (⚙️ Advanced, 🧪, then paste the line in the pad), to compare with the laptop and to measure the precompiled version against. | 11-16 11:2x: THE PHONE'S FIRST LINE (I Ching 0.0.9, Firefox 160, Android, 8 cores, pasted in the pad 18:20Z): Hazel ready at 3.7 s (library ran at 0.8 s, build 2873 ms); a cast 3 ms by coins, 9 by yarrow; a reading 113 ms; drawing the reading 149 ms to the next frame (draw() asked Hazel for the reading each time); a key press 17 ms (one frame: fixed by 0.0.8's closed editors); idle 60 fps. Laptop, same work in Node: build 600, casts 0.6/1.5, reading 20: the phone about 5x slower. 0.0.10 LIVE (7ecae34): the I Ching's whole types declared (reading 20 -> 13 ms, build 600 -> 480 in Node; node checks pass) and the reading asked once per set of lines. Matthew asks next: hazel-jit within hazeljs. | 11-16 11:3x: hazeljs 0.0.7 PUBLISHED (^ticket(736) closed): the listings' on-request mode and the README's lessons are on npm. FOLLOW-UP found before publishing: a module's member typed only by its binding (let f : (Int, Bool) -> Int = fun (n, t) -> ... in a module) does not read that type for one array argument (stays a list, stuck); read the binding's type there too (HazelLibCore, a new hazel-lib build). The I Ching ahead-of-time prototype: trial/765-iching-aot (50e4f69171) compiling in CI; tools/make-compiled.py, node/compare-compiled.mjs and the page's ?compiled mode written, not yet run.",
    "log": [
     {
      "at": "2026-11-16T10:58-07:00",
@@ -18075,6 +17915,16 @@
  "current_ticket": 761,
  "current_note": "16:44: hazel-jit's limits: partial application next (8 of the sweep's checks)",
  "closed_tickets": [
+  {
+   "id": 736,
+   "area": "hazel, hazeljs, bug: a constructor whose argument is a plain tuple, passed in from JS, gets stuck",
+   "added": "2026-11-15T07:57-07:00",
+   "text": "From JS, {tag: \"Two\", value: [3, true]} never matches Two(m, t) .",
+   "source": "Found 2026-11-15 08:0x while writing the Tarot's year-ahead spread for ^ticket(735) (hazeljs-oracles).",
+   "status": "done",
+   "closed": "2026-11-16",
+   "outcome": "Fixed and published: hazeljs 0.0.7 on npm (Matthew published it 2026-11-16 with his security key; npm latest 0.0.7, jsDelivr serving it). A JavaScript value goes into a Hazel…"
+  },
   {
    "id": 730,
    "area": "hazel, hazeljs example, ancient-oracle: the Tarot app, its shuffle, deal and spreads in Hazel, its cards turned one by one",
@@ -24551,7 +24401,6 @@
   757,
   763,
   756,
-  736,
   758,
   721,
   694,
@@ -24595,8 +24444,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6572,
-  "words": 1439175,
+  "replies": 6574,
+  "words": 1439504,
   "read_hours_est": 100.8,
   "listen_hours_est": 149.9,
   "read_s_avg": 55,
@@ -24928,9 +24777,9 @@
     "chars": 87325
    },
    "2026-11-16": {
-    "replies": 15,
-    "words": 5449,
-    "chars": 31922
+    "replies": 17,
+    "words": 5778,
+    "chars": 33757
    }
   }
  },
