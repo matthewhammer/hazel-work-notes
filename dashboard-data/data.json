@@ -18496,6 +18496,25 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-17T11:25-07:00",
+     "from": "matthew",
+     "chars": 61,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-17T11:25-07:00",
+     "from": "claude",
+     "chars": 343,
+     "asks": false,
+     "words": 58,
+     "read_s": 15,
+     "listen_s": 22,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ]
   },
@@ -18783,7 +18802,7 @@
    ],
    "source": "Matthew, 2026-11-17 ~10:50, in chat: \"can we imagine another 'oracle' app, based on astrology ideas? can we create 'basic' SVG graphics for the signs, and anything else relevant? are there open source resources for graphics? are there open source resources for doing readings, based on the current day, and a person's chart, as defined by: birth time, and birth place?\" Then: \"the idea would be to rewrite the basic rules in Hazel, as much as possible. We'd credit the open source code from where-ever it came, as the source\", and \"Yes, start it\".",
    "text": "<b>A third oracle: astrology, its rules in Hazel.</b> Modules: Zodiac (signs, elements, modalities, rulers), Sky (positions from the date, ported from permissive sources: astronomia, MIT, Meeus's algorithms; checked against Astronomy Engine, MIT), Chart (Julian day, sidereal time, ascendant, midheaven, houses), Aspects (orbs; natal and transits), Reading, Wheel (the chart's layout as data, the page drawing it). Birth data stays on the device. Not: Swiss Ephemeris, Kerykeion, pyswisseph (AGPL), mivion/ephemeris (no licence). Glyphs: our own SVG or AstroChart's (MIT).",
-   "progress": "11-17 10:5x: minted on 'Yes, start it'. | 11-17 11:0x: STARTED, hazeljs-oracles 0fa9e0a (not linked from the front page): astrology/rules preamble, Zodiac (sign of a longitude, elements and modalities by position, rulers traditional and modern, names, glosses), Aspects (separation, orbs 8/8/7/7/5, a chart's aspects, transits), Chart (Julian day, GMST, obliquity, midheaven, ascendant, equal and whole-sign houses; Meeus). node/astrology.mjs (npm run astrology) against Astronomy Engine (MIT, devDependency) on 300 moments 1900-2100: Julian day exact; GMST within 0.0048 deg, MC 0.0052, ASC 0.019 (nutation). Aspects and transits checked by hand on a sample. astrology/glyphs.svg: 27 glyphs (12 signs, 10 bodies, 5 aspects) drawn in strokes, ours; glyphs.html previews. Found in hazeljs 0.0.7: no atan2 (written in Hazel); a whole number from JS goes in as an Int where Float is declared, even on an annotated tail parameter (contradicts 0.0.7's notes): the check nudges whole numbers by 1e-9. Next: Sky.hz (positions; port from astronomia, MIT, checked against Astronomy Engine), Reading, Wheel, the page. | 11-17 11:1x: Sky.hz (hazeljs-oracles 75d7c71), from astronomia (MIT; tables by tools/make-sky-tables.py): Sun (Meeus 25), Moon (47, 60 terms), Mercury-Neptune (mean elements of date, Kepler), Pluto (37), nutation. Against Astronomy Engine, 400 moments 1900-2100: Sun 0.008 deg, Moon 0.032, Mercury 0.020, Venus 0.028, Pluto 0.008, Mars 0.105 (no sign differs); Jupiter 0.37, Saturn 0.78, Uranus 1.04, Neptune 0.68 (signs differ 1, 3, 12, 11 of 400): mean elements leave out the planets' mutual pulls; next, perturbation terms. A chart's ten places 144 ms in hazeljs. FOUND: hazeljs builds the program in ~70 s with Sky: its fast parser bails ('SLOW PARSE ... segment has 280.460618, source has 280.46061837') on a float literal of more than 6 significant digits and parses the whole program the slow way; a Hazel fix (FastParse's float round trip); the page will run compiled meanwhile.",
+   "progress": "11-17 10:5x: minted on 'Yes, start it'. | 11-17 11:0x: STARTED, hazeljs-oracles 0fa9e0a (not linked from the front page): astrology/rules preamble, Zodiac (sign of a longitude, elements and modalities by position, rulers traditional and modern, names, glosses), Aspects (separation, orbs 8/8/7/7/5, a chart's aspects, transits), Chart (Julian day, GMST, obliquity, midheaven, ascendant, equal and whole-sign houses; Meeus). node/astrology.mjs (npm run astrology) against Astronomy Engine (MIT, devDependency) on 300 moments 1900-2100: Julian day exact; GMST within 0.0048 deg, MC 0.0052, ASC 0.019 (nutation). Aspects and transits checked by hand on a sample. astrology/glyphs.svg: 27 glyphs (12 signs, 10 bodies, 5 aspects) drawn in strokes, ours; glyphs.html previews. Found in hazeljs 0.0.7: no atan2 (written in Hazel); a whole number from JS goes in as an Int where Float is declared, even on an annotated tail parameter (contradicts 0.0.7's notes): the check nudges whole numbers by 1e-9. Next: Sky.hz (positions; port from astronomia, MIT, checked against Astronomy Engine), Reading, Wheel, the page. | 11-17 11:1x: Sky.hz (hazeljs-oracles 75d7c71), from astronomia (MIT; tables by tools/make-sky-tables.py): Sun (Meeus 25), Moon (47, 60 terms), Mercury-Neptune (mean elements of date, Kepler), Pluto (37), nutation. Against Astronomy Engine, 400 moments 1900-2100: Sun 0.008 deg, Moon 0.032, Mercury 0.020, Venus 0.028, Pluto 0.008, Mars 0.105 (no sign differs); Jupiter 0.37, Saturn 0.78, Uranus 1.04, Neptune 0.68 (signs differ 1, 3, 12, 11 of 400): mean elements leave out the planets' mutual pulls; next, perturbation terms. A chart's ten places 144 ms in hazeljs. FOUND: hazeljs builds the program in ~70 s with Sky: its fast parser bails ('SLOW PARSE ... segment has 280.460618, source has 280.46061837') on a float literal of more than 6 significant digits and parses the whole program the slow way; a Hazel fix (FastParse's float round trip); the page will run compiled meanwhile. | 11-17 11:4x: OUTER PLANETS by Paul Schlyter's elements and perturbations (Outer module): Jupiter 0.029 deg, Saturn 0.046, Uranus 0.034, Neptune 0.028 (from 0.37-1.04); every body within 0.11 of Astronomy Engine 1900-2100, one sign in 4000 differs (Jupiter 0.03 deg from a boundary). hazeljs-oracles 59b366e: the sky in six modules; poly renamed horner (a menhir keyword); long floats as ratios (tools/long-floats.py) until #2831: build 70 s -> 1.5 s. FILED, on Matthew's 'Yes, file it': hazelgrove/hazel#2831 (float literals print with %f, six decimals; FastParse bails; the slow parse grows to gigabytes; Atom float equality by %f; poly a keyword). FILED, on Matthew's 'File an issue.': hazelgrove/hazel#2832 (Evaluator.finish substitutes the environment into an answer that is a function: Chart.julian_day 88 MB, Planets.planet 656 MB, Sky.longitude past 3 GB); the check computes its answers inside Hazel meanwhile.",
    "log": [
     {
      "at": "2026-11-17T10:52-07:00",
