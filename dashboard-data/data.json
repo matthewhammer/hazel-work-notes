@@ -19181,9 +19181,26 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 769,
+   "area": "hazel-jit: holes across the boundary, a starter project for John on the Hazel team (^report(55))",
+   "added": "2026-11-17T15:29-07:00",
+   "opened": "2026-11-17T15:29-07:00",
+   "status": "open",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "chips": [
+    "hazel",
+    "hazel-jit"
+   ],
+   "source": "Matthew, 2026-11-17 afternoon, in chat, passing on John's message (an undergraduate on the Hazel team, working with Cyrus): \"I was wondering if you had any work that where I could help out. I know in the meeting you were talking about the conversion from holes in hazel to JS was a issue would that be something you would want me to look into?\" Then: \"Yes, write the brief\".",
+   "text": "<b>A first hazel-jit project for John: let a value with a hole cross into compiled code and out again unopened.</b> In mixed mode (^ticket(766)) a call whose argument holds a hole anywhere falls back to the interpreter whole, as to_js cannot convert a hole. The idea: an opaque JS value standing for the hole, its term kept in a table, given back exactly by of_js; any operation that would open it stops the run (Runtime.indet) and the call falls back. Keeps the 11-13 rule that no code with a hole is compiled (^ticket(760)). Brief: ^report(55) (https://matthewhammer.org/hazel/reports/055/): where compiled code looks inside a value, three places for the checks (lean: a second, checked version used only when a hole arrives), a first step, files to read on build 49, four questions to settle with Cyrus, and a warm-up on dev (hazelgrove/hazel#2831).",
+   "progress": "11-17 15:29: minted; ^report(55) published as work in progress, and ^report(54) #next-who lists it. Waits on Matthew and Cyrus: the four questions (above all, whether it lives on the prototype branch), then on John."
   }
  ],
- "next_ticket": 769,
+ "next_ticket": 770,
  "current_ticket": 761,
  "current_note": "16:44: hazel-jit's limits: partial application next (8 of the sweep's checks)",
  "closed_tickets": [
@@ -25717,7 +25734,7 @@
   },
   "since": "2026-08-27",
   "replies": 6644,
-  "words": 1458521,
+  "words": 1458674,
   "read_hours_est": 102.1,
   "listen_hours_est": 151.9,
   "read_s_avg": 55,
@@ -26055,8 +26072,8 @@
    },
    "2026-11-17": {
     "replies": 53,
-    "words": 14345,
-    "chars": 84546
+    "words": 14498,
+    "chars": 85440
    }
   }
  },
