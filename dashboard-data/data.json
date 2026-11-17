@@ -18331,7 +18331,15 @@
    "source": "Matthew, 2026-11-16, in chat, on report 54's three ways to generalize hazel-jit: \"I like the mixed mode idea a lot. number 3 in your list of paths\". 2026-11-17 08:4x: \"I'd like to sprint for a few hours, to get as much completed as possible, and expose as many open design questions for Cyrus/team as possible.\"",
    "text": "<b>Mixed mode.</b> The interpreter stays in charge of a program (holes, probes, the stepper as now) and calls its complete functions compiled, as it calls builtins: a compiled function becomes a builtin made at run time (Transition.re's BuiltinFun lookup in Builtins.forms_init), and on any stop (the step budget, an invalid operation, an argument holding a hole) it falls back one call at a time to the original Hazel function. The design is ^report(54)'s #mixed. First step: such a builtin behind a setting, for let-bound functions with their whole types declared; then the consistency sweep run a third way, mixed, against the interpreter alone; then measured on a rule-heavy program.",
    "progress": "11-17 09:0x: minted at the start of the morning's sprint before the team meeting (14:00 Mountain); designed (^report(54) #mixed), not begun.",
-   "log": []
+   "log": [
+    {
+     "at": "2026-11-17T08:49-07:00",
+     "from": "matthew",
+     "chars": 423,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 767,
@@ -24868,8 +24876,8 @@
   },
   "since": "2026-08-27",
   "replies": 6592,
-  "words": 1444383,
-  "read_hours_est": 101.1,
+  "words": 1444536,
+  "read_hours_est": 101.2,
   "listen_hours_est": 150.5,
   "read_s_avg": 55,
   "listen_s_avg": 82,
@@ -25206,8 +25214,8 @@
    },
    "2026-11-17": {
     "replies": 1,
-    "words": 207,
-    "chars": 1217
+    "words": 360,
+    "chars": 2113
    }
   }
  },
