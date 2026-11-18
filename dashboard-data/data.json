@@ -19407,11 +19407,27 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 770,
+   "area": "hazel-jit: ^report(56), What Still Falls Back: the same-answers check on build 50, and every case the interpreter still does",
+   "added": "2026-11-18T07:05-07:00",
+   "opened": "2026-11-18T07:05-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazel-jit"
+   ],
+   "source": "Matthew, 2026-11-18 morning, in chat: \"I'd like to create report 56 as focused on this status: https://matthewhammer.org/hazel/reports/054/#consistency\", with sections on the limitations to lift, the open decisions (from ^report(54) and ^report(55)), compiled code with open holes (\"the carve out for John's contributions\"), and compiled code with stuck terms (\"where some limitations like overflow overlap with some machinery we need for holes\"); the log scatter plot at the start; the evaluator's test cases compiled code cannot handle, listed again from ^report(54); and a section on the two uses, views and mixed mode, with step counts and their limits against divergence (Cyrus, 11-13).",
+   "text": "<b>^report(56): What Still Falls Back.</b> Starts from ^report(54)'s same-answers check on build 50 (233 of the evaluator's 313 programs compile and give the interpreter's value, none differ), and sorts the other 80, the slides' limits and the rest four ways: limits to lift, open decisions (25: ^report(54)'s 17, ^report(55)'s 4, 4 new), holes (^ticket(769), John's, kept apart), stuck terms (later, Matthew's; shares machinery with holes). Plus the two uses (views, mixed mode) and how the interpreter's step counts and limit answer divergence.",
+   "progress": "11-18 07:2x: first draft published (WIP), the scatter plot from build 50's own CI (44319161267). Running: trial/756-sweep-names (8d7694d9ff), the sweep printing each program not compiled by name, for the re-list (CI 44321800774).",
+   "log": []
   }
  ],
- "next_ticket": 770,
- "current_ticket": 761,
- "current_note": "07:0x 11-18: build 50 (the slides' builtins) on the prototype branch; its CI and Firefox check running",
+ "next_ticket": 771,
+ "current_ticket": 770,
+ "current_note": "07:2x 11-18: ^report(56) drafted and published; the not-compiled programs by name next (CI running)",
  "closed_tickets": [
   {
    "id": 736,
@@ -25929,7 +25945,7 @@
   708,
   700
  ],
- "current_since": "2026-11-15T13:55-07:00",
+ "current_since": "2026-11-18T07:05-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
