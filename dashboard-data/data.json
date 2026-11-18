@@ -19795,11 +19795,28 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 771,
+   "area": "hazel-jit: ^report(57), What the Livelits PR Compiles: what hazelgrove/hazel#2819 uses hazel-jit for, for Matthew's talk with Cyrus (11-18) and the mergeathon (11-19)",
+   "added": "2026-11-18T09:40-07:00",
+   "opened": "2026-11-18T09:40-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazel-jit",
+    "livelits"
+   ],
+   "source": "Matthew, 2026-11-18 morning, in chat: \"to what extent is https://github.com/hazelgrove/hazel/pull/2819 using hazel-jit, for livelit views only? for anything else?\", then \"please write a new report with what you just told me, and sections with more details for each point. I want to talk to Cyrus today about what features we are using for responsive livelit performance, and think about how to merge into dev. Another mergeathon tomorrow\".",
+   "text": "<b>^report(57): What the Livelits PR Compiles.</b> In the app, #2819 (head c419e01559 = build 12 + 2 commits, 11-09) uses hazel-jit for livelits only: compiled views (HazelJitDOM), compiled updates (call_update, a diff), the slide's whole run (HazelJitRun) to draw livelits sooner, and the worker's request held 400 ms; outside: the CLI, a measuring page, tests, the Firefox check. Lacks everything since (123 commits to build 50): the page work B1/B2/B4/B5, the correctness work, the step budget, mixed mode. Report 052's ten changes marked hazel-jit or not and in #2819 or not; its nine increments brought up to date; for the mergeathon, and five decisions for Cyrus.",
+   "progress": "11-18 09:59: published (WIP), from #2819's code and reports 045-056; nothing new measured.",
+   "log": []
   }
  ],
- "next_ticket": 771,
- "current_ticket": 768,
- "current_note": "09:3x 11-18: hazeljs-oracles 0.0.21 (constellations in a sign's tooltip); mixed-mode float parting noted for later",
+ "next_ticket": 772,
+ "current_ticket": 771,
+ "current_note": "09:59 11-18: ^report(57) published for Matthew's talk with Cyrus",
  "closed_tickets": [
   {
    "id": 736,
@@ -26317,7 +26334,7 @@
   708,
   700
  ],
- "current_since": "2026-11-18T07:30-07:00",
+ "current_since": "2026-11-18T09:40-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -26330,10 +26347,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6674,
-  "words": 1467832,
+  "replies": 6675,
+  "words": 1468446,
   "read_hours_est": 102.8,
-  "listen_hours_est": 152.9,
+  "listen_hours_est": 153.0,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -26673,9 +26690,9 @@
     "chars": 100517
    },
    "2026-11-18": {
-    "replies": 23,
-    "words": 6697,
-    "chars": 39604
+    "replies": 24,
+    "words": 7311,
+    "chars": 43154
    }
   }
  },
