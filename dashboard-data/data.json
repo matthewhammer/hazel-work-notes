@@ -20178,11 +20178,26 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 773,
+   "area": "hazeljs: the team's review of its API and packaging (Cyrus's ask, 11-19); a draft issue on where Hazel's editor comes from",
+   "added": "2026-11-19T09:10-07:00",
+   "opened": "2026-11-19T09:10-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazeljs"
+   ],
+   "source": "Matthew, 2026-11-19 ~09:10, in chat: \"Cyrus wants the team to review our hazeljs repo, to make sure it's exposing the right API, and is packaged the right way. I'm reading this list now ... https://github.com/hazelgrove/hazeljs#limits I'm most confused by the way that the tile editor is loaded --- not part of the package, really? is this stale text or what?\", then \"Draft it\".",
+   "text": "<b>Not stale.</b> hazeljs 0.0.8 ships hazel-lib.js (from js-library-embed 2ab33ebd90, #2719) and hazel-listings.js, which frames https://build.hazel.org/embed-editable/index.html#embed: the Deploy preview of draft #2814 (9d4667762e, 11-06), 7.9 MB decoded / 2.2 MB sent. Editor and library at different commits (the editor lacks 6c283c8a9f and 2ab33ebd90); package.json pins only the library; the frame takes messages only from matthewhammer.org, localhost, 127.0.0.1 and itself (EmbedProtocol.re); both branches 171 behind dev. Draft issue for hazelgrove/hazeljs: options A (editor in the package), B (versioned editor URL), C (one commit, recorded).",
+   "progress": "11-19 09:1x-09:2x: checked (hazeljs 8df20f4; ls-remote; merge-base; EmbedProtocol.re on embed-editable; the frame loaded once in the browser pane for its size). Draft written: scratchpad hazeljs-issue-editor-source.md. Nothing posted. | 11-19 09:2x, on Matthew's \"please publish that issue\": posted as hazelgrove/hazeljs#2 (https://github.com/hazelgrove/hazeljs/issues/2). Matthew also asked for a branch \"maybe to become main, where we experiment with putting the editor into the package\": started."
   }
  ],
- "next_ticket": 773,
- "current_ticket": 772,
- "current_note": "09:05: ^report(58) revised at 09:05: 14 ready (3 conflicts resolved), 8 decisions; #2828 to rework for 64-bit SInt (Cyrus)",
+ "next_ticket": 774,
+ "current_ticket": 773,
+ "current_note": "09:22: hazeljs: issue #2 posted (where the editor comes from); starting a branch that puts the editor in the package",
  "closed_tickets": [
   {
    "id": 736,
@@ -26700,7 +26715,7 @@
   708,
   700
  ],
- "current_since": "2026-11-19T07:41-07:00",
+ "current_since": "2026-11-19T09:22-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
