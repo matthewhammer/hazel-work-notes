@@ -5911,5 +5911,51 @@
   "closed": "2026-11-06",
   "outcome": "Fixed in Hazel's dynamics (Ascriptions.transition pairs by label), #2719 at 6c283c8a9f, and released in hazeljs 0.0.5. The Petri example's workaround goes in ^ticket(706).",
   "outcome_url": "https://www.npmjs.com/package/hazeljs/v/0.0.5"
+ },
+ {
+  "id": 775,
+  "area": "hazel, hazeljs example, ancient-oracle: each oracle works offline, as an app with its own icon; one button casts in full screen",
+  "added": "2026-11-19T15:30-07:00",
+  "opened": "2026-11-19T15:30-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazeljs",
+   "oracles"
+  ],
+  "source": "Matthew, 2026-11-19 ~14:5x, in chat: \"for each oracle app ... when full screen but no reading has been cast, provide a UI to do that with a single button; under advanced, provide instructions to make the app run in offline mode on that device, by creating an icon, etc.; ensure that the offline function can work\", then \"ensure each app has a cool icon when used in offline mode\".",
+  "text": "hazeljs-oracles 0.0.24 (d5ba02a): a service worker (sw.js) precaches each app, network-first with the saved copy offline; a manifest and an icon per app (gold hexagram 63; two fanned cards with a star; a gold zodiac wheel); ⚙️ Advanced › 📲 Use it with no connection (status, Install button, this device's steps first; the Tarot saves woodcut faces on request, an unsaved face drawn simple offline); one button in full screen casts the whole reading. Listings stay text offline.",
+  "progress": "11-19 15:30: checked on localhost with the server stopped (each app loads, casts, reads; saved woodcut faces show, unsaved fall back) and live on matthewhammer.org (worker active, scope /hazeljs-oracles/, 69 files).",
+  "closed": "2026-11-19T15:30-07:00",
+  "outcome": "Released as hazeljs-oracles 0.0.24, live at https://matthewhammer.org/hazeljs-oracles/",
+  "outcome_url": "https://matthewhammer.org/hazeljs-oracles/",
+  "log": [
+   {
+    "at": "2026-11-19T15:16-07:00",
+    "from": "matthew",
+    "chars": 312,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T15:16-07:00",
+    "from": "matthew",
+    "chars": 57,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T15:16-07:00",
+    "from": "claude",
+    "chars": 215,
+    "asks": false,
+    "words": 35,
+    "read_s": 9,
+    "listen_s": 13,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ]
  }
 ]

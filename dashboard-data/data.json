@@ -21070,11 +21070,29 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 776,
+   "area": "hazeljs examples: the repo to hazeljs-examples, the site to Hazel activities (ancient oracles, one-player games), and Solitaire in Hazel",
+   "added": "2026-11-19T15:30-07:00",
+   "opened": "2026-11-19T15:30-07:00",
+   "status": "open",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "chips": [
+    "hazeljs",
+    "oracles",
+    "games"
+   ],
+   "source": "Matthew, 2026-11-19 ~15:1x-15:3x, in chat: \"make another category of stuff, and rework the URLs and navigation: hazeljs-oracles ~> hazeljs-activities. A new activity: solitaire, as a set of hazel rules, and open source SVG images, and JS-based GUI interaction with the rules, in preparation for making a livelit (not here)\"; \"sub categories: ancient oracles (with some local anchor), one-player games\"; \"the repo ... can be renamed hazeljs-examples or something similar\".",
+   "text": "Plan proposed 15:3x, waiting on his go-ahead: rename the GitHub repo to hazeljs-examples (site title Hazel activities), apps keep flat paths (/i-ching/, /tarot/, /astrology/, /solitaire/), the front page in two sections with anchors (#oracles, #games); a stub repo at the old name redirects every old URL and retires the old service worker; localStorage keys unchanged (same origin, so histories and saved charts carry over). Solitaire: Klondike, its rules in Hazel (deal, legal moves, apply, won), compiled ahead of time like the oracles, a public-domain SVG deck, a JS table with drag and tap, undo, offline and an icon.",
+   "progress": ""
   }
  ],
- "next_ticket": 775,
+ "next_ticket": 777,
  "current_ticket": 773,
- "current_note": "14:58: #2817 now has 64-bit SInt (569d0f186c); its deploy, CI and Firefox jit check running. #2818 and #2606 green.",
+ "current_note": "15:30: hazeljs-oracles 0.0.24 live (offline apps, icons, one-button cast; ^ticket(775) closed). Waiting on Matthew: go-ahead for the hazeljs-examples rename and Solitaire plan, ^ticket(776).",
  "closed_tickets": [
   {
    "id": 736,
@@ -27551,6 +27569,16 @@
    "status": "done",
    "closed": "2026-11-06",
    "outcome": "Fixed in Hazel's dynamics (Ascriptions.transition pairs by label), #2719 at 6c283c8a9f, and released in hazeljs 0.0.5. The Petri example's workaround goes in ^ticket(706)."
+  },
+  {
+   "id": 775,
+   "area": "hazel, hazeljs example, ancient-oracle: each oracle works offline, as an app with its own icon; one button casts in full screen",
+   "added": "2026-11-19T15:30-07:00",
+   "text": "hazeljs-oracles 0.0.24 (d5ba02a): a service worker (sw.js) precaches each app, network-first with the saved copy offline; a manifest and an icon per app (gold hexagram 63; two fanned cards with a…",
+   "source": "Matthew, 2026-11-19 ~14:5x, in chat: \"for each oracle app ... when full screen but no reading has been cast, provide a…",
+   "status": "done",
+   "closed": "2026-11-19T15:30-07:00",
+   "outcome": "Released as hazeljs-oracles 0.0.24, live at https://matthewhammer.org/hazeljs-oracles/"
   }
  ],
  "queue": [
@@ -27605,10 +27633,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6743,
-  "words": 1485536,
-  "read_hours_est": 104.0,
-  "listen_hours_est": 154.7,
+  "replies": 6746,
+  "words": 1485852,
+  "read_hours_est": 104.1,
+  "listen_hours_est": 154.8,
   "read_s_avg": 56,
   "listen_s_avg": 83,
   "days": {
@@ -27953,9 +27981,9 @@
     "chars": 47203
    },
    "2026-11-19": {
-    "replies": 65,
-    "words": 16357,
-    "chars": 97611
+    "replies": 68,
+    "words": 16673,
+    "chars": 99463
    }
   }
  },
@@ -28297,5 +28325,6 @@
    "parked": "2026-11-06 09:14: Matthew: \"no other servers required now. localports is just that for now.\""
   }
  ],
+ "current_waiting": "Go ahead with the hazeljs-examples rename, redirects and Solitaire plan (^ticket(776))?",
  "closed_tickets_are": "summaries for the hover cards; the full records are in dashboard-data/closed/<YYYY-MM>.json (dashboard/data_whole.py joins them)"
 }
