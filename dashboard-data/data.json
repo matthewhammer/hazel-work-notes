@@ -17252,98 +17252,6 @@
    "progress": "14:1x 11-15: measured first, in Node, hazel-jit-shaped code (scratchpad bigint757.mjs). Plain JS BigInt against JS numbers: fib(25) x4.1, a 5000-list's sum or length x1.5, 2000 model updates (multiplies, compares, a divide) x9.6-10.9. The 'something comparable', a hybrid: an Int a JS number while it is a safe integer (|n| <= 2^53-1), a BigInt past that, every result normalized (so === still compares, and a number and a BigInt are never the same value): fib x1.6, the lists x0.7-0.9 (noise), the model updates x3.7. Exact either way (2^53+1 is 9007199254740993n; 3^40 a BigInt; division as (a - a % b) / b, exact where Math.trunc(a / b) rounds above 2^52). What a program computes is the same as with BigInt alone, the interpreter's Bigint (Jane Street's, dividing toward zero as JS BigInt does): the representation is the implementation's, so the hybrid. Plan: HazelJit.re's Int and Nat literals, patterns, operators ($R.iadd ... ipow, idiv raising the interpreter's errors), the integer builtins; HazelJitValue (to and from JS, both forms); print_js (JSON.stringify throws on a BigInt); HazelJitDOM's int(); the harness's exact comparison (^ticket(756)). Built on trial/756-sweep. SInt stays a JS number: its width is ^ticket(758). | 14:3x: written and pushed, branch trial/757-bigint (b908b4ed2e, on trial/756-sweep): the runtime's iadd/isub/imul/ineg/idiv/ipow/inorm; literals and patterns by js_int; the integer builtins in both forms; invalid operations throw 'hazel-jit: invalid operation: <error>' (the run falls back, the interpreter makes the stuck term: ^ticket(759)); HazelJitValue both forms each way; print_js and the CLI print a BigInt; the harness compares integers exactly. 10 new tests. CI 43759076087 running. | 16:3x: CI GREEN on b908b4ed2e (43759076087: static, fast, full tests, the 10 new tests). Its sweep, integers now compared exactly by their digits: 316 evaluator checks, 237 compiled, 207 agreed, 0 differ, 0 threw (the same 30 ill-typed programs not a value). The Witch's step in Firefox dispatched (jit.yml 43763443448), against build 45. | 17:2x MEASURED on the Witch (one run): the compiled run per event 6-9 ms against build 45's 4-8; view per frame 6.6 ms (about 152 fps) against 5.8; same 30 compiled-run draws. Run 43763443448."
   },
   {
-   "id": 758,
-   "area": "hazel-jit: overflow in a fixed-width number stops at a stuck term with the error, checked at every operation that can overflow",
-   "added": "2026-11-15T11:35-07:00",
-   "opened": "2026-11-15T11:35-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazel",
-    "performance",
-    "hazel-jit"
-   ],
-   "source": "Matthew, 2026-11-15 11:4x, in chat, summarizing his meeting with Cyrus on Friday 11-13 at 10:00 Mountain: \"Let me summarize the meeting with Cyrus on Friday. [...] create tickets for tomorrow morning, or late tonight, after other stuff is done. items (all about hazel-jit): * when we hit an overflow for any times where that is possible -- we should check each time for non-arb precision numbers --- we should create an indet term / stuck term with that error -- look at existing interpreter cases for inspiration.\"",
-   "text": "<b>Overflow, checked.</b> Where a number is not arbitrary precision (SInt, and any other fixed-width kind), check each operation that can overflow (+, -, *, power, conversions), and on overflow stop with an indeterminate (stuck) term carrying the error, as the interpreter's <code>InvalidOperationError</code> cases do (<code>IntegerTooBig</code>, <code>NegativeNat</code>). To check first: what the interpreter does with an SInt overflow today (OCaml's <code>int</code>); the two must agree (the consistency ticket).",
-   "progress": "14:4x 11-15, found (hazeljs 0.0.6, Hazel under js_of_ocaml as in the browser): SInt is written in `use SInt in` mode (a plain + is Int's); the interpreter WRAPS SInt silently at 32 bits: use SInt in 2147483647 + 1 is -2147483648; 65536 * 65536 is 0; 1000000 * 1000000 is -727379968; 2 ** 31 is -2147483648; 0 - 2147483647 - 2 is 2147483647. So three behaviours today: the browser's interpreter (32-bit wrap), a native build's (OCaml's 63-bit int), and hazel-jit's (JS doubles: 2147483647 + 1 is 2147483648). SInt / 0 is already DynamicErrorHole(..., DivideByZero), as Int / 0. To make overflow 'an indet term / stuck term with that error' is a change to the interpreter (Operators.re's SInt ops) as well as hazel-jit, and needs SInt's width settled: RECOMMENDATION: 32 bits everywhere (what the browser has always done), each SInt op checked (in the interpreter: the result against [-2^31, 2^31 - 1], else InvalidOperationError, a new IntegerOverflow or the existing IntegerTooBig; in hazel-jit the same check, then invalid('IntegerOverflow')), and sint_of_int past the range the same error. | 11-16 11:3x: DECIDED, Matthew: \"Yes, 32 bits\" (to: settle SInt at 32 bits everywhere, overflow checked). So: every SInt operation's result checked against [-2^31, 2^31 - 1] in the interpreter (whatever the OCaml int's width: 32 under js_of_ocaml, 63 native) and in hazel-jit, an overflow an InvalidOperationError, the run stuck at it as at a divide by zero. Starting. | 11-16 11:4x: written, branch trial/758-sint32 (3c9fb4d9ed, on trial/761-reverse): the interpreter's SInt +, -, *, **, negation and / (the least SInt by -1) check the result against [-2^31, 2^31-1] as a float first (Atom.sint_fits; exact for 32-bit sums, surely out past 2^53), so the answer does not depend on the OCaml int's width; outside, a new InvalidOperationError.IntegerOverflow ('Error: Integer overflow (an SInt has 32 bits)'), a stuck term as for a divide by zero. Int, Nat, Float into SInt past 32 bits: IntegerTooBig, natively too. hazel-jit: $R.sadd/ssub/smul/sneg/sdiv/spow check the same and stop the run there; sint_of_int and sint_of_float too. 7 agreement tests. The interpreter's change is a language change for dev too: a PR to dev after this, Matthew's call. CI running. | 11-16 13:2x: CI GREEN on 96e808952b (43932132464: static, fast, full tests): SInt at 32 bits, the 7 agreement tests. Next: onto trial/694-view-jit with the stack; then the interpreter's half as its own PR to dev (Matthew's call). | 11-16 13:5x: BUILD 48: trial/694-view-jit FAST-FORWARDED f4f969588b -> 30a131a046 (trial/765-label-keys, CI 43932529130 green: static, fast, full; all six slides jit.yml 43949420309: 0 differences, no errors, compiled-run draws Full Body 30, Witch 30, Hands 28, Scenes 36; the Witch's view 6.1 ms a frame, about 164 fps). Holds: undefined, tuple extension and label builtins, strings in graphemes, reverse application (761), SInt at 32 bits (758), labels named length (765). The sweep: 313, 257 compiled, 230 agreed, 0 differ, 27 known; not compiled for a limit 8 (fix over _ 3, ill-typed; tuple label not a name 2; from_lvs 1; module member expression 1; mutual recursion non-function 1). In ^report(54). | 11-16 14:4x: on Matthew's 'Yes, open it': PR to dev hazelgrove/hazel#2828 (https://github.com/hazelgrove/hazel/pull/2828), branch fix/758-sint-32-bits (6386abbfc2, from dev 782249bbd0, worktree ~/hazel-758): the interpreter's half only (Atom.sint_fits, Operators' checked SInt ops, InvalidOperationError.IntegerOverflow; conversions into SInt IntegerTooBig natively too), comments without our ticket syntax; tests in Evaluator.Atom (each operation past 32 bits an IntegerOverflow error, the edges unchanged, sint_of_int(3000000000) no SInt). 4 checks pending; review required. | 11-16 17:4x: #2828 CI GREEN (6 passing, 1 skipped; mergeable, blocked only on review). Auto-fix on (Matthew's 'Yes, Auto-fix'): this session wakes on CI failures, conflicts and review comments. Waiting on a reviewer. | 11-16 17:5x: Codecov's comment on #2828: patch coverage 56.5%, 10 lines no test ran (the conversions into SInt, negation's check, IntegerOverflow's message). Pushed 3c305e05f3, tests for each: negating the least SInt an overflow; sint_of_int/nat/float at the 32-bit edges make an SInt, past them stay a call (sint_of_float(3000000000.) wrapped to -1294967296 before, checked in hazeljs 0.0.7); the message. The programs checked first in hazeljs (dev's interpreter); CI type-checks and runs them. | 11-16 20:2x: CI GREEN on 3c305e05f3 (static, fast, full tests, codecov patch and project); patch coverage 56.5% -> 95.7% (1 line left). No reviews yet; blocked only on review. 11-19 12:1x-12:2x: Matthew: \"Let's look at this next: #2828. Recall that we want to move towards 64/3 bit fixed precision integers in the compiled code, not 32 bits.\" Findings: the interpreter's SInt(int) is 32 bits under js_of_ocaml (tests too, under node), so 63 and 64 both need a new payload in the browser; 63 buys nothing there, so the lean is 64. Proposed: interpreter SInt holds a Bigint checked to [-2^63, 2^63 - 1] (Int's ops plus the check; the float trick goes); hazel-jit SInt on #2817's Int hybrid (a number while safe, a BigInt past that), the 64-bit bound checked only on the BigInt path; overflow stays an error (IntegerOverflow), as settled 11-16. Bench (node 22, one core, 2M add+mul pairs, 7 runs, both orders): today's 32-bit check 6.6-6.8 ns/op; 64-bit SInt on the hybrid 6.8-7.0 below 2^53, about 43 past it; plain BigInt 17-24 (asIntN wrap or check). Scope: about 44 places hold an SInt's value, in 13 files (Operators, Atom, ExplainThis, MatchExp, DHExp, Statics, Coverage, the menhir parser, Grammar, Abbreviate, Ascriptions, ExpToSegment), plus max_sint/min_sint and #2817's HazelJitValue. Asked Matthew: 64 (recommended) or 63, before reworking #2828. 12:2x: Matthew: \"Yes, 64 bits\". Reworking #2828: SInt a Bigint checked to [-2^63, 2^63 - 1], overflow an error. 12:29: #2828 reworked at 64 bits (8b1a1b5543, after merging dev 840b07861a): SInt holds a Bigint checked to [-2^63, 2^63 - 1] (Atom.sint_fits); every operation exact then checked (Operators.sint_checked); powers of 64+ not computed (-1, 0, 1 repeat; others overflow); max_sint/min_sint the 64-bit edges; sint_mod via Bigint.rem; Coverage, ExplainThis and the menhir shrinkers take Bigints; tests at the 64-bit edges. No local build: GitHub's CI type-checks and tests it (run 44598763036). 12:5x: CI green on 8b1a1b5543 (static, fast, full: 4969 tests). #2828 retitled \"SInt has 64 bits everywhere, and overflow is an error\" and redescribed. Next: #2817's compiled SInt at 64 bits (a number while safe, a BigInt past that, bound checked on the BigInt path). 13:01: hazel-jit at 64 bits on a new branch from #2817's tip, trial/758-sint64-jit (#2817's own build left as it is): d126b9dcee cherry-picks #2828's 64-bit commit (comment-only conflicts), 95b5ed2d5b moves the runtime (s64 on the Int hybrid, sdiv, spow, sint_of_float/int, float_of_sint, sint_mod), literals and patterns (js_int), value conversions, the data experiment's SInt index, and the agreement tests (64-bit edges, across 2^53). CI running; merging into #2817 waits on Matthew. 14:36: trial/758-sint64-jit green (569d0f186c; static, fast, full: 6996 tests, 87 min), the agreement tests at the 64-bit edges and across 2^53 included. Merging it into #2817 waits on Matthew. 14:58: Matthew: \"Yes, merge it\". trial/694-view-jit (#2817) fast-forwarded 55e4757a4b..569d0f186c (the three green commits); #2817's description gains a numbers bullet (64-bit SInt). On that push: Deploy, CI and the Firefox jit check running. Not done: ^report(54)'s overflow section still says 32 bits; #2819 (livelits x jit) and trial/768-astrology-aot are not updated.",
-   "waiting": "SInt's width for the overflow check: 32 bits everywhere (the browser's interpreter wraps at 32 today; a native build would at 63; hazel-jit not at all), and overflow a stuck term with an error in the interpreter too? A language decision, Matthew and Cyrus's. My recommendation: 32 bits, a new InvalidOperationError IntegerOverflow.",
-   "log": [
-    {
-     "at": "2026-11-16T11:37-07:00",
-     "from": "matthew",
-     "chars": 12,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-16T14:43-07:00",
-     "from": "matthew",
-     "chars": 12,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-16T14:45-07:00",
-     "from": "claude",
-     "chars": 1715,
-     "asks": true,
-     "words": 280,
-     "read_s": 71,
-     "listen_s": 105,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-16T17:40-07:00",
-     "from": "matthew",
-     "chars": 13,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-16T17:40-07:00",
-     "from": "matthew",
-     "chars": 786,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-16T17:42-07:00",
-     "from": "claude",
-     "chars": 739,
-     "asks": false,
-     "words": 119,
-     "read_s": 30,
-     "listen_s": 45,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-16T17:43-07:00",
-     "from": "matthew",
-     "chars": 3352,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T12:23-07:00",
-     "from": "matthew",
-     "chars": 12,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T14:57-07:00",
-     "from": "matthew",
-     "chars": 13,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 759,
    "area": "hazel-jit: divide by zero stops at a stuck term with the error, as the interpreter's DivideByZero",
    "added": "2026-11-15T11:35-07:00",
@@ -21047,109 +20955,52 @@
    ]
   },
   {
-   "id": 774,
-   "area": "hazel: does it run offline, as a desktop app? An audit of what it loads from the network",
-   "added": "2026-11-19T11:45-07:00",
-   "opened": "2026-11-19T11:45-07:00",
+   "id": 778,
+   "area": "hazel: no copy of Helvetica Neue; IBM Plex Sans as the interface font (#2837), from ^report(59)'s open fonts",
+   "added": "2026-11-19T11:08-07:00",
+   "opened": "2026-11-19T11:08-07:00",
    "status": "open",
    "tags": [],
    "chips": [
     "hazel"
    ],
-   "source": "Matthew, 2026-11-19 ~11:42, in chat: \"can we audit hazel to see if it will run offline, as a desktop app?\"",
-   "text": "<b>Almost: one network load at startup, plus the AI assistant.</b> Audit of dev 399726adcc (source) and the #2837 preview (one page load: every request went to build.hazel.org except one). Offline already: hazel.js, worker.js, bundled.js (ninja-keys, hotkeys, Algebrite), all CSS, images, the probes video, the docs and tutorial slides (compiled in by ppx_blob), the fonts (Source Code Pro; Helvetica Neue on dev, IBM Plex Sans after #2837), saving (IndexedDB and localStorage). Breaks offline: (1) index.html loads Material Icons from fonts.googleapis.com; the command palette's icons (undo, redo, ...: ShortcutAction.md_icon) would show as their names. Fix: ship the font (Apache 2.0) in style/fonts. (2) The AI assistant calls openrouter.ai (OpenRouter.re via API.re): needs a network by nature; how it fails offline is not checked. For a desktop wrapper: index.html cannot open as a file:// page (a module script and a Worker), so serve it (a fixed local port) or use Electron's or Tauri's own scheme; keep ONE fixed origin, since saved work lives in that origin's storage.",
-   "progress": "11-19 11:4x: source search (URLs; XmlHttpRequest, Worker, fetch, WebSocket, import()) on origin/dev; one load of the #2837 preview in the browser pane, resource list by host: build.hazel.org (51 files) and fonts.googleapis.com (1). Next: ship Material Icons, then a real offline run. 12:0x: Matthew: \"Yes, its own PR\". #2842 opened (ui-icons-shipped, 9d8d393fa6): Fontsource's material-icons 5.3.0 woff2 is byte-identical to what fonts.gstatic.com serves Chrome (v145, sha256 8265f647...), but Fontsource's LICENSE says OFL while google/material-design-icons says Apache 2.0, so the PR ships Google's file with the Apache text. Next: check the preview makes no request to Google. 12:1x: #2842's preview checked (one load in the browser pane, palette opened): all 52 requests to build.hazel.org, none to Google; Material Icons loaded from style/fonts/MaterialIcons-Regular.woff2, and the palette's icons draw as glyphs (arrow_forward, select_all ... 19 px wide).",
-   "log": [
-    {
-     "at": "2026-11-19T11:42-07:00",
-     "from": "matthew",
-     "chars": 67,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T11:56-07:00",
-     "from": "matthew",
-     "chars": 15,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T11:57-07:00",
-     "from": "matthew",
-     "chars": 162,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
+   "source": "Matthew, 2026-11-19 11:08: \"Cyrus and team want to know where we are using Helvetica Neue\", then \"Open the PR\"; 11:13 \"Let's look for an open font for the interface, shipped with Hazel\", \"Make the page\"; 11:38 \"I think IBM Plex Sans looks like the best choice to replace Helvetica Neue\", \"Let's amend our PR that removes Helvetica Neue to instead use IBM Plex Sans\".",
+   "text": "hazelgrove/hazel#2837 drops the two Helvetica Neue files (a commercial typeface, its notice forbids redistribution) and ships IBM Plex Sans (OFL-1.1, weights 400 and 700, Latin, 22 KB each, @fontsource/ibm-plex-sans 5.3.0) as --ui-font. ^report(59) compared eleven open fonts in Hazel's interface.",
+   "progress": "11-19 11:09: #2837 opened (183db5978f). 11:19-11:27: ^report(59) published, each card proving its font. 11:4x: 6736849247 adds Plex; retitled, redescribed; preview checked (both faces load and draw, Helvetica Neue 404). CI green (6 checks). Waits on the team's review."
   },
   {
-   "id": 776,
-   "area": "hazeljs examples: the repo to hazeljs-examples, the site to Hazel activities (ancient oracles, one-player games), and Solitaire in Hazel",
-   "added": "2026-11-19T15:30-07:00",
-   "opened": "2026-11-19T15:30-07:00",
+   "id": 781,
+   "area": "hazel-jit: what still says 32-bit SInt: ^report(54)'s overflow section, #2819 (livelits x jit) and trial/768-astrology-aot",
+   "added": "2026-11-19T15:00-07:00",
+   "opened": "2026-11-19T15:00-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel-jit"
+   ],
+   "source": "Left over from ^ticket(758), 2026-11-19: SInt is 64 bits now in #2828 and #2817.",
+   "text": "Revise ^report(54)'s overflow section to 64-bit SInt (a Bigint in the interpreter; in compiled code a number while safe, a BigInt past it, the bound checked on the BigInt path; the Node timing); bring #2819 and trial/768-astrology-aot to 64 bits when they next move.",
+   "progress": ""
+  },
+  {
+   "id": 782,
+   "area": "hazeljs examples: Solitaire (Klondike), its rules in Hazel, open-source SVG cards and a JS table, toward a livelit",
+   "added": "2026-11-19T15:24-07:00",
+   "opened": "2026-11-19T15:24-07:00",
    "status": "open",
    "tags": [],
    "chips": [
     "hazeljs",
-    "oracles",
     "games"
    ],
-   "source": "Matthew, 2026-11-19 ~15:1x-15:3x, in chat: \"make another category of stuff, and rework the URLs and navigation: hazeljs-oracles ~> hazeljs-activities. A new activity: solitaire, as a set of hazel rules, and open source SVG images, and JS-based GUI interaction with the rules, in preparation for making a livelit (not here)\"; \"sub categories: ancient oracles (with some local anchor), one-player games\"; \"the repo ... can be renamed hazeljs-examples or something similar\".",
-   "text": "Plan proposed 15:3x, waiting on his go-ahead: rename the GitHub repo to hazeljs-examples (site title Hazel activities), apps keep flat paths (/i-ching/, /tarot/, /astrology/, /solitaire/), the front page in two sections with anchors (#oracles, #games); a stub repo at the old name redirects every old URL and retires the old service worker; localStorage keys unchanged (same origin, so histories and saved charts carry over). Solitaire: Klondike, its rules in Hazel (deal, legal moves, apply, won), compiled ahead of time like the oracles, a public-domain SVG deck, a JS table with drag and tap, undo, offline and an icon.",
-   "progress": "11-19 15:36: Matthew: \"Yes, go ahead\". Moving the site first (rename, front page, redirects), then Solitaire.",
-   "log": [
-    {
-     "at": "2026-11-19T15:24-07:00",
-     "from": "matthew",
-     "chars": 343,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T15:25-07:00",
-     "from": "matthew",
-     "chars": 123,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T15:25-07:00",
-     "from": "claude",
-     "chars": 451,
-     "asks": false,
-     "words": 73,
-     "read_s": 18,
-     "listen_s": 27,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T15:26-07:00",
-     "from": "claude",
-     "chars": 356,
-     "asks": false,
-     "words": 63,
-     "read_s": 16,
-     "listen_s": 24,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T15:27-07:00",
-     "from": "matthew",
-     "chars": 91,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
+   "source": "Matthew, 2026-11-19 15:24: \"A new activity: solitaire, as a set of hazel rules, and open source SVG images, and JS-based GUI interaction with the rules, in preparation for making a livelit (not here) for that same behavior.\"",
+   "text": "Under One-player games on the Hazel activities site: Klondike's deal, legal moves, a move applied and the win, as Hazel functions of the game state (the shape a livelit will want), compiled ahead of time like the oracles; a public-domain SVG deck; a JS table with drag and tap, undo, full screen, offline and its own icon.",
+   "progress": ""
   }
  ],
- "next_ticket": 777,
- "current_ticket": 773,
- "current_note": "15:36: moving hazeljs-oracles to hazeljs-examples (Hazel activities) and adding Solitaire, ^ticket(776) (Matthew: \"Yes, go ahead\").",
+ "next_ticket": 783,
+ "current_ticket": 782,
+ "current_note": "15:44: next, Solitaire (^ticket(782)); first the work notes for 11-16 to 11-19 (Matthew: \"let's update https://matthewhammer.org/hazel/work-notes/\").",
  "closed_tickets": [
   {
    "id": 736,
@@ -27630,12 +27481,72 @@
   {
    "id": 775,
    "area": "hazel, hazeljs example, ancient-oracle: each oracle works offline, as an app with its own icon; one button casts in full screen",
-   "added": "2026-11-19T15:30-07:00",
+   "added": "2026-11-19T15:16-07:00",
    "text": "hazeljs-oracles 0.0.24 (d5ba02a): a service worker (sw.js) precaches each app, network-first with the saved copy offline; a manifest and an icon per app (gold hexagram 63; two fanned cards with a…",
-   "source": "Matthew, 2026-11-19 ~14:5x, in chat: \"for each oracle app ... when full screen but no reading has been cast, provide a…",
+   "source": "Matthew, 2026-11-19 15:16, in chat: \"for each oracle app ... when full screen but no reading has been cast, provide a…",
    "status": "done",
    "closed": "2026-11-19T15:30-07:00",
    "outcome": "Released as hazeljs-oracles 0.0.24, live at https://matthewhammer.org/hazeljs-oracles/"
+  },
+  {
+   "id": 777,
+   "area": "operations: crash 62, 11:32, during a Zoom screen share",
+   "added": "2026-11-19T11:37-07:00",
+   "text": "The journal stops at 11:32:09 (Slack's lines), three minutes after the desktop portal began a screen share (11:29:03, \"Failed to associate portal window with parent window\"; WirePlumber's camera…",
+   "source": "Matthew, 2026-11-19 11:37, in chat: \"computer crash due to zoom screen share bug on my machine\".",
+   "status": "done",
+   "closed": "2026-11-19T11:45-07:00",
+   "outcome": "Crash log row 62"
+  },
+  {
+   "id": 779,
+   "area": "hazel, #2606's review: the request carries no cache (Matt Keenan's point), no project named in the code, only the comments the code needs",
+   "added": "2026-11-19T11:57-07:00",
+   "text": "Request.value loses prev and use_held_prev; the worker looks up its kept cache by document and key (Held.find) where it plans and starts each item; the main thread passes its cache to evaluate_sync…",
+   "source": "Matthew, 2026-11-19 11:57: \"Matt Keenan raised a good point in a review comment --- let's address that question and…",
+   "status": "done",
+   "closed": "2026-11-19T13:51-07:00",
+   "outcome": "Matt Keenan's two comments addressed on #2606, CI green; the PR waits on approval"
+  },
+  {
+   "id": 780,
+   "area": "hazel: #2818's frame-rate HUD off by default; a Flags configuration slide turns it on and off",
+   "added": "2026-11-19T13:15-07:00",
+   "text": "A third configuration slide, Flags, (hud = false) in a checkbox; evaluating it shows or hides the HUD through window.hazelHud; Main applies the saved slide at startup in every mode; ?hud still turns…",
+   "source": "Matthew, 2026-11-19 13:15: \"let's update this PR ... So that: the HUD is off by default; a new configuration flag on…",
+   "status": "done",
+   "closed": "2026-11-19T13:51-07:00",
+   "outcome": "#2818 updated, CI green, preview checked"
+  },
+  {
+   "id": 758,
+   "area": "hazel-jit: overflow in a fixed-width number stops at a stuck term with the error, checked at every operation that can overflow",
+   "added": "2026-11-15T11:35-07:00",
+   "text": "Overflow, checked.",
+   "source": "Matthew, 2026-11-15 11:4x, in chat, summarizing his meeting with Cyrus on Friday 11-13 at 10:00 Mountain: \"Let me…",
+   "status": "done",
+   "closed": "2026-11-19T14:57-07:00",
+   "outcome": "SInt 64 bits, overflow an error: #2828 (8b1a1b5543) and #2817 (569d0f186c), CI green"
+  },
+  {
+   "id": 774,
+   "area": "hazel: does it run offline, as a desktop app? An audit of what it loads from the network",
+   "added": "2026-11-19T11:45-07:00",
+   "text": "Almost: one network load at startup, plus the AI assistant.",
+   "source": "Matthew, 2026-11-19 ~11:42, in chat: \"can we audit hazel to see if it will run offline, as a desktop app?\"",
+   "status": "done",
+   "closed": "2026-11-19T12:15-07:00",
+   "outcome": "The audit (only Material Icons and the AI assistant need a network); #2842 ships Material Icons"
+  },
+  {
+   "id": 776,
+   "area": "hazeljs examples: the repo to hazeljs-examples, the site to Hazel activities (ancient oracles, one-player games), linked from matthewhammer.org/hazel/",
+   "added": "2026-11-19T15:30-07:00",
+   "text": "Repository renamed matthewhammer/hazeljs-examples (GitHub redirects the old name); the site at /hazeljs-examples/, the front page in two parts (#oracles, #games); each app's header Hazel activities ›…",
+   "source": "Matthew, 2026-11-19 ~15:1x-15:3x, in chat: \"make another category of stuff, and rework the URLs and navigation:…",
+   "status": "done",
+   "closed": "2026-11-19T15:44-07:00",
+   "outcome": "hazeljs-examples 0.0.25 live at https://matthewhammer.org/hazeljs-examples/, the old address redirecting"
   }
  ],
  "queue": [
@@ -27677,7 +27588,7 @@
   708,
   700
  ],
- "current_since": "2026-11-19T09:49-07:00",
+ "current_since": "2026-11-19T15:44-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
