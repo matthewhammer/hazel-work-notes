@@ -121,7 +121,7 @@
  "other_prs": [
   {
    "pr": 2818,
-   "note": "A frame-rate HUD, off by default, turned on from the Flags configuration slide (Matthew 11-19 13:0x: \"the HUD is off by default; a new configuration flag on configuration slide toggles it on/off\"). Branch fps-hud: 806c4cd47e adds the Flags slide (FlagsConfiguration.re, (hud = false) in a checkbox), window.hazelHud in index.html, startup apply in Main; ?hud still forces it for a page. Cyrus merged dev into it at 11:56 (f5e0b1bb91). Preview: https://build.hazel.org/fps-hud/"
+   "note": "A frame-rate HUD, off by default, turned on from the Flags configuration slide (Matthew 11-19 13:0x: \"the HUD is off by default; a new configuration flag on configuration slide toggles it on/off\"). Branch fps-hud: 806c4cd47e adds the Flags slide (FlagsConfiguration.re, (hud = false) in a checkbox), window.hazelHud in index.html, startup apply in Main; ?hud still forces it for a page. Cyrus merged dev into it at 11:56 (f5e0b1bb91). Preview: https://build.hazel.org/fps-hud/ 13:51: CI green on f5bce97cda (after a Flags case for reconcile_colors); preview checked in the browser pane: HUD off at first, ticking hud on the Flags slide shows it, unticking hides it, and a reload in Tutorial mode with the slide saved ticked shows it at startup (left unticked after). 1e77468749 renames the settings section to \"Colors, keys and flags\"; its CI running."
   },
   {
    "pr": 2842,
@@ -20969,7 +20969,7 @@
  ],
  "next_ticket": 775,
  "current_ticket": 773,
- "current_note": "13:20: #2818: HUD off by default, Flags configuration slide turns it on (806c4cd47e), CI running. #2606: Cyrus merged dev (54c48bd0a5), its CI re-running; description has no history notes now. hazel-jit 64-bit SInt branch: CI re-running after an agreement-check fix (569d0f186c).",
+ "current_note": "13:51: #2818 done but for CI on a heading rename (1e77468749): HUD off by default, Flags slide checked in the preview. #2606 green on Cyrus's dev merge 9e4251cded. hazel-jit 64-bit SInt branch: CI running (569d0f186c).",
  "closed_tickets": [
   {
    "id": 736,
