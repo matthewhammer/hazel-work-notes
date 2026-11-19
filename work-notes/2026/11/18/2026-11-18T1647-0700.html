@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 11-18 Wednesday</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; overflow-wrap: anywhere; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+  blockquote { margin: 1em 0; padding: 0.6em 1em; border-left: 4px solid var(--accent); background: var(--code); border-radius: 0 6px 6px 0; }
+  blockquote p { margin: 0.5em 0; }
+  table { border-collapse: collapse; margin: 1em 0; font-size: 0.95em; } th, td { border-bottom: 1px solid var(--line); padding: 4px 10px; text-align: left; vertical-align: top; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-11-18: reports 56 and 57, and the astrology oracle grows</h1>
+<p class="sub">Claude, written on 11-19 from the sessions' transcripts, the dashboard, the repositories' logs and the system journal. Wednesday had two sessions: the one from 11-16 and 11-17, from 06:57 to 09:59 MST, and a new one from 16:12 to 16:47. Before: <a href="../17/2026-11-17T1751-0700.html">11-17's note</a>; next: <a href="../19/2026-11-19T1545-0700.html">the 11-19 notes</a>.</p>
+
+<h2>In short</h2>
+<p>The slide builtins went green overnight, and build 50 went onto the prototype branch at 06:58. Matthew asked for two new reports. <a href="https://matthewhammer.org/hazel/reports/056/"><code class="ref"><b>^report(</b>56<b>)</b></code></a>, "What Still Falls Back", covers every case the interpreter still does. <a href="https://matthewhammer.org/hazel/reports/057/"><code class="ref"><b>^report(</b>57<b>)</b></code></a>, "What the Livelits PR Compiles", was for his talk with Cyrus that day and the mergeathon on 11-19. In between, on his asks, the astrology oracle went from 0.0.16 to 0.0.21, now compiled by default as the other oracles are, and 0.0.22 in the afternoon saves charts by name.</p>
+<ul>
+<li>On build 50, 235 of the evaluator's 313 programs agree with the interpreter, and so do all 20 compiled slides.</li>
+<li>Compiled, an astrology chart takes 0.85 ms, against 1,436 ms in hazeljs (Node, on the laptop).</li>
+<li>Mixed mode on the astrology rules parted from the interpreter: one cause fixed, a float difference of a relative 1e-12 left.</li>
+<li>The laptop went down at 10:20 and was back at 10:24, with no session mid-turn.</li>
+</ul>
+
+<h2>Matthew, today</h2>
+<blockquote>
+<p>I'd like to create report 56 as focused on this status: [...]<br>* compiled code with open holes --- the carve out for John's contributions, which I will try to isolate from lifting the other limitations unrelated to holes. [...]</p>
+<p>please repeat the log scatter plot at the start of report 56 comparing interpreter to compiled code</p>
+<p>does our astrology app use compiled code by default, like the others seem to? [...] It seems like we should, if possible</p>
+<p>for each ancient oracle app, in two-column mode, let's provide a full screen button at the top of the main interactive elements [...]</p>
+<p>For this tool tip (outer ring of signs, which are constellations), can we show some SVG of the constellation too in the tool tip?</p>
+<p>please write a new report with  what you just told me, and sections with more details for each point.<br>I want to talk to Cyrus today about what features we are using for responsive livelit performance, and think about how to merge into dev.<br>Another mergeathon tomorrow</p>
+<p>new feature -- multiple saved birth charts, with user-defined names.</p>
+</blockquote>
+
+<h2>What was done</h2>
+<ul>
+<li><b>Build 50</b> (<a href="https://matthewhammer.org/hazel/dashboard/#ticket-761"><code class="ref"><b>^ticket(</b>761<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/#ticket-694"><code class="ref"><b>^ticket(</b>694<b>)</b></code></a>): the slide builtins and the list-projection fix. <code>trial/694-view-jit</code> fast-forwarded to <code>55e4757a4b</code> at 06:58 and deployed at 07:01. Its CI passed, with full tests at 94.5 of their 100 minutes, the tight limit now. In the Firefox jit check, the Witch's view took 6.5 ms a frame (about 154 fps), 1.7 ms of it hazel-jit's own run.</li>
+<li><b><a href="https://matthewhammer.org/hazel/reports/056/"><code class="ref"><b>^report(</b>56<b>)</b></code></a>, "What Still Falls Back"</b> (<a href="https://matthewhammer.org/hazel/dashboard/#ticket-770"><code class="ref"><b>^ticket(</b>770<b>)</b></code></a>), drafted at 07:22.
+  <ul>
+  <li>It opens with the log-scale scatter from build 50's own CI: the median program is 227 times as fast compiled.</li>
+  <li>The 53 programs never compiled, printed by name: 15 holes, 10 type holes, 24 deliberately unbound names, and 4 ill-typed fixpoints. The last corrects reports 54 and 55, which had taken one of the four for a definition a finer check could compile. So the evaluator's tests hold no limit worth lifting.</li>
+  <li>Its other sections follow Matthew's list: the limits, the open decisions, holes (John's, kept apart), stuck terms (later), and how a step budget bounds a run in both uses, livelit views and mixed mode.</li>
+  </ul></li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/#ticket-768"><code class="ref"><b>^ticket(</b>768<b>)</b></code></a>, astrology compiled by default</b> (0.0.16, live at 07:47). <code>astrology/compiled.js</code> is 101 kB, from the eleven modules compiled in CI. On 40 charts it gave the same words as hazeljs, the numbers within a relative 1e-10. The same release added full screen with two side dividers to all three oracles, and a note and an emoji on each reading in the history.</li>
+<li><b>Astrology, 0.0.17 to 0.0.21</b>, each checked in the browser pane:
+  <ul>
+  <li>a history of charts, kept only when asked;</li>
+  <li>full screen that fits Matthew's laptop at high zoom, the wheel's glyphs in the notes, and the reading's words emphasized;</li>
+  <li>hovering the wheel explains each element and lights its notes, and the notes light the wheel; birth and today side by side;</li>
+  <li>each sign's tooltip shows its constellation. The twelve figures are drawn by a script from ConstellationLines (CC BY 4.0) and the Yale Bright Star Catalogue, both credited.</li>
+  </ul></li>
+<li><b>Astrology 0.0.22</b>, in the afternoon: saved charts under names, with a birth saved by an older version coming in as "default". Pushed at Matthew's "Push it"; live at 16:44.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/#ticket-766"><code class="ref"><b>^ticket(</b>766<b>)</b></code></a>, mixed mode on the astrology rules</b>, in CI. It compiled 49 functions and made 1,898 compiled calls, none falling back; one reading took 822 ms interpreted and 477 ms mixed (single runs). But the answer differed. First cause: a constructor came back without its sum type, now fixed (<code>061f0495fd</code>). Next: one float, 2.92059864001 against 2.92059864, left for later.</li>
+<li><b><a href="https://matthewhammer.org/hazel/reports/057/"><code class="ref"><b>^report(</b>57<b>)</b></code></a>, "What the Livelits PR Compiles"</b> (<a href="https://matthewhammer.org/hazel/dashboard/#ticket-771"><code class="ref"><b>^ticket(</b>771<b>)</b></code></a>), at 09:59. In the app, <a href="https://github.com/hazelgrove/hazel/pull/2819">#2819</a> uses hazel-jit for livelits only. It compiles their views (the Witch's picture in 3.0 ms instead of 87) and their updates. It also compiles each slide's whole run, to draw livelits sooner (2.3 to 2.5 ms instead of 684, in Node). Its head is from 11-09 and lacks the 123 commits since, the step budget among them. The report carries report 52's merge plan, brought up to date.</li>
+<li><b>The laptop went down at 10:20.</b> The journal's boot ends at 10:20:55 without a shutdown, and the next begins at 10:24:48. The morning session had ended its turn at 09:59. The crash log has no entry for it yet.</li>
+</ul>
+
+<h2>Where things are</h2>
+<ul>
+<li><b>hazel</b>: <code>trial/694-view-jit</code> is build 50, under <a href="https://github.com/hazelgrove/hazel/pull/2817">#2817</a>. <code>trial/768-astrology-aot</code> has the compiled rules and mixed mode's fix.</li>
+<li><b>To dev, waiting on a review</b>: <a href="https://github.com/hazelgrove/hazel/pull/2828">#2828</a> (still 32 bits that day), <a href="https://github.com/hazelgrove/hazel/pull/2825">#2825</a>, <a href="https://github.com/hazelgrove/hazel/pull/2818">#2818</a>.</li>
+<li><b>hazeljs-oracles</b> 0.0.22 (<code>e410b05</code>), now <a href="https://matthewhammer.org/hazeljs-examples/">hazeljs-examples</a>.</li>
+<li><b>Matthew's talk with Cyrus</b> is not in the transcripts. Cyrus's word that day, that SInt has 64 bits, reached the work on 11-19.</li>
+</ul>
+
+<h2 id="next">Next</h2>
+<ul>
+<li><b>The mergeathon</b> on 11-19, from report 57's merge plan.</li>
+<li><b>Mixed mode's float difference</b>: find the operation, or compare floats within 1e-9 (<a href="https://matthewhammer.org/hazel/dashboard/#ticket-766"><code class="ref"><b>^ticket(</b>766<b>)</b></code></a>).</li>
+<li><b>Report 56's open decisions</b>, with Cyrus; John's project waits on four questions (<a href="https://matthewhammer.org/hazel/dashboard/#ticket-769"><code class="ref"><b>^ticket(</b>769<b>)</b></code></a>).</li>
+<li><b>A crash-log entry</b> for 10:20.</li>
+</ul>
+</main>
+<!-- pr-cards: begin -->
+<style>
+  /* above the nav bar (nav.js draws it at z-index 2147483000-2147483002), or a card on a link in it opens underneath */
+  .pr-card { position: absolute; z-index: 2147483003; width: max-content; max-width: min(380px, calc(100vw - 32px)); box-sizing: border-box;
+    padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line, #d0d7de); background: var(--paper, var(--bg, Canvas));
+    color: var(--ink, CanvasText); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18); font: 13px/1.45 system-ui, sans-serif; pointer-events: none; }
+  .pr-card .pr-head { color: var(--muted, GrayText); font-size: 12px; }
+  .pr-card .pr-title { font-weight: 600; margin: 3px 0 4px; }
+  .pr-card .pr-meta { color: var(--muted, GrayText); font-size: 12px; }
+  .pr-card .pr-note { color: var(--muted, GrayText); font-size: 11px; margin-top: 5px; font-style: italic; }
+  .pr-state { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; margin-left: 6px; vertical-align: 1px; }
+  .pr-base { display: inline-block; padding: 0 6px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-left: 6px; vertical-align: 1px; }
+  .pr-base.dev { background: #dafbe1; color: #116329; } .pr-base.other { background: #fff1c2; color: #7a4b00; }
+  @media (prefers-color-scheme: dark) { .pr-base.dev { background: #12361f; color: #6fdd8b; } .pr-base.other { background: #3d2e00; color: #f2cc60; } }
+  .pr-state.open { background: #1f883d; } .pr-state.merged { background: #8250df; } .pr-state.closed { background: #cf222e; } .pr-state.draft { background: #6e7781; }
+</style>
+<script>
+/* A card for each link to a GitHub PR or issue, on hover or focus: its
+   title, state, the branch a PR targets (dev or not: the distinction that
+   matters, ^ticket(478)), author, dates and comments, asked of GitHub live, once per
+   number per page load; if GitHub does not answer, what it said when the
+   page was built (tools/link_prs.py writes this block). */
+(() => {
+  const CACHED = {"hazelgrove/hazel#2817": {"author": "matthewhammer", "base": "integration/livelits-modular-editors", "comments": 1, "created": "2026-11-09T03:18:27Z", "kind": "pull", "state": "draft", "title": "non-`dev` (`integration/livelits-modular-editors`): hazel-jit: livelit views and a slide's whole run compiled to JavaScript; try it with a frame-rate HUD", "updated": "2026-11-19T21:57:57Z"}, "hazelgrove/hazel#2818": {"author": "matthewhammer", "comments": 2, "created": "2026-11-09T03:19:26Z", "kind": "pull", "state": "draft", "title": "A frame-rate HUD, off by default, turned on from the Flags configuration slide", "updated": "2026-11-19T21:17:51Z", "base": "dev"}, "hazelgrove/hazel#2819": {"author": "matthewhammer", "comments": 0, "created": "2026-11-09T12:37:34Z", "kind": "pull", "state": "draft", "title": "livelits x jit", "updated": "2026-11-09T17:14:39Z", "base": "dev"}, "hazelgrove/hazel#2825": {"author": "matthewhammer", "base": "dev", "comments": 2, "created": "2026-11-15T22:38:10Z", "kind": "pull", "state": "closed", "title": "Modulo by zero shows Divide by Zero instead of crashing the interpreter", "updated": "2026-11-19T18:34:09Z"}, "hazelgrove/hazel#2828": {"author": "matthewhammer", "comments": 1, "created": "2026-11-16T21:45:00Z", "kind": "pull", "state": "draft", "title": "SInt has 64 bits everywhere, and overflow is an error", "updated": "2026-11-19T22:15:21Z"}}, BUILT = "2026-11-19";
+  const RX = /^https:\/\/github\.com\/([^/]+\/[^/]+)\/(pull|issues)\/(\d+)$/;
+  const asked = new Map();
+  /* a PR from the pulls endpoint, which has its base branch; an issue from the issues one */
+  const ask = (key, kind) => {
+    if (!asked.has(key)) {
+      const [repo, n] = key.split("#"), pull = kind === "pull";
+      asked.set(key, fetch(`https://api.github.com/repos/${repo}/${pull ? "pulls" : "issues"}/${n}`)
+        .then(r => r.ok ? r.json() : Promise.reject(r.status))
+        .then(j => ({ title: j.title, author: j.user && j.user.login, created: j.created_at, updated: j.updated_at,
+                      comments: j.comments, kind: pull || j.pull_request ? "pull" : "issues", base: j.base && j.base.ref,
+                      state: j.merged_at || (j.pull_request && j.pull_request.merged_at) ? "merged" : j.draft ? "draft" : j.state }))
+        .catch(() => null));
+    }
+    return asked.get(key);
+  };
+  const baseChip = d => !d.base ? "" : d.base === "dev"
+    ? `<span class="pr-base dev" title="this PR merges into dev">into dev</span>`
+    : `<span class="pr-base other" title="this PR merges into ${esc(d.base)}, not dev">into ${esc(d.base)}, not dev</span>`;
+  const day = iso => new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+  const ago = iso => {
+    const s = (Date.now() - new Date(iso)) / 1000;
+    for (const [u, k] of [["year", 31536000], ["month", 2592000], ["day", 86400], ["hour", 3600], ["minute", 60]])
+      if (s >= k) { const v = Math.floor(s / k); return `${v} ${u}${v === 1 ? "" : "s"} ago`; }
+    return "just now";
+  };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const fill = (key, d, note) => {
+    const [repo, n] = key.split("#"), what = d.kind === "pull" ? "Pull request" : "Issue";
+    return `<div class="pr-head">${esc(repo)} #${n} · ${what}<span class="pr-state ${esc(d.state)}">${esc(d.state)}</span>${baseChip(d)}</div>` +
+      `<div class="pr-title">${esc(d.title)}</div>` +
+      `<div class="pr-meta">by ${esc(d.author)} · opened ${day(d.created)} · updated ${ago(d.updated)} · ${d.comments} comment${d.comments === 1 ? "" : "s"}</div>` +
+      (note ? `<div class="pr-note">${note}</div>` : "");
+  };
+  let card = null, over = null, timer = null;
+  const place = a => {
+    const r = a.getBoundingClientRect(), w = card.offsetWidth, h = card.offsetHeight;
+    const left = Math.max(16, Math.min(r.left, document.documentElement.clientWidth - w - 16));
+    const below = r.bottom + 6 + h < innerHeight;
+    card.style.left = (left + scrollX) + "px";
+    card.style.top = ((below ? r.bottom + 6 : r.top - 6 - h) + scrollY) + "px";
+  };
+  const hide = () => { clearTimeout(timer); over = null; if (card) card.hidden = true; };
+  const show = a => {
+    const m = RX.exec(a.href);
+    if (!m) return;
+    const key = m[1] + "#" + m[3];
+    over = a; clearTimeout(timer);
+    timer = setTimeout(async () => {
+      if (!card) { card = document.createElement("div"); card.className = "pr-card"; card.setAttribute("role", "tooltip"); document.body.append(card); }
+      const cached = CACHED[key];
+      card.innerHTML = cached ? fill(key, cached, "asking GitHub…") : `<div class="pr-head">${esc(key)}</div><div class="pr-note">asking GitHub…</div>`;
+      card.hidden = false; place(a);
+      const d = await ask(key, m[2]);
+      if (over !== a) return;
+      card.innerHTML = d ? fill(key, d, "")
+        : cached ? fill(key, cached, `GitHub didn't answer just now (its limit is 60 lookups an hour per network): as of ${BUILT}`)
+        : `<div class="pr-head">${esc(key)}</div><div class="pr-note">GitHub didn't answer just now.</div>`;
+      place(a);
+    }, 250);
+  };
+  const linkOf = t => t && t.closest && t.closest("a[href]");
+  document.addEventListener("mouseover", e => { const a = linkOf(e.target); if (a && a !== over && RX.test(a.href)) show(a); });
+  document.addEventListener("mouseout", e => { const a = linkOf(e.target); if (a && a === over && !a.contains(e.relatedTarget)) hide(); });
+  document.addEventListener("focusin", e => { const a = linkOf(e.target); if (a && RX.test(a.href)) show(a); });
+  document.addEventListener("focusout", hide);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") hide(); });
+  addEventListener("scroll", () => { if (over && card && !card.hidden) place(over); }, { passive: true });
+})();
+</script>
+<!-- pr-cards: end -->
+<!-- ref-cards: begin -->
+<style>
+  /* above the nav bar (nav.js draws it at z-index 2147483000-2147483002), or a card on a link in it opens underneath */
+  .ref-card { position: absolute; z-index: 2147483003; width: max-content; max-width: min(400px, calc(100vw - 32px)); box-sizing: border-box;
+    padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line, #d0d7de); background: var(--paper, var(--bg, Canvas));
+    color: var(--ink, CanvasText); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18); font: 13px/1.45 system-ui, sans-serif; pointer-events: none; }
+  .ref-card .rc-head { color: var(--muted, GrayText); font-size: 12px; }
+  .ref-card .rc-title { font-weight: 600; margin: 3px 0 4px; }
+  .ref-card .rc-meta { color: var(--muted, GrayText); font-size: 12px; }
+  .ref-card .rc-note { color: var(--muted, GrayText); font-size: 11px; margin-top: 5px; font-style: italic; }
+  .rc-state { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; margin-left: 6px;
+    vertical-align: 1px; background: #6e7781; }
+  .rc-state.current { background: #1f883d; } .rc-state.queued { background: #9a6700; } .rc-state.open { background: #0969da; }
+  .rc-state.done { background: #8250df; }
+</style>
+<script>
+/* A card for each ^ticket(N) and ^report(N) link, on hover or focus: a
+   ticket from the work dashboard's data (its area, its status, its first
+   line), carried by the dashboard's own pages and read live from the
+   published data anywhere else; a report from its own page, live (its
+   title, date and opening). Once per page load each. */
+(() => {
+  const PUBLIC = "https://matthewhammer.org/hazel-work-notes/dashboard-data/data.json";
+  const DATA = location.port === "8000" && /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? "/data.json" : PUBLIC;
+  /* the dashboard itself carries its tickets (made with the page, changed
+     with it); any other page asks the published data */
+  const EMBED = null;
+  let data = EMBED ? Promise.resolve(EMBED) : null;
+  const loadData = () => data || (data = fetch(DATA, { cache: "no-store" }).then(r => r.ok ? r.json() : Promise.reject(r.status)).catch(() => null));
+  // (^ticket(428): a page carries only the tickets it names; one it does not, as a chip in the nav bar, is read live)
+  let live = null;
+  const loadLive = () => live || (live = fetch(DATA, { cache: "no-store" }).then(r => r.ok ? r.json() : Promise.reject(r.status)).catch(() => null));
+  const has = (n, d) => (d.tickets || []).some(t => t.id === n) || (d.closed_tickets || []).some(t => t.id === n);
+  const pages = new Map();
+  const loadReport = url => {
+    if (!pages.has(url)) pages.set(url, fetch(url).then(r => r.ok ? r.text() : Promise.reject(r.status)).then(t => {
+      const doc = new DOMParser().parseFromString(t, "text/html"), h1 = doc.querySelector("h1");
+      let p = h1 && h1.nextElementSibling;
+      while (p && p.tagName !== "P") p = p.nextElementSibling;
+      const label = (doc.querySelector(".series") || {}).textContent || "";
+      return { title: h1 ? h1.textContent.trim() : doc.title, date: (label.match(/\d{4}-\d{2}-\d{2}/) || [""])[0],
+               lead: p ? p.textContent.replace(/\s+/g, " ").trim() : "" };
+    }).catch(() => null));
+    return pages.get(url);
+  };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const cut = (t, n) => t.length <= n ? t : t.slice(0, n).replace(/\s+\S*$/, "") + "…";
+  const plain = h => new DOMParser().parseFromString("<div>" + (h || "") + "</div>", "text/html").body.textContent.replace(/\s+/g, " ").trim();
+  const lead = h => { const m = /^\s*<b>([\s\S]*?)<\/b>/.exec(h || ""); return m ? plain(m[1]) : cut(plain(h), 200); };
+  const ticketCard = (n, d) => {
+    const open = (d.tickets || []).find(t => t.id === n), closed = (d.closed_tickets || []).find(t => t.id === n), t = open || closed;
+    if (!t) return `<div class="rc-head">^ticket(${n})</div><div class="rc-note">Not on the dashboard.</div>`;
+    const q = (d.queue || []).indexOf(n);
+    const [cls, state] = closed ? ["done", `${t.status || "closed"}, ${t.closed || ""}`]
+      : d.current_ticket === n ? ["current", "current" + (d.current_waiting ? " · ✋❔ waiting on Matthew" : "")]
+      : q >= 0 ? ["queued", `queued, ${q + 1} in line`] : ["open", "open"];
+    return `<div class="rc-head">^ticket(${n}) · ${esc(t.area || "")}<span class="rc-state ${cls}">${esc(state)}</span></div>` +
+      `<div class="rc-title">${esc(lead(t.text))}</div>` +
+      `<div class="rc-meta">${t.added ? "added " + esc(t.added) + " · " : ""}from ${esc(plain(t.source || "") || "?")}</div>` +
+      (closed && t.outcome ? `<div class="rc-meta">${esc(cut(plain(t.outcome), 180))}</div>` : "");
+  };
+  const reportCard = (n, r) => r
+    ? `<div class="rc-head">^report(${n}) · Hazel performance analysis${r.date ? " · " + esc(r.date) : ""}</div>` +
+      `<div class="rc-title">${esc(r.title)}</div>` + (r.lead ? `<div class="rc-meta">${esc(cut(r.lead, 240))}</div>` : "")
+    : `<div class="rc-head">^report(${n})</div><div class="rc-note">The report's page didn't load just now.</div>`;
+  let card = null, over = null, timer = null;
+  const place = a => {
+    const r = a.getBoundingClientRect(), w = card.offsetWidth, h = card.offsetHeight;
+    card.style.left = (Math.max(16, Math.min(r.left, document.documentElement.clientWidth - w - 16)) + scrollX) + "px";
+    card.style.top = ((r.bottom + 6 + h < innerHeight ? r.bottom + 6 : r.top - 6 - h) + scrollY) + "px";
+  };
+  const refOf = a => { const c = a.querySelector("code.ref"); const m = c && /^\^(ticket|report)\((\d+)\)$/.exec(c.textContent.trim()); return m && { kind: m[1], n: Number(m[2]) }; };
+  const hide = () => { clearTimeout(timer); over = null; if (card) card.hidden = true; };
+  const show = (a, ref) => {
+    over = a; clearTimeout(timer);
+    timer = setTimeout(async () => {
+      if (!card) { card = document.createElement("div"); card.className = "ref-card"; card.setAttribute("role", "tooltip"); document.body.append(card); }
+      card.innerHTML = `<div class="rc-head">^${ref.kind}(${ref.n})</div><div class="rc-note">loading…</div>`;
+      card.hidden = false; place(a);
+      let html;
+      if (ref.kind === "ticket") { let d = await loadData(); if (d && EMBED && !has(ref.n, d)) d = (await loadLive()) || d; html = d ? ticketCard(ref.n, d) : `<div class="rc-head">^ticket(${ref.n})</div><div class="rc-note">The dashboard's data didn't load just now.</div>`; }
+      else html = reportCard(ref.n, await loadReport(a.href));
+      if (over !== a) return;
+      card.innerHTML = html; place(a);
+    }, 250);
+  };
+  const linkOf = t => t && t.closest && t.closest("a[href]");
+  document.addEventListener("mouseover", e => { const a = linkOf(e.target), r = a && refOf(a); if (r && a !== over) show(a, r); });
+  document.addEventListener("mouseout", e => { const a = linkOf(e.target); if (a && a === over && !a.contains(e.relatedTarget)) hide(); });
+  document.addEventListener("focusin", e => { const a = linkOf(e.target), r = a && refOf(a); if (r) show(a, r); });
+  document.addEventListener("focusout", hide);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") hide(); });
+  addEventListener("scroll", () => { if (over && card && !card.hidden) place(over); }, { passive: true });
+})();
+</script>
+<!-- ref-cards: end -->
+<!-- notes: begin -->
+<style>
+  code.ref { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; white-space: nowrap; }
+  code.ref b { font-weight: 800; }
+  button.mint { margin-left: 4px; font: inherit; font-size: 0.75em; padding: 0 6px; border: 1px solid var(--line, #ccc);
+    border-radius: 4px; background: transparent; color: var(--muted, #666); cursor: pointer; vertical-align: 1px; }
+  button.mint:hover { color: inherit; }
+  button.mint.done { color: var(--good, #15803d); border-color: var(--good, #15803d); }
+  a.step-link { color: var(--muted, #666); text-decoration: none; font-size: 0.85em; margin-left: 4px; }
+  a.step-link:hover { text-decoration: underline; }
+  li:target { background: color-mix(in srgb, var(--good, #15803d) 12%, transparent); border-radius: 6px; }
+</style>
+<script>
+/* Each step under "Next": a link to it, a chip copying that link, and a
+   chip copying a request to mint a ticket for it (to paste to Claude). */
+(() => {
+  const h = document.getElementById("next");
+  if (!h) return;
+  let list = h.nextElementSibling;
+  while (list && !/^(OL|UL)$/.test(list.tagName)) {
+    if (list.tagName === "H2") return;
+    list = list.nextElementSibling;
+  }
+  if (!list) return;
+  const page = location.origin + location.pathname, name = document.title;
+  const copy = async (b, text) => {
+    try { await navigator.clipboard.writeText(text); }
+    catch (_) { const t = document.createElement("textarea"); t.value = text; document.body.append(t); t.select(); document.execCommand("copy"); t.remove(); }
+    const was = b.textContent; b.textContent = "copied"; b.classList.add("done");
+    setTimeout(() => { b.textContent = was; b.classList.remove("done"); }, 1500);
+  };
+  [...list.children].filter(li => li.tagName === "LI").forEach((li, i) => {
+    const n = i + 1;
+    if (!li.id) li.id = "step-" + n;
+    const url = page + "#" + li.id;
+    const b = li.querySelector("b, strong");
+    const title = (b ? b.textContent : li.textContent).replace(/\s+/g, " ").trim().replace(/[:.,;]$/, "").slice(0, 160);
+    const a = document.createElement("a");
+    a.href = "#" + li.id; a.className = "step-link"; a.textContent = "#" + n; a.title = "A link to this step";
+    const link = document.createElement("button");
+    link.type = "button"; link.className = "mint"; link.textContent = "copy link"; link.title = "Copies a link to this step";
+    link.addEventListener("click", () => copy(link, url));
+    const mint = document.createElement("button");
+    mint.type = "button"; mint.className = "mint"; mint.textContent = "copy for a ticket";
+    mint.title = "Copies a request to mint a ticket for this step, to paste to Claude";
+    mint.addEventListener("click", () => copy(mint, "Mint a ticket for this step: " + name + ", Next, step " + n + ': "' + title + '". ' + url));
+    li.append(" ", a, " ", link, " ", mint);
+  });
+  if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
+})();
+</script>
+<!-- notes: end -->
+</body>
+</html>
