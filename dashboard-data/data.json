@@ -120,6 +120,14 @@
  ],
  "other_prs": [
   {
+   "pr": 2842,
+   "note": "Ship Material Icons with Hazel, so the command palette works offline (^ticket(774)'s finding). Branch ui-icons-shipped from dev 2538e56479, commit 9d8d393fa6: the same woff2 Google Fonts serves (v145, 128 KB, byte-identical), Apache 2.0 license, Google Fonts links gone from index.html. Opened 2026-11-19 12:0x on Matthew's word (\"Yes, its own PR\"). Preview: https://build.hazel.org/ui-icons-shipped/"
+  },
+  {
+   "pr": 2837,
+   "note": "Ship IBM Plex Sans as Hazel's interface font, in place of Helvetica Neue (Matthew's pick 11-19 from ^report(59)). Branch ui-font-installed: 183db5978f drops Helvetica Neue, 6736849247 adds Plex 400/700 (Latin, 22 KB each, OFL-1.1). Preview: https://build.hazel.org/ui-font-installed/"
+  },
+  {
    "pr": 2819,
    "note": "livelits x jit: a DRAFT against dev for hosting the build only, not for merging (Matthew, 11-09: \"the idea of this PR is to host the build, not to merge to any other branch\"). Branch livelits-x-jit = #2817's head 61f3f01a15 (#2635 + hazel-jit + the ?hud overlay). Opened 2026-11-09 05:37. Build: https://build.hazel.org/livelits-x-jit/?hud ; the description links all 15 Livelit Playground slides with the HUD, compiled and not. Conflicts with dev are expected."
   },
@@ -20761,7 +20769,7 @@
    ],
    "source": "Matthew, 2026-11-19 ~11:42, in chat: \"can we audit hazel to see if it will run offline, as a desktop app?\"",
    "text": "<b>Almost: one network load at startup, plus the AI assistant.</b> Audit of dev 399726adcc (source) and the #2837 preview (one page load: every request went to build.hazel.org except one). Offline already: hazel.js, worker.js, bundled.js (ninja-keys, hotkeys, Algebrite), all CSS, images, the probes video, the docs and tutorial slides (compiled in by ppx_blob), the fonts (Source Code Pro; Helvetica Neue on dev, IBM Plex Sans after #2837), saving (IndexedDB and localStorage). Breaks offline: (1) index.html loads Material Icons from fonts.googleapis.com; the command palette's icons (undo, redo, ...: ShortcutAction.md_icon) would show as their names. Fix: ship the font (Apache 2.0) in style/fonts. (2) The AI assistant calls openrouter.ai (OpenRouter.re via API.re): needs a network by nature; how it fails offline is not checked. For a desktop wrapper: index.html cannot open as a file:// page (a module script and a Worker), so serve it (a fixed local port) or use Electron's or Tauri's own scheme; keep ONE fixed origin, since saved work lives in that origin's storage.",
-   "progress": "11-19 11:4x: source search (URLs; XmlHttpRequest, Worker, fetch, WebSocket, import()) on origin/dev; one load of the #2837 preview in the browser pane, resource list by host: build.hazel.org (51 files) and fonts.googleapis.com (1). Next: ship Material Icons, then a real offline run.",
+   "progress": "11-19 11:4x: source search (URLs; XmlHttpRequest, Worker, fetch, WebSocket, import()) on origin/dev; one load of the #2837 preview in the browser pane, resource list by host: build.hazel.org (51 files) and fonts.googleapis.com (1). Next: ship Material Icons, then a real offline run. 12:0x: Matthew: \"Yes, its own PR\". #2842 opened (ui-icons-shipped, 9d8d393fa6): Fontsource's material-icons 5.3.0 woff2 is byte-identical to what fonts.gstatic.com serves Chrome (v145, sha256 8265f647...), but Fontsource's LICENSE says OFL while google/material-design-icons says Apache 2.0, so the PR ships Google's file with the Apache text. Next: check the preview makes no request to Google.",
    "log": [
     {
      "at": "2026-11-19T11:42-07:00",
@@ -20775,7 +20783,7 @@
  ],
  "next_ticket": 775,
  "current_ticket": 773,
- "current_note": "11:45: #2837 now ships IBM Plex Sans, Matthew's pick (preview green, CI running). Also ^ticket(774): Hazel offline as a desktop app, audited: only Material Icons (Google Fonts) and the AI assistant need a network.",
+ "current_note": "12:03: #2606 changed on Matt Keenan's review point: the request carries no cache, the worker looks up its own (56606db4ed; replied on the PR; CI running). #2842 opened: Material Icons shipped with Hazel (^ticket(774)). #2837 ships IBM Plex Sans, preview green.",
  "closed_tickets": [
   {
    "id": 736,
@@ -27306,8 +27314,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6722,
-  "words": 1481451,
+  "replies": 6723,
+  "words": 1481534,
   "read_hours_est": 103.7,
   "listen_hours_est": 154.3,
   "read_s_avg": 56,
@@ -27654,9 +27662,9 @@
     "chars": 47203
    },
    "2026-11-19": {
-    "replies": 44,
-    "words": 12272,
-    "chars": 73526
+    "replies": 45,
+    "words": 12355,
+    "chars": 74045
    }
   }
  },
