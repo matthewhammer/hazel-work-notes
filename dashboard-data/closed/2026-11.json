@@ -6322,5 +6322,146 @@
   "closed": "2026-11-19T15:44-07:00",
   "outcome": "hazeljs-examples 0.0.25 live at https://matthewhammer.org/hazeljs-examples/, the old address redirecting",
   "outcome_url": "https://matthewhammer.org/hazeljs-examples/"
+ },
+ {
+  "id": 784,
+  "area": "hazeljs examples: Minesweeper, a one-player game, its rules in Hazel",
+  "added": "2026-11-19T16:15-07:00",
+  "opened": "2026-11-19T16:15-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazeljs",
+   "games"
+  ],
+  "source": "Matthew, 2026-11-19 ~16:2x, in chat: \"Next, let's do minesweeper as a one-player game in Hazeljs\".",
+  "text": "Under One-player games: the board, the mines laid after the first tap (never in its 3 by 3, by selection sampling), each cell's count, a reveal with the empty region flooding open (sweeps along rows, turning the board between them), flags, and chords, all in Hazel; a JS board, levels, a timer and a mine counter, offline and an icon.",
+  "progress": "11-19 16:2x-16:35: rules in Node on all three boards (first tap 0.2-1.3 s, a reveal 7-37 ms at the median, the slowest 1.9 s on expert; the build about 4 s in Node, 11 s in the browser pane). In the pane: a tap hung because the page waited for a painted frame, which a hidden pane never draws; now a frame or 60 ms, whichever first. Played through: the first tap opened 52, a flag, a chord, a win (😎, best time kept), a loss (💥). Full screen fixed (its controls had not joined the left column): the bar above the board, cells up to 64 px, expert fits with or without the controls; 🚩 flag mode under ☰. Computing chord's eight neighbours from k = 0..8 did not cut its build cost (2.9 s alone, 2.5 s before); compiled.js through hazel-jit is the fix. 16:35: 0.0.27 (86841a0) live, checked file by file; the hazel page and nav list it (00bec5d6).",
+  "log": [
+   {
+    "at": "2026-11-19T16:05-07:00",
+    "from": "matthew",
+    "chars": 338,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T16:08-07:00",
+    "from": "matthew",
+    "chars": 43,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T16:09-07:00",
+    "from": "claude",
+    "chars": 752,
+    "asks": false,
+    "words": 137,
+    "read_s": 35,
+    "listen_s": 51,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T16:13-07:00",
+    "from": "matthew",
+    "chars": 58,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T16:13-07:00",
+    "from": "claude",
+    "chars": 1079,
+    "asks": false,
+    "words": 191,
+    "read_s": 48,
+    "listen_s": 72,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T16:15-07:00",
+    "from": "claude",
+    "chars": 184,
+    "asks": false,
+    "words": 31,
+    "read_s": 8,
+    "listen_s": 12,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T16:19-07:00",
+    "from": "matthew",
+    "chars": 137,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T16:21-07:00",
+    "from": "claude",
+    "chars": 469,
+    "asks": false,
+    "words": 74,
+    "read_s": 19,
+    "listen_s": 28,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T16:22-07:00",
+    "from": "matthew",
+    "chars": 225,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-19T16:35-07:00",
+  "outcome": "Minesweeper live in 0.0.27, under One-player games",
+  "outcome_url": "https://matthewhammer.org/hazeljs-examples/minesweeper/"
+ },
+ {
+  "id": 788,
+  "area": "hazeljs examples: M's tablet feedback: full screen on a landscape screen puts the controls away behind ☰, with each game's own buttons under it",
+  "added": "2026-11-19T16:35-07:00",
+  "opened": "2026-11-19T16:35-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazeljs",
+   "games",
+   "oracles"
+  ],
+  "source": "Matthew, 2026-11-19, in chat: \"feedback from M on the tablet --- in FS mode, landscape, we want to hide the LHS by default, with some little icon to reveal it, perhaps?\"; then \"more feedback from M about solitare -- when we hide the LHS, we still want \\\"hint\\\"\", and \"i actually think the current system works\" (the hint's outline).",
+  "text": "Every app: in full screen on a landscape screen the left column starts put away and the picture takes its room; ☰ brings it back, the choice kept on the device. Under ☰, a game's own buttons (OracleFs.tool): Solitaire's 💡 hint, Minesweeper's 🚩 flag mode.",
+  "progress": "11-19: shared/fullscreen.js and oracles.css; checked in the browser pane at 1180 by 820 (the table 1076 px wide with the controls away, 200 px of controls with them back; 💡 marks the hinted card as before; Minesweeper's expert board fits either way). 16:35: live in 0.0.27 (86841a0).",
+  "closed": "2026-11-19T16:35-07:00",
+  "outcome": "live in 0.0.27",
+  "outcome_url": "https://matthewhammer.org/hazeljs-examples/solitaire/"
+ },
+ {
+  "id": 789,
+  "area": "hazeljs examples: a new version offers itself, as Dress Up's pop-up does",
+  "added": "2026-11-19T16:35-07:00",
+  "opened": "2026-11-19T16:35-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazeljs",
+   "games",
+   "oracles"
+  ],
+  "source": "Matthew, 2026-11-19, in chat: \"messed up dress up also has a feature that pops up when there's a new live version. Can we do that here, somehow?\"",
+  "text": "shared/offline.js reads version.json as the page loaded it, then asks afresh each minute and when the page is shown again; a newer one: a card at the top (🔄 Switch, Not now), over full screen too, a 🆕 chip after the title, and in ⚙️ Advanced the switch and the card's on/off (on by default here; Dress Up's is off by default). The switch reloads at ?v=<new>; the game in progress and readings stay. sw.js lets the no-store check by uncached.",
+  "progress": "11-19: checked in the browser pane by serving a pretend 0.0.28: the card over Solitaire's full screen, Switch reloaded at ?v=0.0.28 with the same game, no offer after; off in Advanced leaves only the chip; the front page shows it too. 16:35: live in 0.0.27 (86841a0); the first real offer will be 0.0.28, since 0.0.26's pages never ask.",
+  "closed": "2026-11-19T16:35-07:00",
+  "outcome": "live in 0.0.27",
+  "outcome_url": "https://matthewhammer.org/hazeljs-examples/"
  }
 ]

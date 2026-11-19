@@ -21247,7 +21247,7 @@
    ],
    "source": "Matthew, 2026-11-19 15:24: \"A new activity: solitaire, as a set of hazel rules, and open source SVG images, and JS-based GUI interaction with the rules, in preparation for making a livelit (not here) for that same behavior.\"",
    "text": "Under One-player games on the Hazel activities site: Klondike's deal, legal moves, a move applied and the win, as Hazel functions of the game state (the shape a livelit will want), compiled ahead of time like the oracles; a public-domain SVG deck; a JS table with drag and tap, undo, full screen, offline and its own icon.",
-   "progress": "11-19 15:4x-16:13: rules (solitaire/rules: preamble, Cards, Deal, Moves) written and tested in Node through hazeljs 0.0.4 (npm run solitaire: no card lost or doubled over 250-400 random legal moves on several deals; every offered move passes Moves.can; moves_from agrees with moves; a move 7 ms, a tap's moves 10 ms, every move ~125 ms, a deal ~90 ms). Found: == on constructors with arguments gets stuck (same_from/same_to/same written out), and hazeljs 0.0.4 sticks on a constructor with a plain tuple from JS (^ticket(736), fixed in 0.0.7), so From and Move carry labeled tuples. Faces: Adrian Kennard's SVG deck (CC0, per revk.uk; court cards traced from a Goodall & Son deck c. 1870), 52 files, 565 KB. Backs (Matthew: a fleur-de-lis, two of them for symmetry; then 13 designs in 5 colour themes, M likes magenta and black): solitaire/backs.js draws them (lily, lions, salamanders, tigers, leaves, flowers and vines, hazelnuts, peacock feathers, butterflies, compass rose, woven knot, waves and sun, diamonds; blue, magenta and black, green, crimson, silver), chosen under Advanced. Page: tap, drag, stock, undo, hint, finish, kept on the device, full screen, offline, icon. Checked in the browser pane on 8141. 16:13: 0.0.26 pushed (1e97ec9); the hazel page and nav list it (f6efe0f0); live check running. Next: compiled.js through hazel-jit, as the oracles have."
+   "progress": "11-19 15:4x-16:13: rules (solitaire/rules: preamble, Cards, Deal, Moves) written and tested in Node through hazeljs 0.0.4 (npm run solitaire: no card lost or doubled over 250-400 random legal moves on several deals; every offered move passes Moves.can; moves_from agrees with moves; a move 7 ms, a tap's moves 10 ms, every move ~125 ms, a deal ~90 ms). Found: == on constructors with arguments gets stuck (same_from/same_to/same written out), and hazeljs 0.0.4 sticks on a constructor with a plain tuple from JS (^ticket(736), fixed in 0.0.7), so From and Move carry labeled tuples. Faces: Adrian Kennard's SVG deck (CC0, per revk.uk; court cards traced from a Goodall & Son deck c. 1870), 52 files, 565 KB. Backs (Matthew: a fleur-de-lis, two of them for symmetry; then 13 designs in 5 colour themes, M likes magenta and black): solitaire/backs.js draws them (lily, lions, salamanders, tigers, leaves, flowers and vines, hazelnuts, peacock feathers, butterflies, compass rose, woven knot, waves and sun, diamonds; blue, magenta and black, green, crimson, silver), chosen under Advanced. Page: tap, drag, stock, undo, hint, finish, kept on the device, full screen, offline, icon. Checked in the browser pane on 8141. 16:13: 0.0.26 pushed (1e97ec9); the hazel page and nav list it (f6efe0f0); live check running. Next: compiled.js through hazel-jit, as the oracles have. 16:35: 0.0.27: M's ask on the tablet, the hint still there with the controls put away: 💡 under ☰ in full screen (the outline as before, Matthew: \"the current system works\")."
   },
   {
    "id": 783,
@@ -21447,80 +21447,6 @@
    ]
   },
   {
-   "id": 784,
-   "area": "hazeljs examples: Minesweeper, a one-player game, its rules in Hazel",
-   "added": "2026-11-19T16:15-07:00",
-   "opened": "2026-11-19T16:15-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazeljs",
-    "games"
-   ],
-   "source": "Matthew, 2026-11-19 ~16:2x, in chat: \"Next, let's do minesweeper as a one-player game in Hazeljs\".",
-   "text": "Under One-player games: the board, the mines laid after the first tap (never in its 3 by 3, by selection sampling), each cell's count, a reveal with the empty region flooding open (sweeps along rows, turning the board between them), flags, and chords, all in Hazel; a JS board, levels, a timer and a mine counter, offline and an icon.",
-   "progress": "",
-   "log": [
-    {
-     "at": "2026-11-19T16:05-07:00",
-     "from": "matthew",
-     "chars": 338,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T16:08-07:00",
-     "from": "matthew",
-     "chars": 43,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T16:09-07:00",
-     "from": "claude",
-     "chars": 752,
-     "asks": false,
-     "words": 137,
-     "read_s": 35,
-     "listen_s": 51,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T16:13-07:00",
-     "from": "matthew",
-     "chars": 58,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T16:13-07:00",
-     "from": "claude",
-     "chars": 1079,
-     "asks": false,
-     "words": 191,
-     "read_s": 48,
-     "listen_s": 72,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T16:15-07:00",
-     "from": "claude",
-     "chars": 184,
-     "asks": false,
-     "words": 31,
-     "read_s": 8,
-     "listen_s": 12,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 785,
    "area": "hazeljs examples: Hazel AI opponents, a new part of the site: Go",
    "added": "2026-11-19T16:15-07:00",
@@ -21594,9 +21520,9 @@
    "progress": ""
   }
  ],
- "next_ticket": 788,
- "current_ticket": 784,
- "current_note": "16:15: Minesweeper (^ticket(784)): rules written, testing in Node next. Queued: Hazel AI opponents, Checkers (^ticket(787)), Go (^ticket(785)) and Mahjong (^ticket(786)); the Petri move (^ticket(783)). Solitaire 0.0.26 pushed (^ticket(782)).",
+ "next_ticket": 790,
+ "current_ticket": 785,
+ "current_note": "16:35: Hazel AI opponents begins with Go (^ticket(785)): a 9 by 9 board, captures, ko and area scoring in Hazel, and the opponent's choice of move in Hazel too. Done just now: Minesweeper live in 0.0.27 (^ticket(784)), with M's full-screen asks (^ticket(788)) and the new-version card (^ticket(789)). Queued: Mahjong (^ticket(786)), Checkers (^ticket(787)), the Petri move (^ticket(783)).",
  "closed_tickets": [
   {
    "id": 736,
@@ -28143,6 +28069,36 @@
    "status": "done",
    "closed": "2026-11-19T15:44-07:00",
    "outcome": "hazeljs-examples 0.0.25 live at https://matthewhammer.org/hazeljs-examples/, the old address redirecting"
+  },
+  {
+   "id": 784,
+   "area": "hazeljs examples: Minesweeper, a one-player game, its rules in Hazel",
+   "added": "2026-11-19T16:15-07:00",
+   "text": "Under One-player games: the board, the mines laid after the first tap (never in its 3 by 3, by selection sampling), each cell's count, a reveal with the empty region flooding open (sweeps along rows,…",
+   "source": "Matthew, 2026-11-19 ~16:2x, in chat: \"Next, let's do minesweeper as a one-player game in Hazeljs\".",
+   "status": "done",
+   "closed": "2026-11-19T16:35-07:00",
+   "outcome": "Minesweeper live in 0.0.27, under One-player games"
+  },
+  {
+   "id": 788,
+   "area": "hazeljs examples: M's tablet feedback: full screen on a landscape screen puts the controls away behind ☰, with each game's own buttons under it",
+   "added": "2026-11-19T16:35-07:00",
+   "text": "Every app: in full screen on a landscape screen the left column starts put away and the picture takes its room; ☰ brings it back, the choice kept on the device. Under ☰, a game's own buttons…",
+   "source": "Matthew, 2026-11-19, in chat: \"feedback from M on the tablet --- in FS mode, landscape, we want to hide the LHS by…",
+   "status": "done",
+   "closed": "2026-11-19T16:35-07:00",
+   "outcome": "live in 0.0.27"
+  },
+  {
+   "id": 789,
+   "area": "hazeljs examples: a new version offers itself, as Dress Up's pop-up does",
+   "added": "2026-11-19T16:35-07:00",
+   "text": "shared/offline.js reads version.json as the page loaded it, then asks afresh each minute and when the page is shown again; a newer one: a card at the top (🔄 Switch, Not now), over full screen too, a…",
+   "source": "Matthew, 2026-11-19, in chat: \"messed up dress up also has a feature that pops up when there's a new live version. Can…",
+   "status": "done",
+   "closed": "2026-11-19T16:35-07:00",
+   "outcome": "live in 0.0.27"
   }
  ],
  "queue": [
@@ -28184,7 +28140,7 @@
   708,
   700
  ],
- "current_since": "2026-11-19T16:15-07:00",
+ "current_since": "2026-11-19T16:35-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -28198,7 +28154,7 @@
   },
   "since": "2026-08-27",
   "replies": 6765,
-  "words": 1487657,
+  "words": 1487760,
   "read_hours_est": 104.2,
   "listen_hours_est": 155.0,
   "read_s_avg": 55,
@@ -28546,8 +28502,8 @@
    },
    "2026-11-19": {
     "replies": 87,
-    "words": 18478,
-    "chars": 109766
+    "words": 18581,
+    "chars": 110403
    }
   }
  },
