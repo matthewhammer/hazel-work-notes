@@ -120,6 +120,10 @@
  ],
  "other_prs": [
   {
+   "pr": 2818,
+   "note": "A frame-rate HUD, off by default, turned on from the Flags configuration slide (Matthew 11-19 13:0x: \"the HUD is off by default; a new configuration flag on configuration slide toggles it on/off\"). Branch fps-hud: 806c4cd47e adds the Flags slide (FlagsConfiguration.re, (hud = false) in a checkbox), window.hazelHud in index.html, startup apply in Main; ?hud still forces it for a page. Cyrus merged dev into it at 11:56 (f5e0b1bb91). Preview: https://build.hazel.org/fps-hud/"
+  },
+  {
    "pr": 2842,
    "note": "Ship Material Icons with Hazel, so the command palette works offline (^ticket(774)'s finding). Branch ui-icons-shipped from dev 2538e56479, commit 9d8d393fa6: the same woff2 Google Fonts serves (v145, 128 KB, byte-identical), Apache 2.0 license, Google Fonts links gone from index.html. Opened 2026-11-19 12:0x on Matthew's word (\"Yes, its own PR\"). Preview: https://build.hazel.org/ui-icons-shipped/"
   },
@@ -134,10 +138,6 @@
   {
    "pr": 2817,
    "note": "hazel-jit for the team to try: trial/694-view-jit against integration/livelits-modular-editors (#2635), draft, opened 2026-11-08 on Matthew's word. Try it: https://build.hazel.org/trial/694-view-jit/?slide=livelit-playground-witch&hud (and &jit=off) (^ticket(722), ^report(49))."
-  },
-  {
-   "pr": 2818,
-   "note": "The ?hud frame-rate overlay, against dev (branch fps-hud, one commit 25ad3217eb on dev 782249bbd0), opened 2026-11-08 on Matthew's word (\"That HUD is great. Can we open a PR against dev please?\"). Try: https://build.hazel.org/fps-hud/?hud"
   },
   {
    "pr": 2815,
@@ -20864,6 +20864,18 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-19T13:06-07:00",
+     "from": "claude",
+     "chars": 653,
+     "asks": false,
+     "words": 118,
+     "read_s": 30,
+     "listen_s": 44,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ]
   },
@@ -20907,7 +20919,7 @@
  ],
  "next_ticket": 775,
  "current_ticket": 773,
- "current_note": "13:01: #2606: comments cut to what the code needs (523a2316a0), CI running; replied twice on Matt Keenan's Kids' Choice thread. hazel-jit 64-bit SInt on trial/758-sint64-jit (95b5ed2d5b), CI running; merge into #2817 is Matthew's call.",
+ "current_note": "13:20: #2818: HUD off by default, Flags configuration slide turns it on (806c4cd47e), CI running. #2606: Cyrus merged dev (54c48bd0a5), its CI re-running; description has no history notes now. hazel-jit 64-bit SInt branch: CI re-running after an agreement-check fix (569d0f186c).",
  "closed_tickets": [
   {
    "id": 736,
@@ -27438,8 +27450,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6731,
-  "words": 1483054,
+  "replies": 6732,
+  "words": 1483182,
   "read_hours_est": 103.9,
   "listen_hours_est": 154.5,
   "read_s_avg": 56,
@@ -27786,9 +27798,9 @@
     "chars": 47203
    },
    "2026-11-19": {
-    "replies": 53,
-    "words": 13875,
-    "chars": 82980
+    "replies": 54,
+    "words": 14003,
+    "chars": 83716
    }
   }
  },
