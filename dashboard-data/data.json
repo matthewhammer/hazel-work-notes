@@ -20192,7 +20192,80 @@
    ],
    "source": "Matthew, 2026-11-19 ~09:10, in chat: \"Cyrus wants the team to review our hazeljs repo, to make sure it's exposing the right API, and is packaged the right way. I'm reading this list now ... https://github.com/hazelgrove/hazeljs#limits I'm most confused by the way that the tile editor is loaded --- not part of the package, really? is this stale text or what?\", then \"Draft it\".",
    "text": "<b>Not stale.</b> hazeljs 0.0.8 ships hazel-lib.js (from js-library-embed 2ab33ebd90, #2719) and hazel-listings.js, which frames https://build.hazel.org/embed-editable/index.html#embed: the Deploy preview of draft #2814 (9d4667762e, 11-06), 7.9 MB decoded / 2.2 MB sent. Editor and library at different commits (the editor lacks 6c283c8a9f and 2ab33ebd90); package.json pins only the library; the frame takes messages only from matthewhammer.org, localhost, 127.0.0.1 and itself (EmbedProtocol.re); both branches 171 behind dev. Draft issue for hazelgrove/hazeljs: options A (editor in the package), B (versioned editor URL), C (one commit, recorded).",
-   "progress": "11-19 09:1x-09:2x: checked (hazeljs 8df20f4; ls-remote; merge-base; EmbedProtocol.re on embed-editable; the frame loaded once in the browser pane for its size). Draft written: scratchpad hazeljs-issue-editor-source.md. Nothing posted. | 11-19 09:2x, on Matthew's \"please publish that issue\": posted as hazelgrove/hazeljs#2 (https://github.com/hazelgrove/hazeljs/issues/2). Matthew also asked for a branch \"maybe to become main, where we experiment with putting the editor into the package\": started. | 11-19 09:2x, Matthew: \"let's do a branch now for hazeljs, maybe to become main, where we experiment with putting the editor into the package\". Found: jsDelivr sends .html as text/plain (unpkg as text/html), both CORS-open; build.hazel.org is not. So hazel-listings.js makes the frame's page itself, as a blob: (the page's origin, so no site list), with <base> at the package's editor/ and a Worker shim. Hazel side: new branch hazeljs-editor (f0835b041a = embed-editable + js-library-embed's 2 commits, merged cleanly; the push to embed-editable itself was refused by the auto-mode check, as it is the live frame for 0.0.8 pages) and 7fcf33f33a: Fragment.get_current reads location.hash when Url cannot parse a blob: address. hazeljs branch editor-in-package (13a0e49): build.sh EDITOR=1 builds the app from the same commit into editor/, the build workflow's 'editor' input, hazel-listings.js's blob frame, package.json files editor/. Build run 44565797994 started; local test page examples/listings and scripts/serve-cors.py (a CDN stand-in) written, launch entries 8152/8153 added."
+   "progress": "11-19 09:1x-09:2x: checked (hazeljs 8df20f4; ls-remote; merge-base; EmbedProtocol.re on embed-editable; the frame loaded once in the browser pane for its size). Draft written: scratchpad hazeljs-issue-editor-source.md. Nothing posted. | 11-19 09:2x, on Matthew's \"please publish that issue\": posted as hazelgrove/hazeljs#2 (https://github.com/hazelgrove/hazeljs/issues/2). Matthew also asked for a branch \"maybe to become main, where we experiment with putting the editor into the package\": started. | 11-19 09:2x, Matthew: \"let's do a branch now for hazeljs, maybe to become main, where we experiment with putting the editor into the package\". Found: jsDelivr sends .html as text/plain (unpkg as text/html), both CORS-open; build.hazel.org is not. So hazel-listings.js makes the frame's page itself, as a blob: (the page's origin, so no site list), with <base> at the package's editor/ and a Worker shim. Hazel side: new branch hazeljs-editor (f0835b041a = embed-editable + js-library-embed's 2 commits, merged cleanly; the push to embed-editable itself was refused by the auto-mode check, as it is the live frame for 0.0.8 pages) and 7fcf33f33a: Fragment.get_current reads location.hash when Url cannot parse a blob: address. hazeljs branch editor-in-package (13a0e49): build.sh EDITOR=1 builds the app from the same commit into editor/, the build workflow's 'editor' input, hazel-listings.js's blob frame, package.json files editor/. Build run 44565797994 started; local test page examples/listings and scripts/serve-cors.py (a CDN stand-in) written, launch entries 8152/8153 added.",
+   "log": [
+    {
+     "at": "2026-11-19T09:13-07:00",
+     "from": "matthew",
+     "chars": 83,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-19T09:13-07:00",
+     "from": "claude",
+     "chars": 2579,
+     "asks": false,
+     "words": 349,
+     "read_s": 88,
+     "listen_s": 131,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-19T09:19-07:00",
+     "from": "matthew",
+     "chars": 382,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-19T09:20-07:00",
+     "from": "matthew",
+     "chars": 8,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-19T09:20-07:00",
+     "from": "claude",
+     "chars": 2571,
+     "asks": true,
+     "words": 416,
+     "read_s": 105,
+     "listen_s": 156,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-19T09:21-07:00",
+     "from": "matthew",
+     "chars": 117,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-19T09:21-07:00",
+     "from": "matthew",
+     "chars": 25,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-19T09:21-07:00",
+     "from": "claude",
+     "chars": 1700,
+     "asks": true,
+     "words": 308,
+     "read_s": 78,
+     "listen_s": 116,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 774,
@@ -26728,8 +26801,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6696,
-  "words": 1473282,
+  "replies": 6697,
+  "words": 1473858,
   "read_hours_est": 103.2,
   "listen_hours_est": 153.5,
   "read_s_avg": 55,
@@ -27076,9 +27149,9 @@
     "chars": 47203
    },
    "2026-11-19": {
-    "replies": 18,
-    "words": 4103,
-    "chars": 23937
+    "replies": 19,
+    "words": 4679,
+    "chars": 27497
    }
   }
  },
