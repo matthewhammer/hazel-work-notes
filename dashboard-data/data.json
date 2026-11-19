@@ -20025,7 +20025,7 @@
    ],
    "source": "Matthew, 2026-11-19 ~07:10, in chat: \"today is another hazel team merge-a-thon, where we are going to try to review and merge a lot of stuff, if possible. To prep, Let's look at hazel dev, and let's look at our open PRs that are small and self-contained (not livelits, but everything else could be a candidate today)\" and \"Please create a report with whatever PRs the team could consider.\"",
    "text": "<b>^report(58), What Could Merge Today</b> (https://matthewhammer.org/hazel/reports/058/): our 48 open PRs; 9 livelits left out; of the 39: 11 ready for a review (#2812, #2825, #2818, #2816, #2652, #2671, #2675, #2651, #2815, #2603, #2697 once marked ready), 3 with one conflict (#2613 approved, #2606, #2661), 9 waiting on a decision (#2828, #2793, #2592, #2614/#2610, #2717, #2608, #2729/#2749), 16 not today. Queue order in three groups of up to five.",
-   "progress": "11-19 07:1x-07:4x: gathered (gh, trial merges into dev 782249bbd0 with git merge-tree, the 11 ready PRs chained cleanly), written, published as work in progress (homepage 9e2f4d1, Pages green; sources pushed). Nothing changed on any PR. | 11-19 07:5x-08:1x, on Matthew's \"Yes, do those\": dev merged into #2613 (86316c1277: assistant.css deleted on dev, lint list font-mono only; still approved), #2606 (29beeb41d4: both test sets kept, #2660's test requests given use_held_prev/doc; the cost gate sees the held prev's steps), #2661 (6bc326c750: consistent_by_hash wraps dev's unrolled_consistent) and #2697 (808d469394, clean; diff now its own commit). CI green on all four, full tests included (runs 44548016193, 44548236959, 44548378828, 44548426433). #2697 marked ready. ^report(58) updated (homepage 36b0fad). #2613 is CLEAN and APPROVED: into the merge queue on Matthew's word. Aside: `make lint-css` on dev reports two colors stated in nut-menu.css (from dev, not in CI). | 11-19 08:5x, Matthew: \"no, do not put things into the merge queue\": nothing queued; the team queues PRs. Asked whether ^report(58) was ready for a WIP publish: it was published as WIP at 07:39 and revised at 08:16.",
+   "progress": "11-19 07:1x-07:4x: gathered (gh, trial merges into dev 782249bbd0 with git merge-tree, the 11 ready PRs chained cleanly), written, published as work in progress (homepage 9e2f4d1, Pages green; sources pushed). Nothing changed on any PR. | 11-19 07:5x-08:1x, on Matthew's \"Yes, do those\": dev merged into #2613 (86316c1277: assistant.css deleted on dev, lint list font-mono only; still approved), #2606 (29beeb41d4: both test sets kept, #2660's test requests given use_held_prev/doc; the cost gate sees the held prev's steps), #2661 (6bc326c750: consistent_by_hash wraps dev's unrolled_consistent) and #2697 (808d469394, clean; diff now its own commit). CI green on all four, full tests included (runs 44548016193, 44548236959, 44548378828, 44548426433). #2697 marked ready. ^report(58) updated (homepage 36b0fad). #2613 is CLEAN and APPROVED: into the merge queue on Matthew's word. Aside: `make lint-css` on dev reports two colors stated in nut-menu.css (from dev, not in CI). | 11-19 08:5x, Matthew: \"no, do not put things into the merge queue\": nothing queued; the team queues PRs. Asked whether ^report(58) was ready for a WIP publish: it was published as WIP at 07:39 and revised at 08:16. | 11-19 09:0x: Matthew asked whether 58's conflict lists were accurate: no, the conflict table still showed the 07:35 state (only an update box said otherwise). Re-gathered at 09:05 (dev unchanged, 782249bbd0): #2613, #2606, #2661 merge cleanly, green, so 14 ready; chained in queue order on dev, only #2661 meets one conflict, test/haz3ltest.re, after #2671. And Matthew: Cyrus confirmed (11-18) SInt is a fixed-precision 64-bit integer, not 32: #2828 moved to not today, rework (63 or 64 bits, error or wrap, still open). ^report(58) revised in place (no update box), homepage d7ba68a; card blurb now: 14 need only a review, one approved; 8 need a decision.",
    "log": [
     {
      "at": "2026-11-19T07:41-07:00",
@@ -20125,7 +20125,7 @@
  ],
  "next_ticket": 773,
  "current_ticket": 772,
- "current_note": "08:51: merge-a-thon: ^report(58) live as WIP (08:16); 14 PRs need only an approval; the team queues, not us",
+ "current_note": "09:05: ^report(58) revised at 09:05: 14 ready (3 conflicts resolved), 8 decisions; #2828 to rework for 64-bit SInt (Cyrus)",
  "closed_tickets": [
   {
    "id": 736,
@@ -26656,8 +26656,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6690,
-  "words": 1471682,
+  "replies": 6691,
+  "words": 1471721,
   "read_hours_est": 103.1,
   "listen_hours_est": 153.3,
   "read_s_avg": 55,
@@ -27004,9 +27004,9 @@
     "chars": 47203
    },
    "2026-11-19": {
-    "replies": 12,
-    "words": 2503,
-    "chars": 14061
+    "replies": 13,
+    "words": 2542,
+    "chars": 14294
    }
   }
  },
