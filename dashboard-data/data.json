@@ -20267,7 +20267,7 @@
    ],
    "source": "Matthew, 2026-11-19 ~09:10, in chat: \"Cyrus wants the team to review our hazeljs repo, to make sure it's exposing the right API, and is packaged the right way. I'm reading this list now ... https://github.com/hazelgrove/hazeljs#limits I'm most confused by the way that the tile editor is loaded --- not part of the package, really? is this stale text or what?\", then \"Draft it\".",
    "text": "<b>Not stale.</b> hazeljs 0.0.8 ships hazel-lib.js (from js-library-embed 2ab33ebd90, #2719) and hazel-listings.js, which frames https://build.hazel.org/embed-editable/index.html#embed: the Deploy preview of draft #2814 (9d4667762e, 11-06), 7.9 MB decoded / 2.2 MB sent. Editor and library at different commits (the editor lacks 6c283c8a9f and 2ab33ebd90); package.json pins only the library; the frame takes messages only from matthewhammer.org, localhost, 127.0.0.1 and itself (EmbedProtocol.re); both branches 171 behind dev. Draft issue for hazelgrove/hazeljs: options A (editor in the package), B (versioned editor URL), C (one commit, recorded).",
-   "progress": "11-19 09:1x-09:2x: checked (hazeljs 8df20f4; ls-remote; merge-base; EmbedProtocol.re on embed-editable; the frame loaded once in the browser pane for its size). Draft written: scratchpad hazeljs-issue-editor-source.md. Nothing posted. | 11-19 09:2x, on Matthew's \"please publish that issue\": posted as hazelgrove/hazeljs#2 (https://github.com/hazelgrove/hazeljs/issues/2). Matthew also asked for a branch \"maybe to become main, where we experiment with putting the editor into the package\": started. | 11-19 09:2x, Matthew: \"let's do a branch now for hazeljs, maybe to become main, where we experiment with putting the editor into the package\". Found: jsDelivr sends .html as text/plain (unpkg as text/html), both CORS-open; build.hazel.org is not. So hazel-listings.js makes the frame's page itself, as a blob: (the page's origin, so no site list), with <base> at the package's editor/ and a Worker shim. Hazel side: new branch hazeljs-editor (f0835b041a = embed-editable + js-library-embed's 2 commits, merged cleanly; the push to embed-editable itself was refused by the auto-mode check, as it is the live frame for 0.0.8 pages) and 7fcf33f33a: Fragment.get_current reads location.hash when Url cannot parse a blob: address. hazeljs branch editor-in-package (13a0e49): build.sh EDITOR=1 builds the app from the same commit into editor/, the build workflow's 'editor' input, hazel-listings.js's blob frame, package.json files editor/. Build run 44565797994 started; local test page examples/listings and scripts/serve-cors.py (a CDN stand-in) written, launch entries 8152/8153 added. | 11-19 09:4x: build run 44567106513 green: hazel-lib.js and editor/ from hazelgrove/hazel 7fcf33f33a (hazeljs-editor), merged into editor-in-package; trimmed what a frame never loads (the tutorial's intro video, prebundle.js, dune, a README): editor/ 78 files, 11.1 MB. Tried in the browser pane: localhost:8152/examples/listings/ (same site) and ?pkg=http://localhost:8153/ (CDN stand-in, .html as text/plain): both frames start from blob: pages with the page's origin, say ready, draw the listings in tiles; every editor file loads from the CDN stand-in; no console errors. Embed mode runs statics only, so it never starts a worker (the shim is unused for now). Edits not tried: the pane is hidden, so animation frames do not run and the frame's set waits for one. README note on the branch; pushed b5c4ec8336.",
+   "progress": "11-19 09:1x-09:2x: checked (hazeljs 8df20f4; ls-remote; merge-base; EmbedProtocol.re on embed-editable; the frame loaded once in the browser pane for its size). Draft written: scratchpad hazeljs-issue-editor-source.md. Nothing posted. | 11-19 09:2x, on Matthew's \"please publish that issue\": posted as hazelgrove/hazeljs#2 (https://github.com/hazelgrove/hazeljs/issues/2). Matthew also asked for a branch \"maybe to become main, where we experiment with putting the editor into the package\": started. | 11-19 09:2x, Matthew: \"let's do a branch now for hazeljs, maybe to become main, where we experiment with putting the editor into the package\". Found: jsDelivr sends .html as text/plain (unpkg as text/html), both CORS-open; build.hazel.org is not. So hazel-listings.js makes the frame's page itself, as a blob: (the page's origin, so no site list), with <base> at the package's editor/ and a Worker shim. Hazel side: new branch hazeljs-editor (f0835b041a = embed-editable + js-library-embed's 2 commits, merged cleanly; the push to embed-editable itself was refused by the auto-mode check, as it is the live frame for 0.0.8 pages) and 7fcf33f33a: Fragment.get_current reads location.hash when Url cannot parse a blob: address. hazeljs branch editor-in-package (13a0e49): build.sh EDITOR=1 builds the app from the same commit into editor/, the build workflow's 'editor' input, hazel-listings.js's blob frame, package.json files editor/. Build run 44565797994 started; local test page examples/listings and scripts/serve-cors.py (a CDN stand-in) written, launch entries 8152/8153 added. | 11-19 09:4x: build run 44567106513 green: hazel-lib.js and editor/ from hazelgrove/hazel 7fcf33f33a (hazeljs-editor), merged into editor-in-package; trimmed what a frame never loads (the tutorial's intro video, prebundle.js, dune, a README): editor/ 78 files, 11.1 MB. Tried in the browser pane: localhost:8152/examples/listings/ (same site) and ?pkg=http://localhost:8153/ (CDN stand-in, .html as text/plain): both frames start from blob: pages with the page's origin, say ready, draw the listings in tiles; every editor file loads from the CDN stand-in; no console errors. Embed mode runs statics only, so it never starts a worker (the shim is unused for now). Edits not tried: the pane is hidden, so animation frames do not run and the frame's set waits for one. README note on the branch; pushed b5c4ec8336. | 11-19 11:1x: Matthew: \"repackage the hazeljs npm package to include the tile editor work, and avoid any dynamic loads from anywhere else\". Verified 0.0.8 as published: hazel-listings.js from jsDelivr frames build.hazel.org/embed-editable. On editor-in-package: build.sh strips the editor page's Google Fonts link and fails on any outside address; the CDN-stand-in test requests nothing from any other host (page and frames); hazel-lib.js byte for byte Hazel's deploy of 7fcf33f33a; editor 76 of 78 files identical (index.html as built; hazel.js, 4 bytes of build path). 0.0.9 prepared (99e28ca: version, CHANGELOG, README; npm pack 88 files, 5.0 MB packed, 14.0 MB unpacked); NOT published. Found: the editor's Helvetica Neue (Linotype, 'may not be reproduced...', from macOS) and Source Code Pro (OFL, license text missing). Matthew: \"Cyrus and team want to know where we are using Helvetica Neue\": Hazel's --ui-font (body, all non-code UI) since 2022-07-25; served by every build.hazel.org preview; 1,434 copies in public hazelgrove/build; fumola.org's Hazel copy; our two hazeljs branches. \"Open the PR\": hazelgrove/hazel#2837 (ui-font-installed, 183db5978f): the two files and @font-face rules gone, --ui-font \"Helvetica Neue\", Helvetica, Arial, sans-serif.",
    "log": [
     {
      "at": "2026-11-19T09:13-07:00",
@@ -20487,13 +20487,20 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-19T10:56-07:00",
+     "from": "matthew",
+     "chars": 244,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ]
   }
  ],
  "next_ticket": 774,
  "current_ticket": 773,
- "current_note": "09:49: hazeljs editor-in-package: packaged editor loads and draws, same site and as from a CDN; edits wait on the pane being shown",
+ "current_note": "11:10: Helvetica Neue: PR hazelgrove/hazel#2837 opened (Hazel ships no copy); hazeljs 0.0.9 prepared, not published",
  "closed_tickets": [
   {
    "id": 736,
@@ -27024,10 +27031,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6710,
-  "words": 1478107,
-  "read_hours_est": 103.5,
-  "listen_hours_est": 154.0,
+  "replies": 6712,
+  "words": 1479156,
+  "read_hours_est": 103.6,
+  "listen_hours_est": 154.1,
   "read_s_avg": 56,
   "listen_s_avg": 83,
   "days": {
@@ -27372,9 +27379,9 @@
     "chars": 47203
    },
    "2026-11-19": {
-    "replies": 32,
-    "words": 8928,
-    "chars": 53514
+    "replies": 34,
+    "words": 9977,
+    "chars": 60326
    }
   }
  },
