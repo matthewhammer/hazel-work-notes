@@ -21475,7 +21475,7 @@
    ],
    "source": "Matthew, 2026-11-19 ~16:3x, in chat: \"after minesweeper, let's do \\\"Hazel AI opponents\\\" as a new subsection, starting with: Go, Mahjong\".",
    "text": "Go against an opponent whose play is a Hazel program: the board, captures, ko and scoring in Hazel, and its move choice in Hazel too.",
-   "progress": "",
+   "progress": "16:37: rules drafted in go/rules (Board, Play, Bot, preamble), not yet built or tested. PARKED 16:37 for ^ticket(790), Matthew's Minesweeper hint; back to it after that release.",
    "log": [
     {
      "at": "2026-11-19T16:14-07:00",
@@ -21596,11 +21596,35 @@
    "source": "Matthew, 2026-11-19 16:16, in chat, adding to the Hazel AI opponents (Go, Mahjong): \"Checkers\".",
    "text": "Checkers (draughts) against an opponent whose play is a Hazel program: the board, moves, forced captures, multiple jumps and kings in Hazel, and its move choice (a look-ahead search) in Hazel too.",
    "progress": ""
+  },
+  {
+   "id": 790,
+   "area": "hazeljs examples: Minesweeper, a hint written in Hazel",
+   "added": "2026-11-19T16:36-07:00",
+   "opened": "2026-11-19T16:36-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazeljs",
+    "games"
+   ],
+   "source": "Matthew, 2026-11-19 16:36, in chat: \"let's introduce a hint feature for minesweeper.\" / \"written in Hazel.\"",
+   "text": "A 💡 hint for Minesweeper whose reasoning is a Hazel module (rules/Hint.hz): a sure move from the open numbers alone (a safe cell, a mine to flag, or a wrong flag), shown on the board with the number that proves it.",
+   "progress": "16:46: Hint.hz drafted and checked in node (old session). 16:53: crash 63 during its 10-minute board run. 18:0x: rewritten to read the board once; same answers as the draft on every hint tried, 120 / 341 / 706 ms per hint on beginner / intermediate / expert (the draft: 674 / 1,503 / 3,653). Next: the 💡 button on the page, then a release.",
+   "log": [
+    {
+     "at": "2026-11-19T16:36-07:00",
+     "from": "matthew",
+     "chars": 64,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
- "next_ticket": 790,
- "current_ticket": 785,
- "current_note": "16:35: Hazel AI opponents begins with Go (^ticket(785)): a 9 by 9 board, captures, ko and area scoring in Hazel, and the opponent's choice of move in Hazel too. Done just now: Minesweeper live in 0.0.27 (^ticket(784)), with M's full-screen asks (^ticket(788)) and the new-version card (^ticket(789)). Queued: Mahjong (^ticket(786)), Checkers (^ticket(787)), the Petri move (^ticket(783)).",
+ "next_ticket": 791,
+ "current_ticket": 790,
+ "current_note": "17:59: Minesweeper's 💡 hint in Hazel: Hint.hz rewritten (4-5x faster, same answers); now the button on the page. Back after crash 63 (16:53).",
  "closed_tickets": [
   {
    "id": 736,
@@ -28180,6 +28204,7 @@
   }
  ],
  "queue": [
+  785,
   761,
   762,
   764,
@@ -28218,7 +28243,7 @@
   708,
   700
  ],
- "current_since": "2026-11-19T16:35-07:00",
+ "current_since": "2026-11-19T17:59-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -28232,7 +28257,7 @@
   },
   "since": "2026-08-27",
   "replies": 6768,
-  "words": 1488070,
+  "words": 1488131,
   "read_hours_est": 104.2,
   "listen_hours_est": 155.0,
   "read_s_avg": 55,
@@ -28580,8 +28605,8 @@
    },
    "2026-11-19": {
     "replies": 90,
-    "words": 18891,
-    "chars": 112212
+    "words": 18952,
+    "chars": 112541
    }
   }
  },
