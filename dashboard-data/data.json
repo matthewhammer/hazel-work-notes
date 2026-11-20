@@ -21509,9 +21509,25 @@
    "text": "In hazeljs 0.0.4 (Node), a module that calls into another module costs the build seconds, and calls through such a function compound. Minesweeper: Hint.cell calling Play.cell_at built in 8.7 s and every function calling it ran out of memory at a 1.2-1.5 GB heap (a local copy of the lookup: 0.8 s). Go: Board alone 0.5 s, Board + Play (about 18 references to Board.*) 8.1 s, Board + Play + Bot joined into one module 2.2 s. Find where the build spends it (statics of a module projection? elaboration of the other module's record type at each use?) and whether Hazel's own editor pays it too.",
    "progress": "",
    "log": []
+  },
+  {
+   "id": 792,
+   "area": "hazeljs: an Int past 2^31 passed in from JavaScript comes back cut to 32 bits",
+   "added": "2026-11-19",
+   "opened": "2026-11-19T18:29-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazeljs",
+    "SInt"
+   ],
+   "source": "Found 2026-11-19 building Checkers for the hazeljs examples (^ticket(787)).",
+   "text": "In hazeljs 0.0.4, Hazel's Int arithmetic is wide inside a program (65536 * 65536 gives 4294967296), and a large Int goes out to JavaScript whole (4293918720); but the same number passed back in as an argument arrives as -1048576, cut to a signed 32-bit int (ToInt32). Checkers keeps its board as 32-bit sets and reads them again as 32 bits at the entry points (wide: b + 2^32 when negative). Fix in hazeljs's JS-to-Hazel conversion, and line it up with SInt as 64 bits (^ticket(781), #2828): a JS number past 2^53 should arrive as a BigInt, or be refused.",
+   "progress": "",
+   "log": []
   }
  ],
- "next_ticket": 792,
+ "next_ticket": 793,
  "current_ticket": 787,
  "current_note": "18:21: Hazel AI opponents, Checkers: the board, moves, forced captures, multiple jumps and kings in Hazel, and the opponent's look-ahead in Hazel. Go shipped in 0.0.29 (^ticket(785)).",
  "closed_tickets": [
@@ -28167,8 +28183,8 @@
   },
   "since": "2026-08-27",
   "replies": 6768,
-  "words": 1488667,
-  "read_hours_est": 104.2,
+  "words": 1488760,
+  "read_hours_est": 104.3,
   "listen_hours_est": 155.1,
   "read_s_avg": 55,
   "listen_s_avg": 82,
@@ -28515,8 +28531,8 @@
    },
    "2026-11-19": {
     "replies": 90,
-    "words": 19488,
-    "chars": 115489
+    "words": 19581,
+    "chars": 116049
    }
   }
  },
