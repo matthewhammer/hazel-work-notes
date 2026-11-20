@@ -1,5 +1,125 @@
 [
  {
+  "id": 797,
+  "area": "hazeljs examples: each game in plain JS too, and a report timing Hazel's interpreter, hazel-jit and plain JS, for Cyrus",
+  "added": "2026-11-20",
+  "opened": "2026-11-20T13:07-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazeljs",
+   "games",
+   "hazel-jit",
+   "report"
+  ],
+  "source": "Matthew, 2026-11-20 ~13:1x, in chat: \"Once we finish updating all of the games with strategies, let's write a report to help answer a question from Cyrus about the speed of hazel, versus hazeljit, versus plain JS. For each game, let's have a plain JS version, just for the sake of timing comparisons that we do now, and in the future, as the hazel components becomes better in performance. That version should be equivalent in terms of game def, logic, and strategy. Please create a report that does a 3-way time comparison for each game: plain hazel, hazel jit, plain JS.\" Then, ~13:1x: \"okay -- let's document the role of randomness in the report we do for each strategy, and also, the source of the cost of the strategy (search tree depth, or whatever)\".",
+  "text": "For each game (Solitaire, Minesweeper, Go, Checkers, Mahjong; the oracles too if cheap), a plain JavaScript version equivalent to its Hazel rules: the same game definition, logic and strategy, checked to give the same answers as the Hazel (node/compare-compiled.mjs style), kept in the repo for timing now and later as Hazel gets faster. Then a report in the Hazel reports series: a 3-way time comparison per game (hazeljs interpreting, hazel-jit compiled, plain JS), measured on GitHub's runners or lightly here, each figure naming its build. For each game's strategy the report also says: the role of randomness (Hazel has none of its own: the page passes Math.random numbers in; Go adds 0-1.9 points of noise to every point's worth, Checkers breaks ties only, Mahjong's players are deterministic and only the shuffle is random; seeded runs replay identical games, so all three versions can be timed on the same games), and the source of its cost (Checkers: alpha-beta to the chosen depth, about 8 moves a ply; Go: every point's worth with the groups traced once a turn; Mahjong: arranging a hand to judge each tile; Minesweeper's hint: the numbers and their neighbours; Solitaire: the moves listed).",
+  "progress": "13:54: ^report(60) published as work in progress (https://matthewhammer.org/hazel/reports/060/): hazel-jit about 3,300x hazeljs, plain JS about 13x hazel-jit (run 44813544646, one GitHub runner); per game the strategy, randomness and cost. Plain JS for all five games in hazeljs-examples (plain.js), checked equal to the compiled rules; node/three-way.mjs and the 'three-way timing' workflow.",
+  "log": [
+   {
+    "at": "2026-11-20T13:03-07:00",
+    "from": "matthew",
+    "chars": 105,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-20T13:06-07:00",
+    "from": "claude",
+    "chars": 144,
+    "asks": false,
+    "words": 30,
+    "read_s": 8,
+    "listen_s": 11,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-20T13:07-07:00",
+    "from": "matthew",
+    "chars": 552,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-20T13:09-07:00",
+    "from": "claude",
+    "chars": 2817,
+    "asks": false,
+    "words": 506,
+    "read_s": 128,
+    "listen_s": 190,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-20T13:12-07:00",
+    "from": "matthew",
+    "chars": 166,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-20T13:12-07:00",
+    "from": "claude",
+    "chars": 190,
+    "asks": false,
+    "words": 33,
+    "read_s": 8,
+    "listen_s": 12,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-20T13:22-07:00",
+    "from": "claude",
+    "chars": 494,
+    "asks": false,
+    "words": 79,
+    "read_s": 20,
+    "listen_s": 30,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-20T13:35-07:00",
+    "from": "claude",
+    "chars": 657,
+    "asks": false,
+    "words": 106,
+    "read_s": 27,
+    "listen_s": 40,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-20",
+  "closed_at": "2026-11-20T13:57-07:00",
+  "outcome": "^report(60), How Fast Is Hazel? Five Games, Three Ways, published as work in progress (live, checked): https://matthewhammer.org/hazel/reports/060/ . hazel-jit about 3,300x hazeljs, plain JS about 13x hazel-jit (one GitHub runner, run 44813544646); the step budget and exact integers at most a quarter of hazel-jit's time; the page boundary most of a big board's call; per game the strategy, the role of randomness and what the work grows with. Plain JS for all five games in hazeljs-examples (plain.js, checked equal to the compiled rules), node/three-way.mjs and the 'three-way timing' workflow for later runs.",
+  "metrics": {
+   "open_minutes": 50,
+   "matthew_messages": 3,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 5125,
+   "tokens_est": 1281,
+   "sync_minutes_est": 9.0,
+   "replies": 5,
+   "claude_words": 754,
+   "read_minutes_est": 3.2,
+   "listen_minutes_est": 4.7,
+   "read_s_avg": 38,
+   "listen_s_avg": 57,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 796,
   "area": "hazeljs examples: Hazel plays for you, a toggle on each Hazel AI opponent (Go, Checkers, Mahjong), a game to watch and time",
   "added": "2026-11-20",
