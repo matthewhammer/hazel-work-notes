@@ -21596,43 +21596,22 @@
    "source": "Matthew, 2026-11-19 16:16, in chat, adding to the Hazel AI opponents (Go, Mahjong): \"Checkers\".",
    "text": "Checkers (draughts) against an opponent whose play is a Hazel program: the board, moves, forced captures, multiple jumps and kings in Hazel, and its move choice (a look-ahead search) in Hazel too.",
    "progress": ""
-  },
+  }
+ ],
+ "next_ticket": 791,
+ "current_ticket": 785,
+ "current_note": "18:06: Hazel AI opponents, Go: rules drafted at 16:37 in go/rules (Board, Play, Bot), not yet built. Next: build and check them in Node, lightly. Minesweeper's hint shipped in 0.0.28 (^ticket(790)).",
+ "closed_tickets": [
   {
    "id": 790,
    "area": "hazeljs examples: Minesweeper, a hint written in Hazel",
    "added": "2026-11-19T16:36-07:00",
-   "opened": "2026-11-19T16:36-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazeljs",
-    "games"
-   ],
+   "text": "A 💡 hint for Minesweeper whose reasoning is a Hazel module (rules/Hint.hz): a sure move from the open numbers alone (a safe cell, a mine to flag, or a wrong flag), shown on the board with the number…",
    "source": "Matthew, 2026-11-19 16:36, in chat: \"let's introduce a hint feature for minesweeper.\" / \"written in Hazel.\"",
-   "text": "A 💡 hint for Minesweeper whose reasoning is a Hazel module (rules/Hint.hz): a sure move from the open numbers alone (a safe cell, a mine to flag, or a wrong flag), shown on the board with the number that proves it.",
-   "progress": "16:46: Hint.hz drafted and checked in node (old session). 16:53: crash 63 during its 10-minute board run. 18:0x: rewritten to read the board once; same answers as the draft on every hint tried, 120 / 341 / 706 ms per hint on beginner / intermediate / expert (the draft: 674 / 1,503 / 3,653). Next: the 💡 button on the page, then a release.",
-   "log": [
-    {
-     "at": "2026-11-19T16:36-07:00",
-     "from": "matthew",
-     "chars": 64,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T17:50-07:00",
-     "from": "matthew",
-     "chars": 14,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  }
- ],
- "next_ticket": 791,
- "current_ticket": 790,
- "current_note": "17:59: Minesweeper's 💡 hint in Hazel: Hint.hz rewritten (4-5x faster, same answers); now the button on the page. Back after crash 63 (16:53).",
- "closed_tickets": [
+   "status": "done",
+   "closed": "2026-11-19",
+   "outcome": "Released in hazeljs-examples 0.0.28 (b028ded), live at matthewhammer.org/hazeljs-examples/minesweeper/: a 💡 Hint button (and one under ☰ in full screen) asks the new Hazel module…"
+  },
   {
    "id": 736,
    "area": "hazel, hazeljs, bug: a constructor whose argument is a plain tuple, passed in from JS, gets stuck",
@@ -28250,7 +28229,7 @@
   708,
   700
  ],
- "current_since": "2026-11-19T17:59-07:00",
+ "current_since": "2026-11-19T18:06-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
