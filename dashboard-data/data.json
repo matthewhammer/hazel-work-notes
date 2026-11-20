@@ -21329,7 +21329,7 @@
     "games",
     "hazel-jit"
    ],
-   "source": "Matthew, 2026-11-20 ~10:2x, in chat: \"next, let's try to do a pinball game using hazeljs to describe: layout of the game, state of the game, state updates to the game, based on physics and flapper states, etc. In particular, the layout of the pinball walls and obstacles should be represented with Hazel data. We should offer 10 different boards, some with multiple levels, or other unique features or themes.\" Then: \"let's plan to use hazel-jit with hazeljs to make the pinball game fast.\"",
+   "source": "Matthew, 2026-11-20 ~10:2x, in chat: \"next, let's try to do a pinball game using hazeljs to describe: layout of the game, state of the game, state updates to the game, based on physics and flapper states, etc. In particular, the layout of the pinball walls and obstacles should be represented with Hazel data. We should offer 10 different boards, some with multiple levels, or other unique features or themes.\" Then: \"let's plan to use hazel-jit with hazeljs to make the pinball game fast.\" Then (2026-11-20 ~15:0x): \"let's have music and sound effects for pin ball. fast-paced, mega-man themed style, but original MIDI constructions.\"",
    "text": "Pinball: ten boards as Hazel data (walls, bumpers, slingshots, flippers, targets, portals between levels, magnets, movers), the game's state, and a step of the physics (gravity, collisions, flippers, scoring) in Hazel; run compiled by hazel-jit for 60 fps, the interpreter only when the physics is edited.",
    "progress": "Measured: one interpreted frame (3 sub-steps, a ball against 40 walls) takes 34.6 ms median, 52 at p90 (20-29 fps, physics alone); hazel-jit's astrology ran 170x as fast. Found: hazeljs crashes when a whole-number JS value goes where Hazel expects a Float, so the page boundary carries Ints.",
    "log": [
@@ -21492,7 +21492,15 @@
    "source": "Matthew, 2026-11-20 ~14:5x, in chat: \"M had some requests too for dress-up. First, a 'bug report' (feature correction) from M: when we place other friends into the scene, each should have a toggle: stays in background square, or moves with friend on the active team (either walking after them, or riding a horse after them, or swimming after them, etc) a la games like final fantasy that have multi-person teams under the control of the player. A way to switch who is active in the active team.\"",
    "text": "Each friend placed in a scene gets a toggle: 🏠 stays in its square (as now), or 🤝 joins the team. Team members follow the friend you play as from place to place and square to square, in a line behind them, moving as they move (walking, riding a horse, swimming, flying along). And a way to switch which team member you are: the one you play as steps forward and the others follow them.",
    "progress": "Queued after ^ticket(793) (pinball, a Hazel ticket in hand), by Matthew's rule that Dress Up waits behind the Hazel tickets in hand.",
-   "log": []
+   "log": [
+    {
+     "at": "2026-11-20T14:47-07:00",
+     "from": "matthew",
+     "chars": 465,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 803,
@@ -28251,8 +28259,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6802,
-  "words": 1496562,
+  "replies": 6803,
+  "words": 1496795,
   "read_hours_est": 104.8,
   "listen_hours_est": 155.9,
   "read_s_avg": 55,
@@ -28604,9 +28612,9 @@
     "chars": 121179
    },
    "2026-11-20": {
-    "replies": 33,
-    "words": 6906,
-    "chars": 41027
+    "replies": 34,
+    "words": 7139,
+    "chars": 42344
    }
   }
  },
