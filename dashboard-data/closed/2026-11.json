@@ -1,5 +1,105 @@
 [
  {
+  "id": 794,
+  "area": "hazeljs examples: the games compiled by hazel-jit, as the oracles are",
+  "added": "2026-11-20",
+  "opened": "2026-11-20T10:20-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazeljs",
+   "games",
+   "hazel-jit"
+  ],
+  "source": "Matthew, 2026-11-20 ~10:3x, in chat: \"similar --- let's look over the other games to see if hazel-jit will help\".",
+  "text": "Each game's rules compiled ahead of time by hazel-jit into <app>/compiled.js (a trial branch's CI prints them; tools/make-compiled.py wraps them with adapters), the page running compiled by default and hazeljs only when the rules are edited, as the I Ching, Tarot and astrology do. Then stronger Hazel opponents where compiled speed allows (Go playouts, Checkers deeper look-ahead).",
+  "progress": "Interpreted today (Node): every page loads hazeljs (2.8 MB) and builds 1.7-4.5 s. Solitaire: deal 145 ms, all moves 113 ms, a move 6 ms. Minesweeper: a hint 120/340/700 ms (beginner/intermediate/expert). Go: Hazel's move 0.4-1.1 s, the score 0.3-0.6 s. Checkers: look-ahead 26/108/385/1,433 ms at 1-4 moves. Mahjong: a step ~40 ms. hazel-jit compiles everything these use (its Unsupported list: holes, tests, stepper filters, quotations, some partial applications).",
+  "log": [
+   {
+    "at": "2026-11-20T10:15-07:00",
+    "from": "matthew",
+    "chars": 73,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-20T11:03-07:00",
+    "from": "claude",
+    "chars": 1035,
+    "asks": false,
+    "words": 167,
+    "read_s": 42,
+    "listen_s": 63,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-20T12:36-07:00",
+    "from": "matthew",
+    "chars": 7,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-20T12:38-07:00",
+    "from": "claude",
+    "chars": 459,
+    "asks": false,
+    "words": 76,
+    "read_s": 19,
+    "listen_s": 28,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-20T12:48-07:00",
+    "from": "claude",
+    "chars": 3254,
+    "asks": false,
+    "words": 534,
+    "read_s": 135,
+    "listen_s": 200,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-20T12:55-07:00",
+    "from": "claude",
+    "chars": 1813,
+    "asks": false,
+    "words": 326,
+    "read_s": 82,
+    "listen_s": 122,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-20",
+  "closed_at": "2026-11-20T13:17-07:00",
+  "outcome": "Released in hazeljs-examples 0.0.34 (live, checked file by file): Solitaire, Minesweeper, Go, Checkers and Mahjong run their rules as JavaScript compiled by hazel-jit (CI on hazelgrove/hazel trial/794-games-aot; tools/make-compiled.py), agreeing with hazeljs on every check (Checkers 469, Solitaire 722, Minesweeper 373, Go 157, Mahjong 320-488 answers, none different), about 1,000 times as fast (Checkers looking 4 ahead 5 ms vs 11 s); ?interpreted=1 or an edit runs hazeljs. Checkers offers looking 5 and 6 ahead when compiled. Not done: Go playouts, a stronger Go (proposed, not asked).",
+  "metrics": {
+   "open_minutes": 177,
+   "matthew_messages": 2,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 6641,
+   "tokens_est": 1660,
+   "sync_minutes_est": 9.0,
+   "replies": 4,
+   "claude_words": 1103,
+   "read_minutes_est": 4.6,
+   "listen_minutes_est": 6.9,
+   "read_s_avg": 70,
+   "listen_s_avg": 103,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 786,
   "area": "hazeljs examples: Hazel AI opponents: Mahjong",
   "added": "2026-11-19T16:15-07:00",

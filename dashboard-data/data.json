@@ -21408,86 +21408,6 @@
    ]
   },
   {
-   "id": 794,
-   "area": "hazeljs examples: the games compiled by hazel-jit, as the oracles are",
-   "added": "2026-11-20",
-   "opened": "2026-11-20T10:20-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazeljs",
-    "games",
-    "hazel-jit"
-   ],
-   "source": "Matthew, 2026-11-20 ~10:3x, in chat: \"similar --- let's look over the other games to see if hazel-jit will help\".",
-   "text": "Each game's rules compiled ahead of time by hazel-jit into <app>/compiled.js (a trial branch's CI prints them; tools/make-compiled.py wraps them with adapters), the page running compiled by default and hazeljs only when the rules are edited, as the I Ching, Tarot and astrology do. Then stronger Hazel opponents where compiled speed allows (Go playouts, Checkers deeper look-ahead).",
-   "progress": "Interpreted today (Node): every page loads hazeljs (2.8 MB) and builds 1.7-4.5 s. Solitaire: deal 145 ms, all moves 113 ms, a move 6 ms. Minesweeper: a hint 120/340/700 ms (beginner/intermediate/expert). Go: Hazel's move 0.4-1.1 s, the score 0.3-0.6 s. Checkers: look-ahead 26/108/385/1,433 ms at 1-4 moves. Mahjong: a step ~40 ms. hazel-jit compiles everything these use (its Unsupported list: holes, tests, stepper filters, quotations, some partial applications).",
-   "log": [
-    {
-     "at": "2026-11-20T10:15-07:00",
-     "from": "matthew",
-     "chars": 73,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-20T11:03-07:00",
-     "from": "claude",
-     "chars": 1035,
-     "asks": false,
-     "words": 167,
-     "read_s": 42,
-     "listen_s": 63,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-20T12:36-07:00",
-     "from": "matthew",
-     "chars": 7,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-20T12:38-07:00",
-     "from": "claude",
-     "chars": 459,
-     "asks": false,
-     "words": 76,
-     "read_s": 19,
-     "listen_s": 28,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-20T12:48-07:00",
-     "from": "claude",
-     "chars": 3254,
-     "asks": false,
-     "words": 534,
-     "read_s": 135,
-     "listen_s": 200,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-20T12:55-07:00",
-     "from": "claude",
-     "chars": 1813,
-     "asks": false,
-     "words": 326,
-     "read_s": 82,
-     "listen_s": 122,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 795,
    "area": "hazeljs (npm): one big package that includes Hazel's tile editor; the open questions",
    "added": "2026-11-20",
@@ -21544,7 +21464,7 @@
    ],
    "source": "Matthew, 2026-11-20 ~13:0x, in chat: \"For each one-player game with AI opponents, please add a mode as a toggle switch where the AI for that game plays for the interactive user \\\"you\\\", so that the game becomes a 0 player activity to watch and to time.\"",
    "text": "Go, Checkers and Mahjong: a toggle switch, \"Hazel plays for you\", that hands your seat to the same Hazel AI, so the game plays itself to the end at a chosen pace; timed (each side's thinking, the moves, the whole game), and kept out of your won/played tally.",
-   "progress": "13:09: shared/autoplay.js (switch, pace with full speed, clock) on Checkers, Go and Mahjong; tried in the pane: Checkers at full speed 154 moves in 1.18 s, Go 9x9 75 moves in 0.20 s, both kept out of the tally. Mahjong plays your seat by the step's new kind 9 (node/mahjong.mjs: an auto hand passes every check); its compiled.js with kind 9 is compiling in CI (70d0178872). On hazeljs-examples trial/794-compiled-games, for 0.0.34.",
+   "progress": "13:17: 0.0.34 live with 🤖 Hazel plays for you on Go, Checkers, Mahjong (switch, pace with full speed, clock; full screen fixed after Matthew's 'fullscreen majong layout is goofy'). 0.0.35 deploying: Minesweeper's AI mode (sure moves, a random guess by the page when none) and Go's randomness slider (0 to 10 points; at 0, two self-played games are identical).",
    "log": [
     {
      "at": "2026-11-20T12:58-07:00",
@@ -21575,9 +21495,19 @@
   }
  ],
  "next_ticket": 798,
- "current_ticket": 794,
- "current_note": "13:09: All five games compiled and agreeing with hazeljs (Checkers 469, Solitaire 722, Minesweeper 373, Go 157, Mahjong 488 answers; 0 differ; ~1000x faster). With ^ticket(796) (🤖 Hazel plays for you, full speed) for 0.0.34, waiting on Mahjong's recompile with kind 9 (CI 70d0178872). Then ^ticket(797): plain-JS versions and the 3-way report for Cyrus.",
+ "current_ticket": 796,
+ "current_note": "13:17: ^ticket(796): 0.0.35 deploying (Minesweeper's 🤖, Go's randomness slider); then close it and start ^ticket(797), the plain-JS games and the 3-way report.",
  "closed_tickets": [
+  {
+   "id": 794,
+   "area": "hazeljs examples: the games compiled by hazel-jit, as the oracles are",
+   "added": "2026-11-20",
+   "text": "Each game's rules compiled ahead of time by hazel-jit into /compiled.js (a trial branch's CI prints them; tools/make-compiled.py wraps them with adapters), the page running compiled by default and…",
+   "source": "Matthew, 2026-11-20 ~10:3x, in chat: \"similar --- let's look over the other games to see if hazel-jit will help\".",
+   "status": "done",
+   "closed": "2026-11-20",
+   "outcome": "Released in hazeljs-examples 0.0.34 (live, checked file by file): Solitaire, Minesweeper, Go, Checkers and Mahjong run their rules as JavaScript compiled by hazel-jit (CI on…"
+  },
   {
    "id": 786,
    "area": "hazeljs examples: Hazel AI opponents: Mahjong",
@@ -28206,7 +28136,6 @@
   }
  ],
  "queue": [
-  794,
   796,
   797,
   793,
@@ -28249,7 +28178,7 @@
   708,
   700
  ],
- "current_since": "2026-11-20T11:04-07:00",
+ "current_since": "2026-11-20T13:17-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
