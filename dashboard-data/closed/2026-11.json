@@ -1,5 +1,130 @@
 [
  {
+  "id": 785,
+  "area": "hazeljs examples: Hazel AI opponents, a new part of the site: Go",
+  "added": "2026-11-19T16:15-07:00",
+  "opened": "2026-11-19T16:15-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazeljs",
+   "games"
+  ],
+  "source": "Matthew, 2026-11-19 ~16:3x, in chat: \"after minesweeper, let's do \\\"Hazel AI opponents\\\" as a new subsection, starting with: Go, Mahjong\".",
+  "text": "Go against an opponent whose play is a Hazel program: the board, captures, ko and scoring in Hazel, and its move choice in Hazel too.",
+  "progress": "16:37: rules drafted in go/rules (Board, Play, Bot, preamble), not yet built or tested. PARKED 16:37 for ^ticket(790), Matthew's Minesweeper hint; back to it after that release.",
+  "log": [
+   {
+    "at": "2026-11-19T16:14-07:00",
+    "from": "matthew",
+    "chars": 100,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T16:16-07:00",
+    "from": "matthew",
+    "chars": 10,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T16:17-07:00",
+    "from": "claude",
+    "chars": 549,
+    "asks": false,
+    "words": 109,
+    "read_s": 27,
+    "listen_s": 41,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T16:26-07:00",
+    "from": "claude",
+    "chars": 181,
+    "asks": false,
+    "words": 33,
+    "read_s": 8,
+    "listen_s": 12,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T16:36-07:00",
+    "from": "matthew",
+    "chars": 47,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T16:36-07:00",
+    "from": "matthew",
+    "chars": 17,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T16:36-07:00",
+    "from": "claude",
+    "chars": 1338,
+    "asks": false,
+    "words": 219,
+    "read_s": 55,
+    "listen_s": 82,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T16:37-07:00",
+    "from": "claude",
+    "chars": 195,
+    "asks": false,
+    "words": 33,
+    "read_s": 8,
+    "listen_s": 12,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T16:46-07:00",
+    "from": "claude",
+    "chars": 624,
+    "asks": false,
+    "words": 114,
+    "read_s": 29,
+    "listen_s": 43,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-19",
+  "closed_at": "2026-11-19T18:21-07:00",
+  "outcome": "Released in hazeljs-examples 0.0.29 (dcf2405), live at matthewhammer.org/hazeljs-examples/go/, under a new front-page part, Hazel AI opponents (#opponents); on matthewhammer.org/hazel/ and in the nav (14ce16b2). 7 by 7 or 9 by 9, you black, Hazel white: board, captures, ko, passes, Tromp-Taylor area score and the opponent are one Hazel module, go/rules/Go.hz (one module because a call into another module cost the build 8.1 s against 2.2 s joined: ^ticket(791)). The opponent weighs every empty point (takes, saves, threatens, risks, liberties, edge distance); groups traced once a turn: same worth at all 405 points checked against the draft, 715 ms a move on 9 by 9 (draft 1,686), slowest 1,060 (draft 3,897); in the page about 0.2-0.4 s early in a game. npm run go checks a capture, a suicide, a ko by hand and every position of Hazel against random moves.",
+  "metrics": {
+   "open_minutes": 127,
+   "matthew_messages": 4,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 3061,
+   "tokens_est": 765,
+   "sync_minutes_est": 22.0,
+   "replies": 5,
+   "claude_words": 508,
+   "read_minutes_est": 2.1,
+   "listen_minutes_est": 3.2,
+   "read_s_avg": 25,
+   "listen_s_avg": 38,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 790,
   "area": "hazeljs examples: Minesweeper, a hint written in Hazel",
   "added": "2026-11-19T16:36-07:00",

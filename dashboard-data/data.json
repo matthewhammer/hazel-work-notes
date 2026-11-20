@@ -21463,124 +21463,21 @@
    ]
   },
   {
-   "id": 785,
-   "area": "hazeljs examples: Hazel AI opponents, a new part of the site: Go",
-   "added": "2026-11-19T16:15-07:00",
-   "opened": "2026-11-19T16:15-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazeljs",
-    "games"
-   ],
-   "source": "Matthew, 2026-11-19 ~16:3x, in chat: \"after minesweeper, let's do \\\"Hazel AI opponents\\\" as a new subsection, starting with: Go, Mahjong\".",
-   "text": "Go against an opponent whose play is a Hazel program: the board, captures, ko and scoring in Hazel, and its move choice in Hazel too.",
-   "progress": "16:37: rules drafted in go/rules (Board, Play, Bot, preamble), not yet built or tested. PARKED 16:37 for ^ticket(790), Matthew's Minesweeper hint; back to it after that release.",
-   "log": [
-    {
-     "at": "2026-11-19T16:14-07:00",
-     "from": "matthew",
-     "chars": 100,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T16:16-07:00",
-     "from": "matthew",
-     "chars": 10,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T16:17-07:00",
-     "from": "claude",
-     "chars": 549,
-     "asks": false,
-     "words": 109,
-     "read_s": 27,
-     "listen_s": 41,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T16:26-07:00",
-     "from": "claude",
-     "chars": 181,
-     "asks": false,
-     "words": 33,
-     "read_s": 8,
-     "listen_s": 12,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T16:36-07:00",
-     "from": "matthew",
-     "chars": 47,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T16:36-07:00",
-     "from": "matthew",
-     "chars": 17,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T16:36-07:00",
-     "from": "claude",
-     "chars": 1338,
-     "asks": false,
-     "words": 219,
-     "read_s": 55,
-     "listen_s": 82,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T16:37-07:00",
-     "from": "claude",
-     "chars": 195,
-     "asks": false,
-     "words": 33,
-     "read_s": 8,
-     "listen_s": 12,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T16:46-07:00",
-     "from": "claude",
-     "chars": 624,
-     "asks": false,
-     "words": 114,
-     "read_s": 29,
-     "listen_s": 43,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 786,
    "area": "hazeljs examples: Hazel AI opponents: Mahjong",
    "added": "2026-11-19T16:15-07:00",
    "opened": "2026-11-19T16:15-07:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazeljs",
     "games"
    ],
    "source": "Matthew, 2026-11-19 ~16:3x, in chat (with Go).",
    "text": "Mahjong against opponents whose discards and claims are a Hazel program: the tiles, hands and scoring in Hazel.",
-   "progress": ""
+   "progress": "18:2x: Which Mahjong? My recommendation: Hong Kong rules (the simplest common scoring: a hand of four sets and a pair, faan counted from a short list), you against three Hazel players, no flowers at first. Or Mahjong solitaire (matching pairs of free tiles), a one-player game. Waiting on Matthew's pick; Checkers (^ticket(787)) meanwhile."
   },
   {
    "id": 787,
@@ -21596,12 +21493,38 @@
    "source": "Matthew, 2026-11-19 16:16, in chat, adding to the Hazel AI opponents (Go, Mahjong): \"Checkers\".",
    "text": "Checkers (draughts) against an opponent whose play is a Hazel program: the board, moves, forced captures, multiple jumps and kings in Hazel, and its move choice (a look-ahead search) in Hazel too.",
    "progress": ""
+  },
+  {
+   "id": 791,
+   "area": "hazeljs / Hazel statics: a call into another module costs the build seconds",
+   "added": "2026-11-19",
+   "opened": "2026-11-19T18:21-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazeljs",
+    "performance"
+   ],
+   "source": "Found 2026-11-19 building the hazeljs examples (^ticket(790), ^ticket(785)).",
+   "text": "In hazeljs 0.0.4 (Node), a module that calls into another module costs the build seconds, and calls through such a function compound. Minesweeper: Hint.cell calling Play.cell_at built in 8.7 s and every function calling it ran out of memory at a 1.2-1.5 GB heap (a local copy of the lookup: 0.8 s). Go: Board alone 0.5 s, Board + Play (about 18 references to Board.*) 8.1 s, Board + Play + Bot joined into one module 2.2 s. Find where the build spends it (statics of a module projection? elaboration of the other module's record type at each use?) and whether Hazel's own editor pays it too.",
+   "progress": "",
+   "log": []
   }
  ],
- "next_ticket": 791,
- "current_ticket": 785,
- "current_note": "18:06: Hazel AI opponents, Go: rules drafted at 16:37 in go/rules (Board, Play, Bot), not yet built. Next: build and check them in Node, lightly. Minesweeper's hint shipped in 0.0.28 (^ticket(790)).",
+ "next_ticket": 792,
+ "current_ticket": 787,
+ "current_note": "18:21: Hazel AI opponents, Checkers: the board, moves, forced captures, multiple jumps and kings in Hazel, and the opponent's look-ahead in Hazel. Go shipped in 0.0.29 (^ticket(785)).",
  "closed_tickets": [
+  {
+   "id": 785,
+   "area": "hazeljs examples: Hazel AI opponents, a new part of the site: Go",
+   "added": "2026-11-19T16:15-07:00",
+   "text": "Go against an opponent whose play is a Hazel program: the board, captures, ko and scoring in Hazel, and its move choice in Hazel too.",
+   "source": "Matthew, 2026-11-19 ~16:3x, in chat: \"after minesweeper, let's do \\\"Hazel AI opponents\\\" as a new subsection, starting…",
+   "status": "done",
+   "closed": "2026-11-19",
+   "outcome": "Released in hazeljs-examples 0.0.29 (dcf2405), live at matthewhammer.org/hazeljs-examples/go/, under a new front-page part, Hazel AI opponents (#opponents); on…"
+  },
   {
    "id": 790,
    "area": "hazeljs examples: Minesweeper, a hint written in Hazel",
@@ -28190,7 +28113,7 @@
   }
  ],
  "queue": [
-  785,
+  787,
   761,
   762,
   764,
@@ -28227,9 +28150,10 @@
   704,
   706,
   708,
-  700
+  700,
+  786
  ],
- "current_since": "2026-11-19T18:06-07:00",
+ "current_since": "2026-11-19T18:21-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
