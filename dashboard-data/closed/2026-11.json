@@ -1,5 +1,41 @@
 [
  {
+  "id": 796,
+  "area": "hazeljs examples: Hazel plays for you, a toggle on each Hazel AI opponent (Go, Checkers, Mahjong), a game to watch and time",
+  "added": "2026-11-20",
+  "opened": "2026-11-20T12:59-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazeljs",
+   "games",
+   "hazel-jit"
+  ],
+  "source": "Matthew, 2026-11-20 ~13:0x, in chat: \"For each one-player game with AI opponents, please add a mode as a toggle switch where the AI for that game plays for the interactive user \\\"you\\\", so that the game becomes a 0 player activity to watch and to time.\"",
+  "text": "Go, Checkers and Mahjong: a toggle switch, \"Hazel plays for you\", that hands your seat to the same Hazel AI, so the game plays itself to the end at a chosen pace; timed (each side's thinking, the moves, the whole game), and kept out of your won/played tally.",
+  "progress": "13:17: 0.0.34 live with 🤖 Hazel plays for you on Go, Checkers, Mahjong (switch, pace with full speed, clock; full screen fixed after Matthew's 'fullscreen majong layout is goofy'). 0.0.35 deploying: Minesweeper's AI mode (sure moves, a random guess by the page when none) and Go's randomness slider (0 to 10 points; at 0, two self-played games are identical).",
+  "log": [
+   {
+    "at": "2026-11-20T12:58-07:00",
+    "from": "matthew",
+    "chars": 212,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-20",
+  "closed_at": "2026-11-20T13:20-07:00",
+  "outcome": "Released in hazeljs-examples 0.0.34 and 0.0.35 (both live, checked file by file): 🤖 Hazel plays for you on Go, Checkers, Mahjong and Minesweeper (shared/autoplay.js): a switch, a pace (slowly, at a walk, briskly, at full speed: moves back to back, drawn every 50 ms) and a clock (moves, time, each side's thinking and its share, the slowest move; Minesweeper's guesses); games it played are kept out of the tally. Mahjong plays your seat by the step's new kind 9 (recompiled at 70d0178872). Minesweeper guesses at random (the page's pick, not Hazel's) when no sure move. Also Go's randomness slider (0 to 10 points; at 0 self-play repeats exactly), and full screen fixed after 'fullscreen majong layout is goofy'.",
+  "metrics": {
+   "open_minutes": 22,
+   "matthew_messages": 1,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 212,
+   "tokens_est": 53,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 794,
   "area": "hazeljs examples: the games compiled by hazel-jit, as the oracles are",
   "added": "2026-11-20",
