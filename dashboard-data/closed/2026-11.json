@@ -1,5 +1,31 @@
 [
  {
+  "id": 787,
+  "area": "hazeljs examples: Hazel AI opponents: Checkers",
+  "added": "2026-11-19T16:16-07:00",
+  "opened": "2026-11-19T16:16-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazeljs",
+   "games"
+  ],
+  "source": "Matthew, 2026-11-19 16:16, in chat, adding to the Hazel AI opponents (Go, Mahjong): \"Checkers\".",
+  "text": "Checkers (draughts) against an opponent whose play is a Hazel program: the board, moves, forced captures, multiple jumps and kings in Hazel, and its move choice (a look-ahead search) in Hazel too.",
+  "progress": "",
+  "closed": "2026-11-19",
+  "closed_at": "2026-11-19T18:33-07:00",
+  "outcome": "Released in hazeljs-examples 0.0.30 (670dcf9), live at matthewhammer.org/hazeljs-examples/checkers/, second under Hazel AI opponents; on matthewhammer.org/hazel/ and in the nav. English draughts, you black, Hazel white: moves, compulsory multi-jumps, crowning, the end (no move loses; 80 quiet moves a draw) and an alpha-beta look-ahead of 1-4 moves (the page's choice; 3 by default) are one Hazel module with each side's pieces a 32-bit set in a number. npm run checkers: Hazel's moves equal a JavaScript reference's at all 219 positions of 3 random games (54 jumps, 5 multiple, 12 crownings); look-ahead 26 / 108 / 385 / 1,433 ms at 1-4 in Node; looking 3 ahead it beat random moves at ~0.5 s a move. Found on the way: hazeljs cuts an Int past 2^31 to 32 bits coming in from JS (^ticket(792)).",
+  "metrics": {
+   "open_minutes": 137,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 785,
   "area": "hazeljs examples: Hazel AI opponents, a new part of the site: Go",
   "added": "2026-11-19T16:15-07:00",
