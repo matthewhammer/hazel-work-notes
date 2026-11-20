@@ -21329,7 +21329,7 @@
     "games",
     "hazel-jit"
    ],
-   "source": "Matthew, 2026-11-20 ~10:2x, in chat: \"next, let's try to do a pinball game using hazeljs to describe: layout of the game, state of the game, state updates to the game, based on physics and flapper states, etc. In particular, the layout of the pinball walls and obstacles should be represented with Hazel data. We should offer 10 different boards, some with multiple levels, or other unique features or themes.\" Then: \"let's plan to use hazel-jit with hazeljs to make the pinball game fast.\" Then (2026-11-20 ~15:0x): \"let's have music and sound effects for pin ball. fast-paced, mega-man themed style, but original MIDI constructions.\"",
+   "source": "Matthew, 2026-11-20 ~10:2x, in chat: \"next, let's try to do a pinball game using hazeljs to describe: layout of the game, state of the game, state updates to the game, based on physics and flapper states, etc. In particular, the layout of the pinball walls and obstacles should be represented with Hazel data. We should offer 10 different boards, some with multiple levels, or other unique features or themes.\" Then: \"let's plan to use hazel-jit with hazeljs to make the pinball game fast.\" Then (2026-11-20 ~15:0x): \"let's have music and sound effects for pin ball. fast-paced, mega-man themed style, but original MIDI constructions.\" Then: \"add pin ball under a new category here https://matthewhammer.org/hazeljs-examples/ called 'physics simulation'\"",
    "text": "Pinball: ten boards as Hazel data (walls, bumpers, slingshots, flippers, targets, portals between levels, magnets, movers), the game's state, and a step of the physics (gravity, collisions, flippers, scoring) in Hazel; run compiled by hazel-jit for 60 fps, the interpreter only when the physics is edited.",
    "progress": "Measured: one interpreted frame (3 sub-steps, a ball against 40 walls) takes 34.6 ms median, 52 at p90 (20-29 fps, physics alone); hazel-jit's astrology ran 170x as fast. Found: hazeljs crashes when a whole-number JS value goes where Hazel expects a Float, so the page boundary carries Ints.",
    "log": [
@@ -21518,13 +21518,6 @@
    "text": "Mahjong solitaire, as on 1990s Windows: 144 tiles stacked in layers (the traditional turtle layout, and others), and you take away matching pairs of free tiles (nothing on top, and a free side, left or right) until the stacks are gone. The layouts as Hazel data, and the rules in Hazel (which tiles are free, a match, a deal that can be won, a hint, shuffle), compiled by hazel-jit as the other games are; our own tile art, a 🤖 autoplay like the others'. A separate app from the four-player Mahjong already there. As on the page he showed: Time, Moves and Tiles left; ↩️ undo, ❓ a hint, 🔀 shuffle when stuck, New game, the layouts to choose from, full screen; and the 🤖 switch (Hazel plays it, at the paces and full speed, as the other games).",
    "progress": "Queued right after ^ticket(793) (pinball), at Matthew's word \"after pin ball works\".",
    "log": [
-    {
-     "at": "2026-11-20T15:02-07:00",
-     "from": "matthew",
-     "chars": 236,
-     "asks": true,
-     "note": "from the transcripts"
-    },
     {
      "at": "2026-11-20T15:03-07:00",
      "from": "matthew",
