@@ -21534,9 +21534,27 @@
    "text": "Go, Checkers and Mahjong: a toggle switch, \"Hazel plays for you\", that hands your seat to the same Hazel AI, so the game plays itself to the end at a chosen pace; timed (each side's thinking, the moves, the whole game), and kept out of your won/played tally.",
    "progress": "",
    "log": []
+  },
+  {
+   "id": 797,
+   "area": "hazeljs examples: each game in plain JS too, and a report timing Hazel's interpreter, hazel-jit and plain JS, for Cyrus",
+   "added": "2026-11-20",
+   "opened": "2026-11-20T13:07-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazeljs",
+    "games",
+    "hazel-jit",
+    "report"
+   ],
+   "source": "Matthew, 2026-11-20 ~13:1x, in chat: \"Once we finish updating all of the games with strategies, let's write a report to help answer a question from Cyrus about the speed of hazel, versus hazeljit, versus plain JS. For each game, let's have a plain JS version, just for the sake of timing comparisons that we do now, and in the future, as the hazel components becomes better in performance. That version should be equivalent in terms of game def, logic, and strategy. Please create a report that does a 3-way time comparison for each game: plain hazel, hazel jit, plain JS.\"",
+   "text": "For each game (Solitaire, Minesweeper, Go, Checkers, Mahjong; the oracles too if cheap), a plain JavaScript version equivalent to its Hazel rules: the same game definition, logic and strategy, checked to give the same answers as the Hazel (node/compare-compiled.mjs style), kept in the repo for timing now and later as Hazel gets faster. Then a report in the Hazel reports series: a 3-way time comparison per game (hazeljs interpreting, hazel-jit compiled, plain JS), measured on GitHub's runners or lightly here, each figure naming its build.",
+   "progress": "",
+   "log": []
   }
  ],
- "next_ticket": 797,
+ "next_ticket": 798,
  "current_ticket": 794,
  "current_note": "12:54: Checkers runs compiled: checkers/compiled.js from hazel-jit (trial/794-games-aot d15466c7b1) agrees with hazeljs (469 answers, 0 differ); Hazel looking 4 ahead 5 ms compiled vs 11 s interpreted, so the page offers 5 and 6 ahead. Go, Minesweeper, Mahjong, Solitaire compiling in CI (5405a2e87d); their adapters, checks and pages are written (hazeljs-examples trial/794-compiled-games). Then release 0.0.34 with every game that agrees, then ^ticket(793) pinball.",
  "closed_tickets": [
@@ -28170,6 +28188,7 @@
  "queue": [
   794,
   796,
+  797,
   793,
   795,
   761,
