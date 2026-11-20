@@ -21524,11 +21524,27 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 805,
+   "area": "hazeljs examples: Pinball, round two: chambers, more flippers, structures up top, gutters that differ, slow portals, launch power, patterned and flashing boards, light arrays",
+   "added": "2026-11-20",
+   "opened": "2026-11-20T15:51-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazeljs",
+    "games",
+    "hazel-jit"
+   ],
+   "source": "Matthew, 2026-11-20 ~15:45-16:00, in chat, one after another: \"these pin ball boards are too hard --- it's too easy to have the ball go into the gutter. Let's have more interesting structures up-board (top part of screen), and some more variation around the gutters\"; \"for the portals on the portals board, let's delay the portal transport to be non-instant, and animate it in some interesting way\"; \"we should be able to adjust the launch power, perhaps we need more than \\\"launch\\\" as a button.\"; \"some pin ball boards have multiple occurances of L and R flappers, all controlled in sync. let's experiment with that for some boards\"; \"let's try to create more \\\"chambers\\\" for the boards, so it's not just \\\"one chamber\\\" with \\\"one gutter\\\"\"; \"also let's have low-contrast background patterns on each board that are distinct. like mosaics, or animal/floral/plant themes, etc\"; \"let's have the backgrounds animate/flash, etc, to make the game more excting. more flashes/changes when we hit bumbers in the board\"; \"bumpers or other things that collide with the ball\"; \"\\\"light arrays\\\" along the paths that are most likey for the ball to travel, with flashes/color changes and sounds for that\"",
+   "text": "The ten boards redrawn as Hazel data: chambers whose gutters drop into the chamber below, extra flipper pairs that move with the main ones, structures up top, a different bottom on each; portals that hold the ball a moment (animated); launch strengths; each board a faint pattern of its own that flashes as the ball hits things; light arrays along the ball's likely paths, lit as it passes, with sounds. Measured first with a bot on the compiled rules: a bot that flips whenever the ball is near keeps a ball for 100 s on nearly every board, so the difficulty is a person's reaction time, not drain paths.",
+   "progress": ""
   }
  ],
- "next_ticket": 805,
- "current_ticket": 804,
- "current_note": "15:46: 15:46: 🎱 pin ball music committed locally in kids-choice-games (unreleased; a push to main releases Dress Up, waiting on Matthew's word). Moving to Pinball's boards (his ask)",
+ "next_ticket": 806,
+ "current_ticket": 805,
+ "current_note": "15:51: 15:51: started: a JS mirror of the physics for designing boards fast, checked against the compiled rules",
  "closed_tickets": [
   {
    "id": 793,
@@ -28238,6 +28254,7 @@
   }
  ],
  "queue": [
+  805,
   804,
   803,
   802,
@@ -28280,7 +28297,7 @@
   708,
   700
  ],
- "current_since": "2026-11-20T15:42-07:00",
+ "current_since": "2026-11-20T15:51-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
