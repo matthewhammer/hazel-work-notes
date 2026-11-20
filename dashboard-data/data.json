@@ -21472,6 +21472,18 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-20T12:55-07:00",
+     "from": "claude",
+     "chars": 1813,
+     "asks": false,
+     "words": 326,
+     "read_s": 82,
+     "listen_s": 122,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ]
   },
@@ -21532,7 +21544,7 @@
    ],
    "source": "Matthew, 2026-11-20 ~13:0x, in chat: \"For each one-player game with AI opponents, please add a mode as a toggle switch where the AI for that game plays for the interactive user \\\"you\\\", so that the game becomes a 0 player activity to watch and to time.\"",
    "text": "Go, Checkers and Mahjong: a toggle switch, \"Hazel plays for you\", that hands your seat to the same Hazel AI, so the game plays itself to the end at a chosen pace; timed (each side's thinking, the moves, the whole game), and kept out of your won/played tally.",
-   "progress": "",
+   "progress": "13:09: shared/autoplay.js (switch, pace with full speed, clock) on Checkers, Go and Mahjong; tried in the pane: Checkers at full speed 154 moves in 1.18 s, Go 9x9 75 moves in 0.20 s, both kept out of the tally. Mahjong plays your seat by the step's new kind 9 (node/mahjong.mjs: an auto hand passes every check); its compiled.js with kind 9 is compiling in CI (70d0178872). On hazeljs-examples trial/794-compiled-games, for 0.0.34.",
    "log": []
   },
   {
@@ -21556,7 +21568,7 @@
  ],
  "next_ticket": 798,
  "current_ticket": 794,
- "current_note": "12:54: Checkers runs compiled: checkers/compiled.js from hazel-jit (trial/794-games-aot d15466c7b1) agrees with hazeljs (469 answers, 0 differ); Hazel looking 4 ahead 5 ms compiled vs 11 s interpreted, so the page offers 5 and 6 ahead. Go, Minesweeper, Mahjong, Solitaire compiling in CI (5405a2e87d); their adapters, checks and pages are written (hazeljs-examples trial/794-compiled-games). Then release 0.0.34 with every game that agrees, then ^ticket(793) pinball.",
+ "current_note": "13:09: All five games compiled and agreeing with hazeljs (Checkers 469, Solitaire 722, Minesweeper 373, Go 157, Mahjong 488 answers; 0 differ; ~1000x faster). With ^ticket(796) (🤖 Hazel plays for you, full speed) for 0.0.34, waiting on Mahjong's recompile with kind 9 (CI 70d0178872). Then ^ticket(797): plain-JS versions and the 3-way report for Cyrus.",
  "closed_tickets": [
   {
    "id": 786,
@@ -28242,9 +28254,9 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6779,
-  "words": 1492523,
-  "read_hours_est": 104.5,
+  "replies": 6781,
+  "words": 1493059,
+  "read_hours_est": 104.6,
   "listen_hours_est": 155.5,
   "read_s_avg": 56,
   "listen_s_avg": 83,
@@ -28595,9 +28607,9 @@
     "chars": 121179
    },
    "2026-11-20": {
-    "replies": 10,
-    "words": 2867,
-    "chars": 18071
+    "replies": 12,
+    "words": 3403,
+    "chars": 21032
    }
   }
  },
