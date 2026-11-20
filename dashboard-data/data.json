@@ -21282,55 +21282,6 @@
    ]
   },
   {
-   "id": 786,
-   "area": "hazeljs examples: Hazel AI opponents: Mahjong",
-   "added": "2026-11-19T16:15-07:00",
-   "opened": "2026-11-19T16:15-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazeljs",
-    "games"
-   ],
-   "source": "Matthew, 2026-11-19 ~16:3x, in chat (with Go).",
-   "text": "Mahjong against opponents whose discards and claims are a Hazel program: the tiles, hands and scoring in Hazel.",
-   "progress": "19:10: Matthew's pick (first \"Mahjong solitaire\", then \"changed by mind. Hong Kong rules, with you against three Hazel players\"): Hong Kong rules, the player against three Hazel players, no flowers. Started.",
-   "log": [
-    {
-     "at": "2026-11-19T19:04-07:00",
-     "from": "matthew",
-     "chars": 17,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T19:05-07:00",
-     "from": "matthew",
-     "chars": 71,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-19T19:10-07:00",
-     "from": "matthew",
-     "chars": 87,
-     "asks": false
-    },
-    {
-     "at": "2026-11-19T19:22-07:00",
-     "from": "claude",
-     "chars": 762,
-     "asks": false,
-     "words": 138,
-     "read_s": 35,
-     "listen_s": 52,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 791,
    "area": "hazeljs / Hazel statics: a call into another module costs the build seconds",
    "added": "2026-11-19",
@@ -21342,7 +21293,7 @@
     "performance"
    ],
    "source": "Found 2026-11-19 building the hazeljs examples (^ticket(790), ^ticket(785)).",
-   "text": "In hazeljs 0.0.4 (Node), a module that calls into another module costs the build seconds, and calls through such a function compound. Minesweeper: Hint.cell calling Play.cell_at built in 8.7 s and every function calling it ran out of memory at a 1.2-1.5 GB heap (a local copy of the lookup: 0.8 s). Go: Board alone 0.5 s, Board + Play (about 18 references to Board.*) 8.1 s, Board + Play + Bot joined into one module 2.2 s. Find where the build spends it (statics of a module projection? elaboration of the other module's record type at each use?) and whether Hazel's own editor pays it too.",
+   "text": "In hazeljs 0.0.4 (Node), a module that calls into another module costs the build seconds, and calls through such a function compound. Minesweeper: Hint.cell calling Play.cell_at built in 8.7 s and every function calling it ran out of memory at a 1.2-1.5 GB heap (a local copy of the lookup: 0.8 s). Go: Board alone 0.5 s, Board + Play (about 18 references to Board.*) 8.1 s, Board + Play + Bot joined into one module 2.2 s. Find where the build spends it (statics of a module projection? elaboration of the other module's record type at each use?) and whether Hazel's own editor pays it too. Two more found 2026-11-19/20 building Mahjong (^ticket(786)): (1) a top-level function named `use` makes the build hang, no error (renamed `helps`; `hint` is also taken, as an error); (2) the build's stack grows about 11 KB per top-level definition: 91 overflowed Node's default stack (984 KB) and the browser's (Stack_overflow at build), 44 build at 700 KB. Find which keyword `use` is, and whether the module's let-chain can be checked without one frame per definition.",
    "progress": "",
    "log": []
   },
@@ -21364,9 +21315,19 @@
   }
  ],
  "next_ticket": 793,
- "current_ticket": 786,
- "current_note": "19:10: Mahjong, Hong Kong rules, you against three Hazel players: the tiles, claims, winning hands, faan and the players' discards and claims in Hazel.",
+ "current_ticket": null,
+ "current_note": "10:13: Mahjong shipped in 0.0.32 (^ticket(786)): the Hazel AI opponents Matthew asked for (Go, Checkers, Mahjong) are all live. Next in the queue: ^ticket(761).",
  "closed_tickets": [
+  {
+   "id": 786,
+   "area": "hazeljs examples: Hazel AI opponents: Mahjong",
+   "added": "2026-11-19T16:15-07:00",
+   "text": "Mahjong against opponents whose discards and claims are a Hazel program: the tiles, hands and scoring in Hazel.",
+   "source": "Matthew, 2026-11-19 ~16:3x, in chat (with Go).",
+   "status": "done",
+   "closed": "2026-11-20",
+   "outcome": "Released in hazeljs-examples 0.0.32 (caa4323), live at matthewhammer.org/hazeljs-examples/mahjong/, third under Hazel AI opponents; on matthewhammer.org/hazel/ and in the nav…"
+  },
   {
    "id": 783,
    "area": "hazeljs examples: the Petri net simulator moves under Hazel activities, a category of its own, Automata",
@@ -27985,7 +27946,6 @@
   }
  ],
  "queue": [
-  786,
   761,
   762,
   764,
@@ -28024,7 +27984,7 @@
   708,
   700
  ],
- "current_since": "2026-11-19T19:10-07:00",
+ "current_since": "2026-11-20T10:13-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",

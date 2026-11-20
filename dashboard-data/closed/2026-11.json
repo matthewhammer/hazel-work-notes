@@ -1,5 +1,74 @@
 [
  {
+  "id": 786,
+  "area": "hazeljs examples: Hazel AI opponents: Mahjong",
+  "added": "2026-11-19T16:15-07:00",
+  "opened": "2026-11-19T16:15-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazeljs",
+   "games"
+  ],
+  "source": "Matthew, 2026-11-19 ~16:3x, in chat (with Go).",
+  "text": "Mahjong against opponents whose discards and claims are a Hazel program: the tiles, hands and scoring in Hazel.",
+  "progress": "19:10: Matthew's pick (first \"Mahjong solitaire\", then \"changed by mind. Hong Kong rules, with you against three Hazel players\"): Hong Kong rules, the player against three Hazel players, no flowers. Started.",
+  "log": [
+   {
+    "at": "2026-11-19T19:04-07:00",
+    "from": "matthew",
+    "chars": 17,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T19:05-07:00",
+    "from": "matthew",
+    "chars": 71,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-19T19:10-07:00",
+    "from": "matthew",
+    "chars": 87,
+    "asks": false
+   },
+   {
+    "at": "2026-11-19T19:22-07:00",
+    "from": "claude",
+    "chars": 762,
+    "asks": false,
+    "words": 138,
+    "read_s": 35,
+    "listen_s": 52,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-20",
+  "closed_at": "2026-11-20T10:13-07:00",
+  "outcome": "Released in hazeljs-examples 0.0.32 (caa4323), live at matthewhammer.org/hazeljs-examples/mahjong/, third under Hazel AI opponents; on matthewhammer.org/hazel/ and in the nav (f6b5d0e2). Matthew's pick: Hong Kong rules, you against three Hazel players, no flowers. Hazel runs the whole table a step at a time: deal, turns, claims and their order (win > pung/kong > chow), kongs with an extra draw, winning hands (4 sets + pair, thirteen orphans), 14 faan kinds (chicken hand allowed), points 2^faan (to 10) with discarder 2x / self-drawn all 2x, dealer rotation and round wind, and the three players' discards (least helpful tile) and claims. npm run mahjong: faan by hand on 7 hands; 8 hands / 534 steps with 136 tiles, seat counts, wins (JS test) and zero-sum points checked at every step; a step 42 ms in Node, ~36 ms in the page. Found: a function named use hangs the build; ~90 top-level lets overflow a browser's stack (now 44, builds at 700 KB) — on ^ticket(791).",
+  "metrics": {
+   "open_minutes": 1078,
+   "matthew_messages": 3,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 937,
+   "tokens_est": 234,
+   "sync_minutes_est": 6.0,
+   "replies": 1,
+   "claude_words": 138,
+   "read_minutes_est": 0.6,
+   "listen_minutes_est": 0.9,
+   "read_s_avg": 35,
+   "listen_s_avg": 52,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 783,
   "area": "hazeljs examples: the Petri net simulator moves under Hazel activities, a category of its own, Automata",
   "added": "2026-11-19T15:46-07:00",
