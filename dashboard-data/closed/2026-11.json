@@ -1,5 +1,48 @@
 [
  {
+  "id": 806,
+  "area": "hazeljs examples: Pinball, round four: tracks on three more boards, mezzanine levels (wire ramps, lifts, drop holes) on half the boards, richer backgrounds, fractal drawing of bumpers and walls",
+  "added": "2026-11-20",
+  "opened": "2026-11-20T17:12-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazeljs",
+   "games",
+   "hazel-jit"
+  ],
+  "source": "Matthew, 2026-11-20 ~17:1x, in chat: \"okay, next for pin ball, select 1/3 of the levels without moving elements with tracks and add some. select 1/2 of all levels and add a mezzanine level, that's transparent but apparently one level above the back half of the board. study classic pinball designs that feature those kind of multiple level set ups. There is often a metal cage tube that acts as a ramp up to and down from those levels. sometimes the levels are also connected by \\\"elevators\\\" that grab the ball and lift it, or holes that lower it. let's enhance the details of the backgrounds, especially the leaves. let's enhance the details of the other game elements that are active, like the bumpers and the side walls, making them more fractalized for effect (but not in game geometry, which stays smooth).\"",
+  "text": "Tracks (moving bumpers) on three of the six boards without them; a mezzanine, a glass level over the back half, on five boards, reached and left by wire ramps, lifts and drop holes, after the classic multi-level tables; the backgrounds' patterns in more detail (the forest's leaves most of all); bumpers and walls drawn with fractal detail, their shapes in the rules unchanged.",
+  "progress": "",
+  "log": [
+   {
+    "at": "2026-11-20T17:07-07:00",
+    "from": "matthew",
+    "chars": 512,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-20T17:08-07:00",
+    "from": "matthew",
+    "chars": 264,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-20",
+  "closed_at": "2026-11-20T17:47-07:00",
+  "outcome": "Released in hazeljs-examples 0.0.40 (live 17:47): glass mezzanines on five boards (a second level in the rules) reached and left by wire ramps (only a ball going up fast), lifts and holes down a tunnel to an inlane, after the classic two-level tables; tracks on the Volcano, the Moon and the Castle; bumpers drawn with Koch-star rims and circles in circles, walls with lightning and frost fringes; the forest's leaves (four kinds, veined), ferns and more in every pattern. Checked: Hazel vs the lab (776 steps + every link), compiled vs the lab (40,000 steps) and hazeljs (349 answers, 0 differ); robot 50 of 50 balls two minutes.",
+  "metrics": {
+   "open_minutes": 36,
+   "matthew_messages": 2,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 776,
+   "tokens_est": 194,
+   "sync_minutes_est": 1.0
+  }
+ },
+ {
   "id": 803,
   "area": "hazeljs examples: Mahjong solitaire, the classic tile-matching game (the traditional turtle layout), its rules in Hazel",
   "added": "2026-11-20",
