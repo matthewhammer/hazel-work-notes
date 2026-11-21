@@ -21424,6 +21424,29 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 809,
+   "area": "hazeljs examples: Minesweeper, Hazel's play on the largest board loses most games: revisit its logic",
+   "added": "2026-11-21",
+   "opened": "2026-11-21T10:00-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazeljs",
+    "games"
+   ],
+   "source": "Matthew, 2026-11-21, in chat: \"okay after the cat work, and the team work features are finalized and published, I'd like to revisit the minesweeper AI logic --- it seems quite likely for the largest board that it fails every time (or most times). https://matthewhammer.org/hazeljs-examples/minesweeper/\"",
+   "text": "Measure Hazel's win rate per board size (the largest first), find where its logic gives up or guesses badly (full constraint reasoning over the frontier, then the best-odds guess), fix it in the Hazel rules, compile, measure again, release.",
+   "progress": "Queued after ^ticket(802) (Dress Up's team and its cats), by Matthew's order: once that is finalized and published.",
+   "log": [
+    {
+     "at": "2026-11-21T10:00-07:00",
+     "from": "matthew",
+     "asks": true,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 808,
