@@ -21505,11 +21505,34 @@
    "text": "Two checks (scriptboxes566, garden660) fail because SCRIPT_PLACES_KNOWN has 🕳️ blackhole before bridge and alienplanet, where PLACES has it after (ticket 800): reorder. The frame-rate gate: 🫧 the bubble room with 4 bubble makers, walking, at 52 fps (runs 51.3, 52, 54; draw 3.8 ms), below 55: read 0.0.521's run first (noise or real), then find the cost.",
    "progress": "The order fixed locally (25-scripting.js); waiting on 0.0.521's speed run for the frame rate.",
    "log": []
+  },
+  {
+   "id": 811,
+   "area": "Hazel report (public WIP): Checkers, Hazel playing itself 6 moves ahead: how much of the search is repeated, across the two players and across the game's moves; would a shared memo table explore it faster",
+   "added": "2026-11-21",
+   "opened": "2026-11-21T10:15-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazeljs",
+    "report"
+   ],
+   "source": "Matthew, 2026-11-21, in chat: \"After minesweeper, I want to draft a new public WIP report: For checkers (to start, but also Go eventually): if we use a deep, 6-move-ahead strategy and play the entire game with two AIs, how much computation is being repeated across those two AIs, across all of their \\\"moves\\\". Hypothesis to reject or confirm: Many, many \\\"sub worlds\\\" are shared between players and across the game's progression, so there's a lot of redundant re-computation of the same \\\"game spaces\\\". For a situation where Hazel plays itself, and we only want to know about the strategy's emergent properties, we aren't concerned about \\\"privacy\\\", and we expect that AI's that share their strategy search state could explore this emergent space faster than those that try to remain private to each other (their memo tables probably overlap a lot, in some abstract sense that can be exploited in a practical way).\"",
+   "text": "Instrument Checkers' 6-ahead search (the compiled rules' own search, mirrored in JS step for step): every position searched, keyed by board and side to move and depth left, counted per move and per player across whole self-play games. Measure: distinct versus total positions; repeats within a move, across a player's own moves, and across the two players; what a shared table (by position and depth) would save in nodes and time, and whether its answers match the private searches. Then Go, as far as its search allows. A public WIP report in our series, with an Outline, each section opening with its answer.",
+   "progress": "Queued after ^ticket(809) (Minesweeper), by Matthew's order.",
+   "log": [
+    {
+     "at": "2026-11-21T10:15-07:00",
+     "from": "matthew",
+     "asks": true,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 808,
- "current_ticket": 795,
- "current_note": "10:08: ^ticket(807) closed (done); ^ticket(795) is next in the queue",
+ "current_ticket": 809,
+ "current_note": "10:17: Guess.hz (Hazel's pick: exact odds over the frontier, weighted by the interior) written and checked interpreted (3 of 3 beginner won, a sure pick safe); compiling on GitHub (c119425912). JS lab: 82/50/2% → 96/87/54% won.",
  "closed_tickets": [
   {
    "id": 807,
@@ -28328,7 +28351,7 @@
   708,
   700
  ],
- "current_since": "2026-11-21T10:08-07:00",
+ "current_since": "2026-11-21T10:17-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
