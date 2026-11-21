@@ -21543,7 +21543,7 @@
    ],
    "source": "Read after releasing 0.0.521 (2026-11-21): dress-up/speed.json says 0.0.519 broken (the checks) and 0.0.520 broken (the checks, the frame-rate gate); run https://github.com/matthewhammer/kids-choice-games/actions/runs/44835558154",
    "text": "Two checks (scriptboxes566, garden660) fail because SCRIPT_PLACES_KNOWN has 🕳️ blackhole before bridge and alienplanet, where PLACES has it after (ticket 800): reorder. The frame-rate gate: 🫧 the bubble room with 4 bubble makers, walking, at 52 fps (runs 51.3, 52, 54; draw 3.8 ms), below 55: read 0.0.521's run first (noise or real), then find the cost.",
-   "progress": "The order fixed locally (25-scripting.js); waiting on 0.0.521's speed run for the frame rate.",
+   "progress": "The order fixed locally (25-scripting.js); waiting on 0.0.521's speed run for the frame rate. | 11-21: 0.0.529's speed run read 💭 our imagination at 9.1 fps (0.0.522's: 60). Diagnostic diag-530 (run 44954617587, eight runners, 0.0.522 against main, each twice): imagination 60 fps on 7 of 8 machines both ways; on the one EPYC 7763 it fails both ways (0.0.522: 32.9, 13.3; main: 11.5, 9.4; draw 27-135 ms, scenery held still). Not today's work: ticket 509's 0.0.395 fix (map pictures as WebP, 60 fps on slow runners) has slipped since, on 7763s. Every other place 60 on every machine.",
    "log": []
   },
   {
@@ -22854,6 +22854,37 @@
      "words": 38,
      "read_s": 10,
      "listen_s": 14,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-21T14:58-07:00",
+     "from": "claude",
+     "chars": 4202,
+     "asks": true,
+     "words": 750,
+     "read_s": 189,
+     "listen_s": 281,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-21T15:01-07:00",
+     "from": "matthew",
+     "chars": 11,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-21T15:02-07:00",
+     "from": "claude",
+     "chars": 805,
+     "asks": false,
+     "words": 135,
+     "read_s": 34,
+     "listen_s": 51,
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
