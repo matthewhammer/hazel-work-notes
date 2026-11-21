@@ -21368,83 +21368,6 @@
    ]
   },
   {
-   "id": 802,
-   "area": "Dress Up: friends placed in a scene can join your team and follow you (walking, riding, swimming after you), or stay in their square; and switch which friend you are",
-   "added": "2026-11-20",
-   "opened": "2026-11-20T14:47-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "dress-up",
-    "M"
-   ],
-   "source": "Matthew, 2026-11-20 ~14:5x, in chat: \"M had some requests too for dress-up. First, a 'bug report' (feature correction) from M: when we place other friends into the scene, each should have a toggle: stays in background square, or moves with friend on the active team (either walking after them, or riding a horse after them, or swimming after them, etc) a la games like final fantasy that have multi-person teams under the control of the player. A way to switch who is active in the active team.\"",
-   "text": "Each friend placed in a scene gets a toggle: 🏠 stays in its square (as now), or 🤝 joins the team. Team members follow the friend you play as from place to place and square to square, in a line behind them, moving as they move (walking, riding a horse, swimming, flying along). And a way to switch which team member you are: the one you play as steps forward and the others follow them.",
-   "progress": "Queued after ^ticket(793) (pinball, a Hazel ticket in hand), by Matthew's rule that Dress Up waits behind the Hazel tickets in hand.",
-   "log": [
-    {
-     "at": "2026-11-20T14:47-07:00",
-     "from": "matthew",
-     "chars": 465,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
-   "id": 807,
-   "area": "hazeljs examples: Mahjong solitaire, a plan repaired after a person's own pairs, checked (other placements tried)",
-   "added": "2026-11-20",
-   "opened": "2026-11-20T17:48-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazeljs",
-    "games"
-   ],
-   "source": "The follow-up of ^ticket(803), found 2026-11-20 measuring 0.0.39: after twenty pairs taken at random, Hazel's play by the repaired plan needed shuffles (58 of 60 cleared).",
-   "text": "Repair the plan after two tiles of two planned pairs are taken: try the partners' pair at the earlier pair's place, the later's, first, last; keep the first that plays through (each pair free and matching in turn); else no plan, and Hazel's own choice.",
-   "progress": "",
-   "log": [
-    {
-     "at": "2026-11-20T17:34-07:00",
-     "from": "claude",
-     "chars": 5427,
-     "asks": false,
-     "words": 909,
-     "read_s": 229,
-     "listen_s": 341,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-20T18:01-07:00",
-     "from": "claude",
-     "chars": 1883,
-     "asks": false,
-     "words": 317,
-     "read_s": 80,
-     "listen_s": 119,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T09:50-07:00",
-     "from": "claude",
-     "chars": 2162,
-     "asks": false,
-     "words": 373,
-     "read_s": 94,
-     "listen_s": 140,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 809,
    "area": "hazeljs examples: Minesweeper, Hazel's play on the largest board loses most games: revisit its logic",
    "added": "2026-11-21",
@@ -21459,12 +21382,54 @@
    "text": "Measure Hazel's win rate per board size (the largest first), find where its logic gives up or guesses badly (full constraint reasoning over the frontier, then the best-odds guess), fix it in the Hazel rules, compile, measure again, release.",
    "progress": "Queued after ^ticket(802) (Dress Up's team and its cats), by Matthew's order: once that is finalized and published.",
    "log": []
+  },
+  {
+   "id": 810,
+   "area": "Dress Up: the speed runs of 0.0.519 and 0.0.520 read broken: the scripts' list of places out of PLACES' order, and 🫧 the bubble room's walk at 52 fps",
+   "added": "2026-11-21",
+   "opened": "2026-11-21T10:09-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress-up"
+   ],
+   "source": "Read after releasing 0.0.521 (2026-11-21): dress-up/speed.json says 0.0.519 broken (the checks) and 0.0.520 broken (the checks, the frame-rate gate); run https://github.com/matthewhammer/kids-choice-games/actions/runs/44835558154",
+   "text": "Two checks (scriptboxes566, garden660) fail because SCRIPT_PLACES_KNOWN has 🕳️ blackhole before bridge and alienplanet, where PLACES has it after (ticket 800): reorder. The frame-rate gate: 🫧 the bubble room with 4 bubble makers, walking, at 52 fps (runs 51.3, 52, 54; draw 3.8 ms), below 55: read 0.0.521's run first (noise or real), then find the cost.",
+   "progress": "The order fixed locally (25-scripting.js); waiting on 0.0.521's speed run for the frame rate.",
+   "log": [
+    {
+     "at": "2026-11-21T10:09-07:00",
+     "from": "claude",
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 808,
- "current_ticket": 807,
- "current_note": "10:06: Measured 2af8e537cf: after 20 random pairs, no-shuffle clears 16/17/9 of 20 (were 9/13/7; solver ceiling ≥14/≥16/10); a take off the plan 8.5 ms average, 204 ms slowest. Committed as hazeljs-examples 0.0.42 (20b6284); the push waits on Matthew's OK.",
+ "current_ticket": 795,
+ "current_note": "10:08: ^ticket(807) closed (done); ^ticket(795) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 807,
+   "area": "hazeljs examples: Mahjong solitaire, a plan repaired after a person's own pairs, checked (other placements tried)",
+   "added": "2026-11-20",
+   "text": "Repair the plan after two tiles of two planned pairs are taken: try the partners' pair at the earlier pair's place, the later's, first, last; keep the first that plays through (each pair free and…",
+   "source": "The follow-up of ^ticket(803), found 2026-11-20 measuring 0.0.39: after twenty pairs taken at random, Hazel's play by…",
+   "status": "done",
+   "closed": "2026-11-21",
+   "outcome": "Released as hazeljs-examples 0.0.42 (20b6284), live: the plan played as a set, a face re-paired when stuck; no-shuffle clears after 20 random pairs 16/17/9 of 20 (were 9/13/7)."
+  },
+  {
+   "id": 802,
+   "area": "Dress Up: friends placed in a scene can join your team and follow you (walking, riding, swimming after you), or stay in their square; and switch which friend you are",
+   "added": "2026-11-20",
+   "text": "Each friend placed in a scene gets a toggle: 🏠 stays in its square (as now), or 🤝 joins the team. Team members follow the friend you play as from place to place and square to square, in a line behind…",
+   "source": "Matthew, 2026-11-20 ~14:5x, in chat: \"M had some requests too for dress-up. First, a 'bug report' (feature correction)…",
+   "status": "done",
+   "closed": "2026-11-21",
+   "outcome": "Released as Dress Up 0.0.521 (e1293466, tag dress-up-0.0.521), live: the team (🏠/🤝 toggle, following in a line, horses, swimming, Q and the team's chips to switch), 🐱 cats on it…"
+  },
   {
    "id": 808,
    "area": "hazeljs examples: Checkers (and Go): whose turn kept on one line, so the board stops jumping",
@@ -28223,8 +28188,6 @@
   }
  ],
  "queue": [
-  807,
-  802,
   795,
   761,
   762,
@@ -28264,7 +28227,7 @@
   708,
   700
  ],
- "current_since": "2026-11-21T10:06-07:00",
+ "current_since": "2026-11-21T10:08-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",

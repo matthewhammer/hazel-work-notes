@@ -1,5 +1,113 @@
 [
  {
+  "id": 807,
+  "area": "hazeljs examples: Mahjong solitaire, a plan repaired after a person's own pairs, checked (other placements tried)",
+  "added": "2026-11-20",
+  "opened": "2026-11-20T17:48-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazeljs",
+   "games"
+  ],
+  "source": "The follow-up of ^ticket(803), found 2026-11-20 measuring 0.0.39: after twenty pairs taken at random, Hazel's play by the repaired plan needed shuffles (58 of 60 cleared).",
+  "text": "Repair the plan after two tiles of two planned pairs are taken: try the partners' pair at the earlier pair's place, the later's, first, last; keep the first that plays through (each pair free and matching in turn); else no plan, and Hazel's own choice.",
+  "progress": "",
+  "log": [
+   {
+    "at": "2026-11-20T17:34-07:00",
+    "from": "claude",
+    "chars": 5427,
+    "asks": false,
+    "words": 909,
+    "read_s": 229,
+    "listen_s": 341,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-20T18:01-07:00",
+    "from": "claude",
+    "chars": 1883,
+    "asks": false,
+    "words": 317,
+    "read_s": 80,
+    "listen_s": 119,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-21T09:50-07:00",
+    "from": "claude",
+    "chars": 2162,
+    "asks": false,
+    "words": 373,
+    "read_s": 94,
+    "listen_s": 140,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-21",
+  "closed_at": "2026-11-21T10:08-07:00",
+  "outcome": "Released as hazeljs-examples 0.0.42 (20b6284), live: the plan played as a set, a face re-paired when stuck; no-shuffle clears after 20 random pairs 16/17/9 of 20 (were 9/13/7).",
+  "metrics": {
+   "open_minutes": 981,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 9472,
+   "tokens_est": 2368,
+   "sync_minutes_est": 0,
+   "replies": 3,
+   "claude_words": 1599,
+   "read_minutes_est": 6.7,
+   "listen_minutes_est": 10.0,
+   "read_s_avg": 134,
+   "listen_s_avg": 200,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
+  "id": 802,
+  "area": "Dress Up: friends placed in a scene can join your team and follow you (walking, riding, swimming after you), or stay in their square; and switch which friend you are",
+  "added": "2026-11-20",
+  "opened": "2026-11-20T14:47-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "dress-up",
+   "M"
+  ],
+  "source": "Matthew, 2026-11-20 ~14:5x, in chat: \"M had some requests too for dress-up. First, a 'bug report' (feature correction) from M: when we place other friends into the scene, each should have a toggle: stays in background square, or moves with friend on the active team (either walking after them, or riding a horse after them, or swimming after them, etc) a la games like final fantasy that have multi-person teams under the control of the player. A way to switch who is active in the active team.\"",
+  "text": "Each friend placed in a scene gets a toggle: 🏠 stays in its square (as now), or 🤝 joins the team. Team members follow the friend you play as from place to place and square to square, in a line behind them, moving as they move (walking, riding a horse, swimming, flying along). And a way to switch which team member you are: the one you play as steps forward and the others follow them.",
+  "progress": "Queued after ^ticket(793) (pinball, a Hazel ticket in hand), by Matthew's rule that Dress Up waits behind the Hazel tickets in hand.",
+  "log": [
+   {
+    "at": "2026-11-20T14:47-07:00",
+    "from": "matthew",
+    "chars": 465,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-21",
+  "closed_at": "2026-11-21T10:08-07:00",
+  "outcome": "Released as Dress Up 0.0.521 (e1293466, tag dress-up-0.0.521), live: the team (🏠/🤝 toggle, following in a line, horses, swimming, Q and the team's chips to switch), 🐱 cats on it (swapped in the cat universe; the cat playable), one craft for all (square basket grid, bubble ring, rocket window).",
+  "metrics": {
+   "open_minutes": 1162,
+   "matthew_messages": 1,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 465,
+   "tokens_est": 116,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 808,
   "area": "hazeljs examples: Checkers (and Go): whose turn kept on one line, so the board stops jumping",
   "added": "2026-11-21",
