@@ -65,10 +65,31 @@
 <li>Icons for Downhill, Star wave and Pinball redrawn, and their detail brought into the games (0.0.58, 0.0.59); the fields centred in full screen.</li>
 </ul>
 
+<h2>The afternoon, from 12:30</h2>
+<p>Matthew kept the requests coming while the work notes were written; each went into Gnome dig or into every game. "okay the new sunlight dynamic makes the levels more fun", he said along the way.</p>
+<blockquote>
+<p>when the dirt is removed, the worms and moles, etc, should drop down.</p>
+<p>let's include a ground-water element on some levels -- not all of them.</p>
+<p>let's have a rule that if a rock falls on an animal in the ground (not a ghost), we lose the level.</p>
+<p>let's put the controls and scroe into a HUD and stretch the game to full height in full screen.</p>
+<p>can we make shafts of light that come into the holes, from the actual position of the sun, somehow?</p>
+</blockquote>
+<ul>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-833"><code class="ref"><b>^ticket(</b>833<b>)</b></code></a>, 0.0.67.</b> The creatures drop as you dig, where Hazel's new <code>Scene.landing</code> says they land; the dug squares a darker back wall with other roots, two layers deep; the badger drawn again. Live and checked.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-834"><code class="ref"><b>^ticket(</b>834<b>)</b></code></a>, 0.0.68.</b> The mole, the rabbit and the badger in the rules: dug out they drop, and a boulder on one loses the level. Ground water on half the levels from the second, your breath under it, and diving gear three or four cells down, reachable on one breath by digging straight to it. The robot digs round the animals and fetches the gear first: in a JavaScript copy of the rules, checked against Hazel, it cleared 2,400 of 2,400 fresh levels.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-835"><code class="ref"><b>^ticket(</b>835<b>)</b></code></a>, 0.0.68.</b> Every game in full screen: the field as tall as the window under a heads-up display of ☰, Activities, ✕, the score and the controls; on a phone, stacked.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-836"><code class="ref"><b>^ticket(</b>836<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-837"><code class="ref"><b>^ticket(</b>837<b>)</b></code></a>, 0.0.68.</b> Gnome dig's music (two new major-key tunes) and sounds; the gnome's ladders and timber sets; the roots in front of the holes, the gnome and the animals behind them.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-838"><code class="ref"><b>^ticket(</b>838<b>)</b></code></a>, 0.0.68 and 0.0.69.</b> Shafts of sunlight from the sun in the sky into the holes that can see it; the creatures leave the light, the worms and beetles by the page, the mole, the rabbit and the badger by Hazel (<code>Dig.sunlit</code>). 0.0.69 also centred "Game over" again.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-839"><code class="ref"><b>^ticket(</b>839<b>)</b></code></a>, 0.0.70.</b> The ghosts never step into the sunlight; let it in on one and it runs to the shade, or, with none, burns up (150 points). A running ghost looks scared, with a "!".</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-841"><code class="ref"><b>^ticket(</b>841<b>)</b></code></a>, 0.0.70.</b> ☰ hides the full-screen HUD; the status under ⓘ; on a phone the board fills the height under the HUD in every game.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-840"><code class="ref"><b>^ticket(</b>840<b>)</b></code></a>, 0.0.71.</b> The love shooter: on some levels, an item in the earth; with it, the ghosts within three cells run from you, hearts flying.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-842"><code class="ref"><b>^ticket(</b>842<b>)</b></code></a>, 0.0.72.</b> Bedrock, more of it in later levels, often over a ghost's pocket so the sun cannot reach it. The robot needed four changes to clear every level again, found by running it on thousands of fresh levels: no bedrock walls (runs never touch), safe passage past an animal with no boulder above, animals never walking under a loose boulder, and catching stunned ghosts, with now and then a stretch of hunting, to end a standoff with a ghost guarding the last gems. 2,400 of 2,400 cleared.</li>
+</ul>
+
 <h2>Where things are</h2>
 <div class="scroll"><table>
 <tr><th>What</th><th>Where</th><th>State</th></tr>
-<tr><td>hazeljs-examples</td><td>main</td><td>0.0.66, deploying</td></tr>
+<tr><td>hazeljs-examples</td><td>main</td><td>0.0.72, the last of the day so far</td></tr>
 <tr><td>the games' compiles</td><td>hazelgrove/hazel <code>trial/794-games-aot</code>, <code>b739b08a54</code></td><td>Gnome dig's rules and scene</td></tr>
 <tr><td>matthewhammer.org/hazel/</td><td>matthewhammer.github.io, <code>ca4aa538</code></td><td>the seven games listed</td></tr>
 <tr><td><a href="https://matthewhammer.org/hazel/dashboard/#ticket-795"><code class="ref"><b>^ticket(</b>795<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/#ticket-811"><code class="ref"><b>^ticket(</b>811<b>)</b></code></a></td><td>the dashboard</td><td>open</td></tr>
