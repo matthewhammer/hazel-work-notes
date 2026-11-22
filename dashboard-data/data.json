@@ -21718,7 +21718,7 @@
    ],
    "source": "Found during ticket 815's archive run (kids-choice-games run 44974343464, 2026-11-21): its step 'The friend against each picture's frame' failed with Cannot find module tools/clip_audit.mjs (continue-on-error, so the run still landed).",
    "text": "tools/clip_audit.mjs (the friend against each picture's frame, ticket 454) was committed only on archive branches, last on archive-609 (0.0.429, never merged); archive-689 (0.0.490) and archive-815 (0.0.530) were cut from main without it, so neither run was audited. Move it to dress-up-pictures' tools/ beside archive.mjs (the workflow already clones that repo), point the workflow's step there, and audit run-2026-11-21's pictures once (a small workflow: Chrome on the runner, the archive at that tag).",
-   "progress": "",
+   "progress": "19:29 11-21: tools/clip_audit.mjs moved into dress-up-pictures (3667fbc0, pushed) and archive-815's workflow runs it from there (a7c7e60d). Run 44976277015 makes the pictures again at 0.0.530 (6 min) and audits them; the music job keeps every tune. Next: read its clip.txt, check its byte fingerprints match the landed run, then close.",
    "log": []
   },
   {
@@ -28646,10 +28646,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6902,
-  "words": 1514923,
+  "replies": 6903,
+  "words": 1515541,
   "read_hours_est": 106.1,
-  "listen_hours_est": 157.8,
+  "listen_hours_est": 157.9,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -29004,9 +29004,9 @@
     "chars": 69935
    },
    "2026-11-21": {
-    "replies": 87,
-    "words": 13317,
-    "chars": 73803
+    "replies": 88,
+    "words": 13935,
+    "chars": 77610
    }
   }
  },
