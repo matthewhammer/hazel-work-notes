@@ -21406,132 +21406,6 @@
    ]
   },
   {
-   "id": 809,
-   "area": "hazeljs examples: Minesweeper, Hazel's play on the largest board loses most games: revisit its logic",
-   "added": "2026-11-21",
-   "opened": "2026-11-21T10:00-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazeljs",
-    "games"
-   ],
-   "source": "Matthew, 2026-11-21, in chat: \"okay after the cat work, and the team work features are finalized and published, I'd like to revisit the minesweeper AI logic --- it seems quite likely for the largest board that it fails every time (or most times). https://matthewhammer.org/hazeljs-examples/minesweeper/\"",
-   "text": "Measure Hazel's win rate per board size (the largest first), find where its logic gives up or guesses badly (full constraint reasoning over the frontier, then the best-odds guess), fix it in the Hazel rules, compile, measure again, release.",
-   "progress": "Queued after ^ticket(802) (Dress Up's team and its cats), by Matthew's order: once that is finalized and published.",
-   "log": [
-    {
-     "at": "2026-11-21T10:00-07:00",
-     "from": "matthew",
-     "chars": 273,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T10:00-07:00",
-     "from": "matthew",
-     "chars": 129,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T10:00-07:00",
-     "from": "claude",
-     "chars": 322,
-     "asks": false,
-     "words": 61,
-     "read_s": 15,
-     "listen_s": 23,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T10:01-07:00",
-     "from": "matthew",
-     "chars": 100,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T10:01-07:00",
-     "from": "claude",
-     "chars": 185,
-     "asks": false,
-     "words": 34,
-     "read_s": 9,
-     "listen_s": 13,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T10:02-07:00",
-     "from": "claude",
-     "chars": 210,
-     "asks": false,
-     "words": 38,
-     "read_s": 10,
-     "listen_s": 14,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T10:02-07:00",
-     "from": "claude",
-     "chars": 114,
-     "asks": false,
-     "words": 21,
-     "read_s": 5,
-     "listen_s": 8,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T10:03-07:00",
-     "from": "matthew",
-     "chars": 102,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T10:03-07:00",
-     "from": "matthew",
-     "chars": 102,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T10:03-07:00",
-     "from": "matthew",
-     "chars": 106,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T10:06-07:00",
-     "from": "claude",
-     "chars": 2502,
-     "asks": true,
-     "words": 471,
-     "read_s": 119,
-     "listen_s": 177,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T10:07-07:00",
-     "from": "matthew",
-     "chars": 14,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 811,
    "area": "Hazel report (public WIP): Checkers, Hazel playing itself 6 moves ahead: how much of the search is repeated, across the two players and across the game's moves; would a shared memo table explore it faster",
    "added": "2026-11-21",
@@ -21741,6 +21615,16 @@
  "current_ticket": 819,
  "current_note": "20:10: ^ticket(818) closed (done); ^ticket(819) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 809,
+   "area": "hazeljs examples: Minesweeper, Hazel's play on the largest board loses most games: revisit its logic",
+   "added": "2026-11-21",
+   "text": "Measure Hazel's win rate per board size (the largest first), find where its logic gives up or guesses badly (full constraint reasoning over the frontier, then the best-odds guess), fix it in the…",
+   "source": "Matthew, 2026-11-21, in chat: \"okay after the cat work, and the team work features are finalized and published, I'd…",
+   "status": "done",
+   "closed": "2026-11-21",
+   "outcome": "Done 11:39 11-21, closed on the dashboard 20:12: released as hazeljs-examples 0.0.43 (b3ec66c, live; now 0.0.44). Where no number alone shows a sure move, the page had opened a…"
+  },
   {
    "id": 818,
    "area": "Dress Up archives: the clip audit (ticket 454) has not run since 0.0.429; its tool lives only on archive branches",
@@ -28599,10 +28483,9 @@
   }
  ],
  "queue": [
+  811,
   819,
   820,
-  811,
-  809,
   795,
   761,
   762,

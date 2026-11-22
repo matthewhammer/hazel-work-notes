@@ -1,5 +1,151 @@
 [
  {
+  "id": 809,
+  "area": "hazeljs examples: Minesweeper, Hazel's play on the largest board loses most games: revisit its logic",
+  "added": "2026-11-21",
+  "opened": "2026-11-21T10:00-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazeljs",
+   "games"
+  ],
+  "source": "Matthew, 2026-11-21, in chat: \"okay after the cat work, and the team work features are finalized and published, I'd like to revisit the minesweeper AI logic --- it seems quite likely for the largest board that it fails every time (or most times). https://matthewhammer.org/hazeljs-examples/minesweeper/\"",
+  "text": "Measure Hazel's win rate per board size (the largest first), find where its logic gives up or guesses badly (full constraint reasoning over the frontier, then the best-odds guess), fix it in the Hazel rules, compile, measure again, release.",
+  "progress": "Queued after ^ticket(802) (Dress Up's team and its cats), by Matthew's order: once that is finalized and published.",
+  "log": [
+   {
+    "at": "2026-11-21T10:00-07:00",
+    "from": "matthew",
+    "chars": 273,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-21T10:00-07:00",
+    "from": "matthew",
+    "chars": 129,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-21T10:00-07:00",
+    "from": "claude",
+    "chars": 322,
+    "asks": false,
+    "words": 61,
+    "read_s": 15,
+    "listen_s": 23,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-21T10:01-07:00",
+    "from": "matthew",
+    "chars": 100,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-21T10:01-07:00",
+    "from": "claude",
+    "chars": 185,
+    "asks": false,
+    "words": 34,
+    "read_s": 9,
+    "listen_s": 13,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-21T10:02-07:00",
+    "from": "claude",
+    "chars": 210,
+    "asks": false,
+    "words": 38,
+    "read_s": 10,
+    "listen_s": 14,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-21T10:02-07:00",
+    "from": "claude",
+    "chars": 114,
+    "asks": false,
+    "words": 21,
+    "read_s": 5,
+    "listen_s": 8,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-21T10:03-07:00",
+    "from": "matthew",
+    "chars": 102,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-21T10:03-07:00",
+    "from": "matthew",
+    "chars": 102,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-21T10:03-07:00",
+    "from": "matthew",
+    "chars": 106,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-21T10:06-07:00",
+    "from": "claude",
+    "chars": 2502,
+    "asks": true,
+    "words": 471,
+    "read_s": 119,
+    "listen_s": 177,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-21T10:07-07:00",
+    "from": "matthew",
+    "chars": 14,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-21",
+  "closed_at": "2026-11-21T20:12-07:00",
+  "outcome": "Done 11:39 11-21, closed on the dashboard 20:12: released as hazeljs-examples 0.0.43 (b3ec66c, live; now 0.0.44). Where no number alone shows a sure move, the page had opened a closed cell at random; now Hazel picks, in a new module Guess.hz: the frontier split into groups that share no cell, every way the mines can lie in each counted (up to a limit) and weighted by the ways the rest can lie in the untouched cells; the least likely cell is opened (a corner, then an edge, when untouched cells are as good); a cell with no way to be a mine is a sure move, and 💡 shows it, or the best guess and its odds. Won over 200 games each: beginner 96% (was 82%), intermediate 89% (was 52%), expert 47% (was 2%), about what a perfect player can win at expert. A pick: 4 ms on average in the compiled rules, 77 ms at most.",
+  "metrics": {
+   "open_minutes": 612,
+   "matthew_messages": 7,
+   "questions_to_matthew": 1,
+   "chars_exchanged": 4159,
+   "tokens_est": 1039,
+   "sync_minutes_est": 7.0,
+   "replies": 5,
+   "claude_words": 625,
+   "read_minutes_est": 2.6,
+   "listen_minutes_est": 3.9,
+   "read_s_avg": 32,
+   "listen_s_avg": 47,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 818,
   "area": "Dress Up archives: the clip audit (ticket 454) has not run since 0.0.429; its tool lives only on archive branches",
   "added": "2026-11-21",
