@@ -21706,71 +21706,6 @@
    ]
   },
   {
-   "id": 818,
-   "area": "Dress Up archives: the clip audit (ticket 454) has not run since 0.0.429; its tool lives only on archive branches",
-   "added": "2026-11-21",
-   "opened": "2026-11-21T19:26-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "dress up",
-    "archives"
-   ],
-   "source": "Found during ticket 815's archive run (kids-choice-games run 44974343464, 2026-11-21): its step 'The friend against each picture's frame' failed with Cannot find module tools/clip_audit.mjs (continue-on-error, so the run still landed).",
-   "text": "tools/clip_audit.mjs (the friend against each picture's frame, ticket 454) was committed only on archive branches, last on archive-609 (0.0.429, never merged); archive-689 (0.0.490) and archive-815 (0.0.530) were cut from main without it, so neither run was audited. Move it to dress-up-pictures' tools/ beside archive.mjs (the workflow already clones that repo), point the workflow's step there, and audit run-2026-11-21's pictures once (a small workflow: Chrome on the runner, the archive at that tag).",
-   "progress": "19:29 11-21: tools/clip_audit.mjs moved into dress-up-pictures (3667fbc0, pushed) and archive-815's workflow runs it from there (a7c7e60d). Run 44976277015 makes the pictures again at 0.0.530 (6 min) and audits them; the music job keeps every tune. Next: read its clip.txt, check its byte fingerprints match the landed run, then close. | 19:39 11-21: run 44976277015's audit: 1,183 pictures, 1,125 with the friend, 79 clipped: 58 things (the same 39 px at the right edge: 🫧 and 🔥 drawn in the hidden friend's hands, at figX 400), 12 seats, 4 climbs, the rocket ride and Scorpio's tail, the diver, the sea. The 🫧 and 🔥 float in every picture without the friend (304 menus, 68 backgrounds each way, 58 things). And a rerun of the same game commit rewrote all 1,185 settings files and 11 pictures: passage uids from Math.random at load, and 3 poses mid-animation. FIXED in archive.mjs (dress-up-pictures d4b1af3c): without the friend, 🔹 and 🔸 emptied; Math.random seeded from the page's first line and before each picture. Two test runs at 0.0.530 (44977051016, 44977057155) to compare with each other. | 19:51 11-21: test runs 44977051016 and 44977057155 (d4b1af3c): 🫧 and 🔥 gone from every friendless picture (0), clipped 79 -> 21, but the two runs differed in 152 files: 86 settings files by a backpack thing's got time (Date.now(), read by nothing: archive.mjs now writes 0, 75390c2b), and 48 pictures by the game's held-still mode (an LFO's begin from the picture's clock, which ran on a few ms; its tempo from the tune the last scene started; the walk and dance sway from performance.now). Fixed in the game: Dress Up 0.0.531 (03310deb, live; play unchanged). Two more runs at 0.0.531 (44977940868, 44977947762) to compare.",
-   "log": [
-    {
-     "at": "2026-11-21T19:26-07:00",
-     "from": "claude",
-     "chars": 1777,
-     "asks": false,
-     "words": 286,
-     "read_s": 72,
-     "listen_s": 107,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T19:29-07:00",
-     "from": "claude",
-     "chars": 2145,
-     "asks": false,
-     "words": 353,
-     "read_s": 89,
-     "listen_s": 132,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T19:39-07:00",
-     "from": "claude",
-     "chars": 2660,
-     "asks": false,
-     "words": 469,
-     "read_s": 118,
-     "listen_s": 176,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T19:52-07:00",
-     "from": "claude",
-     "chars": 2298,
-     "asks": false,
-     "words": 406,
-     "read_s": 102,
-     "listen_s": 152,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 819,
    "area": "Dress Up archives: the team is not in the pictures (each kind of person, the greys and cats, the team in the rocket)",
    "added": "2026-11-21",
@@ -21785,12 +21720,37 @@
    "text": "dress-up-pictures' tools/archive.mjs draws every place, costume and menu choice for the friend alone; the others (👥 People: each group and kind, the greys short, medium and tall with their hair and jumpsuits, the cats) and the team as it moves (following through doors one by one, all in the rocket) are not drawn. Add a folder for the team: each kind of person once beside the friend, and the rocket with the whole team, as the game draws them.",
    "progress": "",
    "log": []
+  },
+  {
+   "id": 820,
+   "area": "Dress Up: the rocket's body pictures cut by their frames (Scorpio's tail, the friend riding)",
+   "added": "2026-11-21",
+   "opened": "2026-11-21T20:10-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up"
+   ],
+   "source": "The clip audit of 0.0.531's archive pictures (^ticket(818), run 44978656605): 21 clipped, 19 of them already decided (12 seats, ^ticket(460)) or meant (climbs, the diver, the sea, ^ticket(454)); these two are new.",
+   "text": "body/rocketStyle--scorpio: the rocket's Scorpio tail reaches 100 units above the picture's frame; body/rocket--ride: riding, the friend reaches 49 below it. The frame the game gives a body picture (the friend's bounds) leaves out the rocket's own parts. Frame the rocket whole (as a held thing or a seat widens it), check every zodiac style and the hover, and audit again.",
+   "progress": "",
+   "log": []
   }
  ],
  "next_ticket": 812,
- "current_ticket": 818,
- "current_note": "19:27: ^ticket(815) closed (done); ^ticket(818) is next in the queue",
+ "current_ticket": 819,
+ "current_note": "20:10: ^ticket(818) closed (done); ^ticket(819) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 818,
+   "area": "Dress Up archives: the clip audit (ticket 454) has not run since 0.0.429; its tool lives only on archive branches",
+   "added": "2026-11-21",
+   "text": "tools/clip_audit.mjs (the friend against each picture's frame, ticket 454) was committed only on archive branches, last on archive-609 (0.0.429, never merged); archive-689 (0.0.490) and archive-815…",
+   "source": "Found during ticket 815's archive run (kids-choice-games run 44974343464, 2026-11-21): its step 'The friend against…",
+   "status": "done",
+   "closed": "2026-11-21",
+   "outcome": "Done 20:10 11-21. The clip audit runs again, and the archive draws an unchanged game the same twice. tools/clip_audit.mjs moved into dress-up-pictures (3667fbc0), and the archive…"
+  },
   {
    "id": 815,
    "area": "Dress Up archives: a new run of dress-up-pictures (and dress-up-music) at the newest version",
@@ -28639,8 +28599,8 @@
   }
  ],
  "queue": [
-  818,
   819,
+  820,
   811,
   809,
   795,
@@ -28682,7 +28642,7 @@
   708,
   700
  ],
- "current_since": "2026-11-21T19:27-07:00",
+ "current_since": "2026-11-21T20:10-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
