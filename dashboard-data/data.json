@@ -21666,24 +21666,7 @@
   },
   {
    "id": 828,
-   "area": "hazeljs examples: an original segmented-bug shooter (a long bug winding down a field, splitting where hit), its rules and robot in Hazel",
-   "added": "2026-11-22",
-   "opened": "2026-11-22T08:59-07:00",
-   "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
-   "chips": [
-    "hazeljs examples"
-   ],
-   "source": "Matthew, 2026-11-22, in chat: \"Next: space invaders clone, centipede clone, dig dug clone\" (made as original games in those genres, not copies: own names, creatures, art and levels)",
-   "text": "A long bug of our own winding down through a field of obstacles, turning at each one; a hit segment becomes an obstacle and splits the bug in two; a shooter at the bottom. Each step in Hazel, compiled by hazel-jit; 🤖 Hazel plays for you; in the offline app.",
-   "progress": "Released in 0.0.57. Matthew, 2026-11-22: \"let's reimagine 'bug run' into a more positive theme somehow --- any suggestions?\" (as Star wave became hearts and rainbows): suggestions offered, waiting on his pick",
-   "log": []
-  },
-  {
-   "id": 829,
-   "area": "hazeljs examples: an original digging game (tunnels, gems, monsters that follow, boulders dropped on them), its rules and robot in Hazel",
+   "area": "hazeljs examples: Butterfly garden (Bug run reimagined): caterpillars fed nectar turn to butterflies that open the garden's buds; rules and robot in Hazel",
    "added": "2026-11-22",
    "opened": "2026-11-22T08:59-07:00",
    "status": "open",
@@ -21692,251 +21675,25 @@
     "hazeljs examples"
    ],
    "source": "Matthew, 2026-11-22, in chat: \"Next: space invaders clone, centipede clone, dig dug clone\" (made as original games in those genres, not copies: own names, creatures, art and levels)",
-   "text": "Dig tunnels through the ground for gems; monsters of our own follow your tunnels; a boulder falls when dug under and squashes what is below (our own way to deal with them, not the old game's pump). Each step in Hazel, compiled by hazel-jit; 🤖 Hazel plays for you; in the offline app.",
-   "progress": "Released in 0.0.57; redesigned for 0.0.60 so every level is clearable (Matthew: \"if the AI cannot clear every level ... need a redesign\"): the lantern stuns all within three cells, at most four monsters, never faster than you dig; the robot cleared all 2400 tries (200 grounds x 12 levels) on a JS copy that agrees with the Hazel; compiling on CI",
-   "log": [
-    {
-     "at": "2026-11-22T08:53-07:00",
-     "from": "claude",
-     "chars": 1262,
-     "asks": false,
-     "words": 216,
-     "read_s": 54,
-     "listen_s": 81,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T08:59-07:00",
-     "from": "matthew",
-     "chars": 63,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T08:59-07:00",
-     "from": "matthew",
-     "chars": 53,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T08:59-07:00",
-     "from": "claude",
-     "chars": 739,
-     "asks": false,
-     "words": 129,
-     "read_s": 33,
-     "listen_s": 48,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:12-07:00",
-     "from": "claude",
-     "chars": 3664,
-     "asks": false,
-     "words": 662,
-     "read_s": 167,
-     "listen_s": 248,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:17-07:00",
-     "from": "matthew",
-     "chars": 135,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:17-07:00",
-     "from": "claude",
-     "chars": 124,
-     "asks": false,
-     "words": 21,
-     "read_s": 5,
-     "listen_s": 8,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:19-07:00",
-     "from": "claude",
-     "chars": 2450,
-     "asks": false,
-     "words": 455,
-     "read_s": 115,
-     "listen_s": 171,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:20-07:00",
-     "from": "matthew",
-     "chars": 137,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:21-07:00",
-     "from": "matthew",
-     "chars": 219,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:21-07:00",
-     "from": "claude",
-     "chars": 877,
-     "asks": false,
-     "words": 159,
-     "read_s": 40,
-     "listen_s": 60,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:21-07:00",
-     "from": "claude",
-     "chars": 184,
-     "asks": false,
-     "words": 32,
-     "read_s": 8,
-     "listen_s": 12,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:24-07:00",
-     "from": "matthew",
-     "chars": 602,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:24-07:00",
-     "from": "matthew",
-     "chars": 69,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:24-07:00",
-     "from": "claude",
-     "chars": 948,
-     "asks": false,
-     "words": 173,
-     "read_s": 44,
-     "listen_s": 65,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:24-07:00",
-     "from": "claude",
-     "chars": 87,
-     "asks": false,
-     "words": 18,
-     "read_s": 5,
-     "listen_s": 7,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:25-07:00",
-     "from": "matthew",
-     "chars": 40,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:26-07:00",
-     "from": "matthew",
-     "chars": 66,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:26-07:00",
-     "from": "matthew",
-     "chars": 118,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:26-07:00",
-     "from": "claude",
-     "chars": 358,
-     "asks": false,
-     "words": 63,
-     "read_s": 16,
-     "listen_s": 24,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:26-07:00",
-     "from": "claude",
-     "chars": 158,
-     "asks": false,
-     "words": 28,
-     "read_s": 7,
-     "listen_s": 10,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T09:27-07:00",
-     "from": "matthew",
-     "chars": 131,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T10:14-07:00",
-     "from": "matthew",
-     "chars": 158,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T10:14-07:00",
-     "from": "matthew",
-     "chars": 43,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-22T10:22-07:00",
-     "from": "claude",
-     "chars": 5323,
-     "asks": true,
-     "words": 972,
-     "read_s": 245,
-     "listen_s": 364,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
+   "text": "A long bug of our own winding down through a field of obstacles, turning at each one; a hit segment becomes an obstacle and splits the bug in two; a shooter at the bottom. Each step in Hazel, compiled by hazel-jit; 🤖 Hazel plays for you; in the offline app.",
+   "progress": "Matthew chose the butterfly garden (\"Butterfly garden\"). Rules, robot, page, icon and words done for 0.0.61; compiling on CI (hazel 1aef76ff96)",
+   "log": []
   }
  ],
  "next_ticket": 812,
- "current_ticket": 829,
- "current_note": "Deep dig redesigned so every level clears (0.0.60), compiling on CI; Bug run's positive reimagining offered, waiting on Matthew's pick",
+ "current_ticket": 828,
+ "current_note": "Butterfly garden (Bug run reimagined) compiling for 0.0.61; Deep dig's every-level-clearable redesign deploying as 0.0.60",
  "closed_tickets": [
+  {
+   "id": 829,
+   "area": "hazeljs examples: an original digging game (tunnels, gems, monsters that follow, boulders dropped on them), its rules and robot in Hazel",
+   "added": "2026-11-22",
+   "text": "Dig tunnels through the ground for gems; monsters of our own follow your tunnels; a boulder falls when dug under and squashes what is below (our own way to deal with them, not the old game's pump).…",
+   "source": "Matthew, 2026-11-22, in chat: \"Next: space invaders clone, centipede clone, dig dug clone\" (made as original games in…",
+   "status": "done",
+   "closed": "2026-11-22",
+   "outcome": "Deep dig released in 0.0.57; redesigned in 0.0.60 (verified live) so every level is clearable, as Matthew asked: the lantern stuns every monster within three cells, at most four…"
+  },
   {
    "id": 827,
    "area": "hazeljs examples: Star wave, reimagined: hearts sent up to visitors who turn the town rainbow, the last heart just right; its rules and robot in Hazel",
@@ -28895,7 +28652,6 @@
   }
  ],
  "queue": [
-  829,
   828,
   811,
   795,
@@ -28937,7 +28693,7 @@
   708,
   700
  ],
- "current_since": "2026-11-22T10:22-07:00",
+ "current_since": "2026-11-22T10:39-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -28951,7 +28707,7 @@
   },
   "since": "2026-08-27",
   "replies": 6949,
-  "words": 1526960,
+  "words": 1527072,
   "read_hours_est": 106.9,
   "listen_hours_est": 159.1,
   "read_s_avg": 55,
@@ -29314,8 +29070,8 @@
    },
    "2026-11-22": {
     "replies": 40,
-    "words": 8904,
-    "chars": 49465
+    "words": 9016,
+    "chars": 50116
    }
   }
  },
