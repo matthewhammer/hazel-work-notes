@@ -21718,8 +21718,21 @@
    ],
    "source": "Found during ticket 815's archive run (kids-choice-games run 44974343464, 2026-11-21): its step 'The friend against each picture's frame' failed with Cannot find module tools/clip_audit.mjs (continue-on-error, so the run still landed).",
    "text": "tools/clip_audit.mjs (the friend against each picture's frame, ticket 454) was committed only on archive branches, last on archive-609 (0.0.429, never merged); archive-689 (0.0.490) and archive-815 (0.0.530) were cut from main without it, so neither run was audited. Move it to dress-up-pictures' tools/ beside archive.mjs (the workflow already clones that repo), point the workflow's step there, and audit run-2026-11-21's pictures once (a small workflow: Chrome on the runner, the archive at that tag).",
-   "progress": "19:29 11-21: tools/clip_audit.mjs moved into dress-up-pictures (3667fbc0, pushed) and archive-815's workflow runs it from there (a7c7e60d). Run 44976277015 makes the pictures again at 0.0.530 (6 min) and audits them; the music job keeps every tune. Next: read its clip.txt, check its byte fingerprints match the landed run, then close.",
-   "log": []
+   "progress": "19:29 11-21: tools/clip_audit.mjs moved into dress-up-pictures (3667fbc0, pushed) and archive-815's workflow runs it from there (a7c7e60d). Run 44976277015 makes the pictures again at 0.0.530 (6 min) and audits them; the music job keeps every tune. Next: read its clip.txt, check its byte fingerprints match the landed run, then close. | 19:39 11-21: run 44976277015's audit: 1,183 pictures, 1,125 with the friend, 79 clipped: 58 things (the same 39 px at the right edge: 🫧 and 🔥 drawn in the hidden friend's hands, at figX 400), 12 seats, 4 climbs, the rocket ride and Scorpio's tail, the diver, the sea. The 🫧 and 🔥 float in every picture without the friend (304 menus, 68 backgrounds each way, 58 things). And a rerun of the same game commit rewrote all 1,185 settings files and 11 pictures: passage uids from Math.random at load, and 3 poses mid-animation. FIXED in archive.mjs (dress-up-pictures d4b1af3c): without the friend, 🔹 and 🔸 emptied; Math.random seeded from the page's first line and before each picture. Two test runs at 0.0.530 (44977051016, 44977057155) to compare with each other.",
+   "log": [
+    {
+     "at": "2026-11-21T19:26-07:00",
+     "from": "claude",
+     "chars": 1777,
+     "asks": false,
+     "words": 286,
+     "read_s": 72,
+     "listen_s": 107,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    }
+   ]
   },
   {
    "id": 819,
@@ -28646,9 +28659,9 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 6903,
-  "words": 1515541,
-  "read_hours_est": 106.1,
+  "replies": 6904,
+  "words": 1516010,
+  "read_hours_est": 106.2,
   "listen_hours_est": 157.9,
   "read_s_avg": 55,
   "listen_s_avg": 82,
@@ -29004,9 +29017,9 @@
     "chars": 69935
    },
    "2026-11-21": {
-    "replies": 88,
-    "words": 13935,
-    "chars": 77610
+    "replies": 89,
+    "words": 14404,
+    "chars": 80270
    }
   }
  },
