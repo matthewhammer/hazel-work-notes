@@ -21706,66 +21706,6 @@
    ]
   },
   {
-   "id": 815,
-   "area": "Dress Up archives: a new run of dress-up-pictures (and dress-up-music) at the newest version",
-   "added": "2026-11-21",
-   "opened": "2026-11-21T11:32-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "dress up",
-    "archives"
-   ],
-   "source": "Matthew, 2026-11-21, in chat: \"let's do an update to dressup-pictures repo once we are done with updating the backgrounds and other graphics --- we are I think, for now.\"",
-   "text": "One archive run at the newest version (after 0.0.523): a branch archive-NNN off main as the last one (its dress-up-archive.yml; all checks and the test/speed workflows removed), about 50 minutes on GitHub; download the artifacts and add the run with each archive's tools/add_run.sh; check the viewers (matthewhammer.org/hazel/dress-up/pictures.html, music.html) show it, with the new things (space, the planets, the team, the rocket) in the pictures; mint tickets for what the archive does not cover yet.",
-   "progress": "Queued: after Dress Up 0.0.523 (the tours) is out. | 19:04 11-21: started. 0.0.530's speed run reads ok, so the graphics are settled. Branch archive-815 (off main at 0.0.530, nothing unreleased): archive-689's pictures job, and the music job back from archive-272 (the last music run was 0.0.304, 10-18), the checks' workflows removed. Run 44974343464 on GitHub. Next: land each artifact with its archive's tools/add_run.sh (no ARCHIVE_TOKEN), check the viewers.",
-   "log": [
-    {
-     "at": "2026-11-21T11:32-07:00",
-     "from": "matthew",
-     "chars": 138,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T17:08-07:00",
-     "from": "claude",
-     "chars": 3123,
-     "asks": false,
-     "words": 558,
-     "read_s": 141,
-     "listen_s": 209,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T17:25-07:00",
-     "from": "claude",
-     "chars": 1569,
-     "asks": false,
-     "words": 277,
-     "read_s": 70,
-     "listen_s": 104,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-21T19:05-07:00",
-     "from": "claude",
-     "chars": 1920,
-     "asks": false,
-     "words": 319,
-     "read_s": 80,
-     "listen_s": 120,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 818,
    "area": "Dress Up archives: the clip audit (ticket 454) has not run since 0.0.429; its tool lives only on archive branches",
    "added": "2026-11-21",
@@ -21780,12 +21720,38 @@
    "text": "tools/clip_audit.mjs (the friend against each picture's frame, ticket 454) was committed only on archive branches, last on archive-609 (0.0.429, never merged); archive-689 (0.0.490) and archive-815 (0.0.530) were cut from main without it, so neither run was audited. Move it to dress-up-pictures' tools/ beside archive.mjs (the workflow already clones that repo), point the workflow's step there, and audit run-2026-11-21's pictures once (a small workflow: Chrome on the runner, the archive at that tag).",
    "progress": "",
    "log": []
+  },
+  {
+   "id": 819,
+   "area": "Dress Up archives: the team is not in the pictures (each kind of person, the greys and cats, the team in the rocket)",
+   "added": "2026-11-21",
+   "opened": "2026-11-21T19:27-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "dress up",
+    "archives"
+   ],
+   "source": "Found checking ticket 815's run (run-2026-11-21, 0.0.530): dress-up-pictures has the 👥 People panel as one picture, and nothing of the team itself.",
+   "text": "dress-up-pictures' tools/archive.mjs draws every place, costume and menu choice for the friend alone; the others (👥 People: each group and kind, the greys short, medium and tall with their hair and jumpsuits, the cats) and the team as it moves (following through doors one by one, all in the rocket) are not drawn. Add a folder for the team: each kind of person once beside the friend, and the rocket with the whole team, as the game draws them.",
+   "progress": "",
+   "log": []
   }
  ],
  "next_ticket": 812,
- "current_ticket": 815,
- "current_note": "17:05: ^ticket(817) closed (done); ^ticket(815) is next in the queue",
+ "current_ticket": 818,
+ "current_note": "19:27: ^ticket(815) closed (done); ^ticket(818) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 815,
+   "area": "Dress Up archives: a new run of dress-up-pictures (and dress-up-music) at the newest version",
+   "added": "2026-11-21",
+   "text": "One archive run at the newest version (after 0.0.523): a branch archive-NNN off main as the last one (its dress-up-archive.yml; all checks and the test/speed workflows removed), about 50 minutes on…",
+   "source": "Matthew, 2026-11-21, in chat: \"let's do an update to dressup-pictures repo once we are done with updating the…",
+   "status": "done",
+   "closed": "2026-11-21",
+   "outcome": "Done 19:27 11-21. Archived Dress Up 0.0.530 as run-2026-11-21 in both archives, from branch archive-815's run 44974343464 (pictures 6 min, music 17 min on GitHub; the music job…"
+  },
   {
    "id": 810,
    "area": "Dress Up: the speed runs of 0.0.519 and 0.0.520 read broken: the scripts' list of places out of PLACES' order, and 🫧 the bubble room's walk at 52 fps",
@@ -28624,8 +28590,8 @@
   }
  ],
  "queue": [
-  815,
   818,
+  819,
   811,
   809,
   795,
@@ -28667,7 +28633,7 @@
   708,
   700
  ],
- "current_since": "2026-11-21T17:05-07:00",
+ "current_since": "2026-11-21T19:27-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
