@@ -1,5 +1,31 @@
 [
  {
+  "id": 821,
+  "area": "hazeljs examples: every activity in one home-screen app, offline, for the kids' tablet",
+  "added": "2026-11-22",
+  "opened": "2026-11-22T07:40-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazeljs examples"
+  ],
+  "source": "Matthew, 2026-11-22, in chat: \"The usecase is the kids' tablet, where I don't want to manually create new homescreen icons for each activity --- i want one menu app that has all of the others inside, to all work offline together.\" Then \"Yes, push it\".",
+  "text": "The front page installable as one app holding every activity, all of it saved for use with no connection.",
+  "progress": "",
+  "log": [],
+  "closed": "2026-11-22",
+  "closed_at": "2026-11-22T07:51-07:00",
+  "outcome": "Released as hazeljs-examples 0.0.45 (cd9ed1d, live; Pages run 45034960429; 11 files compared with the live site, all the same). The front page has its own manifest (scope: the whole site) and icon, \"Hazel\", nine activities' icons in a 3 by 3 grid (tools/make-home-icon.py, PNGs by ffmpeg), so Add to Home Screen on it makes one icon opening every activity inside it. The worker saves, from the first visit, every activity (as before) and now the front page's files, offline.js and Hazel's library (the Petri net runs on it): 249 files, about 6 MB. A 📲 box at the top of the page: this device's status, its steps, and the Tarot's woodcut faces to save (4 MB black and white, 28 MB colored). Checked at localhost:8141 and live: the worker at 0.0.45, 249 files and the library saved, the box ready, the black-and-white faces saved, Minesweeper unchanged. Not tried: Add to Home Screen on a tablet, or with the connection off.",
+  "metrics": {
+   "open_minutes": 12,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 819,
   "area": "Dress Up archives: the team is not in the pictures (each kind of person, the greys and cats, the team in the rocket)",
   "added": "2026-11-21",
