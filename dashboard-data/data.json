@@ -21596,40 +21596,22 @@
    "text": "dress-up-pictures' tools/archive.mjs draws every place, costume and menu choice for the friend alone; the others (👥 People: each group and kind, the greys short, medium and tall with their hair and jumpsuits, the cats) and the team as it moves (following through doors one by one, all in the rocket) are not drawn. Add a folder for the team: each kind of person once beside the friend, and the rocket with the whole team, as the game draws them.",
    "progress": "20:16 11-21: archive.mjs gains a team folder (dress-up-pictures 1694bbc3): on the start world's first square, beside the friend, each grey size with and without hair, eight greys in the eight jumpsuits, the cats a coat each, a person from the friend, a person in each of the 36 costumes, and the team in the rocket (a grey, a cat, a person at its portholes); the game's people drawing waited for. Not tried in the pane: hidden, it runs no animation frames, so people are never placed there. Two runs on GitHub (44979858840, 44979865978) to look at the pictures and compare.",
    "log": []
-  },
-  {
-   "id": 820,
-   "area": "Dress Up: the rocket's body pictures cut by their frames (Scorpio's tail, the friend riding)",
-   "added": "2026-11-21",
-   "opened": "2026-11-21T20:10-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "dress up"
-   ],
-   "source": "The clip audit of 0.0.531's archive pictures (^ticket(818), run 44978656605): 21 clipped, 19 of them already decided (12 seats, ^ticket(460)) or meant (climbs, the diver, the sea, ^ticket(454)); these two are new.",
-   "text": "body/rocketStyle--scorpio: the rocket's Scorpio tail reaches 100 units above the picture's frame; body/rocket--ride: riding, the friend reaches 49 below it. The frame the game gives a body picture (the friend's bounds) leaves out the rocket's own parts. Frame the rocket whole (as a held thing or a seat widens it), check every zodiac style and the hover, and audit again.",
-   "progress": "20:15 11-21: released as Dress Up 0.0.532 (d9619c49): the frame for a picture with no background (18-drawing.js) now holds the rocket's motif over its nose (Scorpio 1.26 of its height, Sagittarius and Capricorn 1.07), its flame (0.11 below the nozzle's foot) and its bob. Checked in the pane at localhost:8133: hover and ride, Aries, Scorpio and Capricorn, the rocket and friend inside the frame, 9 to 144 to spare at the top, 12 at the bottom; Scorpio 20 at rest. Waiting on the Pages deploy to check it live; the clip audit's next archive run confirms it. | 20:16: 0.0.532 live (version.json and 18-drawing.js checked over HTTPS). Archive runs 44979858840 and 44979865978 draw 0.0.532: their clip audit checks it.",
-   "log": [
-    {
-     "at": "2026-11-21T20:01-07:00",
-     "from": "claude",
-     "chars": 1505,
-     "asks": false,
-     "words": 264,
-     "read_s": 67,
-     "listen_s": 99,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
   }
  ],
  "next_ticket": 812,
  "current_ticket": 819,
  "current_note": "20:15: Reading how the game keeps its people (kinds, the greys, the cats, the team) for an archive folder of them",
  "closed_tickets": [
+  {
+   "id": 820,
+   "area": "Dress Up: the rocket's body pictures cut by their frames (Scorpio's tail, the friend riding)",
+   "added": "2026-11-21",
+   "text": "body/rocketStyle--scorpio: the rocket's Scorpio tail reaches 100 units above the picture's frame; body/rocket--ride: riding, the friend reaches 49 below it. The frame the game gives a body picture…",
+   "source": "The clip audit of 0.0.531's archive pictures (^ticket(818), run 44978656605): 21 clipped, 19 of them already decided…",
+   "status": "done",
+   "closed": "2026-11-21",
+   "outcome": "Done 20:27 11-21. Released as Dress Up 0.0.532 (d9619c49, live): with no background, the frame now holds the rocket's motif over its nose (Scorpio's tail to 1.26 of its height,…"
+  },
   {
    "id": 809,
    "area": "hazeljs examples: Minesweeper, Hazel's play on the largest board loses most games: revisit its logic",
@@ -28499,7 +28481,6 @@
  ],
  "queue": [
   819,
-  820,
   811,
   795,
   761,
