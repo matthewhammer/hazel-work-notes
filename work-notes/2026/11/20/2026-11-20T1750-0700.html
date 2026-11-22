@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 11-20</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; overflow-wrap: anywhere; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+  blockquote { margin: 1em 0; padding: 0.6em 1em; border-left: 4px solid var(--accent); background: var(--code); border-radius: 0 6px 6px 0; }
+  blockquote p { margin: 0.5em 0; }
+  table { border-collapse: collapse; margin: 1em 0; font-size: 0.95em; } th, td { border-bottom: 1px solid var(--line); padding: 4px 10px; text-align: left; vertical-align: top; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-11-20: the games compiled, Hazel plays for you, Pinball and Mahjong solitaire, and Dress Up goes to space</h1>
+<p class="sub">Claude, written on 11-22 from the day's records (the dashboard's tickets and their logs, the commits, the sessions' transcripts and the crash log), as the work-notes gallery had stopped at 11-19. Picks up from <a href="../19/2026-11-19T1545-0700.html">the 11-19 note</a>.</p>
+
+<h2>In short</h2>
+<ul>
+<li>Mahjong, the third Hazel AI opponent: Hong Kong rules, you against three Hazel players (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-786"><code class="ref"><b>^ticket(</b>786<b>)</b></code></a>, hazeljs-examples 0.0.32).</li>
+<li>The games run their rules compiled by hazel-jit, as the oracles do (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-794"><code class="ref"><b>^ticket(</b>794<b>)</b></code></a>, 0.0.34), and 🤖 Hazel plays for you on Go, Checkers, Mahjong and Minesweeper (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-796"><code class="ref"><b>^ticket(</b>796<b>)</b></code></a>, 0.0.34 and 0.0.35).</li>
+<li><a href="https://matthewhammer.org/hazel/reports/060/"><code class="ref"><b>^report(</b>60<b>)</b></code></a>, How Fast Is Hazel? Five Games, Three Ways: hazel-jit about 3,300 times hazeljs, plain JavaScript about 13 times hazel-jit (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-797"><code class="ref"><b>^ticket(</b>797<b>)</b></code></a>).</li>
+<li>Pinball: ten tables as Hazel data, every frame's physics a Hazel program compiled by hazel-jit, with music of its own (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-793"><code class="ref"><b>^ticket(</b>793<b>)</b></code></a>, 0.0.36); then chambers, more flippers, bumpers on tracks, mezzanines with wire ramps and lifts (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-805"><code class="ref"><b>^ticket(</b>805<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-806"><code class="ref"><b>^ticket(</b>806<b>)</b></code></a>, 0.0.37 to 0.0.40).</li>
+<li>Mahjong solitaire, its rules in Hazel (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-803"><code class="ref"><b>^ticket(</b>803<b>)</b></code></a>, 0.0.39).</li>
+<li>Dress Up went to space: a space world (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-798"><code class="ref"><b>^ticket(</b>798<b>)</b></code></a>), a rocket (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-799"><code class="ref"><b>^ticket(</b>799<b>)</b></code></a>), a black hole to a cat universe (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-800"><code class="ref"><b>^ticket(</b>800<b>)</b></code></a>), flying up into outer space (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-801"><code class="ref"><b>^ticket(</b>801<b>)</b></code></a>), and Pinball's tunes as a 🎱 music kind (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-804"><code class="ref"><b>^ticket(</b>804<b>)</b></code></a>); 0.0.511 to 0.0.520.</li>
+<li>Two crashes, at 12:39 and 15:10, both on light load, nothing lost (<a href="https://matthewhammer.org/hazel-work-notes/crash-log.html">the crash log</a>).</li>
+</ul>
+
+<h2>Matthew, today</h2>
+<blockquote>
+<p>good morning.  Can we check on hazel dev and see what merged last night?</p>
+<p>next, let's try to do a pinball game using hazeljs to describe: * layout of the game * state of the game * state updates to the game, based on physics and flapper states, etc</p>
+<p>let's plan to use hazel-jit with hazeljs to make the pinball game fast.</p>
+<p>For each one-player game with AI opponents, please add a mode as a toggle switch where the AI for that game plays for the interactive user "you", so that the game becomes a 0 player activity to watch and to time.</p>
+<p>N wants there to be a space background with a black hole.  entering this black hole is safe, but leads to a parallel space universe (another world) where: * every human is a cat * all aliens are alien cats of some kind</p>
+<p>let's have music and sound effects for pin ball.  fast-paced, mega-man themed style, but original MIDI constructions.</p>
+<p>after pin ball works,  Let's do a mahjong that resembles the classic ones from 1990s windows</p>
+<p>these pin ball boards are too hard --- it's too easy to have the ball go into the gutter</p>
+<p>let's have robot mode for pinball, with near-perfect  ball retention</p>
+<p>sounds good, please continue while I am AFK, starting now.</p>
+</blockquote>
+
+<h2>What was done</h2>
+<ul>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-786"><code class="ref"><b>^ticket(</b>786<b>)</b></code></a>, Mahjong.</b> Released as 0.0.32: the claims, the winning hands, the faan and the points are Hazel, and so is what each of the three Hazel players discards and claims; on matthewhammer.org/hazel/ and in the nav.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-794"><code class="ref"><b>^ticket(</b>794<b>)</b></code></a>, the games compiled.</b> 0.0.34: Solitaire, Minesweeper, Go, Checkers and Mahjong run their rules as JavaScript compiled by hazel-jit, from CI on hazelgrove/hazel <code>trial/794-games-aot</code> (tools/make-compiled.py wraps each).</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-796"><code class="ref"><b>^ticket(</b>796<b>)</b></code></a>, Hazel plays for you.</b> 0.0.34 and 0.0.35: a switch hands your side to Hazel's own AI, at a pace (slowly, at a walk, briskly, at full speed), with a clock; Go's randomness slider.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-797"><code class="ref"><b>^ticket(</b>797<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/reports/060/"><code class="ref"><b>^report(</b>60<b>)</b></code></a>.</b> Each game in plain JavaScript too, and the three ways timed: hazel-jit about 3,300 times hazeljs's interpreter, plain JavaScript about 13 times hazel-jit, and what hazel-jit's code pays over it.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-793"><code class="ref"><b>^ticket(</b>793<b>)</b></code></a>, Pinball.</b> 0.0.36: ten tables as Hazel data; the physics in Hazel, compiled (0.023 ms a step, 72.5 ms interpreted); three tunes of our own on a little chip; full screen laid out for a phone or a tablet; the paddles on the arrow keys.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-805"><code class="ref"><b>^ticket(</b>805<b>)</b></code></a> and <a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-806"><code class="ref"><b>^ticket(</b>806<b>)</b></code></a>, Pinball rounds two and four.</b> 0.0.37 to 0.0.40: chambers with their own flippers, structures up top, a different bottom on each board, portals that hold the ball, a ball save, launch strengths, patterns and light arrays; bumpers riding tracks; glass mezzanines on five boards with wire ramps, lifts and holes.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-803"><code class="ref"><b>^ticket(</b>803<b>)</b></code></a>, Mahjong solitaire.</b> 0.0.39: 144 tiles in layers (turtle, pyramid, fortress), the rules one Hazel module compiled by hazel-jit, a deal that can always be won, and Hazel's own play.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-798"><code class="ref"><b>^ticket(</b>798<b>)</b></code></a> to <a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-801"><code class="ref"><b>^ticket(</b>801<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-804"><code class="ref"><b>^ticket(</b>804<b>)</b></code></a>, Dress Up in space.</b> 0.0.511 to 0.0.520: the starfield, the starship's bridge, alien planets and a space station; a rocket the horse's size; a black hole, safe to fall into, to a cat universe and back; flying up into outer space; 🎱 pin ball music.</li>
+<li>The crash log's two for the day: 12:39 (near idle, during a snap refresh) and 15:10 (Hazel's interpreter under node, light load); <a href="https://matthewhammer.org/hazel-work-notes/crash-log.html">the crash log</a>.</li>
+</ul>
+
+<h2>Where things are</h2>
+<div class="scroll"><table>
+<tr><th>What</th><th>Where</th><th>State</th></tr>
+<tr><td>hazeljs-examples</td><td><a href="https://github.com/matthewhammer/hazeljs-examples">matthewhammer/hazeljs-examples</a>, main</td><td>0.0.40, live</td></tr>
+<tr><td>the games' compiles</td><td>hazelgrove/hazel <code>trial/794-games-aot</code></td><td>CI's Fast checks uploads hazel-jit-aot</td></tr>
+<tr><td><a href="https://matthewhammer.org/hazel/dashboard/#ticket-795"><code class="ref"><b>^ticket(</b>795<b>)</b></code></a>, hazeljs as one big package</td><td>hazelgrove/hazeljs</td><td>open</td></tr>
+<tr><td>Dress Up</td><td>kids-choice-games, main</td><td>0.0.520, live</td></tr>
+</table></div>
+
+<h2>Next</h2>
+<ul>
+<li>The hazeljs package with the tile editor in it (<a href="https://matthewhammer.org/hazel/dashboard/#ticket-795"><code class="ref"><b>^ticket(</b>795<b>)</b></code></a>).</li>
+<li>Pinball's robot, and the boards' polish.</li>
+<li>Dress Up's team and its space course.</li>
+</ul>
+</main>
+</body>
+</html>

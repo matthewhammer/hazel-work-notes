@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 11-21</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; overflow-wrap: anywhere; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+  blockquote { margin: 1em 0; padding: 0.6em 1em; border-left: 4px solid var(--accent); background: var(--code); border-radius: 0 6px 6px 0; }
+  blockquote p { margin: 0.5em 0; }
+  table { border-collapse: collapse; margin: 1em 0; font-size: 0.95em; } th, td { border-bottom: 1px solid var(--line); padding: 4px 10px; text-align: left; vertical-align: top; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-11-21: Dress Up's team and space course, the archive made steady, and what a memo table saves</h1>
+<p class="sub">Claude, written on 11-22 from the day's records (the dashboard's tickets and their logs, the commits, the sessions' transcripts and the crash log), as the work-notes gallery had stopped at 11-19. Picks up from <a href="../20/2026-11-20T1750-0700.html">the 11-20 note</a>.</p>
+
+<h2>In short</h2>
+<ul>
+<li>Dress Up 0.0.521 to 0.0.532: friends join your team and follow you (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-802"><code class="ref"><b>^ticket(</b>802<b>)</b></code></a>); a space course as a team (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-812"><code class="ref"><b>^ticket(</b>812<b>)</b></code></a>); 🤖 automated play's tours (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-813"><code class="ref"><b>^ticket(</b>813<b>)</b></code></a>); space music, three tunes for each planet (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-814"><code class="ref"><b>^ticket(</b>814<b>)</b></code></a>); greys on the team (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-816"><code class="ref"><b>^ticket(</b>816<b>)</b></code></a>); the horse and the rocket in the backpack (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-817"><code class="ref"><b>^ticket(</b>817<b>)</b></code></a>); the rocket whole in its pictures (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-820"><code class="ref"><b>^ticket(</b>820<b>)</b></code></a>).</li>
+<li>The speed runs read true again (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-810"><code class="ref"><b>^ticket(</b>810<b>)</b></code></a>); the archives have a new run, 2026-11-21 (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-815"><code class="ref"><b>^ticket(</b>815<b>)</b></code></a>), the clip audit runs again, and the archive draws an unchanged game the same twice (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-818"><code class="ref"><b>^ticket(</b>818<b>)</b></code></a>).</li>
+<li><a href="https://matthewhammer.org/hazel/reports/061/"><code class="ref"><b>^report(</b>61<b>)</b></code></a>, Does Hazel Repeat Itself? Checkers six moves ahead: a memo table saves 52% of the positions and 37% of the time, less than the 69% that repeats; and <a href="https://matthewhammer.org/hazel/reports/062/"><code class="ref"><b>^report(</b>62<b>)</b></code></a>, One Search Tree for Two Players, a tree of streams both sides can share, prototyped (<a href="https://matthewhammer.org/hazel/dashboard/#ticket-811"><code class="ref"><b>^ticket(</b>811<b>)</b></code></a>).</li>
+<li>Hazel activities: Checkers' and Go's turn on one line (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-808"><code class="ref"><b>^ticket(</b>808<b>)</b></code></a>, 0.0.41); Mahjong solitaire's plan survives your own pairs (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-807"><code class="ref"><b>^ticket(</b>807<b>)</b></code></a>, 0.0.42); Minesweeper's guess by the numbers' odds, expert from 2% to 47% (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-809"><code class="ref"><b>^ticket(</b>809<b>)</b></code></a>, 0.0.43); astrology's houses labelled (0.0.44).</li>
+</ul>
+
+<h2>Matthew, today</h2>
+<blockquote>
+<p>Yes, push it</p>
+<p>let's start on 811</p>
+<p>is that predicting that a memo table will save 69% of AI search calls?</p>
+<p>is there a way to make a "canonical search space" that's not POV, so that each person's view of it matches  each other persons?</p>
+<p>we want a memo policy that does not match exactly, but instead uses a partial ordering.  also, we want a way of asking for a shallow depth, getting a full  match, and then separately asking for a deeper match that reuses</p>
+<p>tree-streams</p>
+<p>Yes, prototype it</p>
+<p>in astrology daily reading  see screenshot,  can we label the houses by number and label?</p>
+<p>Yes, dig in</p>
+</blockquote>
+
+<h2>What was done</h2>
+<ul>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-802"><code class="ref"><b>^ticket(</b>802<b>)</b></code></a>, the team.</b> Dress Up 0.0.521: friends placed in a scene join your team (🏠/🤝), following in a line, riding, swimming; cats on it, swapped in the cat universe.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-812"><code class="ref"><b>^ticket(</b>812<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-813"><code class="ref"><b>^ticket(</b>813<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-814"><code class="ref"><b>^ticket(</b>814<b>)</b></code></a>, space as a team.</b> 0.0.522 to 0.0.526: outer space and the planets as worlds, the rocket's chips; six tours of 🤖 automated play, checked in the speed run; three space tunes and three for each planet (Afro-Cuban, house, trance).</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-816"><code class="ref"><b>^ticket(</b>816<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-817"><code class="ref"><b>^ticket(</b>817<b>)</b></code></a>.</b> 0.0.528 and 0.0.529: greys short, medium or tall in jumpsuits; the horse and the rocket in the 🎒 backpack. Both checked live in 0.0.530.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-810"><code class="ref"><b>^ticket(</b>810<b>)</b></code></a>, the speed runs.</b> The scripts' list of places in PLACES' order (0.0.521); the imagination's 9 fps on slow computers fixed (0.0.530).</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-815"><code class="ref"><b>^ticket(</b>815<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-818"><code class="ref"><b>^ticket(</b>818<b>)</b></code></a>, the archives.</b> run-2026-11-21 in dress-up-pictures and dress-up-music, from 0.0.530; the clip audit's tool moved into dress-up-pictures and run by the archive workflow; a picture held still the same from run to run (0.0.531).</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-820"><code class="ref"><b>^ticket(</b>820<b>)</b></code></a>, the rocket's pictures.</b> 0.0.532: the frame holds the rocket's motif, its flame and the friend riding it, whole.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/#ticket-811"><code class="ref"><b>^ticket(</b>811<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/reports/061/"><code class="ref"><b>^report(</b>61<b>)</b></code></a> and <a href="https://matthewhammer.org/hazel/reports/062/"><code class="ref"><b>^report(</b>62<b>)</b></code></a>.</b> Checkers, Hazel playing itself six moves ahead: what repeats, what a memo table saves, and why less; then one search tree for two players, by Matthew's ask, a stream of trees prototyped.</li>
+<li><b><a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-807"><code class="ref"><b>^ticket(</b>807<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-808"><code class="ref"><b>^ticket(</b>808<b>)</b></code></a>, <a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-809"><code class="ref"><b>^ticket(</b>809<b>)</b></code></a>, Hazel activities 0.0.41 to 0.0.44.</b> The turn on one line; Mahjong solitaire's plan played as a set, re-paired when stuck; Minesweeper's guess, the cell least likely to be a mine; astrology's houses each a number and a word.</li>
+</ul>
+
+<h2>Where things are</h2>
+<div class="scroll"><table>
+<tr><th>What</th><th>Where</th><th>State</th></tr>
+<tr><td>Dress Up</td><td>kids-choice-games, main</td><td>0.0.532, live</td></tr>
+<tr><td>the archives</td><td>dress-up-pictures, dress-up-music</td><td>run-2026-11-21</td></tr>
+<tr><td>hazeljs-examples</td><td>main</td><td>0.0.44, live</td></tr>
+<tr><td><a href="https://matthewhammer.org/hazel/dashboard/#ticket-811"><code class="ref"><b>^ticket(</b>811<b>)</b></code></a>, the Checkers search report</td><td><a href="https://matthewhammer.org/hazel/reports/062/"><code class="ref"><b>^report(</b>62<b>)</b></code></a></td><td>work in progress</td></tr>
+</table></div>
+
+<h2>Next</h2>
+<ul>
+<li>The team in the archive's pictures (ticket 819).</li>
+<li><a href="https://matthewhammer.org/hazel/reports/062/"><code class="ref"><b>^report(</b>62<b>)</b></code></a>'s prototype measured.</li>
+<li>The kids' tablet: every activity in one app.</li>
+</ul>
+</main>
+</body>
+</html>
