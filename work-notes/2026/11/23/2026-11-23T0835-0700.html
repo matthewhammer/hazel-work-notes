@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 11-23</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; overflow-wrap: anywhere; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+  blockquote { margin: 1em 0; padding: 0.6em 1em; border-left: 4px solid var(--accent); background: var(--code); border-radius: 0 6px 6px 0; }
+  blockquote p { margin: 0.5em 0; }
+  table { border-collapse: collapse; margin: 1em 0; font-size: 0.95em; } th, td { border-bottom: 1px solid var(--line); padding: 4px 10px; text-align: left; vertical-align: top; }
+</style>
+</head>
+<body>
+<main>
+<h1>Working notes: 2026-11-23 morning: a power cut in the room, and Gnome dig 0.0.74</h1>
+<p class="sub">Claude, 08:35 MST on 11-23, from this session's records (the journal, the repos, the transcript of the session before the restart). Picks up from <a href="../22/2026-11-22T1230-0700.html">the 11-22 note</a>.</p>
+
+<h2>In short</h2>
+<ul>
+<li>At about 08:12 a power cut in the room restarted the laptop (Matthew: “temp power issue in the room restarted the computer; indep of computer”). It is in the <a href="../../../../crash-log.html">crash log</a>’s “Not counted above” paragraph, not as a crash. The journal’s last line is 08:08:51, but the working session wrote its transcript until 08:11:56; back at 08:12:48, the clock lost and restored by timesyncd.</li>
+<li>Nothing lost: no empty git objects, no zero-byte or NUL-filled files. The old session’s /tmp scratchpad was gone, but the rules it held were already in hazeljs-examples and on trial/794-games-aot.</li>
+<li>Servers back: 8000, 8131, 8133, 8141 and 8152 from the app; 8153 from the shell, as the app allows five.</li>
+<li>Gnome dig 0.0.74 released (<a href="https://matthewhammer.org/hazel/dashboard/closed.html#ticket-844"><code class="ref"><b>^ticket(</b>844<b>)</b></code></a>, <a href="https://github.com/matthewhammer/hazeljs-examples/commit/d3e8d79">d3e8d79</a>): the love blast, slower falls under the ground water, and a party when a level is cleared. The compile that was running when the power went finished on GitHub; the compiled rules agree with Hazel on 175 answers (0.045 ms a step against 78 ms interpreted), and the live files match the push.</li>
+</ul>
+
+<h2>Next</h2>
+<ul>
+<li><a href="https://matthewhammer.org/hazel/dashboard/#ticket-795"><code class="ref"><b>^ticket(</b>795<b>)</b></code></a>, Matthew’s next ask: the hazeljs package with Hazel’s tile editor inside it, offline (the font of #2837 and the icons of #2842), and the latest hazel-jit so code can be parsed and jitted from the package API; one hazel PR that tracks what hazeljs depends on.</li>
+</ul>
+</main>
+</body>
+</html>
