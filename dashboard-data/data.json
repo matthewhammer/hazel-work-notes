@@ -22352,6 +22352,24 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 846,
+   "area": "hazel-jit / Hazel: explore a builtin sequence type, Seq, beside List: a balanced tree with JS arrays at its leaves",
+   "added": "2026-11-23",
+   "opened": "2026-11-23T13:36-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel-jit",
+    "Seq",
+    "performance"
+   ],
+   "source": "Matthew, 2026-11-23 ~13:4x, in chat: \"i want to push another exploration onto our active ticket queue for today/tomorrow --- explore a new builtin sequence type, as complement to List --- Sequence or Seq, for short maybe? This type is a container type like List, except that: * the underlying representation uses the JS sequence type (is there one that uses balanced trees behind the scenes, with arrays at the leaves of the tree?) * if not, let's build that idea, based on the Sequence type from fumola, but extended to have JS arrays at the leaves. To compare with plain arrays, List, and our hybrid List representation, let's consider a load that does splicing and appending at arbitrary positions for moderate to large sequences/lists/arrays.\"",
+   "text": "A Seq type beside List: a container whose representation is a balanced tree with JS arrays at its leaves. Check first whether JS has one (it has no built-in: arrays are flat; candidates among libraries: Immutable.js's List, a 32-way trie of arrays, and @funkia/list, a relaxed radix-balanced tree, to be checked against the workload); else build it from fumola's level-tree sequence (fumola/collections/levelTree.fumola: Pugh and Teitelbaum, levels from each element's symbol, a shape that depends only on the contents) with array chunks at the leaves, chunk boundaries also from the levels so the shape stays history-independent. Workload: splicing and appending at arbitrary positions, moderate to large sizes (1,000 to 1,000,000), against plain arrays (splice, copy), List as cells, and the hybrid list (cells + array segments). Then how Seq would enter Hazel: a builtin type and its operations, compiled code's runtime, and the page boundary (a Seq's leaves are arrays, so a page's array is a Seq of one leaf with no conversion).",
+   "progress": "",
+   "log": [],
+   "waiting": null
   }
  ],
  "next_ticket": 845,
@@ -29497,6 +29515,7 @@
  ],
  "queue": [
   795,
+  846,
   811,
   761,
   762,
