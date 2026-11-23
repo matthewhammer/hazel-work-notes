@@ -22430,7 +22430,41 @@
    "source": "Matthew, 2026-11-23 ~13:4x, in chat: \"i want to push another exploration onto our active ticket queue for today/tomorrow --- explore a new builtin sequence type, as complement to List --- Sequence or Seq, for short maybe? This type is a container type like List, except that: * the underlying representation uses the JS sequence type (is there one that uses balanced trees behind the scenes, with arrays at the leaves of the tree?) * if not, let's build that idea, based on the Sequence type from fumola, but extended to have JS arrays at the leaves. To compare with plain arrays, List, and our hybrid List representation, let's consider a load that does splicing and appending at arbitrary positions for moderate to large sequences/lists/arrays.\" Then, ~13:5x: \"the caching aspect of the level tree is not as important as having a balanced representation that does not require rebalancing\"",
    "text": "A Seq type beside List: a container whose representation is a balanced tree with JS arrays at its leaves. Check first whether JS has one (it has no built-in: arrays are flat; candidates among libraries: Immutable.js's List, a 32-way trie of arrays, and @funkia/list, a relaxed radix-balanced tree, to be checked against the workload); else build it from fumola's level-tree sequence (fumola/collections/levelTree.fumola: Pugh and Teitelbaum) with array chunks at the leaves. What matters most (Matthew): a balanced representation that needs no rebalancing, the levels fixing the shape so an edit never rotates; the caching that a content-determined shape allows matters less. So levels may come from any well-spread source (a counter's hash, a random draw), not only from symbols. Workload: splicing and appending at arbitrary positions, moderate to large sizes (1,000 to 1,000,000), against plain arrays (splice, copy), List as cells, and the hybrid list (cells + array segments). Then how Seq would enter Hazel: a builtin type and its operations, compiled code's runtime, and the page boundary (a Seq's leaves are arrays, so a page's array is a Seq of one leaf with no conversion).",
    "progress": "",
-   "log": [],
+   "log": [
+    {
+     "at": "2026-11-23T13:36-07:00",
+     "from": "matthew",
+     "chars": 715,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-23T13:36-07:00",
+     "from": "matthew",
+     "chars": 242,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-23T13:36-07:00",
+     "from": "claude",
+     "chars": 289,
+     "asks": false,
+     "words": 47,
+     "read_s": 12,
+     "listen_s": 18,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-23T13:37-07:00",
+     "from": "matthew",
+     "chars": 90,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ],
    "waiting": null
   }
  ],
