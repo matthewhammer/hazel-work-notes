@@ -1,5 +1,34 @@
 [
  {
+  "id": 845,
+  "area": "Gnome dig: the gnome and the ghosts glide from cell to cell",
+  "added": "2026-11-23",
+  "opened": "2026-11-23T13:23-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazeljs-examples",
+   "dig"
+  ],
+  "source": "Matthew, 2026-11-23 ~13:2x, in chat: \"for gnome dig --- let's animate the tile-to-tile motion for ghosts and gnome, so it's not instant, but it still has the same rate of movement for repeated moves (left, left, left completes is nearly the same speed, but is smoother).\"",
+  "text": "Animate the gnome's and the ghosts' moves between cells, keeping the rate of movement.",
+  "progress": "0.0.75 released (1f1870f, live, checked over HTTPS): a move of one cell drawn as a slide from the cell before at an even speed, lasting until the next move could come ((pwait + 1) steps for the gnome: 150 ms through dug ground, 217 ms digging; mpace steps for a ghost, 200-233 ms), scaled by the robot's rate, none at full speed; jumps (respawn, new level) not slid. Checked in the browser pane with ?test=1 (hidden pane, stepped at 60 Hz by timers): holding left, the drawn x fell evenly 7 to 0, a cell per 9 steps as before; a ghost's slide 233 ms on level 1; no console errors.",
+  "log": [],
+  "waiting": null,
+  "closed": "2026-11-23",
+  "closed_at": "2026-11-23T13:23-07:00",
+  "outcome": "0.0.75 released and live: the gnome and the ghosts glide between cells at their own rate (a slide lasting until the next move could come); checked in the page",
+  "metrics": {
+   "open_minutes": 1,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0,
+   "work_minutes": 15.0
+  }
+ },
+ {
   "id": 844,
   "area": "hazeljs examples: Gnome dig 0.0.74: the love blast; slower falls under the water; a party when a level is cleared",
   "text": "The love blast on L and 💘 (hearts straight ahead along the tunnel; every ghost reached won over, 200 points; ready every two seconds), the robot firing it; boulders and animals falling a cell every 10 steps under the ground water; a level cleared held with the gnome cheering, confetti, stars and bubbles and a party tune until a tap, a click or a key.",
