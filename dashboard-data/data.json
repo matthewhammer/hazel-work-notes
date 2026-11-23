@@ -22466,6 +22466,24 @@
     }
    ],
    "waiting": null
+  },
+  {
+   "id": 847,
+   "area": "hazel-jit / Hazel: records more native, as for List: a labeled tuple held as a JS object by its labels",
+   "added": "2026-11-23",
+   "opened": "2026-11-23T13:50-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel-jit",
+    "records",
+    "performance"
+   ],
+   "source": "Matthew, 2026-11-23 ~14:0x, in chat, answering converters or Seq first: \"Converters first / before Seq, let's explore making records more \\\"native\\\" in the interpreter, as we are doing now for List.\"",
+   "text": "Records the page's way: a labeled tuple (x = 1, y = 2) as a JS object {x: 1, y: 2}. Today compiled code holds it as an array carrying its labels and a page as an object, so a list of records costs its length to cross even as arrays (^report(54) #lists-crossing: ~0.3 s for a million, against 6 ns page-shaped). Explore both places a record lives: compiled code's runtime and shapes (objects by label; tuples without labels stay arrays; what $R.tup, dot, eq and the value boundary become), and the interpreter's own values (a labeled Tuple of TupLabel terms: what holding a record natively there would take, and what it would buy at the crossing and in mixed mode). Measure the crossing at every size, as for lists, and the games.",
+   "progress": "",
+   "log": [],
+   "waiting": null
   }
  ],
  "next_ticket": 845,
@@ -29611,6 +29629,7 @@
  ],
  "queue": [
   795,
+  847,
   846,
   811,
   761,
