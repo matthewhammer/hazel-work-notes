@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 11-23 afternoon</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; overflow-wrap: anywhere; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+  blockquote { margin: 1em 0; padding: 0.6em 1em; border-left: 4px solid var(--accent); background: var(--code); border-radius: 0 6px 6px 0; }
+  blockquote p { margin: 0.5em 0; }
+  table { border-collapse: collapse; margin: 1em 0; font-size: 0.95em; } th, td { border-bottom: 1px solid var(--line); padding: 4px 10px; text-align: left; vertical-align: top; }
+</style>
+</head>
+<body><main>
+<h1>Working notes: 2026-11-23, from the morning to 13:55: hazeljs on Core, hazel-jit's own PR, lists measured, Gnome dig glides</h1>
+<p class="sub">Claude, 13:55 MST on 11-23, at Matthew's ask to bring the work notes and the gallery up to date. Picks up from <a href="2026-11-23T0835-0700.html">this morning's note</a>.</p>
+
+<h2>In short</h2>
+<ul>
+<li><b>The hazeljs branch on Jane Street Core</b> (^ticket(795); Matthew: "Yes, port now"). <code>dev</code> merged at 21da4ae66b and the branch's own files ported in the same commit (32057a15df), with a rewriter for Stdlib call shapes (<code>~/.cache/hazel-core-port/</code>). One trap no type error showed: Core's <code>List.init</code> calls its function from the last index down, which permuted a compiled tuple's labels coming back to the page; fixed in 98c482395d, with a test. hazeljs 0.0.11 built from it (b149ed5 on <code>editor-in-package</code>), byte for byte the deploy's <code>hazel-lib.js</code>; not on npm.</li>
+<li><b>^report(63), Hazel as an npm Package: What to Decide Next</b>, for Matthew and Cyrus: the PRs, the branch against <code>dev</code>, every game in hazeljs-examples timed four ways (interpreter, jit, ahead of time, plain JS; hazeljs-examples <code>bench/package-0.0.11</code>), ten decisions before <code>dev</code>, and what next for speed. The jit was 317 times the interpreter (geometric mean), and on 34 of 45 operations most of its time went to converting values through Hazel's own.</li>
+<li><b>hazel-jit's own PR</b> (Matthew: the jit in at most two active PRs, its own and its integration into the package branch): <code>hazel-jit</code> from <code>dev</code>, draft #2859: the compiler, its value boundary, mixed mode, and the agreement tests with the evaluator tests' sweep. Static and quick checks green (af7aabc15f). #2857 merges it (3f1d825455). Moving the jit to <code>dev</code> found three differences: a repeated label (left to the interpreter), SInt overflow (#2828's semantics, tests held back), and modules lowered to lets whose patterns lose their annotations (mixed mode runs module members interpreted, for now). #2817 and #2819 kept for now (Matthew).</li>
+<li><b>Lists as JavaScript arrays</b>, in ^report(54) (<code>#lists</code>): plain arrays copy their tails in patterns (20 to 70 times slower in recursion); a hybrid, cells plus array segments, prototyped on <code>hazel-jit-lists</code> and measured on the seventeen games (hazeljs-examples <code>bench/lists-hybrid</code>): about 8% slower ahead of time, 4% through the jit. Then, at Matthew's ask, a page's list into compiled code and back at sizes 1 to 1,000,000, plotted log and linear: arrays and the hybrid flat at 4 to 7 ns; cells 62 ms and today's jit 4.4 s at a million Ints; records cost their length whatever the list's shape, as compiled code holds a record as an array carrying its labels.</li>
+<li><b>Gnome dig 0.0.75</b> (^ticket(845)): the gnome and the ghosts glide from cell to cell at their old rate (1f1870f, live).</li>
+<li><b>Two explorations queued</b>: records held the page's way, in compiled code and the interpreter (^ticket(847)); a sequence type, Seq, a balanced tree with JS arrays at its leaves, from fumola's level tree, balance without rebalancing the point (^ticket(846)).</li>
+<li><b>In progress</b>: converters by declared type for <code>Hazel.jit</code> (284a219b84 on <code>hazeljs</code>, #2857): a page's values straight into compiled code's shapes and back, with the old way as the fallback. Waiting on its CI; then the crossing and the games timed with it.</li>
+</ul>
+
+<h2>Where things are</h2>
+<div class="scroll"><table>
+<tr><th>what</th><th>where</th><th>state</th></tr>
+<tr><td>the package's branch</td><td><code>hazeljs</code>, #2857, worktree <code>~/hazel-hazeljs</code></td><td>284a219b84, converters by type, CI running</td></tr>
+<tr><td>hazel-jit alone</td><td><code>hazel-jit</code>, #2859</td><td>af7aabc15f, static and quick green, full tests running</td></tr>
+<tr><td>the hybrid lists</td><td><code>hazel-jit-lists</code>, <code>hazeljs-lists</code></td><td>measured, not merged</td></tr>
+<tr><td>hazeljs 0.0.11</td><td>hazelgrove/hazeljs <code>editor-in-package</code></td><td>b149ed5, checks green, not on npm</td></tr>
+<tr><td>benchmarks</td><td>hazeljs-examples <code>bench/package-0.0.11</code>, <code>bench/lists-hybrid</code>; <code>~/.cache/hazel-core-port/</code></td><td>results in ^report(63) and ^report(54)</td></tr>
+</table></div>
+
+<h2>Next</h2>
+<ul>
+<li>The converters' CI; then the crossing at every size and the games, with them against without (^report(54)).</li>
+<li>Records held the page's way (^ticket(847)), then Seq (^ticket(846)).</li>
+<li>Waiting on Matthew: npm publish of 0.0.11, and the Noun Project icons in the package.</li>
+</ul>
+</main></body>
+</html>
