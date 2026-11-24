@@ -24672,11 +24672,63 @@
     }
    ],
    "waiting": null
+  },
+  {
+   "id": 848,
+   "area": "Gnome world 0.0.102: rescaled so gnomes read as small; Clover the rabbit to ride; music by place, a dub under water",
+   "text": "Gnome world 0.0.102: the world 896 x 208 tiles (twice as wide, 80 more rows of sky); trees and great trees 3x (houses, gnomes, rocks, underground fixed), bushes 3x with detail, flowers 2x, birds and squirrels 2x (birds drawn with bodies, tails, feathered wings), pines in detail; big pictures painted in strips; diggers 3x faster; Clover the saddled rabbit (a carrot from the garden or the pantry tames her; hops, leaps over creeks and the stream, digs 3x, swims with the diving gear, climbs with the pack) and wild bunnies; Lantern road (10 sections), music by place, a dub under water with a DJ fade; the speed run unstuck on slopes; save/load covers the rabbit.",
+   "source": "Matthew, 2026-11-24 ~06:50-08:30, in chat: \"gnomes stay the same size on screen\"; \"trees need to scale up by at least 3x\"; \"bushes scale up by 3x as well, and add detail\"; \"flowers get bigger\"; \"extend the entire world to be larger, in terms of tiles\"; \"birds ... scaled up by 2x ... more detail\"; \"introduce bunny rabbits. one of the bunnys has a special saddle\"; \"the rabbit should hop\"; \"jumping is very high\"; \"the rabbit can dig very fast\"; \"when the gnome has swim gear, the rabbit can swim\"; \"climbing is enabled with the climbing gear\"; \"squirrels need to scale up too\"; \"let's increase the speed of the digger power ups each by 3x\"; \"let's add more detail to the pine trees\"; \"the rabbit hopping animation should show the hind feet\"; \"why does the shadow not stay on the ground?\"; \"let's add different music tracks\"; \"extend it into about 10 sections\"; \"a reggae dub remix of the current music when we are under water --- half tempo\"; \"the gnome gets 'stuck' on slopes\" (speed run)",
+   "url": "https://matthewhammer.org/hazeljs-examples/world/",
+   "added": "2026-11-24",
+   "opened": "2026-11-24T07:48-07:00",
+   "chips": [
+    "gnome world",
+    "hazeljs-examples"
+   ],
+   "progress": "",
+   "log": [],
+   "tags": [],
+   "status": "open"
+  },
+  {
+   "id": 849,
+   "area": "Gnome world: the zine revised as a whole, every picture redone for 0.0.102",
+   "text": "After ^ticket(848) lands: revise world/manual/ (12 half-letter pages) as a whole for the bigger world, the 3x trees, Clover and the carrots, the bunnies, the music, the faster diggers; every picture made again; the GitHub print check (world-save.yml, zine-check) still 12 pages.",
+   "source": "Matthew, 2026-11-24 ~08:20, in chat: \"once these updates for gnome world land: please update the zine --- (revise the entire thing, holistically --- all images need updates).\"",
+   "url": "https://matthewhammer.org/hazeljs-examples/world/manual/",
+   "added": "2026-11-24",
+   "opened": "2026-11-24T07:48-07:00",
+   "chips": [
+    "gnome world",
+    "zine"
+   ],
+   "progress": "",
+   "log": [],
+   "tags": [],
+   "status": "open"
+  },
+  {
+   "id": 850,
+   "area": "WIP Hazel report: Gnome world's logic, JS vs Hazel (events, physics, world state, procedural drawing), in SVGs",
+   "text": "A new report in the series: which parts of Gnome world are Hazel (World.plan, World.step, World.beaver, World.water_row, World.roots, World.greet, World.dig_steps ...) and which JS (the tiles, water, boulders, camera, drawing, wildlife, rabbits, the ride's adjustments), by event handling, physics, world state and procedural drawing; many SVG figures, some animated.",
+   "source": "Matthew, 2026-11-24 ~08:20, in chat: \"please create a new WIP hazel report that answers the question: what parts of gnome world logic are expressed in JS vs Hazel? event handling? physics? global game world state? procedural rendering of trees, and other elements?\"; \"include many screenshots or even animated SVGs\"; \"I'd actually prefer SVGs over screenshots\"",
+   "url": "",
+   "added": "2026-11-24",
+   "opened": "2026-11-24T07:48-07:00",
+   "chips": [
+    "report",
+    "gnome world",
+    "hazel"
+   ],
+   "progress": "",
+   "log": [],
+   "tags": [],
+   "status": "open"
   }
  ],
- "next_ticket": 845,
- "current_ticket": 795,
- "current_note": "14:12: converters by declared type with the converted-closed invariant (memos) on #2857 (4b244227d4); CI running; then measure the crossing and the games",
+ "next_ticket": 851,
+ "current_ticket": 848,
+ "current_note": "07:48: Gnome world 0.0.102 on branch world-scale (pushed 197d9bf): world 2x, trees 3x, birds 2x, Clover the rabbit, pines; now: music by place + dub, and the speed run stuck on slopes; then release",
  "closed_tickets": [
   {
    "id": 845,
@@ -31816,6 +31868,9 @@
   }
  ],
  "queue": [
+  848,
+  849,
+  850,
   795,
   847,
   846,
@@ -31858,7 +31913,7 @@
   708,
   700
  ],
- "current_since": "2026-11-23T08:30-07:00",
+ "current_since": "2026-11-24T07:48-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
