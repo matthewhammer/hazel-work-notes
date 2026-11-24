@@ -24773,9 +24773,24 @@
     }
    ],
    "waiting": "Decide ^report(54) #records-decide's five questions on records (http://localhost:8000 ticket 847; https://matthewhammer.org/hazel/reports/054/#records-decide), above all 1-3: which tuples become objects, telling a record from a cell or constructor, positional patterns."
+  },
+  {
+   "id": 851,
+   "area": "hazel-jit: a pattern by position against a labeled tuple of unknown type answers where the interpreter is stuck",
+   "text": "Found checking ^ticket(847)'s decision 3. `let f = fun r -> let (a, b) = r in a - b in f((x = 5, y = 2))`: the interpreter binds a to the labeled entry (x = 5) and its subtraction is stuck (an indeterminate BinOp); the jit (Hazel.jit, hazeljs at a97b6f7465) answers 3, since compiled code reads the pattern as r[0], r[1]. The same with f declared (Int, Int) -> Int. When the matched type is labeled, the statics add the labels to the pattern (MatchedTyp.prod) and compiled code reads r[\"x\"], so only an unknown or unlabeled matched type meets this. Fix: a positional read in compiled code checks that the entry at that position is unlabeled, and an indeterminate run ($R.indet) goes to the interpreter, as hazel-jit's rule has it; then an agreement test for it (evaluator sweep or the jit's own). With records as objects (847), the same check is Array.isArray.",
+   "added": "2026-11-24T11:08-07:00",
+   "opened": "2026-11-24T11:08-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel-jit",
+    "agreement"
+   ],
+   "source": "Found by the agent, 2026-11-24 11:08, compiling small programs with hazeljs (a97b6f7465 library) while checking ^report(54) #records-decide question 3.",
+   "progress": ""
   }
  ],
- "next_ticket": 851,
+ "next_ticket": 852,
  "current_ticket": 847,
  "current_note": "11:06: ^ticket(847): five decisions on records written up in ^report(54) #records, blocked on Matthew; meanwhile checking whether the statics label a positional pattern (decision 3)",
  "closed_tickets": [
@@ -31948,6 +31963,7 @@
  ],
  "queue": [
   847,
+  851,
   795,
   846,
   811,
