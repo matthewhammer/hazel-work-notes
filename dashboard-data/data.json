@@ -24773,89 +24773,22 @@
     }
    ],
    "waiting": "Decide ^report(54) #records-decide's five questions on records (http://localhost:8000 ticket 847; https://matthewhammer.org/hazel/reports/054/#records-decide), above all 1-3: which tuples become objects, telling a record from a cell or constructor, positional patterns."
-  },
-  {
-   "id": 851,
-   "area": "hazel-jit: a pattern by position against a labeled tuple of unknown type answers where the interpreter is stuck",
-   "text": "Found checking ^ticket(847)'s decision 3. `let f = fun r -> let (a, b) = r in a - b in f((x = 5, y = 2))`: the interpreter binds a to the labeled entry (x = 5) and its subtraction is stuck (an indeterminate BinOp); the jit (Hazel.jit, hazeljs at a97b6f7465) answers 3, since compiled code reads the pattern as r[0], r[1]. The same with f declared (Int, Int) -> Int. When the matched type is labeled, the statics add the labels to the pattern (MatchedTyp.prod) and compiled code reads r[\"x\"], so only an unknown or unlabeled matched type meets this. Fix: a positional read in compiled code checks that the entry at that position is unlabeled, and an indeterminate run ($R.indet) goes to the interpreter, as hazel-jit's rule has it; then an agreement test for it (evaluator sweep or the jit's own). With records as objects (847), the same check is Array.isArray.",
-   "added": "2026-11-24T11:08-07:00",
-   "opened": "2026-11-24T11:08-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazel-jit",
-    "agreement"
-   ],
-   "source": "Found by the agent, 2026-11-24 11:08, compiling small programs with hazeljs (a97b6f7465 library) while checking ^report(54) #records-decide question 3.",
-   "progress": "11-24 11:14: fix pushed to hazel-jit (#2859) e0a5925f3b: a labeled tuple keeps its labels by index under Symbol.for(\"hazel-jit.labels\") ($R.tup, select_labels, from_lvs, omit_labels, HazelJitValue.tuple); $R.labels reads it when present; a pattern by position emits `v[$R.L] === undefined || $R.nolab(v, [positions])`, which stops as indeterminate at a labeled entry, so the interpreter answers. Tests (Test_HazelJit): agreements for a pattern by position on an unlabeled tuple, on a record of declared type, in a parameter; the record-of-unknown-type case stops with 'a pattern by position against a labeled entry'; the evaluator sweep (Test_HazelJit_Agree.indet_reached) counts that stop as agreeing. Runtime checked in Node by hand (extracted from the source). CI run 45457199903 watching; then merge hazel-jit into hazeljs (#2857). | 11-24 11:46: hazel-jit e0a5925f3b green (CI run 45457199903: Fast, Static, Full). Merged into hazeljs locally (84dcec55fc), plus ec2a330996: the converters by declared type mark a page's record with its labels too, with a test (a page's record reaching a positional pattern of unknown type answers as run does). Not pushed yet: waiting for hazeljs's CI on ca851b422d (run 45458530718) so the push does not cancel it. | 11-24 11:51: pushed to hazeljs: merge 84dcec55fc + ec2a330996 (converters mark records); CI run 45463819265 watching.",
-   "log": [
-    {
-     "at": "2026-11-24T11:23-07:00",
-     "from": "claude",
-     "chars": 5729,
-     "asks": false,
-     "words": 953,
-     "read_s": 240,
-     "listen_s": 357,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-24T11:26-07:00",
-     "from": "claude",
-     "chars": 619,
-     "asks": false,
-     "words": 99,
-     "read_s": 25,
-     "listen_s": 37,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-24T11:31-07:00",
-     "from": "claude",
-     "chars": 1364,
-     "asks": false,
-     "words": 232,
-     "read_s": 58,
-     "listen_s": 87,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-24T11:46-07:00",
-     "from": "claude",
-     "chars": 684,
-     "asks": false,
-     "words": 122,
-     "read_s": 31,
-     "listen_s": 46,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-24T11:51-07:00",
-     "from": "claude",
-     "chars": 488,
-     "asks": false,
-     "words": 84,
-     "read_s": 21,
-     "listen_s": 32,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
   }
  ],
  "next_ticket": 852,
- "current_ticket": 851,
- "current_note": "11:51: ^ticket(851): hazel-jit merged into hazeljs (ec2a330996), CI run 45463819265 running",
+ "current_ticket": 795,
+ "current_note": "12:20: ^ticket(851) closed (done); ^ticket(795) is next in the queue",
  "closed_tickets": [
+  {
+   "id": 851,
+   "area": "hazel-jit: a pattern by position against a labeled tuple of unknown type answers where the interpreter is stuck",
+   "added": "2026-11-24T11:08-07:00",
+   "text": "Found checking ^ticket(847)'s decision 3. `let f = fun r -> let (a, b) = r in a - b in f((x = 5, y = 2))`: the interpreter binds a to the labeled entry (x = 5) and its subtraction is stuck (an…",
+   "source": "Found by the agent, 2026-11-24 11:08, compiling small programs with hazeljs (a97b6f7465 library) while checking…",
+   "status": "done",
+   "closed": "2026-11-24",
+   "outcome": "Fixed on hazel-jit (#2859) e0a5925f3b and merged into hazeljs (#2857) ec2a330996, all CI green (runs 45457199903 and 45463819265): a labeled tuple keeps its labels by index under…"
+  },
   {
    "id": 850,
    "area": "WIP Hazel report: Gnome world's logic, JS vs Hazel (events, physics, world state, procedural drawing), in SVGs",
@@ -32024,7 +31957,6 @@
   }
  ],
  "queue": [
-  851,
   847,
   795,
   846,
@@ -32067,7 +31999,7 @@
   708,
   700
  ],
- "current_since": "2026-11-24T11:10-07:00",
+ "current_since": "2026-11-24T12:20-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
