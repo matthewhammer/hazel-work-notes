@@ -24787,12 +24787,12 @@
     "agreement"
    ],
    "source": "Found by the agent, 2026-11-24 11:08, compiling small programs with hazeljs (a97b6f7465 library) while checking ^report(54) #records-decide question 3.",
-   "progress": ""
+   "progress": "11-24 11:14: fix pushed to hazel-jit (#2859) e0a5925f3b: a labeled tuple keeps its labels by index under Symbol.for(\"hazel-jit.labels\") ($R.tup, select_labels, from_lvs, omit_labels, HazelJitValue.tuple); $R.labels reads it when present; a pattern by position emits `v[$R.L] === undefined || $R.nolab(v, [positions])`, which stops as indeterminate at a labeled entry, so the interpreter answers. Tests (Test_HazelJit): agreements for a pattern by position on an unlabeled tuple, on a record of declared type, in a parameter; the record-of-unknown-type case stops with 'a pattern by position against a labeled entry'; the evaluator sweep (Test_HazelJit_Agree.indet_reached) counts that stop as agreeing. Runtime checked in Node by hand (extracted from the source). CI run 45457199903 watching; then merge hazel-jit into hazeljs (#2857)."
   }
  ],
  "next_ticket": 852,
  "current_ticket": 851,
- "current_note": "11:10: ^ticket(851): fixing the positional-pattern disagreement on hazel-jit (#2859): a positional read checks the entry has no label, else the run goes to the interpreter; an agreement test",
+ "current_note": "11:14: ^ticket(851): fix on hazel-jit e0a5925f3b, CI run 45457199903 running; then into hazeljs (#2857)",
  "closed_tickets": [
   {
    "id": 850,
@@ -32019,9 +32019,9 @@
   },
   "since": "2026-08-27",
   "replies": 7112,
-  "words": 1558526,
+  "words": 1558626,
   "read_hours_est": 109.1,
-  "listen_hours_est": 162.3,
+  "listen_hours_est": 162.4,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -32392,8 +32392,8 @@
    },
    "2026-11-24": {
     "replies": 26,
-    "words": 4924,
-    "chars": 27908
+    "words": 5024,
+    "chars": 28499
    }
   }
  },
