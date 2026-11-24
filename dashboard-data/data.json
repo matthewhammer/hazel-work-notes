@@ -24726,7 +24726,9 @@
    "added": "2026-11-23",
    "opened": "2026-11-23T13:50-07:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel-jit",
     "records",
@@ -24734,7 +24736,7 @@
    ],
    "source": "Matthew, 2026-11-23 ~14:0x, in chat, answering converters or Seq first: \"Converters first / before Seq, let's explore making records more \\\"native\\\" in the interpreter, as we are doing now for List.\"",
    "text": "Records the page's way: a labeled tuple (x = 1, y = 2) as a JS object {x: 1, y: 2}. Today compiled code holds it as an array carrying its labels and a page as an object, so a list of records costs its length to cross even as arrays (^report(54) #lists-crossing: ~0.3 s for a million, against 6 ns page-shaped). Explore both places a record lives: compiled code's runtime and shapes (objects by label; tuples without labels stay arrays; what $R.tup, dot, eq and the value boundary become), and the interpreter's own values (a labeled Tuple of TupLabel terms: what holding a record natively there would take, and what it would buy at the crossing and in mixed mode). Measure the crossing at every size, as for lists, and the games.",
-   "progress": "",
+   "progress": "11-24 11:06: measured in JavaScript alone (054/drivers/records-bench.mjs, laptop): a record as an object builds ~12x as fast (4.0 vs 49.7 ns), a one-field update 5.0 vs 52.5 ns, a label read the same, a positional read through Object.values 68 ns vs 1.2 (1.0 with the label from the type), equality by the type's fields 7.6 ns vs 25.6 today (by own keys 85 ns); a million records cross for nothing (3.8 ms with a type check, no copy) vs 173 ms today; cells made by a class ~0.7 ns more a cell built, walks the same; a literal with a prototype 8x (out). Records' share of each game's state (054/drivers/game-shapes.mjs): Minesweeper 97%, Butterfly garden 90%, Mahjong solitaire 38%. Written up in ^report(54) #records (reports 0ccdae3, homepage 485cb811) with five decisions and our lean: (1) every entry labeled -> object in the type's order, else arrays as now; (2) record vs cell/constructor in untyped code: lean type-directed (c) where the type is at hand, $h/$t/$c/$v (b) for the rest; (3) positional patterns: lean statics add labels (b), Object.values fallback (c); (4) page must not change what it gives/gets (a), freeze in development (b); (5) keep checking at the edge. BLOCKED ON MATTHEW: the five decisions, above all 1-3; then trial/847-records-objects off hazeljs.",
    "log": [
     {
      "at": "2026-11-23T13:49-07:00",
@@ -24770,12 +24772,12 @@
      "note": "from the transcripts"
     }
    ],
-   "waiting": null
+   "waiting": "Decide ^report(54) #records-decide's five questions on records (http://localhost:8000 ticket 847; https://matthewhammer.org/hazel/reports/054/#records-decide), above all 1-3: which tuples become objects, telling a record from a cell or constructor, positional patterns."
   }
  ],
  "next_ticket": 851,
  "current_ticket": 847,
- "current_note": "10:56: ^ticket(847): records the page's way: how compiled code holds a labeled tuple today, and the design questions (objects by label; telling records from lists and constructors; positional access; the converters), then a trial branch off hazel-jit",
+ "current_note": "11:06: ^ticket(847): five decisions on records written up in ^report(54) #records, blocked on Matthew; meanwhile checking whether the statics label a positional pattern (decision 3)",
  "closed_tickets": [
   {
    "id": 850,
