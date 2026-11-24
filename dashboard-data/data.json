@@ -24681,7 +24681,9 @@
    "added": "2026-11-23",
    "opened": "2026-11-23T13:36-07:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel-jit",
     "Seq",
@@ -24689,7 +24691,7 @@
    ],
    "source": "Matthew, 2026-11-23 ~13:4x, in chat: \"i want to push another exploration onto our active ticket queue for today/tomorrow --- explore a new builtin sequence type, as complement to List --- Sequence or Seq, for short maybe? This type is a container type like List, except that: * the underlying representation uses the JS sequence type (is there one that uses balanced trees behind the scenes, with arrays at the leaves of the tree?) * if not, let's build that idea, based on the Sequence type from fumola, but extended to have JS arrays at the leaves. To compare with plain arrays, List, and our hybrid List representation, let's consider a load that does splicing and appending at arbitrary positions for moderate to large sequences/lists/arrays.\" Then, ~13:5x: \"the caching aspect of the level tree is not as important as having a balanced representation that does not require rebalancing\"",
    "text": "A Seq type beside List: a container whose representation is a balanced tree with JS arrays at its leaves. Check first whether JS has one (it has no built-in: arrays are flat; candidates among libraries: Immutable.js's List, a 32-way trie of arrays, and @funkia/list, a relaxed radix-balanced tree, to be checked against the workload); else build it from fumola's level-tree sequence (fumola/collections/levelTree.fumola: Pugh and Teitelbaum) with array chunks at the leaves. What matters most (Matthew): a balanced representation that needs no rebalancing, the levels fixing the shape so an edit never rotates; the caching that a content-determined shape allows matters less. So levels may come from any well-spread source (a counter's hash, a random draw), not only from symbols. Workload: splicing and appending at arbitrary positions, moderate to large sizes (1,000 to 1,000,000), against plain arrays (splice, copy), List as cells, and the hybrid list (cells + array segments). Then how Seq would enter Hazel: a builtin type and its operations, compiled code's runtime, and the page boundary (a Seq's leaves are arrays, so a page's array is a Seq of one leaf with no conversion).",
-   "progress": "11-24 12:53: a Seq prototyped and timed in JavaScript alone (054/drivers/seq-bench.mjs, laptop): a treap over array views (leaf = {a, s, e} view of a never-changed array, so a split copies nothing; gaps with priorities from a counter's hash, shape fixed by them, join/split never rotate; a small leaf goes into the edge leaf when both fit in 32, no new gap), persistent, against a copied array, cells and the hybrid. Same sequence every way after 2,000 random edits. Insert anywhere 0.7-1.7 µs from 1k to 1M (array copied 13 ms, cells 23 ms at 1M); append ≤0.3 µs; a page's array in and out for nothing; get ≤0.5 µs (array ~40 ns); walk at 1M after 20k edits 3.3 ms (cells 3.5, array 0.64; an explicit-stack walk halved it). In ^report(54) #seq (reports 41cc286, homepage 5161aca4). BLOCKED ON MATTHEW for: installing Immutable.js and @funkia/list from npm to time them (a download); and how Seq enters Hazel (builtin type and ops, interpreter value, page rule shared with records' 847). | 11-24 13:14: Matthew OK'd installing them (13:0x); immutable@5.0.3 and @funkia/list@0.1.0 (pulls ramda 0.32.0 as a peer) installed --ignore-scripts into the scratchpad's npm-libs; adding them to seq-bench PAUSED for the Gnome world iPad bug.",
+   "progress": "11-24 12:53: a Seq prototyped and timed in JavaScript alone (054/drivers/seq-bench.mjs, laptop): a treap over array views (leaf = {a, s, e} view of a never-changed array, so a split copies nothing; gaps with priorities from a counter's hash, shape fixed by them, join/split never rotate; a small leaf goes into the edge leaf when both fit in 32, no new gap), persistent, against a copied array, cells and the hybrid. Same sequence every way after 2,000 random edits. Insert anywhere 0.7-1.7 µs from 1k to 1M (array copied 13 ms, cells 23 ms at 1M); append ≤0.3 µs; a page's array in and out for nothing; get ≤0.5 µs (array ~40 ns); walk at 1M after 20k edits 3.3 ms (cells 3.5, array 0.64; an explicit-stack walk halved it). In ^report(54) #seq (reports 41cc286, homepage 5161aca4). BLOCKED ON MATTHEW for: installing Immutable.js and @funkia/list from npm to time them (a download); and how Seq enters Hazel (builtin type and ops, interpreter value, page rule shared with records' 847). | 11-24 13:14: Matthew OK'd installing them (13:0x); immutable@5.0.3 and @funkia/list@0.1.0 (pulls ramda 0.32.0 as a peer) installed --ignore-scripts into the scratchpad's npm-libs; adding them to seq-bench PAUSED for the Gnome world iPad bug. | 11-24 13:44: libraries timed (laptop): Immutable.js List 5.0.3: insert copies (38 µs at 1k, 12.7 ms at 1M; treap 0.6-1.9 µs), append 92-162 ns, get 41-95 ns (treap ≤501), walk 24 ms at 1M, page in/out 80 ms (copies). @funkia/list 0.1.0 (2018) threw in its own concat after 88 edits; the maintained library is `list` on npm (another download, needs Matthew's OK). In ^report(54) #seq (reports 054 commit, homepage 35e590d3).",
    "log": [
     {
      "at": "2026-11-23T13:36-07:00",
@@ -24767,7 +24769,8 @@
      "effort": "xhigh",
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": "OK to install `list` from npm (funkia's maintained relaxed radix-balanced tree; @funkia/list 0.1.0 crashed) to time it beside the treap; and, after ^ticket(847), how Seq enters Hazel."
   },
   {
    "id": 847,
