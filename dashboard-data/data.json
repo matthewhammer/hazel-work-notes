@@ -25828,26 +25828,37 @@
    ]
   },
   {
-   "id": 872,
-   "area": "Gnome world 0.0.122: Clover vanished when left in a tunnel or dropped into a hole dug under her (painted over, not gone)",
+   "id": 873,
+   "area": "^report(65): Gnome world's speed run timed three ways, the interpreter (5 minutes at most), hazel-jit as of today, plain JS",
    "added": "2026-11-25",
-   "opened": "2026-11-25T11:58-07:00",
+   "opened": "2026-11-25T11:52-07:00",
    "status": "open",
    "tags": [],
    "chips": [
     "Gnome world",
     "hazeljs-examples",
-    "N"
+    "report 65",
+    "perf"
    ],
-   "source": "Matthew, 2026-11-25, in chat: \"clover disappears when we dismount.\"; \"if clover falls into a hole we dig under her, she disappears.\"",
-   "text": "(1) Why she vanishes. (2) Fix it. (3) Released.",
-   "progress": "12:00: waiting, Clover was drawn with the wild rabbits, before the great trees, the ground and the dug tiles' back walls (painted over); ridden, with the gnome. drawClover now with the gnome. Checked against 0.0.121 served beside it: a hole four deep dug under her (seed 7), 0 pixels of her before, 133 now. 0.0.122 (63a7528) pushed; CI running."
+   "source": "Matthew, 2026-11-25, in chat: \"after we finish adding features in flight, please time a speedrun for a 3 way comparison: * interpreter (to some limit; no more than 5 minutes total) * hazel jit, as of today * plain JS. please include in our report with the other 4 way comparison. The older hazel jit versions are not important  to include.\"",
+   "text": "(1) Gnome world's rules in plain JS (World.step, the beavers'), the same answers. (2) A harness on GitHub: the speed run to its end with hazel-jit and with plain JS, and with the interpreter for five minutes at most; the time in all and in the rules; the runs compared. (3) Into ^report(65) beside #fourway, republished.",
+   "progress": "12:02: world/plain.js written (World.step with tile, slope_at, slide_vx, dig_ahead, finish; beaver; dig_steps; water_row); in the pane, beside Hazel's on 6,000 steps of the speed run: 6,000 World.step and 5,000 beaver answers, none different. Next: the harness and its workflow."
   }
  ],
- "next_ticket": 873,
- "current_ticket": 872,
- "current_note": "12:00: ^ticket(872) Gnome world 0.0.122 (Clover painted over in holes and tunnels) pushed, CI running; ^ticket(871) the power-up card live. Next: the speed run timed three ways for ^report(65).",
+ "next_ticket": 874,
+ "current_ticket": 873,
+ "current_note": "12:02: ^ticket(872) closed (0.0.122 live: Clover no longer painted over in holes and tunnels). Now ^ticket(873): the speed run timed three ways for ^report(65); plain.js checked, the harness next.",
  "closed_tickets": [
+  {
+   "id": 872,
+   "area": "Gnome world 0.0.122: Clover vanished when left in a tunnel or dropped into a hole dug under her (painted over, not gone)",
+   "added": "2026-11-25",
+   "text": "(1) Why she vanishes. (2) Fix it. (3) Released.",
+   "source": "Matthew, 2026-11-25, in chat: \"clover disappears when we dismount.\"; \"if clover falls into a hole we dig under her, she…",
+   "status": "done",
+   "closed": "2026-11-25",
+   "outcome": "Gnome world 0.0.122 live (hazeljs-examples 63a7528; world save check green, run 45680843000; Pages green; app.js, index.html, version.json, sw.js match the commit): Clover,…"
+  },
   {
    "id": 871,
    "area": "Gnome world 0.0.121: a power-up found pauses the game, its words wrapped on the pause card, 🔊 Read aloud; going on or a tap clears it",
@@ -33214,7 +33225,7 @@
   863,
   852
  ],
- "current_since": "2026-11-25T12:00-07:00",
+ "current_since": "2026-11-25T12:02-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
