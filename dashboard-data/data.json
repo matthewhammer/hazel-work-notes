@@ -25917,11 +25917,28 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 884,
+   "area": "Gnome world: 🧩 Load-merge, N's 12:40 save (333/333 gems, all power-ups) into today's world with its new gems",
+   "added": "2026-11-25",
+   "opened": "2026-11-25T14:00-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "Gnome world",
+    "hazeljs-examples",
+    "N"
+   ],
+   "source": "Matthew, 2026-11-25, in chat: \"N has a save state from 12:40 and we want to load it with the current game world\"; \"he got 333 / 333 gems, and all power ups, at the time. we want to retain that, but offer the new gems, and the new game world, overlaid with the digging he's already done (including all gems)\"; \"Can we offer that as another load feature: \"load-merge\"?\"; \"there's now 336 gems. he wants to load-merge his state into the current game world, and get the new 3 gems\"",
+   "text": "A second load, 🧩 Load-merge: today's world from the save's seed, the save's digging overlaid, its gems-found count kept with today's extra gems left to find, and the gnome and its things as saved.",
+   "progress": "11-25: RELEASED 0.0.139 (294d958, live, world save check green). Dug tiles = the save's bg B_DUG (only digging sets it), overlaid unless today's tile is masonry/timber; works carried. FOUND: 0.0.127's caverns moved 203 of world 7's 336 gems 1-3 tiles, so gem matching by tile fails across versions; instead the count: leave = today's total - save's found (336-333 = 3), the ones the save still holds first, then those farthest from its open tiles. Items by index + by what the gnome has. TESTED with saves made by 0.0.126 itself (git archive into an untracked _old/ under the 8141 server): world 7 346/346 -> 346/346, all 12 things, tool 3; world 9 333/333 -> 333/333 (today 328); world 7 333 of 346 -> 333/336 with the 3 left exactly where the save held its unfound gems. N's own save (his seed; seeds 9, 17, 24 have 333 in 0.0.126, none 336 today) not tried yet.",
+   "log": []
   }
  ],
- "next_ticket": 884,
- "current_ticket": 883,
- "current_note": "13:54: Gnome world 0.0.138 live: both diggers 3x per tile, the world kept across reloads, the gem finder clear of the head on Clover. Waiting on Matthew: how far to take the diggers' felt speed.",
+ "next_ticket": 885,
+ "current_ticket": 884,
+ "current_note": "14:17: Gnome world 0.0.139 live: 🧩 Load-merge for N's 12:40 save. Waiting on N trying it with his own save.",
  "closed_tickets": [
   {
    "id": 861,
@@ -33398,7 +33415,7 @@
   863,
   852
  ],
- "current_since": "2026-11-25T13:54-07:00",
+ "current_since": "2026-11-25T14:17-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
