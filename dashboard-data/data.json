@@ -25900,11 +25900,42 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 879,
+   "area": "Gnome world 0.0.128 and 0.0.129: digging plays drum fills on the music's beat (four tracks, the beat's own; its partner on a second dig), on a whole kit with dub's strange sounds",
+   "added": "2026-11-25",
+   "opened": "2026-11-25T12:30-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "Gnome world",
+    "hazeljs-examples",
+    "N",
+    "music"
+   ],
+   "source": "Matthew, 2026-11-25, in chat: \"dig sound effect is missing --- unless we go into water, and we hear that one. let's have dig sound effect mean --- trigger drum fill track 1, 2, 3 or 4 --- each one is filled with drum fills for the music currently playing, but is muted. Depending on the 1, 2, 3 or 4 beat being active as we trigger the \\\"dig\\\" event, we get to hear one of those drum fills; it's possible to re-trigger it again before the end of the beat, if we dig fast enough;  in that case, we trigger the complementary fill (1 triggers 3, 2 triggers 4)\"; \"let's have the  fills use all kinds of drum sounds toms, like reggae fills rims, like reggae fills, misc percussion, like reggae dub tracks, and multi-rhythm sections bizzare sounds -- like in dub\"",
+   "text": "(1) Why digging is silent. (2) Four fill tracks per music style, the beat's own opened at a dig, its partner on a second dig in the beat. (3) A whole kit: toms, rims, hand percussion, cross-rhythms, dub's strange sounds. (4) Released.",
+   "progress": "12:39: the old crunch's 82 Hz thump was below laptop speakers. 0.0.128 (26bd9c5): shared/chip.js fill() (beatAt walks back from the deck's next step; slots of 32nds with swing; the partner on the same beat, the first cut by its gain); dig/sound.js digFill (a brighter crunch with no music). 0.0.129 (da5151c): a fill or two per bar per track, layers of 8/6/3 to the beat, the kit with bongos, conga, timbale, cowbell, woodblock, claves, shaker, guiro, triangle, siren, laser, pew, boom, boing, echo throws, reverse swell; the dub its own. Checked in the pane muted: ska, reggae, dub, funk, house. CI running.",
+   "log": [
+    {
+     "at": "2026-11-25T12:24-07:00",
+     "from": "claude",
+     "chars": 3603,
+     "asks": false,
+     "words": 658,
+     "read_s": 166,
+     "listen_s": 247,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
- "next_ticket": 879,
- "current_ticket": 873,
- "current_note": "12:24: ^ticket(878) closed (0.0.127 live: caverns). Now ^ticket(873): the speed run three ways, running on GitHub (run 45683626327); then into ^report(65).",
+ "next_ticket": 880,
+ "current_ticket": 879,
+ "current_note": "12:39: ^ticket(879) Gnome world 0.0.129 (dig drum fills) pushed, CI running; ^ticket(873) the speed run's third run on GitHub.",
  "closed_tickets": [
   {
    "id": 878,
@@ -33332,7 +33363,7 @@
   863,
   852
  ],
- "current_since": "2026-11-25T12:24-07:00",
+ "current_since": "2026-11-25T12:39-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -33345,8 +33376,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7202,
-  "words": 1580273,
+  "replies": 7204,
+  "words": 1580362,
   "read_hours_est": 110.7,
   "listen_hours_est": 164.6,
   "read_s_avg": 55,
@@ -33723,9 +33754,9 @@
     "chars": 70537
    },
    "2026-11-25": {
-    "replies": 60,
-    "words": 14425,
-    "chars": 81626
+    "replies": 62,
+    "words": 14514,
+    "chars": 82136
    }
   }
  },
