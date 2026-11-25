@@ -25483,121 +25483,6 @@
    ]
   },
   {
-   "id": 860,
-   "area": "Gnome world: N's magic carpet: found in the far right underground gnome house; once taken, the gnome flies on it",
-   "added": "2026-11-25",
-   "opened": "2026-11-25T08:48-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "Gnome world",
-    "hazeljs-examples",
-    "N"
-   ],
-   "source": "Matthew, 2026-11-25, in chat: \"please mint and enqueue a ticket for N, for gnome world --- do not start this now, but only when there is spare time to spend while we wait -- N wants there to be a new item in the world --- a magic carpet. The edges of the carpet have fringe, and the carpet itself has a tile pattern with squares overlapping in complex ways, like old fashioned singles, but coming from the center and moving out to the edges, with 4 way symmetry. Let's use the colors gold (fringe and pattern) and various orange/red/dark red filling colors. The carpet is in the far right underground gnome house. Once obtained, the gnome can fly into the air on it, by enabling it. See gameplay from mario bros 2 for a reference on how the controls work. The carpet floats in midair, stationary, unless the arrow keys are engaged. The carpet responds in a precise way, and is pretty fast going laterally. As it goes, there's an animation that indicates wind rolling over and under it, causing it to flap like a sideways flag.\"",
-   "text": "N's ask, for Gnome world (hazeljs-examples world/). START ONLY IN SPARE TIME, while waiting on CI or Matthew; never ahead of the Hazel queue. (1) The item: a magic carpet in the far right underground gnome house, taken like the world's other items. (2) Its look: gold fringe on the edges; a tile pattern of squares overlapping like old-fashioned shingles, growing from the center out to the edges with 4-way symmetry; gold for the fringe and the pattern, fillings in oranges, reds and dark reds. (3) Flying: once taken, the gnome can enable it and fly up on it. It floats in midair, stationary, until an arrow key is held; it answers precisely, and it is fast sideways. The feel Matthew points to is a classic platformer's carpet (an original carpet and controls, borrowing the mechanic only). (4) The wind: as it moves, an animation of wind rolling over and under it, the carpet flapping like a sideways flag. Done when: in the world, with its save state (snapshot/restore/digest, the world-save check), the speed run and the zine still passing; released as a new version and pushed (hazeljs-examples pushes without asking); try-it link for M and N.",
-   "progress": "11-25 08:48: minted and queued at the end, for spare time only (Matthew: \"do not start this now\"). | 11-25 09:17: Matthew: \"in parallel with publishing npm, (while you wait for me to do npm login etc...), please do the magic carpet ticket for N\". Started.",
-   "log": [
-    {
-     "at": "2026-11-25T08:48-07:00",
-     "from": "matthew",
-     "chars": 1004,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T09:05-07:00",
-     "from": "claude",
-     "chars": 990,
-     "asks": false,
-     "words": 163,
-     "read_s": 41,
-     "listen_s": 61,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T09:06-07:00",
-     "from": "matthew",
-     "chars": 78,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T09:08-07:00",
-     "from": "claude",
-     "chars": 632,
-     "asks": false,
-     "words": 106,
-     "read_s": 27,
-     "listen_s": 40,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T09:11-07:00",
-     "from": "matthew",
-     "chars": 114,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T09:13-07:00",
-     "from": "claude",
-     "chars": 157,
-     "asks": false,
-     "words": 25,
-     "read_s": 6,
-     "listen_s": 9,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T09:26-07:00",
-     "from": "claude",
-     "chars": 1918,
-     "asks": false,
-     "words": 335,
-     "read_s": 84,
-     "listen_s": 126,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T09:27-07:00",
-     "from": "matthew",
-     "chars": 234,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T09:27-07:00",
-     "from": "matthew",
-     "chars": 145,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T09:27-07:00",
-     "from": "matthew",
-     "chars": 110,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T09:28-07:00",
-     "from": "matthew",
-     "chars": 93,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 861,
    "area": "Gnome world: more of its game logic into Hazel, piece by piece, with a migration plan in ^report(64), each piece measured before and after",
    "added": "2026-11-25",
@@ -25613,7 +25498,7 @@
    ],
    "source": "Matthew, 2026-11-25, in chat: \"Next, once magic carpet is released (for him to test on ipad), please move on to this new ticket: * More and more of gnome world's game logic into hazel, from JS. * Suggest a migration plan, where we work piece by piece. We have a report about this topic already. Let's revise and amend that document as we work. * Suggest the first piece to migrate, and without waiting for me, do it, and measure the performance difference pre/post migration.\"",
    "text": "After ^ticket(860) (N's magic carpet) is released. (1) A migration plan, piece by piece, in ^report(64) (Gnome World: Which Parts Are Hazel), revised and amended as the work goes. (2) The first piece, suggested and done without waiting for Matthew, its performance measured before and after (the step's time, the frame's time, on the laptop and on GitHub). (3) Released (hazeljs-examples pushes without asking), with the world-save check and the zine passing.",
-   "progress": "11-25 09:17: minted; starts when ^ticket(860) is released.",
+   "progress": "11-25 09:17: minted; starts when ^ticket(860) is released. | 11-25 09:46: plan of 8 pieces in ^report(64) #migrate (republished, homepage deaa9917): 1 the carpet's flight, 2 Clover's ride, 3 boulders, 4 pickups, 5 wind, 6 animals' minds, 7 water (needs arrays, ^ticket(846)), 8 tree shapes. PIECE 1 DONE, Gnome world 0.0.107 (11ae1ac, live): rules/Fly.hz Fly.step (calls nothing in World; types inline, since 2 preamble types overflowed the page's build stack; least stack 975 KB with or without Fly); flyJS kept as fallback (?jsfly=1) and reference; node/fly-check.mjs 20,000 steps all same, now in the world save check on GitHub. Measured: JS 0.269 vs Hazel 1.508 us/step (Node, laptop; 5.6x), GitHub runner 0.214 vs 1.252 (5.8x), page 0.333 vs 2.567 (7.7x); 0.009% of a frame. Next: piece 2, Clover's ride.",
    "log": [
     {
      "at": "2026-11-25T09:17-07:00",
@@ -25626,9 +25511,19 @@
   }
  ],
  "next_ticket": 862,
- "current_ticket": 860,
- "current_note": "09:17: ^ticket(860): N's magic carpet in Gnome world; npm 0.0.14 waiting on hazeljs's full tests, then Matthew's sign-in",
+ "current_ticket": 861,
+ "current_note": "09:46: ^ticket(861): piece 1 done (Fly.step, 0.0.107), plan in ^report(64); npm 0.0.14 waits on Matthew's sign-in",
  "closed_tickets": [
+  {
+   "id": 860,
+   "area": "Gnome world: N's magic carpet: found in the far right underground gnome house; once taken, the gnome flies on it",
+   "added": "2026-11-25",
+   "text": "N's ask, for Gnome world (hazeljs-examples world/). START ONLY IN SPARE TIME, while waiting on CI or Matthew; never ahead of the Hazel queue. (1) The item: a magic carpet in the far right underground…",
+   "source": "Matthew, 2026-11-25, in chat: \"please mint and enqueue a ticket for N, for gnome world --- do not start this now, but…",
+   "status": "done",
+   "closed": "2026-11-25",
+   "outcome": "Gnome world 0.0.106 live (hazeljs-examples 7f12cb7): N's magic carpet in the hamlet's farthest room; C or 🧞 flies it (floats still, eases to 14 tiles/s across, 9 up/down, stops at…"
+  },
   {
    "id": 856,
    "area": "hazel-jit: == against a number, string or boolean written out compiled as ===",
@@ -32847,7 +32742,6 @@
   }
  ],
  "queue": [
-  860,
   861,
   853,
   858,
@@ -32895,7 +32789,7 @@
   708,
   700
  ],
- "current_since": "2026-11-25T09:17-07:00",
+ "current_since": "2026-11-25T09:46-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -33630,6 +33524,6 @@
    "parked": "2026-11-06 09:14: Matthew: \"no other servers required now. localports is just that for now.\""
   }
  ],
- "current_waiting": "09:23: npm publish of hazeljs 0.0.14 waits in the terminal tab \"npm publish 0.0.14\": press Enter, sign in with your key; it publishes once the install and verify checks pass. Also: options unboxed (^ticket(858)), go on or stop?",
+ "current_waiting": "09:46: npm publish of hazeljs 0.0.14 waits in the terminal tab \"npm publish 0.0.14\" (checks green): press Enter there and sign in with your key. Also: options unboxed (^ticket(858)), go on or stop?",
  "closed_tickets_are": "summaries for the hover cards; the full records are in dashboard-data/closed/<YYYY-MM>.json (dashboard/data_whole.py joins them)"
 }
