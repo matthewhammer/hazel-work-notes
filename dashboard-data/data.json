@@ -25292,7 +25292,7 @@
    ],
    "source": "Matthew, 2026-11-25 ~07:4x, in chat, on ^report(65): \"for the stuff filed as \\\"not yet\\\" --- let's do that work today: let's work on turning tail calls into loops next. followed by passing function arguments as JS arguments. Unboxing options is least important, but would also be nice.\"",
    "text": "The day's plan, each step its own ticket (Matthew, 2026-11-25: \"please document our plan for the day as a ticket, or several that link to each other.\"): (1) a recursive function's self tail calls as loops: DONE, merged (hazel-jit 43828037c9, hazeljs 4cbf7483bf); (2) a named function's tuple parts as JS arguments: DONE, merged (the same); with (1), the games take 0.70 of the jit's time; (3) ^ticket(854) constructors without arguments made once; (4) ^ticket(855) a module's members by name; (5) ^ticket(856) == against a literal as ===; (6) ^ticket(857) the cost of exact Ints and of the step count, each measured; (7) ^ticket(858) options unboxed, last, a decision first; alongside: ^ticket(859) #2859's description, iterated in ^report(65) and posted on Matthew's word. Steps 3 to 5 are one wave on trial/853-jit-more, each its own commit and its own package build, timed together on the games (bench/853-more) and merged together on Matthew's word. Also waiting today: the npm publish of hazeljs 0.0.13 (^ticket(847)), in the terminal tab \"npm publish 0.0.13\". https://matthewhammer.org/hazel/reports/065/#left",
-   "progress": "11-25 07:47: opened; reading HazelJit.re (exp_inner, func, FixF) at 9ec865976d. | 11-25 08:03: trial/853-jit-loops-args (worktree ~/hazel-853, off hazel-jit 9ec865976d): 50b70d5a40 self tail calls as for (;;) loops (FixF's function compiled with ~self; tail() writes the body as statements; vars declared per pass), 43828037c9 a named function of a tuple pattern gets a direct form $d (parts as JS params; known calls fv.$d(a, b), unknown $R.c2..c6; wrapper keeps the 851 guard); header comment fixed (records as objects). Fast checks green on both (CI 45638453708, 45639629934; full tests running). Package twin trial/853-pkg (6d041e9769 = hazeljs + trial) deployed. Games bench: matthewhammer/hazeljs-examples bench/853 run 45640411958 (base 0.0.13, trial, base again). Petri (report 046's rule, laptop, 5 runs, median us/call): ReScript 0.51, Melange 0.57, JS by hand 0.83, hazel-jit base 2.97 (046 on 11-07: 1.59), trial 2.00 (0.67x base), same end state. Remaining costs seen in the compiled code: $R.eq for i == 0, $R.isub exact Ints, fuel per pass, None allocated each time, module members read with guards per call. | 11-25 08:09: games (bench/853, run 45640411958, 14 games, one runner each, base/trial/base): trial 0.70 of base's jit time (gm), best Gnome dig 0.50, Bricks 0.55, Star wave 0.59, Go 0.63; least Snake 0.90, Checkers 0.86, Solitaire 0.86; noise base2/base 0.95 (0.76-1.22), AOT same file 1.01; every answer same. Petri split (laptop, 5 rounds): base 2.78, loops alone 2.88 (no gain: 4-long lists), both 1.95 us. Sweep on the trial: 289 checks, 234 compiled, 211 agreed, 0 differ. ^report(65) #today/#left published (reports a7b7549, homepage abf7d077). Options: none of the 14 games uses Some/None (only Petri's pick), so unboxing would not show on the games and changes pages' shapes: a decision for Matthew. Waiting: full tests (CI 45639629934), split bench (bench/853-split run 45641693384). | 11-25 ~08:3x: Matthew: \"Yes, merge it\", then on ^report(65) #left: \"let's keep going, skipping 1 (unboxed options) until all others are done. Priority is: constructions without arguments..., guarded access of modules, == vs ===, measure cost of exact Ints and step counts, individually. then, finally, unboxed options.\" 11-25 08:32: full tests green on 43828037c9 (CI 45639629934) and the twin (45639794672); MERGED: hazel-jit fast-forwarded to 43828037c9, hazeljs merges it (4cbf7483bf, tree = trial/853-pkg 6d041e9769); CI running on both (45645553201, 45645642135). Next wave on trial/853-jit-more (~/hazel-853b): ae29353ff0 constructors without arguments as one const each; 9dd8fce210 a module's members (a let bound to a record of variables) read as their own variables; 0ce95a2e8f == against a literal as ===; 6801508ed4 tests. Twins trial/853-pkg-c1/c2/c3 and bench-only noint (Ints plain JS) / nostep (no fuel step) deployed; games bench matthewhammer/hazeljs-examples bench/853-more run 45645748545 (six builds, one runner a game). Petri (laptop, 5 rounds, us): base 1.97, +consts 2.00, +modules 2.22 (noisy), +=== 1.77 (0.90), Ints plain 1.64 (0.83), no steps 1.40 (0.71). ^report(65) republished (homepage + reports). | 11-25 08:33: the plan written as tickets ^ticket(854) to ^ticket(859), each linking back here and to its neighbours, and listed in ^report(65) #left. | 11-25 08:39: Matthew: #compare's now column = hazel-jit as merged (done, ^report(65) republished). Steps 3-6 timed (^ticket(854)-^ticket(857)); next ^ticket(858) options unboxed, a trial. | 11-25 08:50: ^report(65) #crossing (Matthew's ask: conversion costs over time, ways to mitigate; the Petri rule through the jit converts 71% of a call, 4.8 us both builds). hazeljs merge CI green (45645642135). N's magic carpet minted as ^ticket(860), spare time only. | 11-25 09:23: four ways (^report(65) #fourway, bench/4way run 45650465391): now 4,211x the interpreter, 2.9x hazel-jit of 11-19, 4.4x plain JS. Package 0.0.14 built (hazeljs 2c4a61560f, Build 45650627110; hazel-lib.js identical to the deploy, SHA-256 1aca6509...), README rewritten (four ways first; Gnome world and listings as the examples), pushed (hazeljs editor-in-package f56faf9); publish tab open, gated on Install (45653182649) and Verify (45653182586). | 11-25 10:11: the earlier session was archived at 10:08, mid-step; its terminal tab \"npm publish 0.0.14\" closed with it. npm still has hazeljs 0.0.8. 0.0.14 is built and pushed (hazeljs f56faf9); publishing needs a fresh sign-in tab when Matthew is at the keyboard.",
+   "progress": "11-25 07:47: opened; reading HazelJit.re (exp_inner, func, FixF) at 9ec865976d. | 11-25 08:03: trial/853-jit-loops-args (worktree ~/hazel-853, off hazel-jit 9ec865976d): 50b70d5a40 self tail calls as for (;;) loops (FixF's function compiled with ~self; tail() writes the body as statements; vars declared per pass), 43828037c9 a named function of a tuple pattern gets a direct form $d (parts as JS params; known calls fv.$d(a, b), unknown $R.c2..c6; wrapper keeps the 851 guard); header comment fixed (records as objects). Fast checks green on both (CI 45638453708, 45639629934; full tests running). Package twin trial/853-pkg (6d041e9769 = hazeljs + trial) deployed. Games bench: matthewhammer/hazeljs-examples bench/853 run 45640411958 (base 0.0.13, trial, base again). Petri (report 046's rule, laptop, 5 runs, median us/call): ReScript 0.51, Melange 0.57, JS by hand 0.83, hazel-jit base 2.97 (046 on 11-07: 1.59), trial 2.00 (0.67x base), same end state. Remaining costs seen in the compiled code: $R.eq for i == 0, $R.isub exact Ints, fuel per pass, None allocated each time, module members read with guards per call. | 11-25 08:09: games (bench/853, run 45640411958, 14 games, one runner each, base/trial/base): trial 0.70 of base's jit time (gm), best Gnome dig 0.50, Bricks 0.55, Star wave 0.59, Go 0.63; least Snake 0.90, Checkers 0.86, Solitaire 0.86; noise base2/base 0.95 (0.76-1.22), AOT same file 1.01; every answer same. Petri split (laptop, 5 rounds): base 2.78, loops alone 2.88 (no gain: 4-long lists), both 1.95 us. Sweep on the trial: 289 checks, 234 compiled, 211 agreed, 0 differ. ^report(65) #today/#left published (reports a7b7549, homepage abf7d077). Options: none of the 14 games uses Some/None (only Petri's pick), so unboxing would not show on the games and changes pages' shapes: a decision for Matthew. Waiting: full tests (CI 45639629934), split bench (bench/853-split run 45641693384). | 11-25 ~08:3x: Matthew: \"Yes, merge it\", then on ^report(65) #left: \"let's keep going, skipping 1 (unboxed options) until all others are done. Priority is: constructions without arguments..., guarded access of modules, == vs ===, measure cost of exact Ints and step counts, individually. then, finally, unboxed options.\" 11-25 08:32: full tests green on 43828037c9 (CI 45639629934) and the twin (45639794672); MERGED: hazel-jit fast-forwarded to 43828037c9, hazeljs merges it (4cbf7483bf, tree = trial/853-pkg 6d041e9769); CI running on both (45645553201, 45645642135). Next wave on trial/853-jit-more (~/hazel-853b): ae29353ff0 constructors without arguments as one const each; 9dd8fce210 a module's members (a let bound to a record of variables) read as their own variables; 0ce95a2e8f == against a literal as ===; 6801508ed4 tests. Twins trial/853-pkg-c1/c2/c3 and bench-only noint (Ints plain JS) / nostep (no fuel step) deployed; games bench matthewhammer/hazeljs-examples bench/853-more run 45645748545 (six builds, one runner a game). Petri (laptop, 5 rounds, us): base 1.97, +consts 2.00, +modules 2.22 (noisy), +=== 1.77 (0.90), Ints plain 1.64 (0.83), no steps 1.40 (0.71). ^report(65) republished (homepage + reports). | 11-25 08:33: the plan written as tickets ^ticket(854) to ^ticket(859), each linking back here and to its neighbours, and listed in ^report(65) #left. | 11-25 08:39: Matthew: #compare's now column = hazel-jit as merged (done, ^report(65) republished). Steps 3-6 timed (^ticket(854)-^ticket(857)); next ^ticket(858) options unboxed, a trial. | 11-25 08:50: ^report(65) #crossing (Matthew's ask: conversion costs over time, ways to mitigate; the Petri rule through the jit converts 71% of a call, 4.8 us both builds). hazeljs merge CI green (45645642135). N's magic carpet minted as ^ticket(860), spare time only. | 11-25 09:23: four ways (^report(65) #fourway, bench/4way run 45650465391): now 4,211x the interpreter, 2.9x hazel-jit of 11-19, 4.4x plain JS. Package 0.0.14 built (hazeljs 2c4a61560f, Build 45650627110; hazel-lib.js identical to the deploy, SHA-256 1aca6509...), README rewritten (four ways first; Gnome world and listings as the examples), pushed (hazeljs editor-in-package f56faf9); publish tab open, gated on Install (45653182649) and Verify (45653182586). | 11-25 10:11: the earlier session was archived at 10:08, mid-step; its terminal tab \"npm publish 0.0.14\" closed with it. npm still has hazeljs 0.0.8. 0.0.14 is built and pushed (hazeljs f56faf9); publishing needs a fresh sign-in tab when Matthew is at the keyboard. | 11-25 10:21: plain JS for #fourway's games without it (Matthew: \"Why don't we have plain JS data for the later part of the table? Can we get it?\"): 4 of 9 written and pushed, each checked equal to compiled.js by node/compare-compiled.mjs --plain and at every step of many games: Light trails cf739e5 (264 answers), Snake d2d0a29 (11,020), Bricks 82ce1eb (288,048), Downhill e27d1fd (466,500), 0 differ. Left: Mahjong solitaire, Pinball, Star wave, Butterfly garden, Gnome dig; then rerun bench/4way with them and republish ^report(65) #fourway. Parked for ^ticket(863) (Matthew's controller ask).",
    "log": [
     {
      "at": "2026-11-25T07:39-07:00",
@@ -25537,13 +25537,48 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-25T10:07-07:00",
+     "from": "claude",
+     "chars": 3848,
+     "asks": false,
+     "words": 708,
+     "read_s": 178,
+     "listen_s": 266,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-25T10:08-07:00",
+     "from": "matthew",
+     "chars": 32,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 863,
+   "area": "Gnome world 0.0.112: a game controller 🎮 (for N's Linux laptop), and its buttons set as Dress Up sets them (🎓 teach, 🎯 set)",
+   "added": "2026-11-25",
+   "opened": "2026-11-25T10:21-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "Gnome world",
+    "hazeljs-examples",
+    "N"
+   ],
+   "source": "Matthew, 2026-11-25, in chat: \"For gnome world --- We have a Linux laptop that N often uses.  Let's add game controller support (do we have that yet) for the buttons, and a configure controller feature -- see messed up dress up for the game controller configure support.\"",
+   "text": "(1) Game controller support in Gnome world (there was none): the arrows or the left stick move, each action a button. (2) A configure controller feature, after Dress Up's 🎮 Controls tab: 🎓 teach me your controller, 🎯 set an action's button, ↺ the usual buttons, each pad's layout kept by its name. (3) Released (pushes without asking), the world save check passing; tried by N on the Linux laptop.",
+   "progress": "11-25 10:21: 0.0.112 (4843d67) pushed: world/app.js PAD (Gamepad API, polled each frame while one is connected), the usual buttons on a SNES-style pad B jump, Y dash, A dig, X build, L ride, R carpet, select 🔊, start pause, map none; the 🎮 button beside 🗺️ opens the settings dialog (🎓 teach B A X Y L R select start, 🎯 set, ↺ usual, held buttons lit; layouts in localStorage hazeljs-examples/world/pads by the pad's id); 🐞 names the controller. Checked in the pane with a stand-in pad (WorldTest.padPoll, as the hidden pane gives no frames): runs, stick, jump, dash, pause, 🎯, 🎓 on its own numbers, kept and put back, unplugged. Fixed on the way: the dialog's close event did not come in the pane, so Done and Escape now clear the wait themselves. Waiting: the world save check and Pages (runs 45663728455, 45663727975); then N on the Linux laptop with the real controller."
   }
  ],
- "next_ticket": 863,
- "current_ticket": 861,
- "current_note": "10:11: ^ticket(861) piece 1 done (0.0.107); Gnome world since then: 0.0.108 on ^ticket(852), 0.0.109-0.0.111 as ^ticket(862) (save check green). The earlier session was archived at 10:08, mid-step; this one carries on: servers restarted, work notes for 11-24 and 11-25 next, then plain JS for #fourway's 9 games (Light trails begun).",
+ "next_ticket": 864,
+ "current_ticket": 863,
+ "current_note": "10:21: ^ticket(863): Gnome world 0.0.112, a game controller 🎮 and its settings (🎓 teach, 🎯 set), pushed; checks running. Parked: plain JS for #fourway, 4 of 9 done (Light trails, Snake, Bricks, Downhill; each checked equal to compiled.js), 5 left (Mahjong solitaire, Pinball, Star wave, Butterfly garden, Gnome dig); then ^ticket(861) piece 2.",
  "closed_tickets": [
   {
    "id": 862,
@@ -32783,6 +32818,7 @@
   }
  ],
  "queue": [
+  863,
   861,
   853,
   858,
@@ -32830,7 +32866,7 @@
   708,
   700
  ],
- "current_since": "2026-11-25T09:46-07:00",
+ "current_since": "2026-11-25T10:21-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -32843,8 +32879,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7167,
-  "words": 1572307,
+  "replies": 7168,
+  "words": 1572699,
   "read_hours_est": 110.1,
   "listen_hours_est": 163.8,
   "read_s_avg": 55,
@@ -33221,9 +33257,9 @@
     "chars": 70537
    },
    "2026-11-25": {
-    "replies": 25,
-    "words": 6459,
-    "chars": 37440
+    "replies": 26,
+    "words": 6851,
+    "chars": 39712
    }
   }
  },
