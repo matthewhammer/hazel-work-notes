@@ -20082,20 +20082,18 @@
   },
   {
    "id": 769,
-   "area": "hazel-jit: holes across the boundary, a starter project for John on the Hazel team (^report(55))",
+   "area": "hazel-jit: holes, ours now (John is on probes): arguments with holes across the boundary, and compiled code with holes (^report(55)'s design)",
    "added": "2026-11-17T15:29-07:00",
    "opened": "2026-11-17T15:29-07:00",
    "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
+   "tags": [],
    "chips": [
     "hazel",
     "hazel-jit"
    ],
    "source": "Matthew, 2026-11-17 afternoon, in chat, passing on John's message (an undergraduate on the Hazel team, working with Cyrus): \"I was wondering if you had any work that where I could help out. I know in the meeting you were talking about the conversion from holes in hazel to JS was a issue would that be something you would want me to look into?\" Then: \"Yes, write the brief\".",
    "text": "<b>A first hazel-jit project for John: let a value with a hole cross into compiled code and out again unopened.</b> In mixed mode (^ticket(766)) a call whose argument holds a hole anywhere falls back to the interpreter whole, as to_js cannot convert a hole. The idea: an opaque JS value standing for the hole, its term kept in a table, given back exactly by of_js; any operation that would open it stops the run (Runtime.indet) and the call falls back. Keeps the 11-13 rule that no code with a hole is compiled (^ticket(760)). Brief: ^report(55) (https://matthewhammer.org/hazel/reports/055/): where compiled code looks inside a value, three places for the checks (lean: a second, checked version used only when a hole arrives), a first step, files to read on build 49, four questions to settle with Cyrus, and a warm-up on dev (hazelgrove/hazel#2831).",
-   "progress": "11-17 15:29: minted; ^report(55) published as work in progress, and ^report(54) #next-who lists it. Waits on Matthew and Cyrus: the four questions (above all, whether it lives on the prototype branch), then on John.",
+   "progress": "11-17 15:29: minted; ^report(55) published as work in progress, and ^report(54) #next-who lists it. Waits on Matthew and Cyrus: the four questions (above all, whether it lives on the prototype branch), then on John. | 11-25: Matthew: \"John is now focused on probes, not holes. Let's work on that support next --- arguments with holes. JIT code with holes.\" Unblocked and ours; his words lift the 11-13 rule that no code with a hole is compiled. Plan: (1) arguments with holes: opaque values across to_js/of_js, a checked compiled version chosen when an argument holds a hole; (2) holes in compiled code: a hole compiles to an opaque value with its id and the variables in scope, so of_js gives the interpreter's hole with its environment; opening one stops the run and the call falls back. On a trial branch off hazel-jit, checked in CI.",
    "log": [
     {
      "at": "2026-11-17T15:19-07:00",
@@ -25995,8 +25993,8 @@
   }
  ],
  "next_ticket": 885,
- "current_ticket": 884,
- "current_note": "14:17: Gnome world 0.0.139 live: 🧩 Load-merge for N's 12:40 save. Waiting on N trying it with his own save.",
+ "current_ticket": 769,
+ "current_note": "14:59: hazel-jit holes, ours now: reading ^report(55)'s design and the jit's hole limits; then arguments with holes, then compiled code with holes.",
  "closed_tickets": [
   {
    "id": 861,
@@ -33473,7 +33471,7 @@
   863,
   852
  ],
- "current_since": "2026-11-25T14:17-07:00",
+ "current_since": "2026-11-25T14:59-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -33486,10 +33484,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7222,
-  "words": 1586941,
-  "read_hours_est": 111.1,
-  "listen_hours_est": 165.3,
+  "replies": 7225,
+  "words": 1587525,
+  "read_hours_est": 111.2,
+  "listen_hours_est": 165.4,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -33864,9 +33862,9 @@
     "chars": 70537
    },
    "2026-11-25": {
-    "replies": 80,
-    "words": 21093,
-    "chars": 117703
+    "replies": 83,
+    "words": 21677,
+    "chars": 121276
    }
   }
  },
