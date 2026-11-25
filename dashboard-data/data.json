@@ -25842,12 +25842,42 @@
    ],
    "source": "Matthew, 2026-11-25, in chat: \"after we finish adding features in flight, please time a speedrun for a 3 way comparison: * interpreter (to some limit; no more than 5 minutes total) * hazel jit, as of today * plain JS. please include in our report with the other 4 way comparison. The older hazel jit versions are not important  to include.\"",
    "text": "(1) Gnome world's rules in plain JS (World.step, the beavers'), the same answers. (2) A harness on GitHub: the speed run to its end with hazel-jit and with plain JS, and with the interpreter for five minutes at most; the time in all and in the rules; the runs compared. (3) Into ^report(65) beside #fourway, republished.",
-   "progress": "12:02: world/plain.js written (World.step with tile, slope_at, slide_vx, dig_ahead, finish; beaver; dig_steps; water_row); in the pane, beside Hazel's on 6,000 steps of the speed run: 6,000 World.step and 5,000 beaver answers, none different. Next: the harness and its workflow."
+   "progress": "12:02: world/plain.js written (World.step with tile, slope_at, slide_vx, dig_ahead, finish; beaver; dig_steps; water_row); in the pane, beside Hazel's on 6,000 steps of the speed run: 6,000 World.step and 5,000 beaver answers, none different. Next: the harness and its workflow.",
+   "log": [
+    {
+     "at": "2026-11-25T11:51-07:00",
+     "from": "claude",
+     "chars": 116,
+     "asks": false,
+     "words": 19,
+     "read_s": 5,
+     "listen_s": 7,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    }
+   ]
+  },
+  {
+   "id": 874,
+   "area": "Gnome world 0.0.123: the cat tail flaps by itself with jump held, faster with the running shoes; one carrot, just right of Clover",
+   "added": "2026-11-25",
+   "opened": "2026-11-25T12:04-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "Gnome world",
+    "hazeljs-examples",
+    "N"
+   ],
+   "source": "Matthew, 2026-11-25, in chat: \"if we hold up (jump) while using cat tail, let's do an auto-repeat that's faster when the running shoes\"; \"let's have only one carrot  on the ground,  just to the right of the clover the rabbit. instead of three in row to the  left.\"",
+   "text": "(1) Up held in the air with the tail: flaps by itself, faster with the shoes. (2) One carrot, right of Clover; old saves still load. (3) Released.",
+   "progress": "12:05: 0.0.123 (5d70069) pushed: Tail.hz rep (every 24 steps, 12 with the shoes), tailJS the same at 20,000; ↑ held 4 s: 14.96 tiles without shoes (3.74/s), 17.74 with (4.43/s). One carrot two right of Clover (46.5 by 44.5); SAVE_V 7, a v6 save's garden carrots mapped (a real 0.0.122 save loads right, round trip the same); the booklet's words. CI running."
   }
  ],
- "next_ticket": 874,
- "current_ticket": 873,
- "current_note": "12:02: ^ticket(872) closed (0.0.122 live: Clover no longer painted over in holes and tunnels). Now ^ticket(873): the speed run timed three ways for ^report(65); plain.js checked, the harness next.",
+ "next_ticket": 875,
+ "current_ticket": 874,
+ "current_note": "12:05: ^ticket(874) Gnome world 0.0.123 (the tail flaps by itself with jump held; one carrot) pushed, CI running. Then ^ticket(873), the speed run timed three ways.",
  "closed_tickets": [
   {
    "id": 872,
@@ -33225,7 +33255,7 @@
   863,
   852
  ],
- "current_since": "2026-11-25T12:02-07:00",
+ "current_since": "2026-11-25T12:05-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -33238,8 +33268,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7194,
-  "words": 1578848,
+  "replies": 7197,
+  "words": 1578968,
   "read_hours_est": 110.6,
   "listen_hours_est": 164.5,
   "read_s_avg": 55,
@@ -33616,9 +33646,9 @@
     "chars": 70537
    },
    "2026-11-25": {
-    "replies": 52,
-    "words": 13000,
-    "chars": 73906
+    "replies": 55,
+    "words": 13120,
+    "chars": 74549
    }
   }
  },
