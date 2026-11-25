@@ -1,5 +1,151 @@
 [
  {
+  "id": 873,
+  "area": "^report(65): Gnome world's speed run timed three ways, the interpreter (5 minutes at most), hazel-jit as of today, plain JS",
+  "added": "2026-11-25",
+  "opened": "2026-11-25T11:52-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "Gnome world",
+   "hazeljs-examples",
+   "report 65",
+   "perf"
+  ],
+  "source": "Matthew, 2026-11-25, in chat: \"after we finish adding features in flight, please time a speedrun for a 3 way comparison: * interpreter (to some limit; no more than 5 minutes total) * hazel jit, as of today * plain JS. please include in our report with the other 4 way comparison. The older hazel jit versions are not important  to include.\"",
+  "text": "(1) Gnome world's rules in plain JS (World.step, the beavers'), the same answers. (2) A harness on GitHub: the speed run to its end with hazel-jit and with plain JS, and with the interpreter for five minutes at most; the time in all and in the rules; the runs compared. (3) Into ^report(65) beside #fourway, republished.",
+  "progress": "12:02: world/plain.js written (World.step with tile, slope_at, slide_vx, dig_ahead, finish; beaver; dig_steps; water_row); in the pane, beside Hazel's on 6,000 steps of the speed run: 6,000 World.step and 5,000 beaver answers, none different. Next: the harness and its workflow. 12:28: first run on GitHub (45683626327): hazel-jit 52,947 steps 79.1 s (rules 0.66 s), plain JS 77.4 s (0.19 s), interpreter 28,000 steps in 235 s (rules 192 s); World.step alone 3.26 / 0.71 / 5,992 µs, every answer the same; but the runs parted at the first fingerprint: restartNow left the frame count, rain, dam, wind as each page's own frames had them. Harness fixed (278f464), second run 45685368873 going; ^report(65)'s #speedrun section written.",
+  "log": [
+   {
+    "at": "2026-11-25T11:51-07:00",
+    "from": "claude",
+    "chars": 116,
+    "asks": false,
+    "words": 19,
+    "read_s": 5,
+    "listen_s": 7,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T11:54-07:00",
+    "from": "matthew",
+    "chars": 312,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T11:56-07:00",
+    "from": "claude",
+    "chars": 438,
+    "asks": false,
+    "words": 83,
+    "read_s": 21,
+    "listen_s": 31,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T12:16-07:00",
+    "from": "claude",
+    "chars": 948,
+    "asks": false,
+    "words": 176,
+    "read_s": 44,
+    "listen_s": 66,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T12:18-07:00",
+    "from": "claude",
+    "chars": 604,
+    "asks": false,
+    "words": 114,
+    "read_s": 29,
+    "listen_s": 43,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T12:29-07:00",
+    "from": "claude",
+    "chars": 1784,
+    "asks": false,
+    "words": 331,
+    "read_s": 83,
+    "listen_s": 124,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T12:43-07:00",
+    "from": "claude",
+    "chars": 2126,
+    "asks": false,
+    "words": 392,
+    "read_s": 99,
+    "listen_s": 147,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-25",
+  "closed_at": "2026-11-25T13:07-07:00",
+  "outcome": "^report(65) #speedrun published (matthewhammer.org/hazel/reports/065/#speedrun; hazel-perf-report and the site pushed): Gnome world's speed run timed three ways on GitHub (hazeljs-examples node/world-speedrun.mjs, run 45689859451, Gnome world 0.0.132): 44,933 steps in 25.5 s with hazel-jit now, 24.7 s in plain JS, about 4.2 minutes interpreted (42,000 steps in its 228 s); the rules 1.3% of the run with hazel-jit; World.step alone 2.58, 0.51 and 4,562 µs, every answer the same; plain JS the same world as hazel-jit at all 23 fingerprints (the harness's pages made alike: clocks, view, and 0.0.132's water direction), the interpreter's world parting by design (its roots).",
+  "metrics": {
+   "open_minutes": 75,
+   "matthew_messages": 1,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 6328,
+   "tokens_est": 1582,
+   "sync_minutes_est": 7.0,
+   "replies": 6,
+   "claude_words": 1115,
+   "read_minutes_est": 4.7,
+   "listen_minutes_est": 7.0,
+   "read_s_avg": 47,
+   "listen_s_avg": 70,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
+  "id": 881,
+  "area": "Gnome world 0.0.133: ⚡ the rules in plain JavaScript (a switch under Advanced, kept, in saves); ⏱ times both ways",
+  "added": "2026-11-25",
+  "opened": "2026-11-25T13:00-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "Gnome world",
+   "hazeljs-examples",
+   "N",
+   "perf"
+  ],
+  "source": "Matthew, 2026-11-25, in chat: \"on the kids' machines, I'd like a mode under advanced that uses plain JS for everything, to give them the best possible performance when it's challenged. I don't want that to be the default, but  I want it to be saved in the .json  save files once they enable it.\"; \"when we do the timing, let's time both plain JS and hazel, and report back  both\"",
+  "text": "(1) ⚡ a switch under Advanced: the rules in plain JS. (2) Not the default; kept. (3) In save files; a save turns it on. (4) ⏱ times both ways. (5) Released.",
+  "progress": "13:07: 0.0.133 (2006356) live: S.rules kept; H() gives plain.js's step, beaver, water_row and the page's flyJS and tailJS; the status line says so; saves write rules: plain when on, a load turns it on. ⏱ both ways from the same fresh world; on this laptop 0.598 ms a step with Hazel's rules, 0.576 with plain JS.",
+  "closed": "2026-11-25",
+  "closed_at": "2026-11-25T13:07-07:00",
+  "outcome": "Gnome world 0.0.133 live (hazeljs-examples 2006356; world save check green, run 45691031633; Pages green; app.js, index.html, plain.js, version.json, sw.js match the commit): ⚡ under Advanced, the rules the game calls as it plays in plain JavaScript, off unless chosen, kept on the device, written into saves made with it on (rules: plain) and turned on by loading them; ⏱ times both ways (here 0.598 ms a step with Hazel's rules, 0.576 with plain JS).",
+  "metrics": {
+   "open_minutes": 7,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 880,
   "area": "Gnome world 0.0.130 to 0.0.132: a smarter speed run (the things' order planned, dashing); 🕳️ dig everything; ⏱ the speed run measured; the water half the time; a world made the same step for step",
   "added": "2026-11-25",

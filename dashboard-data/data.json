@@ -25826,110 +25826,32 @@
      "note": "from the transcripts"
     }
    ]
-  },
+  }
+ ],
+ "next_ticket": 882,
+ "current_ticket": 861,
+ "current_note": "13:07: ^ticket(873) closed (^report(65) #speedrun published) and ^ticket(881) closed (0.0.133 live: ⚡ plain JS rules, ⏱ both ways). Next: ^ticket(861) piece 2, Clover's ride in Hazel; ⏱ on N's laptop when Matthew can.",
+ "closed_tickets": [
   {
    "id": 873,
    "area": "^report(65): Gnome world's speed run timed three ways, the interpreter (5 minutes at most), hazel-jit as of today, plain JS",
    "added": "2026-11-25",
-   "opened": "2026-11-25T11:52-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "Gnome world",
-    "hazeljs-examples",
-    "report 65",
-    "perf"
-   ],
-   "source": "Matthew, 2026-11-25, in chat: \"after we finish adding features in flight, please time a speedrun for a 3 way comparison: * interpreter (to some limit; no more than 5 minutes total) * hazel jit, as of today * plain JS. please include in our report with the other 4 way comparison. The older hazel jit versions are not important  to include.\"",
-   "text": "(1) Gnome world's rules in plain JS (World.step, the beavers'), the same answers. (2) A harness on GitHub: the speed run to its end with hazel-jit and with plain JS, and with the interpreter for five minutes at most; the time in all and in the rules; the runs compared. (3) Into ^report(65) beside #fourway, republished.",
-   "progress": "12:02: world/plain.js written (World.step with tile, slope_at, slide_vx, dig_ahead, finish; beaver; dig_steps; water_row); in the pane, beside Hazel's on 6,000 steps of the speed run: 6,000 World.step and 5,000 beaver answers, none different. Next: the harness and its workflow. 12:28: first run on GitHub (45683626327): hazel-jit 52,947 steps 79.1 s (rules 0.66 s), plain JS 77.4 s (0.19 s), interpreter 28,000 steps in 235 s (rules 192 s); World.step alone 3.26 / 0.71 / 5,992 µs, every answer the same; but the runs parted at the first fingerprint: restartNow left the frame count, rain, dam, wind as each page's own frames had them. Harness fixed (278f464), second run 45685368873 going; ^report(65)'s #speedrun section written.",
-   "log": [
-    {
-     "at": "2026-11-25T11:51-07:00",
-     "from": "claude",
-     "chars": 116,
-     "asks": false,
-     "words": 19,
-     "read_s": 5,
-     "listen_s": 7,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T11:54-07:00",
-     "from": "matthew",
-     "chars": 312,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T11:56-07:00",
-     "from": "claude",
-     "chars": 438,
-     "asks": false,
-     "words": 83,
-     "read_s": 21,
-     "listen_s": 31,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T12:16-07:00",
-     "from": "claude",
-     "chars": 948,
-     "asks": false,
-     "words": 176,
-     "read_s": 44,
-     "listen_s": 66,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T12:18-07:00",
-     "from": "claude",
-     "chars": 604,
-     "asks": false,
-     "words": 114,
-     "read_s": 29,
-     "listen_s": 43,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T12:29-07:00",
-     "from": "claude",
-     "chars": 1784,
-     "asks": false,
-     "words": 331,
-     "read_s": 83,
-     "listen_s": 124,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T12:43-07:00",
-     "from": "claude",
-     "chars": 2126,
-     "asks": false,
-     "words": 392,
-     "read_s": 99,
-     "listen_s": 147,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
-  }
- ],
- "next_ticket": 881,
- "current_ticket": 873,
- "current_note": "12:56: ^ticket(880) closed (0.0.132 live). Now ^ticket(873): timing run 5 (45689859451) on GitHub, its pages the same world step for step now; then ^report(65).",
- "closed_tickets": [
+   "text": "(1) Gnome world's rules in plain JS (World.step, the beavers'), the same answers. (2) A harness on GitHub: the speed run to its end with hazel-jit and with plain JS, and with the interpreter for five…",
+   "source": "Matthew, 2026-11-25, in chat: \"after we finish adding features in flight, please time a speedrun for a 3 way…",
+   "status": "done",
+   "closed": "2026-11-25",
+   "outcome": "^report(65) #speedrun published (matthewhammer.org/hazel/reports/065/#speedrun; hazel-perf-report and the site pushed): Gnome world's speed run timed three ways on GitHub…"
+  },
+  {
+   "id": 881,
+   "area": "Gnome world 0.0.133: ⚡ the rules in plain JavaScript (a switch under Advanced, kept, in saves); ⏱ times both ways",
+   "added": "2026-11-25",
+   "text": "(1) ⚡ a switch under Advanced: the rules in plain JS. (2) Not the default; kept. (3) In save files; a save turns it on. (4) ⏱ times both ways. (5) Released.",
+   "source": "Matthew, 2026-11-25, in chat: \"on the kids' machines, I'd like a mode under advanced that uses plain JS for everything,…",
+   "status": "done",
+   "closed": "2026-11-25",
+   "outcome": "Gnome world 0.0.133 live (hazeljs-examples 2006356; world save check green, run 45691031633; Pages green; app.js, index.html, plain.js, version.json, sw.js match the commit): ⚡…"
+  },
   {
    "id": 880,
    "area": "Gnome world 0.0.130 to 0.0.132: a smarter speed run (the things' order planned, dashing); 🕳️ dig everything; ⏱ the speed run measured; the water half the time; a world made the same step for step",
@@ -33376,7 +33298,7 @@
   863,
   852
  ],
- "current_since": "2026-11-25T12:56-07:00",
+ "current_since": "2026-11-25T13:07-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
