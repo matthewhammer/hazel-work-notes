@@ -25259,11 +25259,35 @@
     }
    ],
    "waiting": "Try Gnome world 0.0.105 on the iPad (reload; ⚙️ Advanced shows 0.0.105); if the view goes wrong again, ⚙️ Advanced → 🐞 write down what the game sees → 📋 copy → paste into the etherpad. https://matthewhammer.org/hazeljs-examples/world/"
+  },
+  {
+   "id": 853,
+   "area": "hazel-jit: its output as ReScript and Melange write theirs: tail calls as loops, a tuple's parts as JS arguments, options unboxed",
+   "added": "2026-11-25",
+   "opened": "2026-11-25T07:47-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel-jit",
+    "performance"
+   ],
+   "source": "Matthew, 2026-11-25 ~07:4x, in chat, on ^report(65): \"for the stuff filed as \\\"not yet\\\" --- let's do that work today: let's work on turning tail calls into loops next. followed by passing function arguments as JS arguments. Unboxing options is least important, but would also be nice.\"",
+   "text": "The three changes ^report(65) #compare (from ^report(46) #suggests) lists as not yet, in his order: (1) a function's self tail calls compiled as a loop (for (;;), its variables declared per pass so a closure keeps its pass's values); (2) a function whose parameter is a tuple pattern given its parts as JS arguments where the call knows the function (a direct form beside the one-argument wrapper every other caller uses); (3) options unboxed (Some(t) as t, None as undefined), which changes compiled code's shapes for pages too. On a trial branch off hazel-jit (#2859), checked by CI and the sweep, timed on the games; then merged into hazel-jit and hazeljs (#2857), and ^report(65) updated.",
+   "progress": "11-25 07:47: opened; reading HazelJit.re (exp_inner, func, FixF) at 9ec865976d.",
+   "log": [
+    {
+     "at": "2026-11-25T07:47-07:00",
+     "from": "matthew",
+     "chars": 237,
+     "asks": true,
+     "note": "in chat"
+    }
+   ]
   }
  ],
- "next_ticket": 853,
- "current_ticket": 847,
- "current_note": "07:37: ^ticket(847): 0.0.13 pushed, publish tab waits on the Verify check and Matthew's sign-in; ^report(65) (#2859's description) published WIP",
+ "next_ticket": 854,
+ "current_ticket": 853,
+ "current_note": "07:47: ^ticket(853): hazel-jit's output: tail calls as loops first, on a trial branch off hazel-jit",
  "closed_tickets": [
   {
    "id": 851,
@@ -32443,6 +32467,7 @@
   }
  ],
  "queue": [
+  853,
   847,
   852,
   846,
@@ -32486,7 +32511,7 @@
   708,
   700
  ],
- "current_since": "2026-11-24T13:36-07:00",
+ "current_since": "2026-11-25T07:47-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -33221,6 +33246,6 @@
    "parked": "2026-11-06 09:14: Matthew: \"no other servers required now. localports is just that for now.\""
   }
  ],
- "current_waiting": "07:38: npm publish of hazeljs 0.0.13 waits in the terminal tab \"npm publish 0.0.13\": press Enter there and sign in with your key (both checks green). And ^report(65), #2859's description to iterate on: https://matthewhammer.org/hazel/reports/065/",
+ "current_waiting": "07:47: npm publish of hazeljs 0.0.13 still waits in the terminal tab \"npm publish 0.0.13\": press Enter there and sign in with your key (both checks green).",
  "closed_tickets_are": "summaries for the hover cards; the full records are in dashboard-data/closed/<YYYY-MM>.json (dashboard/data_whole.py joins them)"
 }
