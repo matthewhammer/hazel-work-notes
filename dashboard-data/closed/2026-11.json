@@ -1,5 +1,82 @@
 [
  {
+  "id": 870,
+  "area": "Gnome world 0.0.120: the cat tail flaps at every jump in the air (lift, wave, fire); its ride combo is ▲, not ▼",
+  "added": "2026-11-25",
+  "opened": "2026-11-25T11:52-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "Gnome world",
+   "hazeljs-examples",
+   "N"
+  ],
+  "source": "Matthew, 2026-11-25, in chat: \"the cat tail should be item/on/off + dpad UP\"; \"dpad down is always dig, on the ground, and it overrides our intent.\"; \"also -- the cat tail doesn't seem to permit jumping mid air, like it should (flapping and giving us elevation when we jump while in the air) -- it doesn't wave or shoot fire either as we do that, but it should.\"",
+  "text": "(1) Ride + ▲ for the tail. (2) Every jump in the air a flap: up, the tail waving, on fire. (3) Released.",
+  "progress": "11:57: 0.0.120 (0b0d536) live: Tail.hz, every press of jump in the air flaps (was: only in a flight begun from a full-speed run with the meter full), the lift keeping a faster rise and ↑ let through while rising fast; tailJS the same at 20,000 steps (fly-check, and CI's); ▲ for the tail in the combo and on the ride screen (keys, d-pad, stick). Checked in the pane: full jump 2.07 tiles, a flap at step 2/8/14 gives 2.52/2.94/3.36; ten flaps 8 tiles up by Hazel; waved 12 of 12, on fire; ↑+R, ←+R, →+R as meant.",
+  "closed": "2026-11-25",
+  "closed_at": "2026-11-25T11:57-07:00",
+  "outcome": "Gnome world 0.0.120 live (hazeljs-examples 0b0d536; world save check green with Tail.step the same as tailJS at 20,000 steps; Pages green; app.js, index.html, Tail.hz, version.json, sw.js match the commit): every press of jump in the air flaps the cat tail (up 1.26 tiles, a float after, waving, on fire four seconds), never cutting a jump short; ride + ▲ for the tail, ▲ on the ride screen.",
+  "metrics": {
+   "open_minutes": 5,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
+  "id": 869,
+  "area": "Gnome world 0.0.119: after the speed run, the gnome digs up the whole world (a random walk over chunks, until every tile a digger can dig is dug)",
+  "added": "2026-11-25",
+  "opened": "2026-11-25T11:50-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "Gnome world",
+   "hazeljs-examples",
+   "N"
+  ],
+  "source": "Matthew, 2026-11-25, in chat: \"N and I just watched the full speed run.  It was very satisfying. After it completes, during the celebration, let's go into another phase --- dig up the entire world. randomly walk over the world, finding chunks of world to dig, and dig them up. Keep going until every diggable tile is dug.\"",
+  "text": "(1) A phase after the gems: dig. (2) A random walk over chunks of the world, each dug out. (3) On until every diggable tile is dug, then a banner and a party. (4) Released.",
+  "progress": "11:51: 0.0.119 (9f36023) pushed: phase dig after gems (the speed run's banner as before, then '⛏️ And now'); chunks 8 by 8; the chunk the gnome is in dug nearest first, then a seeded random walk to one of the eight round it with some left, none, one of the nearest; out of reach after four tries, a second round; the run's line '⛏️ n of m dug'. Seed 7: 76,791 tiles (masonry, timber and the last bedrock row stay). Checked in the pane: 15,000 steps from the start, 2,925 dug, none skipped, the dig adding 0.2 ms to a 1.5 ms step; the end from a world dug but for five chunks and three lone tiles: all 8 found and dug, banner and party. Waiting: CI.",
+  "log": [
+   {
+    "at": "2026-11-25T11:38-07:00",
+    "from": "claude",
+    "chars": 245,
+    "asks": false,
+    "words": 46,
+    "read_s": 12,
+    "listen_s": 17,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-25",
+  "closed_at": "2026-11-25T11:57-07:00",
+  "outcome": "Gnome world 0.0.119 live (hazeljs-examples 9f36023; world save check green, run 45679332867; Pages green; app.js, index.html, version.json, sw.js match the commit): after the speed run's gems, during the celebration, the dig: chunks of 8 by 8, each dug out nearest first, a seeded random walk to a chunk beside it with some left (none, one of the nearest), out of reach after four tries kept for a second round; ends with its banner and a party. Seed 7: 76,791 tiles. Checked in the pane: 15,000 steps from the start (2,925 dug, none skipped); the end from five chunks and three lone tiles, all found and dug.",
+  "metrics": {
+   "open_minutes": 8,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 245,
+   "tokens_est": 61,
+   "sync_minutes_est": 0,
+   "replies": 1,
+   "claude_words": 46,
+   "read_minutes_est": 0.2,
+   "listen_minutes_est": 0.3,
+   "read_s_avg": 12,
+   "listen_s_avg": 17,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 868,
   "area": "Gnome world 0.0.118: Clover stuck in a dug hole with water in it (N's two 🐞s); 🐞 says more of the game",
   "added": "2026-11-25",

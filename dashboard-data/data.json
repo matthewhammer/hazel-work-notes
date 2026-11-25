@@ -25828,10 +25828,10 @@
    ]
   },
   {
-   "id": 869,
-   "area": "Gnome world 0.0.119: after the speed run, the gnome digs up the whole world (a random walk over chunks, until every tile a digger can dig is dug)",
+   "id": 871,
+   "area": "Gnome world 0.0.121: a power-up found pauses the game, its words wrapped on the pause card, 🔊 Read aloud; going on or a tap clears it",
    "added": "2026-11-25",
-   "opened": "2026-11-25T11:50-07:00",
+   "opened": "2026-11-25T11:55-07:00",
    "status": "open",
    "tags": [],
    "chips": [
@@ -25839,29 +25839,35 @@
     "hazeljs-examples",
     "N"
    ],
-   "source": "Matthew, 2026-11-25, in chat: \"N and I just watched the full speed run.  It was very satisfying. After it completes, during the celebration, let's go into another phase --- dig up the entire world. randomly walk over the world, finding chunks of world to dig, and dig them up. Keep going until every diggable tile is dug.\"",
-   "text": "(1) A phase after the gems: dig. (2) A random walk over chunks of the world, each dug out. (3) On until every diggable tile is dug, then a banner and a party. (4) Released.",
-   "progress": "11:51: 0.0.119 (9f36023) pushed: phase dig after gems (the speed run's banner as before, then '⛏️ And now'); chunks 8 by 8; the chunk the gnome is in dug nearest first, then a seeded random walk to one of the eight round it with some left, none, one of the nearest; out of reach after four tries, a second round; the run's line '⛏️ n of m dug'. Seed 7: 76,791 tiles (masonry, timber and the last bedrock row stay). Checked in the pane: 15,000 steps from the start, 2,925 dug, none skipped, the dig adding 0.2 ms to a 1.5 ms step; the end from a world dug but for five chunks and three lone tiles: all 8 found and dug, banner and party. Waiting: CI.",
-   "log": [
-    {
-     "at": "2026-11-25T11:38-07:00",
-     "from": "claude",
-     "chars": 245,
-     "asks": false,
-     "words": 46,
-     "read_s": 12,
-     "listen_s": 17,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
+   "source": "Matthew, 2026-11-25, in chat: \"lots of the power up text is too long  -- need line wraps. and it goes by too fast -- let's have the game pause while we read  it, also please present a \\\"read aloud\\\" button for it. unpause clears the text; or clicking on it.\"",
+   "text": "(1) The words wrapped. (2) The game paused while they are up. (3) 🔊 Read aloud. (4) Going on, or a tap, clears them. (5) Released.",
+   "progress": "11:57: 0.0.121 (bfbe38c) pushed: shared/pause.js say(): title, wrapped words, 🔊 (reads, stays paused), cleared on going on; Gnome world's pickups use it (not in the speed run); L and the controller's listen read it, arrows as words; the carpet's stale words fixed. Checked in the pane: the cat tail's words in 3 lines in a 423×307 card, 0 frames while paused, 🔊 and L read, a tap clears, the plain space-bar pause as before. Waiting: CI."
   }
  ],
- "next_ticket": 870,
- "current_ticket": 869,
- "current_note": "11:51: ^ticket(869): Gnome world 0.0.119, the dig after the speed run, pushed; CI running.",
+ "next_ticket": 872,
+ "current_ticket": 871,
+ "current_note": "11:57: ^ticket(871) Gnome world 0.0.121 (a power-up pauses, its words on the card, 🔊 Read aloud) pushed, CI running; ^ticket(869) the dig and ^ticket(870) the tail's flaps and ▲ closed, live. Next: the speed run timed three ways (interpreter, hazel-jit today, plain JS) for ^report(65).",
  "closed_tickets": [
+  {
+   "id": 870,
+   "area": "Gnome world 0.0.120: the cat tail flaps at every jump in the air (lift, wave, fire); its ride combo is ▲, not ▼",
+   "added": "2026-11-25",
+   "text": "(1) Ride + ▲ for the tail. (2) Every jump in the air a flap: up, the tail waving, on fire. (3) Released.",
+   "source": "Matthew, 2026-11-25, in chat: \"the cat tail should be item/on/off + dpad UP\"; \"dpad down is always dig, on the ground,…",
+   "status": "done",
+   "closed": "2026-11-25",
+   "outcome": "Gnome world 0.0.120 live (hazeljs-examples 0b0d536; world save check green with Tail.step the same as tailJS at 20,000 steps; Pages green; app.js, index.html, Tail.hz,…"
+  },
+  {
+   "id": 869,
+   "area": "Gnome world 0.0.119: after the speed run, the gnome digs up the whole world (a random walk over chunks, until every tile a digger can dig is dug)",
+   "added": "2026-11-25",
+   "text": "(1) A phase after the gems: dig. (2) A random walk over chunks of the world, each dug out. (3) On until every diggable tile is dug, then a banner and a party. (4) Released.",
+   "source": "Matthew, 2026-11-25, in chat: \"N and I just watched the full speed run. It was very satisfying. After it completes,…",
+   "status": "done",
+   "closed": "2026-11-25",
+   "outcome": "Gnome world 0.0.119 live (hazeljs-examples 9f36023; world save check green, run 45679332867; Pages green; app.js, index.html, version.json, sw.js match the commit): after the…"
+  },
   {
    "id": 868,
    "area": "Gnome world 0.0.118: Clover stuck in a dug hole with water in it (N's two 🐞s); 🐞 says more of the game",
@@ -33198,7 +33204,7 @@
   863,
   852
  ],
- "current_since": "2026-11-25T11:51-07:00",
+ "current_since": "2026-11-25T11:57-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -33933,6 +33939,5 @@
    "parked": "2026-11-06 09:14: Matthew: \"no other servers required now. localports is just that for now.\""
   }
  ],
- "current_waiting": "10:23: N to try Gnome world 0.0.112 with the controller on the Linux laptop (🎮 beside 🗺️: 🎓 teach it if the buttons are off). npm publish of hazeljs 0.0.14: a fresh sign-in tab when you're at the keyboard. Options unboxed (^ticket(858)), go on or stop?",
  "closed_tickets_are": "summaries for the hover cards; the full records are in dashboard-data/closed/<YYYY-MM>.json (dashboard/data_whole.py joins them)"
 }
