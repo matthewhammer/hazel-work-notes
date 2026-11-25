@@ -25828,10 +25828,10 @@
    ]
   },
   {
-   "id": 871,
-   "area": "Gnome world 0.0.121: a power-up found pauses the game, its words wrapped on the pause card, 🔊 Read aloud; going on or a tap clears it",
+   "id": 872,
+   "area": "Gnome world 0.0.122: Clover vanished when left in a tunnel or dropped into a hole dug under her (painted over, not gone)",
    "added": "2026-11-25",
-   "opened": "2026-11-25T11:55-07:00",
+   "opened": "2026-11-25T11:58-07:00",
    "status": "open",
    "tags": [],
    "chips": [
@@ -25839,15 +25839,25 @@
     "hazeljs-examples",
     "N"
    ],
-   "source": "Matthew, 2026-11-25, in chat: \"lots of the power up text is too long  -- need line wraps. and it goes by too fast -- let's have the game pause while we read  it, also please present a \\\"read aloud\\\" button for it. unpause clears the text; or clicking on it.\"",
-   "text": "(1) The words wrapped. (2) The game paused while they are up. (3) 🔊 Read aloud. (4) Going on, or a tap, clears them. (5) Released.",
-   "progress": "11:57: 0.0.121 (bfbe38c) pushed: shared/pause.js say(): title, wrapped words, 🔊 (reads, stays paused), cleared on going on; Gnome world's pickups use it (not in the speed run); L and the controller's listen read it, arrows as words; the carpet's stale words fixed. Checked in the pane: the cat tail's words in 3 lines in a 423×307 card, 0 frames while paused, 🔊 and L read, a tap clears, the plain space-bar pause as before. Waiting: CI."
+   "source": "Matthew, 2026-11-25, in chat: \"clover disappears when we dismount.\"; \"if clover falls into a hole we dig under her, she disappears.\"",
+   "text": "(1) Why she vanishes. (2) Fix it. (3) Released.",
+   "progress": "12:00: waiting, Clover was drawn with the wild rabbits, before the great trees, the ground and the dug tiles' back walls (painted over); ridden, with the gnome. drawClover now with the gnome. Checked against 0.0.121 served beside it: a hole four deep dug under her (seed 7), 0 pixels of her before, 133 now. 0.0.122 (63a7528) pushed; CI running."
   }
  ],
- "next_ticket": 872,
- "current_ticket": 871,
- "current_note": "11:57: ^ticket(871) Gnome world 0.0.121 (a power-up pauses, its words on the card, 🔊 Read aloud) pushed, CI running; ^ticket(869) the dig and ^ticket(870) the tail's flaps and ▲ closed, live. Next: the speed run timed three ways (interpreter, hazel-jit today, plain JS) for ^report(65).",
+ "next_ticket": 873,
+ "current_ticket": 872,
+ "current_note": "12:00: ^ticket(872) Gnome world 0.0.122 (Clover painted over in holes and tunnels) pushed, CI running; ^ticket(871) the power-up card live. Next: the speed run timed three ways for ^report(65).",
  "closed_tickets": [
+  {
+   "id": 871,
+   "area": "Gnome world 0.0.121: a power-up found pauses the game, its words wrapped on the pause card, 🔊 Read aloud; going on or a tap clears it",
+   "added": "2026-11-25",
+   "text": "(1) The words wrapped. (2) The game paused while they are up. (3) 🔊 Read aloud. (4) Going on, or a tap, clears them. (5) Released.",
+   "source": "Matthew, 2026-11-25, in chat: \"lots of the power up text is too long -- need line wraps. and it goes by too fast --…",
+   "status": "done",
+   "closed": "2026-11-25",
+   "outcome": "Gnome world 0.0.121 live (hazeljs-examples bfbe38c; world save check green, run 45680399001; Pages green; app.js, index.html, shared/pause.js, shared/oracles.css, version.json,…"
+  },
   {
    "id": 870,
    "area": "Gnome world 0.0.120: the cat tail flaps at every jump in the air (lift, wave, fire); its ride combo is ▲, not ▼",
@@ -33204,7 +33214,7 @@
   863,
   852
  ],
- "current_since": "2026-11-25T11:57-07:00",
+ "current_since": "2026-11-25T12:00-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -33217,10 +33227,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7191,
-  "words": 1578614,
-  "read_hours_est": 110.5,
-  "listen_hours_est": 164.4,
+  "replies": 7194,
+  "words": 1578848,
+  "read_hours_est": 110.6,
+  "listen_hours_est": 164.5,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -33595,9 +33605,9 @@
     "chars": 70537
    },
    "2026-11-25": {
-    "replies": 49,
-    "words": 12766,
-    "chars": 72674
+    "replies": 52,
+    "words": 13000,
+    "chars": 73906
    }
   }
  },

@@ -1,5 +1,67 @@
 [
  {
+  "id": 871,
+  "area": "Gnome world 0.0.121: a power-up found pauses the game, its words wrapped on the pause card, 🔊 Read aloud; going on or a tap clears it",
+  "added": "2026-11-25",
+  "opened": "2026-11-25T11:55-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "Gnome world",
+   "hazeljs-examples",
+   "N"
+  ],
+  "source": "Matthew, 2026-11-25, in chat: \"lots of the power up text is too long  -- need line wraps. and it goes by too fast -- let's have the game pause while we read  it, also please present a \\\"read aloud\\\" button for it. unpause clears the text; or clicking on it.\"",
+  "text": "(1) The words wrapped. (2) The game paused while they are up. (3) 🔊 Read aloud. (4) Going on, or a tap, clears them. (5) Released.",
+  "progress": "11:57: 0.0.121 (bfbe38c) pushed: shared/pause.js say(): title, wrapped words, 🔊 (reads, stays paused), cleared on going on; Gnome world's pickups use it (not in the speed run); L and the controller's listen read it, arrows as words; the carpet's stale words fixed. Checked in the pane: the cat tail's words in 3 lines in a 423×307 card, 0 frames while paused, 🔊 and L read, a tap clears, the plain space-bar pause as before. Waiting: CI.",
+  "log": [
+   {
+    "at": "2026-11-25T11:44-07:00",
+    "from": "claude",
+    "chars": 1578,
+    "asks": false,
+    "words": 303,
+    "read_s": 76,
+    "listen_s": 114,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T11:46-07:00",
+    "from": "claude",
+    "chars": 189,
+    "asks": false,
+    "words": 29,
+    "read_s": 7,
+    "listen_s": 11,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-25",
+  "closed_at": "2026-11-25T12:00-07:00",
+  "outcome": "Gnome world 0.0.121 live (hazeljs-examples bfbe38c; world save check green, run 45680399001; Pages green; app.js, index.html, shared/pause.js, shared/oracles.css, version.json, sw.js match the commit): a power-up found pauses the game; its words wrapped on the pause card under its name; 🔊 Read aloud (and L, and the controller's listen) reads them slowly, arrows as words, staying paused; going on any way, or a tap on the card, clears them. Not in the speed run. The carpet's stale words (🎒, I) fixed.",
+  "metrics": {
+   "open_minutes": 5,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 1767,
+   "tokens_est": 441,
+   "sync_minutes_est": 2.0,
+   "replies": 2,
+   "claude_words": 332,
+   "read_minutes_est": 1.4,
+   "listen_minutes_est": 2.1,
+   "read_s_avg": 42,
+   "listen_s_avg": 62,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 870,
   "area": "Gnome world 0.0.120: the cat tail flaps at every jump in the air (lift, wave, fire); its ride combo is ▲, not ▼",
   "added": "2026-11-25",
@@ -53,6 +115,13 @@
     "model": "claude-opus-5-5",
     "effort": "xhigh",
     "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T11:47-07:00",
+    "from": "matthew",
+    "chars": 293,
+    "asks": false,
+    "note": "from the transcripts"
    }
   ],
   "closed": "2026-11-25",
@@ -60,11 +129,11 @@
   "outcome": "Gnome world 0.0.119 live (hazeljs-examples 9f36023; world save check green, run 45679332867; Pages green; app.js, index.html, version.json, sw.js match the commit): after the speed run's gems, during the celebration, the dig: chunks of 8 by 8, each dug out nearest first, a seeded random walk to a chunk beside it with some left (none, one of the nearest), out of reach after four tries kept for a second round; ends with its banner and a party. Seed 7: 76,791 tiles. Checked in the pane: 15,000 steps from the start (2,925 dug, none skipped); the end from five chunks and three lone tiles, all found and dug.",
   "metrics": {
    "open_minutes": 8,
-   "matthew_messages": 0,
+   "matthew_messages": 1,
    "questions_to_matthew": 0,
-   "chars_exchanged": 245,
-   "tokens_est": 61,
-   "sync_minutes_est": 0,
+   "chars_exchanged": 538,
+   "tokens_est": 134,
+   "sync_minutes_est": 9.0,
    "replies": 1,
    "claude_words": 46,
    "read_minutes_est": 0.2,
