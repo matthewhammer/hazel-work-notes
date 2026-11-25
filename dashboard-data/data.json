@@ -25802,11 +25802,27 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 867,
+   "area": "Gnome world 0.0.117: the ride button with a way held chooses (◀ Clover, ▶ the carpet, ▼ the cat tail); a ride screen that works, for the button alone",
+   "added": "2026-11-25",
+   "opened": "2026-11-25T11:35-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "Gnome world",
+    "hazeljs-examples",
+    "N"
+   ],
+   "source": "Matthew, 2026-11-25, in chat: \"N and I are testing the popup that lets the user choose what to ride. it doesn't work.  it's pretty broken and frustrating. Instead of this screen, N wants to use a button combo: dpad Left + ride/on/off button = get on rabbit (get off carpet, off tail) dpad Right + ride/on/off button = get on  carpet (get off rabbit, off tail) dpad Down + ride/on/off button = use tail, and get off carpet/rabit\"; \"when the user is not riding anything, but presses the \\\"ride\\\" button, it's okay to pop up a screen, but it should work.\"; \"N is using a linux laptop,  firefox;  not ipad\"",
+   "text": "(1) The combos: ◀ + ride Clover, ▶ + ride the carpet, ▼ + ride the tail, each getting off the others. (2) The ride button alone on nothing: a screen to choose, that works. (3) Released.",
+   "progress": "11-25 11:35: the old 🎒 screen's fault found: a choice only chose for later and shut (nothing visible happened), and the tap that opened it could land on a choice. 0.0.117 (6db7fc0) pushed: mountToggle(want) with rideWanted() from S.keys (keyboard arrows, the pad's arrows, a controller's d-pad as buttons or axes), off the others then on; the same again off; alone: off, or the ride screen (ridePop) with two or three at hand, laid out as the combos, a pick gets on at once, taps only if begun on the button; 🎒, I, #items and the controller's items action removed; C the carpet. Checked in the pane: keyboard combos, the screen by keys and taps, controllers standard and axes. Waiting: CI; then N on the laptop."
   }
  ],
- "next_ticket": 867,
- "current_ticket": 861,
- "current_note": "11:28: ^ticket(866) closed (0.0.116 live, N's cat tail). Next: ^ticket(861) piece 2, Clover's ride in Hazel.",
+ "next_ticket": 868,
+ "current_ticket": 867,
+ "current_note": "11:35: ^ticket(867) the ride combos, 0.0.117 pushed, checks running. Then ^ticket(861) piece 2.",
  "closed_tickets": [
   {
    "id": 866,
@@ -33076,6 +33092,7 @@
   }
  ],
  "queue": [
+  867,
   861,
   853,
   858,
@@ -33124,7 +33141,7 @@
   863,
   852
  ],
- "current_since": "2026-11-25T11:27-07:00",
+ "current_since": "2026-11-25T11:35-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -33137,8 +33154,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7180,
-  "words": 1577526,
+  "replies": 7183,
+  "words": 1577715,
   "read_hours_est": 110.5,
   "listen_hours_est": 164.3,
   "read_s_avg": 55,
@@ -33515,9 +33532,9 @@
     "chars": 70537
    },
    "2026-11-25": {
-    "replies": 38,
-    "words": 11678,
-    "chars": 66898
+    "replies": 41,
+    "words": 11867,
+    "chars": 67887
    }
   }
  },
