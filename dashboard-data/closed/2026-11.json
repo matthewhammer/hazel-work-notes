@@ -1,5 +1,186 @@
 [
  {
+  "id": 861,
+  "area": "Gnome world: more of its game logic into Hazel, piece by piece, with a migration plan in ^report(64), each piece measured before and after",
+  "added": "2026-11-25",
+  "opened": "2026-11-25T09:17-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "Gnome world",
+   "hazeljs-examples",
+   "Hazel",
+   "performance",
+   "report"
+  ],
+  "source": "Matthew, 2026-11-25, in chat: \"Next, once magic carpet is released (for him to test on ipad), please move on to this new ticket: * More and more of gnome world's game logic into hazel, from JS. * Suggest a migration plan, where we work piece by piece. We have a report about this topic already. Let's revise and amend that document as we work. * Suggest the first piece to migrate, and without waiting for me, do it, and measure the performance difference pre/post migration.\"",
+  "text": "After ^ticket(860) (N's magic carpet) is released. (1) A migration plan, piece by piece, in ^report(64) (Gnome World: Which Parts Are Hazel), revised and amended as the work goes. (2) The first piece, suggested and done without waiting for Matthew, its performance measured before and after (the step's time, the frame's time, on the laptop and on GitHub). (3) Released (hazeljs-examples pushes without asking), with the world-save check and the zine passing.",
+  "progress": "11-25 09:17: minted; starts when ^ticket(860) is released. | 11-25 09:46: plan of 8 pieces in ^report(64) #migrate (republished, homepage deaa9917): 1 the carpet's flight, 2 Clover's ride, 3 boulders, 4 pickups, 5 wind, 6 animals' minds, 7 water (needs arrays, ^ticket(846)), 8 tree shapes. PIECE 1 DONE, Gnome world 0.0.107 (11ae1ac, live): rules/Fly.hz Fly.step (calls nothing in World; types inline, since 2 preamble types overflowed the page's build stack; least stack 975 KB with or without Fly); flyJS kept as fallback (?jsfly=1) and reference; node/fly-check.mjs 20,000 steps all same, now in the world save check on GitHub. Measured: JS 0.269 vs Hazel 1.508 us/step (Node, laptop; 5.6x), GitHub runner 0.214 vs 1.252 (5.8x), page 0.333 vs 2.567 (7.7x); 0.009% of a frame. Next: piece 2, Clover's ride.",
+  "log": [
+   {
+    "at": "2026-11-25T09:17-07:00",
+    "from": "matthew",
+    "chars": 576,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T09:46-07:00",
+    "from": "claude",
+    "chars": 5718,
+    "asks": true,
+    "words": 987,
+    "read_s": 249,
+    "listen_s": 370,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T09:51-07:00",
+    "from": "matthew",
+    "chars": 111,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T09:52-07:00",
+    "from": "claude",
+    "chars": 190,
+    "asks": false,
+    "words": 36,
+    "read_s": 9,
+    "listen_s": 14,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T10:07-07:00",
+    "from": "claude",
+    "chars": 3848,
+    "asks": false,
+    "words": 708,
+    "read_s": 178,
+    "listen_s": 266,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T10:08-07:00",
+    "from": "matthew",
+    "chars": 32,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T10:57-07:00",
+    "from": "claude",
+    "chars": 5766,
+    "asks": false,
+    "words": 1056,
+    "read_s": 266,
+    "listen_s": 396,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T10:59-07:00",
+    "from": "claude",
+    "chars": 1258,
+    "asks": false,
+    "words": 227,
+    "read_s": 57,
+    "listen_s": 85,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T11:04-07:00",
+    "from": "claude",
+    "chars": 902,
+    "asks": false,
+    "words": 156,
+    "read_s": 39,
+    "listen_s": 58,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T11:29-07:00",
+    "from": "claude",
+    "chars": 743,
+    "asks": false,
+    "words": 129,
+    "read_s": 33,
+    "listen_s": 48,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T11:36-07:00",
+    "from": "claude",
+    "chars": 142,
+    "asks": false,
+    "words": 24,
+    "read_s": 6,
+    "listen_s": 9,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T13:00-07:00",
+    "from": "claude",
+    "chars": 4142,
+    "asks": true,
+    "words": 770,
+    "read_s": 194,
+    "listen_s": 289,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-25T13:08-07:00",
+    "from": "claude",
+    "chars": 3179,
+    "asks": false,
+    "words": 579,
+    "read_s": 146,
+    "listen_s": 217,
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-25",
+  "closed_at": "2026-11-25T13:28-07:00",
+  "outcome": "The plan in ^report(64) #migrate (eight pieces, in order) and piece 1, the magic carpet's flight, in Hazel (Fly.step, Gnome world 0.0.107): the same answers at 20,000 of 20,000 steps in Node, on GitHub and in the page, 1.5 us a step against the JavaScript's 0.27 in Node, 0.009% of a frame. Released and live. Pieces 2 on go on in ^ticket(882), from Matthew's \"keep going\".",
+  "metrics": {
+   "open_minutes": 252,
+   "matthew_messages": 3,
+   "questions_to_matthew": 2,
+   "chars_exchanged": 26607,
+   "tokens_est": 6651,
+   "sync_minutes_est": 29.0,
+   "replies": 10,
+   "claude_words": 4672,
+   "read_minutes_est": 19.6,
+   "listen_minutes_est": 29.2,
+   "read_s_avg": 118,
+   "listen_s_avg": 175,
+   "models": {
+    "Opus 5.5 · Xhigh": 1.0
+   }
+  }
+ },
+ {
   "id": 873,
   "area": "^report(65): Gnome world's speed run timed three ways, the interpreter (5 minutes at most), hazel-jit as of today, plain JS",
   "added": "2026-11-25",

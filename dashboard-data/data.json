@@ -25664,167 +25664,6 @@
    ]
   },
   {
-   "id": 861,
-   "area": "Gnome world: more of its game logic into Hazel, piece by piece, with a migration plan in ^report(64), each piece measured before and after",
-   "added": "2026-11-25",
-   "opened": "2026-11-25T09:17-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "Gnome world",
-    "hazeljs-examples",
-    "Hazel",
-    "performance",
-    "report"
-   ],
-   "source": "Matthew, 2026-11-25, in chat: \"Next, once magic carpet is released (for him to test on ipad), please move on to this new ticket: * More and more of gnome world's game logic into hazel, from JS. * Suggest a migration plan, where we work piece by piece. We have a report about this topic already. Let's revise and amend that document as we work. * Suggest the first piece to migrate, and without waiting for me, do it, and measure the performance difference pre/post migration.\"",
-   "text": "After ^ticket(860) (N's magic carpet) is released. (1) A migration plan, piece by piece, in ^report(64) (Gnome World: Which Parts Are Hazel), revised and amended as the work goes. (2) The first piece, suggested and done without waiting for Matthew, its performance measured before and after (the step's time, the frame's time, on the laptop and on GitHub). (3) Released (hazeljs-examples pushes without asking), with the world-save check and the zine passing.",
-   "progress": "11-25 09:17: minted; starts when ^ticket(860) is released. | 11-25 09:46: plan of 8 pieces in ^report(64) #migrate (republished, homepage deaa9917): 1 the carpet's flight, 2 Clover's ride, 3 boulders, 4 pickups, 5 wind, 6 animals' minds, 7 water (needs arrays, ^ticket(846)), 8 tree shapes. PIECE 1 DONE, Gnome world 0.0.107 (11ae1ac, live): rules/Fly.hz Fly.step (calls nothing in World; types inline, since 2 preamble types overflowed the page's build stack; least stack 975 KB with or without Fly); flyJS kept as fallback (?jsfly=1) and reference; node/fly-check.mjs 20,000 steps all same, now in the world save check on GitHub. Measured: JS 0.269 vs Hazel 1.508 us/step (Node, laptop; 5.6x), GitHub runner 0.214 vs 1.252 (5.8x), page 0.333 vs 2.567 (7.7x); 0.009% of a frame. Next: piece 2, Clover's ride.",
-   "log": [
-    {
-     "at": "2026-11-25T09:17-07:00",
-     "from": "matthew",
-     "chars": 576,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T09:46-07:00",
-     "from": "claude",
-     "chars": 5718,
-     "asks": true,
-     "words": 987,
-     "read_s": 249,
-     "listen_s": 370,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T09:51-07:00",
-     "from": "matthew",
-     "chars": 111,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T09:52-07:00",
-     "from": "claude",
-     "chars": 190,
-     "asks": false,
-     "words": 36,
-     "read_s": 9,
-     "listen_s": 14,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T10:07-07:00",
-     "from": "claude",
-     "chars": 3848,
-     "asks": false,
-     "words": 708,
-     "read_s": 178,
-     "listen_s": 266,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T10:08-07:00",
-     "from": "matthew",
-     "chars": 32,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T10:57-07:00",
-     "from": "claude",
-     "chars": 5766,
-     "asks": false,
-     "words": 1056,
-     "read_s": 266,
-     "listen_s": 396,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T10:59-07:00",
-     "from": "claude",
-     "chars": 1258,
-     "asks": false,
-     "words": 227,
-     "read_s": 57,
-     "listen_s": 85,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T11:04-07:00",
-     "from": "claude",
-     "chars": 902,
-     "asks": false,
-     "words": 156,
-     "read_s": 39,
-     "listen_s": 58,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T11:29-07:00",
-     "from": "claude",
-     "chars": 743,
-     "asks": false,
-     "words": 129,
-     "read_s": 33,
-     "listen_s": 48,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T11:36-07:00",
-     "from": "claude",
-     "chars": 142,
-     "asks": false,
-     "words": 24,
-     "read_s": 6,
-     "listen_s": 9,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T13:00-07:00",
-     "from": "claude",
-     "chars": 4142,
-     "asks": true,
-     "words": 770,
-     "read_s": 194,
-     "listen_s": 289,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-25T13:08-07:00",
-     "from": "claude",
-     "chars": 3179,
-     "asks": false,
-     "words": 579,
-     "read_s": 146,
-     "listen_s": 217,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 863,
    "area": "Gnome world 0.0.112: a game controller 🎮 (for N's Linux laptop), and its buttons set as Dress Up sets them (🎓 teach, 🎯 set)",
    "added": "2026-11-25",
@@ -25850,12 +25689,41 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 882,
+   "area": "Gnome world: keep porting its JavaScript into Hazel, module by module (^report(64)'s plan, piece 2 on), each piece profiled against its JavaScript",
+   "added": "2026-11-25",
+   "opened": "2026-11-25T13:19-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "Gnome world",
+    "hazeljs-examples",
+    "Hazel",
+    "performance",
+    "report"
+   ],
+   "source": "Matthew, 2026-11-25, in chat: \"I'm inspired by going further with porting the gnome world JS into Hazel, module by module. please keep going, and let's profile the difference as we go.\"",
+   "text": "Following ^ticket(861) (the plan and piece 1, the carpet's flight). Each piece of ^report(64)'s plan in turn: a Hazel module of its own, its JavaScript kept as its twin (for ⚡ and the checks), the same answers checked in Node (fly-check, also in the world save check on GitHub) and in the page, timed both ways in Node, on GitHub and in the page, released (hazeljs-examples pushes without asking), and ^report(64) revised and republished with each.",
+   "progress": "11-25 13:23: PIECE 2 DONE, Gnome world 0.0.134 (18b50ca, live): rules/Ride.hz Ride.pre and Ride.post round World.step; 20000/20000 same in Node and on GitHub; the same 3000-step ride in the page. JS 0.283 vs Hazel 0.892 us a step (Node, 3.2x), GitHub 0.227 vs 0.798 (3.5x), page 0.83 vs 3.97. | 11-25 13:27: PIECE 3 DONE, Gnome world 0.0.135 (42452bb, live, world save check 45695123671 green): rules/Boulder.hz Boulder.step (wobble, fall, land, hit); 20000/20000 same in Node and on GitHub; in the page twelve boulders undermined, 600 steps, boulders and hearts the same at every step, three runs. Node 0.261 vs JS 0.084 (JS two-valued run to run, 0.03 or 0.09), GitHub 0.376 vs 0.049 (7.8x), page 0.316 vs 0.028 (11.4x); about 1.5 boulders stepped a step, 0.5 us a frame. The page check found a page bug: a world built within a hit's 1.5 s cooldown kept it (the gnome unhurtable); build() now clears hurtAt and faintAt. ^report(64) revised with piece 3 and a Boulder row in Each piece so far, republished (a878717e). Next: piece 4, picking things up (Pickup.hz).",
+   "log": []
   }
  ],
- "next_ticket": 882,
- "current_ticket": 861,
- "current_note": "13:07: ^ticket(873) closed (^report(65) #speedrun published) and ^ticket(881) closed (0.0.133 live: ⚡ plain JS rules, ⏱ both ways). Next: ^ticket(861) piece 2, Clover's ride in Hazel; ⏱ on N's laptop when Matthew can.",
+ "next_ticket": 883,
+ "current_ticket": 882,
+ "current_note": "13:29: Gnome world 0.0.135 live: the boulders in Hazel (piece 3), after Clover's ride (piece 2, 0.0.134); ^report(64) republished with both. ^ticket(861) closed. Next: piece 4, picking things up, in Hazel.",
  "closed_tickets": [
+  {
+   "id": 861,
+   "area": "Gnome world: more of its game logic into Hazel, piece by piece, with a migration plan in ^report(64), each piece measured before and after",
+   "added": "2026-11-25",
+   "text": "After ^ticket(860) (N's magic carpet) is released. (1) A migration plan, piece by piece, in ^report(64) (Gnome World: Which Parts Are Hazel), revised and amended as the work goes. (2) The first…",
+   "source": "Matthew, 2026-11-25, in chat: \"Next, once magic carpet is released (for him to test on ipad), please move on to this…",
+   "status": "done",
+   "closed": "2026-11-25",
+   "outcome": "The plan in ^report(64) #migrate (eight pieces, in order) and piece 1, the magic carpet's flight, in Hazel (Fly.step, Gnome world 0.0.107): the same answers at 20,000 of 20,000…"
+  },
   {
    "id": 873,
    "area": "^report(65): Gnome world's speed run timed three ways, the interpreter (5 minutes at most), hazel-jit as of today, plain JS",
@@ -33274,7 +33142,6 @@
   }
  ],
  "queue": [
-  861,
   853,
   858,
   859,
@@ -33322,7 +33189,7 @@
   863,
   852
  ],
- "current_since": "2026-11-25T13:07-07:00",
+ "current_since": "2026-11-25T13:28-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
