@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 11-24</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; overflow-wrap: anywhere; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+  blockquote { margin: 1em 0; padding: 0.6em 1em; border-left: 4px solid var(--accent); background: var(--code); border-radius: 0 6px 6px 0; }
+  blockquote p { margin: 0.5em 0; }
+  table { border-collapse: collapse; margin: 1em 0; font-size: 0.95em; } th, td { border-bottom: 1px solid var(--line); padding: 4px 10px; text-align: left; vertical-align: top; }
+</style>
+</head>
+<body><main>
+<h1>Working notes: 2026-11-24: Gnome world grows and gets its report; records held the page's way, merged</h1>
+<p class="sub">Claude, written on 11-25 from the day's records (the dashboard's tickets and their progress, the commits, the session's transcript), at Matthew's ask to update the work notes. Picks up from <a href="../23/2026-11-23T1355-0700.html">11-23's afternoon note</a>.</p>
+
+<h2>In short</h2>
+<ul>
+<li><b>Gnome world 0.0.102</b> (^ticket(848)): rescaled so the gnomes read as small (the world 896 by 208 tiles; trees and bushes three times as big, flowers, birds and squirrels twice, with more detail; the pines in detail), Clover the rabbit to ride and wild bunnies, and music by place, with a half-time dub under the water. <b>0.0.103</b>: the booklet revised whole, every chapter and picture redone for 0.0.102 (^ticket(849)).</li>
+<li><b>^report(64), Gnome World: Which Parts Are Hazel</b> (^ticket(850)), published as work in progress: the split by size (Hazel 40 KB in 32 functions, the page's JavaScript 444 KB, 70% of it drawing), and one step (<code>World.step</code> 0.016 ms of a 2.4 ms frame).</li>
+<li><b>Gnome world on the iPad</b> (^ticket(852); Matthew: on the iPad, while walking, "the screen zooms into some form that gets stuck"). <b>0.0.104</b>: no page zoom in full screen; 🐞 under ⚙️ Advanced writes what the game sees, to paste into the etherpad; a 🔊 in a villager's bubble reads the line aloud in a voice of its own (for N, who is still learning to read). <b>0.0.105</b>: full screen shows the whole view whatever the zoom. Not yet seen on the iPad itself.</li>
+<li><b>hazel-jit, a fix</b> (^ticket(851)): a pattern by position against a labeled tuple of unknown type answered where the interpreter is stuck; fixed on <code>hazel-jit</code> (<a href="https://github.com/hazelgrove/hazel/pull/2859">#2859</a>) e0a5925f3b and merged into <code>hazeljs</code> (<a href="https://github.com/hazelgrove/hazel/pull/2857">#2857</a>) ec2a330996.</li>
+<li><b>The package</b> (^ticket(795)). Converters by declared type measured: the jit 9.0 times as fast on 45 operations. Then each game's own run of states (14 games, 4,601 steps, every answer the same): the jit at 0.91 of ahead-of-time's time, and 0.76 once the memos linked their entries (ca851b422d; a profile of Mahjong solitaire had put 24% in the memos' WeakMap). hazeljs 0.0.12 built (<code>editor-in-package</code> 41c6cb0), byte for byte Hazel's deploy, its checks green, not published: Matthew, 07:58, "let's wait until we settle the ongoing design questions about representation --- ^ticket(847) in particular."</li>
+<li><b>Records held the page's way</b> (^ticket(847)). Measured in JavaScript alone first (a record as an object builds about 12 times as fast), then three ways tried on a trial branch: A, a tuple with every entry labeled is a plain object; B, any labeled tuple an object; C, today's arrays carrying labels. Matthew chose "A, add direct reads" (0.64 of today's time on the games), then "Yes, take the leans" for decisions 2 to 5 (cells and constructors as <code>{$h, $t}</code> and <code>{$c, $v}</code> in compiled code; the rule for a page stated, with a development switch that freezes what crosses), then "Yes, merge it": <code>hazel-jit</code> 9ec865976d, <code>hazeljs</code> 4d596e20dd and 20febee548, CI green on both. In ^report(54) <code>#records-tried</code> and <code>#records-decide</code>.</li>
+<li><b>Seq</b> (^ticket(846)): a sequence as a treap over views of never-changed arrays, prototyped and timed in JavaScript, against Immutable.js and the <code>list</code> package (each installed with Matthew's OK). In ^report(54) <code>#seq</code>. Left: how Seq enters Hazel.</li>
+</ul>
+
+<h2>Where things are</h2>
+<div class="scroll"><table>
+<tr><th>what</th><th>where</th><th>state</th></tr>
+<tr><td>hazel-jit alone</td><td><code>hazel-jit</code>, <a href="https://github.com/hazelgrove/hazel/pull/2859">#2859</a></td><td>9ec865976d, records merged, CI green</td></tr>
+<tr><td>the package's branch</td><td><code>hazeljs</code>, <a href="https://github.com/hazelgrove/hazel/pull/2857">#2857</a></td><td>20febee548, merges hazel-jit, CI green</td></tr>
+<tr><td>hazeljs 0.0.12</td><td>hazelgrove/hazeljs <code>editor-in-package</code></td><td>41c6cb0, checks green, not on npm (npm has 0.0.8)</td></tr>
+<tr><td>Gnome world</td><td>matthewhammer/hazeljs-examples <code>main</code></td><td>0.0.105 (7049a0e), live</td></tr>
+<tr><td>reports</td><td>^report(54), ^report(63), ^report(64)</td><td>revised and published</td></tr>
+</table></div>
+
+<h2>Next</h2>
+<ul>
+<li>Publish the package once the records are in it (^ticket(795)).</li>
+<li><a href="https://github.com/hazelgrove/hazel/pull/2859">#2859</a>'s description, for Matthew to read and post.</li>
+<li>The kids' next play on the iPad, and a 🐞 paste if the zoom comes back (^ticket(852)).</li>
+<li>How Seq enters Hazel (^ticket(846)).</li>
+</ul>
+</main>
+<!-- pr-cards: begin -->
+<style>
+  /* above the nav bar (nav.js draws it at z-index 2147483000-2147483002), or a card on a link in it opens underneath */
+  .pr-card { position: absolute; z-index: 2147483003; width: max-content; max-width: min(380px, calc(100vw - 32px)); box-sizing: border-box;
+    padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line, #d0d7de); background: var(--paper, var(--bg, Canvas));
+    color: var(--ink, CanvasText); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18); font: 13px/1.45 system-ui, sans-serif; pointer-events: none; }
+  .pr-card .pr-head { color: var(--muted, GrayText); font-size: 12px; }
+  .pr-card .pr-title { font-weight: 600; margin: 3px 0 4px; }
+  .pr-card .pr-meta { color: var(--muted, GrayText); font-size: 12px; }
+  .pr-card .pr-note { color: var(--muted, GrayText); font-size: 11px; margin-top: 5px; font-style: italic; }
+  .pr-state { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; margin-left: 6px; vertical-align: 1px; }
+  .pr-base { display: inline-block; padding: 0 6px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-left: 6px; vertical-align: 1px; }
+  .pr-base.dev { background: #dafbe1; color: #116329; } .pr-base.other { background: #fff1c2; color: #7a4b00; }
+  @media (prefers-color-scheme: dark) { .pr-base.dev { background: #12361f; color: #6fdd8b; } .pr-base.other { background: #3d2e00; color: #f2cc60; } }
+  .pr-state.open { background: #1f883d; } .pr-state.merged { background: #8250df; } .pr-state.closed { background: #cf222e; } .pr-state.draft { background: #6e7781; }
+</style>
+<script>
+/* A card for each link to a GitHub PR or issue, on hover or focus: its
+   title, state, the branch a PR targets (dev or not: the distinction that
+   matters, ^ticket(478)), author, dates and comments, asked of GitHub live, once per
+   number per page load; if GitHub does not answer, what it said when the
+   page was built (tools/link_prs.py writes this block). */
+(() => {
+  const CACHED = {"hazelgrove/hazel#2857": {"author": "matthewhammer", "base": "dev", "comments": 1, "created": "2026-11-23T16:18:27Z", "kind": "pull", "state": "draft", "title": "hazeljs: what the npm package is built from (the library, the editable embed, the font and icons, hazel-jit)", "updated": "2026-11-25T16:22:02Z"}, "hazelgrove/hazel#2859": {"author": "matthewhammer", "base": "dev", "comments": 1, "created": "2026-11-23T20:00:30Z", "kind": "pull", "state": "draft", "title": "hazel-jit: Hazel compiled to JavaScript, its values across, and mixed mode, with agreement tests", "updated": "2026-11-25T15:57:56Z"}}, BUILT = "2026-11-25";
+  const RX = /^https:\/\/github\.com\/([^/]+\/[^/]+)\/(pull|issues)\/(\d+)$/;
+  const asked = new Map();
+  /* a PR from the pulls endpoint, which has its base branch; an issue from the issues one */
+  const ask = (key, kind) => {
+    if (!asked.has(key)) {
+      const [repo, n] = key.split("#"), pull = kind === "pull";
+      asked.set(key, fetch(`https://api.github.com/repos/${repo}/${pull ? "pulls" : "issues"}/${n}`)
+        .then(r => r.ok ? r.json() : Promise.reject(r.status))
+        .then(j => ({ title: j.title, author: j.user && j.user.login, created: j.created_at, updated: j.updated_at,
+                      comments: j.comments, kind: pull || j.pull_request ? "pull" : "issues", base: j.base && j.base.ref,
+                      state: j.merged_at || (j.pull_request && j.pull_request.merged_at) ? "merged" : j.draft ? "draft" : j.state }))
+        .catch(() => null));
+    }
+    return asked.get(key);
+  };
+  const baseChip = d => !d.base ? "" : d.base === "dev"
+    ? `<span class="pr-base dev" title="this PR merges into dev">into dev</span>`
+    : `<span class="pr-base other" title="this PR merges into ${esc(d.base)}, not dev">into ${esc(d.base)}, not dev</span>`;
+  const day = iso => new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+  const ago = iso => {
+    const s = (Date.now() - new Date(iso)) / 1000;
+    for (const [u, k] of [["year", 31536000], ["month", 2592000], ["day", 86400], ["hour", 3600], ["minute", 60]])
+      if (s >= k) { const v = Math.floor(s / k); return `${v} ${u}${v === 1 ? "" : "s"} ago`; }
+    return "just now";
+  };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const fill = (key, d, note) => {
+    const [repo, n] = key.split("#"), what = d.kind === "pull" ? "Pull request" : "Issue";
+    return `<div class="pr-head">${esc(repo)} #${n} · ${what}<span class="pr-state ${esc(d.state)}">${esc(d.state)}</span>${baseChip(d)}</div>` +
+      `<div class="pr-title">${esc(d.title)}</div>` +
+      `<div class="pr-meta">by ${esc(d.author)} · opened ${day(d.created)} · updated ${ago(d.updated)} · ${d.comments} comment${d.comments === 1 ? "" : "s"}</div>` +
+      (note ? `<div class="pr-note">${note}</div>` : "");
+  };
+  let card = null, over = null, timer = null;
+  const place = a => {
+    const r = a.getBoundingClientRect(), w = card.offsetWidth, h = card.offsetHeight;
+    const left = Math.max(16, Math.min(r.left, document.documentElement.clientWidth - w - 16));
+    const below = r.bottom + 6 + h < innerHeight;
+    card.style.left = (left + scrollX) + "px";
+    card.style.top = ((below ? r.bottom + 6 : r.top - 6 - h) + scrollY) + "px";
+  };
+  const hide = () => { clearTimeout(timer); over = null; if (card) card.hidden = true; };
+  const show = a => {
+    const m = RX.exec(a.href);
+    if (!m) return;
+    const key = m[1] + "#" + m[3];
+    over = a; clearTimeout(timer);
+    timer = setTimeout(async () => {
+      if (!card) { card = document.createElement("div"); card.className = "pr-card"; card.setAttribute("role", "tooltip"); document.body.append(card); }
+      const cached = CACHED[key];
+      card.innerHTML = cached ? fill(key, cached, "asking GitHub…") : `<div class="pr-head">${esc(key)}</div><div class="pr-note">asking GitHub…</div>`;
+      card.hidden = false; place(a);
+      const d = await ask(key, m[2]);
+      if (over !== a) return;
+      card.innerHTML = d ? fill(key, d, "")
+        : cached ? fill(key, cached, `GitHub didn't answer just now (its limit is 60 lookups an hour per network): as of ${BUILT}`)
+        : `<div class="pr-head">${esc(key)}</div><div class="pr-note">GitHub didn't answer just now.</div>`;
+      place(a);
+    }, 250);
+  };
+  const linkOf = t => t && t.closest && t.closest("a[href]");
+  document.addEventListener("mouseover", e => { const a = linkOf(e.target); if (a && a !== over && RX.test(a.href)) show(a); });
+  document.addEventListener("mouseout", e => { const a = linkOf(e.target); if (a && a === over && !a.contains(e.relatedTarget)) hide(); });
+  document.addEventListener("focusin", e => { const a = linkOf(e.target); if (a && RX.test(a.href)) show(a); });
+  document.addEventListener("focusout", hide);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") hide(); });
+  addEventListener("scroll", () => { if (over && card && !card.hidden) place(over); }, { passive: true });
+})();
+</script>
+<!-- pr-cards: end -->
+<!-- notes: begin -->
+<style>
+  code.ref { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; white-space: nowrap; }
+  code.ref b { font-weight: 800; }
+  button.mint { margin-left: 4px; font: inherit; font-size: 0.75em; padding: 0 6px; border: 1px solid var(--line, #ccc);
+    border-radius: 4px; background: transparent; color: var(--muted, #666); cursor: pointer; vertical-align: 1px; }
+  button.mint:hover { color: inherit; }
+  button.mint.done { color: var(--good, #15803d); border-color: var(--good, #15803d); }
+  a.step-link { color: var(--muted, #666); text-decoration: none; font-size: 0.85em; margin-left: 4px; }
+  a.step-link:hover { text-decoration: underline; }
+  li:target { background: color-mix(in srgb, var(--good, #15803d) 12%, transparent); border-radius: 6px; }
+</style>
+<script>
+/* Each step under "Next": a link to it, a chip copying that link, and a
+   chip copying a request to mint a ticket for it (to paste to Claude). */
+(() => {
+  const h = document.getElementById("next");
+  if (!h) return;
+  let list = h.nextElementSibling;
+  while (list && !/^(OL|UL)$/.test(list.tagName)) {
+    if (list.tagName === "H2") return;
+    list = list.nextElementSibling;
+  }
+  if (!list) return;
+  const page = location.origin + location.pathname, name = document.title;
+  const copy = async (b, text) => {
+    try { await navigator.clipboard.writeText(text); }
+    catch (_) { const t = document.createElement("textarea"); t.value = text; document.body.append(t); t.select(); document.execCommand("copy"); t.remove(); }
+    const was = b.textContent; b.textContent = "copied"; b.classList.add("done");
+    setTimeout(() => { b.textContent = was; b.classList.remove("done"); }, 1500);
+  };
+  [...list.children].filter(li => li.tagName === "LI").forEach((li, i) => {
+    const n = i + 1;
+    if (!li.id) li.id = "step-" + n;
+    const url = page + "#" + li.id;
+    const b = li.querySelector("b, strong");
+    const title = (b ? b.textContent : li.textContent).replace(/\s+/g, " ").trim().replace(/[:.,;]$/, "").slice(0, 160);
+    const a = document.createElement("a");
+    a.href = "#" + li.id; a.className = "step-link"; a.textContent = "#" + n; a.title = "A link to this step";
+    const link = document.createElement("button");
+    link.type = "button"; link.className = "mint"; link.textContent = "copy link"; link.title = "Copies a link to this step";
+    link.addEventListener("click", () => copy(link, url));
+    const mint = document.createElement("button");
+    mint.type = "button"; mint.className = "mint"; mint.textContent = "copy for a ticket";
+    mint.title = "Copies a request to mint a ticket for this step, to paste to Claude";
+    mint.addEventListener("click", () => copy(mint, "Mint a ticket for this step: " + name + ", Next, step " + n + ': "' + title + '". ' + url));
+    li.append(" ", a, " ", link, " ", mint);
+  });
+  if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
+})();
+</script>
+<!-- notes: end -->
+</body>
+</html>
