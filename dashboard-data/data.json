@@ -25402,16 +25402,14 @@
    "added": "2026-11-25",
    "opened": "2026-11-25T08:33-07:00",
    "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
+   "tags": [],
    "chips": [
     "hazel-jit",
     "performance"
    ],
    "source": "Matthew, 2026-11-25, in chat: \"please document our plan for the day as a ticket, or several that link to each other.\" and \"add those tickets to the report, under https://matthewhammer.org/hazel/reports/065/#left\" Earlier: Matthew, 2026-11-25 ~08:3x, in chat, on ^report(65) #left: \"let's keep going, skipping 1 (unboxed options) until all others are done. Priority is: * constructions without arguments... * guarded access of modules * == vs === * measure cost of exact Ints and step counts, individually. * then, finally, unboxed options.\"",
    "text": "Step 3 of today's plan, ^ticket(853); first of Matthew's priorities on ^report(65) #left. {$c: \"None\"}, {$c: \"Done\"} and the like were made anew at every use; now each name is one const before the program's code (k$None$26 = {$c: \"None\"}). A Hazel value has no identity and a page does not change what it is given (the rule for a page), so every use can share it. Done when: timed on the games against the merged base, CI green, merged with the rest of the wave on Matthew's word. Next: ^ticket(855). Listed in ^report(65) #left: https://matthewhammer.org/hazel/reports/065/#left",
-   "progress": "11-25 08:33: committed on trial/853-jit-more (ae29353ff0); package twin trial/853-pkg-c1 (a14e698ec8) deployed; on the games bench bench/853-more (run 45645748545); Petri on the laptop: no change (2.00 against 1.97 us). | 11-25 08:39: games (bench/853-more, run 45645748545, six builds per runner, every answer same; noise: same compiled.js 1.04): constructors once 0.95 of the base (within noise; one game 0.53 to 1.25). Fast checks green with tests (be44756900, CI 45646996225; full tests running). Waiting: merge with the wave on Matthew's word. | 11-25 08:50: fast checks green (be44756900); full tests running (CI 45646996225). BLOCKED ON MATTHEW: merge steps 1-3 (trial/853-jit-more) into hazel-jit and hazeljs?",
+   "progress": "11-25 08:33: committed on trial/853-jit-more (ae29353ff0); package twin trial/853-pkg-c1 (a14e698ec8) deployed; on the games bench bench/853-more (run 45645748545); Petri on the laptop: no change (2.00 against 1.97 us). | 11-25 08:39: games (bench/853-more, run 45645748545, six builds per runner, every answer same; noise: same compiled.js 1.04): constructors once 0.95 of the base (within noise; one game 0.53 to 1.25). Fast checks green with tests (be44756900, CI 45646996225; full tests running). Waiting: merge with the wave on Matthew's word. | 11-25 08:50: fast checks green (be44756900); full tests running (CI 45646996225). BLOCKED ON MATTHEW: merge steps 1-3 (trial/853-jit-more) into hazel-jit and hazeljs? | 11-25 08:57: Matthew: \"Yes, merge them\".",
    "log": [
     {
      "at": "2026-11-25T08:32-07:00",
@@ -25428,16 +25426,14 @@
    "added": "2026-11-25",
    "opened": "2026-11-25T08:33-07:00",
    "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
+   "tags": [],
    "chips": [
     "hazel-jit",
     "performance"
    ],
    "source": "Matthew, 2026-11-25, in chat: \"please document our plan for the day as a ticket, or several that link to each other.\" and \"add those tickets to the report, under https://matthewhammer.org/hazel/reports/065/#left\" Earlier: Matthew, 2026-11-25 ~08:3x, in chat, on ^report(65) #left: \"let's keep going, skipping 1 (unboxed options) until all others are done. Priority is: * constructions without arguments... * guarded access of modules * == vs === * measure cost of exact Ints and step counts, individually. * then, finally, unboxed options.\"",
    "text": "Step 4 of today's plan, ^ticket(853); second of Matthew's priorities. dev lowers a module to lets ending in a record of its members, so Common.ready was a guarded property read on every call. A let bound to a record written out whose entries are all variables (in the same JS function) is remembered, and M.x compiles to x's own variable; a call with its tuple written out then reaches the member's direct form by name (pick$27.$d(...)). Done when: timed on the games, CI green, merged with the wave. Previous ^ticket(854), next ^ticket(856). Listed in ^report(65) #left: https://matthewhammer.org/hazel/reports/065/#left",
-   "progress": "11-25 08:33: committed on trial/853-jit-more (9dd8fce210); twin trial/853-pkg-c2 (bc9d98db6b) deployed; on bench/853-more; Petri: 2.22 us, a noisy five rounds (1.88 to 2.87). | 11-25 08:39: games (bench/853-more, run 45645748545, six builds per runner, every answer same; noise: same compiled.js 1.04): modules by name 0.98 of the build before (within noise). The first test run crashed on test programs naming the record M (a constructor in a pattern); renamed m (be44756900), fast checks green. Waiting: merge with the wave. | 11-25 08:50: fast checks green (be44756900); full tests running (CI 45646996225). BLOCKED ON MATTHEW: merge steps 1-3 (trial/853-jit-more) into hazel-jit and hazeljs?",
+   "progress": "11-25 08:33: committed on trial/853-jit-more (9dd8fce210); twin trial/853-pkg-c2 (bc9d98db6b) deployed; on bench/853-more; Petri: 2.22 us, a noisy five rounds (1.88 to 2.87). | 11-25 08:39: games (bench/853-more, run 45645748545, six builds per runner, every answer same; noise: same compiled.js 1.04): modules by name 0.98 of the build before (within noise). The first test run crashed on test programs naming the record M (a constructor in a pattern); renamed m (be44756900), fast checks green. Waiting: merge with the wave. | 11-25 08:50: fast checks green (be44756900); full tests running (CI 45646996225). BLOCKED ON MATTHEW: merge steps 1-3 (trial/853-jit-more) into hazel-jit and hazeljs? | 11-25 08:57: Matthew: \"Yes, merge them\".",
    "log": [
     {
      "at": "2026-11-25T08:32-07:00",
@@ -25454,16 +25450,14 @@
    "added": "2026-11-25",
    "opened": "2026-11-25T08:33-07:00",
    "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
+   "tags": [],
    "chips": [
     "hazel-jit",
     "performance"
    ],
    "source": "Matthew, 2026-11-25, in chat: \"please document our plan for the day as a ticket, or several that link to each other.\" and \"add those tickets to the report, under https://matthewhammer.org/hazel/reports/065/#left\" Earlier: Matthew, 2026-11-25 ~08:3x, in chat, on ^report(65) #left: \"let's keep going, skipping 1 (unboxed options) until all others are done. Priority is: * constructions without arguments... * guarded access of modules * == vs === * measure cost of exact Ints and step counts, individually. * then, finally, unboxed options.\"",
    "text": "Step 5 of today's plan, ^ticket(853); third of Matthew's priorities. $R.eq(i, 0) becomes i === 0 where either side is a literal: $R.eq's own first test is ===, and its answer for anything else is false, as ==='s is (an Int is a number while safe and a BigInt past that, so === compares two Ints too; constructors keep $R.eq). Done when: timed, CI green, merged with the wave. Previous ^ticket(855), next ^ticket(857). Listed in ^report(65) #left: https://matthewhammer.org/hazel/reports/065/#left",
-   "progress": "11-25 08:33: committed on trial/853-jit-more (0ce95a2e8f; tests 6801508ed4, CI 45645102501 running); twin trial/853-pkg-c3 (f111bb00ac); on bench/853-more; Petri: 1.77 us (0.90 of the base). | 11-25 08:39: games (bench/853-more, run 45645748545, six builds per runner, every answer same; noise: same compiled.js 1.04): === 1.01 of the build before (within noise); steps 1 to 3 together 0.95. Waiting: merge with the wave. | 11-25 08:50: fast checks green (be44756900); full tests running (CI 45646996225). BLOCKED ON MATTHEW: merge steps 1-3 (trial/853-jit-more) into hazel-jit and hazeljs?",
+   "progress": "11-25 08:33: committed on trial/853-jit-more (0ce95a2e8f; tests 6801508ed4, CI 45645102501 running); twin trial/853-pkg-c3 (f111bb00ac); on bench/853-more; Petri: 1.77 us (0.90 of the base). | 11-25 08:39: games (bench/853-more, run 45645748545, six builds per runner, every answer same; noise: same compiled.js 1.04): === 1.01 of the build before (within noise); steps 1 to 3 together 0.95. Waiting: merge with the wave. | 11-25 08:50: fast checks green (be44756900); full tests running (CI 45646996225). BLOCKED ON MATTHEW: merge steps 1-3 (trial/853-jit-more) into hazel-jit and hazeljs? | 11-25 08:57: Matthew: \"Yes, merge them\".",
    "log": [
     {
      "at": "2026-11-25T08:32-07:00",
@@ -33534,6 +33528,6 @@
    "parked": "2026-11-06 09:14: Matthew: \"no other servers required now. localports is just that for now.\""
   }
  ],
- "current_waiting": "08:50: (1) merge steps 1-3 (constructors once, modules by name, ===; trial/853-jit-more) into hazel-jit and hazeljs? (2) options unboxed (^ticket(858)): go on with the full change, or stop? (3) npm publish of hazeljs 0.0.13 waits in the terminal tab. https://matthewhammer.org/hazel/reports/065/#left",
+ "current_waiting": "08:57: (1) options unboxed (^ticket(858)): go on with the full change, or stop? (2) npm publish of hazeljs 0.0.13 waits in the terminal tab. https://matthewhammer.org/hazel/reports/065/#left",
  "closed_tickets_are": "summaries for the hover cards; the full records are in dashboard-data/closed/<YYYY-MM>.json (dashboard/data_whole.py joins them)"
 }
