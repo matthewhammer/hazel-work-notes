@@ -25529,6 +25529,18 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-25T10:39-07:00",
+     "from": "claude",
+     "chars": 381,
+     "asks": false,
+     "words": 63,
+     "read_s": 16,
+     "listen_s": 24,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ]
   },
@@ -25690,29 +25702,22 @@
      "note": "from the transcripts"
     }
    ]
-  },
-  {
-   "id": 865,
-   "area": "Gnome world 0.0.114: the swim flippers (a right-hand tree house; 3x in the water, seen only there) and the super climbing gear (3x climbing, trees too), on by themselves",
-   "added": "2026-11-25",
-   "opened": "2026-11-25T10:52-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "Gnome world",
-    "hazeljs-examples",
-    "Hazel",
-    "N"
-   ],
-   "source": "Matthew, 2026-11-25, in chat: \"also -- more power up items, which are used by default (no need to turn them \\\"off\\\"): * swim flippers, shown only (1) as an item power up, in a right-hand tree house, somewhere --- and (2) while swimming in water -- let's  the gnome traverse water 3x faster, like the shoes do for traversing the ground outside of water. * super climbing gear --- like climbing gear but 3x faster. works on trees, ladders, and everywhere where we go \\\"up\\\" on the background.\"",
-   "text": "(1) The swim flippers: in a right-hand tree house; three times as fast in the water; seen on the gnome only while it swims. (2) The super climbing gear: like the climbing pack but three times as fast, on trees, ladders and everywhere the gnome climbs. (3) On by themselves once found; released with the world save check passing.",
-   "progress": "11-25 10:52: 0.0.114 (79c3b03) pushed: in Hazel's World.step, written in place (cl/fin as lets overflowed the browser's build stack; least stack 968 KB, 975 before); the shoes, flippers and gear one Int, the gnome's kit (1, 2, 4), as two Bool fields more also overflowed; saves 0.0.109-0.0.113 load their shoes into the kit (SAVE_V 5). Flippers in the tree house farthest right (col 739), the gear in the highest (row 30). Node: ladder 129 steps against 43, swimming 58 against 174, diving 45 against 135, the flight the same at 20,000 steps, the dash unchanged. Page: pickups, a bare limb climbed with the gear alone at 210, the pictures, saves. Waiting: the world save check (its speed run must reach both) and Pages."
   }
  ],
  "next_ticket": 866,
  "current_ticket": 853,
  "current_note": "10:52: ^ticket(865) Gnome world 0.0.114 (flippers, super climbing gear) pushed, checks running. Next: ^ticket(852) the iPad's vanishing foreground (Safari's canvas memory: free canvases at once, lower budgets on iOS, notice blank paints, a test switch), then ^ticket(861) piece 2.",
  "closed_tickets": [
+  {
+   "id": 865,
+   "area": "Gnome world 0.0.114: the swim flippers (a right-hand tree house; 3x in the water, seen only there) and the super climbing gear (3x climbing, trees too), on by themselves",
+   "added": "2026-11-25",
+   "text": "(1) The swim flippers: in a right-hand tree house; three times as fast in the water; seen on the gnome only while it swims. (2) The super climbing gear: like the climbing pack but three times as…",
+   "source": "Matthew, 2026-11-25, in chat: \"also -- more power up items, which are used by default (no need to turn them \\\"off\\\"): *…",
+   "status": "done",
+   "closed": "2026-11-25",
+   "outcome": "Gnome world 0.0.114 live (hazeljs-examples 79c3b03; world save check green, run 45669293829, its speed run included; Pages green; app.js matches the commit): the swim flippers…"
+  },
   {
    "id": 864,
    "area": "Gnome world 0.0.113: one on/off action for Clover and the magic carpet (R), and 🎒 your things to choose which, as Dress Up's 🎒 Your items",
@@ -32962,7 +32967,6 @@
  ],
  "queue": [
   853,
-  865,
   861,
   858,
   859,
@@ -33023,8 +33027,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7174,
-  "words": 1575292,
+  "replies": 7175,
+  "words": 1575756,
   "read_hours_est": 110.3,
   "listen_hours_est": 164.1,
   "read_s_avg": 55,
@@ -33401,9 +33405,9 @@
     "chars": 70537
    },
    "2026-11-25": {
-    "replies": 32,
-    "words": 9444,
-    "chars": 54710
+    "replies": 33,
+    "words": 9908,
+    "chars": 57258
    }
   }
  },

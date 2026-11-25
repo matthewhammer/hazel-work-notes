@@ -1,5 +1,33 @@
 [
  {
+  "id": 865,
+  "area": "Gnome world 0.0.114: the swim flippers (a right-hand tree house; 3x in the water, seen only there) and the super climbing gear (3x climbing, trees too), on by themselves",
+  "added": "2026-11-25",
+  "opened": "2026-11-25T10:52-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "Gnome world",
+   "hazeljs-examples",
+   "Hazel",
+   "N"
+  ],
+  "source": "Matthew, 2026-11-25, in chat: \"also -- more power up items, which are used by default (no need to turn them \\\"off\\\"): * swim flippers, shown only (1) as an item power up, in a right-hand tree house, somewhere --- and (2) while swimming in water -- let's  the gnome traverse water 3x faster, like the shoes do for traversing the ground outside of water. * super climbing gear --- like climbing gear but 3x faster. works on trees, ladders, and everywhere where we go \\\"up\\\" on the background.\"",
+  "text": "(1) The swim flippers: in a right-hand tree house; three times as fast in the water; seen on the gnome only while it swims. (2) The super climbing gear: like the climbing pack but three times as fast, on trees, ladders and everywhere the gnome climbs. (3) On by themselves once found; released with the world save check passing.",
+  "progress": "11-25 10:52: 0.0.114 (79c3b03) pushed: in Hazel's World.step, written in place (cl/fin as lets overflowed the browser's build stack; least stack 968 KB, 975 before); the shoes, flippers and gear one Int, the gnome's kit (1, 2, 4), as two Bool fields more also overflowed; saves 0.0.109-0.0.113 load their shoes into the kit (SAVE_V 5). Flippers in the tree house farthest right (col 739), the gear in the highest (row 30). Node: ladder 129 steps against 43, swimming 58 against 174, diving 45 against 135, the flight the same at 20,000 steps, the dash unchanged. Page: pickups, a bare limb climbed with the gear alone at 210, the pictures, saves. Waiting: the world save check (its speed run must reach both) and Pages.",
+  "closed": "2026-11-25",
+  "closed_at": "2026-11-25T10:54-07:00",
+  "outcome": "Gnome world 0.0.114 live (hazeljs-examples 79c3b03; world save check green, run 45669293829, its speed run included; Pages green; app.js matches the commit): the swim flippers (the tree house farthest right; three times as fast in the water, seen on the feet only there) and the super climbing gear (the highest tree house; three times as fast climbing, the trees too), on by themselves; in Hazel's World.step, the shoes, flippers and gear one Int (kit) so the program still builds in the browser's stack.",
+  "metrics": {
+   "open_minutes": 2,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 864,
   "area": "Gnome world 0.0.113: one on/off action for Clover and the magic carpet (R), and 🎒 your things to choose which, as Dress Up's 🎒 Your items",
   "added": "2026-11-25",
@@ -19,12 +47,21 @@
   "outcome": "Gnome world 0.0.113 live (hazeljs-examples 29d6e5c; world save check green, run 45667798899; Pages green; app.js, index.html, world.css, version.json, sw.js match the push): R (E, C; one 🐇/🧞 pad button; L on a controller) gets on the chosen ride or off the one you are on; 🎒 your things (I, a pad button once both rides are yours, R on a controller) chooses Clover or the magic carpet, as Dress Up's 🎒 Your items.",
   "metrics": {
    "open_minutes": 3,
-   "matthew_messages": 0,
+   "matthew_messages": 1,
    "questions_to_matthew": 0,
-   "chars_exchanged": 0,
-   "tokens_est": 0,
+   "chars_exchanged": 302,
+   "tokens_est": 75,
    "sync_minutes_est": 0
-  }
+  },
+  "log": [
+   {
+    "at": "2026-11-25T10:41-07:00",
+    "from": "matthew",
+    "chars": 302,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ]
  },
  {
   "id": 862,
