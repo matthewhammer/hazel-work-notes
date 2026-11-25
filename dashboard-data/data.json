@@ -48,11 +48,11 @@
    "group": "other",
    "links": [
     [
-     "localhost:8141/ (the Hazel activities' front page, 0.0.111, 6b14359, pushed)",
+     "localhost:8141/ (the Hazel activities' front page, 0.0.112, 4843d67, pushed)",
      "http://localhost:8141/"
     ],
     [
-     "localhost:8141/world/ (Gnome world 0.0.111: N's magic carpet, its flight in Hazel (Fly.step); the dash and running shoes; the pines' branches; the pad in landscape on an iPad)",
+     "localhost:8141/world/ (Gnome world 0.0.112: a game controller 🎮 and its settings; N's magic carpet, its flight in Hazel; the dash and running shoes; the pines)",
      "http://localhost:8141/world/"
     ],
     [
@@ -25565,7 +25565,9 @@
    "added": "2026-11-25",
    "opened": "2026-11-25T10:21-07:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "Gnome world",
     "hazeljs-examples",
@@ -25573,12 +25575,12 @@
    ],
    "source": "Matthew, 2026-11-25, in chat: \"For gnome world --- We have a Linux laptop that N often uses.  Let's add game controller support (do we have that yet) for the buttons, and a configure controller feature -- see messed up dress up for the game controller configure support.\"",
    "text": "(1) Game controller support in Gnome world (there was none): the arrows or the left stick move, each action a button. (2) A configure controller feature, after Dress Up's 🎮 Controls tab: 🎓 teach me your controller, 🎯 set an action's button, ↺ the usual buttons, each pad's layout kept by its name. (3) Released (pushes without asking), the world save check passing; tried by N on the Linux laptop.",
-   "progress": "11-25 10:21: 0.0.112 (4843d67) pushed: world/app.js PAD (Gamepad API, polled each frame while one is connected), the usual buttons on a SNES-style pad B jump, Y dash, A dig, X build, L ride, R carpet, select 🔊, start pause, map none; the 🎮 button beside 🗺️ opens the settings dialog (🎓 teach B A X Y L R select start, 🎯 set, ↺ usual, held buttons lit; layouts in localStorage hazeljs-examples/world/pads by the pad's id); 🐞 names the controller. Checked in the pane with a stand-in pad (WorldTest.padPoll, as the hidden pane gives no frames): runs, stick, jump, dash, pause, 🎯, 🎓 on its own numbers, kept and put back, unplugged. Fixed on the way: the dialog's close event did not come in the pane, so Done and Escape now clear the wait themselves. Waiting: the world save check and Pages (runs 45663728455, 45663727975); then N on the Linux laptop with the real controller."
+   "progress": "11-25 10:21: 0.0.112 (4843d67) pushed: world/app.js PAD (Gamepad API, polled each frame while one is connected), the usual buttons on a SNES-style pad B jump, Y dash, A dig, X build, L ride, R carpet, select 🔊, start pause, map none; the 🎮 button beside 🗺️ opens the settings dialog (🎓 teach B A X Y L R select start, 🎯 set, ↺ usual, held buttons lit; layouts in localStorage hazeljs-examples/world/pads by the pad's id); 🐞 names the controller. Checked in the pane with a stand-in pad (WorldTest.padPoll, as the hidden pane gives no frames): runs, stick, jump, dash, pause, 🎯, 🎓 on its own numbers, kept and put back, unplugged. Fixed on the way: the dialog's close event did not come in the pane, so Done and Escape now clear the wait themselves. Waiting: the world save check and Pages (runs 45663728455, 45663727975); then N on the Linux laptop with the real controller. | 11-25 10:23: 0.0.112 LIVE: world save check green (run 45663728455), Pages green (45663727975); world/app.js, index.html, world.css, version.json, sw.js on matthewhammer.org/hazeljs-examples match the push byte for byte. Waiting on N with the real controller on the Linux laptop (https://matthewhammer.org/hazeljs-examples/world/, 🎮 beside 🗺️; if its buttons are not where expected, 🎓 teach it, then 📋 copy the line into the etherpad)."
   }
  ],
  "next_ticket": 864,
- "current_ticket": 863,
- "current_note": "10:21: ^ticket(863): Gnome world 0.0.112, a game controller 🎮 and its settings (🎓 teach, 🎯 set), pushed; checks running. Parked: plain JS for #fourway, 4 of 9 done (Light trails, Snake, Bricks, Downhill; each checked equal to compiled.js), 5 left (Mahjong solitaire, Pinball, Star wave, Butterfly garden, Gnome dig); then ^ticket(861) piece 2.",
+ "current_ticket": 853,
+ "current_note": "10:23: ^ticket(863) live (Gnome world 0.0.112, the controller 🎮), waiting on N's try with the real one. Back to plain JS for #fourway: 4 of 9 done, Mahjong solitaire, Pinball, Star wave, Butterfly garden, Gnome dig left; then ^ticket(861) piece 2.",
  "closed_tickets": [
   {
    "id": 862,
@@ -32818,9 +32820,8 @@
   }
  ],
  "queue": [
-  863,
-  861,
   853,
+  861,
   858,
   859,
   847,
@@ -32864,9 +32865,10 @@
   704,
   706,
   708,
-  700
+  700,
+  863
  ],
- "current_since": "2026-11-25T10:21-07:00",
+ "current_since": "2026-11-25T10:23-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -33601,6 +33603,6 @@
    "parked": "2026-11-06 09:14: Matthew: \"no other servers required now. localports is just that for now.\""
   }
  ],
- "current_waiting": "10:09: npm publish of hazeljs 0.0.14: the sign-in tab closed when the earlier session was archived (npm still has 0.0.8); a fresh tab when you're at the keyboard. Also: options unboxed (^ticket(858)), go on or stop?",
+ "current_waiting": "10:23: N to try Gnome world 0.0.112 with the controller on the Linux laptop (🎮 beside 🗺️: 🎓 teach it if the buttons are off). npm publish of hazeljs 0.0.14: a fresh sign-in tab when you're at the keyboard. Options unboxed (^ticket(858)), go on or stop?",
  "closed_tickets_are": "summaries for the hover cards; the full records are in dashboard-data/closed/<YYYY-MM>.json (dashboard/data_whole.py joins them)"
 }
