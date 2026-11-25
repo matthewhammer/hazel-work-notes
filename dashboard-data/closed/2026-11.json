@@ -1,5 +1,32 @@
 [
  {
+  "id": 867,
+  "area": "Gnome world 0.0.117: the ride button with a way held chooses (◀ Clover, ▶ the carpet, ▼ the cat tail); a ride screen that works, for the button alone",
+  "added": "2026-11-25",
+  "opened": "2026-11-25T11:35-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "Gnome world",
+   "hazeljs-examples",
+   "N"
+  ],
+  "source": "Matthew, 2026-11-25, in chat: \"N and I are testing the popup that lets the user choose what to ride. it doesn't work.  it's pretty broken and frustrating. Instead of this screen, N wants to use a button combo: dpad Left + ride/on/off button = get on rabbit (get off carpet, off tail) dpad Right + ride/on/off button = get on  carpet (get off rabbit, off tail) dpad Down + ride/on/off button = use tail, and get off carpet/rabit\"; \"when the user is not riding anything, but presses the \\\"ride\\\" button, it's okay to pop up a screen, but it should work.\"; \"N is using a linux laptop,  firefox;  not ipad\"",
+  "text": "(1) The combos: ◀ + ride Clover, ▶ + ride the carpet, ▼ + ride the tail, each getting off the others. (2) The ride button alone on nothing: a screen to choose, that works. (3) Released.",
+  "progress": "11-25 11:35: the old 🎒 screen's fault found: a choice only chose for later and shut (nothing visible happened), and the tap that opened it could land on a choice. 0.0.117 (6db7fc0) pushed: mountToggle(want) with rideWanted() from S.keys (keyboard arrows, the pad's arrows, a controller's d-pad as buttons or axes), off the others then on; the same again off; alone: off, or the ride screen (ridePop) with two or three at hand, laid out as the combos, a pick gets on at once, taps only if begun on the button; 🎒, I, #items and the controller's items action removed; C the carpet. Checked in the pane: keyboard combos, the screen by keys and taps, controllers standard and axes. Waiting: CI; then N on the laptop.",
+  "closed": "2026-11-25",
+  "closed_at": "2026-11-25T11:36-07:00",
+  "outcome": "Gnome world 0.0.117 live (hazeljs-examples 6db7fc0; world save check green, run 45676736488; Pages green; app.js, index.html, world.css, version.json, sw.js match the commit): the ride button with a way held, ◀ Clover, ▶ the magic carpet, ▼ the cat tail (off the others, on that one; the same again, off), from the keyboard, the pad and a controller's d-pad as buttons or as a stick; the button alone on nothing, a ride screen laid out as the combos that gets on a ride at once; the 🎒 screen gone. N's try on the Linux laptop in Firefox to come.",
+  "metrics": {
+   "open_minutes": 2,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 866,
   "area": "Gnome world 0.0.116: N's cat tail 🐈 (Mario 3's raccoon-tail way: dash, jump, keep pressing jump to fly; flames from the tail in flight), its flight in Hazel (Tail.hz)",
   "added": "2026-11-25",
