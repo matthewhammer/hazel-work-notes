@@ -1,5 +1,59 @@
 [
  {
+  "id": 875,
+  "area": "Gnome world 0.0.124: stuck riding Clover in a pool: off her anywhere but the air, she hops to the nearest dry land, no more put back into the water, she climbs ladders",
+  "added": "2026-11-25",
+  "opened": "2026-11-25T12:08-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "Gnome world",
+   "hazeljs-examples",
+   "N"
+  ],
+  "source": "Matthew, 2026-11-25, in chat, with a screenshot: \"stuck state  with clover cannot dismount -- not on solid ground. clover wont' climb up a ladder that we created earlier  without  her? we cannot get out.\"; \"we should permit getting off clover in these situations; post dismount, clover automatically jumps to the nearest dry land\"",
+  "text": "(1) Off her in water or on a ladder. (2) Left in water, she hops to the nearest dry land. (3) No reset into a pool. (4) Ladders, stairs and hatches she climbs. (5) Released.",
+  "progress": "12:08: 0.0.124 (f624124) pushed: rideToggle refuses only in the air; dryLand (a breadth-first search through open tiles to a dry tile with a floor) and a hop along it, a tile per 7 steps, when she waits in water; R.safe dropped when under water; rideNear keeps the climb of ladders, stairs and hatches. Checked in the pane, a room like his with its pool kept full: no reset loop, → ← wade, off her she hops 16 tiles (121 steps) out by the shaft never inside the ground, on again beside her; a ladder in the open climbed. CI running.",
+  "closed": "2026-11-25",
+  "closed_at": "2026-11-25T12:11-07:00",
+  "outcome": "Gnome world 0.0.124 live (hazeljs-examples f624124; world save check green, run 45682186766; Pages green; app.js, index.html, version.json, sw.js match the commit): off Clover anywhere but in the air; left in water she hops, tile by tile along the open way, to the nearest dry land; a safe place under water is dropped, so she wades rather than being put back; she climbs ladders, stairs and hatches.",
+  "metrics": {
+   "open_minutes": 3,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
+  "id": 874,
+  "area": "Gnome world 0.0.123: the cat tail flaps by itself with jump held, faster with the running shoes; one carrot, just right of Clover",
+  "added": "2026-11-25",
+  "opened": "2026-11-25T12:04-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "Gnome world",
+   "hazeljs-examples",
+   "N"
+  ],
+  "source": "Matthew, 2026-11-25, in chat: \"if we hold up (jump) while using cat tail, let's do an auto-repeat that's faster when the running shoes\"; \"let's have only one carrot  on the ground,  just to the right of the clover the rabbit. instead of three in row to the  left.\"",
+  "text": "(1) Up held in the air with the tail: flaps by itself, faster with the shoes. (2) One carrot, right of Clover; old saves still load. (3) Released.",
+  "progress": "12:05: 0.0.123 (5d70069) pushed: Tail.hz rep (every 24 steps, 12 with the shoes), tailJS the same at 20,000; ↑ held 4 s: 14.96 tiles without shoes (3.74/s), 17.74 with (4.43/s). One carrot two right of Clover (46.5 by 44.5); SAVE_V 7, a v6 save's garden carrots mapped (a real 0.0.122 save loads right, round trip the same); the booklet's words. CI running.",
+  "closed": "2026-11-25",
+  "closed_at": "2026-11-25T12:08-07:00",
+  "outcome": "Gnome world 0.0.123 live (hazeljs-examples 5d70069; world save check green, Tail.step the same as tailJS at 20,000 steps with kits; the booklet 12 pages; Pages green; app.js, index.html, Tail.hz, manual, version.json, sw.js match the commit): ↑ held in the air with the cat tail flaps by itself every 24 steps, 12 with the running shoes (14.96 vs 17.74 tiles in 4 s); one carrot two steps right of Clover; saves v7, a v6 save loads with the garden's carrots mapped.",
+  "metrics": {
+   "open_minutes": 4,
+   "matthew_messages": 0,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 0,
+   "tokens_est": 0,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 872,
   "area": "Gnome world 0.0.122: Clover vanished when left in a tunnel or dropped into a hole dug under her (painted over, not gone)",
   "added": "2026-11-25",
