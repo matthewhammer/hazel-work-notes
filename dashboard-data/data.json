@@ -25842,7 +25842,7 @@
    ],
    "source": "Matthew, 2026-11-25, in chat: \"after we finish adding features in flight, please time a speedrun for a 3 way comparison: * interpreter (to some limit; no more than 5 minutes total) * hazel jit, as of today * plain JS. please include in our report with the other 4 way comparison. The older hazel jit versions are not important  to include.\"",
    "text": "(1) Gnome world's rules in plain JS (World.step, the beavers'), the same answers. (2) A harness on GitHub: the speed run to its end with hazel-jit and with plain JS, and with the interpreter for five minutes at most; the time in all and in the rules; the runs compared. (3) Into ^report(65) beside #fourway, republished.",
-   "progress": "12:02: world/plain.js written (World.step with tile, slope_at, slide_vx, dig_ahead, finish; beaver; dig_steps; water_row); in the pane, beside Hazel's on 6,000 steps of the speed run: 6,000 World.step and 5,000 beaver answers, none different. Next: the harness and its workflow.",
+   "progress": "12:02: world/plain.js written (World.step with tile, slope_at, slide_vx, dig_ahead, finish; beaver; dig_steps; water_row); in the pane, beside Hazel's on 6,000 steps of the speed run: 6,000 World.step and 5,000 beaver answers, none different. Next: the harness and its workflow. 12:28: first run on GitHub (45683626327): hazel-jit 52,947 steps 79.1 s (rules 0.66 s), plain JS 77.4 s (0.19 s), interpreter 28,000 steps in 235 s (rules 192 s); World.step alone 3.26 / 0.71 / 5,992 µs, every answer the same; but the runs parted at the first fingerprint: restartNow left the frame count, rain, dam, wind as each page's own frames had them. Harness fixed (278f464), second run 45685368873 going; ^report(65)'s #speedrun section written.",
    "log": [
     {
      "at": "2026-11-25T11:51-07:00",
@@ -25876,28 +25876,22 @@
      "note": "from the transcripts"
     }
    ]
-  },
+  }
+ ],
+ "next_ticket": 879,
+ "current_ticket": 873,
+ "current_note": "12:24: ^ticket(878) closed (0.0.127 live: caverns). Now ^ticket(873): the speed run three ways, running on GitHub (run 45683626327); then into ^report(65).",
+ "closed_tickets": [
   {
    "id": 878,
    "area": "Gnome world 0.0.127: caverns under the ground, with stalactites and stalagmites, bats, blind white cave fish and glowing cave mushrooms",
    "added": "2026-11-25",
-   "opened": "2026-11-25T12:20-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "Gnome world",
-    "hazeljs-examples",
-    "N"
-   ],
-   "source": "Matthew, 2026-11-25, in chat: \"let's introduce more \\\"cave areas\\\" under the ground. special tiles that indicate cave features (stalagtites/mites) bats fish in the cave ponds that are bright white, from being underground animals mushrooms that live in caves?\"",
    "text": "(1) More caves. (2) Stalactites and stalagmites. (3) Bats. (4) White cave fish in cave ponds. (5) Cave mushrooms. (6) Released.",
-   "progress": "12:22: 0.0.127 (5408bb7) pushed: 16 caverns carved deep before the gems (seed 7: 336 gems, was 346), most with a one-row pond; per-tile stalactites with drips, stalagmites, glowing mushrooms (lights); bats roosting and flying when the gnome comes near; white blind fish in the ponds, glowing faintly. Seen full screen in the pane; no measurable frame cost. CI running."
-  }
- ],
- "next_ticket": 879,
- "current_ticket": 878,
- "current_note": "12:22: ^ticket(878) Gnome world 0.0.127 (caverns) pushed, CI running; ^ticket(873) the speed run three ways running on GitHub.",
- "closed_tickets": [
+   "source": "Matthew, 2026-11-25, in chat: \"let's introduce more \\\"cave areas\\\" under the ground. special tiles that indicate cave…",
+   "status": "done",
+   "closed": "2026-11-25",
+   "outcome": "Gnome world 0.0.127 live (hazeljs-examples 5408bb7; world save check green, run 45684625725: the tour's world with the caverns saved, restarted and loaded twice, the same; canvas…"
+  },
   {
    "id": 877,
    "area": "Gnome world 0.0.126: the gem finder 🧭, a magic compass: its needle to the nearest gem, that gem big on the map; placed by a patch of gems near home",
@@ -33314,7 +33308,7 @@
   863,
   852
  ],
- "current_since": "2026-11-25T12:22-07:00",
+ "current_since": "2026-11-25T12:24-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -33327,10 +33321,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7200,
-  "words": 1579284,
+  "replies": 7201,
+  "words": 1579942,
   "read_hours_est": 110.6,
-  "listen_hours_est": 164.5,
+  "listen_hours_est": 164.6,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -33705,9 +33699,9 @@
     "chars": 70537
    },
    "2026-11-25": {
-    "replies": 58,
-    "words": 13436,
-    "chars": 76239
+    "replies": 59,
+    "words": 14094,
+    "chars": 79842
    }
   }
  },
