@@ -25292,7 +25292,7 @@
    ],
    "source": "Matthew, 2026-11-25 ~07:4x, in chat, on ^report(65): \"for the stuff filed as \\\"not yet\\\" --- let's do that work today: let's work on turning tail calls into loops next. followed by passing function arguments as JS arguments. Unboxing options is least important, but would also be nice.\"",
    "text": "The day's plan, each step its own ticket (Matthew, 2026-11-25: \"please document our plan for the day as a ticket, or several that link to each other.\"): (1) a recursive function's self tail calls as loops: DONE, merged (hazel-jit 43828037c9, hazeljs 4cbf7483bf); (2) a named function's tuple parts as JS arguments: DONE, merged (the same); with (1), the games take 0.70 of the jit's time; (3) ^ticket(854) constructors without arguments made once; (4) ^ticket(855) a module's members by name; (5) ^ticket(856) == against a literal as ===; (6) ^ticket(857) the cost of exact Ints and of the step count, each measured; (7) ^ticket(858) options unboxed, last, a decision first; alongside: ^ticket(859) #2859's description, iterated in ^report(65) and posted on Matthew's word. Steps 3 to 5 are one wave on trial/853-jit-more, each its own commit and its own package build, timed together on the games (bench/853-more) and merged together on Matthew's word. Also waiting today: the npm publish of hazeljs 0.0.13 (^ticket(847)), in the terminal tab \"npm publish 0.0.13\". https://matthewhammer.org/hazel/reports/065/#left",
-   "progress": "11-25 07:47: opened; reading HazelJit.re (exp_inner, func, FixF) at 9ec865976d. | 11-25 08:03: trial/853-jit-loops-args (worktree ~/hazel-853, off hazel-jit 9ec865976d): 50b70d5a40 self tail calls as for (;;) loops (FixF's function compiled with ~self; tail() writes the body as statements; vars declared per pass), 43828037c9 a named function of a tuple pattern gets a direct form $d (parts as JS params; known calls fv.$d(a, b), unknown $R.c2..c6; wrapper keeps the 851 guard); header comment fixed (records as objects). Fast checks green on both (CI 45638453708, 45639629934; full tests running). Package twin trial/853-pkg (6d041e9769 = hazeljs + trial) deployed. Games bench: matthewhammer/hazeljs-examples bench/853 run 45640411958 (base 0.0.13, trial, base again). Petri (report 046's rule, laptop, 5 runs, median us/call): ReScript 0.51, Melange 0.57, JS by hand 0.83, hazel-jit base 2.97 (046 on 11-07: 1.59), trial 2.00 (0.67x base), same end state. Remaining costs seen in the compiled code: $R.eq for i == 0, $R.isub exact Ints, fuel per pass, None allocated each time, module members read with guards per call. | 11-25 08:09: games (bench/853, run 45640411958, 14 games, one runner each, base/trial/base): trial 0.70 of base's jit time (gm), best Gnome dig 0.50, Bricks 0.55, Star wave 0.59, Go 0.63; least Snake 0.90, Checkers 0.86, Solitaire 0.86; noise base2/base 0.95 (0.76-1.22), AOT same file 1.01; every answer same. Petri split (laptop, 5 rounds): base 2.78, loops alone 2.88 (no gain: 4-long lists), both 1.95 us. Sweep on the trial: 289 checks, 234 compiled, 211 agreed, 0 differ. ^report(65) #today/#left published (reports a7b7549, homepage abf7d077). Options: none of the 14 games uses Some/None (only Petri's pick), so unboxing would not show on the games and changes pages' shapes: a decision for Matthew. Waiting: full tests (CI 45639629934), split bench (bench/853-split run 45641693384). | 11-25 ~08:3x: Matthew: \"Yes, merge it\", then on ^report(65) #left: \"let's keep going, skipping 1 (unboxed options) until all others are done. Priority is: constructions without arguments..., guarded access of modules, == vs ===, measure cost of exact Ints and step counts, individually. then, finally, unboxed options.\" 11-25 08:32: full tests green on 43828037c9 (CI 45639629934) and the twin (45639794672); MERGED: hazel-jit fast-forwarded to 43828037c9, hazeljs merges it (4cbf7483bf, tree = trial/853-pkg 6d041e9769); CI running on both (45645553201, 45645642135). Next wave on trial/853-jit-more (~/hazel-853b): ae29353ff0 constructors without arguments as one const each; 9dd8fce210 a module's members (a let bound to a record of variables) read as their own variables; 0ce95a2e8f == against a literal as ===; 6801508ed4 tests. Twins trial/853-pkg-c1/c2/c3 and bench-only noint (Ints plain JS) / nostep (no fuel step) deployed; games bench matthewhammer/hazeljs-examples bench/853-more run 45645748545 (six builds, one runner a game). Petri (laptop, 5 rounds, us): base 1.97, +consts 2.00, +modules 2.22 (noisy), +=== 1.77 (0.90), Ints plain 1.64 (0.83), no steps 1.40 (0.71). ^report(65) republished (homepage + reports). | 11-25 08:33: the plan written as tickets ^ticket(854) to ^ticket(859), each linking back here and to its neighbours, and listed in ^report(65) #left.",
+   "progress": "11-25 07:47: opened; reading HazelJit.re (exp_inner, func, FixF) at 9ec865976d. | 11-25 08:03: trial/853-jit-loops-args (worktree ~/hazel-853, off hazel-jit 9ec865976d): 50b70d5a40 self tail calls as for (;;) loops (FixF's function compiled with ~self; tail() writes the body as statements; vars declared per pass), 43828037c9 a named function of a tuple pattern gets a direct form $d (parts as JS params; known calls fv.$d(a, b), unknown $R.c2..c6; wrapper keeps the 851 guard); header comment fixed (records as objects). Fast checks green on both (CI 45638453708, 45639629934; full tests running). Package twin trial/853-pkg (6d041e9769 = hazeljs + trial) deployed. Games bench: matthewhammer/hazeljs-examples bench/853 run 45640411958 (base 0.0.13, trial, base again). Petri (report 046's rule, laptop, 5 runs, median us/call): ReScript 0.51, Melange 0.57, JS by hand 0.83, hazel-jit base 2.97 (046 on 11-07: 1.59), trial 2.00 (0.67x base), same end state. Remaining costs seen in the compiled code: $R.eq for i == 0, $R.isub exact Ints, fuel per pass, None allocated each time, module members read with guards per call. | 11-25 08:09: games (bench/853, run 45640411958, 14 games, one runner each, base/trial/base): trial 0.70 of base's jit time (gm), best Gnome dig 0.50, Bricks 0.55, Star wave 0.59, Go 0.63; least Snake 0.90, Checkers 0.86, Solitaire 0.86; noise base2/base 0.95 (0.76-1.22), AOT same file 1.01; every answer same. Petri split (laptop, 5 rounds): base 2.78, loops alone 2.88 (no gain: 4-long lists), both 1.95 us. Sweep on the trial: 289 checks, 234 compiled, 211 agreed, 0 differ. ^report(65) #today/#left published (reports a7b7549, homepage abf7d077). Options: none of the 14 games uses Some/None (only Petri's pick), so unboxing would not show on the games and changes pages' shapes: a decision for Matthew. Waiting: full tests (CI 45639629934), split bench (bench/853-split run 45641693384). | 11-25 ~08:3x: Matthew: \"Yes, merge it\", then on ^report(65) #left: \"let's keep going, skipping 1 (unboxed options) until all others are done. Priority is: constructions without arguments..., guarded access of modules, == vs ===, measure cost of exact Ints and step counts, individually. then, finally, unboxed options.\" 11-25 08:32: full tests green on 43828037c9 (CI 45639629934) and the twin (45639794672); MERGED: hazel-jit fast-forwarded to 43828037c9, hazeljs merges it (4cbf7483bf, tree = trial/853-pkg 6d041e9769); CI running on both (45645553201, 45645642135). Next wave on trial/853-jit-more (~/hazel-853b): ae29353ff0 constructors without arguments as one const each; 9dd8fce210 a module's members (a let bound to a record of variables) read as their own variables; 0ce95a2e8f == against a literal as ===; 6801508ed4 tests. Twins trial/853-pkg-c1/c2/c3 and bench-only noint (Ints plain JS) / nostep (no fuel step) deployed; games bench matthewhammer/hazeljs-examples bench/853-more run 45645748545 (six builds, one runner a game). Petri (laptop, 5 rounds, us): base 1.97, +consts 2.00, +modules 2.22 (noisy), +=== 1.77 (0.90), Ints plain 1.64 (0.83), no steps 1.40 (0.71). ^report(65) republished (homepage + reports). | 11-25 08:33: the plan written as tickets ^ticket(854) to ^ticket(859), each linking back here and to its neighbours, and listed in ^report(65) #left. | 11-25 08:39: Matthew: #compare's now column = hazel-jit as merged (done, ^report(65) republished). Steps 3-6 timed (^ticket(854)-^ticket(857)); next ^ticket(858) options unboxed, a trial.",
    "log": [
     {
      "at": "2026-11-25T07:39-07:00",
@@ -25336,6 +25336,13 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-25T08:18-07:00",
+     "from": "matthew",
+     "chars": 312,
+     "asks": false,
+     "note": "from the transcripts"
     }
    ]
   },
@@ -25352,7 +25359,7 @@
    ],
    "source": "Matthew, 2026-11-25, in chat: \"please document our plan for the day as a ticket, or several that link to each other.\" and \"add those tickets to the report, under https://matthewhammer.org/hazel/reports/065/#left\" Earlier: Matthew, 2026-11-25 ~08:3x, in chat, on ^report(65) #left: \"let's keep going, skipping 1 (unboxed options) until all others are done. Priority is: * constructions without arguments... * guarded access of modules * == vs === * measure cost of exact Ints and step counts, individually. * then, finally, unboxed options.\"",
    "text": "Step 3 of today's plan, ^ticket(853); first of Matthew's priorities on ^report(65) #left. {$c: \"None\"}, {$c: \"Done\"} and the like were made anew at every use; now each name is one const before the program's code (k$None$26 = {$c: \"None\"}). A Hazel value has no identity and a page does not change what it is given (the rule for a page), so every use can share it. Done when: timed on the games against the merged base, CI green, merged with the rest of the wave on Matthew's word. Next: ^ticket(855). Listed in ^report(65) #left: https://matthewhammer.org/hazel/reports/065/#left",
-   "progress": "11-25 08:33: committed on trial/853-jit-more (ae29353ff0); package twin trial/853-pkg-c1 (a14e698ec8) deployed; on the games bench bench/853-more (run 45645748545); Petri on the laptop: no change (2.00 against 1.97 us).",
+   "progress": "11-25 08:33: committed on trial/853-jit-more (ae29353ff0); package twin trial/853-pkg-c1 (a14e698ec8) deployed; on the games bench bench/853-more (run 45645748545); Petri on the laptop: no change (2.00 against 1.97 us). | 11-25 08:39: games (bench/853-more, run 45645748545, six builds per runner, every answer same; noise: same compiled.js 1.04): constructors once 0.95 of the base (within noise; one game 0.53 to 1.25). Fast checks green with tests (be44756900, CI 45646996225; full tests running). Waiting: merge with the wave on Matthew's word.",
    "log": [
     {
      "at": "2026-11-25T08:33-07:00",
@@ -25376,7 +25383,7 @@
    ],
    "source": "Matthew, 2026-11-25, in chat: \"please document our plan for the day as a ticket, or several that link to each other.\" and \"add those tickets to the report, under https://matthewhammer.org/hazel/reports/065/#left\" Earlier: Matthew, 2026-11-25 ~08:3x, in chat, on ^report(65) #left: \"let's keep going, skipping 1 (unboxed options) until all others are done. Priority is: * constructions without arguments... * guarded access of modules * == vs === * measure cost of exact Ints and step counts, individually. * then, finally, unboxed options.\"",
    "text": "Step 4 of today's plan, ^ticket(853); second of Matthew's priorities. dev lowers a module to lets ending in a record of its members, so Common.ready was a guarded property read on every call. A let bound to a record written out whose entries are all variables (in the same JS function) is remembered, and M.x compiles to x's own variable; a call with its tuple written out then reaches the member's direct form by name (pick$27.$d(...)). Done when: timed on the games, CI green, merged with the wave. Previous ^ticket(854), next ^ticket(856). Listed in ^report(65) #left: https://matthewhammer.org/hazel/reports/065/#left",
-   "progress": "11-25 08:33: committed on trial/853-jit-more (9dd8fce210); twin trial/853-pkg-c2 (bc9d98db6b) deployed; on bench/853-more; Petri: 2.22 us, a noisy five rounds (1.88 to 2.87).",
+   "progress": "11-25 08:33: committed on trial/853-jit-more (9dd8fce210); twin trial/853-pkg-c2 (bc9d98db6b) deployed; on bench/853-more; Petri: 2.22 us, a noisy five rounds (1.88 to 2.87). | 11-25 08:39: games (bench/853-more, run 45645748545, six builds per runner, every answer same; noise: same compiled.js 1.04): modules by name 0.98 of the build before (within noise). The first test run crashed on test programs naming the record M (a constructor in a pattern); renamed m (be44756900), fast checks green. Waiting: merge with the wave.",
    "log": [
     {
      "at": "2026-11-25T08:33-07:00",
@@ -25400,32 +25407,7 @@
    ],
    "source": "Matthew, 2026-11-25, in chat: \"please document our plan for the day as a ticket, or several that link to each other.\" and \"add those tickets to the report, under https://matthewhammer.org/hazel/reports/065/#left\" Earlier: Matthew, 2026-11-25 ~08:3x, in chat, on ^report(65) #left: \"let's keep going, skipping 1 (unboxed options) until all others are done. Priority is: * constructions without arguments... * guarded access of modules * == vs === * measure cost of exact Ints and step counts, individually. * then, finally, unboxed options.\"",
    "text": "Step 5 of today's plan, ^ticket(853); third of Matthew's priorities. $R.eq(i, 0) becomes i === 0 where either side is a literal: $R.eq's own first test is ===, and its answer for anything else is false, as ==='s is (an Int is a number while safe and a BigInt past that, so === compares two Ints too; constructors keep $R.eq). Done when: timed, CI green, merged with the wave. Previous ^ticket(855), next ^ticket(857). Listed in ^report(65) #left: https://matthewhammer.org/hazel/reports/065/#left",
-   "progress": "11-25 08:33: committed on trial/853-jit-more (0ce95a2e8f; tests 6801508ed4, CI 45645102501 running); twin trial/853-pkg-c3 (f111bb00ac); on bench/853-more; Petri: 1.77 us (0.90 of the base).",
-   "log": [
-    {
-     "at": "2026-11-25T08:33-07:00",
-     "from": "matthew",
-     "chars": 96,
-     "asks": true,
-     "note": "in chat: document the plan as linked tickets"
-    }
-   ]
-  },
-  {
-   "id": 857,
-   "area": "hazel-jit: measure what exact Ints and the step count each cost (bench builds only, not for merging)",
-   "added": "2026-11-25",
-   "opened": "2026-11-25T08:33-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazel-jit",
-    "performance",
-    "measurement"
-   ],
-   "source": "Matthew, 2026-11-25, in chat: \"please document our plan for the day as a ticket, or several that link to each other.\" and \"add those tickets to the report, under https://matthewhammer.org/hazel/reports/065/#left\" Earlier: Matthew, 2026-11-25 ~08:3x, in chat, on ^report(65) #left: \"let's keep going, skipping 1 (unboxed options) until all others are done. Priority is: * constructions without arguments... * guarded access of modules * == vs === * measure cost of exact Ints and step counts, individually. * then, finally, unboxed options.\"",
-   "text": "Step 6 of today's plan, ^ticket(853); fourth of Matthew's priorities: \"measure cost of exact Ints and step counts, individually\". Two bench builds on top of ^ticket(856)'s: Ints as plain JS numbers (+, -, *, / and negation in place of $R.iadd and kin; trial/853-pkg-noint) and no step counted (step = \"\"; trial/853-pkg-nostep). Both are Hazel's meaning, so they are measured, not removed. Done when: their costs are in ^report(65) beside the other changes'. Previous ^ticket(856), next ^ticket(858). Listed in ^report(65) #left: https://matthewhammer.org/hazel/reports/065/#left",
-   "progress": "11-25 08:33: twins noint (b471f761fb) and nostep (ae9611d03f) deployed; on bench/853-more; Petri on the laptop, against the === build's 1.77 us: Ints plain 1.64 (exact Ints about 7%), no steps 1.40 (the step count about 21%).",
+   "progress": "11-25 08:33: committed on trial/853-jit-more (0ce95a2e8f; tests 6801508ed4, CI 45645102501 running); twin trial/853-pkg-c3 (f111bb00ac); on bench/853-more; Petri: 1.77 us (0.90 of the base). | 11-25 08:39: games (bench/853-more, run 45645748545, six builds per runner, every answer same; noise: same compiled.js 1.04): === 1.01 of the build before (within noise); steps 1 to 3 together 0.95. Waiting: merge with the wave.",
    "log": [
     {
      "at": "2026-11-25T08:33-07:00",
@@ -25493,6 +25475,16 @@
  "current_ticket": 853,
  "current_note": "08:32: ^ticket(853): loops + JS arguments merged into hazel-jit and hazeljs; next three changes timed on the games (bench/853-more)",
  "closed_tickets": [
+  {
+   "id": 857,
+   "area": "hazel-jit: measure what exact Ints and the step count each cost (bench builds only, not for merging)",
+   "added": "2026-11-25",
+   "text": "Step 6 of today's plan, ^ticket(853); fourth of Matthew's priorities: \"measure cost of exact Ints and step counts, individually\". Two bench builds on top of ^ticket(856)'s: Ints as plain JS numbers…",
+   "source": "Matthew, 2026-11-25, in chat: \"please document our plan for the day as a ticket, or several that link to each other.\"…",
+   "status": "done",
+   "closed": "2026-11-25",
+   "outcome": "Measured on the games (bench/853-more, run 45645748545, six builds per runner, every answer the same): exact Ints cost about 12% of a call (Ints as plain JS numbers 0.90 of the…"
+  },
   {
    "id": 851,
    "area": "hazel-jit: a pattern by position against a labeled tuple of unknown type answers where the interpreter is stuck",
@@ -32675,7 +32667,6 @@
   854,
   855,
   856,
-  857,
   858,
   859,
   847,
@@ -32734,8 +32725,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7148,
-  "words": 1567909,
+  "replies": 7150,
+  "words": 1567979,
   "read_hours_est": 109.8,
   "listen_hours_est": 163.3,
   "read_s_avg": 55,
@@ -33112,9 +33103,9 @@
     "chars": 70537
    },
    "2026-11-25": {
-    "replies": 6,
-    "words": 2061,
-    "chars": 12151
+    "replies": 8,
+    "words": 2131,
+    "chars": 12570
    }
   }
  },

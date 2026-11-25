@@ -1,5 +1,41 @@
 [
  {
+  "id": 857,
+  "area": "hazel-jit: measure what exact Ints and the step count each cost (bench builds only, not for merging)",
+  "added": "2026-11-25",
+  "opened": "2026-11-25T08:33-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "hazel-jit",
+   "performance",
+   "measurement"
+  ],
+  "source": "Matthew, 2026-11-25, in chat: \"please document our plan for the day as a ticket, or several that link to each other.\" and \"add those tickets to the report, under https://matthewhammer.org/hazel/reports/065/#left\" Earlier: Matthew, 2026-11-25 ~08:3x, in chat, on ^report(65) #left: \"let's keep going, skipping 1 (unboxed options) until all others are done. Priority is: * constructions without arguments... * guarded access of modules * == vs === * measure cost of exact Ints and step counts, individually. * then, finally, unboxed options.\"",
+  "text": "Step 6 of today's plan, ^ticket(853); fourth of Matthew's priorities: \"measure cost of exact Ints and step counts, individually\". Two bench builds on top of ^ticket(856)'s: Ints as plain JS numbers (+, -, *, / and negation in place of $R.iadd and kin; trial/853-pkg-noint) and no step counted (step = \"\"; trial/853-pkg-nostep). Both are Hazel's meaning, so they are measured, not removed. Done when: their costs are in ^report(65) beside the other changes'. Previous ^ticket(856), next ^ticket(858). Listed in ^report(65) #left: https://matthewhammer.org/hazel/reports/065/#left",
+  "progress": "11-25 08:33: twins noint (b471f761fb) and nostep (ae9611d03f) deployed; on bench/853-more; Petri on the laptop, against the === build's 1.77 us: Ints plain 1.64 (exact Ints about 7%), no steps 1.40 (the step count about 21%). | 11-25 08:39: games (bench/853-more, run 45645748545, six builds per runner, every answer same; noise: same compiled.js 1.04): Ints plain 0.90 of the === build (exact Ints cost about 12% of a call; Downhill 0.37, Star wave 0.67, Bricks 0.71), no steps 0.82 (the step count about 21%; Checkers 0.59, Star wave 0.69, Mahjong 0.70). In ^report(65) #left-timed, with two ways to make each cheaper without changing the meaning (a step counter in a variable of the program's or once a loop pass; the safe-integer check written in place).",
+  "log": [
+   {
+    "at": "2026-11-25T08:33-07:00",
+    "from": "matthew",
+    "chars": 96,
+    "asks": true,
+    "note": "in chat: document the plan as linked tickets"
+   }
+  ],
+  "closed": "2026-11-25",
+  "closed_at": "2026-11-25T08:39-07:00",
+  "outcome": "Measured on the games (bench/853-more, run 45645748545, six builds per runner, every answer the same): exact Ints cost about 12% of a call (Ints as plain JS numbers 0.90 of the === build; Downhill 0.37, Star wave 0.67, Bricks 0.71), the step count about 21% (no steps 0.82; Checkers 0.59, Star wave 0.69, Mahjong 0.70). Petri on the laptop: 1.77 us, plain Ints 1.64, no steps 1.40. In ^report(65) #left-timed (homepage 00c33913), with two ways to make each cheaper without changing the meaning. Bench builds only (trial/853-pkg-noint b471f761fb, trial/853-pkg-nostep ae9611d03f), not for merging.",
+  "metrics": {
+   "open_minutes": 7,
+   "matthew_messages": 1,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 96,
+   "tokens_est": 24,
+   "sync_minutes_est": 0
+  }
+ },
+ {
   "id": 851,
   "area": "hazel-jit: a pattern by position against a labeled tuple of unknown type answers where the interpreter is stuck",
   "text": "Found checking ^ticket(847)'s decision 3. `let f = fun r -> let (a, b) = r in a - b in f((x = 5, y = 2))`: the interpreter binds a to the labeled entry (x = 5) and its subtraction is stuck (an indeterminate BinOp); the jit (Hazel.jit, hazeljs at a97b6f7465) answers 3, since compiled code reads the pattern as r[0], r[1]. The same with f declared (Int, Int) -> Int. When the matched type is labeled, the statics add the labels to the pattern (MatchedTyp.prod) and compiled code reads r[\"x\"], so only an unknown or unlabeled matched type meets this. Fix: a positional read in compiled code checks that the entry at that position is unlabeled, and an indeterminate run ($R.indet) goes to the interpreter, as hazel-jit's rule has it; then an agreement test for it (evaluator sweep or the jit's own). With records as objects (847), the same check is Array.isArray.",
