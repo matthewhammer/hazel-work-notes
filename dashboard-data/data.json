@@ -25811,11 +25811,48 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 883,
+   "area": "Gnome world 0.0.138: both diggers 3x, the world kept across reloads, the gem finder clear of the head on Clover",
+   "added": "2026-11-25",
+   "opened": "2026-11-25T13:41-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "Gnome world",
+    "hazeljs-examples",
+    "N"
+   ],
+   "source": "Matthew, 2026-11-25, in chat: \"N says that when we have both diggers, it's about 3x faster than the current max dig speed.\" Then: \"when we reload to the next version, we should do the equiv of save and load -- currently, there's a builtin reset to start state --- let's not do that by default. people can press the buttonfor that.\" Then: \"the gem finder obscures our head sometimes --- I forget the details (on the rabbit, on the carpet, digging, etc)?\" and \"by default it looks fine (no carpet, no rabbit)\"",
+   "text": "Three of Matthew's and N's requests, released together as Gnome world 0.0.138: both diggers kept and digging 3x as fast as the super digger; the world kept in the browser and brought back on reload or a newer version (Restart begins again); the gem finder hung over the gnome's top as drawn, so it clears the head on Clover.",
+   "progress": "11-25: RELEASED 0.0.138 (8c03e77, live; world save check green after 060482f). Both diggers: tool 3 (Pickup.step and twin keep both), World.dig_steps and plain.js a third of the super's steps (granite 8->3, limestone 5->2, bedrock 12->4; soft ground already 1-3 -> 1); note '⛏️⚒️ Both diggers!', ⛏️⚒️ on the top line, 🕳️ gives both, old saves with both taken load with both. MEASURED in the page: digging down 4 granite tiles 78 -> 58 steps (1.3x): the fall into each hole dominates, so N may not feel 3x; asked Matthew whether to go further. Kept world: IndexedDB, every 10 s of play (~4 ms main thread), on hidden, before the 🆕 chip (awaited), and at once on pagehide (dropped by the pane's browser, so a plain reload can lose the last seconds); restored on open as 📂 Load, banner '↩️ Your world, as you left it'; not under ?test unless ?keep; checked across reloads (frame, place, gear, hearts, dug tiles the same). Found and fixed on the way: a save asked for while one was packing returned the old one; 0.0.137's build waited for frames a hidden tab never gets. Gem finder: HEADTOP from drawRider; on Clover 0.6 tile higher, seen clear of the cap; carpet unchanged (same height as on foot). CI: the booklet check printed a blank page on Chrome 157 (a race in zine-check, not the game): fixed in 060482f, 12 sections on 12 pages.",
+   "log": [
+    {
+     "at": "2026-11-25T13:40-07:00",
+     "from": "claude",
+     "chars": 4606,
+     "asks": true,
+     "words": 873,
+     "read_s": 220,
+     "listen_s": 327,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-25T13:42-07:00",
+     "from": "matthew",
+     "chars": 91,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
- "next_ticket": 883,
- "current_ticket": 882,
- "current_note": "13:38: Gnome world 0.0.137 live: the wind in Hazel (piece 5) and four gnome heads turning while the rules build; ^report(64) republished. Next: piece 6, the animals' minds.",
+ "next_ticket": 884,
+ "current_ticket": 883,
+ "current_note": "13:54: Gnome world 0.0.138 live: both diggers 3x per tile, the world kept across reloads, the gem finder clear of the head on Clover. Waiting on Matthew: how far to take the diggers' felt speed.",
  "closed_tickets": [
   {
    "id": 861,
@@ -33292,7 +33329,7 @@
   863,
   852
  ],
- "current_since": "2026-11-25T13:28-07:00",
+ "current_since": "2026-11-25T13:54-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -33306,9 +33343,9 @@
   },
   "since": "2026-08-27",
   "replies": 7219,
-  "words": 1585364,
+  "words": 1585557,
   "read_hours_est": 111.0,
-  "listen_hours_est": 165.1,
+  "listen_hours_est": 165.2,
   "read_s_avg": 55,
   "listen_s_avg": 82,
   "days": {
@@ -33684,8 +33721,8 @@
    },
    "2026-11-25": {
     "replies": 77,
-    "words": 19516,
-    "chars": 109444
+    "words": 19709,
+    "chars": 110521
    }
   }
  },
