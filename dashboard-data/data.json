@@ -22836,75 +22836,22 @@
      "note": "from the transcripts"
     }
    ]
-  },
+  }
+ ],
+ "next_ticket": 887,
+ "current_ticket": null,
+ "current_note": "10:48: Week in Hazel 009-011 on the homepage's Press list (^ticket(886)); the Witch with holes measured and in ^report(55) (^ticket(885))",
+ "closed_tickets": [
   {
    "id": 885,
    "area": "hazel-jit: the Witch slide's frame time with holes, before and after (^report(55) What next, step 3)",
    "added": "2026-11-26",
-   "opened": "2026-11-26T09:06-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazel",
-    "hazel-jit",
-    "livelits"
-   ],
-   "source": "Matthew, 2026-11-26, in chat, after holes merged into hazel-jit (^ticket(769)): \"let's do the witches slide frame time next\"",
-   "text": "<b>Measure what holes buy on a slide being edited: the Witch's drag, before and after.</b> The Witch lives on the prototype branch trial/694-view-jit (#2817), whose jit is older than hazel-jit's and has no Jane Street Core, and whose compiled path is the slide's whole run (HazelJitRun): any hole in the slide refuses it, so every frame waits for the worker's interpreter. Mixed mode is not wired into the app there. Plan: three versions of the slide, each before and after: the Witch as is (the holes' cost on a drag with none); a hole the neck's drag never opens (TankTop => ? in sleeve, she wears long sleeves); a hole the neck's drag opens. Before: trial/694-view-jit plus the two variants, jit.yml only=Witch. After: holes ported by hand into the prototype's jit (opaque values, the checked version, compile_full ~holes) and the whole run compiled with them; an answer holding a hole goes to the worker. Report: ^report(55).",
-   "progress": "11-26 09:06: minted; reading the prototype's HazelJitRun, the deck (Slides.re, witch.hz) and scripts/jit_slides.py. | 11-26 09:10: FOUND: the prototype's slide run already compiles an unreached hole as a stub that throws if reached (HazelJit.survey), so a hole matters once a run reaches it. Three variants: a hole never reached (TankTop => ?), a hole reached but not opened (let neck_draft = ? in), a hole opened (float_of_int(neck_length) *. ?). BEFORE: trial/885-witch-holes-before d0456b286f, jit.yml run 45855978300. AFTER: trial/885-witch-holes 5782738954 (holes ported by hand into the prototype's HazelJit.re, the slide's run compiled checked when it holds a hole, answers holding a hole refused), jit.yml run 45856238834, CI 45856238812.",
-   "log": [
-    {
-     "at": "2026-11-26T09:05-07:00",
-     "from": "matthew",
-     "chars": 42,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-26T09:10-07:00",
-     "from": "claude",
-     "chars": 3857,
-     "asks": false,
-     "words": 658,
-     "read_s": 166,
-     "listen_s": 247,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-26T09:26-07:00",
-     "from": "matthew",
-     "chars": 7,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-26T09:26-07:00",
-     "from": "claude",
-     "chars": 415,
-     "asks": false,
-     "words": 76,
-     "read_s": 19,
-     "listen_s": 28,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-26T10:30-07:00",
-     "from": "matthew",
-     "chars": 114,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  }
- ],
- "next_ticket": 887,
- "current_ticket": 885,
- "current_note": "10:33: Witch with holes: the before and after checks near the step's 90-minute limit; the hole-opened slide to run on its own after",
- "closed_tickets": [
+   "text": "Measure what holes buy on a slide being edited: the Witch's drag, before and after.",
+   "source": "Matthew, 2026-11-26, in chat, after holes merged into hazel-jit (^ticket(769)): \"let's do the witches slide frame time…",
+   "status": "done",
+   "closed": "2026-11-26",
+   "outcome": "Measured, one Firefox check each on GitHub (before run 45855978300, trial/885-witch-holes-before d0456b286f; after run 45856238834, trial/885-witch-holes 5782738954, holes…"
+  },
   {
    "id": 886,
    "area": "matthewhammer.org/hazel #press: Week in Hazel issues 009 to 011",
@@ -30409,7 +30356,7 @@
   863,
   852
  ],
- "current_since": "2026-11-26T10:33-07:00",
+ "current_since": "2026-11-26T10:48-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
