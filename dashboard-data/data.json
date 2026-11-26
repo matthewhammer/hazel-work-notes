@@ -22836,11 +22836,26 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 887,
+   "area": "hazel-jit check: why the Witch's drag with compiling off is sometimes 3x faster (^report(55) #witch)",
+   "added": "2026-11-26",
+   "opened": "2026-11-26T11:36-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazel-jit",
+    "livelits"
+   ],
+   "source": "Matthew, 2026-11-26, in chat, answering \"Look into why build 2's drags with compiling off came out fast?\": \"Yes, dig in\"",
+   "text": "<b>Find why the Witch's 3-second drag with compiling off draws in 4-7 ms a frame on some checks and 13-19 ms on others.</b> Found so far: not the holes port (every path it touches is behind the jit setting); the runner was only 15-25% faster at interpreting; and the same commit has shown both (421e30a04b: 4.5 and 16.0 ms a frame; 0e56bdbd0a: 6.1, 7.4, then later builds 14-15): about 6 of 27 checks fast. In the fast ones each livelit draw takes 0.7-1.2 ms, as compiled, against 4.1-5.7. Leading guess: the views' call memo (CallMemo), which stops looking up a body after 24 misses a hit, so its history decides whether the slider's helpers are reused. Experiment: trial/887-off-drag from build 50, the memo's lookups and hits counted over the drag, draws split by livelit, the off drag repeated three times."
   }
  ],
- "next_ticket": 887,
- "current_ticket": null,
- "current_note": "10:48: Week in Hazel 009-011 on the homepage's Press list (^ticket(886)); the Witch with holes measured and in ^report(55) (^ticket(885))",
+ "next_ticket": 888,
+ "current_ticket": 887,
+ "current_note": "11:36: Why the Witch's compiled-off drag is sometimes fast: instrumenting the view memo on trial/887-off-drag",
  "closed_tickets": [
   {
    "id": 885,
@@ -30356,7 +30371,7 @@
   863,
   852
  ],
- "current_since": "2026-11-26T10:48-07:00",
+ "current_since": "2026-11-26T11:36-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -30369,12 +30384,12 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7240,
-  "words": 1592936,
+  "replies": 7241,
+  "words": 1592970,
   "read_hours_est": 111.6,
   "listen_hours_est": 165.9,
   "read_s_avg": 55,
-  "listen_s_avg": 83,
+  "listen_s_avg": 82,
   "days": {
    "2026-08-27": {
     "replies": 7,
@@ -30752,9 +30767,9 @@
     "chars": 138783
    },
    "2026-11-26": {
-    "replies": 6,
-    "words": 2405,
-    "chars": 13932
+    "replies": 7,
+    "words": 2439,
+    "chars": 14119
    }
   }
  },
