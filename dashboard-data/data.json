@@ -22850,7 +22850,16 @@
     "livelits"
    ],
    "source": "Matthew, 2026-11-26, in chat, answering \"Look into why build 2's drags with compiling off came out fast?\": \"Yes, dig in\"",
-   "text": "<b>Find why the Witch's 3-second drag with compiling off draws in 4-7 ms a frame on some checks and 13-19 ms on others.</b> Found so far: not the holes port (every path it touches is behind the jit setting); the runner was only 15-25% faster at interpreting; and the same commit has shown both (421e30a04b: 4.5 and 16.0 ms a frame; 0e56bdbd0a: 6.1, 7.4, then later builds 14-15): about 6 of 27 checks fast. In the fast ones each livelit draw takes 0.7-1.2 ms, as compiled, against 4.1-5.7. Leading guess: the views' call memo (CallMemo), which stops looking up a body after 24 misses a hit, so its history decides whether the slider's helpers are reused. Experiment: trial/887-off-drag from build 50, the memo's lookups and hits counted over the drag, draws split by livelit, the off drag repeated three times."
+   "text": "<b>Find why the Witch's 3-second drag with compiling off draws in 4-7 ms a frame on some checks and 13-19 ms on others.</b> Found so far: not the holes port (every path it touches is behind the jit setting); the runner was only 15-25% faster at interpreting; and the same commit has shown both (421e30a04b: 4.5 and 16.0 ms a frame; 0e56bdbd0a: 6.1, 7.4, then later builds 14-15): about 6 of 27 checks fast. In the fast ones each livelit draw takes 0.7-1.2 ms, as compiled, against 4.1-5.7. Leading guess: the views' call memo (CallMemo), which stops looking up a body after 24 misses a hit, so its history decides whether the slider's helpers are reused. Experiment: trial/887-off-drag from build 50, the memo's lookups and hits counted over the drag, draws split by livelit, the off drag repeated three times.",
+   "log": [
+    {
+     "at": "2026-11-26T11:33-07:00",
+     "from": "matthew",
+     "chars": 11,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 888,
