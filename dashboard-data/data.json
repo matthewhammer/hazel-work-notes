@@ -22836,11 +22836,27 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 885,
+   "area": "hazel-jit: the Witch slide's frame time with holes, before and after (^report(55) What next, step 3)",
+   "added": "2026-11-26",
+   "opened": "2026-11-26T09:06-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel",
+    "hazel-jit",
+    "livelits"
+   ],
+   "source": "Matthew, 2026-11-26, in chat, after holes merged into hazel-jit (^ticket(769)): \"let's do the witches slide frame time next\"",
+   "text": "<b>Measure what holes buy on a slide being edited: the Witch's drag, before and after.</b> The Witch lives on the prototype branch trial/694-view-jit (#2817), whose jit is older than hazel-jit's and has no Jane Street Core, and whose compiled path is the slide's whole run (HazelJitRun): any hole in the slide refuses it, so every frame waits for the worker's interpreter. Mixed mode is not wired into the app there. Plan: three versions of the slide, each before and after: the Witch as is (the holes' cost on a drag with none); a hole the neck's drag never opens (TankTop => ? in sleeve, she wears long sleeves); a hole the neck's drag opens. Before: trial/694-view-jit plus the two variants, jit.yml only=Witch. After: holes ported by hand into the prototype's jit (opaque values, the checked version, compile_full ~holes) and the whole run compiled with them; an answer holding a hole goes to the worker. Report: ^report(55).",
+   "progress": "11-26 09:06: minted; reading the prototype's HazelJitRun, the deck (Slides.re, witch.hz) and scripts/jit_slides.py."
   }
  ],
- "next_ticket": 885,
- "current_ticket": null,
- "current_note": "07:51: Holes merged and green on hazel-jit and hazeljs; ^ticket(769) closed",
+ "next_ticket": 886,
+ "current_ticket": 885,
+ "current_note": "09:06: The Witch's frame time with holes: setting up before/after on the prototype branch",
  "closed_tickets": [
   {
    "id": 769,
@@ -30336,7 +30352,7 @@
   863,
   852
  ],
- "current_since": "2026-11-26T07:51-07:00",
+ "current_since": "2026-11-26T09:06-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
