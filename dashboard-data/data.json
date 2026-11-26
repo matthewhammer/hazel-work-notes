@@ -22843,14 +22843,16 @@
    "added": "2026-11-26",
    "opened": "2026-11-26T11:36-07:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel",
     "hazel-jit",
     "livelits"
    ],
    "source": "Matthew, 2026-11-26, in chat, answering \"Look into why build 2's drags with compiling off came out fast?\": \"Yes, dig in\"",
-   "text": "<b>Find why the Witch's 3-second drag with compiling off draws in 4-7 ms a frame on some checks and 13-19 ms on others.</b> Found so far: not the holes port (every path it touches is behind the jit setting); the runner was only 15-25% faster at interpreting; and the same commit has shown both (421e30a04b: 4.5 and 16.0 ms a frame; 0e56bdbd0a: 6.1, 7.4, then later builds 14-15): about 6 of 27 checks fast. In the fast ones each livelit draw takes 0.7-1.2 ms, as compiled, against 4.1-5.7. Leading guess: the views' call memo (CallMemo), which stops looking up a body after 24 misses a hit, so its history decides whether the slider's helpers are reused. Experiment: trial/887-off-drag from build 50, the memo's lookups and hits counted over the drag, draws split by livelit, the off drag repeated three times. <b>Found, 2026-11-26 (late morning):</b> not the memo of calls, nor the samples (the picture's sampled value is the very same object every frame, both ways): LivelitProj's view memo hit every frame both ways, but in the slow mode the picture's model came to it as an object equal to the one it held, not the same, and a hit never replaced the older one, so every frame compared the whole picture by structure (Exp.fast_equal), 9-13 ms; in the fast mode the held object was the current one, a pointer compare. Fix (one line): on an equal hit, keep the new objects. Checking it: four Witch checks on trial/887-off-drag*.",
+   "text": "<b>Find why the Witch's 3-second drag with compiling off draws in 4-7 ms a frame on some checks and 13-19 ms on others.</b> Found so far: not the holes port (every path it touches is behind the jit setting); the runner was only 15-25% faster at interpreting; and the same commit has shown both (421e30a04b: 4.5 and 16.0 ms a frame; 0e56bdbd0a: 6.1, 7.4, then later builds 14-15): about 6 of 27 checks fast. In the fast ones each livelit draw takes 0.7-1.2 ms, as compiled, against 4.1-5.7. Leading guess: the views' call memo (CallMemo), which stops looking up a body after 24 misses a hit, so its history decides whether the slider's helpers are reused. Experiment: trial/887-off-drag from build 50, the memo's lookups and hits counted over the drag, draws split by livelit, the off drag repeated three times. <b>Found, 2026-11-26 (late morning):</b> not the memo of calls, nor the samples (the picture's sampled value is the very same object every frame, both ways): LivelitProj's view memo hit every frame both ways, but in the slow mode the picture's model came to it as an object equal to the one it held, not the same, and a hit never replaced the older one, so every frame compared the whole picture by structure (Exp.fast_equal), 9-13 ms; in the fast mode the held object was the current one, a pointer compare. Fix (one line): on an equal hit, keep the new objects. Checking it: four Witch checks on trial/887-off-drag*. <b>Fix checked:</b> four Witch checks with it (runs 45882582352, 45882590999, 45882598975; the fourth still running), machines that were always slow: every off drag fast, picture 1.7-2.6 ms, view 5.8-8.2 ms a frame (before 13.0-18.5). Written into ^report(55) #witch, live. <b>Waiting on Matthew:</b> put the one-line fix on the prototype, trial/694-view-jit?",
    "log": [
     {
      "at": "2026-11-26T11:33-07:00",
@@ -22871,44 +22873,24 @@
      "effort": "xhigh",
      "note": "from the transcripts"
     }
-   ]
-  },
+   ],
+   "waiting": true
+  }
+ ],
+ "next_ticket": 889,
+ "current_ticket": null,
+ "current_note": "12:28: Gnome world 0.0.140 with N's level live; the Witch drag puzzle explained and fixed on the experiment branch, waiting on Matthew for the prototype",
+ "closed_tickets": [
   {
    "id": 888,
    "area": "Gnome world: levels (levels.json), and N's level, the rainbow sky",
    "added": "2026-11-26",
-   "opened": "2026-11-26T12:22-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "hazeljs-examples",
-    "gnome world",
-    "N"
-   ],
-   "source": "Matthew, 2026-11-26, in chat: \"N has an idea for a new gnome world level.\" Concerns: \"I want the current 'default/start world' to be consistent in ongoing versions\"; \"let's be sure to save any seed numbers we use\"; \"let's be sure to save any structure not entirely determined by that seed number to the .json file\". N's idea: digging disabled, almost no underground structure but a gnome house with power ups and caves with tunnels; carpet and cat tail; the tail earned by 10 cat head gems; rainbow foreground clouds for points when flown into, bursting into rainbow gems and light beams; a swirling vortex in the right-hand trees of the current level, and a way back.",
-   "text": "<b>0.0.140 pushed about 12:21:</b> world/levels.json (level 1 seed 7, recorded as 0.0.139 built it, 21 hashed parts; N's level seed 1126 and every hand placement), the GitHub check node/level-check.mjs, and the level itself. Checked in the pane: level 1 as recorded; N's level builds in 266 ms; clouds burst for +100; ten cat heads give the tail; through the vortex and back with the world kept; save and load hold both levels exactly. Waiting: the world save check and the level check on GitHub, then level 2's parts recorded in levels.json.",
-   "log": [
-    {
-     "at": "2026-11-26T12:11-07:00",
-     "from": "matthew",
-     "chars": 996,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-26T12:12-07:00",
-     "from": "matthew",
-     "chars": 254,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
-  }
- ],
- "next_ticket": 889,
- "current_ticket": 888,
- "current_note": "12:22: Gnome world 0.0.140 (levels, N's rainbow sky) pushed; the save and level checks running on GitHub",
- "closed_tickets": [
+   "text": "0.0.140 pushed about 12:21:",
+   "source": "Matthew, 2026-11-26, in chat: \"N has an idea for a new gnome world level.\" Concerns: \"I want the current 'default/start…",
+   "status": "done",
+   "closed": "2026-11-26",
+   "outcome": "Gnome world 0.0.140 live (12:21 push; world save run 45883292891 green): world/levels.json holds level 1 (seed 7, recorded as 0.0.139 built it, 22 hashed parts incl. the vortex)…"
+  },
   {
    "id": 885,
    "area": "hazel-jit: the Witch slide's frame time with holes, before and after (^report(55) What next, step 3)",
@@ -30423,7 +30405,7 @@
   863,
   852
  ],
- "current_since": "2026-11-26T12:22-07:00",
+ "current_since": "2026-11-26T12:28-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
