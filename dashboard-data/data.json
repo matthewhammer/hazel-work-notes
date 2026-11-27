@@ -22975,7 +22975,7 @@
     "gnome world"
    ],
    "source": "Claude, 2026-11-26, from ^report(64)'s build cost (Matthew AFK; the AFK protocol)",
-   "progress": "11-26 21:0x: measured: compileProgram 6.43 s cold (Node); the kept text read 1 ms, instantiated 6.9 ms, World.step answers. Trial trial/890-saved-program (7cc5df35bc, off hazeljs b1b4e19286): Hazel.jitProgramSaved and a test making a program's value again from saved alone; CI running. | 11-26 21:1x: trial CI: static and fast checks GREEN (compiles, warnings; the new test runs in the full tests, still running); Deploy put it at build.hazel.org/trial/890-saved-program. Gnome world 0.0.144 (3d3700b, pushed): with a library that has jitProgramSaved (?libat=trial/890-saved-program), a build is kept in IndexedDB keyed by the rules' text, with their data fields (World.styles: the trial wraps only functions, FOUND when the minimap failed on the first kept load); the next load makes the rules from it before the library loads. MEASURED in the pane: first load built and kept (4.4 s; 14.7 cold); reload ready 0.70 s after navigation, 13-19 ms making the rules from text, against a cold build of the same rules in the page of 14.4 s; kept vs freshly built the same world at all 500 steps (gnome, bunnies, frogs, birds, wind). Inert with the shipped library. WAITING ON MATTHEW: take jitProgramSaved into hazeljs (#2857)? (An API addition; my lean: yes, and have it carry the program's data fields too, so a page need not keep them itself.) | 11-26 21:4x: trial/890-saved-program CI GREEN (45937046651: static, fast, full: 5,222 tests, the new jitProgramSaved test among them). | 11-26 22:4x: ALL OF TONIGHT'S TRIALS TOGETHER, trial/1126-night (abf653a21d, off hazeljs: 792 big Ints, 681 memo, 890 jitProgramSaved, 891 idiv+folding, 791 labeled tuples; merged clean; CI running). Timed on GitHub against hazeljs, one runner each, every answer the same: building the rules first 5.06-5.17 s -> 4.74-4.82, warm 3.85-3.98 -> 3.57-3.60 (~8%); World.step fresh 3.78-4.06 us -> 2.33-2.48, again 3.56-3.69 -> 2.08-2.28 (~39%); fresh: bunny 2.75-2.79 -> 0.57-0.63, frog 3.83-3.91 -> 0.94-0.97, songbird 4.23-4.31 -> 1.54-1.58, pickup 5.69-5.81 -> 3.78-4.10, carpet 1.32-1.35 -> 0.83-0.90, wind 0.39-0.41 -> 0.22-0.24. In the pane with it: FOUND that kept rules were used even under a newer library (the 7cc5df35bc keep under abf653a21d); Gnome world 0.0.145 (b3ecda4) lets them go when the loaded library's build differs, so the next load builds and keeps anew; checked: let go, rebuilt (13.6 s cold) and kept, then ready 0.68 s, 15 ms to make. The whole step there 1.92-2.05 ms with Hazel vs 1.77-1.86 plain (~0.15 ms).",
+   "progress": "11-26 21:0x: measured: compileProgram 6.43 s cold (Node); the kept text read 1 ms, instantiated 6.9 ms, World.step answers. Trial trial/890-saved-program (7cc5df35bc, off hazeljs b1b4e19286): Hazel.jitProgramSaved and a test making a program's value again from saved alone; CI running. | 11-26 21:1x: trial CI: static and fast checks GREEN (compiles, warnings; the new test runs in the full tests, still running); Deploy put it at build.hazel.org/trial/890-saved-program. Gnome world 0.0.144 (3d3700b, pushed): with a library that has jitProgramSaved (?libat=trial/890-saved-program), a build is kept in IndexedDB keyed by the rules' text, with their data fields (World.styles: the trial wraps only functions, FOUND when the minimap failed on the first kept load); the next load makes the rules from it before the library loads. MEASURED in the pane: first load built and kept (4.4 s; 14.7 cold); reload ready 0.70 s after navigation, 13-19 ms making the rules from text, against a cold build of the same rules in the page of 14.4 s; kept vs freshly built the same world at all 500 steps (gnome, bunnies, frogs, birds, wind). Inert with the shipped library. WAITING ON MATTHEW: take jitProgramSaved into hazeljs (#2857)? (An API addition; my lean: yes, and have it carry the program's data fields too, so a page need not keep them itself.) | 11-26 21:4x: trial/890-saved-program CI GREEN (45937046651: static, fast, full: 5,222 tests, the new jitProgramSaved test among them). | 11-26 22:4x: ALL OF TONIGHT'S TRIALS TOGETHER, trial/1126-night (abf653a21d, off hazeljs: 792 big Ints, 681 memo, 890 jitProgramSaved, 891 idiv+folding, 791 labeled tuples; merged clean; CI running). Timed on GitHub against hazeljs, one runner each, every answer the same: building the rules first 5.06-5.17 s -> 4.74-4.82, warm 3.85-3.98 -> 3.57-3.60 (~8%); World.step fresh 3.78-4.06 us -> 2.33-2.48, again 3.56-3.69 -> 2.08-2.28 (~39%); fresh: bunny 2.75-2.79 -> 0.57-0.63, frog 3.83-3.91 -> 0.94-0.97, songbird 4.23-4.31 -> 1.54-1.58, pickup 5.69-5.81 -> 3.78-4.10, carpet 1.32-1.35 -> 0.83-0.90, wind 0.39-0.41 -> 0.22-0.24. In the pane with it: FOUND that kept rules were used even under a newer library (the 7cc5df35bc keep under abf653a21d); Gnome world 0.0.145 (b3ecda4) lets them go when the loaded library's build differs, so the next load builds and keeps anew; checked: let go, rebuilt (13.6 s cold) and kept, then ready 0.68 s, 15 ms to make. The whole step there 1.92-2.05 ms with Hazel vs 1.77-1.86 plain (~0.15 ms). | 11-26 22:5x: trial/1126-night CI GREEN (45943307054: static, fast, full: 5,227 tests, every new test of tonight's trials among them). Gnome world 0.0.145 live, world save check green.",
    "log": [
     {
      "at": "2026-11-26T20:47-07:00",
@@ -30616,8 +30616,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7258,
-  "words": 1598045,
+  "replies": 7259,
+  "words": 1598078,
   "read_hours_est": 111.9,
   "listen_hours_est": 166.5,
   "read_s_avg": 56,
@@ -30999,9 +30999,9 @@
     "chars": 138783
    },
    "2026-11-26": {
-    "replies": 24,
-    "words": 7514,
-    "chars": 43743
+    "replies": 25,
+    "words": 7547,
+    "chars": 43934
    }
   }
  },
