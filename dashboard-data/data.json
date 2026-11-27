@@ -23206,12 +23206,26 @@
     "speed run"
    ],
    "source": "Claude, 2026-11-27, from the speed run for ^report(64)'s Then and now",
-   "progress": "11-27 08:45: CAUSE FOUND. (1) Library: HazelLibCore.param_type read the elaborated Fun's type field as an arrow, but the statics put the parameter's own type there (Fun(p, e, Some(p.ty), n)); so for `let f : (x = Float) -> Float = fun r -> ...` the interpreter's wrapper (function_of) converted arguments untyped: 2 became an Int, `r.x +. 0.5` stopped, the call answered {hazel: <term>}. Repro in the browser pane (hazeljs library): {x: 2} -> unfinished, {x: 2.25} -> 2.75, the parameter ascribed instead -> 2.5. In Gnome world, Bird.step got a jay's x of 12; songStep read a.bird of it, the page's frame loop caught the throw and marked the rules not ok, and the speed run's setup then built from no rules. Compiled code reads declared types from the jit's table and was never affected. Fix on trial/896-interp-param (072a148951, off hazeljs b1b4e19286): param_type takes that field as the parameter's type; a test, whole numbers into a let-typed function's Floats. CI and Deploy running. (2) Harness: the page never read ?rules=plain and node/world-speedrun.mjs swapped only step, beaver and water_row, so the 'plain' way kept every other piece Hazel's: ^report(65)'s 11-25 run (the boulders, picking up, the wind) and ^report(64)'s Then and now of this morning. Fixed in hazeljs-examples b085172: WorldTest.setRules picks the way (the page's own ⚡), the interpreter's failure logged and the others kept; the speed run rerunning (46027689744)."
+   "progress": "11-27 08:45: CAUSE FOUND. (1) Library: HazelLibCore.param_type read the elaborated Fun's type field as an arrow, but the statics put the parameter's own type there (Fun(p, e, Some(p.ty), n)); so for `let f : (x = Float) -> Float = fun r -> ...` the interpreter's wrapper (function_of) converted arguments untyped: 2 became an Int, `r.x +. 0.5` stopped, the call answered {hazel: <term>}. Repro in the browser pane (hazeljs library): {x: 2} -> unfinished, {x: 2.25} -> 2.75, the parameter ascribed instead -> 2.5. In Gnome world, Bird.step got a jay's x of 12; songStep read a.bird of it, the page's frame loop caught the throw and marked the rules not ok, and the speed run's setup then built from no rules. Compiled code reads declared types from the jit's table and was never affected. Fix on trial/896-interp-param (072a148951, off hazeljs b1b4e19286): param_type takes that field as the parameter's type; a test, whole numbers into a let-typed function's Floats. CI and Deploy running. (2) Harness: the page never read ?rules=plain and node/world-speedrun.mjs swapped only step, beaver and water_row, so the 'plain' way kept every other piece Hazel's: ^report(65)'s 11-25 run (the boulders, picking up, the wind) and ^report(64)'s Then and now of this morning. Fixed in hazeljs-examples b085172: WorldTest.setRules picks the way (the page's own ⚡), the interpreter's failure logged and the others kept; the speed run rerunning (46027689744). 11-27 08:52: CHECKED: with the trial library (?libat=trial/896-interp-param&interpreted, browser pane) the small program answers 2.5, Bird.step with whole numbers answers a bird, and Gnome world runs 600 interpreted steps without an error. The speed run again with the fixed harness (run 46027689744, one runner): every piece in JavaScript (⚡) 32.27 s, every piece Hazel's (ahead of time) 34.11 s, 46,276 steps each, the same at 24 of 24 fingerprints: about 6% longer (737 vs 697 us a step); World.step alone 2.36 us vs 0.69, interpreted 6.3 ms; the interpreter's whole run still fails on the shipped library, as expected. ^report(64) corrected (its 'about 3%' was against a plain way that kept most pieces Hazel's) and ^report(65)'s 11-25 run qualified. WAITING ON MATTHEW: merge trial/896-interp-param (one line in HazelLibCore.param_type, plus a test) into hazeljs (#2857)? Lean: yes; it affects every page calling a let-typed function through runProgram.",
+   "log": [
+    {
+     "at": "2026-11-27T08:36-07:00",
+     "from": "claude",
+     "chars": 3647,
+     "asks": true,
+     "words": 649,
+     "read_s": 164,
+     "listen_s": 243,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 897,
  "current_ticket": 896,
- "current_note": "08:45: ^ticket(896) the interpreter took whole numbers as Ints (library fix on trial/896-interp-param, needs Matthew's word to merge) and the speed run's plain way was not plain (fixed, rerunning); ^report(64)'s speed-run claim to be corrected",
+ "current_note": "08:52: ^ticket(896) fixed on trial/896-interp-param (waits for Matthew's word to merge); the corrected speed run: every piece Hazel's about 6% slower than every piece in JS; ^report(64) and ^report(65) corrected",
  "closed_tickets": [
   {
    "id": 887,
@@ -30782,7 +30796,7 @@
   },
   "since": "2026-08-27",
   "replies": 7269,
-  "words": 1601874,
+  "words": 1602049,
   "read_hours_est": 112.2,
   "listen_hours_est": 166.9,
   "read_s_avg": 56,
@@ -31170,8 +31184,8 @@
    },
    "2026-11-27": {
     "replies": 10,
-    "words": 3211,
-    "chars": 18716
+    "words": 3386,
+    "chars": 19714
    }
   }
  },
