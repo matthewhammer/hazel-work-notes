@@ -22999,14 +22999,16 @@
    "added": "2026-11-26",
    "opened": "2026-11-26T21:22-07:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel-jit",
     "performance",
     "correctness"
    ],
    "source": "Claude, 2026-11-26, from profiling the compiled World.step (^ticket(882), the AFK protocol)",
-   "progress": "11-26 21:5x: trial/891-idiv (136fecdcaf, off hazel-jit 25c106f545, two agreement tests: every sign; no -0 through a Float) and its library twin trial/891-idiv-pkg (62356bf70e, off hazeljs) pushed; CI and Deploy running; World.step to be timed against hazeljs on one runner (node/step-time.mjs). | 11-26 22:0x: also from the compiled World.step: Hazel writes -1 as 0 - 1 and the compiled code called $R.isub(0, 1) on every pass (dc < 0 - 1, dr == 0 - 3, ...), and == against it went through $R.eq. Second commit 664c49c49a on trial/891-idiv: +, - and * on Ints written out folded at compile time (int_const, exact by Bigint), counted as literals for == (so ===); division and Nat's left to run; an agreement test and a test that 0 - 3 compiles to no isub. To go on the library twin after the running World.step timing (division alone). | 11-26 22:2x: TIMED, division alone (build timing 45939943408, node/step-time.mjs, one runner, three rounds; World.step through jitProgram, the same as plain.js at 20,000 of 20,000 each time): fresh inputs hazeljs 4.64-5.11 us -> 3.01-3.33 us; the same inputs again 4.24-4.45 -> 2.65-3.07: ABOUT 35% FASTER (plain JS 0.6-1.4 on the same runner). CI GREEN on trial/891-idiv 664c49c49a (both commits: static, fast, full). The folding cherry-picked to the twin (e352f56def); deploying, World.step to be timed again.",
+   "progress": "11-26 21:5x: trial/891-idiv (136fecdcaf, off hazel-jit 25c106f545, two agreement tests: every sign; no -0 through a Float) and its library twin trial/891-idiv-pkg (62356bf70e, off hazeljs) pushed; CI and Deploy running; World.step to be timed against hazeljs on one runner (node/step-time.mjs). | 11-26 22:0x: also from the compiled World.step: Hazel writes -1 as 0 - 1 and the compiled code called $R.isub(0, 1) on every pass (dc < 0 - 1, dr == 0 - 3, ...), and == against it went through $R.eq. Second commit 664c49c49a on trial/891-idiv: +, - and * on Ints written out folded at compile time (int_const, exact by Bigint), counted as literals for == (so ===); division and Nat's left to run; an agreement test and a test that 0 - 3 compiles to no isub. To go on the library twin after the running World.step timing (division alone). | 11-26 22:2x: TIMED, division alone (build timing 45939943408, node/step-time.mjs, one runner, three rounds; World.step through jitProgram, the same as plain.js at 20,000 of 20,000 each time): fresh inputs hazeljs 4.64-5.11 us -> 3.01-3.33 us; the same inputs again 4.24-4.45 -> 2.65-3.07: ABOUT 35% FASTER (plain JS 0.6-1.4 on the same runner). CI GREEN on trial/891-idiv 664c49c49a (both commits: static, fast, full). The folding cherry-picked to the twin (e352f56def); deploying, World.step to be timed again. | 11-26 22:4x: TIMED, division and folding (build timing 45942901416, one runner, three rounds, the same as plain.js at 20,000 of 20,000): World.step fresh inputs 5.15-5.25 us -> 3.02-3.19; the same inputs again 4.81-4.87 -> 2.69-2.82: ABOUT 42% FASTER; against plain JS on the same runner 4.4-4.7x -> 3.0-3.1x (fresh), 6.6-6.8x -> 4.5-4.7x (again). In ^report(54) #step (homepage d7015610). WAITING ON MATTHEW: merge trial/891-idiv (136fecdcaf, 664c49c49a; CI green) into hazel-jit (#2859), and so into hazeljs (#2857)? My lean: yes; it fixes a -0 the interpreter never gives, too.",
    "log": [
     {
      "at": "2026-11-26T21:09-07:00",
@@ -23056,12 +23058,13 @@
      "effort": "xhigh",
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": true
   }
  ],
  "next_ticket": 892,
- "current_ticket": 891,
- "current_note": "21:22: hazel-jit: Int division by Math.trunc(a / b) + 0 (trial/891-idiv), CI running; World.step to be timed",
+ "current_ticket": null,
+ "current_note": "21:59: the night's trials parked for Matthew's word: ^ticket(891) idiv+folding (World.step 42% faster), ^ticket(890) kept rules, ^ticket(681) the memo, ^ticket(791) labeled tuples (build 9% faster), ^ticket(792) big Ints",
  "closed_tickets": [
   {
    "id": 887,
