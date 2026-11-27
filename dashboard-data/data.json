@@ -23192,24 +23192,26 @@
   },
   {
    "id": 896,
-   "area": "Gnome world: the speed run's interpreter way fails on 0.0.148 (its page has no rules when the run restarts it)",
+   "area": "Hazel's interpreter path (hazeljs): a function typed on its let took whole numbers as Ints where its type says Float, so Gnome world's interpreted speed run stopped; and the speed run's 'plain' way was not plain",
    "text": "In the speed run three ways on 0.0.148 (hazeljs-examples run 46025660460), the jit and plain ways ran (27.22 s and 26.37 s), and the interpreted way (world/?test=1&interpreted) threw at once: \"TypeError: Cannot read properties of null (reading 'plan')\" at build, from restartNow(H()): H() is null, so S.built was not ok. On 11-25 (bbfde10) the same way ran 42,000 steps in 227.6 s. Since then: ten modules more, levels, and the rules ahead of time (useAotRules skips ?interpreted). To find: whether the interpreter's build of the eleven modules fails or takes longer than the harness waits.",
    "added": "2026-11-27",
    "opened": "2026-11-27T08:34-07:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "Gnome world",
     "interpreter",
     "speed run"
    ],
    "source": "Claude, 2026-11-27, from the speed run for ^report(64)'s Then and now",
-   "progress": ""
+   "progress": "11-27 08:45: CAUSE FOUND. (1) Library: HazelLibCore.param_type read the elaborated Fun's type field as an arrow, but the statics put the parameter's own type there (Fun(p, e, Some(p.ty), n)); so for `let f : (x = Float) -> Float = fun r -> ...` the interpreter's wrapper (function_of) converted arguments untyped: 2 became an Int, `r.x +. 0.5` stopped, the call answered {hazel: <term>}. Repro in the browser pane (hazeljs library): {x: 2} -> unfinished, {x: 2.25} -> 2.75, the parameter ascribed instead -> 2.5. In Gnome world, Bird.step got a jay's x of 12; songStep read a.bird of it, the page's frame loop caught the throw and marked the rules not ok, and the speed run's setup then built from no rules. Compiled code reads declared types from the jit's table and was never affected. Fix on trial/896-interp-param (072a148951, off hazeljs b1b4e19286): param_type takes that field as the parameter's type; a test, whole numbers into a let-typed function's Floats. CI and Deploy running. (2) Harness: the page never read ?rules=plain and node/world-speedrun.mjs swapped only step, beaver and water_row, so the 'plain' way kept every other piece Hazel's: ^report(65)'s 11-25 run (the boulders, picking up, the wind) and ^report(64)'s Then and now of this morning. Fixed in hazeljs-examples b085172: WorldTest.setRules picks the way (the page's own ⚡), the interpreter's failure logged and the others kept; the speed run rerunning (46027689744)."
   }
  ],
  "next_ticket": 897,
- "current_ticket": 895,
- "current_note": "08:34: ^report(64) revised: Then and now (0.0.103 against 0.0.148): Hazel 2 of 12 parts of a step then, 7 of 16 now; code 40,213 to 74,118 characters; each piece 1.9 to 6.6x its JS; the speed run 27.2 s vs 26.4 s plain JS (3%). Meeting with Cyrus about 9:00, ^report(66)",
+ "current_ticket": 896,
+ "current_note": "08:45: ^ticket(896) the interpreter took whole numbers as Ints (library fix on trial/896-interp-param, needs Matthew's word to merge) and the speed run's plain way was not plain (fixed, rerunning); ^report(64)'s speed-run claim to be corrected",
  "closed_tickets": [
   {
    "id": 887,
@@ -30779,8 +30781,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7268,
-  "words": 1601796,
+  "replies": 7269,
+  "words": 1601874,
   "read_hours_est": 112.2,
   "listen_hours_est": 166.9,
   "read_s_avg": 56,
@@ -31167,9 +31169,9 @@
     "chars": 47329
    },
    "2026-11-27": {
-    "replies": 9,
-    "words": 3133,
-    "chars": 18230
+    "replies": 10,
+    "words": 3211,
+    "chars": 18716
    }
   }
  },
