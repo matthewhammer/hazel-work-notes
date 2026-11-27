@@ -23189,11 +23189,27 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 896,
+   "area": "Gnome world: the speed run's interpreter way fails on 0.0.148 (its page has no rules when the run restarts it)",
+   "text": "In the speed run three ways on 0.0.148 (hazeljs-examples run 46025660460), the jit and plain ways ran (27.22 s and 26.37 s), and the interpreted way (world/?test=1&interpreted) threw at once: \"TypeError: Cannot read properties of null (reading 'plan')\" at build, from restartNow(H()): H() is null, so S.built was not ok. On 11-25 (bbfde10) the same way ran 42,000 steps in 227.6 s. Since then: ten modules more, levels, and the rules ahead of time (useAotRules skips ?interpreted). To find: whether the interpreter's build of the eleven modules fails or takes longer than the harness waits.",
+   "added": "2026-11-27",
+   "opened": "2026-11-27T08:34-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "Gnome world",
+    "interpreter",
+    "speed run"
+   ],
+   "source": "Claude, 2026-11-27, from the speed run for ^report(64)'s Then and now",
+   "progress": ""
   }
  ],
- "next_ticket": 896,
+ "next_ticket": 897,
  "current_ticket": 895,
- "current_note": "08:30: ^ticket(895) Gnome world 0.0.148 live (rules compiled ahead of time: ready in 188 ms; the flying level). Next: ^report(64) revised, the parts in Hazel now and their performance (Matthew's ask)",
+ "current_note": "08:34: ^report(64) revised: Then and now (0.0.103 against 0.0.148): Hazel 2 of 12 parts of a step then, 7 of 16 now; code 40,213 to 74,118 characters; each piece 1.9 to 6.6x its JS; the speed run 27.2 s vs 26.4 s plain JS (3%). Meeting with Cyrus about 9:00, ^report(66)",
  "closed_tickets": [
   {
    "id": 887,
@@ -30763,8 +30779,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7267,
-  "words": 1600912,
+  "replies": 7268,
+  "words": 1601303,
   "read_hours_est": 112.1,
   "listen_hours_est": 166.8,
   "read_s_avg": 56,
@@ -31151,9 +31167,9 @@
     "chars": 47329
    },
    "2026-11-27": {
-    "replies": 8,
-    "words": 2249,
-    "chars": 13223
+    "replies": 9,
+    "words": 2640,
+    "chars": 15463
    }
   }
  },
