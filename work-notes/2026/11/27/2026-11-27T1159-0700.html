@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- nav: begin --><meta name="theme-support" content="data-theme"><script src="https://matthewhammer.org/nav/nav.js"></script><!-- nav: end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Working Notes, 11-27</title>
+<style>
+  :root { --bg: #ffffff; --ink: #1f2328; --muted: #5b6470; --line: #d0d7de; --code: #f3f4f6; --accent: #6d28d9; --warn: #b45309; --ok: #15803d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; } }
+  :root[data-theme="dark"] { --bg: #16181d; --ink: #e8e6e3; --muted: #a2a9b3; --line: #343a43; --code: #22262d; --accent: #c4b5fd; --warn: #fbbf24; --ok: #4ade80; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "DejaVu Sans", sans-serif; margin: 0; }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; } h2 { font-size: 1.15em; margin-top: 2em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sub { color: var(--muted); margin-top: 0; } code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: 0.9em; overflow-wrap: anywhere; }
+  a { color: var(--accent); } .scroll { overflow-x: auto; } li { margin: 0.3em 0; }
+  blockquote { margin: 1em 0; padding: 0.6em 1em; border-left: 4px solid var(--accent); background: var(--code); border-radius: 0 6px 6px 0; }
+  blockquote p { margin: 0.5em 0; }
+  table { border-collapse: collapse; margin: 1em 0; font-size: 0.95em; } th, td { border-bottom: 1px solid var(--line); padding: 4px 10px; text-align: left; vertical-align: top; }
+</style>
+</head>
+<body><main>
+<h1>Working notes: 2026-11-27: the flying jellyfish and the flying level, rules compiled ahead of time, the type checker nine times as fast, the meeting with Cyrus, and fast mode audited</h1>
+<p class="sub">Claude, 11:59 MST on 11-27, at Matthew's ask to update the work notes, after his meeting with Cyrus.</p>
+
+<h2>In short</h2>
+<ul>
+<li><b>Gnome world for N.</b> 0.0.146, the flying jellyfish (^ticket(892)): ↑ and J; it hovers, pulses up like a rocket, bursts rainbow clouds and glows in their colours; its flight is Hazel's (Jelly.hz). 0.0.147 and 0.0.148, the flying level as N wants it (^ticket(895)): the land 40 rows lower, gnome house pods with power ups, 253 turning coins, the rainbow clouds within sight at last, the portals labelled, a welcome; and <b>the rules compiled ahead of time</b> on GitHub, made in 188 ms on the live page instead of a 4 to 16 s build.</li>
+<li><b>The agenda for Cyrus</b>, ^report(66): charts for each item, then the meeting's notes. <b>Sentence highlights</b> for every report from now on (click: pre discussion, post discussion; kept in the browser; listed at the end).</li>
+<li><b>The type checker's cost</b> (^ticket(894), numbers only): <a href="https://github.com/hazelgrove/hazel/pull/2603">#2603</a> and <a href="https://github.com/hazelgrove/hazel/pull/2717">#2717</a> on the night's trials build Gnome world's rules in 0.33 s warm, against about 3 s, every piece the same; Hazel's whole test suite passes on that trial (CI green, 76a08a8902).</li>
+<li><b>^report(64) Then and now</b>: Hazel decided 2 of 12 parts of a step at 0.0.103, 7 of 16 at 0.0.148; the whole game with every piece Hazel's about 6% slower than every piece in JavaScript, once the speed run's plain way was made plain (it had kept most pieces Hazel's). The interpreter's way failed on a library bug, whole numbers taken as Ints for let-typed functions: fixed on <code>trial/896-interp-param</code>, CI green (^ticket(896)).</li>
+<li><b>In the meeting</b>, answers into <a href="https://github.com/hazelgrove/hazel/pull/2859">#2859</a>'s description (^report(65)): mixed mode at its boundary, and types. Found: a cast out of an unknown type nobody wrote is erased, so <code>f(true)</code> answers 2 compiled (^ticket(898)); polymorphic functions stay interpreted in mixed mode (^ticket(897)). Outcome: hazel-jit and the package look good, maybe two weeks from <code>dev</code>.</li>
+<li><b>Fast mode audited</b>: on for half the week's responses, billed to usage credits from the first token. Now each session starts with it off, a session stopped at a usage limit waits for the reset, and Claude halts at 90% of the 5-hour window and if credits rise while Matthew is away.</li>
+<li><b>^report(67)</b>: ^report(63)'s questions and charts with today's jit (^ticket(901)).</li>
+</ul>
+
+<h2>Where things are</h2>
+<div class="scroll"><table>
+<tr><th>what</th><th>where</th><th>state</th></tr>
+<tr><td>hazel-jit, the package</td><td><a href="https://github.com/hazelgrove/hazel/pull/2859">#2859</a>, <a href="https://github.com/hazelgrove/hazel/pull/2857">#2857</a></td><td>25c106f545, b1b4e19286; about two weeks from dev</td></tr>
+<tr><td>the night's trials</td><td><code>trial/1126-night</code></td><td>CI green; waiting on Matthew</td></tr>
+<tr><td>the statics PRs, numbers only</td><td><code>trial/1127-statics</code> (76a08a8902)</td><td>CI green; not to merge</td></tr>
+<tr><td>the interpreter's whole numbers</td><td><code>trial/896-interp-param</code> (072a148951)</td><td>CI green; waiting on Matthew</td></tr>
+<tr><td>Gnome world</td><td>hazeljs-examples <code>main</code></td><td>0.0.148 (b085172), live, checks green</td></tr>
+<tr><td>Claude Code settings</td><td><code>~/.claude/settings.json</code></td><td>fastModePerSessionOptIn, autoContinueAtUsageLimit</td></tr>
+</table></div>
+
+<h2>Next</h2>
+<ul>
+<li>Next week (Matthew and Cyrus): a jit subcommand for Hazel's CLI (^ticket(899)); a livelits PR with a tree of Livelit applications slides (^ticket(900)).</li>
+<li>Waiting on Matthew: the night's trials and the interpreter fix into the package; usage credits off for his seat, the hard stop at the 5-hour limit.</li>
+<li>To design: checks where a cast leaves an unknown type (^ticket(898)); polymorphic functions in mixed mode (^ticket(897)).</li>
+</ul>
+</main>
+<!-- pr-cards: begin -->
+<style>
+  /* above the nav bar (nav.js draws it at z-index 2147483000-2147483002), or a card on a link in it opens underneath */
+  .pr-card { position: absolute; z-index: 2147483003; width: max-content; max-width: min(380px, calc(100vw - 32px)); box-sizing: border-box;
+    padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line, #d0d7de); background: var(--paper, var(--bg, Canvas));
+    color: var(--ink, CanvasText); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18); font: 13px/1.45 system-ui, sans-serif; pointer-events: none; }
+  .pr-card .pr-head { color: var(--muted, GrayText); font-size: 12px; }
+  .pr-card .pr-title { font-weight: 600; margin: 3px 0 4px; }
+  .pr-card .pr-meta { color: var(--muted, GrayText); font-size: 12px; }
+  .pr-card .pr-note { color: var(--muted, GrayText); font-size: 11px; margin-top: 5px; font-style: italic; }
+  .pr-state { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; margin-left: 6px; vertical-align: 1px; }
+  .pr-base { display: inline-block; padding: 0 6px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-left: 6px; vertical-align: 1px; }
+  .pr-base.dev { background: #dafbe1; color: #116329; } .pr-base.other { background: #fff1c2; color: #7a4b00; }
+  @media (prefers-color-scheme: dark) { .pr-base.dev { background: #12361f; color: #6fdd8b; } .pr-base.other { background: #3d2e00; color: #f2cc60; } }
+  .pr-state.open { background: #1f883d; } .pr-state.merged { background: #8250df; } .pr-state.closed { background: #cf222e; } .pr-state.draft { background: #6e7781; }
+</style>
+<script>
+/* A card for each link to a GitHub PR or issue, on hover or focus: its
+   title, state, the branch a PR targets (dev or not: the distinction that
+   matters, ^ticket(478)), author, dates and comments, asked of GitHub live, once per
+   number per page load; if GitHub does not answer, what it said when the
+   page was built (tools/link_prs.py writes this block). */
+(() => {
+  const CACHED = {"hazelgrove/hazel#2857": {"author": "matthewhammer", "base": "dev", "comments": 1, "created": "2026-11-23T16:18:27Z", "kind": "pull", "state": "draft", "title": "hazeljs: what the npm package is built from (the library, the editable embed, the font and icons, hazel-jit)", "updated": "2026-11-25T16:22:02Z"}, "hazelgrove/hazel#2859": {"author": "matthewhammer", "base": "dev", "comments": 1, "created": "2026-11-23T20:00:30Z", "kind": "pull", "state": "draft", "title": "hazel-jit: Hazel compiled to JavaScript, its values across, and mixed mode, with agreement tests", "updated": "2026-11-25T15:57:56Z"}}, BUILT = "2026-11-25";
+  const RX = /^https:\/\/github\.com\/([^/]+\/[^/]+)\/(pull|issues)\/(\d+)$/;
+  const asked = new Map();
+  /* a PR from the pulls endpoint, which has its base branch; an issue from the issues one */
+  const ask = (key, kind) => {
+    if (!asked.has(key)) {
+      const [repo, n] = key.split("#"), pull = kind === "pull";
+      asked.set(key, fetch(`https://api.github.com/repos/${repo}/${pull ? "pulls" : "issues"}/${n}`)
+        .then(r => r.ok ? r.json() : Promise.reject(r.status))
+        .then(j => ({ title: j.title, author: j.user && j.user.login, created: j.created_at, updated: j.updated_at,
+                      comments: j.comments, kind: pull || j.pull_request ? "pull" : "issues", base: j.base && j.base.ref,
+                      state: j.merged_at || (j.pull_request && j.pull_request.merged_at) ? "merged" : j.draft ? "draft" : j.state }))
+        .catch(() => null));
+    }
+    return asked.get(key);
+  };
+  const baseChip = d => !d.base ? "" : d.base === "dev"
+    ? `<span class="pr-base dev" title="this PR merges into dev">into dev</span>`
+    : `<span class="pr-base other" title="this PR merges into ${esc(d.base)}, not dev">into ${esc(d.base)}, not dev</span>`;
+  const day = iso => new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+  const ago = iso => {
+    const s = (Date.now() - new Date(iso)) / 1000;
+    for (const [u, k] of [["year", 31536000], ["month", 2592000], ["day", 86400], ["hour", 3600], ["minute", 60]])
+      if (s >= k) { const v = Math.floor(s / k); return `${v} ${u}${v === 1 ? "" : "s"} ago`; }
+    return "just now";
+  };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const fill = (key, d, note) => {
+    const [repo, n] = key.split("#"), what = d.kind === "pull" ? "Pull request" : "Issue";
+    return `<div class="pr-head">${esc(repo)} #${n} · ${what}<span class="pr-state ${esc(d.state)}">${esc(d.state)}</span>${baseChip(d)}</div>` +
+      `<div class="pr-title">${esc(d.title)}</div>` +
+      `<div class="pr-meta">by ${esc(d.author)} · opened ${day(d.created)} · updated ${ago(d.updated)} · ${d.comments} comment${d.comments === 1 ? "" : "s"}</div>` +
+      (note ? `<div class="pr-note">${note}</div>` : "");
+  };
+  let card = null, over = null, timer = null;
+  const place = a => {
+    const r = a.getBoundingClientRect(), w = card.offsetWidth, h = card.offsetHeight;
+    const left = Math.max(16, Math.min(r.left, document.documentElement.clientWidth - w - 16));
+    const below = r.bottom + 6 + h < innerHeight;
+    card.style.left = (left + scrollX) + "px";
+    card.style.top = ((below ? r.bottom + 6 : r.top - 6 - h) + scrollY) + "px";
+  };
+  const hide = () => { clearTimeout(timer); over = null; if (card) card.hidden = true; };
+  const show = a => {
+    const m = RX.exec(a.href);
+    if (!m) return;
+    const key = m[1] + "#" + m[3];
+    over = a; clearTimeout(timer);
+    timer = setTimeout(async () => {
+      if (!card) { card = document.createElement("div"); card.className = "pr-card"; card.setAttribute("role", "tooltip"); document.body.append(card); }
+      const cached = CACHED[key];
+      card.innerHTML = cached ? fill(key, cached, "asking GitHub…") : `<div class="pr-head">${esc(key)}</div><div class="pr-note">asking GitHub…</div>`;
+      card.hidden = false; place(a);
+      const d = await ask(key, m[2]);
+      if (over !== a) return;
+      card.innerHTML = d ? fill(key, d, "")
+        : cached ? fill(key, cached, `GitHub didn't answer just now (its limit is 60 lookups an hour per network): as of ${BUILT}`)
+        : `<div class="pr-head">${esc(key)}</div><div class="pr-note">GitHub didn't answer just now.</div>`;
+      place(a);
+    }, 250);
+  };
+  const linkOf = t => t && t.closest && t.closest("a[href]");
+  document.addEventListener("mouseover", e => { const a = linkOf(e.target); if (a && a !== over && RX.test(a.href)) show(a); });
+  document.addEventListener("mouseout", e => { const a = linkOf(e.target); if (a && a === over && !a.contains(e.relatedTarget)) hide(); });
+  document.addEventListener("focusin", e => { const a = linkOf(e.target); if (a && RX.test(a.href)) show(a); });
+  document.addEventListener("focusout", hide);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") hide(); });
+  addEventListener("scroll", () => { if (over && card && !card.hidden) place(over); }, { passive: true });
+})();
+</script>
+<!-- pr-cards: end -->
+<!-- notes: begin -->
+<style>
+  code.ref { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; white-space: nowrap; }
+  code.ref b { font-weight: 800; }
+  button.mint { margin-left: 4px; font: inherit; font-size: 0.75em; padding: 0 6px; border: 1px solid var(--line, #ccc);
+    border-radius: 4px; background: transparent; color: var(--muted, #666); cursor: pointer; vertical-align: 1px; }
+  button.mint:hover { color: inherit; }
+  button.mint.done { color: var(--good, #15803d); border-color: var(--good, #15803d); }
+  a.step-link { color: var(--muted, #666); text-decoration: none; font-size: 0.85em; margin-left: 4px; }
+  a.step-link:hover { text-decoration: underline; }
+  li:target { background: color-mix(in srgb, var(--good, #15803d) 12%, transparent); border-radius: 6px; }
+</style>
+<script>
+/* Each step under "Next": a link to it, a chip copying that link, and a
+   chip copying a request to mint a ticket for it (to paste to Claude). */
+(() => {
+  const h = document.getElementById("next");
+  if (!h) return;
+  let list = h.nextElementSibling;
+  while (list && !/^(OL|UL)$/.test(list.tagName)) {
+    if (list.tagName === "H2") return;
+    list = list.nextElementSibling;
+  }
+  if (!list) return;
+  const page = location.origin + location.pathname, name = document.title;
+  const copy = async (b, text) => {
+    try { await navigator.clipboard.writeText(text); }
+    catch (_) { const t = document.createElement("textarea"); t.value = text; document.body.append(t); t.select(); document.execCommand("copy"); t.remove(); }
+    const was = b.textContent; b.textContent = "copied"; b.classList.add("done");
+    setTimeout(() => { b.textContent = was; b.classList.remove("done"); }, 1500);
+  };
+  [...list.children].filter(li => li.tagName === "LI").forEach((li, i) => {
+    const n = i + 1;
+    if (!li.id) li.id = "step-" + n;
+    const url = page + "#" + li.id;
+    const b = li.querySelector("b, strong");
+    const title = (b ? b.textContent : li.textContent).replace(/\s+/g, " ").trim().replace(/[:.,;]$/, "").slice(0, 160);
+    const a = document.createElement("a");
+    a.href = "#" + li.id; a.className = "step-link"; a.textContent = "#" + n; a.title = "A link to this step";
+    const link = document.createElement("button");
+    link.type = "button"; link.className = "mint"; link.textContent = "copy link"; link.title = "Copies a link to this step";
+    link.addEventListener("click", () => copy(link, url));
+    const mint = document.createElement("button");
+    mint.type = "button"; mint.className = "mint"; mint.textContent = "copy for a ticket";
+    mint.title = "Copies a request to mint a ticket for this step, to paste to Claude";
+    mint.addEventListener("click", () => copy(mint, "Mint a ticket for this step: " + name + ", Next, step " + n + ': "' + title + '". ' + url));
+    li.append(" ", a, " ", link, " ", mint);
+  });
+  if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
+})();
+</script>
+<!-- notes: end -->
+</body>
+</html>
