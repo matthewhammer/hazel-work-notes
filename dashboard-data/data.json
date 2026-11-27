@@ -23003,7 +23003,33 @@
     "correctness"
    ],
    "source": "Claude, 2026-11-26, from profiling the compiled World.step (^ticket(882), the AFK protocol)",
-   "progress": "11-26 21:5x: trial/891-idiv (136fecdcaf, off hazel-jit 25c106f545, two agreement tests: every sign; no -0 through a Float) and its library twin trial/891-idiv-pkg (62356bf70e, off hazeljs) pushed; CI and Deploy running; World.step to be timed against hazeljs on one runner (node/step-time.mjs). | 11-26 22:0x: also from the compiled World.step: Hazel writes -1 as 0 - 1 and the compiled code called $R.isub(0, 1) on every pass (dc < 0 - 1, dr == 0 - 3, ...), and == against it went through $R.eq. Second commit 664c49c49a on trial/891-idiv: +, - and * on Ints written out folded at compile time (int_const, exact by Bigint), counted as literals for == (so ===); division and Nat's left to run; an agreement test and a test that 0 - 3 compiles to no isub. To go on the library twin after the running World.step timing (division alone)."
+   "progress": "11-26 21:5x: trial/891-idiv (136fecdcaf, off hazel-jit 25c106f545, two agreement tests: every sign; no -0 through a Float) and its library twin trial/891-idiv-pkg (62356bf70e, off hazeljs) pushed; CI and Deploy running; World.step to be timed against hazeljs on one runner (node/step-time.mjs). | 11-26 22:0x: also from the compiled World.step: Hazel writes -1 as 0 - 1 and the compiled code called $R.isub(0, 1) on every pass (dc < 0 - 1, dr == 0 - 3, ...), and == against it went through $R.eq. Second commit 664c49c49a on trial/891-idiv: +, - and * on Ints written out folded at compile time (int_const, exact by Bigint), counted as literals for == (so ===); division and Nat's left to run; an agreement test and a test that 0 - 3 compiles to no isub. To go on the library twin after the running World.step timing (division alone).",
+   "log": [
+    {
+     "at": "2026-11-26T21:09-07:00",
+     "from": "claude",
+     "chars": 645,
+     "asks": false,
+     "words": 102,
+     "read_s": 26,
+     "listen_s": 38,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-26T21:15-07:00",
+     "from": "claude",
+     "chars": 393,
+     "asks": false,
+     "words": 66,
+     "read_s": 17,
+     "listen_s": 25,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 892,
@@ -30560,8 +30586,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7252,
-  "words": 1597587,
+  "replies": 7253,
+  "words": 1597776,
   "read_hours_est": 111.9,
   "listen_hours_est": 166.4,
   "read_s_avg": 56,
@@ -30943,9 +30969,9 @@
     "chars": 138783
    },
    "2026-11-26": {
-    "replies": 18,
-    "words": 7056,
-    "chars": 41073
+    "replies": 19,
+    "words": 7245,
+    "chars": 42196
    }
   }
  },
