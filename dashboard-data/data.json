@@ -23124,11 +23124,29 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 894,
+   "area": "Experiment, numbers only (not to merge): the open statics PRs (#2603, #2717) on the night's trials, against the Gnome world build's type-checking cost",
+   "text": "<b>Matthew, 2026-11-27: \"why does it take 5 seconds to build the gnome rules --- I thought that the jit was really fast?\"; then \"let's also do an experiment, just to get numbers (not to merge), what performance PRs can we use to mitigate the type checking cost?\"</b> On the hazeljs branch every let analyzes its definition twice (a recursion probe, then the real pass), a function-shaped one that may be recursive three times, so lets nested in definitions multiply (2^depth); a module binding analyzes its whole definition twice more. Open PRs that address it: #2603 (a let analyzed once unless it refers to itself; meet asked once per node, not three times; Ctx lookups by index) and #2717 (a module binding analyzes its definition once; a module binding as a non-recursive let). trial/1127-statics, off trial/1126-night: #2603's 4eec302a50 and 0cd1cf0307 and #2717's e3013b0360, cherry-picked and ported to Core by hand (List.exists ~f, map2_exn/zip_exn, Poly.equal, phys_equal); #2603's Ctx index (dca3816897) left out, as it conflicts in Ctx.re.",
+   "added": "2026-11-27",
+   "opened": "2026-11-27T08:12-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-27"
+   ],
+   "chips": [
+    "statics",
+    "performance",
+    "experiment"
+   ],
+   "source": "Matthew, 2026-11-27",
+   "progress": "11-27 08:12: trial/1127-statics pushed (ba32db7481); Deploy and CI running; then build timing and fresh timing (same answers) against trial/1126-night on one runner."
   }
  ],
- "next_ticket": 894,
- "current_ticket": 893,
- "current_note": "07:13: ^ticket(893) the agenda for Matthew's meeting with Cyrus at about 9:00 is published as ^report(66); ^ticket(892) the flying jellyfish is live as Gnome world 0.0.146",
+ "next_ticket": 895,
+ "current_ticket": 894,
+ "current_note": "08:12: ^ticket(894) statics PRs #2603 and #2717 on the night's trials, timing Gnome world's build (numbers only), for item 2 of the agenda, ^report(66)",
  "closed_tickets": [
   {
    "id": 887,
@@ -30676,7 +30694,7 @@
   852,
   889
  ],
- "current_since": "2026-11-27T07:13-07:00",
+ "current_since": "2026-11-27T08:12-07:00",
  "next_meeting": {
   "report": 66,
   "with": "Cyrus",
