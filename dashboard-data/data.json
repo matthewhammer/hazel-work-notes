@@ -22843,16 +22843,14 @@
    "added": "2026-11-26",
    "opened": "2026-11-26T11:36-07:00",
    "status": "open",
-   "tags": [
-    "blocked on Matthew"
-   ],
+   "tags": [],
    "chips": [
     "hazel",
     "hazel-jit",
     "livelits"
    ],
    "source": "Matthew, 2026-11-26, in chat, answering \"Look into why build 2's drags with compiling off came out fast?\": \"Yes, dig in\"",
-   "text": "<b>Find why the Witch's 3-second drag with compiling off draws in 4-7 ms a frame on some checks and 13-19 ms on others.</b> Found so far: not the holes port (every path it touches is behind the jit setting); the runner was only 15-25% faster at interpreting; and the same commit has shown both (421e30a04b: 4.5 and 16.0 ms a frame; 0e56bdbd0a: 6.1, 7.4, then later builds 14-15): about 6 of 27 checks fast. In the fast ones each livelit draw takes 0.7-1.2 ms, as compiled, against 4.1-5.7. Leading guess: the views' call memo (CallMemo), which stops looking up a body after 24 misses a hit, so its history decides whether the slider's helpers are reused. Experiment: trial/887-off-drag from build 50, the memo's lookups and hits counted over the drag, draws split by livelit, the off drag repeated three times. <b>Found, 2026-11-26 (late morning):</b> not the memo of calls, nor the samples (the picture's sampled value is the very same object every frame, both ways): LivelitProj's view memo hit every frame both ways, but in the slow mode the picture's model came to it as an object equal to the one it held, not the same, and a hit never replaced the older one, so every frame compared the whole picture by structure (Exp.fast_equal), 9-13 ms; in the fast mode the held object was the current one, a pointer compare. Fix (one line): on an equal hit, keep the new objects. Checking it: four Witch checks on trial/887-off-drag*. <b>Fix checked:</b> four Witch checks with it (runs 45882582352, 45882590999, 45882598975; the fourth still running), machines that were always slow: every off drag fast, picture 1.7-2.6 ms, view 5.8-8.2 ms a frame (before 13.0-18.5). Written into ^report(55) #witch, live. <b>Waiting on Matthew:</b> put the one-line fix on the prototype, trial/694-view-jit?",
+   "text": "<b>Find why the Witch's 3-second drag with compiling off draws in 4-7 ms a frame on some checks and 13-19 ms on others.</b> Found so far: not the holes port (every path it touches is behind the jit setting); the runner was only 15-25% faster at interpreting; and the same commit has shown both (421e30a04b: 4.5 and 16.0 ms a frame; 0e56bdbd0a: 6.1, 7.4, then later builds 14-15): about 6 of 27 checks fast. In the fast ones each livelit draw takes 0.7-1.2 ms, as compiled, against 4.1-5.7. Leading guess: the views' call memo (CallMemo), which stops looking up a body after 24 misses a hit, so its history decides whether the slider's helpers are reused. Experiment: trial/887-off-drag from build 50, the memo's lookups and hits counted over the drag, draws split by livelit, the off drag repeated three times. <b>Found, 2026-11-26 (late morning):</b> not the memo of calls, nor the samples (the picture's sampled value is the very same object every frame, both ways): LivelitProj's view memo hit every frame both ways, but in the slow mode the picture's model came to it as an object equal to the one it held, not the same, and a hit never replaced the older one, so every frame compared the whole picture by structure (Exp.fast_equal), 9-13 ms; in the fast mode the held object was the current one, a pointer compare. Fix (one line): on an equal hit, keep the new objects. Checking it: four Witch checks on trial/887-off-drag*. <b>Fix checked:</b> four Witch checks with it (runs 45882582352, 45882590999, 45882598975, 45882606798), machines that were always slow: every off drag fast, picture 1.7-2.6 ms, view 5.8-8.2 ms a frame (before 13.0-18.5). Written into ^report(55) #witch, live. <b>On the prototype, 2026-11-26 19:41</b> (Matthew: \"Yes, push it\"): trial/694-view-jit 1a8afab5ae (#2817); ^report(55) says so, live. Its CI, hazel-jit in Firefox and Deploy runs (45929783445, 45929783293, 45929783308) are running.",
    "log": [
     {
      "at": "2026-11-26T11:33-07:00",
@@ -22874,12 +22872,12 @@
      "note": "from the transcripts"
     }
    ],
-   "waiting": true
+   "waiting": false
   }
  ],
  "next_ticket": 889,
- "current_ticket": null,
- "current_note": "12:28: Gnome world 0.0.140 with N's level live; the Witch drag puzzle explained and fixed on the experiment branch, waiting on Matthew for the prototype",
+ "current_ticket": 887,
+ "current_note": "19:42: ^ticket(887): the view-memo fix is pushed to trial/694-view-jit (1a8afab5ae); waiting for its CI",
  "closed_tickets": [
   {
    "id": 888,
