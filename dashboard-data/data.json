@@ -23069,63 +23069,6 @@
    "waiting": true
   },
   {
-   "id": 893,
-   "area": "Meeting with Cyrus, Friday 2026-11-27, about 9:00 Mountain: the agenda, ^report(66)",
-   "text": "<b>Matthew, 2026-11-27 07:0x: \"let's shift gears and start preparing a meeting agenda, with notes for my meeting with Cyrus, which happens in about 2 hours\"; then \"please include a chart, or maybe more charts, for each item\".</b> Items, his order: hazel-jit last week against this week; the npm package last week against this week; the back burner (other open PRs); if there is time, advice on an email from Max Carroll, and a demo of Gnome dig and Gnome world. ^report(66), public from the first draft as agendas are.",
-   "added": "2026-11-27",
-   "opened": "2026-11-27T07:13-07:00",
-   "status": "open",
-   "tags": [
-    "meeting 2026-11-27"
-   ],
-   "chips": [
-    "agenda",
-    "Cyrus"
-   ],
-   "source": "Matthew, 2026-11-27",
-   "progress": "11-27 07:13: ^report(66) published (series card on the homepage and the local index): 10 figures (9 charts and the jellyfish picture), a chart or more for every item but the email's, which has no data to chart; last week taken as 11-20, as the team met 11-17 and held the merge-a-thon 11-19.",
-   "log": [
-    {
-     "at": "2026-11-27T07:02-07:00",
-     "from": "matthew",
-     "chars": 442,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-27T07:02-07:00",
-     "from": "matthew",
-     "chars": 60,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-27T07:08-07:00",
-     "from": "claude",
-     "chars": 1942,
-     "asks": false,
-     "words": 340,
-     "read_s": 86,
-     "listen_s": 128,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-27T07:15-07:00",
-     "from": "claude",
-     "chars": 5572,
-     "asks": true,
-     "words": 895,
-     "read_s": 226,
-     "listen_s": 336,
-     "model": "claude-opus-5-5",
-     "effort": "xhigh",
-     "note": "from the transcripts"
-    }
-   ]
-  },
-  {
    "id": 894,
    "area": "Experiment, numbers only (not to merge): the open statics PRs (#2603, #2717) on the night's trials, against the Gnome world build's type-checking cost",
    "text": "<b>Matthew, 2026-11-27: \"why does it take 5 seconds to build the gnome rules --- I thought that the jit was really fast?\"; then \"let's also do an experiment, just to get numbers (not to merge), what performance PRs can we use to mitigate the type checking cost?\"</b> On the hazeljs branch every let analyzes its definition twice (a recursion probe, then the real pass), a function-shaped one that may be recursive three times, so lets nested in definitions multiply (2^depth); a module binding analyzes its whole definition twice more. Open PRs that address it: #2603 (a let analyzed once unless it refers to itself; meet asked once per node, not three times; Ctx lookups by index) and #2717 (a module binding analyzes its definition once; a module binding as a non-recursive let). trial/1127-statics, off trial/1126-night: #2603's 4eec302a50 and 0cd1cf0307 and #2717's e3013b0360, cherry-picked and ported to Core by hand (List.exists ~f, map2_exn/zip_exn, Poly.equal, phys_equal); #2603's Ctx index (dca3816897) left out, as it conflicts in Ctx.re.",
@@ -23449,11 +23392,49 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 899,
+   "area": "Hazel's CLI: a jit subcommand, to prepare hybrid Hazel-JavaScript applications like hazeljs-examples' ahead of time",
+   "text": "<b>Matthew and Cyrus's meeting, 2026-11-27, for next week: \"Hazel CLI JIT subcommand --- use this to prepare hazel-js hybrid applications, like our hazeljs-examples.\"</b> The CLI (src/CLI/Cli.re, Cmdliner) has run, format, analyze, probe and test. A jit subcommand would build a program as a page's spec gives it (a preamble, modules, a tail; or one file) and write what a page needs to run it with no build: the compiled program as text, hazel-jit's runtime, and each exported function's converter (what Hazel.jitProgramSaved hands back, ^ticket(890)), with a hash of the spec the page checks. Today that takes two other routes: the games' rules go through Test_HazelJit's game_aot entries and CI's hazel-jit-aot artifact (tools/make-compiled.py), and Gnome world's through node/world-aot.mjs with a trial library on a GitHub job (0.0.147). Questions: which branch it lands on (lean: the package's, #2857, beside jitProgramSaved); its output format (one JSON like world/rules-aot.json, or a JS module); whether hazeljs-examples' build then calls it in CI.",
+   "added": "2026-11-27",
+   "opened": "2026-11-27T10:45-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-27",
+    "next week"
+   ],
+   "chips": [
+    "hazel-jit",
+    "CLI",
+    "hazeljs"
+   ],
+   "source": "Matthew and Cyrus's meeting, 2026-11-27",
+   "progress": ""
+  },
+  {
+   "id": 900,
+   "area": "A livelits PR extending the livelits PR: a new tree of slides, \"Livelit applications\", a node for each hazeljs example, organized as the Hazel activities page is",
+   "text": "<b>Matthew and Cyrus's meeting, 2026-11-27, for next week: \"mint ticket: a livelits PR, extending the livelits PR. For each hazeljs-example, add a node into a new tree of slides, for 'livelit applications'. Follow the organization from the hazel activities page on matthewhammer.org.\"</b> The livelits PRs: #2597 (integration/livelits-splicerefs-full, user-defined livelits) and #2635 on it (integration/livelits-modular-editors, where the Livelit Playground deck and the jit trial #2817 run); lean: branch the new PR off #2635. Slide trees there: Documentation -> Livelit Playground (Slides.playground_slides, hazel-programs/docs/livelits/playground/). The new tree, Documentation -> Livelit applications, grouped as matthewhammer.org/hazel/#activities groups them: Ancient oracles (I Ching, Tarot, Astrology); One-player games (Solitaire, Minesweeper, Mahjong solitaire, Snake, Star wave, Butterfly garden, Gnome dig, Gnome world); Hazel AI opponents (Go, Checkers, Mahjong, Light trails); Physics simulation (Pinball, Downhill, Bricks); Automata (Petri nets). Each node: the example's Hazel rules (one module per game) as a slide, its livelits where it has them. To decide: one slide per example or a deck per kind; how a slide shows the page's JavaScript half; the World.hz-sized modules against a slide's size.",
+   "added": "2026-11-27",
+   "opened": "2026-11-27T10:45-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-27",
+    "next week"
+   ],
+   "chips": [
+    "livelits",
+    "hazeljs-examples",
+    "slides"
+   ],
+   "source": "Matthew and Cyrus's meeting, 2026-11-27",
+   "progress": ""
   }
  ],
- "next_ticket": 899,
- "current_ticket": 898,
- "current_note": "10:04: in Matthew and Cyrus's meeting: #2859's description draft (^report(65)) gains Mixed mode at its boundary and Types; ^ticket(897) polymorphic functions in mixed mode; ^ticket(898) casts through unknown types erased (f(true) gives 2)",
+ "next_ticket": 901,
+ "current_ticket": 899,
+ "current_note": "10:45: met Cyrus: hazel-jit and hazeljs look good, maybe two weeks from dev. Next week: ^ticket(899) a jit subcommand for the CLI; ^ticket(900) Livelit applications slides. ^report(66) has the notes",
  "closed_tickets": [
   {
    "id": 887,
@@ -30958,6 +30939,15 @@
    "source": "Matthew, 2026-11-27",
    "status": "done",
    "closed": "2026-11-27T08:30-07:00"
+  },
+  {
+   "id": 893,
+   "area": "Meeting with Cyrus, Friday 2026-11-27, about 9:00 Mountain: the agenda, ^report(66)",
+   "added": "2026-11-27",
+   "text": "Matthew, 2026-11-27 07:0x: \"let's shift gears and start preparing a meeting agenda, with notes for my meeting with Cyrus, which happens in about 2 hours\"; then \"please include a chart, or maybe more charts, for each item\".",
+   "source": "Matthew, 2026-11-27",
+   "status": "done",
+   "closed": "2026-11-27T10:45-07:00"
   }
  ],
  "queue": [
@@ -31010,7 +31000,7 @@
   852,
   889
  ],
- "current_since": "2026-11-27T10:04-07:00",
+ "current_since": "2026-11-27T10:45-07:00",
  "next_meeting": {
   "report": 66,
   "with": "Cyrus",
@@ -31023,8 +31013,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7281,
-  "words": 1606293,
+  "replies": 7282,
+  "words": 1606320,
   "read_hours_est": 112.5,
   "listen_hours_est": 167.3,
   "read_s_avg": 56,
@@ -31411,9 +31401,9 @@
     "chars": 47329
    },
    "2026-11-27": {
-    "replies": 22,
-    "words": 7630,
-    "chars": 44585
+    "replies": 23,
+    "words": 7657,
+    "chars": 44749
    }
   }
  },
