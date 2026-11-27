@@ -21324,7 +21324,7 @@
    ],
    "source": "Found 2026-11-19 building the hazeljs examples (^ticket(790), ^ticket(785)).",
    "text": "In hazeljs 0.0.4 (Node), a module that calls into another module costs the build seconds, and calls through such a function compound. Minesweeper: Hint.cell calling Play.cell_at built in 8.7 s and every function calling it ran out of memory at a 1.2-1.5 GB heap (a local copy of the lookup: 0.8 s). Go: Board alone 0.5 s, Board + Play (about 18 references to Board.*) 8.1 s, Board + Play + Bot joined into one module 2.2 s. Find where the build spends it (statics of a module projection? elaboration of the other module's record type at each use?) and whether Hazel's own editor pays it too. Two more found 2026-11-19/20 building Mahjong (^ticket(786)): (1) a top-level function named `use` makes the build hang, no error (renamed `helps`; `hint` is also taken, as an error); (2) the build's stack grows about 11 KB per top-level definition: 91 overflowed Node's default stack (984 KB) and the browser's (Stack_overflow at build), 44 build at 700 KB. Find which keyword `use` is, and whether the module's let-chain can be checked without one frame per definition.",
-   "progress": "",
+   "progress": "11-26 20:3x (from Gnome world's port, ^ticket(882)): MEASURED where the world's build goes (hazeljs 0.0.14's library, Node, warm): analyzeProgram (parse + statics) 4.79 s of jitProgram's 4.72-4.90 s; compileProgram adds ~0.1 s (295,477 chars of JS); so hazel-jit's compile and converters are nearly free and Hazel's front end is the whole cost. The animals' three modules (Bunny 4.8k chars, Frog 7.8k, Bird 11.5k) add 1.56 s of analysis; Bird alone ~1.35 s, about 3x World's cost per character (World 56k chars, ~2.3 s). NOT the cause: nesting (80 ifs nested: 35 ms, linear); record size (a 12-field record with two nested records returned through 40 branches: 413 ms for 10.7k chars, linear, a third of Bird's rate); local type aliases for Bird's repeated types (3%, noise). Cold builds (fresh Node process): 4.8 s up to the wind, 6.9-7.0 s with the animals; the page's first build at load 15.0 s (pane hidden), warm 2.6-2.8 s: most of a first build is the library warming up; GC is 26% of a cold build. Next: a GitHub job building hazel-lib.js in the dev profile (its dune env has --debuginfo --sourcemap) and profiling the world's build there, mapped through the source map to OCaml modules, to say which of the parser, the statics or the elaborator it is (no local builds, and artifacts not downloaded).",
    "log": []
   },
   {
@@ -21333,14 +21333,16 @@
    "added": "2026-11-19",
    "opened": "2026-11-19T18:29-07:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazeljs",
     "SInt"
    ],
    "source": "Found 2026-11-19 building Checkers for the hazeljs examples (^ticket(787)).",
    "text": "In hazeljs 0.0.4, Hazel's Int arithmetic is wide inside a program (65536 * 65536 gives 4294967296), and a large Int goes out to JavaScript whole (4293918720); but the same number passed back in as an argument arrives as -1048576, cut to a signed 32-bit int (ToInt32). Checkers keeps its board as 32-bit sets and reads them again as 32 bits at the entry points (wide: b + 2^32 when negative). Fix in hazeljs's JS-to-Hazel conversion, and line it up with SInt as 64 bits (^ticket(781), #2828): a JS number past 2^53 should arrive as a BigInt, or be refused. Also (11-20, pinball probe): a whole-number JS value passed where Hazel expects a Float (200 for 200.0) is taken as an Int, and the run overflows the stack; a Float that comes out as 0.0 goes back in as 0. Convert by the declared type, as hazel-jit's adapters do.",
-   "progress": "11-26 19:49: FOUND: HazelLibCore.of_js read a whole JS number as Bigint.of_int(int_of_float(f)), and an int is 32 bits under js_of_ocaml (ToInt32): so an untyped parameter got 4293918720 as -1048576. The typed path (of_js_at, ^ticket(736)) was already right for Int and Nat; the jit's own boundary (HazelJitValue) too. Also: whole numbers from 1e15 to 2^53 came in as Floats, a JS BigInt was read as an object, and an Int past 2^53 went out as a rounded number where compiled code gives a BigInt. FIX on trial/792-big-ints (871edbc0d7, off hazeljs #2857's b1b4e19286): a safe whole number by HazelJitValue.whole, a BigInt by its digits (untyped, Int, Nat), and past 2^53 out as a BigInt; a test in Test_HazelLib (4293918720 and -4293918720 untyped, 2^53-2 untyped, typed, a BigInt past 2^64 in and out). CI running. Not changed: SInt still int_of_float at the boundary, 32 bits here, as SInt is on this branch (64 bits waits on #2828, ^ticket(781)).",
+   "progress": "11-26 19:49: FOUND: HazelLibCore.of_js read a whole JS number as Bigint.of_int(int_of_float(f)), and an int is 32 bits under js_of_ocaml (ToInt32): so an untyped parameter got 4293918720 as -1048576. The typed path (of_js_at, ^ticket(736)) was already right for Int and Nat; the jit's own boundary (HazelJitValue) too. Also: whole numbers from 1e15 to 2^53 came in as Floats, a JS BigInt was read as an object, and an Int past 2^53 went out as a rounded number where compiled code gives a BigInt. FIX on trial/792-big-ints (871edbc0d7, off hazeljs #2857's b1b4e19286): a safe whole number by HazelJitValue.whole, a BigInt by its digits (untyped, Int, Nat), and past 2^53 out as a BigInt; a test in Test_HazelLib (4293918720 and -4293918720 untyped, 2^53-2 untyped, typed, a BigInt past 2^64 in and out). CI running. Not changed: SInt still int_of_float at the boundary, 32 bits here, as SInt is on this branch (64 bits waits on #2828, ^ticket(781)). | 11-26 20:3x: CI GREEN on trial/792-big-ints 871edbc0d7 (45930546443: static, fast, full: 5,222 tests, the library's 42 all OK, the new one among them). WAITING ON MATTHEW: merge it into hazeljs (#2857)? My lean: yes; it only widens what comes in (an untyped whole number up to 2^53 now an Int, not cut to 32 bits; a JS BigInt read as an Int) and gives a BigInt out past 2^53 as compiled code does. Then a package (0.0.15) would carry it; the Checkers page's 'wide' workaround (hazeljs-examples) could go.",
    "log": [
     {
      "at": "2026-11-26T19:40-07:00",
@@ -21349,7 +21351,8 @@
      "asks": false,
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": true
   },
   {
    "id": 811,
@@ -30445,7 +30448,7 @@
   },
   "since": "2026-08-27",
   "replies": 7244,
-  "words": 1595321,
+  "words": 1595392,
   "read_hours_est": 111.7,
   "listen_hours_est": 166.2,
   "read_s_avg": 56,
@@ -30828,8 +30831,8 @@
    },
    "2026-11-26": {
     "replies": 10,
-    "words": 4790,
-    "chars": 27509
+    "words": 4861,
+    "chars": 27916
    }
   }
  },
