@@ -23141,7 +23141,7 @@
     "experiment"
    ],
    "source": "Matthew, 2026-11-27",
-   "progress": "11-27 08:22: NUMBERS (Gnome world's rules built in Node, one GitHub runner, three rounds, build timing run 46023240545): trial/1127-statics (ba32db7481) warm 0.33-0.34 s vs trial/1126-night 2.87-3.19 s vs hazeljs 3.14-3.32 s (about 9x); first build 1.39-1.58 s vs 3.94-4.44 vs 4.34-5.09. Same answers on every Gnome world piece with the trial library (fresh timing run 46023247014; fly-check's build 2.2-2.3 s vs 6.7-7.7). The trial's own CI first failed on a test's Sys.time (Core has none) and fmt; fixed 9c82a168cd, CI running. In ^report(66) item 2 (#statics-experiment). Not to merge (Matthew).",
+   "progress": "11-27 08:22: NUMBERS (Gnome world's rules built in Node, one GitHub runner, three rounds, build timing run 46023240545): trial/1127-statics (ba32db7481) warm 0.33-0.34 s vs trial/1126-night 2.87-3.19 s vs hazeljs 3.14-3.32 s (about 9x); first build 1.39-1.58 s vs 3.94-4.44 vs 4.34-5.09. Same answers on every Gnome world piece with the trial library (fresh timing run 46023247014; fly-check's build 2.2-2.3 s vs 6.7-7.7). The trial's own CI first failed on a test's Sys.time (Core has none) and fmt; fixed 9c82a168cd, CI running. In ^report(66) item 2 (#statics-experiment). Not to merge (Matthew). 11-27 08:30: the trial's CI failed again on the test file alone (dt < 10. needs Float's < under Core); fixed and refmt'd (76a08a8902), CI running.",
    "log": [
     {
      "at": "2026-11-27T08:07-07:00",
@@ -23189,27 +23189,11 @@
      "note": "from the transcripts"
     }
    ]
-  },
-  {
-   "id": 895,
-   "area": "Gnome world: the flying level as N wants it (more sky, pods, coins, the rainbow clouds seen, portal labels, a welcome) and the rules compiled ahead of time",
-   "text": "<b>Matthew, 2026-11-27: \"after gathering numbers, let's update the gnome game so that: the jit has already been done, ahead of time, before loading on client machine; the second world (let's call it 'flying level') is corrected to match what N wanted/wants: no digging ability; less underground volume, going down less into the ground and more into the sky with the tile budget. In the ground there are a few features, with cat heads to collect, and power ups: caves accessible by existing ladders and lateral passageways, and gnome house 'pods' underground, accessible by existing ladders; bug report -- never saw the rainbow clouds we asked for in the sky in 'flying level'; label the portal from 'digging' (initial) level to 'flying' level, in both directions ...; when we load the flying level, pause game and have an on-screen popup explain what to do: collect cat heads, find the power ups, activate the jelly fish power, somehow\"; then \"put turning coins in the sky, a la Mario bros --- we collect flying/hovering coins in this level, not gems in the ground\".</b> The rainbow clouds drew; they were all 12 to 40 rows over the land, out of sight from it.",
-   "added": "2026-11-27",
-   "opened": "2026-11-27T08:26-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "Gnome world",
-    "N's level",
-    "hazel-jit"
-   ],
-   "source": "Matthew, 2026-11-27",
-   "progress": "11-27 08:26: 0.0.147 written and checked in the browser pane (the level built: land rows 149-162, 253 coins, 3 pods with shoes, flippers, climber; the welcome card; both portal labels; the spec hash the same in Node and the page, ec4e598a:115914); pushing; then the world aot job's rules-aot.json and the level check's new record for level 2."
   }
  ],
  "next_ticket": 896,
  "current_ticket": 895,
- "current_note": "08:26: ^ticket(895) Gnome world 0.0.147, the flying level and the rules compiled ahead of time",
+ "current_note": "08:30: ^ticket(895) Gnome world 0.0.148 live (rules compiled ahead of time: ready in 188 ms; the flying level). Next: ^report(64) revised, the parts in Hazel now and their performance (Matthew's ask)",
  "closed_tickets": [
   {
    "id": 887,
@@ -30705,6 +30689,15 @@
    "source": "Matthew, 2026-11-27, N's ask",
    "status": "done",
    "closed": "2026-11-27T07:13-07:00"
+  },
+  {
+   "id": 895,
+   "area": "Gnome world: the flying level as N wants it (more sky, pods, coins, the rainbow clouds seen, portal labels, a welcome) and the rules compiled ahead of time",
+   "added": "2026-11-27",
+   "text": "Matthew, 2026-11-27: \"after gathering numbers, let's update the gnome game so that: the jit has already been done, ahead of time, before loading on client machine; the second world (let's call it 'flying level') is corrected to match what N wanted/wants: no digging ability; less underground volume, going down less into the ground and more into the sky with the tile budget. In the ground there are a few features, with cat heads to collect, and power ups: caves accessible by existing ladders and lateral passageways, and gnome house 'pods' underground, accessible by existing ladders; bug report -- never saw the rainbow clouds we asked for in the sky in 'flying level'; label the portal from 'digging' (initial) level to 'flying' level, in both directions ...; when we load the flying level, pause game and have an on-screen popup explain what to do: collect cat heads, find the power ups, activate the jelly fish power, somehow\"; then \"put turning coins in the sky, a la Mario bros --- we collect flying/hovering coins in this level, not gems in the ground\".",
+   "source": "Matthew, 2026-11-27",
+   "status": "done",
+   "closed": "2026-11-27T08:30-07:00"
   }
  ],
  "queue": [
