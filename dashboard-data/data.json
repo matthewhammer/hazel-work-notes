@@ -22692,7 +22692,9 @@
    "added": "2026-11-25",
    "opened": "2026-11-25T13:41-07:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "Gnome world",
     "hazeljs-examples",
@@ -22700,7 +22702,7 @@
    ],
    "source": "Matthew, 2026-11-25, in chat: \"N says that when we have both diggers, it's about 3x faster than the current max dig speed.\" Then: \"when we reload to the next version, we should do the equiv of save and load -- currently, there's a builtin reset to start state --- let's not do that by default. people can press the buttonfor that.\" Then: \"the gem finder obscures our head sometimes --- I forget the details (on the rabbit, on the carpet, digging, etc)?\" and \"by default it looks fine (no carpet, no rabbit)\"",
    "text": "Three of Matthew's and N's requests, released together as Gnome world 0.0.138: both diggers kept and digging 3x as fast as the super digger; the world kept in the browser and brought back on reload or a newer version (Restart begins again); the gem finder hung over the gnome's top as drawn, so it clears the head on Clover.",
-   "progress": "11-25: RELEASED 0.0.138 (8c03e77, live; world save check green after 060482f). Both diggers: tool 3 (Pickup.step and twin keep both), World.dig_steps and plain.js a third of the super's steps (granite 8->3, limestone 5->2, bedrock 12->4; soft ground already 1-3 -> 1); note '⛏️⚒️ Both diggers!', ⛏️⚒️ on the top line, 🕳️ gives both, old saves with both taken load with both. MEASURED in the page: digging down 4 granite tiles 78 -> 58 steps (1.3x): the fall into each hole dominates, so N may not feel 3x; asked Matthew whether to go further. Kept world: IndexedDB, every 10 s of play (~4 ms main thread), on hidden, before the 🆕 chip (awaited), and at once on pagehide (dropped by the pane's browser, so a plain reload can lose the last seconds); restored on open as 📂 Load, banner '↩️ Your world, as you left it'; not under ?test unless ?keep; checked across reloads (frame, place, gear, hearts, dug tiles the same). Found and fixed on the way: a save asked for while one was packing returned the old one; 0.0.137's build waited for frames a hidden tab never gets. Gem finder: HEADTOP from drawRider; on Clover 0.6 tile higher, seen clear of the cap; carpet unchanged (same height as on foot). CI: the booklet check printed a blank page on Chrome 157 (a race in zine-check, not the game): fixed in 060482f, 12 sections on 12 pages.",
+   "progress": "11-25: RELEASED 0.0.138 (8c03e77, live; world save check green after 060482f). Both diggers: tool 3 (Pickup.step and twin keep both), World.dig_steps and plain.js a third of the super's steps (granite 8->3, limestone 5->2, bedrock 12->4; soft ground already 1-3 -> 1); note '⛏️⚒️ Both diggers!', ⛏️⚒️ on the top line, 🕳️ gives both, old saves with both taken load with both. MEASURED in the page: digging down 4 granite tiles 78 -> 58 steps (1.3x): the fall into each hole dominates, so N may not feel 3x; asked Matthew whether to go further. Kept world: IndexedDB, every 10 s of play (~4 ms main thread), on hidden, before the 🆕 chip (awaited), and at once on pagehide (dropped by the pane's browser, so a plain reload can lose the last seconds); restored on open as 📂 Load, banner '↩️ Your world, as you left it'; not under ?test unless ?keep; checked across reloads (frame, place, gear, hearts, dug tiles the same). Found and fixed on the way: a save asked for while one was packing returned the old one; 0.0.137's build waited for frames a hidden tab never gets. Gem finder: HEADTOP from drawRider; on Clover 0.6 tile higher, seen clear of the cap; carpet unchanged (same height as on foot). CI: the booklet check printed a blank page on Chrome 157 (a race in zine-check, not the game): fixed in 060482f, 12 sections on 12 pages. | 11-26 20:4x: WAITING ON MATTHEW: the diggers dig 1.3x faster with both in the page (the fall into each hole dominates), not the 3x N asked for: go further (faster falls into dug holes)?",
    "log": [
     {
      "at": "2026-11-25T13:40-07:00",
@@ -22790,7 +22792,8 @@
      "effort": "xhigh",
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": true
   },
   {
    "id": 884,
@@ -22798,7 +22801,9 @@
    "added": "2026-11-25",
    "opened": "2026-11-25T14:00-07:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "Gnome world",
     "hazeljs-examples",
@@ -22806,7 +22811,7 @@
    ],
    "source": "Matthew, 2026-11-25, in chat: \"N has a save state from 12:40 and we want to load it with the current game world\"; \"he got 333 / 333 gems, and all power ups, at the time. we want to retain that, but offer the new gems, and the new game world, overlaid with the digging he's already done (including all gems)\"; \"Can we offer that as another load feature: \"load-merge\"?\"; \"there's now 336 gems. he wants to load-merge his state into the current game world, and get the new 3 gems\"",
    "text": "A second load, 🧩 Load-merge: today's world from the save's seed, the save's digging overlaid, its gems-found count kept with today's extra gems left to find, and the gnome and its things as saved.",
-   "progress": "11-25: RELEASED 0.0.139 (294d958, live, world save check green). Dug tiles = the save's bg B_DUG (only digging sets it), overlaid unless today's tile is masonry/timber; works carried. FOUND: 0.0.127's caverns moved 203 of world 7's 336 gems 1-3 tiles, so gem matching by tile fails across versions; instead the count: leave = today's total - save's found (336-333 = 3), the ones the save still holds first, then those farthest from its open tiles. Items by index + by what the gnome has. TESTED with saves made by 0.0.126 itself (git archive into an untracked _old/ under the 8141 server): world 7 346/346 -> 346/346, all 12 things, tool 3; world 9 333/333 -> 333/333 (today 328); world 7 333 of 346 -> 333/336 with the 3 left exactly where the save held its unfound gems. N's own save (his seed; seeds 9, 17, 24 have 333 in 0.0.126, none 336 today) not tried yet.",
+   "progress": "11-25: RELEASED 0.0.139 (294d958, live, world save check green). Dug tiles = the save's bg B_DUG (only digging sets it), overlaid unless today's tile is masonry/timber; works carried. FOUND: 0.0.127's caverns moved 203 of world 7's 336 gems 1-3 tiles, so gem matching by tile fails across versions; instead the count: leave = today's total - save's found (336-333 = 3), the ones the save still holds first, then those farthest from its open tiles. Items by index + by what the gnome has. TESTED with saves made by 0.0.126 itself (git archive into an untracked _old/ under the 8141 server): world 7 346/346 -> 346/346, all 12 things, tool 3; world 9 333/333 -> 333/333 (today 328); world 7 333 of 346 -> 333/336 with the 3 left exactly where the save held its unfound gems. N's own save (his seed; seeds 9, 17, 24 have 333 in 0.0.126, none 336 today) not tried yet. | 11-26 20:4x: WAITING ON MATTHEW: N's own save, to try 🧩 Load-merge on it (his seed; the 0.0.126 saves tried all merged right).",
    "log": [
     {
      "at": "2026-11-25T14:12-07:00",
@@ -22865,7 +22870,8 @@
      "effort": "xhigh",
      "note": "from the transcripts"
     }
-   ]
+   ],
+   "waiting": true
   },
   {
    "id": 887,
@@ -22904,9 +22910,28 @@
    ],
    "waiting": false,
    "progress": "11-26 20:1x: the Firefox check on the prototype push (hazel-jit in Firefox 45929783293) GREEN: the Witch's 3-second neck drag with compiling off 57.7 fps, the view 6.4 ms a frame (compiled on 5.0); one run. (Its edits with compiling off still never repaint in 240 s: the hole case of ^ticket(885), whose fix is on trial/885-witch-holes, not on the prototype.) Static and fast checks green; full tests still running (45929783445)."
+  },
+  {
+   "id": 889,
+   "area": "Gnome world's booklet: N's level, 🌈 The rainbow sky, is not in it",
+   "text": "<b>The printed booklet (world/manual/, 0.0.103's text) says nothing of N's level</b> (0.0.140: the vortex in the right-hand great tree, no digging, the caves and tunnels, the gnome house with the carpet, ten cat heads for the cat tail, the rainbow clouds, the way back). It prints as a folded zine of exactly twelve half-letter pages, and the GitHub check counts one page a section, so a page for the level means giving one up (the third colouring page, MORE TO COLOR, is the likeliest) or going to sixteen (four more pages: room for the carpet, the cat tail and the wind, all newer than the booklet too). Matthew had the booklet revised whole (0.0.103: 'revise the entire thing, holistically'), so which is his call; either way N may want to say what his page shows.",
+   "added": "2026-11-26",
+   "opened": "2026-11-26T20:23-07:00",
+   "status": "open",
+   "tags": [
+    "blocked on Matthew"
+   ],
+   "chips": [
+    "gnome world",
+    "booklet",
+    "N"
+   ],
+   "waiting": true,
+   "source": "Claude, 2026-11-26, from N's level (^ticket(888)): the booklet left out of 0.0.140, said in chat then",
+   "progress": "11-26 20:4x: found while N's level was released; nothing changed in the booklet. WAITING ON MATTHEW: give up MORE TO COLOR for the level, or go to sixteen pages?"
   }
  ],
- "next_ticket": 889,
+ "next_ticket": 890,
  "current_ticket": 882,
  "current_note": "19:55: Gnome world 0.0.141: piece 6's first part, a wild bunny's mind in Hazel (Bunny.step), pushed; world save check and Pages running; ^report(64) being revised. ^ticket(792)'s and ^ticket(887)'s CI running",
  "closed_tickets": [
@@ -30432,7 +30457,8 @@
   708,
   700,
   863,
-  852
+  852,
+  889
  ],
  "current_since": "2026-11-26T19:55-07:00",
  "next_meeting": {
