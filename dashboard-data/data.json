@@ -22991,7 +22991,7 @@
   },
   {
    "id": 891,
-   "area": "hazel-jit: Int division, Math.trunc(a / b) + 0: exact for safe integers, never -0, twice as fast",
+   "area": "hazel-jit: Int division by Math.trunc(a / b) + 0 (exact, never -0, twice as fast), and Int arithmetic on numbers written out folded at compile time",
    "text": "<b>Profiling Gnome world's compiled World.step (4.0 us a step, called directly; plain JS 0.56): the runtime's idiv was a sixth of it, and the Int helpers (idiv, isub, iadd, imul) a quarter.</b> idiv computed (a - a % b) / b, citing Math.trunc(a / b)'s rounding; but for safe integers Math.trunc(a / b) is exact (the rounding error |a / b| 2^-53 stays under the 1 / |b| between a quotient that is not whole and a whole number while |a| < 2^53), and checked against BigInt on 2,000,080 divisions it is never wrong; the old form gave -0 in a quarter of them (a negative divisor and no quotient: -1 / -2), where the interpreter's answer is 0, which shows through a Float (1. /. float_of_int(it): -infinity, not infinity). Math.trunc(a / b) + 0: 8.4 ns a division against 16.9.",
    "added": "2026-11-26",
    "opened": "2026-11-26T21:22-07:00",
@@ -23003,7 +23003,7 @@
     "correctness"
    ],
    "source": "Claude, 2026-11-26, from profiling the compiled World.step (^ticket(882), the AFK protocol)",
-   "progress": "11-26 21:5x: trial/891-idiv (136fecdcaf, off hazel-jit 25c106f545, two agreement tests: every sign; no -0 through a Float) and its library twin trial/891-idiv-pkg (62356bf70e, off hazeljs) pushed; CI and Deploy running; World.step to be timed against hazeljs on one runner (node/step-time.mjs)."
+   "progress": "11-26 21:5x: trial/891-idiv (136fecdcaf, off hazel-jit 25c106f545, two agreement tests: every sign; no -0 through a Float) and its library twin trial/891-idiv-pkg (62356bf70e, off hazeljs) pushed; CI and Deploy running; World.step to be timed against hazeljs on one runner (node/step-time.mjs). | 11-26 22:0x: also from the compiled World.step: Hazel writes -1 as 0 - 1 and the compiled code called $R.isub(0, 1) on every pass (dc < 0 - 1, dr == 0 - 3, ...), and == against it went through $R.eq. Second commit 664c49c49a on trial/891-idiv: +, - and * on Ints written out folded at compile time (int_const, exact by Bigint), counted as literals for == (so ===); division and Nat's left to run; an agreement test and a test that 0 - 3 compiles to no isub. To go on the library twin after the running World.step timing (division alone)."
   }
  ],
  "next_ticket": 892,
