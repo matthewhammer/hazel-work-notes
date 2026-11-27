@@ -22906,11 +22906,27 @@
    "waiting": true,
    "source": "Claude, 2026-11-26, from N's level (^ticket(888)): the booklet left out of 0.0.140, said in chat then",
    "progress": "11-26 20:4x: found while N's level was released; nothing changed in the booklet. WAITING ON MATTHEW: give up MORE TO COLOR for the level, or go to sixteen pages?"
+  },
+  {
+   "id": 890,
+   "area": "hazeljs: keep a built program between loads (Hazel.jitProgramSaved), so a page like Gnome world does not build its rules on every visit",
+   "text": "<b>Gnome world builds its rules on every load: 15 s the first time in the browser pane, 4.8-7 s cold in Node, nearly all of it Hazel's statics (^report(64), ^ticket(791)).</b> The compiled rules run again from their text in 7 ms with no Hazel library loaded (compileProgram's js and runtime, 296 KB + 24 KB). What a page also needs is the converters jitProgram wraps round each function; their source is generated per function, self-contained. Trial: Hazel.jitProgramSaved(spec) = jitProgram's answer + saved {js, runtime, wrap: {field: factory source}}; a page keeps saved (keyed by its rules' text and the library's build) and on its next load makes the value from it, building only if a call must go the old way. Then: Gnome world tries it behind a test switch, timed in the pane. Taking it into hazeljs (#2857) is an API addition: Matthew's call.",
+   "added": "2026-11-26",
+   "opened": "2026-11-26T20:56-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazeljs",
+    "performance",
+    "gnome world"
+   ],
+   "source": "Claude, 2026-11-26, from ^report(64)'s build cost (Matthew AFK; the AFK protocol)",
+   "progress": "11-26 21:0x: measured: compileProgram 6.43 s cold (Node); the kept text read 1 ms, instantiated 6.9 ms, World.step answers. Trial trial/890-saved-program (7cc5df35bc, off hazeljs b1b4e19286): Hazel.jitProgramSaved and a test making a program's value again from saved alone; CI running."
   }
  ],
- "next_ticket": 890,
- "current_ticket": null,
- "current_note": "20:53: the night's work parked for Matthew: ^ticket(681) (the memo trial, his call), ^ticket(792) (big Ints, his call), ^ticket(889) (the booklet); the memo trial's full tests running",
+ "next_ticket": 891,
+ "current_ticket": 890,
+ "current_note": "20:56: hazeljs: Hazel.jitProgramSaved, a built program kept as text (trial/890-saved-program); its CI running",
  "closed_tickets": [
   {
    "id": 887,
@@ -30400,6 +30416,7 @@
   }
  ],
  "queue": [
+  890,
   681,
   853,
   858,
@@ -30447,7 +30464,7 @@
   852,
   889
  ],
- "current_since": "2026-11-26T20:34-07:00",
+ "current_since": "2026-11-26T20:56-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
