@@ -22972,7 +22972,7 @@
     "gnome world"
    ],
    "source": "Claude, 2026-11-26, from ^report(64)'s build cost (Matthew AFK; the AFK protocol)",
-   "progress": "11-26 21:0x: measured: compileProgram 6.43 s cold (Node); the kept text read 1 ms, instantiated 6.9 ms, World.step answers. Trial trial/890-saved-program (7cc5df35bc, off hazeljs b1b4e19286): Hazel.jitProgramSaved and a test making a program's value again from saved alone; CI running. | 11-26 21:1x: trial CI: static and fast checks GREEN (compiles, warnings; the new test runs in the full tests, still running); Deploy put it at build.hazel.org/trial/890-saved-program. Gnome world 0.0.144 (3d3700b, pushed): with a library that has jitProgramSaved (?libat=trial/890-saved-program), a build is kept in IndexedDB keyed by the rules' text, with their data fields (World.styles: the trial wraps only functions, FOUND when the minimap failed on the first kept load); the next load makes the rules from it before the library loads. MEASURED in the pane: first load built and kept (4.4 s; 14.7 cold); reload ready 0.70 s after navigation, 13-19 ms making the rules from text, against a cold build of the same rules in the page of 14.4 s; kept vs freshly built the same world at all 500 steps (gnome, bunnies, frogs, birds, wind). Inert with the shipped library. WAITING ON MATTHEW: take jitProgramSaved into hazeljs (#2857)? (An API addition; my lean: yes, and have it carry the program's data fields too, so a page need not keep them itself.)",
+   "progress": "11-26 21:0x: measured: compileProgram 6.43 s cold (Node); the kept text read 1 ms, instantiated 6.9 ms, World.step answers. Trial trial/890-saved-program (7cc5df35bc, off hazeljs b1b4e19286): Hazel.jitProgramSaved and a test making a program's value again from saved alone; CI running. | 11-26 21:1x: trial CI: static and fast checks GREEN (compiles, warnings; the new test runs in the full tests, still running); Deploy put it at build.hazel.org/trial/890-saved-program. Gnome world 0.0.144 (3d3700b, pushed): with a library that has jitProgramSaved (?libat=trial/890-saved-program), a build is kept in IndexedDB keyed by the rules' text, with their data fields (World.styles: the trial wraps only functions, FOUND when the minimap failed on the first kept load); the next load makes the rules from it before the library loads. MEASURED in the pane: first load built and kept (4.4 s; 14.7 cold); reload ready 0.70 s after navigation, 13-19 ms making the rules from text, against a cold build of the same rules in the page of 14.4 s; kept vs freshly built the same world at all 500 steps (gnome, bunnies, frogs, birds, wind). Inert with the shipped library. WAITING ON MATTHEW: take jitProgramSaved into hazeljs (#2857)? (An API addition; my lean: yes, and have it carry the program's data fields too, so a page need not keep them itself.) | 11-26 21:4x: trial/890-saved-program CI GREEN (45937046651: static, fast, full: 5,222 tests, the new jitProgramSaved test among them).",
    "log": [
     {
      "at": "2026-11-26T20:47-07:00",
@@ -22988,11 +22988,27 @@
     }
    ],
    "waiting": true
+  },
+  {
+   "id": 891,
+   "area": "hazel-jit: Int division, Math.trunc(a / b) + 0: exact for safe integers, never -0, twice as fast",
+   "text": "<b>Profiling Gnome world's compiled World.step (4.0 us a step, called directly; plain JS 0.56): the runtime's idiv was a sixth of it, and the Int helpers (idiv, isub, iadd, imul) a quarter.</b> idiv computed (a - a % b) / b, citing Math.trunc(a / b)'s rounding; but for safe integers Math.trunc(a / b) is exact (the rounding error |a / b| 2^-53 stays under the 1 / |b| between a quotient that is not whole and a whole number while |a| < 2^53), and checked against BigInt on 2,000,080 divisions it is never wrong; the old form gave -0 in a quarter of them (a negative divisor and no quotient: -1 / -2), where the interpreter's answer is 0, which shows through a Float (1. /. float_of_int(it): -infinity, not infinity). Math.trunc(a / b) + 0: 8.4 ns a division against 16.9.",
+   "added": "2026-11-26",
+   "opened": "2026-11-26T21:22-07:00",
+   "status": "open",
+   "tags": [],
+   "chips": [
+    "hazel-jit",
+    "performance",
+    "correctness"
+   ],
+   "source": "Claude, 2026-11-26, from profiling the compiled World.step (^ticket(882), the AFK protocol)",
+   "progress": "11-26 21:5x: trial/891-idiv (136fecdcaf, off hazel-jit 25c106f545, two agreement tests: every sign; no -0 through a Float) and its library twin trial/891-idiv-pkg (62356bf70e, off hazeljs) pushed; CI and Deploy running; World.step to be timed against hazeljs on one runner (node/step-time.mjs)."
   }
  ],
- "next_ticket": 891,
- "current_ticket": 791,
- "current_note": "21:08: Hazel's statics: the labeled-tuple helpers made linear (trial/791-labels-linear), to be timed against hazeljs on one runner",
+ "next_ticket": 892,
+ "current_ticket": 891,
+ "current_note": "21:22: hazel-jit: Int division by Math.trunc(a / b) + 0 (trial/891-idiv), CI running; World.step to be timed",
  "closed_tickets": [
   {
    "id": 887,
@@ -30482,6 +30498,7 @@
   }
  ],
  "queue": [
+  891,
   890,
   681,
   853,
@@ -30530,7 +30547,7 @@
   852,
   889
  ],
- "current_since": "2026-11-26T21:08-07:00",
+ "current_since": "2026-11-26T21:22-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
