@@ -23266,11 +23266,47 @@
      "note": "from the transcripts"
     }
    ]
+  },
+  {
+   "id": 897,
+   "area": "hazel-jit: polymorphic functions in mixed mode, and a value at a type variable across a page's boundary",
+   "text": "<b>Matthew, 2026-11-27, in his meeting with Cyrus, on my answer: \"Let's talk about this more, as a ticket.\"</b> Compiled code erases types: <code>typfun a -> e</code> compiles as <code>e</code>, <code>f@&lt;T&gt;</code> as <code>f</code> (HazelJit.re), one function for every instantiation. Mixed mode does not compile a polymorphic function: a candidate's declared type must be an arrow at the top (HazelJitMixed.arrow_parts), and a forall is not. Reading an answer back at a type variable has no type to go by: across a page's boundary a whole JS number comes back an Int, any other a Float (HazelJitValue), so a polymorphic function used at Float could give back 2.0 as the Int 2. Questions: compile polymorphic functions in mixed mode, reading each call's answer back by the type at its use (the type application, or the statics' type there)? A test of a polymorphic export across a page's boundary, and of a function-typed parameter in mixed mode.",
+   "added": "2026-11-27",
+   "opened": "2026-11-27T10:04-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-27"
+   ],
+   "chips": [
+    "hazel-jit",
+    "mixed mode",
+    "types"
+   ],
+   "source": "Matthew and Cyrus's meeting, 2026-11-27",
+   "progress": "11-27 10:04: in #2859's description draft (^report(65), Mixed mode, at its boundary; Next, on this branch)."
+  },
+  {
+   "id": 898,
+   "area": "hazel-jit: a cast out of an unknown type nobody wrote is erased, so compiled code parts from the interpreter (f(true) answers 2); and the package compiles programs with static errors",
+   "text": "<b>Found 2026-11-27 checking Matthew's question in his meeting with Cyrus: \"let's talk about gradual typing --- how are type errors handled\".</b> In the browser, the hazeljs branch's library: <code>let f = fun x -> x + 1 in f(true)</code> has no static error (x's type unknown); the interpreter stops at the failed cast (true + 1, stuck), Hazel.jit compiles it and answers 2. The same inside a fully typed function: <code>let f : Bool -> Int = fun b -> let g = fun x -> x + 1 in g(b)</code> through Hazel.jitProgram answers 2, the interpreter the failed cast. HazelJit.no_type_hole catches only a hole written in a type (Unknown(Hole)), not an unknown the statics made. And Hazel.jit and Hazel.jitProgram compile a program with static errors ((1 : String): compiled, answering 1; ok: false with the errors), where the editor compiles none. Lean: compile a check at each cast out of an unknown type into a ground type (typeof, or a key test), stopping the run so the interpreter answers; Int against Float through an unknown type stays undecidable while both are JS numbers. And the package to say compiled: false for a program with static errors, as the editor's rule has it (or document ok: false as the guard).",
+   "added": "2026-11-27",
+   "opened": "2026-11-27T10:04-07:00",
+   "status": "open",
+   "tags": [
+    "meeting 2026-11-27"
+   ],
+   "chips": [
+    "hazel-jit",
+    "gradual typing",
+    "correctness"
+   ],
+   "source": "Claude, 2026-11-27, in Matthew and Cyrus's meeting",
+   "progress": "11-27 10:04: in #2859's description draft (^report(65), Types: errors, type holes and unknowns; Where it differs from the interpreter)."
   }
  ],
- "next_ticket": 897,
- "current_ticket": 896,
- "current_note": "08:52: ^ticket(896) fixed on trial/896-interp-param (waits for Matthew's word to merge); the corrected speed run: every piece Hazel's about 6% slower than every piece in JS; ^report(64) and ^report(65) corrected",
+ "next_ticket": 899,
+ "current_ticket": 898,
+ "current_note": "10:04: in Matthew and Cyrus's meeting: #2859's description draft (^report(65)) gains Mixed mode at its boundary and Types; ^ticket(897) polymorphic functions in mixed mode; ^ticket(898) casts through unknown types erased (f(true) gives 2)",
  "closed_tickets": [
   {
    "id": 887,
@@ -30827,7 +30863,7 @@
   852,
   889
  ],
- "current_since": "2026-11-27T08:26-07:00",
+ "current_since": "2026-11-27T10:04-07:00",
  "next_meeting": {
   "report": 66,
   "with": "Cyrus",
@@ -30840,10 +30876,10 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7273,
-  "words": 1604376,
+  "replies": 7275,
+  "words": 1604761,
   "read_hours_est": 112.4,
-  "listen_hours_est": 167.1,
+  "listen_hours_est": 167.2,
   "read_s_avg": 56,
   "listen_s_avg": 83,
   "days": {
@@ -31228,9 +31264,9 @@
     "chars": 47329
    },
    "2026-11-27": {
-    "replies": 14,
-    "words": 5713,
-    "chars": 33391
+    "replies": 16,
+    "words": 6098,
+    "chars": 35613
    }
   }
  },
