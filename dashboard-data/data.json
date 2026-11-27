@@ -21340,7 +21340,7 @@
    ],
    "source": "Found 2026-11-19 building Checkers for the hazeljs examples (^ticket(787)).",
    "text": "In hazeljs 0.0.4, Hazel's Int arithmetic is wide inside a program (65536 * 65536 gives 4294967296), and a large Int goes out to JavaScript whole (4293918720); but the same number passed back in as an argument arrives as -1048576, cut to a signed 32-bit int (ToInt32). Checkers keeps its board as 32-bit sets and reads them again as 32 bits at the entry points (wide: b + 2^32 when negative). Fix in hazeljs's JS-to-Hazel conversion, and line it up with SInt as 64 bits (^ticket(781), #2828): a JS number past 2^53 should arrive as a BigInt, or be refused. Also (11-20, pinball probe): a whole-number JS value passed where Hazel expects a Float (200 for 200.0) is taken as an Int, and the run overflows the stack; a Float that comes out as 0.0 goes back in as 0. Convert by the declared type, as hazel-jit's adapters do.",
-   "progress": "",
+   "progress": "11-26 19:49: FOUND: HazelLibCore.of_js read a whole JS number as Bigint.of_int(int_of_float(f)), and an int is 32 bits under js_of_ocaml (ToInt32): so an untyped parameter got 4293918720 as -1048576. The typed path (of_js_at, ^ticket(736)) was already right for Int and Nat; the jit's own boundary (HazelJitValue) too. Also: whole numbers from 1e15 to 2^53 came in as Floats, a JS BigInt was read as an object, and an Int past 2^53 went out as a rounded number where compiled code gives a BigInt. FIX on trial/792-big-ints (871edbc0d7, off hazeljs #2857's b1b4e19286): a safe whole number by HazelJitValue.whole, a BigInt by its digits (untyped, Int, Nat), and past 2^53 out as a BigInt; a test in Test_HazelLib (4293918720 and -4293918720 untyped, 2^53-2 untyped, typed, a BigInt past 2^64 in and out). CI running. Not changed: SInt still int_of_float at the boundary, 32 bits here, as SInt is on this branch (64 bits waits on #2828, ^ticket(781)).",
    "log": []
   },
   {
@@ -22876,8 +22876,8 @@
   }
  ],
  "next_ticket": 889,
- "current_ticket": 887,
- "current_note": "19:42: ^ticket(887): the view-memo fix is pushed to trial/694-view-jit (1a8afab5ae); waiting for its CI",
+ "current_ticket": 792,
+ "current_note": "19:46: hazeljs: an Int past 2^31 from JavaScript cut to 32 bits; finding where the conversion is, on the hazeljs branch (#2857); ^ticket(887)'s push CI running",
  "closed_tickets": [
   {
    "id": 888,
@@ -30403,7 +30403,7 @@
   863,
   852
  ],
- "current_since": "2026-11-26T12:28-07:00",
+ "current_since": "2026-11-26T19:46-07:00",
  "next_meeting": {
   "report": 54,
   "with": "the team",
@@ -30416,9 +30416,9 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7243,
-  "words": 1594268,
-  "read_hours_est": 111.6,
+  "replies": 7244,
+  "words": 1594376,
+  "read_hours_est": 111.7,
   "listen_hours_est": 166.1,
   "read_s_avg": 55,
   "listen_s_avg": 83,
@@ -30799,9 +30799,9 @@
     "chars": 138783
    },
    "2026-11-26": {
-    "replies": 9,
-    "words": 3737,
-    "chars": 21465
+    "replies": 10,
+    "words": 3845,
+    "chars": 22097
    }
   }
  },
