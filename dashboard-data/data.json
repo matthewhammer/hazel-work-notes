@@ -23409,7 +23409,7 @@
     "report"
    ],
    "source": "Matthew, 2026-11-27, in chat: \"when I was demoing gnome world (while using zoom), I used the \\\"speed run\\\" button and I noticed that the frame rate was very poor, and the \\\"worst time\\\" reported in the HUD was hundreds of ms, well above 16.7 ms. can we do a deep analysis of the current performance of a speed run, and determine what costs are showing up and how to mitigate them? please make a new WIP report, and fix whatever you can without me. second, in the same report, let's also document the current proportion of hazel vs js code, and whether that's contributing to the slower speedruns --- or is it some other design decisions we made recently?\"",
-   "progress": "18:28: minted. First reading of the page: in the speed run the frame loop steps the world for 12 ms of each frame, then draws, so a frame is 12 ms plus drawing by design; a single long step (the bot's path search over every tile, the dig's whole-world counts, a save) cannot be cut short, and so is a frame's worst. To measure: each step and each frame timed on its own, on a GitHub runner.",
+   "progress": "18:28: minted. First reading of the page: in the speed run the frame loop steps the world for 12 ms of each frame, then draws, so a frame is 12 ms plus drawing by design; a single long step (the bot's path search over every tile, the dig's whole-world counts, a save) cannot be cut short, and so is a frame's worst. To measure: each step and each frame timed on its own, on a GitHub runner. | 11-27 18:41: MEASURED (hazeljs-examples 'world speed run, frame by frame', run 46093539386, perf/902-frames 5e3734e = 0.0.148 plus a per-frame record): Hazel is NOT the cause: the rules compiled from Hazel are 1.3-1.8% of the page's busy thread, and the ⚡ plain-JS page's frames are the same (median 16.7 ms, p99 33.4 both at 1280×800). The causes: (1) the speed run steps for a fixed 12 ms of every frame, so drawing over ~4.7 ms misses the frame: at 1x 21% of frames are 33 ms; full screen at 2x median 33 ms (30 fps); CPU 4x slower median 33 ms, 342 frames over 50 ms, worst 167 ms; (2) the worst frames are drawing: pictures painted as the view sweeps (trees up to 126 ms, great trees 122, root patches 82, creatures/houses 43) and the minimap drawn every frame (every 45 steps), one 70 ms HUD frame at the dig's start (the first toLocaleString); (3) of the steps, the water (JS) is ~90%. FIXES on perf/902-frames ed0f197: the run's steps take what the frame leaves (14 ms less the drawing, 4-12 ms); 4 ms of new pictures painted a frame, the rest a frame or two later; a dug root patch repainted at most every 0.25 s; the minimap on the clock (0.75 s, 0.25 s after a dig); the dig's count once a real second; one number formatter made at load. Measuring the same four setups again (run 46094372461).",
    "log": [
     {
      "at": "2026-11-27T18:27-07:00",
@@ -23423,7 +23423,7 @@
  ],
  "next_ticket": 903,
  "current_ticket": 902,
- "current_note": "18:28: ^ticket(902): Gnome world's speed run, its frame rate and worst frames, measured on GitHub; a WIP report to come. (#2870 for ^ticket(791) open against dev, CI running)",
+ "current_note": "18:41: ^ticket(902): the speed run's slow frames found (not Hazel: the fixed 12 ms of steps a frame, and pictures painted as the view sweeps); fixes on perf/902-frames, measured again on GitHub; then 0.0.149 and ^report(68)",
  "closed_tickets": [
   {
    "id": 896,
