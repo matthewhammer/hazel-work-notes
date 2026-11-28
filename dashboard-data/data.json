@@ -23479,14 +23479,16 @@
    "added": "2026-11-27",
    "opened": "2026-11-27T18:54-07:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "hazel-jit",
     "correctness",
     "CI"
    ],
    "source": "Matthew, 2026-11-27, in chat: \"another note from the meeting earlier today with Cyrus: he was wondering about the equivalence of JIT code versus interpreter ---and when we use plain JS for a test, that too. But he was asking about the interpreter (as the spec) versus the JIT output. Do we have tests triggered by CI that test every test program for equiv between interp and JIT? I thought so, or maybe it was just something you were doing. Let's clarify that in the jit PR -- -we want to ensure semantic equivalence systematically going forward.\"",
-   "progress": "18:54: the section 'Checked against the interpreter, in CI' added to #2859's draft description (^report(65), 065/pr-2859.md), with the sweep's numbers from CI run 46079274764 (hazel-jit 664c49c49a) and five steps to make it systematic. The description on GitHub itself still has the older text (the draft in ^report(65) is to iterate on before it goes there). WAITING ON MATTHEW: post the draft to GitHub? And start steps 1 to 3 (mixed mode's sweep failing; random programs both ways; a floor on what compiles) on a trial branch? | 11-27 19:31: Matthew: \"Yes, post it\". POSTED ^report(65)'s draft as #2859's description on GitHub (REST PATCH; read back: the same text), with 'Checked against the interpreter, in CI' and, under 'Since it opened', tonight's Int division and folding (^ticket(891)). Left, waiting on Matthew's word: steps 1 to 3 (mixed mode's sweep failing the build; random programs both ways; a floor on what compiles) on a trial branch. | 11-27 19:37: Matthew: \"Yes, start them\". trial/903-agree (31c7c89de1, off hazel-jit 664c49c49a): (1) mixed mode's sweep fails a program's test on a different answer, a run or a rewrite that raised; (2) random programs both ways: QCheck_Util.arb_exp, 2000 at seed 903, size 30, those with no static error the interpreter finishes in 10,000 steps compiled and compared as the sweep compares (Slow: the full tests), counts printed at the end; (3) a floor: at least 234 of the evaluator's programs compiled and 6 in mixed mode, checked when the whole sweep ran. CI running (46098992876). Then: Matthew's word to merge into hazel-jit (#2859).",
+   "progress": "18:54: the section 'Checked against the interpreter, in CI' added to #2859's draft description (^report(65), 065/pr-2859.md), with the sweep's numbers from CI run 46079274764 (hazel-jit 664c49c49a) and five steps to make it systematic. The description on GitHub itself still has the older text (the draft in ^report(65) is to iterate on before it goes there). WAITING ON MATTHEW: post the draft to GitHub? And start steps 1 to 3 (mixed mode's sweep failing; random programs both ways; a floor on what compiles) on a trial branch? | 11-27 19:31: Matthew: \"Yes, post it\". POSTED ^report(65)'s draft as #2859's description on GitHub (REST PATCH; read back: the same text), with 'Checked against the interpreter, in CI' and, under 'Since it opened', tonight's Int division and folding (^ticket(891)). Left, waiting on Matthew's word: steps 1 to 3 (mixed mode's sweep failing the build; random programs both ways; a floor on what compiles) on a trial branch. | 11-27 19:37: Matthew: \"Yes, start them\". trial/903-agree (31c7c89de1, off hazel-jit 664c49c49a): (1) mixed mode's sweep fails a program's test on a different answer, a run or a rewrite that raised; (2) random programs both ways: QCheck_Util.arb_exp, 2000 at seed 903, size 30, those with no static error the interpreter finishes in 10,000 steps compiled and compared as the sweep compares (Slow: the full tests), counts printed at the end; (3) a floor: at least 234 of the evaluator's programs compiled and 6 in mixed mode, checked when the whole sweep ran. CI running (46098992876). Then: Matthew's word to merge into hazel-jit (#2859). | 11-27 19:59: CI GREEN on trial/903-agree 31c7c89de1 (run 46098992876: static, fast, full). The floor held: Fast checks 289 swept, 234 compiled; Full tests 290 swept, 235 compiled; mixed mode 6 of 6 the same, now failing on a parting. Random programs (Full tests): 2000 made, only 80 with no static error (4%), all 80 finished by the interpreter, 61 compiled, 60 the same answer, 1 not a value; none differ. The generator makes mostly ill-typed programs, so 2000 compare only about 60: next, more of them (10,000, as 'Evaluator does not crash' runs) or a generator of well-typed programs. WAITING ON MATTHEW: merge trial/903-agree into hazel-jit (#2859)?",
    "log": [
     {
      "at": "2026-11-27T18:51-07:00",
@@ -23574,7 +23576,7 @@
  ],
  "next_ticket": 904,
  "current_ticket": 903,
- "current_note": "19:37: ^ticket(903): trial/903-agree (mixed sweep failing, random programs both ways, a floor on what compiles), CI running",
+ "current_note": "19:59: ^ticket(903): trial/903-agree CI green (mixed sweep failing, random programs both ways: 61 compared, none differ; a floor at 234 compiled); waiting on Matthew to merge into hazel-jit",
  "closed_tickets": [
   {
    "id": 896,
