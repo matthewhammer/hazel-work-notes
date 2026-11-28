@@ -1,5 +1,62 @@
 [
  {
+  "id": 905,
+  "area": "Gnome world: the speed run's way found by A*, in Hazel, rather than by searching the whole world from the gnome outward",
+  "text": "<b>^report(68), What next, step 5: \"Find the run’s way by A* rather than by searching the whole world from the gnome outward, so a long search does not make a long step\".</b> https://matthewhammer.org/hazel/reports/068/#step-5 In Hazel (Matthew: \"let's do both. in Hazel.\"). Outcome in the same report as ^ticket(904).",
+  "added": "2026-11-27",
+  "opened": "2026-11-27T20:06-07:00",
+  "status": "done",
+  "tags": [],
+  "chips": [
+   "gnome world",
+   "performance",
+   "hazel"
+  ],
+  "source": "Matthew, 2026-11-27, in chat: \"let's do: Mint a ticket for this step: Hazel reports, ^report(68), What next, step 4: \\\"Make the water cheaper, so a step is less and the run faster at the same frame rate: it is 88% to 93% of the steps\\\". http://matthewhammer.org/hazel/reports/068/#step-4 and let's also have a hazel version of water, off by default, that we can turn on to profile and measure for reports. create a report with the outcome. related? Mint a ticket for this step: Hazel reports, ^report(68), What next, step 5: \\\"Find the run’s way by A* rather than by searching the whole world from the gnome outward, so a long search does not make a long step\\\". http://matthewhammer.org/hazel/reports/068/#step-5 let's do both. in Hazel.\"",
+  "progress": "20:06: minted. | 11-27 20:27: A* over a window (32 tiles, then 128, then the old whole-world search): within 16 tiles only 4 of 30 nearby gems were reached (the ways go round by the tunnels), within 32 all. JS A* about half the old search's time (near 0.8 ms against 1.4; far 3.4 against 6.7). Path.hz: the very same ways as wayJS (68 of 68), but 16-85 ms a search (about 25x): the hand-over and the tree of the window cheap (0.7 ms for 10,000 tiles), the search itself ~30x (AVL tree and pairing heap against typed arrays: no arrays in Hazel, ticket 846). So wayJS by default and Path.hz off by default (Advanced or ?way=hazel), as a long search would make the long steps this ticket is about. | 11-27 20:44: RELEASED in 0.0.150: wayJS (A*, each tile as the search reaches it) by default, the run's searches 0.17 s of the run against 0.0.149's 0.56 s (0.4% of the steps against 1.2%); Path.hz the same ways (20 of 20 in the save check, on every push), 28x the time, off by default (Advanced, ?way=hazel); ^report(69).",
+  "log": [
+   {
+    "at": "2026-11-27T20:05-07:00",
+    "from": "matthew",
+    "chars": 408,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-27T20:05-07:00",
+    "from": "matthew",
+    "chars": 271,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-27T20:05-07:00",
+    "from": "matthew",
+    "chars": 9,
+    "asks": false,
+    "note": "from the transcripts"
+   },
+   {
+    "at": "2026-11-27T20:05-07:00",
+    "from": "matthew",
+    "chars": 14,
+    "asks": false,
+    "note": "from the transcripts"
+   }
+  ],
+  "closed": "2026-11-27",
+  "closed_at": "2026-11-27T20:44-07:00",
+  "outcome": "Released in Gnome world 0.0.150: the speed run's way by A* over a window (wayJS, about half the old search's time; 0.4% of the run's steps against 1.2%), and Path.hz, the same in Hazel, the very same ways, 28 times the time, off by default (Advanced, ?way=hazel). ^report(69).",
+  "metrics": {
+   "open_minutes": 38,
+   "matthew_messages": 4,
+   "questions_to_matthew": 0,
+   "chars_exchanged": 702,
+   "tokens_est": 175,
+   "sync_minutes_est": 0.0
+  }
+ },
+ {
   "id": 896,
   "area": "Hazel's interpreter path (hazeljs): a function typed on its let took whole numbers as Ints where its type says Float, so Gnome world's interpreted speed run stopped; and the speed run's 'plain' way was not plain",
   "text": "In the speed run three ways on 0.0.148 (hazeljs-examples run 46025660460), the jit and plain ways ran (27.22 s and 26.37 s), and the interpreted way (world/?test=1&interpreted) threw at once: \"TypeError: Cannot read properties of null (reading 'plan')\" at build, from restartNow(H()): H() is null, so S.built was not ok. On 11-25 (bbfde10) the same way ran 42,000 steps in 227.6 s. Since then: ten modules more, levels, and the rules ahead of time (useAotRules skips ?interpreted). To find: whether the interpreter's build of the eleven modules fails or takes longer than the harness waits.",

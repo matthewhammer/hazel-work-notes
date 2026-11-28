@@ -23580,14 +23580,16 @@
    "added": "2026-11-27",
    "opened": "2026-11-27T20:06-07:00",
    "status": "open",
-   "tags": [],
+   "tags": [
+    "blocked on Matthew"
+   ],
    "chips": [
     "gnome world",
     "performance",
     "hazel"
    ],
    "source": "Matthew, 2026-11-27, in chat: \"let's do: Mint a ticket for this step: Hazel reports, ^report(68), What next, step 4: \\\"Make the water cheaper, so a step is less and the run faster at the same frame rate: it is 88% to 93% of the steps\\\". http://matthewhammer.org/hazel/reports/068/#step-4 and let's also have a hazel version of water, off by default, that we can turn on to profile and measure for reports. create a report with the outcome. related? Mint a ticket for this step: Hazel reports, ^report(68), What next, step 5: \\\"Find the run’s way by A* rather than by searching the whole world from the gnome outward, so a long search does not make a long step\\\". http://matthewhammer.org/hazel/reports/068/#step-5 let's do both. in Hazel.\"",
-   "progress": "20:06: minted. | 11-27 20:27: MEASURED in the browser pane (laptop): of 2,912 water blocks about 340 awake, 261 (77%) moving water every step (seepage); 310 of the ~338 changing blocks move under a thousandth of a tile a step. The JS passes rewritten (locals, comparisons for Math.min): the same water to the bit, 0.58-0.62 ms a step against 0.63-0.76 (5-20%). The waking threshold at 1e-3 (?wateps=, NOT the default: the water would behave differently): 0.15 ms a step against 0.38 at step 10,000 of the speed run, 79 awake blocks against 323, but 24% fewer flooded open tiles (1,170 against 1,538). Water.hz (off by default; Advanced or ?water=hazel): the same water to the bit (each store rounded to 32 bits by Veltkamp's split, = Math.fround on 25M amounts), 7.2-7.7 ms a step (13x), ~5,900 calls a step, 1.4 µs down and 2.5 µs across a call (0.4 µs the crossing). perf/902-904 81e126a: frames job and the save check (now holding both twins) running.",
+   "progress": "20:06: minted. | 11-27 20:27: MEASURED in the browser pane (laptop): of 2,912 water blocks about 340 awake, 261 (77%) moving water every step (seepage); 310 of the ~338 changing blocks move under a thousandth of a tile a step. The JS passes rewritten (locals, comparisons for Math.min): the same water to the bit, 0.58-0.62 ms a step against 0.63-0.76 (5-20%). The waking threshold at 1e-3 (?wateps=, NOT the default: the water would behave differently): 0.15 ms a step against 0.38 at step 10,000 of the speed run, 79 awake blocks against 323, but 24% fewer flooded open tiles (1,170 against 1,538). Water.hz (off by default; Advanced or ?water=hazel): the same water to the bit (each store rounded to 32 bits by Veltkamp's split, = Math.fround on 25M amounts), 7.2-7.7 ms a step (13x), ~5,900 calls a step, 1.4 µs down and 2.5 µs across a call (0.4 µs the crossing). perf/902-904 81e126a: frames job and the save check (now holding both twins) running. | 11-27 20:44: RELEASED Gnome world 0.0.150 (hazeljs-examples 73ec4ae): on one GitHub runner (Intel Xeon 8573C, run 46103505251) the speed run 65.1 s -> 56.9 s at 60 fps; Water.hz the same to the bit, 13x the time (5,937 calls a step), off by default (Advanced, ?water=hazel), held by the world save check on every push. ^report(69) published WIP: https://matthewhammer.org/hazel/reports/069/ . WAITING ON MATTHEW: the water's waking threshold, a ten-thousandth (the game's) or a thousandth (?wateps=0.001: the run 2.2x as fast, 25.8 s; 24% fewer flooded open tiles after 10,000 steps)?",
    "log": [
     {
      "at": "2026-11-27T20:00-07:00",
@@ -23642,58 +23644,22 @@
      "note": "from the transcripts"
     }
    ]
-  },
-  {
-   "id": 905,
-   "area": "Gnome world: the speed run's way found by A*, in Hazel, rather than by searching the whole world from the gnome outward",
-   "text": "<b>^report(68), What next, step 5: \"Find the run’s way by A* rather than by searching the whole world from the gnome outward, so a long search does not make a long step\".</b> https://matthewhammer.org/hazel/reports/068/#step-5 In Hazel (Matthew: \"let's do both. in Hazel.\"). Outcome in the same report as ^ticket(904).",
-   "added": "2026-11-27",
-   "opened": "2026-11-27T20:06-07:00",
-   "status": "open",
-   "tags": [],
-   "chips": [
-    "gnome world",
-    "performance",
-    "hazel"
-   ],
-   "source": "Matthew, 2026-11-27, in chat: \"let's do: Mint a ticket for this step: Hazel reports, ^report(68), What next, step 4: \\\"Make the water cheaper, so a step is less and the run faster at the same frame rate: it is 88% to 93% of the steps\\\". http://matthewhammer.org/hazel/reports/068/#step-4 and let's also have a hazel version of water, off by default, that we can turn on to profile and measure for reports. create a report with the outcome. related? Mint a ticket for this step: Hazel reports, ^report(68), What next, step 5: \\\"Find the run’s way by A* rather than by searching the whole world from the gnome outward, so a long search does not make a long step\\\". http://matthewhammer.org/hazel/reports/068/#step-5 let's do both. in Hazel.\"",
-   "progress": "20:06: minted. | 11-27 20:27: A* over a window (32 tiles, then 128, then the old whole-world search): within 16 tiles only 4 of 30 nearby gems were reached (the ways go round by the tunnels), within 32 all. JS A* about half the old search's time (near 0.8 ms against 1.4; far 3.4 against 6.7). Path.hz: the very same ways as wayJS (68 of 68), but 16-85 ms a search (about 25x): the hand-over and the tree of the window cheap (0.7 ms for 10,000 tiles), the search itself ~30x (AVL tree and pairing heap against typed arrays: no arrays in Hazel, ticket 846). So wayJS by default and Path.hz off by default (Advanced or ?way=hazel), as a long search would make the long steps this ticket is about.",
-   "log": [
-    {
-     "at": "2026-11-27T20:05-07:00",
-     "from": "matthew",
-     "chars": 408,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-27T20:05-07:00",
-     "from": "matthew",
-     "chars": 271,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-27T20:05-07:00",
-     "from": "matthew",
-     "chars": 9,
-     "asks": false,
-     "note": "from the transcripts"
-    },
-    {
-     "at": "2026-11-27T20:05-07:00",
-     "from": "matthew",
-     "chars": 14,
-     "asks": false,
-     "note": "from the transcripts"
-    }
-   ]
   }
  ],
  "next_ticket": 906,
  "current_ticket": 904,
- "current_note": "20:27: ^ticket(904)/^ticket(905): water and way done in JS and Hazel (Hazel twins off by default, the same to the bit / the same ways); GitHub frames job and save check running; then 0.0.150 and ^report(69)",
+ "current_note": "20:44: Gnome world 0.0.150 live (water cheaper, the way by A*; Water.hz and Path.hz off by default); ^report(69) published; waiting on Matthew: the water's threshold (^ticket(904))",
  "closed_tickets": [
+  {
+   "id": 905,
+   "area": "Gnome world: the speed run's way found by A*, in Hazel, rather than by searching the whole world from the gnome outward",
+   "added": "2026-11-27",
+   "text": "^report(68), What next, step 5: \"Find the run’s way by A* rather than by searching the whole world from the gnome outward, so a long search does not make a long step\".",
+   "source": "Matthew, 2026-11-27, in chat: \"let's do: Mint a ticket for this step: Hazel reports, ^report(68), What next, step 4:…",
+   "status": "done",
+   "closed": "2026-11-27",
+   "outcome": "Released in Gnome world 0.0.150: the speed run's way by A* over a window (wayJS, about half the old search's time; 0.4% of the run's steps against 1.2%), and Path.hz, the same in…"
+  },
   {
    "id": 896,
    "area": "Hazel's interpreter path (hazeljs): a function typed on its let took whole numbers as Ints where its type says Float, so Gnome world's interpreted speed run stopped; and the speed run's 'plain' way was not plain",
@@ -31318,8 +31284,8 @@
    "listen_wpm": 160
   },
   "since": "2026-08-27",
-  "replies": 7302,
-  "words": 1610608,
+  "replies": 7303,
+  "words": 1610681,
   "read_hours_est": 112.8,
   "listen_hours_est": 167.8,
   "read_s_avg": 56,
@@ -31706,9 +31672,9 @@
     "chars": 47329
    },
    "2026-11-27": {
-    "replies": 43,
-    "words": 11945,
-    "chars": 70403
+    "replies": 44,
+    "words": 12018,
+    "chars": 70854
    }
   }
  },
