@@ -19322,6 +19322,25 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-27T18:25-07:00",
+     "from": "matthew",
+     "chars": 12,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-27T18:27-07:00",
+     "from": "claude",
+     "chars": 715,
+     "asks": false,
+     "words": 101,
+     "read_s": 25,
+     "listen_s": 38,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ]
   },
@@ -21365,6 +21384,25 @@
      "model": "claude-opus-5-5",
      "effort": "xhigh",
      "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-27T18:25-07:00",
+     "from": "matthew",
+     "chars": 12,
+     "asks": false,
+     "note": "from the transcripts"
+    },
+    {
+     "at": "2026-11-27T18:27-07:00",
+     "from": "claude",
+     "chars": 715,
+     "asks": false,
+     "words": 101,
+     "read_s": 25,
+     "listen_s": 38,
+     "model": "claude-opus-5-5",
+     "effort": "xhigh",
+     "note": "from the transcripts"
     }
    ],
    "waiting": true
@@ -23371,7 +23409,16 @@
     "report"
    ],
    "source": "Matthew, 2026-11-27, in chat: \"when I was demoing gnome world (while using zoom), I used the \\\"speed run\\\" button and I noticed that the frame rate was very poor, and the \\\"worst time\\\" reported in the HUD was hundreds of ms, well above 16.7 ms. can we do a deep analysis of the current performance of a speed run, and determine what costs are showing up and how to mitigate them? please make a new WIP report, and fix whatever you can without me. second, in the same report, let's also document the current proportion of hazel vs js code, and whether that's contributing to the slower speedruns --- or is it some other design decisions we made recently?\"",
-   "progress": "18:28: minted. First reading of the page: in the speed run the frame loop steps the world for 12 ms of each frame, then draws, so a frame is 12 ms plus drawing by design; a single long step (the bot's path search over every tile, the dig's whole-world counts, a save) cannot be cut short, and so is a frame's worst. To measure: each step and each frame timed on its own, on a GitHub runner."
+   "progress": "18:28: minted. First reading of the page: in the speed run the frame loop steps the world for 12 ms of each frame, then draws, so a frame is 12 ms plus drawing by design; a single long step (the bot's path search over every tile, the dig's whole-world counts, a save) cannot be cut short, and so is a frame's worst. To measure: each step and each frame timed on its own, on a GitHub runner.",
+   "log": [
+    {
+     "at": "2026-11-27T18:27-07:00",
+     "from": "matthew",
+     "chars": 622,
+     "asks": false,
+     "note": "from the transcripts"
+    }
+   ]
   }
  ],
  "next_ticket": 903,
